@@ -15,6 +15,7 @@ import {
   type ReactionCounts,
 } from "../../libs/reactions";
 import { ReactionEmoji } from "./ReactionEmoji";
+import { ThumbNod } from "./ThumbNod";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
@@ -125,8 +126,10 @@ const AnimatedActionButton: React.FC<{
   glyphPlaying?: boolean;
   /** Renders in place of the icon — a custom, self-animating one. */
   iconNode?: React.ReactNode;
+  /** The icon is your own 👍 / 👎: it nods once every 5 seconds. */
+  nod?: "up" | "down";
   accessibilityLabel?: string;
-}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, glyphPlaying = true, iconNode, accessibilityLabel }) => {
+}> = ({ onPress, onPressIn, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, glyphAnimated, glyphPlaying = true, iconNode, nod, accessibilityLabel }) => {
   const scale = useRef(new Animated.Value(1)).current;
   useEffect(() => () => scale.stopAnimation(), [scale]);
   // Seven buttons per retained card only animate when tapped. Native-driver
@@ -168,7 +171,6 @@ const AnimatedActionButton: React.FC<{
       reaction={glyph}
       animate={glyphAnimated}
       playing={glyphPlaying}
-      slow={glyph === "like" || glyph === "dislike"}
       size={iconSize + 1.76}
       // Wider than the slot (Samsung's emoji draw wider than the font
       // size) and with no lineHeight: Android puts the extra line height
@@ -210,6 +212,10 @@ const AnimatedActionButton: React.FC<{
         <View style={{ width: iconSize, height: iconSize + GLYPH_ROOM * 2, marginVertical: -GLYPH_ROOM, alignItems: "center", justifyContent: "center" }}>
           {glyphEmoji}
         </View>
+      ) : nod ? (
+        <ThumbNod down={nod === "down"} playing={glyphPlaying}>
+          <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
+        </ThumbNod>
       ) : (
         <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
       )}
@@ -286,11 +292,13 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const resolvedThumb = resolveThumbReaction(reactionCounts, myReaction);
-  // Your own like (or the 👎 picked from the tray) shows as the moving 👍
-  // (or 👎), playing once every 5 seconds; any other reaction you cast shows
-  // as its moving emoji.
-  const thumbGlyph = resolvedThumb ?? (liked ? "like" : undefined);
-  const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
+  // A 👍 or 👎 stays the plain thumb icon (turned down for a 👎), filled and
+  // nodding once every 5 seconds when it is your own; any other reaction in
+  // the lead shows as its emoji, moving when it is yours.
+  const thumbDown = resolvedThumb === "dislike";
+  const thumbGlyph = resolvedThumb && !thumbDown ? resolvedThumb : undefined;
+  const thumbMine = thumbDown ? disliked || myReaction === "dislike" : liked;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, resolvedThumb ?? undefined);
 
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · share · comment · like ·
@@ -366,12 +374,13 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
             onLike();
           }}
           onLongPress={reactionsEnabled ? () => setTrayOpen(true) : undefined}
-          iconName="ThumbsUp"
+          iconName={thumbDown ? "ThumbsDown" : "ThumbsUp"}
           iconSize={FEED_ICON_SIZE.like}
           glyph={thumbGlyph}
-          glyphAnimated={!!thumbGlyph && (thumbGlyph === myReaction || !resolvedThumb)}
+          glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
           glyphPlaying={isVisible}
-          active={liked || disliked}
+          nod={thumbMine ? (thumbDown ? "down" : "up") : undefined}
+          active={thumbMine}
           activeFill={ICON_ACTIVE}
           inactiveColor={grey}
           countColor={grey}
