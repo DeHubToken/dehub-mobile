@@ -18,6 +18,7 @@ import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
 import useKeyboard from "../../hooks/useKeyboard";
+import { ScreenSpaceWindowContext } from "../../hooks/useComposerKeyboard";
 import type { PostCreator } from "../../libs/impersonation";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useUserProfilePresentation } from "../../context/UserProfileSheetContext";
@@ -393,7 +394,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   }
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={requestClose}>
-      {content}
+      <ScreenSpaceWindowContext.Provider value>{content}</ScreenSpaceWindowContext.Provider>
     </Modal>
   );
 };
