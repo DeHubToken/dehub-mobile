@@ -15394,5 +15394,15 @@
     "errorNoRecipient": "DeHub hesabı bulunamadı",
     "errorSelf": "Kendine gönderemezsin",
     "errorGeneric": "Gönderilemedi. Tekrar dene."
+  },
+  "avatarPrompt": {
+    "title": "Profil fotoğrafı ekle",
+    "body": "Bir yüzün ya da logon olduğunda insanlar seni akışta, yorumlarda ve sohbetlerde daha hızlı fark eder.",
+    "choose": "Fotoğraf seç",
+    "another": "Başka birini seç",
+    "save": "Bu fotoğrafı kullan",
+    "notNow": "Şimdi değil",
+    "saved": "Harika görünüyor",
+    "failed": "Fotoğrafın kaydedilemedi. Tekrar dene."
   }
 }
