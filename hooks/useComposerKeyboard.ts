@@ -1,5 +1,5 @@
 import type React from "react";
-import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Dimensions, Keyboard, Platform, StatusBar, View, useWindowDimensions, type KeyboardEvent } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { initialSafeAreaMetrics } from "../libs/initialSafeAreaMetrics";
@@ -27,6 +27,14 @@ const KEEP_MEASURING_MS = 400;
  * alone: moving the screen as well would fight the composer's own lift.
  */
 export const selfLiftingComposers = new Set<React.RefObject<View | null>>();
+
+/**
+ * True inside a `statusBarTranslucent` Modal. That window starts at the top of
+ * the screen, so measureInWindow is already in screen space; adding the status
+ * bar again lifted the reply box a status bar (34dp on a Galaxy S24+) clear of
+ * the keys, leaving a band of the page showing between them.
+ */
+export const ScreenSpaceWindowContext = createContext(false);
 
 /**
  * Mark a composer whose screen lifts it some other way (the post page's
@@ -74,6 +82,8 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
     return () => { selfLiftingComposers.delete(ref); };
   }, [enabled]);
   const insets = useContext(SafeAreaInsetsContext);
+  const screenSpace = useRef(false);
+  screenSpace.current = useContext(ScreenSpaceWindowContext);
   const navBar = useRef(0);
   // The provider's inset can read 0 on some screens while the real nav bar is
   // there; the launch-time inset is the nav bar's own height, so never use less.
@@ -103,7 +113,7 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
       // (the status bar) while the keyboard's top is in screen coordinates,
       // so the box measured a status bar higher than it sat and stopped that
       // far under the keys (34dp on a Galaxy S24+). Bring it to screen space.
-      const windowTop = Platform.OS === "android" ? StatusBar?.currentHeight ?? 0 : 0;
+      const windowTop = Platform.OS === "android" && !screenSpace.current ? StatusBar?.currentHeight ?? 0 : 0;
       const next = keyboardComposerLift(y + windowTop + measuredHeight, appliedLift, top, settings.current.gap);
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },
