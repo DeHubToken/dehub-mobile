@@ -565,7 +565,9 @@ export default function PostInfoScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 12 },
-  body: { padding: 16, gap: 16, paddingBottom: 48 },
+  // Same 8pt side inset as the ScreenHeader island above, so the cards and
+  // the top pill share their left and right edges.
+  body: { paddingHorizontal: 8, paddingTop: 16, gap: 16, paddingBottom: 48 },
   section: {
     backgroundColor: "rgba(255,255,255,0.05)",
     borderColor: "rgba(255,255,255,0.1)",
