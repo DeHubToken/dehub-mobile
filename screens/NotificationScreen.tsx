@@ -153,7 +153,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
     ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention'] as unknown as NotificationType[]),
   ],
   communities: [
-    ...(['community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
+    ...(['community_chat', 'community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
   ],
   stores: [
     ...([
@@ -350,6 +350,8 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   if (typeStr === 'community_join' || typeStr === 'community_mention' || typeStr === 'community_here') {
     return !!(notification as CustomNotificationItem).customReferenceId;
   }
+  // Grouped chat rows come from the API and carry the community in metadata.
+  if (typeStr === 'community_chat') return !!(notification as any).metadata?.communitySlug;
 
   // DAO rows open the DAO screen, as web's /dao does for a row with no id.
   // Mobile has no proposal view to take the id to yet.
@@ -1122,6 +1124,12 @@ const NotificationScreen = () => {
 
       // Community joins, @mentions and @here all land on the community they
       // came from; the row stores its slug, which is what the screen is keyed on.
+      case 'community_chat': {
+        const communitySlug = (notification as any).metadata?.communitySlug;
+        if (communitySlug) navigation.navigate(ScreenNames.CommunityDetail as never, { slug: communitySlug, tab: 'chat' } as never);
+        break;
+      }
+
       case 'community_join':
       case 'community_mention':
       case 'community_here': {
