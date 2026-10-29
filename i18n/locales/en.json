@@ -11632,21 +11632,21 @@
         }
       },
       "posting-allowance": {
-        "title": "Your Daily Posting Allowance",
-        "intro": "Posting is free every day up to an allowance that scales with your staking badge. Everybody starts with ten text posts and one gigabyte of video, images and audio per day. Go past either one and the rest of that day is paid for in DeHub tokens — only on the part that runs over.",
+        "title": "Your Daily Home Feed Allowance",
+        "intro": "Post as much as you like, every day, for free. Your staking badge sets how many text posts and how much video, image and audio reach the public home feed each day. Anything past that still publishes, it just shows on your profile and to your followers instead of the home feed.",
         "steps": {
-          "1": "Post as normal. Inside the allowance nothing is charged and nothing is asked of you.",
-          "2": "Text posts and media are separate pools, so a day spent uploading video still leaves all ten text posts free.",
-          "3": "When a post would run over, the app prices it first and checks your wallet can cover it before anything uploads.",
-          "4": "The post publishes exactly as it would inside the allowance — publishing never waits on a payment.",
-          "5": "Then you approve one transfer for that post only, settled on whichever of Base or BNB Chain holds enough DeHub tokens.",
-          "6": "Both pools reset at midnight UTC."
+          "1": "Post as normal. Nothing is ever charged and nothing is ever blocked.",
+          "2": "Text posts and media are separate allowances, so a day of uploading video still leaves your text posts for the home feed.",
+          "3": "Media is one shared pool of data per day across video, images and audio, so lots of small posts all fit.",
+          "4": "Once you pass either allowance, new posts of that kind go to your profile and your followers' Following feed.",
+          "5": "Nothing is hidden: everything you post stays on your profile.",
+          "6": "Both allowances reset at midnight UTC."
         },
         "tips": {
-          "1": "Overage is pro-rata: 200 MB past your allowance costs 200 MB, not a whole gigabyte.",
-          "2": "Reposts, comments, reactions, tips and messages cost nothing and never touch the allowance.",
-          "3": "Decline the payment and the post stays up — the amount just blocks your next paid post until it is settled. Tomorrow's free allowance is always yours.",
-          "4": "A staking badge raises the free allowance and lowers the price of anything past it."
+          "1": "A higher staking badge puts more of your posts on the home feed each day.",
+          "2": "Reposts, comments, reactions, tips and messages never touch the allowance.",
+          "3": "Your followers see every post you make in their Following feed.",
+          "4": "Each single file still has a size limit set by your badge."
         }
       },
       "reactions-and-safety": {
