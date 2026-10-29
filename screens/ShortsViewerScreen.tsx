@@ -147,6 +147,7 @@ import {
   type PostReaction,
 } from "../libs/reactions";
 import { ReactionEmoji } from "../components/Home/ReactionEmoji";
+import { ThumbNodIf } from "../components/Home/ThumbNod";
 import {
   applyEngagement,
   engagementKeyOf,
@@ -284,6 +285,8 @@ interface ActionButtonProps {
   glyphAnimated?: boolean;
   /** With glyphAnimated, whether it is moving right now (false holds a frame). */
   glyphPlaying?: boolean;
+  /** The icon is your own 👍 / 👎: it nods once every 5 seconds. */
+  nod?: "up" | "down";
   active?: boolean;
   label?: string;
   onPress: () => void;
@@ -309,6 +312,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   glyph,
   glyphAnimated,
   glyphPlaying = true,
+  nod,
   active,
   label,
   onPress,
@@ -373,14 +377,16 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         {glyph ? (
           <ReactionEmoji reaction={glyph} animate={glyphAnimated} playing={glyphPlaying} size={22} textStyle={styles.actionGlyph} />
         ) : (
-          // Web's `w-5 h-5`.
-          <Icon
-            name={icon}
-            size={20}
-            color={ICON_COLOR}
-            strokeWidth={1.8}
-            fill={active ? ICON_COLOR : "none"}
-          />
+          <ThumbNodIf nod={nod} playing={glyphPlaying}>
+            {/* Web's `w-5 h-5`. */}
+            <Icon
+              name={icon}
+              size={20}
+              color={ICON_COLOR}
+              strokeWidth={1.8}
+              fill={active ? ICON_COLOR : "none"}
+            />
+          </ThumbNodIf>
         )}
       </Animated.View>
       {label !== undefined && (
@@ -1233,8 +1239,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
    * takes back. Your own 👎 shows here: there is no thumbs-down any more.
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
-  const thumbCount = resolveThumbCount(likeCount, dislikeCount, thumbGlyph);
+  const thumbReaction = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount, thumbReaction);
+  // A 👍 or 👎 stays the plain thumb icon (turned down for a 👎), filled and
+  // nodding when it is your own; any other reaction shows as its emoji.
+  const thumbDown = thumbReaction === "dislike";
+  const thumbGlyph = thumbDown ? undefined : thumbReaction;
+  const thumbMine = thumbDown ? disliked || myReaction === "dislike" : liked;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -2398,11 +2409,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                   />
                   <ActionButton
                     style={styles.actionInline}
-                    icon="ThumbsUp"
+                    icon={thumbDown ? "ThumbsDown" : "ThumbsUp"}
                     glyph={thumbGlyph}
                     glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
                     glyphPlaying={glyphLive}
-                    active={liked || disliked}
+                    nod={thumbMine ? (thumbDown ? "down" : "up") : undefined}
+                    active={thumbMine}
                     label={formatCompactNumber(thumbCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
                     onLongPress={() => setOpenTray("positive")}

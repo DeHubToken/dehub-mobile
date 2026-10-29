@@ -60,6 +60,7 @@ import {
 /** The tray for a host that can only send a plain like or dislike. */
 const PLAIN_PAIR: readonly PostReaction[] = ["like", "dislike"];
 import { ReactionEmoji } from "../Home/ReactionEmoji";
+import { ThumbNod } from "../Home/ThumbNod";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
@@ -329,8 +330,11 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         : dislikesOutnumberLikes(shownCounts) ? "dislike" : null
       : resolveThumbReaction(shownCounts, myReaction)) ?? undefined;
   const thumbCount = resolveThumbCount(likeCount, dislikeCount, thumbGlyph);
-  /** Your own reaction is the one that moves. */
+  /** Your own reaction is the one that moves. A 👍 or 👎 stays the plain
+   * thumb icon (turned down for a 👎), filled and nodding when it is yours. */
   const thumbAnimated = !!thumbGlyph && thumbGlyph === myReaction;
+  const thumbDown = thumbGlyph === "dislike";
+  const thumbMine = thumbDown ? myReaction === "dislike" || disliked : liked;
 
   // Address is the identity; the name is only ever evidence. A commenter with
   // no address makes no claim either way.
@@ -904,7 +908,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Animated.View style={likeAnimStyle}>
-                  {thumbGlyph ? (
+                  {thumbGlyph && !thumbDown ? (
                     <ReactionEmoji
                       reaction={thumbGlyph}
                       animate={thumbAnimated}
@@ -913,12 +917,21 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                       // centred without lineHeight, which Android adds above the glyph.
                       textStyle={{ fontSize: 17, height: 21, width: 26, marginHorizontal: -4, textAlign: "center", textAlignVertical: "center", includeFontPadding: false }}
                     />
+                  ) : thumbMine ? (
+                    <ThumbNod down={thumbDown}>
+                      <Icon
+                        name={thumbDown ? "ThumbsDown" : "ThumbsUp"}
+                        size={COMMENT_ICON_SIZE.like}
+                        color={ICON_ACTIVE}
+                        fill={ICON_ACTIVE}
+                        strokeWidth={1.8}
+                      />
+                    </ThumbNod>
                   ) : (
                     <Icon
-                      name="ThumbsUp"
+                      name={thumbDown ? "ThumbsDown" : "ThumbsUp"}
                       size={COMMENT_ICON_SIZE.like}
-                      color={liked ? ICON_ACTIVE : ICON_MUTED}
-                      fill={liked ? ICON_ACTIVE : undefined}
+                      color={ICON_MUTED}
                       strokeWidth={1.8}
                     />
                   )}
