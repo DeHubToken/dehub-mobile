@@ -15395,5 +15395,15 @@
     "errorNoRecipient": "No se encontró ninguna cuenta de DeHub",
     "errorSelf": "No puedes enviarte a ti mismo",
     "errorGeneric": "No se pudo enviar. Inténtalo de nuevo."
+  },
+  "avatarPrompt": {
+    "title": "Añade una foto de perfil",
+    "body": "La gente te reconoce antes en el feed, los comentarios y los chats si tienes una cara o un logo.",
+    "choose": "Elegir una foto",
+    "another": "Elegir otra",
+    "save": "Usar esta foto",
+    "notNow": "Ahora no",
+    "saved": "¡Te queda genial!",
+    "failed": "No se pudo guardar tu foto. Inténtalo de nuevo."
   }
 }

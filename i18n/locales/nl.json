@@ -15646,5 +15646,15 @@
     "errorNoRecipient": "Geen DeHub-account gevonden",
     "errorSelf": "Je kunt niet naar jezelf versturen",
     "errorGeneric": "Versturen mislukt. Probeer het opnieuw."
+  },
+  "avatarPrompt": {
+    "title": "Voeg een profielfoto toe",
+    "body": "Mensen herkennen je sneller in feeds, reacties en chats met een gezicht of logo.",
+    "choose": "Kies een foto",
+    "another": "Kies een andere",
+    "save": "Gebruik deze foto",
+    "notNow": "Niet nu",
+    "saved": "Ziet er goed uit",
+    "failed": "Je foto kon niet worden opgeslagen. Probeer het opnieuw."
   }
 }
