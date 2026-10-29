@@ -770,7 +770,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           </Text>
 
           {/* Aggregation indicator */}
-          {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
+          {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (item.type as string) !== 'community_chat' && (
             <Text className="text-theme-neutrals-500" style={{ fontSize: 13, marginTop: 2 }}>
               {item.latestActorNames.slice(0, 3).join(', ')}
               {item.aggregatedCount > 3 &&
