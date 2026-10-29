@@ -28,6 +28,7 @@ import {
 } from "../services/communities.service";
 import { communityErrorMessage } from "../libs/community-permissions";
 import { notifyCommunityMentions } from "../libs/community-mention-notify";
+import { COMMUNITY_CHAT_SEEN_INTERVAL_MS, markCommunityChatSeen, reportCommunityChatMessage } from "../libs/community-chat-notify";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 import type { CommunityChatMessage } from "../types/community";
@@ -68,6 +69,20 @@ export function useCommunityChat(
     communityId, walletAddress, isPrivate, enabled: active, readPage: readCommunityPage,
   });
   const { rawMessages, referenceMessages, messagesKey: key, isLoading } = history;
+
+  // While the chat is on screen its notification is cleared and new pings are
+  // held (libs/community-chat-notify). Re-sent every minute, and it stops when
+  // the screen loses focus, so walking away starts the pings again.
+  useEffect(() => {
+    if (!active || !walletAddress || !communityId) return;
+    const ping = () => {
+      void markCommunityChatSeen(communityId).then(() =>
+        queryClient.invalidateQueries({ queryKey: ["notifications"] }));
+    };
+    ping();
+    const timer = setInterval(ping, COMMUNITY_CHAT_SEEN_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [active, walletAddress, communityId, queryClient]);
 
   const messages: CommunityChatMessage[] = useMemo(() => {
     const byId = new Map([...referenceMessages, ...rawMessages].map((m) => [m.id, m]));
@@ -180,6 +195,7 @@ export function useCommunityChat(
       // Fire and forget: a failed notify must never read as a failed send.
       const messageId = (inserted as { id?: string } | null)?.id;
       if (messageId) {
+        void reportCommunityChatMessage(communityId, messageId, walletAddress);
         void notifyCommunityMentions({ communityId, messageId, content, walletAddress });
       }
     },

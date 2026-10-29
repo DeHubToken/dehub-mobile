@@ -29,6 +29,28 @@ type NotificationContent = {
   };
 };
 
+/**
+ * One grouped row per community chat (backend community-chat-notification.service.ts):
+ * "James sent a message in X", "James and Charlie sent messages in X",
+ * "James + 2 others sent messages in X". Whoever spoke first leads.
+ */
+function communityChatSentence(item: NotificationContent, t: (key: string, options?: any) => string): string | null {
+  const meta = item.metadata as { senders?: { n: string }[]; senderCount?: number; communityName?: string } | undefined;
+  const senders = meta?.senders || [];
+  const name = senders[0]?.n || item.actorUsername || item.latestActorNames?.[0];
+  if (!name) return null;
+  const count = Math.max(meta?.senderCount || 0, senders.length, item.aggregatedCount || 0, 1);
+  const community = meta?.communityName || '';
+  if (count === 1) {
+    return t('notifications.communityChatOne', { name, community, defaultValue: '{{name}} sent a message in {{community}}' });
+  }
+  if (count === 2) {
+    const second = senders[1]?.n || item.latestActorNames?.[1] || '';
+    return t('notifications.communityChatTwo', { name, second, community, defaultValue: '{{name}} and {{second}} sent messages in {{community}}' });
+  }
+  return t('notifications.communityChatMany', { name, others: count - 1, community, defaultValue: '{{name}} + {{others}} others sent messages in {{community}}' });
+}
+
 /** Translate event wording at render time; leave names and custom messages intact. */
 export function localizedNotificationContent(
   item: NotificationContent,
@@ -50,6 +72,7 @@ export function localizedNotificationContent(
       ? t('notifications.badgeTierDown', { tier: item.metadata.tier })
       : t('notifications.badgeTierLost');
   }
+  if (item.type === 'community_chat') return communityChatSentence(item, t);
   const name = item.actor?.displayName || item.actorUsername || item.actor?.username || item.latestActorNames?.[0] || item.actorAddress;
   if (!name) return null;
   const count = item.aggregatedCount ?? 1;

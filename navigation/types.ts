@@ -219,7 +219,8 @@ export type AppStackParamList = {
   [ScreenNames.Stats]: undefined;
   [ScreenNames.Feedback]: { source?: 'converter' | 'migration' } | undefined;
   [ScreenNames.Planned]: undefined;
-  [ScreenNames.CommunityDetail]: { slug: string };
+  /** tab 'chat' opens straight on the chat, where a chat notification lands. */
+  [ScreenNames.CommunityDetail]: { slug: string; tab?: 'chat' };
   [ScreenNames.CommunityInvite]: { code: string };
   [ScreenNames.Converter]: undefined;
   [ScreenNames.Migrate]: undefined;

@@ -96,6 +96,8 @@ export interface NotificationData {
   currency?: string;
   bountyType?: 'viewer' | 'commentor';
   planId?: string;
+  // Community chat
+  communitySlug?: string;
   // Livestream
   streamId?: string;
   // Messages
@@ -465,6 +467,15 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
             navigation.navigate(ScreenNames.LiveViewer, streamId
               ? { streamId, ...(tokenId ? { tokenId } : {}) }
               : { tokenId });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        // Grouped community chat: straight to that community's chat.
+        case 'community_chat' as NotificationType:
+          if (typeof data.communitySlug === 'string' && data.communitySlug) {
+            navigation.navigate(ScreenNames.CommunityDetail, { slug: data.communitySlug, tab: 'chat' });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }

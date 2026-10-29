@@ -82,7 +82,11 @@ const CommunityDetailScreen: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
-  const [tab, setTab] = useState<Tab>("posts");
+  const [tab, setTab] = useState<Tab>(route.params?.tab === "chat" ? "chat" : "posts");
+  // A chat notification tapped while this community is already open.
+  useEffect(() => {
+    if (route.params?.tab === "chat") setTab("chat");
+  }, [route.params?.tab]);
   const [manageOpen, setManageOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [loadError, setLoadError] = useState(false);
