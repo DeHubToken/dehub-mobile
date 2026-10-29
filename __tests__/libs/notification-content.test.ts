@@ -41,3 +41,21 @@ describe('notification content', () => {
   });
 });
 
+
+describe('grouped community chat rows', () => {
+  const t = (() => {
+    const instance = createInstance();
+    instance.init({ lng: 'en', resources: { en: { translation: en } } });
+    return instance.t.bind(instance);
+  })();
+  const row = (names: string[]) => ({
+    type: 'community_chat',
+    actorUsername: names[0],
+    metadata: { communityName: 'Riftn', senders: names.map((n, i) => ({ a: `0x${i}`, n })), senderCount: names.length },
+  });
+  it('leads with whoever spoke first', () => {
+    expect(localizedNotificationContent(row(['james']), t)).toBe('james sent a message in Riftn');
+    expect(localizedNotificationContent(row(['james', 'charlie']), t)).toBe('james and charlie sent messages in Riftn');
+    expect(localizedNotificationContent(row(['james', 'charlie', 'dana']), t)).toBe('james + 2 others sent messages in Riftn');
+  });
+});

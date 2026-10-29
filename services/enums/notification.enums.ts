@@ -152,6 +152,9 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'Radio', color: '#F4F4F5' };
     case NotificationType.NEW_MESSAGE:
       return { name: 'Mail', color: '#F4F4F5' };
+    // Grouped community chat ("James + 2 others sent messages in X").
+    case 'community_chat':
+      return { name: 'MessageSquareText', color: '#F4F4F5' };
     case NotificationType.VIDEO_REMOVAL:
       return { name: 'CircleAlert', color: '#D4D4D8' };
     case NotificationType.ACCOUNT_WARNING:
