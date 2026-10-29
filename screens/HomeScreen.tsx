@@ -34,6 +34,8 @@ import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } from "../components/Home/IslandTopBar";
 import NewPostsBead, { CHIP_GAP, CHIP_HEIGHT } from "../components/Home/NewPostsBead";
 import { useNewPostsBead } from "../libs/new-posts-bead";
+import FeedSearchResults from "../components/Home/FeedSearchResults";
+import { feedSearchParams, feedSearchTabFor, type FeedSearchTab } from "../libs/feed-search";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
@@ -453,6 +455,19 @@ export default function HomeScreen() {
     setFilters((prev) => (prev.postType === postType ? prev : { ...prev, postType }));
   }, []);
 
+  // The lit tab pressed again turns the pill into a search of that feed
+  // (Home, Images, Videos, Music), as on web. Shorts and Live have no search.
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchTab = searchOpen ? feedSearchTabFor(activeTabKey) : null;
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+    setSearchQuery("");
+  }, []);
+  useEffect(() => {
+    if (searchOpen && !feedSearchTabFor(activeTabKey)) closeSearch();
+  }, [searchOpen, activeTabKey, closeSearch]);
+
   const handleNavPostTypeChange = useCallback(
     (postType: PostTypeOption) => {
       if (feedProfileVisible) hideUserProfile();
@@ -460,6 +475,26 @@ export default function HomeScreen() {
       setPostType(postType);
     },
     [feedProfileVisible, hideUserProfile, setPostType],
+  );
+  // Only the pill's own buttons open search; other routes here (deep links,
+  // the island menu, the bottom bar) just switch feeds.
+  const handlePillPostTypeChange = useCallback(
+    (postType: PostTypeOption) => {
+      if (postType === activeTabKey && !feedProfileVisible && !feedPost && !imageFeed && feedSearchTabFor(postType)) {
+        setFilterPanelVisible(false);
+        setSearchOpen(true);
+        return;
+      }
+      handleNavPostTypeChange(postType);
+    },
+    [activeTabKey, feedProfileVisible, feedPost, imageFeed, handleNavPostTypeChange],
+  );
+  const pickSearchFeed = useCallback(
+    (tab: FeedSearchTab) => {
+      const key = ({ home: "all", images: "feed-images", videos: "video", music: "feed-audio" } as const)[tab];
+      handleNavPostTypeChange(key as PostTypeOption);
+    },
+    [handleNavPostTypeChange],
   );
 
   const handleOpenImageFeed = useCallback(
@@ -516,6 +551,8 @@ export default function HomeScreen() {
   }, [feedProfileVisible, showHeader]);
 
   useBackPress(hideUserProfile, feedProfileVisible);
+  useSwipeBackAction(closeSearch, searchOpen && !feedProfileVisible && !filterPanelVisible);
+  useBackPress(closeSearch, searchOpen && !feedProfileVisible && !filterPanelVisible);
 
   // The filter panel is an in-tree overlay, not a Modal, so Android back would
   // otherwise skip it and leave the app. Close the panel first.
@@ -661,6 +698,25 @@ export default function HomeScreen() {
   const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
   const mediaGridInset = island ? 0 : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
+
+  // While words are typed the feed under the pill gives way to a results grid
+  // that follows the same filters (libs/feed-search).
+  const searching = !!searchTab && searchQuery.trim().length > 0;
+  const searchFeedParams = useMemo(
+    () => (searchTab ? feedSearchParams(searchTab, searchTab === "home" ? feedListParamsByType.all : feedParams, searchQuery.trim()) : null),
+    [searchTab, searchQuery, feedListParamsByType.all, feedParams],
+  );
+  const searchResults = searching && searchTab && searchFeedParams ? (
+    <View style={styles.searchResults}>
+      <FeedSearchResults
+        tab={searchTab}
+        query={searchQuery}
+        params={searchFeedParams}
+        topInset={searchTab === "home" ? feedInset : mediaGridInset}
+        onSearchEverything={() => pickSearchFeed("home")}
+      />
+    </View>
+  ) : null;
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed || !!feedPost;
   const newPostsBead = useNewPostsBead();
@@ -1138,7 +1194,8 @@ export default function HomeScreen() {
           <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
             <Animated.View
-              style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}
+              style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle, searching ? styles.underSearch : null]}
+              pointerEvents={searching ? "none" : "auto"}
             >
               {TAB_ORDER.map((key, index) => (
                 <View
@@ -1176,6 +1233,7 @@ export default function HomeScreen() {
 
           {/* Covers the pager, never the header: the filter panel and nav bar
               stay live so the user can keep adjusting while this is up. */}
+          {searchResults}
           {filterLoaderActive && <FeedFilterLoader topInset={feedInset} />}
           </Animated.View>
         </Animated.View>
@@ -1233,8 +1291,9 @@ export default function HomeScreen() {
           progress={progress}
           isFilterOpen={filterPanelVisible}
           hasActiveFilters={hasActiveFilters}
-          onPostTypeChange={handleNavPostTypeChange}
+          onPostTypeChange={handlePillPostTypeChange}
           onFilterPress={handleFilterPress}
+          search={searchTab ? { tab: searchTab, query: searchQuery, onChangeQuery: setSearchQuery, onClose: closeSearch, onPickFeed: pickSearchFeed } : null}
           onActiveTabLongPress={handleIslandFilters}
           backMode={feedProfileVisible || !!imageFeed || !!feedPost}
           onBackPress={feedProfileVisible ? hideUserProfile : imageFeed ? handleImageFeedBack : closeFeedPost}
@@ -1370,6 +1429,8 @@ const styles = StyleSheet.create({
   // The row is six screens wide and slides under a clipped viewport, so the
   // five inactive pages are outside the visible bounds and cost no compositing.
   pagerViewport: { flex: 1, overflow: "hidden" },
+  underSearch: { opacity: 0 },
+  searchResults: { ...StyleSheet.absoluteFillObject },
   // ImageFeedDrawer's own layer (absolute fill, above the pager), carried here
   // so the sheet can slide sideways with a page turn.
   drawerLayer: { ...StyleSheet.absoluteFillObject, zIndex: 9 },
