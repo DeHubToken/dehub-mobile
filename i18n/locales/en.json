@@ -15281,5 +15281,15 @@
     "errorNoRecipient": "No DeHub account found",
     "errorSelf": "You can’t send to yourself",
     "errorGeneric": "Couldn’t send. Try again."
+  },
+  "avatarPrompt": {
+    "title": "Add a profile photo",
+    "body": "People spot you faster in feeds, comments and chats when you have a face or logo.",
+    "choose": "Choose a photo",
+    "another": "Choose another",
+    "save": "Use this photo",
+    "notNow": "Not now",
+    "saved": "Looking good",
+    "failed": "Could not save your photo. Try again."
   }
 }

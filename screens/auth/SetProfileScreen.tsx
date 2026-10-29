@@ -52,6 +52,7 @@ import {
   createRNImageFile,
 } from "../../libs/assets.util";
 import { runWithPermissions } from "../../libs/permissions.util";
+import { markAvatarPromptSignupSession } from "../../libs/avatar-prompt";
 import { FEED_INTERESTS_PREF, INTEREST_TOPICS, saveAccountPrefs, setFeedInterests, topicCover } from "../../libs/feed-interests";
 import LanguageSelectModal from "../../components/Settings/LanguageSelectModal";
 import ThemePicker from "../../components/Settings/ThemePicker";
@@ -293,6 +294,8 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         payload.avatarImg = avatarFile;
       }
       await AuthService.updateProfile(payload);
+      // This open already offered a photo step; the reminder waits for the next.
+      markAvatarPromptSignupSession();
       // Private to the account (wallet-scoped preferences), never on the profile.
       if (birth && myAddress) {
         const iso = `${birth.getFullYear()}-${String(birth.getMonth() + 1).padStart(2, "0")}-${String(birth.getDate()).padStart(2, "0")}`;
