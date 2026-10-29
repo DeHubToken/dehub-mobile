@@ -21,7 +21,8 @@ import { useBackPress } from "../hooks/useBackPress";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
-import Animated from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming, Easing } from "react-native-reanimated";
+import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
@@ -658,7 +659,7 @@ const SearchScreen: React.FC = () => {
     executeSearch(searchQuery, activeTab, 1);
   }, [searchQuery, activeTab, executeSearch]);
 
-  const clearSearch = useCallback(() => {
+  const resetSearch = useCallback(() => {
     invalidateSearch();
     showHeader();
     setSearchQuery.complete(searchQuery, "");
@@ -669,7 +670,6 @@ const SearchScreen: React.FC = () => {
     setSuggestions([]);
     setHasSearched(false);
     lastQuery.current = "";
-    inputRef.current?.focus();
   }, [showHeader, setSearchQuery, searchQuery, invalidateSearch]);
 
   const handleReplaceSearchBox = useCallback((term: string) => {
@@ -1135,7 +1135,12 @@ const SearchScreen: React.FC = () => {
                 placeholder={t("search.searchDehub")}
                 placeholderTextColor="#9CA3AF"
                 value={searchQuery}
-                onChangeText={setSearchQuery}
+                onChangeText={(next) => {
+                  // Emptied with the keyboard: back to Explore, as the old
+                  // clear button did.
+                  if (!next && hasSearched) resetSearch();
+                  else setSearchQuery(next);
+                }}
                 onSubmitEditing={handleSearch}
                 onFocus={() => {
                   searchField.onFocus();
@@ -1147,18 +1152,9 @@ const SearchScreen: React.FC = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
+              {/* No clear button: the keyboard's own clear does the job. */}
               {loading ? (
                 <ActivityIndicator size="small" color="#9CA3AF" style={styles.fieldAction} />
-              ) : searchQuery.length > 0 ? (
-                <TouchableOpacity
-                  onPress={clearSearch}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("sidebar.clearSearch")}
-                  hitSlop={4}
-                  style={styles.fieldAction}
-                >
-                  <Icon name="X" size={16} color="#71717A" />
-                </TouchableOpacity>
               ) : null}
               {/* The filter toggle is a plain icon inside the field, the same
                   quiet treatment as the messages search. */}
@@ -1170,7 +1166,7 @@ const SearchScreen: React.FC = () => {
                 hitSlop={4}
                 style={styles.fieldAction}
               >
-                <Icon name="SlidersHorizontal" size={18} color={filterPanelVisible ? "#F4F4F5" : "#71717A"} />
+                <FilterToggleIcon open={filterPanelVisible} />
               </TouchableOpacity>
             </View>
           </View>
@@ -1197,7 +1193,59 @@ const SearchScreen: React.FC = () => {
   );
 };
 
+/**
+ * The filter toggle: open, the sliders spin into a glowing X that closes the
+ * panel, the same turn web's toggle makes (and the home toggle into its back
+ * arrow).
+ */
+const FilterToggleIcon = React.memo(({ open }: { open: boolean }) => {
+  // The glow follows the ink, so it still shows on the light theme.
+  const { isLight } = useAppTheme();
+  const glow = isLight ? "#18181B" : "#F4F4F5";
+  const progress = useSharedValue(open ? 1 : 0);
+  useEffect(() => {
+    progress.value = withTiming(open ? 1 : 0, { duration: 250, easing: Easing.inOut(Easing.ease) });
+  }, [open, progress]);
+  const slidersStyle = useAnimatedStyle(() => ({
+    opacity: Math.max(0, 1 - progress.value * 2),
+    transform: [{ rotate: `${progress.value * 180}deg` }],
+  }));
+  const closeStyle = useAnimatedStyle(() => ({
+    opacity: Math.max(0, progress.value * 2 - 1),
+    transform: [{ rotate: `${(progress.value - 1) * 180}deg` }],
+  }));
+  const glowStyle = useAnimatedStyle(() => ({
+    opacity: progress.value,
+    transform: [{ scale: 0.6 + progress.value * 0.4 }],
+  }));
+  return (
+    <View style={styles.toggleIcon}>
+      <Animated.View pointerEvents="none" style={[styles.toggleGlow, glowStyle]}>
+        <Svg width="100%" height="100%">
+          <Defs>
+            <RadialGradient id="exploreFilterGlow" cx="50%" cy="50%" rx="50%" ry="50%">
+              <Stop offset="0" stopColor={glow} stopOpacity={isLight ? 0.22 : 0.55} />
+              <Stop offset="0.6" stopColor={glow} stopOpacity={isLight ? 0.06 : 0.15} />
+              <Stop offset="1" stopColor={glow} stopOpacity={0} />
+            </RadialGradient>
+          </Defs>
+          <Rect width="100%" height="100%" fill="url(#exploreFilterGlow)" />
+        </Svg>
+      </Animated.View>
+      <Animated.View style={[styles.toggleGlyph, slidersStyle]}>
+        <Icon name="SlidersHorizontal" size={18} color="#71717A" />
+      </Animated.View>
+      <Animated.View style={[styles.toggleGlyph, closeStyle]}>
+        <Icon name="X" size={18} color="#F4F4F5" />
+      </Animated.View>
+    </View>
+  );
+});
+
 const styles = StyleSheet.create({
+  toggleIcon: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
+  toggleGlow: { position: "absolute", top: 0, bottom: 0, left: 0, right: 0 },
+  toggleGlyph: { position: "absolute" },
   // Over the content, not above it — so it can slide out without the lists
   // below resizing on every frame of the animation.
   header: {
