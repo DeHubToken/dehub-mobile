@@ -24,6 +24,8 @@ import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { translateCopy as _translateCopy } from "../../i18n/copy";
+import FeedSearchBar from "./FeedSearchBar";
+import type { FeedSearchTab } from "../../libs/feed-search";
 
 interface NavItem {
   icon: IconName;
@@ -79,6 +81,17 @@ interface FeedNavBarProps {
    * the same control in the same place.
    */
   backMode?: boolean;
+  /**
+   * Set while the pill is a search box (the lit tab was tapped again). The tab
+   * row hides under FeedSearchBar until it closes.
+   */
+  search?: {
+    tab: FeedSearchTab;
+    query: string;
+    onChangeQuery: (q: string) => void;
+    onClose: () => void;
+    onPickFeed: (tab: FeedSearchTab) => void;
+  } | null;
   /** Back names the surface being closed; image drawers keep the grid label. */
   backLabel?: string;
   onBackPress?: () => void;
@@ -166,6 +179,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backMode = false,
   backLabel,
   onBackPress,
+  search = null,
 }) => {
   useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
@@ -220,6 +234,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
         // pan stole the touch, cancelled the child Pressable, then ended with
         // translationX ~0 and resolved back to the current tab, so the tap did
         // nothing. Distance alone gates the drag, leaving taps to Pressable.
+        .enabled(!search)
         .minDistance(5)
         .activeOffsetX([-5, 5])
         .failOffsetY([-10, 10])
@@ -252,8 +267,28 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             runOnJS(commitIndex)(target);
           }
         }),
-    [buttonWidth, commitIndex, progress, dragStart, LAST_INDEX],
+    [buttonWidth, commitIndex, progress, dragStart, LAST_INDEX, search],
   );
+
+  const searchBar = (fromX: number) => search && containerWidth > 0 ? (
+    <FeedSearchBar
+      tab={search.tab}
+      query={search.query}
+      onChangeQuery={search.onChangeQuery}
+      onClose={search.onClose}
+      onPickFeed={search.onPickFeed}
+      onFilterPress={onFilterPress}
+      filterActive={isFilterOpen || hasActiveFilters}
+      width={containerWidth}
+      fromX={fromX}
+      fromWidth={buttonWidth}
+      tint={tint}
+      activeStyle={skin ? skin.stripActive : undefined}
+    />
+  ) : null;
+  // The tab row fades out under the search box rather than unmounting, so the
+  // indicator keeps its place for when the box melts back into it.
+  const hiddenUnderSearch = search ? styles.hiddenUnderSearch : null;
 
   // Sliding glass indicator — always visible, UI-thread driven. The +1 is the
   // filter/back slot the row now leads with: tab 0 starts one slot in, so
@@ -282,10 +317,10 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
         >
           <View style={styles.minimalBaseline} pointerEvents="none" />
           {containerWidth > 0 && <Reanimated.View
-            style={[styles.minimalTab, indicatorStyle]}
+            style={[styles.minimalTab, indicatorStyle, hiddenUnderSearch]}
             pointerEvents="none"
           />}
-          <View style={styles.navRow}>
+          <View style={[styles.navRow, hiddenUnderSearch]} pointerEvents={search ? "none" : "auto"}>
             <Pressable
               onPress={backMode ? onBackPress : onFilterPress}
               style={styles.minimalButton}
@@ -320,6 +355,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               </View>
             ))}
           </View>
+          {searchBar((activeIndex + 1) * buttonWidth)}
         </View>
       ) : (
       <View style={styles.outerWrap}>
@@ -355,7 +391,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {/* FrostedPill owns the backdrop blur. The moving selection only
               adds its tint and rim, matching the web nav without a second
               blur sample that can leave a seam during tab transitions. */}
-          {containerWidth > 0 && <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle]}>
+          {containerWidth > 0 && <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle, hiddenUnderSearch]}>
             {skin ? (
               <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
             ) : (
@@ -366,7 +402,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           </Reanimated.View>}
           {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
 
-          <View style={styles.navRow}>
+          <View style={[styles.navRow, hiddenUnderSearch]} pointerEvents={search ? "none" : "auto"}>
             {/* Leading slot, web parity: filter toggle normally, the image
                 drawer's back arrow while that drawer is up. */}
             <Pressable
@@ -414,6 +450,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               />
             ))}
           </View>
+          {searchBar(LEAD_SLOT_WIDTH + activeIndex * buttonWidth)}
         </View>
       </View>
       )}
@@ -436,6 +473,7 @@ export const NAV_PILL_RADIUS = 12;
 export const NAV_PILL_SIDE_INSET = 8;
 
 const styles = StyleSheet.create({
+  hiddenUnderSearch: { opacity: 0 },
   outerWrap: {
     paddingHorizontal: NAV_PILL_SIDE_INSET,
     paddingTop: NAV_PILL_TOP_INSET,

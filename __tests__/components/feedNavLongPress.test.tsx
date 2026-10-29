@@ -9,7 +9,7 @@ jest.mock('react-native-gesture-handler', () => ({
   GestureDetector: ({ children }: any) => children,
   Gesture: { Pan: () => {
     const chain: any = {};
-    ['minDistance', 'activeOffsetX', 'failOffsetY', 'onStart', 'onUpdate', 'onEnd'].forEach(k => { chain[k] = () => chain; });
+    ['minDistance', 'activeOffsetX', 'failOffsetY', 'onStart', 'onUpdate', 'onEnd', 'enabled'].forEach(k => { chain[k] = () => chain; });
     return chain;
   } },
 }));
