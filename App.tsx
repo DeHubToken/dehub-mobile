@@ -99,6 +99,7 @@ import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 import OnboardingChoicesApplier from "./components/Onboarding/OnboardingChoicesApplier";
+import AvatarPromptHost from "./components/Onboarding/AvatarPromptHost";
 import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
 import { watchTransformOrigin } from "./libs/cdnImage";
@@ -250,6 +251,9 @@ export default function App() {
               {/* Saves the first-run Kids / Mature choice to the account once
                   one is signed in; the setup runs before there is one. */}
               <OnboardingChoicesApplier />
+              {/* Asks accounts with no profile picture to add one, a few
+                  times at most, on Home or Explore. */}
+              <AvatarPromptHost />
               {/* A tapped badge opens here, above whatever screen it was on. */}
               <BadgeShowcaseHost />
               </FeedSuperpowersProvider>
