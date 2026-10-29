@@ -66,11 +66,21 @@ export default function KeyboardPanView({ children }: { children: React.ReactNod
       const top = keyboardTop.current;
       const root = ref.current as any;
       const input = TextInput.State.currentlyFocusedInput() as any;
-      if (top == null || !root || !input?.measureInWindow) return;
+      if (top == null || !root) return;
       const id = ++request;
+      // Nothing focused here any more (the screen with the field closed while
+      // the keys were still up): there is nothing to keep clear, so the
+      // screen goes back down rather than staying slid up over a black band.
+      if (!input?.measureInWindow) {
+        moveTo(0);
+        return;
+      }
       void (async () => {
         // Only fields drawn inside this view: a Modal's field fails here.
-        if (!(await isInside(input, root))) return;
+        if (!(await isInside(input, root))) {
+          if (id === request) moveTo(0);
+          return;
+        }
         // Composers that lift themselves are already handled.
         for (const composer of selfLiftingComposers) {
           if (await isInside(input, composer.current)) {

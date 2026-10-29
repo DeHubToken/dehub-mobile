@@ -1323,6 +1323,11 @@ export default function UploadScreen() {
   // landing is the composer itself shrinking into the post, so the screen
   // goes without its own slide and the landing overlay carries on from it.
   const navigateHome = useCallback((landing?: PostLandingStyle) => {
+    // The keyboard goes with the composer. Left up, it stayed open over Home
+    // with the screen still slid up for it: a black band under the nav bar
+    // and the new post's card pushed up out of sight.
+    TextInput.State.currentlyFocusedInput()?.blur();
+    Keyboard.dismiss();
     if (landing === "morph") nav.setOptions({ animation: "none" });
     nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
   }, [nav]);
