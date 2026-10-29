@@ -7,7 +7,7 @@ import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
-import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_RADIUS } from "./AuthControls";
+import { AuthButton, authColors, AUTH_DISABLED_OPACITY, AUTH_RADIUS } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
@@ -133,17 +133,19 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   const [importVisible, setImportVisible] = useState(false);
 
   if (layout === "stack") {
+    // The open method's disc turns into Email, so the row keeps the same
+    // shape and switching back is the same tap in the same place.
+    const emailDisc = (
+      <OptionDisc
+        label={t("loginStack.email", "Email")}
+        onPress={() => { Keyboard.dismiss(); setOpenFlow(null); }}
+        disabled={disabled}
+        renderIcon={(c, sz) => <Ionicons name="mail" color={c} size={sz - 2} />}
+      />
+    );
     return (
       <View style={{ width: "100%", gap: 18 }}>
         <View style={{ minHeight: 124, gap: 8 }}>
-        {openFlow !== null && (
-          <AuthTextButton
-            label={t("loginModal.continueEmail")}
-            tone="muted"
-            onPress={() => { Keyboard.dismiss(); setOpenFlow(null); }}
-            disabled={disabled}
-          />
-        )}
         {openFlow === null && <EmailLoginFlow
           startOpen
           onSubmit={(_provider, email) => {
@@ -190,24 +192,24 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
             loading={busyProvider === "apple"}
             renderIcon={(c, sz) => <SvgXml xml={appleIcon("currentColor")} color={c} width={sz} height={sz} />}
           />
-          <OptionDisc
-            label={t("loginStack.phone", "Phone")}
-            onPress={() => toggleFlow("phone")}
-            disabled={disabled}
-            loading={busyProvider === "phone"}
-            active={openFlow === "phone"}
-            renderIcon={(c, sz) => <Ionicons name="call" color={c} size={sz - 2} />}
-          />
-          {passkeyReady && (
+          {openFlow === "phone" ? emailDisc : (
+            <OptionDisc
+              label={t("loginStack.phone", "Phone")}
+              onPress={() => toggleFlow("phone")}
+              disabled={disabled}
+              loading={busyProvider === "phone"}
+              renderIcon={(c, sz) => <Ionicons name="call" color={c} size={sz - 2} />}
+            />
+          )}
+          {passkeyReady && (openFlow === "passkey" ? emailDisc : (
             <OptionDisc
               label={t("loginStack.fingerprint", "Bio")}
               onPress={() => toggleFlow("passkey")}
               disabled={disabled}
               loading={busyProvider === "passkey-signin" || busyProvider === "passkey-signup"}
-              active={openFlow === "passkey"}
               renderIcon={(c, sz) => <Ionicons name="finger-print" color={c} size={sz} />}
             />
-          )}
+          ))}
           {onTelegram && (
             <OptionDisc
               label={BRAND_NAMES.telegram}
@@ -219,14 +221,15 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           )}
           {/* One way in for every wallet: connect one or import a key, both
               under this button. */}
-          <OptionDisc
-            label={t("nav.wallet", "Wallet")}
-            onPress={() => toggleFlow("wallet")}
-            disabled={disabled}
-            loading={busyProvider === "wallet"}
-            active={openFlow === "wallet"}
-            renderIcon={(c, sz) => <Ionicons name="wallet" color={c} size={sz - 2} />}
-          />
+          {openFlow === "wallet" ? emailDisc : (
+            <OptionDisc
+              label={t("nav.wallet", "Wallet")}
+              onPress={() => toggleFlow("wallet")}
+              disabled={disabled}
+              loading={busyProvider === "wallet"}
+              renderIcon={(c, sz) => <Ionicons name="wallet" color={c} size={sz - 2} />}
+            />
+          )}
         </View>
 
         <ImportWalletModal visible={importVisible} onClose={() => setImportVisible(false)} />

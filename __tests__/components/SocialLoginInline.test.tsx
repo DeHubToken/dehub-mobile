@@ -47,13 +47,18 @@ it('replaces the email form when selecting another method and keeps provider cho
   expect(view.queryByText('Email form')).toBeNull();
   expect(view.getByText('Phone form')).toBeTruthy();
   expect(view.getByRole('button', { name: 'Google' })).toBeTruthy();
+  // The Phone disc turned into Email in the same slot.
+  expect(view.queryByRole('button', { name: 'loginStack.phone' })).toBeNull();
+  expect(view.getAllByRole('button', { name: 'loginStack.email' })).toHaveLength(1);
 
   fireEvent.press(view.getByRole('button', { name: 'loginStack.fingerprint' }));
   expect(view.queryByText('Phone form')).toBeNull();
   expect(view.getByText('Fingerprint choices')).toBeTruthy();
   expect(view.getByRole('button', { name: 'Google' })).toBeTruthy();
+  expect(view.getByRole('button', { name: 'loginStack.phone' })).toBeTruthy();
+  expect(view.queryByRole('button', { name: 'loginStack.fingerprint' })).toBeNull();
 
-  fireEvent.press(view.getByRole('button', { name: 'loginModal.continueEmail' }));
+  fireEvent.press(view.getByRole('button', { name: 'loginStack.email' }));
   expect(view.getByText('Email form')).toBeTruthy();
   expect(view.queryByText('Fingerprint choices')).toBeNull();
 });
