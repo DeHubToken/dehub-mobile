@@ -115,6 +115,8 @@ export type AppStackParamList = {
     commentId?: string;
     /** The post's kind when the opener knows it, for the loading skeleton. */
     postType?: string;
+    /** Opened from the notification drawer, which stays mounted under it. */
+    overDrawer?: boolean;
   };
   /** dehub.io/app/post/:tokenId/info */
   [ScreenNames.PostInfo]: { tokenId: string };

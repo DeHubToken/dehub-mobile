@@ -116,7 +116,8 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
  * with unread rows on top under New. The feed arrives ordered by createdAt, so
  * a reaction group that picked up a like today sat among yesterday's rows and
  * the headings ran This week, Today, This week. `unread` is whether a row was
- * unread when it was listed, so opening one doesn't move it under you.
+ * unread when it was listed, so opening one doesn't move it under you, not even
+ * when the list refreshes on the way back from it.
  */
 function byFeedGroup(items: NotificationItem[], unread: (n: NotificationItem) => boolean): NotificationItem[] {
   const at = (n: NotificationItem) => new Date(n.updatedAt || n.createdAt).getTime() || 0;
@@ -1006,7 +1007,7 @@ const NotificationScreen = () => {
   // shorts viewer used to be seeded with a bare { tokenId } item, so the first
   // slide had no creator, no caption and zero counts.
   const navigateToFeed = useCallback((tokenId: number, commentId?: string, postType?: string) => {
-    navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId, postType });
+    navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId, postType, overDrawer: true });
   }, [navigation]);
 
   const openUserProfile = useCallback((
@@ -1466,7 +1467,6 @@ const NotificationScreen = () => {
           }
         }
 
-        if (isRefresh) listedUnreadRef.current = new Map();
         for (const n of payload as NotificationItem[]) {
           if (!listedUnreadRef.current.has(n._id)) listedUnreadRef.current.set(n._id, !n.read);
         }
