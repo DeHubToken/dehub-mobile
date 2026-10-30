@@ -33,6 +33,7 @@ import InAppVideoMiniPlayerHost from './components/common/InAppVideoMiniPlayer';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StatusBar,
+  Platform,
   StyleSheet,
   View,
 } from "react-native";
@@ -93,7 +94,8 @@ import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlay
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
 import WalletRuntimeHost from "./components/auth/WalletRuntimeHost";
-import { markBootRevealed } from "./libs/bootReveal";
+import { bootRevealed, markBootRevealed } from "./libs/bootReveal";
+import { shouldDockLaunch } from "./libs/magneticDock";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
@@ -347,6 +349,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, pageColors, isLight, theme } = useAppTheme();
   const { isBootLoading, isSignedIn, needsUsername, isFirstTimeUser } = useAuthState();
   const bootStartedAt = useRef(Date.now()).current;
+  const openingLaunch = useRef(!bootRevealed).current;
   // Read when the preloader lifts, to tell signed-in launches from the rest.
   const isSignedInRef = useRef(isSignedIn);
   isSignedInRef.current = isSignedIn;
@@ -424,17 +427,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const [coverMounted, setCoverMounted] = useState(true);
   const [revealStarted, setRevealStarted] = useState(false);
   const revealingRef = useRef(false);
-  const previousAuth = useRef(isAuthenticated);
-  useEffect(() => {
-    // Signing in from the guest app gets the same handoff as a warm account
-    // launch. Reopening the app or switching tabs does not replay it.
-    if (isAuthenticated && !previousAuth.current && revealingRef.current) {
-      revealingRef.current = false;
-      setRevealStarted(false);
-      setCoverMounted(true);
-    }
-    previousAuth.current = isAuthenticated;
-  }, [isAuthenticated]);
+  const launchAuthenticated = useRef<boolean | null>(null);
+  if (settled && launchAuthenticated.current === null) launchAuthenticated.current = isAuthenticated;
+  const [dockLaunch, setDockLaunch] = useState(false);
 
   const beginReveal = useCallback(() => {
     if (revealingRef.current) return;
@@ -444,8 +439,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     // Native splash hands off underneath the opaque cover: by the time it is
     // gone, the RN view above it already paints the same black-and-mark.
     ExpoSplashScreen.hideAsync().catch(() => { });
+    setDockLaunch(shouldDockLaunch(Platform.OS, openingLaunch, launchAuthenticated.current === true, Date.now() - bootStartedAt));
     setRevealStarted(true);
-  }, [theme]);
+  }, [theme, bootStartedAt, openingLaunch]);
 
   useEffect(() => {
     if (!staged || !navReady) return;
@@ -577,7 +573,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
           it until the fade starts, which is the point — there is nothing to
           interact with underneath until the reveal begins. */}
       {coverMounted && (
-        <MagneticDockCover key={isAuthenticated ? 'account' : 'guest'} reveal={revealStarted} enabled={isAuthenticated} onComplete={() => setCoverMounted(false)} />
+        <MagneticDockCover reveal={revealStarted} enabled={dockLaunch} onComplete={() => setCoverMounted(false)} />
       )}
     </>
   );
