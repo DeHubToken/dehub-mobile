@@ -176,7 +176,9 @@ const imageWidthFor = (screenWidth: number) => screenWidth - 40;
 // once layout reported the truth — a second layout, a scroll correction, and
 // expo-image re-decoding the picture for the new size (traced: 143 image
 // views created on a fling, 149 resize re-renders). At 120Hz that was a
-// frame per card.
+// frame per card. It is still only a first guess: a list that pads its cards
+// wider than 8/side left the photo hanging past the card's right edge, so the
+// image corrects itself on layout when the guess is off by more than 2pt.
 const singleImageWidthFor = (screenWidth: number) => screenWidth - 42;
 // Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
 // 96px-wide image reads exactly like 20px of blur on the full one.
@@ -1696,7 +1698,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             active={isVisible}
             uri={galleryImages[0]}
             description={item.mediaDescriptions?.[0]}
-            width={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
+            width={isMinimal || edgeMedia ? SCREEN_WIDTH : undefined}
             fallbackWidth={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
             postPage={immersive}
