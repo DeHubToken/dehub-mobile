@@ -10,6 +10,7 @@ export default function MagneticDockCover({ reveal, enabled, onComplete }: {
   reveal: boolean; enabled: boolean; onComplete: () => void;
 }) {
   const { width, height } = useWindowDimensions();
+  const entrySize = useRef({ width, height });
   const host = useRef<View>(null);
   const progress = useRef(new Animated.Value(0)).current;
   const fade = useRef(new Animated.Value(1)).current;
@@ -26,7 +27,11 @@ export default function MagneticDockCover({ reveal, enabled, onComplete }: {
   }, []);
 
   useEffect(() => {
-    if (!reveal) return;
+    if (!reveal) { entrySize.current = { width, height }; return; }
+    if (entrySize.current.width !== width || entrySize.current.height !== height) {
+      completeRef.current();
+      return;
+    }
     let cancelled = false;
     let target: DockTarget | null = null;
     let motion: Animated.CompositeAnimation | undefined;
