@@ -121,6 +121,9 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         // Minimal runs the column edge to edge, so a portrait image that stops
         // short of the width sits centred rather than hugging one side.
         alignItems: "flex-start",
+        // A measured image may mount a few points wider than its column
+        // before layout reports the truth; never let that hang past the card.
+        overflow: width === undefined ? "hidden" : undefined,
       }}
     >
       {/* Android does not consistently clip expo-image's native surface when
