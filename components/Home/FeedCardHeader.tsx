@@ -118,7 +118,12 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   const live = !!liveTarget;
   // Start fetching the profile as the finger lands, so it is usually in hand
   // by the time the tap is released and the page slides in.
-  const warmProfile = useCallback(() => prefetchUserProfile(username || address), [username, address]);
+  // What this card shows goes along too, so the profile draws the name and a
+  // working badge on its first frame instead of a blank skeleton.
+  const warmProfile = useCallback(
+    () => prefetchUserProfile(username || address, { displayName, avatarUrl, badgeImage }),
+    [username, address, displayName, avatarUrl, badgeImage],
+  );
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
       <Pressable
