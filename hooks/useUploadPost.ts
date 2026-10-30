@@ -103,6 +103,8 @@ export type UploadPayload = {
   mediaDescriptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
+  /** The poster closed the price card for the $TICKER / address in the text. */
+  hideAssetCards?: boolean;
   /** Who may quote it. Absent means anyone. */
   quotePolicy?: "followers" | "nobody";
   /** Who may reply. Absent means anyone. */
@@ -330,6 +332,7 @@ export function useUploadPost() {
         crossPostAccountIds: p.crossPostAccountIds,
         mediaDescriptions: p.mediaDescriptions,
         spoilerText: p.spoilerText,
+        hideAssetCards: p.hideAssetCards,
         quotePolicy: p.quotePolicy,
         replyPolicy: p.replyPolicy,
         visibility: p.visibility,
@@ -412,6 +415,7 @@ export function useUploadPost() {
       quotedTokenId: number;
       mediaDescriptions?: string[];
       spoilerText?: string;
+      hideAssetCards?: boolean;
       quotePolicy?: "followers" | "nobody";
       replyPolicy?: "followers" | "following" | "mentioned";
     }): boolean => {
@@ -461,6 +465,7 @@ export function useUploadPost() {
           streamInfoJson: "{}",
           mediaDescriptions: p.mediaDescriptions,
           spoilerText: p.spoilerText,
+          hideAssetCards: p.hideAssetCards,
           quotePolicy: p.quotePolicy,
           replyPolicy: p.replyPolicy,
         },

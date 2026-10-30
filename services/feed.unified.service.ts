@@ -94,6 +94,8 @@ export interface UnifiedFeedItem {
   mediaDescriptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
+  /** The poster closed the price card for the $TICKER / address in the caption. */
+  hideAssetCards?: boolean;
   /** Who may quote it; absent means anyone. */
   quotePolicy?: "public" | "followers" | "nobody";
   /** A quote whose quoted author took their post back out of it. */
