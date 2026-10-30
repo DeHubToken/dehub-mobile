@@ -5,6 +5,7 @@ import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
+import type { ProfileIdentitySeed } from "../../hooks/useUserProfileData";
 import UserProfileHeader from "./UserProfileHeader";
 import PinnedCommunities from "../Communities/PinnedCommunities";
 import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
@@ -32,6 +33,8 @@ interface UserProfileSheetContentProps {
   collapse?: ReturnType<typeof useProfileCollapse>;
   loading: boolean;
   data: any;
+  /** What the tapped card showed, drawn by the skeleton until data arrives. */
+  identitySeed?: ProfileIdentitySeed | null;
   profileData: any;
   isFollowing: boolean;
   isFollowRequestPending?: boolean;
@@ -74,6 +77,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   collapse,
   loading,
   data,
+  identitySeed,
   profileData,
   isFollowing,
   isFollowRequestPending,
@@ -385,7 +389,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   if (loading || !data) {
     return (
       <View className="flex-1 p-2">
-        <UserProfileSkeleton />
+        <UserProfileSkeleton seed={identitySeed} />
       </View>
     );
   }

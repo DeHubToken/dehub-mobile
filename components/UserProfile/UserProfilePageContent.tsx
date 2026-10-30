@@ -38,6 +38,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
   const {
     loading,
     data,
+    identitySeed,
     error,
     retry,
     profileData,
@@ -129,6 +130,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
           collapse={collapse}
           loading={loading}
           data={data}
+          identitySeed={identitySeed}
           error={error}
           onRetry={retry}
           backToTopBottom={TAB_BAR_CONTENT_INSET}
@@ -197,6 +199,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
             collapse={collapse}
             loading={loading}
             data={data}
+            identitySeed={identitySeed}
             error={error}
             onRetry={retry}
             backToTopBottom={TAB_BAR_CONTENT_INSET}
