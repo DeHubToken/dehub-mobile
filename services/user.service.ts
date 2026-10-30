@@ -592,6 +592,27 @@ export async function followUser(followerAddress: string, followingAddress: stri
   };
 }
 
+export interface FollowBatchResult {
+  address: string;
+  ok: boolean;
+  status?: string;
+  error?: string;
+}
+
+/**
+ * Follows up to 100 people in one call ("Follow back all"), so a long list
+ * doesn't trip the per-request rate limit.
+ */
+export async function followUsersBatch(addresses: string[]): Promise<FollowBatchResult[]> {
+  const res = await apiClient.post<{ result: boolean; results: FollowBatchResult[] }>(
+    "/request_follow/batch",
+    { addresses: addresses.map((address) => address.toLowerCase()) },
+    { isAuthRequired: true },
+  );
+  const payload: any = (res as any)?.data ?? res;
+  return Array.isArray(payload?.results) ? payload.results : [];
+}
+
 /**
  * Unfollow a user (or cancel a pending follow request).
  * Endpoint (GET): /request_follow?address=<follower>&following=<target>&unFollowing=true
