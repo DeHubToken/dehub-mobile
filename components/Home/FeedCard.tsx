@@ -208,6 +208,8 @@ type PostEdits = {
   shopListingCount?: number;
   hidden?: boolean;
   spoilerText?: string;
+  /** The poster closed the price card for the $TICKER / address in the caption. */
+  hideAssetCards?: boolean;
   quotePolicy?: "public" | "followers" | "nobody";
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
 };
@@ -838,9 +840,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Market references get the same treatment, and in this order: the entity pass
   // claims whole URLs first, so a dehub.io link carrying a hex id cannot also
   // read as a contract address. Tickers stay in the caption; addresses come out.
+  // None at all when the poster closed the card: no card, and an address they
+  // pasted stays in the caption.
   const assetRefs = useMemo(
-    () => findAssetRefs(captionWithoutLinks).slice(0, MAX_ASSET_CARDS_PER_MESSAGE),
-    [captionWithoutLinks],
+    () => (item?.hideAssetCards ? [] : findAssetRefs(captionWithoutLinks).slice(0, MAX_ASSET_CARDS_PER_MESSAGE)),
+    [captionWithoutLinks, item?.hideAssetCards],
   );
   const displayCaption = useMemo(
     () => stripAssetRefs(captionWithoutLinks, assetRefs),
