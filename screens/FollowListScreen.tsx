@@ -29,6 +29,8 @@ import {
   FollowRequestItem,
   removeFollower,
   followUser,
+  followUsersBatch,
+  FollowBatchResult,
   unfollowUser,
 } from "../services/user.service";
 import { getAvatarUrl } from "../libs/misc";
@@ -85,6 +87,7 @@ const FALLBACK_PAGES = 3;
 const FALLBACK_PAGE_SIZE = 100;
 const FOLLOW_BACK_ALL_REVEAL_THRESHOLD = 2;
 const BULK_FOLLOW_CONCURRENCY = 4;
+const BULK_FOLLOW_BATCH_SIZE = 50;
 
 const lower = (value?: string | null) => (value || "").toLowerCase();
 
@@ -783,6 +786,54 @@ const FollowListScreen: React.FC = () => {
 
       let nextIndex = 0;
       let completed = 0;
+
+      // One request per 50 people. Falls back to one-by-one if the batch route isn't there.
+      while (nextIndex < candidates.length) {
+        const chunk = candidates.slice(nextIndex, nextIndex + BULK_FOLLOW_BATCH_SIZE);
+        const keys = chunk.map((entry) => lower(entry.user.address));
+        setPendingFollow((prev) => {
+          const next = { ...prev };
+          keys.forEach((key) => { next[key] = true; });
+          return next;
+        });
+        let results: FollowBatchResult[] | null = null;
+        try {
+          results = await followUsersBatch(chunk.map((entry) => entry.user.address));
+        } catch (error) {
+          console.error("[FollowListScreen] follow back all batch error:", error);
+        }
+        setPendingFollow((prev) => {
+          const next = { ...prev };
+          keys.forEach((key) => { delete next[key]; });
+          return next;
+        });
+        if (!results) {
+          if (completed === 0) break;
+          completed += chunk.length;
+          nextIndex += chunk.length;
+          setBulkFollowProgress({ completed, total: candidates.length });
+          continue;
+        }
+        const byAddress = new Map(results.map((result) => [lower(result.address), result]));
+        setRelationships((prev) => {
+          const next = { ...prev };
+          keys.forEach((key) => {
+            const result = byAddress.get(key);
+            if (!result?.ok) return;
+            const isPending = result.status === "pending";
+            next[key] = { isFollowing: !isPending, followsYou: true, isPending };
+          });
+          return next;
+        });
+        keys.forEach((key) => {
+          const result = byAddress.get(key);
+          if (result?.ok && result.status !== "pending") followingSetRef.current?.add(key);
+        });
+        completed += chunk.length;
+        nextIndex += chunk.length;
+        setBulkFollowProgress({ completed, total: candidates.length });
+      }
+
       const worker = async () => {
         while (nextIndex < candidates.length) {
           const item = candidates[nextIndex++];
