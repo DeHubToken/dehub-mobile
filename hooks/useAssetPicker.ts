@@ -26,6 +26,7 @@ import {
   searchAssets,
   type AssetSuggestion,
 } from "../services/asset.service";
+import { caretFromEdit } from "../libs/caret-from-edit";
 
 /** Longest thing that can still be a ticker. Past this it is prose with a `$`. */
 const MAX_QUERY = 12;
@@ -86,8 +87,8 @@ export function useAssetPicker(text: string, setText: (t: string) => void) {
 
       // The caret has not moved yet when this fires, so it is inferred from the
       // length change — the same trick the mention hook uses.
-      const cursor = selectionRef.current.start + (newText.length - oldText.length);
-      const q = extractQuery(newText, Math.max(0, cursor));
+      const cursor = caretFromEdit(oldText, newText, selectionRef.current);
+      const q = extractQuery(newText, cursor);
 
       if (!q) {
         clear();
@@ -117,8 +118,10 @@ export function useAssetPicker(text: string, setText: (t: string) => void) {
   const handleSelectionChange = useCallback(
     (e: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => {
       selectionRef.current = e.nativeEvent.selection;
+      // Selecting text (select all, a drag) is not typing a ticker.
+      if (e.nativeEvent.selection.start !== e.nativeEvent.selection.end && queryRef.current) clear();
     },
-    [],
+    [clear],
   );
 
   /** Replace the in-progress `$query` with the picked asset's caption text. */

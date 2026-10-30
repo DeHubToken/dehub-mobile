@@ -131,6 +131,8 @@ import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/po
 import { haptic } from "../libs/haptics";
 import { useAppTheme, useThemeRootStyle } from "../context/ThemeContext";
 import LinkPreviewCard from "../components/common/LinkPreviewCard";
+import ComposerBodyInput from "../components/Upload/ComposerBodyInput";
+import { useSettledText } from "../hooks/useSettledText";
 import { minimalFlat } from "../theme/minimal";
 import { uploadLocalFileToBucket, fileExtension, contentTypeForExtension } from "../libs/storage-upload";
 
@@ -448,6 +450,9 @@ export default function UploadScreen() {
   const [showEmojiSheet, setShowEmojiSheet] = useState(false);
   /** Caret position in the body input, so emoji land where the cursor is. */
   const bodySelectionRef = useRef({ start: 0, end: 0 });
+  // The link card follows the text once typing pauses (a paste shows at once),
+  // not every keystroke of a half-typed address.
+  const previewText = useSettledText(bodyText);
   /** Track the draft id if we're editing one (so we can delete on save/post) */
   const restoredDraftIdRef = useRef<string | null>(null);
 
@@ -2577,7 +2582,7 @@ export default function UploadScreen() {
                 className="text-white text-lg font-medium mb-1"
               />
             )}
-            {!articleMode && <TextInput
+            {!articleMode && <ComposerBodyInput
               value={bodyText}
               onChangeText={handleBodyChange}
               onSelectionChange={(e) => {
@@ -2624,8 +2629,8 @@ export default function UploadScreen() {
               />
             )}
 
-            {!articleMode && <DraftAssetCards text={bodyText} hidden={hideAssetCards} onHiddenChange={setHideAssetCards} />}
-            {!articleMode && <LinkPreviewCard text={bodyText} />}
+            {!articleMode && <DraftAssetCards text={previewText} hidden={hideAssetCards} onHiddenChange={setHideAssetCards} />}
+            {!articleMode && <LinkPreviewCard text={previewText} />}
 
             <MentionSuggestions
               visible={bodyMentions.showSuggestions}
