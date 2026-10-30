@@ -114,13 +114,41 @@ const fetchAccount = (who: string) => {
 };
 
 /**
+ * What the tapped card already showed about the person: enough to draw their
+ * avatar, name and a working badge on the profile's first frame, while the
+ * full account is still on its way. Never stored as profile data, so stats,
+ * follow state and privacy still wait for the server.
+ */
+export interface ProfileIdentitySeed {
+  displayName?: string;
+  avatarUrl?: string;
+  badgeImage?: any;
+}
+
+const IDENTITY_SEED_LIMIT = 30;
+const identitySeeds = new Map<string, ProfileIdentitySeed>();
+
+const identityKey = (who?: string | null) => (who || '').replace(/^@/, '').toLowerCase();
+
+export const getProfileIdentitySeed = (who?: string | null): ProfileIdentitySeed | null =>
+  identitySeeds.get(identityKey(who)) ?? null;
+
+/**
  * Warm the profile cache on press-in, before the tap is released. Skips a
  * fresh entry; a failure is swallowed here and retried by the profile itself.
  */
-export const prefetchUserProfile = (who?: string | null) => {
+export const prefetchUserProfile = (who?: string | null, identity?: ProfileIdentitySeed) => {
   const id = (who || '').replace(/^@/, '');
   if (!id) return;
   const key = id.toLowerCase();
+  if (identity && (identity.displayName || identity.avatarUrl || identity.badgeImage)) {
+    identitySeeds.delete(key);
+    identitySeeds.set(key, identity);
+    if (identitySeeds.size > IDENTITY_SEED_LIMIT) {
+      const oldest = identitySeeds.keys().next().value;
+      if (oldest !== undefined) identitySeeds.delete(oldest);
+    }
+  }
   const cached = profileCache.get(key);
   if (cached && Date.now() - cached.ts < PROFILE_CACHE_TTL) return;
   warmRequest(`profile:${key}`, async () => {
@@ -702,9 +730,16 @@ export const useUserProfileData = (
     });
   }, [requireAuth, blockLoading, data?.address, blockedYou, _copy]);
 
+  // Only while nothing real is on screen yet: the skeleton draws it.
+  const identitySeed = useMemo(
+    () => (!data && visible ? getProfileIdentitySeed(usernameOrAddress) : null),
+    [data, visible, usernameOrAddress],
+  );
+
   return {
     loading,
     data,
+    identitySeed,
     error,
     retry,
     profileData,

@@ -190,7 +190,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   const followed = following || pending;
   return (
     <View style={styles.creator} testID="post-stage-creator">
-      <Pressable onPress={onUserPress} onPressIn={() => prefetchUserProfile(username || address)} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
+      <Pressable onPress={onUserPress} onPressIn={() => prefetchUserProfile(username || address, { displayName, avatarUrl, badgeImage })} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={40}
