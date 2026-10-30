@@ -2,12 +2,13 @@ import React from 'react';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { FlatList } from 'react-native';
 import CreatorLibraryManager from '../../components/Assistant/CreatorLibraryManager';
+jest.mock('../../components/Assistant/ImageLayersPanel', () => ({ ImageLayersPanel: () => null }));
 const mockList = jest.fn(), mockUpdate = jest.fn(), mockInvalidate = jest.fn();
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => {
   const R = require('react');
   return {
-    View: 'View', Text: 'Text', Pressable: 'Pressable', ActivityIndicator: 'ActivityIndicator',
+    View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView', ActivityIndicator: 'ActivityIndicator',
     StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
     Modal: ({ visible, children }: { visible: boolean; children: React.ReactNode }) => visible ? children : null,
     FlatList: (props: { data: unknown[]; renderItem(item: { item: unknown; index: number }): React.ReactNode }) =>
