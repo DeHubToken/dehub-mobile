@@ -1,12 +1,12 @@
 import { feedSearchParams, feedSearchTabFor } from '../../libs/feed-search';
 
 describe('feed search', () => {
-  it('only the Home, Images, Videos and Music tabs search', () => {
+  it('every feed tab but Live searches', () => {
     expect(feedSearchTabFor('all')).toBe('home');
     expect(feedSearchTabFor('feed-images')).toBe('images');
     expect(feedSearchTabFor('video')).toBe('videos');
     expect(feedSearchTabFor('feed-audio')).toBe('music');
-    expect(feedSearchTabFor('short')).toBeNull();
+    expect(feedSearchTabFor('short')).toBe('shorts');
     expect(feedSearchTabFor('live')).toBeNull();
   });
 

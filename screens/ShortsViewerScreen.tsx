@@ -2762,15 +2762,18 @@ const ShortsViewerScreen = () => {
       let nextPage = page;
       for (let attempt = 0; attempt < 4; attempt++) {
         nextPage += 1;
-        const res = await getShortsFeed({
-          page: nextPage,
-          limit: 20,
-          sortBy: feedParams.sortBy || "createdAt" as const,
-          shuffleSeed: shuffleSeedRef.current,
-          category: feedParams.category,
-          minter: feedParams.minter,
-          followingOnly: feedParams.followingOnly,
-        });
+        // Opened from the Shorts search: keep paging through the matches.
+        const res: { result: UnifiedFeedItem[]; pagination?: { hasMore?: boolean }; shuffleSeed?: string } = feedParams.search
+          ? await getUnifiedFeed({ ...feedParams, page: nextPage, limit: 20 })
+          : await getShortsFeed({
+            page: nextPage,
+            limit: 20,
+            sortBy: feedParams.sortBy || "createdAt" as const,
+            shuffleSeed: shuffleSeedRef.current,
+            category: feedParams.category,
+            minter: feedParams.minter,
+            followingOnly: feedParams.followingOnly,
+          });
         const newItems = res.result || [];
 
         if (res.shuffleSeed && !shuffleSeedRef.current) {
