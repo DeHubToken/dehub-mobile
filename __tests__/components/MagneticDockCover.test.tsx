@@ -4,12 +4,13 @@ import MagneticDockCover from '../../components/common/MagneticDockCover';
 import { registerDockTarget } from '../../libs/magneticDock';
 
 let mockReduced = false;
+let mockWidth = 390;
 const mockMotions: { duration: number; complete: (result: { finished: boolean }) => void; stop: jest.Mock }[] = [];
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('../../screens/SplashScreen', () => 'SplashScreen');
 jest.mock('react-native', () => ({
   View: 'View', Image: 'Image',
-  useWindowDimensions: () => ({ width: 390, height: 844 }),
+  useWindowDimensions: () => ({ width: mockWidth, height: 844 }),
   StyleSheet: { absoluteFill: { position: 'absolute', inset: 0 } },
   Easing: { bezier: () => 'easing' },
   AccessibilityInfo: {
@@ -30,7 +31,7 @@ let tree: ReactTestRenderer;
 let unregister: (() => void) | undefined;
 const hide = jest.fn();
 const done = jest.fn();
-beforeEach(() => { jest.useFakeTimers(); mockReduced = false; mockMotions.length = 0; hide.mockClear(); done.mockClear(); });
+beforeEach(() => { jest.useFakeTimers(); mockReduced = false; mockWidth = 390; mockMotions.length = 0; hide.mockClear(); done.mockClear(); });
 afterEach(() => { act(() => tree?.unmount()); unregister?.(); unregister = undefined; jest.clearAllTimers(); jest.useRealTimers(); });
 
 async function launch(measureHost = true) {
@@ -81,4 +82,13 @@ it('restores the real mark and cancels pending work when entry unmounts', async 
   expect(hide).toHaveBeenLastCalledWith(false);
   act(() => jest.advanceTimersByTime(2000));
   expect(done).not.toHaveBeenCalled();
+});
+
+it('releases the cover when rotation changes the landing coordinates', async () => {
+  register();
+  await launch();
+  mockWidth = 844;
+  await act(async () => { tree.update(<MagneticDockCover enabled reveal onComplete={done} />); });
+  expect(hide).toHaveBeenLastCalledWith(false);
+  expect(done).toHaveBeenCalledTimes(1);
 });
