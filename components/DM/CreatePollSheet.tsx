@@ -16,6 +16,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut, SlideInUp, SlideOutDown } from "react-native-reanimated";
 import Icon from "../ui/Icon";
+import PollDurationChips from "../Post/PollDurationChips";
 import { useCreatePoll } from "../../hooks/usePolls";
 import { ButtonLoader } from "../DeHubLoader";
 import { useTranslation } from "react-i18next";
@@ -255,27 +256,12 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
             <Text className="text-zinc-400 text-xs font-medium mb-1.5">
               {t("dm.pollDuration")}
             </Text>
-            <View className="flex-row gap-2 mb-4">
-              {DURATIONS.map((d) => (
-                <TouchableOpacity
-                  key={d.hours}
-                  onPress={() => setDurationHours(d.hours)}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: durationHours === d.hours }}
-                  className="px-3 py-1.5 rounded-lg overflow-hidden"
-                >
-                  <View pointerEvents="none" className={`absolute inset-0 rounded-lg ${durationHours === d.hours ? 'bg-white' : 'bg-white/[0.06]'}`} />
-                  <Text
-                    className={`text-xs font-medium ${
-                      durationHours === d.hours
-                        ? "text-black"
-                        : "text-zinc-400"
-                    }`}
-                  >
-                    {t(d.label)}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+            <View className="mb-4">
+              <PollDurationChips
+                options={DURATIONS.map((d) => ({ label: t(d.label), hours: d.hours }))}
+                value={durationHours}
+                onChange={setDurationHours}
+              />
             </View>
           </ScrollView>
         </Animated.View>

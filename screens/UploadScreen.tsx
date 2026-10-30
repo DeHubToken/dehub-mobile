@@ -27,6 +27,7 @@ import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
+import PollDurationChips from "../components/Post/PollDurationChips";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -3161,19 +3162,11 @@ export default function UploadScreen() {
                 </TouchableOpacity>
 
                 <Text className="text-theme-neutrals-500 text-xs mb-1.5">{t("filters.duration")}</Text>
-                <View className="flex-row gap-2">
-                  {[{ label: _copy("copy.fa665d95d29e", { defaultValue: "1 day" }), hours: 24 }, { label: _copy("copy.360719440e92", { defaultValue: "3 days" }), hours: 72 }, { label: _copy("copy.7f920bb639c9", { defaultValue: "7 days" }), hours: 168 }].map((d) => (
-                    <TouchableOpacity
-                      key={d.hours}
-                      onPress={() => setPollDurationHours(d.hours)}
-                      className={`px-3 py-1.5 rounded-lg ${pollDurationHours === d.hours ? "bg-white" : "bg-white/[0.06]"}`}
-                    >
-                      <Text className={`text-xs font-medium ${pollDurationHours === d.hours ? "text-black" : "text-theme-neutrals-400"}`}>
-                        {d.label}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
+                <PollDurationChips
+                  options={[{ label: _copy("copy.fa665d95d29e", { defaultValue: "1 day" }), hours: 24 }, { label: _copy("copy.360719440e92", { defaultValue: "3 days" }), hours: 72 }, { label: _copy("copy.7f920bb639c9", { defaultValue: "7 days" }), hours: 168 }]}
+                  value={pollDurationHours}
+                  onChange={setPollDurationHours}
+                />
               </ThemePanel>
             )}
 
