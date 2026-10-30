@@ -75,6 +75,7 @@ import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import DraftAssetCards from "../components/Upload/DraftAssetCards";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
 import CommunityDrawer from "../components/Upload/CommunityDrawer";
@@ -359,6 +360,8 @@ export default function UploadScreen() {
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
+  // The poster closed the $TICKER / address card, so the post goes out without one.
+  const [hideAssetCards, setHideAssetCards] = useState(false);
   // Who may quote the post. Anyone, unless the creator narrows it.
   const [quotePolicy, setQuotePolicy] = useState<"public" | "followers" | "nobody">("public");
   // Who may reply. Anyone, unless the creator narrows it.
@@ -1203,12 +1206,13 @@ export default function UploadScreen() {
       crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
+      hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
       replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy, replyPolicy, visibility, isLiveMode]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1475,6 +1479,7 @@ export default function UploadScreen() {
       quotedTokenId: Number(quotedTokenId),
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
+      hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
       replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
     });
@@ -1487,7 +1492,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, quotePolicy, replyPolicy,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, hideAssetCards, quotePolicy, replyPolicy,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -2618,6 +2623,7 @@ export default function UploadScreen() {
               />
             )}
 
+            {!articleMode && <DraftAssetCards text={bodyText} hidden={hideAssetCards} onHiddenChange={setHideAssetCards} />}
             {!articleMode && <LinkPreviewCard text={bodyText} />}
 
             <MentionSuggestions

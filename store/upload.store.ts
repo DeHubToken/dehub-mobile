@@ -77,6 +77,8 @@ export interface SerializedUploadPayload {
   mediaDescriptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
+  /** The poster closed the price card for the $TICKER / address in the text. */
+  hideAssetCards?: boolean;
   /** Who may quote it. Absent means anyone. */
   quotePolicy?: "followers" | "nobody";
   /** Who may reply. Absent means anyone. */
