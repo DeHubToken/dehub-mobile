@@ -4,6 +4,7 @@ import type {
   TextInputSelectionChangeEventData,
 } from "react-native";
 import { mentionSearch, type MentionUser } from "../services/mention.service";
+import { caretFromEdit } from "../libs/caret-from-edit";
 
 /**
  * Hook that adds @mention typeahead to any TextInput.
@@ -86,9 +87,8 @@ export function useMentions(text: string, setText: (t: string) => void) {
       setText(newText);
 
       // ── Mention query detection ──
-      const cursor =
-        selectionRef.current.start + (newText.length - oldText.length);
-      const q = extractQuery(newText, Math.max(0, cursor));
+      const cursor = caretFromEdit(oldText, newText, selectionRef.current);
+      const q = extractQuery(newText, cursor);
 
       if (q != null && q.length >= 1) {
         queryRef.current = q;
