@@ -1,28 +1,30 @@
 /**
  * Feed search: tapping the lit tab in the feed pill turns the pill into a
- * search for that feed (Home, Images, Videos, Music). Same behaviour as web's
+ * search for that feed (Home, Shorts, Images, Videos, Music). Same behaviour as web's
  * lib/feed-search. Results use the feed's own filters, so the params are the
  * tab's feed params plus the words.
  */
 import type { UnifiedFeedParams } from '../services/feed.unified.service';
 
-export type FeedSearchTab = 'home' | 'images' | 'videos' | 'music';
+export type FeedSearchTab = 'home' | 'shorts' | 'images' | 'videos' | 'music';
 
-/** Pager tab key -> search tab. Shorts and Live keep their old re-tap. */
+/** Pager tab key -> search tab. Live keeps its old re-tap. */
 const TAB_BY_KEY: Record<string, FeedSearchTab> = {
   all: 'home',
+  short: 'shorts',
   'feed-images': 'images',
   video: 'videos',
   'feed-audio': 'music',
 };
 
-export const FEED_SEARCH_KEYS = ['all', 'feed-images', 'video', 'feed-audio'] as const;
+export const FEED_SEARCH_KEYS = ['all', 'short', 'feed-images', 'video', 'feed-audio'] as const;
 
 export function feedSearchTabFor(key: string | undefined | null): FeedSearchTab | null {
   return (key && TAB_BY_KEY[key]) || null;
 }
 
 const POST_TYPE: Record<Exclude<FeedSearchTab, 'home'>, UnifiedFeedParams['postType']> = {
+  shorts: 'short',
   images: 'feed-images',
   videos: 'video',
   music: 'feed-audio',
