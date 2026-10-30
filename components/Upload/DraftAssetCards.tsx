@@ -49,17 +49,20 @@ export default function DraftAssetCards({ text, hidden, onHiddenChange }: Props)
 }
 
 const styles = StyleSheet.create({
-  wrap: { position: "relative", marginTop: 8 },
+  wrap: { position: "relative", marginTop: 12 },
   close: {
+    // On the corner, not inside it: the price sits top right.
     position: "absolute",
-    top: 8,
-    right: 8,
+    top: -8,
+    right: -8,
     width: 24,
     height: 24,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: "rgba(0,0,0,0.7)",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.2)",
     zIndex: 10,
   },
 });
