@@ -75,6 +75,7 @@ export interface LiveStreamEntity {
 
 export async function getLiveStream(streamId: string) {
   if (!streamId) throw new Error('streamId required');
+  if (!/^[a-f\d]{24}$/i.test(streamId)) throw new Error('Invalid stream id');
   return apiClient.get<LiveStreamEntity | { result?: LiveStreamEntity }>(`/live/${encodeURIComponent(streamId)}`, { isAuthRequired: true });
 }
 
