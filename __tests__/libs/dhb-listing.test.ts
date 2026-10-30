@@ -29,6 +29,8 @@ describe('isDhbListingSymbol', () => {
     expect(isDhbListingSymbol('$DHB')).toBe(true);
     expect(isDhbListingSymbol('dhb')).toBe(true);
     expect(isDhbListingSymbol('$DEHUB')).toBe(true);
+    expect(isDhbListingSymbol('$RIFT')).toBe(true);
+    expect(isDhbListingSymbol('riftn')).toBe(true);
   });
 
   it('leaves every other ticker on the price sheet', () => {
