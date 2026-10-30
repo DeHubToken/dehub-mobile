@@ -1,7 +1,33 @@
 /** Distances are points and velocity is points per second. */
-export function completesSwipeBack(distance: number, vertical: number, velocity: number): boolean {
-  return Math.abs(vertical) <= 32 && distance > Math.abs(vertical) * 2 &&
-    (distance >= 64 || (distance >= 28 && velocity >= 650));
+export function completesSwipeBack(distance: number, vertical: number, velocity: number, minDistance = 64): boolean {
+  return Math.abs(vertical) <= Math.max(32, minDistance / 2) && distance > Math.abs(vertical) * 2 &&
+    (distance >= minDistance || (distance >= 28 && velocity >= 650));
+}
+
+/** The leading strip where a drag always means back (the original edge swipe). */
+export const SWIPE_BACK_EDGE = 28;
+/** Further in, the page is dragged rather than its edge, so it asks for a longer pull. */
+export const SWIPE_BACK_PAGE_DISTANCE = 88;
+
+// Native views that own a sideways drag. Android draws a horizontal list as its
+// own view class, so a carousel or chip row is told apart from the page.
+const OWNS_SIDEWAYS = /HorizontalScroll|ViewPager|PagerView|TextInput|Slider|WebView|Picker|Canvas|Skia/i;
+
+type HostNode = { nodeName?: string; parentNode?: HostNode | null; viewConfig?: { uiViewClassName?: string } };
+
+/**
+ * Whether a drag that starts away from the edge, on the touched host view, may
+ * go back: true for plain page, false over anything that swipes sideways. When
+ * the host tree can't be walked, only the edge strip goes back.
+ */
+export function pageSwipeAllowed(target: unknown): boolean {
+  let node = target as HostNode | null | undefined;
+  if (!node || typeof node !== 'object' || !('parentNode' in node)) return false;
+  for (let depth = 0; node && depth < 80; depth++, node = node.parentNode) {
+    const name = node.nodeName || node.viewConfig?.uiViewClassName || '';
+    if (OWNS_SIDEWAYS.test(name)) return false;
+  }
+  return true;
 }
 
 /**
