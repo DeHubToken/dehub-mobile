@@ -1,6 +1,14 @@
-import { measureDockTarget, registerDockTarget, type DockTarget } from '../../libs/magneticDock';
+import { measureDockTarget, registerDockTarget, shouldDockLaunch, type DockTarget } from '../../libs/magneticDock';
 
 const target: DockTarget = { x: 174, y: 48, width: 42, height: 36, tint: '#fff', hide: jest.fn() };
+it('skips fast loads, guests, other platforms, and all later navigation', () => {
+  expect(shouldDockLaunch('android', true, true, 399)).toBe(false);
+  expect(shouldDockLaunch('android', true, true, 400)).toBe(true);
+  expect(shouldDockLaunch('android', false, true, 2000)).toBe(false);
+  expect(shouldDockLaunch('android', true, false, 2000)).toBe(false);
+  expect(shouldDockLaunch('ios', true, true, 2000)).toBe(false);
+  expect(shouldDockLaunch('web', true, true, 2000)).toBe(false);
+});
 afterEach(() => { jest.useRealTimers(); });
 
 it('measures only the currently focused header and unregisters it', async () => {
