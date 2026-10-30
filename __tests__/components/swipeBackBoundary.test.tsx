@@ -2,12 +2,15 @@ import React from 'react';
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' }, I18nManager: { isRTL: false }, Keyboard: { dismiss: jest.fn() } }));
+jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' }, I18nManager: { isRTL: false }, Keyboard: { dismiss: jest.fn() }, Dimensions: { get: () => ({ width: 400, height: 800 }) }, StyleSheet: { create: (s: object) => s } }));
+jest.mock('react-native-reanimated', () => ({ __esModule: true, default: { View: 'Animated.View' }, useSharedValue: (value: number) => ({ value }), useAnimatedStyle: () => ({}), withTiming: (value: number) => value }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 const mockGesture = {
   enabled: jest.fn().mockReturnThis(), hitSlop: jest.fn().mockReturnThis(), activeOffsetX: jest.fn().mockReturnThis(),
   failOffsetY: jest.fn().mockReturnThis(), maxPointers: jest.fn().mockReturnThis(), runOnJS: jest.fn().mockReturnThis(),
   onBegin: jest.fn().mockReturnThis(), onTouchesDown: jest.fn().mockReturnThis(),
-  onEnd: jest.fn().mockReturnThis(),
+  onEnd: jest.fn().mockReturnThis(), manualActivation: jest.fn().mockReturnThis(), onTouchesMove: jest.fn().mockReturnThis(),
+  onStart: jest.fn().mockReturnThis(), onUpdate: jest.fn().mockReturnThis(), onFinalize: jest.fn().mockReturnThis(),
 };
 jest.mock('react-native-gesture-handler', () => ({ Gesture: { Pan: () => mockGesture }, GestureDetector: ({ children }: any) => children }));
 import SwipeBackBoundary from '../../components/common/SwipeBackBoundary';
@@ -34,7 +37,7 @@ test('a covered or blurred screen cannot receive a back swipe', () => {
 test('adding a second finger after activation cancels back', () => {
   const pop = jest.fn();
   act(() => { tree = create(<SwipeBackBoundary onBack={pop}><Local /></SwipeBackBoundary>); });
-  act(() => mockGesture.onTouchesDown.mock.calls[0][0]({ numberOfTouches: 2 }));
+  act(() => mockGesture.onTouchesDown.mock.calls[0][0]({ numberOfTouches: 2, allTouches: [] }, { fail: jest.fn() }));
   swipe(); expect(pop).not.toHaveBeenCalled();
 });
 test('a screen with its own interactive edge back turns the screen-wide one off while mounted', () => {
@@ -45,4 +48,14 @@ test('a screen with its own interactive edge back turns the screen-wide one off 
   expect(lastEnabled()).toBe(false);
   act(() => tree.update(<SwipeBackBoundary onBack={pop}><Local /></SwipeBackBoundary>));
   expect(lastEnabled()).toBe(true);
+});
+test('a drag away from the edge claims back only over plain page', () => {
+  act(() => { tree = create(<SwipeBackBoundary onBack={jest.fn()}><Local /></SwipeBackBoundary>); });
+  const last = <T,>(fn: jest.Mock) => fn.mock.calls[fn.mock.calls.length - 1][0] as T;
+  const down = (x: number) => last<(e: object, s: object) => void>(mockGesture.onTouchesDown)({ numberOfTouches: 1, allTouches: [{ absoluteX: x, absoluteY: 300 }] }, {});
+  const move = (x: number) => { const state = { fail: jest.fn(), activate: jest.fn() }; last<(e: object, s: object) => void>(mockGesture.onTouchesMove)({ numberOfTouches: 1, allTouches: [{ absoluteX: x, absoluteY: 302 }] }, state); return state; };
+  down(150);
+  expect(move(190).fail).toHaveBeenCalled();
+  down(10);
+  expect(move(40).activate).toHaveBeenCalled();
 });
