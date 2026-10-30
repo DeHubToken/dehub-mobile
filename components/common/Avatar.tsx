@@ -152,7 +152,9 @@ const Avatar: React.FC<AvatarProps> = ({
           style={{
             width: "100%",
             height: "100%",
-            borderRadius: radius,
+            // Inside a border the corner left is radius - borderWidth; the
+            // full radius makes the picture rounder than the ring around it.
+            borderRadius: Math.max(0, radius - borderWidth),
             position: "absolute",
           }}
           contentFit="cover"
