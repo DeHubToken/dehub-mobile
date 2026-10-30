@@ -5,6 +5,7 @@ import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTimi
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { FeedSearchTab } from "../../libs/feed-search";
+import { useAppPrefs } from "../../hooks/useAppPrefs";
 
 /**
  * What the feed pill turns into when the lit tab is tapped again, as on web:
@@ -17,8 +18,8 @@ import type { FeedSearchTab } from "../../libs/feed-search";
  * menu); the filters button is the pill's own filter toggle.
  */
 
-const ICONS: Record<FeedSearchTab, IconName> = { home: "House", images: "Image", videos: "Video", music: "Mic" };
-const ORDER: FeedSearchTab[] = ["home", "images", "videos", "music"];
+const ICONS: Record<FeedSearchTab, IconName> = { home: "House", shorts: "Shorts", images: "Image", videos: "Video", music: "Mic" };
+const ORDER: FeedSearchTab[] = ["home", "shorts", "images", "videos", "music"];
 const MELT = { duration: 340, easing: Easing.bezier(0.16, 1, 0.3, 1) };
 const UNMELT = { duration: 220, easing: Easing.bezier(0.4, 0, 1, 1) };
 
@@ -44,6 +45,8 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
   tab, query, onChangeQuery, onClose, onPickFeed, onFilterPress, filterActive, width, fromX, fromWidth, tint, activeStyle,
 }) => {
   const { t: _copy } = _useCopy();
+  const { shorts: shortsEnabled } = useAppPrefs();
+  const order = shortsEnabled ? ORDER : ORDER.filter((t) => t !== "shorts");
   const inputRef = useRef<TextInput>(null);
   const open = useSharedValue(0);
   const on = tint?.on ?? "#FFFFFF";
@@ -70,6 +73,7 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
 
   const placeholder = {
     home: _copy("copy.57e2faa5ec63", { defaultValue: "Search DeHub" }),
+    shorts: _copy("copy.e8756c6865a5", { defaultValue: "Search shorts" }),
     images: _copy("copy.9e13d826baaf", { defaultValue: "Search images" }),
     videos: _copy("copy.c7661da99c41", { defaultValue: "Search videos" }),
     music: _copy("copy.cbf6f228327c", { defaultValue: "Search music" }),
@@ -85,7 +89,7 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
     <Reanimated.View style={[styles.clip, clipStyle]}>
       <Reanimated.View style={[styles.row, { width }, innerStyle]}>
         <Pressable
-          onPress={() => onPickFeed(ORDER[(ORDER.indexOf(tab) + 1) % ORDER.length])}
+          onPress={() => onPickFeed(order[(order.indexOf(tab) + 1) % order.length])}
           style={styles.slot}
           accessibilityRole="button"
           accessibilityLabel={_copy("copy.1aa9d734f2ee", { defaultValue: "Choose what to search" })}

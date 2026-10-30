@@ -2,6 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, StyleSheet, FlatList, ScrollView, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import Icon, { type IconName } from "../ui/Icon";
@@ -19,8 +20,9 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 /**
  * The grid the feed turns into while its pill is a search box, as on web:
- * photos as a mosaic, videos as small 16:10 tiles, music as cover tiles, and
- * Home as everything with matching people first. `params` already carry the
+ * photos as a mosaic, videos as small 16:10 tiles, shorts as 9:16 tiles that
+ * open the swipe viewer, music as cover tiles, and Home as everything with
+ * matching people first. `params` already carry the
  * feed's filters (libs/feed-search).
  */
 
@@ -80,7 +82,7 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
   const q = useDebounced(query.trim(), 250);
   const typing = q !== query.trim();
   const layout: FeedSearchTab = tab;
-  const cols = layout === "images" || layout === "home" ? 3 : 2;
+  const cols = layout === "images" || layout === "home" || layout === "shorts" ? 3 : 2;
   const tile = (width - SIDE * 2 - GAP * (cols - 1)) / cols;
 
   const searchParams = useMemo(() => ({ ...params, search: q }), [params, q]);
@@ -100,9 +102,22 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
     staleTime: 60_000,
   });
 
-  const items = useMemo<UnifiedFeedItem[]>(() => flattenFeedPages<UnifiedFeedItem>(feed.data?.pages ?? [], () => false), [feed.data]);
+  // Shorts leaves pay-per-view out of its grid, so its search does too.
+  const items = useMemo<UnifiedFeedItem[]>(() => {
+    const all = flattenFeedPages<UnifiedFeedItem>(feed.data?.pages ?? [], () => false);
+    return tab === "shorts" ? all.filter((item) => !(item as any).streamInfo?.isPayPerView) : all;
+  }, [feed.data, tab]);
   const accounts = people.data?.items ?? [];
   const open = useCallback((item: UnifiedFeedItem) => navigation.navigate(ScreenNames.FeedDetail, { tokenId: item.tokenId }), [navigation]);
+  // A short opens the swipe viewer on the matches, which keeps paging through them.
+  const openShort = useCallback((index: number) => {
+    navigation.navigate(ScreenNames.ShortsViewer, {
+      initialIndex: index,
+      initialItems: items,
+      initialPage: Math.max(1, Math.floor(items.length / 20)),
+      feedParams: searchParams,
+    });
+  }, [navigation, items, searchParams]);
 
   const fg = colors.foreground;
   const dim = colors.mutedForeground;
@@ -114,7 +129,7 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
         <Text style={[styles.status, { color: dim }]}>{_copy("copy.90f1afe66801", { defaultValue: "Searching for “{{query}}”…", query: query.trim() })}</Text>
         <View style={styles.wrap}>
           {Array.from({ length: cols * 3 }, (_, i) => (
-            <SkeletonBlock key={i} style={{ width: tile, height: layout === "videos" ? tile * 0.625 : tile, borderRadius: 8 }} />
+            <SkeletonBlock key={i} style={{ width: tile, height: layout === "videos" ? tile * 0.625 : layout === "shorts" ? tile * 16 / 9 : tile, borderRadius: 8 }} />
           ))}
         </View>
       </View>
@@ -136,7 +151,7 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
             ? _copy("copy.481859b689b0", { defaultValue: "Check your connection and try again." })
             : tab === "home"
               ? _copy("copy.d7b559f2d8c6", { defaultValue: "Try other words, or change the filters." })
-              : _copy("copy.35034aa59bd3", { defaultValue: "Nothing in {{feed}} matched. Try other words or search everything.", feed: { images: "Images", videos: "Videos", music: "Music", home: "Home" }[tab] })}
+              : _copy("copy.35034aa59bd3", { defaultValue: "Nothing in {{feed}} matched. Try other words or search everything.", feed: { images: "Images", shorts: "Shorts", videos: "Videos", music: "Music", home: "Home" }[tab] })}
         </Text>
         {failed ? (
           <Pressable onPress={() => feed.refetch()} style={[styles.button, { borderColor: colors.border }]}>
@@ -176,7 +191,17 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
     </View>
   ) : null;
 
-  const renderItem = ({ item }: { item: UnifiedFeedItem }) => {
+  const renderItem = ({ item, index }: { item: UnifiedFeedItem; index: number }) => {
+    if (layout === "shorts") {
+      const thumb = imageOf(item, Math.round(tile * 2));
+      return (
+        <Pressable onPress={() => openShort(index)} style={[styles.short, { width: tile, height: tile * 16 / 9 }]}>
+          {thumb ? <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
+          <LinearGradient colors={["transparent", "rgba(0,0,0,0.7)"]} style={styles.shortShade} pointerEvents="none" />
+          <Text numberOfLines={1} style={styles.shortBy}>@{handleOf(item)}</Text>
+        </Pressable>
+      );
+    }
     if (layout === "videos") {
       const thumb = imageOf(item, Math.round(tile));
       const duration = item.videoDuration ? secondsToHMMSS(item.videoDuration) : undefined;
@@ -257,6 +282,9 @@ const styles = StyleSheet.create({
   textTile: { flex: 1, padding: 7, borderWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.14)", borderRadius: 8 },
   textBody: { fontSize: 11, lineHeight: 14, marginTop: 2 },
   kind: { position: "absolute", left: 5, top: 5, width: 18, height: 18, borderRadius: 5, backgroundColor: "rgba(0,0,0,0.6)", alignItems: "center", justifyContent: "center" },
+  short: { borderRadius: 8, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.06)", justifyContent: "flex-end" },
+  shortShade: { position: "absolute", left: 0, right: 0, bottom: 0, height: "45%" },
+  shortBy: { color: "#FFFFFF", fontSize: 10, fontWeight: "600", paddingHorizontal: 6, paddingBottom: 6, textShadowColor: "rgba(0,0,0,0.6)", textShadowRadius: 3 },
   videoThumb: { borderRadius: 8, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.06)" },
   duration: { position: "absolute", right: 4, bottom: 4, backgroundColor: "rgba(0,0,0,0.7)", color: "#FFFFFF", fontSize: 10, fontWeight: "600", paddingHorizontal: 4, borderRadius: 4, overflow: "hidden" },
   title: { fontSize: 12, fontWeight: "600", marginTop: 4 },

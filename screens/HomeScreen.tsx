@@ -456,7 +456,7 @@ export default function HomeScreen() {
   }, []);
 
   // The lit tab pressed again turns the pill into a search of that feed
-  // (Home, Images, Videos, Music), as on web. Shorts and Live have no search.
+  // (Home, Shorts, Images, Videos, Music), as on web. Live has no search.
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchTab = searchOpen ? feedSearchTabFor(activeTabKey) : null;
@@ -491,7 +491,7 @@ export default function HomeScreen() {
   );
   const pickSearchFeed = useCallback(
     (tab: FeedSearchTab) => {
-      const key = ({ home: "all", images: "feed-images", videos: "video", music: "feed-audio" } as const)[tab];
+      const key = ({ home: "all", shorts: "short", images: "feed-images", videos: "video", music: "feed-audio" } as const)[tab];
       handleNavPostTypeChange(key as PostTypeOption);
     },
     [handleNavPostTypeChange],
