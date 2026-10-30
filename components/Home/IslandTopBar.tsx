@@ -6,6 +6,7 @@ import { menuEnter, menuExit } from './feedDrawerMotion';
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ElectricLogo from "../common/ElectricLogo";
+import DockLogoTarget from "../common/DockLogoTarget";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import NotificationBell from "../common/NotificationBell";
@@ -120,10 +121,12 @@ export const IslandCapsule = memo(function IslandCapsule({
             </Pressable>}
           </View>
         </View>
+        <DockLogoTarget tint="#FFFFFF" style={styles.mark}>
         <ElectricLogo refreshing={refreshing} pullDistance={pullMotion?.distance} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={42}
           height={MARK_HEIGHT} tint="#FFFFFF" label={isSignedIn ? `${BRAND_NAME}, ${label}` : t("screens.signIn")}
           expanded={isSignedIn ? menuOpen : undefined} style={styles.mark}
           hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />
+        </DockLogoTarget>
         <View style={[styles.right, { width: side || undefined }]}>
           <View style={styles.sideInner}>
             <Pressable

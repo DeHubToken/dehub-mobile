@@ -3,6 +3,7 @@ import { View, TouchableOpacity, I18nManager } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ElectricLogo from "./common/ElectricLogo";
+import DockLogoTarget from "./common/DockLogoTarget";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
 import Avatar from "./common/Avatar";
 import NotificationBell from "./common/NotificationBell";
@@ -99,12 +100,14 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         className="absolute inset-0 items-center justify-center"
         pointerEvents="box-none"
       >
+        <DockLogoTarget tint={colors.foreground}>
         <ElectricLogo refreshing={refreshing} pullDistance={pullDistance} onPress={isSignedIn ? onLogoPress : onMenuPress}
           label={isSignedIn ? "DeHub" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-island-logo.png")}
           style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
           width={42} height={36} tint={colors.foreground} />
+        </DockLogoTarget>
       </View>
 
       {/* Notifications — right. Signed-in only; the centred mark does not move
