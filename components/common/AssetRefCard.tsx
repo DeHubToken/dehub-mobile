@@ -34,6 +34,9 @@ import {
   type ResolvedAsset,
 } from '../../services/asset.service';
 import { type AssetRef } from '../../libs/asset-refs';
+import { isDhbSymbol } from '../../libs/dhb-symbols';
+
+const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
 
 /** Same cap as the link cards: a caption can name a whole portfolio. */
 export const MAX_ASSET_CARDS_PER_MESSAGE = 2;
@@ -201,9 +204,9 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
         onPress={() => setSheetOpen(true)}
       >
         <View style={styles.row}>
-          {asset.logo ? (
+          {asset.logo || isDhbSymbol(asset.symbol) ? (
             <Image
-              source={{ uri: asset.logo }}
+              source={asset.logo ? { uri: asset.logo } : DEHUB_COIN}
               style={styles.logo}
               contentFit="cover"
             />

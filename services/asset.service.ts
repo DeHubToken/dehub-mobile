@@ -34,6 +34,7 @@ import {
   type RankablePair,
 } from "../libs/asset-refs";
 import { createLogger } from "../libs/logger";
+import { isDhbSymbol } from "../libs/dhb-symbols";
 
 const log = createLogger("asset.service");
 
@@ -338,6 +339,14 @@ export async function resolveAddress(
  * resolves to the same asset on every client and on every re-render.
  */
 export async function resolveTicker(
+  symbol: string,
+): Promise<ResolvedAsset | null> {
+  // $RIFT, $RIFTN and $DEHUB are all our token: resolve them as DHB. The card
+  // draws the DeHub coin when no provider has a logo for it.
+  return resolveTickerFromProviders(isDhbSymbol(symbol) ? "DHB" : symbol);
+}
+
+async function resolveTickerFromProviders(
   symbol: string,
 ): Promise<ResolvedAsset | null> {
   const [cmc, stock, dexTokens] = await Promise.all([
