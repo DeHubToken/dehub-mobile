@@ -1,4 +1,4 @@
-import { completesSwipeBack, settlesSwipeBack, swipeBackProgress, SWIPE_BACK_SPRING } from '../../libs/swipe-back';
+import { completesSwipeBack, pageSwipeAllowed, settlesSwipeBack, swipeBackProgress, SWIPE_BACK_SPRING } from '../../libs/swipe-back';
 
 test('a deliberate swipe or short fast flick completes back', () => {
   expect(completesSwipeBack(64, 8, 0)).toBe(true);
@@ -8,6 +8,20 @@ test('scrolling, taps, cancelled drags and forward swipes do not go back', () =>
   for (const [x, y, velocity] of [[20, 0, 900], [50, 0, 0], [90, 40, 800], [64, 32, 800], [-90, 0, -800]]) {
     expect(completesSwipeBack(x, y, velocity)).toBe(false);
   }
+});
+
+test('a drag across the page needs a longer pull than the edge', () => {
+  expect(completesSwipeBack(70, 0, 0, 88)).toBe(false);
+  expect(completesSwipeBack(96, 20, 0, 88)).toBe(true);
+});
+test('a page drag never starts on a sideways list, field or slider', () => {
+  const node = (nodeName: string, parentNode: object | null = null) => ({ nodeName, parentNode });
+  const page = node('RN:View', node('RN:ScrollView', node('RN:View')));
+  expect(pageSwipeAllowed(node('RN:Paragraph', page))).toBe(true);
+  expect(pageSwipeAllowed(node('RN:Image', node('RN:AndroidHorizontalScrollView', page)))).toBe(false);
+  expect(pageSwipeAllowed(node('RN:AndroidTextInput', page))).toBe(false);
+  expect(pageSwipeAllowed(42)).toBe(false);
+  expect(pageSwipeAllowed(null)).toBe(false);
 });
 
 describe('interactive edge back', () => {
