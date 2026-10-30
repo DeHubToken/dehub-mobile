@@ -2176,6 +2176,9 @@
     "global": "Global"
   },
   "features": {
+    "notFeasible": "Not feasible",
+    "notFeasibleWhy": "Why:",
+    "noNotFeasible": "Nothing here",
     "prompts": "Prompts",
     "queued": "Queued",
     "promptPageTitle": "Requests",
