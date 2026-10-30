@@ -15,10 +15,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../services/supabase";
 import { getSupabaseAuthMeta } from "../services/auth/supabaseAuth.service";
+import { isDhbSymbol } from "./dhb-symbols";
 
 export function isDhbListingSymbol(symbol: string): boolean {
-  const s = symbol.trim().replace(/^\$/, "").toUpperCase();
-  return s === "DHB" || s === "DEHUB";
+  return isDhbSymbol(symbol);
 }
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
