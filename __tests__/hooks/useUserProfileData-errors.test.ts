@@ -50,6 +50,19 @@ describe("useUserProfileData load errors", () => {
     (console.warn as jest.Mock).mockRestore?.();
   });
 
+  it("hands the tapped card's name and badge to the profile until the account arrives", async () => {
+    let answer: (value: unknown) => void = () => {};
+    mockGetAccount.mockReturnValue(new Promise((resolve) => { answer = resolve; }));
+    const badge = { uri: "badge.png" };
+    act(() => { prefetchUserProfile("@seeded-profile", { displayName: "Seeded", badgeImage: badge }); });
+    const { result } = renderHook(() => useUserProfileData(true, "seeded-profile"));
+    expect(result.current.data).toBeNull();
+    expect(result.current.identitySeed).toEqual({ displayName: "Seeded", badgeImage: badge });
+    await act(async () => { answer(account("seeded-profile")); });
+    await waitFor(() => expect(result.current.data?.username).toBe("seeded-profile"));
+    expect(result.current.identitySeed).toBeNull();
+  });
+
   it("reuses a completed intent request when the full page mounts after its animation", async () => {
     mockGetAccount.mockResolvedValue(account("warmed-profile"));
     await act(async () => { prefetchUserProfile("warmed-profile"); await Promise.resolve(); });
