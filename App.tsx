@@ -25,7 +25,7 @@ import {
   PERSIST_BUSTER,
 } from "./config/queryClient";
 import "./global.css";
-import SplashScreen from "./screens/SplashScreen";
+import MagneticDockCover from "./components/common/MagneticDockCover";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import { PictureInPictureHost } from './components/common/PersistentVideoView';
@@ -35,7 +35,6 @@ import {
   StatusBar,
   StyleSheet,
   View,
-  Animated,
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as ExpoSplashScreen from "expo-splash-screen";
@@ -332,8 +331,6 @@ const ThemedToaster: React.FC = () => {
   );
 };
 
-// How long the curtain fade runs once the app underneath is genuinely ready.
-const REVEAL_FADE_MS = 220;
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000;
@@ -421,12 +418,23 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   // pass (header measured, feed inset applied, stories skeleton up) all
   // happen hidden. When the navigator reports ready, two painted frames are
   // enough for the header's onLayout commit to land — then the native splash
-  // hides underneath our still-opaque cover and the cover fades away. One
-  // transition, and nothing moves after it.
+  // hides underneath our still-opaque cover. The mark then docks in the
+  // measured, focused header while the feed appears around it.
   const [navReady, setNavReady] = useState(false);
   const [coverMounted, setCoverMounted] = useState(true);
-  const coverOpacity = useRef(new Animated.Value(1)).current;
+  const [revealStarted, setRevealStarted] = useState(false);
   const revealingRef = useRef(false);
+  const previousAuth = useRef(isAuthenticated);
+  useEffect(() => {
+    // Signing in from the guest app gets the same handoff as a warm account
+    // launch. Reopening the app or switching tabs does not replay it.
+    if (isAuthenticated && !previousAuth.current && revealingRef.current) {
+      revealingRef.current = false;
+      setRevealStarted(false);
+      setCoverMounted(true);
+    }
+    previousAuth.current = isAuthenticated;
+  }, [isAuthenticated]);
 
   const beginReveal = useCallback(() => {
     if (revealingRef.current) return;
@@ -436,12 +444,8 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     // Native splash hands off underneath the opaque cover: by the time it is
     // gone, the RN view above it already paints the same black-and-mark.
     ExpoSplashScreen.hideAsync().catch(() => { });
-    Animated.timing(coverOpacity, {
-      toValue: 0,
-      duration: REVEAL_FADE_MS,
-      useNativeDriver: true,
-    }).start(() => setCoverMounted(false));
-  }, [coverOpacity, theme]);
+    setRevealStarted(true);
+  }, [theme]);
 
   useEffect(() => {
     if (!staged || !navReady) return;
@@ -462,7 +466,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
       cancelAnimationFrame(frame);
       if (settleTimer) clearTimeout(settleTimer);
     };
-  }, [staged, navReady, beginReveal, isFirstTimeUser, isSignedIn, bootStartedAt]);
+  }, [staged, navReady, beginReveal, isFirstTimeUser, isSignedIn, isAuthenticated, bootStartedAt]);
 
   // A launch that never gets past the preloader reports nothing else — every
   // other log path lives in screens it never reaches — so one still up after
@@ -573,14 +577,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
           it until the fade starts, which is the point — there is nothing to
           interact with underneath until the reveal begins. */}
       {coverMounted && (
-        <Animated.View
-          style={[
-            StyleSheet.absoluteFill,
-            { backgroundColor: "#000000", opacity: coverOpacity },
-          ]}
-        >
-          <SplashScreen />
-        </Animated.View>
+        <MagneticDockCover key={isAuthenticated ? 'account' : 'guest'} reveal={revealStarted} enabled={isAuthenticated} onComplete={() => setCoverMounted(false)} />
       )}
     </>
   );
