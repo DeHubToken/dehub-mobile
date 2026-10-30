@@ -24,6 +24,7 @@ import { getAuthToken } from "../libs/auth.utils";
 import { useUser } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs";
 import { createLogger } from "../libs/logger";
+import { getDiscoveryHidden } from "../services/user.service";
 
 const log = createLogger("useNewMembers");
 
@@ -103,9 +104,12 @@ export function useNewMembers(limit = 20) {
         .limit(limit + 1);
 
       if (error) throw error;
-      return ((data || []) as NewMemberRow[])
+      const rows = (data || []) as NewMemberRow[];
+      // The roster knows nothing about bans or adult flags; the API does.
+      const hidden = await getDiscoveryHidden(rows.map((row) => row.wallet_address));
+      return rows
         .map(toNewMember)
-        .filter((m) => m.address.toLowerCase() !== exclude)
+        .filter((m) => m.address.toLowerCase() !== exclude && !hidden.has(m.address.toLowerCase()))
         .slice(0, limit);
     },
     staleTime: 5 * 60 * 1000,
