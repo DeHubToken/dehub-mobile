@@ -10,28 +10,18 @@ interface MutualFollowersProps {
   mutuals: FollowListItem[];
 }
 
-const MAX_DISPLAY = 3;
+const MAX_DISPLAY = 5;
 
 const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
   const { t: _copy } = _useCopy();
   if (!mutuals.length) return null;
 
+  // Faces only: the count tag already says how many.
   const displayed = mutuals.slice(0, MAX_DISPLAY);
-  const remaining = mutuals.length - MAX_DISPLAY;
-
-  const names = displayed.map((m) => m.user.username || m.user.displayName || _copy("copy.b23a6a8439c0", { defaultValue: "unknown" }));
-
-  let text: string;
-  if (names.length === 1) {
-    text = names[0];
-  } else if (names.length === 2) {
-    text = _copy("copy.f4780f76354c", { defaultValue: "{{value1}} and {{value2}}", value1: names[0], value2: names[1] });
-  } else {
-    text =
-      remaining > 0
-        ? `${names.join(", ")} +${remaining}`
-        : _copy("copy.3ff66a9762c9", { defaultValue: "{{value1}}, {{value2}} and {{value3}}", value1: names[0], value2: names[1], value3: names[2] });
-  }
+  const names = displayed
+    .map((m) => m.user.username || m.user.displayName)
+    .filter(Boolean)
+    .join(", ");
 
   const countLabel =
     mutuals.length === 1
@@ -43,7 +33,7 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
       <Text className="text-zinc-400 text-xs" numberOfLines={1}>
         {countLabel}
       </Text>
-      <View className="flex-row">
+      <View className="flex-row" accessible accessibilityLabel={names}>
         {displayed.map((m, i) => (
           <Avatar
             key={m.user.address}
@@ -54,10 +44,6 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
           />
         ))}
       </View>
-      {/* Shown without the words: the faces and names already say it. */}
-      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1} accessibilityLabel={_copy("copy.fef6a1a97127", { defaultValue: "Followed by {{value1}}", value1: text })}>
-        {text}
-      </Text>
     </View>
   );
 };
