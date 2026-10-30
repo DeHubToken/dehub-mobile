@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View } from 'react-native';
+import { View, type StyleProp, type ViewStyle } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { registerDockTarget } from '../../libs/magneticDock';
 
-export default function DockLogoTarget({ children, tint }: { children: React.ReactNode; tint: string }) {
+export default function DockLogoTarget({ children, tint, style }: { children: React.ReactNode; tint: string; style?: StyleProp<ViewStyle> }) {
   const view = useRef<View>(null);
   const focused = useIsFocused();
   const [hidden, setHidden] = useState(false);
@@ -19,5 +19,5 @@ export default function DockLogoTarget({ children, tint }: { children: React.Rea
       });
     });
   }, [focused, tint]);
-  return <View ref={view} collapsable={false} style={{ width: 44, height: 44, opacity: hidden ? 0 : 1 }}>{children}</View>;
+  return <View ref={view} collapsable={false} style={[{ width: 44, height: 44 }, style, { opacity: hidden ? 0 : 1 }]}>{children}</View>;
 }
