@@ -251,6 +251,11 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     fd.append("spoilerText", payload.spoilerText.trim());
   }
 
+  // Closed price card. Only sent when true.
+  if (payload.hideAssetCards) {
+    fd.append("hideAssetCards", "true");
+  }
+
   // Who may quote it. Only sent when it is narrower than anyone.
   if (payload.quotePolicy) {
     fd.append("quotePolicy", payload.quotePolicy);
