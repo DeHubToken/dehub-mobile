@@ -2,6 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, StyleSheet, FlatList, ScrollView, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import Icon, { type IconName } from "../ui/Icon";
@@ -196,7 +197,7 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
       return (
         <Pressable onPress={() => openShort(index)} style={[styles.short, { width: tile, height: tile * 16 / 9 }]}>
           {thumb ? <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
-          <View style={styles.shortShade} />
+          <LinearGradient colors={["transparent", "rgba(0,0,0,0.7)"]} style={styles.shortShade} pointerEvents="none" />
           <Text numberOfLines={1} style={styles.shortBy}>@{handleOf(item)}</Text>
         </Pressable>
       );
@@ -282,8 +283,8 @@ const styles = StyleSheet.create({
   textBody: { fontSize: 11, lineHeight: 14, marginTop: 2 },
   kind: { position: "absolute", left: 5, top: 5, width: 18, height: 18, borderRadius: 5, backgroundColor: "rgba(0,0,0,0.6)", alignItems: "center", justifyContent: "center" },
   short: { borderRadius: 8, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.06)", justifyContent: "flex-end" },
-  shortShade: { position: "absolute", left: 0, right: 0, bottom: 0, height: "40%", backgroundColor: "rgba(0,0,0,0.35)" },
-  shortBy: { color: "#FFFFFF", fontSize: 10, fontWeight: "600", paddingHorizontal: 6, paddingBottom: 6 },
+  shortShade: { position: "absolute", left: 0, right: 0, bottom: 0, height: "45%" },
+  shortBy: { color: "#FFFFFF", fontSize: 10, fontWeight: "600", paddingHorizontal: 6, paddingBottom: 6, textShadowColor: "rgba(0,0,0,0.6)", textShadowRadius: 3 },
   videoThumb: { borderRadius: 8, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.06)" },
   duration: { position: "absolute", right: 4, bottom: 4, backgroundColor: "rgba(0,0,0,0.7)", color: "#FFFFFF", fontSize: 10, fontWeight: "600", paddingHorizontal: 4, borderRadius: 4, overflow: "hidden" },
   title: { fontSize: 12, fontWeight: "600", marginTop: 4 },
