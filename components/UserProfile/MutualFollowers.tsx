@@ -39,6 +39,9 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
             key={m.user.address}
             uri={getAvatarUrl(m.user.avatarImageUrl)}
             size={20}
+            // Same 2px corner as web, so the tile and its ring stay square-ish
+            // at this size instead of 16% of 20.
+            radius={2}
             name={m.user.username || m.user.displayName || m.user.address}
             style={i > 0 ? { marginLeft: -6, borderWidth: 1.5, borderColor: theme.colors.neutrals[900] } : undefined}
           />
