@@ -45,6 +45,7 @@ import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
+import PostStatsSheet from "../Post/stats/PostStatsSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
@@ -164,6 +165,7 @@ import HoldGateSheet from "../common/HoldGateSheet";
 import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
 import KeywordFilterGate from "./KeywordFilterGate";
 import { storedVideoAspect } from "../../libs/video-aspect";
+import { reportPostEvent } from "../../services/post-stats.service";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -307,12 +309,18 @@ const IMMERSIVE_INSET = 16;
 const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
+const META_PILL = {
+  flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 8, paddingVertical: 2,
+  borderRadius: 999, backgroundColor: "rgba(255,255,255,0.08)",
+} as const;
 /**
  * Clock + time, then the post kind's icon + count, then who may see it when
  * that is narrower than everyone. A fragment, so the row adds no wrapper views.
  */
-function PostMetaItems({ timeAgo, icon, count, visibility, boosted }: {
+function PostMetaItems({ timeAgo, icon, count, visibility, boosted, onStatsPress }: {
   timeAgo?: string;
+  /** Your own post: the count becomes a pill that opens its stats. */
+  onStatsPress?: () => void;
   /** Paid boost slot: says so in words, right after the time. */
   boosted?: boolean;
   icon: IconName;
@@ -339,8 +347,25 @@ function PostMetaItems({ timeAgo, icon, count, visibility, boosted }: {
           {t("work.boosted")}
         </Text>
       ) : null}
-      <Icon name={icon} size={13} color={iconColor} />
-      <Text style={label}>{count}</Text>
+      {onStatsPress ? (
+        <Pressable
+          onPress={onStatsPress}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={t("postStats.open")}
+          testID="post-stats-trigger"
+          style={({ pressed }) => [META_PILL, pressed && { opacity: 0.7 }]}
+        >
+          <Icon name={icon} size={13} color={iconColor} />
+          <Text style={[META_TEXT, { color: iconColor }]}>{count}</Text>
+          <Icon name="ChartColumn" size={12} color={iconColor} />
+        </Pressable>
+      ) : (
+        <>
+          <Icon name={icon} size={13} color={iconColor} />
+          <Text style={label}>{count}</Text>
+        </>
+      )}
       {restricted ? (
         <>
           <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color={iconColor} />
@@ -754,6 +779,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showShareSheet, setShowShareSheet] = useKeyedState(postKey, false);
   const [showComments, setShowComments] = useKeyedState(postKey, false);
   const [showReactionInfo, setShowReactionInfo] = useKeyedState(postKey, false);
+  // Your own post's stats, from the pill on its view count. Not for lives.
+  const [showStats, setShowStats] = useKeyedState(postKey, false);
+  const openStats = useMemo(
+    () => (isOwnerPost && !isLive && tokenId != null ? () => setShowStats(true) : undefined),
+    [isOwnerPost, isLive, tokenId, setShowStats],
+  );
   const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
   const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
   const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
@@ -864,8 +895,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (scrubBoundary.claimed.value) return;
     const id = username || minterAddress;
     if (!id) return;
+    reportPostEvent(tokenId, "profile");
     showUserProfile(id);
-  }, [username, minterAddress, showUserProfile, scrubBoundary.claimed]);
+  }, [username, minterAddress, showUserProfile, scrubBoundary.claimed, tokenId]);
 
   // A subscriber gate is opened by subscribing, so send them where the plans
   // are sold rather than to the post they cannot read.
@@ -2055,6 +2087,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
+      {showStats && tokenId != null && (
+        <PostStatsSheet visible={showStats} onClose={() => setShowStats(false)} tokenId={tokenId} />
+      )}
+
       {showReactionInfo && tokenId != null && (
         <ReactionInfoSheet
           visible={showReactionInfo}
@@ -2281,20 +2317,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 isHidden={isHidden}
               />
               <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
-                <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
+                <FeedCaption resetKey={postKey} statsTokenId={tokenId} title={overlayTitle || undefined} description={displayCaption || undefined}
                   variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
                   onCategoryPress={onCategorySelect} onCashtagPress={setActiveCashtag} />
               </PostTapSurface>
               {hasSoundtrack && !soundtrackOnMedia && <View className="mt-2"><SoundtrackBadge key={postKey} title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} isVisible={isVisible} /></View>}
               {(item as any).isQuotePost && <QuotedPostEmbed key={postKey} quotedPost={(item as any).quotedPost} quotedTokenId={(item as any).quotedTokenId} revoked={(item as any).quoteRevoked} quoteTokenId={tokenId ?? undefined} />}
               <DehubLinkCards links={dehubLinks} />
-              <LinkPreviewCard key={postKey} text={captionText} />
+              <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
               <AssetRefCards refs={assetRefs} />
               {tokenId != null && !(item as any).isQuotePost && <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />}
               <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
               <View style={{ marginTop: 'auto', paddingTop: 16 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
                   {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
                 </View>
                 {actionBar}
@@ -2374,6 +2410,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             )}
             <FeedCaption
               resetKey={postKey}
+              statsTokenId={tokenId}
               title={localArticleBody ? undefined : (isTranslated ? translatedTexts.title : localTitle) || undefined}
               description={displayCaption || undefined}
               categories={localCategories}
@@ -2403,7 +2440,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               />
             )}
             <DehubLinkCards links={dehubLinks} />
-            <LinkPreviewCard key={postKey} text={captionText} />
+            <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
             <AssetRefCards refs={assetRefs} />
           </>
         )}
@@ -2419,7 +2456,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
+          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -2500,7 +2537,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <DehubLinkCards links={dehubLinks} />
-        <LinkPreviewCard key={postKey} text={captionText} />
+        <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
         <AssetRefCards refs={assetRefs} />
       </>
     );
@@ -2689,6 +2726,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                   )}
                   <FeedCaption
                     resetKey={postKey}
+                    statsTokenId={tokenId}
                     title={localArticleBody ? undefined : overlayTitle || undefined}
                     description={displayCaption || undefined}
                     categories={localCategories}
@@ -2738,6 +2776,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 <View style={[{ paddingTop: 10 }, chipOverMedia && !firstVideoHeaderBelow && [styles.captionBesideOptions, (contentType === "video" || contentType === "short") && isOwnerPost && isSignedIn && tokenId != null && { paddingRight: 64 }]]}>
                   <FeedCaption
                     resetKey={postKey}
+                    statsTokenId={tokenId}
                     title={overlayTitle || undefined}
                     description={displayCaption || undefined}
                     variant="media"
@@ -2763,7 +2802,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
             {translateButton}
           </View>
         )}
@@ -2921,6 +2960,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
       <FeedCaption
         resetKey={postKey}
+        statsTokenId={tokenId}
         title={localArticleBody ? undefined : (isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
         categories={localCategories}
@@ -2958,7 +2998,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {/* OG-style preview for the first outside link, when the caption didn't
           already earn one of the entity cards above. */}
-      <LinkPreviewCard key={postKey} text={captionText} />
+      <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
 
       {/* Market cards — a contract address somebody pasted, or a $TICKER */}
       <AssetRefCards refs={assetRefs} />
@@ -2993,7 +3033,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             labelled; printed here it read as the view count and undercounted
             by an order of magnitude. */}
         <PostMetaItems
-          timeAgo={timeAgo} boosted={isBoosted}
+          timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats}
           visibility={item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}

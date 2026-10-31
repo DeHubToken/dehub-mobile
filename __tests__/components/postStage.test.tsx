@@ -26,6 +26,7 @@ jest.mock('../../libs/haptics', () => ({ haptic: { tap: jest.fn(), press: jest.f
 jest.mock('../../libs/reaction-tip', () => ({ maybeShowReactionTip: jest.fn(), markReactionTipSeen: jest.fn() }));
 jest.mock('../../hooks/useViewerTippedPost', () => ({ useViewerTippedPost: () => false }));
 jest.mock('../../components/Comments/CommentTabRow', () => ({ COMMENT_SORTS: ['recent', 'oldest', 'liked'] }));
+jest.mock('../../services/post-stats.service', () => ({ reportPostEvent: jest.fn() }));
 
 const readSource = (path: string) => readFileSync(resolve(__dirname, '../..', path), 'utf8');
 
