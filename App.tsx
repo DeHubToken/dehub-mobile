@@ -97,6 +97,7 @@ import WalletRuntimeHost from "./components/auth/WalletRuntimeHost";
 import { bootRevealed, markBootRevealed } from "./libs/bootReveal";
 import { shouldDockLaunch } from "./libs/magneticDock";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
+import DefaultChainSync from "./components/common/DefaultChainSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 import OnboardingChoicesApplier from "./components/Onboarding/OnboardingChoicesApplier";
@@ -260,6 +261,8 @@ export default function App() {
               <HalloweenGhostHost />
               {/* A tapped badge opens here, above whatever screen it was on. */}
               <BadgeShowcaseHost />
+              {/* BNB is the starting chain unless the wallet already holds Base tokens. */}
+              <DefaultChainSync />
               </FeedSuperpowersProvider>
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
