@@ -129,6 +129,8 @@
     "useNamed": "{{name}} dan foydalaning"
   },
   "copy": {
+    "eabb5c136be4": "Planni yangilashda muammolarni koʻrdik",
+    "801658c8e591": "Reja yaratilmadi — iltimos, qaytadan urinib ko‘ring",
     "dd2108f1cda8": "Ovozli suhbatni to&#39;xtatish",
     "70438fbf1234": "Ovozli chat (AI)",
     "cf69d7e172fd": "Ovozli sessiya tugadi — boshqasini sotib olish uchun ovozli rejimni qaytadan yoqing.",
@@ -8718,6 +8720,7 @@
     "minimumRequired": "Minimal {{currency}} talab qilinadi"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Token obuna to'lovi tayyor emas — iltimos, birozdan keyin qayta urinib ko'ring",
     "switchFailed": "Obuna tarmog‘ini almashtirib bo‘lmadi",
     "connectWallet": "Obuna bo‘lish uchun hamyoningizni ulang",
     "notBuyable": "Bu rejani sotib bo‘lmaydi. Muallifdan qaytadan yaratishni so‘rang",

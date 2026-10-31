@@ -129,6 +129,8 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Emelitere atụmatụ ahụ adaala",
+    "801658c8e591": "Emebeghi atụmatụ ahụ — biko nwaa ọzọ",
     "dd2108f1cda8": "Stop Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Voice session ginamit na — simulan ang voice mode muli upang bumili ng iba.",
@@ -8687,6 +8689,7 @@
     "minimumRequired": "Opekempe {{currency}} chọrọ"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Ebe ịzụrụ ndebanye aha tokenịị adịghị njikere — biko nwaa ọzọ n'oge na-adịghị anya",
     "switchFailed": "Enweghị ike ịgbanwe netwọk ndenye aha",
     "connectWallet": "Jikọọ obere akpa gị iji debanye aha",
     "notBuyable": "Enweghị ike ịzụta atụmatụ a. Gwa onye kere ya ka o mepụta ya ọzọ",

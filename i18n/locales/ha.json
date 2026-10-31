@@ -129,6 +129,8 @@
     "use": "Yi amfani da wannan samfurin"
   },
   "copy": {
+    "eabb5c136be4": "An kasa sabunta shirin",
+    "801658c8e591": "Ba a ƙirƙiri shirin ba — da fatan za a sake gwadawa",
     "dd2108f1cda8": "Dakatar da Hirar Murya",
     "70438fbf1234": "Hirar Murya (AI)",
     "cf69d7e172fd": "Zaman murya ya ƙare — sake fara yanayin murya don siyan wani.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Ana buƙatar {{currency}} mafi ƙaranci"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Checkout na biyan kuɗi na token bai shirya ba — da fatan za a sake gwadawa nan ba da jimawa ba",
     "switchFailed": "An kasa canza hanyar sadarwar biyan kuɗi",
     "connectWallet": "Haɗa walat ɗinka don biyan kuɗi",
     "notBuyable": "Ba za a iya sayan wannan shirin ba. Nemi mahaliccin ya sake ƙirƙirar shi",

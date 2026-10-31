@@ -129,6 +129,8 @@
     "useNamed": "Utilitza {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "No s'ha pogut actualitzar el pla",
+    "801658c8e591": "El pla no s'ha creat — prova-ho de nou",
     "dd2108f1cda8": "Parar Conversa de Veu",
     "70438fbf1234": "Conversa de Veu (AI)",
     "cf69d7e172fd": "Sessió de veu utilitzada — torna a iniciar el mode de veu per comprar-ne una altra.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Es requereix un mínim de {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "El pagament de la subscripció de testimonis no està preparat; si us plau, torneu-ho a provar aviat.",
     "switchFailed": "No s'ha pogut canviar la xarxa de subscripció",
     "connectWallet": "Connecta la cartera per subscriure't",
     "notBuyable": "Aquest pla no es pot comprar. Demana al creador que el torni a crear",

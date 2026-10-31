@@ -129,6 +129,8 @@
     "useNamed": "Gamitin ang {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Nakaligtaan ang pag-upgrade ng plano",
+    "801658c8e591": "Ang plano ay hindi na nilikha — subukan ulit",
     "dd2108f1cda8": "Ihinto ang Voice Chat",
     "70438fbf1234": "Mga Boses sa Pag-uusap (AI)",
     "cf69d7e172fd": "Nagamit na ang session ng boses — muling simulan ang voice mode upang bumili ng isa pa.",
@@ -8746,6 +8748,7 @@
     "minimumRequired": "Kailangan ang minimum na {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Hindi pa handa ang token subscription checkout — mangyaring subukang muli sa madaling panahon",
     "switchFailed": "Hindi mapalitan ang subscription network",
     "connectWallet": "Ikonekta ang wallet mo para mag-subscribe",
     "notBuyable": "Hindi mabibili ang plan na ito. Hilingin sa creator na gawin itong muli",

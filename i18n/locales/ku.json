@@ -143,6 +143,8 @@
     "useNamed": "{{name}} bikar bîne"
   },
   "copy": {
+    "eabb5c136be4": "Nûkirina planê bi ser neket",
+    "801658c8e591": "Plan nehat çêkirin — ji kerema xwe dîsa biceribîne",
     "dd2108f1cda8": "Sohbeta dengî rawestîne",
     "70438fbf1234": "Sohbeta dengî (AI)",
     "cf69d7e172fd": "Danişîna dengî qediya — ji bo kirîna yeke din moda dengî dîsa dest pê bike.",
@@ -8687,6 +8689,7 @@
     "minimumRequired": "Herî kêm {{currency}} pêwîst e"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Dravdana abonetiyê ya bi tokenê ne amade ye — ji kerema xwe piştî demeke kurt dîsa biceribîne",
     "switchFailed": "Tora abonetiyê nehat guhertin",
     "connectWallet": "Ji bo abonetiyê berîka xwe girêde",
     "notBuyable": "Ev plan nayê kirîn. Ji afirîner bixwaze ku wê ji nû ve çêbike",

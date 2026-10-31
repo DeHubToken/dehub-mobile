@@ -129,6 +129,8 @@
     "useNamed": "Tumia {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Imeshindwa kusasisha mpango",
+    "801658c8e591": "Lengo hilo halikuundwa — jaribu tena",
     "dd2108f1cda8": "Acha Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Kipindi cha sauti kimetumika — anza hali ya sauti tena ili kununua nyingine.",
@@ -8701,6 +8703,7 @@
     "minimumRequired": "Kiwango cha chini cha {{currency}} kinahitajika"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Malipo ya usajili wa tokeni hayako tayari — tafadhali jaribu tena hivi karibuni",
     "switchFailed": "Imeshindwa kubadili mtandao wa usajili",
     "connectWallet": "Unganisha pochi yako ili kujisajili",
     "notBuyable": "Mpango huu hauwezi kununuliwa. Mwombe mtayarishaji auunde upya",
