@@ -1,5 +1,7 @@
 {
   "copy": {
+    "eabb5c136be4": "更新计划失败",
+    "801658c8e591": "计划未创建 — 请再试一次",
     "dd2108f1cda8": "停止语音聊天",
     "70438fbf1234": "语音聊天 (AI)",
     "cf69d7e172fd": "语音会话已用完 — 再次启动语音模式以购买另一个。",
@@ -8670,6 +8672,7 @@
     "minimumRequired": "最少需要 {{currency}} 个"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "代币订阅结账尚未准备好 — 请稍后重试",
     "switchFailed": "无法切换订阅网络",
     "connectWallet": "请连接钱包以订阅",
     "notBuyable": "此方案无法购买。请让创作者重新创建",
@@ -14564,5 +14567,19 @@
     "loading": "寻找赞助…",
     "campaignDescription": "让观众通过观看30秒来支持创作者。需要在Web广告门户中上传至少30秒的视频。",
     "watch": "观看广告支持这个创作者"
+  },
+  "mintChain": {
+    "title": "薄荷帖子",
+    "subtitle": "选择一个连锁店。价格实时更新，每分钟更新一次。",
+    "free": "免费",
+    "gasCovered": "DeHub承保的燃气",
+    "feeIncludesGas": "≈ {{usd}} ，含汽油",
+    "gasIncluded": "含燃气",
+    "paidFromWallet": "{{amount}}从您的钱包",
+    "paidFromWalletPlain": "通过您的钱包支付",
+    "priceUnavailable": "价格不可用",
+    "confirm": "{{chain}}薄荷",
+    "confirmWithCost": "在{{chain}} · {{cost}}上完好无损",
+    "notAvailable": "此链上的铸造尚不可用。"
   }
 }

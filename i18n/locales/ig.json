@@ -129,6 +129,8 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Emelitere atụmatụ ahụ adaala",
+    "801658c8e591": "Emebeghi atụmatụ ahụ — biko nwaa ọzọ",
     "dd2108f1cda8": "Stop Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Voice session ginamit na — simulan ang voice mode muli upang bumili ng iba.",
@@ -8687,6 +8689,7 @@
     "minimumRequired": "Opekempe {{currency}} chọrọ"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Ebe ịzụrụ ndebanye aha tokenịị adịghị njikere — biko nwaa ọzọ n'oge na-adịghị anya",
     "switchFailed": "Enweghị ike ịgbanwe netwọk ndenye aha",
     "connectWallet": "Jikọọ obere akpa gị iji debanye aha",
     "notBuyable": "Enweghị ike ịzụta atụmatụ a. Gwa onye kere ya ka o mepụta ya ọzọ",
@@ -14539,5 +14542,20 @@
     "fingerprint": "Mkpịsị aka",
     "exploreFirst": "Inyocha mbụ",
     "codeNote": "Anyị na-ezitere gị koodu, ọ dịghị paswọọdụ achọrọ."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Họrọ agbụ. Ọnụahịa dị ndụ ma na-emelite kwa nkeji.",
+    "free": "Free",
+    "gasCovered": "Gas kpuchie site na DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas gụnyere",
+    "gasIncluded": "Gas gụnyere",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} site na obere akpa gị",
+    "paidFromWalletPlain": "A kwụrụ ụgwọ site na obere akpa gị",
+    "priceUnavailable": "Ọnụahịa adịghị",
+    "confirm": "Mint na {{chain}}",
+    "confirmWithCost": "Mint na {{chain}} {{cost}}",
+    "notAvailable": "Ihe ngosi dị na yinye a adịbeghị."
   }
 }

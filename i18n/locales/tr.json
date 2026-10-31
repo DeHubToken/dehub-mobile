@@ -2213,9 +2213,6 @@
     "global": "Küresel"
   },
   "features": {
-    "notFeasible": "Mümkün değil",
-    "notFeasibleWhy": "Neden:",
-    "noNotFeasible": "Burada bir şey yok",
     "prompts": "İstemler",
     "queued": "Sırada",
     "promptPageTitle": "İstekler",
@@ -6421,6 +6418,7 @@
     "minimumRequired": "Minimum {{currency}} gerekli"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Jeton aboneliği ödeme işlemi hazır değil — lütfen kısa süre sonra tekrar deneyin",
     "switchFailed": "Abonelik ağı değiştirilemedi",
     "connectWallet": "Abone olmak için cüzdanınızı bağlayın",
     "notBuyable": "Bu plan satın alınamaz. Oluşturandan yeniden oluşturmasını isteyin",
@@ -7944,7 +7942,35 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
-    "stage": {"create":"3B sahne ekle","title":"3B sahne","hint":"Küre ve kutularla bir çekim hazırlayın. Kamera, konumlar ve üç bağımsız alan ışığı oluşturulan görüntüyü değiştirir.","preview":"Oluşturulan sahne önizlemesi","error":"Görüntü hazırlanamadı. Çekim referanslarını kontrol edip tekrar deneyin.","camera":"Kamera","yaw":"Dönüş","elevation":"Yükseklik açısı","distance":"Uzaklık","fov":"Görüş alanı","object":"Nesne","add":"Ekle","sphere":"Küre","box":"Kutu","x":"X","y":"Y","z":"Z","scale":"Boyut","color":"Renk","remove":"Nesneyi kaldır","light":"Işık","intensity":"Yoğunluk","diffusion":"Yayılım","saving":"Görüntü hazırlanıyor…","useFrame":"Oluşturulan görüntüyü çekim referansı olarak kullan","frameHint":"320 × 180 PNG oluşturur ve çekim referanslarına ekler. Üretmeden önce referans sınırını ve fiyatı kontrol edin.","frameName":"Sahne görüntüsü"},
+    "stage": {
+      "create": "3B sahne ekle",
+      "title": "3B sahne",
+      "hint": "Küre ve kutularla bir çekim hazırlayın. Kamera, konumlar ve üç bağımsız alan ışığı oluşturulan görüntüyü değiştirir.",
+      "preview": "Oluşturulan sahne önizlemesi",
+      "error": "Görüntü hazırlanamadı. Çekim referanslarını kontrol edip tekrar deneyin.",
+      "camera": "Kamera",
+      "yaw": "Dönüş",
+      "elevation": "Yükseklik açısı",
+      "distance": "Uzaklık",
+      "fov": "Görüş alanı",
+      "object": "Nesne",
+      "add": "Ekle",
+      "sphere": "Küre",
+      "box": "Kutu",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "scale": "Boyut",
+      "color": "Renk",
+      "remove": "Nesneyi kaldır",
+      "light": "Işık",
+      "intensity": "Yoğunluk",
+      "diffusion": "Yayılım",
+      "saving": "Görüntü hazırlanıyor…",
+      "useFrame": "Oluşturulan görüntüyü çekim referansı olarak kullan",
+      "frameHint": "320 × 180 PNG oluşturur ve çekim referanslarına ekler. Üretmeden önce referans sınırını ve fiyatı kontrol edin.",
+      "frameName": "Sahne görüntüsü"
+    },
     "film": {
       "repairRefs": "Eksik medya bağlantılarını kaldır",
       "title": "Film projesi",
@@ -8426,6 +8452,9 @@
     },
     "brand": {
       "addColor": "Marka rengi ekle",
+      "dehubApplied": "DeHub markası {{count}} katmana uygulandı.",
+      "dehubApply": "DeHub markasını kullan",
+      "dehubHint": "Resmi DeHub renkleri, Exo ve Inter yazı tipleri ve DeHub logosu tek tıkla.",
       "addLogo": "Logo ekle",
       "applied": "Marka {{count}} katmana uygulandı.",
       "apply": "Markayı uygula",
@@ -12247,6 +12276,8 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "eabb5c136be4": "Plan güncellemesi başarısız oldu",
+    "801658c8e591": "Plan oluşturulmadı - tekrar deneyin",
     "1aa9d734f2ee": "Nerede aranacağını seç",
     "35034aa59bd3": "{{feed}} içinde eşleşen yok. Başka kelimeler dene ya da her yerde ara.",
     "415155739590": "Her yerde ara",
@@ -15425,5 +15456,20 @@
     "notNow": "Şimdi değil",
     "saved": "Harika görünüyor",
     "failed": "Fotoğrafın kaydedilemedi. Tekrar dene."
+  },
+  "mintChain": {
+    "title": "Darphane postası",
+    "subtitle": "Bir zincir seçin. Fiyatlar canlıdır ve her dakika güncellenir.",
+    "free": "Ücretsiz",
+    "gasCovered": "DeHub tarafından karşılanan gaz",
+    "feeIncludesGas": "≈{{usd}}, gaz dahil",
+    "gasIncluded": "Gaz dahil",
+    "gasOnly": "≈{{usd}} gaz",
+    "paidFromWallet": "cüzdanınızdan {{amount}}",
+    "paidFromWalletPlain": "Cüzdanınızdan ödendi",
+    "priceUnavailable": "Fiyat mevcut değil",
+    "confirm": "Mint on {{chain}}",
+    "confirmWithCost": "{{chain}}{{cost}}' de nane",
+    "notAvailable": "Bu zincirde para basma henüz mevcut değil."
   }
 }

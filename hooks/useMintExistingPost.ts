@@ -20,12 +20,14 @@ export function useMintExistingPost() {
   const [isMinting, setIsMinting] = useState(false);
 
   const mint = useCallback(
-    async (tokenId: number, chainId: number): Promise<boolean> => {
+    // `chosenChainId` is the chain picked in the mint sheet; without one the
+    // post goes on-chain where it was published.
+    async (tokenId: number, chainId: number, chosenChainId?: number): Promise<boolean> => {
       if (isMinting) return false;
       setIsMinting(true);
       try {
         const post = (await getNFT(tokenId)).result as any;
-        chainId = Number(post.chainId || chainId);
+        chainId = Number(chosenChainId || post.chainId || chainId);
         const info = post.streamInfo;
         const hasBounty = !!info?.isAddBounty;
         const amount = Number(info?.addBountyAmount);
@@ -49,7 +51,12 @@ export function useMintExistingPost() {
           }
         }
 
-        const sig = await mintExistingPost(tokenId);
+        const sig = await mintExistingPost(tokenId, chainId);
+        // The signature binds the chain. A server that ignored the pick signed
+        // for the old one, and sending that to another chain would only revert.
+        if (Number((sig as any)?.chainId ?? chainId) !== chainId) {
+          throw new Error(_copy("mintChain.notAvailable", { defaultValue: "Minting on this chain is not available yet." }));
+        }
         const timestamp = (sig as any)?.timestamp;
         const v = (sig as any)?.v;
         const r = (sig as any)?.r;

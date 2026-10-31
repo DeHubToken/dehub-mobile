@@ -129,6 +129,8 @@
     "useNamed": "ໃຊ້ {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "ການອັບເດດແຜນການລົ້ມເຫລວ",
+    "801658c8e591": "ແຜນການບໍ່ໄດ້ສ້າງຂຶ້ນ - ກະລຸນາລອງໃໝ່ອີກຄັ້ງ",
     "dd2108f1cda8": "ຢຸດ Voice Chat",
     "70438fbf1234": "ສົນທະນາສຽງ (AI)",
     "cf69d7e172fd": "ເວລາໃຊ້ voice session ໝົດ — ເລີ່ມ voice mode ອີກຄັ້ງເພື່ອຊື້ຕໍ່ໄປ.",
@@ -8688,6 +8690,7 @@
     "minimumRequired": "ຕ້ອງການ {{currency}} ຢ່າງໜ້ອຍ"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "ການຊຳລະການສະໝັກ token ບໍ່ພ້ອມ — ກະລຸນາລອງໃໝ່ພາຍໃນບໍ່ດົນ",
     "switchFailed": "ບໍ່ສາມາດປ່ຽນເຄືອຂ່າຍສະໝັກໄດ້",
     "connectWallet": "ເຊື່ອມຕໍ່ກະເປົາເພື່ອສະໝັກ",
     "notBuyable": "ແພັກເກັດນີ້ຊື້ບໍ່ໄດ້. ຂໍໃຫ້ຜູ້ສ້າງສ້າງໃໝ່",
@@ -14540,5 +14543,19 @@
     "fingerprint": "ລາຍນິ້ວມື",
     "exploreFirst": "ສໍາຫຼວດກ່ອນ",
     "codeNote": "ພວກເຮົາສົ່ງລະຫັດອີເມວໃຫ້ທ່ານ, ບໍ່ ຈໍາ ເປັນຕ້ອງມີລະຫັດຜ່ານ."
+  },
+  "mintChain": {
+    "title": "ໂພສ Mint",
+    "subtitle": "ເລືອກລະບົບຕ່ອງໂສ້. ລາຄາມີຊີວິດຢູ່ ແລະ ອັບເດດທຸກໆນາທີ.",
+    "free": "ຟຣີ",
+    "gasCovered": "ອາຍແກັສທີ່ປົກຄຸມໂດຍ DeHub",
+    "feeIncludesGas": "≈ {{usd}}, ອາຍແກັສລວມ",
+    "gasIncluded": "ອາຍແກັສລວມ",
+    "gasOnly": "≈ {{usd}} ອາຍແກັສ",
+    "paidFromWallet": "{{amount}} ຈາກກະເປົາເງິນຂອງທ່ານ",
+    "paidFromWalletPlain": "ຈ່າຍຈາກກະເປົາເງິນຂອງທ່ານ",
+    "priceUnavailable": "ລາຄາບໍ່ສາມາດໃຊ້ໄດ້",
+    "confirmWithCost": "Mint ໃນ {{chain}} · {{cost}}",
+    "notAvailable": "ການຂຸດຄົ້ນບໍ່ແຮ່ໃນຕ່ອງໂສ້ນີ້ຍັງບໍ່ທັນມີເທື່ອ."
   }
 }

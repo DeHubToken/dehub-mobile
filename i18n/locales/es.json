@@ -2213,9 +2213,6 @@
     "global": "Global"
   },
   "features": {
-    "notFeasible": "No viable",
-    "notFeasibleWhy": "Por qué:",
-    "noNotFeasible": "Nada aquí",
     "prompts": "Propuestas",
     "queued": "En cola",
     "promptPageTitle": "Solicitudes",
@@ -6422,6 +6419,7 @@
     "minimumRequired": "Se requiere un mínimo de {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "El pago de suscripción de tokens no está listo; inténtalo de nuevo en breve.",
     "switchFailed": "No se pudo cambiar la red de suscripción",
     "connectWallet": "Conecta tu cartera para suscribirte",
     "notBuyable": "Este plan no se puede comprar. Pide al creador que lo vuelva a crear",
@@ -7945,7 +7943,35 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
-    "stage": {"create":"Añadir escenario 3D","title":"Escenario 3D","hint":"Prepara un plano con esferas y cajas. La cámara, las posiciones y tres luces de área independientes cambian la imagen renderizada.","preview":"Vista previa de la escena","error":"No se pudo preparar la imagen. Revisa las referencias del plano e inténtalo de nuevo.","camera":"Cámara","yaw":"Rotación","elevation":"Elevación","distance":"Distancia","fov":"Campo de visión","object":"Objeto","add":"Añadir","sphere":"Esfera","box":"Caja","x":"X","y":"Y","z":"Z","scale":"Tamaño","color":"Color","remove":"Eliminar objeto","light":"Luz","intensity":"Intensidad","diffusion":"Difusión","saving":"Preparando imagen…","useFrame":"Usar imagen renderizada como referencia del plano","frameHint":"Crea un PNG de 320 × 180 y lo añade a las referencias del plano. Revisa el límite de referencias y el precio antes de generar.","frameName":"Imagen del escenario"},
+    "stage": {
+      "create": "Añadir escenario 3D",
+      "title": "Escenario 3D",
+      "hint": "Prepara un plano con esferas y cajas. La cámara, las posiciones y tres luces de área independientes cambian la imagen renderizada.",
+      "preview": "Vista previa de la escena",
+      "error": "No se pudo preparar la imagen. Revisa las referencias del plano e inténtalo de nuevo.",
+      "camera": "Cámara",
+      "yaw": "Rotación",
+      "elevation": "Elevación",
+      "distance": "Distancia",
+      "fov": "Campo de visión",
+      "object": "Objeto",
+      "add": "Añadir",
+      "sphere": "Esfera",
+      "box": "Caja",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "scale": "Tamaño",
+      "color": "Color",
+      "remove": "Eliminar objeto",
+      "light": "Luz",
+      "intensity": "Intensidad",
+      "diffusion": "Difusión",
+      "saving": "Preparando imagen…",
+      "useFrame": "Usar imagen renderizada como referencia del plano",
+      "frameHint": "Crea un PNG de 320 × 180 y lo añade a las referencias del plano. Revisa el límite de referencias y el precio antes de generar.",
+      "frameName": "Imagen del escenario"
+    },
     "film": {
       "repairRefs": "Quitar vínculos a archivos ausentes",
       "title": "Proyecto de película",
@@ -8427,6 +8453,9 @@
     },
     "brand": {
       "addColor": "Añadir un color de marca",
+      "dehubApplied": "Marca DeHub aplicada a {{count}} capas.",
+      "dehubApply": "Usar la marca DeHub",
+      "dehubHint": "Colores oficiales de DeHub, fuentes Exo e Inter y el logo de DeHub, en un clic.",
       "addLogo": "Añadir logotipo",
       "applied": "Marca aplicada a {{count}} capas.",
       "apply": "Aplicar marca",
@@ -12263,6 +12292,8 @@
     "watch": "Ver un anuncio para apoyar a este creador"
   },
   "copy": {
+    "eabb5c136be4": "Fallo al actualizar el plan",
+    "801658c8e591": "El plan no se creó — por favor, intenta de nuevo",
     "1aa9d734f2ee": "Elige dónde buscar",
     "35034aa59bd3": "Nada en {{feed}} coincide. Prueba otras palabras o busca en todo.",
     "415155739590": "Buscar en todo",
@@ -15426,5 +15457,20 @@
     "notNow": "Ahora no",
     "saved": "¡Te queda genial!",
     "failed": "No se pudo guardar tu foto. Inténtalo de nuevo."
+  },
+  "mintChain": {
+    "title": "Publicación de menta",
+    "subtitle": "Elige una cadena. Los precios están disponibles y se actualizan cada minuto.",
+    "free": "Gratis",
+    "gasCovered": "Gas cubierto por DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas incluido",
+    "gasIncluded": "Gas incluido",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} de tu monedero",
+    "paidFromWalletPlain": "Pagado con tu monedero",
+    "priceUnavailable": "Precio no disponible",
+    "confirm": "Menta en {{chain}}",
+    "confirmWithCost": "Menta en {{chain}} · {{cost}}",
+    "notAvailable": "La acuñación en esta cadena aún no está disponible."
   }
 }

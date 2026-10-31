@@ -129,6 +129,8 @@
     "useNamed": "Gebruik {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Mislukte om plan by te werk",
+    "801658c8e591": "Die plan is nie geskep nie — probeer weer",
     "dd2108f1cda8": "Sta op Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Stemmingstyd gebruik op — begin stemmode weer om 'n ander te koop.",
@@ -8733,6 +8735,7 @@
     "minimumRequired": "Minimum {{currency}} benodig"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Die token intekening uitklok is nie gereed nie — probeer asseblief weer binnekort",
     "switchFailed": "Kon nie die intekennetwerk wissel nie",
     "connectWallet": "Koppel jou beursie om in te teken",
     "notBuyable": "Hierdie plan kan nie gekoop word nie. Vra die skepper om dit te herskep",
@@ -14677,5 +14680,20 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Verken eers",
     "codeNote": "Ons stuur vir jou 'n kode, geen wagwoord nodig nie."
+  },
+  "mintChain": {
+    "title": "Mint-pos",
+    "subtitle": "Kies 'n ketting. Pryse is lewendig en werk elke minuut op.",
+    "free": "Gratis",
+    "gasCovered": "Gas wat deur DeHub gedek word",
+    "feeIncludesGas": "≈ {{usd}}, gas ingesluit",
+    "gasIncluded": "Gas ingesluit",
+    "gasOnly": "≈ {{usd}} GAS",
+    "paidFromWallet": "{{amount}} van jou beursie",
+    "paidFromWalletPlain": "Betaal uit jou beursie",
+    "priceUnavailable": "Prys nie beskikbaar nie",
+    "confirm": "Munt op {{chain}}",
+    "confirmWithCost": "Munt op {{chain}} · {{cost}}",
+    "notAvailable": "Mining op hierdie ketting is nog nie beskikbaar nie."
   }
 }

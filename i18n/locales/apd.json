@@ -129,6 +129,8 @@
     "title": "ألقى نظرة على ترندك الجاي."
   },
   "copy": {
+    "eabb5c136be4": "لا تمكن من تحديث الخطة",
+    "801658c8e591": "لم يتم إنشاء الخطة — حاول مرة أخرى",
     "dd2108f1cda8": "إيقاف Voice Chat",
     "70438fbf1234": "المحادثة الصوتية (AI)",
     "cf69d7e172fd": "تم استهلاك جلسة الصوت — ابدأ وضع الصوت مرة أخرى لشراء جلسة أخرى.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "الحد الأدنى {{currency}} مطلوب"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "نافذة دفع توكن الاشتراك غير جاهزة - يرجى المحاولة مرة أخرى قريبًا",
     "switchFailed": "ما قدر يبدل شبكة الاشتراك",
     "connectWallet": "اربط محفظتك عشان تشترك",
     "notBuyable": "الخطة دي ما بتتشرى. اطلب من صاحبها يعملها تاني",
@@ -14552,5 +14555,20 @@
     "fingerprint": "بصمة الإصبع",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود عبر الإيميل، ما فيش كلمة سر مطلوبة."
+  },
+  "mintChain": {
+    "title": "معلومات المقال",
+    "subtitle": "اختر سلسلة.  الأسعار حية وتحديث كل دقيقة.",
+    "free": "مجانا",
+    "gasCovered": "الوقود مدفوع من قبل DeHub",
+    "feeIncludesGas": "≈ {{usd}}، الوقود مرفق",
+    "gasIncluded": "الوقود مرفق",
+    "gasOnly": "≈ {{usd}} الوقود",
+    "paidFromWallet": "{{amount}} من محفظتك",
+    "paidFromWalletPlain": "مدفوع من محفظتك",
+    "priceUnavailable": "السعر غير متوفر",
+    "confirm": "تذكرة المintage في {{chain}}",
+    "confirmWithCost": "تذكرة المintage في {{chain}} · {{cost}}",
+    "notAvailable": "لا يوجد إمكانية لتحديد المintage على هذه السلسلة بعد."
   }
 }

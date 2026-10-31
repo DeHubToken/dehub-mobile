@@ -1,5 +1,7 @@
 {
   "copy": {
+    "eabb5c136be4": "Falha ao atualizar o plano",
+    "801658c8e591": "O plano não foi criado — tente novamente",
     "dd2108f1cda8": "Parar conversa de voz",
     "70438fbf1234": "Conversa de Voz (AI)",
     "cf69d7e172fd": "Sessão de voz usada — inicie o modo de voz novamente para comprar outro.",
@@ -4434,9 +4436,6 @@
     "global": "Global"
   },
   "features": {
-    "notFeasible": "Não viável",
-    "notFeasibleWhy": "Por quê:",
-    "noNotFeasible": "Nada aqui",
     "title": "Solicitações de recursos",
     "ideasSubmitted": "{{count}} ideias enviadas",
     "ideaSubmitted": "1 ideia enviada",
@@ -8673,6 +8672,7 @@
     "minimumRequired": "Mínimo de {{currency}} exigido"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "O checkout da assinatura de token não está pronto — tente novamente em breve",
     "switchFailed": "Não foi possível trocar a rede de assinatura",
     "connectWallet": "Conecte sua carteira para assinar",
     "notBuyable": "Este plano não pode ser comprado. Peça ao criador para recriá-lo",
@@ -10574,6 +10574,9 @@
     },
     "brand": {
       "addColor": "Adicionar cor da marca",
+      "dehubApplied": "Marca DeHub aplicada a {{count}} camadas.",
+      "dehubApply": "Usar a marca DeHub",
+      "dehubHint": "Cores oficiais da DeHub, fontes Exo e Inter e o logo da DeHub, em um clique.",
       "addLogo": "Adicionar logotipo",
       "applied": "Marca aplicada a {{count}} camadas.",
       "apply": "Aplicar marca",
@@ -14567,5 +14570,20 @@
     "loading": "Encontrar um patrocinador...",
     "campaignDescription": "Permita que os espectadores apoiem os criadores assistindo 30 segundos. Requer um vídeo aprovado de pelo menos 30 segundos, carregado no portal de publicidade na web.",
     "watch": "Assista a um anúncio para apoiar este criador"
+  },
+  "mintChain": {
+    "title": "Post de hortelã",
+    "subtitle": "Escolha uma cadeia. Os preços estão ativos e são atualizados a cada minuto.",
+    "free": "Grátis",
+    "gasCovered": "Gás coberto pelo DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gás incluído",
+    "gasIncluded": "Gás incluído",
+    "gasOnly": "≈ {{usd}} gás",
+    "paidFromWallet": "{{amount}} da sua carteira",
+    "paidFromWalletPlain": "Pago com a sua carteira",
+    "priceUnavailable": "Preço indisponível",
+    "confirm": "Menta em {{chain}}",
+    "confirmWithCost": "Menta em {{chain}} · {{cost}}",
+    "notAvailable": "A cunhagem nesta corrente ainda não está disponível."
   }
 }

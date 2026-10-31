@@ -129,6 +129,8 @@
     "useNamed": "Använd {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Misslyckades med att uppdatera plan",
+    "801658c8e591": "Planen skapades inte – försök igen",
     "dd2108f1cda8": "Avbryt Tal Chat",
     "70438fbf1234": "Tal Chat (AI)",
     "cf69d7e172fd": "Tal-session använd: — starta talmodus igen för att köpa en annan.",
@@ -8704,6 +8706,7 @@
     "minimumRequired": "Minst {{currency}} krävs"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Tokenprenumerationsutcheckningen är inte redo — försök igen snart",
     "switchFailed": "Det gick inte att byta prenumerationsnätverk",
     "connectWallet": "Anslut din plånbok för att prenumerera",
     "notBuyable": "Den här planen går inte att köpa. Be skaparen skapa den på nytt",
@@ -14556,5 +14559,20 @@
     "fingerprint": "Fingeravtryck",
     "exploreFirst": "Utforska först",
     "codeNote": "Vi mejlar dig en kod, inget lösenord behövs."
+  },
+  "mintChain": {
+    "title": "Mynta inlägg",
+    "subtitle": "Välj en kedja. Priserna är live och uppdateras varje minut.",
+    "free": "Gratis",
+    "gasCovered": "Gas som täcks av DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas ingår",
+    "gasIncluded": "Gas ingår",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} från din portfölj",
+    "paidFromWalletPlain": "Betalat från din plånbok",
+    "priceUnavailable": "Pris ej tillgängligt",
+    "confirm": "Mynt på {{chain}}",
+    "confirmWithCost": "Mynt på {{chain}} · {{cost}}",
+    "notAvailable": "Mynta på denna kedja är inte tillgänglig ännu."
   }
 }

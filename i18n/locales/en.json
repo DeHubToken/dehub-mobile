@@ -2176,9 +2176,6 @@
     "global": "Global"
   },
   "features": {
-    "notFeasible": "Not feasible",
-    "notFeasibleWhy": "Why:",
-    "noNotFeasible": "Nothing here",
     "prompts": "Prompts",
     "queued": "Queued",
     "promptPageTitle": "Requests",
@@ -3456,6 +3453,21 @@
     "tabQuotes": "Quotes",
     "tabReposts": "Reposts",
     "tabSearch": "Search"
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Choose a chain. Prices are live and update every minute.",
+    "free": "Free",
+    "gasCovered": "Gas covered by DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas included",
+    "gasIncluded": "Gas included",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} from your wallet",
+    "paidFromWalletPlain": "Paid from your wallet",
+    "priceUnavailable": "Price unavailable",
+    "confirm": "Mint on {{chain}}",
+    "confirmWithCost": "Mint on {{chain}} · {{cost}}",
+    "notAvailable": "Minting on this chain is not available yet."
   },
   "postInfo": {
     "title": "Post Info",
@@ -6361,6 +6373,7 @@
     "minimumRequired": "Minimum {{currency}} required"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "The token subscription checkout is not ready — please try again shortly",
     "switchFailed": "Could not switch subscription network",
     "connectWallet": "Connect your wallet to subscribe",
     "notBuyable": "This plan cannot be bought. Ask the creator to recreate it",
@@ -8769,6 +8782,9 @@
       "addColor": "Add a brand colour",
       "addLogo": "Add logo",
       "applied": "Brand applied to {{count}} layers.",
+      "dehubApplied": "DeHub brand applied to {{count}} layers.",
+      "dehubApply": "Use the DeHub brand",
+      "dehubHint": "Official DeHub colours, Exo and Inter fonts, and the DeHub logo, in one click.",
       "apply": "Apply brand",
       "bodyFont": "Body font",
       "colors": "Brand colours",
@@ -12586,6 +12602,8 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "eabb5c136be4": "Failed to update plan",
+    "801658c8e591": "The plan was not created — please try again",
     "1aa9d734f2ee": "Choose what to search",
     "35034aa59bd3": "Nothing in {{feed}} matched. Try other words or search everything.",
     "415155739590": "Search everything",

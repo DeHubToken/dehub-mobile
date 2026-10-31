@@ -45,6 +45,7 @@ export const GOOGLE_FONTS: GoogleFont[] = [
   { family: "Dosis", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800] },
   { family: "Archivo", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
   { family: "Archivo Narrow", category: "sans-serif", weights: [400, 500, 600, 700] },
+  { family: "Exo", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
   { family: "Exo 2", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
   { family: "IBM Plex Sans", category: "sans-serif", weights: [300, 400, 500, 600, 700] },
   { family: "Chivo", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },

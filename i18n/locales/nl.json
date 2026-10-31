@@ -2401,9 +2401,6 @@
     "global": "Wereldwijd"
   },
   "features": {
-    "notFeasible": "Niet haalbaar",
-    "notFeasibleWhy": "Waarom:",
-    "noNotFeasible": "Niets hier",
     "prompts": "Voorstellen",
     "queued": "In de wachtrij",
     "promptPageTitle": "Verzoeken",
@@ -6560,6 +6557,7 @@
     "minimumRequired": "Minimaal {{currency}} vereist"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "De token-abonnement checkout is niet klaar — probeer het binnenkort opnieuw",
     "switchFailed": "Kan abonnementsnetwerk niet wisselen",
     "connectWallet": "Koppel je wallet om te abonneren",
     "notBuyable": "Dit abonnement kan niet worden gekocht. Vraag de maker het opnieuw aan te maken",
@@ -8147,7 +8145,35 @@
     }
   },
   "editor": {
-    "stage": {"create":"3D-scène toevoegen","title":"3D-scène","hint":"Zet een opname op met bollen en blokken. De camera, posities en drie onafhankelijke vlaklichten veranderen het gerenderde beeld.","preview":"Voorbeeld van de gerenderde scène","error":"Het beeld kon niet worden voorbereid. Controleer de referenties van de opname en probeer opnieuw.","camera":"Camera","yaw":"Draaiing","elevation":"Hoogtehoek","distance":"Afstand","fov":"Beeldhoek","object":"Object","add":"Toevoegen","sphere":"Bol","box":"Blok","x":"X","y":"Y","z":"Z","scale":"Grootte","color":"Kleur","remove":"Object verwijderen","light":"Licht","intensity":"Sterkte","diffusion":"Spreiding","saving":"Beeld voorbereiden…","useFrame":"Gerenderd beeld als opnamereferentie gebruiken","frameHint":"Maakt een PNG van 320 × 180 en voegt deze toe aan de opnamereferenties. Controleer de referentielimiet en prijs voordat je genereert.","frameName":"Scènebeeld"},
+    "stage": {
+      "create": "3D-scène toevoegen",
+      "title": "3D-scène",
+      "hint": "Zet een opname op met bollen en blokken. De camera, posities en drie onafhankelijke vlaklichten veranderen het gerenderde beeld.",
+      "preview": "Voorbeeld van de gerenderde scène",
+      "error": "Het beeld kon niet worden voorbereid. Controleer de referenties van de opname en probeer opnieuw.",
+      "camera": "Camera",
+      "yaw": "Draaiing",
+      "elevation": "Hoogtehoek",
+      "distance": "Afstand",
+      "fov": "Beeldhoek",
+      "object": "Object",
+      "add": "Toevoegen",
+      "sphere": "Bol",
+      "box": "Blok",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "scale": "Grootte",
+      "color": "Kleur",
+      "remove": "Object verwijderen",
+      "light": "Licht",
+      "intensity": "Sterkte",
+      "diffusion": "Spreiding",
+      "saving": "Beeld voorbereiden…",
+      "useFrame": "Gerenderd beeld als opnamereferentie gebruiken",
+      "frameHint": "Maakt een PNG van 320 × 180 en voegt deze toe aan de opnamereferenties. Controleer de referentielimiet en prijs voordat je genereert.",
+      "frameName": "Scènebeeld"
+    },
     "film": {
       "repairRefs": "Ontbrekende mediakoppelingen verwijderen",
       "title": "Filmproject",
@@ -8629,6 +8655,9 @@
     },
     "brand": {
       "addColor": "Merkkleur toevoegen",
+      "dehubApplied": "DeHub-huisstijl toegepast op {{count}} lagen.",
+      "dehubApply": "DeHub-huisstijl gebruiken",
+      "dehubHint": "Officiële DeHub-kleuren, de lettertypen Exo en Inter en het DeHub-logo, in één klik.",
       "addLogo": "Logo toevoegen",
       "applied": "Merk toegepast op {{count}} lagen.",
       "apply": "Merk toepassen",
@@ -12499,6 +12528,8 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "eabb5c136be4": "Planning mislukt bij update",
+    "801658c8e591": "De planning is niet gemaakt — probeer het opnieuw",
     "1aa9d734f2ee": "Kies waarin je zoekt",
     "35034aa59bd3": "Niets in {{feed}} komt overeen. Probeer andere woorden of zoek overal.",
     "415155739590": "Overal zoeken",
@@ -15677,5 +15708,20 @@
     "notNow": "Niet nu",
     "saved": "Ziet er goed uit",
     "failed": "Je foto kon niet worden opgeslagen. Probeer het opnieuw."
+  },
+  "mintChain": {
+    "title": "Muntpaal",
+    "subtitle": "Kies een keten. Prijzen zijn live en worden elke minuut bijgewerkt.",
+    "free": "Gratis",
+    "gasCovered": "Gas gedekt door DeHub",
+    "feeIncludesGas": "≈ {{usd}}, inclusief gas",
+    "gasIncluded": "Gas inbegrepen",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} uit uw portemonnee",
+    "paidFromWalletPlain": "Betaald uit je portemonnee",
+    "priceUnavailable": "Prijs niet beschikbaar",
+    "confirm": "Munt op {{chain}}",
+    "confirmWithCost": "Munt op {{chain}} · {{cost}}",
+    "notAvailable": "Munt op deze ketting is nog niet beschikbaar."
   }
 }

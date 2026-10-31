@@ -2213,9 +2213,6 @@
     "global": "Mondial"
   },
   "features": {
-    "notFeasible": "Pas faisable",
-    "notFeasibleWhy": "Pourquoi :",
-    "noNotFeasible": "Rien ici",
     "prompts": "Propositions",
     "queued": "En attente",
     "promptPageTitle": "Demandes",
@@ -6426,6 +6423,7 @@
     "minimumRequired": "Minimum de {{currency}} requis"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Le paiement de l'abonnement en jetons n'est pas prêt — veuillez réessayer bientôt",
     "switchFailed": "Impossible de changer le réseau d'abonnement",
     "connectWallet": "Connectez votre portefeuille pour vous abonner",
     "notBuyable": "Cet abonnement ne peut pas être acheté. Demandez au créateur de le recréer",
@@ -7949,7 +7947,35 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
-    "stage": {"create":"Ajouter une scène 3D","title":"Scène 3D","hint":"Préparez un plan avec des sphères et des cubes. La caméra, les positions et trois éclairages de surface indépendants modifient l\u0027image rendue.","preview":"Aperçu de la scène rendue","error":"Impossible de préparer l\u0027image. Vérifiez les références du plan et réessayez.","camera":"Caméra","yaw":"Rotation","elevation":"Élévation","distance":"Distance","fov":"Champ de vision","object":"Objet","add":"Ajouter","sphere":"Sphère","box":"Cube","x":"X","y":"Y","z":"Z","scale":"Taille","color":"Couleur","remove":"Supprimer l\u0027objet","light":"Éclairage","intensity":"Intensité","diffusion":"Diffusion","saving":"Préparation de l\u0027image…","useFrame":"Utiliser l\u0027image rendue comme référence du plan","frameHint":"Crée un PNG de 320 × 180 et l\u0027ajoute aux références du plan. Vérifiez la limite des références et le tarif avant de générer.","frameName":"Image de la scène"},
+    "stage": {
+      "create": "Ajouter une scène 3D",
+      "title": "Scène 3D",
+      "hint": "Préparez un plan avec des sphères et des cubes. La caméra, les positions et trois éclairages de surface indépendants modifient l'image rendue.",
+      "preview": "Aperçu de la scène rendue",
+      "error": "Impossible de préparer l'image. Vérifiez les références du plan et réessayez.",
+      "camera": "Caméra",
+      "yaw": "Rotation",
+      "elevation": "Élévation",
+      "distance": "Distance",
+      "fov": "Champ de vision",
+      "object": "Objet",
+      "add": "Ajouter",
+      "sphere": "Sphère",
+      "box": "Cube",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "scale": "Taille",
+      "color": "Couleur",
+      "remove": "Supprimer l'objet",
+      "light": "Éclairage",
+      "intensity": "Intensité",
+      "diffusion": "Diffusion",
+      "saving": "Préparation de l'image…",
+      "useFrame": "Utiliser l'image rendue comme référence du plan",
+      "frameHint": "Crée un PNG de 320 × 180 et l'ajoute aux références du plan. Vérifiez la limite des références et le tarif avant de générer.",
+      "frameName": "Image de la scène"
+    },
     "film": {
       "repairRefs": "Retirer les liens vers les médias manquants",
       "title": "Projet de film",
@@ -8402,6 +8428,9 @@
     },
     "brand": {
       "addColor": "Ajouter une couleur de marque",
+      "dehubApplied": "Marque DeHub appliquée à {{count}} calques.",
+      "dehubApply": "Utiliser la marque DeHub",
+      "dehubHint": "Couleurs officielles DeHub, polices Exo et Inter et logo DeHub, en un clic.",
       "addLogo": "Ajouter un logo",
       "applied": "Marque appliquée à {{count}} calques.",
       "apply": "Appliquer la marque",
@@ -9932,10 +9961,10 @@
   "creator": {
     "priceRetry": "Le prix n'a pas pu être confirmé. Vérifiez le prix et réessayez.",
     "avatarTitle": "Portrait parlant",
-    "avatarRequirements": "Portrait PNG carré de 512–2048 pixels, jusqu\u0027à 5 Mo. WAV PCM mono 24 kHz 16 bits, de 5–30 secondes. La dernière fraction de seconde est complétée par du silence.",
+    "avatarRequirements": "Portrait PNG carré de 512–2048 pixels, jusqu'à 5 Mo. WAV PCM mono 24 kHz 16 bits, de 5–30 secondes. La dernière fraction de seconde est complétée par du silence.",
     "avatarPortrait": "Choisir un portrait PNG",
     "avatarAudio": "Choisir une voix WAV",
-    "avatarPermission": "J\u0027ai l\u0027autorisation d\u0027animer ce portrait et d\u0027utiliser cet audio.",
+    "avatarPermission": "J'ai l'autorisation d'animer ce portrait et d'utiliser cet audio.",
     "avatarQuote": "{{seconds}} secondes avec le silence · {{amount}} DHB",
     "avatarPrepare": "Préparer et vérifier le prix",
     "batchFlowLimit": "La liste Flow est pleine. Supprimez un Flow inutilisé avant de créer un autre lot.",
@@ -12267,6 +12296,8 @@
     "watch": "Regarder une publicité pour soutenir ce créateur"
   },
   "copy": {
+    "eabb5c136be4": "Échec de la mise à jour du plan",
+    "801658c8e591": "Le plan n'a pas été créé — veuillez réessayer",
     "1aa9d734f2ee": "Choisir où chercher",
     "35034aa59bd3": "Rien dans {{feed}} ne correspond. Essayez d’autres mots ou cherchez partout.",
     "415155739590": "Tout rechercher",
@@ -15430,5 +15461,20 @@
     "notNow": "Plus tard",
     "saved": "Superbe !",
     "failed": "Impossible d'enregistrer ta photo. Réessaie."
+  },
+  "mintChain": {
+    "title": "Poste de menthe",
+    "subtitle": "Choisissez une chaîne. Les prix sont en direct et mis à jour toutes les minutes.",
+    "free": "Gratuit",
+    "gasCovered": "Gaz couvert par DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gaz inclus",
+    "gasIncluded": "Gaz inclus",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "{{amount}} depuis votre portefeuille",
+    "paidFromWalletPlain": "Payé depuis votre portefeuille",
+    "priceUnavailable": "Prix indisponible",
+    "confirm": "Menthe le {{chain}}",
+    "confirmWithCost": "Menthe sur {{chain}} · {{cost}}",
+    "notAvailable": "La frappe sur cette chaîne n'est pas encore disponible."
   }
 }

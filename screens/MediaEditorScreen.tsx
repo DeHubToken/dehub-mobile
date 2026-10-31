@@ -161,7 +161,7 @@ import {
   trimClip,
 } from "../libs/editor/timeline";
 import { applyOps, askAgent, askSceneAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
-import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
+import { applyBrand, DEHUB_BRAND_COLORS, DEHUB_BRAND_FONTS, DEHUB_LOGO_URL, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../libs/editor/templates";
 import type { VideoTemplateAspect } from "../libs/editor/videoTemplates";
 import { importStockAsset } from "../libs/editor/stock";
@@ -502,6 +502,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
   // Snapshot a timeline drag started from; each frame applies the whole drag to it.
   const dragBase = useRef<ProjectSnapshot | null>(null);
   const updateBrand = (kit: BrandKit) => { setBrand(kit); void saveBrand(kit); };
+  const dehubLogoId = useRef<string | null>(null);
 
   // Open an existing design.
   useEffect(() => {
@@ -1601,6 +1602,26 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
             if (!hasBrand(brand)) return;
             h.commit(applyBrand(project, brand));
             toastSuccess(t("editor.brand.applied", { count: project.clips.length }));
+          }}
+          onUseDehubBrand={async () => {
+            let logoMediaId: string | null = dehubLogoId.current;
+            if (!logoMediaId) {
+              try {
+                logoMediaId = (await importGeneratedMedia({ url: DEHUB_LOGO_URL, kind: "image", name: "dehub-wordmark-white" })).id;
+                dehubLogoId.current = logoMediaId;
+              } catch { logoMediaId = null; /* offline: colours and fonts still apply */ }
+            }
+            const latest = h.latest();
+            if (!latest) return;
+            const kit: BrandKit = { colors: DEHUB_BRAND_COLORS, headingFont: DEHUB_BRAND_FONTS.heading, bodyFont: DEHUB_BRAND_FONTS.body, logoMediaId };
+            updateBrand(kit);
+            let next = applyBrand(latest, kit);
+            if (logoMediaId) {
+              const added = addImage(next, logoMediaId);
+              next = updateClip(added.project, added.clipId, { transform: { x: 0.88, y: 0.1, scale: 0.16, rotation: 0 } });
+            }
+            h.commit(next);
+            toastSuccess(t("editor.brand.dehubApplied", { count: latest.clips.length, defaultValue: "DeHub brand applied to {{count}} layers." }));
           }}
           onAddLogo={() => {
             if (!brand.logoMediaId) return;

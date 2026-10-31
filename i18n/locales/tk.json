@@ -129,6 +129,8 @@
     "useNamed": "{{name}}ullan"
   },
   "copy": {
+    "eabb5c136be4": "Meýilnamany täzelemek başartmady",
+    "801658c8e591": "Meýilnama döredilmedi — gaýtadan synanyşyň",
     "dd2108f1cda8": "Söhbətə Durdur",
     "70438fbf1234": "Söhbət (AI)",
     "cf69d7e172fd": "Səs sessiyası istifadə olunub — səs rejimini yenidən başladın və digər səs sessiyasını almaq üçün icazə verin.",
@@ -8685,6 +8687,7 @@
     "minimumRequired": "Iň az {{currency}} talap edilýär"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Sanly wagt abonentlik tölegi heniz taýyn däl — haýyş edýäris, gysga wagtdan soň täzeden synanyşyň",
     "switchFailed": "Abuna ulgamyny çalşyp bolmady",
     "connectWallet": "Abuna bolmak üçin gapjygyňyzy birikdiriň",
     "notBuyable": "Bu meýilnamany satyn alyp bolmaýar. Döredijiden ony gaýtadan döretmegi haýyş ediň",
@@ -14537,5 +14540,19 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Öňürti barlaň",
     "codeNote": "Biz size kody iberýäris, hiç hili parol gerek däl."
+  },
+  "mintChain": {
+    "title": "Mint posty",
+    "subtitle": "Bir zynjyr saýlaň. Baýlar diridir we her minutda täzelenýär.",
+    "free": "Azat",
+    "gasCovered": "Dehub bilen örtülen gaz",
+    "feeIncludesGas": "≈ {{usd}}, gaz içi",
+    "gasIncluded": "Benzin hem şol sanda",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWalletPlain": "Men pulumy gaýtaryp bererin",
+    "priceUnavailable": "Öňki ýaly, bular hem bar.",
+    "confirm": "Mint on {{chain}}",
+    "confirmWithCost": "{{chain}} {{cost}}",
+    "notAvailable": "Häzirki ýaly, bu mekdebiň açylmagy barada hiç hili habar berilmedi."
   }
 }

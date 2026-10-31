@@ -129,6 +129,8 @@
     "useNamed": "Gunakan {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Gagal memperbarui rencana",
+    "801658c8e591": "Rencana tidak dicipta — sila cuba lagi",
     "dd2108f1cda8": "Hentikan Sembang Suara",
     "70438fbf1234": "Sembang Suara (AI)",
     "cf69d7e172fd": "Sesi suara telah habis — mulakan mod suara lagi untuk membeli satu lagi.",
@@ -8956,6 +8958,7 @@
     "minimumRequired": "Minimum {{currency}} diperlukan"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Pemeriksaan langganan token belum sedia — sila cuba semula sebentar lagi",
     "switchFailed": "Tidak dapat menukar rangkaian langganan",
     "connectWallet": "Sambungkan dompet anda untuk melanggan",
     "notBuyable": "Pelan ini tidak boleh dibeli. Minta pencipta menciptanya semula",
@@ -14808,5 +14811,20 @@
     "fingerprint": "Cap jari",
     "exploreFirst": "Teroka dahulu",
     "codeNote": "Kami e-melkan kod kepada anda, tanpa kata laluan."
+  },
+  "mintChain": {
+    "title": "Hantaran pudina",
+    "subtitle": "Pilih rantai. Harga disiarkan secara langsung dan kemas kini setiap minit.",
+    "free": "Percuma",
+    "gasCovered": "Gas dilindungi oleh DeHub",
+    "feeIncludesGas": "≈ {{usd}}, termasuk gas",
+    "gasIncluded": "Termasuk gas",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} daripada dompet anda",
+    "paidFromWalletPlain": "Dibayar daripada dompet anda",
+    "priceUnavailable": "Harga tidak tersedia",
+    "confirm": "Mint pada {{chain}}",
+    "confirmWithCost": "Mint pada {{chain}} · {{cost}}",
+    "notAvailable": "Percetakan pada rantai ini belum tersedia lagi."
   }
 }

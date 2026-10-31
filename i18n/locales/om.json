@@ -129,6 +129,8 @@
     "useNamed": "{{name}} fayyadamaa."
   },
   "copy": {
+    "eabb5c136be4": "Planin akkaa fiiraa qabu qofaa",
+    "801658c8e591": "Karoorichi hin uumamne — maaloo irra deebi'ii yaali",
     "dd2108f1cda8": "Stop Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Voice session fayyadameera — kan biraa bitachuuf haala sagalee irra deebi&#39;ii jalqabi.",
@@ -8701,6 +8703,7 @@
     "minimumRequired": "Galeessaan {{currency}} barbaachisa"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Kaffaltiin maallaqa token qophii miti — maaloo yeroo gabaabaa keessatti irra deebi'ii yaali",
     "switchFailed": "Neetwoorkii galmee jijjiiruun hin dandaʼamne",
     "connectWallet": "Galmaaʼuuf boorsaa kee walqabsiisi",
     "notBuyable": "Karoorri kun bitamuu hin dandaʼu. Uumaa akka irra deebiʼee uumu gaafadhu",
@@ -14590,5 +14593,20 @@
     "fingerprint": "Ashaaraa qubaa",
     "exploreFirst": "Dursa qoradhu",
     "codeNote": "Koodii email siif goona, jecha icciitii hin barbaachisu."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Sansalata filadhu. Gatiin daqiiqaa hunda live fi update ta'a.",
+    "free": "Bilisa",
+    "gasCovered": "Gaasii DeHub'n uwwifame",
+    "feeIncludesGas": "≈ {{usd}}, gaazii dabalatee",
+    "gasIncluded": "Gaasii dabalatee",
+    "gasOnly": "≈ {{usd}} gaazii",
+    "paidFromWallet": "{{amount}} boorsaa keessan irraa",
+    "paidFromWalletPlain": "Boorsaa keessan irraa kan kaffalame",
+    "priceUnavailable": "Gatiin hin argamu",
+    "confirm": "Mint {{chain}} irratti.",
+    "confirmWithCost": "Mint irratti {{chain}} · {{cost}} irratti.",
+    "notAvailable": "Sansalata kana irratti minting hanga ammaatti hin argamne."
   }
 }

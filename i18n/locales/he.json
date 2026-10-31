@@ -129,6 +129,8 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "eabb5c136be4": "לא הצליחתי לעדכן את התוכנית",
+    "801658c8e591": "התוכנית לא נוצרה — נסו שוב",
     "dd2108f1cda8": "עצור שיחת קול",
     "70438fbf1234": "שיחת קול (AI)",
     "cf69d7e172fd": "שיחת קול שנעשתה — התחיל שיחת קול כדי לרכוש עוד.",
@@ -8704,6 +8706,7 @@
     "minimumRequired": "נדרש מינימום {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "הצ'ק-אאוט של מנוי אסימונים אינו מוכן — אנא נסה שוב בקרוב",
     "switchFailed": "לא ניתן היה להחליף את רשת המנוי",
     "connectWallet": "חברו את הארנק כדי להירשם",
     "notBuyable": "לא ניתן לרכוש את המסלול הזה. בקשו מהיוצר ליצור אותו מחדש",
@@ -14556,5 +14559,20 @@
     "fingerprint": "טביעת אצבע",
     "exploreFirst": "קודם תסתובב",
     "codeNote": "נשלח לך קוד במייל, בלי סיסמה."
+  },
+  "mintChain": {
+    "title": "פוסט מנטה",
+    "subtitle": "בחר שרשרת. המחירים פעילים ומתעדכנים בכל דקה.",
+    "free": "חינם",
+    "gasCovered": "הגז מכוסה על ידי DeHub",
+    "feeIncludesGas": "≈{{usd}}, כולל דלק",
+    "gasIncluded": "כולל גז",
+    "gasOnly": "≈{{usd}} דלק",
+    "paidFromWallet": "{{amount}} מהארנק שלך",
+    "paidFromWalletPlain": "שולם מהארנק שלכם",
+    "priceUnavailable": "המחיר לא זמין",
+    "confirm": "נענע ב -{{chain}}",
+    "confirmWithCost": "מטבעה ב - {{chain}} · {{cost}}",
+    "notAvailable": "הטבעה בשרשרת זו אינה זמינה עדיין."
   }
 }

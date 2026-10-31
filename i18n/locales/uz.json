@@ -129,6 +129,8 @@
     "useNamed": "{{name}} dan foydalaning"
   },
   "copy": {
+    "eabb5c136be4": "Planni yangilashda muammolarni koʻrdik",
+    "801658c8e591": "Reja yaratilmadi — iltimos, qaytadan urinib ko‘ring",
     "dd2108f1cda8": "Ovozli suhbatni to&#39;xtatish",
     "70438fbf1234": "Ovozli chat (AI)",
     "cf69d7e172fd": "Ovozli sessiya tugadi — boshqasini sotib olish uchun ovozli rejimni qaytadan yoqing.",
@@ -8718,6 +8720,7 @@
     "minimumRequired": "Minimal {{currency}} talab qilinadi"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Token obuna to'lovi tayyor emas — iltimos, birozdan keyin qayta urinib ko'ring",
     "switchFailed": "Obuna tarmog‘ini almashtirib bo‘lmadi",
     "connectWallet": "Obuna bo‘lish uchun hamyoningizni ulang",
     "notBuyable": "Bu rejani sotib bo‘lmaydi. Muallifdan qaytadan yaratishni so‘rang",
@@ -14607,5 +14610,20 @@
     "fingerprint": "Barmoq izi",
     "exploreFirst": "Avval o'rganing",
     "codeNote": "Sizga elektron pochta orqali kod yuboramiz, parol kerak emas."
+  },
+  "mintChain": {
+    "title": "Yalpiz posti",
+    "subtitle": "Tarmoq tanlang. Narxlar jonli va har daqiqada yangilanadi.",
+    "free": "Bepul",
+    "gasCovered": "DeHub tomonidan qoplangan gaz",
+    "feeIncludesGas": "≈ {{usd}}, gaz bilan birga",
+    "gasIncluded": "Gaz kiritilgan",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "hamyoningizdan {{amount}}",
+    "paidFromWalletPlain": "Hamyoningizdan to'langan",
+    "priceUnavailable": "Narxi mavjud emas",
+    "confirm": "{{chain}} da yalpiz",
+    "confirmWithCost": "{{chain}} da yalpiz · {{cost}}",
+    "notAvailable": "Ushbu zanjirda zarb qilish hali mavjud emas."
   }
 }
