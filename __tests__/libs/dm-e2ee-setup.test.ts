@@ -45,6 +45,14 @@ describe('DM encryption setup status', () => {
     );
   });
 
+  it('does not ask for a signature when opened non-interactively', async () => {
+    await expect(ensureDmEncryption(ADDRESS, undefined, { interactive: false })).resolves.toBe('locked');
+    expect(mockKeys.setupIdentity).not.toHaveBeenCalled();
+
+    mockKeys.setupIdentity.mockResolvedValue({ publicKey: '0xpublished' });
+    await expect(retryDmEncryption(ADDRESS)).resolves.toBe('ready');
+  });
+
   it('treats a declined unlock as cancellation without error reporting', async () => {
     const refusal = new Error('cancelled');
     refusal.name = 'BiometricRejectedError';
