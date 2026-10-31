@@ -6421,6 +6421,7 @@
     "minimumRequired": "Minimum {{currency}} gerekli"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Jeton aboneliği ödeme işlemi hazır değil — lütfen kısa süre sonra tekrar deneyin",
     "switchFailed": "Abonelik ağı değiştirilemedi",
     "connectWallet": "Abone olmak için cüzdanınızı bağlayın",
     "notBuyable": "Bu plan satın alınamaz. Oluşturandan yeniden oluşturmasını isteyin",
@@ -12247,6 +12248,8 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "eabb5c136be4": "Plan güncellemesi başarısız oldu",
+    "801658c8e591": "Plan oluşturulmadı - tekrar deneyin",
     "1aa9d734f2ee": "Nerede aranacağını seç",
     "35034aa59bd3": "{{feed}} içinde eşleşen yok. Başka kelimeler dene ya da her yerde ara.",
     "415155739590": "Her yerde ara",

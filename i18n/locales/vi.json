@@ -129,6 +129,8 @@
     "useNamed": "Sử dụng {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Không thể cập nhật kế hoạch",
+    "801658c8e591": "Kế hoạch không được tạo — hãy thử lại",
     "dd2108f1cda8": "Dừng Trò chuyện bằng giọng nói",
     "70438fbf1234": "Trò chuyện bằng giọng nói (AI)",
     "cf69d7e172fd": "Phút thoại đã sử dụng hết — bắt đầu chế độ thoại lại để mua phút thoại khác.",
@@ -8754,6 +8756,7 @@
     "minimumRequired": "Yêu cầu tối thiểu {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Thanh toán đăng ký token chưa sẵn sàng — vui lòng thử lại sau",
     "switchFailed": "Không thể chuyển mạng đăng ký",
     "connectWallet": "Kết nối ví để đăng ký",
     "notBuyable": "Không thể mua gói này. Hãy nhờ người tạo tạo lại",
