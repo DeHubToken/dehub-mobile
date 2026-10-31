@@ -14584,5 +14584,9 @@
     "confirm": "{{chain}} पर टकसाल",
     "confirmWithCost": "{{chain}} · {{cost}} पर टकसाल",
     "notAvailable": "इस चेन पर मिंटिंग अभी तक उपलब्ध नहीं है।"
+  },
+  "halloween": {
+    "title": "हैप्पी हैलोवीन",
+    "otherThemes": "सेटिंग्स में अब दूसरी थीम खोजें:"
   }
 }

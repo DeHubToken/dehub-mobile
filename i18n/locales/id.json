@@ -14578,5 +14578,9 @@
     "confirm": "Mint pada {{chain}}",
     "confirmWithCost": "Pesan di {{chain}} · {{cost}}",
     "notAvailable": "Pencetakan pada rantai ini belum tersedia."
+  },
+  "halloween": {
+    "title": "Selamat Halloween",
+    "otherThemes": "Temukan tema lain di pengaturan sekarang:"
   }
 }

@@ -15547,5 +15547,9 @@
       "fri": "ven",
       "sat": "sam"
     }
+  },
+  "halloween": {
+    "title": "Joyeux Halloween",
+    "otherThemes": "Découvre d'autres thèmes dans les réglages :"
   }
 }

@@ -14661,5 +14661,9 @@
     "confirm": "Đúc tiền vào {{chain}}",
     "confirmWithCost": "Đúc tiền vào {{chain}} · {{cost}}",
     "notAvailable": "Việc đúc tiền trên chuỗi này chưa khả dụng."
+  },
+  "halloween": {
+    "title": "Halloween vui vẻ",
+    "otherThemes": "Tìm các giao diện khác trong cài đặt ngay:"
   }
 }

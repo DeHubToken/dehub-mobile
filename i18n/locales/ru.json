@@ -14582,5 +14582,9 @@
     "confirm": "Мята на {{chain}}",
     "confirmWithCost": "Мята на {{chain}} · {{cost}}",
     "notAvailable": "Чеканка на этой цепочке пока недоступна."
+  },
+  "halloween": {
+    "title": "Счастливого Хэллоуина",
+    "otherThemes": "Другие темы уже в настройках:"
   }
 }

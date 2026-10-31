@@ -14581,5 +14581,9 @@
     "confirm": "{{chain}}薄荷",
     "confirmWithCost": "在{{chain}} · {{cost}}上完好无损",
     "notAvailable": "此链上的铸造尚不可用。"
+  },
+  "halloween": {
+    "title": "万圣节快乐",
+    "otherThemes": "现在就在设置中探索其他主题："
   }
 }

@@ -14643,5 +14643,9 @@
     "confirm": "Mięta na {{chain}}",
     "confirmWithCost": "Mennica na {{chain}} · {{cost}}",
     "notAvailable": "Wybijanie na tym łańcuszku nie jest jeszcze dostępne."
+  },
+  "halloween": {
+    "title": "Wesołego Halloween",
+    "otherThemes": "Znajdź inne motywy w ustawieniach:"
   }
 }

@@ -15543,5 +15543,9 @@
       "fri": "vie",
       "sat": "sáb"
     }
+  },
+  "halloween": {
+    "title": "Feliz Halloween",
+    "otherThemes": "Descubre otros temas en ajustes:"
   }
 }
