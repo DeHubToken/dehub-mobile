@@ -14560,5 +14560,20 @@
     "fingerprint": "Impronta",
     "exploreFirst": "Esplora prima",
     "codeNote": "Ti inviamo un codice via email, senza password."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Scegli una catena. I prezzi sono in tempo reale e si aggiornano ogni minuto.",
+    "free": "Gratis",
+    "gasCovered": "Gas coperto da DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas incluso",
+    "gasIncluded": "Gas incluso",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} dal tuo portafoglio",
+    "paidFromWalletPlain": "Pagato dal tuo portafoglio",
+    "priceUnavailable": "Prezzo non disponibile",
+    "confirm": "Menta su {{chain}}",
+    "confirmWithCost": "Menta su {{chain}} · {{cost}}",
+    "notAvailable": "La coniazione su questa catena non è ancora disponibile."
   }
 }

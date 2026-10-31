@@ -14597,5 +14597,20 @@
     "fingerprint": "ลายนิ้วมือ",
     "exploreFirst": "สำรวจก่อน",
     "codeNote": "เราส่งรหัสทางอีเมล ไม่ต้องใช้รหัสผ่าน"
+  },
+  "mintChain": {
+    "title": "เสามินต์",
+    "subtitle": "เลือกโซ่ราคาถ่ายทอดสดและอัพเดททุกนาที",
+    "free": "ฟรี",
+    "gasCovered": "ก๊าซที่ครอบคลุมโดย DeHub",
+    "feeIncludesGas": "≈ {{usd}} รวมค่าน้ำมันแล้ว",
+    "gasIncluded": "รวมแก๊สแล้ว",
+    "gasOnly": "≈ {{usd}} แก๊ส",
+    "paidFromWallet": "{{amount}} จากกระเป๋าเงินของคุณ",
+    "paidFromWalletPlain": "จ่ายจากกระเป๋าเงินของคุณ",
+    "priceUnavailable": "ราคาไม่พร้อมใช้งาน",
+    "confirm": "มิ้นท์ที่ {{chain}}",
+    "confirmWithCost": "มิ้นท์ที่ {{chain}} · {{cost}}",
+    "notAvailable": "การทำเหมืองแร่ในห่วงโซ่นี้ยังไม่พร้อมใช้งาน"
   }
 }

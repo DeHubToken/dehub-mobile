@@ -14539,5 +14539,20 @@
     "fingerprint": "Mkpịsị aka",
     "exploreFirst": "Inyocha mbụ",
     "codeNote": "Anyị na-ezitere gị koodu, ọ dịghị paswọọdụ achọrọ."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Họrọ agbụ. Ọnụahịa dị ndụ ma na-emelite kwa nkeji.",
+    "free": "Free",
+    "gasCovered": "Gas kpuchie site na DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas gụnyere",
+    "gasIncluded": "Gas gụnyere",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} site na obere akpa gị",
+    "paidFromWalletPlain": "A kwụrụ ụgwọ site na obere akpa gị",
+    "priceUnavailable": "Ọnụahịa adịghị",
+    "confirm": "Mint na {{chain}}",
+    "confirmWithCost": "Mint na {{chain}} {{cost}}",
+    "notAvailable": "Ihe ngosi dị na yinye a adịbeghị."
   }
 }

@@ -14556,5 +14556,20 @@
     "fingerprint": "ਫਿੰਗਰਪ੍ਰਿੰਟ",
     "exploreFirst": "ਪਹਿਲਾਂ ਐਕਸਪਲੋਰ ਕਰੋ",
     "codeNote": "ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਕੋਡ ਈਮੇਲ ਕਰਦੇ ਹਾਂ, ਕੋਈ ਪਾਸਵਰਡ ਦੀ ਲੋੜ ਨਹੀਂ."
+  },
+  "mintChain": {
+    "title": "ਮਿੰਟ ਪੋਸਟ",
+    "subtitle": "ਇੱਕ ਚੇਨ ਚੁਣੋ ਕੀਮਤਾਂ ਲਾਈਵ ਹਨ ਅਤੇ ਹਰ ਮਿੰਟ ਨੂੰ ਅਪਡੇਟ ਕਰੋ.",
+    "free": "ਮੁਫ਼ਤ",
+    "gasCovered": "ਡੀਹਬ ਦੁਆਰਾ ਕਵਰ ਕੀਤਾ ਗੈਸ",
+    "feeIncludesGas": "≈ {{usd}}, ਗੈਸ ਸ਼ਾਮਲ ਹੈ",
+    "gasIncluded": "ਗੈਸ ਸ਼ਾਮਲ ਹੈ",
+    "gasOnly": "≈ {{usd}} ਗੈਸ",
+    "paidFromWallet": "{{amount}} ਤੁਹਾਡੇ ਬਟੂਏ ਤੋਂ",
+    "paidFromWalletPlain": "ਤੁਹਾਡੇ ਬਟੂਏ ਤੋਂ ਭੁਗਤਾਨ ਕੀਤਾ ਗਿਆ",
+    "priceUnavailable": "ਕੀਮਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "confirm": "{{chain}} 'ਤੇ ਮਿੰਟ",
+    "confirmWithCost": "{{chain}}{{cost}} 'ਤੇ ਮਿੰਟ",
+    "notAvailable": "ਇਸ ਚੇਨ 'ਤੇ ਮਿੰਟਿੰਗ ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ."
   }
 }

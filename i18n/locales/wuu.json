@@ -14536,5 +14536,20 @@
     "fingerprint": "指纹",
     "exploreFirst": "先探索",
     "codeNote": "吾们会给侬发一段验证码，无需密码。"
+  },
+  "mintChain": {
+    "title": "铸造帖子",
+    "subtitle": "选择一条链。价格是实时的，每分钟更新一次。",
+    "free": "免费",
+    "gasCovered": "燃气费由 DeHub 承担",
+    "feeIncludesGas": "≈ {{usd}}，包括燃气费",
+    "gasIncluded": "包括燃气费",
+    "gasOnly": "≈ {{usd}} 燃气",
+    "paidFromWallet": "{{amount}} 来自你的钱包",
+    "paidFromWalletPlain": "从你的钱包支付",
+    "priceUnavailable": "价格不可用",
+    "confirm": "在 {{chain}} 上铸造",
+    "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
+    "notAvailable": "此链上的铸造功能暂不可用。"
   }
 }

@@ -14552,5 +14552,20 @@
     "fingerprint": "Pirksta nospiedums",
     "exploreFirst": "Izpētīt vispirms",
     "codeNote": "Mēs nosūtām jums e-pasta ziņojumu ar kodu, un parole nav nepieciešama."
+  },
+  "mintChain": {
+    "title": "Piparmētru ziņa",
+    "subtitle": "Izvēlieties ķēdi. Cenas ir aktuālas un tiek atjauninātas katru minūti.",
+    "free": "Bezmaksas",
+    "gasCovered": "DeHub nosegtā gāze",
+    "feeIncludesGas": "≈ {{usd}}, gāze iekļauta",
+    "gasIncluded": "Iekļauta gāze",
+    "gasOnly": "≈ {{usd}} gāze",
+    "paidFromWallet": "{{amount}} no jūsu maka",
+    "paidFromWalletPlain": "Apmaksāts no jūsu maka",
+    "priceUnavailable": "Cena nav pieejama",
+    "confirm": "Monētu kaltuve {{chain}}",
+    "confirmWithCost": "Monētu kaltuve {{chain}} · {{cost}}",
+    "notAvailable": "Šīs ķēdes kalšana vēl nav pieejama."
   }
 }

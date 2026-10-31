@@ -14556,5 +14556,20 @@
     "fingerprint": "Otisk prstu",
     "exploreFirst": "Nejdřív se rozhlédni",
     "codeNote": "Pošleme ti kód e-mailem, bez hesla."
+  },
+  "mintChain": {
+    "title": "Příspěvek mincovny",
+    "subtitle": "Vyberte si řetězec. Ceny jsou aktuální a aktualizují se každou minutu.",
+    "free": "Zdarma",
+    "gasCovered": "Plyn krytý společností DeHub",
+    "feeIncludesGas": "≈ {{usd}}, včetně plynu",
+    "gasIncluded": "Včetně plynu",
+    "gasOnly": "≈ {{usd}} plyn",
+    "paidFromWallet": "{{amount}} z vaší peněženky",
+    "paidFromWalletPlain": "Zaplaceno z peněženky",
+    "priceUnavailable": "Cena není k dispozici",
+    "confirm": "Mincovna {{chain}}",
+    "confirmWithCost": "Mincovna {{chain}} · {{cost}}",
+    "notAvailable": "Minting na tomto řetězci zatím není k dispozici."
   }
 }
