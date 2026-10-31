@@ -20,4 +20,10 @@ describe('image carousel navigation affordance', () => {
     expect(feedCard).not.toMatch(/accessibilityLabel="Next image"/);
     expect(feedCard).not.toMatch(/activeImageIndex/);
   });
+
+  it('keeps the photo on each side drawn so swiping back is instant', () => {
+    expect(gallery).toContain('Math.min(...visible) - 1');
+    expect(gallery).toContain('Math.max(...visible) + 1');
+    expect(gallery).toContain('drawBitmap={drawn.includes(index)}');
+  });
 });
