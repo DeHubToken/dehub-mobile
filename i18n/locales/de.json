@@ -14581,6 +14581,7 @@
   },
   "halloween": {
     "title": "Fröhliches Halloween",
-    "otherThemes": "Weitere Designs findest du jetzt in den Einstellungen:"
+    "otherThemes": "Keine Lust auf Grusel? Finde andere Designs:",
+    "enter": "Betritt den Kerker"
   }
 }

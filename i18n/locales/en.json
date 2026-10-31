@@ -15404,6 +15404,7 @@
   },
   "halloween": {
     "title": "Happy Halloween",
-    "otherThemes": "Find other themes in settings now:"
+    "otherThemes": "Not feeling spooky? Find other themes:",
+    "enter": "Enter the dungeon"
   }
 }

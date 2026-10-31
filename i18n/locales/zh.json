@@ -14584,6 +14584,7 @@
   },
   "halloween": {
     "title": "万圣节快乐",
-    "otherThemes": "现在就在设置中探索其他主题："
+    "otherThemes": "不想要惊悚风？换个主题吧：",
+    "enter": "进入地牢"
   }
 }

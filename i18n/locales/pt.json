@@ -15483,6 +15483,7 @@
   },
   "halloween": {
     "title": "Feliz Halloween",
-    "otherThemes": "Encontre outros temas nas configurações:"
+    "otherThemes": "Sem clima de terror? Encontre outros temas:",
+    "enter": "Entrar na masmorra"
   }
 }

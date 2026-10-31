@@ -142,8 +142,27 @@ export function GhostPopup({ onClose }: { onClose: () => void }) {
           <Text style={{ marginTop: 6, fontSize: 30, fontWeight: "800", color: "#f4ece8", textShadowColor: "rgba(206,32,48,0.7)", textShadowRadius: 16 }}>
             {t("halloween.title", "Happy Halloween")}
           </Text>
+          <TouchableOpacity
+            onPress={close}
+            activeOpacity={0.85}
+            accessibilityRole="button"
+            style={{ marginTop: 14, marginBottom: 8, height: 46, paddingHorizontal: 26, borderRadius: 23, overflow: "hidden", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,170,175,0.45)" }}
+          >
+            <Svg style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 10 10">
+              <Defs>
+                <LinearGradient id="hgEnter" x1="0" y1="0" x2="0" y2="1">
+                  <Stop offset="0" stopColor="#e2334a" />
+                  <Stop offset="1" stopColor="#a3121f" />
+                </LinearGradient>
+              </Defs>
+              <Rect x="0" y="0" width="10" height="10" fill="url(#hgEnter)" />
+            </Svg>
+            <Text style={{ fontSize: 15, fontWeight: "800", letterSpacing: 0.3, color: "#fff" }}>
+              {t("halloween.enter", "Enter the dungeon")}
+            </Text>
+          </TouchableOpacity>
           <Text style={{ marginTop: 6, fontSize: 14, color: "rgba(244,236,232,0.72)" }}>
-            {t("halloween.otherThemes", "Find other themes in settings now:")}
+            {t("halloween.otherThemes", "Not feeling spooky? Find other themes:")}
           </Text>
           <ScrollView
             horizontal
