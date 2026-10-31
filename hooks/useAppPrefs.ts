@@ -60,6 +60,7 @@ const KEYS = {
   // value shapes (see theme/themeColor.ts).
   themeHues: 'dehub.themeHues',
   brandColors: 'dehub.brandColors',
+  halloweenOptOut: 'dehub.halloween2026.optOut',
 } as const;
 
 export type AppPrefKey = keyof typeof KEYS;
@@ -88,6 +89,8 @@ export interface AppPrefs {
   postLanding: PostLandingStyle;
   themeHues: Record<string, number>;
   brandColors: string[];
+  /** Picked a theme on Halloween 2026, so skip the Horror override (libs/halloweenOverride). */
+  halloweenOptOut: boolean;
 }
 
 /** Same defaults web falls back to when a key is absent. */
@@ -121,6 +124,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   postLanding: 'ghost',
   themeHues: {},
   brandColors: [],
+  halloweenOptOut: false,
 };
 
 let cache: AppPrefs = { ...DEFAULT_APP_PREFS };
@@ -185,6 +189,7 @@ function init() {
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),
+        halloweenOptOut: parseBool(get('halloweenOptOut'), DEFAULT_APP_PREFS.halloweenOptOut),
         postLanding: (() => {
           const stored = get('postLanding');
           return isPostLandingStyle(stored) ? stored : DEFAULT_APP_PREFS.postLanding;
