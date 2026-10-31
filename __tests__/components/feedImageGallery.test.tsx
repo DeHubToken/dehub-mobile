@@ -29,7 +29,7 @@ jest.mock('../../components/Home/ContainedFeedImage', () => ({
     ? require('react').createElement(require('react-native').View, { testID: uri, aspect, fillHeight }) : null,
 }));
 
-it('releases distant gallery pictures, retains every slide, and reloads pictures on scroll-back', () => {
+it('keeps one picture drawn on each side, releases distant ones, and retains every slide', () => {
   const screen = render(<FeedImageGallery images={['a', 'b', 'c', 'd']} width={300} fallbackWidth={300}
     active prioritizeMedia={false} onLayout={jest.fn()} onImagePress={jest.fn()} onReaction={jest.fn()} />);
   fireEvent(screen.getByTestId('feed-image-gallery'), 'layout', { nativeEvent: { layout: { width: 300 } } });
@@ -38,11 +38,11 @@ it('releases distant gallery pictures, retains every slide, and reloads pictures
   }
   expect(screen.getByTestId('a')).toBeTruthy();
   expect(screen.getByTestId('b')).toBeTruthy();
-  expect(screen.queryByTestId('c')).toBeNull();
+  expect(screen.getByTestId('c')).toBeTruthy();
   expect(screen.queryByTestId('d')).toBeNull();
   fireEvent.scroll(screen.getByTestId('feed-image-gallery'), { nativeEvent: { contentOffset: { x: 700 } } });
   expect(screen.queryByTestId('a')).toBeNull();
-  expect(screen.queryByTestId('b')).toBeNull();
+  expect(screen.getByTestId('b')).toBeTruthy();
   expect(screen.getByTestId('c')).toBeTruthy();
   expect(screen.getByTestId('d')).toBeTruthy();
   expect(screen.getByTestId('feed-gallery-slide-0')).toBeTruthy();
