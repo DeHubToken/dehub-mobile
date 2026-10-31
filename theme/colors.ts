@@ -179,7 +179,7 @@ export const jungleColors = canvasColors('#16110C', {
 });
 
 // The three 2D-canvas themes (web IslandBackground / HackerBackground /
-// HorrorBackground): a lagoon that follows the clock, green rain, VHS tape.
+// HorrorBackground): a lagoon that follows the clock, green rain, a torchlit dungeon.
 export const islandColors = canvasColors('#1A2A4A', {
   card: '#1E2F52',
   border: '#3A4F80',
@@ -193,9 +193,9 @@ export const hackerColors = canvasColors('#000000', {
   accentForeground: '#000000',
   mutedForeground: '#7FD9A6',
 });
-export const horrorColors = canvasColors('#0B0C0D', {
-  card: '#121315',
-  border: '#2A2C2F',
+export const horrorColors = canvasColors('#070506', {
+  card: '#0F0B0C',
+  border: '#3A1A1E',
   accent: '#FF2B2B',
   accentForeground: '#FFFFFF',
 });
