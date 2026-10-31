@@ -14646,6 +14646,7 @@
   },
   "halloween": {
     "title": "Wesołego Halloween",
-    "otherThemes": "Znajdź inne motywy w ustawieniach:"
+    "otherThemes": "Nie masz ochoty na strachy? Znajdź inne motywy:",
+    "enter": "Wejdź do lochu"
   }
 }

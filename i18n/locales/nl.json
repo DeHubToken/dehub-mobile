@@ -15797,6 +15797,7 @@
   },
   "halloween": {
     "title": "Fijne Halloween",
-    "otherThemes": "Vind nu andere thema's in instellingen:"
+    "otherThemes": "Geen zin in griezelen? Vind andere thema's:",
+    "enter": "Betreed de kerker"
   }
 }

@@ -15545,6 +15545,7 @@
   },
   "halloween": {
     "title": "Mutlu Cadılar Bayramı",
-    "otherThemes": "Diğer temaları şimdi ayarlarda bul:"
+    "otherThemes": "Korku havasında değil misin? Diğer temaları bul:",
+    "enter": "Zindana gir"
   }
 }
