@@ -14553,5 +14553,20 @@
     "fingerprint": "Alama ya kidole",
     "exploreFirst": "Gundua kwanza",
     "codeNote": "Tunakutumia msimbo kwa barua pepe, bila nenosiri."
+  },
+  "mintChain": {
+    "title": "Chapisho la sinia",
+    "subtitle": "Chagua mlolongo. Bei ni za moja kwa moja na zinasasishwa kila dakika.",
+    "free": "Bila malipo",
+    "gasCovered": "Gesi iliyofunikwa na DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gesi imejumuishwa",
+    "gasIncluded": "Gesi imejumuishwa",
+    "gasOnly": "≈ {{usd}} Gas",
+    "paidFromWallet": "{{amount}} kutoka kwenye pochi yako",
+    "paidFromWalletPlain": "Imelipwa kutoka kwenye pochi yako",
+    "priceUnavailable": "Bei haipatikani",
+    "confirm": "Mint kwenye {{chain}}",
+    "confirmWithCost": "Mint kwenye {{chain}} · {{cost}}",
+    "notAvailable": "Uwekaji picha kwenye mnyororo huu bado haupatikani."
   }
 }

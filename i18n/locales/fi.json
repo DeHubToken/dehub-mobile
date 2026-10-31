@@ -14552,5 +14552,20 @@
     "fingerprint": "Sormenjälki",
     "exploreFirst": "Tutustu ensin",
     "codeNote": "Lähetämme sinulle koodin sähköpostilla, ilman salasanaa."
+  },
+  "mintChain": {
+    "title": "Mintunpylväs",
+    "subtitle": "Valitse ketju. Hinnat ovat voimassa ja päivittyvät joka minuutti.",
+    "free": "Ilmainen",
+    "gasCovered": "DeHubin kattama kaasu",
+    "feeIncludesGas": "≈ {{usd}}, sisältää kaasun",
+    "gasIncluded": "Sisältää kaasun",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} lompakostasi",
+    "paidFromWalletPlain": "Maksettu lompakostasi",
+    "priceUnavailable": "Hinta ei saatavilla",
+    "confirm": "Minttu päällä {{chain}}",
+    "confirmWithCost": "Minttu päällä {{chain}} · {{cost}}",
+    "notAvailable": "Tämän ketjun louhinta ei ole vielä saatavilla."
   }
 }

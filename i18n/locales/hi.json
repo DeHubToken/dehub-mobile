@@ -14566,5 +14566,20 @@
     "fingerprint": "फ़िंगरप्रिंट",
     "exploreFirst": "पहले देखें",
     "codeNote": "हम आपको ईमेल पर एक कोड भेजते हैं, पासवर्ड की ज़रूरत नहीं।"
+  },
+  "mintChain": {
+    "title": "मिंट पोस्ट",
+    "subtitle": "एक चेन चुनें। कीमतें लाइव होती हैं और हर मिनट अपडेट होती हैं।",
+    "free": "मुफ़्त",
+    "gasCovered": "डीहब द्वारा कवर की गई गैस",
+    "feeIncludesGas": "≈ {{usd}}, गैस शामिल है",
+    "gasIncluded": "गैस शामिल है",
+    "gasOnly": "≈ {{usd}} गैस",
+    "paidFromWallet": "आपके वॉलेट से {{amount}}",
+    "paidFromWalletPlain": "आपके वॉलेट से भुगतान किया गया",
+    "priceUnavailable": "किराया उपलब्ध नहीं है",
+    "confirm": "{{chain}} पर टकसाल",
+    "confirmWithCost": "{{chain}} · {{cost}} पर टकसाल",
+    "notAvailable": "इस चेन पर मिंटिंग अभी तक उपलब्ध नहीं है।"
   }
 }

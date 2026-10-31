@@ -14552,5 +14552,19 @@
     "fingerprint": "Хурууны хээ",
     "exploreFirst": "Эхлээд судлах",
     "codeNote": "Бид танд код илгээнэ үү, нууц үг шаардлагагүй."
+  },
+  "mintChain": {
+    "title": "Mint Бичлэгийн тоо",
+    "subtitle": "Гинжийг сонгоно уу. Үнэ нь минут тутамд шууд бөгөөд шинэчлэлт хийгддэг.",
+    "free": "ҮНЭГҮЙ",
+    "gasCovered": "Дебабын таглагдсан хий",
+    "feeIncludesGas": "≈ {{usd}}, хий орсон",
+    "gasIncluded": "Хий багтсан",
+    "paidFromWallet": "{{amount}} таны түрийвчнээс",
+    "paidFromWalletPlain": "Түрийвчнээсээ төлсөн",
+    "priceUnavailable": "Үнэ байхгүй байна",
+    "confirm": "{{chain}} дээр Mint",
+    "confirmWithCost": "{{chain}} · {{cost}} дээр зөвлөгөө",
+    "notAvailable": "Энэ гинжин хэлхээг тэмдэглэх нь хараахан боломжгүй байна."
   }
 }

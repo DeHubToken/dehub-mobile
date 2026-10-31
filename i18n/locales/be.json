@@ -14592,5 +14592,20 @@
     "fingerprint": "Адбітак пальца",
     "exploreFirst": "Дасьледуйце спачатку",
     "codeNote": "Мы адпраўляем вам код, пароль не патрэбны."
+  },
+  "mintChain": {
+    "title": "Паведамленне аб манетах",
+    "subtitle": "Выберыце ланцужок. Кошты ў прамым эфіры і абнаўляйце кожную хвіліну.",
+    "free": "Бясплатна",
+    "gasCovered": "Газ, пакрыты DeHub",
+    "feeIncludesGas": "≈ {{usd}}, уключаны газ",
+    "gasIncluded": "У камплекце з газам",
+    "gasOnly": "≈ {{usd}} газ",
+    "paidFromWallet": "{{amount}} з вашага кашалька",
+    "paidFromWalletPlain": "Аплачана з вашага кашалька",
+    "priceUnavailable": "Цана недаступная",
+    "confirm": "Манета на {{chain}}",
+    "confirmWithCost": "Манета на {{chain}} · {{cost}}",
+    "notAvailable": "Адлік на гэтай ланцужку пакуль недаступны."
   }
 }

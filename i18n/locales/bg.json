@@ -14556,5 +14556,20 @@
     "fingerprint": "Пръстов отпечатък",
     "exploreFirst": "Разгледай първо",
     "codeNote": "Изпращаме ти код по имейл, без парола."
+  },
+  "mintChain": {
+    "title": "Монетен двор",
+    "subtitle": "Изберете верига. Цените са активни и се актуализират всяка минута.",
+    "free": "Безплатно",
+    "gasCovered": "Газ, покрит от DeHub",
+    "feeIncludesGas": "≈{{usd}}, с включен газ",
+    "gasIncluded": "Включен газ",
+    "gasOnly": "≈{{usd}} газ",
+    "paidFromWallet": "{{amount}} от портфейла ви",
+    "paidFromWalletPlain": "Платено от портфейла ви",
+    "priceUnavailable": "Цената не е налична",
+    "confirm": "Монетен двор на {{chain}}",
+    "confirmWithCost": "Монетен двор на {{chain}}·{{cost}}",
+    "notAvailable": "Монетосеченето на тази верига все още не е налично."
   }
 }

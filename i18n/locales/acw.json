@@ -14551,5 +14551,20 @@
     "fingerprint": "البصمة",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود على الإيميل، ما تحتاج كلمة سر."
+  },
+  "mintChain": {
+    "title": "مُنتج",
+    "subtitle": "اختر سلسلة. الأسعار حية وتحديث كل دقيقة.",
+    "free": "مجاناً",
+    "gasCovered": "غطاء الغاز من قبل DeHub",
+    "feeIncludesGas": "≈ {{usd}}، الغاز مرفق",
+    "gasIncluded": "الغاز مرفق",
+    "gasOnly": "≈ {{usd}} الغاز",
+    "paidFromWallet": "{{amount}} من محفظتك",
+    "paidFromWalletPlain": "الدفع من محفظتك",
+    "priceUnavailable": "السعر غير متوفر",
+    "confirm": "مُنتج على {{chain}}",
+    "confirmWithCost": "مُنتج على {{chain}} · {{cost}}",
+    "notAvailable": "مُنتج على هذه السلسلة غير متاح بعد."
   }
 }

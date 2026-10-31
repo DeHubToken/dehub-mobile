@@ -14643,5 +14643,20 @@
     "fingerprint": "Vân tay",
     "exploreFirst": "Khám phá trước",
     "codeNote": "Chúng tôi gửi mã qua email, không cần mật khẩu."
+  },
+  "mintChain": {
+    "title": "Trụ đúc tiền",
+    "subtitle": "Chọn một chuỗi. Giá đang hoạt động và cập nhật mỗi phút.",
+    "free": "Miễn phí",
+    "gasCovered": "Khí đốt được chi trả bởi DeHub",
+    "feeIncludesGas": "≈ {{usd}}, bao gồm xăng",
+    "gasIncluded": "Đã bao gồm gas",
+    "gasOnly": "Khí ga ≈ {{usd}}",
+    "paidFromWallet": "{{amount}} từ ví của bạn",
+    "paidFromWalletPlain": "Đã thanh toán từ ví của bạn",
+    "priceUnavailable": "Giá không khả dụng",
+    "confirm": "Đúc tiền vào {{chain}}",
+    "confirmWithCost": "Đúc tiền vào {{chain}} · {{cost}}",
+    "notAvailable": "Việc đúc tiền trên chuỗi này chưa khả dụng."
   }
 }

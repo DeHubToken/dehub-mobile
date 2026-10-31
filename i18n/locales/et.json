@@ -14552,5 +14552,20 @@
     "fingerprint": "Sõrmejälg",
     "exploreFirst": "Esmalt uuri",
     "codeNote": "Saadame sulle e-kirjaga koodi, parooli pole vaja."
+  },
+  "mintChain": {
+    "title": "Mündipost",
+    "subtitle": "Vali ahel. Hinnad avaldatakse ja neid uuendatakse iga minuti järel.",
+    "free": "Tasuta",
+    "gasCovered": "DeHubiga hõlmatud gaas",
+    "feeIncludesGas": "≈ {{usd}}, sisaldab gaasi",
+    "gasIncluded": "Gaas kuulub komplekti",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} oma rahakotist",
+    "paidFromWalletPlain": "Makstud sinu rahakotist",
+    "priceUnavailable": "Hind pole saadaval",
+    "confirm": "Rahapaja: {{chain}}",
+    "confirmWithCost": "Piparmünt {{chain}} · {{cost}}",
+    "notAvailable": "Selle keti vermimine pole veel saadaval."
   }
 }
