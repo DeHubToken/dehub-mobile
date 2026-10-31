@@ -53,3 +53,11 @@ export function hasBrand(kit: BrandKit | null): boolean {
 export function applyBrand(p: ProjectSnapshot, kit: BrandKit): ProjectSnapshot {
   return applyBrandStyles(p, kit);
 }
+
+/** The official DeHub look, same as web: monochrome palette, Exo headings, Inter body, white wordmark. */
+export const DEHUB_BRAND_COLORS = ["#ffffff", "#c9ccd1", "#6b6f76", "#1a1b1e", "#000000"];
+export const DEHUB_BRAND_FONTS = {
+  heading: "'Exo', ui-sans-serif, system-ui, sans-serif",
+  body: "'Inter', ui-sans-serif, system-ui, sans-serif",
+};
+export const DEHUB_LOGO_URL = "https://dehub.io/brand-kit/brand/wordmark-white.png";
