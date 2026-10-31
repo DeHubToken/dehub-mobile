@@ -129,6 +129,8 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "eabb5c136be4": "更新計劃失敗",
+    "801658c8e591": "計劃未建立 — 請再試一次",
     "dd2108f1cda8": "停止語音聊天",
     "70438fbf1234": "語音聊天 (AI)",
     "cf69d7e172fd": "語音會話已用完 — 再次啟動語音模式以購買另一個。",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "最低需要 {{currency}} 個"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "代幣訂閱結帳尚未準備好 — 請稍後重試",
     "switchFailed": "無法切換訂閱網絡",
     "connectWallet": "請連接錢包嚟訂閱",
     "notBuyable": "呢個方案無法購買。請叫創作者重新建立",
@@ -14552,5 +14555,20 @@
     "fingerprint": "指紋",
     "exploreFirst": "探索先",
     "codeNote": "我哋會電郵畀你一個代碼，唔需要密碼。"
+  },
+  "mintChain": {
+    "title": "薄荷帖子",
+    "subtitle": "揀一條鏈。價錢會即時更新，每分鐘都會更新。",
+    "free": "免費",
+    "gasCovered": "氣體由 DeHub 覆蓋",
+    "feeIncludesGas": "≈ {{usd}} ，包括氣體",
+    "gasIncluded": "包括氣體",
+    "gasOnly": "≈ {{usd}} 氣體",
+    "paidFromWallet": "{{amount}} 喺你個銀包入面",
+    "paidFromWalletPlain": "由你個銀包畀錢",
+    "priceUnavailable": "價錢冇得買",
+    "confirm": "薄荷上 {{chain}}",
+    "confirmWithCost": "薄荷上 {{chain}} · {{cost}}",
+    "notAvailable": "呢條鏈嘅鑄造仲未有得賣。"
   }
 }

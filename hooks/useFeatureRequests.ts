@@ -67,7 +67,7 @@ export interface FeatureRequest {
    * than either field, exactly as web's lib/feature-attachments.ts does.
    */
   image_urls?: string[] | null;
-  /** Why a request was marked not feasible. Shown under the request. */
+  /** Short tag shown next to the status, e.g. "Future review". */
   status_note?: string | null;
   vote_count: number;
   like_count: number;
@@ -93,7 +93,7 @@ export const STATUS_LABELS: Record<FeatureStatus, string> = {
   in_progress: "In Progress",
   completed: "Shipped",
   shipped: "Shipped",
-  declined: "Not feasible",
+  declined: "Declined",
 };
 
 /** Accent per status — mirrors the web badge colours. */
@@ -294,24 +294,6 @@ export function useShippedFeatures() {
         .from("feature_requests")
         .select("*")
         .in("status", SHIPPED_STATUSES)
-        .order("updated_at", { ascending: false });
-      if (error) throw error;
-      return (data || []) as FeatureRequest[];
-    },
-    staleTime: 60_000,
-    gcTime: 5 * 60_000,
-  });
-}
-
-/** Requests looked at and turned down — the Not feasible tab, matching web. */
-export function useDeclinedFeatures() {
-  return useQuery({
-    queryKey: ["feature-requests-declined"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("feature_requests")
-        .select("*")
-        .eq("status", "declined")
         .order("updated_at", { ascending: false });
       if (error) throw error;
       return (data || []) as FeatureRequest[];

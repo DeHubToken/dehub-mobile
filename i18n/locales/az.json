@@ -129,6 +129,8 @@
     "useNamed": "{{name}} istifadə edin"
   },
   "copy": {
+    "eabb5c136be4": "Planı yeniləmək mümkün olmadı",
+    "801658c8e591": "Plan yaradılmayıb — yenidən cəhd edin",
     "dd2108f1cda8": "Səsli Çatı Dayandır",
     "70438fbf1234": "Səsli Çat (AI)",
     "cf69d7e172fd": "Səsli sessiya işə salındı — başqasını almaq üçün səsli rejimə yenidən başlayın.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Minimum {{currency}} tələb olunur"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Token abunəliyi checkout hazır deyil — lütfən qısa müddətdə yenidən cəhd edin",
     "switchFailed": "Abunə şəbəkəsi dəyişdirilə bilmədi",
     "connectWallet": "Abunə olmaq üçün cüzdanınızı qoşun",
     "notBuyable": "Bu plan alına bilməz. Yaradıcıdan onu yenidən yaratmasını istəyin",
@@ -14552,5 +14555,19 @@
     "fingerprint": "Barmaq izi",
     "exploreFirst": "Əvvəlcə araşdırın",
     "codeNote": "Kodu sizə e-poçtla göndəririk, parol tələb olunmur."
+  },
+  "mintChain": {
+    "title": "Nanə yazısı",
+    "subtitle": "Zəncir seçin. Qiymətlər canlıdır və hər dəqiqə yenilənir.",
+    "free": "Pulsuz",
+    "gasCovered": "DeHub-un əhatə etdiyi qaz",
+    "feeIncludesGas": "≈ {{usd}}, qaz daxildir",
+    "gasIncluded": "Qaz daxildir",
+    "paidFromWallet": "{{amount}} cüzdanınızdan",
+    "paidFromWalletPlain": "Pul kisənizdən ödənilib",
+    "priceUnavailable": "Qiymət mövcud deyil",
+    "confirm": "Nanə {{chain}}",
+    "confirmWithCost": "Nanə {{chain}} · {{cost}}",
+    "notAvailable": "Bu zəncirdə mintinq hələ mövcud deyil."
   }
 }

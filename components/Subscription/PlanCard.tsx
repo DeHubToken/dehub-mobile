@@ -96,7 +96,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       await queryClient.invalidateQueries({ queryKey: ['cc-creator-plans'] });
       toastSuccess(t(updated.isPinned ? 'postOptions.postPinned' : 'postOptions.postUnpinned'));
     } catch (error) {
-      toastError(error, t('settings.failedUpdateProfile'));
+      toastError(error, t("copy.eabb5c136be4", { defaultValue: "Failed to update plan" }));
     } finally {
       setPinning(false);
     }
@@ -138,7 +138,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         !intent.treasuryAddress ||
         !intent.dhbAmountWei
       ) {
-        throw new Error("The token subscription checkout is not ready. Try again shortly");
+        throw new Error(t("subscriptions.tokenCheckoutNotReady", { defaultValue: "The token subscription checkout is not ready — please try again shortly" }));
       }
 
       // Paying with another token: DeHub Pay (or Uniswap as the fallback)

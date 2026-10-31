@@ -129,6 +129,8 @@
     "useNamed": "Koristi {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Nije uspio ažurirati plan",
+    "801658c8e591": "Plan nije stvoren — molimo pokušajte ponovno",
     "dd2108f1cda8": "Prekinite glasovnu razgovor",
     "70438fbf1234": "Glasovno čavrljanje (UI)",
     "cf69d7e172fd": "Glasovna sesija je iskorištena — ponovno pokrenite glasovni način rada kako biste kupili drugu.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Potrebno je najmanje {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Naplata pretplate na tokene nije spremna — pokušajte ponovno uskoro",
     "switchFailed": "Mrežu pretplate nije moguće promijeniti",
     "connectWallet": "Povežite novčanik da biste se pretplatili",
     "notBuyable": "Ovaj plan nije moguće kupiti. Zamolite autora da ga ponovno izradi",
@@ -14552,5 +14555,20 @@
     "fingerprint": "Otisak prsta",
     "exploreFirst": "Prvo istražite",
     "codeNote": "Poslat ćemo vam kod e-mailom, nije potrebna lozinka."
+  },
+  "mintChain": {
+    "title": "Pošta od metvice",
+    "subtitle": "Odaberite lanac. Cijene se objavljuju i ažuriraju svake minute.",
+    "free": "Besplatno",
+    "gasCovered": "Plin koji pokriva DeHub",
+    "feeIncludesGas": "≈ {{usd}}, uključeno gorivo",
+    "gasIncluded": "Uključen plin",
+    "gasOnly": "≈ {{usd}} plin",
+    "paidFromWallet": "{{amount}} iz novčanika",
+    "paidFromWalletPlain": "Plaćeno iz tvog novčanika",
+    "priceUnavailable": "Cijena nije dostupna",
+    "confirm": "Kovnica {{chain}}",
+    "confirmWithCost": "Kovnica {{chain}} · {{cost}}",
+    "notAvailable": "Kovanje na ovom lancu još nije dostupno."
   }
 }

@@ -129,6 +129,8 @@
     "useNamed": "Käytä {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Epäonnistui päivityksen tekeminen",
+    "801658c8e591": "Suunnitelma ei ollut luotu — yritä uudelleen",
     "dd2108f1cda8": "Lopeta ääniyhteys",
     "70438fbf1234": "Ääniyhteys (AI)",
     "cf69d7e172fd": "Ääniyhteys käytetty – aloita ääniyhteys uudelleen ostamaan toinen.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Vähintään {{currency}} vaaditaan"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Token-tilausmaksu ei ole valmis — yritä uudelleen pian",
     "switchFailed": "Tilausverkkoa ei voitu vaihtaa",
     "connectWallet": "Yhdistä lompakkosi tilataksesi",
     "notBuyable": "Tätä suunnitelmaa ei voi ostaa. Pyydä tekijää luomaan se uudelleen",
@@ -14552,5 +14555,20 @@
     "fingerprint": "Sormenjälki",
     "exploreFirst": "Tutustu ensin",
     "codeNote": "Lähetämme sinulle koodin sähköpostilla, ilman salasanaa."
+  },
+  "mintChain": {
+    "title": "Mintunpylväs",
+    "subtitle": "Valitse ketju. Hinnat ovat voimassa ja päivittyvät joka minuutti.",
+    "free": "Ilmainen",
+    "gasCovered": "DeHubin kattama kaasu",
+    "feeIncludesGas": "≈ {{usd}}, sisältää kaasun",
+    "gasIncluded": "Sisältää kaasun",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} lompakostasi",
+    "paidFromWalletPlain": "Maksettu lompakostasi",
+    "priceUnavailable": "Hinta ei saatavilla",
+    "confirm": "Minttu päällä {{chain}}",
+    "confirmWithCost": "Minttu päällä {{chain}} · {{cost}}",
+    "notAvailable": "Tämän ketjun louhinta ei ole vielä saatavilla."
   }
 }

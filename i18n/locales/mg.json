@@ -129,6 +129,8 @@
     "use": "Ampiasao ity môdely ity"
   },
   "copy": {
+    "eabb5c136be4": "Nahafahalana tsy nisy natao",
+    "801658c8e591": "Tsy noforonina ny drafitra — azafady mba andramo indray",
     "dd2108f1cda8": "Hatsahatra ny Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Ny fivoriana feo dia nampiasaina — manomboka indray ny fomba feo mba hividy iray hafa.",
@@ -8711,6 +8713,7 @@
     "minimumRequired": "Farafahakeliny {{currency}} no takiana"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Tsy vonona ny fandoavam-bola famandrihana tapaho — azafady avereno tsy ho ela",
     "switchFailed": "Tsy afaka nanova ny tambajotra fisoratana anarana",
     "connectWallet": "Ampifandraiso ny poketranao mba hisoratra anarana",
     "notBuyable": "Tsy azo vidiana ity drafitra ity. Angataho ny mpamorona hamorona azy indray",
@@ -14639,5 +14642,19 @@
     "fingerprint": "Diam-panondro",
     "exploreFirst": "Hitady ny voalohany",
     "codeNote": "Mandefa mailaka ho anao izahay, tsy misy teny miafina ilaina."
+  },
+  "mintChain": {
+    "title": "Mint lahatsoratra",
+    "subtitle": "Mifidiana rojo. Vidin-javatra dia velona sy vaovao farany isa-minitra.",
+    "free": "Malalaka",
+    "gasCovered": "Gas norakofana DeHub",
+    "feeIncludesGas": "≈ {{usd}}, tafiditra ao ny gazy",
+    "gasIncluded": "Entona tafiditra",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "{{amount}} avy amin'ny kitaponao",
+    "paidFromWalletPlain": "Hetrao ny volanao avy amin'ny kitapom-bolanao",
+    "priceUnavailable": "Price tsy misy",
+    "confirmWithCost": "Toriteny amin'ny {{chain}}{{cost}}",
+    "notAvailable": "Mbola tsy azo hazavaina ny momba ity kianjan'ny serasera ity amin'izao fotoana izao."
   }
 }

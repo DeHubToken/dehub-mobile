@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { galleryIndex, rememberGalleryIndex, subscribeGallery } from '../../libs/media-presentation';
 import { measureImageAspect, warmFeedImage } from '../common/SmartImage';
 import { useDataSaver } from '../../hooks/useDataSaver';
-import { ScrollView, View, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { InteractionManager, ScrollView, View, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { knownImageAspect, rememberImageAspect } from '../../hooks/useImageAspect';
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from '../../libs/feed-image-layout';
 import { useAppTheme } from '../../context/ThemeContext';
@@ -18,20 +18,27 @@ type Frame = { x: number; width: number };
  * to hold the 4:3 guess, and the strip took the height of that guess: a post
  * of wide screenshots showed a 300px empty band under its first photo.
  */
+const EAGER_SHAPE_PROBES = 6;
+
 function useGalleryAspects(images: string[]) {
   const [measured, setMeasured] = useState<Record<string, number>>({});
   useEffect(() => {
     let live = true;
-    images.forEach(uri => {
-      if (knownImageAspect(uri)) return;
+    const probe = (uri: string) => {
+      if (!live || knownImageAspect(uri)) return;
       // An unmeasurable photo sizes itself when it loads.
       void measureImageAspect(uri).then(ratio => {
         if (!ratio) return;
         rememberImageAspect(uri, ratio);
         if (live) setMeasured(previous => ({ ...previous, [uri]: ratio }));
       });
-    });
-    return () => { live = false; };
+    };
+    // The first few shapes now; a long carousel's rest once scrolling settles,
+    // so they never compete with the photos on screen.
+    images.slice(0, EAGER_SHAPE_PROBES).forEach(probe);
+    const rest = images.slice(EAGER_SHAPE_PROBES);
+    const later = rest.length ? InteractionManager.runAfterInteractions(() => rest.forEach(probe)) : undefined;
+    return () => { live = false; later?.cancel(); };
   }, [images]);
   return images.map(uri => measured[uri] ?? knownImageAspect(uri));
 }

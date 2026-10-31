@@ -129,6 +129,8 @@
     "useNamed": "Użyj {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Nie udało się zaktualizować planu",
+    "801658c8e591": "Plan nie został utworzony - spróbuj ponownie",
     "dd2108f1cda8": "Zatrzymaj rozmowę głosową",
     "70438fbf1234": "Głosowa rozmowa (AI)",
     "cf69d7e172fd": "Użyty sesja głosowa — zacznij tryb głosowy ponownie, aby kupić kolejną.",
@@ -8743,6 +8745,7 @@
     "minimumRequired": "Wymagane minimum {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Kasa subskrypcji tokenowej nie jest gotowa — spróbuj ponownie za chwilę",
     "switchFailed": "Nie udało się przełączyć sieci subskrypcji",
     "connectWallet": "Połącz portfel, aby subskrybować",
     "notBuyable": "Tego planu nie można kupić. Poproś twórcę, aby utworzył go ponownie",
@@ -14625,5 +14628,20 @@
     "fingerprint": "Odcisk palca",
     "exploreFirst": "Najpierw się rozejrzyj",
     "codeNote": "Wyślemy ci kod e-mailem, bez hasła."
+  },
+  "mintChain": {
+    "title": "Idealny słupek",
+    "subtitle": "Wybierz sieć. Ceny są aktywne i aktualizowane co minutę.",
+    "free": "Darmowe",
+    "gasCovered": "Gaz pokryty przez DeHub",
+    "feeIncludesGas": "≈ {{usd}}, w tym gaz",
+    "gasIncluded": "Gaz w zestawie",
+    "gasOnly": "Gaz ≈ {{usd}}",
+    "paidFromWallet": "{{amount}} z Twojego portfela",
+    "paidFromWalletPlain": "Zapłacono z portfela",
+    "priceUnavailable": "Cena niedostępna",
+    "confirm": "Mięta na {{chain}}",
+    "confirmWithCost": "Mennica na {{chain}} · {{cost}}",
+    "notAvailable": "Wybijanie na tym łańcuszku nie jest jeszcze dostępne."
   }
 }

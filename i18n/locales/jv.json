@@ -129,6 +129,8 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Gagal update rencana",
+    "801658c8e591": "Rencana gak dibuat — coba lagi",
     "dd2108f1cda8": "Stop Percakapan Suara",
     "70438fbf1234": "Percakapan Suara (AI)",
     "cf69d7e172fd": "Konté sesi ngoko ngarani — ngarani modus ngoko lagi gunae ngoko beli sesi laning.",
@@ -8685,6 +8687,7 @@
     "minimumRequired": "Minimal {{currency}} dibutuhake"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Checkout langganan token durung siyap — coba maneh mengko",
     "switchFailed": "Ora bisa ngganti jaringan langganan",
     "connectWallet": "Sambungake dompetmu kanggo langganan",
     "notBuyable": "Paket iki ora bisa dituku. Njaluk kreator nggawe maneh",
@@ -14537,5 +14540,20 @@
     "fingerprint": "Sidik jari",
     "exploreFirst": "Jelajahi dhisik",
     "codeNote": "Kita ngirim kode menyang email sampeyan, ora perlu sandhi."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Pilih ranting. Harga iku wis ana lan nggih update setiap menit.",
+    "free": "Ganjaran gratis",
+    "gasCovered": "Gas dibiayai DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas ingkang kudu dibayar",
+    "gasIncluded": "Gas ingkang kudu dibayar",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} saka dompetmu",
+    "paidFromWalletPlain": "Ganjaran saka dompetmu",
+    "priceUnavailable": "Harga ora ana",
+    "confirm": "Mint ing {{chain}}",
+    "confirmWithCost": "Mint ing {{chain}} · {{cost}}",
+    "notAvailable": "Minting ing ranting iki ora ana."
   }
 }

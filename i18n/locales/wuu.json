@@ -129,6 +129,8 @@
     "useNamed": "使用{{name}}"
   },
   "copy": {
+    "eabb5c136be4": "更新計畫失敗",
+    "801658c8e591": "計劃未建立 — 請再試一次",
     "dd2108f1cda8": "停止語音聊天",
     "70438fbf1234": "語音聊天 (AI)",
     "cf69d7e172fd": "語音會話已用盡 —— 重新啟動語音模式以購買另一個。",
@@ -8688,6 +8690,7 @@
     "minimumRequired": "最少需要 {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "代幣訂閱結帳尚未準備好 — 請稍後重試",
     "switchFailed": "无法切换订阅网络",
     "connectWallet": "请连接钱包以订阅",
     "notBuyable": "此方案无法购买。请让创作者重新创建",
@@ -14536,5 +14539,20 @@
     "fingerprint": "指纹",
     "exploreFirst": "先探索",
     "codeNote": "吾们会给侬发一段验证码，无需密码。"
+  },
+  "mintChain": {
+    "title": "铸造帖子",
+    "subtitle": "选择一条链。价格是实时的，每分钟更新一次。",
+    "free": "免费",
+    "gasCovered": "燃气费由 DeHub 承担",
+    "feeIncludesGas": "≈ {{usd}}，包括燃气费",
+    "gasIncluded": "包括燃气费",
+    "gasOnly": "≈ {{usd}} 燃气",
+    "paidFromWallet": "{{amount}} 来自你的钱包",
+    "paidFromWalletPlain": "从你的钱包支付",
+    "priceUnavailable": "价格不可用",
+    "confirm": "在 {{chain}} 上铸造",
+    "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
+    "notAvailable": "此链上的铸造功能暂不可用。"
   }
 }

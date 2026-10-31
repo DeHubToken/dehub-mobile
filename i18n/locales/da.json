@@ -129,6 +129,8 @@
     "useNamed": "Brug {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Ikke lykkedes at opdatere plan",
+    "801658c8e591": "Planen blev ikke oprettet — prøv igen",
     "dd2108f1cda8": "Stop Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "cf69d7e172fd": "Tale-session brugt op — start tale-modus igen for at købe en anden.",
@@ -8704,6 +8706,7 @@
     "minimumRequired": "Minimum {{currency}} krævet"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Token abonnements-checkout er ikke klar — prøv igen om kort tid",
     "switchFailed": "Kunne ikke skifte abonnementsnetværk",
     "connectWallet": "Forbind din tegnebog for at abonnere",
     "notBuyable": "Denne plan kan ikke købes. Bed skaberen om at oprette den igen",
@@ -14556,5 +14559,20 @@
     "fingerprint": "Fingeraftryk",
     "exploreFirst": "Udforsk først",
     "codeNote": "Vi sender dig en kode på e-mail, ingen adgangskode."
+  },
+  "mintChain": {
+    "title": "Mynteindlæg",
+    "subtitle": "Vælg en kæde. Priserne er live og opdateres hvert minut.",
+    "free": "Gratis",
+    "gasCovered": "Gas dækket af DeHub",
+    "feeIncludesGas": "≈{{usd}}, gas inkluderet",
+    "gasIncluded": "Gas inkluderet",
+    "gasOnly": "≈{{usd}} gas",
+    "paidFromWallet": "{{amount}} fra din tegnebog",
+    "paidFromWalletPlain": "Betalt fra din tegnebog",
+    "priceUnavailable": "Pris ikke tilgængelig",
+    "confirm": "Mint den {{chain}}",
+    "confirmWithCost": "Mint på {{chain}} ·{{cost}}",
+    "notAvailable": "Minting på denne kæde er endnu ikke tilgængelig."
   }
 }

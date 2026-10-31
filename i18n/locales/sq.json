@@ -129,6 +129,8 @@
     "useNamed": "Përdor {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Nuk u mund të updateua plani",
+    "801658c8e591": "Plani nuk u krijua — provo përsëri",
     "dd2108f1cda8": "Ndalo bisedën me zë",
     "70438fbf1234": "Këshilloi (AI)",
     "cf69d7e172fd": "Sesi e zërit përdorur — filloni sërën e zërit për të blerë një tjetër.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Kërkohet minimumi {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Pagesa e abonimit me tokena nuk është gati — ju lutem provoni përsëri së shpejti",
     "switchFailed": "Rrjeti i abonimit nuk u ndryshua",
     "connectWallet": "Lidh portofolin për t'u abonuar",
     "notBuyable": "Ky plan nuk mund të blihet. Kërko nga krijuesi ta rikrijojë",
@@ -14552,5 +14555,20 @@
     "fingerprint": "Gjurmë gishtash",
     "exploreFirst": "Zbulo së pari",
     "codeNote": "Të dërgojmë me email një kod, nuk nevojitet fjalëkalim."
+  },
+  "mintChain": {
+    "title": "Postimi i monedhës",
+    "subtitle": "Zgjidh një zinxhir. Çmimet janë aktive dhe përditësohen çdo minutë.",
+    "free": "Falas",
+    "gasCovered": "Gazi i mbuluar nga DeHub",
+    "feeIncludesGas": "≈ {{usd}}, përfshirë gazin",
+    "gasIncluded": "Përfshihet gazi",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} nga portofoli yt",
+    "paidFromWalletPlain": "Paguar nga portofoli yt",
+    "priceUnavailable": "Çmimi i padisponueshëm",
+    "confirm": "Mint në {{chain}}",
+    "confirmWithCost": "Mint në {{chain}} · {{cost}}",
+    "notAvailable": "Gjurmimi në këtë zinxhir nuk është ende i disponueshëm."
   }
 }

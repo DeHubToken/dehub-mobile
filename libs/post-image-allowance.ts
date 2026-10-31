@@ -4,11 +4,12 @@ export const MAX_IMAGE_UPLOAD_BYTES = 42_069_000;
 export const MAX_REQUEST_IMAGE_BYTES = 100_000_000;
 
 /**
- * Feed-image allowance per post. The first four images are available to every
- * creator; higher badge tiers add room gradually, with Megalodon capped at 20.
+ * Feed-image allowance per post. Creators without a badge get four images;
+ * every badge holder gets at least 30, rising by tier to 40 for Megalodon.
+ * Keep aligned with the backend's post-image-allowance.ts.
  */
 const IMAGE_LIMITS_BY_BADGE_INDEX = [
-  5, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 20,
+  30, 30, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 ] as const;
 
 export const BASE_POST_IMAGE_LIMIT = 4;
