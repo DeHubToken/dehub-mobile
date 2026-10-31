@@ -2213,9 +2213,6 @@
     "global": "Küresel"
   },
   "features": {
-    "notFeasible": "Mümkün değil",
-    "notFeasibleWhy": "Neden:",
-    "noNotFeasible": "Burada bir şey yok",
     "prompts": "İstemler",
     "queued": "Sırada",
     "promptPageTitle": "İstekler",
