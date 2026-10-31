@@ -14539,5 +14539,20 @@
     "fingerprint": "ናይ ኣጻብዕ ምልክት",
     "exploreFirst": "ፈለማ መርምር",
     "codeNote": "ኮድ ኢመይል ክንልእከልካ ኢና ፡ ዝኾነ ቃል-ምስጢር ኣየድልዮን እዩ ።"
+  },
+  "mintChain": {
+    "title": "ናይ ምስሊ መግለጺ",
+    "subtitle": "ሰንሰለት ሕረጽ ። ዋጋታት ህያው እዩ ፡ ኣብ ነፍሲ ወከፍ ደቒቕ ድማ ይሓድጎ ።",
+    "free": "ነጻ",
+    "gasCovered": "ብዲሆብ እተሸፈነ ጋዝ",
+    "feeIncludesGas": "≈ {{usd}}, ጋዝ ተካተተ",
+    "gasIncluded": "ጋዝ ተካኢሉ",
+    "gasOnly": "≈ {{usd}} ጋዝ",
+    "paidFromWallet": "{{amount}} ካብ ቦርሳኻ",
+    "paidFromWalletPlain": "ካብ ቦርሳኻ እተኸፍለ",
+    "priceUnavailable": "ዋጋታት ኣይተረኽበን ።",
+    "confirm": "ኣብ {{chain}}",
+    "confirmWithCost": "ኣብ {{chain}} {{cost}}",
+    "notAvailable": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ።"
   }
 }

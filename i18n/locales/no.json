@@ -14552,5 +14552,20 @@
     "fingerprint": "Fingeravtrykk",
     "exploreFirst": "Utforsk først",
     "codeNote": "Vi sender deg en kode på e-post, uten passord."
+  },
+  "mintChain": {
+    "title": "Myntpost",
+    "subtitle": "Velg en kjede. Prisene er live og oppdateres hvert minutt.",
+    "free": "Gratis",
+    "gasCovered": "Gass dekket av DeHub",
+    "feeIncludesGas": "≈ {{usd}}, inkludert gass",
+    "gasIncluded": "Gass inkludert",
+    "gasOnly": "≈ {{usd}} gass",
+    "paidFromWallet": "{{amount}} fra lommeboken din",
+    "paidFromWalletPlain": "Betalt fra lommeboken din",
+    "priceUnavailable": "Pris utilgjengelig",
+    "confirm": "Mynt på {{chain}}",
+    "confirmWithCost": "Mint på {{chain}} · {{cost}}",
+    "notAvailable": "Preging på denne kjeden er ikke tilgjengelig ennå."
   }
 }

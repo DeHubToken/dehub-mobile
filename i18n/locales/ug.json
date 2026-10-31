@@ -14540,5 +14540,20 @@
     "fingerprint": "بارماق ئىزى",
     "exploreFirst": "ئاۋۋال ئىزدىنىش",
     "codeNote": "بىز سىزگە مەخپى نۇمۇرىنىڭ ھاجىتى يوق كودىنى ئەۋەتىمىز."
+  },
+  "mintChain": {
+    "title": "Mint POST",
+    "subtitle": "زەنجىرنى تاللاڭ. باھاسى ھەر مىنۇتتا ئۆسىدۇ ۋە يېڭىلىنىدۇ.",
+    "free": "ھەقسىز",
+    "gasCovered": "DeHub تەرىپىدىن قاپلانغان گاز",
+    "feeIncludesGas": "≈ {{usd}}، گاز كىرگۈزۈلگەن",
+    "gasIncluded": "غاز كىرگۈزۈلگەن",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "يانچۇقىڭىزدىن {{amount}}",
+    "paidFromWalletPlain": "يانچۇقىڭىزدىن ھەق تاپشۇرۇڭ",
+    "priceUnavailable": "باھاسى قوللانغىلى بولمايدىغان",
+    "confirm": "Mint on {{chain}}",
+    "confirmWithCost": "Mint on {{chain}} {{cost}}",
+    "notAvailable": "بۇ زەنجىرنى ياساش تېخى قوللىنىلمىغان."
   }
 }

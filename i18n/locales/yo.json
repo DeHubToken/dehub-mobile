@@ -14553,5 +14553,20 @@
     "fingerprint": "Àtẹ ìka",
     "exploreFirst": "Ṣawari ni akọkọ",
     "codeNote": "A fi kọ̀m̀pútà ránṣẹ́ sí ọ, kò nílò ọ̀rọ̀ ìgbaniwọlé."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Yan pq kan. Owó wà láàyè kí o sì ṣe àtúnṣe ní ìṣẹ́jú kọ̀ọ̀kan.",
+    "free": "FREE",
+    "gasCovered": "Gaasi tí DeHub bo",
+    "feeIncludesGas": "≈ {{usd}}, gáàsì tó wà nínú rẹ̀",
+    "gasIncluded": "Gaasi ti a fi kun",
+    "gasOnly": "≈ {{usd}} gáàsì",
+    "paidFromWallet": "{{amount}} lati apamọwọ rẹ",
+    "paidFromWalletPlain": "O san lati inu apamọwọ rẹ",
+    "priceUnavailable": "Iye tí kò sí",
+    "confirm": "Mint lori {{chain}}",
+    "confirmWithCost": "Mint lori {{chain}} {{cost}}",
+    "notAvailable": "A ṣe minting ni wọn ni ó ṣẹlẹ."
   }
 }

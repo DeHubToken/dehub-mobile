@@ -14583,5 +14583,20 @@
     "fingerprint": "Uphawu lomunwe",
     "exploreFirst": "Hlola kuqala",
     "codeNote": "Sikuthumelela ikhodi nge-imeyili, ayikho iphasiwedi edingekayo."
+  },
+  "mintChain": {
+    "title": "Iphosti yeminti",
+    "subtitle": "Khetha uchungechunge. Amanani abukhoma futhi abuyekezwa njalo ngomzuzu.",
+    "free": "Mahhala",
+    "gasCovered": "Igesi embozwe yi-DeHub",
+    "feeIncludesGas": "≈ {{usd}}, igesi ifakiwe",
+    "gasIncluded": "Igesi ifakiwe",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} kusuka esikhwameni sakho semali",
+    "paidFromWalletPlain": "Kukhokhelwe ngesikhwama sakho semali",
+    "priceUnavailable": "Inani alitholakali",
+    "confirm": "Iminti ku- {{chain}}",
+    "confirmWithCost": "Iminti ku- {{chain}} · {{cost}}",
+    "notAvailable": "Ukuphawula kulolu chungechunge akutholakali okwamanje."
   }
 }

@@ -14607,5 +14607,20 @@
     "fingerprint": "Саусақ ізі",
     "exploreFirst": "Алдымен зерттеңіз",
     "codeNote": "Біз сізге құпиясөздің қажеті жоқ кодты жібереміз."
+  },
+  "mintChain": {
+    "title": "Жалбыз пост",
+    "subtitle": "Тізбекті таңдаңыз. Бағалар тірі және әр минут сайын жаңартылады.",
+    "free": "ТЕГІН",
+    "gasCovered": "DeHub жабатын газ",
+    "feeIncludesGas": "≈ {{usd}}, газ қосылған",
+    "gasIncluded": "Газ қосылған",
+    "gasOnly": "≈ {{usd}} газ",
+    "paidFromWallet": "Әмияннан{{amount}}",
+    "paidFromWalletPlain": "Әмияныңыздан төленді",
+    "priceUnavailable": "Бағасы қолжетімсіз",
+    "confirm": "{{chain}} бойынша жалбыз",
+    "confirmWithCost": "{{chain}} · {{cost}} бойынша жалбыз",
+    "notAvailable": "Бұл тізбектегі жалғау әлі қолжетімді емес."
   }
 }

@@ -14556,5 +14556,20 @@
     "fingerprint": "فنگر پرنٹ",
     "exploreFirst": "پہلے دیکھیں",
     "codeNote": "ہم آپ کو ای میل پر کوڈ بھیجتے ہیں، پاس ورڈ کی ضرورت نہیں۔"
+  },
+  "mintChain": {
+    "title": "ٹکسال کی پوسٹ",
+    "subtitle": "چین منتخب کریں ۔ قیمتیں لائیو ہیں اور ہر منٹ اپ ڈیٹ ہوتی ہیں ۔",
+    "free": "مفت",
+    "gasCovered": "ڈی ہب کے ذریعہ احاطہ کردہ گیس",
+    "feeIncludesGas": "≈ {{usd}}، گیس شامل ہے",
+    "gasIncluded": "گیس شامل ہے",
+    "gasOnly": "≈ {{usd}} گیس",
+    "paidFromWallet": "آپ کے والٹ سے {{amount}}",
+    "paidFromWalletPlain": "آپ کے والٹ سے ادائیگی کی گئی",
+    "priceUnavailable": "قیمت دستیاب نہیں ہے",
+    "confirm": "{{chain}} پر ٹکسال",
+    "confirmWithCost": "ٹکسال {{chain}} ·{{cost}} پر",
+    "notAvailable": "اس زنجیر پر مائننگ ابھی تک دستیاب نہیں ہے ۔"
   }
 }

@@ -14540,5 +14540,20 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Whakamātauria te tuatahi",
     "codeNote": "Ka tukuna atu e matou he waehere ki a koe, kaore he kupuhipa e hiahiatia ana."
+  },
+  "mintChain": {
+    "title": "Mint pou",
+    "subtitle": "Kōwhiri i te mekameka. utu e ora, me te whakahou ia meneti.",
+    "free": "Free",
+    "gasCovered": "Ko te hau e kapi ana i te DeHub",
+    "feeIncludesGas": "≈ {{usd}}, whakauru hau",
+    "gasIncluded": "Kei roto i te hau",
+    "gasOnly": "≈ {{usd}} kasa",
+    "paidFromWallet": "{{amount}} mai i to putea",
+    "paidFromWalletPlain": "Utu mai i to putea",
+    "priceUnavailable": "Ko te utu kaore i te waatea",
+    "confirm": "Mint i runga i {{chain}}",
+    "confirmWithCost": "Mint i runga i {{chain}} · {{cost}}",
+    "notAvailable": "Kaore ano kia waatea te peita i runga i tenei mekameka."
   }
 }

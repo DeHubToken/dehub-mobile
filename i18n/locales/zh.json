@@ -14564,5 +14564,19 @@
     "loading": "寻找赞助…",
     "campaignDescription": "让观众通过观看30秒来支持创作者。需要在Web广告门户中上传至少30秒的视频。",
     "watch": "观看广告支持这个创作者"
+  },
+  "mintChain": {
+    "title": "薄荷帖子",
+    "subtitle": "选择一个连锁店。价格实时更新，每分钟更新一次。",
+    "free": "免费",
+    "gasCovered": "DeHub承保的燃气",
+    "feeIncludesGas": "≈ {{usd}} ，含汽油",
+    "gasIncluded": "含燃气",
+    "paidFromWallet": "{{amount}}从您的钱包",
+    "paidFromWalletPlain": "通过您的钱包支付",
+    "priceUnavailable": "价格不可用",
+    "confirm": "{{chain}}薄荷",
+    "confirmWithCost": "在{{chain}} · {{cost}}上完好无损",
+    "notAvailable": "此链上的铸造尚不可用。"
   }
 }

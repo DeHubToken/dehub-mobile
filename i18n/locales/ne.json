@@ -14592,5 +14592,20 @@
     "fingerprint": "औंठाछाप",
     "exploreFirst": "पहिले अन्वेषण गर्नुहोस्",
     "codeNote": "हामी तपाईंलाई एउटा कोड इमेल गर्छौं, कुनै पासवर्ड आवश्यक छैन ।"
+  },
+  "mintChain": {
+    "title": "मिन्ट पोस्ट",
+    "subtitle": "चेन छान्नुहोस् । मूल्यहरू प्रत्यक्ष हुन्छन् र प्रत्येक मिनेटमा अपडेट हुन्छन् ।",
+    "free": "नि:शुल्क",
+    "gasCovered": "DeHub ले ढाकेको ग्यास",
+    "feeIncludesGas": "≈ {{usd}}, ग्यास समावेश गरिएको",
+    "gasIncluded": "ग्यास समावेश",
+    "gasOnly": "≈ {{usd}} ग्यास",
+    "paidFromWallet": "{{amount}} तपाईंको वालेटबाट",
+    "paidFromWalletPlain": "तपाईंको वालेटबाट भुक्तानी गरिएको",
+    "priceUnavailable": "भाडा उपलब्ध छैन",
+    "confirm": "{{chain}} मा टकसाल",
+    "confirmWithCost": "मिन्ट {{chain}} · {{cost}} मा",
+    "notAvailable": "यस चेनमा टकसाल अझै उपलब्ध छैन ।"
   }
 }
