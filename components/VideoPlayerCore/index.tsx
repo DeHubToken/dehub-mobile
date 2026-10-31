@@ -70,6 +70,7 @@ import { requestFeedVideoFocus, releaseFeedVideoFocus } from '../../libs/feedVid
 import { stopActivePreview } from '../../libs/previewRegistry';
 import { createLogger } from '../../libs/logger';
 import { getCachedMuted, setMutedState } from '../../libs/videoMutedState';
+import { trackPlayerWatchTime } from '../../libs/watch-time';
 
 const logger = createLogger('VideoPlayerCore');
 
@@ -270,6 +271,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     [tokenId, liveMode],
   );
   useEffect(() => { player.loop = isLooping; }, [player, isLooping]);
+  // Watch time for the creator's stats.
+  useEffect(() => trackPlayerWatchTime(player, liveMode ? null : tokenId), [player, liveMode, tokenId]);
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, sourceUrl, {
     component: 'VideoPlayerCore', postId: tokenId,
     allowed: () => (navigation.isFocused() || isPictureInPicturePlayer(player)) && !visualActivity.isCallBusy() && canStartVideo(player),

@@ -93,6 +93,7 @@ import {
   TAP_REACTION_RESOLUTION_MS,
 } from "../../libs/tap-gesture";
 import { showTapBurst } from "../../libs/tap-reaction-layer";
+import { trackPlayerWatchTime } from "../../libs/watch-time";
 
 /** Card content width — mirrors FeedCard, which lays this player out. */
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
@@ -514,6 +515,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     () => registerVideoClock(tokenId, () => playerRef.current?.currentTime ?? 0),
     [tokenId],
   );
+
+  // Watch time for the creator's stats.
+  useEffect(() => trackPlayerWatchTime(player, tokenId), [player, tokenId]);
 
   // Crowdsourced sponsor reads and intros. Fetched only while this card has a
   // source attached and the viewer asked for skipping — otherwise a feed of
