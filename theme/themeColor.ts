@@ -41,7 +41,7 @@ const THEME_ACCENTS: Partial<Record<AppThemeName, Rgb>> = {
   jungle: [132, 190, 60],
   island: [34, 170, 200],
   hacker: [57, 255, 136],
-  horror: [214, 190, 150],
+  horror: [206, 32, 48],
 };
 
 const NEUTRAL: Rgb = [200, 196, 220];
@@ -146,15 +146,16 @@ export function tintSkin(skin: ThemeSkin, accent: Rgb): ThemeSkin {
     };
   }
   const base = parseRgb(skin.card.backgroundColor);
-  const pill = mix(mix(base, accent, 0.22), WHITE, 0.06);
-  const card = mix(mix(base, accent, 0.28), WHITE, 0.04);
+  const tint = skin.tint ?? { pill: 0.22, card: 0.28, cardAlpha: 0.7 };
+  const pill = mix(mix(base, accent, tint.pill), WHITE, 0.06);
+  const card = mix(mix(base, accent, tint.card), WHITE, 0.04);
   const withFill = (style: ViewStyle, color: string): ViewStyle => ({ ...style, backgroundColor: color });
   return {
     ...skin,
-    card: withFill(skin.card, rgba(card, 0.7)),
+    card: withFill(skin.card, rgba(card, tint.cardAlpha)),
     centre: {
       ...skin.card,
-      backgroundColor: rgba(card, 0.7),
+      backgroundColor: rgba(card, tint.cardAlpha),
       borderRadius: skin.centre.borderRadius,
     },
     strip: withFill(skin.strip, rgba(pill, 1)),
