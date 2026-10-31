@@ -13,9 +13,10 @@ import { useAppPrefs } from "../../hooks/useAppPrefs";
  *   [feed icon] [filters] [search box ...........] [x]
  *
  * It melts out of the tapped tab: a clip that starts at that tab's box and
- * opens to the full pill while the tab row fades. Tapping the feed icon moves
- * the search to the next feed (the pill clips anything hung below it, so no
- * menu); the filters button is the pill's own filter toggle.
+ * opens to the full pill while the tab row fades. The feed icon is the lit tab
+ * that opened the search, so tapping it again closes the search (a toggle).
+ * Holding it moves the search to the next feed (the pill clips anything hung
+ * below it, so no menu); the filters button is the pill's own filter toggle.
  */
 
 const ICONS: Record<FeedSearchTab, IconName> = { home: "House", shorts: "Shorts", images: "Image", videos: "Video", music: "Mic" };
@@ -89,10 +90,12 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
     <Reanimated.View style={[styles.clip, clipStyle]}>
       <Reanimated.View style={[styles.row, { width }, innerStyle]}>
         <Pressable
-          onPress={() => onPickFeed(order[(order.indexOf(tab) + 1) % order.length])}
+          onPress={close}
+          onLongPress={() => onPickFeed(order[(order.indexOf(tab) + 1) % order.length])}
+          delayLongPress={400}
           style={styles.slot}
           accessibilityRole="button"
-          accessibilityLabel={_copy("copy.1aa9d734f2ee", { defaultValue: "Choose what to search" })}
+          accessibilityLabel={_copy("copy.55656b5e434f", { defaultValue: "Close search" })}
         >
           {bubble}
           <Icon name={ICONS[tab]} size={16} color={on} strokeWidth={2} />
