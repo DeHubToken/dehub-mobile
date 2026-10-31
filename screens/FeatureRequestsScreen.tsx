@@ -603,6 +603,12 @@ const FeatureCard: React.FC<{
                 </Text>
               </View>
             )}
+            {/* A short tag on a live request, e.g. "Future review" on Queued. */}
+            {feature.status !== "declined" && !!feature.status_note?.trim() && (
+              <View style={[styles.statusBadge, { backgroundColor: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.25)" }]}>
+                <Text style={[styles.statusBadgeText, { color: "#D4D4D8" }]}>{feature.status_note.trim()}</Text>
+              </View>
+            )}
           </View>
 
           {/* Actions — dislike · share · comment · like, spread edge to edge
