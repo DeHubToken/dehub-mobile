@@ -45,15 +45,22 @@ function report(status: DmEncryptionStatus): DmEncryptionStatus {
  * @param provider the session's live provider (AuthContext). Without it a
  *                 returning session has nothing to sign with, because the
  *                 module registry is empty outside a sign-in.
+ * @param interactive false only loads a key already on the device. Making one
+ *                 takes a signature, which on a locked wallet raises the
+ *                 unlock sheet, so that waits for the user to ask for it.
  */
-export async function ensureDmEncryption(address: string, provider?: any): Promise<DmEncryptionStatus> {
+export async function ensureDmEncryption(
+  address: string,
+  provider?: any,
+  { interactive = true }: { interactive?: boolean } = {},
+): Promise<DmEncryptionStatus> {
   const addr = (address || "").toLowerCase();
   if (!addr) return report("error");
   if (hasIdentityFor(addr) || (await loadIdentity(addr))) {
     syncPublishedKey().catch(() => {});
     return report("ready");
   }
-  if (declined.has(addr)) return report("locked");
+  if (!interactive || declined.has(addr)) return report("locked");
   try {
     await setupIdentity(addr, provider);
     return report("ready");
