@@ -5,10 +5,10 @@ describe("getPostImageLimitForBadge", () => {
     expect(getPostImageLimitForBadge(0)).toBe(4);
   });
 
-  it("scales steadily through the badge ladder and caps Megalodon at 20", () => {
-    expect(getPostImageLimitForBadge(10_000)).toBe(5);
-    expect(getPostImageLimitForBadge(5_000_000)).toBe(14);
-    expect(getPostImageLimitForBadge(25_000_000)).toBe(18);
-    expect(getPostImageLimitForBadge(50_000_000)).toBe(20);
+  it("gives every badge holder at least 30 and caps Megalodon at 40", () => {
+    expect(getPostImageLimitForBadge(10_000)).toBe(30);
+    expect(getPostImageLimitForBadge(5_000_000)).toBe(37);
+    expect(getPostImageLimitForBadge(25_000_000)).toBe(39);
+    expect(getPostImageLimitForBadge(50_000_000)).toBe(40);
   });
 });

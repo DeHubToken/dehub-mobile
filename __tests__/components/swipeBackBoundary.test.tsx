@@ -3,7 +3,7 @@ import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' }, I18nManager: { isRTL: false }, Keyboard: { dismiss: jest.fn() }, Dimensions: { get: () => ({ width: 400, height: 800 }) }, StyleSheet: { create: (s: object) => s } }));
-jest.mock('react-native-reanimated', () => ({ __esModule: true, default: { View: 'Animated.View' }, useSharedValue: (value: number) => ({ value }), useAnimatedStyle: () => ({}), withTiming: (value: number) => value }));
+jest.mock('react-native-reanimated', () => ({ __esModule: true, default: { View: 'Animated.View' }, useSharedValue: (value: unknown) => jest.requireActual('react').useRef({ value }).current, useAnimatedStyle: () => ({}), withTiming: (value: number) => value, runOnJS: (fn: (...args: unknown[]) => unknown) => fn }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 const mockGesture = {
   enabled: jest.fn().mockReturnThis(), hitSlop: jest.fn().mockReturnThis(), activeOffsetX: jest.fn().mockReturnThis(),
@@ -37,7 +37,7 @@ test('a covered or blurred screen cannot receive a back swipe', () => {
 test('adding a second finger after activation cancels back', () => {
   const pop = jest.fn();
   act(() => { tree = create(<SwipeBackBoundary onBack={pop}><Local /></SwipeBackBoundary>); });
-  act(() => mockGesture.onTouchesDown.mock.calls[0][0]({ numberOfTouches: 2, allTouches: [] }, { fail: jest.fn() }));
+  act(() => mockGesture.onTouchesDown.mock.calls[mockGesture.onTouchesDown.mock.calls.length - 1][0]({ numberOfTouches: 2, allTouches: [] }, { fail: jest.fn() }));
   swipe(); expect(pop).not.toHaveBeenCalled();
 });
 test('a screen with its own interactive edge back turns the screen-wide one off while mounted', () => {
