@@ -268,6 +268,26 @@ export async function getAccountSummariesByUsernames(usernames: string[]): Promi
 }
 
 /**
+ * The addresses that must stay off people lists: banned, adult, spam. For
+ * lists read from Supabase (New members), which know nothing about bans or
+ * adult flags. Fails open so a slow API never empties a list.
+ */
+export async function getDiscoveryHidden(addresses: string[]): Promise<Set<string>> {
+  const wanted = [...new Set(addresses.filter(Boolean).map((address) => address.toLowerCase()))].slice(0, 200);
+  if (wanted.length === 0) return new Set();
+  try {
+    const response = await apiClient.post<{ result?: { hidden?: string[] } }>(
+      "/accounts/discovery-hidden",
+      { addresses: wanted },
+      { isAuthRequired: false },
+    );
+    return new Set((response?.result?.hidden || []).map((address) => address.toLowerCase()));
+  } catch {
+    return new Set();
+  }
+}
+
+/**
  * Search for users
  */
 export async function usersSearch(searchParam: string) {
