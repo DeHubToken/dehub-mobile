@@ -22,8 +22,7 @@ describe('image carousel navigation affordance', () => {
   });
 
   it('keeps the photo on each side drawn so swiping back is instant', () => {
-    expect(gallery).toContain('Math.min(...visible) - 1');
-    expect(gallery).toContain('Math.max(...visible) + 1');
+    expect(gallery).toContain('galleryDrawnSlides(drawnRef.current, visible, images.length)');
     expect(gallery).toContain('drawBitmap={drawn.includes(index)}');
   });
 });

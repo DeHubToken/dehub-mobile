@@ -29,26 +29,23 @@ jest.mock('../../components/Home/ContainedFeedImage', () => ({
     ? require('react').createElement(require('react-native').View, { testID: uri, aspect, fillHeight }) : null,
 }));
 
-it('keeps one picture drawn on each side, releases distant ones, and retains every slide', () => {
-  const screen = render(<FeedImageGallery images={['a', 'b', 'c', 'd']} width={300} fallbackWidth={300}
+it('draws ahead, keeps photos already drawn on the way back, releases far ones, and retains every slide', () => {
+  const images = ['a', 'b', 'c', 'd', 'e', 'f'];
+  const screen = render(<FeedImageGallery images={images} width={300} fallbackWidth={300}
     active prioritizeMedia={false} onLayout={jest.fn()} onImagePress={jest.fn()} onReaction={jest.fn()} />);
   fireEvent(screen.getByTestId('feed-image-gallery'), 'layout', { nativeEvent: { layout: { width: 300 } } });
-  for (let index = 0; index < 4; index++) {
+  for (let index = 0; index < images.length; index++) {
     fireEvent(screen.getByTestId(`feed-gallery-slide-${index}`), 'layout', { nativeEvent: { layout: { x: index * 308, width: 300 } } });
   }
-  expect(screen.getByTestId('a')).toBeTruthy();
-  expect(screen.getByTestId('b')).toBeTruthy();
-  expect(screen.getByTestId('c')).toBeTruthy();
-  expect(screen.queryByTestId('d')).toBeNull();
+  const drawn = () => images.filter(uri => screen.queryByTestId(uri));
+  expect(drawn()).toEqual(['a', 'b', 'c']);
   fireEvent.scroll(screen.getByTestId('feed-image-gallery'), { nativeEvent: { contentOffset: { x: 700 } } });
-  expect(screen.queryByTestId('a')).toBeNull();
-  expect(screen.getByTestId('b')).toBeTruthy();
-  expect(screen.getByTestId('c')).toBeTruthy();
-  expect(screen.getByTestId('d')).toBeTruthy();
+  expect(drawn()).toEqual(['a', 'b', 'c', 'd', 'e']);
+  fireEvent.scroll(screen.getByTestId('feed-image-gallery'), { nativeEvent: { contentOffset: { x: 1540 } } });
+  expect(drawn()).toEqual(['b', 'c', 'd', 'e', 'f']);
   expect(screen.getByTestId('feed-gallery-slide-0')).toBeTruthy();
-  fireEvent.scroll(screen.getByTestId('feed-image-gallery'), { nativeEvent: { contentOffset: { x: 0 } } });
-  expect(screen.getByTestId('a')).toBeTruthy();
-  expect(screen.queryByTestId('d')).toBeNull();
+  fireEvent.scroll(screen.getByTestId('feed-image-gallery'), { nativeEvent: { contentOffset: { x: 924 } } });
+  expect(drawn()).toEqual(['b', 'c', 'd', 'e', 'f']);
 });
 
 it('sizes the strip to the tallest measured photo, never to a guess for an unloaded one', async () => {
