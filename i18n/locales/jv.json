@@ -129,6 +129,8 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Gagal update rencana",
+    "801658c8e591": "Rencana gak dibuat — coba lagi",
     "dd2108f1cda8": "Stop Percakapan Suara",
     "70438fbf1234": "Percakapan Suara (AI)",
     "cf69d7e172fd": "Konté sesi ngoko ngarani — ngarani modus ngoko lagi gunae ngoko beli sesi laning.",
@@ -8685,6 +8687,7 @@
     "minimumRequired": "Minimal {{currency}} dibutuhake"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Checkout langganan token durung siyap — coba maneh mengko",
     "switchFailed": "Ora bisa ngganti jaringan langganan",
     "connectWallet": "Sambungake dompetmu kanggo langganan",
     "notBuyable": "Paket iki ora bisa dituku. Njaluk kreator nggawe maneh",

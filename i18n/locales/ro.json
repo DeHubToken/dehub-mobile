@@ -129,6 +129,8 @@
     "useNamed": "Folosește {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Erat actualizarea planului",
+    "801658c8e591": "Planul nu a fost creat — încercați din nou",
     "dd2108f1cda8": "Opriți Voce de conversație",
     "70438fbf1234": "Voce de conversație (AI)",
     "cf69d7e172fd": "Sesiunea de voce folosită — porniți din nou modulul de voce pentru a cumpăra altul.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Minim {{currency}} necesar"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Checkout-ul abonamentului în token-uri nu este gata — te rugăm să încerci din nou în scurt timp",
     "switchFailed": "Rețeaua de abonament nu a putut fi schimbată",
     "connectWallet": "Conectează-ți portofelul pentru a te abona",
     "notBuyable": "Acest plan nu poate fi cumpărat. Roagă creatorul să îl recreeze",

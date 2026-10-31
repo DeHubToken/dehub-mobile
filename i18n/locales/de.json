@@ -1,5 +1,7 @@
 {
   "copy": {
+    "eabb5c136be4": "Aktualisierungsversuch gescheitert",
+    "801658c8e591": "Der Plan wurde nicht erstellt – versuchen Sie es bitte noch einmal",
     "dd2108f1cda8": "Sprach-Chat beenden",
     "70438fbf1234": "Sprach-Chat (KI)",
     "cf69d7e172fd": "Sprachsitzung aufgebraucht — Starten Sie den Sprachmodus erneut, um eine andere zu kaufen.",
@@ -8710,6 +8712,7 @@
     "minimumRequired": "Mindestens {{currency}} erforderlich"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Die Token-Abonnementkasse ist nicht bereit – bitte versuchen Sie es in Kürze erneut",
     "switchFailed": "Abo-Netzwerk konnte nicht gewechselt werden",
     "connectWallet": "Verbinde deine Wallet, um zu abonnieren",
     "notBuyable": "Dieser Plan kann nicht gekauft werden. Bitte den Ersteller, ihn neu anzulegen",

@@ -6560,6 +6560,7 @@
     "minimumRequired": "Minimaal {{currency}} vereist"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "De token-abonnement checkout is niet klaar — probeer het binnenkort opnieuw",
     "switchFailed": "Kan abonnementsnetwerk niet wisselen",
     "connectWallet": "Koppel je wallet om te abonneren",
     "notBuyable": "Dit abonnement kan niet worden gekocht. Vraag de maker het opnieuw aan te maken",
@@ -12499,6 +12500,8 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "eabb5c136be4": "Planning mislukt bij update",
+    "801658c8e591": "De planning is niet gemaakt — probeer het opnieuw",
     "1aa9d734f2ee": "Kies waarin je zoekt",
     "35034aa59bd3": "Niets in {{feed}} komt overeen. Probeer andere woorden of zoek overal.",
     "415155739590": "Overal zoeken",

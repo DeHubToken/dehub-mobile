@@ -129,6 +129,8 @@
     "useNamed": "Isticmaal {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Waa ku guuldareystay in la cusbooneysiiyo qorshaha",
+    "801658c8e591": "Qorshaha lama abuurin — fadlan isku day mar kale",
     "dd2108f1cda8": "Jooji Sheekaysiga Codka",
     "70438fbf1234": "Sheekaysiga Codka (AI)",
     "cf69d7e172fd": "Kalfadhigii codka ayaa dhamaaday — dib u bilow qaabka codka si aad u iibsato mid kale.",
@@ -8688,6 +8690,7 @@
     "minimumRequired": "Ugu yaraan {{currency}} ayaa loo baahan yahay"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Lacag-bixinta rukunka token-ka ma diyaarsana — fadlan isku day mar kale dhawaan",
     "switchFailed": "Lama beddeli karin shabakadda rukumidda",
     "connectWallet": "Ku xidh jeebkaaga si aad u rukunto",
     "notBuyable": "Qorshahan lama iibsan karo. Weydiiso abuuraha inuu dib u abuuro",

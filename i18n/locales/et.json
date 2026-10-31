@@ -129,6 +129,8 @@
     "useNamed": "Kasuta {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Plaani ei õnnestunud uuendada",
+    "801658c8e591": "Plaani ei loodud — proovi uuesti",
     "dd2108f1cda8": "Peata häälvestlus",
     "70438fbf1234": "Häälvestlus (AI)",
     "cf69d7e172fd": "Kõnekeskusest on kulunud üks üksus – alustage uuesti kõnekeskust, et osta veel üks.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Vajalik on vähemalt {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Märkide tellimuse kassasse minek pole valmis — proovige varsti uuesti",
     "switchFailed": "Tellimuse võrku ei saanud vahetada",
     "connectWallet": "Tellimiseks ühenda oma rahakott",
     "notBuyable": "Seda plaani ei saa osta. Palu loojal see uuesti luua",

@@ -129,6 +129,8 @@
     "useNamed": "Sebenzisa {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Ukubuyekeza uhlelo kwehlulekile",
+    "801658c8e591": "Lengo liliyopigwa mbali — tafuta tena",
     "dd2108f1cda8": "Misa i-Voice Chat",
     "70438fbf1234": "I-Voice Chat (AI)",
     "cf69d7e172fd": "I-Voice session iqediwe — qala i-voice mode futhi ukuze kuthenge enye.",
@@ -8731,6 +8733,7 @@
     "minimumRequired": "Kudingeka okungenani {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "I-checkout yokubhalisa yamathuluzi ayilungile — sicela uzame futhi kungekudala",
     "switchFailed": "Ayikwazanga ukushintsha inethiwekhi yokubhalisa",
     "connectWallet": "Xhuma isikhwama sakho ukuze ubhalise",
     "notBuyable": "Lolu hlelo alunakuthengwa. Cela umdali alwenze kabusha",
