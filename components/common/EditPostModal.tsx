@@ -26,6 +26,7 @@ import { ensureMediaLibraryPermission } from "../../libs/permissions.util";
 import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "../../services/nft.service";
 import { getPostQuota } from "../../services/post-quota.service";
 import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../../libs/post-text-limit";
+import { ARTICLE_SUMMARY_MAX } from "../../libs/article";
 import ShopSheet, { type ShopBoardDraft } from "../Upload/ShopSheet";
 import { useStreamProducts, useStreamProductActions } from "../../hooks/useStreamShopping";
 import { useShopLinkAllowance } from "../../hooks/useShopLinks";
@@ -149,7 +150,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     getPostQuota().then((q) => { if (!cancelled) setTierTextMax(postTextLimit(q)); });
     return () => { cancelled = true; };
   }, [visible, initialArticleBody]);
-  const descriptionMax = initialArticleBody !== undefined ? BASE_POST_TEXT_CHARS : tierTextMax;
+  const descriptionMax = initialArticleBody !== undefined ? ARTICLE_SUMMARY_MAX : tierTextMax;
   const titleMentions = useMentions(title, setTitle);
   const descMentions = useMentions(description, setDescription);
   const [selectedCategories, setSelectedCategories] =

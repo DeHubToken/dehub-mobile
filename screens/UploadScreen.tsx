@@ -70,7 +70,7 @@ import { getAvatarUrl } from "../libs/misc";
 import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import ArticleEditor from "../components/article/ArticleEditor";
-import { ARTICLE_BODY_MIN, articleLook, articleSummaryFromBody } from "../libs/article";
+import { ARTICLE_BODY_MIN, ARTICLE_SUMMARY_MAX, articleLook, articleSummaryFromBody } from "../libs/article";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
@@ -312,7 +312,7 @@ export default function UploadScreen() {
     [authUser?.avatarImageUrl],
   );
 
-  // The main input is always the post description (500 chars), as on web.
+  // The main input is always the post description (1,000+ chars by badge), as on web.
   // The title is its own 140-char field: forced for video/audio, toggleable
   // for everything else via the "Title" switch in the extras section.
   const draftScope = `post:${incomingDraft?.id ?? (incomingQuotedTokenId ? `quote:${incomingQuotedTokenId}` : "new")}`;
@@ -631,7 +631,7 @@ export default function UploadScreen() {
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
   // Post text cap scales with the badge tier; article summaries stay at 500.
-  const DESCRIPTION_MAX = articleMode ? BASE_POST_TEXT_CHARS : postTextLimit(postQuota);
+  const DESCRIPTION_MAX = articleMode ? ARTICLE_SUMMARY_MAX : postTextLimit(postQuota);
   const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
   const imageLimitBytes = Math.min(MAX_IMAGE_UPLOAD_BYTES, postQuota?.mediaBytesPerDay
     ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock));

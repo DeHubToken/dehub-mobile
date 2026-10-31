@@ -4434,6 +4434,9 @@
     "global": "Global"
   },
   "features": {
+    "notFeasible": "Não viável",
+    "notFeasibleWhy": "Por quê:",
+    "noNotFeasible": "Nada aqui",
     "title": "Solicitações de recursos",
     "ideasSubmitted": "{{count}} ideias enviadas",
     "ideaSubmitted": "1 ideia enviada",
