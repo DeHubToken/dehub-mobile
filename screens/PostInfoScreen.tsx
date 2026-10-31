@@ -42,6 +42,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DhbCoin } from "../components/common/DhbCoin";
 import TranscriptSection from "../components/Post/TranscriptSection";
+import PostReactorsSection from "../components/Post/PostReactorsSection";
 import { setPostStartTime } from "../libs/post-start-time";
 import { Image } from "expo-image";
 import { getTokenHolders } from "../libs/token-holders";
@@ -469,6 +470,9 @@ export default function PostInfoScreen() {
             <Stat icon="Wallet" value={creatorTips.toLocaleString()} label={t("postInfo.totalTipsCreator")} wide />
           </View>
         </Section>
+
+        {/* Who reacted - only the author gets person rows */}
+        {isOwner && tokenId != null && <PostReactorsSection tokenId={tokenId} />}
 
         {isPPV && (
           <Section title={t("postInfo.payPerView")}>
