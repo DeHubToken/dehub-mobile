@@ -8629,6 +8629,9 @@
     },
     "brand": {
       "addColor": "Merkkleur toevoegen",
+      "dehubApplied": "DeHub-huisstijl toegepast op {{count}} lagen.",
+      "dehubApply": "DeHub-huisstijl gebruiken",
+      "dehubHint": "Officiële DeHub-kleuren, de lettertypen Exo en Inter en het DeHub-logo, in één klik.",
       "addLogo": "Logo toevoegen",
       "applied": "Merk toegepast op {{count}} lagen.",
       "apply": "Merk toepassen",
