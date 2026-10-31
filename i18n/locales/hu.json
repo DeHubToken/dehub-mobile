@@ -14556,5 +14556,20 @@
     "fingerprint": "Ujjlenyomat",
     "exploreFirst": "Előbb nézz körül",
     "codeNote": "E-mailben küldünk egy kódot, jelszó nélkül."
+  },
+  "mintChain": {
+    "title": "Menta bejegyzés",
+    "subtitle": "Válassz egy láncot. Az árak valós idejűek, és percenként frissülnek.",
+    "free": "Ingyenes",
+    "gasCovered": "A DeHub által lefedett gáz",
+    "feeIncludesGas": "≈ {{usd}}, gázzal együtt",
+    "gasIncluded": "Gázzal együtt",
+    "gasOnly": "≈ {{usd}} gáz",
+    "paidFromWallet": "{{amount}} a pénztárcádból",
+    "paidFromWalletPlain": "A pénztárcádból fizetve",
+    "priceUnavailable": "Az ár nem érhető el",
+    "confirm": "Menta {{chain}} napján",
+    "confirmWithCost": "Menta {{chain}} · {{cost}} napján",
+    "notAvailable": "Ezen a láncon a verés még nem érhető el."
   }
 }

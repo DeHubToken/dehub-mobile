@@ -25,6 +25,7 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import { getNFT, getPpvSalesCount, togglePostVisibility } from "../services/nft.service";
 import { supabase } from "../services/supabase";
 import { useMintExistingPost } from "../hooks/useMintExistingPost";
+import MintChainSheet from "../components/common/MintChainSheet";
 import { useFractionBalance } from "../hooks/useFractionPortfolio";
 import {
   DEFAULT_FRACTION_CHAIN,
@@ -54,7 +55,6 @@ const MEDALS: Record<number, number> = {
   3: require("../assets/badges/3-medal.png"),
 };
 
-const CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 const EXPLORER_NAMES: Record<number, string> = { 8453: "BaseScan", 56: "BscScan" };
 
 const Section: React.FC<{ title?: string; right?: React.ReactNode; children: React.ReactNode }> = ({
@@ -162,10 +162,12 @@ export default function PostInfoScreen() {
     toastSuccess(t("postInfo.copied"));
   };
 
-  const handleMint = async () => {
+  const [mintSheet, setMintSheet] = useState(false);
+  const handleMint = async (chosenChainId: number) => {
     if (!post?.tokenId) return;
-    const ok = await mint(Number(post.tokenId), chainId);
+    const ok = await mint(Number(post.tokenId), chainId, chosenChainId);
     if (ok) {
+      setMintSheet(false);
       await refetch();
       queryClient.invalidateQueries({ queryKey: ["single-post", tokenId] });
     }
@@ -243,14 +245,7 @@ export default function PostInfoScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader
-        title={t("postInfo.title")}
-        rightContent={
-          <View style={styles.chainPill}>
-            <Text style={styles.chainText}>{CHAIN_NAMES[chainId] || CHAIN_NAMES[8453]}</Text>
-          </View>
-        }
-      />
+      <ScreenHeader title={t("postInfo.title")} />
       <ScrollView contentContainerStyle={styles.body}>
         {/* On-chain block — the only part that needs a mint. */}
         <Section>
@@ -271,7 +266,7 @@ export default function PostInfoScreen() {
               <Text style={[styles.muted, styles.centerText]}>{t("postInfo.mintToGenerate")}</Text>
               <Text style={[styles.faint, styles.centerText]}>{t("postInfo.mintDetailsLater")}</Text>
               {isOwner && (
-                <Pressable onPress={handleMint} disabled={isMinting} style={[styles.button, isMinting && { opacity: 0.5 }]}>
+                <Pressable onPress={() => setMintSheet(true)} disabled={isMinting} style={[styles.button, isMinting && { opacity: 0.5 }]}>
                   {isMinting && <ActivityIndicator color="#FFFFFF" size="small" />}
                   <Text style={styles.buttonText}>{t("postInfo.mintPost")}</Text>
                 </Pressable>
@@ -564,6 +559,15 @@ export default function PostInfoScreen() {
           });
         }}
       />
+      {isOwner && isUnminted && (
+        <MintChainSheet
+          visible={mintSheet}
+          onClose={() => setMintSheet(false)}
+          defaultChainId={chainId}
+          isMinting={isMinting}
+          onConfirm={handleMint}
+        />
+      )}
       <SellFractionsSheet target={selling} onClose={() => setSelling(null)} />
       <MakeOfferSheet target={offering} onClose={() => setOffering(null)} />
     </View>
@@ -616,8 +620,6 @@ const styles = StyleSheet.create({
   statusText: { color: "rgba(255,255,255,0.6)", fontSize: 12, fontWeight: "600" },
   statusMinted: { backgroundColor: "rgba(34,197,94,0.2)" },
   statusMintedText: { color: "#4ADE80" },
-  chainPill: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.1)" },
-  chainText: { color: "rgba(255,255,255,0.8)", fontSize: 12, fontWeight: "600" },
   button: {
     flexDirection: "row",
     alignItems: "center",

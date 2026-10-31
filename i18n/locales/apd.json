@@ -14552,5 +14552,20 @@
     "fingerprint": "بصمة الإصبع",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود عبر الإيميل، ما فيش كلمة سر مطلوبة."
+  },
+  "mintChain": {
+    "title": "معلومات المقال",
+    "subtitle": "اختر سلسلة.  الأسعار حية وتحديث كل دقيقة.",
+    "free": "مجانا",
+    "gasCovered": "الوقود مدفوع من قبل DeHub",
+    "feeIncludesGas": "≈ {{usd}}، الوقود مرفق",
+    "gasIncluded": "الوقود مرفق",
+    "gasOnly": "≈ {{usd}} الوقود",
+    "paidFromWallet": "{{amount}} من محفظتك",
+    "paidFromWalletPlain": "مدفوع من محفظتك",
+    "priceUnavailable": "السعر غير متوفر",
+    "confirm": "تذكرة المintage في {{chain}}",
+    "confirmWithCost": "تذكرة المintage في {{chain}} · {{cost}}",
+    "notAvailable": "لا يوجد إمكانية لتحديد المintage على هذه السلسلة بعد."
   }
 }

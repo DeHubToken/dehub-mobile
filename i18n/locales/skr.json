@@ -14533,5 +14533,16 @@
     "fingerprint": "فنگر پرنٹ",
     "exploreFirst": "پہلے ایکسپلور کرو",
     "codeNote": "اسی تُہانوں ای میل نال کوڈ بھیج دے ہاں، پاس ورڈ دی لوڑ نئیں۔"
+  },
+  "mintChain": {
+    "title": "مٹھا پوسٹ",
+    "subtitle": "چنڈا چُنو۔ قیمتاں لائیو نیں تے ہر منٹ اپ ڈیٹ ہوندیاں نیں۔",
+    "free": "مفت",
+    "gasCovered": "گئس ڈی ہب کے تحت",
+    "feeIncludesGas": "≈ {{usd}}, گیس شامل",
+    "gasIncluded": "گئس شامل",
+    "paidFromWalletPlain": "پہنچا ہے اپنے ڈھنگ سے",
+    "priceUnavailable": "قیمت نہیں ہے",
+    "notAvailable": "چین میں مائنٹنگ اس وقت دستیاب نہیں ہے۔"
   }
 }

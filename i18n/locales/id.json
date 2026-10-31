@@ -14560,5 +14560,20 @@
     "fingerprint": "Sidik jari",
     "exploreFirst": "Jelajahi dulu",
     "codeNote": "Kami kirim kode lewat email, tanpa kata sandi."
+  },
+  "mintChain": {
+    "title": "Pos mint",
+    "subtitle": "Pilih rantai. Harga ditayangkan dan diperbarui setiap menit.",
+    "free": "Gratis",
+    "gasCovered": "Gas yang dicakup oleh DeHub",
+    "feeIncludesGas": "≈{{usd}}, termasuk gas",
+    "gasIncluded": "Termasuk gas",
+    "gasOnly": "≈{{usd}} gas",
+    "paidFromWallet": "{{amount}} dari dompet Anda",
+    "paidFromWalletPlain": "Dibayar dari dompet Anda",
+    "priceUnavailable": "Harga tidak tersedia",
+    "confirm": "Mint pada {{chain}}",
+    "confirmWithCost": "Pesan di {{chain}} · {{cost}}",
+    "notAvailable": "Pencetakan pada rantai ini belum tersedia."
   }
 }

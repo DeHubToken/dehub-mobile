@@ -14607,5 +14607,20 @@
     "fingerprint": "თითის ანაბეჭდი",
     "exploreFirst": "ჯერ ძიება",
     "codeNote": "ელფოსტით გამოგიგზავნით კოდს, პაროლი არ არის საჭირო."
+  },
+  "mintChain": {
+    "title": "პიტნის პოსტი",
+    "subtitle": "აირჩიეთ ჯაჭვი. ფასები გამოქვეყნებულია და განახლდება ყოველ წუთს.",
+    "free": "უფასო",
+    "gasCovered": "გაზზე დაფარულია DeHub",
+    "feeIncludesGas": "≈ {{usd}}, გაზი შედის",
+    "gasIncluded": "შედის გაზი",
+    "gasOnly": "≈ {{usd}} გაზი",
+    "paidFromWallet": "{{amount}} თქვენი საფულიდან",
+    "paidFromWalletPlain": "გადახდილია საფულიდან",
+    "priceUnavailable": "ფასი მიუწვდომელია",
+    "confirm": "პიტნა {{chain}}",
+    "confirmWithCost": "ზარაფხანა {{chain}} · {{cost}}",
+    "notAvailable": "ამ ჯაჭვზე მოჭრა ჯერ არ არის ხელმისაწვდომი."
   }
 }

@@ -14540,5 +14540,19 @@
     "fingerprint": "ລາຍນິ້ວມື",
     "exploreFirst": "ສໍາຫຼວດກ່ອນ",
     "codeNote": "ພວກເຮົາສົ່ງລະຫັດອີເມວໃຫ້ທ່ານ, ບໍ່ ຈໍາ ເປັນຕ້ອງມີລະຫັດຜ່ານ."
+  },
+  "mintChain": {
+    "title": "ໂພສ Mint",
+    "subtitle": "ເລືອກລະບົບຕ່ອງໂສ້. ລາຄາມີຊີວິດຢູ່ ແລະ ອັບເດດທຸກໆນາທີ.",
+    "free": "ຟຣີ",
+    "gasCovered": "ອາຍແກັສທີ່ປົກຄຸມໂດຍ DeHub",
+    "feeIncludesGas": "≈ {{usd}}, ອາຍແກັສລວມ",
+    "gasIncluded": "ອາຍແກັສລວມ",
+    "gasOnly": "≈ {{usd}} ອາຍແກັສ",
+    "paidFromWallet": "{{amount}} ຈາກກະເປົາເງິນຂອງທ່ານ",
+    "paidFromWalletPlain": "ຈ່າຍຈາກກະເປົາເງິນຂອງທ່ານ",
+    "priceUnavailable": "ລາຄາບໍ່ສາມາດໃຊ້ໄດ້",
+    "confirmWithCost": "Mint ໃນ {{chain}} · {{cost}}",
+    "notAvailable": "ການຂຸດຄົ້ນບໍ່ແຮ່ໃນຕ່ອງໂສ້ນີ້ຍັງບໍ່ທັນມີເທື່ອ."
   }
 }

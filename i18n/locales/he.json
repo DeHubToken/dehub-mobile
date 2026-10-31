@@ -14556,5 +14556,20 @@
     "fingerprint": "טביעת אצבע",
     "exploreFirst": "קודם תסתובב",
     "codeNote": "נשלח לך קוד במייל, בלי סיסמה."
+  },
+  "mintChain": {
+    "title": "פוסט מנטה",
+    "subtitle": "בחר שרשרת. המחירים פעילים ומתעדכנים בכל דקה.",
+    "free": "חינם",
+    "gasCovered": "הגז מכוסה על ידי DeHub",
+    "feeIncludesGas": "≈{{usd}}, כולל דלק",
+    "gasIncluded": "כולל גז",
+    "gasOnly": "≈{{usd}} דלק",
+    "paidFromWallet": "{{amount}} מהארנק שלך",
+    "paidFromWalletPlain": "שולם מהארנק שלכם",
+    "priceUnavailable": "המחיר לא זמין",
+    "confirm": "נענע ב -{{chain}}",
+    "confirmWithCost": "מטבעה ב - {{chain}} · {{cost}}",
+    "notAvailable": "הטבעה בשרשרת זו אינה זמינה עדיין."
   }
 }

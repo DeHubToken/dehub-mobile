@@ -14606,5 +14606,18 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Pehle khoj karo",
     "codeNote": "Hum tumhe ek code bhejenge, password ki jarurat nai."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "एक चेन चुनौ। कीमतें लाइव हैं और हर मिनट अपडेट होथ।",
+    "free": "Free",
+    "gasCovered": "Gas covered by DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas included",
+    "gasIncluded": "Gas included",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWalletPlain": "तोर वॉलेट सॅं भुगतान भइल",
+    "priceUnavailable": "Price unavailable",
+    "confirm": "Mint on {{chain}}",
+    "notAvailable": "ماینٹنگ اُپر یہاں یہ ابھی تک دستیاب نہیں ہے۔"
   }
 }

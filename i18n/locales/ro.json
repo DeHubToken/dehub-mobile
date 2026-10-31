@@ -14566,5 +14566,20 @@
     "fingerprint": "Amprentă",
     "exploreFirst": "Explorează mai întâi",
     "codeNote": "Îți trimitem un cod pe e-mail, fără parolă."
+  },
+  "mintChain": {
+    "title": "Suport pentru mentă",
+    "subtitle": "Alege un lanț. Prețurile sunt valabile și se actualizează la fiecare minut.",
+    "free": "Gratuit",
+    "gasCovered": "Gaz acoperit de DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gaz inclus",
+    "gasIncluded": "Gaz inclus",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "{{amount}} din portofel",
+    "paidFromWalletPlain": "Plătit din portofel",
+    "priceUnavailable": "Preț indisponibil",
+    "confirm": "Mentă pe {{chain}}",
+    "confirmWithCost": "Mentă pe {{chain}} · {{cost}}",
+    "notAvailable": "Mentonarea acestui lanț nu este încă disponibilă."
   }
 }

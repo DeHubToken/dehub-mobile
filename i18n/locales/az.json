@@ -14552,5 +14552,19 @@
     "fingerprint": "Barmaq izi",
     "exploreFirst": "Əvvəlcə araşdırın",
     "codeNote": "Kodu sizə e-poçtla göndəririk, parol tələb olunmur."
+  },
+  "mintChain": {
+    "title": "Nanə yazısı",
+    "subtitle": "Zəncir seçin. Qiymətlər canlıdır və hər dəqiqə yenilənir.",
+    "free": "Pulsuz",
+    "gasCovered": "DeHub-un əhatə etdiyi qaz",
+    "feeIncludesGas": "≈ {{usd}}, qaz daxildir",
+    "gasIncluded": "Qaz daxildir",
+    "paidFromWallet": "{{amount}} cüzdanınızdan",
+    "paidFromWalletPlain": "Pul kisənizdən ödənilib",
+    "priceUnavailable": "Qiymət mövcud deyil",
+    "confirm": "Nanə {{chain}}",
+    "confirmWithCost": "Nanə {{chain}} · {{cost}}",
+    "notAvailable": "Bu zəncirdə mintinq hələ mövcud deyil."
   }
 }
