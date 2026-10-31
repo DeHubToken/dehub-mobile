@@ -2213,9 +2213,6 @@
     "global": "Mondial"
   },
   "features": {
-    "notFeasible": "Pas faisable",
-    "notFeasibleWhy": "Pourquoi :",
-    "noNotFeasible": "Rien ici",
     "prompts": "Propositions",
     "queued": "En attente",
     "promptPageTitle": "Demandes",

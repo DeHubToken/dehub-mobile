@@ -84,7 +84,6 @@ import {
   useFeatureRequest,
   useShippedFeatures,
   useInProgressFeatures,
-  useDeclinedFeatures,
   useFeatureCounts,
   useUserVotes,
   useVoteFeatureRequest,
@@ -112,7 +111,7 @@ const TITLE_MAX = 100;
 const DESC_MAX = 1000;
 const DEVICE_MAX = 300;
 
-type PageTab = "requests" | "shipping" | "shipped" | "declined";
+type PageTab = "requests" | "shipping" | "shipped";
 
 const DEHUB_GITHUB_URL = "https://github.com/DeHubToken";
 
@@ -149,7 +148,7 @@ const STATUS_I18N: Record<string, string> = {
   in_progress: "features.statusInProgress",
   completed: "features.statusCompleted",
   shipped: "features.shipped",
-  declined: "features.notFeasible",
+  declined: "features.statusDeclined",
 };
 
 /**
@@ -582,11 +581,6 @@ const FeatureCard: React.FC<{
         <View style={{ paddingTop: 4, gap: 8 }}>
           <Text style={styles.cardTitle}>{feature.title}</Text>
           {!!feature.description && feature.description !== feature.title && <Text style={styles.cardDesc}>{feature.description}</Text>}
-          {feature.status === "declined" && !!feature.status_note?.trim() && (
-            <Text style={styles.cardDesc}>
-              <Text style={{ fontWeight: "600" }}>{t("features.notFeasibleWhy", "Why:")}</Text> {feature.status_note.trim()}
-            </Text>
-          )}
 
           <Attachments feature={feature} />
 
@@ -827,7 +821,6 @@ export default function FeatureRequestsScreen() {
 
   const shipped = useShippedFeatures();
   const inProgress = useInProgressFeatures();
-  const declined = useDeclinedFeatures();
   const { data: counts } = useFeatureCounts();
   const { data: votes } = useUserVotes();
   const voteMutation = useVoteFeatureRequest();
@@ -869,10 +862,8 @@ export default function FeatureRequestsScreen() {
         ? (shipped.data ?? []).filter(matchesFilters)
         : tab === "shipping"
           ? (inProgress.data ?? []).filter(matchesFilters)
-          : tab === "declined"
-            ? (declined.data ?? []).filter(matchesFilters)
-            : requestItems,
-    [tab, shipped.data, inProgress.data, declined.data, requestItems, matchesFilters],
+          : requestItems,
+    [tab, shipped.data, inProgress.data, requestItems, matchesFilters],
   );
   const items = useMemo(
     () => (focusedRequest ? rawItems.filter((f) => f.id !== focusedRequest.id) : rawItems),
@@ -883,9 +874,6 @@ export default function FeatureRequestsScreen() {
   const openCount = counts?.open ?? requestItems.length;
   const shippedCount = shipped.data?.length ?? 0;
   const inProgressCount = inProgress.data?.length ?? 0;
-  const declinedCount = declined.data?.length ?? 0;
-  // Not feasible only takes a tab once something is on it.
-  const showDeclinedTab = declinedCount > 0 || tab === "declined";
 
   const handleVote = useCallback(
     (feature: FeatureRequest, voteType: 1 | -1) => {
@@ -917,17 +905,15 @@ export default function FeatureRequestsScreen() {
   const keyExtractor = useCallback((f: FeatureRequest) => f.id, []);
 
   const loading =
-    tab === "shipped" ? shipped.isLoading : tab === "shipping" ? inProgress.isLoading : tab === "declined" ? declined.isLoading : isLoading;
+    tab === "shipped" ? shipped.isLoading : tab === "shipping" ? inProgress.isLoading : isLoading;
   const refreshing =
     tab === "shipped"
       ? shipped.isRefetching
       : tab === "shipping"
         ? inProgress.isRefetching
-        : tab === "declined"
-          ? declined.isRefetching
-          : isRefetching;
+        : isRefetching;
   const onRefresh =
-    tab === "shipped" ? shipped.refetch : tab === "shipping" ? inProgress.refetch : tab === "declined" ? declined.refetch : refetch;
+    tab === "shipped" ? shipped.refetch : tab === "shipping" ? inProgress.refetch : refetch;
 
   const openSheet = () => {
     setTab("requests");
@@ -941,14 +927,13 @@ export default function FeatureRequestsScreen() {
    * three-digit badge measures ~91pt, so below 96 the icons come off rather
    * than let anything spill out of its tab.
    */
-  const tabWidth = (width - 64) / (showDeclinedTab ? 4 : 3);
+  const tabWidth = (width - 64) / 3;
   const showTabIcons = tabWidth >= 96;
 
   const TABS: { key: PageTab; label: string; icon?: React.ComponentProps<typeof Icon>["name"]; count: number }[] = [
     { key: "requests", label: t("features.prompts", "Prompts"), count: openCount },
     { key: "shipping", label: t("features.queued", "Queued"), icon: "Loader", count: inProgressCount },
     { key: "shipped", label: t("features.shipped"), icon: "CircleCheck", count: shippedCount },
-    ...(showDeclinedTab ? [{ key: "declined" as PageTab, label: t("features.notFeasible", "Not feasible"), count: 0 }] : []),
   ];
 
   // A search or chip that matches nothing must not read as the board having
@@ -961,10 +946,6 @@ export default function FeatureRequestsScreen() {
       ? isFiltering
         ? noMatchCopy
         : { title: t("features.noShippedYet"), body: t("features.shippedAppearHere") }
-      : tab === "declined"
-        ? isFiltering
-          ? noMatchCopy
-          : { title: t("features.noNotFeasible", "Nothing here"), body: "" }
       : tab === "shipping"
         ? isFiltering
           ? noMatchCopy
