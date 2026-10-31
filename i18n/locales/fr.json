@@ -8402,6 +8402,9 @@
     },
     "brand": {
       "addColor": "Ajouter une couleur de marque",
+      "dehubApplied": "Marque DeHub appliquée à {{count}} calques.",
+      "dehubApply": "Utiliser la marque DeHub",
+      "dehubHint": "Couleurs officielles DeHub, polices Exo et Inter et logo DeHub, en un clic.",
       "addLogo": "Ajouter un logo",
       "applied": "Marque appliquée à {{count}} calques.",
       "apply": "Appliquer la marque",

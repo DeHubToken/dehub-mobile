@@ -10574,6 +10574,9 @@
     },
     "brand": {
       "addColor": "Adicionar cor da marca",
+      "dehubApplied": "Marca DeHub aplicada a {{count}} camadas.",
+      "dehubApply": "Usar a marca DeHub",
+      "dehubHint": "Cores oficiais da DeHub, fontes Exo e Inter e o logo da DeHub, em um clique.",
       "addLogo": "Adicionar logotipo",
       "applied": "Marca aplicada a {{count}} camadas.",
       "apply": "Aplicar marca",

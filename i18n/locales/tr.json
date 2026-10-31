@@ -8426,6 +8426,9 @@
     },
     "brand": {
       "addColor": "Marka rengi ekle",
+      "dehubApplied": "DeHub markası {{count}} katmana uygulandı.",
+      "dehubApply": "DeHub markasını kullan",
+      "dehubHint": "Resmi DeHub renkleri, Exo ve Inter yazı tipleri ve DeHub logosu tek tıkla.",
       "addLogo": "Logo ekle",
       "applied": "Marka {{count}} katmana uygulandı.",
       "apply": "Markayı uygula",
