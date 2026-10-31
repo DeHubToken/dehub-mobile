@@ -8,6 +8,7 @@
  * pays only the gas.
  */
 import React, { useEffect, useState } from "react";
+import { getDefaultChainId } from '../../libs/defaultChain';
 import { ActivityIndicator, Image, Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -66,7 +67,7 @@ export default function MintChainSheet({ visible, onClose, defaultChainId, isMin
   const { t } = useTranslation();
   const rootStyle = useThemeRootStyle();
   const chains = supportedChainIdsForMinting as number[];
-  const fallback = chains.includes(Number(defaultChainId)) ? Number(defaultChainId) : chains[0];
+  const fallback = chains.includes(Number(defaultChainId)) ? Number(defaultChainId) : (chains.includes(getDefaultChainId()) ? getDefaultChainId() : chains[0]);
   const [selected, setSelected] = useState(fallback);
   const [sessionSponsored, setSponsored] = useState(false);
   const sponsored = sponsoredOverride ?? sessionSponsored;

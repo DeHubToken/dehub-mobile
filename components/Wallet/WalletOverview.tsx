@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { getDefaultChainId } from '../../libs/defaultChain';
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -257,7 +258,7 @@ function SendTokenSheet({ token, owner, onClose, onSent }: { token: WalletToken;
 
 function ImportTokenSheet({ onClose, onImported }: { onClose: () => void; onImported: () => void }) {
   const { t } = useTranslation();
-  const [chain, setChain] = useState('8453');
+  const [chain, setChain] = useState(() => String(getDefaultChainId()));
   const [address, setAddress] = useState('');
   const [token, setToken] = useState<TokenMetadata | null>(null);
   const [busy, setBusy] = useState(false);

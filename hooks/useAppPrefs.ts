@@ -19,6 +19,7 @@ import { isAppThemeName, type AppThemeName } from '../theme/colors';
 import { isPostLandingStyle, type PostLandingStyle } from '../libs/postLandingStyle';
 import { claimMinimalLaunch } from '../libs/minimalBootGuard';
 import { bootRevealed } from '../libs/bootReveal';
+import { getDefaultChainId, loadDefaultChains, subscribeDefaultChain } from '../libs/defaultChain';
 
 /** Web key names — see dehubweb src/contexts/*.tsx and src/hooks/use-buy-bot-hidden.ts. */
 const KEYS = {
@@ -113,7 +114,9 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   quietHoursStart: 22,
   quietHoursEnd: 8,
   autoSaveDrafts: true,
-  postingChainId: 8453,
+  // Until Settings stores a pick: BNB, or Base for a wallet that already held
+  // Base tokens (libs/defaultChain).
+  postingChainId: 56,
   hideWatched: false,
   // Off by default: skipping a sponsor read is a decision about someone
   // else's income, so it is one the viewer makes deliberately rather than one
@@ -148,9 +151,20 @@ function parseNum(raw: string | null, fallback: number): number {
 }
 
 let initialised = false;
+/** True once a posting chain was stored by Settings; then the default never moves it. */
+let postingChainExplicit = false;
+function followDefaultChain() {
+  if (postingChainExplicit) return;
+  const next = getDefaultChainId();
+  if (cache.postingChainId === next) return;
+  cache = { ...cache, postingChainId: next };
+  emit();
+}
 function init() {
   if (initialised) return;
   initialised = true;
+  subscribeDefaultChain(followDefaultChain);
+  void loadDefaultChains();
 
   AsyncStorage.multiGet(Object.values(KEYS))
     .then((entries) => {
@@ -185,7 +199,11 @@ function init() {
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
-        postingChainId: parseNum(get('postingChainId') ?? String(DEFAULT_APP_PREFS.postingChainId), DEFAULT_APP_PREFS.postingChainId),
+        postingChainId: (() => {
+          const stored = get('postingChainId');
+          postingChainExplicit = stored !== null && Number.isFinite(Number(stored));
+          return postingChainExplicit ? Number(stored) : getDefaultChainId();
+        })(),
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),
@@ -235,6 +253,7 @@ export function getAppPrefs(): AppPrefs {
 
 export function setAppPref<K extends AppPrefKey>(key: K, value: AppPrefs[K]) {
   init();
+  if (key === 'postingChainId') postingChainExplicit = true;
   cache = { ...cache, [key]: value };
   emit();
   const serialised = value !== null && typeof value === 'object' ? JSON.stringify(value) : String(value);
