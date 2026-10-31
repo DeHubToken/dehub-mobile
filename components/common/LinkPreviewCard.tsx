@@ -19,6 +19,7 @@ import { runWhenSettled } from '../../libs/run-when-settled';
 import { Image } from 'expo-image';
 import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
+import { reportPostEvent } from '../../services/post-stats.service';
 import { parseDehubLink } from '../../libs/dehub-links';
 import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, subscribeLinkPreviewRefresh, type LinkPreviewData } from '../../libs/link-preview';
 import { useAppTheme } from '../../context/ThemeContext';
@@ -58,9 +59,11 @@ interface LinkPreviewCardProps {
    * passes a fixed width the same way it does for the asset card.
    */
   style?: StyleProp<ViewStyle>;
+  /** The post this card sits in; a tap counts as a link click in its stats. */
+  statsTokenId?: string | number | null;
 }
 
-const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style }) => {
+const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style, statsTokenId }) => {
   // The URL regex is a wide unicode pattern; run it per caption, not per render.
   const url = useMemo(() => firstExternalUrl(text), [text]);
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
@@ -130,11 +133,11 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       activeOpacity={0.85}
       accessibilityRole={app ? 'button' : 'link'}
       style={[styles.card, isMinimal && minimalFlat, skin?.material === 'glass' && skin.card, skin?.material === 'glass' && showImage && { flexDirection: 'row', alignItems: 'center' }, style]}
-      onPress={() =>
-        app
-          ? navigation.navigate(ScreenNames.MiniApp, { slug: app.slug, from: 'feed', url: preview.url })
-          : openInApp(preview.url)
-      }
+      onPress={() => {
+        reportPostEvent(statsTokenId, 'link');
+        if (app) navigation.navigate(ScreenNames.MiniApp, { slug: app.slug, from: 'feed', url: preview.url });
+        else openInApp(preview.url);
+      }}
     >
       {showImage && (
         <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage, skin?.material === 'glass' && { width: 112, height: 112, aspectRatio: 1 }]} contentFit="cover" onError={() => setFailedImage(preview.image)} />

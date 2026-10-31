@@ -43,6 +43,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { DhbCoin } from "../components/common/DhbCoin";
 import TranscriptSection from "../components/Post/TranscriptSection";
 import PostReactorsSection from "../components/Post/PostReactorsSection";
+import PostStatsSection from "../components/Post/stats/PostStatsSection";
 import { setPostStartTime } from "../libs/post-start-time";
 import { Image } from "expo-image";
 import { getTokenHolders } from "../libs/token-holders";
@@ -307,6 +308,9 @@ export default function PostInfoScreen() {
             </>
           )}
         </Section>
+
+        {/* The creator's own stats: reach, badges, watch time, signed in vs out */}
+        {isOwner && !!tokenId && !isLive && <PostStatsSection tokenId={tokenId} />}
 
         {isLive && (
           <Section title={t("postInfo.streamInfo")}>

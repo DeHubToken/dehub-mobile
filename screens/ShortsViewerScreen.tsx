@@ -186,6 +186,7 @@ import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 import { useTranslation as useCopy } from "react-i18next";
 import { hideDislikedPost, restoreDislikedPost } from "../libs/disliked-posts-store";
+import { trackPlayerWatchTime } from "../libs/watch-time";
 
 
 
@@ -538,6 +539,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const isLooping = useMediaLooping();
   useEffect(() => { try { player.loop = !!photoMedia || isLooping; } catch {} }, [player, photoMedia, isLooping]);
+  // Watch time for the creator's stats. A photo short's soundtrack is not a watch.
+  useEffect(() => trackPlayerWatchTime(player, photoMedia ? null : tokenId), [player, photoMedia, tokenId]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
   // Android draws a TextureView video inside the app's own frame, so every
