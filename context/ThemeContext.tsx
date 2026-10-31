@@ -15,6 +15,7 @@ import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 import { canvasPageBackground } from '../theme/pageBackground';
 import { themeAccent, tintSkin, type Rgb } from '../theme/themeColor';
 import { setNavigationBarDarkIcons } from '../modules/system-bars';
+import { HALLOWEEN_THEME, isHalloweenDay, msUntilLocalMidnight } from '../libs/halloweenOverride';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setThemePass } = require('../libs/jsx/shape') as {
@@ -227,7 +228,23 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       setDarkHolds((n) => n - 1);
     };
   }, []);
-  const themeChoice: AppThemeName = darkHolds > 0 && prefs.theme === SYSTEM_LIGHT ? 'system' : prefs.theme;
+  // Halloween: Horror paints for everyone until local midnight, without
+  // touching the saved pick. Re-checked at midnight and on every foreground.
+  const [halloweenDay, setHalloweenDay] = useState(() => isHalloweenDay());
+  useEffect(() => {
+    if (!halloweenDay) return;
+    const recheck = () => { if (!isHalloweenDay()) setHalloweenDay(false); };
+    const timer = setTimeout(recheck, msUntilLocalMidnight());
+    const subscription = AppState?.addEventListener?.('change', state => {
+      if (state === 'active') recheck();
+    });
+    return () => {
+      clearTimeout(timer);
+      subscription?.remove();
+    };
+  }, [halloweenDay]);
+  const pickedTheme: AppThemeName = halloweenDay && !prefs.halloweenOptOut ? HALLOWEEN_THEME : prefs.theme;
+  const themeChoice: AppThemeName = darkHolds > 0 && pickedTheme === SYSTEM_LIGHT ? 'system' : pickedTheme;
   const theme = effectiveTheme(themeChoice);
   const isLight = themeChoice === SYSTEM_LIGHT;
   // Screens are written against the dark palette and System Light turns its
@@ -304,6 +321,8 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [isLight]);
 
   const setTheme = useCallback((nextTheme: AppThemeName) => {
+    // A pick during Halloween means they want their own look back today.
+    if (isHalloweenDay() && !getAppPrefs().halloweenOptOut) setAppPref('halloweenOptOut', true);
     setAppPref('theme', nextTheme);
   }, []);
 
