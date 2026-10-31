@@ -32,6 +32,7 @@ import {
   getFollowRequests,
   acceptFollowRequest,
   rejectFollowRequest,
+  getAccount,
 } from '../services/user.service';
 import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
@@ -69,7 +70,7 @@ interface FollowRequest {
 const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const { t: _copy } = _useCopy();
   const user = useUser();
-  const { patchUser, refreshUser } = useAuthActions();
+  const { patchUser } = useAuthActions();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -180,6 +181,40 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}|${customs.defaultProfileTab}|${customs[DISLIKES_VISIBILITY_KEY]}`;
   }, [user, customs]);
 
+  /**
+   * The user held in memory comes from the copy saved on the phone at the last
+   * sign-in, so on its own it can be days old. This screen must show what the
+   * server has right now: a switch showing OFF while the account was ON is how
+   * tips to dehub.io/camp were refused (2026-10-31). Read the account fresh
+   * every time the screen opens and keep the loader up until it answers.
+   */
+  const [synced, setSynced] = useState(false);
+  const syncFromServer = useCallback(async () => {
+    const key = (user as any)?.username || (user as any)?.walletAddress || (user as any)?.address;
+    if (!key) return;
+    try {
+      const res: any = await getAccount(key);
+      const core = res?.data?.result || res?.result || null;
+      if (!core) throw new Error('empty account');
+      await patchUser(() => ({
+        hideFollowers: core.hideFollowers === true,
+        isPrivate: core.isPrivate === true,
+        // Absent on the server means off, so never keep an older cached value.
+        hideBadgeAndBalance: core.hideBadgeAndBalance === true,
+        ...(core.customs && typeof core.customs === 'object' ? { customs: core.customs } : {}),
+      } as any));
+      setSynced(true);
+    } catch (error) {
+      logger.warn('Privacy settings: fresh account read failed', error);
+      setLoadTimedOut(true);
+    }
+  }, [user, patchUser]);
+  const userAddressKey = (user as any)?.walletAddress || (user as any)?.address || '';
+  useEffect(() => {
+    if (userAddressKey) void syncFromServer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddressKey]);
+
   useEffect(() => {
     if (saving) return;
     setHideFollowers(initial.hideFollowers);
@@ -191,8 +226,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setShowOnline(initial.showOnline);
     setShowDislikes(initial.showDislikes);
     setDefaultProfileTab(initial.defaultProfileTab);
-    if (user) setLoading(false);
-  }, [userKey, saving]);
+    if (user && synced) setLoading(false);
+  }, [userKey, saving, synced]);
 
   useEffect(() => {
     if (!loading) return;
@@ -203,8 +238,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const retryLoad = useCallback(() => {
     setLoadTimedOut(false);
     setLoadAttempt((n) => n + 1);
-    refreshUser().catch(() => {});
-  }, [refreshUser]);
+    void syncFromServer();
+  }, [syncFromServer]);
 
   const optimisticPatch = useCallback(
     (updates: Record<string, any>) => {
@@ -459,6 +494,17 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 </View>
                 <CustomSwitch value={hideBadgeAndBalance} onValueChange={handleTogglePrivateBalance} disabled={saving} />
               </View>
+              {hideBadgeAndBalance && (
+                <View
+                  accessibilityRole="alert"
+                  className="mx-4 mb-2 rounded-xl px-4 py-3"
+                  style={{ borderWidth: 1, borderColor: 'rgba(239,68,68,0.3)', backgroundColor: 'rgba(239,68,68,0.1)' }}
+                >
+                  <Text className="text-theme-neutrals-200 text-xs font-medium leading-5">
+                    {t('settings.tipsOffNote')}
+                  </Text>
+                </View>
+              )}
               <SettingsAnchor id="show-online">
                 <View className="px-4 py-2 flex-row items-center justify-between">
                   <View className="flex-row items-center flex-1 pr-3">

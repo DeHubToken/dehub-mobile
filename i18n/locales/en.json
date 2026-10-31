@@ -1200,6 +1200,7 @@
     "usernameAvailable": "Username is available",
     "hideBadgeAndBalance": "Hide badge and balance",
     "hideBadgeAndBalanceDesc": "Hides financial details and disables sends and tips to you.",
+    "tipsOffNote": "Tips and sends to you are off while this is on. Turn it off to get tipped again.",
     "onChainPublicWarning": "On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled.",
     "languageLoadFailed": "Couldn't switch language. Try again.",
     "leftHanded": "Left-handed mode",
