@@ -14,6 +14,9 @@ import type { AppThemeName } from './colors';
  */
 export interface ThemeSkin {
   material?: 'glass';
+  /** How much of the theme colour tintSkin mixes in, and the card veil's opacity.
+   *  Horror keeps its cards black iron with only a breath of crimson. */
+  tint?: { pill: number; card: number; cardAlpha: number };
   /** Web runs a live canvas behind this theme; every screen shows it. */
   backdrop: true;
   /** Page colour. Page fills become a see-through veil of it (libs/jsx/shape.js). */
@@ -121,7 +124,13 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
   lavalamp: { ...glass, page: '#120704' },
   winter: { ...glass, page: '#05070A' },
   island: { ...glass, page: '#1A2A4A' },
-  horror: { ...glass, page: '#0B0C0D' },
+  horror: {
+    ...glass,
+    page: '#070506',
+    tint: { pill: 0.08, card: 0.07, cardAlpha: 0.86 },
+    card: { ...glass.card, backgroundColor: 'rgba(12,9,10,0.86)', borderColor: 'rgba(214,40,52,0.30)', borderTopColor: 'rgba(255,140,120,0.22)' },
+    barBorder: { ...glass.barBorder, borderColor: 'rgba(214,40,52,0.30)' },
+  },
 
   // Terminal: black panels ringed in rain green, square corners, monospace.
   hacker: {
