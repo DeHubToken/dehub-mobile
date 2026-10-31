@@ -18,9 +18,17 @@ test('a page drag never starts on a sideways list, field or slider', () => {
   const node = (nodeName: string, parentNode: object | null = null) => ({ nodeName, parentNode });
   const page = node('RN:View', node('RN:ScrollView', node('RN:View')));
   expect(pageSwipeAllowed(node('RN:Paragraph', page))).toBe(true);
-  expect(pageSwipeAllowed(node('RN:Image', node('RN:AndroidHorizontalScrollView', page)))).toBe(false);
+  const row = { nodeName: 'RN:AndroidHorizontalScrollView', parentNode: page, scrollLeft: 0 };
+  expect(pageSwipeAllowed(node('RN:Image', row))).toBe(true);
+  row.scrollLeft = 120;
+  expect(pageSwipeAllowed(node('RN:Image', row))).toBe(false);
+  const shell = node('RN:ViewPager');
+  const boundary = node('RN:View', shell);
+  expect(pageSwipeAllowed(node('RN:Paragraph', boundary), boundary)).toBe(true);
+  expect(pageSwipeAllowed(node('RN:Paragraph', boundary))).toBe(false);
   expect(pageSwipeAllowed(node('RN:AndroidTextInput', page))).toBe(false);
   expect(pageSwipeAllowed(42)).toBe(false);
+  expect(pageSwipeAllowed({})).toBe(true);
   expect(pageSwipeAllowed(null)).toBe(false);
 });
 
