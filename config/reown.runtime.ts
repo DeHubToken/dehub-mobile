@@ -120,6 +120,8 @@ if (!projectId || !chains) {
       projectId,
       metadata,
       chains,
+      // New WalletConnect sessions start on BNB Chain.
+      defaultChain: chains.find((c) => c.chainId === 56),
       config,
       enableAnalytics: false,
       includeWalletIds: WEB_PARITY_WALLET_IDS,
