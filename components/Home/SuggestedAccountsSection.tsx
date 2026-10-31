@@ -322,7 +322,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
         style={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8 }}
       >
         <Text className="text-white font-bold" style={{ fontSize: 16, letterSpacing: -0.2 }}>
-          {t("copy.036cfd952896", { defaultValue: "Who to follow" })}
+          {t("copy.a94bfc8a15e8", { defaultValue: "Follow suggestions" })}
         </Text>
         <TouchableOpacity
           onPress={handleDismissAll}
