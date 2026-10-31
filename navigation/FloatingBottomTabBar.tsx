@@ -675,16 +675,18 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       opacity: o > 0.999 ? 1 : o,
     };
   });
-  const handleStyle = useAnimatedStyle(() => ({ opacity: dragSlide.value * 0.55 }));
+  // Faint on purpose: a hint that the bar can come back, not a control.
+  const handleStyle = useAnimatedStyle(() => ({ opacity: dragSlide.value * 0.3 }));
 
   return (
     <>
     {/* Only there while the bar is put away, so it never eats taps meant for
-        the page. Sits above the system's own swipe-home strip. */}
+        the page. The handle itself sits flush on the screen's bottom edge
+        rather than floating above the inset. */}
     {draggedAway && (
       <GestureDetector gesture={bringBack}>
         <View
-          style={[styles.revealZone, { bottom: 0, height: insets.bottom + 56, paddingBottom: insets.bottom + 6 }]}
+          style={[styles.revealZone, { bottom: 0, height: insets.bottom + 56 }]}
           accessibilityRole="button"
           accessibilityLabel={_copyNav("copy.3db65f8c2a7d", { defaultValue: "Navigation" })}
         >
@@ -783,12 +785,13 @@ const styles = StyleSheet.create({
     height: 56,
     alignItems: "center",
     justifyContent: "flex-end",
-    paddingBottom: 8,
   },
+  // A small tab growing out of the bottom edge: rounded on top only.
   revealHandle: {
-    width: 44,
-    height: 5,
-    borderRadius: 3,
+    width: 36,
+    height: 3,
+    borderTopLeftRadius: 2,
+    borderTopRightRadius: 2,
     backgroundColor: "#fff",
   },
   revealHandleLight: {
