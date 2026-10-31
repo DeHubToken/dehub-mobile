@@ -62,8 +62,14 @@ export const authColors = {
   primary: "#F4F4F5",
   primaryPressed: "#E4E4E7",
   onPrimary: "#09090B",
-  /** Inputs sit a step below buttons so a field never reads as a button. */
-  field: "rgba(255,255,255,0.06)",
+  /**
+   * Inputs sit a step below buttons so a field never reads as a button. A dark
+   * well, not a white wash: the theme control pass (libs/jsx/controls.js)
+   * repaints neutral buttons with a white wash and rim of their own, and a
+   * washed field came out as the same box, so the unlock sheet read as two
+   * inputs with the reveal eye looking like a button inside one of them.
+   */
+  field: "rgba(0,0,0,0.35)",
   fieldBorder: "rgba(255,255,255,0.14)",
   label: "#FFFFFF",
   muted: "#A6A9AC",
