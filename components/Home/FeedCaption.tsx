@@ -8,6 +8,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
 import { openInApp } from "../../libs/links.utils";
+import { reportPostEvent } from "../../services/post-stats.service";
 import { hasValidTLD } from "../../libs/tlds";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
@@ -109,6 +110,8 @@ interface FeedCaptionProps {
   variant?: "default" | "media" | "large" | "portrait";
   /** Smaller headline cap when the portrait card fits a wide phone. */
   compactPortrait?: boolean;
+  /** The post this caption belongs to; a link tap counts in its stats. */
+  statsTokenId?: string | number | null;
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -133,6 +136,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   fullContent = false,
   showCategories = true,
   flagged = false,
+  statsTokenId,
   resetKey,
   variant = "default",
   compactPortrait = false,
@@ -173,8 +177,9 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   }, [onCategoryPress]);
 
   const handleOpenLink = useCallback((url: string) => {
+    reportPostEvent(statsTokenId, "link");
     openInApp(url);
-  }, []);
+  }, [statsTokenId]);
 
   const handleMentionPress = useCallback((username: string) => {
     showUserProfile(username);

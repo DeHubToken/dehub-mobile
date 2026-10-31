@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { Linking, Pressable, Share, StyleSheet, Text, View } from "react-native";
 import { getShareRefCode, shareWithRef, withShareRef } from "../../libs/shareRef";
 import { track } from "../../libs/analytics";
 import GlassModal from "../ui/GlassModal";
@@ -11,6 +11,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { toastSuccess } from "../../libs/toast";
 import { postEmbedCode } from "../../libs/embed-code";
+import { reportPostEvent } from "../../services/post-stats.service";
 
 const TEXT = "#F4F4F5";
 const MUTED = "#9A9AA2";
@@ -98,6 +99,9 @@ function RepostShareSheetComponent({
   const { skin } = useAppTheme();
   const radius = skin?.square ? 0 : 12;
 
+  // Every way out of this sheet counts as a share in the creator's stats.
+  const reportShare = useCallback(() => reportPostEvent(shareUrl.match(/\/post\/(\d+)/)?.[1], "share"), [shareUrl]);
+
   const later = useCallback((fn: () => void) => {
     onClose();
     setTimeout(fn, 300);
@@ -107,13 +111,16 @@ function RepostShareSheetComponent({
     onClose();
     Linking.openURL(shareTargetUrl(target, withShareRef(shareUrl), shareText)).catch(() => {});
     track("share", { kind: "post", channel: target, has_ref: !!getShareRefCode() });
-  }, [onClose, shareUrl, shareText]);
+    reportShare();
+  }, [onClose, shareUrl, shareText, reportShare]);
 
   const nativeShare = useCallback(() => {
     later(() => {
-      shareWithRef({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }, undefined, "post").catch(() => {});
+      shareWithRef({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }, undefined, "post")
+        .then((result) => { if (result.action === Share.sharedAction) reportShare(); })
+        .catch(() => {});
     });
-  }, [later, shareUrl, shareText]);
+  }, [later, shareUrl, shareText, reportShare]);
 
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom" scrollable maxHeight="80%" blurIntensity={50}>
@@ -165,6 +172,7 @@ function RepostShareSheetComponent({
             radius={radius}
             onPress={() => {
               onCopyLink();
+              reportShare();
               onClose();
             }}
           />
