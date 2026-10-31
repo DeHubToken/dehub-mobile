@@ -241,14 +241,14 @@ const RESTORE_ZONE_BOTTOM = 0.85;
 // A tap outside it hides or shows the buttons instead.
 const PAUSE_ZONE_START = 1 / 3;
 const PAUSE_ZONE_END = 2 / 3;
-// Swipe back (Android): a drag that starts this close to the left edge and
-// runs right pulls the viewer off to the right, following the finger, and
-// leaves it on release if it is on its way out (libs/swipe-back). Wider than
-// web's EDGE_SWIPE_ZONE_PX: on gesture-navigation phones the system keeps
-// roughly the first 24dp for its own back, so the band past that has to be
-// wide enough to land in without aiming.
-const EDGE_BACK_ZONE = 44;
-const EDGE_BACK_CLAIM = 12;
+// Swipe back (Android): a drag right pulls the viewer off to the right,
+// following the finger, and leaves it on release if it is on its way out
+// (libs/swipe-back).
+// The back drag starts anywhere on the clip, like the page-wide back drag on
+// every other screen. It claims after 20pt sideways, so the photo pager
+// (15pt) still turns photos and a vertical flick (12pt) still pages.
+const EDGE_BACK_CLAIM = 20;
+const EDGE_BACK_FAIL_Y = 12;
 const EDGE_BACK_ENABLED = Platform.OS === "android";
 /** Corner radius of the in-app mini player the drag-down lands in. */
 const MINI_RADIUS = 10;
@@ -1717,7 +1717,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [navigation]);
 
   /**
-   * Swipe back from the left edge. iOS already has the stack's own edge swipe;
+   * Swipe back by dragging right. iOS already has the stack's own edge swipe;
    * Android only has the system gesture, which button-navigation phones lack.
    * Sideways travel only: a vertical move fails it at once and the pager (or
    * the drag down into the mini player) keeps the flick, and it never claims a
@@ -1731,10 +1731,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
    */
   const makeEdgeBack = useCallback(() => Gesture.Pan()
     .enabled(EDGE_BACK_ENABLED && isActive && !showComments && !screenshotMode)
-    .hitSlop({ left: 0, width: EDGE_BACK_ZONE })
     .activeOffsetX(EDGE_BACK_CLAIM)
-    .failOffsetX(-EDGE_BACK_CLAIM)
-    .failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])
+    .failOffsetX(-EDGE_BACK_FAIL_Y)
+    .failOffsetY([-EDGE_BACK_FAIL_Y, EDGE_BACK_FAIL_Y])
     .maxPointers(1)
     .onStart(() => {
       'worklet';
