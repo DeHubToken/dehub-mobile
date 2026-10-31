@@ -43,11 +43,12 @@ describe('video gesture wiring', () => {
     expect(viewer.match(/pointerEvents=\{chromeLive \? "box-none" : "none"\}/g)?.length).toBe(2);
   });
 
-  it('leaves shorts on a sideways swipe from the left edge', () => {
+  it('leaves shorts on a sideways drag right from anywhere on the clip', () => {
     const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
 
-    expect(viewer).toContain('.hitSlop({ left: 0, width: EDGE_BACK_ZONE })');
-    expect(viewer).toContain('.failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])');
+    expect(viewer).not.toContain('EDGE_BACK_ZONE');
+    expect(viewer).toContain('.activeOffsetX(EDGE_BACK_CLAIM)');
+    expect(viewer).toContain('.failOffsetY([-EDGE_BACK_FAIL_Y, EDGE_BACK_FAIL_Y])');
     expect(viewer).toContain('Gesture.Race(makeEdgeBack(), hidePan)');
   });
 
