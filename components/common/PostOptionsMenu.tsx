@@ -40,6 +40,7 @@ import { toastSuccess, toastError, toastInfo } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
+import MintChainSheet from "./MintChainSheet";
 import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
 import { useDubSettings, setDubSettings, checkDubbable } from "../../hooks/useVideoDub";
 import { baseLang } from "../../hooks/useVoiceDub";
@@ -307,6 +308,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
   const [showSegments, setShowSegments] = useState(false);
   const [showPoll, setShowPoll] = useState(false);
+  const [showMintSheet, setShowMintSheet] = useState(false);
 
   /**
    * The sheet hides itself for a sub-modal instead of calling onClose().
@@ -735,11 +737,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   label={t("upload.mintPost")}
                   sublabel={t("postOptions.mintPostDesc")}
                   loading={isMinting}
-                  onPress={() => {
-                    mintExisting(Number(tokenId), postChainId ?? defaultChainId).then(
-                      (ok) => { if (ok) onClose(); },
-                    );
-                  }}
+                  onPress={() => openSubModal(() => setShowMintSheet(true))}
                 />
               )}
               <OptionRow
@@ -831,6 +829,20 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           visible={showSegments}
           tokenId={tokenId}
           onClose={() => { setShowSegments(false); closeAll(); }}
+        />
+      )}
+
+      {showMintSheet && tokenId != null && (
+        <MintChainSheet
+          visible={showMintSheet}
+          defaultChainId={postChainId ?? defaultChainId}
+          isMinting={isMinting}
+          onClose={() => { setShowMintSheet(false); closeAll(); }}
+          onConfirm={(chainId) => {
+            mintExisting(Number(tokenId), postChainId ?? defaultChainId, chainId).then((ok) => {
+              if (ok) { setShowMintSheet(false); closeAll(); }
+            });
+          }}
         />
       )}
 
