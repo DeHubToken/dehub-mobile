@@ -1,0 +1,45 @@
+export interface LayerSubmission { id: string; phase: 'prepared' | 'paying' | 'paid' | 'submitted'; txHash?: string; sourceDigest?: string }
+export interface LayerSubmissionStorage { read(): Promise<LayerSubmission | null>; write(value: LayerSubmission): Promise<void> }
+export interface LayerAttemptTerminal { id:string; status:string; paymentRestored?:boolean; delivered?:boolean }
+export function latestReviewedLayerJob<T extends {id:string}>(jobs:T[], reviewedId:string): T {
+  if(!jobs[0] || jobs[0].id!==reviewedId)throw new Error('Collect the current job before starting another attempt');
+  return jobs[0];
+}
+export async function beginNewLayerAttempt(storage: LayerSubmissionStorage & { archive(value:LayerSubmission):Promise<void> }, terminal:LayerAttemptTerminal, sourceDigest:string, uuid:()=>string) {
+  if (!(terminal.status==='succeeded' && terminal.delivered || ['failed','canceled','cancelled'].includes(terminal.status) && terminal.paymentRestored===true)) throw new Error('Collect this job before starting another attempt');
+  const saved = await storage.read();
+  if (saved && (saved.id!==terminal.id || saved.sourceDigest!==sourceDigest || saved.phase==='paying')) throw new Error('An unresolved layer payment is still active');
+  if (saved) await storage.archive(saved);
+  const next:LayerSubmission = {id:uuid(),phase:'prepared',sourceDigest};
+  await storage.write(next); return next;
+}
+const admissions = new Set<string>();
+export async function withLayerAdmission<T>(key: string, action: () => Promise<T>): Promise<T> {
+  if (admissions.has(key)) throw new Error('This image already has a payment in progress');
+  admissions.add(key);
+  try { return await action(); } finally { admissions.delete(key); }
+}
+/** The wallet boundary is ambiguous after interruption: only a persisted receipt permits submission. */
+export async function resumeLayerSubmission(storage: LayerSubmissionStorage, actions: {
+  uuid(): string; sourceDigest?: string; current(): boolean; beforePay?(): Promise<void>; pay(): Promise<string>; submit(id: string, txHash: string, sourceDigest?: string): Promise<void>;
+}) {
+  let saved = await storage.read();
+  if (!saved) { saved = { id: actions.uuid(), phase: 'prepared', sourceDigest: actions.sourceDigest }; await storage.write(saved); }
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(saved.id) || !['prepared','paying','paid','submitted'].includes(saved.phase) ||
+    (saved.txHash !== undefined && saved.txHash !== 'credits' && !/^0x[a-f0-9]{64}$/i.test(saved.txHash)) || (['paid','submitted'].includes(saved.phase) && !saved.txHash) || (saved.sourceDigest !== undefined && !/^[a-f0-9]{64}$/.test(saved.sourceDigest))) throw new Error('Saved layer payment needs recovery');
+  if (saved.sourceDigest !== actions.sourceDigest) throw new Error('Review the saved source before continuing this payment');
+  if (!actions.current()) throw new Error('The selected account or image changed');
+  if (saved.phase === 'paying') throw new Error('Payment confirmation was interrupted. Collect the saved job before paying again.');
+  if (!saved.txHash) {
+    saved = { ...saved, phase: 'paying' }; await storage.write(saved);
+    try {
+      await actions.beforePay?.();
+      if (!actions.current()) { await storage.write({ ...saved, phase:'prepared' }); return; }
+    } catch (error) { await storage.write({ ...saved, phase:'prepared' }); throw error; }
+    const txHash = await actions.pay();
+    saved = { ...saved, phase: 'paid', txHash }; await storage.write(saved);
+  }
+  if (!actions.current()) return;
+  await actions.submit(saved.id, saved.txHash!, saved.sourceDigest);
+  await storage.write({ ...saved, phase: 'submitted' });
+}

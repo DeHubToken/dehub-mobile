@@ -1,0 +1,122 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
+import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { ScreenNames } from '../../navigation/ScreenNames';
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
+import { useJobPayment, useJobQuote } from '../../hooks/useAiPayment';
+import { quoteAiJob } from '../../services/ai.service';
+import { libraryCall, type CreatorAsset } from '../../services/creator.service';
+import { layerJobs, collectLayers, submitLayers, type LayerJob } from '../../services/image-layers.service';
+import { exportImageLayers } from '../../libs/editor/imageLayers';
+import type { ImageLayerSet, LayerChoice } from '../../libs/editor/imageLayersContract';
+import { beginNewLayerAttempt, latestReviewedLayerJob, resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
+
+const request = { kind: 'tool' as const, modelId: 'qwen-image-layered', quantity: 1 };
+export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: string; source: CreatorAsset; onOpenEditor(): void }) {
+  const { t } = useTranslation(), navigation = useNavigation<any>();
+  const { payForJob } = useJobPayment(DIGITAL_PURCHASES_ENABLED);
+  const [jobs, setJobs] = useState<LayerJob[]>([]), [set, setSet] = useState<ImageLayerSet | null>(null);
+  const [choices, setChoices] = useState<LayerChoice[]>([]), [busy, setBusy] = useState(true), [error, setError] = useState('');
+  const [preparedSource,setPreparedSource] = useState<{sourceDigest:string;sourcePreviewUrl:string} | null>(null);
+  const [newAttempt,setNewAttempt] = useState(false);
+  const quote = useJobQuote(request, !source.layerSetId && !!preparedSource && DIGITAL_PURCHASES_ENABLED);
+  const preparationKey = `creator-layers:${wallet.toLowerCase()}:${source.id}`;
+  const abort = useRef(new AbortController()), locked = useRef(false);
+  const active = useRef({ wallet, id: source.id }); active.current = { wallet, id: source.id };
+  const current = () => active.current.wallet === wallet && active.current.id === source.id && !abort.current.signal.aborted;
+  const refresh = async () => {
+    const found:LayerJob[] = source.layerSetId ? [{ id: source.layerSetId, status: 'succeeded' }] : await layerJobs(wallet, source.id);
+    if (!current()) return;
+    setJobs(found);
+    const activeRaw = await AsyncStorage.getItem(preparationKey), activePreparation=activeRaw?JSON.parse(activeRaw):null;
+    if(!current())return;
+    const freshAttempt = !!activePreparation && !found.some(job=>job.id===activePreparation.id);
+    setNewAttempt(freshAttempt);
+    if (!source.layerSetId && !preparedSource) {
+      const raw = await AsyncStorage.getItem(preparationKey), saved = raw ? JSON.parse(raw) : null;
+      const sourceDigest = saved?.sourceDigest || found[0]?.sourceDigest;
+      const prepared = await libraryCall({action:'layer-source',sourceAssetId:source.id,...(sourceDigest?{sourceDigest}:{})},wallet);
+      if (!current()) return; setPreparedSource(prepared);
+    }
+    if (found[0] && !freshAttempt) {
+      const manifest = await collectLayers(wallet, found[0]);
+      if (current() && manifest) { setSet(manifest); setChoices(previous => previous.length ? previous : manifest.layers.map(layer => ({ id: layer.id, hidden: false }))); }
+    }
+  };
+  useEffect(() => {
+    abort.current = new AbortController();
+    void refresh().catch(e => { if (current()) setError(e.message); }).finally(() => { if (current()) setBusy(false); });
+    return () => abort.current.abort();
+    // Keyed by owner and selected saved image.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const run = async (action: () => Promise<void>) => {
+    if (busy || locked.current) return; locked.current = true; setBusy(true); setError('');
+    try { await action(); } catch (e) { if (current()) setError(e instanceof Error ? e.message : t('common.somethingWentWrong')); }
+    finally { locked.current = false; if (current()) setBusy(false); }
+  };
+  const separate = async () => {
+    if (!DIGITAL_PURCHASES_ENABLED) return;
+    const fresh = await quoteAiJob(request);
+    if (!current() || !preparedSource || fresh.priceDhb !== quote.priceDhb || fresh.priceDhb !== 60) throw new Error(t('creator.priceRetry'));
+    const key = `creator-layers:${wallet.toLowerCase()}:${source.id}`;
+    await withLayerAdmission(key, async () => {
+      await resumeLayerSubmission({ read: async () => { const raw = await AsyncStorage.getItem(key); return raw ? JSON.parse(raw) : null; }, write: value => AsyncStorage.setItem(key, JSON.stringify(value)) },
+        { uuid: () => Crypto.randomUUID(), sourceDigest:preparedSource.sourceDigest, current,
+          beforePay: async () => {
+            await libraryCall({action:'layer-source',sourceAssetId:source.id,sourceDigest:preparedSource.sourceDigest},wallet);
+            const boundaryQuote = await quoteAiJob(request);
+            if (!current() || boundaryQuote.priceDhb !== fresh.priceDhb) throw new Error(t('creator.priceRetry'));
+          },
+          pay: () => payForJob(fresh.priceDhb), submit: async (id, txHash, digest) => { await submitLayers(wallet, source.id, id, txHash, fresh.priceDhb,digest); } });
+    });
+    await refresh();
+  };
+  const move = (index: number, delta: number) => setChoices(previous => {
+    const next = [...previous], target = index + delta;
+    if (target >= 0 && target < next.length) [next[index], next[target]] = [next[target], next[index]];
+    return next;
+  });
+  const Button = ({ title, onPress, disabled = false }: { title: string; onPress(): void; disabled?: boolean }) => <Pressable accessibilityRole="button" disabled={busy || disabled} onPress={onPress} className="min-h-11 justify-center rounded-lg border border-theme-neutrals-600 p-2" style={{ opacity: busy || disabled ? 0.4 : 1 }}><Text className="text-theme-neutrals-100">{title}</Text></Pressable>;
+  const pending = !newAttempt && jobs.some(job => !['failed','canceled','cancelled'].includes(job.status));
+  const startNew = async () => {
+    if (!preparedSource || !jobs[0]) return;
+    await withLayerAdmission(preparationKey,async()=>{
+      const found = await layerJobs(wallet,source.id), terminal=latestReviewedLayerJob(found,jobs[0].id);
+      if(!terminal||terminal.id!==jobs[0].id||!current())throw new Error(t('common.somethingWentWrong'));
+      await beginNewLayerAttempt({read:async()=>{const raw=await AsyncStorage.getItem(preparationKey);return raw?JSON.parse(raw):null;},write:value=>AsyncStorage.setItem(preparationKey,JSON.stringify(value)),
+        archive:async value=>{const key=`${preparationKey}:history:${value.id}`, raw=JSON.stringify(value), previous=await AsyncStorage.getItem(key);if(previous&&previous!==raw)throw new Error(t('common.somethingWentWrong'));await AsyncStorage.setItem(key,raw);}},terminal,preparedSource.sourceDigest,()=>Crypto.randomUUID());
+      await quoteAiJob(request);
+      if(current()){setNewAttempt(true);setSet(null);setChoices([]);}
+    });
+  };
+  return <View className="gap-2 rounded-xl border border-theme-neutrals-600 p-3">
+    <Text className="text-theme-neutrals-100">{t('creator.layerTitle', { defaultValue: 'Separate image layers' })}</Text>
+    <Text className="text-theme-neutrals-100">{t('creator.layerPngRequired', { defaultValue: 'Choose a saved PNG image, up to 12 MiB and four megapixels.' })}</Text>
+    {!source.layerSetId && preparedSource && <Image source={{ uri: preparedSource.sourcePreviewUrl }} resizeMode="contain" style={{ height: 100 }} accessibilityLabel={t('creator.layerSource', { defaultValue: 'Original image' })} />}
+    <Text className="text-theme-neutrals-100">{t('creator.layerDescription', { defaultValue: 'Four transparent PNG layers. Text remains part of each image.' })}</Text>
+    {!!error && <Text accessibilityRole="alert" className="text-theme-neutrals-100">{error}</Text>}
+    {!pending && !source.layerSetId && DIGITAL_PURCHASES_ENABLED && (newAttempt||jobs.length===0) && <Button disabled={!preparedSource || quote.isLoading || !!quote.error || !quote.priceDhb} title={`${t('creator.layerSeparate', { defaultValue: 'Separate layers' })} · ${quote.priceDhb || '…'} DHB`} onPress={() => void run(separate)} />}
+    {!newAttempt && !source.layerSetId && DIGITAL_PURCHASES_ENABLED && (jobs[0]?.delivered||jobs[0]?.paymentRestored) && <Button title={t('creator.layerNewAttempt',{defaultValue:'Review a new attempt'})} onPress={()=>void run(startNew)} />}
+    {jobs.length > 0 && !set && <Text className="text-theme-neutrals-100">{t('creator.layerPending', { defaultValue: 'Saved job: {{status}}. Collect or retry saving without another payment.', status: jobs[0].status })}</Text>}
+    <Button title={t('creator.layerCollect', { defaultValue: 'Collect / retry save' })} onPress={() => void run(refresh)} />
+    {set && <>
+      {choices.map((choice, index) => { const layer = set.layers.find(layer => layer.id === choice.id)!; return <View key={choice.id} className="gap-1">
+        <View style={{ backgroundColor: '#ddd' }}><Image source={{ uri: layer.url }} resizeMode="contain" style={{ height: 100, opacity: choice.hidden ? 0.35 : 1 }} /></View>
+        <Text className="text-theme-neutrals-100">{t('creator.layerNumber', { defaultValue: 'Layer {{number}}', number: layer.index + 1 })}</Text>
+        <View className="flex-row gap-2"><Button title="↑" disabled={index === 0} onPress={() => move(index, -1)} /><Button title="↓" disabled={index === 3} onPress={() => move(index, 1)} />
+          <Button title={t(choice.hidden ? 'editor.layers.show' : 'editor.layers.hide', { defaultValue: choice.hidden ? 'Show' : 'Hide' })} onPress={() => setChoices(previous => previous.map(c => c.id === choice.id ? { ...c, hidden: !c.hidden } : c))} /></View>
+      </View>; })}
+      <Button title={t('creator.layerOpen', { defaultValue: 'Open layers in editor' })} onPress={() => void run(async () => {
+        const fresh = await collectLayers(wallet, { id: set.id, status: 'succeeded' });
+        if (fresh && current()) { onOpenEditor(); navigation.navigate(ScreenNames.MediaEditor, { importMedia: { kind: 'image', url: fresh.layers[0].url, name: t('creator.layerTitle', { defaultValue: 'Separate image layers' }), owner: wallet, layerSet: fresh, layerChoices: choices } }); }
+      })} />
+      <Button title={t('creator.layerExport', { defaultValue: 'Export PNG layers + manifest ZIP' })} onPress={() => void run(async () => {
+        const fresh = await collectLayers(wallet, { id: set.id, status: 'succeeded' }); if (fresh && current()) await exportImageLayers(fresh, choices, abort.current.signal);
+      })} />
+    </>}
+  </View>;
+}

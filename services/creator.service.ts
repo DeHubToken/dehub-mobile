@@ -17,6 +17,7 @@ export interface CreatorAsset {
   createdAt: number;
   favorite?: boolean;
   hidden?: boolean;
+  layerSetId?: string;
 }
 
 export interface CreatorAssetToSave extends CreatorAsset {
@@ -26,7 +27,7 @@ export interface CreatorAssetToSave extends CreatorAsset {
   resolvedPrompt?: string;
 }
 
-async function libraryCall(body: Record<string, unknown>, walletAddress?: string): Promise<any> {
+export async function libraryCall(body: Record<string, unknown>, walletAddress?: string): Promise<any> {
   const headers = await dehubAuthHeaders(walletAddress);
   if (!headers['x-dehub-token']) throw new Error(_translateCopy("copy.3aea1c77425c", { defaultValue: "Sign in to save your generations." }));
   const response = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/creator-library`, {

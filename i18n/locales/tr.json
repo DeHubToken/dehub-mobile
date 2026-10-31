@@ -9955,6 +9955,17 @@
     }
   },
   "creator": {
+    "layerNewAttempt": "Yeni bir denemeyi gözden geçir",
+    "layerPngRequired": "En fazla 12 MiB ve dört megapiksel boyutunda kayıtlı bir PNG görseli seçin.",
+    "layerTitle": "Görsel katmanlarını ayır",
+    "layerSource": "Orijinal görsel",
+    "layerDescription": "Dört şeffaf PNG katmanı. Metin, her görselin parçası olarak kalır.",
+    "layerSeparate": "Katmanları ayır",
+    "layerPending": "Kaydedilen iş: {{status}}. Yeniden ödeme yapmadan sonucu alın veya kaydetmeyi tekrar deneyin.",
+    "layerCollect": "Sonucu al / kaydetmeyi tekrar dene",
+    "layerOpen": "Katmanları düzenleyicide aç",
+    "layerExport": "PNG katmanlarını ve bildirim dosyasını ZIP olarak dışa aktar",
+    "layerNumber": "Katman {{number}}",
     "priceRetry": "Fiyat onaylanamadı. Fiyatı gözden geçirip tekrar deneyin.",
     "avatarTitle": "Konuşan portre",
     "avatarRequirements": "512–2048 piksel, en fazla 5 MB kare PNG portre. 5–30 saniyelik mono 24 kHz 16 bit PCM WAV. Son saniyenin kesri sessizlikle tamamlanır.",
