@@ -9,7 +9,7 @@ import Animated, {
 import Svg, { Path } from 'react-native-svg';
 import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
-import { BELL_SIDE_RIPPLE_PATHS, notificationBellMotion } from '../../libs/notification-bell-motion';
+import { BELL_GLYPH_PATHS, BELL_SIDE_RIPPLE_PATHS, notificationBellMotion } from '../../libs/notification-bell-motion';
 
 type Profile = ReturnType<typeof notificationBellMotion>;
 
@@ -79,14 +79,39 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
       [0, profile.swing, -.77 * profile.swing, .54 * profile.swing, -.31 * profile.swing, .15 * profile.swing, 0, 0],
       Extrapolation.CLAMP)}deg` }],
   }));
+  const red = isLight ? '#dc3545' : '#ff6874';
+  const rimStrength = isLight ? .55 : .9;
+  // While it rings the bell turns red with a neon rim, then cools back before it rests.
+  const rim = useAnimatedStyle(() => ({
+    opacity: reduced ? 0 : interpolate(phase.value, [0, .05, .26, .46, 1],
+      [0, rimStrength, .8 * rimStrength, 0, 0], Extrapolation.CLAMP),
+  }));
+  const hot = useAnimatedStyle(() => ({
+    opacity: reduced ? 0 : interpolate(phase.value, [0, .05, .28, .48, 1], [0, 1, 1, 0, 0], Extrapolation.CLAMP),
+  }));
   return (
     <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants"
       style={{ width: size, height: size, overflow: 'visible' }}>
       <Animated.View style={[{ width: size, height: size, transformOrigin: '50% 5%', overflow: 'visible' }, swing]}>
+        {profile.unread > 0 && (
+          <Animated.View style={[{ position: 'absolute', left: 0, top: 0, width: size, height: size, transform: [{ scale: 1.05 }] }, rim]}>
+            <Svg width={size} height={size} viewBox="0 0 32 32">
+              {BELL_GLYPH_PATHS.map(d => (
+                <Path key={d} d={d} fill={red} fillOpacity={.5} stroke={red} strokeOpacity={.28}
+                  strokeWidth={2.6} strokeLinejoin="round" />
+              ))}
+            </Svg>
+          </Animated.View>
+        )}
         <Icon name="Bell" size={size} color={color} />
+        {profile.unread > 0 && (
+          <Animated.View style={[{ position: 'absolute', left: 0, top: 0, width: size, height: size }, hot]}>
+            <Icon name="Bell" size={size} color={red} />
+          </Animated.View>
+        )}
         {profile.unread > 0 && BELL_SIDE_RIPPLE_PATHS.map((_, side) => [0, 1].map(echo => (
           <SideRipple key={`${side}-${echo}`} phase={phase} side={side} echo={echo} size={size}
-            profile={profile} color={isLight ? '#dc3545' : '#ff6874'} reduced={reduced} />
+            profile={profile} color={red} reduced={reduced} />
         )))}
       </Animated.View>
     </View>
