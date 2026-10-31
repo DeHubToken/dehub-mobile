@@ -58,15 +58,18 @@ interface Props {
   defaultChainId?: number;
   isMinting?: boolean;
   onConfirm: (chainId: number) => void;
+  /** Override for previews; otherwise read from the sign-in method. */
+  sponsored?: boolean;
 }
 
-export default function MintChainSheet({ visible, onClose, defaultChainId, isMinting, onConfirm }: Props) {
+export default function MintChainSheet({ visible, onClose, defaultChainId, isMinting, onConfirm, sponsored: sponsoredOverride }: Props) {
   const { t } = useTranslation();
   const rootStyle = useThemeRootStyle();
   const chains = supportedChainIdsForMinting as number[];
   const fallback = chains.includes(Number(defaultChainId)) ? Number(defaultChainId) : chains[0];
   const [selected, setSelected] = useState(fallback);
-  const [sponsored, setSponsored] = useState(false);
+  const [sessionSponsored, setSponsored] = useState(false);
+  const sponsored = sponsoredOverride ?? sessionSponsored;
 
   useEffect(() => {
     if (!visible) return;
