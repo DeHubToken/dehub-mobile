@@ -80,12 +80,20 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   const frameHeight = framed && tallestAspect
     ? fitFeedImageWithin(width || fallbackWidth, tallestAspect, screenHeight * 0.55).height
     : undefined;
+  // The photo on each side of the view stays drawn, not just the ones in view.
+  // Only the next one used to be warmed, and a photo swiped past dropped its
+  // bitmap, so swiping back re-decoded it: instant while the image cache still
+  // held it, a visible stall once the phone had let it go.
+  const drawn = useMemo(() => {
+    if (liteMode) return visible;
+    const first = Math.max(0, Math.min(...visible) - 1);
+    const last = Math.min(images.length - 1, Math.max(...visible) + 1);
+    return Array.from({ length: last - first + 1 }, (_, offset) => first + offset);
+  }, [visible, images.length, liteMode]);
   useEffect(() => {
-    if (active && !liteMode) {
-      const next = images[Math.min(Math.max(...visible) + 1, images.length - 1)];
-      if (next) warmFeedImage(next);
-    }
-  }, [active, liteMode, images, visible]);
+    if (!active || liteMode) return;
+    drawn.forEach(index => { if (!visible.includes(index)) warmFeedImage(images[index]); });
+  }, [active, liteMode, images, visible, drawn]);
   const restore = useCallback(() => {
     const index = Math.min(galleryIndex(galleryKey), images.length - 1);
     const frame = frames.current.get(index);
@@ -154,7 +162,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
           <PostTapSurface onPress={() => onImagePress(index)} onReaction={onReaction}>
             <ContainedFeedImage
               active={active && visible.includes(index)}
-              drawBitmap={visible.includes(index)}
+              drawBitmap={drawn.includes(index)}
               uri={uri}
               description={descriptions?.[index]}
               width={width}
