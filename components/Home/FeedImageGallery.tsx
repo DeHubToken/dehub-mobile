@@ -9,6 +9,7 @@ import { useAppTheme } from '../../context/ThemeContext';
 import { useFeedBleed } from './feedBleed';
 import { GestureDetector, type NativeGesture } from 'react-native-gesture-handler';
 import ContainedFeedImage from './ContainedFeedImage';
+import { galleryDrawnSlides } from '../../libs/gallery-window';
 import PostTapSurface from './PostTapSurface';
 
 type Frame = { x: number; width: number };
@@ -87,15 +88,13 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   const frameHeight = framed && tallestAspect
     ? fitFeedImageWithin(width || fallbackWidth, tallestAspect, screenHeight * 0.55).height
     : undefined;
-  // The photo on each side of the view stays drawn, not just the ones in view.
-  // Only the next one used to be warmed, and a photo swiped past dropped its
-  // bitmap, so swiping back re-decoded it: instant while the image cache still
-  // held it, a visible stall once the phone had let it go.
+  // The photo on each side of the view is drawn ahead, and a photo already
+  // drawn stays drawn until it is well out of reach (see galleryDrawnSlides).
+  // Swiping back used to remount the photo just passed and re-upload its bitmap.
+  const drawnRef = useRef<number[]>([]);
   const drawn = useMemo(() => {
-    if (liteMode) return visible;
-    const first = Math.max(0, Math.min(...visible) - 1);
-    const last = Math.min(images.length - 1, Math.max(...visible) + 1);
-    return Array.from({ length: last - first + 1 }, (_, offset) => first + offset);
+    drawnRef.current = liteMode ? visible : galleryDrawnSlides(drawnRef.current, visible, images.length);
+    return drawnRef.current;
   }, [visible, images.length, liteMode]);
   useEffect(() => {
     if (!active || liteMode) return;
