@@ -567,9 +567,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     };
   }, [scrollToBottom]);
 
-  // Encryption identity: silent when the key is already in the keychain, one
-  // signature (unlock sheet on a locked wallet) the first time. Opening a chat
-  // is the moment it makes sense to ask; app start is not.
+  // Encryption identity: opening a chat only loads a key already in the
+  // keychain. Making one takes a signature (the unlock sheet on a locked
+  // wallet), so that waits for the Unlock button rather than popping up the
+  // moment the chat opens.
   //
   // Waits for the provider. Without one there is nothing to sign with, and the
   // whole feature used to fail exactly here — every returning session, because
@@ -579,7 +580,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [e2eeStatus, setE2eeStatus] = useState<DmEncryptionStatus | null>(null);
   useEffect(() => {
     if (!address || !sessionProvider) return;
-    ensureDmEncryption(address, sessionProvider)
+    ensureDmEncryption(address, sessionProvider, { interactive: false })
       .then((s) => {
         setE2eeStatus(s);
         log.info("e2ee:", s);
