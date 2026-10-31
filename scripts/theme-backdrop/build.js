@@ -61,18 +61,6 @@ const result = await esbuild.build({
     {
       name: "dehubweb",
       setup(b) {
-        // The decorative camera HUD collides with native page content. Keep
-        // the corridor and tape effects, and retain the HUD on iOS.
-        b.onLoad({ filter: /[\\/]HorrorBackground\.tsx$/ }, (a) => {
-          const source = fs.readFileSync(a.path, "utf8");
-          const marker = "// On-screen display: REC and the real time, as the camera burns it in.";
-          if (source.split(marker).length !== 2) throw new Error("Horror HUD boundary changed");
-          return {
-            contents: source.replace(marker, `if ((window as unknown as { __BACKDROP_ANDROID?: boolean }).__BACKDROP_ANDROID) return;\n      ${marker}`),
-            loader: "tsx",
-            resolveDir: path.dirname(a.path),
-          };
-        });
         b.onResolve({ filter: /^(@\/|react-router-dom$)/ }, (a) => {
           if (STUBS[a.path]) return { path: path.join(here, STUBS[a.path]) };
           if (a.path.startsWith("@/assets/easter-eggs/")) return { path: path.join(here, "stubs/pixel.png") };
