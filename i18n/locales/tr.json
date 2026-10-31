@@ -1223,6 +1223,7 @@
     "usernameAvailable": "Kullanıcı adı mevcut",
     "hideBadgeAndBalance": "Rozeti ve bakiyeyi gizle",
     "hideBadgeAndBalanceDesc": "Finansal ayrıntıları gizler ve size gönderi ve bahşiş göndermeyi devre dışı bırakır.",
+    "tipsOffNote": "Bu açıkken sana bahşiş ve gönderim kapalıdır. Tekrar bahşiş almak için kapat.",
     "onChainPublicWarning": "Zincir üstü işlemler herkese açıktır. Token göndermek veya bahşiş vermek, özel bakiye moduna geçilmeden önce yapılan işlemler de dahil olmak üzere cüzdan adresinizi ortaya çıkarabilir.",
     "languageLoadFailed": "Dil değiştirilemedi. Tekrar deneyin.",
     "leftHanded": "Solak modu",

@@ -1223,6 +1223,7 @@
     "usernameAvailable": "Gebruikersnaam is beschikbaar",
     "hideBadgeAndBalance": "Badge en saldo verbergen",
     "hideBadgeAndBalanceDesc": "Verbergt financiële details en schakelt verzendingen en fooien naar jou uit.",
+    "tipsOffNote": "Fooien en verzendingen naar jou staan uit zolang dit aan staat. Zet het uit om weer fooien te krijgen.",
     "onChainPublicWarning": "On-chain transacties zijn openbaar. Het verzenden van tokens of fooien kan je portemonneeadres onthullen, inclusief transacties die zijn gedaan voordat de privébalansmodus werd ingeschakeld.",
     "languageLoadFailed": "Kan niet van taal wisselen. Probeer het opnieuw.",
     "leftHanded": "Linkshandige modus",
