@@ -122,6 +122,8 @@ import {
   resolveThumbnail,
   DEFAULT_BANNER_SENTINEL,
   getAvatarUrl,
+  getBadgeUrlFor,
+  getBadgeOpticalStyle,
   formatCompactNumber,
   toastError,
   toastSuccess,
@@ -134,6 +136,7 @@ import ShareSheet from "../components/Home/ShareSheet";
 import ShareToDmSheet from "../components/DM/ShareToDmSheet";
 import PostOptionsMenu from "../components/common/PostOptionsMenu";
 import Avatar from "../components/common/Avatar";
+import BadgeArtwork from "../components/common/BadgeArtwork";
 import TranslateButton from "../components/ui/TranslateButton";
 import { useTranslation } from "../hooks/useTranslation";
 import {
@@ -571,6 +574,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     return resolved && resolved !== "default-avatar" ? resolved : undefined;
   })();
   const username = item.minterUser?.username || item.minterUsername || "";
+  // The creator's badge after their name, the same lookup FeedCard uses.
+  const badgeImg = item.minterUser?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(item.minterUser || item);
   // Five deep and ending somewhere visible, matching FeedCard — the chain
   // stopped at `username` here, so a row that came back with only an address
   // rendered an empty name and, because the handle is conditional, no author
@@ -2281,9 +2286,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                   style={styles.avatar}
                 />
                 <View style={styles.creatorText}>
-                  <Text numberOfLines={1} style={styles.creatorName}>
-                    {displayName}
-                  </Text>
+                  <View style={styles.creatorNameRow}>
+                    <Text numberOfLines={1} style={[styles.creatorName, styles.creatorNameText]}>
+                      {displayName}
+                    </Text>
+                    {badgeImg ? (
+                      <BadgeArtwork
+                        source={badgeImg}
+                        style={[getBadgeOpticalStyle(badgeImg, 16, 0, 20), { marginLeft: 4 }]}
+                        resizeMode="contain"
+                        fadeDuration={0}
+                      />
+                    ) : null}
+                  </View>
                   {username ? (
                     <Text numberOfLines={1} style={styles.creatorHandle}>
                       @{username}
@@ -3407,6 +3422,13 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   creatorText: {
+    flexShrink: 1,
+  },
+  creatorNameRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  creatorNameText: {
     flexShrink: 1,
   },
   // Web: `text-base font-semibold` over `text-sm text-white/70`, both with
