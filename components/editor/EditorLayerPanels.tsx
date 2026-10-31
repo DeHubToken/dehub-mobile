@@ -231,6 +231,8 @@ export function BrandPanel(props: {
   onUseSelectedAsLogo: () => void;
   onApply: () => void;
   onAddLogo: () => void;
+  /** One tap: official DeHub colours, fonts and logo, applied to the design. */
+  onUseDehubBrand?: () => void;
   onSaveStyles?: () => void;
   onLoadStyles?: () => void;
 }) {
@@ -253,6 +255,14 @@ export function BrandPanel(props: {
   );
   return (
     <View style={{ gap: 10 }}>
+      {props.onUseDehubBrand && (
+        <View style={{ gap: 4 }}>
+          <ChipRow>
+            <Chip icon="WandSparkles" label={t("editor.brand.dehubApply", { defaultValue: "Use the DeHub brand" })} active onPress={props.onUseDehubBrand} />
+          </ChipRow>
+          <Text className="text-theme-neutrals-400 text-xs">{t("editor.brand.dehubHint", { defaultValue: "Official DeHub colours, Exo and Inter fonts, and the DeHub logo, in one click." })}</Text>
+        </View>
+      )}
       <BrandPresetLibrary value={kit} onLoad={styles => props.onChange({ ...kit, ...styles })} />
       <View>
         <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.colors")}</Text>
