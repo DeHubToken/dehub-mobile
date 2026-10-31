@@ -1111,7 +1111,10 @@ export async function getMintFee(chainId: number): Promise<MintFeeQuoteResponse 
   try {
     const res = await apiClient.get<any>(`/mint_fee?chainId=${chainId}`);
     const raw = (res as any)?.data ?? res;
-    const quote = (raw as any)?.result ?? raw;
+    // The API answers { result: true, ...quote }. Unwrapping `result` only
+    // when it is the quote itself; reading `.result` blindly gave `true` and
+    // every quote came back null.
+    const quote = raw && typeof (raw as any).result === "object" ? (raw as any).result : raw;
     return quote && typeof quote.amount === "number" ? (quote as MintFeeQuoteResponse) : null;
   } catch (e) {
     console.warn("[NFTService] getMintFee failed", e);
