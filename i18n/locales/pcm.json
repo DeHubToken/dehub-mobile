@@ -129,6 +129,8 @@
     "featured": "Back to featured"
   },
   "copy": {
+    "eabb5c136be4": "Plan no dey update.",
+    "801658c8e591": "Plan no dey make yet — try again, o!",
     "dd2108f1cda8": "Stop Voice Chat",
     "70438fbf1234": "Voice Chat (AI)",
     "ccb684944295": "Di transcription fail",
@@ -8660,6 +8662,7 @@
     "paymentsBase": "Paiment dey for DeHub tokens for Base chain."
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "The token subscription checkout is not ready — please try again shortly",
     "createFirstPlan": "Make Your First Plan",
     "legacyMigrationNote": "If you save, dis old plan wey dem price for tokens go move to dollar pricing for di pre-listing rate.",
     "switchFailed": "E no fit switch di subscription network",

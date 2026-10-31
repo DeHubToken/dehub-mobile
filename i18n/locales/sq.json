@@ -129,6 +129,8 @@
     "useNamed": "Përdor {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Nuk u mund të updateua plani",
+    "801658c8e591": "Plani nuk u krijua — provo përsëri",
     "dd2108f1cda8": "Ndalo bisedën me zë",
     "70438fbf1234": "Këshilloi (AI)",
     "cf69d7e172fd": "Sesi e zërit përdorur — filloni sërën e zërit për të blerë një tjetër.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Kërkohet minimumi {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Pagesa e abonimit me tokena nuk është gati — ju lutem provoni përsëri së shpejti",
     "switchFailed": "Rrjeti i abonimit nuk u ndryshua",
     "connectWallet": "Lidh portofolin për t'u abonuar",
     "notBuyable": "Ky plan nuk mund të blihet. Kërko nga krijuesi ta rikrijojë",

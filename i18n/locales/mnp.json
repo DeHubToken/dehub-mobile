@@ -129,6 +129,8 @@
     "title": "找你下一个爆红的时刻。"
   },
   "copy": {
+    "eabb5c136be4": "更新方案失敗",
+    "801658c8e591": "计划未创建 — 请再试一次",
     "dd2108f1cda8": "停止語音聊天",
     "70438fbf1234": "語音聊天（AI）",
     "cf69d7e172fd": "語音會話用完了——再次啟動語音模式購買更多。",
@@ -8684,6 +8686,7 @@
     "minimumRequired": "最少要 {{currency}} 粒"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "代币订阅结账尚未准备好 — 请稍后重试",
     "switchFailed": "无法切换订阅网络",
     "connectWallet": "请连接钱包以订阅",
     "notBuyable": "此方案无法购买。请让创作者重新创建",

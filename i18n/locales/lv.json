@@ -129,6 +129,8 @@
     "useNamed": "Izmantot {{name}}"
   },
   "copy": {
+    "eabb5c136be4": "Neparedzēts plāna atjaunošanas mēģinājums",
+    "801658c8e591": "Plāns nav izveidots — mēģiniet vēlreiz",
     "dd2108f1cda8": "Pārtraukt virtuālo sarunu",
     "70438fbf1234": "Virtuālā saruna (AI)",
     "cf69d7e172fd": "Virtuālā sesija izmantota — sākt virtuālo režīmu, lai iegūtu vēl vienu.",
@@ -8700,6 +8702,7 @@
     "minimumRequired": "Nepieciešami vismaz {{currency}}"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "Žetonu abonementa kase vēl nav gatava — lūdzu, mēģiniet vēlreiz drīzumā",
     "switchFailed": "Neizdevās pārslēgt abonēšanas tīklu",
     "connectWallet": "Lai abonētu, pievienojiet maku",
     "notBuyable": "Šo plānu nevar iegādāties. Palūdziet autoram to izveidot no jauna",

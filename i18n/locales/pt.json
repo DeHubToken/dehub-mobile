@@ -1,5 +1,7 @@
 {
   "copy": {
+    "eabb5c136be4": "Falha ao atualizar o plano",
+    "801658c8e591": "O plano não foi criado — tente novamente",
     "dd2108f1cda8": "Parar conversa de voz",
     "70438fbf1234": "Conversa de Voz (AI)",
     "cf69d7e172fd": "Sessão de voz usada — inicie o modo de voz novamente para comprar outro.",
@@ -8670,6 +8672,7 @@
     "minimumRequired": "Mínimo de {{currency}} exigido"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "O checkout da assinatura de token não está pronto — tente novamente em breve",
     "switchFailed": "Não foi possível trocar a rede de assinatura",
     "connectWallet": "Conecte sua carteira para assinar",
     "notBuyable": "Este plano não pode ser comprado. Peça ao criador para recriá-lo",

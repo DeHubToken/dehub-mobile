@@ -6373,6 +6373,7 @@
     "minimumRequired": "Minimum {{currency}} required"
   },
   "subscriptions": {
+    "tokenCheckoutNotReady": "The token subscription checkout is not ready — please try again shortly",
     "switchFailed": "Could not switch subscription network",
     "connectWallet": "Connect your wallet to subscribe",
     "notBuyable": "This plan cannot be bought. Ask the creator to recreate it",
@@ -12598,6 +12599,8 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "eabb5c136be4": "Failed to update plan",
+    "801658c8e591": "The plan was not created — please try again",
     "1aa9d734f2ee": "Choose what to search",
     "35034aa59bd3": "Nothing in {{feed}} matched. Try other words or search everything.",
     "415155739590": "Search everything",
