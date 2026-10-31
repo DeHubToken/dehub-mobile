@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
-import { cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
+import { cdnImage, cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
 
 const TRANSFORM_PREFIX = "https://dehub.io/cdn-cgi/image/";
 /** A resized copy still loading after this long is dropped for the original. */
@@ -24,7 +24,9 @@ export function warmFeedImage(uri: string): void {
  */
 export function measureImageAspect(uri: string): Promise<number | undefined> {
   if (typeof Image.loadAsync !== 'function') return Promise.resolve(undefined);
-  return Image.loadAsync(uri, { maxWidth: 64, maxHeight: 64 })
+  // Fetch a tiny copy for the shape: loading the feed-width file here
+  // downloaded every photo of a 30-photo carousel before it was swiped to.
+  return Image.loadAsync(cdnImage(cdnImageSource(uri), { width: 64 }), { maxWidth: 64, maxHeight: 64 })
     .then(ref => {
       const { width, height } = ref;
       ref.release();
