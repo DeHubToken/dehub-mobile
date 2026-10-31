@@ -15037,5 +15037,20 @@
     "fingerprint": "Відбиток пальця",
     "exploreFirst": "Спершу роздивитися",
     "codeNote": "Ми надішлемо код на пошту, пароль не потрібен."
+  },
+  "mintChain": {
+    "title": "М 'ята допис",
+    "subtitle": "Виберіть ланцюжок. Ціни в прямому ефірі та оновлюються щохвилини.",
+    "free": "Безкоштовно",
+    "gasCovered": "Газ, що покривається DeHub",
+    "feeIncludesGas": "≈ {{usd}}, газ включено",
+    "gasIncluded": "Газ включено",
+    "gasOnly": "≈ {{usd}} газ",
+    "paidFromWallet": "{{amount}} з вашого гаманця",
+    "paidFromWalletPlain": "Оплачено з вашого гаманця",
+    "priceUnavailable": "Ціна недоступна",
+    "confirm": "М 'ята на {{chain}}",
+    "confirmWithCost": "М 'ята на {{chain}} · {{cost}}",
+    "notAvailable": "Чеканка на цьому ланцюжку поки недоступна."
   }
 }

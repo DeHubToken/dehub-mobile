@@ -14639,5 +14639,19 @@
     "fingerprint": "Diam-panondro",
     "exploreFirst": "Hitady ny voalohany",
     "codeNote": "Mandefa mailaka ho anao izahay, tsy misy teny miafina ilaina."
+  },
+  "mintChain": {
+    "title": "Mint lahatsoratra",
+    "subtitle": "Mifidiana rojo. Vidin-javatra dia velona sy vaovao farany isa-minitra.",
+    "free": "Malalaka",
+    "gasCovered": "Gas norakofana DeHub",
+    "feeIncludesGas": "≈ {{usd}}, tafiditra ao ny gazy",
+    "gasIncluded": "Entona tafiditra",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWallet": "{{amount}} avy amin'ny kitaponao",
+    "paidFromWalletPlain": "Hetrao ny volanao avy amin'ny kitapom-bolanao",
+    "priceUnavailable": "Price tsy misy",
+    "confirmWithCost": "Toriteny amin'ny {{chain}}{{cost}}",
+    "notAvailable": "Mbola tsy azo hazavaina ny momba ity kianjan'ny serasera ity amin'izao fotoana izao."
   }
 }

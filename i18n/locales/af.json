@@ -14677,5 +14677,20 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Verken eers",
     "codeNote": "Ons stuur vir jou 'n kode, geen wagwoord nodig nie."
+  },
+  "mintChain": {
+    "title": "Mint-pos",
+    "subtitle": "Kies 'n ketting. Pryse is lewendig en werk elke minuut op.",
+    "free": "Gratis",
+    "gasCovered": "Gas wat deur DeHub gedek word",
+    "feeIncludesGas": "≈ {{usd}}, gas ingesluit",
+    "gasIncluded": "Gas ingesluit",
+    "gasOnly": "≈ {{usd}} GAS",
+    "paidFromWallet": "{{amount}} van jou beursie",
+    "paidFromWalletPlain": "Betaal uit jou beursie",
+    "priceUnavailable": "Prys nie beskikbaar nie",
+    "confirm": "Munt op {{chain}}",
+    "confirmWithCost": "Munt op {{chain}} · {{cost}}",
+    "notAvailable": "Mining op hierdie ketting is nog nie beskikbaar nie."
   }
 }

@@ -14556,5 +14556,20 @@
     "fingerprint": "Fingeravtryck",
     "exploreFirst": "Utforska först",
     "codeNote": "Vi mejlar dig en kod, inget lösenord behövs."
+  },
+  "mintChain": {
+    "title": "Mynta inlägg",
+    "subtitle": "Välj en kedja. Priserna är live och uppdateras varje minut.",
+    "free": "Gratis",
+    "gasCovered": "Gas som täcks av DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas ingår",
+    "gasIncluded": "Gas ingår",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} från din portfölj",
+    "paidFromWalletPlain": "Betalat från din plånbok",
+    "priceUnavailable": "Pris ej tillgängligt",
+    "confirm": "Mynt på {{chain}}",
+    "confirmWithCost": "Mynt på {{chain}} · {{cost}}",
+    "notAvailable": "Mynta på denna kedja är inte tillgänglig ännu."
   }
 }

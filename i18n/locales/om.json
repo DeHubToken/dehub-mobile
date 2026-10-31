@@ -14590,5 +14590,20 @@
     "fingerprint": "Ashaaraa qubaa",
     "exploreFirst": "Dursa qoradhu",
     "codeNote": "Koodii email siif goona, jecha icciitii hin barbaachisu."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Sansalata filadhu. Gatiin daqiiqaa hunda live fi update ta'a.",
+    "free": "Bilisa",
+    "gasCovered": "Gaasii DeHub'n uwwifame",
+    "feeIncludesGas": "≈ {{usd}}, gaazii dabalatee",
+    "gasIncluded": "Gaasii dabalatee",
+    "gasOnly": "≈ {{usd}} gaazii",
+    "paidFromWallet": "{{amount}} boorsaa keessan irraa",
+    "paidFromWalletPlain": "Boorsaa keessan irraa kan kaffalame",
+    "priceUnavailable": "Gatiin hin argamu",
+    "confirm": "Mint {{chain}} irratti.",
+    "confirmWithCost": "Mint irratti {{chain}} · {{cost}} irratti.",
+    "notAvailable": "Sansalata kana irratti minting hanga ammaatti hin argamne."
   }
 }

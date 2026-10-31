@@ -14552,5 +14552,20 @@
     "fingerprint": "Gjurmë gishtash",
     "exploreFirst": "Zbulo së pari",
     "codeNote": "Të dërgojmë me email një kod, nuk nevojitet fjalëkalim."
+  },
+  "mintChain": {
+    "title": "Postimi i monedhës",
+    "subtitle": "Zgjidh një zinxhir. Çmimet janë aktive dhe përditësohen çdo minutë.",
+    "free": "Falas",
+    "gasCovered": "Gazi i mbuluar nga DeHub",
+    "feeIncludesGas": "≈ {{usd}}, përfshirë gazin",
+    "gasIncluded": "Përfshihet gazi",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} nga portofoli yt",
+    "paidFromWalletPlain": "Paguar nga portofoli yt",
+    "priceUnavailable": "Çmimi i padisponueshëm",
+    "confirm": "Mint në {{chain}}",
+    "confirmWithCost": "Mint në {{chain}} · {{cost}}",
+    "notAvailable": "Gjurmimi në këtë zinxhir nuk është ende i disponueshëm."
   }
 }

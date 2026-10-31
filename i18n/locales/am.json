@@ -14581,5 +14581,19 @@
     "fingerprint": "የጣት አሻራ",
     "exploreFirst": "በመጀመሪያ ያስሱ",
     "codeNote": "ኮድ እንልክልዎታለን ፣ ምንም የይለፍ ቃል አያስፈልግም ።"
+  },
+  "mintChain": {
+    "title": "Mint ልጥፍ",
+    "subtitle": "ሰንሰለት ይምረጡ. ዋጋዎች በቀጥታ ናቸው እና በየደቂቃው ያዘምኑ.",
+    "free": "ነጻ",
+    "gasCovered": "በ DeHub የተሸፈነ ጋዝ",
+    "feeIncludesGas": "≈ {{usd}}, ጋዝ ተካትቷል",
+    "gasIncluded": "ጋዝ ተካትቷል",
+    "gasOnly": "≈ {{usd}} ጋዝ",
+    "paidFromWallet": "{{amount}} ከኪስ ቦርሳዎ",
+    "paidFromWalletPlain": "ከኪስ ቦርሳዎ ተከፍሏል",
+    "priceUnavailable": "ዋጋ አይገኝም",
+    "confirmWithCost": "በ {{chain}} {{cost}}",
+    "notAvailable": "በዚህ ሰንሰለት ላይ መቀባት ገና አልተገኘም ።"
   }
 }

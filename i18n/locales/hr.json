@@ -14552,5 +14552,20 @@
     "fingerprint": "Otisak prsta",
     "exploreFirst": "Prvo istražite",
     "codeNote": "Poslat ćemo vam kod e-mailom, nije potrebna lozinka."
+  },
+  "mintChain": {
+    "title": "Pošta od metvice",
+    "subtitle": "Odaberite lanac. Cijene se objavljuju i ažuriraju svake minute.",
+    "free": "Besplatno",
+    "gasCovered": "Plin koji pokriva DeHub",
+    "feeIncludesGas": "≈ {{usd}}, uključeno gorivo",
+    "gasIncluded": "Uključen plin",
+    "gasOnly": "≈ {{usd}} plin",
+    "paidFromWallet": "{{amount}} iz novčanika",
+    "paidFromWalletPlain": "Plaćeno iz tvog novčanika",
+    "priceUnavailable": "Cijena nije dostupna",
+    "confirm": "Kovnica {{chain}}",
+    "confirmWithCost": "Kovnica {{chain}} · {{cost}}",
+    "notAvailable": "Kovanje na ovom lancu još nije dostupno."
   }
 }

@@ -14564,5 +14564,20 @@
     "fingerprint": "Отпечаток",
     "exploreFirst": "Сначала осмотреться",
     "codeNote": "Мы отправим код на почту, пароль не нужен."
+  },
+  "mintChain": {
+    "title": "Стойка монетного двора",
+    "subtitle": "Выберите сеть. Цены в прямом эфире и обновляются каждую минуту.",
+    "free": "Бесплатно",
+    "gasCovered": "Газ, покрываемый DeHub",
+    "feeIncludesGas": "≈ {{usd}}, газ включен",
+    "gasIncluded": "Включенный газ",
+    "gasOnly": "≈ {{usd}} газ",
+    "paidFromWallet": "{{amount}} из вашего кошелька",
+    "paidFromWalletPlain": "Оплачено из вашего кошелька",
+    "priceUnavailable": "Цена недоступна",
+    "confirm": "Мята на {{chain}}",
+    "confirmWithCost": "Мята на {{chain}} · {{cost}}",
+    "notAvailable": "Чеканка на этой цепочке пока недоступна."
   }
 }

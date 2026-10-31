@@ -14528,5 +14528,17 @@
     "email": "Email",
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first"
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Pick one chain. Prices dey live and dem dey update every minute.",
+    "free": "Free",
+    "gasCovered": "Gas covered by DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas included",
+    "gasIncluded": "Gas included",
+    "gasOnly": "≈ {{usd}} gas",
+    "priceUnavailable": "Price unavailable",
+    "confirm": "Mint on {{chain}}",
+    "notAvailable": "Minting for dis chain no dey available yet."
   }
 }

@@ -14567,5 +14567,20 @@
     "loading": "Encontrar um patrocinador...",
     "campaignDescription": "Permita que os espectadores apoiem os criadores assistindo 30 segundos. Requer um vídeo aprovado de pelo menos 30 segundos, carregado no portal de publicidade na web.",
     "watch": "Assista a um anúncio para apoiar este criador"
+  },
+  "mintChain": {
+    "title": "Post de hortelã",
+    "subtitle": "Escolha uma cadeia. Os preços estão ativos e são atualizados a cada minuto.",
+    "free": "Grátis",
+    "gasCovered": "Gás coberto pelo DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gás incluído",
+    "gasIncluded": "Gás incluído",
+    "gasOnly": "≈ {{usd}} gás",
+    "paidFromWallet": "{{amount}} da sua carteira",
+    "paidFromWalletPlain": "Pago com a sua carteira",
+    "priceUnavailable": "Preço indisponível",
+    "confirm": "Menta em {{chain}}",
+    "confirmWithCost": "Menta em {{chain}} · {{cost}}",
+    "notAvailable": "A cunhagem nesta corrente ainda não está disponível."
   }
 }

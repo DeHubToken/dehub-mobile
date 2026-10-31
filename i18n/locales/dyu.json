@@ -14533,5 +14533,16 @@
     "fingerprint": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
     "exploreFirst": "Kɔrɔbɔli fɔlɔ",
     "codeNote": "An b'i weele ka na an ka site web kan, an mako t'a la i ka kumaɲɔgɔnya kɛ n'i ye."
+  },
+  "mintChain": {
+    "title": "O kɔ, a ye sɛbɛ dɔ ci",
+    "subtitle": "I ka jɔrɔkɔ sugandi. I ka jɔrɔkɔw be to niin na ani u be yɛlɛ miniti o miniti.",
+    "gasCovered": "O kɔ, a ye dɔ fara a ka baara kan.",
+    "gasIncluded": "Gasi min be se ka mɔgɔ faga",
+    "paidFromWallet": "{{amount}} ka bɔ i ka wari la",
+    "paidFromWalletPlain": "I ka wari bɔ i ka wari la",
+    "priceUnavailable": "O tɛ se ka kɛ",
+    "confirm": "O ye {{chain}}",
+    "notAvailable": "O kama, u ma se ka marifakɛlɛ kɛ."
   }
 }

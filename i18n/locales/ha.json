@@ -14552,5 +14552,20 @@
     "fingerprint": "Rubutun yatsa",
     "exploreFirst": "Bincika na farko",
     "codeNote": "Muna imel da ku lambar, babu kalmar sirri da ake buƙata."
+  },
+  "mintChain": {
+    "title": "Mint post",
+    "subtitle": "Zaɓi sarkar. farashin suna rayuwa kuma suna sabunta kowane minti.",
+    "free": "Kyauta",
+    "gasCovered": "Gas da aka rufe da DeHub",
+    "feeIncludesGas": "≈ {{usd}}, gas hada",
+    "gasIncluded": "Gas hada",
+    "gasOnly": "≈ {{usd}} gas",
+    "paidFromWallet": "{{amount}} daga walat ka",
+    "paidFromWalletPlain": "Biyan kuɗi daga walat ɗin ku",
+    "priceUnavailable": "Farashin da ba a samu ba",
+    "confirm": "Mint a kan {{chain}}",
+    "confirmWithCost": "Mint a kan {{chain}} · {{cost}}",
+    "notAvailable": "Minting a kan wannan sarkar ba a samuwa ba tukuna."
   }
 }

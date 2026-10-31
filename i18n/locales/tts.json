@@ -14539,5 +14539,19 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "สำรวจก่อน",
     "codeNote": "เฮาส่งอีเมลโค้ดให้เจ้า บ่ต้องใช้พาสเวิร์ด."
+  },
+  "mintChain": {
+    "subtitle": "เลือกสาย. ราคาต่อเนื่องและอัปเดตทุกนาที.",
+    "free": "ฟรี",
+    "gasCovered": "แก๊สที่ครอบคลุมโดย DeHub",
+    "feeIncludesGas": "≈ {{usd}}, รวมแก๊สแล้ว",
+    "gasIncluded": "รวมแก๊ส",
+    "gasOnly": "≈ {{usd}} ก๊าซ",
+    "paidFromWallet": "{{amount}} จากกระเป๋าสตางค์",
+    "paidFromWalletPlain": "จ่ายจากกระเป๋าสตางค์",
+    "priceUnavailable": "ราคาคือไม่สามารถหาได้",
+    "confirm": "มิ้นท์บน {{chain}}",
+    "confirmWithCost": "มิ้นท์บน {{chain}} · {{cost}}",
+    "notAvailable": "ไม่สามารถmintได้บนช่วงนี้"
   }
 }

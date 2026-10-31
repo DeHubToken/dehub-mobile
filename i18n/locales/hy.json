@@ -14552,5 +14552,20 @@
     "fingerprint": "Մատնահետք",
     "exploreFirst": "Սկզբում ուսումնասիրեք",
     "codeNote": "Մենք ձեզ էլփոստով կոդ ենք ուղարկում, գաղտնաբառի կարիք չկա ։"
+  },
+  "mintChain": {
+    "title": "Դրամահատարան",
+    "subtitle": "Ընտրեք շղթա ։ Գները հրապարակվում են և թարմացվում ամեն րոպե ։",
+    "free": "Անվճար",
+    "gasCovered": "Գազը ծածկված է DeHub - ով",
+    "feeIncludesGas": "≈{{usd}}, գազը ներառված է",
+    "gasIncluded": "Գազը ներառված է",
+    "gasOnly": "≈{{usd}} գազ",
+    "paidFromWallet": "{{amount}} ձեր դրամապանակից",
+    "paidFromWalletPlain": "Վճարվել է դրամապանակից",
+    "priceUnavailable": "Գինը ազատ չէ",
+    "confirm": "Անանուխ {{chain}}-ում",
+    "confirmWithCost": "Անանուխ {{chain}}{{cost}}",
+    "notAvailable": "Այս շղթայի հատումը դեռ հասանելի չէ:"
   }
 }

@@ -14762,5 +14762,20 @@
     "fingerprint": "ফিঙ্গারপ্রিন্ট",
     "exploreFirst": "প্রথমে এক্সপ্লোর করো",
     "codeNote": "আমরা আপনে একডা কোড ইমেইল দিই, পাসওয়ার্ড দরকার নাই।"
+  },
+  "mintChain": {
+    "title": "মিন্ট পোস্ট",
+    "subtitle": "একটি চেইন বেছে নিন। দাম লাইভ এবং প্রতি মিনিটে আপডেট হয়।",
+    "free": "ফ্রি",
+    "gasCovered": "গ্যাস DeHub দ্বারা কভার করা",
+    "feeIncludesGas": "≈ {{usd}}, গ্যাস অন্তর্ভুক্ত",
+    "gasIncluded": "গ্যাস অন্তর্ভুক্ত",
+    "gasOnly": "≈ {{usd}} গ্যাস",
+    "paidFromWallet": "{{amount}} আপনার ওয়ালেট থেকে",
+    "paidFromWalletPlain": "আপনার ওয়ালেট থেকে পেমেন্ট করা",
+    "priceUnavailable": "দাম উপলব্ধ নেই",
+    "confirm": "{{chain}} এ মিন্ট করুন",
+    "confirmWithCost": "{{chain}} এ মিন্ট করুন · {{cost}}",
+    "notAvailable": "এই চেইনে মিন্টিং এখনও উপলব্ধ নেই।"
   }
 }

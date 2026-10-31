@@ -14556,5 +14556,20 @@
     "fingerprint": "వేలిముద్ర",
     "exploreFirst": "మొదట అన్వేషించండి",
     "codeNote": "మేము మీకు కోడ్ ‌ ను ఇమెయిల్ చేస్తాము, పాస్ ‌ వర్డ్ అవసరం లేదు."
+  },
+  "mintChain": {
+    "title": "మింట్ పోస్ట్",
+    "subtitle": "గొలుసును ఎంచుకోండి. ధరలు ప్రత్యక్షంగా ఉంటాయి మరియు ప్రతి నిమిషం అప్ ‌ డేట్ అవుతాయి.",
+    "free": "ఉచితం",
+    "gasCovered": "DeHub ద్వారా కవర్ చేయబడిన గ్యాస్",
+    "feeIncludesGas": "² {{usd}}, గ్యాస్ చేర్చబడింది",
+    "gasIncluded": "గ్యాస్ చేర్చబడింది",
+    "gasOnly": "³ {{usd}} గ్యాస్",
+    "paidFromWallet": "{{amount}} మీ వాలెట్ నుండి",
+    "paidFromWalletPlain": "మీ వాలెట్ నుండి చెల్లించారు",
+    "priceUnavailable": "ధర అందుబాటులో లేదు",
+    "confirm": "{{chain}} పై మింట్",
+    "confirmWithCost": "పుదీనా {{chain}}{{cost}}",
+    "notAvailable": "ఈ గొలుసుపై మింటింగ్ ఇంకా అందుబాటులో లేదు."
   }
 }
