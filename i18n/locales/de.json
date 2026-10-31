@@ -14560,5 +14560,20 @@
     "send": "Fehlerbericht senden",
     "signIn": "Melden Sie sich an, um zu senden",
     "failed": "Etwas ist schief gelaufen. Ihre Nachricht wurde gespeichert. Bitte versuchen Sie es erneut."
+  },
+  "mintChain": {
+    "title": "Mint Post",
+    "subtitle": "Wählen Sie eine Kette. Die Preise sind live und werden jede Minute aktualisiert.",
+    "free": "Kostenlos",
+    "gasCovered": "Gas gedeckt durch DeHub",
+    "feeIncludesGas": "≈ {{usd}}, Gas inbegriffen",
+    "gasIncluded": "Gas inbegriffen",
+    "gasOnly": "≈ {{usd}} Gas",
+    "paidFromWallet": "{{amount}} aus Ihrem Wallet",
+    "paidFromWalletPlain": "Bezahlt aus dem Portemonnaie",
+    "priceUnavailable": "Preis nicht verfügbar",
+    "confirm": "Minze am {{chain}}",
+    "confirmWithCost": "Minze am {{chain}} · {{cost}}",
+    "notAvailable": "Die Prägung dieser Kette ist noch nicht verfügbar."
   }
 }

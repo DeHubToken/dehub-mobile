@@ -14596,5 +14596,19 @@
     "fingerprint": "البصمة",
     "exploreFirst": "استكشف الأول",
     "codeNote": "إحنا بنبعت لك كود على الإيميل، مش محتاج كلمة سر."
+  },
+  "mintChain": {
+    "title": "معلومات المنصة",
+    "subtitle": "اختر الشبكة. يتم تحديث الأسعار كل دقيقة.",
+    "free": "مجاناً",
+    "gasCovered": "تغطي الغاز من قبل DeHub",
+    "feeIncludesGas": "≈ {{usd}}، بما في ذلك الغاز",
+    "gasIncluded": "بما في ذلك الغاز",
+    "gasOnly": "≈ {{usd}} الغاز",
+    "paidFromWalletPlain": "تم سحب من محفظتك",
+    "priceUnavailable": "غير متوفرة",
+    "confirm": "مطروح على {{chain}}",
+    "confirmWithCost": "مطروح على {{chain}} · {{cost}}",
+    "notAvailable": "لا يتوفر المطروح على هذه الشبكة بعد."
   }
 }

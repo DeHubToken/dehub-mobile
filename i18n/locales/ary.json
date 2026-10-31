@@ -14582,5 +14582,20 @@
     "fingerprint": "بصمة الإصبع",
     "exploreFirst": "الاستكشاف أولاً",
     "codeNote": "نرسل إليك رمزًا بالبريد الإلكتروني، دون الحاجة إلى كلمة مرور."
+  },
+  "mintChain": {
+    "title": "منشور النعناع",
+    "subtitle": "اختر سلسلة. الأسعار متاحة ويتم تحديثها كل دقيقة.",
+    "free": "مجاني",
+    "gasCovered": "الغاز المغطى بواسطة DeHub",
+    "feeIncludesGas": "≈ {{usd}}، بما في ذلك الغاز",
+    "gasIncluded": "الغاز مشمول",
+    "gasOnly": "≈ {{usd}} غاز",
+    "paidFromWallet": "{{amount}} من محفظتك",
+    "paidFromWalletPlain": "تم الدفع من محفظتك",
+    "priceUnavailable": "السعر غير متاح",
+    "confirm": "النعناع على {{chain}}",
+    "confirmWithCost": "النعناع على {{chain}}·{{cost}}",
+    "notAvailable": "لا يتوفر سك العملة على هذه السلسلة حتى الآن."
   }
 }

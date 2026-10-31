@@ -14537,5 +14537,19 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Öňürti barlaň",
     "codeNote": "Biz size kody iberýäris, hiç hili parol gerek däl."
+  },
+  "mintChain": {
+    "title": "Mint posty",
+    "subtitle": "Bir zynjyr saýlaň. Baýlar diridir we her minutda täzelenýär.",
+    "free": "Azat",
+    "gasCovered": "Dehub bilen örtülen gaz",
+    "feeIncludesGas": "≈ {{usd}}, gaz içi",
+    "gasIncluded": "Benzin hem şol sanda",
+    "gasOnly": "≈ {{usd}} gaz",
+    "paidFromWalletPlain": "Men pulumy gaýtaryp bererin",
+    "priceUnavailable": "Öňki ýaly, bular hem bar.",
+    "confirm": "Mint on {{chain}}",
+    "confirmWithCost": "{{chain}} {{cost}}",
+    "notAvailable": "Häzirki ýaly, bu mekdebiň açylmagy barada hiç hili habar berilmedi."
   }
 }

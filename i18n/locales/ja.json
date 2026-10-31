@@ -14562,5 +14562,20 @@
     "loading": "スポンサーを探しています…",
     "campaignDescription": "視聴者がクリエーターを支援するには、30秒視聴してください。30秒以上の動画がウェブ広告ポータルにアップロードされている必要があります。",
     "watch": "このクリエーターを支援するために広告を視聴してください"
+  },
+  "mintChain": {
+    "title": "ミントポスト",
+    "subtitle": "チェーンを選択してください。価格はライブで、毎分更新されます。",
+    "free": "無料",
+    "gasCovered": "DeHubがカバーするガス",
+    "feeIncludesGas": "≈{{usd}}、ガス込み",
+    "gasIncluded": "ガスが含まれています",
+    "gasOnly": "≈{{usd}}ガス",
+    "paidFromWallet": "お財布から{{amount}}",
+    "paidFromWalletPlain": "ウォレットからお支払い済み",
+    "priceUnavailable": "料金はご利用いただけません",
+    "confirm": "{{chain}}に新品",
+    "confirmWithCost": "{{chain}}に新品・{{cost}}",
+    "notAvailable": "このチェーンでの鋳造はまだ利用できません。"
   }
 }

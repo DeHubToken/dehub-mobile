@@ -1091,6 +1091,12 @@ export interface MintFeeQuoteResponse {
   decimals: number;
   isNative: boolean;
   ttlSeconds: number;
+  /** What the creator pays, in USD. */
+  retailUsd?: number;
+  /** Gas for one mint, in USD and in the chain's gas token. */
+  gasCostUsd?: number;
+  gasCost?: number;
+  gasSymbol?: string;
 }
 
 /**
@@ -1105,7 +1111,10 @@ export async function getMintFee(chainId: number): Promise<MintFeeQuoteResponse 
   try {
     const res = await apiClient.get<any>(`/mint_fee?chainId=${chainId}`);
     const raw = (res as any)?.data ?? res;
-    const quote = (raw as any)?.result ?? raw;
+    // The API answers { result: true, ...quote }. Unwrapping `result` only
+    // when it is the quote itself; reading `.result` blindly gave `true` and
+    // every quote came back null.
+    const quote = raw && typeof (raw as any).result === "object" ? (raw as any).result : raw;
     return quote && typeof quote.amount === "number" ? (quote as MintFeeQuoteResponse) : null;
   } catch (e) {
     console.warn("[NFTService] getMintFee failed", e);
@@ -1143,10 +1152,10 @@ export async function resolveNewPost(n: number | string): Promise<NewPostResolut
  * The post already has its token id, so the response carries the same
  * signature fields as minNft and feeds straight into the on-chain step.
  */
-export async function mintExistingPost(tokenId: number): Promise<MintNftResponse> {
+export async function mintExistingPost(tokenId: number, chainId?: number): Promise<MintNftResponse> {
   const res = await apiClient.post<MintNftResponse>(
     `/mint_existing`,
-    { tokenId },
+    { tokenId, ...(chainId ? { chainId } : {}) },
     { isAuthRequired: true },
   );
   const raw = (res as any)?.data ?? res;

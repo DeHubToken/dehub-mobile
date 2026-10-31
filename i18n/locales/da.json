@@ -14556,5 +14556,20 @@
     "fingerprint": "Fingeraftryk",
     "exploreFirst": "Udforsk først",
     "codeNote": "Vi sender dig en kode på e-mail, ingen adgangskode."
+  },
+  "mintChain": {
+    "title": "Mynteindlæg",
+    "subtitle": "Vælg en kæde. Priserne er live og opdateres hvert minut.",
+    "free": "Gratis",
+    "gasCovered": "Gas dækket af DeHub",
+    "feeIncludesGas": "≈{{usd}}, gas inkluderet",
+    "gasIncluded": "Gas inkluderet",
+    "gasOnly": "≈{{usd}} gas",
+    "paidFromWallet": "{{amount}} fra din tegnebog",
+    "paidFromWalletPlain": "Betalt fra din tegnebog",
+    "priceUnavailable": "Pris ikke tilgængelig",
+    "confirm": "Mint den {{chain}}",
+    "confirmWithCost": "Mint på {{chain}} ·{{cost}}",
+    "notAvailable": "Minting på denne kæde er endnu ikke tilgængelig."
   }
 }

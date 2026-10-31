@@ -14537,5 +14537,16 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "अन्वेषणं प्रथमं",
     "codeNote": "- भवतः/भवत्याः कूटशब्दः आवश्यकः नास्ति ।"
+  },
+  "mintChain": {
+    "title": "MINT पदम्",
+    "subtitle": "विकल्प एक शृंखला चुनें। मूल्य जीवित हैं और प्रत्येक मिनट में अद्यतन होते हैं।",
+    "free": "स्वतन्त्रम्",
+    "gasCovered": "DeHub द्वारा टिप्पणियां",
+    "gasIncluded": "ग्यासः समावेशी",
+    "paidFromWalletPlain": "तेरे पन्ने पे",
+    "priceUnavailable": "मूल्यं अप्राप्य",
+    "confirmWithCost": "मिंट {{chain}} · {{cost}}",
+    "notAvailable": "एषा शृङ्खला अद्यापि न प्राप्यते ।"
   }
 }

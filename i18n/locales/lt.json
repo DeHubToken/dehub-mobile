@@ -14552,5 +14552,20 @@
     "fingerprint": "Piršto atspaudas",
     "exploreFirst": "Pirmiausia peržiūrėkite",
     "codeNote": "Siunčiame kodą el. paštu, slaptažodžio nereikia."
+  },
+  "mintChain": {
+    "title": "Mėtų stulpelis",
+    "subtitle": "Pasirinkite grandinę. Kainos yra galiojančios ir atnaujinamos kiekvieną minutę.",
+    "free": "Nemokamai",
+    "gasCovered": "Dujas dengia „DeHub“",
+    "feeIncludesGas": "≈ {{usd}}, su dujomis",
+    "gasIncluded": "Su dujomis",
+    "gasOnly": "≈ {{usd}} dujos",
+    "paidFromWallet": "{{amount}} iš jūsų piniginės",
+    "paidFromWalletPlain": "Sumokėta iš jūsų piniginės",
+    "priceUnavailable": "Kaina nepasiekiama",
+    "confirm": "Kalykla {{chain}}",
+    "confirmWithCost": "Minėta {{chain}} · {{cost}}",
+    "notAvailable": "Šios grandinės monetų kaldinti dar negalima."
   }
 }

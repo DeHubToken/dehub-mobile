@@ -14580,5 +14580,20 @@
     "fingerprint": "指纹",
     "exploreFirst": "先探索",
     "codeNote": "我们会给你发送验证码，无需密码。"
+  },
+  "mintChain": {
+    "title": "Mint 帖子",
+    "subtitle": "选择链。价格实时更新，每分钟刷新一次。",
+    "free": "免费",
+    "gasCovered": "Gas 费用由 DeHub 覆盖",
+    "feeIncludesGas": "≈ {{usd}}，已含 gas",
+    "gasIncluded": "已含 gas",
+    "gasOnly": "≈ {{usd}} 气",
+    "paidFromWallet": "{{amount}} 来自你的钱包",
+    "paidFromWalletPlain": "已从你的钱包支付",
+    "priceUnavailable": "价格不可用",
+    "confirm": "在 {{chain}} 上铸造",
+    "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
+    "notAvailable": "此链上的铸造尚未开放。"
   }
 }
