@@ -2213,6 +2213,9 @@
     "global": "عالمي"
   },
   "features": {
+    "notFeasible": "غير ممكن",
+    "notFeasibleWhy": "السبب:",
+    "noNotFeasible": "لا شيء هنا",
     "prompts": "المقترحات",
     "queued": "في الانتظار",
     "promptPageTitle": "الطلبات",

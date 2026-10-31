@@ -1,15 +1,15 @@
 /**
- * How long a post's text may be. The cap scales with the staking badge: 500
- * characters with no badge, rising per tier to 2,000 for Megalodon. The
- * API is the authority (`textCharsPerPost` on the post-quota status) and
- * enforces it on publish and edit; an API that predates it means 500.
+ * How long a post's text may be. Everyone gets 1,000 characters; higher
+ * staking badges rise per tier to 2,000 for Megalodon. The API is the
+ * authority (`textCharsPerPost` on the post-quota status) and enforces it on
+ * publish and edit; anything lower or missing means 1,000.
  *
  * Article summaries stay at 500 whatever the tier. Kept in step with web's
  * `lib/post-text-limit.ts`.
  */
 import type { PostQuotaStatus } from "../services/post-quota.service";
 
-export const BASE_POST_TEXT_CHARS = 500;
+export const BASE_POST_TEXT_CHARS = 1000;
 
 export function postTextLimit(quota: Pick<PostQuotaStatus, "textCharsPerPost"> | null | undefined): number {
   const n = quota?.textCharsPerPost;
