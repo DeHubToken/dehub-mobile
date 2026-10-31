@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, Modal, Pressable, ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Svg, { Defs, G, Path, RadialGradient, Stop } from "react-native-svg";
+import Svg, { ClipPath, Defs, Ellipse, G, LinearGradient, Path, RadialGradient, Rect, Stop } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import { X } from "lucide-react-native";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -15,7 +15,7 @@ import { DEHUB_MARK_PATH, DEHUB_MARK_VIEWBOX } from "./dehubMarkPath";
 const SEEN_KEY = "dehub.halloween2026.ghostSeen";
 const DWELL_MS = 2_500;
 const FEED_SCREENS = new Set<string>([ScreenNames.Home, ScreenNames.Explore]);
-const GHOST = "M100 14C46 14 22 58 22 110L22 226Q34 212 48 226Q62 240 76 226Q88 212 100 226Q112 240 124 226Q138 212 152 226Q166 240 178 226L178 110C178 58 154 14 100 14Z";
+const GHOST = "M100 6C150 6 176 42 178 98C180 140 186 178 190 204C192 218 180 226 168 218C158 211 150 213 143 223C135 235 120 235 112 223C106 214 94 214 88 223C80 235 65 235 57 223C50 213 42 211 32 218C20 226 8 218 10 204C14 178 20 140 22 98C24 42 50 6 100 6Z";
 
 let shownThisOpen = false;
 
@@ -26,74 +26,85 @@ function loop(value: Animated.Value, ms: number) {
   ]));
 }
 
-/** Body and DeHub-mark face ride the same float and sway, so the face moves with the ghost. */
+/**
+ * All vector, so it stays sharp on every screen: a clean silhouette with
+ * shading and a highlight clipped inside it, a white rim, a smooth radial
+ * aura behind, and the DeHub mark face riding the same float.
+ */
 function Ghost({ size }: { size: number }) {
   const float = useRef(new Animated.Value(0)).current;
-  const sway = useRef(new Animated.Value(0)).current;
-  const flicker = useRef(new Animated.Value(1)).current;
   useEffect(() => {
-    const a = loop(float, 2800);
-    const b = loop(sway, 1900);
-    const c = Animated.loop(Animated.sequence([
-      Animated.timing(flicker, { toValue: 0.78, duration: 90, useNativeDriver: true }),
-      Animated.timing(flicker, { toValue: 1, duration: 120, useNativeDriver: true }),
-      Animated.delay(900),
-      Animated.timing(flicker, { toValue: 0.9, duration: 70, useNativeDriver: true }),
-      Animated.timing(flicker, { toValue: 1, duration: 90, useNativeDriver: true }),
-      Animated.delay(1100),
-    ]));
-    a.start(); b.start(); c.start();
-    return () => { a.stop(); b.stop(); c.stop(); };
-  }, [float, sway, flicker]);
-  const h = size * 1.25;
+    const a = loop(float, 3200);
+    a.start();
+    return () => a.stop();
+  }, [float]);
+  const h = size * (300 / 260);
   return (
     <Animated.View
       style={{
         width: size, height: h,
         transform: [
-          { translateY: float.interpolate({ inputRange: [0, 1], outputRange: [0, -9] }) },
-          { rotate: float.interpolate({ inputRange: [0, 1], outputRange: ["-3deg", "3deg"] }) },
-          { skewX: sway.interpolate({ inputRange: [0, 1], outputRange: ["4deg", "-5deg"] }) },
-          { scaleY: sway.interpolate({ inputRange: [0, 1], outputRange: [1, 1.025] }) },
+          { translateY: float.interpolate({ inputRange: [0, 1], outputRange: [0, -8] }) },
+          { rotate: float.interpolate({ inputRange: [0, 1], outputRange: ["-2.5deg", "2.5deg"] }) },
         ],
       }}
     >
-      <Svg width={size} height={h} viewBox="-16 -6 232 262" style={{ overflow: "visible" }}>
+      <Svg width={size} height={h} viewBox="-30 -20 260 300">
         <Defs>
-          <RadialGradient id="hgBody" cx="0.5" cy="0.35" r="0.7">
-            <Stop offset="0" stopColor="#fff4ee" stopOpacity={0.96} />
-            <Stop offset="0.6" stopColor="#f2d9d6" stopOpacity={0.76} />
-            <Stop offset="1" stopColor="#ce2030" stopOpacity={0.18} />
+          <RadialGradient id="hgAura" cx="0.5" cy="0.5" rx="0.5" ry="0.5">
+            <Stop offset="0" stopColor="#ff3b4a" stopOpacity={0.55} />
+            <Stop offset="0.55" stopColor="#ce2030" stopOpacity={0.18} />
+            <Stop offset="1" stopColor="#ce2030" stopOpacity={0} />
           </RadialGradient>
-          <RadialGradient id="hgEmber" cx="0.5" cy="0.5" r="0.5">
-            <Stop offset="0" stopColor="#ffd2a8" />
-            <Stop offset="0.45" stopColor="#ff7a3c" />
-            <Stop offset="1" stopColor="#ce2030" />
+          <LinearGradient id="hgBody" x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#ffffff" />
+            <Stop offset="0.45" stopColor="#f6eeee" />
+            <Stop offset="0.74" stopColor="#efdfe1" stopOpacity={0.94} />
+            <Stop offset="1" stopColor="#f2c9cf" stopOpacity={0.72} />
+          </LinearGradient>
+          <LinearGradient id="hgShade" x1="0" y1="0" x2="1" y2="0">
+            <Stop offset="0" stopColor="#5a1822" stopOpacity={0.1} />
+            <Stop offset="0.35" stopColor="#5a1822" stopOpacity={0} />
+            <Stop offset="0.7" stopColor="#5a1822" stopOpacity={0} />
+            <Stop offset="1" stopColor="#5a1822" stopOpacity={0.2} />
+          </LinearGradient>
+          <RadialGradient id="hgSpec" cx="0.5" cy="0.5" rx="0.5" ry="0.5">
+            <Stop offset="0" stopColor="#ffffff" stopOpacity={0.95} />
+            <Stop offset="1" stopColor="#ffffff" stopOpacity={0} />
           </RadialGradient>
+          <LinearGradient id="hgRim" x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#ffffff" stopOpacity={0.9} />
+            <Stop offset="0.6" stopColor="#ffd9dc" stopOpacity={0.35} />
+            <Stop offset="1" stopColor="#ff5a6a" stopOpacity={0} />
+          </LinearGradient>
+          <ClipPath id="hgClip"><Path d={GHOST} /></ClipPath>
         </Defs>
-        {/* Crimson halo: wide soft strokes under the body (no shadow box on Android / web). */}
-        <Path d={GHOST} fill="none" stroke="#ce2030" strokeOpacity={0.12} strokeWidth={26} strokeLinejoin="round" />
-        <Path d={GHOST} fill="none" stroke="#ff5a3c" strokeOpacity={0.18} strokeWidth={12} strokeLinejoin="round" />
+        <Ellipse cx={100} cy={130} rx={140} ry={150} fill="url(#hgAura)" />
         <Path d={GHOST} fill="url(#hgBody)" />
+        <G clipPath="url(#hgClip)">
+          <Rect x={0} y={0} width={200} height={240} fill="url(#hgShade)" />
+          <Ellipse cx={66} cy={44} rx={40} ry={26} fill="url(#hgSpec)" />
+        </G>
+        <Path d={GHOST} fill="none" stroke="url(#hgRim)" strokeWidth={1.6} />
       </Svg>
       <Animated.View
         style={{
-          position: "absolute", left: size * 0.25, top: size * 0.29, width: size * 0.5, height: size * 0.5, opacity: flicker,
+          position: "absolute", left: size * (78 / 260), top: h * (78 / 300), width: size * (104 / 260), height: size * (104 / 260),
           transform: [
-            { translateX: sway.interpolate({ inputRange: [0, 1], outputRange: [-2, 3] }) },
-            { rotate: sway.interpolate({ inputRange: [0, 1], outputRange: ["-2deg", "3deg"] }) },
+            { translateX: float.interpolate({ inputRange: [0, 1], outputRange: [-1.5, 1.5] }) },
+            { translateY: float.interpolate({ inputRange: [0, 1], outputRange: [0, -1] }) },
           ],
         }}
       >
         <Svg width="100%" height="100%" viewBox={DEHUB_MARK_VIEWBOX}>
           <Defs>
-            <RadialGradient id="hgEmber2" cx="0.5" cy="0.5" r="0.5">
-              <Stop offset="0" stopColor="#ffd2a8" />
-              <Stop offset="0.45" stopColor="#ff7a3c" />
-              <Stop offset="1" stopColor="#ce2030" />
-            </RadialGradient>
+            <LinearGradient id="hgMark" x1="0" y1="0" x2="0" y2="1">
+              <Stop offset="0" stopColor="#ff8a4c" />
+              <Stop offset="0.55" stopColor="#e2283a" />
+              <Stop offset="1" stopColor="#9e0f1f" />
+            </LinearGradient>
           </Defs>
-          <G><Path d={DEHUB_MARK_PATH} fill="url(#hgEmber2)" /></G>
+          <Path d={DEHUB_MARK_PATH} fill="url(#hgMark)" />
         </Svg>
       </Animated.View>
     </Animated.View>
@@ -112,7 +123,7 @@ export function GhostPopup({ onClose }: { onClose: () => void }) {
     Animated.timing(enter, { toValue: 0, duration: 380, easing: Easing.in(Easing.quad), useNativeDriver: true }).start(() => onClose());
   };
   const themes = APP_THEMES.filter((v) => v !== HALLOWEEN_THEME) as AppThemeName[];
-  const ghost = Math.min(190, width * 0.48);
+  const ghost = Math.min(230, width * 0.58);
   return (
     <Modal transparent visible animationType="none" statusBarTranslucent onRequestClose={close}>
       <Animated.View style={{ flex: 1, opacity: enter }}>
