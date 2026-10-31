@@ -103,6 +103,7 @@ import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
+import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
 import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
@@ -419,7 +420,6 @@ export default function UploadScreen() {
   });
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [coverUri, setCoverUri] = useState<string | null>(null);
-  const [coverHidden, setCoverHidden] = useState(false);
 
   const [isQuoteMode, setIsQuoteMode] = useState(!!incomingQuotedTokenId);
   const [quotedTokenId, setQuotedTokenId] = useState<number | string | undefined>(incomingQuotedTokenId);
@@ -1244,7 +1244,6 @@ export default function UploadScreen() {
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
-        setCoverHidden(false);
         clearSound();
       } else {
         // Leaving live mode: clear live-specific state
@@ -1708,6 +1707,8 @@ export default function UploadScreen() {
     }
   }, []);
 
+  const videoBox = useVideoPreviewBox(thumbnailUri);
+
   const handlePickCoverImage = useCallback(async () => {
     try {
       await runWithPermissions(["photos"], async () => {
@@ -1719,16 +1720,11 @@ export default function UploadScreen() {
         });
         if (picked) {
           setCoverUri(picked);
-          setCoverHidden(false);
         }
       });
     } catch (err) {
       console.error("[UploadScreen] cover image pick error:", err);
     }
-  }, []);
-
-  const toggleCoverHidden = useCallback(() => {
-    setCoverHidden((prev) => !prev);
   }, []);
 
   const handleChangeVideo = useCallback(async () => {
@@ -2137,7 +2133,6 @@ export default function UploadScreen() {
     setIsMuted(true);
     setThumbnailUri(null);
     setCoverUri(null);
-    setCoverHidden(false);
     clearSound();
   }, [clearSound]);
 
@@ -2844,10 +2839,11 @@ export default function UploadScreen() {
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (
-              <View className="mt-3 rounded-xl overflow-hidden border border-theme-neutrals-700 relative">
+              <View onLayout={videoBox.onLayout}>
+              <View className="mt-3 rounded-xl overflow-hidden border border-theme-neutrals-700 relative self-start" style={videoBox.style}>
                 <VideoView
                   player={player}
-                  style={{ width: "100%", height: 220, backgroundColor: "#111" }}
+                  style={{ width: "100%", height: "100%", backgroundColor: "#111" }}
                   contentFit="contain"
                   nativeControls={false}
                 />
@@ -2918,35 +2914,10 @@ export default function UploadScreen() {
                 >
                   <Icon name="Pencil" size={16} color="#fff" />
                 </TouchableOpacity>
-                {(thumbnailUri || coverUri) && !coverHidden && (
-                  <View className="absolute bottom-2 right-2">
-                    <TouchableOpacity
-                      onPress={handlePickCoverImage}
-                      activeOpacity={0.8}
-                      className="relative rounded-lg overflow-hidden border border-white/30"
-                      style={{ width: 80, height: 45 }}
-                    >
-                      <SmartImage
-                        source={{ uri: coverUri ?? thumbnailUri! }}
-                        recyclingKey={coverUri ?? thumbnailUri!}
-                        style={{ width: 80, height: 45 }}
-                        contentFit="cover"
-                      />
-                      <View className="absolute inset-0 dark-surface bg-black/40 items-center justify-center">
-                        <Icon name="Pencil" size={20} color="#fff" />
-                      </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={toggleCoverHidden}
-                      className="absolute -top-2 right-1 w-5 h-5 rounded-lg dark-surface bg-black/70 items-center justify-center"
-                      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                      accessibilityRole="button"
-                      accessibilityLabel={t("upload.hideCover")}
-                    >
-                      <Icon name="EyeOff" size={11} color="#fff" />
-                    </TouchableOpacity>
-                  </View>
-                )}
+              </View>
+              {(thumbnailUri || coverUri) && (
+                <VideoCoverBox uri={coverUri ?? thumbnailUri!} style={videoBox.style} onPress={handlePickCoverImage} />
+              )}
               </View>
             )}
 
@@ -2962,23 +2933,9 @@ export default function UploadScreen() {
                 onPickFrame={(uri) => {
                   setThumbnailUri(uri);
                   setCoverUri(null);
-                  setCoverHidden(false);
                 }}
                 onUpload={handlePickCoverImage}
               />
-            )}
-
-            {!isLiveMode && mediaMode === "video" && coverHidden && (thumbnailUri || coverUri) && (
-              <TouchableOpacity
-                onPress={toggleCoverHidden}
-                activeOpacity={0.7}
-                className="mt-2 flex-row items-center self-end"
-              >
-                <Icon name="Eye" size={14} color="#6F7174" />
-                <Text className="text-theme-neutrals-400 text-xs ml-1">
-                  {t("upload.showCover")}
-                </Text>
-              </TouchableOpacity>
             )}
 
             {isAudioRecording && (
