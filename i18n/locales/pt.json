@@ -2447,7 +2447,35 @@
     "fbd1210fffc5": "{{value1}} bloqueado",
     "8912e65bf642": "Arraste para reordenar a foto {{value1}} de {{value2}}",
     "01acc2c0f94b": "Usar conta {{value1}}",
-    "8456b09b5e76": "Remover conta {{value1}}"
+    "8456b09b5e76": "Remover conta {{value1}}",
+    "1aa9d734f2ee": "Escolha o que pesquisar",
+    "35034aa59bd3": "Nada em {{feed}} correspondeu. Tente outras palavras ou pesquise tudo.",
+    "415155739590": "Pesquisar tudo",
+    "481859b689b0": "Verifique sua conexão e tente novamente.",
+    "57e2faa5ec63": "Pesquisar no DeHub",
+    "7db20897053b": "Pessoas",
+    "90f1afe66801": "Pesquisando por \"{{query}}\"…",
+    "96d7bff86b44": "Não foi possível carregar a pesquisa",
+    "9e13d826baaf": "Pesquisar imagens",
+    "e8756c6865a5": "Pesquisar shorts",
+    "c7661da99c41": "Pesquisar vídeos",
+    "cbf6f228327c": "Pesquisar música",
+    "d7b559f2d8c6": "Tente outras palavras ou altere os filtros.",
+    "d8b8392e2c54": "Tente novamente",
+    "ef557404f465": "Nenhum resultado para \"{{query}}\"",
+    "d1a0c7e2f301": "O que você está pensando hoje?",
+    "d1a0c7e2f302": "Em que você está pensando hoje?",
+    "d1a0c7e2f303": "O que você está pensando?",
+    "d1a0c7e2f304": "Tem algo em mente?",
+    "d1a0c7e2f305": "O que você está pensando agora?",
+    "d1a0c7e2f306": "Em que estamos pensando hoje?",
+    "d1a0c7e2f307": "Algo em mente hoje?",
+    "d1a0c7e2f308": "O que você está pensando desta vez?",
+    "a7c1e0f4b2d9": "Toque para falar",
+    "b3e8d1c6f0a2": "Toque para enviar",
+    "c9f2a4e7d1b5": "Ouvindo... toque na bola para enviar",
+    "22577ebd908e": "Gerar vídeo Wan 3.0 · trilha sonora original",
+    "1fa2357ab7e1": "Gerar vídeo Seedance 720p · trilha sonora original"
   },
   "dehubLinks": {
     "kind": {
@@ -3611,7 +3639,17 @@
     "payDirectNoName": "Enviado diretamente ao criador em {{symbol}} na {{chain}}. Sem swap.",
     "payViaBridgeDpay": "Movido para Base e pago para DeHub Pay, tokens chegam em cerca de um minuto",
     "tokensUnit": "tokens",
-    "tokenAmount": "Tokens {{amount}}"
+    "tokenAmount": "Tokens {{amount}}",
+    "addMessage": "Adicionar uma mensagem (opcional)",
+    "messagePlaceholder": "Diga algo com sua gorjeta",
+    "messagePublic": "Público",
+    "messagePrivate": "Apenas {{name}}",
+    "theCreator": "o criador",
+    "messageWallNote": "Aparece na parede de gorjetas assim que a gorjeta é processada.",
+    "sendWithMessage": "Enviar com mensagem",
+    "messageFailed": "Sua mensagem não pôde ser adicionada. Nenhuma gorjeta foi enviada.",
+    "wallLabel": "Mensagens de gorjeta",
+    "messagePrivateNote": "Apenas {{name}} vê, em sua notificação."
   },
   "postOptions": {
     "embed": "Incorporar",
@@ -3695,7 +3733,10 @@
     "giftBoost": "Ofereça um impulso",
     "giftBoostDesc": "Gaste um dos seus nesta publicação",
     "askAi": "Perguntar à IA",
-    "aiOverview": "AI overview"
+    "aiOverview": "AI overview",
+    "refreshLinkPreview": "Atualizar visualização de link",
+    "linkPreviewRefreshed": "Visualização de link atualizada",
+    "linkPreviewRefreshFailed": "Não foi possível acessar esse site. Tente novamente mais tarde."
   },
   "filters": {
     "sort": "Ordenar",
@@ -4578,7 +4619,8 @@
     "importWalletPurpose": "Esta ferramenta é para importar contas existentes do DeHub.io.",
     "importSecretPlaceholder": "12 ou 24 palavras, ou uma chave privada",
     "invalidImportSecret": "Isso não é uma frase válida de 12/24 palavras nem uma chave privada",
-    "walletSignupBlocked": "Esta carteira é novinha em folha. Carteiras novas precisam de saldo ou de uma transação anterior para abrir uma conta. Cadastre-se com uma das opções abaixo e depois conecte esta carteira nas Configurações."
+    "walletSignupBlocked": "Esta carteira é novinha em folha. Carteiras novas precisam de saldo ou de uma transação anterior para abrir uma conta. Cadastre-se com uma das opções abaixo e depois conecte esta carteira nas Configurações.",
+    "signInPageWouldNotOpen": "A página de login foi fechada antes de abrir. Tente novamente ou continue com email."
   },
   "messages": {
     "encryptionSetupFailed": "A configuração da encriptação falhou. Tente novamente.",
@@ -4750,7 +4792,9 @@
     "tabVideos": "Vídeos",
     "tabAudio": "Áudio",
     "tabLive": "Ao vivo",
-    "tabPinned": "Fixado"
+    "tabPinned": "Fixado",
+    "mutualsOne": "{{count}} Mútuo:",
+    "mutualsMany": "{{count}} Mútuos:"
   },
   "tv": {
     "title": "TV",
@@ -5266,7 +5310,29 @@
     "agentDisplayName": "Nome de exibição",
     "agentDisplayNamePlaceholder": "Como este agente aparece no DeHub",
     "capacity": "{{used}} de {{limit}} agentes · {{badge}}",
-    "noBadge": "Sem distintivo"
+    "noBadge": "Sem distintivo",
+    "welcome": {
+      "title": "Bem-vindo aos novos membros",
+      "help": "Este agente segue e/ou envia mensagens para pessoas que acabaram de se juntar ao DeHub, alguns por dia.",
+      "follow": "Seguir novos membros",
+      "message": "Mensagem para novos membros",
+      "text": "Mensagem de boas-vindas",
+      "textHelp": "{name} se torna seu @username. Sem links. Enviado uma vez por pessoa.",
+      "saveText": "Salvar mensagem",
+      "perDay": "Pessoas por dia",
+      "fewer": "Menos por dia",
+      "more": "Mais por dia",
+      "today": "Hoje: {{follows}} seguido · {{messages}} mensageado",
+      "limits": "Nunca a mesma pessoa duas vezes. Pula qualquer um que bloqueou ou silenciou você, desativou novas mensagens ou se escondeu de Novos membros.",
+      "showLog": "Ver quem foi bem-vindo",
+      "hideLog": "Ocultar boas-vindas",
+      "empty": "Ninguém ainda. Novos membros aparecem aqui conforme entram.",
+      "followed": "Seguido",
+      "messaged": "Mensageado",
+      "skipped": "Ignorado",
+      "failed": "Não foi possível alcançar",
+      "defaultText": "Oi {name}, bem-vindo ao DeHub! 👋"
+    }
   },
   "hero": {
     "title": "Bem-vindo Ao",
@@ -5351,7 +5417,52 @@
     "nowPublic": "O fluxo agora é público",
     "openCanvas": "A Área de Desenho",
     "playVideo": "Reproduzir o vídeo",
-    "signInToSee": "Inicie sessão para ver os fluxos na sua conta."
+    "signInToSee": "Inicie sessão para ver os fluxos na sua conta.",
+    "retryFreeTask": "Tentar novamente tarefa gratuita",
+    "previewSavedMedia": "Visualizar mídia salva",
+    "audioSavePending": "O áudio está pronto, mas seu salvamento na biblioteca privada está pendente. Retome para coletá-lo.",
+    "freeResultUnknown": "A resposta da tarefa gratuita foi interrompida. Não será enviada novamente automaticamente. Escolha Tentar novamente tarefa gratuita e depois retome; seu pagamento e outros trabalhos são retidos.",
+    "formAuthor": "Editar fluxo",
+    "formAuthorHint": "Construa um fluxo com entradas digitadas. Salve aqui ou organize-o na tela web.",
+    "newNativeFlow": "Novo fluxo",
+    "chooseSavedMedia": "Escolher mídia salva",
+    "model": "Modelo",
+    "aspectRatio": "Proporção de aspecto",
+    "duration": "Duração em segundos",
+    "resolution": "Resolução",
+    "formInput": "{{handle}}",
+    "disconnect": "Desconectar",
+    "reviewRun": "Revisar execução",
+    "resumeRun": "Retomar execução salva",
+    "confirmPrice": "Total: {{price}} DHB",
+    "recoveryHint": "Referências de trabalho e pagamento são salvas neste dispositivo. Retome o trabalho interrompido antes de iniciar outra execução.",
+    "payAndRun": "Pagar e executar",
+    "newRun": "Iniciar outra execução",
+    "loadMoreMedia": "Carregar mais mídia",
+    "invalidGraph": "Verifique as conexões: cada entrada precisa de uma fonte compatível e o gráfico não pode conter ciclos.",
+    "unsupportedNode": "Este nó ainda não pode ser executado na forma nativa. Use a tela web para este fluxo.",
+    "missingPrompt": "Conecte um nó de texto com um prompt.",
+    "invalidSettings": "Estas configurações não são suportadas pelo modelo selecionado.",
+    "missingCapturedFrame": "Capture um quadro na tela web antes de usar este vídeo como entrada de imagem.",
+    "missingSavedMedia": "A mídia de origem salva está ausente ou não está mais disponível para esta conta.",
+    "nothingToRun": "Adicione um gerador para executar este fluxo.",
+    "quoteFailed": "Não foi possível precificar este fluxo. Tente novamente.",
+    "recoverBeforeEdit": "Retome a execução salva antes de alterar seu gráfico ou iniciar outra execução.",
+    "runAlreadyComplete": "Esta execução está completa. Escolha Iniciar outra execução para gerar novamente.",
+    "recoveryCorrupt": "O registro de recuperação salvo não pôde ser lido. Mantenha este fluxo e entre em contato com o suporte antes de pagar novamente.",
+    "paidUnavailable": "Você pode criar e salvar fluxos aqui. Execuções pagas não estão disponíveis nesta loja.",
+    "planChanged": "O fluxo mudou após a precificação. Revise a execução novamente.",
+    "connectOwnerWallet": "Conecte a carteira que possui este fluxo.",
+    "runFailed": "O nó não pôde ser concluído. Sua referência de trabalho salva é retida para recuperação.",
+    "recoveryPending": "A renderização ainda está pendente. Retome esta execução para coletá-la.",
+    "nodeAudioGen": "Gerador de áudio",
+    "nodeAudioGenDesc": "Fala, efeitos sonoros, transcrição e isolamento de áudio",
+    "nodeAudioInput": "Áudio salvo",
+    "nodeAudioInputDesc": "Use áudio privado de sua biblioteca",
+    "audioVoiceId": "ID de voz",
+    "audioSeconds": "Duração do som em segundos",
+    "run": "Executar",
+    "handlePrompt": "Prompt"
   },
   "loginModal": {
     "title": "Entrar",
@@ -6493,7 +6604,8 @@
       "invalidLink": "Cole o link do post DeHub ou o ID do post.",
       "unavailable": "Este post não está disponível.",
       "signIn": "Faça o login novamente para gerenciar posts da comunidade."
-    }
+    },
+    "jumpToReply": "Ir para mensagem respondida"
   },
   "work": {
     "integrity": {
@@ -9324,7 +9436,8 @@
     "pipUnavailable": "Picture-in-picture não está disponível. Verifique se é permitido para DeHub nas configurações do seu dispositivo.",
     "noVideo": "Sem vídeo",
     "rotate": "Rotacionar",
-    "yourDhbBalance": "Seu saldo de tokens: {{amount}}"
+    "yourDhbBalance": "Seu saldo de tokens: {{amount}}",
+    "fullscreen": "Tela cheia"
   },
   "liveViewer": {
     "loadingStream": "A carregar transmissão...",
@@ -9631,7 +9744,22 @@
     "didNotRecoverEither": "Esse início de sessão não recuperou nenhum dos perfis aqui mostrados. Nada mudou. Experimenta o início de sessão original do perfil que queres.",
     "didNotRecoverThis": "Esse início de sessão recuperou uma carteira diferente da deste perfil. Nada mudou. Experimenta o início de sessão que o criou originalmente.",
     "couldNotRetrieve": "Não foi possível obter essa carteira antiga neste dispositivo. Ainda a podes recuperar em dehub.io abaixo.",
-    "matchedWithBalance": "Combinado, {{balance}} tokens"
+    "matchedWithBalance": "Combinado, {{balance}} tokens",
+    "methodEmail": "um código de email",
+    "methodPhone": "um número de telefone",
+    "madeWithNamed": "@{{name}} foi criado com {{method}}. Continue com a mesma conta {{method}} para recuperá-lo.",
+    "madeWith": "Este perfil foi criado com {{method}}. Continue com a mesma conta {{method}} para recuperá-lo.",
+    "madeWithEmailNamed": "@{{name}} foi criado com um código de email. Enviaremos mais um código para esse email para recuperá-lo.",
+    "madeWithEmail": "Este perfil foi criado com um código de email. Enviaremos mais um código para esse email para recuperá-lo.",
+    "madeWithPhoneNamed": "@{{name}} foi criado com um número de telefone. Enviaremos mais um código por SMS para esse número para recuperá-lo.",
+    "madeWithPhone": "Este perfil foi criado com um número de telefone. Enviaremos mais um código por SMS para esse número para recuperá-lo.",
+    "wrongSignInNamed": "Este login abre uma carteira diferente, não @{{name}}. @{{name}} foi criado com {{method}}, então apenas isso pode recuperá-lo.",
+    "wrongSignIn": "Este login abre uma carteira diferente. Este perfil foi criado com {{method}}, então apenas isso pode recuperá-lo.",
+    "continueWith": "Continue com {{provider}}",
+    "differentSignIn": "Usou um login diferente?",
+    "oldAccountPhone": "Número de telefone da conta antiga",
+    "recoverFromPhoneA11y": "Recuperar conta antiga a partir deste número de telefone",
+    "phoneNeedsCode": "Digite o número com seu código de país, como +90 532 123 4567."
   },
   "liveGift": {
     "buyTokens": "Comprar tokens",
@@ -10317,7 +10445,19 @@
       "translateCount": "Traduzir {{count}} legendas",
       "translationDone": "{{count}} legendas traduzidas",
       "translationFailed": "A tradução falhou. As suas legendas não foram alteradas.",
-      "lockedTranslation": "Desbloqueie as legendas bloqueadas para as incluir."
+      "lockedTranslation": "Desbloqueie as legendas bloqueadas para as incluir.",
+      "style": "Estilo de legenda",
+      "styles": {
+        "classic": "Clássico",
+        "boxed": "Caixa",
+        "bold": "Negrito",
+        "wordpop": "Word Pop",
+        "rapid": "Revelação Rápida",
+        "beast": "Beast Mode",
+        "stacked": "Empilhado",
+        "serif": "Serif",
+        "bubble": "Bolha"
+      }
     },
     "app": {
       "newDesign": "Novo design",
@@ -10387,7 +10527,11 @@
       "vibrant": "Vibrante",
       "cyber": "Cyber",
       "invert": "Inverter",
-      "strength": "Resistência do filtro: {{value}}%"
+      "strength": "Resistência do filtro: {{value}}%",
+      "fadedFilm": "Filme Desbotado",
+      "technicolor": "Technicolor",
+      "newsreel": "Jornal",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Recortar",
@@ -10468,14 +10612,18 @@
       "pptx": "Apresentação em PowerPoint",
       "pptxHint": "Cada página se torna uma imagem de slide, com notas do apresentador e links. Edite o texto e elementos individuais no projeto original.",
       "section": "Secção nomeada",
-      "transparent": "Fundo transparente"
+      "transparent": "Fundo transparente",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Baixa um ZIP com sua linha do tempo como FCPXML e Premiere XML mais todos os arquivos de mídia, para que você possa finalizar a edição no Premiere Pro, Final Cut Pro ou DaVinci Resolve. O texto se torna marcadores; os efeitos permanecem no DeHub."
     },
     "adjust": {
       "auto": "Aprimorar automaticamente",
       "autoFailed": "Não foi possível analisar esta imagem.",
       "tint": "Matiz {{value}}",
       "vignette": "Vinheta {{value}}%",
-      "warmth": "Temperatura {{value}}"
+      "warmth": "Temperatura {{value}}",
+      "halation": "Halação {{value}}%",
+      "scanlines": "Linhas de varredura {{value}}%"
     },
     "draw": {
       "colour": "Cor da caneta",
@@ -10567,7 +10715,47 @@
       "suggestTitle": "Adicione um título grande em negrito no topo e um subtítulo menor abaixo dele",
       "undo": "Desfazer",
       "openGenerator": "Revisar e gerar",
-      "working": "Trabalhando nisso…"
+      "working": "Trabalhando nisso…",
+      "stopped": "Parado. Nada mais foi alterado.",
+      "stop": "Parar",
+      "queue": "Adicionar à fila",
+      "queued": "{{count}} enfileirado",
+      "restore": "Restaurar para aqui",
+      "restoreHint": "Coloque o projeto da forma como era antes desta mensagem. Desfazer o traz de volta.",
+      "restored": "Restaurei o projeto para antes dessa mensagem. Pressione desfazer para trazer a versão mais recente de volta.",
+      "rewrite": "Deixe meu pedido mais claro",
+      "rewriteFailed": "Não consegui reescrever isso. Seu texto permanece inalterado.",
+      "feedback": "Isso foi útil?",
+      "good": "Boa resposta",
+      "bad": "Má resposta",
+      "retryPrefix": "Isso não estava certo. Em vez disso,",
+      "recipesTitle": "Receitas",
+      "recipe": {
+        "podcastClip": {
+          "label": "Clipe de podcast",
+          "prompt": "Encontre o momento mais forte de 30 segundos, corte para ele, adicione legendas Word Pop e faça 9:16."
+        },
+        "talkingHead": {
+          "label": "Apresentador limpo",
+          "prompt": "Corte longas pausas, adicione legendas clássicas e dê um look quente sutil."
+        },
+        "productPromo": {
+          "label": "Promoção de produto",
+          "prompt": "Faça uma promoção de 15 segundos: título impactante no início, transições de zoom entre clipes, legendas em negrito e música animada."
+        },
+        "hypeReel": {
+          "label": "Carrossel de hype",
+          "prompt": "Corte os clipes no ritmo da música, use transições Fly up e o look Technicolor."
+        },
+        "retroEdit": {
+          "label": "Edição retrô",
+          "prompt": "Dê a cada clipe o look VHS, adicione um grande título com serifa e use transições de fade."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Adicione um título para cada etapa, legendas em caixa e desacelere o momento-chave para 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Adicionar cor da marca",
@@ -10704,7 +10892,11 @@
       "rendering": "Renderizando vídeo… {{percent}}%",
       "mp4": "Vídeo MP4",
       "exportHint": "Mantenha o editor aberto enquanto seu vídeo é renderizado.",
-      "tooLarge": "Esse arquivo é grande demais para o editor. O limite é 400 MB."
+      "tooLarge": "Esse arquivo é grande demais para o editor. O limite é 400 MB.",
+      "tZoomIn": "Zoom in",
+      "tZoomOut": "Zoom out",
+      "tFlyUp": "Fly up",
+      "tFlyDown": "Fly down"
     },
     "motion": {
       "title": "Movimento",
@@ -11977,6 +12169,146 @@
       "matchDuration": "A mídia correspondente é mais curta do que o vídeo solicitado. Reduza a duração ou escolha mais mídia.",
       "matchFailed": "A coincidência de cena está indisponível. Seus clipe e tempos selecionados permanecem inalterados. Você pode revisá-los manualmente.",
       "reviewManually": "Revisar clipe manualmente"
+    },
+    "stage": {
+      "create": "Adicionar um palco 3D",
+      "title": "Palco de cena 3D",
+      "hint": "Bloqueie um plano com esferas e caixas. Câmera, posicionamento e três luzes de área independentes alteram o quadro renderizado.",
+      "preview": "Visualização de cena renderizada",
+      "error": "Não foi possível preparar o quadro. Verifique suas referências de plano e tente novamente.",
+      "camera": "Câmera",
+      "yaw": "Rotação",
+      "elevation": "Elevação",
+      "distance": "Distância",
+      "fov": "Campo de visão",
+      "object": "Objeto",
+      "add": "Adicionar",
+      "sphere": "Esfera",
+      "box": "Caixa",
+      "x": "X",
+      "y": "Y",
+      "z": "Z",
+      "scale": "Tamanho",
+      "color": "Cor",
+      "remove": "Remover objeto",
+      "light": "Luz",
+      "intensity": "Intensidade",
+      "diffusion": "Difusão",
+      "saving": "Preparando quadro…",
+      "useFrame": "Usar quadro renderizado como referência de plano",
+      "frameHint": "Cria um PNG de 320 × 180 e o adiciona às referências deste plano. Revise o limite de referência e a cotação do modelo antes de gerar.",
+      "frameName": "Quadro de palco da cena"
+    },
+    "film": {
+      "repairRefs": "Remover links de mídia ausentes",
+      "title": "Projeto de filme",
+      "intro": "Planeje planos com referências de imagem reutilizáveis. Seu resumo, ordem de planos e resultados selecionados são salvos com este projeto.",
+      "create": "Criar plano de filme",
+      "name": "Nome do filme",
+      "brief": "Resumo do filme",
+      "sharedReferences": "Referências de imagem compartilhadas (até 4)",
+      "shot": "Plano",
+      "addShot": "Adicionar plano",
+      "shotName": "Nome do plano",
+      "action": "Ação e composição do plano",
+      "seconds": "Segundos de vídeo solicitados",
+      "shotReferences": "Referências de imagem extras (limite combinado 4)",
+      "frame": "Preparar quadro",
+      "video": "Preparar vídeo",
+      "review": "Revise o modelo, referências, duração do vídeo e preço no estúdio antes de gerar.",
+      "result": "Resultado de captura aceito",
+      "noResult": "Nenhum resultado selecionado",
+      "resultHint": "Escolha uma imagem ou vídeo aceito de Uploads. Seu link é salvo com esta captura; use a linha do tempo para montar o filme.",
+      "earlier": "Mover para antes",
+      "later": "Mover para depois",
+      "remove": "Remover captura",
+      "issue": "Verifique a descrição da captura e a mídia de referência, depois tente novamente. Mantenha o projeto aberto se não conseguir salvá-lo.",
+      "searchMedia": "Encontrar mídia por nome",
+      "refreshMedia": "Atualizar mídia"
+    },
+    "clipFix": {
+      "detach": "Desanexar áudio",
+      "detached": "Áudio movido para seu próprio clipe",
+      "detachFailed": "Não foi possível desanexar o áudio deste clipe",
+      "removeBars": "Remover barras pretas",
+      "scanning": "Verificando quadros…",
+      "noBars": "Nenhuma barra preta encontrada",
+      "barsRemoved": "Barras pretas cortadas",
+      "barsFailed": "Não foi possível verificar este vídeo quanto a barras pretas",
+      "reframe": "Reencadração automática",
+      "reframeHint": "O vídeo já se encaixa neste formato de página",
+      "reframed": "Reencadrado para acompanhar a ação",
+      "reframeFailed": "Não foi possível reencadrar este vídeo",
+      "retakes": "Remover retomadas",
+      "listening": "Ouvindo…",
+      "noRetakes": "Nenhuma retomada encontrada",
+      "retakesRemoved": "Removidas {{count}} retomada(s), mantida a última tomada",
+      "retakesFailed": "Não foi possível remover retomadas deste clipe"
+    },
+    "speakers": {
+      "find": "Encontrar locutores",
+      "name": "Locutor {{number}}",
+      "onlyOne": "Apenas um locutor encontrado.",
+      "failed": "Não foi possível encontrar os locutores.",
+      "kept": "Mantido apenas {{name}}.",
+      "editFailed": "Esta edição não se encaixou neste clipe.",
+      "split": "Dividido em {{count}} planos de locutor.",
+      "keepOnly": "Manter apenas",
+      "splitAction": "Cortar em cada mudança de locutor"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Descreva o objeto 3D que você deseja",
+      "queued": "Construindo seu objeto 3D. Ele aparece na aba Gerações.",
+      "note": "Objetos 3D chegam à Mídia como um clipe curto girando com fundo transparente."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clone sua voz",
+      "pickerDetail": "Voiceovers em sua própria voz",
+      "title": "Clonar a minha voz",
+      "description": "Grave-se você mesmo ou escolha um trecho de conversa. Pague uma vez e sua voz é sua para todos os dublagens.",
+      "defaultName": "Minha voz",
+      "record": "Registre uma amostra (30 segundos a 2 minutos)",
+      "stop": "Pare de gravar",
+      "fromMedia": "Não entendi o que você quis dizer. Por favor, forneça o texto a ser traduzido.",
+      "recorded": "Seu registro",
+      "sample": "{{name}}",
+      "hint": "Fala clara sem música funciona melhor.",
+      "noMic": "Não consegui usar o microfone.",
+      "sampleFailed": "Não consegui ler o som daquele clipe.",
+      "useFree": "Clone (já pago)",
+      "owned": "Sua voz “{{name}}” já está configurada. Selecione-a da lista de vozes.",
+      "useOwned": "Usa a minha voz",
+      "ready": "“{{name}}” está pronto para legendas de áudio.",
+      "failed": "O clonamento de voz falhou.",
+      "paidFailed": "Seu pagamento foi salvo. Abra novamente e a próxima tentativa é gratuita.",
+      "consent": "Só clone sua própria voz, ou uma que você tem permissão para usar."
+    },
+    "linkImport": {
+      "open": "Importar de um link",
+      "placeholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "rights": "Eu sou o proprietário desse vídeo ou tenho permissão para usá-lo.",
+      "audioOnly": "Só som",
+      "go": "Importar",
+      "queued": "Em fila…",
+      "waiting": "Aguardando no site, tentando novamente em breve…",
+      "adding": "Adicionando ao Meios",
+      "added": "Adicionado ao cronograma.",
+      "failed": "Não consegui importar esse link."
+    },
+    "reverse": {
+      "action": "Reverter",
+      "working": "Revertendo {{percent}}%",
+      "done": "Clipe revertido.",
+      "failed": "Não foi possível reverter este clipe.",
+      "unsupported": "Este navegador não consegue reverter vídeo. Tente Chrome ou Edge.",
+      "tooLong": "Clipes de até {{seconds}} segundos podem ser revertidos."
+    },
+    "behind": {
+      "action": "Texto atrás da pessoa",
+      "working": "Recortando a pessoa…",
+      "done": "Texto e legendas agora ficam atrás da pessoa.",
+      "failed": "Não foi possível colocar o texto atrás da pessoa."
     }
   },
   "creator": {
@@ -12438,7 +12770,283 @@
     "presetOpenViaductTrainName": "Trem sobre viaduto",
     "presetOpenViaductTrainHint": "Larga fixa com janelas iluminadas e profundidade de longa-lança",
     "presetOpenTowerTiltName": "Tilt de torre",
-    "presetOpenTowerTiltHint": "Tilt lento para baixo em uma cidade sob chuva"
+    "presetOpenTowerTiltHint": "Tilt lento para baixo em uma cidade sob chuva",
+    "priceRetry": "O preço não pôde ser confirmado. Revise o preço e tente novamente.",
+    "avatarTitle": "Retrato falante",
+    "avatarRequirements": "Retrato PNG quadrado, 512–2048 pixels, até 5 MB. Mono 24 kHz 16-bit PCM WAV, 5–30 segundos. A última fração de segundo é preenchida com silêncio.",
+    "avatarPortrait": "Escolher retrato PNG",
+    "avatarAudio": "Escolher fala WAV",
+    "avatarPermission": "Tenho permissão para animar este retrato e usar este áudio.",
+    "avatarQuote": "{{seconds}} segundos incluindo silêncio · {{amount}} DHB",
+    "avatarPrepare": "Preparar e revisar preço",
+    "batchFlowLimit": "A lista de Flow está cheia. Remova um Flow não utilizado antes de criar outro lote.",
+    "batchReviewCampaign": "Revisar lote de campanha em Flow",
+    "batchReviewFilmImages": "Revisar lote de imagens do storyboard",
+    "batchReviewFilmVideos": "Revisar lote de clipes de filme",
+    "batchReviewHint": "Abre um Flow salvo separadamente. Revise cada item e o preço total antes de pagar. Itens concluídos e o pagamento original são mantidos para recuperação. Referências são copiadas para sua biblioteca privada; uso de armazenamento e rede se aplicam.",
+    "batchInvalid": "Complete cada item antes de preparar um lote de 1–12 imagens ou clipes.",
+    "batchReferenceLimit": "Este lote suporta uma referência de imagem por item. Remova referências extras ou prepare esse item individualmente.",
+    "batchVideoSettings": "Para este lote, clipes requerem uma duração total de 4–15 segundos e uma proporção de aspecto 16:9, 9:16 ou 1:1.",
+    "batchMissingReference": "Uma referência está faltando, não é suportada ou é maior que 25 MB. Restaure-a no editor antes de preparar o lote.",
+    "batchOwnerChanged": "A conta ou rascunho foi alterado. Reabra este lote sob sua conta original.",
+    "batchConflict": "O lote salvo não corresponde ao seu snapshot original.",
+    "campaignPlanTitle": "Variantes de campanha e episódios",
+    "campaignPlanIntro": "Economize até 12 variações ou episódios. Cada um abre o estúdio para sua própria revisão e citação. Notas compartilhadas guiam a continuidade; a aparência do produto, personagens e vozes podem variar entre gerações.",
+    "campaignTitle": "Nome da campanha ou série",
+    "campaignContinuity": "Notas compartilhadas de personagem, voz e estilo",
+    "campaignVariantTitle": "Nome da variação ou episódio",
+    "campaignHook": "Gancho de abertura",
+    "campaignLanguage": "Idioma de saída",
+    "campaignScript": "Script aprovado ou sequência de cenas",
+    "campaignAdd": "Adicionar variação ou episódio",
+    "campaignClear": "Plano claro",
+    "campaignFormat": "Formato de saída",
+    "audioExportFormat": "Formato de exportação",
+    "audioExportMp3": "MP3 · 128 kbps",
+    "audioExportWav": "WAV · 24 kHz · mono",
+    "extensionNeedsClip": "Anexar um clipe de origem para estender.",
+    "extensionSeconds": "+{{seconds}}s novo material",
+    "extensionHelp": "Retorna seu clipe de origem com aproximadamente quatro segundos novos. A saída é redimensionada até 720p a 24 fps. Novo áudio é gerado para a extensão.",
+    "extensionForward": "Adicionar aproximadamente quatro segundos após seu clipe de origem",
+    "extensionBackward": "Adicionar aproximadamente quatro segundos antes de seu clipe de origem",
+    "expandDescription": "Gerar novas bordas de imagem. Prompt em inglês opcional; uma imagem de origem.",
+    "relightDescription": "Reajustar a iluminação de uma foto a partir de sua descrição de iluminação e fundo.",
+    "expandPromptHint": "Anexar uma imagem e escolher sua nova proporção de aspecto. Prompt em inglês opcional.",
+    "expandEnglishOnly": "Este modelo de expansão aceita prompts em inglês. Deixe o prompt vazio para expansão automática.",
+    "expandNeedsImage": "Anexar uma imagem para expandir.",
+    "learn": {
+      "title": "Lições do criador",
+      "intro": "Lições curtas, uma verificação de conhecimento e um exercício editável para cada uma. O progresso é salvo neste dispositivo para sua conta.",
+      "back": "Voltar ao Criador",
+      "lessons": "Lições",
+      "progress": "{{completed}} de {{total}} verificações de conhecimento aprovadas",
+      "check": "Verificar resposta",
+      "correct": "Verificação de conhecimento aprovada",
+      "retry": "Tente novamente. Revise a lição acima.",
+      "exerciseTitle": "Exercício prático",
+      "exerciseHint": "Abra um exemplo editável em seu espaço de trabalho de estúdio. Abrir um rascunho é gratuito; a geração precisa de sua revisão e seu próprio orçamento. Edite o exemplo antes de gerar.",
+      "openExercise": "Projeto de exercício",
+      "closeExercise": "Fim do exercício",
+      "brief": {
+        "title": "Escreva um briefing visual claro",
+        "body1": "Descreva um assunto concreto, sua ação e o cenário. Adicione enquadramento ou movimento de câmera quando isso ajudar a cena. Guarde ideias não relacionadas para outro rascunho.",
+        "body2": "Iluminação, lente e direções de estilo guiam o modelo. Eles não garantem o comportamento físico da câmera ou uma imagem exata. Altere uma parte por vez para que você possa comparar revisões.",
+        "body3": "Antes de gerar, revise o modelo selecionado, anexos suportados, dimensões e preço. Mantenha o rascunho original para que você possa retornar a ele.",
+        "question": "Qual briefing é mais fácil de revisar?",
+        "answer0": "Um assunto, ação e cenário claros",
+        "answer1": "Apenas um nome de modelo",
+        "answer2": "Uma lista de estilos contraditórios",
+        "exercise": "Um bule de cerâmica sobre uma mesa de madeira ao lado de uma janela. Luz suave da manhã, enquadramento médio, fundo simples. Mantenha o bule como o assunto principal."
+      },
+      "continuity": {
+        "title": "Planeje cenas e revise a continuidade",
+        "body1": "Use o painel de filme no editor para salvar uma sequência de cenas breves e ordenadas. Prepare cada cena ou clipe separadamente, revise sua citação e selecione o resultado aceito.",
+        "body2": "Adicione apenas referências aceitas pelo modelo escolhido. Reusar uma referência pode guiar a aparência; ela não treina uma identidade ou garante uma correspondência. Personagens e vozes podem variar entre gerações.",
+        "body3": "Reúna as cenas bem-sucedidas e as assemble no timeline. Revise a movimentação, as expressões faciais, o diálogo e as transições antes da exportação.",
+        "question": "O que garante a continuidade entre os planos?",
+        "answer1": "Referências aprovadas e notas de cena revisadas",
+        "answer2": "Assumindo que a identidade do personagem é garantida",
+        "exercise": "Plano geral de um viajante solitário chegando a uma costa tranquila ao amanhecer. Movimento de câmera lento para frente, atmosfera calma. Um único plano contínuo."
+      },
+      "campaign": {
+        "title": "Use approved product facts",
+        "body1": "Comece com fatos do produto que você pode verificar. Revise os metadados importados antes de usá-los. Escreva o título e a chamada para ação explicitamente; não invente preços, avaliações ou alegações de desempenho.",
+        "body2": "Use variantes de campanha salvas para manter notas compartilhadas e hooks, scripts, idiomas e formatos individuais juntos. Prepare um item revisado por vez e verifique sua cotação no estúdio.",
+        "body3": "Analise o texto visível, a aparência do produto e quaisquer alegações faladas no resultado. Um prompt não é prova da precisão do produto ou do desempenho de marketing.",
+        "question": "Quando uma alegação de produto deve ser incluída?",
+        "answer0": "Sempre que soar convincente",
+        "answer1": "Depois de inventar uma avaliação de cinco estrelas",
+        "answer2": "Quando se trata de fatos de produtos aprovados"
+      }
+    },
+    "marketing": {
+      "import": {
+        "url": "Página de produto",
+        "action": "Página do produto",
+        "loading": "Lendo página…",
+        "hint": "Importe texto de uma página de produto pública. Revise os detalhes antes de usá-los; anexe as imagens do produto separadamente no estúdio.",
+        "source": "Fonte importada",
+        "review": "Escolha um produto para copiar em seu resumo editável. Seu título, voz e cores da marca permanecem inalterados.",
+        "use": "Use estas informações",
+        "errors": {
+          "signIn": "Faça login para importar uma página de produto.",
+          "empty": "Nenhum detalhe de produto utilizável foi encontrado. Adicione-os manualmente.",
+          "busy": "Muitas importações estão em execução. Tente novamente em breve.",
+          "unavailable": "Esta página não pôde ser importada. Adicione os detalhes do produto manualmente.",
+          "failed": "Falha na importação. O seu brief foi salvo; tente novamente ou insira os detalhes manualmente."
+        }
+      },
+      "title": "Breve do campanha",
+      "intro": "Descreva seu produto e marca, depois prepare formatos de anúncio correspondentes.",
+      "saved": "Seu resumo está salvo neste dispositivo para esta conta.",
+      "preview": "Preparar formatos",
+      "clear": "Briefing claro",
+      "required": "Adicionar um nome de produto e descrição para preparar formatos.",
+      "variants": "Formatos de campanha",
+      "reviewHint": "Revise o modelo, preço e referência do produto no estúdio antes de gerar. Cada formato é uma geração separada.",
+      "open": "Revisão em estúdio",
+      "fields": {
+        "product": "Nome do produto (obrigatório)",
+        "description": "Fatos do produto (obrigatório)",
+        "brand": "Brand name",
+        "audience": "Público-alvo",
+        "benefit": "Benefício principal",
+        "voice": "Voz da marca",
+        "palette": "Cores da marca",
+        "headline": "Título aprovado",
+        "cta": "Chamada para ação"
+      },
+      "formats": {
+        "square": "Anúncio quadrado",
+        "portrait": "Anúncio em retrato",
+        "story": "Imagem de história",
+        "video": "Vídeo vertical"
+      }
+    },
+    "audioLibraryPlaybackHint": "Este chat reproduz a gravação privada salva neste dispositivo. Para outro dispositivo, abra sua biblioteca de criadores após a conclusão do salvamento na nuvem. Se você sair agora, reabra este chat para terminar o salvamento.",
+    "batchPaymentHelp": "Cada imagem enviada é cobrada separadamente. Se um lote parar, o DHB não utilizado de seu pagamento será reutilizado automaticamente para uma geração posterior que ele cobre.",
+    "batchCount": "Imagens",
+    "endFrame": "Quadro final",
+    "endFrameHelp": "Adicione uma imagem inicial com o botão de anexo.",
+    "seed": "Seed (opcional, 0–2147483647)",
+    "negativePrompt": "Prompt negativo (opcional)",
+    "invalidSeed": "Seed deve ser um número inteiro de 0 a 2147483647.",
+    "endFrameNeedsStart": "Anexe uma imagem inicial antes de selecionar um quadro final.",
+    "batchStopped": "Lote interrompido após {{submitted}} de {{quantity}} envios. {{remaining}} não foram enviados. As imagens concluídas foram salvas.",
+    "cinema": {
+      "title": "Direção de cinema",
+      "hint": "Guie o estilo visual de sua próxima imagem ou vídeo. Os resultados variam por modelo.",
+      "none": "Sem direção",
+      "reset": "Limpar direção",
+      "close": "Fechar",
+      "camera": {
+        "0": "Cinema digital",
+        "1": "Filme 35mm",
+        "2": "Filme 16mm",
+        "3": "Grande formato",
+        "4": "Câmera vintage",
+        "label": "Aparência de câmera"
+      },
+      "lens": {
+        "0": "Esférico",
+        "1": "Anamórfico",
+        "2": "Vidro macio vintage",
+        "3": "Macro",
+        "4": "Inclinação-deslocamento",
+        "label": "Aparência de lente"
+      },
+      "focalLength": {
+        "0": "18mm grande angular",
+        "1": "24mm grande angular",
+        "2": "35mm natural",
+        "3": "50mm padrão",
+        "4": "85mm retrato",
+        "5": "135mm teleobjetiva",
+        "label": "Distância focal"
+      },
+      "aperture": {
+        "0": "f/1.4 muito raso",
+        "1": "f/2.8 raso",
+        "2": "f/5.6 moderado",
+        "3": "f/11 foco profundo",
+        "label": "Profundidade de campo"
+      },
+      "movement": {
+        "0": "Tripé fixo",
+        "1": "Dolly lento para dentro",
+        "2": "Dolly lento para fora",
+        "3": "Rastreamento lateral",
+        "4": "Órbita do assunto",
+        "5": "Handheld",
+        "6": "Elevação de guindaste",
+        "7": "Pan lento",
+        "label": "Movimento de câmera"
+      },
+      "lighting": {
+        "0": "Luz do dia suave",
+        "1": "Hora dourada",
+        "2": "Claroscuro baixo",
+        "3": "Estúdio alto-chave",
+        "4": "Práticos de néon",
+        "5": "Contraluz em silhueta",
+        "6": "Difusa nublada",
+        "label": "Iluminação"
+      },
+      "tempo": {
+        "0": "Plano contínuo único",
+        "1": "Ação calma e desapressada",
+        "2": "Ação dinâmica e energética",
+        "3": "Ação caótica e frenética",
+        "label": "Ritmo de plano"
+      },
+      "era": {
+        "0": "Anos 1920",
+        "1": "Anos 1950",
+        "2": "Anos 1960",
+        "3": "Anos 1970",
+        "4": "Anos 1980",
+        "5": "Anos 1990",
+        "6": "Dias atuais",
+        "7": "Futuro próximo",
+        "label": "Era"
+      },
+      "genre": {
+        "0": "Documentário",
+        "1": "Drama",
+        "2": "Film noir",
+        "3": "Ficção científica",
+        "4": "Fantasia",
+        "5": "Comédia romântica",
+        "6": "Thriller",
+        "7": "Faroeste",
+        "label": "Gênero"
+      },
+      "performance": {
+        "0": "Alegre",
+        "1": "Melancólico",
+        "2": "Ansioso",
+        "3": "Confiante",
+        "4": "Maravilhado",
+        "5": "Contido",
+        "6": "Lúdico",
+        "label": "Performance"
+      },
+      "palette": {
+        "0": "Âmbar quente",
+        "1": "Azul frio",
+        "2": "Tons de terra suavizados",
+        "3": "Pastel",
+        "4": "Monocromático de alto contraste",
+        "5": "Cores primárias saturadas",
+        "label": "Paleta de cores"
+      }
+    },
+    "audioInvalidTask": "Escolha uma tarefa de áudio suportada.",
+    "audioNeedsFile": "Anexe primeiro um arquivo de áudio ou vídeo suportado.",
+    "audioTextLimit": "Fala e diálogo permitem 1–5000 caracteres; efeitos sonoros permitem 1–1000.",
+    "audioDurationLimit": "A duração do áudio deve ser Auto (0) ou 0,5–30 segundos.",
+    "audioModels": "Outros modelos de áudio",
+    "audioAttach": "Anexar gravação",
+    "audioAttachFailed": "Não foi possível anexar essa gravação.",
+    "audioSeconds": "Segundos (0 = Auto)",
+    "audioInvalidResponse": "O serviço de áudio retornou um resultado inválido.",
+    "audioResultTooLarge": "O resultado de áudio está vazio ou excede 50 MB.",
+    "audioFailed": "Não foi possível processar esse áudio.",
+    "audioNoSpeech": "Nenhuma fala foi encontrada nessa gravação.",
+    "audioTaskSpeechLabel": "Fala",
+    "audioTaskDialogueLabel": "Diálogo",
+    "audioTaskSfxLabel": "Efeito sonoro",
+    "audioTaskVoiceChangerLabel": "Modificador de voz",
+    "audioTaskTranscribeLabel": "Transcrever",
+    "audioTaskIsolateLabel": "Limpar",
+    "priceFreeRateLimited": "Gratuito · limites de taxa aplicáveis",
+    "loop": "Loop",
+    "dialogueFormat": "Escreva a cena como \"Nome: linha\", um falante por linha.",
+    "fileTooLarge": "Esse arquivo tem mais de 100 MB. Use um mais curto ou menor.",
+    "signInToGenerate": "Faça login para gerar.",
+    "libraryFavorites": "Favoritos",
+    "libraryFavoriteAdd": "Adicionar aos favoritos",
+    "libraryFavoriteRemove": "Remover dos favoritos"
   },
   "fractions": {
     "title": "Frações",
@@ -14053,7 +14661,16 @@
     "level": "Nível {{level}}",
     "streak_one": "Sequência de {{count}}semanas",
     "streak_other": "Sequência de {{count}}semanas",
-    "tipJar": "Jarra para presentes"
+    "tipJar": "Jarra para presentes",
+    "eyebrow": {
+      "follow": "Novo seguidor",
+      "subscribe": "Novo inscrito",
+      "subscribedTo": "Inscrito · {{plan}}",
+      "gifted_one": "Presenteou uma inscrição",
+      "gifted_other": "Presenteou {{count}} inscrições",
+      "share": "Compartilhou a transmissão",
+      "join": "Acabou de entrar"
+    }
   },
   "liveStudio": {
     "controls": {
@@ -14409,6 +15026,31 @@
       "intro": "Os espectadores ganham um ponto por cada minuto que assistem a você e um por cada 100 DHB que presenteiam. Bate-papo e reações não ganham nada, então os pontos não podem ser cultivados.",
       "empty": "Ainda não há pontos. Eles se acumulam à medida que as pessoas assistem e dão presentes.",
       "widgetHint": "Adicione o widget Leais visualizadores para mostrar esta lista ao vivo."
+    },
+    "destinations": {
+      "title": "Destinos de transmissão múltipla",
+      "intro": "Transmita ao vivo no DeHub uma vez e empurramos sua transmissão para cada plataforma ativada aqui, gratuitamente. Começa alguns segundos depois que você entra ao vivo.",
+      "add": "Adicionar destino",
+      "empty": "Nenhum destino ainda. Adicione Twitch, YouTube, Kick ou qualquer servidor RTMP.",
+      "platform": "Plataforma",
+      "label": "Nome (opcional)",
+      "server": "URL do servidor",
+      "key": "Chave de transmissão",
+      "findKey": "Encontre seu servidor e chave {{name}}",
+      "customHint": "Cole o servidor RTMP e a chave que sua plataforma fornece.",
+      "keyNote": "Sua chave é armazenada criptografada em nossos servidores e nunca é exibida novamente.",
+      "save": "Adicionar",
+      "cancel": "Cancelar",
+      "added": "{{name}} adicionado",
+      "saveFailed": "Não foi possível salvar o destino",
+      "toggle": "Transmitir para este destino",
+      "states": {
+        "off": "Desativado",
+        "idle": "Pronto",
+        "connecting": "Conectando",
+        "live": "Ao vivo",
+        "error": "Erro"
+      }
     }
   },
   "liveChatModeration": {
@@ -14579,5 +15221,258 @@
     "confirm": "Menta em {{chain}}",
     "confirmWithCost": "Menta em {{chain}} · {{cost}}",
     "notAvailable": "A cunhagem nesta corrente ainda não está disponível."
+  },
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Tela verde",
+    "collab": "Colaboração",
+    "sound": "Usar som",
+    "cut": "Cortar",
+    "unavailable": "Este vídeo não está disponível para remixagem.",
+    "openFailed": "Não foi possível abrir a remixagem. Verifique sua conexão e permissões de câmera e tente novamente.",
+    "tooLarge": "Esta gravação é muito grande. Grave um trecho mais curto.",
+    "invalidRecording": "Não foi possível ler a gravação. Grave outro trecho.",
+    "saveFailed": "Não foi possível salvar a remixagem. Tente novamente.",
+    "startHint": "Visualize sua câmera sobre este vídeo e grave sua remixagem. Sair desta tela desativa a câmera.",
+    "openCamera": "Abrir câmera"
+  },
+  "studioDeck": {
+    "remove": "Remover",
+    "background": {
+      "title": "Fundo",
+      "modes": {
+        "none": "Desativado",
+        "blur": "Desfoque",
+        "color": "Cor",
+        "image": "Imagem"
+      },
+      "failed": "A remoção de fundo não pôde ser iniciada neste dispositivo.",
+      "hint": "Executa no seu dispositivo. A primeira vez leva alguns segundos para carregar."
+    },
+    "scenes": {
+      "title": "Cenas",
+      "picture": "Imagem",
+      "countdown": "Contagem regressiva",
+      "noCountdown": "Sem contagem regressiva",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Começando em breve",
+        "chatting": "Apenas conversando",
+        "brb": "Já volto",
+        "ending": "Transmissão terminando"
+      },
+      "hints": {
+        "starting": "Cartão com contagem regressiva",
+        "chatting": "Câmera em tela cheia",
+        "brb": "Cartão, microfone silenciado",
+        "ending": "Cartão de agradecimento"
+      },
+      "subtitles": {
+        "starting": "A transmissão começa em",
+        "brb": "Já volto",
+        "ending": "Obrigado por assistir"
+      }
+    },
+    "widgets": {
+      "title": "Mostrar widgets no meu vídeo",
+      "hint": "Alertas, barras de objetivo e chat são desenhados em seu stream, para que espectadores no Twitch, YouTube e em todas as outras plataformas também os vejam.",
+      "failed": "Não foi possível alterar onde seus widgets aparecem. Tente novamente.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Fontes",
+      "addImage": "Imagem ou logo",
+      "failed": "Não foi possível adicionar essa fonte.",
+      "hint": "As fontes são desenhadas sobre sua imagem para cada espectador e em todas as plataformas.",
+      "image": "Imagem",
+      "show": "Mostrar no stream",
+      "positions": {
+        "top-left": "Canto superior esquerdo",
+        "top-right": "Canto superior direito",
+        "bottom-left": "Canto inferior esquerdo",
+        "bottom-right": "Canto inferior direito",
+        "center": "Centro"
+      },
+      "sizes": {
+        "small": "Pequeno",
+        "medium": "Médio",
+        "large": "Grande"
+      }
+    },
+    "phone": {
+      "title": "Estúdio"
+    }
+  },
+  "whenSheet": {
+    "title": "Quando?",
+    "tonight": "Hoje à noite",
+    "inAnHour": "Em uma hora",
+    "tomorrow": "Amanhã",
+    "today": "Hoje",
+    "primeTime": "Horário nobre",
+    "scheduleFor": "Agendar para {{when}}",
+    "liveTip": "Seus seguidores podem definir um lembrete. Você inicia a transmissão ao vivo você mesmo quando chegar a hora.",
+    "stageTip": "Aparece na prateleira de Próximos eventos imediatamente, para que as pessoas possam tocar em Lembrar-me.",
+    "typePlaceholder": "Digite uma hora, como \"sex 20h\" ou \"em 2 horas\"",
+    "typeLabel": "Digite uma hora",
+    "typeHelp": "Tente \"hoje à noite\", \"amanhã 9h\", \"sáb meio-dia\" ou \"30 out 19h\".",
+    "orPickDay": "Escolha um dia",
+    "earlier": "15 minutos antes",
+    "later": "15 minutos depois",
+    "tooSoonMin": "Escolha um tempo pelo menos {{count}} minutos após o presente.",
+    "tooSoon": "Escolha um tempo no futuro.",
+    "zone": "Seu tempo ({{zone}}). Todos os outros veem isso em seu próprio tempo.",
+    "remove": "Remover agendamento",
+    "startsIn": "Inicia em {{time}}",
+    "bestTime": "Melhor tempo",
+    "fansOnline": "Quando estão meus fãs online?",
+    "show": "Mostrar",
+    "hide": "Esconder",
+    "fansBasis": "Mais claro significa que mais de seus seguidores estavam assistindo, nos últimos {{count}} dias.",
+    "everyoneBasis": "Não há atividade suficiente de seguidores ainda, então é todos em DeHub."
+  },
+  "planned": {
+    "title": "Planejado",
+    "subtitle": "Publicações, Lives e Etapas que você agendou",
+    "seoTitle": "Planejado · DeHub",
+    "seoDescription": "Seus posts agendados, Lives e Etapas no DeHub, tudo em um lugar.",
+    "all": "Todos",
+    "posts": "Publicações",
+    "lives": "Lives",
+    "stages": "Etapas",
+    "post": "Publicação",
+    "live": "Live",
+    "stage": "Etapas",
+    "untitledPost": "Publicação",
+    "untitledLive": "Live",
+    "signIn": "Faça login para saber o que você planejou",
+    "loading": "Carregando...",
+    "emptyTitle": "Nada planejado ainda",
+    "emptyBody": "Quando? enquanto criar um post, Vivo ou Palco e aparece aqui.",
+    "move": "Mover",
+    "postNow": "Publicar agora",
+    "startNow": "Começar agora",
+    "cancel": "Cancelar",
+    "confirmCancel": "Tocar novamente para cancelar",
+    "moved": "Mudado para {{when}}",
+    "postingNow": "Publicando em menos de um minuto",
+    "cancelled": "Cancelado",
+    "moveFailed": "Não foi possível mover. Tente novamente.",
+    "seeAll": "Ver tudo que você planejou"
+  },
+  "welcome": {
+    "about": {
+      "title": "Bem-vindo ao DeHub",
+      "sub": "Seu aniversário fica privado. Escolha um visual, você pode mudar a qualquer momento.",
+      "birthday": "Data de nascimento",
+      "pick": "Escolha seu aniversário",
+      "day": "Dia",
+      "month": "Mês",
+      "year": "Ano",
+      "invalid": "Insira sua data de nascimento completa.",
+      "tooYoung": "Você precisa ter {{age}} ou mais anos para usar o DeHub.",
+      "theme": "Seu visual"
+    },
+    "name": {
+      "title": "Seu nome",
+      "sub": "Essa é a forma como as pessoas veem seus posts.",
+      "placeholder": "Seu nome"
+    },
+    "username": {
+      "title": "Seu @username",
+      "sub": "Letras, números e underscores. Você pode mudar mais tarde.",
+      "yours": "@{{name}} é seu"
+    },
+    "photo": {
+      "title": "Sua foto",
+      "sub": "Opcional. As pessoas seguem rostos mais rápido.",
+      "choose": "Escolha uma foto",
+      "change": "Escolha outro"
+    },
+    "interests": {
+      "title": "Seus interesses",
+      "sub": "Escolha pelo menos 3. Eles aparecem primeiro em suas categorias."
+    },
+    "people": {
+      "title": "Suas pessoas",
+      "sub": "Toque para seguir. Seus posts preenchem seu feed Seguindo.",
+      "empty": "Nenhuma sugestão no momento. Explore tem mais pessoas para encontrar.",
+      "followers": "{{count}} seguidores"
+    },
+    "done": {
+      "title": "Ficando bom, {{name}}",
+      "sub": "Todos veem este card a partir de hoje.",
+      "eyebrow": "Perfil ao vivo"
+    },
+    "card": {
+      "name": "Seu nome",
+      "interests": "Seus interesses",
+      "following": "seguindo",
+      "followers": "seguidores"
+    },
+    "topic": {
+      "music": "Música",
+      "art": "Arte",
+      "gaming": "Jogos",
+      "crypto": "Criptografia",
+      "sports": "Esportes",
+      "travel": "Viagem",
+      "comedy": "Comédia",
+      "film": "Filme",
+      "anime": "Anime",
+      "cars": "Carros",
+      "podcast": "Podcast",
+      "animals": "Animais",
+      "tech": "Tech",
+      "food": "Comida",
+      "news": "Notícias",
+      "science": "Ciência"
+    },
+    "back": "Voltar",
+    "enter": "Entrar no DeHub",
+    "skipPhoto": "Pular por enquanto",
+    "pickMore": "Escolher {{count}} mais",
+    "preview": "Visualizar",
+    "cardHint": "É assim que as pessoas o verão",
+    "followFailed": "Não foi possível seguir. Tente novamente."
+  },
+  "appTokens": {
+    "title": "DHB no DeHub",
+    "rowHint": "Saldo no aplicativo",
+    "explainer": "Seu DHB agora está dentro do DeHub. Você começou com o que tinha e fez stake onchain no lançamento. Enviar, dar gorjeta e gastar o movem instantaneamente, sem taxas e nada onchain. Os saldos são transferidos para o novo token no airdrop.",
+    "history": "Histórico",
+    "noHistory": "Nenhuma atividade ainda",
+    "kindOpening": "Saldo inicial",
+    "kindSent": "Enviado para {{name}}",
+    "kindReceived": "De {{name}}",
+    "kindSpent": "Gasto no DeHub",
+    "kindRefund": "Reembolso",
+    "kindDeposit": "Depósito",
+    "kindAdjust": "Ajuste pelo DeHub",
+    "sendTitle": "Enviar DHB",
+    "sendHint": "Envia DHB dentro do DeHub para outra conta. Instantâneo e gratuito, nada vai onchain.",
+    "to": "Para",
+    "toPlaceholder": "@username ou endereço 0x",
+    "looking": "Procurando…",
+    "amount": "Quantidade",
+    "available": "Disponível: {{amount}}",
+    "notePlaceholder": "Adicionar uma nota (opcional)",
+    "sendButton": "Enviar",
+    "sent": "Enviado {{amount}} DHB para {{name}}",
+    "errorInsufficient": "DHB insuficiente",
+    "errorRateLimit": "Muitos envios na última hora. Tente novamente mais tarde.",
+    "errorNoRecipient": "Nenhuma conta DeHub encontrada",
+    "errorSelf": "Você não pode enviar para si mesmo",
+    "errorGeneric": "Não foi possível enviar. Tente novamente."
+  },
+  "avatarPrompt": {
+    "title": "Adicione uma foto de perfil",
+    "body": "As pessoas o identificam mais rapidamente em feeds, comentários e chats quando você tem um rosto ou logotipo.",
+    "choose": "Escolha uma foto",
+    "another": "Escolha outra",
+    "save": "Use esta foto",
+    "notNow": "Agora não",
+    "saved": "Ficou ótimo",
+    "failed": "Não foi possível salvar sua foto. Tente novamente."
   }
 }
