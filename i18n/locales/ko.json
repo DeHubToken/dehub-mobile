@@ -14581,5 +14581,9 @@
     "confirm": "{{chain}} 에 민트",
     "confirmWithCost": "조폐국 {{chain}} · {{cost}}",
     "notAvailable": "이 체인에서 주조는 아직 사용할 수 없습니다."
+  },
+  "halloween": {
+    "title": "해피 할로윈",
+    "otherThemes": "설정에서 다른 테마를 찾아보세요:"
   }
 }

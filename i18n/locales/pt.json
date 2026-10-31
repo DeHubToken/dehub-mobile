@@ -15480,5 +15480,9 @@
     "notNow": "Agora não",
     "saved": "Ficou ótimo",
     "failed": "Não foi possível salvar sua foto. Tente novamente."
+  },
+  "halloween": {
+    "title": "Feliz Halloween",
+    "otherThemes": "Encontre outros temas nas configurações:"
   }
 }

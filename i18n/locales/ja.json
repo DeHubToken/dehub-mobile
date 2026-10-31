@@ -14580,5 +14580,9 @@
     "confirm": "{{chain}}に新品",
     "confirmWithCost": "{{chain}}に新品・{{cost}}",
     "notAvailable": "このチェーンでの鋳造はまだ利用できません。"
+  },
+  "halloween": {
+    "title": "ハッピーハロウィン",
+    "otherThemes": "他のテーマは設定から選べます："
   }
 }

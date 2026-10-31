@@ -14578,5 +14578,9 @@
     "confirm": "Minze am {{chain}}",
     "confirmWithCost": "Minze am {{chain}} · {{cost}}",
     "notAvailable": "Die Prägung dieser Kette ist noch nicht verfügbar."
+  },
+  "halloween": {
+    "title": "Fröhliches Halloween",
+    "otherThemes": "Weitere Designs findest du jetzt in den Einstellungen:"
   }
 }

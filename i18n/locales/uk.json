@@ -15055,5 +15055,9 @@
     "confirm": "М 'ята на {{chain}}",
     "confirmWithCost": "М 'ята на {{chain}} · {{cost}}",
     "notAvailable": "Чеканка на цьому ланцюжку поки недоступна."
+  },
+  "halloween": {
+    "title": "Щасливого Гелловіну",
+    "otherThemes": "Інші теми вже в налаштуваннях:"
   }
 }

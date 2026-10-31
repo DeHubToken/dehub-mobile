@@ -14578,5 +14578,9 @@
     "confirm": "Menta su {{chain}}",
     "confirmWithCost": "Menta su {{chain}} · {{cost}}",
     "notAvailable": "La coniazione su questa catena non è ancora disponibile."
+  },
+  "halloween": {
+    "title": "Buon Halloween",
+    "otherThemes": "Trova altri temi nelle impostazioni:"
   }
 }
