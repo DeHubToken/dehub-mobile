@@ -2956,7 +2956,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 : <Text style={styles.deskAvatarLetter}>{(displayName || username || "?").charAt(0).toUpperCase()}</Text>}
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleOpenOptions} accessibilityRole="button" accessibilityLabel={t("postOptions.title", { defaultValue: "Post options" })} hitSlop={10}>
+          <TouchableOpacity onPress={handleOpenOptions} accessibilityRole="button" accessibilityLabel={t("player.moreOptions")} hitSlop={10}>
             <Icon name="EllipsisVertical" size={16} color="#a1a1aa" />
           </TouchableOpacity>
         </View>
