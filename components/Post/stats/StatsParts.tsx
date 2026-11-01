@@ -78,17 +78,20 @@ export function TileGrid({ cols, children }: { cols: number; children: React.Rea
 }
 
 /** Two-part bar: first share solid, rest faint, labels under it. */
-export function SplitBar({ left, right, leftLabel, rightLabel }: { left: number; right: number; leftLabel: string; rightLabel: string }) {
+export function SplitBar({ left, right, leftLabel, rightLabel, percent = false }: { left: number; right: number; leftLabel: string; rightLabel: string; /** Show each side as a share of the total instead of a count. */ percent?: boolean }) {
   const total = left + right;
   const pct = total ? Math.round((left / total) * 100) : 0;
+  // Right side is 100 minus the left so the two always add up to 100.
+  const leftText = percent ? (total ? `${pct}%` : "–") : fmt(left);
+  const rightText = percent ? (total ? `${100 - pct}%` : "–") : fmt(right);
   return (
     <View style={{ gap: 6 }}>
       <View style={s.track}>
         <View style={[s.fill, { width: `${pct}%` }]} />
       </View>
       <View style={s.splitLabels}>
-        <Text style={s.muted}><Text style={s.strong}>{fmt(left)}</Text> {leftLabel}</Text>
-        <Text style={s.muted}><Text style={s.strong}>{fmt(right)}</Text> {rightLabel}</Text>
+        <Text style={s.muted}><Text style={s.strong}>{leftText}</Text> {leftLabel}</Text>
+        <Text style={s.muted}><Text style={s.strong}>{rightText}</Text> {rightLabel}</Text>
       </View>
     </View>
   );

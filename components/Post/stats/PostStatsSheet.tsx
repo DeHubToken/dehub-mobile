@@ -93,7 +93,7 @@ export default function PostStatsSheet({ visible, onClose, tokenId }: { visible:
             {data.followers.viewersWhoFollow + data.followers.viewersNew > 0 ? (
               <View style={s.inner}>
                 <SplitBar
-                  left={data.followers.viewersWhoFollow}
+                  left={data.followers.viewersWhoFollow} percent
                   right={data.followers.viewersNew}
                   leftLabel={t("postStats.yourFollowers")}
                   rightLabel={t("postStats.newToYou")}
