@@ -21,6 +21,7 @@ import { storage } from '../../libs/storage';
 import { toastWarning } from '../../libs/toast';
 import { t } from 'i18next';
 import { getNotifications } from '../user.service';
+import { prefetchNotifications } from '../../libs/notifications-cache';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 import { emitProfileDeepLink } from '../../libs/deeplink.events';
 import { noteNotificationMoment } from '../../libs/review-prompt';
@@ -235,6 +236,22 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   patchUserRef.current = patchUser;
   const lastUnreadCountRef = useRef<number | null>(null);
 
+  const userAddressRef = useRef(userAddress);
+  userAddressRef.current = userAddress;
+  const warmTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Deferred a few seconds so it never competes with the launch or the feed's
+  // first page; deduped inside prefetchNotifications.
+  const warmNotificationList = useCallback(() => {
+    if (warmTimerRef.current) clearTimeout(warmTimerRef.current);
+    warmTimerRef.current = setTimeout(() => {
+      warmTimerRef.current = null;
+      void prefetchNotifications(userAddressRef.current);
+    }, 3000);
+  }, []);
+  useEffect(() => () => {
+    if (warmTimerRef.current) clearTimeout(warmTimerRef.current);
+  }, []);
+
   const refreshUnreadCount = useCallback(async () => {
     if (!isFullySignedIn) return;
 
@@ -247,11 +264,14 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       // count still re-renders every consumer of the auth context.
       if (unread === lastUnreadCountRef.current) return;
       lastUnreadCountRef.current = unread;
+      // Something new (or the first count this session): warm the bell
+      // drawer's list so it opens on current rows instead of a skeleton.
+      warmNotificationList();
       await patchUserRef.current({ notificationCount: unread });
     } catch (error) {
       logger.warn('Unread notification refresh failed', error);
     }
-  }, [isFullySignedIn]);
+  }, [isFullySignedIn, warmNotificationList]);
 
   const handleNotificationNavigation = useCallback((data: NotificationData, responseId?: string) => {
     // Guard: Don't navigate if no valid notification type

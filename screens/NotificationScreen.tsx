@@ -63,6 +63,12 @@ import AppealSheet from "../components/Notifications/AppealSheet";
 import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
 import PageDrawer from "../components/common/PageDrawer";
 import { createLogger } from "../libs/logger";
+import {
+  mergeFirstPage,
+  readNotificationSnapshot,
+  takeInflightFirstPage,
+  writeNotificationSnapshot,
+} from "../libs/notifications-cache";
 import { useWebSocketApi } from "../context/WebSocketContext";
 import { orderNotificationTabKeys } from "../libs/notification-tab-order";
 import {
@@ -914,18 +920,10 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
 
 const log = createLogger("NotificationScreen");
 
-// The last list this session painted, keyed by account. The screen is a
-// stack route, so every open is a fresh mount, and until now every open began
-// with eight skeleton rows and then swapped to the real list once the API
-// answered — the "flash" on tapping the bell. Reopening now paints the
-// previous rows at once and refreshes them in the background, the way the
-// feeds behave. Only the unfiltered list is kept; the screen always opens
-// on All.
-let lastPainted: {
-  wallet: string | null;
-  notifications: NotificationItem[];
-  countsSource: NotificationItem[];
-} | null = null;
+// The last list painted for this account (libs/notifications-cache): kept in
+// memory and on disk, so every open, the first one after an app start too,
+// paints rows at once and refreshes them in the background. Only the
+// unfiltered list is kept; the screen always opens on All.
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
@@ -949,7 +947,12 @@ const NotificationScreen = () => {
   const walletAddressRef = useRef<string | null>(walletAddress);
   walletAddressRef.current = walletAddress;
 
-  const cached = lastPainted && lastPainted.wallet === walletAddress ? lastPainted : null;
+  const [cached] = useState(() => readNotificationSnapshot(walletAddress));
+  // Supabase-side rows from the last refresh. A refresh paints the API page
+  // with these as soon as it lands instead of waiting on Supabase as well.
+  const customRowsRef = useRef<NotificationItem[]>(
+    cached ? cached.notifications.filter((n) => isCustomNotificationId(n._id)) : [],
+  );
   const [notifications, setNotifications] = useState<NotificationItem[]>(() => cached?.notifications ?? []);
   /**
    * Rows this device has cleared. The API has no delete endpoint, so a cleared
@@ -974,7 +977,7 @@ const NotificationScreen = () => {
 
   useEffect(() => {
     if (loading || selectedFilter !== "all") return;
-    lastPainted = { wallet: walletAddress, notifications, countsSource };
+    writeNotificationSnapshot(walletAddress, notifications, countsSource);
   }, [loading, selectedFilter, notifications, countsSource, walletAddress]);
 
   // Cleared rows are per account: two wallets on one phone must not inherit
@@ -1426,54 +1429,68 @@ const NotificationScreen = () => {
   // requests, and without this the slowest one wins — landing you on rows
   // from a tab you already left.
   const fetchGenRef = useRef(0);
+  // When the latest first-page refresh began, so the realtime join can skip
+  // repeating it.
+  const lastRefreshAtRef = useRef(0);
 
   const fetchNotifications = useCallback(
     async (isRefresh = false, opts?: { skipCounts?: boolean }) => {
       const gen = ++fetchGenRef.current;
+      if (isRefresh) lastRefreshAtRef.current = Date.now();
       try {
         const targetPage = isRefresh ? 1 : pageRef.current;
         const types = apiTypesForFilter(selectedFilterRef.current);
 
         // Ask for this tab's types rather than paging through everything and
         // narrowing in memory — that left a tab empty whenever its rows sat
-        // past the loaded window.
-        const listRequest = getNotifications({
-          unreadOnly: false,
-          types,
-          page: targetPage,
-          limit: 30,
-        });
-        // Start independent sources together. Counts never hold the list's
-        // loading state open, and custom rows are reused for both snapshots.
-        const customRequest = isRefresh
-          ? fetchCustomNotifications(walletAddressRef.current).catch((error) => {
-              log.error('Custom notifications refresh failed', error);
-              return [];
+        // past the loaded window. An unfiltered refresh reuses the warm-up
+        // fetch when one is already on its way (bell tap right after launch).
+        const shared = isRefresh && !types ? takeInflightFirstPage(walletAddressRef.current) : null;
+        const listRequest = shared
+          ? shared.then((r) => {
+              if (!r) throw new Error("prefetch failed");
+              return { result: r.api };
             })
-          : Promise.resolve([]);
+          : getNotifications({
+              unreadOnly: false,
+              types,
+              page: targetPage,
+              limit: 30,
+            });
+        // Start independent sources together. Counts never hold the list's
+        // loading state open, and neither do the custom rows: the API page
+        // paints first with the last known custom rows, and the fresh ones
+        // are folded in when they arrive.
+        const customRequest: Promise<NotificationItem[]> | null = isRefresh
+          ? (shared
+              ? shared.then((r) => r?.custom ?? fetchCustomNotifications(walletAddressRef.current))
+              : fetchCustomNotifications(walletAddressRef.current)
+            ).catch((error) => {
+              log.error('Custom notifications refresh failed', error);
+              return customRowsRef.current;
+            })
+          : null;
         const countsRequest = isRefresh && !opts?.skipCounts && types
           ? getNotifications({ unreadOnly: false, page: 1, limit: 30 })
               .then((result: any) => result?.data?.result || result?.result || [])
               .catch((error) => { log.error('Notification counts refresh failed', error); return null; })
           : null;
-        const [res, custom]: any = await Promise.all([listRequest, customRequest]);
+        const res: any = await listRequest.catch((e) => {
+          // A failed shared warm-up falls back to the screen's own request.
+          if (shared) {
+            return getNotifications({ unreadOnly: false, types, page: targetPage, limit: 30 });
+          }
+          throw e;
+        });
         if (gen !== fetchGenRef.current) return;
 
         const apiPayload = res?.data?.result || res?.result || [];
-        let payload = apiPayload;
-
         // Supabase-side rows (bounty applications, store orders, community
         // joins, stage alerts) are merged on refresh only. They are a single
         // recent page, not a paginated source, so folding them in again on
         // every "load more" would duplicate them down the list.
-        if (isRefresh) {
-          if (custom.length) {
-            payload = [...payload, ...custom].sort(
-              (a: NotificationItem, b: NotificationItem) =>
-                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-            );
-          }
-        }
+        const payload = isRefresh ? mergeFirstPage(apiPayload, customRowsRef.current) : apiPayload;
+        let custom: NotificationItem[] = customRowsRef.current;
 
         for (const n of payload as NotificationItem[]) {
           if (!listedUnreadRef.current.has(n._id)) listedUnreadRef.current.set(n._id, !n.read);
@@ -1493,6 +1510,26 @@ const NotificationScreen = () => {
         setLoading(false);
         setLoadingMore(false);
 
+        if (customRequest) {
+          const fresh = await customRequest;
+          if (gen !== fetchGenRef.current) return;
+          custom = fresh;
+          const changed =
+            fresh.length !== customRowsRef.current.length ||
+            fresh.some((n, i) => n._id !== customRowsRef.current[i]?._id || n.read !== customRowsRef.current[i]?.read);
+          customRowsRef.current = fresh;
+          if (changed) {
+            const merged = mergeFirstPage(apiPayload, fresh);
+            for (const n of merged) {
+              if (!listedUnreadRef.current.has(n._id)) listedUnreadRef.current.set(n._id, !n.read);
+            }
+            // Only while the list is still the first page; a "load more" that
+            // landed meanwhile keeps its rows and gets the custom ones on the
+            // next refresh.
+            if (pageRef.current === 1) setNotifications(merged);
+          }
+        }
+
         if (isRefresh && !opts?.skipCounts) {
           // The tab badges and the app badge both need every type, so a
           // filtered refresh pulls one unfiltered page alongside it. On the All
@@ -1506,7 +1543,7 @@ const NotificationScreen = () => {
             // shows a bounty application it does not admit to having.
             if (allPayload) setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
           } else {
-            setCountsSource(payload);
+            setCountsSource(mergeFirstPage(apiPayload, custom));
           }
         }
       } catch (e) {
@@ -1555,7 +1592,11 @@ const NotificationScreen = () => {
     const channel = supabase
       .channel(`notif:${walletAddress.toLowerCase()}`, { config: { private: true } })
       .on('broadcast', { event: 'ping' }, refreshLiveList)
-      .subscribe((status) => { if (status === 'SUBSCRIBED') refreshLiveList(); });
+      // The join re-read is skipped when the open's own refresh started a
+      // moment ago: it landed ~150ms after it and fetched the same rows again.
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED' && Date.now() - lastRefreshAtRef.current > 3000) refreshLiveList();
+      });
 
     return () => {
       if (refreshTimer) clearTimeout(refreshTimer);
