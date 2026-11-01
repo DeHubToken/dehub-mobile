@@ -16,6 +16,11 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
+import { isLowEndDevice, maxImageDensity } from "../../libs/deviceTier";
+
+// Old and low-memory phones show the poster only: a looping preview per grid
+// cell is an ExoPlayer plus a decoder the phone cannot spare while scrolling.
+const LOW_END = isLowEndDevice();
 
 const GRID_GAP = 4;
 const GRID_PADDING = 16;
@@ -39,7 +44,7 @@ const AUTOPLAY_DELAY = 250;
  * is roughly half the bytes and still sharp at tile size.
  */
 export function gridPosterWidth(cardWidth: number): number {
-  return cardWidth * Math.min(1, 2 / PixelRatio.get());
+  return cardWidth * Math.min(1, maxImageDensity() / PixelRatio.get());
 }
 
 /** The poster a grid tile shows; also used to fetch posters ahead of the scroll. */
@@ -236,7 +241,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           expo-video builds a native ExoPlayer in the constructor whether or not
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}
-      {previewSettled && previewUrl && <CellPreview previewUrl={previewUrl} />}
+      {previewSettled && previewUrl && !LOW_END && <CellPreview previewUrl={previewUrl} />}
 
 
       {/* Bottom gradient + info overlay */}

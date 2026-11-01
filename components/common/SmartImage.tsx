@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
 import { cdnImage, cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
+import { isLowEndDevice } from "../../libs/deviceTier";
 
 const TRANSFORM_PREFIX = "https://dehub.io/cdn-cgi/image/";
 /** A resized copy still loading after this long is dropped for the original. */
@@ -75,6 +76,17 @@ type SmartImageProps = {
   /** Fires before onLoadEnd when the source fails, for callers that swap in a fallback. */
   onError?: () => void;
 };
+
+// Old and low-memory phones decode remote photos without an alpha channel:
+// half the bytes per picture, which is most of what a long feed scroll keeps
+// resident. Only cover-fit remote pictures that are not PNG or GIF, since
+// those are the ones that can be see-through (icons, stickers, logos).
+const LOW_END_RGB = isLowEndDevice();
+const MAY_HAVE_ALPHA = /\.(png|gif|svg)(\?|#|$)/i;
+function decodeFormatFor(uri: string | undefined, contentFit: string, tintColor: string | null | undefined): "rgb" | undefined {
+  if (!LOW_END_RGB || contentFit !== "cover" || tintColor || !uri || !uri.startsWith("http")) return undefined;
+  return MAY_HAVE_ALPHA.test(uri) ? undefined : "rgb";
+}
 
 export const SmartImage: React.FC<SmartImageProps> = ({
   source,
@@ -157,6 +169,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       blurRadius={blurRadius}
       tintColor={tintColor}
       allowDownscaling={allowDownscaling}
+      decodeFormat={decodeFormatFor(uri, contentFit, tintColor)}
       autoplay={autoplay}
       accessible={accessible}
       accessibilityLabel={accessibilityLabel}
