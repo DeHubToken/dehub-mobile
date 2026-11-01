@@ -2184,6 +2184,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowOptionsMenu(false)}
           tokenId={tokenId}
           isOwner={!!isOwnerPost}
+          post={item}
           canReplaceVideo={
             !!isOwnerPost && !isLive && (contentType === "video" || contentType === "short")
           }

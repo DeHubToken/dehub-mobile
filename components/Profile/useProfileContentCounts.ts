@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiClient } from "../../libs";
+import { useProfilePins } from "../../hooks/usePinnedPosts";
 
 export interface ProfileContentCounts {
   home?: number;
@@ -42,5 +43,9 @@ export function useProfileContentCounts(address?: string): ProfileContentCounts 
     };
   }, [address]);
 
-  return counts;
+  // The Pinned badge follows the pins list a pin or unpin patches at once,
+  // rather than the count read when the profile opened.
+  const { data: pins } = useProfilePins(address);
+  const pinned = pins?.length;
+  return useMemo(() => (pinned === undefined ? counts : { ...counts, pinned }), [counts, pinned]);
 }
