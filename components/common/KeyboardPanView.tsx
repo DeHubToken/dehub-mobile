@@ -98,7 +98,15 @@ export default function KeyboardPanView({ children }: { children: React.ReactNod
           // Never more than the keyboard is tall. A field scrolled out of its
           // list measures far below the keys, and panning for it slid the
           // whole screen off and left it black.
-          const keyboardHeight = Math.max((Dimensions.get("screen")?.height ?? 0) - top, 0);
+          const screenHeight = Dimensions.get("screen")?.height ?? 0;
+          const keyboardHeight = Math.max(screenHeight - top, 0);
+          // A field drawn entirely below the screen is a hidden sheet's field
+          // (a closed menu's search box), not one being typed in. Sliding the
+          // app up for it only left a black band under the nav bar.
+          if (screenHeight > 0 && y + windowTop + panned >= screenHeight) {
+            moveTo(0);
+            return;
+          }
           moveTo(overlap > 0 ? Math.min(overlap + CLEARANCE, keyboardHeight) : 0);
         });
       })();

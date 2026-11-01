@@ -1339,6 +1339,16 @@ export default function UploadScreen() {
     Keyboard.dismiss();
     if (landing === "morph") nav.setOptions({ animation: "none" });
     nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
+    // Nothing on Home should hold the keyboard after a post. Android passes
+    // focus on to another field when the composer's lets go, so check again
+    // once the composer has gone and close whatever picked it up.
+    for (const ms of [60, 300]) {
+      setTimeout(() => {
+        const focused = TextInput.State.currentlyFocusedInput();
+        if (focused) focused.blur();
+        Keyboard.dismiss();
+      }, ms);
+    }
   }, [nav]);
 
   const submitPost = useCallback(async () => {

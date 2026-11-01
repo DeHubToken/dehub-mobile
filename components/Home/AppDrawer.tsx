@@ -1,7 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
-import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from "react";
 import {
   View,
   Text,
@@ -441,6 +441,24 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     if (!visible) setMenuQuery.initialize("");
   }, [visible, setMenuQuery]);
 
+  // The closed menu stays mounted, so on Android its search field was the
+  // first focusable box left on Home once another screen's focused field went
+  // away (the post composer closing): it took focus off-screen and held the
+  // keyboard up over the feed. Closed, it cannot be focused at all.
+  const searchRef = useRef<TextInput>(null);
+  useEffect(() => {
+    if (!visible) searchRef.current?.blur();
+  }, [visible]);
+  const { onFocus: onSearchFieldFocus } = searchField;
+  const onSearchFocus = useCallback(() => {
+    if (!visible) {
+      searchRef.current?.blur();
+      Keyboard.dismiss();
+      return;
+    }
+    onSearchFieldFocus();
+  }, [visible, onSearchFieldFocus]);
+
   // The escape hatch: run whatever was typed as a real search instead. `ts`
   // is a nonce — without it a repeat of the same term produces identical route
   // params, and the Explore screen has no change to react to.
@@ -623,12 +641,14 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
             <View style={[styles.searchWrap, square && styles.square, searchField.surface]}>
               <Icon name="Search" size={16} color="#808089" />
               <TextInput
+                ref={searchRef}
+                editable={visible}
                 value={menuQuery}
                 onChangeText={setMenuQuery}
                 placeholder={t("sidebar.searchMenu")}
                 placeholderTextColor="#808089"
                 style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
-                onFocus={searchField.onFocus}
+                onFocus={onSearchFocus}
                 onBlur={searchField.onBlur}
                 returnKeyType="search"
                 onSubmitEditing={runFullSearch}
