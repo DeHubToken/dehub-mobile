@@ -770,6 +770,14 @@ export function useAuthSession({
       if (!current) return null;
       const partial = typeof update === "function" ? update(current) : update;
       if (!partial || typeof partial !== "object") return current;
+      // Nothing new: keep the same user object. A fresh object re-renders
+      // every useUser() consumer in the app (146 files); the bell drawer wrote
+      // an unchanged unread count on every open and again after each refresh,
+      // re-rendering the whole app behind it while the sheet waited to move.
+      const changed = Object.keys(partial).some(
+        (key) => !Object.is((current as any)[key], (partial as any)[key]),
+      );
+      if (!changed) return current;
       const merged: User = { ...current, ...partial };
       setUser(merged);
       try {
