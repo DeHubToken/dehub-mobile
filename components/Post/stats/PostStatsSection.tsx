@@ -147,7 +147,7 @@ export default function PostStatsSection({ tokenId }: { tokenId: string | number
       <StatsCard title={t("postStats.audience")}>
         <StatTile label={t("postStats.newFollowers")} value={`+${fmt(followers.gained)}`} sub={t("postStats.afterWatching")} />
         {followers.viewersWhoFollow + followers.viewersNew > 0 ? (
-          <SplitBar left={followers.viewersWhoFollow} right={followers.viewersNew} leftLabel={t("postStats.yourFollowers")} rightLabel={t("postStats.newToYou")} />
+          <SplitBar left={followers.viewersWhoFollow} percent right={followers.viewersNew} leftLabel={t("postStats.yourFollowers")} rightLabel={t("postStats.newToYou")} />
         ) : null}
         {devicesTotal > 0 ? (
           <View style={{ gap: 6 }}>
