@@ -23,16 +23,22 @@ export function fmtDuration(seconds: number | null | undefined): string {
   return h ? `${h}:${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}` : `${m}:${String(r).padStart(2, "0")}`;
 }
 
+/** Smallest count worth comparing against the creator's usual post. */
+const MIN_COMPARE = 5;
+
 /** "2.3× usual" against the creator's average post. */
 export function VsUsual({ value, usual }: { value: number; usual: number | null | undefined }) {
   const { t } = useTranslation();
   if (usual == null || usual <= 0) return null;
+  // Tiny numbers make silly ratios (1 save vs a usual of 0.1 reads as "10x").
+  // Only compare once this post or the usual reaches a few, and cap at 10+.
+  if (Math.max(value, usual) < MIN_COMPARE) return null;
   const ratio = value / usual;
   if (ratio >= 0.9 && ratio <= 1.1) return <Text style={s.sub}>{t("postStats.aboutUsual")}</Text>;
   const up = ratio > 1;
   return (
     <Text style={[s.sub, { color: up ? "#34D399" : "#F87171", fontWeight: "600" }]}>
-      {up ? "▲" : "▼"} {t("postStats.timesUsual", { ratio: ratio >= 10 ? Math.round(ratio) : ratio.toFixed(1) })}
+      {up ? "▲" : "▼"} {t("postStats.timesUsual", { ratio: ratio > 10 ? "10+" : ratio >= 9.95 ? "10" : ratio.toFixed(1) })}
     </Text>
   );
 }
