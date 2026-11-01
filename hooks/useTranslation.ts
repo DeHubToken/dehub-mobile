@@ -4,6 +4,7 @@ import { useTranslation as useI18n } from 'react-i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
 import { autoTranslateEnabled, subscribeAutoTranslate } from '../libs/auto-translate-setting';
 import { queueAutoTranslate } from '../libs/auto-translate-queue';
+import { chatLineIsForeign } from '../libs/chat-language-hint';
 import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
 import { useRecyclingState } from './useCellState';
 
@@ -25,12 +26,13 @@ const MIN_TRANSLATABLE_LENGTH = 1;
 // Auto-translate leaves unlabelled Latin text under 15 characters alone, since a
 // word or two cannot be told apart from the reader's own language.
 //
-// Live chat goes further: a Latin-script chat line is never translated without
-// being asked. Chat is slang, names and in-jokes ("hiya bashmo bro"), and the
-// translator turns those into a confident sentence nobody wrote ("its basmati
-// my friend"), shown in place of what the sender typed. Only scripts that
-// identify themselves on sight (Arabic, Cyrillic, kana, hangul...) are
-// auto-translated in chat; everything else keeps its translate button.
+// Live chat goes further. Chat is slang, names and in-jokes ("hiya bashmo
+// bro"), and the translator turns those into a confident sentence nobody wrote
+// ("its basmati my friend"), shown in place of what the sender typed. So a
+// Latin-script chat line translates itself only when its own words say which
+// language it is in ("bom dia galera", see libs/chat-language-hint) and that is
+// not the reader's. Scripts that identify themselves on sight (Arabic,
+// Cyrillic, kana, hangul...) are auto-translated once they have a few letters.
 const MIN_AUTO_LENGTH = 15;
 const MIN_CHAT_AUTO_LETTERS = 4;
 
@@ -271,7 +273,15 @@ export function useTranslation(
       ? combinedProse.length < MIN_CHAT_AUTO_LETTERS
       : Object.values(texts).join(' ').trim().length < MIN_AUTO_LENGTH;
     if (!reliableBackendLang && tooShort && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
-    if (auto === 'chat' && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
+    // A Latin-script chat line translates itself only when its own words say
+    // it is in another language than the reader's ("bom dia galera"); slang and
+    // names stay as typed. See libs/chat-language-hint.
+    if (
+      auto === 'chat'
+      && /^[\p{Script=Latin}]*$/u.test(combinedProse)
+      && !(reliableBackendLang && baseLang(reliableBackendLang) !== baseLang(targetLang))
+      && !chatLineIsForeign(Object.values(texts).join(' '), targetLang)
+    ) return;
 
     const key = translationKey;
     if (autoDoneRef.current === key) return;

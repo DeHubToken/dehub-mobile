@@ -189,11 +189,19 @@ describe('hooks/useTranslation', () => {
       expect(result.current.isLoading).toBe(false);
     });
 
-    it('never auto-translates a Latin-script live chat line', () => {
+    it('leaves a Latin-script slang chat line alone', () => {
       const LINE = { content: 'hiya bashmo bro' };
       renderHook(() => useTranslation(LINE, undefined, 'chat', true));
 
       expect(mockQueue).not.toHaveBeenCalled();
+    });
+
+    it('translates a Latin-script chat line whose words name another language', async () => {
+      const LINE = { content: 'bom dia galera' };
+      renderHook(() => useTranslation(LINE, undefined, 'chat', true));
+      await runQueuedWork();
+
+      expect(mockTranslate).toHaveBeenCalledWith('bom dia galera', 'tr', 'auto', { isPublic: true });
     });
 
     it('translates a live chat line in a script that names itself', async () => {
