@@ -8,7 +8,7 @@
  */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { t } from "i18next";
-import { getPinCount, getPinnedTokenIds, getPinners, togglePin } from "../services/pin.service";
+import { getPinCount, getPinnedPosts, getPinnedTokenIds, getPinners, togglePin } from "../services/pin.service";
 import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 
@@ -38,21 +38,70 @@ export function useIsPostPinned(tokenId?: number | string | null): boolean {
   return (data || []).includes(String(tokenId));
 }
 
+/**
+ * The posts an account has pinned, newest pin first. The profile's Pinned tab
+ * and the pinned rows at the top of its All tab both read this one query, so
+ * a pin or unpin from any three-dot menu shows on both at once.
+ */
+export function useProfilePins(address?: string) {
+  const key = (address || "").toLowerCase();
+  return useQuery<any[]>({
+    queryKey: [PINNED_KEY, "list", key],
+    queryFn: () => getPinnedPosts(key),
+    enabled: Boolean(key),
+    staleTime: 60 * 1000,
+  });
+}
+
+/** What to pin: the token id, plus the post itself so it can show at once. */
+export type TogglePinInput = number | { tokenId: number; post?: any };
+
 export function useTogglePin() {
   const address = useMyAddress();
   const queryClient = useQueryClient();
+  const idsKey = [PINNED_KEY, address];
+  const listKey = [PINNED_KEY, "list", address];
+
+  const apply = (tokenId: number, pinned: boolean, post?: any) => {
+    const id = String(tokenId);
+    queryClient.setQueryData<string[]>(idsKey, (old) => {
+      const base = (old || []).filter((x) => x !== id);
+      return pinned ? [...base, id] : base;
+    });
+    queryClient.setQueryData<any[]>(listKey, (old) => {
+      if (old === undefined && !pinned) return undefined;
+      const base = (old || []).filter((p) => String(p?.tokenId) !== id);
+      if (!pinned) return base;
+      const existing = (old || []).find((p) => String(p?.tokenId) === id);
+      const row = existing || post;
+      return row ? [{ ...row, tokenId: row.tokenId ?? tokenId }, ...base] : old;
+    });
+  };
 
   return useMutation({
-    mutationFn: (tokenId: number) => togglePin(tokenId),
-    onSuccess: (data, tokenId) => {
-      // Patch the list before refetching so the row's label flips with the
-      // sheet still open, then reconcile with the server.
-      queryClient.setQueryData<string[]>([PINNED_KEY, address], (old) => {
-        if (old === undefined) return undefined;
-        const id = String(tokenId);
-        return data.pinned ? [...old.filter((x) => x !== id), id] : old.filter((x) => x !== id);
-      });
-      queryClient.invalidateQueries({ queryKey: [PINNED_KEY, address] });
+    mutationFn: (input: TogglePinInput) => togglePin(typeof input === "number" ? input : input.tokenId),
+    // Flip before the request goes out, so the post lands at the top of the
+    // profile (or leaves it) the moment the row is tapped.
+    onMutate: async (input: TogglePinInput) => {
+      const tokenId = typeof input === "number" ? input : input.tokenId;
+      const post = typeof input === "number" ? undefined : input.post;
+      await Promise.all([
+        queryClient.cancelQueries({ queryKey: idsKey }),
+        queryClient.cancelQueries({ queryKey: listKey }),
+      ]);
+      const previousIds = queryClient.getQueryData<string[]>(idsKey);
+      const previousList = queryClient.getQueryData<any[]>(listKey);
+      const wasPinned = (previousIds || []).includes(String(tokenId));
+      apply(tokenId, !wasPinned, post);
+      return { previousIds, previousList };
+    },
+    onSuccess: (data, input) => {
+      const tokenId = typeof input === "number" ? input : input.tokenId;
+      const post = typeof input === "number" ? undefined : input.post;
+      // The server's toggle decides; settle on its answer, then reconcile.
+      apply(tokenId, !!data?.pinned, post);
+      queryClient.invalidateQueries({ queryKey: idsKey });
+      queryClient.invalidateQueries({ queryKey: listKey });
       // This post's count moves by one; its pinners list is refetched.
       queryClient.setQueryData<number>([PINNED_KEY, "count", tokenId], (old) =>
         old === undefined ? undefined : Math.max(0, old + (data.pinned ? 1 : -1)),
@@ -64,7 +113,11 @@ export function useTogglePin() {
           : t("postOptions.postUnpinned", "Unpinned from your profile"),
       );
     },
-    onError: () => toastError(t("postOptions.pinFailed", "Could not pin or unpin this post")),
+    onError: (_err, _input, context) => {
+      queryClient.setQueryData(idsKey, context?.previousIds);
+      queryClient.setQueryData(listKey, context?.previousList);
+      toastError(t("postOptions.pinFailed", "Could not pin or unpin this post"));
+    },
   });
 }
 

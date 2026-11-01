@@ -34,6 +34,21 @@ export async function getPinnedTokenIds(address: string, limit = 100): Promise<s
   return (res?.result || []).map((pin: any) => String(pin?.tokenId ?? pin?.post?.tokenId));
 }
 
+/**
+ * The posts the given account has pinned, newest pin first, as feed items.
+ * Each pin carries the full post either under `.post` or flat on the row.
+ */
+export async function getPinnedPosts(address: string, limit = 100): Promise<any[]> {
+  if (!address) return [];
+  const res = await apiClient.get<{ result?: any[] }>("/pins", {
+    params: { address, page: 1, limit },
+  });
+  return (res?.result || []).map((pin: any) => ({
+    ...(pin.post || pin),
+    tokenId: pin.tokenId ?? pin.post?.tokenId,
+  }));
+}
+
 export interface PinUser {
   user: {
     address: string;

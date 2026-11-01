@@ -57,6 +57,8 @@ export interface PostOptionsMenuProps {
   tokenId: number | string | undefined;
   /** Whether the current viewer owns this post */
   isOwner: boolean;
+  /** The post itself, so pinning it can show it on the profile at once. */
+  post?: any;
   /**
    * The post's mint status. 'signed' means it was published off-chain and can
    * still be minted; anything else (or absent) hides the Mint post row, so a
@@ -226,6 +228,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onClose,
   tokenId,
   isOwner,
+  post,
   canReplaceVideo = false,
   postStatus,
   postChainId,
@@ -595,7 +598,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               loading={togglePinMutation.isPending}
               onPress={() => {
                 if (togglePinMutation.isPending) return;
-                togglePinMutation.mutate(numericTokenId);
+                togglePinMutation.mutate({ tokenId: numericTokenId, post });
               }}
             />
           )}

@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
+import { View, Text, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
+import Icon from '../ui/Icon';
+import { useProfilePins } from '../../hooks/usePinnedPosts';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
 import FeedCardSkeleton from '../Feed/FeedCardSkeleton';
@@ -65,6 +67,37 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   const isOwnProfile = !!(
     address && ownAddress && address.toLowerCase() === ownAddress.toLowerCase()
   );
+
+  const isDefaultView =
+    (sortBy ?? 'createdAt') === 'createdAt' &&
+    (sortOrder ?? 'desc') === 'desc' &&
+    !search && !category && !range && !postType &&
+    !isPPV && !hasBounty && !isLocked;
+
+  // Pinned posts sit at the top of All, newest pin first, like a pinned post
+  // anywhere else. A sorted or filtered view is a search, so they stay out.
+  const { data: pins } = useProfilePins(address);
+  const pinnedPosts = isDefaultView ? (pins || []) : [];
+  const header = pinnedPosts.length ? (
+    <>
+      {listHeader}
+      {pinnedPosts.map((item) => (
+        <View key={`pinned-${item.tokenId}`} className="px-2">
+          <View className="flex-row items-center gap-1.5 px-2 pt-2 pb-1">
+            <Icon name="Pin" size={14} color="#9CA3AF" />
+            <Text className="text-xs text-theme-neutrals-400">{t("profile.tabPinned", "Pinned")}</Text>
+          </View>
+          <FeedCard
+            cinematic={cinematic}
+            item={item as UnifiedFeedItem}
+            isVisible
+            isAutoplayActive={false}
+            onBeforeNavigate={onBeforeNavigate}
+          />
+        </View>
+      ))}
+    </>
+  ) : listHeader;
 
   const fetchPage = useCallback(
     async (page: number, limit: number): Promise<GetNFTsResponse> => {
@@ -150,7 +183,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
-        headerComponent={listHeader}
+        headerComponent={header}
         loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} cinematic edgeInset={8} /></View> : undefined}
         onScroll={onScroll}
         scrollEnabled={scrollEnabled}

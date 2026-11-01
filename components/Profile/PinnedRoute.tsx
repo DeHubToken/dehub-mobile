@@ -1,9 +1,9 @@
 import Animated from "react-native-reanimated";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback } from "react";
 import { View, ScrollView, FlatList, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
-import { apiClient } from "../../libs";
+import { useProfilePins } from "../../hooks/usePinnedPosts";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
@@ -18,61 +18,16 @@ interface PinnedRouteProps {
   onBeforeNavigate?: () => void;
 }
 
-const PAGE_SIZE = 20;
-
 const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, listHeader, onBeforeNavigate }) => {
   const { t } = useTranslation();
   const cinematicPhone = useCinematicPhone();
   const cinematic = cinematicPhone && !!listHeader;
-  const [items, setItems] = useState<UnifiedFeedItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const pageRef = useRef(1);
-  const endRef = useRef(false);
-
-  const fetchPins = useCallback(async (page: number) => {
-    if (!address) return;
-    const res = await apiClient.get<{ result: any[]; pagination?: any }>(
-      `/pins`,
-      { params: { address, page, limit: PAGE_SIZE } },
-    );
-    const raw: any[] = res?.result || [];
-    // Each pin may embed the full post under `.post` or directly at root
-    const mapped: UnifiedFeedItem[] = raw.map((pin) => ({
-      ...(pin.post || pin),
-      tokenId: pin.tokenId ?? pin.post?.tokenId,
-    }));
-    if (page === 1) {
-      setItems(mapped);
-    } else {
-      setItems((prev) => [...prev, ...mapped]);
-    }
-    if (mapped.length < PAGE_SIZE || !res?.pagination?.hasMore) {
-      endRef.current = true;
-    }
-  }, [address]);
-
-  const load = useCallback(() => {
-    if (!address) { setLoading(false); return; }
-    setLoading(true);
-    setError(null);
-    pageRef.current = 1;
-    endRef.current = false;
-    fetchPins(1).catch((e: any) => setError(e?.message || t("common.failedToLoad"))).finally(() => setLoading(false));
-  }, [address, fetchPins]);
-
-  useEffect(() => {
-    load();
-  }, [load]);
-
-  const handleLoadMore = useCallback(async () => {
-    if (loadingMore || endRef.current || loading) return;
-    setLoadingMore(true);
-    pageRef.current += 1;
-    await fetchPins(pageRef.current).catch(() => { pageRef.current -= 1; });
-    setLoadingMore(false);
-  }, [loadingMore, loading, fetchPins]);
+  // The same query the pin row patches, so a pin or unpin shows here at once.
+  const pinsQuery = useProfilePins(address);
+  const items: UnifiedFeedItem[] = pinsQuery.data || [];
+  const loading = !!address && pinsQuery.isLoading;
+  const error = pinsQuery.error ? ((pinsQuery.error as any)?.message || t("common.failedToLoad")) : null;
+  const load = useCallback(() => { pinsQuery.refetch(); }, [pinsQuery]);
 
   const keyExtractor = useCallback(
     (item: UnifiedFeedItem, idx: number) => `${item.tokenId ?? idx}`,
@@ -155,15 +110,6 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
       viewabilityConfig={viewabilityConfig}
       onViewableItemsChanged={onViewableItemsChanged}
       extraData={visibilityExtraData}
-      onEndReached={endRef.current ? undefined : handleLoadMore}
-      onEndReachedThreshold={0.6}
-      ListFooterComponent={
-        loadingMore ? (
-          <View style={{ alignItems: "center", paddingVertical: 16 }}>
-            <ActivityIndicator color="#fff" />
-          </View>
-        ) : null
-      }
       showsVerticalScrollIndicator={false}
     />
   );
