@@ -3370,6 +3370,11 @@
     "searchDehubFor": "Search DeHub for \"{{query}}\""
   },
   "comments": {
+    "attachAudioFile": "Audio file",
+    "attachMedia": "Attach a photo, video or audio",
+    "attachPhotoOrVideo": "Photo or video",
+    "attachTooLarge": "That file is over the {{size}} MB limit.",
+    "playVideo": "Play video",
     "reportComment": "Report comment",
     "reportCommentTitle": "Report this comment",
     "reportCommentDescription": "Tell us what is wrong with this comment and our moderators will review it.",
@@ -6757,6 +6762,10 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "attachAnything": "Attach a photo, video, audio or file",
+    "attachFileOrAudio": "File or audio",
+    "attachPhotoOrVideo": "Photo or video",
+    "attachTooLarge": "That file is over the {{size}} MB limit.",
     "online": "Online",
     "attachFailed": "Couldn't attach that file.",
     "removeAttachment": "Remove attachment",

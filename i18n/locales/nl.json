@@ -3699,7 +3699,12 @@
     "tabReplies": "Antwoorden",
     "tabQuotes": "Citaten",
     "tabReposts": "Opnieuw posten",
-    "tabSearch": "Zoeken"
+    "tabSearch": "Zoeken",
+    "attachAudioFile": "Audiobestand",
+    "attachMedia": "Foto, video of audio toevoegen",
+    "attachPhotoOrVideo": "Foto of video",
+    "attachTooLarge": "Dat bestand is groter dan de limiet van {{size}} MB.",
+    "playVideo": "Video afspelen"
   },
   "postInfo": {
     "ownersUnavailable": "De huidige eigenaren kunnen nu niet worden gelezen.",
@@ -7094,7 +7099,11 @@
     "paymentSentWith": "Verzonden met {{amount}}",
     "planRestricted": "Deze gebruiker vereist een abonnement om berichten te ontvangen.",
     "planTypeNotAllowed": "Het abonnement van deze maker staat dit soort bericht niet toe.",
-    "planMinTip": "De fooi voor deze maker moet minstens {{amount}} tokens zijn."
+    "planMinTip": "De fooi voor deze maker moet minstens {{amount}} tokens zijn.",
+    "attachAnything": "Foto, video, audio of bestand toevoegen",
+    "attachFileOrAudio": "Bestand of audio",
+    "attachPhotoOrVideo": "Foto of video",
+    "attachTooLarge": "Dat bestand is groter dan de limiet van {{size}} MB."
   },
   "editPost": {
     "mediaPermission": "Toestemming voor de mediabibliotheek is vereist",

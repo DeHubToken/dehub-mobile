@@ -3519,7 +3519,12 @@
     "tabReplies": "الردود",
     "tabQuotes": "الاقتباسات",
     "tabReposts": "إعادة النشر",
-    "tabSearch": "بحث"
+    "tabSearch": "بحث",
+    "attachAudioFile": "ملف صوتي",
+    "attachMedia": "إرفاق صورة أو فيديو أو صوت",
+    "attachPhotoOrVideo": "صورة أو فيديو",
+    "attachTooLarge": "هذا الملف أكبر من حد {{size}} ميغابايت.",
+    "playVideo": "تشغيل الفيديو"
   },
   "postInfo": {
     "ownersUnavailable": "لا يمكن قراءة المالكين الحاليين في الوقت الحالي.",
@@ -6964,7 +6969,11 @@
     "paymentSentWith": "تم الإرسال مع {{amount}}",
     "planRestricted": "يتطلب هذا المستخدم اشتراكًا لتلقي الرسائل.",
     "planTypeNotAllowed": "لا تسمح خطة هذا المنشئ بهذا النوع من الرسائل.",
-    "planMinTip": "يجب أن تكون الإكرامية {{amount}} رموز على الأقل لهذا المنشئ."
+    "planMinTip": "يجب أن تكون الإكرامية {{amount}} رموز على الأقل لهذا المنشئ.",
+    "attachAnything": "إرفاق صورة أو فيديو أو صوت أو ملف",
+    "attachFileOrAudio": "ملف أو صوت",
+    "attachPhotoOrVideo": "صورة أو فيديو",
+    "attachTooLarge": "هذا الملف أكبر من حد {{size}} ميغابايت."
   },
   "editPost": {
     "mediaPermission": "يلزم إذن الوصول إلى مكتبة الوسائط",

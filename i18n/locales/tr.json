@@ -3511,7 +3511,12 @@
     "tabReplies": "Yanıtlar",
     "tabQuotes": "Alıntılar",
     "tabReposts": "Yeniden Paylaşımlar",
-    "tabSearch": "Ara"
+    "tabSearch": "Ara",
+    "attachAudioFile": "Ses dosyası",
+    "attachMedia": "Fotoğraf, video veya ses ekle",
+    "attachPhotoOrVideo": "Fotoğraf veya video",
+    "attachTooLarge": "Bu dosya {{size}} MB sınırını aşıyor.",
+    "playVideo": "Videoyu oynat"
   },
   "postInfo": {
     "ownersUnavailable": "Mevcut sahipler şu anda okunamıyor.",
@@ -6955,7 +6960,11 @@
     "paymentSentWith": "{{amount}} ile gönderildi",
     "planRestricted": "Bu kullanıcı mesaj almak için abonelik gerektiriyor.",
     "planTypeNotAllowed": "Bu içerik üreticisinin planı bu tür mesaja izin vermiyor.",
-    "planMinTip": "Bu içerik üreticisi için bahşiş en az {{amount}} token olmalı."
+    "planMinTip": "Bu içerik üreticisi için bahşiş en az {{amount}} token olmalı.",
+    "attachAnything": "Fotoğraf, video, ses veya dosya ekle",
+    "attachFileOrAudio": "Dosya veya ses",
+    "attachPhotoOrVideo": "Fotoğraf veya video",
+    "attachTooLarge": "Bu dosya {{size}} MB sınırını aşıyor."
   },
   "editPost": {
     "mediaPermission": "Medya kitaplığı izni gerekiyor",
