@@ -14602,5 +14602,16 @@
     "confirm": "在 {{chain}} 上铸造",
     "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
     "notAvailable": "此链上的铸造尚未开放。"
+  },
+  "tokenLaunch": {
+    "body": "购买已关闭，直至新代币准备就绪。立即收到电子邮件通知它上线。",
+    "notifyMe": "通知我",
+    "sendTo": "我们将通过电子邮件发送给{{email}}",
+    "emailLabel": "电子邮件",
+    "emailPlaceholder": "您的电子邮件",
+    "joinedTitle": "你在名单上",
+    "joinedBody": "我们将在令牌上线时发邮件给{{email}}。",
+    "joinedBodyNoEmail": "我们将在令牌上线时发邮件给你。",
+    "privacy": "只用来告诉你关于发布的信息。"
   }
 }

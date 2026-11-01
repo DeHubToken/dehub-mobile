@@ -14582,6 +14582,12 @@
     "joinedBody": "Muna kiranin {{email}} lokacin da ake kirkire token.",
     "joinedBodyNoEmail": "Muna kallon ku da email lokacin da ake kirkirar daidai token.",
     "failed": "Ba zai iya ajiye wannan ba. sake gwadawa.",
-    "privacy": "Kawai ake magana da ku da shirin da aka kaddamar a cikin wannan wata."
+    "privacy": "Kawai ake magana da ku da shirin da aka kaddamar a cikin wannan wata.",
+    "title": "Token ƙaddamarwa ba da daɗewa ba",
+    "body": "Ana rufe siye yayin da sabon alamar ya shirya. Samu imel lokacin da yake rayuwa.",
+    "notifyMe": "Sanar da ni",
+    "sendTo": "Za mu yi email {{email}}",
+    "emailLabel": "Imel",
+    "emailPlaceholder": "Imel naka"
   }
 }

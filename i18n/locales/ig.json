@@ -14569,6 +14569,13 @@
     "joinedTitle": "Ndè mma nke ụlọ ụlọ.",
     "joinedBodyNoEmail": "Aga m ezipụta gị ozi mgbe token ahụ na-amalite.",
     "failed": "Ndèrè n'egwèrè nke àlà. Nkèrè n'egwèrè.",
-    "privacy": "Naanị ejiri ya ịkwu gị ihe banyere mmalite ahụ."
+    "privacy": "Naanị ejiri ya ịkwu gị ihe banyere mmalite ahụ.",
+    "eyebrow": "Na-abịa n 'oge na-adịghị anya",
+    "title": "Token launching adịghị anya",
+    "notifyMe": "Gwa m",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Email gị",
+    "invalidEmail": "Tinye a nti email",
+    "joinedBody": "Anyị ga-eziga email {{email}} mgbe akara ngosi ahụ malitere."
   }
 }

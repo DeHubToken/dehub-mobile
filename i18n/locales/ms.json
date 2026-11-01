@@ -14832,5 +14832,18 @@
     "confirm": "Mint pada {{chain}}",
     "confirmWithCost": "Mint pada {{chain}} · {{cost}}",
     "notAvailable": "Percetakan pada rantai ini belum tersedia lagi."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Segera akan datang",
+    "title": "Token pelancaran akan segera",
+    "body": "Belanjaan ditutup sementara token baru sedang disediakan. Dapatkan e-mel segera apabila ia dilancarkan.",
+    "notifyMe": "Beritahu saya",
+    "sendTo": "Kami akan menghantar e-mel kepada {{email}}.",
+    "invalidEmail": "Masukkan email yang sah.",
+    "joinedTitle": "Anda ada dalam senarai.",
+    "joinedBody": "Kami akan menghantar email kepada {{email}} apabila token dilancarkan.",
+    "joinedBodyNoEmail": "Kami akan menghantar email kepada anda apabila token dilancarkan.",
+    "failed": "Tidak dapat menyimpan itu. Coba lagi.",
+    "privacy": "Hanya digunakan untuk memberitahu tentang pelancaran."
   }
 }

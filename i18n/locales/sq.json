@@ -14576,5 +14576,20 @@
     "confirm": "Mint në {{chain}}",
     "confirmWithCost": "Mint në {{chain}} · {{cost}}",
     "notAvailable": "Gjurmimi në këtë zinxhir nuk është ende i disponueshëm."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Së shpejti",
+    "title": "Tokeni po niset së shpejti",
+    "body": "Blerja është e mbyllur ndërkohë që tokeni i ri po përgatitet. Merrni një email në momentin kur të jetë i drejtpërdrejtë.",
+    "notifyMe": "Njoftomëni",
+    "sendTo": "Ne do t'ju dërgojmë email në {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Emaili juaj",
+    "invalidEmail": "Futni një email të vlefshëm",
+    "joinedTitle": "Jeni në listë",
+    "joinedBody": "Ne do t'ju dërgojmë email në {{email}} kur tokeni të niset.",
+    "joinedBodyNoEmail": "Ne do t'ju dërgojmë email kur tokeni të niset.",
+    "failed": "Nuk mundi të ruhet. Provoni përsëri.",
+    "privacy": "Përdoret vetëm për t'ju informuar për lançimin."
   }
 }

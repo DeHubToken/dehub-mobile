@@ -14603,5 +14603,20 @@
     "confirm": "Iminti ku- {{chain}}",
     "confirmWithCost": "Iminti ku- {{chain}} · {{cost}}",
     "notAvailable": "Ukuphawula kulolu chungechunge akutholakali okwamanje."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kuyeza maduzane",
+    "title": "Ukwethulwa kwethokheni maduzane",
+    "body": "Ukuthenga kuvaliwe ngenkathi ithokheni entsha ilungiswa. Thola i-imeyili uma iqala ukusebenza.",
+    "notifyMe": "Ngazise",
+    "sendTo": "Sizothumela i-imeyili ku- {{email}}",
+    "emailLabel": "I-imeyili",
+    "emailPlaceholder": "Ikheli lakho lapha",
+    "invalidEmail": "Faka i-imeyili evumelekile",
+    "joinedTitle": "Usohlwini",
+    "joinedBody": "Sizothumela i-imeyili ku- {{email}} lapho kwethulwa ithokheni.",
+    "joinedBodyNoEmail": "Sizokuthumela i-imeyili uma ithokheni iqaliswa.",
+    "failed": "Ayikwazanga ukukugcina lokho. Zama futhi.",
+    "privacy": "Kuvame ukukutshela kuphela ngokuqaliswa."
   }
 }

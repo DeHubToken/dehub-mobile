@@ -14563,5 +14563,9 @@
     "priceUnavailable": "Qiimaha aan la heli karin",
     "confirm": "Mint ee {{chain}}",
     "notAvailable": "Minting on silsiladdan weli lama heli karo."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Imaanshaha ugu dhakhsaha badan",
+    "failed": "Ma badbaadin karo taas. isku day mar kale."
   }
 }

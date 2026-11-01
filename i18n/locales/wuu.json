@@ -14558,5 +14558,12 @@
     "confirm": "在 {{chain}} 上铸造",
     "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
     "notAvailable": "此链上的铸造功能暂不可用。"
+  },
+  "tokenLaunch": {
+    "body": "买卖暂停，等新代币准备好。收到邮件时即刻上线。",
+    "emailPlaceholder": "你个电邮",
+    "invalidEmail": "输入有效个邮箱",
+    "joinedTitle": "侬在名单上",
+    "joinedBody": "代币上线辰光，我会给{{email}}发邮件。"
   }
 }

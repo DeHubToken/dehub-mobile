@@ -14738,5 +14738,20 @@
     "confirm": "Mincovňa {{chain}}",
     "confirmWithCost": "Mincovňa {{chain}} · {{cost}}",
     "notAvailable": "Minting na tomto reťazci ešte nie je k dispozícii."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Približne sa blíži",
+    "title": "Token sa blíži k uvedeniu",
+    "body": "Kúpenie je zatvorené, kým sa nový token neprípravi. Dostanete email, keď sa uvedie do prevádzky.",
+    "notifyMe": "Oznámiť mi",
+    "sendTo": "Budeme Vám emailom poslať {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Vaše emailové adresa",
+    "invalidEmail": "Zadajte platnú emailovú adresu",
+    "joinedTitle": "Ste na zozname",
+    "joinedBody": "Budem Vám emailom poslať {{email}}, keď sa token uvedie do prevádzky.",
+    "joinedBodyNoEmail": "Budem Vám emailom poslať informáciu, keď sa token uvedie do prevádzky.",
+    "failed": "Nepodarilo sa uložiť to. Skús to znova.",
+    "privacy": "Použité iba na informovanie o uvedení do prevádzky."
   }
 }

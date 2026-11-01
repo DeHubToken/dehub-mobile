@@ -15494,5 +15494,19 @@
     "title": "Feliz Halloween",
     "otherThemes": "Sem clima de terror? Encontre outros temas:",
     "enter": "Entrar na masmorra"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Chegando em breve",
+    "title": "Lançamento de token em breve",
+    "body": "Compras estão fechadas enquanto o novo token é preparado. Receba um email assim que for lançado.",
+    "notifyMe": "Avise-me",
+    "sendTo": "Vamos enviar um email para {{email}}.",
+    "emailLabel": "Email",
+    "invalidEmail": "Entre com um e-mail válido",
+    "joinedTitle": "Você está na lista.",
+    "joinedBody": "Vamos enviar um email para {{email}} quando o token for lançado.",
+    "joinedBodyNoEmail": "Vamos te enviar um email quando o token for lançado.",
+    "failed": "Não foi possível salvar isso. Tente novamente.",
+    "privacy": "Apenas para te contar sobre o lançamento."
   }
 }

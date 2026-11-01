@@ -14675,5 +14675,20 @@
     "title": "Halloween vui vẻ",
     "otherThemes": "Không thích rùng rợn? Tìm giao diện khác:",
     "enter": "Vào hầm ngục"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Sớm tới",
+    "title": "Token sắp ra mắt",
+    "body": "Mua hàng đã đóng cửa trong khi token mới được chuẩn bị. Bạn sẽ nhận được một email ngay khi nó ra mắt.",
+    "notifyMe": "Thông báo cho tôi",
+    "sendTo": "Chúng tôi sẽ gửi email đến {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Email của bạn",
+    "invalidEmail": "Nhập email hợp lệ",
+    "joinedTitle": "Bạn đã trong danh sách",
+    "joinedBody": "Chúng tôi sẽ gửi email {{email}} khi token ra mắt.",
+    "joinedBodyNoEmail": "Chúng tôi sẽ gửi email cho bạn khi token ra mắt.",
+    "failed": "Không thể lưu thông tin này. Hãy thử lại.",
+    "privacy": "Chỉ được sử dụng để thông báo cho bạn về sự ra mắt."
   }
 }

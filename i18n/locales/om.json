@@ -14614,5 +14614,20 @@
     "confirm": "Mint {{chain}} irratti.",
     "confirmWithCost": "Mint irratti {{chain}} · {{cost}} irratti.",
     "notAvailable": "Sansalata kana irratti minting hanga ammaatti hin argamne."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Dhuma keessa dhufa",
+    "title": "Token dhuma keessa dhufa",
+    "body": "Bitaa cufa yeroo token haaraan qophaa'u. Ergaa email tokko argadhu yeroo inni jiraatu.",
+    "notifyMe": "Naa beeksi",
+    "sendTo": "Ergaa email {{email}} ni ergina",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Email kee",
+    "invalidEmail": "Email sirrii galchi",
+    "joinedTitle": "Listaa keessa jirta",
+    "joinedBody": "Ergaa email {{email}} ni ergina token yeroo dhufa.",
+    "joinedBodyNoEmail": "Ergaa email si ergina token yeroo dhufa.",
+    "failed": "Kunis kuufuu hin dandeenye. Irra deebi yaali.",
+    "privacy": "Dhumarraa kaasee waa'ee dhufa kana siif himan keessatti fayyadama."
   }
 }

@@ -14560,5 +14560,17 @@
     "confirm": "Mint on {{chain}}",
     "confirmWithCost": "Mint on {{chain}} {{cost}}",
     "notAvailable": "بۇ زەنجىرنى ياساش تېخى قوللىنىلمىغان."
+  },
+  "tokenLaunch": {
+    "eyebrow": "پات يېقىندا كېلىدۇ",
+    "body": "Sotuv qayta ajar bo'lishidan oldin yopildi. Yangi token tayyor bo'lganda sizga email yuboriladi.",
+    "notifyMe": "Men sizni xabar qilishimni xohlayman.",
+    "emailLabel": "ئېلېكترونلۇق پوچتا",
+    "emailPlaceholder": "Xabar",
+    "joinedTitle": "سىزىكىڭىز سىزىكىڭىز",
+    "joinedBody": "Men token chiqqanda {{email}} ga elektron ma'lumot yuboramiz.",
+    "joinedBodyNoEmail": "Men sizga tokenning chiqqanida xabar yuboramiz.",
+    "failed": "بۇنى ساقلاپ بولالمىدى. قايتا سىناپ بېقىڭ.",
+    "privacy": "Men sizni laqiqatni xabar qilish uchun faqat foydalanish uchun ishlatiladi."
   }
 }

@@ -14573,5 +14573,20 @@
     "confirm": "Mint lori {{chain}}",
     "confirmWithCost": "Mint lori {{chain}} {{cost}}",
     "notAvailable": "A ṣe minting ni wọn ni ó ṣẹlẹ."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Ń bọ̀ láìpẹ́.",
+    "title": "Ṣíṣe ìfilọ́lẹ̀ láìpẹ́",
+    "body": "Bí wọ́n ṣe ń ra nǹkan ti di títì nígbà tí àmì tuntun náà ti wà ní ìmúrasílẹ̀. Gba ẹ̀rọ-ìbánisọ̀rọ̀ ní àsìkò tí ó bá ti wà láàyè.",
+    "notifyMe": "Sọ fún mi",
+    "sendTo": "A máa fi ímeèlì ránṣẹ́ {{email}}",
+    "emailLabel": "Ímeèlì",
+    "emailPlaceholder": "Imeeli rẹ",
+    "invalidEmail": "Tẹ imeeli ti o wulo sii",
+    "joinedTitle": "O wà lórí àtòjọ náà",
+    "joinedBody": "A máa fi ímeèlì ránṣẹ́ {{email}} nígbà tí àfihàn náà bá jáde.",
+    "joinedBodyNoEmail": "A máa fi ímeèlì ránṣẹ́ sí ọ nígbà tí àfihàn náà bá bẹ̀rẹ̀.",
+    "failed": "Mi ò lè fi ìyẹn pamọ́. Gbìyànjú lẹ́ẹ̀kan síi.",
+    "privacy": "Mo kàn máa ń sọ fún ọ nípa ìfilọ́lẹ̀ náà."
   }
 }

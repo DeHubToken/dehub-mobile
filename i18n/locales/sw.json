@@ -14577,5 +14577,20 @@
     "confirm": "Mint kwenye {{chain}}",
     "confirmWithCost": "Mint kwenye {{chain}} · {{cost}}",
     "notAvailable": "Uwekaji picha kwenye mnyororo huu bado haupatikani."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Inakuja hivi karibuni",
+    "title": "Token itakazoanzishwa hivi karibuni",
+    "body": "Ununaji umefungwa wakati token mpya inajiandaa. Pata barua pepe mara tu itakapokuwa hai.",
+    "notifyMe": "Nijulishe",
+    "sendTo": "Tutawasiliana kwa barua pepe {{email}}",
+    "emailLabel": "Barua pepe",
+    "emailPlaceholder": "Barua pepe yako",
+    "invalidEmail": "Weka barua pepe sahihi",
+    "joinedTitle": "Upo kwenye orodha",
+    "joinedBody": "Tutawasiliana kwa barua pepe {{email}} wakati token itakapozinduliwa.",
+    "joinedBodyNoEmail": "Tutakutumia barua pepe wakati token itakapozinduliwa.",
+    "failed": "Hakuwezekani kuhifadhi hilo. Jaribu tena.",
+    "privacy": "Inatumika tu kukujulisha kuhusu uzinduzi."
   }
 }
