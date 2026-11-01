@@ -1524,6 +1524,11 @@ export default function UploadScreen() {
     // the state this one has not caused a render for yet. See the ref's doc.
     if (activeIsUploading || submittingRef.current || (!isStageMode && !postingChainReady)) return;
     haptic.press();
+    // Close the keyboard now, while the text field still holds focus. On
+    // Android the field can lose focus during the post before navigateHome
+    // runs, and once nothing is focused blur() and Keyboard.dismiss() have
+    // nothing to act on, so the keys stayed up over Home.
+    Keyboard.dismiss();
     if (isStageMode) {
       if (!titleText.trim()) return;
       if (scheduledDate && (!Number.isFinite(scheduledDate.getTime()) || scheduledDate.getTime() <= Date.now())) {
