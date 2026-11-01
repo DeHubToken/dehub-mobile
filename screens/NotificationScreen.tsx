@@ -961,6 +961,8 @@ const NotificationScreen = () => {
    */
   const [dismissedIds, setDismissedIds] = useState<Set<string>>(new Set());
   const [quickSettingsOpen, setQuickSettingsOpen] = useState(false);
+  // Mounted on first use: an always-mounted sheet was built on every open.
+  const [quickSettingsMounted, setQuickSettingsMounted] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(!cached);
   // Set when a refresh fails with nothing on screen to fall back on. Until now
@@ -1940,7 +1942,10 @@ const NotificationScreen = () => {
               actions={
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                 <TouchableOpacity
-                  onPress={() => setQuickSettingsOpen(true)}
+                  onPress={() => {
+                    setQuickSettingsMounted(true);
+                    setQuickSettingsOpen(true);
+                  }}
                   accessibilityRole="button"
                   accessibilityLabel={t('notifications.settings')}
                   className="items-center justify-center bg-theme-neutrals-800"
@@ -1992,7 +1997,7 @@ const NotificationScreen = () => {
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
           // Rows are a small avatar and two lines, so they batch cheaply.
-          initialNumToRender={10}
+          initialNumToRender={8}
           maxToRenderPerBatch={8}
           windowSize={9}
           updateCellsBatchingPeriod={60}
@@ -2007,14 +2012,14 @@ const NotificationScreen = () => {
         />
       )}
       <DeHubRefreshMark refreshing={refreshing} />
-      <QuickSettingsSheet
+      {quickSettingsMounted ? <QuickSettingsSheet
         visible={quickSettingsOpen}
         onClose={() => setQuickSettingsOpen(false)}
         hasUnread={hasUnread}
         onMarkAllRead={handleMarkAllRead}
         onClearAll={handleClearAll}
         onOpenAllSettings={() => navigation.navigate(ScreenNames.NotificationSettings)}
-      />
+      /> : null}
     </PageDrawer>
   );
 };

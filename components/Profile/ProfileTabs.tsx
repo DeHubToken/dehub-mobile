@@ -141,6 +141,10 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     if ((counts.playlists ?? 0) > 0) {
       rest.push({ key: "playlists", title: t("profile.tabPlaylists"), icon: "ListVideo" });
     }
+    // Articles too: the tab shows once there is a published article.
+    if ((counts.articles ?? 0) > 0) {
+      rest.push({ key: "articles", title: t("profile.tabArticles"), icon: "Blog" });
+    }
     rest.sort(
       (a, b) =>
         ((counts as Record<string, number | undefined>)[b.key] ?? 0) -
@@ -246,6 +250,8 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} onScroll={workletScroll} />;
       case "pinned":
         return <PinnedRoute address={address} listHeader={listHeader} onScroll={workletScroll} />;
+      case "articles":
+        return <ProfileFeedTypeRoute address={address} postType="article" emptyKind="posts" emptyTitle={t("profile.articlesEmptyTitle")} emptySubtitle={t("profile.articlesEmptySubtitle")} listHeader={listHeader} onScroll={workletScroll} />;
       case "playlists":
         return <PlaylistsRoute address={address} listHeader={listHeader} onScroll={workletScroll} isOwnProfile />;
       case "dislikes":

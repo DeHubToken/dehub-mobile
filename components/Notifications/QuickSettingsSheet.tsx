@@ -93,7 +93,7 @@ const QuickSettingsSheet: React.FC<QuickSettingsSheetProps> = ({
   }, [patchUser, t]);
 
   return (
-    <GlassModal surface="theme" visible={visible} onClose={onClose} presentation="bottom" scrollable maxHeight="85%">
+    <GlassModal surface="theme" visible={visible} onClose={onClose} presentation="bottom" opaque scrollable maxHeight="85%">
       {/* A handle, no close button: drag down or tap outside to close. */}
       <View style={{ alignItems: "center", paddingTop: 10 }}>
         <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.4)" }} />

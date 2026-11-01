@@ -1005,8 +1005,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 accessibilityLabel={t("comments.viewCount", { count: comment.views })}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Icon name="Eye" size={14} color={ICON_MUTED} strokeWidth={1.8} />
-                <Text style={{ fontSize: 12, color: "#8B8D90" }}>
+                <Icon name="Eye" size={COMMENT_ICON_SIZE.like} color={ICON_MUTED} strokeWidth={1.8} />
+                <Text style={{ fontSize: 12, color: ICON_MUTED }}>
                   {formatCompactNumber(comment.views!)}
                 </Text>
               </View>
