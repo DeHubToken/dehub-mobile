@@ -4338,6 +4338,7 @@
       "featureLike": "{{name}} ने फीचर रिक्वेस्ट को पसंद किया",
       "featureLikeNamed": "{{name}} ने तुझको फीचर रिक्वेस्ट “{{title}}” को पसंद किया",
       "featureMention": "{{name}} ने फीचर रिक्वेस्ट पर तुझको उल्लेख किया",
+      "featureNewNamed": "{{name}} ने नया रिक्वेस्ट पोस्ट किया है – “{{title}}”",
       "featureMentionNamed": "{{name}} ने “{{title}}” पर तुझको उल्लेख किया",
       "featureReply": "{{name}} ने तुझसे टिप्पणी पर उत्तर दिया",
       "followRequest": "{{name}} ने तुझे फॉलो करने के लिए रिक्वेस्ट कियो",

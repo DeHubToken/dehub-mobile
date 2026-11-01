@@ -4337,6 +4337,10 @@
   "notifications": {
     "custom": {
       "featureMention": "{{name}} t’ha mencionat en una petició de funció",
+      "featureNewNamed": "{{name}} ha publicat una nova sol·licitud “{{title}}”",
+      "featureNew": "{{name}} ha publicat una nova sol·licitud",
+      "featureActivityNamed": "{{name}} ha comentat “{{title}}”",
+      "featureActivity": "{{name}} ha comentat una sol·licitud",
       "bountyApplied": "{{name}} ha sol·licitat la teva recompensa",
       "bountyAppliedNamed": "{{name}} ha sol·licitat la teva recompensa “{{title}}”",
       "bountyReply": "{{name}} ha contestat a la teva recompensa",

@@ -4348,6 +4348,8 @@
       "featureLike": "{{name}} کو آپ کی خصوصیت کی درخواست پسند آئی",
       "featureLikeNamed": "{{name}} نے آپ کے فیچر کی درخواست \"{{title}}\" کو پسند کیا",
       "featureMention": "{{name}} نے فیچر کی درخواست پر آپ کا تذکرہ کیا",
+      "featureNew": "{{name}} نے ایک نیا درخواست پوسٹ کیا ہے",
+      "featureActivity": "{{name}} نے ایک درخواست پر کامنت کی ہے",
       "featureMentionNamed": "{{name}} کو {{title}} پر ٹیگ کیا گیا تھا",
       "featureReply": "{{name}} نے آپ کے تبصرے کا جواب دیا",
       "featureReplyNamed": "{{name}} نے آپ کو {{title}} پر جواب دیا تھا",

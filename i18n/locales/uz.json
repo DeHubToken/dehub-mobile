@@ -4366,6 +4366,7 @@
       "featureLike": "{{name}} funksiya so'rovingizni yoqtirdi",
       "featureLikeNamed": "{{name}} sizning “{{title}}” funksiyasi haqidagi so‘rovingizni yoqtirdi",
       "featureMention": "{{name}} sizni funksiya so'rovida tilga oldi",
+      "featureNew": "{{name}} yangi so‘rov qo‘ygan",
       "featureMentionNamed": "{{name}} sizni “{{title}}” da tilga oldi",
       "featureReply": "{{name}} sizning sharhingizga javob berdi",
       "featureReplyNamed": "{{name}} sizga “{{title}}” da javob berdi",

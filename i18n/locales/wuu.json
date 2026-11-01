@@ -4340,6 +4340,8 @@
       "featureLike": "{{name}}喜歡你的功能要求",
       "featureLikeNamed": "{{name}}喜歡你的功能要求“{{title}}”",
       "featureMention": "{{name}}在功能要求上提到你",
+      "featureNewNamed": "{{name}} 發佈新需求「{{title}}」",
+      "featureNew": "{{name}} 發佈新請求",
       "featureMentionNamed": "{{name}}在“{{title}}”上提到你",
       "featureReply": "{{name}}回覆你的留言",
       "featureReplyNamed": "{{name}}在“{{title}}”上回覆你",

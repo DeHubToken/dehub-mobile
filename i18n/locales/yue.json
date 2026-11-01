@@ -4349,6 +4349,8 @@
       "featureLike": "{{name}} 鍾意你嘅功能要求",
       "featureLikeNamed": "{{name}}讚同咗你嘅功能要求“{{title}}”",
       "featureMention": "{{name}} 喺功能要求入面提過你",
+      "featureNewNamed": "{{name}} 發出新請求「{{title}}」",
+      "featureNew": "{{name}} 唔使新增請求",
       "featureMentionNamed": "{{name}}提到你喺“{{title}}”",
       "featureReply": "{{name}} 回覆咗你嘅留言",
       "featureReplyNamed": "{{name}} 喺「 {{title}} 」回覆咗你",

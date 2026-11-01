@@ -4356,6 +4356,7 @@
       "featureLike": "{{name}} أعجبك الطلب",
       "featureLikeNamed": "{{name}} أعجبك طلبك للميزة “{{title}}”",
       "featureMention": "{{name}} ذكرتك في طلب للميزة",
+      "featureNewNamed": "{{name}} قاﻟﻠﻪ طلب جديد “{{title}}”",
       "featureMentionNamed": "{{name}} ذكرتك في “{{title}}”",
       "featureReply": "{{name}} رد على تعليقك",
       "featureReplyNamed": "{{name}} رد علىك في “{{title}}”",

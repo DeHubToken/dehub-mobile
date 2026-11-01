@@ -4342,6 +4342,8 @@
       "featureComment": "{{name}}Comments on I ka kan ka min fɔ, o ye tiɲɛ ye",
       "featureLike": "{{name}} I ka baara kɛcogo ka di i ye",
       "featureMention": "{{name}} a wacce ya yi kira a kira ya shawara.",
+      "featureNewNamed": "{{name}} posted a new request {{title}}",
+      "featureActivity": "{{name}} Comment on a ka kan ka kɛ",
       "featureReply": "{{name}}répondre à votre comment",
       "featureReplyNamed": "{{name}}répondre à vous êtes ici: {{title}}",
       "followRequest": "{{name}} y’a ɲini ka i ladɛgɛ",

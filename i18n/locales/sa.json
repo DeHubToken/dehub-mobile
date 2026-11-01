@@ -4359,6 +4359,8 @@
       "bountyAppliedNamed": "{{name}} तद्बलस्य वरदत्ति “{{title}}”",
       "bountySubmittedNamed": "{{name}} भवता “{{title}}” इति पुरस्कारार्थं कार्यं समर्पितम्।",
       "featureMention": "{{name}} 1अभिमुखं तुभ्यं निवेदितम् ।",
+      "featureNew": "{{name}} नवीन पृष्ठं निर्मीत अस्ती",
+      "featureActivity": "{{name}} एक टिप्पणी",
       "repostedPosts": "{{name}} पुनः प्रकाशित {{count}} तव पोस्टानाम्",
       "stageReminder": "त्वदधीनं यतः स्मृतं त्वदधीनं"
     },

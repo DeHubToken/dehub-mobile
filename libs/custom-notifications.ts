@@ -194,6 +194,10 @@ const composeReferenceContent = (row: CustomNotificationRow, actor: string): str
       return sentence('featureReplyNamed', 'featureReply');
     case "feature_request_mention":
       return sentence('featureMentionNamed', 'featureMention');
+    case "feature_request_new":
+      return sentence('featureNewNamed', 'featureNew');
+    case "feature_request_activity":
+      return sentence('featureActivityNamed', 'featureActivity');
     case "governance_vote":
       return sentence('governanceVoteNamed', 'governanceVote');
     case "governance_comment":

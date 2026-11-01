@@ -4327,6 +4327,9 @@
   "notifications": {
     "custom": {
       "featureMention": "{{name}} ໄດ້ກ່າວເຖິງທ່ານໃນຄຳຂໍຟີເຈີ",
+      "featureNewNamed": "{{name}} ໄດ້ໂພສ ຄໍາ ຮ້ອງຂໍ ໃຫມ່ \"{{title}}\"",
+      "featureNew": "{{name}} ໄດ້ໂພສ ຄໍາ ຮ້ອງຂໍ ໃຫມ່",
+      "featureActivity": "{{name}} ຄໍາ ເຫັນກ່ຽວກັບ ຄໍາ ຮ້ອງຂໍ",
       "fractionOffer": "{{name}} ໄດ້ຍື່ນຂໍ້ສະເໜີສຳລັບສ່ວນແບ່ງຂອງທ່ານ",
       "governanceCommentNamed": "{{name}} ໄດ້ສະແດງຄຳເຫັນໃນຂໍ້ສະເໜີຂອງທ່ານ “{{title}}”",
       "stageLive": "{{name}} ກຳລັງອອກອາກາດສົດໃນຫ້ອງສຽງ",

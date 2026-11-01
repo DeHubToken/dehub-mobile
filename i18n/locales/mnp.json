@@ -4327,6 +4327,8 @@
     "custom": {
       "featureComment": "{{name}} 在你的功能請求上留了言",
       "featureMention": "{{name}} 在功能請求上提到了你",
+      "featureNewNamed": "{{name}} 吾新增一個請求「{{title}}」",
+      "featureNew": "{{name}} 吾新增一個請求",
       "featureMentionNamed": "{{name}} 在「{{title}}」上提到了你",
       "featureReply": "{{name}} 回覆了你的留言",
       "governanceComment": "{{name}} 在你的提案上留了言",

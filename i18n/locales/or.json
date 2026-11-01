@@ -4345,6 +4345,8 @@
       "commentMention": "{{name}} ଏକ ମନ୍ତବ୍ୟରେ ଆପଣଙ୍କୁ ଉଲ୍ଲେଖ କରିଛନ୍ତି",
       "featureCommentNamed": "{{name}} ଏମାକ ଫେଚେର୍ ଅନୁମାନ୍ଦରେ “{{title}}” ପ୍ରତିକ୍ରିୟାର୍ଥିକାରୁ କମିନ୍ତି କିରିଲା।",
       "featureMention": "{{name}} ଏକ ବୈଶିଷ୍ଟ୍ୟ ଅନୁରୋଧରେ ଆପଣଙ୍କୁ ଉଲ୍ଲେଖ କରାଯାଇଛି",
+      "featureNewNamed": "{{name}} ଏକ ନୂତନ ଅନୁରୋଧ “{{title}}” ପୋଷ୍ଟ କରିଛନ୍ତି",
+      "featureActivity": "{{name}} ଏକ ଅନୁରୋଧ ଉପରେ ମନ୍ତବ୍ୟ ଦେଇଛନ୍ତି",
       "followRequest": "{{name}} ଆପଣଙ୍କୁ ଫଲୋ କରିବା ପାଇଁ ଅନୁରୋଧ କରିଛନ୍ତି",
       "fractionOffer": "{{name}} ଆପଣଙ୍କ ଫ୍ରାକ୍ସନ ଉପରେ ଏକ ଅଫର ଦେଇଛନ୍ତି",
       "fractionOfferAccepted": "{{name}} ଆପଣଙ୍କ ଫ୍ରାକ୍ସନ ଅଫର ଗ୍ରହଣ କରିଛନ୍ତି",
