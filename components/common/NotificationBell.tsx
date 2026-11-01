@@ -3,13 +3,18 @@ import { AppState, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import Animated, {
   cancelAnimation, Easing, Extrapolation, interpolate, ReduceMotion,
-  useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withTiming,
+  useAnimatedStyle, useReducedMotion, useSharedValue, withTiming,
   type SharedValue,
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
 import { BELL_GLYPH_PATHS, BELL_SIDE_RIPPLE_PATHS, notificationBellMotion } from '../../libs/notification-bell-motion';
+import { useAmbientMotion } from '../../hooks/useAmbientMotion';
+
+// Phase of the cycle after which the swing, the red glow and both side ripples
+// (latest echo starts at 0.13 and lasts 0.4) are all back at rest.
+const RING_END = 0.56;
 
 type Profile = ReturnType<typeof notificationBellMotion>;
 
@@ -63,16 +68,28 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
     const subscription = AppState.addEventListener('change', state => setForeground(state === 'active'));
     return () => subscription.remove();
   }, []);
+  const ambient = useAmbientMotion();
   useEffect(() => {
     cancelAnimation(phase);
     phase.value = 0;
-    if (active && focused && foreground && profile.unread > 0 && !reduced) {
-      phase.value = withRepeat(withTiming(1, {
-        duration: profile.cycleMs, easing: Easing.linear, reduceMotion: ReduceMotion.System,
-      }), -1, false);
-    }
-    return () => cancelAnimation(phase);
-  }, [active, focused, foreground, profile.unread > 0, profile.cycleMs, reduced, phase]);
+    if (!(active && focused && foreground && ambient && profile.unread > 0 && !reduced)) return;
+    // Every layer is at rest from RING_END of the cycle on, so only the ring
+    // itself is animated and a timer starts the next one. A repeat over the
+    // whole cycle asked for a frame on every vsync while the bell sat still,
+    // which kept Home redrawing ~70 times a second with nothing moving.
+    const ring = () => {
+      phase.value = 0;
+      phase.value = withTiming(RING_END, {
+        duration: profile.cycleMs * RING_END, easing: Easing.linear, reduceMotion: ReduceMotion.System,
+      });
+    };
+    ring();
+    const timer = setInterval(ring, profile.cycleMs);
+    return () => {
+      clearInterval(timer);
+      cancelAnimation(phase);
+    };
+  }, [active, focused, foreground, ambient, profile.unread > 0, profile.cycleMs, reduced, phase]);
   const swing = useAnimatedStyle(() => ({
     transform: [{ rotate: `${reduced ? 0 : interpolate(phase.value,
       [0, .05, .12, .18, .25, .31, .42, 1],
