@@ -2860,7 +2860,8 @@
     "bridge": "ब्रिज",
     "premium": "प्रीमियम",
     "pricing": "दाम",
-    "reorderHint": "Hold aur drag karke koi bhi icon ke rearrange kariं"
+    "reorderHint": "Hold aur drag karke koi bhi icon ke rearrange kariं",
+    "reorderReset": "रीसेट करीं"
   },
   "affiliate": {
     "subtitle": "आप जिन्हें बुलाते हैं उन सबसे कमाएँ — हमेशा के लिए",

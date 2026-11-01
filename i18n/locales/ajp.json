@@ -2857,7 +2857,9 @@
     "connectAi": "ربط AI",
     "bridge": "الجسر",
     "premium": "بريميوم",
-    "pricing": "الأسعار"
+    "pricing": "الأسعار",
+    "reorderReset": "إعادة تعيين",
+    "reorderHint": "أمسك واسحب أي أيكونة لإعادة ترتيبها"
   },
   "affiliate": {
     "subtitle": "اربح من كل من تدعوه — إلى الأبد",

@@ -2860,7 +2860,8 @@
     "bridge": "ድልድይ",
     "premium": "ፕሪሚየም",
     "pricing": "ዋጋ አሰጣጥ",
-    "reorderHint": "የተሰጠው አይኮን ይጠየቀው እና ይምረጡ"
+    "reorderHint": "የተሰጠው አይኮን ይጠየቀው እና ይምረጡ",
+    "reorderReset": "ዳግም አስጀምር"
   },
   "affiliate": {
     "subtitle": "የጋበዝከው ሰው ሁሉ ያገኛል — ለዘላለም",

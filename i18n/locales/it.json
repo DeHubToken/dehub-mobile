@@ -2860,7 +2860,8 @@
     "bridge": "Ponte",
     "premium": "Prezioso",
     "pricing": "Prezzi",
-    "reorderHint": "Tieni premuto e trascina qualsiasi icona per riorganizzare"
+    "reorderHint": "Tieni premuto e trascina qualsiasi icona per riorganizzare",
+    "reorderReset": "Ripristina"
   },
   "affiliate": {
     "subtitle": "Guadagna da tutti quelli che inviti — per sempre",
