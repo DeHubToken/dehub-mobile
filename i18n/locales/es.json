@@ -3511,7 +3511,12 @@
     "tabReplies": "Respuestas",
     "tabQuotes": "Citas",
     "tabReposts": "Republicaciones",
-    "tabSearch": "Buscar"
+    "tabSearch": "Buscar",
+    "attachAudioFile": "Archivo de audio",
+    "attachMedia": "Adjuntar foto, video o audio",
+    "attachPhotoOrVideo": "Foto o video",
+    "attachTooLarge": "Ese archivo supera el límite de {{size}} MB.",
+    "playVideo": "Reproducir video"
   },
   "postInfo": {
     "ownersUnavailable": "Los propietarios actuales no se pueden leer en este momento.",
@@ -6956,7 +6961,11 @@
     "paymentSentWith": "Enviado con {{amount}}",
     "planRestricted": "Este usuario requiere una suscripción para recibir mensajes.",
     "planTypeNotAllowed": "El plan de este creador no permite este tipo de mensaje.",
-    "planMinTip": "La propina debe ser de al menos {{amount}} tokens para este creador."
+    "planMinTip": "La propina debe ser de al menos {{amount}} tokens para este creador.",
+    "attachAnything": "Adjuntar foto, video, audio o archivo",
+    "attachFileOrAudio": "Archivo o audio",
+    "attachPhotoOrVideo": "Foto o video",
+    "attachTooLarge": "Ese archivo supera el límite de {{size}} MB."
   },
   "editPost": {
     "mediaPermission": "Se necesita permiso para la biblioteca multimedia",

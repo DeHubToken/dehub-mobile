@@ -11,7 +11,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import PostFeedNav from "../components/Home/PostFeedNav";
 import { FEED_SIDE } from "../components/Home/feedLayout";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, postMediaComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "../libs/author-thread";
@@ -48,7 +48,8 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../libs";
 import { selfBadgeFields } from "../libs/misc";
-import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
+import { getFileName, guessMime } from "../libs/assets.util";
+import { useCommentAttachPicker } from "../components/Comments/useCommentAttachPicker";
 import {
   loadCommentDraft,
   saveCommentDraft,
@@ -350,29 +351,15 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   });
 
 
+  // The paperclip: a photo, a video or an audio file.
+  const { openAttachPicker, attachSheet } = useCommentAttachPicker(
+    useCallback((media: MediaAttachment) => setMediaAttachment(media), []),
+  );
   const handlePickImage = useCallback(async () => {
     if (!requireAuth) return;
-    requireAuth(async () => {
-      try {
-        const uri = await openCroppedImagePicker({
-          width: 800,
-          height: 600,
-          forceJpg: true,
-          quality: 0.85,
-        });
-        if (uri) {
-          // Typed text is kept — see handleVoiceRecordingComplete.
-          setMediaAttachment({ type: "image", uri });
-          Keyboard.dismiss();
-        }
-      } catch (e: any) {
-        if (e?.code !== "E_PICKER_CANCELLED") {
-          console.error("[FeedDetailScreen] image picker error", e);
-          toastError(t("comments.pickImageFailed"));
-        }
-      }
-    });
-  }, [requireAuth]);
+    // Typed text is kept — see handleVoiceRecordingComplete.
+    requireAuth(async () => openAttachPicker());
+  }, [requireAuth, openAttachPicker]);
 
   const handleOpenGifPicker = useCallback(() => {
     if (!requireAuth) return;
@@ -1261,7 +1248,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         parentId: replyTo?.id,
         imageUrl: mediaAttachment.type === "image" ? mediaAttachment.uri : undefined,
         gifUrl: mediaAttachment.type === "gif" ? mediaAttachment.url : undefined,
-        audioUrl: mediaAttachment.type === "audio" ? mediaAttachment.uri : undefined,
+        audioUrl: mediaAttachment.type === "audio" || mediaAttachment.type === "audiofile" ? mediaAttachment.uri : undefined,
+        videoUrl: mediaAttachment.type === "video" ? mediaAttachment.uri : undefined,
         audioDuration: mediaAttachment.type === "audio" ? Math.round(mediaAttachment.durationMs / 1000) : undefined,
       };
 
@@ -1283,6 +1271,15 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           newId = res?.commentId;
         } else if (savedMedia.type === "gif") {
           const res = await postGifComment({ streamTokenId: tId, gifUrl: savedMedia.url, commentId: replyToId });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "video" || savedMedia.type === "audiofile") {
+          const res = await postMediaComment({
+            streamTokenId: tId,
+            fileUri: savedMedia.uri,
+            fileName: savedMedia.type === "audiofile" ? savedMedia.name : undefined,
+            mimeType: savedMedia.mimeType || "video/mp4",
+            commentId: replyToId,
+          });
           newId = res?.commentId;
         } else if (savedMedia.type === "audio") {
           const fileName = getFileName(savedMedia.uri, "voice_note.m4a");
@@ -1964,10 +1961,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                     onPress={handlePickImage}
                     activeOpacity={0.7}
                     accessibilityRole="button"
-                    accessibilityLabel={t("comments.addImage")}
+                    accessibilityLabel={t("comments.attachMedia", { defaultValue: "Attach a photo, video or audio" })}
                     style={composerStyles.iconControl}
                   >
-                    <Icon name="Image" size={20} color={theme.colors.mutedForeground} />
+                    <Icon name="Paperclip" size={20} color={theme.colors.mutedForeground} />
                   </TouchableOpacity>
                   <TouchableOpacity
                     {...gifPress}
@@ -2013,6 +2010,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       )}
 
       {/* GIF picker modal */}
+      {attachSheet}
       <GifPicker
         visible={gifPickerVisible}
         onClose={handleCloseGifPicker}

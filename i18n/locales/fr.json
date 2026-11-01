@@ -3515,7 +3515,12 @@
     "tabReplies": "Réponses",
     "tabQuotes": "Citations",
     "tabReposts": "Republications",
-    "tabSearch": "Rechercher"
+    "tabSearch": "Rechercher",
+    "attachAudioFile": "Fichier audio",
+    "attachMedia": "Joindre une photo, une vidéo ou un audio",
+    "attachPhotoOrVideo": "Photo ou vidéo",
+    "attachTooLarge": "Ce fichier dépasse la limite de {{size}} Mo.",
+    "playVideo": "Lire la vidéo"
   },
   "postInfo": {
     "ownersUnavailable": "Les propriétaires actuels ne peuvent pas être lus pour le moment.",
@@ -6960,7 +6965,11 @@
     "paymentSentWith": "Envoyé avec {{amount}}",
     "planRestricted": "Cet utilisateur exige un abonnement pour recevoir des messages.",
     "planTypeNotAllowed": "L'offre de ce créateur n'autorise pas ce type de message.",
-    "planMinTip": "Le pourboire doit être d'au moins {{amount}} jetons pour ce créateur."
+    "planMinTip": "Le pourboire doit être d'au moins {{amount}} jetons pour ce créateur.",
+    "attachAnything": "Joindre une photo, une vidéo, un audio ou un fichier",
+    "attachFileOrAudio": "Fichier ou audio",
+    "attachPhotoOrVideo": "Photo ou vidéo",
+    "attachTooLarge": "Ce fichier dépasse la limite de {{size}} Mo."
   },
   "editPost": {
     "mediaPermission": "L'autorisation d'accès à la médiathèque est requise",

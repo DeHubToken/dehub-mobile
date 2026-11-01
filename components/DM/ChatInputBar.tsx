@@ -27,15 +27,16 @@ import { sendAIChat } from "../../services/ai.service";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
-import { openCroppedImagePicker } from "../../libs/assets.util";
 import { toastError, toastInfo } from "../../libs/toast";
 import {
-  ATTACHMENT_PICKER_TYPES,
   formatAttachmentSize,
   getAttachmentLabel,
   validateAttachment,
 } from "../../libs/attachments";
 import { runWithPermissions } from "../../libs/permissions.util";
+
+/** Per-kind caps, matching the backend's DM limits. */
+const DM_ATTACH_LIMITS = { image: 10 * 1024 * 1024, video: 50 * 1024 * 1024, audio: 20 * 1024 * 1024 } as const;
 import GifPicker from "./GifPicker";
 import ChatAttachSheet, { type ChatAttachOption } from "./ChatAttachSheet";
 import SmartReplyTray from "./SmartReplyTray";
@@ -49,7 +50,7 @@ import { haptic } from "../../libs/haptics";
 
 
 export type ChatMediaAttachment = {
-  type: "image" | "video" | "gif" | "file";
+  type: "image" | "video" | "audio" | "gif" | "file";
   uri: string;
   thumbnailUri?: string;
   mimeType?: string;
@@ -164,6 +165,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
+  // The paperclip: one button, then "photo or video" (gallery) or "file or
+  // audio" (anything else on the phone).
+  const [clipOpen, setClipOpen] = useState(false);
   const [composerFocused, setComposerFocused] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
   // Down for THIS message only - the send handler drops the tray whose
@@ -354,97 +358,84 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);
 
 
-  const handlePickImage = useCallback(async () => {
-    await runWithPermissions(["photos"], async () => {
-      try {
-        const uri = await openCroppedImagePicker({
-          width: 1200,
-          height: 900,
-          forceJpg: true,
-          quality: 0.85,
-        });
-        if (uri) {
-          setGifUrl(null); // clear GIF if any
-          setMedia({ type: "image", uri });
-        }
-      } catch (e: unknown) {
-        const err = e as { code?: string };
-        if (err?.code !== "E_PICKER_CANCELLED") {
-          console.error("[ChatInputBar] image picker error", e);
-        }
-      }
-    });
-  }, []);
-
-  const handlePickVideo = useCallback(async () => {
+  /** Photos AND videos from the gallery in one picker. */
+  const handlePickGallery = useCallback(async () => {
     await runWithPermissions(["photos"], async () => {
       try {
         const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Videos,
-          quality: 0.8,
-          videoMaxDuration: 120,
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          quality: 0.85,
+          videoMaxDuration: 600,
+          // iPhone photos come back as JPEG rather than HEIC.
+          preferredAssetRepresentationMode: ImagePicker.UIImagePickerPreferredAssetRepresentationMode.Compatible,
         });
         if (result.canceled || !result.assets?.[0]) return;
         const asset = result.assets[0];
-        let thumb: string | undefined;
-        try {
-          const t = await VideoThumbnails.getThumbnailAsync(asset.uri, {
-            time: 500,
-          });
-          thumb = t.uri;
-        } catch {
-          /* ignore */
-        }
         setGifUrl(null);
-        setMedia({
-          type: "video",
-          uri: asset.uri,
-          thumbnailUri: thumb,
-          mimeType: asset.mimeType,
-          // expo-image-picker reports milliseconds.
-          duration: asset.duration ? asset.duration / 1000 : undefined,
-        });
+        if (asset.type === "video" || (asset.mimeType || "").startsWith("video/")) {
+          let thumb: string | undefined;
+          try {
+            thumb = (await VideoThumbnails.getThumbnailAsync(asset.uri, { time: 500 })).uri;
+          } catch {
+            /* ignore */
+          }
+          setMedia({
+            type: "video",
+            uri: asset.uri,
+            thumbnailUri: thumb,
+            mimeType: asset.mimeType,
+            // expo-image-picker reports milliseconds.
+            duration: asset.duration ? asset.duration / 1000 : undefined,
+          });
+          return;
+        }
+        if (asset.fileSize && asset.fileSize > DM_ATTACH_LIMITS.image) {
+          toastError(t("dm.attachTooLarge", { defaultValue: "That file is over the {{size}} MB limit.", size: DM_ATTACH_LIMITS.image / 1024 / 1024 }));
+          return;
+        }
+        setMedia({ type: "image", uri: asset.uri, mimeType: asset.mimeType || "image/jpeg" });
       } catch (e: unknown) {
         const err = e as { code?: string };
-        if (err?.code !== "E_PICKER_CANCELLED") {
-          console.error("[ChatInputBar] video picker error", e);
-        }
+        if (err?.code !== "E_PICKER_CANCELLED") console.error("[ChatInputBar] gallery picker error", e);
       }
     });
   }, []);
 
-  const handlePickFile = useCallback(async () => {
+  /** Any file on the phone: audio, video, a photo or a document. */
+  const handlePickAnyFile = useCallback(async () => {
     try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: ATTACHMENT_PICKER_TYPES,
-        copyToCacheDirectory: true,
-      });
+      const result = await DocumentPicker.getDocumentAsync({ type: "*/*", copyToCacheDirectory: true });
       if (result.canceled || !result.assets?.[0]) return;
       const asset = result.assets[0];
-
-      const picked = {
-        uri: asset.uri,
-        name: asset.name || "file",
-        // Android returns null for plenty of types; the server decides from the
-        // extension anyway and re-labels the stored object itself.
-        mimeType: asset.mimeType || "application/octet-stream",
-        size: asset.size ?? 0,
-      };
-
+      const mime = asset.mimeType || "";
+      const top = mime.split("/")[0];
+      const size = asset.size ?? 0;
+      if (top === "image" || top === "video" || top === "audio") {
+        const cap = DM_ATTACH_LIMITS[top];
+        if (size > cap) {
+          toastError(t("dm.attachTooLarge", { defaultValue: "That file is over the {{size}} MB limit.", size: cap / 1024 / 1024 }));
+          return;
+        }
+        let thumb: string | undefined;
+        if (top === "video") {
+          try {
+            thumb = (await VideoThumbnails.getThumbnailAsync(asset.uri, { time: 500 })).uri;
+          } catch {
+            /* ignore */
+          }
+        }
+        setGifUrl(null);
+        setMedia({ type: top, uri: asset.uri, mimeType: mime, name: asset.name || undefined, size, thumbnailUri: thumb });
+        return;
+      }
+      const picked = { uri: asset.uri, name: asset.name || "file", mimeType: mime || "application/octet-stream", size };
       const check = validateAttachment(picked);
       if (!check.ok) {
         toastError(check.error!);
         return;
       }
-
       setGifUrl(null);
-      setMedia({
-        type: "file",
-        uri: picked.uri,
-        mimeType: picked.mimeType,
-        name: picked.name,
-        size: picked.size,
-      });
+      setMedia({ type: "file", uri: picked.uri, mimeType: picked.mimeType, name: picked.name, size: picked.size });
     } catch (e) {
       console.error("[ChatInputBar] file picker error", e);
       toastError(t("dm.attachFailed"));
@@ -549,9 +540,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       ? [{ key: "tip", icon: "Gem" as const, label: t("dm.addTip"), onPress: fromSheet(onTipPress) }]
       : []),
     { key: "gif", icon: "Clapperboard", label: t("dm.chooseGif"), onPress: fromSheet(() => setGifPickerVisible(true)) },
-    { key: "image", icon: "Image", label: t("dm.attachImage"), onPress: fromSheet(handlePickImage) },
-    { key: "video", icon: "Video", label: t("dm.attachVideo"), onPress: fromSheet(handlePickVideo) },
-    { key: "file", icon: "Paperclip", label: t("dm.attachFile"), onPress: fromSheet(handlePickFile) },
+    { key: "gallery", icon: "Image", label: t("dm.attachPhotoOrVideo", { defaultValue: "Photo or video" }), onPress: fromSheet(handlePickGallery) },
+    { key: "any", icon: "Paperclip", label: t("dm.attachFileOrAudio", { defaultValue: "File or audio" }), onPress: fromSheet(handlePickAnyFile) },
     ...(onPollPress
       ? [{ key: "poll", icon: "ChartColumn" as const, label: t("postOptions.createPoll"), onPress: fromSheet(onPollPress) }]
       : []),
@@ -682,12 +672,12 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             className="px-3 pt-2"
           >
             <View className="relative self-start">
-              {media?.type === "file" ? (
+              {media?.type === "file" || media?.type === "audio" ? (
                 /* A document has no thumbnail to show, so the chip carries the
                    name and size instead of an 80×80 Image of nothing. */
                 <View className="flex-row items-center bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-3 py-2 max-w-[260px]">
                   <View className="w-9 h-9 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-2.5">
-                    <Icon name="FileText" size={18} color="#fff" />
+                    <Icon name={media.type === "audio" ? "Music" : "FileText"} size={18} color="#fff" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-white text-[13px] font-medium" numberOfLines={1}>
@@ -771,8 +761,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 
           {canAddTip && onTipPress ? <TouchableOpacity onPress={onTipPress} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.addTip")}><Icon name="Gem" size={20} color="#A1A1AA" /></TouchableOpacity> : null}
           <TouchableOpacity {...gifPress} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.chooseGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
-          <TouchableOpacity onPress={handlePickImage} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachImage")}><Icon name="Image" size={20} color="#A1A1AA" /></TouchableOpacity>
-          <TouchableOpacity onPress={handlePickFile} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachFile")}><Icon name="Paperclip" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={() => { haptic.tap(); Keyboard.dismiss(); setClipOpen(true); }} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachAnything", { defaultValue: "Attach a photo, video, audio or file" })}><Icon name="Paperclip" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity onPress={onStartVoice} disabled={enhancing || sending} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("comments.recordVoice")}><Icon name="Mic" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity onPress={handleEnhance} disabled={enhancing || !text.trim()} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.enhanceWithAi")}><Icon name="Sparkles" size={20} color={text.trim() ? "#A1A1AA" : "#52525B"} /></TouchableOpacity>
           {/* Send stays in its own slot, including fee and tip-only sends. */}
@@ -858,6 +847,14 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
         }}
       />
 
+      <ChatAttachSheet
+        visible={clipOpen}
+        onClose={() => setClipOpen(false)}
+        options={[
+          { key: "gallery", icon: "Image", label: t("dm.attachPhotoOrVideo", { defaultValue: "Photo or video" }), onPress: () => { setClipOpen(false); void handlePickGallery(); } },
+          { key: "any", icon: "Paperclip", label: t("dm.attachFileOrAudio", { defaultValue: "File or audio" }), onPress: () => { setClipOpen(false); void handlePickAnyFile(); } },
+        ]}
+      />
       <ChatAttachSheet
         visible={attachOpen}
         onClose={() => setAttachOpen(false)}

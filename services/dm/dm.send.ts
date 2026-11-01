@@ -72,7 +72,7 @@ interface MediaSendJob extends BaseSendJob {
   kind: "media";
   uri: string;
   thumbnailUri?: string;
-  mediaType: "image" | "video" | "file";
+  mediaType: "image" | "video" | "audio" | "file";
   mimeType: string;
   caption?: string;
   msgType?: DmMsgType;
@@ -260,7 +260,7 @@ class DmSendQueue {
     address: string;
     uri: string;
     thumbnailUri?: string;
-    mediaType: "image" | "video" | "file";
+    mediaType: "image" | "video" | "audio" | "file";
     mimeType?: string;
     caption?: string;
     replyTo?: DmMessage | null;
@@ -281,7 +281,7 @@ class DmSendQueue {
 
     const mime = params.mimeType || guessMime(
       uri,
-      mediaType === "video" ? "video/mp4" : mediaType === "file" ? "application/octet-stream" : "image/jpeg",
+      mediaType === "video" ? "video/mp4" : mediaType === "audio" ? "audio/mpeg" : mediaType === "file" ? "application/octet-stream" : "image/jpeg",
     );
 
     const feeRequired = !!dmFee?.required && !dmFee?.hasFreeAccess;
@@ -297,11 +297,11 @@ class DmSendQueue {
         url: uri,
         type: mediaType,
         mimeType: mime,
-        ...(mediaType === "file" && { name: params.fileName, size: params.fileSize }),
+        ...((mediaType === "file" || mediaType === "audio") && { name: params.fileName, size: params.fileSize }),
       }],
       // A document has no local preview to show, so it must not seed
       // localMediaUri — the bubble would try to render the file as an image.
-      localMediaUri: effectiveMsgType === "voice" || mediaType === "file"
+      localMediaUri: effectiveMsgType === "voice" || mediaType === "file" || mediaType === "audio"
         ? undefined
         : (mediaType === "video" ? (thumbnailUri || uri) : uri),
       uploadStatus: "pending",
@@ -674,8 +674,8 @@ class DmSendQueue {
       uri: job.uri,
       // Documents keep the name the user picked — the server reads the
       // extension off it to decide whether the file is allowed at all.
-      name: job.mediaType === "file"
-        ? (job.fileName || "file")
+      name: job.mediaType === "file" || job.mediaType === "audio"
+        ? (job.fileName || (job.mediaType === "audio" ? `${Date.now()}.mp3` : "file"))
         : `${Date.now()}.${ext}`,
       type: job.mimeType,
     };
@@ -758,7 +758,7 @@ class DmSendQueue {
         kind,
         mime: job.mimeType,
         caption: job.caption || undefined,
-        name: job.mediaType === "file" ? job.fileName || "file" : undefined,
+        name: job.mediaType === "file" || job.mediaType === "audio" ? job.fileName || "file" : undefined,
         duration: isVoice ? job.voiceDuration : job.duration,
         thumbnailUri: job.thumbnailUri,
       });

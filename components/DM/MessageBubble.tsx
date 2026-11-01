@@ -426,6 +426,10 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           size: (mu as any).size as number | undefined,
         };
       }
+      // An audio FILE (not a recorded voice note) plays inline like one.
+      if (typeof mime === "string" && (mime.startsWith("audio/") || mime === "audio")) {
+        return { url: resolveUrl(raw), kind: "audio" as const, name: (mu as any).name as string | undefined };
+      }
       const url = localMediaUri || resolveUrl(raw);
       // localMediaUri is always a preview-ready asset (thumbnail jpg for video, original for image)
       const kind: "image" | "video" | "gif" = localMediaUri
@@ -846,7 +850,16 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {mediaItems.length > 0 && !isVoice && (
               <View>
                 {mediaItems.map((item, idx) =>
-                  item.kind === "file" ? (
+                  item.kind === "audio" ? (
+                    <View key={idx} className="px-2 py-1 min-w-[220px]" style={{ maxWidth: MAX_IMAGE_WIDTH }}>
+                      <VoiceNotePlayer audioUrl={item.url} compact />
+                      {(item as any).name ? (
+                        <Text className={`text-[11px] mt-0.5 px-1 ${isMine ? "text-white/70" : "text-theme-neutrals-500"}`} numberOfLines={1}>
+                          {(item as any).name}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ) : item.kind === "file" ? (
                     <TouchableOpacity
                       key={idx}
                       onPress={() => handleFileTap(item.url)}
