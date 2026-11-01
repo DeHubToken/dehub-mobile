@@ -18,9 +18,7 @@ import {
 import { DeHubLoader } from "../components/DeHubLoader";
 import Icon from "../components/ui/Icon";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { useAppTheme } from "../context/ThemeContext";
-import { glassTint } from "../theme/skins";
-import FrostedPill from "../components/ui/FrostedPill";
+import ThemeSurface from "../components/ui/ThemeSurface";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
@@ -104,7 +102,7 @@ const buildListItems = (
 
 const LiveChatScreen: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const { skin } = useAppTheme();
+
   const user = useUser();
   const account = user?.walletAddress || user?.address || "";
   const { showUserProfile } = useUserProfileSheet();
@@ -908,8 +906,8 @@ const LiveChatScreen: React.FC = () => {
         )}
 
         <View
-          className={Platform.OS === "android" ? "absolute left-0 right-0 bottom-0" : "absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"}
-          style={{ marginBottom: inputLift, ...(Platform.OS === "android" ? { marginHorizontal: 8, borderRadius: 16, overflow: "hidden" as const } : {}) }}
+          className="absolute left-0 right-0 bottom-0"
+          style={{ marginBottom: inputLift }}
           ref={composerKeyboard.ref}
           collapsable={false}
           onLayout={(e) => {
@@ -917,7 +915,9 @@ const LiveChatScreen: React.FC = () => {
             composerKeyboard.onLayout();
           }}
         >
-          {Platform.OS === "android" && <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={16} />}
+          {/* Flush with the page like phone web and the DM composer: the page
+              colour, a hairline on top (LiveChatInput), no rounded box. */}
+          <ThemeSurface material={false} />
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">
               <Text className="text-white/60 text-xs italic">{typingText}</Text>
