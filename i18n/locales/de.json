@@ -14592,5 +14592,18 @@
     "title": "Fröhliches Halloween",
     "otherThemes": "Keine Lust auf Grusel? Finde andere Designs:",
     "enter": "Betritt den Kerker"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Bald verfügbar",
+    "body": "Kauf ist geschlossen, während der neue Token vorbereitet wird. Erhalte eine E-Mail, sobald er online geht.",
+    "notifyMe": "Benachrichtige mich",
+    "sendTo": "Wir werden {{email}} per E-Mail senden.",
+    "emailLabel": "E-Mail",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "joinedTitle": "Du bist auf der Liste.",
+    "joinedBody": "Wir werden {{email}} per E-Mail kontaktieren, wenn der Token startet.",
+    "joinedBodyNoEmail": "Wir werden Ihnen eine E-Mail schicken, sobald der Token verfügbar ist.",
+    "failed": "Das konnte nicht gespeichert werden. Versuchen Sie es erneut.",
+    "privacy": "Nur um dich über den Launch zu informieren."
   }
 }

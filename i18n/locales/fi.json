@@ -14576,5 +14576,18 @@
     "confirm": "Minttu päällä {{chain}}",
     "confirmWithCost": "Minttu päällä {{chain}} · {{cost}}",
     "notAvailable": "Tämän ketjun louhinta ei ole vielä saatavilla."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tulossa pian",
+    "title": "Token launchataan pian",
+    "body": "Ostaminen on suljettu, kunnes uusi token on valmis. Saat sähköpostin heti, kun se julkaistaan.",
+    "sendTo": "Meidät lähetämme sähköpostia {{email}}:lle.",
+    "emailLabel": "Sähköposti",
+    "invalidEmail": "Anna kelvollinen sähköpostiosoite",
+    "joinedTitle": "Sinä olet listalla.",
+    "joinedBody": "Me lähetämme sähköpostin {{email}}, kun token julkaistaan.",
+    "joinedBodyNoEmail": "Me lähetämme sinulle sähköpostia, kun token julkaistaan.",
+    "failed": "Ei voinut tallentaa sitä. Yritä uudelleen.",
+    "privacy": "Ainoastaan kerron sinulle uuden julkaisun tiedoista."
   }
 }

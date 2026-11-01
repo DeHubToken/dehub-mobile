@@ -14572,5 +14572,20 @@
     "confirm": "تذكرة المintage في {{chain}}",
     "confirmWithCost": "تذكرة المintage في {{chain}} · {{cost}}",
     "notAvailable": "لا يوجد إمكانية لتحديد المintage على هذه السلسلة بعد."
+  },
+  "tokenLaunch": {
+    "eyebrow": "قادم قريباً",
+    "title": "إطلاق التوكن قريب",
+    "body": "الشراء مغلق لحد ما التوكن الجاي جاهز. إرسل لي إيميل فور ما يطلق.",
+    "notifyMe": "أخبرني",
+    "sendTo": "حنبعت إيميل لـ {{email}}",
+    "emailLabel": "إيميل",
+    "emailPlaceholder": "الإيميل بتاعك",
+    "invalidEmail": "أدخل إيميل صحيح",
+    "joinedTitle": "أنت في اللستة",
+    "joinedBody": "حنبعت إيميل لـ {{email}} لما يطلق التوكن.",
+    "joinedBodyNoEmail": "حنبعت ليك إيميل لما يطلق التوكن.",
+    "failed": "ما قدرنا نحتفظ بيه. حاول تاني.",
+    "privacy": "مستخدم بس عشان نخبرك باللانش."
   }
 }

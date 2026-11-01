@@ -15566,5 +15566,20 @@
     "title": "Feliz Halloween",
     "otherThemes": "¿No te va el miedo? Descubre otros temas:",
     "enter": "Entra a la mazmorra"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Próximamente",
+    "title": "Lanzamiento de tokens pronto",
+    "body": "La compra está cerrada mientras se prepara el nuevo token. Recibe un correo electrónico en el momento en que se lance.",
+    "notifyMe": "Notifícame",
+    "sendTo": "Te enviaremos un correo a {{email}}",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "Tu correo electrónico",
+    "invalidEmail": "Ingresa un correo electrónico válido",
+    "joinedTitle": "Estás en la lista",
+    "joinedBody": "Te enviaremos un correo a {{email}} cuando se lance el token.",
+    "joinedBodyNoEmail": "Te enviaremos un correo cuando se lance el token.",
+    "failed": "No se pudo guardar eso. Inténtalo de nuevo.",
+    "privacy": "Solo se usa para avisarte sobre el lanzamiento."
   }
 }

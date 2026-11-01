@@ -14580,5 +14580,20 @@
     "confirm": "Mint den {{chain}}",
     "confirmWithCost": "Mint på {{chain}} ·{{cost}}",
     "notAvailable": "Minting på denne kæde er endnu ikke tilgængelig."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kommer snart",
+    "title": "Token kommer snart",
+    "body": "Køb er lukket, mens den nye token bliver klar. Modtag en e-mail øjeblikket, når den går live.",
+    "notifyMe": "Meddelelse mig",
+    "sendTo": "Vi vil sende e-mail til {{email}}",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Din e-mail",
+    "invalidEmail": "Indtast en gyldig e-mail",
+    "joinedTitle": "Du er på listen",
+    "joinedBody": "Vi vil sende e-mail til {{email}}, når tokenet går live.",
+    "joinedBodyNoEmail": "Vi vil sende dig e-mail, når tokenet går live.",
+    "failed": "Kunne ikke gemme det. Prøv igen.",
+    "privacy": "Bruges kun til at fortælle dig om lanceringen."
   }
 }

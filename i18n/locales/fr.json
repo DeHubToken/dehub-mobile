@@ -15570,5 +15570,20 @@
     "title": "Joyeux Halloween",
     "otherThemes": "Pas d'humeur à frissonner ? Découvre d'autres thèmes :",
     "enter": "Entrer dans le donjon"
+  },
+  "tokenLaunch": {
+    "eyebrow": "À venir bientôt",
+    "title": "Le jeton arrive bientôt",
+    "body": "Achat fermé en attendant le nouveau jeton. Recevez un email dès sa sortie.",
+    "notifyMe": "Avertissez-moi",
+    "sendTo": "Nous enverrons un email à {{email}}.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Votre e-mail",
+    "invalidEmail": "Entrez une adresse e-mail valide.",
+    "joinedTitle": "Tu es sur la liste.",
+    "joinedBody": "Nous enverrons un email à {{email}} lorsque le jeton sera lancé.",
+    "joinedBodyNoEmail": "Nous vous enverrons un email lorsque le token sera disponible.",
+    "failed": "N'a pas pu enregistrer cela. Réessayez.",
+    "privacy": "Seulement utilisé pour vous informer du lancement."
   }
 }

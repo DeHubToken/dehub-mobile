@@ -14592,5 +14592,17 @@
     "title": "Selamat Halloween",
     "otherThemes": "Lagi nggak mau seram? Temukan tema lain:",
     "enter": "Masuki ruang bawah tanah"
+  },
+  "tokenLaunch": {
+    "title": "Token peluncuran segera",
+    "body": "Belanjaan ditutup sementara token baru dalam proses persiapan. Dapatkan email saat token tersebut diluncurkan.",
+    "notifyMe": "Kirim notifikasi kepadaku",
+    "sendTo": "Kami akan mengirim email ke {{email}}",
+    "invalidEmail": "Masukkan alamat email yang valid.",
+    "joinedTitle": "Anda ada dalam daftar.",
+    "joinedBody": "Kami akan mengirim email kepada {{email}} saat token diluncurkan.",
+    "joinedBodyNoEmail": "Kami akan mengirim email kepada Anda saat token diluncurkan.",
+    "failed": "Tidak dapat menyimpannya. Coba lagi.",
+    "privacy": "Hanya digunakan untuk memberitahumu tentang peluncuran."
   }
 }

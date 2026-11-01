@@ -14595,5 +14595,18 @@
     "title": "해피 할로윈",
     "otherThemes": "무서운 건 별로인가요? 다른 테마를 찾아보세요:",
     "enter": "던전 입장"
+  },
+  "tokenLaunch": {
+    "body": "구매는 새로운 토큰이 준비될 때까지 일시적으로 중단되었습니다. 출시 즉시 이메일을 통해 알림을 받으세요.",
+    "notifyMe": "알림해 주세요",
+    "sendTo": "{{email}}에게 이메일을 보낼 것입니다.",
+    "emailLabel": "이메일",
+    "emailPlaceholder": "당신의 이메일 주소입니다.",
+    "invalidEmail": "이메일 주소를 입력해 주세요.",
+    "joinedTitle": "당신은 목록에 있습니다.",
+    "joinedBody": "{{email}} 토큰이 출시되면 이메일을 보낼 예정입니다.",
+    "joinedBodyNoEmail": "이메일을 통해 토큰 출시 시점에 알려드리겠습니다.",
+    "failed": "저장할 수 없습니다. 다시 시도해 주세요.",
+    "privacy": "오직 출시 소식을 알려주기 위해만 사용됩니다."
   }
 }

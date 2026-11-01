@@ -14881,5 +14881,13 @@
     "confirm": "Mint li ser {{chain}}",
     "confirmWithCost": "Mint li ser {{chain}} · {{cost}}",
     "notAvailable": "Mintkirin li ser vê zencîreyê hîn ne berdest e."
+  },
+  "tokenLaunch": {
+    "title": "Tokenê diyar e ku bi ser destpêkirin e.",
+    "sendTo": "We werin {{email}} bi emailê.",
+    "emailPlaceholder": "Têkiliyên tîpêjî yên te",
+    "joinedTitle": "Tê li ser lîsteyê.",
+    "joinedBody": "We {{email}} biyêjin ku tokenê destpê dike.",
+    "failed": "Nêzêk kirina nekir. Bêhn re bi kar bîne."
   }
 }

@@ -14561,5 +14561,17 @@
     "confirm": "Mint ing {{chain}}",
     "confirmWithCost": "Mint ing {{chain}} · {{cost}}",
     "notAvailable": "Minting ing ranting iki ora ana."
+  },
+  "tokenLaunch": {
+    "body": "Gede ngaheni beli saking wong ngendhok nganti token baru. Ndalem email wong ngendhok saking wong ngendhok nganti token baru nganti ngendhok.",
+    "notifyMe": "Kanggo ngarani aku",
+    "sendTo": "Kami bakal ngirim email ke {{email}}",
+    "emailLabel": "Surot email",
+    "emailPlaceholder": "Kulon emailmu",
+    "joinedTitle": "Kamu udh di daweh list.",
+    "joinedBody": "Kita bakal ngirim email ke {{email}} kalau token udah keluar.",
+    "joinedBodyNoEmail": "Kami bakal ngirim email ke gwe kanggo ngaweni token lanjar.",
+    "failed": "Saya nggih ora bisa ngerti apa inggung.",
+    "privacy": "Gampang aja ngomongin tentang peluncuran."
   }
 }

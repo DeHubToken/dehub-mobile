@@ -14580,5 +14580,20 @@
     "confirm": "נענע ב -{{chain}}",
     "confirmWithCost": "מטבעה ב - {{chain}} · {{cost}}",
     "notAvailable": "הטבעה בשרשרת זו אינה זמינה עדיין."
+  },
+  "tokenLaunch": {
+    "eyebrow": "בקרוב",
+    "title": "השקת טוקן בקרוב",
+    "body": "הקנייה סגורה בזמן שהטוקן החדש מתכונן. קבל אימייל ברגע שהוא יופעל.",
+    "notifyMe": "הודע לי",
+    "sendTo": "נשלח אימייל ל-{{email}}",
+    "emailLabel": "אימייל",
+    "emailPlaceholder": "האימייל שלך",
+    "invalidEmail": "הזן אימייל תקין",
+    "joinedTitle": "אתה ברשימה",
+    "joinedBody": "נשלח אימייל ל-{{email}} כאשר הטוקן יושק.",
+    "joinedBodyNoEmail": "נשלח אימייל אליך כאשר הטוקן יושק.",
+    "failed": "לא היה ניתן לשמור זאת. נסה שוב.",
+    "privacy": "משמש רק כדי להודיע לך על ההשקה."
   }
 }

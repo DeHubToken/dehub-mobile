@@ -14576,5 +14576,20 @@
     "confirm": "Rahapaja: {{chain}}",
     "confirmWithCost": "Piparmünt {{chain}} · {{cost}}",
     "notAvailable": "Selle keti vermimine pole veel saadaval."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tuleb peagi",
+    "title": "Tokeni lükkamine peagi",
+    "body": "Ostmine on sulgunud, kuni uus token valmis saab. Saad e-maili hetkel, kui see avaldub.",
+    "notifyMe": "Kinnita",
+    "sendTo": "Saad e-maili {{email}}-le",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Teie e-mail",
+    "invalidEmail": "Sisesta kehtiv e-mail",
+    "joinedTitle": "Sa olete nimekirjas",
+    "joinedBody": "Saad e-maili {{email}}-le, kui token avaldub.",
+    "joinedBodyNoEmail": "Saad e-maili, kui token avaldub.",
+    "failed": "E-maili ei saadud. Proovige uuesti.",
+    "privacy": "Kasutatakse ainult, et teavitada teid tokeni avaldumisest."
   }
 }

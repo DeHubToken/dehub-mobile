@@ -14571,5 +14571,20 @@
     "confirm": "مُنتج على {{chain}}",
     "confirmWithCost": "مُنتج على {{chain}} · {{cost}}",
     "notAvailable": "مُنتج على هذه السلسلة غير متاح بعد."
+  },
+  "tokenLaunch": {
+    "eyebrow": "قريبًا",
+    "title": "الرمز بيطلق قريبًا",
+    "body": "الشراء مقفل لين يجهز الرمز الجديد. استلم إيميل أول ما يطلع.",
+    "notifyMe": "نبهني",
+    "sendTo": "بنرسل لك إيميل على {{email}}",
+    "emailLabel": "الإيميل",
+    "emailPlaceholder": "إيميلك",
+    "invalidEmail": "اكتب إيميل صحيح",
+    "joinedTitle": "أنت على القائمة",
+    "joinedBody": "بنرسل لك إيميل على {{email}} لما يطلق الرمز.",
+    "joinedBodyNoEmail": "بنرسل لك إيميل لما يطلق الرمز.",
+    "failed": "ما قدرنا نحفظها. جرّب مرة ثانية.",
+    "privacy": "بس عشان نخبرك عن الإطلاق."
   }
 }
