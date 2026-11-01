@@ -248,6 +248,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           circle: false,
           quality: 0.9,
           forceJpg: true,
+          keepGif: true,
         });
         if (!pickedUri) return;
         setLocalAvatarUri(pickedUri);
@@ -267,6 +268,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           circle: false,
           quality: 0.9,
           forceJpg: true,
+          keepGif: true,
         });
         if (!pickedUri) return;
         setLocalCoverUri(pickedUri);

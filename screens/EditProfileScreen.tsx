@@ -219,6 +219,7 @@ const EditProfileScreen = () => {
           circle: false,
           quality: 0.9,
           forceJpg: true,
+          keepGif: true,
         });
         if (!picked) return;
         setLocalAvatar(picked);
@@ -248,6 +249,7 @@ const EditProfileScreen = () => {
           circle: false,
           quality: 0.9,
           forceJpg: true,
+          keepGif: true,
         });
         if (!picked) return;
         setLocalCover(picked);
