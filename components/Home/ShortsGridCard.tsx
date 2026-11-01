@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
-import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
+import { View, Text, Pressable, StyleSheet, useWindowDimensions, PixelRatio } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
@@ -30,6 +30,31 @@ const useShortsCardSize = () => {
   return { width, height: width * (16 / 9) };
 };
 const AUTOPLAY_DELAY = 250;
+
+/**
+ * Width to fetch a grid poster at, in points. Capped at 2x pixels: a 3x phone
+ * otherwise fetches a 640px-wide poster per tile, and every new tile's bitmap
+ * is copied to the GPU on the frame it scrolls in. Traced on a Galaxy S24+,
+ * those copies were 171 of the 191 slow frames scrolling Shorts. A 2x poster
+ * is roughly half the bytes and still sharp at tile size.
+ */
+export function gridPosterWidth(cardWidth: number): number {
+  return cardWidth * Math.min(1, 2 / PixelRatio.get());
+}
+
+/** The poster a grid tile shows; also used to fetch posters ahead of the scroll. */
+export function shortsPosterUri(item: UnifiedFeedItem, cardWidth: number): string {
+  const tokenId = item.tokenId ?? item.id;
+  const widthPt = gridPosterWidth(cardWidth);
+  // Photo files live under feed-images/{filename}; the API path 403s.
+  if (item.postType === "feed-images") return buildFeedImageUrls(item.imageUrls?.length ? item.imageUrls : [item.imageUrl || ""], widthPt)[0] || "";
+  const raw = item.imageUrls?.[0] || item.imageUrl || item.thumbnailUrl;
+  return (
+    (raw ? cdnImage(raw.startsWith("http") ? raw : buildCdnPath(raw), { width: widthPt }) : undefined) ||
+    getShortsThumbnailUrl(tokenId, widthPt) ||
+    ""
+  );
+}
 
 interface ShortsGridCardProps {
   item: UnifiedFeedItem;
@@ -142,24 +167,13 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const CARD_WIDTH = width ?? gridSize.width;
   const CARD_HEIGHT = width ? width * (16 / 9) : gridSize.height;
 
-  // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL,
-  // sized to the card rather than fetched at full resolution — this is a poster
-  // behind an autoplaying video, and the video is the thing worth the bytes.
-  const resolveCdn = (raw?: string | null): string | undefined =>
-    raw
-      ? cdnImage(raw.startsWith("http") ? raw : buildCdnPath(raw), { width: CARD_WIDTH })
-      : undefined;
-
-  // Prefer the poster/thumbnail returned by the API, fall back to the derived path.
-  const thumbnailUri = useMemo(() => {
-    // Photo files live under feed-images/{filename}; the API path 403s.
-    if (item.postType === "feed-images") return buildFeedImageUrls(item.imageUrls?.length ? item.imageUrls : [item.imageUrl || ""], CARD_WIDTH)[0] || "";
-    return (
-      resolveCdn(item.imageUrls?.[0] || item.imageUrl || item.thumbnailUrl) ||
-      getShortsThumbnailUrl(tokenId, CARD_WIDTH) ||
-      ""
-    );
-  }, [item.postType, item.imageUrls, item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH]);
+  // Sized to the card rather than fetched at full resolution: this is a
+  // poster behind an autoplaying video, and the video is worth the bytes.
+  const thumbnailUri = useMemo(
+    () => shortsPosterUri(item, CARD_WIDTH),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [item.postType, item.imageUrls, item.imageUrl, item.thumbnailUrl, tokenId, CARD_WIDTH],
+  );
 
   const avatarUri = useMemo(
     () => getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl),
