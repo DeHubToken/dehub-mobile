@@ -944,10 +944,15 @@ const styles = StyleSheet.create({
     justifyContent: "center" as const,
     height: TAB_BAR_PILL_HEIGHT,
   },
+  // The 22pt icons (Home, Messages, Search, Assistant) are bigger than this
+  // 20pt box. Without centring they hung off its bottom-right corner and sat
+  // visibly low in the pill; centred, they overflow evenly on every side.
   iconWrap: {
     position: "relative",
     width: 20,
     height: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   // The count used to sit absolutely inside the 20pt icon box, and an absolute
   // child is only offered its parent's width to measure in: past one digit
