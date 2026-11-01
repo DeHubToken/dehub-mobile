@@ -219,14 +219,23 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
     topInsetSV.value = withTiming(topInset, INSET_TIMING);
   }, [topInset, topInsetSV]);
 
+  // Once closing starts it always finishes. If anything cut the slide short
+  // (a drag settling, a second back), the sheet used to sit off screen with
+  // the feed under it still hidden and every later back ignored, so the app
+  // showed an empty black feed until it was restarted.
+  const closing = useSharedValue(false);
   const close = useCallback(() => {
-    if (closingRef.current) return;
+    if (closingRef.current) {
+      onClose();
+      return;
+    }
     closingRef.current = true;
-    sheetY.value = withTiming(SCREEN_HEIGHT, CLOSE_TIMING, (finished) => {
+    closing.value = true;
+    sheetY.value = withTiming(SCREEN_HEIGHT, CLOSE_TIMING, () => {
       "worklet";
-      if (finished) runOnJS(onClose)();
+      runOnJS(onClose)();
     });
-  }, [sheetY, onClose, SCREEN_HEIGHT]);
+  }, [sheetY, onClose, SCREEN_HEIGHT, closing]);
 
   // The host's nav bar drives the same animated dismissal the X and the flick
   // use, rather than unmounting the sheet from under itself.
@@ -280,17 +289,19 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
         })
         .onUpdate((e) => {
           "worklet";
+          if (closing.value) return;
           sheetY.value = Math.max(0, dragStart.value + e.translationY);
         })
         .onEnd((e) => {
           "worklet";
+          if (closing.value) return;
           if (e.translationY > CLOSE_DRAG_DISTANCE || e.velocityY > CLOSE_DRAG_VELOCITY) {
             runOnJS(close)();
             return;
           }
           sheetY.value = withSpring(0, OPEN_SPRING);
         }),
-    [dragStart, sheetY, close],
+    [dragStart, sheetY, close, closing],
   );
 
   const contentPan = useMemo(
@@ -316,17 +327,19 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
         })
         .onUpdate((e) => {
           "worklet";
+          if (closing.value) return;
           sheetY.value = Math.max(0, dragStart.value + e.translationY);
         })
         .onEnd((e) => {
           "worklet";
+          if (closing.value) return;
           if (e.translationY > CLOSE_DRAG_DISTANCE || e.velocityY > CLOSE_DRAG_VELOCITY) {
             runOnJS(close)();
             return;
           }
           sheetY.value = withSpring(0, OPEN_SPRING);
         }),
-    [dragStart, scrollY, sheetY, touchStartY, close],
+    [dragStart, scrollY, sheetY, touchStartY, close, closing],
   );
 
   // ── Feed ──────────────────────────────────────────────────────────────────

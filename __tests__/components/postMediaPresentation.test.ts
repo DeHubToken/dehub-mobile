@@ -14,8 +14,8 @@ describe('post media presentation', () => {
     expect(drawer).toContain('testID="image-feed-surface"');
     expect(drawer).toContain('fullscreen ? skin.page : "transparent"');
     expect(staticStyles).not.toMatch(/(?:backgroundColor|color):\s*colors\./);
-    expect(home).toContain('imageFeed ? drawerRevealStyle : null');
-    expect(home).toContain('opacity: drawerSwipe.value');
+    expect(home).toContain('style={[styles.pagerViewport, feedClipStyle, drawerRevealStyle]}');
+    expect(home).toContain('opacity: imageFeedOpen.value ? drawerSwipe.value : 1');
     expect(home).toContain('importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}');
   });
 
