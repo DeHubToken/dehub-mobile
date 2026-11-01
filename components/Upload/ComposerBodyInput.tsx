@@ -18,6 +18,7 @@ import { TextInput, type TextInputProps } from "react-native";
 type Props = Omit<TextInputProps, "value" | "onChangeText" | "defaultValue"> & {
   value: string;
   onChangeText: (text: string) => void;
+  ref?: React.Ref<TextInput>;
 };
 
 const ComposerBodyInput = memo(function ComposerBodyInput({ value, onChangeText, ...rest }: Props) {

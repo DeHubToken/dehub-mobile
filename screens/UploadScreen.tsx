@@ -303,6 +303,24 @@ export default function UploadScreen() {
   const postingWalletRef = useRef({ activeChainId, switchChain });
   postingWalletRef.current = { activeChainId, switchChain };
   const titleRef = useRef<TextInput>(null);
+  const bodyInputRef = useRef<TextInput>(null);
+
+  // Closes the keyboard whatever holds it. RN on Android only hides the keys
+  // inside a focused field's own blur, so once the field has lost focus
+  // natively (it can mid-post) blur() and Keyboard.dismiss() do nothing and
+  // the keys stay up over Home. Then focus one of the composer's own fields
+  // for a moment and blur it, which does hide them.
+  const closeKeyboard = useCallback(() => {
+    const focused = TextInput.State.currentlyFocusedInput();
+    if (focused) {
+      focused.blur();
+    } else if (Platform.OS === "android" && Keyboard.isVisible()) {
+      const field = bodyInputRef.current ?? titleRef.current;
+      field?.focus();
+      field?.blur();
+    }
+    Keyboard.dismiss();
+  }, []);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -1335,8 +1353,7 @@ export default function UploadScreen() {
     // The keyboard goes with the composer. Left up, it stayed open over Home
     // with the screen still slid up for it: a black band under the nav bar
     // and the new post's card pushed up out of sight.
-    TextInput.State.currentlyFocusedInput()?.blur();
-    Keyboard.dismiss();
+    closeKeyboard();
     if (landing === "morph") nav.setOptions({ animation: "none" });
     nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
     // Nothing on Home should hold the keyboard after a post. Android passes
@@ -1349,7 +1366,7 @@ export default function UploadScreen() {
         Keyboard.dismiss();
       }, ms);
     }
-  }, [nav]);
+  }, [nav, closeKeyboard]);
 
   const submitPost = useCallback(async () => {
     let payload = getPayload();
@@ -1524,6 +1541,11 @@ export default function UploadScreen() {
     // the state this one has not caused a render for yet. See the ref's doc.
     if (activeIsUploading || submittingRef.current || (!isStageMode && !postingChainReady)) return;
     haptic.press();
+    // Close the keyboard now, while the text field still holds focus. On
+    // Android the field can lose focus during the post before navigateHome
+    // runs, and once nothing is focused blur() and Keyboard.dismiss() have
+    // nothing to act on, so the keys stayed up over Home.
+    closeKeyboard();
     if (isStageMode) {
       if (!titleText.trim()) return;
       if (scheduledDate && (!Number.isFinite(scheduledDate.getTime()) || scheduledDate.getTime() <= Date.now())) {
@@ -1618,7 +1640,7 @@ export default function UploadScreen() {
     }
   }, [canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
-    submitPost, submitQuotePost, releaseSubmit,
+    submitPost, submitQuotePost, releaseSubmit, closeKeyboard,
     isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft, setBodyText, setTitleText]);
 
   const buildDraftData = useCallback(() => ({
@@ -2588,6 +2610,7 @@ export default function UploadScreen() {
               />
             )}
             {!articleMode && <ComposerBodyInput
+              ref={bodyInputRef}
               value={bodyText}
               onChangeText={handleBodyChange}
               onSelectionChange={(e) => {
