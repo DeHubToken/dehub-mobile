@@ -2859,7 +2859,9 @@
     "connectAi": "MI csatlakoztatása",
     "bridge": "Híd",
     "premium": "Prémium",
-    "pricing": "Árak"
+    "pricing": "Árak",
+    "reorderHint": "Tartsa lenyomva és húzza bármelyik ikont az átrendezéshez",
+    "reorderReset": "Visszaállítás"
   },
   "affiliate": {
     "subtitle": "Keress minden meghívottad után — örökre",

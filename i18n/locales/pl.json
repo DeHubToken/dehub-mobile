@@ -2859,7 +2859,9 @@
     "connectAi": "Podłącz AI",
     "bridge": "Most",
     "premium": "Premium",
-    "pricing": "Cennik"
+    "pricing": "Cennik",
+    "reorderHint": "Przytrzymaj i przeciągnij dowolną ikonę, aby zmienić kolejność",
+    "reorderReset": "Zresetuj"
   },
   "affiliate": {
     "subtitle": "Zarabiaj na każdym, kogo zaprosisz — na zawsze",

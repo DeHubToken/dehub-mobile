@@ -494,7 +494,9 @@
     "connectAi": "Conectar IA",
     "bridge": "Puente",
     "premium": "Premium",
-    "pricing": "Precios"
+    "pricing": "Precios",
+    "reorderHint": "Mantén y arrastra cualquier icono para reorganizar",
+    "reorderReset": "Restablecer"
   },
   "affiliate": {
     "subtitle": "Gana con todos los que invites — para siempre",

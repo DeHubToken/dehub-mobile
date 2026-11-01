@@ -2859,7 +2859,9 @@
     "connectAi": "So AI pọ̀",
     "bridge": "Afárá",
     "premium": "Àlàyé",
-    "pricing": "Iye owó"
+    "pricing": "Iye owó",
+    "reorderHint": "Duro ki o si fa eyikeyi aami lati tun ṣe atunṣe",
+    "reorderReset": "Tun ṣe"
   },
   "affiliate": {
     "subtitle": "Gba lati ọdọ gbogbo eniyan ti o pe — lailai",

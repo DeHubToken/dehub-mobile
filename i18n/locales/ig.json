@@ -2859,7 +2859,9 @@
     "connectAi": "Jikọọ AI",
     "bridge": "Àkwà",
     "premium": "Nke kacha mma",
-    "pricing": "Ọnụahịa"
+    "pricing": "Ọnụahịa",
+    "reorderHint": "Jide ma dọrọ aịkọn ọ bụla ka ị hazie ọzọ",
+    "reorderReset": "Tọgharịa"
   },
   "affiliate": {
     "subtitle": "Nweta site na onye ọ bụla ị kpọrọ — ruo mgbe ebighị ebi",

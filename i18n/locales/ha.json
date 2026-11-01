@@ -2859,7 +2859,9 @@
     "connectAi": "Haɗa AI",
     "bridge": "Gada",
     "premium": "Premium",
-    "pricing": "Farashi"
+    "pricing": "Farashi",
+    "reorderHint": "Riƙe da jawo kowane icon don sake tsarawa",
+    "reorderReset": "Sake saitawa"
   },
   "affiliate": {
     "subtitle": "Samun kuɗi daga kowane mutum da ka gayyata — har abada",

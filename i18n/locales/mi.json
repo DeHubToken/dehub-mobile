@@ -2859,7 +2859,9 @@
     "connectAi": "Honoa te AI",
     "bridge": "Piriti",
     "premium": "Mōrahi",
-    "pricing": "Utu"
+    "pricing": "Utu",
+    "reorderHint": "Kia mau, me te hopu i tetahi tohu ki te rearrange",
+    "reorderReset": "Whakahokia"
   },
   "affiliate": {
     "subtitle": "Kia whiwhi mai i te katoa e powhiritia ana e koe — ake tonu atu",

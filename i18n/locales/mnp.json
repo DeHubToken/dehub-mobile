@@ -2858,7 +2858,9 @@
     "connectAi": "连 AI",
     "bridge": "跨链桥",
     "premium": "会员",
-    "pricing": "价钱"
+    "pricing": "价钱",
+    "reorderHint": "按住并拖动任意图标进行重新排列",
+    "reorderReset": "重置"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",

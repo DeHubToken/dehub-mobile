@@ -2859,7 +2859,9 @@
     "connectAi": "AI 연결",
     "bridge": "브리지",
     "premium": "프리미엄",
-    "pricing": "요금제"
+    "pricing": "요금제",
+    "reorderHint": "아이콘을 길게 누른 상태에서 드래그하여 재정렬",
+    "reorderReset": "초기화"
   },
   "affiliate": {
     "subtitle": "초대한 모든 사람에게서 평생 수익을",

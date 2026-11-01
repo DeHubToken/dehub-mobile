@@ -413,6 +413,8 @@
     "unavailable": "Not available in this version of the app"
   },
   "nav": {
+    "reorderHint": "Hold and drag any icon to rearrange",
+    "reorderReset": "Reset",
     "fractions": "Fractions",
     "home": "Home",
     "explore": "Explore",

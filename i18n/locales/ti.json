@@ -2859,7 +2859,9 @@
     "connectAi": "AI ኣራኽብ",
     "bridge": "ድልድል",
     "premium": "ፕሪሚየም",
-    "pricing": "ዋጋታት"
+    "pricing": "ዋጋታት",
+    "reorderHint": "ንምልዋጥ ዝኾነ ኣዶ ሒዝካ ስዓቦ",
+    "reorderReset": "ዳግም ምትካል"
   },
   "affiliate": {
     "subtitle": "ካብ ኩሉ ሰብ እትዕድሞ ንዘለኣለም ተረክብ",

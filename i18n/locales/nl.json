@@ -494,7 +494,9 @@
     "connectAi": "AI verbinden",
     "bridge": "Brug",
     "premium": "Premium",
-    "pricing": "Prijzen"
+    "pricing": "Prijzen",
+    "reorderHint": "Houd een pictogram ingedrukt en sleep het om de volgorde te wijzigen",
+    "reorderReset": "Resetten"
   },
   "affiliate": {
     "subtitle": "Verdien aan iedereen die je uitnodigt — voor altijd",

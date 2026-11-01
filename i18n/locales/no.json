@@ -2859,7 +2859,9 @@
     "connectAi": "Koble til KI",
     "bridge": "Bro",
     "premium": "Premium",
-    "pricing": "Priser"
+    "pricing": "Priser",
+    "reorderHint": "Hold og dra et hvilket som helst ikon for å omorganisere",
+    "reorderReset": "Tilbakestill"
   },
   "affiliate": {
     "subtitle": "Tjen fra alle du inviterer — for alltid",

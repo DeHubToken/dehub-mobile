@@ -2859,7 +2859,9 @@
     "connectAi": "AI walqunnamsiisi",
     "bridge": "Riqicha",
     "premium": "Iyyennoo",
-    "pricing": "Gatii"
+    "pricing": "Gatii",
+    "reorderHint": "Irra deebi'ii qindeessuuf mallattoo kamiyyuu qabadhuu harkisi",
+    "reorderReset": "Reset gochuu"
   },
   "affiliate": {
     "subtitle": "Namoota si waamtan hunda irraa — yoomiyyuu argadhu",

@@ -2859,7 +2859,9 @@
     "connectAi": "Connecta la IA",
     "bridge": "Pont",
     "premium": "Premium",
-    "pricing": "Preus"
+    "pricing": "Preus",
+    "reorderHint": "Mantingues i arrossega qualsevol icona per reorganitzar",
+    "reorderReset": "Reset"
   },
   "affiliate": {
     "subtitle": "Guanya de tothom que convidis, per sempre",

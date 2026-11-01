@@ -2859,7 +2859,9 @@
     "connectAi": "Ikonekta ang AI",
     "bridge": "Tulay",
     "premium": "Premium",
-    "pricing": "Presyo"
+    "pricing": "Presyo",
+    "reorderHint": "I - hold at i - drag ang anumang icon upang muling ayusin",
+    "reorderReset": "I - reset"
   },
   "affiliate": {
     "subtitle": "Kumita mula sa lahat ng iyong iniimbitahan — magpakailanman",

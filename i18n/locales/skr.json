@@ -2856,7 +2856,9 @@
     "connectAi": "AI جوڑو",
     "bridge": "پل (Bridge)",
     "premium": "پریمیم",
-    "pricing": "قیمتاں"
+    "pricing": "قیمتاں",
+    "reorderHint": "ہول اور ڈرگ کریں کسی بھی آئیکن کو دوبارہ آرینج کرنے کے لئے",
+    "reorderReset": "ٹھیک کر"
   },
   "affiliate": {
     "subtitle": "ہر اس شخص سے کمائیں جسے آپ مدعو کرتے ہیں — ہمیشہ کے لیے",

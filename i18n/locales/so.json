@@ -2859,7 +2859,9 @@
     "connectAi": "Ku xir AI",
     "bridge": "Buundo",
     "premium": "Daboolka",
-    "pricing": "Qiimaha"
+    "pricing": "Qiimaha",
+    "reorderHint": "Qabso oo jiido icon kasta si ay dib u abaabulaan",
+    "reorderReset": "Dib u deji"
   },
   "affiliate": {
     "subtitle": "Ka soo hel qof kasta oo aad martiqaaddo — weligaa",

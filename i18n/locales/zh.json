@@ -2730,7 +2730,9 @@
     "connectAi": "连接 AI",
     "bridge": "跨链桥",
     "premium": "高级版",
-    "pricing": "定价"
+    "pricing": "定价",
+    "reorderHint": "按住并拖动任意图标以重新排列",
+    "reorderReset": "重置"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",

@@ -2859,7 +2859,9 @@
     "connectAi": "Conectează AI",
     "bridge": "Pod",
     "premium": "Premium",
-    "pricing": "Prețuri"
+    "pricing": "Prețuri",
+    "reorderHint": "Țineți apăsată și trageți orice pictogramă pentru a o rearanja",
+    "reorderReset": "Resetează"
   },
   "affiliate": {
     "subtitle": "Câștigă de la toți cei pe care îi inviți — pentru totdeauna",

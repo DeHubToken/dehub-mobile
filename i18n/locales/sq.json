@@ -2859,7 +2859,9 @@
     "connectAi": "Lidh IA-në",
     "bridge": "Ura",
     "premium": "Premium",
-    "pricing": "Çmimet"
+    "pricing": "Çmimet",
+    "reorderHint": "Mbaj dhe tërhiq çdo ikonë për të riorganizuar",
+    "reorderReset": "Rivendos"
   },
   "affiliate": {
     "subtitle": "Fito nga çdo person që fton — përgjithmonë",

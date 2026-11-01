@@ -2859,7 +2859,9 @@
     "connectAi": "SI ulash",
     "bridge": "Ko'prik",
     "premium": "Yuqori sifat",
-    "pricing": "Narxlar"
+    "pricing": "Narxlar",
+    "reorderHint": "Qayta tartiblash uchun istalgan belgini ushlab turing va sudrang",
+    "reorderReset": "Qayta tiklash"
   },
   "affiliate": {
     "subtitle": "Taklif qilgan har bir kishidan abadiy daromad oling",

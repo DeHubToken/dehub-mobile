@@ -2859,7 +2859,9 @@
     "connectAi": "Připojit AI",
     "bridge": "Most",
     "premium": "Prémiový",
-    "pricing": "Ceník"
+    "pricing": "Ceník",
+    "reorderHint": "Držte a přetáhněte libovolnou ikonu pro přeuspořádání",
+    "reorderReset": "Reset"
   },
   "affiliate": {
     "subtitle": "Získejte z každého, koho pozvete — navždy",
