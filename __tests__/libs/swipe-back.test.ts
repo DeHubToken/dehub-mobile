@@ -18,10 +18,11 @@ test('a page drag never starts on a sideways list, field or slider', () => {
   const node = (nodeName: string, parentNode: object | null = null) => ({ nodeName, parentNode });
   const page = node('RN:View', node('RN:ScrollView', node('RN:View')));
   expect(pageSwipeAllowed(node('RN:Paragraph', page))).toBe(true);
-  const row = { nodeName: 'RN:AndroidHorizontalScrollView', parentNode: page, scrollLeft: 0 };
-  expect(pageSwipeAllowed(node('RN:Image', row))).toBe(true);
-  row.scrollLeft = 120;
-  expect(pageSwipeAllowed(node('RN:Image', row))).toBe(false);
+  // However far it reports being scrolled: Android reads 0 mid-carousel.
+  for (const scrollLeft of [0, 120, undefined]) {
+    const row = { nodeName: 'RN:AndroidHorizontalScrollView', parentNode: page, scrollLeft };
+    expect(pageSwipeAllowed(node('RN:Image', row))).toBe(false);
+  }
   const shell = node('RN:ViewPager');
   const boundary = node('RN:View', shell);
   expect(pageSwipeAllowed(node('RN:Paragraph', boundary), boundary)).toBe(true);

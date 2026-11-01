@@ -12,18 +12,19 @@ export const SWIPE_BACK_PAGE_DISTANCE = 88;
 
 // Native views that own a sideways drag. Android draws a horizontal list as its
 // own view class, so a carousel or chip row is told apart from the page.
-const SIDEWAYS_LIST = /HorizontalScroll/i;
-const OWNS_SIDEWAYS = /ViewPager|PagerView|TextInput|Slider|WebView|Picker|SkiaView|SkiaPicture|Canvas/i;
+// A sideways list always keeps the drag, wherever it is scrolled to: Android's
+// host tree reports scrollLeft as 0 mid-carousel, so "at its start" let back
+// steal every swipe back through a photo gallery and leave the page.
+const OWNS_SIDEWAYS = /HorizontalScroll|ViewPager|PagerView|TextInput|Slider|WebView|Picker|SkiaView|SkiaPicture|Canvas/i;
 
-type HostNode = { nodeName?: string; parentNode?: HostNode | null; scrollLeft?: number; viewConfig?: { uiViewClassName?: string } };
+type HostNode = { nodeName?: string; parentNode?: HostNode | null; viewConfig?: { uiViewClassName?: string } };
 
 /**
  * Whether a drag that starts away from the edge, on the touched host view, may
  * go back: true for plain page, false over anything that swipes sideways. Only
  * the views between the touch and `stopAt` (the page itself) are looked at, so
- * what holds the page (tabs, sheets, the app shell) never blocks it. A
- * sideways list already at its start has nothing to scroll back to, so back
- * takes the drag there too, as on web.
+ * what holds the page (tabs, sheets, the app shell) never blocks it. The edge
+ * strip still goes back over a sideways list.
  */
 export function pageSwipeAllowed(target: unknown, stopAt?: unknown): boolean {
   let node = target as HostNode | null | undefined;
@@ -32,7 +33,6 @@ export function pageSwipeAllowed(target: unknown, stopAt?: unknown): boolean {
   for (let depth = 0; node && node !== stopAt && depth < 60; depth++, node = node.parentNode) {
     const name = node.nodeName || node.viewConfig?.uiViewClassName || '';
     if (OWNS_SIDEWAYS.test(name)) return false;
-    if (SIDEWAYS_LIST.test(name) && Math.abs(node.scrollLeft ?? 1) > 1) return false;
   }
   return true;
 }
