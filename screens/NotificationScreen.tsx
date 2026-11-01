@@ -62,6 +62,8 @@ import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
 import PageDrawer from "../components/common/PageDrawer";
+import { postWarmKey, warmRequest } from "../libs/navPrefetch";
+import { getNFT } from "../services/nft.service";
 import { createLogger } from "../libs/logger";
 import {
   mergeFirstPage,
@@ -1014,6 +1016,10 @@ const NotificationScreen = () => {
   // shorts viewer used to be seeded with a bare { tokenId } item, so the first
   // slide had no creator, no caption and zero counts.
   const navigateToFeed = useCallback((tokenId: number, commentId?: string, postType?: string) => {
+    // Start the post read now, so the page joins it instead of asking once
+    // its entrance has settled.
+    warmRequest(postWarmKey(tokenId, commentId), () =>
+      getNFT(tokenId, { ...(commentId ? { commentId } : {}), topTipped: [] }));
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId, postType, overDrawer: true });
   }, [navigation]);
 
