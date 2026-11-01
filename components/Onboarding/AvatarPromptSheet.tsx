@@ -35,7 +35,7 @@ export function AvatarPromptSheet({ visible, onClose, name, onSave }: AvatarProm
     try {
       setBusy(true);
       await runWithPermissions(["photos"], async () => {
-        const raw = await openCroppedImagePicker({ width: 800, height: 800, circle: true, quality: 0.9, forceJpg: true });
+        const raw = await openCroppedImagePicker({ width: 800, height: 800, circle: true, quality: 0.9, forceJpg: true, keepGif: true });
         if (!raw) return;
         setPicked(await resizeAndCompress(raw, { width: 512, height: 512, compress: 0.85, format: "jpeg" }));
       });

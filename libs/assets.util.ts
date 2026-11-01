@@ -19,7 +19,17 @@ export type CropOptions = {
   quality?: number; // 0..1
   circle?: boolean;
   free?: boolean; // enable free-style crop (no aspect lock)
+  /**
+   * Hand an animated GIF back as picked, uncropped. The cropper re-encodes to a
+   * still JPEG, so a GIF avatar or banner lost its animation before upload; the
+   * server sizes and crops it to the profile shape and keeps it moving.
+   */
+  keepGif?: boolean;
 };
+
+/** A local or remote image path that is a GIF, by its extension. */
+export const isGifUri = (uri: string | null | undefined): boolean =>
+  !!uri && /\.gif$/i.test(uri.split("?")[0]);
 
 export const openCroppedImagePicker = async (opts: CropOptions): Promise<string | null> => {
   const { width, height, forceJpg = true, quality = 0.9, circle = false, free = false } = opts;
@@ -36,6 +46,24 @@ export const openCroppedImagePicker = async (opts: CropOptions): Promise<string 
     if (height) pickerOpts.height = height;
   } else {
     pickerOpts.freeStyleCropEnabled = true;
+  }
+  if (opts.keepGif) {
+    // Pick first, untouched (quality 1, no forceJpg, so a GIF keeps its bytes),
+    // then crop only what is not a GIF.
+    const raw: any = await ImageCropPicker.openPicker({
+      mediaType: "photo",
+      cropping: false,
+      compressImageQuality: 1,
+      forceJpg: false,
+    } as any);
+    const rawUri: string | undefined = raw?.path || raw?.sourceURL;
+    if (!rawUri) return null;
+    // The picker's copy keeps the .gif extension, which is what isGifUri()
+    // downstream reads to keep it out of the JPEG re-encode.
+    if (isGifUri(rawUri)) return rawUri;
+    const { cropping: _c, mediaType: _m, ...cropOpts } = pickerOpts;
+    const cropped: any = await ImageCropPicker.openCropper({ ...cropOpts, path: rawUri, mediaType: "photo" } as any);
+    return cropped?.path ?? null;
   }
   const img = await ImageCropPicker.openPicker(pickerOpts);
   const pickedUri = (img as any)?.path || (img as any)?.sourceURL;
@@ -65,6 +93,8 @@ export const resizeAndCompress = async (
   uri: string,
   { width, height, compress = 0.85, format = "jpeg" }: ResizeOptions
 ): Promise<string> => {
+  // A re-encode keeps only the first frame of a GIF; the server sizes it instead.
+  if (isGifUri(uri)) return uri;
   const manip = await ImageManipulator.manipulateAsync(
     uri,
     [{ resize: { width, height } }],
@@ -140,11 +170,13 @@ export const createRNImageFile = (
   uri: string,
   namePrefix: string,
   mime: string = "image/jpeg"
-): RNFile => ({
-  uri,
-  name: `${namePrefix}_${Date.now()}.jpg`,
-  type: mime,
-});
+): RNFile => isGifUri(uri)
+  ? { uri, name: `${namePrefix}_${Date.now()}.gif`, type: "image/gif" }
+  : {
+      uri,
+      name: `${namePrefix}_${Date.now()}.jpg`,
+      type: mime,
+    };
 
 export const getFileName = (uri: string, fallback: string): string => {
   try {
