@@ -89,7 +89,9 @@ function Sheet({ onClose, grab, children }: PageDrawerProps) {
         <Pressable style={{ flex: 1 }} onPress={close} accessibilityRole="button" />
       </Animated.View>
       <Animated.View style={[styles.sheet, sheetStyle]}>
-        <SheetGlassFill backdropBlurred={blur.blurred} style={[StyleSheet.absoluteFill, styles.surface]} />
+        {/* Near solid on purpose: a list of rows on a 60% wash let the feed's
+            pictures read through behind the text. */}
+        <SheetGlassFill blur={false} style={[StyleSheet.absoluteFill, styles.surface]} />
         <View {...pan.panHandlers}>
           <View style={styles.handleZone}>
             <View style={styles.handle} />
