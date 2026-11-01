@@ -61,7 +61,7 @@ import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
-import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
+import { peekPostDetailSeed, postWarmKey, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
@@ -502,10 +502,12 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         topTipped: topTippedIds,
       };
       // A plain open is the request the feed card started on tap — join it.
-      const res =
-        !commentIdParam && topTippedIds.length === 0
-          ? await takeWarmRequest(`nft:${tokenId}`, () => getNFT(tokenId, options))
-          : await getNFT(tokenId, options);
+      // A notification tap warms the comment-anchored read under its own key.
+      const warmKey = topTippedIds.length > 0 ? null
+        : commentIdParam ? postWarmKey(tokenId, commentIdParam) : postWarmKey(tokenId);
+      const res = warmKey
+        ? await takeWarmRequest(warmKey, () => getNFT(tokenId, options))
+        : await getNFT(tokenId, options);
       const payload = res?.result || res || {};
       
       // console.log("[FeedDetailScreen] fetched data", payload.comments);

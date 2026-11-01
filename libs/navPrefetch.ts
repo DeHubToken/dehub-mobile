@@ -60,3 +60,8 @@ export function takeWarmRequest<T>(key: string, fetch: () => Promise<T>): Promis
   if (!hit || Date.now() - hit.at >= WARM_TTL_MS) return fetch();
   return (hit.promise as Promise<T>).catch(() => fetch());
 }
+
+/** The warm key the post page joins: the plain read, or one anchored on a comment. */
+export function postWarmKey(tokenId: number | string, commentId?: number | string): string {
+  return commentId != null && commentId !== "" ? `nft:${tokenId}:c:${commentId}` : `nft:${tokenId}`;
+}
