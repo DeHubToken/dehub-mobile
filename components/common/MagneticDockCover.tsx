@@ -4,6 +4,7 @@ import SplashScreen from '../../screens/SplashScreen';
 import { measureDockTarget, type DockTarget } from '../../libs/magneticDock';
 
 const MARK = require('../../assets/web-icons/dehub-island-logo.png');
+const CROSSFADE_MS = 420;
 
 /** The existing boot gate owns readiness; this owns only the visual handoff. */
 export default function MagneticDockCover({ reveal, enabled, onComplete }: {
@@ -47,7 +48,9 @@ export default function MagneticDockCover({ reveal, enabled, onComplete }: {
     const failsafe = setTimeout(finish, 1400);
     finishRef.current = finish;
     const crossfade = () => {
-      motion = Animated.timing(fade, { toValue: 0, duration: 180, useNativeDriver: true });
+      // Long enough to read as a reveal rather than a cut, eased so the page
+      // arrives quickly and settles; the mark drifts forward as it goes.
+      motion = Animated.timing(fade, { toValue: 0, duration: CROSSFADE_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true });
       motion.start(finish);
     };
     void (async () => {
@@ -87,7 +90,9 @@ export default function MagneticDockCover({ reveal, enabled, onComplete }: {
   return <View ref={host} collapsable={false} style={StyleSheet.absoluteFill} pointerEvents="auto" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
     <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: '#000', opacity: landing
       ? progress.interpolate({ inputRange: [0, .28, .78, 1], outputRange: [1, 1, 0, 0] }) : fade }]}>
-      {!enabled && <SplashScreen />}
+      {!enabled && <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ scale: fade.interpolate({ inputRange: [0, 1], outputRange: [1.08, 1] }) }] }]}>
+        <SplashScreen />
+      </Animated.View>}
     </Animated.View>
     {enabled && <Animated.View style={{ position: 'absolute', left: width / 2 - 21, top: height / 2 - 18, width: 42, height: 36,
       opacity: fade, transform: [

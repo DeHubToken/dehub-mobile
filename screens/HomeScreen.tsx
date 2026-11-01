@@ -52,6 +52,7 @@ import { useShortsServerSync } from "../hooks/useShortsEnabled";
 import { useFeedInterestsServerSync } from "../hooks/useFeedInterestsServerSync";
 import { useNavOrderServerSync } from "../hooks/useNavOrderServerSync";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
+import { useHoldLaunchForFeed } from "../hooks/useHoldLaunchForFeed";
 import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
 import { useIsFetching } from "@tanstack/react-query";
@@ -303,6 +304,7 @@ export default function HomeScreen() {
   useShortsServerSync();
   useFeedInterestsServerSync();
   useNavOrderServerSync();
+  useHoldLaunchForFeed();
   const { shorts: shortsEnabled } = useAppPrefs();
   const TAB_ORDER: readonly TabKey[] = shortsEnabled ? ALL_TAB_ORDER : TAB_ORDER_NO_SHORTS;
   const LAST_INDEX = TAB_ORDER.length - 1;
