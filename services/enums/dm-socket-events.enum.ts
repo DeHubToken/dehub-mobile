@@ -20,6 +20,11 @@ export enum DMSocketEvent {
   FetchMessage = "fetchMessage",
   ReValidateMessage = "ReValidateMessage",
 
+  // Reactions
+  AddReaction = "addReaction",
+  RemoveReaction = "removeReaction",
+  ReactionUpdated = "reactionUpdated",
+
   // Media upload progress/completion keyed by message/job id
   JobMessageId = "jobMessageId",
 

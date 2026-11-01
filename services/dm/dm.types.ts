@@ -179,6 +179,16 @@ export interface DmMessage {
 
   // Poll metadata (only populated when msgType === 'poll')
   poll?: PollAttachment | null;
+
+  // Emoji → lowercased wallet addresses of everyone who reacted with it
+  reactions?: Record<string, string[]>;
+}
+
+/** Server → Client: reactionUpdated event, the message's full reaction map. */
+export interface ReactionUpdatedPayload {
+  dmId: ID;
+  messageId: ID;
+  reactions: Record<string, string[]>;
 }
 
 

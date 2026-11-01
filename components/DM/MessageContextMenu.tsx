@@ -22,6 +22,7 @@ import { copyToClipboard } from "../../libs/clipboard.utils";
 import { formatChatTimeSmart } from "../../libs/date.util";
 import type { DmMessage, DmUser, OptimisticMessage } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
+import { QUICK_DM_REACTIONS } from "./MessageReactions";
 
 
 export interface MessageLayout {
@@ -41,6 +42,10 @@ interface MessageContextMenuProps {
   /** Current user info for own messages */
   myUser?: { displayName?: string; username?: string; avatarImageUrl?: string };
   onClose: () => void;
+  /** Toggle one of the quick reactions on this message. */
+  onReact?: (emoji: string) => void;
+  /** Lowercased wallet address, to mark reactions already given. */
+  myAddress?: string;
   onReply?: () => void;
   onEdit?: () => void;
   onForward?: () => void;
@@ -383,6 +388,8 @@ const FloatingMessage: React.FC<{
 
 /** One ActionRow: 20px icon, py-3, plus the card's own py-1 once. */
 const ACTION_ROW_HEIGHT = 45;
+/** Quick-reaction strip: 32px emoji cells, py-2, and its divider. */
+const REACTION_ROW_HEIGHT = 49;
 const ACTIONS_CARD_PADDING = 8;
 const PADDING = 16;
 
@@ -394,6 +401,8 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   peerUser,
   myUser,
   onClose,
+  onReact,
+  myAddress,
   onReply,
   onEdit,
   onForward,
@@ -515,8 +524,27 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     t,
   ]);
 
+  // Reacting names the message to the server too, so an unsent bubble gets none.
+  const canReact = useMemo(() => {
+    if (!message || !onReact || message.msgType === "tip") return false;
+    const optimistic = message as Partial<OptimisticMessage>;
+    return !(
+      optimistic._optimistic ||
+      optimistic._tempId ||
+      message.uploadStatus === "pending" ||
+      message.uploadStatus === "failed"
+    );
+  }, [message, onReact]);
+
+  const handleReact = useCallback(
+    (emoji: string) => onReact?.(emoji),
+    [onReact],
+  );
+
   const actionsCardHeight =
-    actions.length * ACTION_ROW_HEIGHT + ACTIONS_CARD_PADDING;
+    actions.length * ACTION_ROW_HEIGHT +
+    ACTIONS_CARD_PADDING +
+    (canReact ? REACTION_ROW_HEIGHT : 0);
 
   const { messageTop, actionsTop, actionsBelow } = useMemo(() => {
     if (!layout)
@@ -621,13 +649,35 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
           top: actionsTop,
           left: isMine ? undefined : PADDING,
           right: isMine ? PADDING : undefined,
-          width: SCREEN_WIDTH * 0.65,
-          maxWidth: 280,
+          // Nine 32px emoji cells need ~304px; the plain card stays narrower.
+          width: canReact ? Math.min(SCREEN_WIDTH - PADDING * 2, 312) : SCREEN_WIDTH * 0.65,
+          maxWidth: canReact ? 312 : 280,
         }}
       >
         <Pressable>
           <View className="rounded-xl overflow-hidden py-1">
               <MessageSurface radius={12} />
+            {canReact && (
+              <View className="flex-row justify-between px-2 py-2 border-b border-white/10">
+                {QUICK_DM_REACTIONS.map((emoji) => {
+                  const given =
+                    !!myAddress &&
+                    !!message.reactions?.[emoji]?.some((a) => a.toLowerCase() === myAddress);
+                  return (
+                    <TouchableOpacity
+                      key={emoji}
+                      onPress={() => handleReact(emoji)}
+                      activeOpacity={0.6}
+                      className={`w-8 h-8 items-center justify-center rounded-full ${
+                        given ? "bg-white/20" : ""
+                      }`}
+                    >
+                      <Text className="text-[20px]">{emoji}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
             {actions.map((action) => (
               <ActionRow key={action.label} {...action} />
             ))}

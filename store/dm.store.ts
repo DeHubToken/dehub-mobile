@@ -239,6 +239,16 @@ export const dmActions = {
     }
   },
 
+  /** Replace a stored message's reaction map. */
+  applyReactions(dmId: ID, messageId: ID, reactions: Record<string, string[]>): void {
+    const list = dmState.messagesByConversation[dmId];
+    if (!list) return;
+    const idx = list.findIndex((m) => m._id === messageId);
+    if (idx < 0) return;
+    list[idx] = { ...list[idx], reactions };
+    dmState.messagesByConversation[dmId] = [...list];
+  },
+
   /** Remove a message from the store. */
   removeMessage(del: DeleteMessageResponse): void {
     const list = dmState.messagesByConversation[del.dmId];

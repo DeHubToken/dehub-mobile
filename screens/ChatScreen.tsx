@@ -18,6 +18,7 @@ import {
   Keyboard,
   ActivityIndicator,
   Alert,
+  Pressable,
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -38,6 +39,7 @@ import DmFeeBanner from "../components/DM/DmFeeBanner";
 import DmEncryptionBanner from "../components/DM/DmEncryptionBanner";
 import DmLockedState, { DmUndecryptableRun } from "../components/DM/DmLockedState";
 import NewChatIntro from "../components/DM/NewChatIntro";
+import MessageReactions from "../components/DM/MessageReactions";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
 import PollCard from "../components/DM/PollCard";
 import CreatePollSheet from "../components/DM/CreatePollSheet";
@@ -78,6 +80,7 @@ import type {
   OptimisticMessage,
   EditMessageResponse,
   DeleteMessageResponse,
+  ReactionUpdatedPayload,
   ReadReceiptResponse,
   DownloadReceiptResponse,
   FeeConfirmedPayload,
@@ -871,6 +874,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }),
     );
 
+    // Reactions
+    unsubs.push(
+      ws.on(DMSocketEvent.ReactionUpdated, (payload: ReactionUpdatedPayload) => {
+        if (payload?.dmId === currentConvId && payload.reactions) {
+          dmActions.applyReactions(payload.dmId, payload.messageId, payload.reactions);
+        }
+      }),
+    );
+
     // Read receipt — ignore self-receipts (our own markAsRead echoed back)
     unsubs.push(
       ws.on(DMSocketEvent.readReceipt, (payload: ReadReceiptResponse) => {
@@ -1328,6 +1340,41 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     closeContextMenu();
   }, [contextMessage, currentConvId, ws, closeContextMenu]);
 
+  // Same socket events and address-keyed map as the web app, applied
+  // optimistically and put back if the emit throws.
+  const toggleReaction = useCallback(
+    (message: DmMessage, emoji: string) => {
+      if (!currentConvId || !address) return;
+      const previous = message.reactions || {};
+      const others = (previous[emoji] || []).filter((a) => a.toLowerCase() !== address);
+      const adding = others.length === (previous[emoji] || []).length;
+      const next = { ...previous };
+      if (adding) next[emoji] = [...others, address];
+      else if (others.length) next[emoji] = others;
+      else delete next[emoji];
+      dmActions.applyReactions(currentConvId, message._id, next);
+      try {
+        ws.emitAuthed(adding ? DMSocketEvent.AddReaction : DMSocketEvent.RemoveReaction, {
+          dmId: currentConvId,
+          messageId: message._id,
+          emoji,
+        });
+      } catch (e) {
+        dmActions.applyReactions(currentConvId, message._id, previous);
+        toastError(e, t("common.somethingWentWrong"));
+      }
+    },
+    [currentConvId, address, ws, t],
+  );
+
+  const handleReact = useCallback(
+    (emoji: string) => {
+      if (contextMessage) toggleReaction(contextMessage, emoji);
+      closeContextMenu();
+    },
+    [contextMessage, toggleReaction, closeContextMenu],
+  );
+
   const handleForward = useCallback(() => {
     if (contextMessage) setForwardMessage(contextMessage);
     setForwardVisible(true);
@@ -1609,10 +1656,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             onReplyPress={handleReplyPress}
             highlighted={highlightedId === item._id}
           />
+          <MessageReactions
+            reactions={item.reactions}
+            isMine={mine}
+            myAddress={address}
+            onToggle={(emoji) => toggleReaction(item, emoji)}
+          />
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns],
+    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction],
   );
 
   const keyExtractor = useCallback((item: DmMessage) => item._id, []);
@@ -1721,15 +1774,19 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         <View className="flex-1">
           {/* New chat intro — shown before first message */}
           {showNewChatIntro ? (
-            <NewChatIntro
-              peer={{
-                address: peer.address,
-                displayName: peer.displayName,
-                username: peer.username,
-                avatarImageUrl: peerAvatarUri,
-              }}
-              policy={peerPolicy}
-            />
+            // No list behind the intro to take the tap, so nothing closed the
+            // keyboard until the user left the chat.
+            <Pressable style={{ flex: 1 }} onPress={Keyboard.dismiss} accessible={false}>
+              <NewChatIntro
+                peer={{
+                  address: peer.address,
+                  displayName: peer.displayName,
+                  username: peer.username,
+                  avatarImageUrl: peerAvatarUri,
+                }}
+                policy={peerPolicy}
+              />
+            </Pressable>
           ) : showLockedState ? (
             <DmLockedState
               status={e2eeStatus}
@@ -1879,6 +1936,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             avatarImageUrl: (user as any)?.avatarImageUrl,
           }}
           onClose={closeContextMenu}
+          onReact={handleReact}
+          myAddress={address}
           onReply={handleReply}
           onEdit={handleEdit}
           onForward={handleForward}
