@@ -126,6 +126,7 @@ type ContentTab =
   | "subscribers"
   | "pinned"
   | "playlists"
+  | "articles"
   | "dislikes";
 
 const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
@@ -139,6 +140,7 @@ const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
   { key: "fractions", get label() { return _translateCopy("copy.487aaa977933", { defaultValue: "Fractions" }); }, icon: "ChartPie" },
   { key: "pinned", get label() { return _translateCopy("copy.f20c87946555", { defaultValue: "Pinned" }); }, icon: "Pin" },
   { key: "playlists", get label() { return _translateCopy("copy.dcd0a4d2c65a", { defaultValue: "Playlists" }); }, icon: "ListVideo" },
+  { key: "articles", get label() { return _translateCopy("profile.tabArticles", { defaultValue: "Articles" }); }, icon: "Blog" },
 ];
 
 const UserProfileBottomContentTabs: React.FC<
@@ -234,11 +236,11 @@ const UserProfileBottomContentTabs: React.FC<
   const tabItems = useMemo<ProfileTabItem<ContentTab>[]>(() => {
     const withCounts = BASE_TAB_ITEMS.map((item) => ({
       ...item,
-      label: item.key === "playlists" ? t("profile.tabPlaylists") : item.label,
+      label: item.key === "playlists" ? t("profile.tabPlaylists") : item.key === "articles" ? t("profile.tabArticles") : item.label,
       count: (counts as Record<string, number | undefined>)[item.key] ?? 0,
     }))
       // Public playlists only earn a tab once there is one to show.
-      .filter((item) => item.key !== "playlists" || (item.count ?? 0) > 0);
+      .filter((item) => (item.key !== "playlists" && item.key !== "articles") || (item.count ?? 0) > 0);
     const home = withCounts.find((item) => item.key === "home")!;
     const rest = withCounts
       .filter((item) => item.key !== "home")
@@ -752,6 +754,22 @@ const UserProfileBottomContentTabs: React.FC<
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
               address={address}
               postType="feed-audio"
+              onBeforeNavigate={onClose}
+            />
+          </View>
+        );
+      case "articles":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <ProfileFeedTypeRoute
+              listRef={listRefFor(tab)}
+              onScroll={scrollHandler}
+              listHeader={isFullScreen ? fullScreenListHeader : undefined}
+              address={address}
+              postType="article"
+              emptyKind="posts"
+              emptyTitle={t("profile.articlesEmptyTitle")}
+              emptySubtitle={t("profile.articlesEmptySubtitle")}
               onBeforeNavigate={onClose}
             />
           </View>
