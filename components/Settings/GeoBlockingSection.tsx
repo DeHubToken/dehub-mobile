@@ -143,6 +143,7 @@ const GeoBlockingSection: React.FC = () => {
         onClose={() => setOpen(false)}
         presentation="bottom"
         maxHeight="70%"
+        panelHeight="70%"
         blurIntensity={30}
       >
         <View className="flex-1">

@@ -747,7 +747,7 @@ export default function MigrateScreen() {
         maxHeight="80%"
         blurIntensity={30}
       >
-        <View className="flex-1">
+        <View>
           <View className="px-5 pt-4 pb-3 border-b border-white/10">
             <Text className="text-white font-bold text-base">{t('migrate.editTitle')}</Text>
           </View>
