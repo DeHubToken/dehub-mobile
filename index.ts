@@ -23,6 +23,7 @@ import "./libs/globalFont";
 // LogBox.ignoreLogs(["Failed to obtain view for PanGestureHandler"]);
 
 import { registerRootComponent } from "expo";
+import { applyHardwareImageDecode } from "./libs/hardwareImageDecode";
 
 import App from "./App";
 import { installGlobalErrorHandler } from "./libs/errorReporter";
@@ -33,6 +34,9 @@ import { reportProcessExits } from "./libs/processExit";
 // to be in place before the first render, since a fault while the tree is
 // mounting is exactly the one nobody can otherwise see.
 installGlobalErrorHandler();
+
+// As early as possible: pictures that load before it resolves keep the old path.
+void applyHardwareImageDecode();
 
 // How the previous run ended, if it did not end by choice. A native crash or
 // an OOM kills the process without the handler above ever running; Android

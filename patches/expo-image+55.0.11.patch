@@ -1,0 +1,51 @@
+diff --git a/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageModule.kt b/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageModule.kt
+index 2579cb3..fa41e29 100644
+--- a/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageModule.kt
++++ b/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageModule.kt
+@@ -178,6 +178,10 @@ class ExpoImageModule : Module() {
+       }
+     }
+ 
++    Function("setHardwareBitmapsEnabled") { enabled: Boolean ->
++      ExpoImageViewWrapper.allowHardwareBitmaps = enabled
++    }
++
+     AsyncFunction("clearMemoryCache") {
+       val activity = appContext.currentActivity ?: return@AsyncFunction false
+       Glide.get(activity).clearMemory()
+diff --git a/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageViewWrapper.kt b/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageViewWrapper.kt
+index 224404e..fd916c7 100644
+--- a/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageViewWrapper.kt
++++ b/node_modules/expo-image/android/src/main/java/expo/modules/image/ExpoImageViewWrapper.kt
+@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
+ import com.bumptech.glide.RequestManager
+ import com.bumptech.glide.load.engine.DiskCacheStrategy
+ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
++import com.bumptech.glide.load.resource.bitmap.Downsampler
+ import com.bumptech.glide.request.RequestOptions
+ import com.github.penfeizhou.animation.gif.GifDrawable
+ import expo.modules.image.enums.ContentFit
+@@ -582,6 +583,13 @@ class ExpoImageViewWrapper(context: Context, appContext: AppContext) : ExpoView(
+         .encodeQuality(100)
+         .format(decodeFormat.toGlideFormat())
+         .apply(propOptions)
++        .customize(allowHardwareBitmaps && blurRadius == null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
++          // Decoded straight into GPU memory, so a scrolling frame no longer
++          // uploads each new picture on the render thread. Blur needs a
++          // software bitmap; Glide itself still skips devices and sizes where
++          // hardware bitmaps are unsafe.
++          set(Downsampler.ALLOW_HARDWARE_CONFIG, true)
++        }
+         .apply(options)
+         .customize(tintColor) {
+           apply(RequestOptions().set(CustomOptions.tintColor, it))
+@@ -622,6 +630,9 @@ class ExpoImageViewWrapper(context: Context, appContext: AppContext) : ExpoView(
+   }
+ 
+   companion object {
++    /** App-wide switch, flipped from JS (setHardwareBitmapsEnabled). */
++    @Volatile
++    var allowHardwareBitmaps: Boolean = false
+     private var requestManager: RequestManager? = null
+     private var appContextRef: WeakReference<AppContext?> = WeakReference(null)
+     private var activityRef: WeakReference<Activity?> = WeakReference(null)
