@@ -1,6 +1,8 @@
 package io.dehub.mobile
 
 import android.app.Application
+import android.content.ComponentCallbacks2
+import android.os.SystemClock
 import android.content.res.Configuration
 
 import com.facebook.react.PackageList
@@ -47,5 +49,36 @@ class MainApplication : Application(), ReactApplication {
   override fun onConfigurationChanged(newConfig: Configuration) {
     super.onConfigurationChanged(newConfig)
     ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig)
+  }
+
+  // React Native only raises AppState "memoryWarning" on iOS. Android phones
+  // low on memory (mostly old or low-RAM ones) never told the app, so the
+  // decoded picture cache was never dropped before the system killed us.
+  // Forward foreground memory pressure to the same JS event; the app clears
+  // its in-memory picture cache there (the disk cache keeps the files).
+  private var lastMemoryWarningAt = 0L
+
+  @Suppress("DEPRECATION")
+  override fun onTrimMemory(level: Int) {
+    super.onTrimMemory(level)
+    if (level == ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW ||
+        level == ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL) {
+      emitMemoryWarning()
+    }
+  }
+
+  override fun onLowMemory() {
+    super.onLowMemory()
+    emitMemoryWarning()
+  }
+
+  private fun emitMemoryWarning() {
+    val now = SystemClock.elapsedRealtime()
+    if (now - lastMemoryWarningAt < 10_000L) return
+    lastMemoryWarningAt = now
+    try {
+      reactHost.currentReactContext?.emitDeviceEvent("memoryWarning", null)
+    } catch (_: Throwable) {
+    }
   }
 }
