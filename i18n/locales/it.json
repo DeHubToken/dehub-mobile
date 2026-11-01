@@ -14592,5 +14592,20 @@
     "title": "Buon Halloween",
     "otherThemes": "Niente brividi? Trova altri temi:",
     "enter": "Entra nel sotterraneo"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Prossimamente",
+    "title": "Il token sarà lanciato presto",
+    "body": "L'acquisto è chiuso mentre il nuovo token si prepara. Ricevi un'email nel momento in cui sarà disponibile.",
+    "notifyMe": "Notificami",
+    "sendTo": "Ti invieremo un'email a {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "La tua email",
+    "invalidEmail": "Inserisci un'email valida",
+    "joinedTitle": "Sei nella lista",
+    "joinedBody": "Ti invieremo un'email a {{email}} quando il token sarà lanciato.",
+    "joinedBodyNoEmail": "Ti invieremo un'email quando il token sarà lanciato.",
+    "failed": "Non è stato possibile salvare. Riprova.",
+    "privacy": "Utilizzato solo per informarti del lancio."
   }
 }

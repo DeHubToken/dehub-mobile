@@ -14580,5 +14580,20 @@
     "confirm": "Menta {{chain}} napján",
     "confirmWithCost": "Menta {{chain}} · {{cost}} napján",
     "notAvailable": "Ezen a láncon a verés még nem érhető el."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Jövőben",
+    "title": "Token indítása közeledik",
+    "body": "A vásárlás le van zárva, amíg a új token készül. Kapj egy emailt, amikor online lesz.",
+    "notifyMe": "Értesíts meg engem",
+    "sendTo": "{{email}}-nak fogunk emailt küldeni",
+    "emailLabel": "Email",
+    "emailPlaceholder": "A megadott email",
+    "invalidEmail": "Adjon meg egy érvényes emailt",
+    "joinedTitle": "A listán vagy",
+    "joinedBody": "{{email}}-nak fogunk emailt küldeni, amikor a token indítódik.",
+    "joinedBodyNoEmail": "Miután elindul a token, emailben értesítünk téged.",
+    "failed": "Nem sikerült menteni. Próbálja újra.",
+    "privacy": "Csak azért használjuk, hogy a token indításáról értesítsünk."
   }
 }

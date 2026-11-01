@@ -15424,5 +15424,20 @@
     "title": "Happy Halloween",
     "otherThemes": "Not feeling spooky? Find other themes:",
     "enter": "Enter the dungeon"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Coming soon",
+    "title": "Token launching soon",
+    "body": "Buying is closed while the new token gets ready. Get an email the moment it goes live.",
+    "notifyMe": "Notify me",
+    "sendTo": "We will email {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email",
+    "invalidEmail": "Enter a valid email",
+    "joinedTitle": "You are on the list",
+    "joinedBody": "We will email {{email}} when the token launches.",
+    "joinedBodyNoEmail": "We will email you when the token launches.",
+    "failed": "Could not save that. Try again.",
+    "privacy": "Only used to tell you about the launch."
   }
 }

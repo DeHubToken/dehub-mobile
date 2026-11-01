@@ -14562,5 +14562,13 @@
     "confirm": "Mint na {{chain}}",
     "confirmWithCost": "Mint na {{chain}} {{cost}}",
     "notAvailable": "Ihe ngosi dị na yinye a adịbeghị."
+  },
+  "tokenLaunch": {
+    "body": "Ịzụ ahịa emechaala ka token ọhụrụ na-akwadebe. Nata imeyl ngwa ngwa mgbe ọ na-amalite.",
+    "sendTo": "Anyị ga-ezipụ {{email}}",
+    "joinedTitle": "Ndè mma nke ụlọ ụlọ.",
+    "joinedBodyNoEmail": "Aga m ezipụta gị ozi mgbe token ahụ na-amalite.",
+    "failed": "Ndèrè n'egwèrè nke àlà. Nkèrè n'egwèrè.",
+    "privacy": "Naanị ejiri ya ịkwu gị ihe banyere mmalite ahụ."
   }
 }

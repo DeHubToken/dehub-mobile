@@ -37,6 +37,8 @@ import { MAX_TTS_CHARS } from "../../libs/tipTts";
 import { toastError, toastSuccess } from "../../libs/toast";
 import DpayTopUpForm from "../Dpay/DpayTopUpForm";
 import NearIntentBuy from "../Dpay/NearIntentBuy";
+import TokenLaunchNotify from "../TokenLaunch/TokenLaunchNotify";
+import { DHB_SALES_PAUSED } from "../../libs/dhb-sales";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 import { formatNumber } from "../../libs/numbers.util";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
@@ -591,6 +593,14 @@ const GiftModal: React.FC<GiftModalProps> = ({
       maxHeight="90%"
       scrollable
     >
+      {DHB_SALES_PAUSED ? (
+        <View className="py-3">
+          <TokenLaunchNotify />
+          <TouchableOpacity onPress={() => setBuyOpen(false)} className="h-11 mx-4 mt-2 rounded-[10px] bg-white/10 items-center justify-center">
+            <Text className="text-white font-semibold">{t("liveGift.backToGift")}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
       <View className="p-5">
         <Text className="text-white text-2xl font-bold mb-1">{t("liveGift.buyTokens")}</Text>
         <Text className="text-white/60 text-xs mb-4">{t("liveGift.buyHint")}</Text>
@@ -621,6 +631,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
           <Text className="text-white font-semibold">{t("liveGift.backToGift")}</Text>
         </TouchableOpacity>
       </View>
+      )}
     </GlassModal>
     </>
   );

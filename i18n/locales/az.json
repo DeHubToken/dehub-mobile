@@ -14575,5 +14575,18 @@
     "confirm": "Nanə {{chain}}",
     "confirmWithCost": "Nanə {{chain}} · {{cost}}",
     "notAvailable": "Bu zəncirdə mintinq hələ mövcud deyil."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tezliklə",
+    "body": "Alış-veriş kapalıdır, yeni token hazırlanır. Canlı olaraq çıxdıqda sizinə e-posta göndəriləcək.",
+    "notifyMe": "Xəbərdarlıq edin",
+    "emailLabel": "E-poçt",
+    "emailPlaceholder": "Sizin emailiniz",
+    "invalidEmail": "Düzgün bir email daxil edin.",
+    "joinedTitle": "Siz siyahıda qaldınız.",
+    "joinedBody": "{{email}} tokenın çıxdıqda sizə email göndərəcəyik.",
+    "joinedBodyNoEmail": "Sizə tokenin buraxılmasından sonra email göndərəcəyik.",
+    "failed": "Bunu yaddaşda saxlamaq mümkün olmadı. Yenidən cəhd edin.",
+    "privacy": "Yalnız bu ilan üçün istifadə olunur."
   }
 }

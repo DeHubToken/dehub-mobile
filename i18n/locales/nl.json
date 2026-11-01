@@ -15817,5 +15817,20 @@
     "title": "Fijne Halloween",
     "otherThemes": "Geen zin in griezelen? Vind andere thema's:",
     "enter": "Betreed de kerker"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Komt spoedig",
+    "title": "Token gaat spoedig live",
+    "body": "Aankopen zijn gesloten terwijl het nieuwe token wordt voorbereid. Ontvang een e-mail zodra het live gaat.",
+    "notifyMe": "Meld mij aan",
+    "sendTo": "We zullen {{email}} mailen",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Jouw e-mail",
+    "invalidEmail": "Voer een geldige e-mail in",
+    "joinedTitle": "Je staat op de lijst",
+    "joinedBody": "We zullen {{email}} mailen wanneer het token live gaat.",
+    "joinedBodyNoEmail": "We zullen je mailen wanneer het token live gaat.",
+    "failed": "Kon deze niet opslaan. Probeer het opnieuw.",
+    "privacy": "Alleen gebruikt om je op de hoogte te houden van de lancering."
   }
 }

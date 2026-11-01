@@ -14580,5 +14580,20 @@
     "confirm": "Mincovna {{chain}}",
     "confirmWithCost": "Mincovna {{chain}} · {{cost}}",
     "notAvailable": "Minting na tomto řetězci zatím není k dispozici."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Brzy přijde",
+    "title": "Lancování tokenu brzy",
+    "body": "Koupení je zatím uzavřeno, protože se připravuje nový token. Obdržíte email okamžitě, jakmile bude live.",
+    "notifyMe": "Oznamte mi",
+    "sendTo": "Odesíláme email {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Vaše email",
+    "invalidEmail": "Zadejte platný email",
+    "joinedTitle": "Jste na seznamu",
+    "joinedBody": "Odesíláme email {{email}}, jakmile token vyjde.",
+    "joinedBodyNoEmail": "Odesíláme vám email, jakmile token vyjde.",
+    "failed": "Nepodařilo se uložit. Zkuste to znovu.",
+    "privacy": "Pouze pro informace o lancování."
   }
 }

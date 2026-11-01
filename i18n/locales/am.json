@@ -14604,5 +14604,20 @@
     "priceUnavailable": "ዋጋ አይገኝም",
     "confirmWithCost": "በ {{chain}} {{cost}}",
     "notAvailable": "በዚህ ሰንሰለት ላይ መቀባት ገና አልተገኘም ።"
+  },
+  "tokenLaunch": {
+    "eyebrow": "በቅርቡ ይደርሳል",
+    "title": "ቶኬን በቅርቡ ይተራል",
+    "body": "አግዝት የተዘጋጀ እስከ አዲሱ ቶኬን ዝግጅት ሲሰጥ ይዘጋጅ ይሆናል። ወቅቱ በተለቀ አድርጉ ኢሜል ይተላለፋል።",
+    "notifyMe": "አስተዋውቅ አድርግ",
+    "sendTo": "እኛ ኢሜል እናቀርባለን {{email}}",
+    "emailLabel": "ኢሜል",
+    "emailPlaceholder": "የእርስዎ ኢሜል",
+    "invalidEmail": "ተቀባይነት ያለው ኢሜል ያስገቡ",
+    "joinedTitle": "እርስዎ በዝርዝሩ ላይ ነው",
+    "joinedBody": "እኛ ኢሜል እናቀርባለን {{email}} ቶኬን ሲተራ ።",
+    "joinedBodyNoEmail": "እኛ ኢሜል እናቀርባለን ቶኬን ሲተራ ።",
+    "failed": "ይህን ማስቀመጥ አልቻለም። ደግሞ ይሞክሩ።",
+    "privacy": "በተጨማሪ ለማስታወቂያ ብቻ ይጠቀሙ።"
   }
 }

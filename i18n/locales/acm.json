@@ -14573,5 +14573,20 @@
     "confirm": "منت على {{chain}}",
     "confirmWithCost": "منت على {{chain}} · {{cost}}",
     "notAvailable": "المنت على هذا التشين غير متوفر حاليا."
+  },
+  "tokenLaunch": {
+    "eyebrow": "قريبًا",
+    "title": "إطلاق التوكن قريبًا",
+    "body": "الشراء مغلق بينما التوكن الجديد يتحضر. استلم إيميل لحظة ما يطلق.",
+    "notifyMe": "نبهني",
+    "sendTo": "حنرسل إيميل لـ {{email}}",
+    "emailLabel": "الإيميل",
+    "emailPlaceholder": "إيميلك",
+    "invalidEmail": "أدخل إيميل صحيح",
+    "joinedTitle": "إنت على القائمة",
+    "joinedBody": "حنرسل إيميل لـ {{email}} لما يطلق التوكن.",
+    "joinedBodyNoEmail": "حنرسل لك إيميل لما يطلق التوكن.",
+    "failed": "ما قدرنا نحفظ هالشي. جرّب مرة ثانية.",
+    "privacy": "بس نخبرك عن الإطلاق."
   }
 }

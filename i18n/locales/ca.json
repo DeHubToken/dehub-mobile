@@ -14576,5 +14576,20 @@
     "confirm": "Menta a {{chain}}",
     "confirmWithCost": "Menta a {{chain}} · {{cost}}",
     "notAvailable": "L'encunyació d'aquesta cadena encara no està disponible."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Proximament",
+    "title": "Llançament de tokens pròximament",
+    "body": "La compra està tancada mentre es prepara el nou token. Rebreu un correu electrònic en el moment que es posi en línia.",
+    "notifyMe": "Notificar-me",
+    "sendTo": "Us enviarem un correu a {{email}}",
+    "emailLabel": "Correu electrònic",
+    "emailPlaceholder": "El teu correu electrònic",
+    "invalidEmail": "Introduïu un correu electrònic vàlid",
+    "joinedTitle": "Ja esteu a la llista",
+    "joinedBody": "Us enviarem un correu a {{email}} quan es llanci el token.",
+    "joinedBodyNoEmail": "Us enviarem un correu quan es llanci el token.",
+    "failed": "No s'ha pogut guardar. Torneu a intentar-ho.",
+    "privacy": "Només s'utilitza per informar-vos del llançament."
   }
 }

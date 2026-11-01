@@ -14574,5 +14574,14 @@
     "confirm": "Mint a kan {{chain}}",
     "confirmWithCost": "Mint a kan {{chain}} · {{cost}}",
     "notAvailable": "Minting a kan wannan sarkar ba a samuwa ba tukuna."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Sannu da zuwa",
+    "invalidEmail": "Sai anai rubuta abin da aka shirya a cikin wannan shafin.",
+    "joinedTitle": "Ka a cika jerinmu.",
+    "joinedBody": "Muna kiranin {{email}} lokacin da ake kirkire token.",
+    "joinedBodyNoEmail": "Muna kallon ku da email lokacin da ake kirkirar daidai token.",
+    "failed": "Ba zai iya ajiye wannan ba. sake gwadawa.",
+    "privacy": "Kawai ake magana da ku da shirin da aka kaddamar a cikin wannan wata."
   }
 }

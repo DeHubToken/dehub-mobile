@@ -31,6 +31,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import type { AppStackParamList } from "../navigation/types";
 import { DHB_SALES_PAUSED } from "../libs/dhb-sales";
+import TokenLaunchNotify from "../components/TokenLaunch/TokenLaunchNotify";
 
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
@@ -125,7 +126,7 @@ const DpayScreen: React.FC = () => {
   };
 
   React.useEffect(() => {
-    if (activeTab !== "buy" || dataReady) return;
+    if (activeTab !== "buy" || dataReady || DHB_SALES_PAUSED) return;
     let cancelled = false;
     async function bootstrap() {
       try {
@@ -166,7 +167,7 @@ const DpayScreen: React.FC = () => {
         } catch {}
       })();
     },
-    activeTab === "buy" ? POLL_INTERVAL_MS : null,
+    activeTab === "buy" && !DHB_SALES_PAUSED ? POLL_INTERVAL_MS : null,
     { catchUp: true },
   );
 
@@ -215,7 +216,9 @@ const DpayScreen: React.FC = () => {
         />
 
         {/* Tab content */}
-        {activeTab === "buy" && (
+        {/* While sales are closed, Buy Tokens is the launch list. */}
+        {activeTab === "buy" && DHB_SALES_PAUSED && <TokenLaunchNotify />}
+        {activeTab === "buy" && !DHB_SALES_PAUSED && (
           <>
             <PageSection>
               <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />

@@ -14551,5 +14551,18 @@
     "priceUnavailable": "O tɛ se ka kɛ",
     "confirm": "O ye {{chain}}",
     "notAvailable": "O kama, u ma se ka marifakɛlɛ kɛ."
+  },
+  "tokenLaunch": {
+    "body": "Sàn-sàn dɔ̀n kɔ̀nɔ̀ sira a tɛ́ jɛ́ token kura ye sɛbɛn na. Iimɛ̀ la gaf a jɛ́ o dɔ̀n kɔ̀nɔ̀ kɛ́ sira.",
+    "notifyMe": "Bɛma me",
+    "sendTo": "A bɛ i-mail {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "I-meeli jɛ",
+    "invalidEmail": "Imɛyili jɛ ka bon sɛbɛn",
+    "joinedTitle": "I nin ka jɔ̀n na",
+    "joinedBody": "A bɛ email {{email}} sɛbɛn jɔ token la.",
+    "joinedBodyNoEmail": "A bɛ i jɔ email la sɔrɔ ka token la wuli.",
+    "failed": "A man tɛ se ka sɛbɛn. Segin fɔ.",
+    "privacy": "A ka se fɛ ka kɔ ni i ma ka sɛbɛn."
   }
 }

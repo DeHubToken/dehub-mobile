@@ -15565,5 +15565,20 @@
     "title": "Mutlu Cadılar Bayramı",
     "otherThemes": "Korku havasında değil misin? Diğer temaları bul:",
     "enter": "Zindana gir"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Çok yakında",
+    "title": "Token çok yakında çıkıyor",
+    "body": "Alışveriş kapalı, yeni token hazırlanırken. Canlı olunca hemen bir e-posta alacaksın.",
+    "notifyMe": "Bana haber ver",
+    "sendTo": "{{email}}'a e-posta göndericeğiz.",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "E-posta adresiniz",
+    "invalidEmail": "Geçerli bir e-posta girin",
+    "joinedTitle": "Listedesiniz",
+    "joinedBody": "{{email}}'yi token başladığında size email gönderelim.",
+    "joinedBodyNoEmail": "Sizlere tokenın açıldığında e-posta gönderilecektir.",
+    "failed": "Kaydedilemedi. Tekrar deneyin.",
+    "privacy": "Yalnızca lansmanı haber vermek için kullanılır."
   }
 }

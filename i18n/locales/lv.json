@@ -14576,5 +14576,19 @@
     "confirm": "Monētu kaltuve {{chain}}",
     "confirmWithCost": "Monētu kaltuve {{chain}} · {{cost}}",
     "notAvailable": "Šīs ķēdes kalšana vēl nav pieejama."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Drīzumā",
+    "title": "Token launchings atbūdis tuvu!",
+    "body": "Pirktājs ir slēgts, kamēr jauns tokens gatavojas. Saņemiet e-pastu, kad tas tiks publicēts.",
+    "notifyMe": "Maniet mani",
+    "sendTo": "Mēs {{email}}sūtsim e-pastu.",
+    "emailLabel": "E-pasts",
+    "emailPlaceholder": "Jūsu e-pasts",
+    "invalidEmail": "Ievadiet derīgu e-pasta adresi.",
+    "joinedTitle": "Jūs esat sarakstā.",
+    "joinedBodyNoEmail": "Jūsūs paziņosim, kad tokens iznāks, ar e-pasta ziņu.",
+    "failed": "Nevarēja to saglabāt. Mēģiniet vēlreiz.",
+    "privacy": "Tikai lai tevi informētu par izlaidi."
   }
 }

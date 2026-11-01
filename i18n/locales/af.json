@@ -14701,5 +14701,20 @@
     "confirm": "Munt op {{chain}}",
     "confirmWithCost": "Munt op {{chain}} · {{cost}}",
     "notAvailable": "Mining op hierdie ketting is nog nie beskikbaar nie."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Binnekort beskikbaar",
+    "title": "Token word binnekort geloods",
+    "body": "Koping is gesluit terwyl die nuwe token gereed gemaak word. Ontvang 'n e-pos die oomblik dit lewendig gaan.",
+    "notifyMe": "Stel my in kennis",
+    "sendTo": "Ons sal e-pos aan {{email}}",
+    "emailLabel": "E-pos",
+    "emailPlaceholder": "Jou e-pos",
+    "invalidEmail": "Voer 'n geldige e-pos in",
+    "joinedTitle": "Jy is op die lys",
+    "joinedBody": "Ons sal e-pos aan {{email}} wanneer die token geloods word.",
+    "joinedBodyNoEmail": "Ons sal jou e-pos wanneer die token geloods word.",
+    "failed": "Kon dit nie stoor nie. Probeer weer.",
+    "privacy": "Slegs gebruik om jou van die bekendstelling in te lig."
   }
 }
