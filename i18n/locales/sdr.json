@@ -14626,5 +14626,16 @@
     "priceUnavailable": "Price unavailable",
     "confirm": "Mint on {{chain}}",
     "notAvailable": "ماینٹنگ اُپر یہاں یہ ابھی تک دستیاب نہیں ہے۔"
+  },
+  "tokenLaunch": {
+    "body": "بخرید بسته شده است در حالی که توکن جدید آماده می‌شود. یک ایمیل دریافت کنید در دقیقه‌ای که آنلاین می‌شود.",
+    "sendTo": "{{email}}-i email qilishimizda.",
+    "emailLabel": "پست الکترونیکی",
+    "emailPlaceholder": "پست الکترونیکی",
+    "invalidEmail": "एक मान्य ईमेल दर्ज करें",
+    "joinedTitle": "سۆزی لێکەرەوەیەکەیە",
+    "joinedBody": "{{email}}-i qeyd qeyd etibarlı olduğu zaman email göndəriləcək.",
+    "failed": "نمی‌تونم این رو ذخیره کنم. دوباره امتحان کن.",
+    "privacy": "فقط برای تو خبر دادن از راه اندازی استفاده می شود."
   }
 }

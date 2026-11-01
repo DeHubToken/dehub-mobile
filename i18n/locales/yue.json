@@ -14574,5 +14574,20 @@
     "confirm": "薄荷上 {{chain}}",
     "confirmWithCost": "薄荷上 {{chain}} · {{cost}}",
     "notAvailable": "呢條鏈嘅鑄造仲未有得賣。"
+  },
+  "tokenLaunch": {
+    "eyebrow": "就快嚟到",
+    "title": "好快就會推出代幣",
+    "body": "喺新代幣準備好嗰陣，買嘢已經閂咗。喺佢上線嗰陣收到電郵。",
+    "notifyMe": "通知我",
+    "sendTo": "我哋會電郵 {{email}}",
+    "emailLabel": "電郵",
+    "emailPlaceholder": "你嘅電郵",
+    "invalidEmail": "輸入有效嘅電郵",
+    "joinedTitle": "你喺名單入面",
+    "joinedBody": "當令牌啟動嗰陣，我哋會電郵 {{email}} 。",
+    "joinedBodyNoEmail": "我哋會喺令牌啟動嗰陣發電郵畀你。",
+    "failed": "救唔到嗰個。再試多次。",
+    "privacy": "只係用嚟同你講推出嘅事"
   }
 }

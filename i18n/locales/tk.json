@@ -14560,5 +14560,20 @@
     "confirm": "Mint on {{chain}}",
     "confirmWithCost": "{{chain}} {{cost}}",
     "notAvailable": "Häzirki ýaly, bu mekdebiň açylmagy barada hiç hili habar berilmedi."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tezden çykyş",
+    "title": "Token tezden çykyş",
+    "body": "Satyn almak täze token taýynlanýan wagtynda ýapyk. Onuň işe girende e-poçta alyň.",
+    "notifyMe": "Meni habar et",
+    "sendTo": "Biz {{email}} adresine e-poçta ibereris",
+    "emailLabel": "E-poçta",
+    "emailPlaceholder": "Siziň e-poçtaňyz",
+    "invalidEmail": "Dogry e-poçta adresi giriziň",
+    "joinedTitle": "Siz sanawyda barsyňyz",
+    "joinedBody": "Biz {{email}} adresine token çykyşy wagtynda e-poçta ibereris.",
+    "joinedBodyNoEmail": "Biz size token çykyşy wagtynda e-poçta ibereris.",
+    "failed": "Muny saklamak mümkin bolmady. Gaýtadan synanyp görüň.",
+    "privacy": "Diňe çykyş barada size habar bermek üçin ulanylýar."
   }
 }

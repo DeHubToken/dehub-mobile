@@ -14579,5 +14579,20 @@
     "confirm": "Mynt på {{chain}}",
     "confirmWithCost": "Mynt på {{chain}} · {{cost}}",
     "notAvailable": "Mynta på denna kedja är inte tillgänglig ännu."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kommer snart",
+    "title": "Token lanseras snart",
+    "body": "Köp är stängt medan den nya tokenen förbereds. Få ett e‑mail så snart den går live.",
+    "notifyMe": "Meddela mig",
+    "sendTo": "Vi kommer att e‑posta {{email}}",
+    "emailLabel": "E‑post",
+    "emailPlaceholder": "Din e‑post",
+    "invalidEmail": "Ange en giltig e‑post",
+    "joinedTitle": "Du är på listan",
+    "joinedBody": "Vi kommer att e‑posta {{email}} när tokenen lanseras.",
+    "joinedBodyNoEmail": "Vi kommer att e‑posta dig när tokenen lanseras.",
+    "failed": "Kunde inte spara det. Försök igen.",
+    "privacy": "Endast används för att informera dig om lanseringen."
   }
 }

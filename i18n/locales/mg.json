@@ -14662,5 +14662,18 @@
     "priceUnavailable": "Price tsy misy",
     "confirmWithCost": "Toriteny amin'ny {{chain}}{{cost}}",
     "notAvailable": "Mbola tsy azo hazavaina ny momba ity kianjan'ny serasera ity amin'izao fotoana izao."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Misy manokana",
+    "title": "Mampitohy ny fanampiana ny token ka hatramin'ny aloha.",
+    "body": "Mampiasa tsy misy fa tsy misy ny fampiasana ny token vao aloha. Misy email ho anao fa tsy misy ny fampiasana ny token vao aloha.",
+    "notifyMe": "Hafahatra ahoana izay matetika",
+    "emailLabel": "Mailaka",
+    "invalidEmail": "Misy email valido",
+    "joinedTitle": "Misy anatin'ny lisitry ny aminao.",
+    "joinedBody": "Misaotra email a {{email}} nandray ny tokeneo.",
+    "joinedBodyNoEmail": "Misy email amin'ny fomba fampianarana amin'ny tokana.",
+    "failed": "Tsy afaka nandraikitra izany. Andramo indray.",
+    "privacy": "Misy tsy voasambatra amin'ny fampahatsiarovana."
   }
 }

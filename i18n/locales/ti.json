@@ -14559,5 +14559,20 @@
     "confirm": "ኣብ {{chain}}",
     "confirmWithCost": "ኣብ {{chain}} {{cost}}",
     "notAvailable": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ።"
+  },
+  "tokenLaunch": {
+    "eyebrow": "ብቍርበት ይመጣል",
+    "title": "ቶክን ብቍርበት ይወጣል",
+    "body": "ግዛት ተዝጊሙ ነው ሓድሽ ቶክን ምስ ዝተዳለወ። ኢሜይል ብሓንጺጹ ክትቀበል ትኽእል።",
+    "notifyMe": "ንዐውተኒ",
+    "sendTo": "ኢሜይል {{email}} ክንልክ",
+    "emailLabel": "ኢሜይል",
+    "emailPlaceholder": "ኢሜይልካ",
+    "invalidEmail": "ሓቅ ዘለዎ ኢሜይል ኣእቱ",
+    "joinedTitle": "ኣብ ዝርዝር ውሕት ኣለካ",
+    "joinedBody": "ኢሜይል {{email}} ብሓንጺጹ ቶክን ምስ ወጠ ክንልክ።",
+    "joinedBodyNoEmail": "ኢሜይል ብሓንጺጹ ቶክን ምስ ወጠ ክንልክ።",
+    "failed": "ሓደ ነገር ክሕዝን ኣይከኣለን። ድሕሪ ሕጂ ሞክር።",
+    "privacy": "ብቶክን ምውጣት ንምፍላጥ ጥራይ ይጠቀም።"
   }
 }

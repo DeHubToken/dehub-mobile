@@ -14595,5 +14595,18 @@
     "confirm": "Mint nisqapi {{chain}} nisqapi.",
     "confirmWithCost": "Mint nisqapi {{chain}} · {{cost}} nisqapi.",
     "notAvailable": "Kay cadena nisqapi minting nisqa manaraqmi kanchu."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Chayamuchkanña",
+    "title": "Token nisqayki chaskiytaqa",
+    "body": "Rantikuy pichqa kaylla, musuq token allinakuytaq. Emailta apakuway chayqa kawsaq kaykunaqa.",
+    "notifyMe": "Ama hina kaychu",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Su correo electrónico",
+    "invalidEmail": "Kamaykamaykuna p'unchaykuna q'illaykamaykuna.",
+    "joinedTitle": "Kamuykuna q'umirichisqa",
+    "joinedBodyNoEmail": "Kamaykunapaq k'uskiyki qillqamanta qillqa k'uskiyki.",
+    "failed": "Kamuykuna qhaway, mana kaptinapaq.",
+    "privacy": "Kamuykuna qhawaykunawan k'ancha k'aspiy."
   }
 }

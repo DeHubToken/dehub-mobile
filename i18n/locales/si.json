@@ -14600,5 +14600,14 @@
     "priceUnavailable": "මිල ලබා ගත නොහැක",
     "confirm": "{{chain}} මත මින්ට්",
     "notAvailable": "මේ චැනල් එකේ සබ් එක තාම අප්ඩේට් වෙලා නෑ."
+  },
+  "tokenLaunch": {
+    "eyebrow": "ඉක්මනින් පැමිණේ",
+    "title": "ටෝකන් ඉතා ඉක්මනින් දියත් වෙයි",
+    "emailLabel": "තැපැල්",
+    "emailPlaceholder": "ඔබේ යාන්ත්‍රික",
+    "invalidEmail": "වලංගු ඊමේල් ඇතුළත් කරන්න",
+    "joinedTitle": "ඔබ ලැයිස්ව ඇත.",
+    "joinedBodyNoEmail": "ඔබ ටොකන් නිවේදනය වීම සඳහා පණන් යම් තැන් මඟ පෙන්වමු."
   }
 }

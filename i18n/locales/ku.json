@@ -14888,6 +14888,9 @@
     "emailPlaceholder": "Têkiliyên tîpêjî yên te",
     "joinedTitle": "Tê li ser lîsteyê.",
     "joinedBody": "We {{email}} biyêjin ku tokenê destpê dike.",
-    "failed": "Nêzêk kirina nekir. Bêhn re bi kar bîne."
+    "failed": "Nêzêk kirina nekir. Bêhn re bi kar bîne.",
+    "eyebrow": "Coming soon",
+    "notifyMe": "Notify me",
+    "emailLabel": "Email"
   }
 }

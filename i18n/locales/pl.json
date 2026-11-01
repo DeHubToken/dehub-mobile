@@ -14657,5 +14657,20 @@
     "title": "Wesołego Halloween",
     "otherThemes": "Nie masz ochoty na strachy? Znajdź inne motywy:",
     "enter": "Wejdź do lochu"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Nadchodzi wkrótce",
+    "title": "Wkrótce token",
+    "body": "Kupowanie jest zamknięte, podczas gdy nowy token jest w przygotowaniu. Otrzymaj e-mail w momencie, gdy pójdzie na żywo.",
+    "notifyMe": "Powiadom mnie",
+    "sendTo": "Wyślemy e-mail na {{email}}",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Twój e-mail",
+    "invalidEmail": "Wprowadź ważny e-mail",
+    "joinedTitle": "Jesteś na liście",
+    "joinedBody": "Wyślemy e-mail na {{email}}, gdy token pójdzie na żywo.",
+    "joinedBodyNoEmail": "Wyślemy Ci e-mail, gdy token pójdzie na żywo.",
+    "failed": "Nie udało się zapisać. Spróbuj ponownie.",
+    "privacy": "Używane tylko po to, aby powiadomić Cię o uruchomieniu."
   }
 }

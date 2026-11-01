@@ -14755,5 +14755,20 @@
     "confirm": "Mint sa {{chain}}",
     "confirmWithCost": "Mint sa {{chain}} ·{{cost}}",
     "notAvailable": "Hindi pa available ang pagmimina sa chain na ito."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Maglalabas na",
+    "title": "Maglalabas na ang token",
+    "body": "Ang pagbibili ay nasara habang naghahanda ang bagong token. Magkaroon ka ng email sa sandali na ito ay maglulabas.",
+    "notifyMe": "Ibaba ang email mo",
+    "sendTo": "Ibibigay namin email sa {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Ito ang iyong email",
+    "invalidEmail": "Ipasok ang isang valid na email",
+    "joinedTitle": "Nasa listahan ka na",
+    "joinedBody": "Ibibigay namin email sa {{email}} kapag maglulabas ang token.",
+    "joinedBodyNoEmail": "Ibibigay namin email sa iyo kapag maglulabas ang token.",
+    "failed": "Hindi natin maipasa ito. Subukan muli.",
+    "privacy": "Gagamitin lamang ito upang ipaalam sa iyo tungkol sa paglulabas."
   }
 }

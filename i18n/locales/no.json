@@ -14576,5 +14576,18 @@
     "confirm": "Mynt på {{chain}}",
     "confirmWithCost": "Mint på {{chain}} · {{cost}}",
     "notAvailable": "Preging på denne kjeden er ikke tilgjengelig ennå."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kommer snart",
+    "body": "Kjøp er midlertidig stengt mens den nye tokenen blir forberedt. Meld deg på for å få en e-post når den går live.",
+    "notifyMe": "Bekrefte meg når du er ferdig.",
+    "sendTo": "Vi vil sende en epost til {{email}}.",
+    "emailLabel": "E-post",
+    "invalidEmail": "Legg inn en gyldig e-postadresse.",
+    "joinedTitle": "Du er på listen.",
+    "joinedBody": "Vi vil sende en epost til {{email}} når tokenet går i salg.",
+    "joinedBodyNoEmail": "Vi vil sende deg en e-post når tokenet går på markedet.",
+    "failed": "Kunne ikke lagre det. Prøv igjen.",
+    "privacy": "Bare for å fortelle deg om lanseringen."
   }
 }

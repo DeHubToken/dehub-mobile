@@ -14595,5 +14595,20 @@
     "title": "万圣节快乐",
     "otherThemes": "不想要惊悚风？换个主题吧：",
     "enter": "进入地牢"
+  },
+  "tokenLaunch": {
+    "eyebrow": "即将开放，敬请期待",
+    "title": "代币即将推出",
+    "body": "在新代币准备就绪时，购买已关闭。上线后立即收到电子邮件。",
+    "notifyMe": "_李白就象一个浪子一团糟",
+    "sendTo": "我们将发送电子邮件至{{email}}",
+    "emailLabel": "电子邮箱",
+    "emailPlaceholder": "您的邮箱地址",
+    "invalidEmail": "輸入有效 Email!",
+    "joinedTitle": "您已上榜",
+    "joinedBody": "我们将在令牌启动时向{{email}}发送电子邮件。",
+    "joinedBodyNoEmail": "我们将在令牌启动时向您发送电子邮件。",
+    "failed": "无法保存。请重试。",
+    "privacy": "仅用于告诉您有关发布的信息。"
   }
 }
