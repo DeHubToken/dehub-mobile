@@ -2721,7 +2721,10 @@
     "tabVideos": "Video's",
     "tabAudio": "Geluid",
     "tabLive": "Leven",
-    "tabPinned": "Vastgepind"
+    "tabPinned": "Vastgepind",
+    "tabArticles": "Artikelen",
+    "articlesEmptyTitle": "Geen artikelen nog.",
+    "articlesEmptySubtitle": "Artikelen zullen hier verschijnen"
   },
   "tv": {
     "title": "TV",

@@ -2533,7 +2533,9 @@
     "tabVideos": "Vidéos",
     "tabAudio": "L'audio",
     "tabLive": "En direct",
-    "tabPinned": "Épinglé"
+    "tabPinned": "Épinglé",
+    "articlesEmptyTitle": "Aucun article pour l’instant.",
+    "articlesEmptySubtitle": "Les articles apparaîtront ici."
   },
   "tv": {
     "title": "Télévision",

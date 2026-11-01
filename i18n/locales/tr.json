@@ -2533,7 +2533,10 @@
     "tabVideos": "Videolar",
     "tabAudio": "Ses",
     "tabLive": "Canlı",
-    "tabPinned": "Sabitlendi"
+    "tabPinned": "Sabitlendi",
+    "tabArticles": "Makaleler",
+    "articlesEmptyTitle": "Henüz makaleler yok.",
+    "articlesEmptySubtitle": "Makaleler burada görünür."
   },
   "tv": {
     "title": "TV",
@@ -7227,8 +7230,7 @@
     "viewFeed": "Akışınızı görüntüleyin",
     "yourChannel": "Kanalınız",
     "yourChannelHint": "Kanal adresinizi yapıştırın — tanıtıcı da kendi üzerinde çalışır.",
-    "costsNote": "DeHub jetonlarıyla, parti başlamadan önce bir kez ödeme yapıldı. Rozet sahipleri daha az öder — indiriminiz teklifinize uygulanır. Bir video içe aktarılamazsa, payı bir sonraki geçişinize geri kredilendirilir.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…"
+    "costsNote": "DeHub jetonlarıyla, parti başlamadan önce bir kez ödeme yapıldı. Rozet sahipleri daha az öder — indiriminiz teklifinize uygulanır. Bir video içe aktarılamazsa, payı bir sonraki geçişinize geri kredilendirilir."
   },
   "calls": {
     "voiceCall": "DeHub sesli arama",
