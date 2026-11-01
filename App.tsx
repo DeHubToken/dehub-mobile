@@ -343,12 +343,6 @@ const ThemedToaster: React.FC = () => {
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000 + FIRST_SCREEN_MAX_WAIT_MS;
-// A first launch keeps the logo animation up at least this long from boot, so
-// a new user sees it play before the setup instead of a flicker of it.
-const FIRST_RUN_INTRO_MS = 2000;
-// Once per process: switching to System Light during the setup remounts the
-// tree, and that must not replay the intro.
-let firstRunIntroPlayed = false;
 // After the first screen reports ready: lets the list commit and its first
 // images decode before the cover starts to lift.
 const REVEAL_SETTLE_MS = 120;
@@ -357,7 +351,7 @@ const BOOT_STALL_MS = 15000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, pageColors, isLight, theme } = useAppTheme();
-  const { isBootLoading, isSignedIn, needsUsername, isFirstTimeUser } = useAuthState();
+  const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const bootStartedAt = useRef(Date.now()).current;
   const openingLaunch = useRef(!bootRevealed).current;
   // Read when the preloader lifts, to tell signed-in launches from the rest.
@@ -457,7 +451,6 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (!staged || !navReady) return;
     let cancelled = false;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;
-    const introEndsAt = isFirstTimeUser && !isSignedIn && !firstRunIntroPlayed ? bootStartedAt + FIRST_RUN_INTRO_MS : 0;
     let paintFrame = 0;
     // First painted frame proves the shell composited. Then the first screen
     // gets to fill in (Home waits for its first feed page, capped) so the
@@ -470,9 +463,8 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
         paintFrame = requestAnimationFrame(() => {
           settleTimer = setTimeout(() => {
             if (cancelled) return;
-            firstRunIntroPlayed = true;
             beginReveal();
-          }, Math.max(REVEAL_SETTLE_MS, introEndsAt - Date.now()));
+          }, REVEAL_SETTLE_MS);
         });
       });
     });
@@ -482,7 +474,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
       if (paintFrame) cancelAnimationFrame(paintFrame);
       if (settleTimer) clearTimeout(settleTimer);
     };
-  }, [staged, navReady, beginReveal, isFirstTimeUser, isSignedIn, isAuthenticated, bootStartedAt]);
+  }, [staged, navReady, beginReveal]);
 
   // A launch that never gets past the preloader reports nothing else — every
   // other log path lives in screens it never reaches — so one still up after
