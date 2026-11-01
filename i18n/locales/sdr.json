@@ -4337,6 +4337,8 @@
       "featureLike": "{{name}} तोर फीचर रिक्वेस्ट के लाइक करलक",
       "featureLikeNamed": "{{name}} तोर फीचर रिक्वेस्ट “{{title}}” के लाइक करलक",
       "featureMention": "{{name}} तोर फीचर रिक्वेस्ट पर मेंशन करलक",
+      "featureNewNamed": "{{name}} خُبرَاتَ نَجِيبَةً جَدِيدَةً أَرْسَلَ: “{{title}}”",
+      "featureActivity": "{{name}} ہرنظرہ",
       "featureMentionNamed": "{{name}} तोर “{{title}}” पर मेंशन करलक",
       "featureReply": "{{name}} तोर कमेंट पर जवाब देलक",
       "featureReplyNamed": "{{name}} तोर “{{title}}” पर जवाब देलक",

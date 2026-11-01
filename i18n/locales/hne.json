@@ -4339,6 +4339,7 @@
       "featureCommentNamed": "{{name}} ने आपकी विशेषता के प्रस्ताव “{{title}}” पर कमेंट किया",
       "featureLike": "{{name}} tes amour अउ आप के अनुरोध ल पसंद करत हंव",
       "featureMention": "{{name}} ने आपको एक विशेषता प्रस्ताव पर उल्लेख किया",
+      "featureActivity": "{{name}} एक अनुरोध म टिप्पणी करे",
       "featureMentionNamed": "{{name}} ने आपको “{{title}}” पर उल्लेख किया",
       "featureReply": "{{name}} ने आपके कमेंट पर प्रतिक्रिया दी",
       "featureReplyNamed": "{{name}} ने आपको “{{title}}” पर प्रतिक्रिया दी",

@@ -4337,6 +4337,10 @@
   "notifications": {
     "custom": {
       "featureMention": "{{name}}-ը նշել է ձեզ գործառույթի հարցման մեջ",
+      "featureNewNamed": "{{name}}-ը նոր հայտ է հրապարակել ՝ «{{title}}»",
+      "featureNew": "{{name}}-ը նոր հայտ է հրապարակել",
+      "featureActivityNamed": "{{name}} մեկնաբանել է «{{title}}»",
+      "featureActivity": "{{name}} մեկնաբանել է հայտը",
       "fractionOffer": "{{name}}-ը առաջարկ է արել ձեր մասնաբաժինների համար",
       "fractionOfferAccepted": "{{name}}-ը ընդունել է ձեր մասնաբաժնի առաջարկը",
       "followRequest": "{{name}}-ը խնդրել է հետևել ձեզ",

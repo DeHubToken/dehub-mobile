@@ -4331,6 +4331,8 @@
       "featureLike": "{{name}} дархости функсияи шуморо писандид",
       "featureLikeNamed": "{{name}} дархости функсияи шумо “{{title}}”-ро писандид",
       "featureMention": "{{name}} шуморо дар дархости функсия зикр кард",
+      "featureNewNamed": "{{name}} дархости нав «{{title}}» илова кард",
+      "featureActivityNamed": "{{name}} комментари дар бораи “{{title}}”",
       "governanceCommentNamed": "{{name}} ба пешниҳоди шумо “{{title}}” шарҳ гузошт",
       "featureReply": "{{name}} ба шарҳи шумо ҷавоб дод",
       "bountyApplied": "{{name}} ба ҷоизаи шумо муроҷиат кард",

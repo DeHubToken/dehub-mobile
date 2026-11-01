@@ -4349,6 +4349,8 @@
       "featureCommentNamed": "{{name}} comment on your alama request “{{title}}”",
       "featureLike": "{{name}} son buƙatun fasalin ku",
       "featureMention": "{{name}} ya ambace ka a kan buƙatar ƙarin fasali",
+      "featureActivityNamed": "{{name}} comment a kan \"{{title}}\"",
+      "featureActivity": "{{name}} ya yi tsokaci akan buƙata",
       "featureMentionNamed": "{{name}} ya ambace ka a kan “{{title}}”",
       "featureReply": "{{name}} ya amsa bayaninka",
       "featureReplyNamed": "{{name}} ya amsa maka a kan “{{title}}”",

@@ -4383,6 +4383,7 @@
       "featureCommentNamed": "{{name}} আপনার ফিচার অনুরোধে মন্তব্য করেছেন “{{title}}”",
       "featureLike": "{{name}} আপনার ফিচার রিকোয়েস্টটি পছন্দ করেছেন",
       "featureMention": "{{name}} আপনাকে একটি ফিচার রিকোয়েস্টে উল্লেখ করেছেন",
+      "featureNewNamed": "{{name}} ৰে আশা পোস্ট কৰলো “{{title}}”",
       "featureMentionNamed": "{{name}} আপনাকে “{{title}}” -এ উল্লেখ করেছেন",
       "governanceComment": "{{name}} আপনার প্রস্তাবের বিষয়ে মন্তব্য করেছেন",
       "governanceCommentNamed": "{{name}} আপনার প্রস্তাবের উপর মন্তব্য করেছেন “{{title}}”",

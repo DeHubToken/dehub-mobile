@@ -4328,6 +4328,10 @@
     "custom": {
       "featureComment": "{{name}} siziň funksiýa haýyşyňyza teswir ýazdy",
       "featureMention": "{{name}} sizi funksiýa haýyşynda agzady",
+      "featureNewNamed": "{{name}} “{{title}}” ýerinde bir yeni talap açdy.",
+      "featureNew": "{{name}} ýaly bir ylyk goraýyrdy.",
+      "featureActivityNamed": "{{name}} “{{title}}”-yň ýaly",
+      "featureActivity": "{{name}}gördü.",
       "featureReplyNamed": "{{name}} size “{{title}}” barada jogap berdi",
       "governanceComment": "{{name}} siziň teklibiňize teswir ýazdy",
       "governanceVote": "{{name}} siziň teklibiňize ses berdi",

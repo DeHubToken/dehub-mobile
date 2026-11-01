@@ -149,6 +149,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
       'feature_request_comment',
       'feature_request_reply',
       'feature_request_mention',
+      'feature_request_activity',
       'governance_comment',
       'governance_reply',
       'work_application_reply',
@@ -158,7 +159,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   // Same split as web's filterTypeMap: feature request and store/trade rows
   // get their own tabs instead of only showing under All.
   features: [
-    ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention'] as unknown as NotificationType[]),
+    ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention', 'feature_request_activity', 'feature_request_new'] as unknown as NotificationType[]),
   ],
   communities: [
     ...(['community_chat', 'community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
@@ -211,6 +212,8 @@ const CLIENT_ONLY_TYPES = new Set<string>([
   'feature_request_comment',
   'feature_request_reply',
   'feature_request_mention',
+  'feature_request_activity',
+  'feature_request_new',
   'governance_vote',
   'governance_comment',
   'governance_reply',
@@ -333,6 +336,8 @@ const SUPABASE_ROUTED_TYPES = new Set([
   'feature_request_comment',
   'feature_request_reply',
   'feature_request_mention',
+  'feature_request_activity',
+  'feature_request_new',
   'governance_vote',
   'governance_comment',
   'governance_reply',
@@ -1155,7 +1160,9 @@ const NotificationScreen = () => {
       case 'feature_request_like':
       case 'feature_request_comment':
       case 'feature_request_reply':
-      case 'feature_request_mention': {
+      case 'feature_request_mention':
+      case 'feature_request_activity':
+      case 'feature_request_new': {
         const custom = notification as CustomNotificationItem;
         if (!custom.customReferenceId) break;
         navigation.navigate(ScreenNames.FeatureRequests as never, {

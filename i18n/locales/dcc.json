@@ -4327,6 +4327,8 @@
     "custom": {
       "featureLike": "{{name}} کو آپ کی خصوصیت کی درخواست پسند آئی",
       "featureMention": "{{name}} نے فیچر کی درخواست پر آپ کا تذکرہ کیا",
+      "featureNewNamed": "{{name}} نے نیا ریقویسٹ پوسٹ کیا “{{title}}”",
+      "featureNew": "{{name}} نے نئی درخواست پوسٹ کی ہے",
       "featureMentionNamed": "{{name}} کو {{title}} پر ٹیگ کیا گیا تھا",
       "featureReplyNamed": "{{name}} نے آپ کو {{title}} پر جواب دیا تھا",
       "governanceComment": "{{name}} نے آپ کی پیشن گوئی پر تبصرہ کیا",
