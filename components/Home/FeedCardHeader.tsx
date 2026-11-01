@@ -1,6 +1,7 @@
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useRef } from "react";
-import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+import Animated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+import { useAmbientMotion } from "../../hooks/useAmbientMotion";
 import Svg, { Circle, Defs, Path, RadialGradient, Stop } from "react-native-svg";
 import { useAppTheme } from "../../context/ThemeContext";
 import { View, Text, Pressable } from "react-native";
@@ -65,9 +66,16 @@ const GLOW_SIZE = HEADER_ICON_SIZE + 16;
 /** The lit bolt: the same cut bolt, solid, over a soft radial glow that breathes. */
 function LitBolt({ color, glow }: { color: string; glow: string }) {
   const breath = useSharedValue(1);
+  const running = useAmbientMotion();
   useEffect(() => {
+    if (!running) {
+      cancelAnimation(breath);
+      breath.value = 1;
+      return;
+    }
     breath.value = withRepeat(withTiming(0.35, { duration: 1300, easing: Easing.inOut(Easing.ease) }), -1, true);
-  }, [breath]);
+    return () => cancelAnimation(breath);
+  }, [breath, running]);
   const style = useAnimatedStyle(() => ({ opacity: breath.value }));
   return (
     <View style={{ width: HEADER_ICON_SIZE, height: HEADER_ICON_SIZE }}>
