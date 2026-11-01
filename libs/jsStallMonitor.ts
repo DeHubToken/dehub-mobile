@@ -98,7 +98,7 @@ export function flushStalls(): void {
   stalls = [];
   if (rowsSent >= SESSION_ROWS) return;
   rowsSent++;
-  report("JsStall", "javascript thread stalls", { ...summarizeStalls(batch), ...(safe(contextOf) ?? {}) });
+  report("JsStall", "javascript thread stalls", { ...summarizeStalls(batch), ...require("./deviceTier").deviceTierTag(), ...(safe(contextOf) ?? {}) });
 }
 
 function onAppState(state: AppStateStatus) {
@@ -111,9 +111,14 @@ function onAppState(state: AppStateStatus) {
 }
 
 function onMemoryWarning() {
+  // Decoded pictures are the biggest thing the app can give back on demand;
+  // the disk cache still has them, so nothing is downloaded again.
+  try {
+    void require("expo-image").Image.clearMemoryCache();
+  } catch {}
   if (memoryWarnings >= MEMORY_WARNINGS_PER_SESSION) return;
   memoryWarnings++;
-  report("MemoryWarning", "system memory warning", { route: safe(routeOf), count: memoryWarnings, ...(safe(contextOf) ?? {}) });
+  report("MemoryWarning", "system memory warning", { route: safe(routeOf), count: memoryWarnings, ...require("./deviceTier").deviceTierTag(), ...(safe(contextOf) ?? {}) });
 }
 
 /**

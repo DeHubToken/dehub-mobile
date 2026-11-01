@@ -8,6 +8,7 @@ import { isThemeBackdropVisible, subscribeThemeBackdrop } from "../../libs/theme
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
 import { createLogger } from "../../libs/logger";
 import { visualActivity } from "../../libs/visualActivity";
+import { deviceTier } from "../../libs/deviceTier";
 import GlassBackdrop from './GlassBackdrop';
 
 const log = createLogger("ThemeBackdrop");
@@ -51,9 +52,19 @@ function loadPage(): Promise<string> {
   return pageHtml;
 }
 
+// Old and low-memory phones (libs/deviceTier). "low" draws the theme scene
+// once and holds that frame, so the art is still there but the WebView and
+// its GL context stop competing with the feed for the GPU. "veryLow" skips
+// the scene: its renderer alone is memory such a phone needs for the feed.
+const TIER = deviceTier();
+const STILL_SCENE = TIER === "low";
+const NO_SCENE = TIER === "veryLow";
+/** Long enough for the scene's first frames to draw before it is held. */
+const STILL_AFTER_MS = 1500;
+
 const ThemeBackdrop: React.FC = () => {
   const { skin, theme, themeHues, brandColors } = useAppTheme();
-  const usesWebScene = !!skin && theme !== 'glass';
+  const usesWebScene = !!skin && theme !== 'glass' && !NO_SCENE;
   // Theme Color is read when the page loads, and pushed live after that
   // (see the effect below), so changing it never reloads the scene.
   const colorsRef = useRef({ themeHues, brandColors });
@@ -111,12 +122,27 @@ const ThemeBackdrop: React.FC = () => {
   // budget: traced on a Galaxy S24+ under Cosmic, the render thread spent
   // ~9ms a frame against 8.3ms at 120Hz, most of it waiting on the GPU. The
   // scene holds its last frame through the fling and resumes on settle.
+  const stillRef = useRef(false);
   const sync = useCallback(() => {
-    const running = visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
+    const running = !stillRef.current && visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
     webRef.current?.injectJavaScript(
       `window.dehubBackdrop&&window.dehubBackdrop.pause(${running ? "false" : "true"});true;`,
     );
   }, []);
+
+  // Hold the scene on its first frames for good on a "low" phone.
+  const stillTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const onLoadEnd = useCallback(() => {
+    sync();
+    if (!STILL_SCENE) return;
+    stillRef.current = false;
+    clearTimeout(stillTimer.current);
+    stillTimer.current = setTimeout(() => {
+      stillRef.current = true;
+      sync();
+    }, STILL_AFTER_MS);
+  }, [sync]);
+  useEffect(() => () => clearTimeout(stillTimer.current), []);
 
   useEffect(() => {
     const unsubscribeActivity = visualActivity.subscribe(sync);
@@ -168,7 +194,7 @@ const ThemeBackdrop: React.FC = () => {
           // the WebView still invalidates every frame then, so a hardware layer
           // was re-rendered each frame and only added a full-screen copy (traced
           // on a Galaxy S24+ under Cosmic: about 1ms more GPU per fling frame).
-          onLoadEnd={sync}
+          onLoadEnd={onLoadEnd}
           onRenderProcessGone={onGone}
           onContentProcessDidTerminate={onGone}
           style={[styles.web, { backgroundColor: skin.page }]}

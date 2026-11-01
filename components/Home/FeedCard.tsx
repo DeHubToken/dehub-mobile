@@ -168,6 +168,7 @@ import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts
 import KeywordFilterGate from "./KeywordFilterGate";
 import { storedVideoAspect } from "../../libs/video-aspect";
 import { reportPostEvent } from "../../services/post-stats.service";
+import { maxImageDensity } from "../../libs/deviceTier";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -189,7 +190,7 @@ const singleImageWidthFor = (screenWidth: number) => screenWidth - 42;
 // new picture's bitmap is copied to the GPU on the frame it scrolls in: on a
 // Galaxy S24+ those copies were most of the slow frames while scrolling.
 // Tapping a picture still opens the full original.
-const feedFetchWidth = (widthPt: number) => widthPt * Math.min(1, 2 / PixelRatio.get());
+const feedFetchWidth = (widthPt: number) => widthPt * Math.min(1, maxImageDensity() / PixelRatio.get());
 // Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
 // 96px-wide image reads exactly like 20px of blur on the full one.
 const LOCKED_PREVIEW_WIDTH = 32;

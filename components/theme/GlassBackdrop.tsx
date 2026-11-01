@@ -7,6 +7,7 @@ import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
 import { optionalSkia } from '../../libs/skia';
+import { isLowEndDevice } from '../../libs/deviceTier';
 
 const LightField = optionalSkia(() => (require('./GlassLightField') as typeof import('./GlassLightField')).default);
 
@@ -24,6 +25,8 @@ function LightRibbons({ color }: { color: string }) {
     {ribbons.slice(0, 2).map((d, i) => <Path key={`crest-${i}`} d={d} stroke="url(#crystalFace)" strokeWidth={46} strokeOpacity={.7} strokeLinecap="round" filter="url(#crystalSoft)" />)}
   </Svg>;
 }
+// Old and low-memory phones keep the ribbons still (libs/deviceTier).
+const LOW_END = isLowEndDevice();
 /** Native vector light ribbons shared by every screen. */
 function GlassBackdrop() {
   const { accent, skin } = useAppTheme();
@@ -43,7 +46,7 @@ function GlassBackdrop() {
     let loop: Animated.CompositeAnimation | undefined;
     let running = false;
     const sync = () => {
-      const next = !reduced && visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
+      const next = !LOW_END && !reduced && visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
       if (next === running) return;
       running = next;
       if (next) { loop = makeLoop(); loop.start(); }

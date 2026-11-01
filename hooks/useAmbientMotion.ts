@@ -2,6 +2,10 @@ import { useContext, useEffect, useState, useSyncExternalStore } from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../libs/scrollActivity";
 import { FeedPlaybackActiveContext, visualActivity } from "../libs/visualActivity";
+import { isLowEndDevice } from "../libs/deviceTier";
+
+// Old and low-memory phones keep decorative loops still (libs/deviceTier).
+const LOW_END = isLowEndDevice();
 
 const subscribeScroll = (fn: () => void) => {
   const a = subscribeFeedScrollStart(fn);
@@ -32,5 +36,5 @@ export function useAmbientMotion(): boolean {
     const off = navigation.addListener("blur", () => setFocused(false));
     return () => { on(); off(); };
   }, [navigation]);
-  return surface && visual && focused && !scrolling;
+  return !LOW_END && surface && visual && focused && !scrolling;
 }
