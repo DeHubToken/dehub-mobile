@@ -60,8 +60,8 @@ Reference: [Google native usage metadata](https://ai.google.dev/api/generate-con
 ## Post categorization
 
 Post categorization is shared by web and mobile through `auto-categorize`.
-It uses the configured free-provider routes only; it does not call Google or
-Lovable's completion gateway. Plain text is sent as a string so it reaches
+It uses the configured free-provider routes only; it does not call Google or the
+hosted AI gateway. Plain text is sent as a string so it reaches
 Groq and the eligible public-content fallback tiers. Image inputs opt into
 Groq's Qwen 3.8 vision route with the same required classification tool.
 When vision is unavailable, posts with written text or transcripts can use
