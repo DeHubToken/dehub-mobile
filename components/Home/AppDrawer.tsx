@@ -7,7 +7,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
   StyleSheet,
   useWindowDimensions,
   BackHandler,
@@ -48,6 +47,8 @@ import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { themeIconUrl } from "../../theme/icons";
+import { ReorderItem, justDropped, useReorder } from "../common/Reorder";
+import { applyNavOrder, navOrderId, resetNavOrder, saveNavOrder, useNavOrder } from "../../libs/navOrder";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
 // then a four-column grid of the same glossy 3D icons the web menu uses. It
@@ -166,6 +167,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },
 ];
 
+/** Default menu order as saved ids (libs/navOrder): what a first drag merges into. */
+const DEFAULT_MENU_IDS = NAV_ITEMS.filter((item) => !item.searchOnly).map((item) => navOrderId(item.labelKey));
+
 // Row → 3D artwork (web ThemeIconKey). Rows without a bespoke render borrow the
 // closest one: a flat glyph beside the glossy set reads as a broken tile, so
 // the glyph is only the fallback for art that fails to download.
@@ -206,10 +210,12 @@ interface TileProps {
   /** War keeps its tactical HUD frame and offline fallback colour. */
   hud: boolean;
   square: boolean;
+  /** Held up by a drag (components/common/Reorder). */
+  lifted?: boolean;
   onPress: () => void;
 }
 
-const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, badgeCount = 0, disabled, soonLabel, skin, hud, square, onPress }) => {
+const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, badgeCount = 0, disabled, soonLabel, skin, hud, square, lifted, onPress }) => {
   const glyphColor = iconColor ?? (hud
     ? skin?.glow ?? "#22D3EE"
     : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)");
@@ -231,6 +237,7 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
         active && skin?.stripActive,
         square && styles.square,
         disabled ? { opacity: 0.45 } : null,
+        lifted && styles.tileLifted,
       ]}
     >
       {Platform.OS !== "android" && skin?.grain ? (
@@ -436,6 +443,23 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const searching = menuQuery.trim().length > 0;
 
+  // Hold a tile and drag it to rearrange; saved per account (this device when
+  // signed out) and shared with the web menu. Off while searching: results are
+  // ordered by match, not by the person's order.
+  const savedMenuOrder = useNavOrder("menu");
+  const menuWallet = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase() || null;
+  const orderedItems = useMemo(
+    () => (searching ? visibleItems : applyNavOrder(visibleItems, savedMenuOrder, (item) => navOrderId(item.labelKey))),
+    [searching, visibleItems, savedMenuOrder],
+  );
+  const itemsById = useMemo(() => new Map(orderedItems.map((item) => [navOrderId(item.labelKey), item])), [orderedItems]);
+  const orderedIds = useMemo(() => orderedItems.map((item) => navOrderId(item.labelKey)), [orderedItems]);
+  const commitMenuOrder = useCallback(
+    (next: string[]) => saveNavOrder("menu", next, DEFAULT_MENU_IDS, isSignedIn ? menuWallet : null),
+    [isSignedIn, menuWallet],
+  );
+  const menuReorder = useReorder({ ids: orderedIds, onCommit: commitMenuOrder, disabled: searching });
+
   // Never reopen the sheet mid-filter.
   useEffect(() => {
     if (!visible) setMenuQuery.initialize("");
@@ -471,6 +495,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const handleItemPress = useCallback(
     (item: DrawerItem) => {
+      // The release of a drag is not a tap.
+      if (justDropped()) return;
       if (item.disabled) {
         toastInfo(item.disabledMessage ?? t("screens.comingSoon"));
         return;
@@ -516,16 +542,23 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const renderItem = (item: DrawerItem) => {
     const key = ICON_KEYS[item.labelKey];
+    const id = navOrderId(item.labelKey);
     return (
+      <ReorderItem key={item.labelKey} id={id} ctx={menuReorder.ctx}>
       <Tile
-        key={item.labelKey}
         label={t(item.labelKey)}
         icon={item.icon}
         iconUrl={key ? themeIconUrl(themeName, key) : undefined}
         iconColor={['hacker', 'island', 'horror'].includes(themeName) ? appTheme.colors.accent : undefined}
         width={tileWidth}
         active={!!item.screen && item.screen === activeRouteName && !item.params}
-        badgeCount={isSignedIn && item.screen === ScreenNames.DM ? messagesUnread : 0}
+        badgeCount={
+          !isSignedIn ? 0
+            : item.screen === ScreenNames.DM ? messagesUnread
+              : item.screen === ScreenNames.Notifications ? user?.notificationCount ?? 0
+                : 0
+        }
+        lifted={menuReorder.draggingId === id}
         disabled={item.disabled}
         soonLabel={t("screens.soon")}
         skin={skin}
@@ -533,6 +566,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         square={square}
         onPress={() => handleItemPress(item)}
       />
+      </ReorderItem>
     );
   };
 
@@ -670,7 +704,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           </View>
         </GestureDetector>
 
-        <ScrollView
+        <Animated.ScrollView
+          ref={menuReorder.scrollRef}
+          onLayout={menuReorder.onViewportLayout}
+          scrollEnabled={!menuReorder.draggingId}
           style={{ flex: 1 }}
           showsVerticalScrollIndicator={false}
           bounces={false}
@@ -678,9 +715,23 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           contentContainerStyle={{ paddingHorizontal: GRID_PADDING, paddingBottom: 16 }}
         >
           {/* Same order as the web menu, one continuous grid. */}
-          {visibleItems.length > 0 && (
+          {orderedItems.length > 0 && (
             <View style={styles.grid}>
-              {visibleItems.map(renderItem)}
+              {menuReorder.order.map((id) => itemsById.get(id)).filter((item): item is DrawerItem => !!item).map(renderItem)}
+            </View>
+          )}
+          {!searching && (
+            <View style={styles.reorderHint}>
+              <Text style={styles.reorderHintText}>{t("nav.reorderHint", { defaultValue: "Hold and drag any icon to rearrange" })}</Text>
+              {savedMenuOrder.length > 0 && (
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  onPress={() => resetNavOrder("menu", isSignedIn ? menuWallet : null)}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                >
+                  <Text style={styles.reorderReset}>{t("nav.reorderReset", { defaultValue: "Reset" })}</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
 
@@ -703,7 +754,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               </TouchableOpacity>
             </>
           )}
-        </ScrollView>
+        </Animated.ScrollView>
 
         {isSignedIn && (
           <View style={[styles.footer, { borderTopColor: hairline }]}>
@@ -849,6 +900,33 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: GRID_GAP,
+  },
+  tileLifted: {
+    backgroundColor: "rgba(255, 255, 255, 0.16)",
+    borderColor: "rgba(255, 255, 255, 0.30)",
+    shadowColor: "#000",
+    shadowOpacity: 0.45,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
+  },
+  reorderHint: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    marginTop: 14,
+    paddingHorizontal: 8,
+  },
+  reorderHintText: {
+    color: "#71717A",
+    fontSize: 11.5,
+    textAlign: "center",
+  },
+  reorderReset: {
+    color: "#D4D4D8",
+    fontSize: 11.5,
+    fontWeight: "600",
   },
   tile: {
     alignItems: "center",

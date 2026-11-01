@@ -2859,7 +2859,9 @@
     "connectAi": "Unganisha AI",
     "bridge": "Daraja",
     "premium": "Ya starehe",
-    "pricing": "Bei"
+    "pricing": "Bei",
+    "reorderHint": "Shikilia na buruta ikoni yoyote ili kupanga upya",
+    "reorderReset": "Weka upya"
   },
   "affiliate": {
     "subtitle": "Pata kutoka kwa kila mtu unayemwalika — milele",

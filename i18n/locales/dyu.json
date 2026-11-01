@@ -2858,7 +2858,9 @@
     "connectAi": "AI jɛnsɛn",
     "bridge": "Zuòshàngq",
     "premium": "Premiyɔmu",
-    "pricing": "Sɔngɔw"
+    "pricing": "Sɔngɔw",
+    "reorderHint": "Bɛɛ kɔ kɔkɔ kɔ kɔkɔ",
+    "reorderReset": "Ka segi ka na"
   },
   "affiliate": {
     "subtitle": "Wari sɔrɔ i ye mɔgɔ minnu bɛɛ wele — badaa",

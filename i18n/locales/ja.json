@@ -2730,7 +2730,9 @@
     "connectAi": "AI を接続",
     "bridge": "ブリッジ",
     "premium": "プレミアム",
-    "pricing": "料金"
+    "pricing": "料金",
+    "reorderHint": "任意のアイコンを長押ししてドラッグして並べ替えます",
+    "reorderReset": "リセット"
   },
   "affiliate": {
     "subtitle": "招待した人すべてから、ずっと報酬を",

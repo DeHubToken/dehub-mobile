@@ -2859,7 +2859,9 @@
     "connectAi": "連接 AI",
     "bridge": "跨鏈橋",
     "premium": "高級版",
-    "pricing": "定價"
+    "pricing": "定價",
+    "reorderHint": "按住同拖曳任何圖示嚟重新排列",
+    "reorderReset": "重設"
   },
   "affiliate": {
     "subtitle": "你邀请的每个人都为你带来收入——永久有效",

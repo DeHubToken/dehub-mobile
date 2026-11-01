@@ -2859,7 +2859,9 @@
     "connectAi": "Ampifandraiso ny AI",
     "bridge": "Tetezana",
     "premium": "Premium",
-    "pricing": "Vidiny"
+    "pricing": "Vidiny",
+    "reorderHint": "Tazony ary zarao izay kisary hanamboarana",
+    "reorderReset": "Averina"
   },
   "affiliate": {
     "subtitle": "Mahazoa vola amin'ny olona rehetra asainao — mandrakizay",

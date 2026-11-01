@@ -2859,7 +2859,9 @@
     "connectAi": "Süni intellekti qoş",
     "bridge": "Körpü",
     "premium": "Premium",
-    "pricing": "Qiymətlər"
+    "pricing": "Qiymətlər",
+    "reorderHint": "Dəstək və simvolları yerinə yetirmək üçün tutaraq sırala bilərsiniz.",
+    "reorderReset": "Sıfırla"
   },
   "affiliate": {
     "subtitle": "Dəvət etdiyiniz hər kəsdən qazanın — əbədi",

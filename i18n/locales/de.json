@@ -2774,7 +2774,9 @@
     "connectAi": "KI verbinden",
     "bridge": "Brücke",
     "premium": "Premium",
-    "pricing": "Preise"
+    "pricing": "Preise",
+    "reorderHint": "Halte und ziehe ein beliebiges Symbol, um es neu anzuordnen",
+    "reorderReset": "Reset"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",

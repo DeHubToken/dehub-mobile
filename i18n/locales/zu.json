@@ -2859,7 +2859,9 @@
     "connectAi": "Xhuma i-AI",
     "bridge": "Ibhuloho",
     "premium": "I-Premium",
-    "pricing": "Amanani"
+    "pricing": "Amanani",
+    "reorderHint": "Bamba bese uhudula noma iyiphi i-ayikhoni ukuze uhlele kabusha",
+    "reorderReset": "Setha kabusha"
   },
   "affiliate": {
     "subtitle": "Thola kusuka kuwo wonke umuntu omemayo — kuze kube phakade",

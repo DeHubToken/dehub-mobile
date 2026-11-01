@@ -494,7 +494,9 @@
     "connectAi": "Yapay Zekâyı Bağla",
     "bridge": "Köprü",
     "premium": "Premium",
-    "pricing": "Fiyatlandırma"
+    "pricing": "Fiyatlandırma",
+    "reorderHint": "Yeniden düzenlemek için herhangi bir simgeyi basılı tutun ve sürükleyin",
+    "reorderReset": "Sıfırla"
   },
   "affiliate": {
     "subtitle": "Davet ettiğin herkesten sonsuza dek kazan",

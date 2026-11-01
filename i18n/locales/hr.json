@@ -2859,7 +2859,9 @@
     "connectAi": "Poveži AI",
     "bridge": "Most",
     "premium": "Premium",
-    "pricing": "Cijene"
+    "pricing": "Cijene",
+    "reorderHint": "Držite i povucite bilo koju ikonu za promjenu rasporeda",
+    "reorderReset": "Resetiraj"
   },
   "affiliate": {
     "subtitle": "Zaradite od svakoga koga pozovete — zauvijek",

@@ -2859,7 +2859,9 @@
     "connectAi": "AI አገናኝ",
     "bridge": "ድልድይ",
     "premium": "ፕሪሚየም",
-    "pricing": "ዋጋ አሰጣጥ"
+    "pricing": "ዋጋ አሰጣጥ",
+    "reorderHint": "የተሰጠው አይኮን ይጠየቀው እና ይምረጡ",
+    "reorderReset": "ዳግም አስጀምር"
   },
   "affiliate": {
     "subtitle": "የጋበዝከው ሰው ሁሉ ያገኛል — ለዘላለም",

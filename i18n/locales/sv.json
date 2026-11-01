@@ -2859,7 +2859,9 @@
     "connectAi": "Anslut AI",
     "bridge": "Bro",
     "premium": "Premium",
-    "pricing": "Priser"
+    "pricing": "Priser",
+    "reorderHint": "Håll och dra valfri ikon för att ordna om",
+    "reorderReset": "Återställ"
   },
   "affiliate": {
     "subtitle": "Tjäna från alla du bjuder in – för alltid",

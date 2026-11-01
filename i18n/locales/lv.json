@@ -2859,7 +2859,9 @@
     "connectAi": "Savienot MI",
     "bridge": "Tilts",
     "premium": "Premium",
-    "pricing": "Cenas"
+    "pricing": "Cenas",
+    "reorderHint": "Turiet un velciet jebkuru ikonu, lai pārkārtotu",
+    "reorderReset": "Atiestatīt"
   },
   "affiliate": {
     "subtitle": "Pelniet no ikviena, ko uzaicināt — mūžīgi",

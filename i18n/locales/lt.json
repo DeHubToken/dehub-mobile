@@ -2859,7 +2859,9 @@
     "connectAi": "Prijungti DI",
     "bridge": "Tiltas",
     "premium": "Premium",
-    "pricing": "Kainos"
+    "pricing": "Kainos",
+    "reorderHint": "Laikykite ir vilkite bet kurią piktogramą, kad pertvarkytumėte",
+    "reorderReset": "Nustatyti iš naujo"
   },
   "affiliate": {
     "subtitle": "Uždirbkite iš kiekvieno pakviesto asmens – visam laikui",

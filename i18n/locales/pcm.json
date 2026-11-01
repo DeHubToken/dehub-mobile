@@ -2856,7 +2856,9 @@
     "connectAi": "Connect AI",
     "bridge": "Bridge",
     "premium": "Premium",
-    "pricing": "Price"
+    "pricing": "Price",
+    "reorderHint": "Hold and drag any icon wey you like so you can rearrange dem.",
+    "reorderReset": "Reset"
   },
   "affiliate": {
     "subtitle": "Earn from everybody wey you invite — forever",

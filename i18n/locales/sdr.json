@@ -2857,7 +2857,9 @@
     "connectAi": "AI جوڑو",
     "bridge": "پل (Bridge)",
     "premium": "پریمیم",
-    "pricing": "دام"
+    "pricing": "دام",
+    "reorderReset": "रीसेट",
+    "reorderHint": "किसी भी आइकन को दबाकर रखें और खींचकर क्रम बदलें"
   },
   "affiliate": {
     "subtitle": "آپ کے ہر مدعو کردہ شخص سے کمائیں — ہمیشہ کے لیے",

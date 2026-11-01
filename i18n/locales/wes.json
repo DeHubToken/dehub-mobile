@@ -2858,7 +2858,9 @@
     "connectAi": "Connect AI",
     "bridge": "Bridge",
     "premium": "Premium",
-    "pricing": "Price dem"
+    "pricing": "Price dem",
+    "reorderReset": "Reset",
+    "reorderHint": "Hold and drag any icon to rearrange am"
   },
   "affiliate": {
     "subtitle": "Win moni from ol pipo weh yu invait — fo evri taim",

@@ -2859,7 +2859,9 @@
     "connectAi": "Kết nối AI",
     "bridge": "Cầu nối",
     "premium": "Cao cấp",
-    "pricing": "Bảng giá"
+    "pricing": "Bảng giá",
+    "reorderHint": "Giữ và kéo bất kỳ biểu tượng nào để sắp xếp lại",
+    "reorderReset": "Đặt lại"
   },
   "affiliate": {
     "subtitle": "Kiếm tiền từ mọi người bạn mời — mãi mãi",

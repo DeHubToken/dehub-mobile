@@ -2859,7 +2859,9 @@
     "connectAi": "Nyambungake AI",
     "bridge": "Jembatan",
     "premium": "Premium",
-    "pricing": "Rega"
+    "pricing": "Rega",
+    "reorderReset": "Reset",
+    "reorderHint": "Tahan lan seret lambang apa wae kanggo nata ulang"
   },
   "affiliate": {
     "subtitle": "Entuk saka saben wong sing kok undang — selawase",

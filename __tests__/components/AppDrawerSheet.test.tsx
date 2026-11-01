@@ -54,8 +54,13 @@ jest.mock('react-native-gesture-handler', () => ({
     return gesture;
   } },
 }));
+jest.mock('../../components/common/Reorder', () => ({
+  ReorderItem: ({ children }: { children: React.ReactNode }) => children,
+  useReorder: ({ ids }: { ids: string[] }) => ({ order: ids, draggingId: null, scrollRef: undefined, onViewportLayout: undefined, ctx: {} }),
+  justDropped: () => false,
+}));
 jest.mock('react-native-reanimated', () => ({
-  __esModule: true, default: { View: 'View' },
+  __esModule: true, default: { View: 'View', ScrollView: 'ScrollView' },
   useSharedValue: (value: unknown) => ({ value }),
   useAnimatedStyle: (factory: () => unknown) => factory(),
   withTiming: (value: unknown) => value, runOnJS: (fn: unknown) => fn,

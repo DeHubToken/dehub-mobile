@@ -7,7 +7,6 @@ import {
   View,
   Text,
   Pressable,
-  ScrollView,
   StyleSheet,
   Platform,
   InteractionManager,
@@ -51,6 +50,8 @@ import { useAppTheme } from "../context/ThemeContext";
 import { useKidsMode } from "../hooks/useKidsMode";
 import StageMiniPlayer from "../components/Stages/StageMiniPlayer";
 import { useStages } from "../context/StageContext";
+import { ReorderItem, justDropped, useReorder } from "../components/common/Reorder";
+import { applyNavOrder, navOrderId, saveNavOrder, useNavOrder } from "../libs/navOrder";
 import {
   MINIMAL_TAB_LINE,
   MINIMAL_TAB_TEXT,
@@ -138,6 +139,26 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads },
 ];
+
+/**
+ * The whole bar as one list for hold-and-drag rearranging (Reorder): the four
+ * tabs around Create, then everything reached by scrolling. Create stays put in
+ * the middle of the first screen; the rest flow around it. Same ids as web's
+ * bar, so the order follows the account across both.
+ */
+interface BarEntry {
+  id: string;
+  tab?: TabDef;
+  item?: ScrollNavItem;
+}
+const CENTER_TAB = TABS.find((tab) => tab.isCenter);
+const CREATE_ID = "create";
+const CREATE_SLOT = 2;
+const BAR_ENTRIES: BarEntry[] = [
+  ...TABS.filter((tab) => !tab.isCenter).map((tab) => ({ id: navOrderId(tab.labelKey), tab })),
+  ...SCROLL_NAV_ITEMS.map((item) => ({ id: navOrderId(item.labelKey), item })),
+];
+const DEFAULT_BAR_IDS = BAR_ENTRIES.map((entry) => entry.id);
 
 // DHB-unlock surfaces the App Store build leaves out — see config/storefront.
 const STOREFRONT_HIDDEN_SCREENS = new Set([
@@ -340,10 +361,12 @@ const NavButton = memo<{
           strokeWidth={icon === "House" || icon === "MessageEnvelope" || icon === "Search" || isActive ? 2 : 1.75}
         /></View>}
       {badgeCount > 0 && (
-        <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
-          <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
-            {badgeCount > 99 ? "99+" : badgeCount}
-          </Text>
+        <View style={styles.badgeAnchor} pointerEvents="none">
+          <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]}>
+            <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
+              {badgeCount > 99 ? "99+" : badgeCount}
+            </Text>
+          </View>
         </View>
       )}
       </View>
@@ -411,10 +434,12 @@ const ScrollNavButton = memo<{
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
-          <View style={[styles.badge, { backgroundColor: colors.accent }]} pointerEvents="none">
-            <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
-              {badgeCount > 99 ? "99+" : badgeCount}
-            </Text>
+          <View style={styles.badgeAnchor} pointerEvents="none">
+            <View style={[styles.badge, { backgroundColor: colors.accent }]}>
+              <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
+                {badgeCount > 99 ? "99+" : badgeCount}
+              </Text>
+            </View>
           </View>
         )}
         </View>
@@ -451,7 +476,35 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const containerAnim = useSharedValue(1);
   const entranceFade = useSharedValue(1);
   const hasAnimated = useRef(false);
-  const scrollRef = useRef<ScrollView>(null);
+  // Hold any icon and drag to rearrange (components/common/Reorder). Saved per
+  // account (this device when signed out), shared with web's bar.
+  const savedBarOrder = useNavOrder("bar");
+  const barWallet = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase() || null;
+  const barEntries = useMemo(() => {
+    const allowed = BAR_ENTRIES.filter((entry) => {
+      const screen = entry.tab ? entry.tab.name : entry.item?.screen;
+      if (isKidsMode) return !!screen && KIDS_MODE_SCREENS.has(screen as any);
+      if (entry.item) {
+        if (!isAuthed && screen && AUTHED_ONLY_SCREENS.has(screen as any)) return false;
+        if (!DIGITAL_PURCHASES_ENABLED && screen && STOREFRONT_HIDDEN_SCREENS.has(screen as any)) return false;
+      }
+      return true;
+    });
+    return applyNavOrder(allowed, savedBarOrder, (entry) => entry.id);
+  }, [isKidsMode, isAuthed, savedBarOrder]);
+  const barById = useMemo(() => new Map(barEntries.map((entry) => [entry.id, entry])), [barEntries]);
+  const barIds = useMemo(() => barEntries.map((entry) => entry.id), [barEntries]);
+  const commitBarOrder = useCallback(
+    (next: string[]) => saveNavOrder("bar", next, DEFAULT_BAR_IDS, isAuthed ? barWallet : null),
+    [isAuthed, barWallet],
+  );
+  const barReorder = useReorder({ ids: barIds, onCommit: commitBarOrder, horizontal: true });
+  const scrollRef = barReorder.scrollRef;
+  const barSlots = useMemo(() => {
+    const out = [...barReorder.order];
+    if (!isKidsMode && CENTER_TAB) out.splice(Math.min(CREATE_SLOT, out.length), 0, CREATE_ID);
+    return out;
+  }, [barReorder.order, isKidsMode]);
 
   // UIKit refuses to render a visual-effect view correctly when it or any
   // superview has an alpha below 1 — Apple documents this explicitly. The
@@ -530,6 +583,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   const handlePress = useCallback(
     (routeName: string) => {
+      // The release of a drag is not a tap.
+      if (justDropped()) return;
       const current = stateRef.current;
       const route = current.routes.find((r) => r.name === routeName);
       const isFocused = current.routes[current.index]?.name === routeName;
@@ -565,6 +620,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   const handleScrollItemPress = useCallback(
     (item: ScrollNavItem) => {
+      if (justDropped()) return;
       if (item.url) {
         openInApp(item.url);
       } else if (item.screen) {
@@ -712,55 +768,66 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         ]}
       >
         <NavPillSurface />
-        <ScrollView
+        <Reanimated.ScrollView
           ref={scrollRef}
+          onLayout={barReorder.onViewportLayout}
           horizontal
+          scrollEnabled={!barReorder.draggingId}
           showsHorizontalScrollIndicator={false}
           bounces={false}
           contentContainerStyle={styles.navRow}
         >
-          {(isKidsMode ? TABS.filter((tab) => KIDS_MODE_SCREENS.has(tab.name as any)) : TABS).map((tab, index) => {
-            const isActive = state.routes[state.index]?.name === tab.name;
+          {barSlots.map((id, index) => {
+            if (id === CREATE_ID && CENTER_TAB) {
+              return (
+                <NavButton
+                  key={CREATE_ID}
+                  icon={CENTER_TAB.icon}
+                  label={t(CENTER_TAB.labelKey)}
+                  isActive={state.routes[state.index]?.name === CENTER_TAB.name}
+                  isCenter
+                  routeName={CENTER_TAB.name}
+                  onPress={handlePress}
+                  index={index}
+                  tabW={tabW}
+                  animProgress={animProgress}
+                />
+              );
+            }
+            const entry = barById.get(id);
+            if (!entry) return null;
             return (
-              <NavButton
-                key={tab.name}
-                icon={tab.icon}
-                label={t(tab.labelKey)}
-                isActive={isActive}
-                isCenter={tab.isCenter}
-                routeName={tab.name}
-                onPress={handlePress}
-                index={index}
-                tabW={tabW}
-                animProgress={animProgress}
-                badgeCount={tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0}
-              />
+              <ReorderItem key={id} id={id} ctx={barReorder.ctx} style={barReorder.draggingId === id ? styles.liftedSlot : undefined}>
+                {entry.tab ? (
+                  <NavButton
+                    icon={entry.tab.icon}
+                    label={t(entry.tab.labelKey)}
+                    isActive={state.routes[state.index]?.name === entry.tab.name}
+                    routeName={entry.tab.name}
+                    onPress={handlePress}
+                    index={index}
+                    tabW={tabW}
+                    animProgress={animProgress}
+                    badgeCount={entry.tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0}
+                  />
+                ) : entry.item ? (
+                  <ScrollNavButton
+                    icon={entry.item.icon}
+                    label={t(entry.item.labelKey)}
+                    item={entry.item}
+                    onPress={handleScrollItemPress}
+                    tabW={tabW}
+                    badgeCount={
+                      entry.item.screen === ScreenNames.Notifications && isAuthed
+                        ? user?.notificationCount ?? 0
+                        : 0
+                    }
+                  />
+                ) : null}
+              </ReorderItem>
             );
           })}
-          {SCROLL_NAV_ITEMS
-            // Kids Mode first, and by allowlist — a `url` entry has no screen
-            // to check, so it drops out too, which is correct: those open the
-            // website outside the app's own filtering entirely.
-            .filter((item) => !isKidsMode || (!!item.screen && KIDS_MODE_SCREENS.has(item.screen as any)))
-            .filter((item) => isAuthed || !item.screen || !AUTHED_ONLY_SCREENS.has(item.screen as any))
-            .filter((item) => DIGITAL_PURCHASES_ENABLED || !item.screen || !STOREFRONT_HIDDEN_SCREENS.has(item.screen as any))
-            .map((item) => (
-            <ScrollNavButton
-              // Not the screen name: Wallet and Staking are both Dpay.
-              key={item.labelKey}
-              icon={item.icon}
-              label={t(item.labelKey)}
-              item={item}
-              onPress={handleScrollItemPress}
-              tabW={tabW}
-              badgeCount={
-                item.screen === ScreenNames.Notifications && isAuthed
-                  ? user?.notificationCount ?? 0
-                  : 0
-              }
-            />
-          ))}
-        </ScrollView>
+        </Reanimated.ScrollView>
       </View>
       {hasStageChip && <StageMiniPlayer />}
       </Reanimated.View>
@@ -867,6 +934,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  // A drag lifts the icon off the pill: give it a fill so it reads as held.
+  liftedSlot: {
+    borderRadius: 14,
+    backgroundColor: "rgba(255, 255, 255, 0.16)",
+  },
   scrollNavItem: {
     alignItems: "center" as const,
     justifyContent: "center" as const,
@@ -877,10 +949,19 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  badge: {
+  // The count used to sit absolutely inside the 20pt icon box, and an absolute
+  // child is only offered its parent's width to measure in: past one digit
+  // ("12", "99+") the text no longer fit and numberOfLines cut it to "…".
+  // This anchor is wide enough for "99+" and the pill grows leftwards in it,
+  // its right edge where it always was.
+  badgeAnchor: {
     position: "absolute",
     top: -6,
     right: -10,
+    width: 40,
+    alignItems: "flex-end",
+  },
+  badge: {
     minWidth: 16,
     height: 16,
     paddingHorizontal: 3,

@@ -2858,7 +2858,9 @@
     "connectAi": "AI جوڑو",
     "bridge": "برج",
     "premium": "پریمیم",
-    "pricing": "قیمتیں"
+    "pricing": "قیمتیں",
+    "reorderHint": "کوئی بھی آئیکن پکڑ کر گھسیٹ کر ترتیب دیں",
+    "reorderReset": "रीसेट"
   },
   "affiliate": {
     "subtitle": "آپ کے ہر مدعو کردہ شخص سے کمائیں — ہمیشہ کے لیے",

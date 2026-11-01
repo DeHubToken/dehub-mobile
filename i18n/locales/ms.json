@@ -2859,7 +2859,9 @@
     "connectAi": "Sambung AI",
     "bridge": "Jambatan",
     "premium": "Premium",
-    "pricing": "Harga"
+    "pricing": "Harga",
+    "reorderHint": "Tahan dan seret sebarang ikon untuk menyusun semula",
+    "reorderReset": "Tetapkan semula"
   },
   "affiliate": {
     "subtitle": "Peroleh daripada setiap orang yang anda jemput — selama-lamanya",

@@ -2859,7 +2859,9 @@
     "connectAi": "חיבור AI",
     "bridge": "גשר",
     "premium": "פרימיום",
-    "pricing": "תמחור"
+    "pricing": "תמחור",
+    "reorderHint": "יש להחזיק ולגרור כל סמל כדי לארגן מחדש",
+    "reorderReset": "איפוס"
   },
   "affiliate": {
     "subtitle": "הרווח מכל מי שתזמין — לנצח",

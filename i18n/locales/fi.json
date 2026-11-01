@@ -2859,7 +2859,9 @@
     "connectAi": "Yhdistä tekoäly",
     "bridge": "Silta",
     "premium": "Premium",
-    "pricing": "Hinnoittelu"
+    "pricing": "Hinnoittelu",
+    "reorderHint": "Järjestä uudelleen pitämällä mitä tahansa kuvaketta painettuna ja vetämällä",
+    "reorderReset": "Tyhjennä"
   },
   "affiliate": {
     "subtitle": "Ansaitse jokaiselta kutsumaltasi henkilöltä – ikuisesti",

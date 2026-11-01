@@ -2859,7 +2859,9 @@
     "connectAi": "Hubungkan AI",
     "bridge": "Jembatan",
     "premium": "Premium",
-    "pricing": "Harga"
+    "pricing": "Harga",
+    "reorderHint": "Tahan dan seret ikon apa pun untuk mengatur ulang",
+    "reorderReset": "Atur ulang"
   },
   "affiliate": {
     "subtitle": "Dapat penghasilan dari semua yang kamu undang — selamanya",

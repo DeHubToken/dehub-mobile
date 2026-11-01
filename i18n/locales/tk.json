@@ -2859,7 +2859,9 @@
     "connectAi": "AI birikdir",
     "bridge": "Köpri",
     "premium": "Ýokary derejeli",
-    "pricing": "Bahalar"
+    "pricing": "Bahalar",
+    "reorderHint": "Her bir simgony saklaň we gaýtargylaň",
+    "reorderReset": "Gaýd Et"
   },
   "affiliate": {
     "subtitle": "Çaýran her bir adamyň hasabyna ebedi girdeji alyň",

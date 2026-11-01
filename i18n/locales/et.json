@@ -2859,7 +2859,9 @@
     "connectAi": "Ühenda AI",
     "bridge": "Sild",
     "premium": "Eelmaine",
-    "pricing": "Hinnad"
+    "pricing": "Hinnad",
+    "reorderHint": "Hoia ja lohista ükskõik milline ikoon ümberkorraldamiseks",
+    "reorderReset": "Esimene"
   },
   "affiliate": {
     "subtitle": "Teeni kõigilt, keda kutsud — igavesti",

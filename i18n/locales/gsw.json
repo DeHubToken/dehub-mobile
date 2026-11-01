@@ -2859,7 +2859,9 @@
     "connectAi": "KI verbinde",
     "bridge": "Brügg",
     "premium": "Premium",
-    "pricing": "Priise"
+    "pricing": "Priise",
+    "reorderHint": "Halb und zieh jede Ikon, um neu anzuordnen.",
+    "reorderReset": "Zrüggsetze"
   },
   "affiliate": {
     "subtitle": "Verdiene an allen, die du einlädst — für immer",
