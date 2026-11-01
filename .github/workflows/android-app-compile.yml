@@ -12,6 +12,7 @@ on:
     paths:
       - 'android/**'
       - 'patches/react-native-webrtc+*.patch'
+      - 'patches/expo-image+*.patch'
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/android-app-compile.yml'

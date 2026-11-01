@@ -12,3 +12,10 @@ the list measures 0x0; laying out at that size zeroed every row, and each swipe
 back in re-measured the page, which made posts jump in size.
 
 If a patch fails to parse, temporarily disable it by renaming the file extension (e.g., add `.disabled`) and re-run install. Then recreate the patch against the current dependency version if needed.
+
+`expo-image+55.0.11.patch` adds `setHardwareBitmapsEnabled` (Android). When on,
+Glide decodes pictures as hardware bitmaps (Android 9+, no blur), so a
+scrolling frame no longer uploads each new picture on the render thread. It
+defaults to off; `libs/hardwareImageDecode.ts` turns it on for a share of
+installs (`HARDWARE_IMAGE_ROLLOUT_PERCENT`), and an update setting that back to
+0 switches it off. Recreate it when expo-image is upgraded.
