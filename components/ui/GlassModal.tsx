@@ -60,6 +60,9 @@ export interface GlassModalProps {
    * so a pull that scrolls back up to the top carries on as a close.
    */
   dragFromContent?: boolean;
+  /** A drawer of rows that must never show the page through it: keeps the
+   *  backdrop blur above the sheet but paints the panel near solid. */
+  opaque?: boolean;
 }
 
 /** A GestureDetector only where a gesture is wired, so other sheets are untouched. */
@@ -93,6 +96,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   scrollable = false,
   yieldToWalletUnlock = true,
   surface = 'theme',
+  opaque = false,
   dragFromContent = false,
 }) => {
   const insets = useSafeAreaInsets();
@@ -349,7 +353,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   },
                 ]}
               >
-                {glassDrawer ? <SheetGlass backdropBlurred={backdrop.blurred} /> : MessageSurface ? <MessageSurface /> : null}
+                {glassDrawer ? <SheetGlass blur={!opaque} backdropBlurred={!opaque && backdrop.blurred} /> : MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
                   <MaybeDetector gesture={listGesture}>
                   <ScrollView
