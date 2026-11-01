@@ -514,6 +514,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         onClose={() => setFreeDmModalVisible(false)}
         presentation="bottom"
         maxHeight="70%"
+        panelHeight="70%"
         blurIntensity={30}
       >
         <View className="flex-1">

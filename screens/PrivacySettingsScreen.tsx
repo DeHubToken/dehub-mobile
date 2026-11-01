@@ -895,6 +895,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         onClose={() => setShowRequestsModal(false)}
         presentation="bottom"
         maxHeight="80%"
+        panelHeight="80%"
         blurIntensity={30}
       >
         <View className="flex-1">
