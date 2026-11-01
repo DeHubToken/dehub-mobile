@@ -56,7 +56,7 @@ export const GLASS_PLAYBACK_CONTROL: ViewStyle = {
   borderColor: 'rgba(225,255,255,0.45)',
   borderTopColor: 'rgba(255,255,255,0.85)',
   borderBottomColor: 'rgba(180,255,255,0.35)',
-  borderRadius: 999,
+  borderRadius: 10,
 };
 
 /** Cosmic, Hazy Nights, Swarms, Lava Lamp and Winter share one smoked glass. */
@@ -106,15 +106,17 @@ const RAIN = 'rgb(57,255,136)';
 const SAKURA = 'rgb(255,111,181)';
 
 const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
+  // Glass keeps its lit rim but takes System's corners: cards 16, bars 12,
+  // buttons 10, matching web's --glass-r-* tokens.
   glass: {
     ...glass,
     material: 'glass',
     page: '#082a30',
-    card: { ...glass.card, borderRadius: 24, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)', borderBottomColor: 'rgba(225,255,255,0.12)' },
-    strip: { ...glass.strip, borderRadius: 24, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)' },
-    stripActive: { ...glass.stripActive, borderRadius: 20, borderColor: 'rgba(225,255,255,0.5)', backgroundColor: 'rgba(210,255,255,0.18)' },
-    barBorder: { ...glass.barBorder, borderRadius: 28, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)' },
-    centre: { ...glass.centre, borderRadius: 999, borderColor: 'rgba(225,255,255,0.5)' },
+    card: { ...glass.card, borderRadius: 16, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)', borderBottomColor: 'rgba(225,255,255,0.12)' },
+    strip: { ...glass.strip, borderRadius: 12, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)' },
+    stripActive: { ...glass.stripActive, borderRadius: 12, borderColor: 'rgba(225,255,255,0.5)', backgroundColor: 'rgba(210,255,255,0.18)' },
+    barBorder: { ...glass.barBorder, borderRadius: 16, borderColor: 'rgba(225,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.48)' },
+    centre: { ...glass.centre, borderRadius: 12, borderColor: 'rgba(225,255,255,0.5)' },
     tabIcon: '#B8D5D8',
     barIcon: '#B8D5D8',
   },

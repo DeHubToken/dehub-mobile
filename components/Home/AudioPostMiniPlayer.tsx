@@ -85,7 +85,7 @@ const AudioPostMiniPlayer: React.FC = () => {
 
   return (
     <View
-      style={[styles.container, liveBarShowing && styles.aboveLiveBar, theme === 'glass' && { backgroundColor: skin?.card.backgroundColor, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', overflow: 'hidden' }]}
+      style={[styles.container, liveBarShowing && styles.aboveLiveBar, theme === 'glass' && { backgroundColor: skin?.card.backgroundColor, borderRadius: 16, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', overflow: 'hidden' }]}
       accessibilityLabel={t("audioPost.cornerPlayer")}
     >
       {theme === 'glass' && <LinearGradient pointerEvents="none" colors={['rgba(225,255,255,.16)', 'transparent']} style={StyleSheet.absoluteFill} />}

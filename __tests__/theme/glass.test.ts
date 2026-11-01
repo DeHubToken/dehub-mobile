@@ -11,7 +11,7 @@ it('restores Glass and its custom colour as a complete native skin', () => {
   const rose = tintSkin(base, themeAccent('glass', { glass: 330 }, []));
   expect(teal.page).not.toBe(rose.page);
   expect(teal.card.backgroundColor).not.toBe(rose.card.backgroundColor);
-  expect(rose.card.borderRadius).toBe(24);
+  expect(rose.card.borderRadius).toBe(16);
   expect(rose.card.borderTopColor).toBe(teal.card.borderTopColor);
   expect(base.page).toBe('#082a30');
 });
