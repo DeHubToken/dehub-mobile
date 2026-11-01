@@ -43,6 +43,7 @@ const MINIMAL_VOICE_TILE = { backgroundColor: "transparent", paddingHorizontal: 
 import { useUser } from "../../context/AuthContext";
 import { LikeCommentResult, DislikeCommentResult, ReactCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
+import FullScreenVideoPlayer from "../common/FullScreenVideoPlayer";
 import ReactionPicker from "../Home/ReactionPicker";
 import {
   applyReactionDelta,
@@ -195,6 +196,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const currentUser = useUser();
   // Bumps each time this viewer tips this comment, replaying the gem swirl.
   const [tipBurst, setTipBurst] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
   useEffect(() => {
     const key = commentTipKey(comment.id);
     return subscribePostTipped((id) => { if (id === key) setTipBurst((n) => n + 1); });
@@ -545,7 +547,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     }
   }, [tokenId, comment.id, t]);
 
-  const hasMedia = !!(comment.imageUrl || comment.gifUrl || comment.audioUrl);
+  const hasMedia = !!(comment.imageUrl || comment.gifUrl || comment.audioUrl || comment.videoUrl);
   const canTip = !!onTip && !!(comment.user?.address || comment.address);
   const showRepliesToggle = !!onToggleReplies && (hiddenReplyCount > 0 || repliesExpanded);
   const repliesToggleLabel = repliesExpanded
@@ -853,6 +855,22 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 contentFit="cover"
               />
             </View>
+          ) : null}
+
+          {comment.videoUrl ? (
+            <>
+              <Pressable
+                onPress={() => setVideoOpen(true)}
+                accessibilityRole="button"
+                accessibilityLabel={t("comments.playVideo", { defaultValue: "Play video" })}
+                style={{ marginTop: 6, width: 220, height: 124, borderRadius: 10, overflow: "hidden", backgroundColor: "#000", alignItems: "center", justifyContent: "center" }}
+              >
+                <Icon name="CirclePlay" size={34} color="#FFFFFF" />
+              </Pressable>
+              {videoOpen ? (
+                <FullScreenVideoPlayer visible={videoOpen} uri={resolveMediaUrl(comment.videoUrl)} onClose={() => setVideoOpen(false)} />
+              ) : null}
+            </>
           ) : null}
 
           {comment.audioUrl ? (

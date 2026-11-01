@@ -65,12 +65,14 @@ import {
   postImageComment,
   postGifComment,
   postAudioComment,
+  postMediaComment,
   recordCommentViews,
   Comment,
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { selfBadgeFields } from "../../libs/misc";
-import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
+import { getFileName, guessMime } from "../../libs/assets.util";
+import { useCommentAttachPicker } from "./useCommentAttachPicker";
 import { useComposerKeyboard, useSelfLiftingComposer } from "../../hooks/useComposerKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
@@ -825,29 +827,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
 
   // Pick image → open cropper → set preview
+  // The paperclip: a photo, a video or an audio file.
+  const { openAttachPicker, attachSheet } = useCommentAttachPicker(
+    useCallback((media: MediaAttachment) => setMediaAttachment(media), []),
+  );
   const handlePickImage = useCallback(async () => {
     if (!requireAuth) return;
-    await requireAuth(async () => {
-      try {
-        const uri = await openCroppedImagePicker({
-          width: 800,
-          height: 600,
-          forceJpg: true,
-          quality: 0.85,
-        });
-        if (uri) {
-          // Typed text is kept — see handleVoiceRecordingComplete.
-          setMediaAttachment({ type: "image", uri });
-          Keyboard.dismiss();
-        }
-      } catch (e: any) {
-        if (e?.code !== "E_PICKER_CANCELLED") {
-          console.error("[CommentSection] image picker error", e);
-          toastError(t("comments.pickImageFailed"));
-        }
-      }
-    });
-  }, [requireAuth]);
+    // Typed text is kept — see handleVoiceRecordingComplete.
+    requireAuth(async () => openAttachPicker());
+  }, [requireAuth, openAttachPicker]);
 
   // Open GIF picker
   const handleOpenGifPicker = useCallback(() => {
@@ -960,7 +948,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         // Optimistic media fields
         imageUrl: mediaAttachment.type === "image" ? mediaAttachment.uri : undefined,
         gifUrl: mediaAttachment.type === "gif" ? mediaAttachment.url : undefined,
-        audioUrl: mediaAttachment.type === "audio" ? mediaAttachment.uri : undefined,
+        audioUrl: mediaAttachment.type === "audio" || mediaAttachment.type === "audiofile" ? mediaAttachment.uri : undefined,
+        videoUrl: mediaAttachment.type === "video" ? mediaAttachment.uri : undefined,
         audioDuration: mediaAttachment.type === "audio" ? Math.round(mediaAttachment.durationMs / 1000) : undefined,
       };
 
@@ -1018,6 +1007,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           const res = await postGifComment({
             streamTokenId: tokenId,
             gifUrl: savedMedia.url,
+            commentId: replyToId,
+          });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "video" || savedMedia.type === "audiofile") {
+          const res = await postMediaComment({
+            streamTokenId: tokenId,
+            fileUri: savedMedia.uri,
+            fileName: savedMedia.type === "audiofile" ? savedMedia.name : undefined,
+            mimeType: savedMedia.mimeType || "video/mp4",
             commentId: replyToId,
           });
           newId = res?.commentId;
@@ -2071,10 +2069,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                     onPress={handlePickImage}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     accessibilityRole="button"
-                    accessibilityLabel={t("comments.addImage")}
+                    accessibilityLabel={t("comments.attachMedia", { defaultValue: "Attach a photo, video or audio" })}
                     style={toolControl}
                   >
-                    <Icon name="Image" size={20} color="#8B8D90" />
+                    <Icon name="Paperclip" size={20} color="#8B8D90" />
                   </Pressable>
                 )}
               <Pressable
@@ -2134,10 +2132,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel={t("comments.addImage")}
+                  accessibilityLabel={t("comments.attachMedia", { defaultValue: "Attach a photo, video or audio" })}
                   style={composerStyles.iconControl}
                 >
-                  <Icon name="Image" size={20} color="#8B8D90" />
+                  <Icon name="Paperclip" size={20} color="#8B8D90" />
                 </Pressable>
                 <Pressable
                   {...gifPress}
@@ -2187,6 +2185,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onConfirm={handleCommonGroundConfirm}
       />
 
+      {attachSheet}
       <GifPicker
         visible={gifPickerVisible}
         onClose={handleCloseGifPicker}

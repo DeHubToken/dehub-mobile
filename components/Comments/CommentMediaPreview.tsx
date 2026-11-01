@@ -16,7 +16,11 @@ import { useTranslation } from "react-i18next";
 export type MediaAttachment =
   | { type: "image"; uri: string }
   | { type: "gif"; url: string }
-  | { type: "audio"; uri: string; durationMs: number };
+  | { type: "audio"; uri: string; durationMs: number }
+  /** A video clip picked with the paperclip. */
+  | { type: "video"; uri: string; mimeType?: string; thumbnailUri?: string }
+  /** An audio FILE picked with the paperclip (not a recorded voice note). */
+  | { type: "audiofile"; uri: string; mimeType: string; name?: string };
 
 interface CommentMediaPreviewProps {
   media: MediaAttachment;
@@ -35,7 +39,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   const handleRemove = useCallback(() => onRemove(), [onRemove]);
   const handleSend = useCallback(() => onSend(), [onSend]);
 
-  if (media.type === "audio") {
+  if (media.type === "audio" || media.type === "audiofile") {
     return (
       <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/80">
         <TouchableOpacity
@@ -52,7 +56,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
         <View className="flex-1">
           <VoiceNotePlayer
             audioUrl={media.uri}
-            duration={media.durationMs / 1000}
+            duration={media.type === "audio" ? media.durationMs / 1000 : undefined}
             compact
           />
         </View>
@@ -73,7 +77,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   }
 
   // Image or GIF preview — chat-screen style (compact thumbnail with overlay X)
-  const uri = media.type === "image" ? media.uri : media.url;
+  const uri = media.type === "image" ? media.uri : media.type === "video" ? media.thumbnailUri || "" : media.url;
 
   return (
     <View className="px-4 py-2 bg-theme-neutrals-800/80 flex-row items-center">
@@ -84,6 +88,11 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           style={{ width: "100%", height: "100%" }}
           contentFit="cover"
         />
+        {media.type === "video" && (
+          <View pointerEvents="none" className="absolute inset-0 items-center justify-center">
+            <Icon name="CirclePlay" size={24} color="#FFFFFF" />
+          </View>
+        )}
         <TouchableOpacity
           onPress={handleRemove}
           activeOpacity={0.7}

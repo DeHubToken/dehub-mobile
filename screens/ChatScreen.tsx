@@ -1241,7 +1241,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || t("copy.dae38d549299", { defaultValue: "Can't send right now" }));
         return false;
       }
-      if (planBlocks(attachment.type === "video" ? "video" : "image", tipAmount)) return false;
+      if (planBlocks(attachment.type === "video" ? "video" : attachment.type === "audio" ? "audio" : "image", tipAmount)) return false;
 
       const sentId = dmSendQueue.sendMedia({
         conversationId: currentConvId || "temp",
@@ -1250,7 +1250,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         uri: attachment.uri,
         thumbnailUri: attachment.thumbnailUri,
         mediaType:
-          attachment.type === "video" ? "video" : attachment.type === "file" ? "file" : "image",
+          attachment.type === "video" ? "video" : attachment.type === "audio" ? "audio" : attachment.type === "file" ? "file" : "image",
         mimeType: attachment.mimeType,
         fileName: attachment.name,
         fileSize: attachment.size,

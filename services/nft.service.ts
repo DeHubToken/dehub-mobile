@@ -471,6 +471,8 @@ export interface Comment {
   gifUrl?: string;
   audioUrl?: string;
   audioDuration?: number;
+  /** A video clip attached with the paperclip. */
+  videoUrl?: string;
   createdAt: string;
   parentId?: number;
   replyIds?: number[];
@@ -921,6 +923,42 @@ export async function postImageComment(input: PostImageCommentInput): Promise<Po
     console.error('[NFTService] postImageComment error', e);
     throw e;
   }
+}
+
+// Post a comment with a video clip or an audio file (/comment_media).
+export async function postMediaComment(input: {
+  streamTokenId: number | string;
+  fileUri: string;
+  fileName?: string;
+  mimeType: string;
+  content?: string;
+  commentId?: number | string;
+}): Promise<PostImageCommentResponse & { videoUrl?: string; audioUrl?: string; audioDuration?: number }> {
+  const { streamTokenId, fileUri, fileName, mimeType, content, commentId } = input;
+  if (streamTokenId == null) throw new Error('streamTokenId required');
+  if (!fileUri) throw new Error('fileUri required');
+
+  const ext = mimeType.startsWith('video/') ? 'mp4' : 'mp3';
+  const formData = new FormData();
+  formData.append('file', {
+    uri: fileUri,
+    name: fileName || `comment_media_${Date.now()}.${ext}`,
+    type: mimeType,
+  } as any);
+
+  const qs = new URLSearchParams();
+  qs.set('streamTokenId', String(streamTokenId));
+  if (content?.trim()) qs.set('content', content.trim());
+  if (commentId != null) qs.set('commentId', String(commentId));
+
+  const res = await apiClient.post<PostImageCommentResponse & { videoUrl?: string; audioUrl?: string; audioDuration?: number }>(
+    `/comment_media?${qs.toString()}`,
+    formData,
+    // A 50 MB clip on a phone connection needs longer than a photo.
+    { isAuthRequired: true, timeoutMs: 5 * 60_000 }
+  );
+  assertCommentAccepted(res);
+  return res;
 }
 
 // Post a comment with a GIF URL (Giphy / Tenor)
