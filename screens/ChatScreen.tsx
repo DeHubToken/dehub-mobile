@@ -265,6 +265,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   // Context menu
   const [contextMessage, setContextMessage] = useState<DmMessage | null>(null);
+  const liftedId = contextMessage?._id;
   const [contextLayout, setContextLayout] = useState<MessageLayout | null>(null);
   const [contextIsMine, setContextIsMine] = useState(false);
 
@@ -1642,8 +1643,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }
       const run = undecryptableRuns.get(item._id);
       if (run !== undefined) return run > 0 ? <DmUndecryptableRun count={run} /> : null;
+      // The long-press menu floats its own copy of this bubble over the list.
+      // The copy is see-through, so the original underneath showed its text
+      // and time a second time; hide it while the menu is open.
       return (
-        <View>
+        <View style={liftedId === item._id ? { opacity: 0 } : undefined}>
           <MessageBubble
             message={item}
             isMine={mine}
@@ -1659,7 +1663,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction],
+    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction, liftedId],
   );
 
   const keyExtractor = useCallback((item: DmMessage) => item._id, []);
