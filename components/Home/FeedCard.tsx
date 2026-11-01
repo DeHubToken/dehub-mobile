@@ -28,6 +28,7 @@ import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrubBoundary";
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
+import { FEED_SIDE } from "./feedLayout";
 import FeedActionBar from "./FeedActionBar";
 import { openPostInFeedHost } from "../../libs/feedPostHost";
 import ShopBoard from "../common/ShopBoard";
@@ -308,6 +309,13 @@ interface FeedCardProps {
   stage?: boolean;
   /** Stage only: where the post's media (or, without media, its text) ends, in card coordinates. */
   onStageAnchor?: (y: number) => void;
+  /**
+   * The picked entry on a Music chart (web's `hideActions` card inside
+   * `[data-listening-desk-player]`): no bento, the media first, then a small
+   * avatar row with the options button, the caption and the time/plays row.
+   * No action bar, poll or shop board.
+   */
+  desk?: boolean;
 }
 
 /** Side inset for the text of an immersive post; the media ignores it. */
@@ -407,6 +415,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   hideDivider = false,
   stage: stageProp = false,
   onStageAnchor,
+  desk = false,
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
@@ -1481,7 +1490,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const tabletAspect = useMediaAspect(tabletCandidate ? thumbnail : null, tabletCandidate ? tokenId : undefined);
   const tabletPortrait = tabletCandidate && tabletAspect < 1 && !!postVideoUrl
     && !isActuallyGated && !matureGate.isGated && !contentWarning.hidden;
-  const tabletVideoWidth = tabletPortrait ? Math.min((tabletColumnWidth - 24) * 0.44, SCREEN_HEIGHT * 0.65 * tabletAspect) : undefined;
+  // A Music chart pick spans the chart's width at the video's own shape, like web.
+  const tabletVideoWidth = desk ? SCREEN_WIDTH - 2 * FEED_SIDE
+    : tabletPortrait ? Math.min((tabletColumnWidth - 24) * 0.44, SCREEN_HEIGHT * 0.65 * tabletAspect) : undefined;
   // Video and live carry the author and buttons over the picture; a photo
   // gets a plain header row above it instead, and nothing over it.
   const measuredFirstVideoAspect = useMediaAspect(cinematicMedia && topChromeInset > 0 && isVideo ? thumbnail : null, tokenId);
@@ -1965,7 +1976,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Minimal: media runs edge to edge while the text keeps its inset. Only the
   // picture bleeds — an audio post's player stays in the column with the text.
   const bleed = (node: React.ReactNode) =>
-    isMinimal && !immersive && !flat && node ? (
+    isMinimal && !immersive && !flat && !desk && node ? (
       <View style={{ marginHorizontal: -MINIMAL_TEXT_INSET }}>{node}</View>
     ) : node;
 
@@ -2009,6 +2020,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 firstFeedPost={cinematicFeed && topChromeInset > 0}
                 edgeToEdge={cinematicFeed}
                 postPage={stage}
+                flushTop={desk}
               />
             )}
           </FeedAudioContent>
@@ -2843,7 +2855,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // screen, posts are split by one full-width hairline, and media bleeds
       // past the text inset to both edges.
       onLayout={handleFeedLayout}
-      style={immersive ? {
+      // Desk: web's card ends ~10pt under its time/plays row (measured side by side).
+      style={desk ? { paddingBottom: 10 } : immersive ? {
         paddingHorizontal: IMMERSIVE_INSET,
         paddingBottom: 12,
       } : flat ? {
@@ -2879,7 +2892,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         marginVertical: 6,
       }}
     >
-      {skin?.grain && !flat ? (
+      {skin?.grain && !flat && !desk ? (
         <Image
           source={GRAIN}
           resizeMode="repeat"
@@ -2903,7 +2916,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {/* No wrapper row: the header is a full-width row of its own, and a
           card is ~100 native views, each one paid for at mount mid-fling. */}
       {!retainFeedNav && postVideo && matureGate.isGated && <PostStageChrome overMedia={false} />}
-      <FeedCardHeader
+      {!desk && <FeedCardHeader
         boosted={isBoosted}
         onBoostedPress={openSuperPowers}
         avatarUrl={avatar}
@@ -2919,7 +2932,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             : undefined
         }
         isHidden={isHidden}
-      />
+      />}
 
       {/* Everything the post actually says — media, caption, embeds — sits
           behind the warning together. A text post's body is its content, so
@@ -2933,6 +2946,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       ) : (
         <>
       {!immersive && renderContent()}
+
+      {desk && (
+        <View style={styles.deskAuthorRow}>
+          <TouchableOpacity onPress={handleUserPress} accessibilityRole="button" accessibilityLabel={displayName || username || undefined} hitSlop={6}>
+            <View style={styles.deskAvatar}>
+              {avatar
+                ? <Image source={{ uri: avatar }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+                : <Text style={styles.deskAvatarLetter}>{(displayName || username || "?").charAt(0).toUpperCase()}</Text>}
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleOpenOptions} accessibilityRole="button" accessibilityLabel={t("postOptions.title", { defaultValue: "Post options" })} hitSlop={10}>
+            <Icon name="EllipsisVertical" size={16} color="#a1a1aa" />
+          </TouchableOpacity>
+        </View>
+      )}
 
       {hasSoundtrack && !isActuallyGated && !soundtrackOnMedia && (
         <View className="mt-2">
@@ -2972,7 +3000,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         resetKey={postKey}
         statsTokenId={tokenId}
         title={localArticleBody ? undefined : (isTranslated ? translatedTexts.title : localTitle) || undefined}
-        description={displayCaption || undefined}
+        // A chart card is captioned by its title alone, like web's music items.
+        description={desk && localTitle ? undefined : displayCaption || undefined}
+        variant={desk ? "chart" : undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
         onCashtagPress={setActiveCashtag}
@@ -3020,14 +3050,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           on the post. Each holds per-post state of its own (a vote, a fetched
           preview, an open board), and they are small enough that a fresh one
           per post is simpler than resetting each. */}
-      {tokenId != null && !isLive && !(item as any).isQuotePost && (
+      {tokenId != null && !isLive && !desk && !(item as any).isQuotePost && (
         <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 
       {/* The creator's Shop board — affiliate links, opened in a sheet. The
           live card links through to the player, which draws its own overlay
           button, so a second one here would be the same board twice. */}
-      {!isLive && (
+      {!isLive && !desk && (
         <ShopBoard
           key={postKey}
           tokenId={tokenId}
@@ -3065,7 +3095,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       </View>
 
       {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
-      {actionBar}
+      {!desk && actionBar}
 
       {sheets}
     </Pressable>
@@ -3075,6 +3105,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
 const styles = StyleSheet.create({
   stage: { paddingHorizontal: IMMERSIVE_INSET, paddingBottom: 4 },
+  // web `hideActions` card: `flex items-center justify-between pt-2`, a 28pt `rounded-md` avatar.
+  deskAuthorRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: 8 },
+  deskAvatar: { width: 28, height: 28, borderRadius: 6, overflow: "hidden", backgroundColor: "#3f3f46", alignItems: "center", justifyContent: "center" },
+  deskAvatarLetter: { color: "#fff", fontSize: 12, fontWeight: "500" },
   cinematicPost: {
     paddingVertical: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,

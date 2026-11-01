@@ -582,6 +582,8 @@ export interface AudioPostPlayerProps {
   firstFeedPost?: boolean;
   /** On the post page: reports play state to its pinned mini player. */
   postPage?: boolean;
+  /** First thing in its card (a Music chart pick): no gap above. */
+  flushTop?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -598,6 +600,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   edgeToEdge = false,
   firstFeedPost = false,
   postPage = false,
+  flushTop = false,
 }) => {
   const { t } = useTranslation();
   const { theme, skin, accent, isLight } = useAppTheme();
@@ -1466,13 +1469,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         {/* Options like web: style picks, then lyrics, pop out, sound and
             fullscreen, wrapping; the colour and volume sliders share a row. */}
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 14, paddingTop: 14, paddingHorizontal: 4 }}>
+        {/* Web's slider row is 18pt tall. These sliders keep a 36pt touch
+            strip, so the row overlaps the gap above and the card's padding
+            below to land where web's does (measured side by side). */}
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 0, paddingTop: 14, paddingHorizontal: 4, marginBottom: -11 }}>
           <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} hue={hue} ink={ink} light={material === 'light'} />
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.lyrics')} accessibilityState={{ selected: showLyrics }} onPress={() => setShowLyrics(v => !v)} style={[styles.studioOption, { marginLeft: 'auto', opacity: showLyrics ? 1 : .7 }, showLyrics && { backgroundColor: 'rgba(255,255,255,.14)' }]}>{optionGlyph('MicVocal')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.studioOption}>{optionGlyph('PictureInPicture2')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.studioOption}>{optionGlyph(isEffectivelyMuted ? 'VolumeX' : 'Volume2')}</TouchableOpacity>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.studioOption}>{optionGlyph(isFullscreen ? 'Minimize' : 'Maximize')}</TouchableOpacity>
-          <View style={{ flexBasis: '100%', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <View style={{ flexBasis: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: -5 }}>
             <StudioHueSlider hue={hue} onHueChange={handleHueChange} />
             <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}>{held => <><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor={material === 'light' ? '#394955' : '#dce4e7'} trackColor={material === 'light' ? 'rgba(20,30,40,.15)' : 'rgba(255,255,255,.2)'} /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor={held ? 'transparent' : material === 'light' ? '#394955' : '#efffff'} style={{ width: '100%', height: 36 }} /></PagerSafe></>}</GlassHold>
           </View>
@@ -1494,7 +1500,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   };
 
   return (
-    <View style={[styles.card, edgeToEdge && styles.cardEdge, studio && { backgroundColor: 'transparent', borderRadius: STUDIO_CARD_RADIUS, overflow: 'visible' }]}>
+    <View style={[styles.card, edgeToEdge && styles.cardEdge, studio && { backgroundColor: 'transparent', borderRadius: STUDIO_CARD_RADIUS, overflow: 'visible' }, flushTop && { marginTop: 0 }]}>
       {renderWindow("inline")}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
