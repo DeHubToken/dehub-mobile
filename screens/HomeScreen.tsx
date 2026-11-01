@@ -646,8 +646,16 @@ export default function HomeScreen() {
   // Single photos and text on the Images scroll view turn the tab like the
   // feed does; galleries in it block this through PagerGestureProvider.
   const drawerPagerGesture = useMemo(() => buildPageTurn(drawerPagerRef, true), [buildPageTurn]);
-  useEffect(() => { if (!imageFeed) drawerSwipe.value = 0; }, [imageFeed, drawerSwipe]);
-  const drawerRevealStyle = useAnimatedStyle(() => ({ opacity: drawerSwipe.value }));
+  // The feed under the sheet is hidden while the sheet covers it. The style is
+  // always attached and reads whether the sheet is open: dropping an animated
+  // style from the array leaves its last value on the native view, so the
+  // feed stayed at opacity 0 (all black) after backing out of the sheet.
+  const imageFeedOpen = useSharedValue(0);
+  useEffect(() => {
+    imageFeedOpen.value = imageFeed ? 1 : 0;
+    if (!imageFeed) drawerSwipe.value = 0;
+  }, [imageFeed, drawerSwipe, imageFeedOpen]);
+  const drawerRevealStyle = useAnimatedStyle(() => ({ opacity: imageFeedOpen.value ? drawerSwipe.value : 1 }));
   const drawerSlideStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: drawerSwipe.value ? (dragStart.value - progress.value) * pageWidth : 0 }],
   }));
@@ -1189,7 +1197,7 @@ export default function HomeScreen() {
           pointerEvents={imageFeed ? "none" : "auto"}
           accessibilityElementsHidden={!!imageFeed}
           importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}
-          style={[styles.pagerViewport, feedClipStyle, imageFeed ? drawerRevealStyle : null]}
+          style={[styles.pagerViewport, feedClipStyle, drawerRevealStyle]}
         >
           <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
