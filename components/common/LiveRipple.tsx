@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import { useAmbientMotion } from "../../hooks/useAmbientMotion";
 import Animated, {
   cancelAnimation,
   Easing,
@@ -50,8 +51,10 @@ const LiveRipple: React.FC<{
   const first = useSharedValue(0);
   const second = useSharedValue(0);
 
+  const running = useAmbientMotion();
+
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !running) return;
     const easing = quiet ? Easing.out(Easing.quad) : EASING;
     const loop = () => withRepeat(withTiming(1, { duration: tone.duration, easing }), -1, false);
     first.value = loop();
@@ -62,7 +65,7 @@ const LiveRipple: React.FC<{
       first.value = 0;
       second.value = 0;
     };
-  }, [reduced, first, second, quiet, tone.duration, tone.rings]);
+  }, [reduced, running, first, second, quiet, tone.duration, tone.rings]);
 
   const ring = {
     width: size,
