@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -13,7 +14,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
-import ShortsGridCard, { useShortsCardSize, GRID_GAP } from "./ShortsGridCard";
+import ShortsGridCard, { useShortsCardSize, GRID_GAP, shortsPosterUri } from "./ShortsGridCard";
 import ShortsGridSkeleton from "./ShortsGridSkeleton";
 import Icon from "../ui/Icon";
 import { getShortsFeed } from "../../services/feed.unified.service";
@@ -44,6 +45,41 @@ interface ShortsGridProps {
   onScrollBegin?: () => void;
   onRefresh?: () => void;
 }
+
+/**
+ * Which cell may autoplay right now. Held outside React state so starting or
+ * stopping a scroll (which pauses autoplay) re-renders only the one cell that
+ * was or will be playing, not renderItem for every mounted cell at the moment
+ * the finger starts moving.
+ */
+function createPlayStore() {
+  let current: number | null = null;
+  const listeners = new Set<() => void>();
+  return {
+    get: () => current,
+    set(next: number | null) {
+      if (next === current) return;
+      current = next;
+      listeners.forEach((l) => l());
+    },
+    subscribe(l: () => void) {
+      listeners.add(l);
+      return () => { listeners.delete(l); };
+    },
+  };
+}
+type PlayStore = ReturnType<typeof createPlayStore>;
+
+const GridCell = memo(function GridCell({ store, item, index, onPress, onUnavailable }: {
+  store: PlayStore;
+  item: UnifiedFeedItem;
+  index: number;
+  onPress: (index: number) => void;
+  onUnavailable: (key: string) => void;
+}) {
+  const playing = useSyncExternalStore(store.subscribe, () => store.get() === index);
+  return <ShortsGridCard item={item} index={index} isVisible={playing} onPress={onPress} onUnavailable={onUnavailable} />;
+});
 
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
@@ -245,17 +281,38 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 80, minimumViewTime: 150 }).current;
 
+  const [playStore] = useState(createPlayStore);
+  useEffect(() => {
+    playStore.set(active && focused && !scrolling ? playIndex : null);
+  }, [playStore, active, focused, scrolling, playIndex]);
+
+  // Fetch each new page's posters as soon as it arrives, so a tile is not
+  // still downloading when it scrolls in (late tiles popped in, or sat black).
+  const cardWidth = useShortsCardSize().width;
+  const prefetched = useRef(new Set<string>());
+  useEffect(() => {
+    const urls: string[] = [];
+    for (const it of displayItems) {
+      const uri = shortsPosterUri(it, cardWidth);
+      if (uri && !prefetched.current.has(uri)) {
+        prefetched.current.add(uri);
+        urls.push(uri);
+      }
+    }
+    if (urls.length) Image.prefetch(urls, "disk").catch(() => {});
+  }, [displayItems, cardWidth]);
+
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
-      <ShortsGridCard
+      <GridCell
+        store={playStore}
         item={item}
         index={index}
-        isVisible={active && focused && !scrolling && playIndex === index}
         onPress={handleItemPress}
         onUnavailable={markUnavailable}
       />
     ),
-    [handleItemPress, playIndex, markUnavailable, active, focused, scrolling],
+    [handleItemPress, markUnavailable, playStore],
   );
 
   const keyExtractor = useCallback(

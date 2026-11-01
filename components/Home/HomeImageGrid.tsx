@@ -21,6 +21,7 @@ import Icon from "../ui/Icon";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.unified.service";
 import { buildFeedImageUrls, getImageUrl } from "../../libs/misc";
+import { gridPosterWidth } from "./ShortsGridCard";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
@@ -87,17 +88,34 @@ interface GridItemProps {
   animate: boolean;
 }
 
+/**
+ * The picture a tile shows, fetched at no more than 2x pixels (see
+ * gridPosterWidth). Also used to fetch tiles ahead of the scroll.
+ */
+function gridTileUri(item: UnifiedFeedItem, size: number): string | null {
+  const widthPt = gridPosterWidth(size);
+  const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
+  // API-served post images are on a different host to the CDN and are not a
+  // transformable remote source, so these stay as-is; only the CDN fallback
+  // below can be sized. Tapping a tile opens the full-size original in the
+  // drawer either way.
+  if (urls.length > 0) return buildFeedImageUrls([urls[0]], widthPt)[0] || null;
+  return getImageUrl(item.imageUrl || item.thumbnailUrl || "", widthPt) || null;
+}
+
+/** Tile size at a list index: the pattern is big+2, 2+big, then 3 small. */
+function gridTileSize(m: GridMetrics, index: number): number {
+  const rowType = Math.floor(index / 3) % 3;
+  const pos = index % 3;
+  return (rowType === 0 && pos === 0) || (rowType === 1 && pos === 2) ? m.big : m.small;
+}
+
 const GridItem = memo<GridItemProps>(({ item, index, size, onPress, animate }) => {
-  const imageUri = useMemo(() => {
-    const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
-    // API-served post images are on a different host to the CDN and are not a
-    // transformable remote source, so these stay as-is; only the CDN fallback
-    // below can be sized. Tapping a tile opens the full-size original in the
-    // drawer either way.
-    if (urls.length > 0) return buildFeedImageUrls([urls[0]], size)[0] || null;
-    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", size);
-    return single || null;
-  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl, size]);
+  const imageUri = useMemo(
+    () => gridTileUri(item, size),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [item.imageUrls, item.imageUrl, item.thumbnailUrl, size],
+  );
 
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
@@ -410,6 +428,21 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   }, [navigation]);
 
   const gridRows = useMemo(() => buildGridRows(items.length), [items.length]);
+
+  // Fetch each new page's tiles as soon as it arrives, so a tile is not still
+  // downloading when it scrolls in.
+  const prefetched = useRef(new Set<string>());
+  useEffect(() => {
+    const urls: string[] = [];
+    items.forEach((it, i) => {
+      const uri = gridTileUri(it, gridTileSize(metrics, i));
+      if (uri && !prefetched.current.has(uri)) {
+        prefetched.current.add(uri);
+        urls.push(uri);
+      }
+    });
+    if (urls.length) Image.prefetch(urls, "disk").catch(() => {});
+  }, [items, metrics]);
 
   const renderGridRow = useCallback(
     ({ item: row }: { item: GridRowData }) => (

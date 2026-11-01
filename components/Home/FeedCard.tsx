@@ -17,6 +17,7 @@ import {
   useWindowDimensions,
   Pressable,
   StyleSheet,
+  PixelRatio,
   Image,
   type LayoutChangeEvent,
 } from "react-native";
@@ -182,6 +183,12 @@ const imageWidthFor = (screenWidth: number) => screenWidth - 40;
 // wider than 8/side left the photo hanging past the card's right edge, so the
 // image corrects itself on layout when the guess is off by more than 2pt.
 const singleImageWidthFor = (screenWidth: number) => screenWidth - 42;
+// Feed pictures are fetched at no more than 2x pixels, about what X serves
+// its timeline. At 2.8x a full-width photo came back 1080px wide, and each
+// new picture's bitmap is copied to the GPU on the frame it scrolls in: on a
+// Galaxy S24+ those copies were most of the slow frames while scrolling.
+// Tapping a picture still opens the full original.
+const feedFetchWidth = (widthPt: number) => widthPt * Math.min(1, 2 / PixelRatio.get());
 // Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
 // 96px-wide image reads exactly like 20px of blur on the full one.
 const LOCKED_PREVIEW_WIDTH = 32;
@@ -411,6 +418,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // of keeping the width the app started with.
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const IMAGE_WIDTH = imageWidthFor(SCREEN_WIDTH);
+  // What feed pictures are fetched at (see feedFetchWidth). Layout still uses
+  // IMAGE_WIDTH; only the requested pixel size is capped.
+  const FETCH_WIDTH = feedFetchWidth(IMAGE_WIDTH);
   const SINGLE_IMAGE_WIDTH = singleImageWidthFor(SCREEN_WIDTH);
 
   // Deep Current is the one power spent on somebody ELSE's post, so it is the
@@ -568,8 +578,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     [item, tokenId, replacementImages],
   );
   const galleryImages = useMemo(() => {
-    if (rawImageUrls.length > 0) return buildFeedImageUrls(rawImageUrls, IMAGE_WIDTH);
-    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", IMAGE_WIDTH);
+    if (rawImageUrls.length > 0) return buildFeedImageUrls(rawImageUrls, FETCH_WIDTH);
+    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", FETCH_WIDTH);
     return single ? [single] : [];
   }, [item, rawImageUrls, IMAGE_WIDTH]);
   // A locked post shows its picture blurred. Blurring a full-width image
@@ -595,14 +605,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       const thumb = stream?.thumbnail;
       if (thumb) {
         const abs = thumb.startsWith("http") ? thumb : `${env.CDN_BASE_URL}/${thumb}`;
-        return cdnImage(abs, { width: IMAGE_WIDTH });
+        return cdnImage(abs, { width: FETCH_WIDTH });
       }
       const itemThumb = item.imageUrl || item.thumbnailUrl;
       if (itemThumb) {
         const abs = itemThumb.startsWith("http")
           ? itemThumb
           : `${env.CDN_BASE_URL}/${itemThumb}`;
-        return cdnImage(abs, { width: IMAGE_WIDTH });
+        return cdnImage(abs, { width: FETCH_WIDTH });
       }
       // Neither the post nor the stream carries a picture. Livepeer renders a
       // poster for a running broadcast — the closest thing to a recent
@@ -622,16 +632,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // "no scheme was found for default-banner" and paints nothing. The card
       // was then a flat grey slab: the poster was "present" so neither the
       // preview's placeholder nor the fallback below could run.
-      const resolved = resolveThumbnail(item as any, IMAGE_WIDTH);
+      const resolved = resolveThumbnail(item as any, FETCH_WIDTH);
       return resolved === DEFAULT_BANNER_SENTINEL ? "" : resolved;
     }
     if (isVideo) {
       // A cover just changed from Edit Post, before the feed refetches.
-      if (replacementCover?.tokenId === String(tokenId)) return cdnImage(`${env.CDN_BASE_URL}/${replacementCover.imageUrl}`, { width: IMAGE_WIDTH });
+      if (replacementCover?.tokenId === String(tokenId)) return cdnImage(`${env.CDN_BASE_URL}/${replacementCover.imageUrl}`, { width: FETCH_WIDTH });
       if (isShort) {
         // A changed cover sits on its own key; read it rather than the id-built one.
-        if (item.imageUrl?.startsWith("shorts/")) return cdnImage(`${env.CDN_BASE_URL}/${item.imageUrl}`, { width: IMAGE_WIDTH });
-        return getShortsThumbnailUrl(tokenId, IMAGE_WIDTH) || "";
+        if (item.imageUrl?.startsWith("shorts/")) return cdnImage(`${env.CDN_BASE_URL}/${item.imageUrl}`, { width: FETCH_WIDTH });
+        return getShortsThumbnailUrl(tokenId, FETCH_WIDTH) || "";
       }
       const rawThumb =
         (item as any).thumbnail ||
@@ -639,7 +649,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         item.thumbnailUrl ||
         item.imageUrl ||
         "";
-      return getImageUrl(rawThumb, IMAGE_WIDTH);
+      return getImageUrl(rawThumb, FETCH_WIDTH);
     }
     return "";
   }, [item, stream, isLive, isVideo, isShort, tokenId, IMAGE_WIDTH, replacementCover]);
@@ -1985,7 +1995,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 isSignedIn={isSignedIn}
                 title={title}
                 artist={displayName}
-                artworkUrl={item.imageUrl || item.thumbnailUrl ? getImageUrl(item.imageUrl || item.thumbnailUrl || '', IMAGE_WIDTH) : undefined}
+                artworkUrl={item.imageUrl || item.thumbnailUrl ? getImageUrl(item.imageUrl || item.thumbnailUrl || '', FETCH_WIDTH) : undefined}
                 topLeftAction={isBounty ? (
                   <TouchableOpacity
                     accessibilityLabel={t("drawers.bountyTitle")}
@@ -2402,7 +2412,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                   look={articleUi}
                   label={t("articles.label")}
                   title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
-                  coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+                  coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], FETCH_WIDTH)[0] : undefined}
                   meta={[createdAt ? new Date(createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : null, t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })].filter(Boolean).join(" · ")}
                   hero
                 />
@@ -2720,7 +2730,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                         look={articleUi}
                         label={`${t("articles.label")} · ${t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })}`}
                         title={overlayTitle || undefined}
-                        coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+                        coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], FETCH_WIDTH)[0] : undefined}
                       />
                     </View>
                   )}
@@ -2952,7 +2962,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             look={articleUi}
             label={fullContent ? t("articles.label") : `${t("articles.label")} · ${t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })}`}
             title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
-            coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], IMAGE_WIDTH)[0] : undefined}
+            coverUri={item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], FETCH_WIDTH)[0] : undefined}
             meta={fullContent ? [createdAt ? new Date(createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : null, t("articles.minRead", { count: articleReadingMinutes(localArticleBody) })].filter(Boolean).join(" · ") : undefined}
             hero={fullContent}
           />
