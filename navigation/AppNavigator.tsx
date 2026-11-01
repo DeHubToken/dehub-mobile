@@ -117,6 +117,7 @@ function AppNavigatorContent() {
     return () => { clearTimeout(timer); task?.cancel(); };
   }, [isAuthed]);
   const { isMinimal, isLight, skin } = useAppTheme();
+  const overDrawerFill = isMinimal ? '#000' : skin ? skin.page : isLight ? LIGHT_PAGE_FILL : '#010305';
 
   return (
     <TabBarHideProvider>
@@ -458,9 +459,12 @@ function AppNavigatorContent() {
           // Opened from the notification drawer: presented like the drawer, so
           // the drawer and the page behind it stay attached under the post. As a
           // plain card it detached them, and Back showed black for ~130ms while
-          // they were put back. The page is still opaque.
+          // they were put back. The page must paint its own solid fill here:
+          // canvas themes leave pages transparent over their live backdrop,
+          // and over the drawer that showed the notification list through
+          // the post.
           options={({ route }) => (route.params as { overDrawer?: boolean } | undefined)?.overDrawer
-            ? { presentation: 'transparentModal' }
+            ? { presentation: 'transparentModal', contentStyle: { backgroundColor: overDrawerFill } }
             : {}}
         />
         <Stack.Screen
