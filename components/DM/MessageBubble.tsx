@@ -1,3 +1,4 @@
+import { ReactionChips } from "./MessageReactions";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -266,6 +267,10 @@ interface MessageBubbleProps {
   onReplyPress?: (messageId: string) => void;
   /** Whether this bubble is highlighted (flash animation after scroll). */
   highlighted?: boolean;
+  /** Lowercase wallet address of the viewer, to mark their own reactions. */
+  myAddress?: string;
+  /** Toggle the viewer's reaction from a chip under the bubble. */
+  onToggleReaction?: (message: DmMessage, emoji: string) => void;
 }
 
 
@@ -280,6 +285,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   onSwipeToReply,
   onReplyPress,
   highlighted = false,
+  myAddress = "",
+  onToggleReaction,
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
@@ -1086,6 +1093,14 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       </Pressable>
         </Animated.View>
       </GestureDetector>
+      {onToggleReaction && (
+        <ReactionChips
+          reactions={message.reactions}
+          myAddress={myAddress}
+          isMine={isMine}
+          onToggle={(emoji) => onToggleReaction(message, emoji)}
+        />
+      )}
     </View>
   );
 };

@@ -22,6 +22,7 @@ import { copyToClipboard } from "../../libs/clipboard.utils";
 import { formatChatTimeSmart } from "../../libs/date.util";
 import type { DmMessage, DmUser, OptimisticMessage } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
+import { ReactionStrip, REACTION_STRIP_HEIGHT } from "./MessageReactions";
 
 
 export interface MessageLayout {
@@ -49,6 +50,10 @@ interface MessageContextMenuProps {
   onPin?: () => void;
   onUnpin?: () => void;
   isPinned?: boolean;
+  /** Toggle one of the quick emoji reactions on this message. */
+  onReact?: (emoji: string) => void;
+  /** Lowercase wallet address, to light the reactions that are already yours. */
+  myAddress?: string;
 }
 
 
@@ -402,6 +407,8 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   onPin,
   onUnpin,
   isPinned,
+  onReact,
+  myAddress = "",
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -515,8 +522,30 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     t,
   ]);
 
+  // Reacting names the message to the server too, so an unsent bubble (still
+  // on its local id) gets no emoji row, same as Reply and Pin above.
+  const canReact = useMemo(() => {
+    if (!message || !onReact) return false;
+    const optimistic = message as Partial<OptimisticMessage>;
+    return !(
+      optimistic._optimistic ||
+      optimistic._tempId ||
+      message.uploadStatus === "pending" ||
+      message.uploadStatus === "failed"
+    );
+  }, [message, onReact]);
+
+  const handleReact = useCallback(
+    (emoji: string) => {
+      onClose();
+      onReact?.(emoji);
+    },
+    [onClose, onReact],
+  );
+
   const actionsCardHeight =
-    actions.length * ACTION_ROW_HEIGHT + ACTIONS_CARD_PADDING;
+    actions.length * ACTION_ROW_HEIGHT + ACTIONS_CARD_PADDING +
+    (canReact ? REACTION_STRIP_HEIGHT : 0);
 
   const { messageTop, actionsTop, actionsBelow } = useMemo(() => {
     if (!layout)
@@ -628,6 +657,15 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
         <Pressable>
           <View className="rounded-xl overflow-hidden py-1">
               <MessageSurface radius={12} />
+            {canReact && (
+              <View className="border-b border-theme-neutrals-800">
+                <ReactionStrip
+                  reactions={message.reactions}
+                  myAddress={myAddress}
+                  onPick={handleReact}
+                />
+              </View>
+            )}
             {actions.map((action) => (
               <ActionRow key={action.label} {...action} />
             ))}

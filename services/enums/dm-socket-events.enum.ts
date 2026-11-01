@@ -20,6 +20,11 @@ export enum DMSocketEvent {
   FetchMessage = "fetchMessage",
   ReValidateMessage = "ReValidateMessage",
 
+  // Emoji reactions on a message (same events the web client uses)
+  AddReaction = "addReaction",
+  RemoveReaction = "removeReaction",
+  ReactionUpdated = "reactionUpdated",
+
   // Media upload progress/completion keyed by message/job id
   JobMessageId = "jobMessageId",
 
