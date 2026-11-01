@@ -963,15 +963,6 @@ const NotificationScreen = () => {
   const [quickSettingsOpen, setQuickSettingsOpen] = useState(false);
   // Mounted on first use: an always-mounted sheet was built on every open.
   const [quickSettingsMounted, setQuickSettingsMounted] = useState(false);
-  // The list mounts a frame after the drawer. Building the rows in the same
-  // commit as the sheet held the slide back: on the S24+ the drawer started
-  // moving 600-800ms after the tap with the rows already loaded. The slide
-  // runs on the UI thread, so the rows now render while it is under way.
-  const [bodyReady, setBodyReady] = useState(false);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setBodyReady(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(!cached);
   // Set when a refresh fails with nothing on screen to fall back on. Until now
@@ -1983,7 +1974,7 @@ const NotificationScreen = () => {
       }
     >
       
-      {!bodyReady ? null : showLoading ? (
+      {showLoading ? (
         <FlatList
           data={skeletonData}
           keyExtractor={(item) => item.key}
