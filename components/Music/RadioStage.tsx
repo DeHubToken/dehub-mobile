@@ -23,6 +23,7 @@ import { toggleRadioStation, playRadioStation, useRadioPlayer } from "../../libs
 import { getCountryFlag, getPrimaryTags, type RadioStation } from "../../libs/radio-browser";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { shareWithRef } from "../../libs/shareRef";
+import { LinearGradient } from "expo-linear-gradient";
 import { SHARE_ORIGIN } from "../../libs/dehub-links";
 
 const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?: () => void }> = ({ station, next, onNext }) => {
@@ -32,7 +33,8 @@ const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?
 
   const isCurrent = current?.stationuuid === station.stationuuid;
   const onAir = isCurrent && isPlaying;
-  const logo = station.favicon && failedLogo !== station.favicon ? station.favicon : null;
+  const artwork = getCustomLogo(station.name) || station.favicon || null;
+  const logo = artwork && failedLogo !== artwork ? artwork : null;
   const tags = getPrimaryTags(station.tags, 3);
   const quality = [station.bitrate > 0 ? `${station.bitrate} kbps` : "", station.codec].filter(Boolean).join(" · ");
 
@@ -62,11 +64,11 @@ const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?
     <KeepDarkScope>
       <View style={styles.stage}>
         {logo && <Image source={{ uri: logo }} style={styles.backdrop} contentFit="cover" blurRadius={40} />}
-        <View style={styles.scrim} />
+        <LinearGradient colors={["rgba(0,0,0,.25)", "rgba(0,0,0,.8)"]} style={styles.scrim} pointerEvents="none" />
         <View style={styles.head}>
           <View style={styles.logo}>
             {logo
-              ? <Image source={{ uri: logo }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} onError={() => setFailedLogo(station.favicon)} />
+              ? <Image source={{ uri: logo }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} onError={() => setFailedLogo(artwork)} />
               : <Icon name="Radio" size={40} color="rgba(255,255,255,.7)" />}
           </View>
           <View style={styles.title}>
@@ -93,19 +95,19 @@ const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?
           </View>
         )}
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.listen} activeOpacity={0.85} onPress={() => toggleRadioStation(station)} accessibilityRole="button">
+          <TouchableOpacity className="dark-surface" style={styles.listen} activeOpacity={0.85} onPress={() => toggleRadioStation(station)} accessibilityRole="button">
             {isCurrent && isLoading
               ? <ActivityIndicator size="small" color="#000" />
-              : <Icon name={onAir ? "Pause" : "Play"} size={18} color="#000" />}
+              : <Icon name={onAir ? "Pause" : "Play"} size={20} color="#000" />}
             <Text style={styles.listenText}>{onAir ? t("audioPost.pause", { defaultValue: "Pause" }) : t("music.listenLive", { defaultValue: "Listen live" })}</Text>
           </TouchableOpacity>
           {onNext && (
-            <TouchableOpacity style={styles.round} onPress={skip} accessibilityRole="button" accessibilityLabel={t("music.nextStation", { defaultValue: "Next station" })}>
-              <Icon name="SkipForward" size={19} color="#fff" />
+            <TouchableOpacity className="dark-surface" style={styles.round} onPress={skip} accessibilityRole="button" accessibilityLabel={t("music.nextStation", { defaultValue: "Next station" })}>
+              <Icon name="SkipForward" size={20} color="#fff" />
             </TouchableOpacity>
           )}
-          <TouchableOpacity style={styles.round} onPress={share} accessibilityRole="button" accessibilityLabel={t("music.shareStation")}>
-            <Icon name="Share2" size={19} color="#fff" />
+          <TouchableOpacity className="dark-surface" style={styles.round} onPress={share} accessibilityRole="button" accessibilityLabel={t("music.shareStation")}>
+            <Icon name="Share" size={20} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
@@ -115,26 +117,53 @@ const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?
 
 export default RadioStage;
 
+/**
+ * Stations we ship our own artwork for, the same table as web's
+ * RadioStationCard (served from dehub.io/radio/).
+ */
+const CUSTOM_LOGOS: Record<string, string> = {
+  "reyfm": "reyfm-logo.jpg",
+  "rey fm": "reyfm-logo.jpg",
+  "lofi 24": "lofi247-logo.jpg",
+  "lofi girl": "lofi247-logo.jpg",
+  "lofi hip hop": "lofi247-logo.jpg",
+  "moe wifi": "moewifi-logo.jpg",
+  "moewifi": "moewifi-logo.jpg",
+  "moe lofi": "moewifi-logo.jpg",
+  "nia radio": "nia-lofi-logo.jpg",
+  "nia lofi": "nia-lofi-logo.jpg",
+  "nightwave plaza": "nightwave-plaza-logo.jpg",
+  "nightwave": "nightwave-plaza-logo.jpg",
+};
+
+export function getCustomLogo(stationName: string): string | null {
+  const name = stationName.toLowerCase();
+  for (const [pattern, file] of Object.entries(CUSTOM_LOGOS)) {
+    if (name.includes(pattern)) return `${SHARE_ORIGIN}/radio/${file}`;
+  }
+  return null;
+}
+
 const styles = StyleSheet.create({
   stage: { borderRadius: 16, overflow: "hidden", backgroundColor: "#0b0b10", padding: 16, gap: 16 },
   backdrop: { position: "absolute", top: -40, left: -40, right: -40, bottom: -40, opacity: 0.7 },
-  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,.55)" },
+  scrim: { ...StyleSheet.absoluteFillObject },
   head: { flexDirection: "row", gap: 16, alignItems: "flex-start" },
   logo: { width: 112, height: 112, borderRadius: 16, overflow: "hidden", backgroundColor: "#1c1c22", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,.18)" },
-  title: { flex: 1, minWidth: 0, gap: 8 },
-  air: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 9, paddingVertical: 4, borderRadius: 99, backgroundColor: "rgba(0,0,0,.45)" },
+  title: { flex: 1, minWidth: 0, gap: 10 },
+  air: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 99, backgroundColor: "rgba(0,0,0,.45)" },
   airDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: "rgba(255,255,255,.7)" },
   airDotLive: { backgroundColor: "#ff3b3b" },
-  airText: { color: "#fff", fontSize: 10, fontWeight: "700", letterSpacing: 1.1, textTransform: "uppercase" },
-  name: { color: "#fff", fontSize: 22, fontWeight: "800", lineHeight: 25 },
+  airText: { color: "#fff", fontSize: 11, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase" },
+  name: { color: "#fff", fontSize: 22, fontWeight: "800", lineHeight: 23 },
   tags: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
-  tag: { color: "#fff", fontSize: 11, paddingHorizontal: 9, paddingVertical: 3, borderRadius: 99, borderWidth: 1, borderColor: "rgba(255,255,255,.28)", overflow: "hidden" },
+  tag: { color: "#fff", fontSize: 12, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 99, borderWidth: 1, borderColor: "rgba(255,255,255,.28)", overflow: "hidden" },
   facts: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  fact: { width: "48.5%", paddingHorizontal: 12, paddingVertical: 9, borderRadius: 12, backgroundColor: "rgba(255,255,255,.08)" },
+  fact: { width: "48.5%", paddingHorizontal: 12, paddingVertical: 10, borderRadius: 12, backgroundColor: "rgba(255,255,255,.08)" },
   factLabel: { color: "rgba(255,255,255,.8)", fontSize: 11 },
   factValue: { color: "#fff", fontSize: 14, fontWeight: "600", marginTop: 2 },
   actions: { flexDirection: "row", alignItems: "center", gap: 10 },
-  listen: { flex: 1, height: 50, borderRadius: 99, backgroundColor: "#fff", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 },
+  listen: { flex: 1, height: 52, borderRadius: 99, backgroundColor: "#fff", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 },
   listenText: { color: "#000", fontSize: 15, fontWeight: "700" },
-  round: { width: 50, height: 50, borderRadius: 25, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,.12)", borderWidth: 1, borderColor: "rgba(255,255,255,.28)" },
+  round: { width: 52, height: 52, borderRadius: 26, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,.12)", borderWidth: 1, borderColor: "rgba(255,255,255,.28)" },
 });

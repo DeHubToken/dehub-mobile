@@ -23,7 +23,7 @@ const SectionHeader: React.FC<{
   return (
   <View style={styles.row}>
     <View style={styles.left}>
-      <Icon name={icon} size={17} color="#FFFFFF" />
+      <Icon name={icon} size={20} color="#FFFFFF" />
       <Text style={styles.title}>{title}</Text>
       {count !== undefined && count > 0 && <Text style={styles.count}>({count})</Text>}
     </View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: FEED_SIDE,
-    marginBottom: 10,
+    marginBottom: 12,
   },
   left: {
     flexDirection: "row",
@@ -54,12 +54,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 18,
+    lineHeight: 28,
     fontWeight: "700",
   },
   count: {
-    color: "rgba(255,255,255,0.4)",
-    fontSize: 13,
+    // web: text-zinc-500 font-normal text-sm
+    color: "#71717a",
+    fontSize: 14,
   },
   seeAll: {
     flexDirection: "row",

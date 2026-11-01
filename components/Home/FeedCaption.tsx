@@ -107,7 +107,8 @@ interface FeedCaptionProps {
    * of text, two lines at most, nothing to expand.
    * `large`: the body of a text-only post, set bigger since it is the post.
    */
-  variant?: "default" | "media" | "large" | "portrait";
+  /** "chart": the picked post on a Music chart, web's 14px `hideActions` title. */
+  variant?: "default" | "media" | "large" | "portrait" | "chart";
   /** Smaller headline cap when the portrait card fits a wide phone. */
   compactPortrait?: boolean;
   /** The post this caption belongs to; a link tap counts in its stats. */
@@ -298,17 +299,17 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const portraitSize = variant === "portrait" ? Math.min(compactPortrait ? 22 : 26, tabletPortraitTitleSize(displayTitle || "", 16.8)) : null;
 
   return (
-    <View className={variant === "portrait" ? undefined : "mt-2"}>
+    <View className={variant === "portrait" ? undefined : variant === "chart" ? "mt-3" : "mt-2"}>
       {/* Titles label the media; they should sit with the caption rather than
           compete with it as a headline. */}
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={[portraitSize ? { fontSize: portraitSize, lineHeight: portraitSize * 1.35, fontWeight: portraitSize > 16.8 ? "600" : "400", marginBottom: 8 } : large ? LARGE_TEXT : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
+          style={[portraitSize ? { fontSize: portraitSize, lineHeight: portraitSize * 1.35, fontWeight: portraitSize > 16.8 ? "600" : "400", marginBottom: 8 } : large ? LARGE_TEXT : variant === "chart" ? { fontSize: 14, lineHeight: 21 } : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
-          {renderSegments(titleSegments, "t", 16.8)}
+          {renderSegments(titleSegments, "t", variant === "chart" ? 14 : 16.8)}
         </Text>
       )}
 

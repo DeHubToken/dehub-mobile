@@ -26,7 +26,6 @@ import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearc
 
 import { isVisibleInMusic } from "./music-curation";
 import { fetchMusicVideoChart, MUSIC_VIDEO_CHART_SORTS, type MusicVideoChartSort } from "./music-video-chart";
-import { secondsToHMMSS } from "../../libs/date.util";
 import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -46,8 +45,8 @@ import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-quer
 
 import Icon, { type IconName } from "../ui/Icon";
 import CompactVideoCard from "../Home/CompactVideoCard";
-import AudioPostPlayer from "../Home/ProtectedAudioPostPlayer";
-import MusicVideoCard from "./MusicVideoCard";
+import FeedCard from "../Home/FeedCard";
+import GlassIndicator from "../ui/GlassIndicator";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
 import StagesChart from "./StagesChart";
@@ -56,8 +55,8 @@ import { useChartSearch } from "../../hooks/useChartSearch";
 import RadioStage from "./RadioStage";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
-import { useAppTheme } from '../../context/ThemeContext';
 import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
+import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { MUSIC_SEARCH_SIZE, searchRadio } from "../../libs/music-search";
 import {
   RADIO_GENRES,
@@ -71,8 +70,7 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
-import { getAudioUrl, getImageUrl } from "../../libs/misc";
-import { isHoldGated } from "../../libs/content-gate";
+import { getImageUrl } from "../../libs/misc";
 import { useTranslation } from "react-i18next";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
@@ -277,13 +275,15 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       title: item.name || (item as any).title || "",
       subtitle: [creator, views ? t("music.viewsCount", { count: views, views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
       thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
-      badge: secondsToHMMSS(item.videoDuration) || undefined,
+      trailing: chartDuration(item.videoDuration),
     };
   }, [t]);
   const audioRow = useCallback((item: GetNFTsResult, index: number): ChartShelfRow => ({
     id: String(item.tokenId ?? item.id ?? index),
-    title: item.name || (item as any).title || "",
+    // Web's mapNFTToVideoItem: a post with no name is titled by its caption's first line.
+    title: item.name?.trim() || (item as any).title || (item as any).description?.split("\n")[0] || "",
     subtitle: (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "",
+    trailing: chartDuration((item as any).audioDuration || item.videoDuration),
   }), []);
 
   const renderShelf = useCallback(
@@ -294,7 +294,6 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             <ChartShelf
               icon="Play"
               title={t("music.musicVideos")}
-              count={videoChart.length}
               sorts={MUSIC_VIDEO_CHART_SORTS.map(option => ({ value: option.value, label: t(option.key, { defaultValue: option.fallback }) }))}
               sort={videoChartSort}
               onSort={setVideoChartSort}
@@ -309,7 +308,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               renderSelected={id => {
                 const item = videoChart.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id)
                   || videoFound.items.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
-                return item ? <MusicVideoCard nft={item} wide /> : null;
+                return item ? <DeskPost nft={item} isVisible={active && visibleIds.has("shelf-videos")} /> : null;
               }}
             />
           );
@@ -338,7 +337,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               renderSelected={id => {
                 const item = audioUploads.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id)
                   || audioFound.items.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
-                return item ? <AudioUploadCard nft={item} isVisible={active && visibleIds.has("shelf-audio")} desk /> : null;
+                return item ? <DeskPost nft={item} isVisible={active && visibleIds.has("shelf-audio")} /> : null;
               }}
             />
           );
@@ -416,15 +415,17 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             return (
               <TouchableOpacity
                 onPress={() => setTab(item.value)}
-                style={[styles.subTab, active && styles.subTabOn]}
+                style={styles.subTab}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: active }}
                 accessibilityLabel={t(item.label)}
               >
+                {/* Web: one GlassIndicator under the picked tab, the rest bare text. */}
+                {active && <GlassIndicator borderRadius={8} />}
                 <Icon
                   name={item.icon}
-                  size={13}
-                  color={active ? "#FFFFFF" : "rgba(255,255,255,0.5)"}
+                  size={14}
+                  color={active ? "#FFFFFF" : SUB_TAB_IDLE}
                 />
                 <Text style={[styles.subTabText, active && styles.subTabTextOn]}>
                   {t(item.label)}
@@ -560,7 +561,25 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   );
 };
 
-const AUDIO_CARD_WIDTH = 280;
+/** Web's `text-zinc-500` on idle sub-tabs. */
+const SUB_TAB_IDLE = "#71717a";
+
+/** Web's formatDuration: 6:42, 1:02:03; nothing when unknown. */
+function chartDuration(seconds?: number | null): string | undefined {
+  if (!seconds || !Number.isFinite(seconds)) return undefined;
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const sec = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return h > 0 ? `${h}:${m.toString().padStart(2, "0")}:${sec}` : `${m}:${sec}`;
+}
+
+/**
+ * The picked track or music video: the same post card as the feed, minus its
+ * bento and action bar, like web's `<VideoCard hideActions />` in the chart.
+ */
+const DeskPost: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({ nft, isVisible }) => (
+  <FeedCard item={nft as unknown as UnifiedFeedItem} desk isVisible={isVisible} isAutoplayActive={isVisible} />
+);
 
 type RadioChartSort = "picks" | "played" | "voted" | "trending";
 
@@ -594,7 +613,8 @@ const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
   const stationRow = (station: RadioStation): ChartShelfRow => ({
     id: station.stationuuid,
     title: station.name.trim(),
-    subtitle: [station.countrycode, ...getPrimaryTags(station.tags)].filter(Boolean).join(" · "),
+    // Web: "chillout, lofi · US".
+    subtitle: [getPrimaryTags(station.tags).join(", "), station.countrycode].filter(Boolean).join(" · "),
     thumb: station.favicon || undefined,
   });
   return (
@@ -627,96 +647,34 @@ const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
   );
 };
 
-const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?: boolean }> = ({
-  nft,
-  isVisible,
-  desk = false,
-}) => {
-  const { t } = useTranslation();
-  const { theme } = useAppTheme();
-  const tokenId = nft.tokenId ?? nft.id;
-  // The API hands back the storage key ("feeds-audio/123-audio.mp3"), not a
-  // link: the player needs the CDN host in front, the same as the feed card.
-  const rawAudioUrl = (nft as any).audioUrl as string | undefined;
-  const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
-  const glass = (theme === 'glass' || theme === 'system') && !!audioUrl && tokenId != null;
-  const streamInfo = (nft as any).streamInfo;
-  // Paid, gated and followers-only or direct tracks are private on the CDN;
-  // fetch a signed link first.
-  const requiresAccess = !!streamInfo?.isPayPerView
-    || isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount)
-    || !!(nft as any).plansDetails?.length
-    || (nft as any).visibility === "followers"
-    || (nft as any).visibility === "direct";
-  const title = nft.name || (nft as any).title || t("copy.f59ab8d1331b", { defaultValue: "Untitled" });
-  const creator =
-    (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
-
-  return (
-    <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }, desk && { width: '100%' }]}>
-      {!glass && <Text style={styles.audioTitle} numberOfLines={1}>
-        {title}
-      </Text>}
-      {!glass && !!creator && (
-        <Text style={styles.audioCreator} numberOfLines={1}>
-          {creator}
-        </Text>
-      )}
-      {audioUrl && tokenId != null ? (
-        <AudioPostPlayer
-          requiresAccess={requiresAccess}
-          audioUrl={audioUrl}
-          duration={(nft as any).audioDuration || 0}
-          tokenId={tokenId}
-          isVisible={isVisible}
-          title={title}
-          artist={creator || undefined}
-          artworkUrl={nft.imageUrl || nft.thumbnailUrl ? getImageUrl(nft.imageUrl || nft.thumbnailUrl || '', 512) : undefined}
-          compact={!glass}
-        />
-      ) : (
-        <Text style={styles.shelfNote}>{t("music.noAudio")}</Text>
-      )}
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   listContent: {
     paddingBottom: TAB_BAR_CONTENT_INSET,
   },
-  shelfNote: {
-    color: "rgba(255,255,255,0.4)",
-    fontSize: 13,
-    paddingHorizontal: FEED_SIDE,
-  },
   rowWrap: {
     paddingHorizontal: FEED_SIDE,
   },
+  // Web: `px-2 pb-2` around `flex gap-1.5 pl-1 py-1`.
   subTabRow: {
-    gap: 8,
-    paddingHorizontal: FEED_SIDE,
-    paddingTop: 4,
-    paddingBottom: 10,
+    gap: 6,
+    paddingLeft: FEED_SIDE + 4,
+    paddingRight: FEED_SIDE,
+    paddingVertical: 4,
+    marginBottom: 8,
   },
+  // `px-3 py-1.5 rounded-lg text-xs font-medium`, icon 14.
   subTab: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
     paddingHorizontal: 12,
-    paddingVertical: 7,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-    backgroundColor: "rgba(255,255,255,0.03)",
-  },
-  subTabOn: {
-    borderColor: "rgba(255,255,255,0.22)",
-    backgroundColor: "rgba(255,255,255,0.12)",
+    paddingVertical: 6,
+    borderRadius: 8,
   },
   subTabText: {
-    color: "rgba(255,255,255,0.5)",
+    color: SUB_TAB_IDLE,
     fontSize: 12,
+    lineHeight: 16,
     fontWeight: "500",
   },
   subTabTextOn: {
@@ -786,25 +744,6 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.4)",
     fontSize: 12,
     textAlign: "center",
-  },
-  audioCard: {
-    width: AUDIO_CARD_WIDTH,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
-    backgroundColor: "rgba(255,255,255,0.03)",
-    padding: 10,
-    gap: 4,
-  },
-  audioTitle: {
-    color: "#FFFFFF",
-    fontSize: 13,
-    fontWeight: "600",
-  },
-  audioCreator: {
-    color: "rgba(255,255,255,0.45)",
-    fontSize: 11,
-    marginBottom: 4,
   },
 });
 
