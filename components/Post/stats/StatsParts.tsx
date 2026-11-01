@@ -154,9 +154,68 @@ export function ChartLegend({ items }: { items: { label: string; faint?: boolean
   );
 }
 
+// Donut slice shades, strongest first: the stats' white ink at falling
+// opacity, so System Light's colour pass flips the chart with the rest.
+const SHADES = [1, 0.72, 0.5, 0.34, 0.22, 0.14];
+const shade = (i: number) => SHADES[Math.min(i, SHADES.length - 1)];
+
+/** Whole percentages that still add up to 100 (largest remainder first). */
+export function percentages(values: number[]): number[] {
+  const total = values.reduce((sum, v) => sum + v, 0);
+  if (!total) return values.map(() => 0);
+  const raw = values.map((v) => (v / total) * 100);
+  const out = raw.map((v) => Math.floor(v));
+  let left = 100 - out.reduce((sum, v) => sum + v, 0);
+  const order = raw.map((v, i) => [v - Math.floor(v), i] as const).sort((a, b) => b[0] - a[0]);
+  for (const [, i] of order) {
+    if (left <= 0) break;
+    out[i] += 1;
+    left -= 1;
+  }
+  return out;
+}
+
+// A circle of radius 100 / 2π has a circumference of 100, so a slice's dash
+// length is simply its share.
+const R = 15.9155;
+
+function Donut({ values }: { values: number[] }) {
+  const total = values.reduce((sum, v) => sum + v, 0) || 1;
+  const gap = values.length > 1 ? 1.5 : 0;
+  const ink = "#FFFFFF";
+  // Dash offset 25 starts the first slice at 12 o'clock.
+  let offset = 25;
+  return (
+    <Svg width={96} height={96} viewBox="0 0 42 42">
+      <Circle cx={21} cy={21} r={R} fill="none" stroke={ink} strokeOpacity={0.08} strokeWidth={6} />
+      {values.map((v, i) => {
+        const share = (v / total) * 100;
+        const dash = Math.max(0.01, share - gap);
+        const slice = (
+          <Circle
+            key={i}
+            cx={21}
+            cy={21}
+            r={R}
+            fill="none"
+            stroke={ink}
+            strokeOpacity={shade(i)}
+            strokeWidth={6}
+            strokeDasharray={`${dash} ${100 - dash}`}
+            strokeDashoffset={offset}
+          />
+        );
+        offset -= share;
+        return slice;
+      })}
+    </Svg>
+  );
+}
+
 /**
- * Who saw the post, by the badge they held when they first saw it. No badge
- * and signed out close the list, so the rows add up to everyone it reached.
+ * Who saw the post, by the badge they held when they first saw it, as shares
+ * of everyone it reached: a donut and a legend of percentages. No badge and
+ * signed out close the list, so the slices add up to 100%.
  */
 export function BadgeBreakdown({ badges, signedOut, limit }: { badges: PostStatsBadge[]; signedOut: number; limit?: number }) {
   const { t } = useTranslation();
@@ -170,23 +229,22 @@ export function BadgeBreakdown({ badges, signedOut, limit }: { badges: PostStats
     ...(folded ? [{ key: "other", name: t("postStats.otherBadges"), image: undefined, people: folded }] : []),
     ...(noBadge ? [{ key: "none", name: t("postStats.noBadge"), image: undefined, people: noBadge }] : []),
     ...(signedOut ? [{ key: "out", name: t("postStats.signedOutViewers"), image: undefined, people: signedOut }] : []),
-  ];
+  ].filter((r) => r.people > 0);
   if (!rows.length) return <Text style={s.muted}>{t("postStats.noViewersYet")}</Text>;
-  const max = Math.max(1, ...rows.map((r) => r.people));
+  const pct = percentages(rows.map((r) => r.people));
   return (
-    <View style={{ gap: 8 }}>
-      {rows.map((r) => (
-        <View key={r.key} style={s.badgeRow}>
-          {r.image ? <BadgeArtwork source={r.image} style={{ width: 22, height: 22 }} /> : <View style={s.badgeBlank} />}
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={s.badgeName} numberOfLines={1}>{r.name}</Text>
-            <View style={[s.track, { height: 6, marginTop: 4 }]}>
-              <View style={[s.fill, { width: `${Math.max(3, (r.people / max) * 100)}%`, opacity: r.key === "out" ? 0.45 : 1 }]} />
-            </View>
+    <View style={s.donutRow}>
+      <Donut values={rows.map((r) => r.people)} />
+      <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
+        {rows.map((r, i) => (
+          <View key={r.key} style={s.badgeRow}>
+            <View style={[s.legendDot, { opacity: shade(i) }]} />
+            {r.image ? <BadgeArtwork source={r.image} style={{ width: 18, height: 18 }} /> : null}
+            <Text style={[s.badgeName, { flex: 1, minWidth: 0 }]} numberOfLines={1}>{r.name}</Text>
+            <Text style={s.badgeCount}>{pct[i]}%</Text>
           </View>
-          <Text style={s.badgeCount}>{fmt(r.people)}</Text>
-        </View>
-      ))}
+        ))}
+      </View>
     </View>
   );
 }
@@ -214,8 +272,9 @@ export const s = StyleSheet.create({
   track: { height: 8, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 999, overflow: "hidden", flexDirection: "row" },
   fill: { height: "100%", backgroundColor: "#FFFFFF", borderRadius: 999 },
   splitLabels: { flexDirection: "row", justifyContent: "space-between", gap: 8 },
-  badgeRow: { flexDirection: "row", alignItems: "center", gap: 10 },
-  badgeBlank: { width: 22, height: 22, borderRadius: 6, backgroundColor: "rgba(255,255,255,0.1)" },
+  donutRow: { flexDirection: "row", alignItems: "center", gap: 16 },
+  legendDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: "#FFFFFF" },
+  badgeRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   badgeName: { color: "#FFFFFF", fontSize: 12 },
   badgeCount: { color: "#FFFFFF", fontSize: 12, fontWeight: "600", width: 44, textAlign: "right", fontVariant: ["tabular-nums"] },
 });
