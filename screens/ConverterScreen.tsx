@@ -675,7 +675,11 @@ export default function ConverterScreen() {
         maxHeight="80%"
         blurIntensity={30}
       >
-        <View className="flex-1">
+        {/* No flex-1 here: the drawer has only a maxHeight, no height, so a
+            flex-1 child measured to zero and the whole review sheet folded
+            down to a strip at the bottom of the screen (just the spinner
+            showing) the moment Import was pressed. */}
+        <View>
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
             <Text className="text-white font-bold text-base">{t('converter.reviewTitle')}</Text>
             {reviewLoading && <ActivityIndicator size="small" color="#F4F4F5" />}

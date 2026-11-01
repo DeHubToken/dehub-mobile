@@ -18,6 +18,7 @@ import {
   Keyboard,
   ActivityIndicator,
   Alert,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -77,6 +78,7 @@ import type {
   ID,
   OptimisticMessage,
   EditMessageResponse,
+  ReactionUpdatedPayload,
   DeleteMessageResponse,
   ReadReceiptResponse,
   DownloadReceiptResponse,
@@ -862,6 +864,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }),
     );
 
+    // Reactions: the server sends the message's whole reaction map back,
+    // to us and to the other side, after every add or remove.
+    unsubs.push(
+      ws.on(DMSocketEvent.ReactionUpdated, (payload: ReactionUpdatedPayload) => {
+        if (payload?.dmId === currentConvId) dmActions.applyReactions(payload);
+      }),
+    );
+
     // Delete
     unsubs.push(
       ws.on(DMSocketEvent.DeleteMessage, (payload: DeleteMessageResponse) => {
@@ -1317,6 +1327,41 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     closeContextMenu();
   }, [contextMessage, closeContextMenu]);
 
+  /**
+   * Toggle one emoji on any message in the thread, old or new. Shown at once,
+   * then the server's reactionUpdated echo replaces it with the real map; a
+   * socket error leaves the server's map in place on the next echo or fetch.
+   */
+  const toggleReaction = useCallback(
+    (message: DmMessage, emoji: string) => {
+      if (!currentConvId || !address || !message?._id) return;
+      const current = message.reactions || {};
+      const others = (current[emoji] || []).filter((a) => a.toLowerCase() !== address);
+      const mine = others.length !== (current[emoji] || []).length;
+      const next = { ...current };
+      if (mine) {
+        if (others.length) next[emoji] = others;
+        else delete next[emoji];
+      } else {
+        next[emoji] = [...others, address];
+      }
+      dmActions.applyReactions({ dmId: currentConvId, messageId: message._id, reactions: next });
+      ws.emitAuthed(mine ? DMSocketEvent.RemoveReaction : DMSocketEvent.AddReaction, {
+        dmId: currentConvId,
+        messageId: message._id,
+        emoji,
+      });
+    },
+    [address, currentConvId, ws],
+  );
+
+  const handleContextReact = useCallback(
+    (emoji: string) => {
+      if (contextMessage) toggleReaction(contextMessage, emoji);
+    },
+    [contextMessage, toggleReaction],
+  );
+
   const handleDelete = useCallback(() => {
     if (!contextMessage || !currentConvId) return;
     ws.emitAuthed(DMSocketEvent.DeleteMessage, {
@@ -1608,11 +1653,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             onSwipeToReply={handleSwipeToReply}
             onReplyPress={handleReplyPress}
             highlighted={highlightedId === item._id}
+            myAddress={address}
+            onToggleReaction={toggleReaction}
           />
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns],
+    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction],
   );
 
   const keyExtractor = useCallback((item: DmMessage) => item._id, []);
@@ -1720,16 +1767,25 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         <View className="flex-1">
           {/* New chat intro — shown before first message */}
+          {/* A brand-new chat has no message list yet, so nothing on the
+              screen took a tap away from the composer: the keyboard stayed
+              up wherever you touched until you left Messages. A tap on the
+              intro (or the loading spinner) now puts it away, the same as a
+              tap on the list does once there are messages. */}
           {showNewChatIntro ? (
-            <NewChatIntro
-              peer={{
-                address: peer.address,
-                displayName: peer.displayName,
-                username: peer.username,
-                avatarImageUrl: peerAvatarUri,
-              }}
-              policy={peerPolicy}
-            />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+              <View className="flex-1">
+                <NewChatIntro
+                  peer={{
+                    address: peer.address,
+                    displayName: peer.displayName,
+                    username: peer.username,
+                    avatarImageUrl: peerAvatarUri,
+                  }}
+                  policy={peerPolicy}
+                />
+              </View>
+            </TouchableWithoutFeedback>
           ) : showLockedState ? (
             <DmLockedState
               status={e2eeStatus}
@@ -1738,9 +1794,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               onUnlock={retryEncryption}
             />
           ) : initialLoading && messageList.length === 0 ? (
-            <View className="flex-1 items-center justify-center">
-              <ActivityIndicator size="small" color="#F4F4F5" />
-            </View>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+              <View className="flex-1 items-center justify-center">
+                <ActivityIndicator size="small" color="#F4F4F5" />
+              </View>
+            </TouchableWithoutFeedback>
           ) : (
             <FlatList
               ref={listRef}
@@ -1886,6 +1944,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           onPin={handlePinMessage}
           onUnpin={handleUnpinMessage}
           isPinned={contextMessage ? pinnedMessageId === contextMessage._id : false}
+          onReact={handleContextReact}
+          myAddress={address}
         />
 
         {/* Forward picker */}

@@ -8,6 +8,7 @@ import type {
   DmFee,
   OptimisticMessage,
   EditMessageResponse,
+  ReactionUpdatedPayload,
   DeleteMessageResponse,
   ReadReceiptResponse,
   DownloadReceiptResponse,
@@ -237,6 +238,16 @@ export const dmActions = {
         dmState.optimisticByConversation[edit.dmId] = [...pending];
       }
     }
+  },
+
+  /** Replace one message's reaction map (server echo or optimistic toggle). */
+  applyReactions(update: ReactionUpdatedPayload): void {
+    const list = dmState.messagesByConversation[update.dmId];
+    if (!list) return;
+    const idx = list.findIndex((m) => m._id === update.messageId);
+    if (idx < 0) return;
+    list[idx] = { ...list[idx], reactions: { ...(update.reactions || {}) } };
+    dmState.messagesByConversation[update.dmId] = [...list];
   },
 
   /** Remove a message from the store. */
