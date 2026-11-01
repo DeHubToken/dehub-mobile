@@ -461,10 +461,15 @@ export default function HomeScreen() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchTab = searchOpen ? feedSearchTabFor(activeTabKey) : null;
+  // Words put aside by the bottom Home button, handed back on the next open.
+  const parkedQueryRef = useRef("");
   const closeSearch = useCallback(() => {
+    parkedQueryRef.current = "";
     setSearchOpen(false);
     setSearchQuery("");
   }, []);
+  const searchRef = useRef({ open: searchOpen, query: searchQuery });
+  searchRef.current = { open: searchOpen, query: searchQuery };
   useEffect(() => {
     if (searchOpen && !feedSearchTabFor(activeTabKey)) closeSearch();
   }, [searchOpen, activeTabKey, closeSearch]);
@@ -484,6 +489,9 @@ export default function HomeScreen() {
       if (postType === activeTabKey && !feedProfileVisible && !feedPost && !imageFeed && feedSearchTabFor(postType)) {
         setFilterPanelVisible(false);
         setSearchOpen(true);
+        const parked = parkedQueryRef.current;
+        parkedQueryRef.current = "";
+        if (parked) setSearchQuery((q) => q || parked);
         return;
       }
       handleNavPostTypeChange(postType);
@@ -930,6 +938,14 @@ export default function HomeScreen() {
   useEffect(() => {
     return tabNavigation.addListener("tabPress", (event) => {
       if (tabPressIntentOf(event) === "navigate") return;
+      // A feed search is up: Home puts it away and shows the Home feed. The
+      // words are kept, so tapping the lit tab again brings the same search
+      // (and its cached results) straight back.
+      if (searchRef.current.open) {
+        parkedQueryRef.current = searchRef.current.query;
+        setSearchOpen(false);
+        setSearchQuery("");
+      }
       if (activeIndexRef.current === 0) return;
       setIslandMenuOpen(false);
       showHeader();
