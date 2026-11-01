@@ -34,7 +34,7 @@ afterEach(() => { act(() => tree?.unmount()); __resetScrollActivityForTests(); }
 it('samples the supplied target using the Android 12+ path', () => {
   mockSupported = true;
   mockTarget = { current: {} };
-  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
   expect(tree.root.findByType('BlurView' as any).props).toMatchObject({ blurTarget: mockTarget, blurMethod: 'dimezisBlurViewSdk31Plus', intensity: 65 });
   expect(tree.root.findAllByType('View' as any)[0].props.style[1]).toMatchObject({ borderRadius: 12, overflow: 'hidden' });
 });
@@ -43,17 +43,17 @@ it('can remove the reply-dock rim while retaining blur and the default pill rim'
   mockSupported = true;
   mockTarget = { current: {} };
   const hasRim = () => tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.borderWidth > 0);
-  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} bordered={false} />); });
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} bordered={false} live />); });
   expect(hasRim()).toBe(false);
   expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
-  act(() => { tree.update(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  act(() => { tree.update(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
   expect(hasRim()).toBe(true);
 });
 
 it('detaches covered-page blur sampling and restores it when Back reveals the page', () => {
   mockSupported = true;
   mockTarget = { current: {} };
-  const pill = () => <FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />;
+  const pill = () => <FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />;
   act(() => { tree = create(pill()); });
   expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
   act(() => { mockSurfaceActive = false; tree.update(pill()); });
@@ -68,7 +68,7 @@ it.each([
 ])('keeps a readable solid fallback when support=$supported', ({ supported, target }) => {
   mockSupported = supported;
   mockTarget = target;
-  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
   expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
   expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === '#18181B')).toBe(true);
 });
@@ -78,7 +78,7 @@ it('System Light draws the pale frost, with no flipped highlight band', () => {
   mockTarget = { current: {} };
   mockLight = true;
   try {
-    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
     expect(tree.root.findAllByType('LinearGradient' as any)).toHaveLength(0);
     expect(tree.root.findByType('BlurView' as any).props.tint).toBe('light');
   } finally {
@@ -91,7 +91,7 @@ it.each([false, true])('pauses feed capture during motion and restores it on set
   mockTarget = { current: {} };
   mockLight = light;
   try {
-    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
     expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
     act(() => setFeedScrolling(true));
     expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
@@ -109,9 +109,17 @@ it.each([false, true])('pauses feed capture during motion and restores it on set
 it('fades the blur in when the feed settles and out when it moves, instead of snapping', () => {
   mockSupported = true;
   mockTarget = { current: {} };
-  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} live />); });
   const wrap = tree.root.findByType('BlurView' as any).parent!;
   expect(wrap.type).toBe('AnimatedView');
   expect(wrap.props.entering).toEqual({ ms: 260 });
   expect(wrap.props.exiting).toEqual({ ms: 220 });
+});
+
+it('always-visible chrome keeps the still material and never samples the feed', () => {
+  mockSupported = true;
+  mockTarget = { current: {} };
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === '#18181B')).toBe(true);
 });

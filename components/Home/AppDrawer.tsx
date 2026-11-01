@@ -553,7 +553,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         {panelOverBlur ? (
           <SheetGlassFill backdropBlurred style={[StyleSheet.absoluteFill, { backgroundColor: SHEET_GLASS_FILL }]} />
         ) : androidGlass ? (
-          <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} />
+          <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} live />
         ) : null}
         {/* Jungle's plank grain and War's HUD corners, as on the feed chrome. */}
         {!androidGlass && skin?.grain ? (
