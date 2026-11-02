@@ -1221,7 +1221,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
   // server-side, so links handed out now keep working after a mint.
   const shareUrl = useMemo(() => {
-    // An article shares as its readable title link.
+    // A post with a readable slug (first ten words) shares as that link.
     const articleSlug = (item as any).articleSlug;
     if (typeof articleSlug === "string" && articleSlug) {
       return `${WEBSITE_LINK || ""}/app/post/${articleSlug}`;
@@ -2292,7 +2292,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
+          url={shareUrl}
           postTitle={localTitle || undefined}
         />
       )}
@@ -2573,6 +2573,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             canRepost={isPublicPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
+            tokenId={tokenId ?? undefined}
             shareText={localTitle || undefined}
             quoteCount={stageQuotes}
             repostCount={Math.max(0, repostCount - stageQuotes)}
