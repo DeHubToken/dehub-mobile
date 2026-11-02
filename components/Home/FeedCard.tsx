@@ -110,6 +110,7 @@ import CashtagSheet from "./CashtagSheet";
 import Icon, { type IconName } from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge, { SoundDrift } from "../Post/SoundtrackBadge";
+import RemixCredits from "../Post/RemixCredits";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
@@ -2062,6 +2063,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return null;
   }
 
+  // Duet / stitch / reaction credit and counts, as on web's video card.
+  const remixCredits = isVideo && !isLive && tokenId != null ? <RemixCredits tokenId={tokenId} /> : null;
   const actionBar = showActionBar ? (
     <FeedActionBar
       liked={liked}
@@ -2347,6 +2350,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               {hasSoundtrack && !soundtrackOnMedia && <View className="mt-2"><SoundtrackBadge key={postKey} title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} isVisible={isVisible} /></View>}
               {(item as any).isQuotePost && <QuotedPostEmbed key={postKey} quotedPost={(item as any).quotedPost} quotedTokenId={(item as any).quotedTokenId} revoked={(item as any).quoteRevoked} quoteTokenId={tokenId ?? undefined} />}
               <DehubLinkCards links={dehubLinks} />
+              {remixCredits}
               <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
               <AssetRefCards refs={assetRefs} />
               {tokenId != null && !(item as any).isQuotePost && <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />}
@@ -2463,6 +2467,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               />
             )}
             <DehubLinkCards links={dehubLinks} />
+            {remixCredits}
             <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
             <AssetRefCards refs={assetRefs} />
           </>
@@ -2560,6 +2565,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <DehubLinkCards links={dehubLinks} />
+        {remixCredits}
         <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
         <AssetRefCards refs={assetRefs} />
       </>
@@ -3036,6 +3042,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {/* DeHub entity cards — stage, post, profile, community, invite, store,
           item, event, bounty. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
+      {remixCredits}
 
       {/* OG-style preview for the first outside link, when the caption didn't
           already earn one of the entity cards above. */}

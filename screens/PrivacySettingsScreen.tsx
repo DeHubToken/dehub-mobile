@@ -51,6 +51,7 @@ import {
 import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
 import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
+import RemixPermissionsSection from '../components/Settings/RemixPermissionsSection';
 import { DEFAULT_PROFILE_TAB, PROFILE_DEFAULT_TAB_OPTIONS, parseDefaultProfileTab, type ProfileDefaultTab } from '../libs/profile-default-tab';
 import { DISLIKES_VISIBILITY_KEY, dislikesArePublic } from '../libs/disliked-posts-store';
 
@@ -696,6 +697,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             </Text>
           </View>
         </SettingsAnchor>
+
+        {/* Who may duet, stitch or react to your videos — web's Remixes rows. */}
+        <RemixPermissionsSection address={userAddressKey} />
 
         {/* Profile discoverability — both switches are `comingSoon` on web too
             (`PrivacySettings` → Profile Visibility). */}

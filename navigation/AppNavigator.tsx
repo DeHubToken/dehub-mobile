@@ -54,6 +54,7 @@ const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("..
 // swaps for a differently shaped skeleton.
 type DeferredEntry = [key: string, load: () => React.ComponentType<any>];
 const FEED_DETAIL: DeferredEntry = ['../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default];
+const REMIX_LIST: DeferredEntry = ['../screens/RemixListScreen#default', () => require("../screens/RemixListScreen").default];
 const POST_RESOLVER: DeferredEntry = ['../screens/PostResolverScreen#default', () => require("../screens/PostResolverScreen").default];
 const PROFILE: DeferredEntry = ['../screens/ProfileScreen#default', () => require("../screens/ProfileScreen").default];
 const CHAT: DeferredEntry = ['../screens/ChatScreen#default', () => require("../screens/ChatScreen").default];
@@ -451,6 +452,10 @@ function AppNavigatorContent() {
           getComponent={() => deferredScreen(...POST_RESOLVER)}
         />
         <Stack.Screen
+          name={ScreenNames.PostResolverClip}
+          getComponent={() => deferredScreen(...POST_RESOLVER)}
+        />
+        <Stack.Screen
           name={ScreenNames.FeedDetail}
           getComponent={() => deferredScreen(...FEED_DETAIL)}
           // One route per post, so opening a post from a post pushes a page
@@ -508,6 +513,14 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.FollowList}
           getComponent={() => deferredScreen(...FOLLOW_LIST)}
+        />
+        <Stack.Screen
+          name={ScreenNames.RemixList}
+          getComponent={() => deferredScreen(...REMIX_LIST)}
+        />
+        <Stack.Screen
+          name={ScreenNames.RemixReactions}
+          getComponent={() => deferredScreen(...REMIX_LIST)}
         />
         <Stack.Screen
           name={ScreenNames.RepostQuoteList}

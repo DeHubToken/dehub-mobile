@@ -15587,5 +15587,85 @@
     "joinedBodyNoEmail": "Nous vous enverrons un email lorsque le token sera disponible.",
     "failed": "N'a pas pu enregistrer cela. Réessayez.",
     "privacy": "Seulement utilisé pour vous informer du lancement."
+  },
+  "duet": {
+    "with": "Duo avec @{{username}}",
+    "withOriginal": "Duo · voir l'original",
+    "unavailable": "Cette vidéo n'est plus disponible pour les duos.",
+    "allowLabel": "Autoriser les duos",
+    "allowDescription": "Qui peut enregistrer un duo à côté de tes vidéos. Tu peux aussi le changer sur chaque publication.",
+    "settingsSection": "Duos",
+    "policyDefault": "Réglage du compte",
+    "policyEveryone": "Tout le monde",
+    "policyFollowers": "Abonnés",
+    "policyNobody": "Personne",
+    "saveFailed": "Impossible d'enregistrer. Réessaie.",
+    "count_one": "{{count}} duo",
+    "count_other": "{{count}} duos",
+    "pageHeading": "Duos",
+    "pageTitle": "Duos de {{title}} par @{{creator}}",
+    "pageTitleNoCreator": "Duos de {{title}}",
+    "pageDescription": "Regarde tous les duos de cette vidéo sur DeHub, ou enregistre le tien côte à côte.",
+    "empty": "Pas encore de duo. Ouvre les options de la vidéo et choisis Remix → Duo pour faire le premier.",
+    "loadMore": "Charger plus",
+    "video": "Vidéo",
+    "notFound": "Cette vidéo n'est pas disponible.",
+    "notFoundTitle": "Vidéo introuvable — DeHub",
+    "browseShorts": "Voir les Shorts"
+  },
+  "remixLinks": {
+    "shareFailed": "Ton pourboire a été envoyé, mais la part du créateur original n'est pas passée.",
+    "notify": {
+      "duet": "{{name}} a fait un duo avec ta vidéo",
+      "stitch": "{{name}} a fait un stitch de ta vidéo",
+      "react": "{{name}} a réagi à ta vidéo",
+      "reactLive": "{{name}} réagit en direct à ta vidéo"
+    },
+    "linkFailed": "Ta publication est en ligne, mais elle n’a pas pu être liée à la vidéo d’origine.",
+    "settingsHeading": "Remix",
+    "policy": {
+      "default": "Mon réglage par défaut",
+      "everyone": "Tout le monde",
+      "followers": "Abonnés",
+      "nobody": "Personne"
+    },
+    "stitch": {
+      "allow": "Autoriser les stitchs",
+      "allowDesc": "Qui peut utiliser jusqu’à 5 secondes de tes vidéos dans les siennes. Tu peux aussi le changer pour chaque publication.",
+      "saveFailed": "Impossible d’enregistrer ton réglage de stitch. Réessaie.",
+      "settingFailed": "Ta publication est en ligne, mais son réglage de stitch n’a pas été enregistré. Modifie-le depuis Modifier la publication.",
+      "from": "Stitch de {{name}}",
+      "count_one": "{{count}} stitch",
+      "count_other": "{{count}} stitchs",
+      "listTitle": "Stitchs",
+      "listFailed": "Impossible de charger les stitchs. Réessaie.",
+      "listEmpty": "Aucun stitch pour l’instant.",
+      "unavailable": "Cette vidéo n’est plus disponible pour les stitchs."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Réaction à",
+    "reactingTo": "Réagit à",
+    "count_one": "{{count}} réaction",
+    "count_other": "{{count}} réactions",
+    "allow": "Autoriser les réactions",
+    "remixesSection": "Remix",
+    "allowDescription": "Permettez aux autres créateurs de réagir à vos vidéos, enregistrées ou en direct. Vous pouvez le modifier sur chaque publication.",
+    "policy": {
+      "everyone": "Tout le monde",
+      "followers": "Abonnés",
+      "nobody": "Personne",
+      "default": "Par défaut du compte ({{value}})"
+    },
+    "pageTitle": "Réactions à {{title}} — DeHub",
+    "pageDescription": "Regardez les créateurs réagir à « {{title}} » de {{creator}} sur DeHub, en vidéo et en direct.",
+    "heading": "Réactions",
+    "backToVideo": "Retour à la vidéo",
+    "empty": "Aucune réaction pour l’instant. Ouvrez le menu Remix de la vidéo et choisissez Réagir pour être le premier.",
+    "more": "Voir plus",
+    "liveNow": "En direct",
+    "wasLive": "Était en direct",
+    "untitled": "Réaction",
+    "thisVideo": "cette vidéo"
   }
 }
