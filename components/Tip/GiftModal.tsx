@@ -56,6 +56,8 @@ export interface GiftModalProps {
    *  on confirmation. The sheet is already closed by then; the player plays
    *  the celebration and reads the line out on this call. */
   onSent?: (payload: { amount: number; message?: string; txHash?: string }) => void;
+  /** Lives: opens Gift subscriptions (the creator's plans for chatters or one person). */
+  onGiftSubs?: () => void;
 }
 
 /**
@@ -107,6 +109,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
   toAddress,
   stream,
   onSent,
+  onGiftSubs,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -569,6 +572,17 @@ const GiftModal: React.FC<GiftModalProps> = ({
                   </Text>
                 </TouchableOpacity>
               </AccentButtonGradient>
+              {onGiftSubs ? (
+                <TouchableOpacity
+                  disabled={isBusy}
+                  onPress={() => { onOpenChange(false); onGiftSubs(); }}
+                  className="h-11 rounded-xl bg-white/10 flex-row items-center justify-center"
+                  style={{ gap: 8 }}
+                >
+                  <Ionicons name="gift-outline" size={16} color="#fff" />
+                  <Text className="text-white font-semibold">{t("liveHype.gift.open", { defaultValue: "Gift subscriptions" })}</Text>
+                </TouchableOpacity>
+              ) : null}
               <TouchableOpacity
                 onPress={() => setBuyOpen(true)}
                 className="h-11 rounded-xl bg-white/10 items-center justify-center"

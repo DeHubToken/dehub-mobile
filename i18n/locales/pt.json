@@ -15652,6 +15652,37 @@
       "thanks_one": "Obrigado ao {{count}} apoiante",
       "thanks_other": "Obrigado aos {{count}} apoiantes",
       "top": "Top: {{name}}"
+    },
+    "gift": {
+      "open": "Assinaturas de presente",
+      "title": "Assinaturas de presente",
+      "plan": "Plano",
+      "mode": {
+        "random": "Espectadores aleatórios no chat",
+        "user": "Alguém específico"
+      },
+      "howMany": "Quantos",
+      "randomHint": "Vai para pessoas que conversaram nos últimos 30 minutos e ainda não são inscritas.",
+      "who": "Nome de usuário ou endereço de carteira",
+      "whoPlaceholder": "@username",
+      "send_one": "Presentear 1 sub · ${{price}}",
+      "send_other": "Presentear {{count}} subs · ${{price}}",
+      "payHint": "Pago em DHB da sua carteira em uma única transferência.",
+      "fewer_one": "Apenas 1 pessoa no chat pode receber uma sub agora, então você paga por 1.",
+      "fewer_other": "Apenas {{count}} pessoas no chat podem receber uma sub agora, então você paga por {{count}}.",
+      "done_one": "Assinatura presenteada!",
+      "done_other": "{{count}} assinaturas presenteadas!",
+      "failed": "Não foi possível presentear assinaturas",
+      "notReady": "Presentear ainda não está disponível para este plano",
+      "noPlan": "Escolha um plano primeiro",
+      "noPlans": "{{name}} não tem planos de assinatura para presentear ainda.",
+      "cancel": "Cancelar",
+      "stage": {
+        "preparing": "Preparando…",
+        "wallet": "Confirme em sua carteira",
+        "confirming": "Aguardando a transação…",
+        "recording": "Finalizando…"
+      }
     }
   },
   "dmPaidLock": {

@@ -65,6 +65,10 @@ export type UploadPayload = {
   pickedVideo: ImagePicker.ImagePickerAsset | null;
   /** Trim on the picked video, seconds. */
   videoTrim?: { start: number; end: number } | null;
+  /** Mirror, turn, colour and vignette the server bakes into the video. */
+  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number } | null;
+  /** Seconds until the post deletes itself. */
+  destruct?: number | null;
   pickedAudio: PickedAudio | null;
   thumbnailUri: string | null;
   coverUri: string | null;
@@ -324,6 +328,8 @@ export function useUploadPost() {
         images,
         video,
         videoTrim: video && p.videoTrim ? p.videoTrim : undefined,
+        videoEdits: video && p.videoEdits ? p.videoEdits : undefined,
+        destruct: video && p.destruct ? p.destruct : undefined,
         audio,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),

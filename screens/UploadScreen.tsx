@@ -107,11 +107,11 @@ import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import FeedCard from "../components/Home/FeedCard";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
-import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
 import { type VideoTrim } from "../components/Upload/VideoTrimSheet";
-import DmVideoStudio from "../components/DM/DmVideoStudio";
+import DmVideoStudio, { type StudioColour } from "../components/DM/DmVideoStudio";
+import { videoEditsPayload, postDestructShort, type PostVideoEdits } from "../libs/post-video-edits";
 import type { DmVideoOptions } from "../libs/dm-video-options";
-import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
+import { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
 import { startDraftImage } from "../services/draftImage";
@@ -266,6 +266,7 @@ const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
 
 /** The photo studio is drawn with Skia, which older installs lack. */
+const studioPaintLib = optionalSkia(() => require("../components/Upload/studioPaint") as typeof import("../components/Upload/studioPaint"));
 const PhotoStudio = optionalSkia(
   () => require("../components/Upload/PhotoStudio").default as typeof import("../components/Upload/PhotoStudio").default,
 );
@@ -406,6 +407,8 @@ export default function UploadScreen() {
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [imageEdit, setImageEdit] = useState<{ index: number; tab: StudioTab } | null>(null);
+  const skipPhotoAutoEdit = useRef(false);
+  const seenPhotos = useRef<Set<string>>(new Set());
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
@@ -442,8 +445,25 @@ export default function UploadScreen() {
   // The video edit screen's choices while it is open (Cover and Trim).
   const [videoEditOpts, setVideoEditOpts] = useState<DmVideoOptions>({});
   const [videoCoverAt, setVideoCoverAt] = useState<number | undefined>(undefined);
+  // Mirror, turn and colour (baked by the server) and the post timer, kept on Confirm.
+  const [videoEdits, setVideoEdits] = useState<PostVideoEdits | null>(null);
+  const [videoDestruct, setVideoDestruct] = useState<number | null>(null);
+  // While the edit screen is open.
+  const [videoColourDraft, setVideoColourDraft] = useState<StudioColour>({});
+  const [videoDestructDraft, setVideoDestructDraft] = useState<number | null>(null);
+  const [videoAltDraft, setVideoAltDraft] = useState("");
+  const [coverPictureDraft, setCoverPictureDraft] = useState<string | null>(null);
+  // The plain frame the cover was taken from, so edits are painted on it only once.
+  const rawThumbRef = useRef<string | null>(null);
+  const bakedThumbs = useRef(new Set<string>());
   useEffect(() => {
     setVideoTrim(null);
+    setVideoEdits(null);
+    setVideoDestruct(null);
+    setVideoColourDraft({});
+    setVideoDestructDraft(null);
+    setVideoAltDraft("");
+    setCoverPictureDraft(null);
   }, [pickedVideo?.uri]);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
@@ -951,6 +971,7 @@ export default function UploadScreen() {
         assetId: undefined,
         description: incomingDraft.imageAlts?.[i] ?? undefined,
       })) as any[];
+      skipPhotoAutoEdit.current = true;
       setPickedImages(assets);
     }
     // Restore video
@@ -1286,6 +1307,8 @@ export default function UploadScreen() {
       pickedImages,
       pickedVideo,
       videoTrim,
+      videoEdits: videoEditsPayload(videoEdits),
+      destruct: videoDestruct,
       pickedAudio,
       thumbnailUri,
       coverUri,
@@ -1320,7 +1343,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, videoEdits, videoDestruct, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1826,25 +1849,12 @@ export default function UploadScreen() {
     }
   }, []);
 
-  const videoBox = useVideoPreviewBox(thumbnailUri);
+  // Sized from the plain frame: a turned cover must not turn the preview box.
+  const videoBox = useVideoPreviewBox(rawThumbRef.current ?? thumbnailUri);
+  useEffect(() => {
+    if (thumbnailUri && !bakedThumbs.current.has(thumbnailUri)) rawThumbRef.current = thumbnailUri;
+  }, [thumbnailUri]);
 
-  const handlePickCoverImage = useCallback(async () => {
-    try {
-      await runWithPermissions(["photos"], async () => {
-        const picked = await openCroppedImagePicker({
-          width: 640,
-          height: 360,
-          quality: 0.9,
-          forceJpg: true,
-        });
-        if (picked) {
-          setCoverUri(picked);
-        }
-      });
-    } catch (err) {
-      console.error("[UploadScreen] cover image pick error:", err);
-    }
-  }, []);
 
   const handleChangeVideo = useCallback(async () => {
     try {
@@ -2221,6 +2231,16 @@ export default function UploadScreen() {
    * stays as editBaseUri and the edits as settings, so the next edit starts
    * from the original and every tool can be changed again.
    */
+  // A newly picked photo opens straight into the photo editor, as on web.
+  useEffect(() => {
+    const keys = pickedImages.map((img) => img.editBaseUri ?? img.uri);
+    const fresh = pickedImages.findIndex((img, i) => !seenPhotos.current.has(keys[i]) && !isGifAsset(img));
+    keys.forEach((k) => seenPhotos.current.add(k));
+    if (skipPhotoAutoEdit.current) { skipPhotoAutoEdit.current = false; return; }
+    if (fresh >= 0 && PhotoStudio && !imageEdit && !comicMode) setImageEdit({ index: fresh, tab: "crop" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pickedImages]);
+
   const handleStudioDone = useCallback((results: StudioResult[]) => {
     setImageEdit(null);
     if (!results.length) return;
@@ -2884,11 +2904,24 @@ export default function UploadScreen() {
                           contentFit="cover"
                         />
                       </TouchableOpacity>
-                      <AltTextPill
-                        hasText={!!img.description}
-                        onPress={() => setAltEditor({ kind: "image", index: idx })}
-                        className="absolute top-2 left-2"
-                      />
+                      {/* Alt text lives in the photo editor; a GIF has none, so it keeps the pill. */}
+                      {(!PhotoStudio || isGifAsset(img)) ? (
+                        <AltTextPill
+                          hasText={!!img.description}
+                          onPress={() => setAltEditor({ kind: "image", index: idx })}
+                          className="absolute top-2 left-2"
+                        />
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() => handleChangeImage(idx)}
+                          className="absolute top-2 left-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
+                          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                          accessibilityRole="button"
+                          accessibilityLabel={t("upload.changeImage", { index: idx + 1 })}
+                        >
+                          <Icon name="Upload" size={14} color="#fff" />
+                        </TouchableOpacity>
+                      )}
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
@@ -2956,11 +2989,6 @@ export default function UploadScreen() {
                   contentFit="contain"
                   nativeControls={false}
                 />
-                <AltTextPill
-                  hasText={!!pickedVideo.description}
-                  onPress={() => setAltEditor({ kind: "video", index: 0 })}
-                  className="absolute bottom-2 left-12 z-20"
-                />
                 {attachedSound && (
                   <View className="absolute top-2 left-2 dark-surface bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
                     <Icon name="Music" size={14} color="#A1A1AA" />
@@ -3026,23 +3054,31 @@ export default function UploadScreen() {
                 <TouchableOpacity
                   onPress={() => {
                     player.pause();
-                    setVideoEditOpts({ trimStart: videoTrim?.start, trimEnd: videoTrim?.end, coverAt: videoCoverAt });
+                    setVideoEditOpts({ trimStart: videoTrim?.start, trimEnd: videoTrim?.end, coverAt: videoCoverAt, mirror: videoEdits?.mirror, rotate: videoEdits?.rotate || undefined });
+                    setVideoColourDraft({ look: videoEdits?.look, strength: videoEdits?.strength, adjust: videoEdits?.adjust });
+                    setVideoDestructDraft(videoDestruct);
+                    setVideoAltDraft(pickedVideo.description ?? "");
+                    setCoverPictureDraft(null);
                     setShowVideoTrim(true);
                   }}
-                  className={`absolute bottom-2 right-2 h-8 px-2.5 rounded-xl dark-surface flex-row items-center z-20 ${videoTrim ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
+                  className={`absolute bottom-2 right-2 h-8 px-2.5 rounded-xl dark-surface flex-row items-center z-20 ${videoTrim || videoEdits ? "bg-white" : "bg-black/70"}`}
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
-                  accessibilityLabel={t("upload.trimAndCover", { defaultValue: "Trim and cover" })}
+                  accessibilityLabel={t("upload.editVideo", { defaultValue: "Edit video" })}
                 >
-                  <Icon name="Scissors" size={14} color="#fff" />
-                  <Text className="text-white text-xs font-medium ml-1.5">
-                    {videoTrim ? fmtTrim(videoTrim.end - videoTrim.start) : t("upload.trim", { defaultValue: "Trim" })}
+                  <Icon name="SlidersHorizontal" size={14} color={videoTrim || videoEdits ? "#000" : "#fff"} />
+                  <Text className="text-xs font-medium ml-1.5" style={{ color: videoTrim || videoEdits ? "#000" : "#fff" }}>
+                    {videoTrim ? fmtTrim(videoTrim.end - videoTrim.start) : videoEdits ? t("upload.edited", { defaultValue: "Edited" }) : t("upload.edit", { defaultValue: "Edit" })}
                   </Text>
                 </TouchableOpacity>
+                {/* What the editor set, at a glance. */}
+                {(videoDestruct || pickedVideo.description) ? (
+                  <View pointerEvents="none" className="absolute bottom-12 right-2 flex-row z-20" style={{ gap: 4 }}>
+                    {pickedVideo.description ? <View className="dark-surface bg-black/70 rounded-md px-1.5 py-0.5"><Text style={{ color: "#fff", fontSize: 9, fontWeight: "700" }}>ALT</Text></View> : null}
+                    {videoDestruct ? <View className="dark-surface bg-black/70 rounded-md px-1.5 py-0.5 flex-row items-center"><Icon name="Timer" size={10} color="#fff" /><Text style={{ color: "#fff", fontSize: 10, fontWeight: "600", marginLeft: 3 }}>{postDestructShort(videoDestruct)}</Text></View> : null}
+                  </View>
+                ) : null}
               </View>
-              {(thumbnailUri || coverUri) && (
-                <VideoCoverBox uri={coverUri ?? thumbnailUri!} style={videoBox.style} onPress={handlePickCoverImage} />
-              )}
               </View>
             )}
 
@@ -3050,18 +3086,6 @@ export default function UploadScreen() {
               <DraftVideoProgress draftKey={draftVideoKey} />
             )}
 
-            {!isLiveMode && mediaMode === "video" && pickedVideo && (
-              <VideoCoverFrames
-                videoUri={pickedVideo.uri}
-                durationMs={pickedVideo.duration}
-                selectedUri={coverUri ? null : thumbnailUri}
-                onPickFrame={(uri) => {
-                  setThumbnailUri(uri);
-                  setCoverUri(null);
-                }}
-                onUpload={handlePickCoverImage}
-              />
-            )}
 
             {isAudioRecording && (
               <ThemePanel className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
@@ -4313,13 +4337,33 @@ export default function UploadScreen() {
             height={pickedVideo.height || undefined}
             size={pickedVideo.fileSize || undefined}
             options={videoEditOpts}
-            onOptionsChange={setVideoEditOpts}
+            onOptionsChange={(o) => {
+              // A picked frame takes over from an uploaded cover picture.
+              if (o.coverAt != null && o.coverAt !== videoEditOpts.coverAt) setCoverPictureDraft(null);
+              setVideoEditOpts(o);
+            }}
             destruct={null}
             onDestructChange={() => undefined}
             allowTimer={false}
-            onlyTabs={["cover", "trim"]}
+            onlyTabs={["cover", "trim", "mirror", "rotate", "looks", "adjust", "expire", "alt"]}
             initialTab="cover"
+            colour={videoColourDraft}
+            onColourChange={setVideoColourDraft}
+            postTimer={{ value: videoDestructDraft, onChange: setVideoDestructDraft }}
+            alt={{ value: videoAltDraft, onChange: setVideoAltDraft }}
+            coverPictureUri={coverPictureDraft}
+            onUploadCover={async () => {
+              try {
+                await runWithPermissions(["photos"], async () => {
+                  const picked = await openCroppedImagePicker({ width: 640, height: 360, quality: 0.9, forceJpg: true });
+                  if (picked) { setCoverPictureDraft(picked); setVideoEditOpts((o) => ({ ...o, coverAt: undefined })); }
+                });
+              } catch (err) {
+                console.error("[UploadScreen] cover image pick error:", err);
+              }
+            }}
             onCoverFrame={(uri) => {
+              rawThumbRef.current = uri;
               setThumbnailUri(uri);
               setCoverUri(null);
             }}
@@ -4330,7 +4374,34 @@ export default function UploadScreen() {
               const whole = start < 0.05 && dur - end < 0.05;
               setVideoTrim(whole ? null : { start, end });
               setVideoCoverAt(videoEditOpts.coverAt);
+              const edits: PostVideoEdits = {
+                mirror: videoEditOpts.mirror || undefined,
+                rotate: (videoEditOpts.rotate || undefined) as PostVideoEdits["rotate"],
+                look: videoColourDraft.look && videoColourDraft.look !== "normal" ? videoColourDraft.look : undefined,
+                strength: videoColourDraft.strength,
+                adjust: videoColourDraft.adjust,
+              };
+              const keep = videoEditsPayload(edits) ? edits : null;
+              setVideoEdits(keep);
+              setVideoDestruct(videoDestructDraft);
+              const description = videoAltDraft.trim() || undefined;
+              setPickedVideo((prev) => (prev ? { ...prev, description } : prev));
+              if (coverPictureDraft) setCoverUri(coverPictureDraft);
               setShowVideoTrim(false);
+              // The cover shows the edits too: paint them on the plain frame.
+              const raw = rawThumbRef.current;
+              if (!coverPictureDraft && raw && !keep && thumbnailUri && bakedThumbs.current.has(thumbnailUri)) setThumbnailUri(raw);
+              if (!coverPictureDraft && raw && keep && studioPaintLib) {
+                const base = studioPaintLib.defaultEdits();
+                const e = keep ?? {};
+                void studioPaintLib.bakeStudio(raw, {
+                  ...base,
+                  crop: { ...base.crop, quarter: (e.rotate ?? 0) / 90, flipX: !!e.mirror },
+                  lookId: e.look ?? "normal",
+                  strength: e.strength ?? 100,
+                  adjust: e.adjust ?? base.adjust,
+                }, "image/jpeg").then((r) => { bakedThumbs.current.add(r.uri); setThumbnailUri(r.uri); }).catch(() => undefined);
+              }
             }}
           />
         );
@@ -4344,6 +4415,11 @@ export default function UploadScreen() {
             photos={editable.map(({ img }) => ({ baseUri: img.editBaseUri ?? img.uri, mimeType: img.mimeType, edits: img.studio }))}
             startIndex={start}
             startTab={imageEdit.tab}
+            descriptions={editable.map(({ img }) => img.description ?? "")}
+            onDescriptions={(d) => setPickedImages((prev) => prev.map((img, i) => {
+              const k = editable.findIndex((e) => e.i === i);
+              return k >= 0 ? { ...img, description: d[k] || undefined } : img;
+            }))}
             onClose={() => setImageEdit(null)}
             onDone={(results) => handleStudioDone(results.map((r) => ({ ...r, index: editable[r.index].i })))}
           />

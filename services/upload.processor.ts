@@ -170,6 +170,7 @@ function rebuildFormData(
         fd.append("trimStart", String(payload.videoTrim.start));
         fd.append("trimEnd", String(payload.videoTrim.end));
       }
+      if (payload.videoEdits) fd.append("videoEdits", JSON.stringify(payload.videoEdits));
     } else if (payload.video) {
       // @ts-ignore RN FormData file shape
       fd.append("files", {
@@ -267,6 +268,8 @@ function rebuildFormData(
   }
 
   // Content warning. Only sent when there is one.
+  if (payload.destruct) fd.append("destruct", String(payload.destruct));
+
   if (payload.spoilerText?.trim()) {
     fd.append("spoilerText", payload.spoilerText.trim());
   }

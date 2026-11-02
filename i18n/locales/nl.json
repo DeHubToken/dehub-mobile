@@ -6483,7 +6483,18 @@
     "fixPlaceholder": "Wat er zou moeten staan",
     "fixSubmit": "Suggestie voor correctie"
   },
+  "post": {
+    "destruct": {
+      "offBody": "De post blijft staan.",
+      "onBody": "De post verwijdert zichzelf {{value1}} nadat hij online staat."
+    }
+  },
   "upload": {
+    "altHint": "Zeg wat erop staat voor mensen die het niet kunnen zien.",
+    "altPlaceholder": "Beschrijf deze foto",
+    "altTab": "Alt-tekst",
+    "editVideo": "Video bewerken",
+    "altPlaceholderVideo": "Beschrijf deze video",
     "solanaUnavailable": "Solana-wallet niet beschikbaar — dit apparaat heeft je walletsleutel niet. Log opnieuw in om die te herstellen.",
     "solanaTempUnavailable": "Posten op Solana is tijdelijk niet beschikbaar. Probeer in plaats daarvan Base of BNB.",
     "enterTextFirst": "Voer eerst wat tekst in",
@@ -16183,6 +16194,37 @@
       "thanks_one": "Dank aan {{count}} supporter",
       "thanks_other": "Dank aan {{count}} supporters",
       "top": "Top: {{name}}"
+    },
+    "gift": {
+      "open": "Abonnementen cadeau geven",
+      "title": "Abonnementen cadeau geven",
+      "plan": "Abonnement",
+      "mode": {
+        "random": "Willekeurige kijkers in de chat",
+        "user": "Iemand specifiek"
+      },
+      "howMany": "Hoeveel",
+      "randomHint": "Gaat naar mensen die de afgelopen 30 minuten in de chat schreven en nog niet geabonneerd zijn.",
+      "who": "Gebruikersnaam of walletadres",
+      "whoPlaceholder": "@gebruikersnaam",
+      "send_one": "1 abonnement cadeau · ${{price}}",
+      "send_other": "{{count}} abonnementen cadeau · ${{price}}",
+      "payHint": "Betaald in DHB vanuit je wallet, in één overboeking.",
+      "fewer_one": "Er kan nu maar 1 persoon in de chat een abonnement krijgen, dus je betaalt er 1.",
+      "fewer_other": "Er kunnen nu maar {{count}} mensen in de chat een abonnement krijgen, dus je betaalt er {{count}}.",
+      "done_one": "Abonnement cadeau gegeven!",
+      "done_other": "{{count}} abonnementen cadeau gegeven!",
+      "failed": "Abonnementen cadeau geven is niet gelukt",
+      "notReady": "Dit abonnement kan nog niet cadeau worden gegeven",
+      "noPlan": "Kies eerst een abonnement",
+      "noPlans": "{{name}} heeft nog geen abonnementen om cadeau te geven.",
+      "cancel": "Annuleren",
+      "stage": {
+        "preparing": "Voorbereiden…",
+        "wallet": "Bevestig in je wallet",
+        "confirming": "Wachten op de transactie…",
+        "recording": "Afronden…"
+      }
     }
   },
   "dmPaidLock": {

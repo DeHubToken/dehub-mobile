@@ -84,6 +84,7 @@ import { tierFromAmount } from "../../config/gift-tiers";
 import ViewerScrubBar from "../common/ViewerScrubBar";
 import LiveClipSheet from "../LiveViewer/LiveClipSheet";
 import HypeTrainBar from "../LiveViewer/HypeTrainBar";
+import GiftSubsSheet from "../LiveViewer/GiftSubsSheet";
 import { captureLiveClip, type LiveClip } from "../../services/live-clips.service";
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
@@ -1534,6 +1535,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Gift modal state
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+  const [giftSubsOpen, setGiftSubsOpen] = useState(false);
+  const giftCreatorAddress = String((streamEntity?.address as string) || (creator as any)?.walletAddress || (creator as any)?.address || "").toLowerCase();
   // Clip this moment: the sheet lives outside the options menu, which unmounts on select.
   const [clipOpen, setClipOpen] = useState(false);
   const [liveClip, setLiveClip] = useState<LiveClip | null>(null);
@@ -2038,7 +2041,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             onGiftOptimistic({ amount, message, txHash });
           } catch {}
         }}
+        onGiftSubs={ownerStatus === "viewer" && giftCreatorAddress ? () => setGiftSubsOpen(true) : undefined}
       />
+      {giftSubsOpen && giftCreatorAddress ? (
+        <GiftSubsSheet
+          visible={giftSubsOpen}
+          onClose={() => setGiftSubsOpen(false)}
+          creatorAddress={giftCreatorAddress}
+          creatorName={(creator?.displayName || creator?.username || "") as string}
+          streamId={isLiveEffective && !isEndedEffective ? streamId : null}
+        />
+      ) : null}
     </View>
   );
 };
