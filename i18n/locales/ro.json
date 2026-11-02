@@ -14617,5 +14617,25 @@
     "taken": "Acest cont GitHub este deja asociat cu un alt profil DeHub.",
     "failed": "Nu s-a putut conecta GitHub. Încearcă din nou.",
     "unavailable": "Verificarea GitHub este în curând disponibilă."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pagini",
+    "open": "Comic deschis, pagină {{page}} din {{total}}",
+    "flip": "Pagină {{page}} din {{total}}. Tap pentru a întoarce",
+    "page": "Pagină {{page}}",
+    "goto": "Pagină {{page}}",
+    "alt": "Text alternativ",
+    "cards": "Înapoi la cărți",
+    "readAll": "Citește toate paginile",
+    "editor": {
+      "count": "{{count}} din {{limit}} pagini",
+      "coverHint": "Pagina 1 este coperta",
+      "empty": "Adaugă paginile cu butonul foto. Fiecare pagină primește un subtitlu și text alternativ.",
+      "cover": "Copertă",
+      "caption": "Subtitlu pentru această pagină",
+      "alt": "Text alternativ: ce arată pagina"
+    }
   }
 }

@@ -14577,5 +14577,16 @@
     "taken": "GitHub ka kunnafoniw be sɔrɔ yɔrɔ wɛrɛ la.",
     "failed": "Ne tɛ se ka GitHub bila ɲɔgɔn na.",
     "unavailable": "GitHub ka sɛgɛsɛgɛri bena kɛ yanni dɔɔni."
+  },
+  "comic": {
+    "page": "Peejii {{page}}",
+    "goto": "Peejii {{page}}",
+    "alt": "Kɔɔŋɔ",
+    "cards": "Kɔɔ kɛ kɛra",
+    "editor": {
+      "count": "{{count}} ni {{limit}} jikali",
+      "empty": "Jula ka fɔ̃ ni fɔtɔ bɔtɔni la. Jula kelen-kelen ka caption ni alt text kɔ.",
+      "cover": "Kuɗa"
+    }
   }
 }

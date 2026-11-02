@@ -14590,5 +14590,16 @@
     "taken": "Akaụntụ GitHub ahụ dị na profaịlụ DeHub ọzọ.",
     "failed": "Enweghị ike jikọọ GitHub. Gbalịa ọzọ.",
     "unavailable": "Nyocha GitHub ga-abịa n'oge na-adịghị anya."
+  },
+  "comic": {
+    "flip": "Ibe {{page}} nke {{total}}. Taa ka ị tụgharịa",
+    "editor": {
+      "count": "{{count}} nke {{limit}} ihu",
+      "coverHint": "Igbo: Page 1 bụ ihe osisi",
+      "empty": "Tinye ibe gị site na buton foto. Ibe ọ bụla nwere nkọwa na ederede ọzọ.",
+      "cover": "Kpuchie",
+      "caption": "Nkọwa maka peeji a",
+      "alt": "Alt text: ihe peeji ahụ na-egosi"
+    }
   }
 }

@@ -14608,5 +14608,25 @@
     "taken": "Denne GitHub-konto er allerede på en anden DeHub-profil.",
     "failed": "Kunne ikke forbinde GitHub. Prøv igen.",
     "unavailable": "GitHub-bekræftelse kommer snart."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sider",
+    "open": "Åben comic, side {{page}} af {{total}}",
+    "flip": "Side {{page}} af {{total}}. Tryk for at vende",
+    "page": "Side {{page}}",
+    "goto": "Side {{page}}",
+    "alt": "Alternativ tekst",
+    "cards": "Tilbage til kort",
+    "readAll": "Læs alle sider",
+    "editor": {
+      "count": "{{count}} af {{limit}} sider",
+      "coverHint": "Side 1 er omslaget",
+      "empty": "Tilføj dine sider med knappen for foto. Hver side får en caption og alternativ tekst.",
+      "cover": "Omslag",
+      "caption": "Caption for denne side",
+      "alt": "Alternativ tekst: hvad siden viser"
+    }
   }
 }

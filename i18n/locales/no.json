@@ -14601,5 +14601,25 @@
     "taken": "Den GitHub-kontoen er allerede knyttet til et annet DeHub-profil.",
     "failed": "Kunne ikke koble til GitHub. Prøv på nytt.",
     "unavailable": "GitHub-verifisering kommer snart."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sider",
+    "open": "Åpen comic, side {{page}} av {{total}}",
+    "flip": "Side {{page}} av {{total}}. Trykk for å slå om",
+    "page": "Side {{page}}",
+    "goto": "Side {{page}}",
+    "alt": "Alternativ tekst",
+    "cards": "Tilbake til kortene",
+    "readAll": "Les alle sidene",
+    "editor": {
+      "count": "{{count}} av {{limit}} sider",
+      "coverHint": "Side 1 er omslaget",
+      "empty": "Legg til dine sider med foto-knappen. Hver side får en caption og alternativ tekst.",
+      "cover": "Omslag",
+      "caption": "Caption for denne siden",
+      "alt": "Alternativ tekst: hva siden viser"
+    }
   }
 }

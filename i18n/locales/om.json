@@ -14635,5 +14635,25 @@
     "hint": "Guddisaa fi GitHub-ii isaa dhufeera. DeHub ammoo hubatii fi GitHub-ii isaa keessa jira.",
     "connected": "GitHub garee garee.",
     "taken": "Waa GitHub accounttiin isaa DeHub profilettiin walitti bu'ura."
+  },
+  "comic": {
+    "tab": "Komikii",
+    "title": "Komikii",
+    "chip": "Komikii · {{count}} fuulaa",
+    "open": "Komikii banaa, fuulaa {{page}} kan {{total}}",
+    "flip": "Fuulaa {{page}} kan {{total}}. Tuqii fuulaa jijjiiri",
+    "page": "Fuulaa {{page}}",
+    "goto": "Fuulaa {{page}}",
+    "alt": "Barruu alt",
+    "cards": "Kaardii gara duuba",
+    "readAll": "Fuulaa hunda dubbisi",
+    "editor": {
+      "count": "{{count}} kan {{limit}} fuulaa",
+      "coverHint": "Fuulaa 1 miidhaa dha",
+      "empty": "Fuulaa kee keessatti dabaluu qabda button footon itti fayyadamuu. Fuulaan tokkoon tokkoon caasima fi barruu alt argama.",
+      "cover": "Miidhaa",
+      "caption": "Caasima fuulaa kanaa",
+      "alt": "Barruu alt: fuulaan kun maal agarsiisa"
+    }
   }
 }

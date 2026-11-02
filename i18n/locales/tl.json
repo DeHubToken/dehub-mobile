@@ -14783,5 +14783,25 @@
     "taken": "Ang GitHub account na iyon ay nasa ibang profile ng DeHub na.",
     "failed": "Hindi makapag-ugnay sa GitHub. Subukan mo ulit.",
     "unavailable": "Ang pagpapatunay ng GitHub ay dumating na."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} pahina",
+    "open": "Bukas ang komiks, pahina {{page}} ng {{total}}",
+    "flip": "Pahina {{page}} ng {{total}}. Taposan ang pagbasa ng pahina",
+    "page": "Pahina {{page}}",
+    "goto": "Pahina {{page}}",
+    "alt": "Mga alternatibong teksto",
+    "cards": "Pabalik sa mga kartang pista",
+    "readAll": "Basa ang lahat ng mga pahina",
+    "editor": {
+      "count": "{{count}} ng {{limit}} mga pahina",
+      "coverHint": "Ang pahina 1 ay ang cover",
+      "empty": "Pagsama ng mga pahina sa pamamagitan ng button ng larawan. Bawat pahina ay may caption at mga alternatibong teksto.",
+      "cover": "Cover",
+      "caption": "Tanggapan para sa pahina na ito",
+      "alt": "Mga alternatibong teksto: ano ang ipinapakita ng pahina"
+    }
   }
 }

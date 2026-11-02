@@ -14601,5 +14601,21 @@
     "taken": "GitHub hesabı artıq başqa DeHub profilindədir.",
     "failed": "GitHub-a qoşulmaq mümkün olmadı. Yenidən cəhd edin.",
     "unavailable": "GitHub təsdiqləməsi tezliklə göndəriləcək."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} səhifə",
+    "open": "Açıq komik, {{page}} sayfa, {{total}}-ci səhifə",
+    "flip": "Səhifə {{page}}-nın {{total}}-i. Buraxmaq üçün tapın.",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt metni",
+    "cards": "Qaydağa qayıt",
+    "editor": {
+      "count": "{{count}} of {{limit}} səhifə",
+      "coverHint": "Səhifə 1 — qapagıdır.",
+      "empty": "Səhifələrinizi şəkil düyməsi ilə əlavə edin. Her bir səhifəyə başlıq və alt mətn yazın."
+    }
   }
 }

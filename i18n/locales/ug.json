@@ -14585,5 +14585,20 @@
     "connected": "GitHub باغلانغان",
     "taken": "بۇ GitHub ھېساباتى ئاللىقاچان باشقا DeHub پروفېلىدە بار.",
     "failed": "GitHubنى باغلاپ بولمىدى. قايتا سىناپ بېقىڭ."
+  },
+  "comic": {
+    "chip": "Kömik · {{count}} bétik",
+    "open": "Açiq komik, {{page}}-chi saqet, {{total}}-chi jami.",
+    "page": "{{page}}-chi bet",
+    "goto": "{{page}}-chi bet",
+    "cards": "قايملاش",
+    "readAll": "ئۆزىگەچىلىك سەھىپىيىتى",
+    "editor": {
+      "count": "{{count}} sahifasida {{limit}} sahifa",
+      "coverHint": "ئەسلىدىكى سايتى",
+      "empty": "Men sahifalarimni qo'shing. Har bir sahifaga caption va alt text qo'shiladi.",
+      "cover": "Kapas",
+      "caption": "Bətələr"
+    }
   }
 }

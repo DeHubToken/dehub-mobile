@@ -14602,5 +14602,25 @@
     "taken": "Kyseinen GitHub-tili on jo toisessa DeHub-profiilissa.",
     "failed": "GitHubia ei voitu yhdistää. Yritä uudelleen.",
     "unavailable": "GitHub-vahvistus on tulossa pian."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sivua",
+    "open": "Avaa sarjakuva, sivu {{page}} {{total}}:stä",
+    "flip": "Sivu {{page}} {{total}}:stä. Kosketa kääntääksesi",
+    "page": "Sivu {{page}}",
+    "goto": "Sivu {{page}}",
+    "alt": "Alt-teksti",
+    "cards": "Takaisin kortteihin",
+    "readAll": "Lue kaikki sivut",
+    "editor": {
+      "count": "{{count}} {{limit}}:stä sivusta",
+      "coverHint": "Ensimmäinen sivu on kannessa",
+      "empty": "Lisää sivuja valokuvan painikkeella. Jokaiselle sivulle lisätään otsikko ja alt-teksti.",
+      "cover": "Kansi",
+      "caption": "Tämän sivun otsikko",
+      "alt": "Alt-teksti: mitä sivulla näkyy"
+    }
   }
 }

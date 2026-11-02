@@ -14567,5 +14567,17 @@
     "connected": "GitHub connected",
     "disconnected": "GitHub disconnected",
     "failed": "Couldn't connect GitHub. Try again."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pages",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt text",
+    "cards": "Back to cards",
+    "editor": {
+      "cover": "Cover"
+    }
   }
 }

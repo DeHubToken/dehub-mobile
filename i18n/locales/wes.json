@@ -14574,5 +14574,21 @@
     "connected": "GitHub connected",
     "disconnected": "GitHub disconnected",
     "failed": "Couldn't connect GitHub. Try again."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pages",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt text",
+    "cards": "Back to cards",
+    "editor": {
+      "coverHint": "Paji 1 na cover.",
+      "empty": "Wen yu wan add poto button to paji wey dey get foto, each paji go get kaption na alt text.",
+      "cover": "Cover",
+      "caption": "Dis na caption for dis page.",
+      "alt": "I no see wetin page dey show."
+    }
   }
 }

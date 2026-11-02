@@ -14685,5 +14685,21 @@
     "disconnected": "GitHub tsy misy fitaona",
     "taken": "Ny endriky ny account GitHub dia misy ahoana amin’ny profile DeHub hafa.",
     "failed": "Nanomboka ny fitahian'ny GitHub. Mifanohana ny fahatratraka."
+  },
+  "comic": {
+    "tab": "Komika",
+    "title": "Komika",
+    "chip": "Komika · {{count}} panaonkavanana",
+    "open": "Manga voalohany, taona {{page}} amin’ny {{total}}.",
+    "flip": "Tongotra {{page}} amin'ny {{total}}. Tap izy ho an'ny fahasalamana.",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Ny alahazina ny ankapobeny",
+    "cards": "Ny amin’ny katsaka",
+    "editor": {
+      "count": "{{count}} amin'ny {{limit}} taona",
+      "caption": "Misy ny loantsoinao amin'ny fotoana hafa",
+      "alt": "Misy fampahalalana: ny an'ny fanekena ny lanitra"
+    }
   }
 }

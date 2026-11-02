@@ -14633,5 +14633,25 @@
     "taken": "这个 GitHub 账户已经绑定在另一个 DeHub 个人资料上。",
     "failed": "无法连接 GitHub。请重试。",
     "unavailable": "GitHub 验证功能即将推出。"
+  },
+  "comic": {
+    "tab": "漫画",
+    "title": "漫画",
+    "chip": "漫画 · {{count}}页",
+    "open": "打开漫画，第{{page}}页/{{total}}页",
+    "flip": "第{{page}}页/{{total}}页。点击翻页",
+    "page": "第{{page}}页",
+    "goto": "第{{page}}页",
+    "alt": "替代文本",
+    "cards": "返回卡片",
+    "readAll": "阅读所有页",
+    "editor": {
+      "count": "{{count}}/{{limit}}页",
+      "coverHint": "第一页是封面",
+      "empty": "用照片按钮添加你的页码。每页都有一个标题和替代文本。",
+      "cover": "封面",
+      "caption": "此页的标题",
+      "alt": "替代文本：此页展示的内容"
+    }
   }
 }

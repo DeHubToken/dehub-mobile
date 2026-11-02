@@ -14729,5 +14729,25 @@
     "taken": "Die GitHub-rekening is reeds op 'n ander DeHub-profiel.",
     "failed": "Kon nie GitHub koppel nie. Probeer weer.",
     "unavailable": "GitHub is soon."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} bladsye",
+    "open": "Open komiks, bladsy {{page}} van {{total}}",
+    "flip": "Bladsy {{page}} van {{total}}. Tik om te draai",
+    "page": "Bladsy {{page}}",
+    "goto": "Bladsy {{page}}",
+    "alt": "Alt-teks",
+    "cards": "Terug na kaarte",
+    "readAll": "Lees al die bladsye",
+    "editor": {
+      "count": "{{count}} van {{limit}} bladsye",
+      "coverHint": "Bladsy 1 is die voorblad",
+      "empty": "Voeg jou bladsye by met die foto-knoppie. Elke bladsy kry 'n onderskrif en alt-teks.",
+      "cover": "Voorblad",
+      "caption": "Onderskrif vir hierdie bladsy",
+      "alt": "Alt-teks: wat die bladsy wys"
+    }
   }
 }

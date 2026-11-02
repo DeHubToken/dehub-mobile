@@ -14575,5 +14575,15 @@
     "taken": "這個 GitHub 帳戶已經連結到另一個 DeHub 簡歷。",
     "failed": "連結 GitHub 失敗。再試一次。",
     "unavailable": "GitHub 驗證功能即將推出。"
+  },
+  "comic": {
+    "chip": "漫画 · {{count}} 页",
+    "open": "打开漫画，第 {{page}} 页，共 {{total}} 页",
+    "flip": "第 {{page}} 页，共 {{total}} 页。点击翻页",
+    "cards": "回到卡牌",
+    "readAll": "读所有页面",
+    "editor": {
+      "count": "{{count}} 张 {{limit}} 页"
+    }
   }
 }

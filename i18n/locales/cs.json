@@ -14608,5 +14608,25 @@
     "taken": "Tento účet GitHub je již na jiném profilu DeHub.",
     "failed": "Nelze připojit GitHub. Zkuste to znovu.",
     "unavailable": "Ověření na GitHubu již brzy."
+  },
+  "comic": {
+    "tab": "Comik",
+    "title": "Comik",
+    "chip": "Comik · {{count}} stran",
+    "open": "Otevřený komik, stránka {{page}} z {{total}}",
+    "flip": "Stránka {{page}} z {{total}}. Dotkněte se, abyste stránku přetočili",
+    "page": "Stránka {{page}}",
+    "goto": "Stránka {{page}}",
+    "alt": "Alternativní text",
+    "cards": "Zpět na karty",
+    "readAll": "Přečíst všechny stránky",
+    "editor": {
+      "count": "{{count}} z {{limit}} stran",
+      "coverHint": "První stránka je obálka",
+      "empty": "Přidejte své stránky pomocí tlačítka pro foto. Každá stránka dostane nadpis a alternativní text.",
+      "cover": "Obálka",
+      "caption": "Nadpis pro tuto stránku",
+      "alt": "Alternativní text: co stránka zobrazuje"
+    }
   }
 }

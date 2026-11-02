@@ -14586,5 +14586,25 @@
     "taken": "Akun GitHub kanggoan udah dihubungin ke profile DeHub kanggoan lanen.",
     "failed": "Gak bisa hubungin GitHub. Coba lanang.",
     "unavailable": "Verifikasi GitHub kanggoan bakal sing ngawé."
+  },
+  "comic": {
+    "tab": "Komedis",
+    "title": "Komedis",
+    "chip": "Komedis · {{count}} halaman",
+    "open": "Buka komedis, halaman {{page}} dari {{total}}",
+    "flip": "Halaman {{page}} dari {{total}}. Geser untuk lipat",
+    "page": "Halaman {{page}}",
+    "goto": "Halaman {{page}}",
+    "alt": "Teks alternatif",
+    "cards": "Kembali ke kartu",
+    "readAll": "Baca semua halaman",
+    "editor": {
+      "count": "{{count}} dari {{limit}} halaman",
+      "coverHint": "Halaman 1 itu sampul",
+      "empty": "Tambahkan halamanmu dengan tombol foto. Setiap halaman punya caption dan teks alternatif.",
+      "cover": "Sampul",
+      "caption": "Caption untuk halaman ini",
+      "alt": "Teks alternatif: apa yang ditampilkan halaman ini"
+    }
   }
 }

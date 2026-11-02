@@ -14858,5 +14858,22 @@
     "taken": "Akaun GitHub itu sudah ada pada profil DeHub lain.",
     "failed": "Tidak dapat menyambungkan GitHub. Cuba lagi.",
     "unavailable": "Pengesahan GitHub akan datang tidak lama lagi."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} halaman",
+    "open": "Buka komik, halaman {{page}} daripada {{total}}",
+    "flip": "Halaman {{page}} daripada {{total}}. Sentuh untuk membalik.",
+    "page": "Halaman {{page}}",
+    "goto": "Halaman {{page}}",
+    "alt": "Alt teks",
+    "editor": {
+      "count": "{{count}} daripada {{limit}} muka surat",
+      "coverHint": "Halaman 1 ialah sampul.",
+      "empty": "Tambahkan halaman-halaman anda dengan tombol foto. Setiap halaman mendapat tajuk dan teks alt.",
+      "caption": "Teks ini tidak diberikan.",
+      "alt": "Teks alternatif: apa yang dipaparkan oleh halaman"
+    }
   }
 }

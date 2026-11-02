@@ -14602,5 +14602,18 @@
     "taken": "Cewa asusun GitHub ya riga ya kasance a kan wani bayanin martaba na DeHub.",
     "failed": "Ba za a iya haɗa GitHub ba. sake gwadawa.",
     "unavailable": "Tabbatar da GitHub yana zuwa ba da daɗewa ba."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "alt": "Alt text",
+    "readAll": "Kuɗa kowane shafi.",
+    "editor": {
+      "count": "{{count}} na {{limit}} page",
+      "coverHint": "Makala 1 ita ce ta kasa",
+      "empty": "Kada kowane shafin kasa, zaki sanya hotuna. Kowane shafin yana da rubutun da aka sanya a cikin hotuna.",
+      "cover": "Kafada",
+      "caption": "Bayani don wannan shafi"
+    }
   }
 }

@@ -14572,5 +14572,20 @@
   "githubLink": {
     "connect": "GitHub",
     "disconnect": "Joojinta"
+  },
+  "comic": {
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Mawduuc aad u ah",
+    "cards": "Kuwaaga ka dib ah karti",
+    "readAll": "Waxaad u qoraysiin kartaa kala soomaaliga.",
+    "editor": {
+      "count": "{{count}} diyaaradood oo {{limit}} dibedda",
+      "coverHint": "Dhambaliyaasha 1 waa dhambaliyaasha dhambaliyaasha",
+      "empty": "Ku dar bogagga oo adeegsada buttanka sawirka. Bogag kasta waxaa lagu dari karo caaddis iyo qoraal alt.",
+      "cover": "Dabool",
+      "caption": "Qoraalka sawirka boggan",
+      "alt": "Alt text: waxa boggu muujinayo"
+    }
   }
 }
