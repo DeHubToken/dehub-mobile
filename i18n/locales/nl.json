@@ -16251,5 +16251,9 @@
     "notYet": "Nog niet ontgrendeld",
     "uploading": "Vergrendelen…",
     "unlockedByThem": "Je vergrendelde {{kind}} is ontgrendeld: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "LIVE",
+    "join": "Doe mee met de live"
   }
 }

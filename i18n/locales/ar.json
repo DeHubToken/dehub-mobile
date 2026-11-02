@@ -16008,5 +16008,9 @@
     "notYet": "لم يُفتح بعد",
     "uploading": "جارٍ القفل…",
     "unlockedByThem": "تم فتح {{kind}} المقفل الخاص بك: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "مباشر",
+    "join": "انضم إلى البث"
   }
 }

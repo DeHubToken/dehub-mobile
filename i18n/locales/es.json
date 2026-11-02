@@ -16000,5 +16000,9 @@
     "notYet": "Aún no desbloqueado",
     "uploading": "Bloqueando…",
     "unlockedByThem": "Desbloquearon tu {{kind}} bloqueado: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "EN DIRECTO",
+    "join": "Unirse al directo"
   }
 }

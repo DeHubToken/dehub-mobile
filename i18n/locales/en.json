@@ -15858,5 +15858,9 @@
     "notYet": "Not unlocked yet",
     "uploading": "Locking…",
     "unlockedByThem": "Your locked {{kind}} was unlocked: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "LIVE",
+    "join": "Join live"
   }
 }

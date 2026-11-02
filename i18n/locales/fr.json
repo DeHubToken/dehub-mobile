@@ -16004,5 +16004,9 @@
     "notYet": "Pas encore déverrouillé",
     "uploading": "Verrouillage…",
     "unlockedByThem": "Votre {{kind}} verrouillé a été déverrouillé : +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "EN DIRECT",
+    "join": "Rejoindre le live"
   }
 }
