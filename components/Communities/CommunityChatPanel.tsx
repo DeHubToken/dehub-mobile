@@ -57,6 +57,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useCommunityChat } from "../../hooks/useCommunityChat";
 import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
+import { communityKindOf } from "../../libs/community-kinds";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import LinkPreviewCard from "../common/LinkPreviewCard";
@@ -602,8 +603,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         date: abilities.mutedUntil ? formatWhen(abilities.mutedUntil) : "",
       });
 
+  const readOnlyChannel = communityKindOf(community) === "channel" && !abilities.isOwner && !abilities.isAdmin;
   const composerNotice = !isMember
     ? t("communities.joinToChat", { defaultValue: "Join this community to chat" })
+    : readOnlyChannel
+      ? t("communities.newChat.adminsOnly", { defaultValue: "Only admins post in this channel." })
     : abilities.isMuted
       ? mutedCopy
       : !abilities.can("send_messages")
@@ -612,7 +616,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           })
         : null;
 
-  const noticeIcon: IconName = !isMember ? "Users" : abilities.isMuted ? "MicOff" : "Lock";
+  const noticeIcon: IconName = !isMember ? "Users" : readOnlyChannel ? ("Megaphone" as IconName) : abilities.isMuted ? "MicOff" : "Lock";
 
   const sendDisabled = !text.trim() || sending || cooldown > 0;
 

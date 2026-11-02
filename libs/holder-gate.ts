@@ -16,7 +16,7 @@ import type { Community } from "../types/community";
 
 type Wallet = string | null | undefined;
 
-async function rpc<T>(fn: string, args: Record<string, unknown>, walletAddress: Wallet): Promise<T> {
+export async function rpc<T>(fn: string, args: Record<string, unknown>, walletAddress: Wallet): Promise<T> {
   if (!walletAddress) throw new Error("not_authenticated");
   const { data, error } = await withWalletHeader((supabase as any).rpc(fn, args), walletAddress);
   if (error) throw error;
