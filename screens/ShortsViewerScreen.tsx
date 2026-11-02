@@ -1,4 +1,5 @@
 import { useCommentCount } from '../libs/comment-count-store';
+import RemixCredits from "../components/Post/RemixCredits";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
@@ -2355,6 +2356,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                   />
                 </View>
               ) : null}
+              {/* "Duet with @x", "3 reactions" and the rest, as web's Shorts viewer. */}
+              <RemixCredits tokenId={tokenId} overlay enabled={!photoMedia && isActive} />
             </View>
 
             {/* Action row — bare icons over the scrim, no slab. Web draws this

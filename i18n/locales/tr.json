@@ -15582,5 +15582,85 @@
     "joinedBodyNoEmail": "Sizlere tokenın açıldığında e-posta gönderilecektir.",
     "failed": "Kaydedilemedi. Tekrar deneyin.",
     "privacy": "Yalnızca lansmanı haber vermek için kullanılır."
+  },
+  "duet": {
+    "with": "@{{username}} ile düet",
+    "withOriginal": "Düet · orijinali gör",
+    "unavailable": "Bu video artık düet için kullanılamıyor.",
+    "allowLabel": "Düetlere izin ver",
+    "allowDescription": "Videolarının yanında kimlerin düet kaydedebileceği. Bunu her gönderide ayrıca değiştirebilirsin.",
+    "settingsSection": "Düetler",
+    "policyDefault": "Hesap ayarı",
+    "policyEveryone": "Herkes",
+    "policyFollowers": "Takipçiler",
+    "policyNobody": "Hiç kimse",
+    "saveFailed": "Kaydedilemedi. Tekrar dene.",
+    "count_one": "{{count}} düet",
+    "count_other": "{{count}} düet",
+    "pageHeading": "Düetler",
+    "pageTitle": "@{{creator}} tarafından {{title}} düetleri",
+    "pageTitleNoCreator": "{{title}} düetleri",
+    "pageDescription": "Bu videonun DeHub'daki tüm düetlerini izle ya da yan yana kendi düetini kaydet.",
+    "empty": "Henüz düet yok. İlkini yapmak için videonun seçeneklerini aç ve Remix → Düet'i seç.",
+    "loadMore": "Daha fazla yükle",
+    "video": "Video",
+    "notFound": "Bu video kullanılamıyor.",
+    "notFoundTitle": "Video bulunamadı — DeHub",
+    "browseShorts": "Shorts'a göz at"
+  },
+  "remixLinks": {
+    "shareFailed": "Bahşişin gönderildi, ancak asıl içerik üreticisinin payı gönderilemedi.",
+    "notify": {
+      "duet": "{{name}} videonla düet yaptı",
+      "stitch": "{{name}} videonu stitch'ledi",
+      "react": "{{name}} videona tepki verdi",
+      "reactLive": "{{name}} videona canlı tepki veriyor"
+    },
+    "linkFailed": "Gönderin yayında, ancak orijinal videoya bağlanamadı.",
+    "settingsHeading": "Remiksler",
+    "policy": {
+      "default": "Varsayılanım",
+      "everyone": "Herkes",
+      "followers": "Takipçiler",
+      "nobody": "Hiç kimse"
+    },
+    "stitch": {
+      "allow": "Stitch'lere izin ver",
+      "allowDesc": "Videolarının en fazla 5 saniyesini kendi videosunda kimin kullanabileceği. Bunu her gönderi için de değiştirebilirsin.",
+      "saveFailed": "Stitch ayarın kaydedilemedi. Tekrar dene.",
+      "settingFailed": "Gönderin yayında, ancak stitch ayarı kaydedilmedi. Gönderiyi düzenle bölümünden değiştir.",
+      "from": "{{name}} videosundan stitch",
+      "count_one": "{{count}} stitch",
+      "count_other": "{{count}} stitch",
+      "listTitle": "Stitch'ler",
+      "listFailed": "Stitch'ler yüklenemedi. Tekrar dene.",
+      "listEmpty": "Henüz stitch yok.",
+      "unavailable": "Bu video artık stitch için kullanılamıyor."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Tepki:",
+    "reactingTo": "Tepki veriyor:",
+    "count_one": "{{count}} tepki",
+    "count_other": "{{count}} tepki",
+    "allow": "Tepkilere izin ver",
+    "remixesSection": "Remiksler",
+    "allowDescription": "Diğer içerik üreticilerinin videolarına kayıtlı veya canlı tepki vermesine izin ver. Her gönderide ayrıca değiştirebilirsin.",
+    "policy": {
+      "everyone": "Herkes",
+      "followers": "Takipçiler",
+      "nobody": "Hiç kimse",
+      "default": "Hesap varsayılanı ({{value}})"
+    },
+    "pageTitle": "{{title}} için tepkiler — DeHub",
+    "pageDescription": "DeHub’da {{creator}} tarafından paylaşılan “{{title}}” videosuna verilen kayıtlı ve canlı tepkileri izle.",
+    "heading": "Tepkiler",
+    "backToVideo": "Videoya dön",
+    "empty": "Henüz tepki yok. İlk olmak için videonun Remix menüsünü açıp Tepki ver’i seç.",
+    "more": "Daha fazla göster",
+    "liveNow": "Canlı",
+    "wasLive": "Canlıydı",
+    "untitled": "Tepki",
+    "thisVideo": "bu video"
   }
 }
