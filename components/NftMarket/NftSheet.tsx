@@ -46,6 +46,8 @@ interface Props {
   canTrade: boolean;
   /** iOS in the US: offer the website instead. */
   linkOut: boolean;
+  /** Open straight into an offer on any NFT in the target's collection. */
+  collectionOffer?: boolean;
 }
 
 const shortAddress = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
@@ -64,7 +66,7 @@ function parseAmount(value: string, decimals: number): bigint | null {
 export const priceNow = (o: MarketOrder) =>
   o.endPrice && o.endPrice !== o.price ? currentPrice(o.components).toString() : o.price;
 
-const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade, linkOut }) => {
+const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade, linkOut, collectionOffer }) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const visible = !!target;
@@ -92,14 +94,15 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
   const [currencyAddr, setCurrencyAddr] = useState<string>(NATIVE);
   const [days, setDays] = useState<number>(30);
   useEffect(() => {
-    setMode("none");
+    const straightToOffer = !!collectionOffer && canTrade;
+    setMode(straightToOffer ? "offer" : "none");
     setPrice("");
     setCurrencyAddr(NATIVE);
     setDays(30);
     setDrop(false);
     setEndPrice("");
-    setWholeCollection(false);
-  }, [key]);
+    setWholeCollection(straightToOffer);
+  }, [key, collectionOffer, canTrade]);
 
   const chainId = target?.chainId ?? 0;
   const standard = ((detail.data?.nft.standard as NftTarget["standard"]) ?? target?.standard ?? "erc721") as "erc721" | "erc1155";
