@@ -8639,7 +8639,12 @@
     "coverFrames": "בחר פרופיל",
     "coverFrame": "שימוש בפרופיל {{index}} ככותרת",
     "uploadCover": "העלה תמונת כותרת",
-    "editFailed": "לא ניתן ליישום את העריכה. נסה שוב."
+    "editFailed": "לא ניתן ליישום את העריכה. נסה שוב.",
+    "trim": "תקציר",
+    "trimAndCover": "תקציר וקישוט",
+    "trimStart": "תחילת הקליפ",
+    "trimEnd": "סוף הקליפ",
+    "useFrameAsCover": "שתמשי בקדח זה ככיסוי"
   },
   "bounty": {
     "claimed": "נאסף",

@@ -8621,7 +8621,13 @@
     "coverFrames": "Nkọwa ihe n'okpuru ọrụ",
     "coverFrame": "Jiri etiti {{index}} ka mkpuchi",
     "uploadCover": "Nkọwa akwa akwa n'ime ihe n'ime",
-    "editFailed": "Igbo:"
+    "editFailed": "Igbo:",
+    "trim": "Ịchọta",
+    "trimAndCover": "Ịchọta ma gụnye",
+    "trimStart": "Mmalite nke clip",
+    "trimEnd": "Njedebe nke clip",
+    "trimHint": "Tụgharịa akpụkpọ ọcha iji chọta. Taa strip ahụ iji kwagharị.",
+    "useFrameAsCover": "Jiri frame a dị ka mkpuchi"
   },
   "bounty": {
     "claimed": "Anatala",

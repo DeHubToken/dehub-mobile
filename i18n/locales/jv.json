@@ -8620,7 +8620,13 @@
     "coverFrames": "Pilih frame cover",
     "coverFrame": "Gunakake frame {{index}} minangka cover",
     "uploadCover": "Nambah cover gambar",
-    "editFailed": "Gawe filter iku ora bisa diaplikasake. Coba lagi."
+    "editFailed": "Gawe filter iku ora bisa diaplikasake. Coba lagi.",
+    "trim": "Trim",
+    "trimAndCover": "Trim lan tutup",
+    "trimStart": "Wiwitan klip",
+    "trimEnd": "Pungkasan klip",
+    "trimHint": "Seret gagang putih kanggo pangkat. Tap strip kanggo mindhah.",
+    "useFrameAsCover": "Gunakake frame iki minangka tutup"
   },
   "bounty": {
     "claimed": "Wis diklaim",

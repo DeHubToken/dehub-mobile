@@ -8639,7 +8639,13 @@
     "coverFrames": "Vyberte rámeček",
     "coverFrame": "Použít rámeček {{index}} jako obálku",
     "uploadCover": "Nahrát obrázek obálky",
-    "editFailed": "Nelze aplikovat editaci. Zkuste to znovu."
+    "editFailed": "Nelze aplikovat editaci. Zkuste to znovu.",
+    "trim": "Zkrátit",
+    "trimAndCover": "Zkrátit a zakrýt",
+    "trimStart": "Začátek záznamu",
+    "trimEnd": "Konec záznamu",
+    "trimHint": "Tahejte bílé rukojeti, abyste zkrátili. Klepněte na pásku, abyste ji posunuli.",
+    "useFrameAsCover": "Použijte tento rámeček jako kryt."
   },
   "bounty": {
     "claimed": "Vyzvednuto",

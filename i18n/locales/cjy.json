@@ -8623,7 +8623,13 @@
     "coverFrames": "选择封面框",
     "coverFrame": "使用框 {{index}} 作为封面",
     "uploadCover": "上传封面图片",
-    "editFailed": "无法应用该编辑。再试一次。"
+    "editFailed": "无法应用该编辑。再试一次。",
+    "trim": "修剪",
+    "trimAndCover": "修剪并覆盖",
+    "trimStart": "剪辑开始",
+    "trimEnd": "剪辑结束",
+    "trimHint": "拖动白色把手进行修剪。点击条带移动。",
+    "useFrameAsCover": "使用此帧作为封面"
   },
   "bounty": {
     "claimed": "已领取",

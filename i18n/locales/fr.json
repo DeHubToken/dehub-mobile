@@ -6365,7 +6365,13 @@
     "coverFrames": "Choisir une image de couverture",
     "coverFrame": "Utiliser l'image {{index}} comme couverture",
     "uploadCover": "Importer une image de couverture",
-    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez.",
+    "trim": "Trim",
+    "trimAndCover": "Découper et couvrir",
+    "trimStart": "Début de la séquence",
+    "trimEnd": "Fin de la séquence",
+    "trimHint": "Glissez les poignées blanches pour découper. Appuyez sur la bande pour la déplacer.",
+    "useFrameAsCover": "Utilisez ce cadre comme couverture."
   },
   "bounty": {
     "claimed": "Réclamé",

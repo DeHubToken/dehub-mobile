@@ -8668,7 +8668,13 @@
     "coverFrames": "Kies 'n omslagframe",
     "coverFrame": "Gebruik frame {{index}} as die omslag",
     "uploadCover": "Laai 'n omslagafbeelding",
-    "editFailed": "Kon dié redigeer nie toepas nie. Probeer weer."
+    "editFailed": "Kon dié redigeer nie toepas nie. Probeer weer.",
+    "trim": "Sny",
+    "trimAndCover": "Sny en dek",
+    "trimStart": "Begin van klip",
+    "trimEnd": "Einde van klip",
+    "trimHint": "Sny die witte handvatsels om. Tik op die strook om te beweeg.",
+    "useFrameAsCover": "Gebruik hierdie raam as dekking"
   },
   "bounty": {
     "claimed": "Opgeëis",

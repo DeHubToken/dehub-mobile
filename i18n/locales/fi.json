@@ -8635,7 +8635,13 @@
     "coverFrames": "Valitse kansiokuva",
     "coverFrame": "Käytä kansiokuvana {{index}}",
     "uploadCover": "Lataa kansiokuva",
-    "editFailed": "Ei voitu soveltaa muokkausta. Yritä uudelleen."
+    "editFailed": "Ei voitu soveltaa muokkausta. Yritä uudelleen.",
+    "trim": "Leikkaa",
+    "trimAndCover": "Leikkaa ja peitä",
+    "trimStart": "Videon alussa",
+    "trimEnd": "Videon lopussa",
+    "trimHint": "Vetoa valkoisia kahvoja leikkaamalla. Kosketa nauhaa siirtääksesi.",
+    "useFrameAsCover": "Käytä tätä ruutua peitteenä"
   },
   "bounty": {
     "claimed": "Lunastettu",

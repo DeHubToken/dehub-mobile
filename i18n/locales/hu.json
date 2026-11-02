@@ -8639,7 +8639,13 @@
     "coverFrames": "Kiválasztson egy borító keretet",
     "coverFrame": "Használja a borítóként a {{index}} keretet",
     "uploadCover": "Töltse fel a borítóképet",
-    "editFailed": "Nem sikerült alkalmazni ezt a szerkesztést. Próbálja meg újra."
+    "editFailed": "Nem sikerült alkalmazni ezt a szerkesztést. Próbálja meg újra.",
+    "trim": "Trim",
+    "trimAndCover": "Trim és fedés",
+    "trimStart": "Videószakasz kezdete",
+    "trimEnd": "Videószakasz vége",
+    "trimHint": "Húzd el a fehér fogantyúkat a bemetszéshez. Tapogasd meg a sávot a mozgatáshoz.",
+    "useFrameAsCover": "Használd ezt a keretet fedésként."
   },
   "bounty": {
     "claimed": "Igényelve",

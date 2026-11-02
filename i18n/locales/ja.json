@@ -8606,7 +8606,13 @@
     "coverFrames": "カバーにするフレームを選択",
     "coverFrame": "フレーム {{index}} をカバーにする",
     "uploadCover": "カバー画像をアップロード",
-    "editFailed": "編集を適用できませんでした。もう一度お試しください。"
+    "editFailed": "編集を適用できませんでした。もう一度お試しください。",
+    "trim": "トリム",
+    "trimAndCover": "トリムしてカバーにする",
+    "trimStart": "クリップの開始",
+    "trimEnd": "クリップの終了",
+    "trimHint": "白いハンドルをドラッグしてトリムします。ストリップをタップして移動します。",
+    "useFrameAsCover": "このフレームをカバーに使用します。"
   },
   "bounty": {
     "claimed": "受け取り済み",

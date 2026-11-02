@@ -6360,7 +6360,13 @@
     "coverFrames": "Kapak karesi seç",
     "coverFrame": "{{index}}. kareyi kapak yap",
     "uploadCover": "Kapak görseli yükle",
-    "editFailed": "Düzenleme uygulanamadı. Tekrar deneyin."
+    "editFailed": "Düzenleme uygulanamadı. Tekrar deneyin.",
+    "trim": "Kırp",
+    "trimEnd": "Klip sonu",
+    "trimHint": "Beyaz çubukları sürükleyerek kırpın. Şeridi hareket ettirmek için dokunun.",
+    "useFrameAsCover": "Bu kareyi kapak yap",
+    "trimAndCover": "Kırp ve kapak seç",
+    "trimStart": "Klip başlangıcı"
   },
   "bounty": {
     "claimed": "Alındı",

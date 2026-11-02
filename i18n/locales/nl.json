@@ -6499,7 +6499,13 @@
     "coverFrames": "Kies een coverframe",
     "coverFrame": "Frame {{index}} als cover gebruiken",
     "uploadCover": "Coverafbeelding uploaden",
-    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw."
+    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw.",
+    "trim": "Trim",
+    "trimAndCover": "Trim en bedek",
+    "trimStart": "Begin van clip",
+    "trimEnd": "Einde van clip",
+    "trimHint": "Sleep de witte handvatten om te trimmen. Tik op de strip om te verplaatsen.",
+    "useFrameAsCover": "Gebruik dit frame als bedekking"
   },
   "bounty": {
     "claimed": "Geclaimd",

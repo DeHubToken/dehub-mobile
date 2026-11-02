@@ -8635,7 +8635,13 @@
     "coverFrames": "Escollir una capçalera",
     "coverFrame": "Utilitzar la capçalera {{index}} com a capçalera",
     "uploadCover": "Carregar una imatge de capçalera",
-    "editFailed": "No s'ha pogut aplicar aquesta edició. Prova-ho de nou."
+    "editFailed": "No s'ha pogut aplicar aquesta edició. Prova-ho de nou.",
+    "trim": "Talla",
+    "trimAndCover": "Talla i cobreix",
+    "trimStart": "Inici de clip",
+    "trimEnd": "Fi de clip",
+    "trimHint": "Arrossega els manills blancs per tallar. Toca la franja per desplaçar-la.",
+    "useFrameAsCover": "Utilitza aquest fotograma com a cobertura"
   },
   "bounty": {
     "claimed": "Reclamat",

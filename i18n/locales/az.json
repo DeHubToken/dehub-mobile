@@ -8635,7 +8635,10 @@
     "coverFrames": "Mətn çərçivəsi seçin",
     "coverFrame": "Çərçivəni {{index}} kimi üz qabığı kimi istifadə edin",
     "uploadCover": "Üz qabığıni yüklə",
-    "editFailed": "Bu redaktəni tətbiq etmək mümkünsüz oldu. Yenidən cəhd edin."
+    "editFailed": "Bu redaktəni tətbiq etmək mümkünsüz oldu. Yenidən cəhd edin.",
+    "trimEnd": "Film bitkinin sonu",
+    "trimHint": "Ağ handleləri çəkərək kəs. Şeridi hərəkət etdirmək üçün tapın.",
+    "useFrameAsCover": "Bu çərçivəni qapag kimi istifadə edin."
   },
   "bounty": {
     "claimed": "Alınıb",

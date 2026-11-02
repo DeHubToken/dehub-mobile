@@ -8653,7 +8653,13 @@
     "coverFrames": "Wähle ein Bildrahmen",
     "coverFrame": "Benutze Bildrahmen {{index}} als Titelbild",
     "uploadCover": "Lade ein Titelbild hoch",
-    "editFailed": "Konnte diese Änderung nicht anwenden. Versuche es noch einmal."
+    "editFailed": "Konnte diese Änderung nicht anwenden. Versuche es noch einmal.",
+    "trim": "Trimme",
+    "trimAndCover": "Trimme und bedecke",
+    "trimStart": "Beginn des Clips",
+    "trimEnd": "Ende des Clips",
+    "trimHint": "Ziehe die weissen Griffe, um zu trimmen. Tippe auf den Streifen, um ihn zu verschieben.",
+    "useFrameAsCover": "Nutze diesen Rahmen als Abdeckung"
   },
   "bounty": {
     "claimed": "Iiglöst",

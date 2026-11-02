@@ -8635,7 +8635,13 @@
     "coverFrames": "Odaberi okvir za naslovnicu",
     "coverFrame": "Upotrijebi okvir {{index}} kao naslovnici",
     "uploadCover": "Preuzmi sliku za naslovnici",
-    "editFailed": "Nije moguće primijeniti taj uređivač. Pokušaj ponovno."
+    "editFailed": "Nije moguće primijeniti taj uređivač. Pokušaj ponovno.",
+    "trim": "Trim",
+    "trimAndCover": "Trim i prekrivač",
+    "trimStart": "Početak klipa",
+    "trimEnd": "Kraj klipa",
+    "trimHint": "Vučite bijele rukovati da biste izrezali. Tapnite traku da biste pomjerili.",
+    "useFrameAsCover": "Koristite ovaj okvir kao prekrivač."
   },
   "bounty": {
     "claimed": "Preuzeto",
