@@ -21,7 +21,7 @@ import { supabase } from "../services/supabase";
 import { ethersService } from "../services/ethers.service";
 import { getMyPosts } from "../services/user.service";
 import { getNFTs } from "../services/nft.service";
-import { buildImageUrl } from "../libs/misc";
+import { fractionImageFor } from "../libs/fractionThumb";
 import { STREAM_COLLECTION_CONTRACT_ADDRESSES } from "../config/web3.constants";
 import { DEFAULT_FRACTION_CHAIN, TOTAL_FRACTIONS, useFractionWallet } from "./useFractionMarket";
 
@@ -126,7 +126,7 @@ export function useFractionPortfolio(address: string | null | undefined) {
               tokenId,
               chainId: Number(post.chainId) || DEFAULT_FRACTION_CHAIN,
               title: post.name || post.title || null,
-              imageUrl: buildImageUrl(post.tokenId, post.imageUrl, 200) || null,
+              imageUrl: fractionImageFor(post, 200) || null,
               postType: post.postType || null,
               isCreator: true,
             });
@@ -147,7 +147,7 @@ export function useFractionPortfolio(address: string | null | undefined) {
               tokenId,
               chainId: Number(post.chainId) || DEFAULT_FRACTION_CHAIN,
               title: post.name || post.title || null,
-              imageUrl: buildImageUrl(post.tokenId, post.imageUrl, 200) || null,
+              imageUrl: fractionImageFor(post, 200) || null,
               postType: post.postType || null,
               isCreator: true,
             });
