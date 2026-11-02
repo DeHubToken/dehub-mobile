@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   Modal,
   PanResponder,
+  Platform,
   Pressable,
   ScrollView,
   Text,
@@ -27,7 +28,7 @@ import { Canvas, Picture, createPicture, type SkImage } from "@shopify/react-nat
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { ADJUST_RANGES, STUDIO_LOOKS, type StudioAdjustKey } from "../../libs/imageFilters";
-import { downscale, loadImage, type Annotation, type Point } from "./imageEditSkia";
+import { downscale, inkOn, loadImage, textBox, type Annotation, type Point, type StudioFont, type TextItem } from "./imageEditSkia";
 import {
   bakeStudio,
   defaultEdits,
@@ -74,6 +75,20 @@ const LINE = "rgba(255,255,255,0.16)";
 const COLORS = ["#ffffff", "#000000", "#ff3b30", "#ff9500", "#ffcc00", "#34c759", "#0a84ff", "#bf5af2"];
 const BRUSH_SIZES = [0.006, 0.014, 0.028];
 const TEXT_SIZES = [0.05, 0.08, 0.13];
+const FONTS: { id: StudioFont; label: string; style: { fontWeight: "600" | "700" | "900"; fontStyle?: "italic"; fontFamily?: string } }[] = [
+  { id: "clean", label: "Clean", style: { fontWeight: "600" } },
+  { id: "bold", label: "Bold", style: { fontWeight: "900", fontStyle: "italic" } },
+  { id: "serif", label: "Serif", style: { fontWeight: "700", fontFamily: Platform.select({ ios: "Georgia", default: "serif" }) } },
+  { id: "mono", label: "Mono", style: { fontWeight: "600", fontFamily: Platform.select({ ios: "Menlo", default: "monospace" }) } },
+];
+const EMOJI = ["😍", "🔥", "😂", "❤️", "👏", "✨", "🎉", "👀", "💯", "🚀"];
+const EMOJI_START = /^\p{Extended_Pictographic}/u;
+
+type PendingText = { at: Point; value: string; font: StudioFont; bg: boolean; color: string; size: number };
+
+function pendingToItem(p: PendingText, text: string): TextItem {
+  return { kind: "text", at: p.at, text, color: p.color, size: p.size, ...(p.font !== "clean" ? { font: p.font } : {}), ...(p.bg ? { bg: true } : {}) };
+}
 const RATIOS: { id: CropRatioId; label: string; value: number | null }[] = [
   { id: "original", label: "Original", value: null },
   { id: "free", label: "Free", value: null },
@@ -161,10 +176,15 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
   const [adjustKey, setAdjustKey] = useState<StudioAdjustKey>("light");
 
   // Draw state
-  const [tool, setTool] = useState<"draw" | "text">("draw");
+  const [tool, setTool] = useState<"draw" | "text" | "sticker">("draw");
+  const [font, setFont] = useState<StudioFont>("clean");
+  const [textBg, setTextBg] = useState(false);
+  /** The text or sticker layer picked to move or restyle. */
+  const [selected, setSelected] = useState<number | null>(null);
+  const layerDrag = useRef<{ index: number; from: Point; start: { x: number; y: number }; moved: boolean; wasSelected: boolean } | null>(null);
   const [color, setColor] = useState(COLORS[0]);
   const [sizeStep, setSizeStep] = useState(1);
-  const [pendingText, setPendingText] = useState<{ at: Point; value: string } | null>(null);
+  const [pendingText, setPendingText] = useState<PendingText | null>(null);
   const drawing = useRef(false);
 
   const allRef = useRef(all);
@@ -347,22 +367,67 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
     setPendingText(null);
     const text = pending?.value.trim();
     if (pending && text) {
-      setEdits((e) => ({ ...e, items: [...e.items, { kind: "text", at: pending.at, text, color, size: TEXT_SIZES[sizeStep] }] }));
+      setEdits((e) => ({ ...e, items: [...e.items, pendingToItem(pending, text)] }));
     }
-  }, [color, sizeStep, setEdits]);
+  }, [setEdits]);
+
+  const newPending = (at: Point, value = "", bg = textBg) =>
+    setPendingText({ at, value, font, bg, color, size: TEXT_SIZES[sizeStep] });
+
+  /** Restyle the picked layer (and the next one typed). */
+  const styleSelected = (patch: Partial<TextItem>) => {
+    if (pendingRef.current) setPendingText((p) => (p ? { ...p, ...patch } : p));
+    if (selected === null) return;
+    setEdits((e) => ({ ...e, items: e.items.map((it, i) => (i === selected && it.kind === "text" ? { ...it, ...patch } : it)) }));
+  };
+
+  const hitText = (p: Point): number | null => {
+    if (!box) return null;
+    for (let i = edits.items.length - 1; i >= 0; i--) {
+      const it = edits.items[i];
+      if (it.kind !== "text") continue;
+      const b = textBox(it, box.w, box.h);
+      const x = p.x * box.w;
+      const y = p.y * box.h;
+      if (x >= b.x - 10 && x <= b.x + b.w + 10 && y >= b.y - 10 && y <= b.y + b.h + 10) return i;
+    }
+    return null;
+  };
 
   const onTouchStart = (ev: GestureResponderEvent) => {
     const p = pointFrom(ev);
     if (!p) return;
     commitText();
+    // Text and stickers can be picked up and moved; a second tap edits the words.
+    const hit = tool === "draw" ? null : hitText(p);
+    if (hit !== null) {
+      const it = edits.items[hit] as TextItem;
+      layerDrag.current = { index: hit, from: { ...it.at }, start: { x: ev.nativeEvent.pageX, y: ev.nativeEvent.pageY }, moved: false, wasSelected: selected === hit };
+      setSelected(hit);
+      setColor(it.color);
+      setFont(it.font ?? "clean");
+      setTextBg(!!it.bg);
+      return;
+    }
+    setSelected(null);
+    if (tool === "sticker") return;
     if (tool === "text") {
-      setPendingText({ at: p, value: "" });
+      newPending(p);
       return;
     }
     drawing.current = true;
     setEdits((e) => ({ ...e, items: [...e.items, { kind: "stroke", points: [p], color, width: BRUSH_SIZES[sizeStep] }] }));
   };
   const onTouchMove = (ev: GestureResponderEvent) => {
+    const d = layerDrag.current;
+    if (d && box) {
+      const dxp = ev.nativeEvent.pageX - d.start.x;
+      const dyp = ev.nativeEvent.pageY - d.start.y;
+      if (Math.abs(dxp) + Math.abs(dyp) > 6) d.moved = true;
+      const at = { x: clamp(d.from.x + dxp / box.w, -0.2, 0.98), y: clamp(d.from.y + dyp / box.h, 0, 1) };
+      setEdits((e) => ({ ...e, items: e.items.map((m, i) => (i === d.index && m.kind === "text" ? { ...m, at } : m)) }));
+      return;
+    }
     if (!drawing.current) return;
     const p = pointFrom(ev);
     if (!p) return;
@@ -374,6 +439,17 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
   };
   const onTouchEnd = () => {
     drawing.current = false;
+    const d = layerDrag.current;
+    layerDrag.current = null;
+    if (d && !d.moved && d.wasSelected) {
+      const it = editsRef.current.items[d.index];
+      if (it?.kind === "text" && !EMOJI_START.test(it.text)) {
+        // Edit the words: lift the layer back into the text box.
+        setEdits((e) => ({ ...e, items: e.items.filter((_, i) => i !== d.index) }));
+        setSelected(null);
+        setPendingText({ at: it.at, value: it.text, font: it.font ?? "clean", bg: !!it.bg, color: it.color, size: it.size });
+      }
+    }
   };
 
   // ── pager / done ──
@@ -391,7 +467,7 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
     const text = pending?.value.trim();
     const latest = allRef.current.map((e, i) =>
       i === index && pending && text
-        ? { ...e, items: [...e.items, { kind: "text" as const, at: pending.at, text, color, size: TEXT_SIZES[sizeStep] }] }
+        ? { ...e, items: [...e.items, pendingToItem(pending, text)] }
         : e,
     );
     setPendingText(null);
@@ -519,6 +595,10 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
                     onResponderRelease={onTouchEnd}
                     onResponderTerminate={onTouchEnd}
                   >
+                    {selected !== null && edits.items[selected]?.kind === "text" && (() => {
+                      const b = textBox(edits.items[selected] as TextItem, box.w, box.h);
+                      return <View pointerEvents="none" style={{ position: "absolute", left: b.x - 4, top: b.y - 4, width: b.w + 8, height: b.h + 8, borderRadius: 8, borderWidth: 1, borderStyle: "dashed", borderColor: "rgba(255,255,255,0.85)" }} />;
+                    })()}
                     {pendingText && (
                       <TextInput
                         key={`${pendingText.at.x}:${pendingText.at.y}`}
@@ -537,8 +617,9 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
                           top: pendingText.at.y * box.h - 18,
                           minWidth: 120,
                           maxWidth: box.w * 0.8,
-                          color,
-                          backgroundColor: "rgba(0,0,0,0.7)",
+                          color: pendingText.bg ? inkOn(pendingText.color) : pendingText.color,
+                          backgroundColor: pendingText.bg ? pendingText.color : "rgba(0,0,0,0.7)",
+                          ...FONTS.find((f) => f.id === pendingText.font)?.style,
                           borderColor: "rgba(255,255,255,0.3)",
                           borderWidth: 1,
                           borderRadius: 8,
@@ -686,33 +767,83 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
               <View style={{ paddingHorizontal: 16, paddingBottom: 4 }}>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                   <View style={{ flexDirection: "row", gap: 6 }}>
-                    <ToolButton icon="Pencil" on={tool === "draw"} onPress={() => { commitText(); setTool("draw"); }} label={t("editor.draw.heading")} />
+                    <ToolButton icon="Pencil" on={tool === "draw"} onPress={() => { commitText(); setSelected(null); setTool("draw"); }} label={t("editor.draw.heading")} />
                     <ToolButton icon="Type" on={tool === "text"} onPress={() => setTool("text")} label={t("editor.menu.addText")} />
+                    <ToolButton icon="Smile" on={tool === "sticker"} onPress={() => { commitText(); setTool("sticker"); }} label={t("upload.studio.stickers", { defaultValue: "Stickers" })} />
                   </View>
                   <View style={{ flexDirection: "row", gap: 6 }}>
-                    {(tool === "text" ? [10, 14, 18] : [4, 8, 14]).map((dot, i) => (
+                    {(tool !== "draw" ? [10, 14, 18] : [4, 8, 14]).map((dot, i) => (
                       <Pressable className="dark-surface"
                         key={i}
-                        onPress={() => setSizeStep(i)}
-                        style={{ width: 36, height: 36, borderRadius: 12, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: sizeStep === i ? "rgba(255,255,255,0.5)" : LINE, backgroundColor: sizeStep === i ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.05)" }}
+                        onPress={() => { setSizeStep(i); if (tool !== "draw") styleSelected({ size: TEXT_SIZES[i] }); }}
+                        style={{ width: 34, height: 34, borderRadius: 12, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: sizeStep === i ? "rgba(255,255,255,0.5)" : LINE, backgroundColor: sizeStep === i ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.05)" }}
                         accessibilityRole="button"
                         accessibilityState={{ selected: sizeStep === i }}
-                        accessibilityLabel={tool === "text" ? t("upload.textSize", { value: i + 1 }) : t("editor.draw.width", { value: i + 1 })}
+                        accessibilityLabel={tool !== "draw" ? t("upload.textSize", { value: i + 1 }) : t("editor.draw.width", { value: i + 1 })}
                       >
                         <View style={{ width: dot, height: dot, borderRadius: dot, backgroundColor: WHITE }} />
                       </Pressable>
                     ))}
                   </View>
-                  <View style={{ flexDirection: "row", gap: 6 }}>
-                    <ToolButton icon="Undo2" disabled={!hasItems} onPress={() => { setPendingText(null); setEdits((e) => ({ ...e, items: e.items.slice(0, -1) })); }} label={t("common.undo")} />
-                    <ToolButton icon="Trash2" disabled={!hasItems} onPress={() => { setPendingText(null); setEdits((e) => ({ ...e, items: [] })); }} label={t("upload.clearDrawing")} />
-                  </View>
+                  <ToolButton
+                    icon={selected !== null ? "Trash2" : "Undo2"}
+                    disabled={!hasItems}
+                    onPress={() => {
+                      if (pendingText) setPendingText(null);
+                      else if (selected !== null) setEdits((e) => ({ ...e, items: e.items.filter((_, i) => i !== selected) }));
+                      else setEdits((e) => ({ ...e, items: e.items.slice(0, -1) }));
+                      setSelected(null);
+                    }}
+                    label={selected !== null ? t("common.delete") : t("common.undo")}
+                  />
                 </View>
+
+                {tool === "sticker" && (
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }} contentContainerStyle={{ gap: 6, alignItems: "center" }}>
+                    <Chip label={`@ ${t("upload.studio.mention", { defaultValue: "Mention" })}`} on={false} onPress={() => newPending({ x: 0.3, y: 0.5 }, "@", true)} />
+                    <Chip label={`$ ${t("upload.studio.ticker", { defaultValue: "Ticker" })}`} on={false} onPress={() => newPending({ x: 0.3, y: 0.5 }, "$", true)} />
+                    {EMOJI.map((em) => (
+                      <Pressable className="dark-surface"
+                        key={em}
+                        onPress={() => {
+                          setEdits((e) => ({ ...e, items: [...e.items, { kind: "text", at: { x: 0.42, y: 0.45 }, text: em, color: "#ffffff", size: 0.16 }] }));
+                          setSelected(edits.items.length);
+                        }}
+                        style={{ width: 36, height: 36, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.06)" }}
+                        accessibilityRole="button"
+                        accessibilityLabel={em}
+                      >
+                        <Text style={{ fontSize: 20 }}>{em}</Text>
+                      </Pressable>
+                    ))}
+                  </ScrollView>
+                )}
+
+                {tool !== "draw" && (
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }} contentContainerStyle={{ gap: 6 }}>
+                    {FONTS.map((f) => {
+                      const on = font === f.id;
+                      return (
+                        <Pressable className="dark-surface"
+                          key={f.id}
+                          onPress={() => { setFont(f.id); styleSelected({ font: f.id }); }}
+                          accessibilityRole="button"
+                          accessibilityState={{ selected: on }}
+                          style={{ paddingHorizontal: 12, paddingVertical: 7, borderRadius: 999, borderWidth: 1, borderColor: on ? WHITE : LINE, backgroundColor: on ? WHITE : "transparent" }}
+                        >
+                          <Text style={{ color: on ? "#000" : DIM, fontSize: 12, ...f.style }}>{t(`upload.studio.font.${f.id}`, { defaultValue: f.label })}</Text>
+                        </Pressable>
+                      );
+                    })}
+                    <Chip label={t("upload.studio.textBg", { defaultValue: "Background" })} on={textBg} onPress={() => { setTextBg(!textBg); styleSelected({ bg: !textBg }); }} />
+                  </ScrollView>
+                )}
+
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }} contentContainerStyle={{ paddingVertical: 4 }}>
                   {COLORS.map((c) => (
                     <Pressable className="dark-surface"
                       key={c}
-                      onPress={() => setColor(c)}
+                      onPress={() => { setColor(c); if (tool !== "draw") styleSelected({ color: c }); }}
                       style={{ width: 28, height: 28, borderRadius: 14, marginRight: 8, backgroundColor: c, borderWidth: 2, borderColor: color === c ? WHITE : "rgba(255,255,255,0.2)", transform: [{ scale: color === c ? 1.1 : 1 }] }}
                       accessibilityRole="button"
                       accessibilityState={{ selected: color === c }}
@@ -720,6 +851,11 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
                     />
                   ))}
                 </ScrollView>
+                {tool !== "draw" && (
+                  <Text style={{ color: "rgba(255,255,255,0.45)", fontSize: 11, marginTop: 6 }}>
+                    {t("upload.studio.layerHint", { defaultValue: "Drag words and stickers to move them. Tap twice to change the words." })}
+                  </Text>
+                )}
               </View>
             )}
           </View>

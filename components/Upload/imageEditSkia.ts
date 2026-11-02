@@ -13,7 +13,10 @@ import {
   PaintStyle,
   StrokeCap,
   StrokeJoin,
+  FontSlant,
+  FontWeight,
   matchFont,
+  type SkParagraph,
   type SkCanvas,
   type SkFont,
   type SkImage,
@@ -35,13 +38,108 @@ export interface StrokeItem {
   width: number;
 }
 
+export type StudioFont = "clean" | "bold" | "serif" | "mono";
+
 export interface TextItem {
   kind: "text";
+  /** Left edge, vertical middle, 0..1 of the picture. */
   at: Point;
   text: string;
   color: string;
   /** Font size as a fraction of the image's shorter side. */
   size: number;
+  font?: StudioFont;
+  /** Drawn on a pill in `color`, text in black or white on top. */
+  bg?: boolean;
+}
+
+const FAMILIES: Record<StudioFont, string[] | undefined> = {
+  clean: undefined,
+  bold: undefined,
+  serif: Platform.select({ ios: ["Georgia"], default: ["serif"] }),
+  mono: Platform.select({ ios: ["Menlo"], default: ["monospace"] }),
+};
+
+/** Black or white, whichever reads on `color`. */
+export function inkOn(color: string) {
+  const m = /^#([\da-f]{6})$/i.exec(color);
+  if (!m) return "#000000";
+  const n = parseInt(m[1], 16);
+  const lum = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
+  return lum > 150 ? "#000000" : "#ffffff";
+}
+
+/**
+ * One line of text laid out by Skia's paragraph engine, which falls back to
+ * the system emoji font (a plain SkFont draws emoji stickers as empty boxes).
+ */
+function textParagraph(item: TextItem, fontSize: number, color: string, outline?: number): SkParagraph {
+  const font = item.font ?? "clean";
+  const builder = Skia.ParagraphBuilder.Make({ maxLines: 1 });
+  const style = {
+    color: Skia.Color(color),
+    fontSize,
+    fontFamilies: FAMILIES[font],
+    fontStyle: {
+      weight: font === "bold" ? FontWeight.Black : font === "serif" ? FontWeight.Bold : FontWeight.SemiBold,
+      slant: font === "bold" ? FontSlant.Italic : FontSlant.Upright,
+    },
+  };
+  if (outline) {
+    const stroke = Skia.Paint();
+    stroke.setAntiAlias(true);
+    stroke.setStyle(PaintStyle.Stroke);
+    stroke.setStrokeWidth(outline);
+    stroke.setStrokeJoin(StrokeJoin.Round);
+    stroke.setColor(Skia.Color(color));
+    builder.pushStyle(style, stroke);
+  } else {
+    builder.pushStyle(style);
+  }
+  builder.addText(item.text);
+  builder.pop();
+  const p = builder.build();
+  p.layout(100000);
+  return p;
+}
+
+/** A text mark's box in pixels of a `w` x `h` picture, for tapping and dragging it. */
+export function textBox(item: TextItem, w: number, h: number) {
+  const size = Math.max(8, item.size * Math.min(w, h));
+  let tw = item.text.length * size * 0.55;
+  try {
+    tw = textParagraph(item, size, item.color).getLongestLine();
+  } catch {
+    /* estimate */
+  }
+  const pad = item.bg ? size * 0.35 : size * 0.15;
+  return { x: item.at.x * w - pad, y: item.at.y * h - size * 0.7, w: tw + pad * 2, h: size * 1.4 };
+}
+
+function paintTextItem(canvas: SkCanvas, item: TextItem, w: number, h: number): boolean {
+  const size = Math.max(8, item.size * Math.min(w, h));
+  const x = item.at.x * w;
+  const cy = item.at.y * h;
+  try {
+    if (item.bg) {
+      const b = textBox(item, w, h);
+      const pill = Skia.Paint();
+      pill.setAntiAlias(true);
+      pill.setColor(Skia.Color(item.color));
+      canvas.drawRRect(Skia.RRectXY(Skia.XYWHRect(b.x, b.y, b.w, b.h), b.h * 0.3, b.h * 0.3), pill);
+      const p = textParagraph(item, size, inkOn(item.color));
+      p.paint(canvas, x, cy - p.getHeight() / 2);
+      return true;
+    }
+    const outlineColor = item.color === "#000000" ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.55)";
+    const o = textParagraph(item, size, outlineColor, Math.max(1, size * 0.12));
+    o.paint(canvas, x, cy - o.getHeight() / 2);
+    const p = textParagraph(item, size, item.color);
+    p.paint(canvas, x, cy - p.getHeight() / 2);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export type Annotation = StrokeItem | TextItem;
@@ -115,6 +213,7 @@ function paintAnnotations(canvas: SkCanvas, items: Annotation[], w: number, h: n
       }
       canvas.drawPath(path, paint);
     } else {
+      if (paintTextItem(canvas, item, w, h)) continue;
       const fontSize = Math.max(8, item.size * unit);
       const font = fontAt(fontSize);
       const metrics = font.getMetrics();
