@@ -3,7 +3,6 @@
 // Only these icons are bundled. Importing each icon's own file, rather than
 // anything from the package root, keeps the other ~1,600 out of the bundle.
 import type { LucideIcon } from "lucide-react-native";
-import ActivityIcon from "lucide-react-native/dist/esm/icons/activity";
 import AlignCenterIcon from "lucide-react-native/dist/esm/icons/align-center";
 import AlignLeftIcon from "lucide-react-native/dist/esm/icons/align-left";
 import AlignRightIcon from "lucide-react-native/dist/esm/icons/align-right";
@@ -61,7 +60,6 @@ import ChevronDownIcon from "lucide-react-native/dist/esm/icons/chevron-down";
 import ChevronLeftIcon from "lucide-react-native/dist/esm/icons/chevron-left";
 import ChevronRightIcon from "lucide-react-native/dist/esm/icons/chevron-right";
 import ChevronUpIcon from "lucide-react-native/dist/esm/icons/chevron-up";
-import ChevronsRightIcon from "lucide-react-native/dist/esm/icons/chevrons-right";
 import CircleIcon from "lucide-react-native/dist/esm/icons/circle";
 import CircleAlertIcon from "lucide-react-native/dist/esm/icons/circle-alert";
 import CircleCheckIcon from "lucide-react-native/dist/esm/icons/circle-check";
@@ -80,6 +78,7 @@ import CoinsIcon from "lucide-react-native/dist/esm/icons/coins";
 import CompassIcon from "lucide-react-native/dist/esm/icons/compass";
 import ComponentIcon from "lucide-react-native/dist/esm/icons/component";
 import ContactIcon from "lucide-react-native/dist/esm/icons/contact";
+import ContrastIcon from "lucide-react-native/dist/esm/icons/contrast";
 import CookieIcon from "lucide-react-native/dist/esm/icons/cookie";
 import CopyIcon from "lucide-react-native/dist/esm/icons/copy";
 import CornerDownLeftIcon from "lucide-react-native/dist/esm/icons/corner-down-left";
@@ -118,7 +117,6 @@ import FolderInputIcon from "lucide-react-native/dist/esm/icons/folder-input";
 import FolderPlusIcon from "lucide-react-native/dist/esm/icons/folder-plus";
 import ForwardIcon from "lucide-react-native/dist/esm/icons/forward";
 import FuelIcon from "lucide-react-native/dist/esm/icons/fuel";
-import FullscreenIcon from "lucide-react-native/dist/esm/icons/fullscreen";
 import FunnelIcon from "lucide-react-native/dist/esm/icons/funnel";
 import Gamepad2Icon from "lucide-react-native/dist/esm/icons/gamepad-2";
 import GaugeIcon from "lucide-react-native/dist/esm/icons/gauge";
@@ -174,13 +172,11 @@ import LogOutIcon from "lucide-react-native/dist/esm/icons/log-out";
 import LollipopIcon from "lucide-react-native/dist/esm/icons/lollipop";
 import MagnetIcon from "lucide-react-native/dist/esm/icons/magnet";
 import MailIcon from "lucide-react-native/dist/esm/icons/mail";
-import MailOpenIcon from "lucide-react-native/dist/esm/icons/mail-open";
 import MapIcon from "lucide-react-native/dist/esm/icons/map";
 import MapPinIcon from "lucide-react-native/dist/esm/icons/map-pin";
 import MaximizeIcon from "lucide-react-native/dist/esm/icons/maximize";
 import Maximize2Icon from "lucide-react-native/dist/esm/icons/maximize-2";
 import MegaphoneIcon from "lucide-react-native/dist/esm/icons/megaphone";
-import MenuIcon from "lucide-react-native/dist/esm/icons/menu";
 import MessageCircleIcon from "lucide-react-native/dist/esm/icons/message-circle";
 import MessageCircleWarningIcon from "lucide-react-native/dist/esm/icons/message-circle-warning";
 import MessageSquareIcon from "lucide-react-native/dist/esm/icons/message-square";
@@ -233,11 +229,13 @@ import RadioIcon from "lucide-react-native/dist/esm/icons/radio";
 import ReceiptIcon from "lucide-react-native/dist/esm/icons/receipt";
 import RectangleHorizontalIcon from "lucide-react-native/dist/esm/icons/rectangle-horizontal";
 import RectangleVerticalIcon from "lucide-react-native/dist/esm/icons/rectangle-vertical";
+import RedoIcon from "lucide-react-native/dist/esm/icons/redo";
 import Redo2Icon from "lucide-react-native/dist/esm/icons/redo-2";
 import RefreshCwIcon from "lucide-react-native/dist/esm/icons/refresh-cw";
 import RepeatIcon from "lucide-react-native/dist/esm/icons/repeat";
 import Repeat2Icon from "lucide-react-native/dist/esm/icons/repeat-2";
 import ReplyIcon from "lucide-react-native/dist/esm/icons/reply";
+import RewindIcon from "lucide-react-native/dist/esm/icons/rewind";
 import RocketIcon from "lucide-react-native/dist/esm/icons/rocket";
 import RotateCcwIcon from "lucide-react-native/dist/esm/icons/rotate-ccw";
 import RotateCwIcon from "lucide-react-native/dist/esm/icons/rotate-cw";
@@ -263,6 +261,7 @@ import ShieldOffIcon from "lucide-react-native/dist/esm/icons/shield-off";
 import ShoppingBagIcon from "lucide-react-native/dist/esm/icons/shopping-bag";
 import ShoppingCartIcon from "lucide-react-native/dist/esm/icons/shopping-cart";
 import SignpostIcon from "lucide-react-native/dist/esm/icons/signpost";
+import SkipForwardIcon from "lucide-react-native/dist/esm/icons/skip-forward";
 import SlidersHorizontalIcon from "lucide-react-native/dist/esm/icons/sliders-horizontal";
 import SmartphoneIcon from "lucide-react-native/dist/esm/icons/smartphone";
 import SmileIcon from "lucide-react-native/dist/esm/icons/smile";
@@ -331,7 +330,6 @@ import ZoomInIcon from "lucide-react-native/dist/esm/icons/zoom-in";
 import ZoomOutIcon from "lucide-react-native/dist/esm/icons/zoom-out";
 
 export const iconRegistry = {
-  Activity: ActivityIcon,
   AlignCenter: AlignCenterIcon,
   AlignLeft: AlignLeftIcon,
   AlignRight: AlignRightIcon,
@@ -389,7 +387,6 @@ export const iconRegistry = {
   ChevronLeft: ChevronLeftIcon,
   ChevronRight: ChevronRightIcon,
   ChevronUp: ChevronUpIcon,
-  ChevronsRight: ChevronsRightIcon,
   Circle: CircleIcon,
   CircleAlert: CircleAlertIcon,
   CircleCheck: CircleCheckIcon,
@@ -408,6 +405,7 @@ export const iconRegistry = {
   Compass: CompassIcon,
   Component: ComponentIcon,
   Contact: ContactIcon,
+  Contrast: ContrastIcon,
   Cookie: CookieIcon,
   Copy: CopyIcon,
   CornerDownLeft: CornerDownLeftIcon,
@@ -446,7 +444,6 @@ export const iconRegistry = {
   FolderPlus: FolderPlusIcon,
   Forward: ForwardIcon,
   Fuel: FuelIcon,
-  Fullscreen: FullscreenIcon,
   Funnel: FunnelIcon,
   Gamepad2: Gamepad2Icon,
   Gauge: GaugeIcon,
@@ -502,13 +499,11 @@ export const iconRegistry = {
   Lollipop: LollipopIcon,
   Magnet: MagnetIcon,
   Mail: MailIcon,
-  MailOpen: MailOpenIcon,
   Map: MapIcon,
   MapPin: MapPinIcon,
   Maximize: MaximizeIcon,
   Maximize2: Maximize2Icon,
   Megaphone: MegaphoneIcon,
-  Menu: MenuIcon,
   MessageCircle: MessageCircleIcon,
   MessageCircleWarning: MessageCircleWarningIcon,
   MessageSquare: MessageSquareIcon,
@@ -561,11 +556,13 @@ export const iconRegistry = {
   Receipt: ReceiptIcon,
   RectangleHorizontal: RectangleHorizontalIcon,
   RectangleVertical: RectangleVerticalIcon,
+  Redo: RedoIcon,
   Redo2: Redo2Icon,
   RefreshCw: RefreshCwIcon,
   Repeat: RepeatIcon,
   Repeat2: Repeat2Icon,
   Reply: ReplyIcon,
+  Rewind: RewindIcon,
   Rocket: RocketIcon,
   RotateCcw: RotateCcwIcon,
   RotateCw: RotateCwIcon,
@@ -591,6 +588,7 @@ export const iconRegistry = {
   ShoppingBag: ShoppingBagIcon,
   ShoppingCart: ShoppingCartIcon,
   Signpost: SignpostIcon,
+  SkipForward: SkipForwardIcon,
   SlidersHorizontal: SlidersHorizontalIcon,
   Smartphone: SmartphoneIcon,
   Smile: SmileIcon,
