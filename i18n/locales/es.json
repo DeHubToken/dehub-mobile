@@ -12508,7 +12508,10 @@
       "title": "Pagar {{name}}?",
       "body": "El tokens va directamente a la billetera de la app, {{wallet}}. Los pagos no se pueden revertir.",
       "confirm": "Paga {{amount}} tokens",
-      "sent": "Pagado {{amount}} tokens a {{name}}."
+      "sent": "Pagado {{amount}} tokens a {{name}}.",
+      "testBadge": "Modo de prueba",
+      "testBody": "Esta app es tuya, así que es una prueba: no se mueven tokens y el recibo queda marcado como prueba.",
+      "testSent": "Pago de prueba de {{amount}} tokens. No se envió nada."
     },
     "add": {
       "body": "Aparecerá bajo Tus apps y podrá enviarte notificaciones. Puedes eliminarlo en cualquier momento desde la página Apps.",

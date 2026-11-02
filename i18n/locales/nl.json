@@ -12759,7 +12759,10 @@
       "title": "Betaal je {{name}}?",
       "body": "De tokens gaat rechtstreeks naar de portemonnee van de app, {{wallet}}. Betalingen kunnen niet worden teruggedraaid.",
       "confirm": "Betaal {{amount}} tokens",
-      "sent": "Betaald {{amount}} tokens aan {{name}}."
+      "sent": "Betaald {{amount}} tokens aan {{name}}.",
+      "testBadge": "Testmodus",
+      "testBody": "Deze app is van jou, dus dit is een test: er gaan geen tokens over en het bewijs is gemarkeerd als test.",
+      "testSent": "Testbetaling van {{amount}} tokens. Er is niets verstuurd."
     },
     "add": {
       "title": "Vul {{name}} toe?",
