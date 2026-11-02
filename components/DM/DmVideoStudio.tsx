@@ -7,9 +7,11 @@
  * applies them. Same flow as dehubweb `DmVideoStudio.tsx`.
  */
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import Slider from "@react-native-community/slider";
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
+  TextInput,
   Modal,
   PanResponder,
   Platform,
@@ -38,8 +40,22 @@ import {
 import { DESTRUCT_CHOICES, destructLabel, type DmDestructChoice } from "../../libs/dm-destruct";
 import { LOCK_QUICK_PRICES } from "./LockPriceRow";
 import { LOCK_DEFAULT_USD, formatLockUsd } from "../../libs/dmLocked";
+import { ADJUST_RANGES, DEFAULT_ADJUST, STUDIO_LOOKS, studioColorMatrix, type StudioAdjust, type StudioAdjustKey } from "../../libs/imageFilters";
+import { POST_DESTRUCT_CHOICES, postDestructLabel } from "../../libs/post-video-edits";
+import { optionalSkia } from "../../libs/skia";
 
-export type Tab = "cover" | "trim" | "mirror" | "rotate" | "hide" | "timer";
+// The player cannot be colour filtered, so Looks and Adjust paint a still with Skia.
+const VideoLookFrame = optionalSkia(() => require("./VideoLookFrame").default as typeof import("./VideoLookFrame").default);
+
+export type Tab = "cover" | "trim" | "mirror" | "rotate" | "looks" | "adjust" | "hide" | "timer" | "expire" | "alt";
+const ADJUST_ORDER: StudioAdjustKey[] = ["light", "contrast", "warmth", "tint", "colour", "fade", "vignette"];
+
+/** Post videos: look, strength and adjust dials. */
+export interface StudioColour {
+  look?: string;
+  strength?: number;
+  adjust?: StudioAdjust;
+}
 const FRAMES = 10;
 const MIN_KEEP = 1;
 const HANDLE = 14;
@@ -93,6 +109,17 @@ interface Props {
   /** Pay-to-unlock price in DHB; null = not locked. No handler = locking is not offered in this chat. */
   lockPrice?: number | null;
   onLockPriceChange?: (p: number | null) => void;
+  /** Posts: look + adjust dials (the server bakes them in). */
+  colour?: StudioColour;
+  onColourChange?: (c: StudioColour) => void;
+  /** Posts: how long the post stays up, seconds; null = always. */
+  postTimer?: { value: number | null; onChange: (s: number | null) => void };
+  /** Posts: alt text. */
+  alt?: { value: string; onChange: (v: string) => void };
+  /** Posts: pick a cover picture from the device. */
+  onUploadCover?: () => void;
+  /** The uploaded cover picture, shown on the button. */
+  coverPictureUri?: string | null;
 }
 
 function useFilmstrip(uri: string, duration: number, enabled: boolean) {
@@ -129,6 +156,7 @@ export default function DmVideoStudio({
   destruct, onDestructChange, onCoverFrame, onConfirm, confirmLabel, initialTab = "trim", onlyTabs,
   lockPrice = null, onLockPriceChange,
   kind = "video", strip, active = 0, onSelect, onAddMore, onRemove, allowTimer = true,
+  colour, onColourChange, postTimer, alt, onUploadCover, coverPictureUri,
 }: Props) {
   const isVideo = kind === "video";
   const { t: _copy } = _useCopy();
@@ -140,7 +168,25 @@ export default function DmVideoStudio({
   const tab: Tab = isVideo ? pickedTab : (pickedTab === "timer" && allowTimer ? "timer" : "hide");
   const [stripW, setStripW] = useState(0);
   const [now, setNow] = useState(options.trimStart ?? 0);
-  const frames = useFilmstrip(uri, duration, visible && isVideo && (tab === "trim" || tab === "cover"));
+  const frames = useFilmstrip(uri, duration, visible && isVideo && (tab === "trim" || tab === "cover" || tab === "looks"));
+  const [adjustKey, setAdjustKey] = useState<StudioAdjustKey>("light");
+  const adjust = colour?.adjust ?? DEFAULT_ADJUST;
+  const strength = colour?.strength ?? 100;
+  const colourMatrix = studioColorMatrix(colour?.look, strength, adjust);
+  const setColour = (patch: Partial<StudioColour>) => onColourChange?.({ ...colour, ...patch });
+  // Looks / Adjust: a still of the current frame with the colour painted on.
+  const colourTab = tab === "looks" || tab === "adjust";
+  const [still, setStill] = useState<string | null>(null);
+  useEffect(() => {
+    if (!visible || !isVideo || !colourTab || !VideoLookFrame) return;
+    let alive = true;
+    try { player.pause(); } catch { /* ignore */ }
+    VideoThumbnails.getThumbnailAsync(uri, { time: Math.floor(Math.max(0, now) * 1000), quality: 0.8 })
+      .then((r) => { if (alive) setStill(r.uri); })
+      .catch(() => undefined);
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, isVideo, colourTab, uri]);
 
   const start = options.trimStart ?? 0;
   const end = options.trimEnd ?? duration;
@@ -256,12 +302,18 @@ export default function DmVideoStudio({
     { key: "trim", label: _copy("dmVideo.trim", { defaultValue: "Trim" }), icon: "Scissors" },
     { key: "mirror", label: _copy("dmVideo.mirror", { defaultValue: "Mirror" }), icon: "FlipHorizontal2" },
     { key: "rotate", label: _copy("dmVideo.rotate", { defaultValue: "Rotate" }), icon: "RotateCw" },
+    { key: "looks", label: _copy("upload.studio.looks", { defaultValue: "Looks" }), icon: "Palette" },
+    { key: "adjust", label: _copy("upload.studio.adjust", { defaultValue: "Adjust" }), icon: "SlidersHorizontal" },
     { key: "hide", label: _copy("dmVideo.hide", { defaultValue: "Hide" }), icon: "EyeOff" },
     { key: "timer", label: _copy("dmVideo.timer", { defaultValue: "Timer" }), icon: "Timer" },
+    { key: "expire", label: _copy("dmVideo.timer", { defaultValue: "Timer" }), icon: "Timer" },
+    { key: "alt", label: _copy("upload.altTab", { defaultValue: "Alt text" }), icon: "Captions" },
   ];
   // Photos keep Hide (price) and Timer; the rest only means something for a video.
   const tabs = allTabs.filter((t) => (!onlyTabs || onlyTabs.includes(t.key)) &&
     (t.key !== "timer" || allowTimer)
+    && ((t.key !== "looks" && t.key !== "adjust") || (!!onColourChange && !!VideoLookFrame))
+    && (t.key !== "expire" || !!postTimer) && (t.key !== "alt" || !!alt)
     && (isVideo || (t.key === "hide" && !!onLockPriceChange) || t.key === "timer"));
 
   const pill = (active: boolean) => ({
@@ -273,6 +325,16 @@ export default function DmVideoStudio({
     paddingVertical: 7,
   });
   const pillText = (active: boolean) => ({ color: active ? "#000" : "#D4D4D8", fontSize: 12, fontWeight: "600" as const });
+  const adjustLabel = (k: StudioAdjustKey) =>
+    ({
+      light: _copy("upload.studio.light", { defaultValue: "Light" }),
+      contrast: _copy("upload.studio.contrast", { defaultValue: "Contrast" }),
+      warmth: _copy("upload.studio.warmth", { defaultValue: "Warmth" }),
+      tint: _copy("upload.studio.tint", { defaultValue: "Tint" }),
+      colour: _copy("upload.studio.colour", { defaultValue: "Colour" }),
+      fade: _copy("upload.studio.fade", { defaultValue: "Fade" }),
+      vignette: _copy("upload.studio.vignette", { defaultValue: "Vignette" }),
+    })[k];
 
   return (
     <Modal visible={visible} animationType="slide" statusBarTranslucent onRequestClose={onClose}>
@@ -309,7 +371,12 @@ export default function DmVideoStudio({
                   style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}
                 />
               )}
-              {isVideo && (
+              {isVideo && colourTab && still && VideoLookFrame && (
+                <View pointerEvents="none" style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}>
+                  <VideoLookFrame uri={still} width={innerW} height={innerH} matrix={colourMatrix} vignette={adjust.vignette} />
+                </View>
+              )}
+              {isVideo && !colourTab && (
                 <Pressable onPress={togglePlay} accessibilityRole="button"
                   accessibilityLabel={playing ? _copy("dmVideo.pause", { defaultValue: "Pause" }) : _copy("dmVideo.play", { defaultValue: "Play video" })}
                   style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
@@ -389,7 +456,8 @@ export default function DmVideoStudio({
           ) : null}
 
           {tabs.length > 0 && <>
-          <View style={{ flexDirection: "row", justifyContent: "space-around", borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.1)", marginTop: 8 }}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.1)", marginTop: 8 }}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: "space-around", gap: tabs.length > 6 ? 4 : 0, paddingHorizontal: tabs.length > 6 ? 6 : 0 }}>
             {tabs.map(({ key, label, icon }) => {
               const on = tab === key;
               return (
@@ -400,7 +468,7 @@ export default function DmVideoStudio({
                 </Pressable>
               );
             })}
-          </View>
+          </ScrollView>
 
           <View style={{ paddingHorizontal: 12, paddingTop: 12, minHeight: 104 }}>
             {(tab === "trim" || tab === "cover") && (
@@ -453,6 +521,15 @@ export default function DmVideoStudio({
                     </Text>
                   )}
                 </View>
+                {tab === "cover" && onUploadCover && (
+                  <Pressable onPress={onUploadCover} accessibilityRole="button"
+                    style={{ alignSelf: "flex-start", marginTop: 8, flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 999, borderWidth: 1, borderColor: LINE, paddingHorizontal: 12, paddingVertical: 7 }}>
+                    {coverPictureUri
+                      ? <SmartImage source={{ uri: coverPictureUri }} recyclingKey={coverPictureUri} contentFit="cover" style={{ width: 20, height: 20, borderRadius: 4 }} />
+                      : <Icon name="Upload" size={14} color={WHITE} />}
+                    <Text style={{ color: WHITE, fontSize: 12, fontWeight: "600" }}>{_copy("dmVideo.uploadCover", { defaultValue: "Upload a cover picture" })}</Text>
+                  </Pressable>
+                )}
               </View>
             )}
             {tab === "mirror" && (
@@ -478,6 +555,87 @@ export default function DmVideoStudio({
                   <Text style={{ color: "#000", fontSize: 12, fontWeight: "700" }}>{_copy("dmVideo.rotate90", { defaultValue: "Rotate 90°" })}</Text>
                 </Pressable>
                 <Text style={{ width: 48, textAlign: "center", color: MUTED, fontSize: 12, fontVariant: ["tabular-nums"] }}>{options.rotate ?? 0}°</Text>
+              </View>
+            )}
+            {tab === "looks" && (
+              <View style={{ gap: 6 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }} keyboardShouldPersistTaps="handled">
+                  {STUDIO_LOOKS.map((l) => {
+                    const on = (colour?.look ?? "normal") === l.id;
+                    const f = frames[Math.floor(FRAMES / 2)];
+                    return (
+                      <Pressable key={l.id} onPress={() => setColour({ look: l.id, strength: on ? strength : 100 })} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={l.name}
+                        style={{ alignItems: "center", gap: 3 }}>
+                        <View style={{ width: 48, height: 58, borderRadius: 8, overflow: "hidden", borderWidth: 2, borderColor: on ? WHITE : "transparent", backgroundColor: "#18181B" }}>
+                          {f && VideoLookFrame ? <VideoLookFrame uri={f} width={44} height={54} matrix={studioColorMatrix(l.id, 100, DEFAULT_ADJUST)} /> : null}
+                        </View>
+                        <Text style={{ color: on ? WHITE : MUTED, fontSize: 10, fontWeight: on ? "700" : "500" }}>{_copy(`upload.studio.look.${l.id}`, { defaultValue: l.name })}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+                {(colour?.look ?? "normal") !== "normal" && (
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                    <Text style={{ color: MUTED, fontSize: 11, width: 56 }}>{_copy("upload.studio.strength", { defaultValue: "Strength" })}</Text>
+                    <Slider style={{ flex: 1, height: 28 }} value={strength} minimumValue={0} maximumValue={100} step={1}
+                      onValueChange={(v) => setColour({ strength: Math.round(v) })}
+                      minimumTrackTintColor={WHITE} maximumTrackTintColor="rgba(255,255,255,0.25)" thumbTintColor={WHITE}
+                      accessibilityLabel={_copy("upload.studio.strength", { defaultValue: "Strength" })} />
+                    <Text style={{ color: WHITE, fontSize: 11, width: 30, textAlign: "right", fontVariant: ["tabular-nums"] }}>{strength}</Text>
+                  </View>
+                )}
+              </View>
+            )}
+            {tab === "adjust" && (
+              <View style={{ gap: 6 }}>
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                  <Text style={{ color: WHITE, fontSize: 12, fontWeight: "600", width: 70 }}>{adjustLabel(adjustKey)}</Text>
+                  <Slider key={adjustKey} style={{ flex: 1, height: 28 }} value={adjust[adjustKey]} minimumValue={ADJUST_RANGES[adjustKey][0]} maximumValue={ADJUST_RANGES[adjustKey][1]} step={1}
+                    onValueChange={(v) => setColour({ adjust: { ...adjust, [adjustKey]: Math.round(v) } })}
+                    minimumTrackTintColor={WHITE} maximumTrackTintColor="rgba(255,255,255,0.25)" thumbTintColor={WHITE}
+                    accessibilityLabel={adjustLabel(adjustKey)} />
+                  <Pressable onPress={() => setColour({ adjust: { ...adjust, [adjustKey]: 0 } })} hitSlop={8} style={{ width: 30, alignItems: "flex-end" }}>
+                    <Text style={{ color: WHITE, fontSize: 11, fontVariant: ["tabular-nums"] }}>{adjust[adjustKey]}</Text>
+                  </Pressable>
+                </View>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
+                  {ADJUST_ORDER.map((k) => {
+                    const on = adjustKey === k;
+                    return (
+                      <Pressable key={k} onPress={() => setAdjustKey(k)} accessibilityRole="button" accessibilityState={{ selected: on }} style={pill(on)}>
+                        <Text style={pillText(on)}>{adjustLabel(k)}{adjust[k] !== 0 ? " •" : ""}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            )}
+            {tab === "expire" && postTimer && (
+              <View style={{ gap: 8 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
+                  {([null, ...POST_DESTRUCT_CHOICES] as (number | null)[]).map((c) => {
+                    const on = postTimer.value === c;
+                    return (
+                      <Pressable key={String(c)} onPress={() => postTimer.onChange(c)} accessibilityRole="button" accessibilityState={{ selected: on }} style={pill(on)}>
+                        <Text style={pillText(on)}>{c == null ? _copy("dmVideo.timerOff", { defaultValue: "Off" }) : _copy(`post.destruct.${c}`, { defaultValue: postDestructLabel(c) })}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+                <Text style={{ color: MUTED, fontSize: 11, lineHeight: 15 }}>
+                  {postTimer.value == null
+                    ? _copy("post.destruct.offBody", { defaultValue: "The post stays up." })
+                    : _copy("post.destruct.onBody", { defaultValue: "The post deletes itself {{value1}} after it goes up.", value1: postDestructLabel(postTimer.value) })}
+                </Text>
+              </View>
+            )}
+            {tab === "alt" && alt && (
+              <View style={{ gap: 6 }}>
+                <TextInput value={alt.value} onChangeText={alt.onChange} maxLength={1000} multiline
+                  placeholder={_copy("upload.altPlaceholderVideo", { defaultValue: "Describe this video" })} placeholderTextColor="rgba(255,255,255,0.4)"
+                  accessibilityLabel={_copy("upload.altTab", { defaultValue: "Alt text" })}
+                  style={{ minHeight: 64, maxHeight: 110, borderRadius: 12, borderWidth: 1, borderColor: LINE, backgroundColor: "rgba(255,255,255,0.05)", color: WHITE, fontSize: 14, paddingHorizontal: 12, paddingVertical: 8, textAlignVertical: "top" }} />
+                <Text style={{ color: MUTED, fontSize: 11 }}>{_copy("upload.altHint", { defaultValue: "Say what is in it for people who cannot see it." })}</Text>
               </View>
             )}
             {tab === "hide" && (

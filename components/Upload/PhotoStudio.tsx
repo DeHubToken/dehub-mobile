@@ -42,7 +42,7 @@ import {
 import { toastError } from "../../libs/toast";
 import KeyboardPanView from "../common/KeyboardPanView";
 
-export type StudioTab = "crop" | "looks" | "adjust" | "draw";
+export type StudioTab = "crop" | "looks" | "adjust" | "draw" | "alt";
 
 export interface StudioPhoto {
   /** The original picture, before any studio edit. */
@@ -67,6 +67,9 @@ interface Props {
   startTab?: StudioTab;
   onClose: () => void;
   onDone: (results: StudioResult[]) => void;
+  /** Alt text per photo; with onDescriptions the editor gets an Alt text tab. */
+  descriptions?: string[];
+  onDescriptions?: (d: string[]) => void;
 }
 
 const WHITE = "#ffffff";
@@ -161,7 +164,7 @@ function ToolButton({ icon, on, onPress, label, disabled }: { icon: IconName; on
   );
 }
 
-export default function PhotoStudio({ photos, startIndex, startTab = "looks", onClose, onDone }: Props) {
+export default function PhotoStudio({ photos, startIndex, startTab = "looks", onClose, onDone, descriptions, onDescriptions }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [index, setIndex] = useState(startIndex);
@@ -174,6 +177,7 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
   const [comparing, setComparing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [adjustKey, setAdjustKey] = useState<StudioAdjustKey>("light");
+  const [alts, setAlts] = useState<string[]>(() => photos.map((_, i) => descriptions?.[i] ?? ""));
 
   // Draw state
   const [tool, setTool] = useState<"draw" | "text" | "sticker">("draw");
@@ -472,6 +476,7 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
     );
     setPendingText(null);
     setSaving(true);
+    if (onDescriptions) onDescriptions(alts.map((a) => a.trim()));
     try {
       const results: StudioResult[] = [];
       for (let i = 0; i < latest.length; i++) {
@@ -495,6 +500,7 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
     { id: "looks", icon: "Palette", label: t("upload.studio.looks", { defaultValue: "Looks" }) },
     { id: "adjust", icon: "SlidersHorizontal", label: t("upload.studio.adjust", { defaultValue: "Adjust" }) },
     { id: "draw", icon: "Pencil", label: t("upload.studio.draw", { defaultValue: "Draw" }) },
+    ...(onDescriptions ? [{ id: "alt" as StudioTab, icon: "Captions" as IconName, label: t("upload.altTab", { defaultValue: "Alt text" }) }] : []),
   ];
   const adjustLabel = (k: StudioAdjustKey) =>
     ({
@@ -760,6 +766,24 @@ export default function PhotoStudio({ photos, startIndex, startTab = "looks", on
                     <Chip key={k} label={adjustLabel(k)} on={adjustKey === k} dot={edits.adjust[k] !== 0} onPress={() => setAdjustKey(k)} />
                   ))}
                 </ScrollView>
+              </View>
+            )}
+
+            {tab === "alt" && (
+              <View style={{ paddingHorizontal: 16, paddingBottom: 4, gap: 6 }}>
+                <TextInput
+                  value={alts[index] ?? ""}
+                  onChangeText={(v) => setAlts((a) => a.map((x, i) => (i === index ? v : x)))}
+                  maxLength={1000}
+                  multiline
+                  placeholder={t("upload.altPlaceholder", { defaultValue: "Describe this photo" })}
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  style={{ minHeight: 72, maxHeight: 120, borderRadius: 12, borderWidth: 1, borderColor: "rgba(255,255,255,0.15)", backgroundColor: "rgba(255,255,255,0.06)", color: WHITE, fontSize: 14, paddingHorizontal: 12, paddingVertical: 8, textAlignVertical: "top" }}
+                  accessibilityLabel={t("upload.altTab", { defaultValue: "Alt text" })}
+                />
+                <Text style={{ color: "rgba(255,255,255,0.45)", fontSize: 11 }}>
+                  {t("upload.altHint", { defaultValue: "Say what is in it for people who cannot see it." })}
+                </Text>
               </View>
             )}
 
