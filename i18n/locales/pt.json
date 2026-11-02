@@ -15598,5 +15598,24 @@
     "taken": "Essa conta do GitHub já está em outro perfil DeHub.",
     "failed": "Não foi possível conectar ao GitHub. Tente novamente.",
     "unavailable": "A verificação do GitHub em breve."
+  },
+  "liveClips": {
+    "button": "Recortar este momento",
+    "capturing": "Capturando o último minuto da transmissão…",
+    "copyLink": "Copiar link",
+    "failed": "Não foi possível criar este clipe.",
+    "highlightTitle": "Destaque",
+    "length": "Clipe de {{seconds}} s",
+    "linkCopied": "Link copiado",
+    "make": "Criar clipe",
+    "postToShorts": "Publicar nos Shorts",
+    "posted": "Clipe publicado nos Shorts",
+    "postedBody": "Seu clipe está nos Shorts. Compartilhe para mais pessoas encontrarem a transmissão.",
+    "rendering": "Cortando seu clipe. Leva cerca de meio minuto…",
+    "starting": "Iniciando seu clipe…",
+    "title": "Clipe",
+    "titleLabel": "Título do clipe",
+    "titlePlaceholder": "Dê um título ao seu clipe",
+    "viewShort": "Ver Short"
   }
 }

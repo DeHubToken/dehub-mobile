@@ -15539,5 +15539,24 @@
     "taken": "That GitHub account is already on another DeHub profile.",
     "failed": "Couldn't connect GitHub. Try again.",
     "unavailable": "GitHub verification is coming soon."
+  },
+  "liveClips": {
+    "button": "Clip this moment",
+    "capturing": "Grabbing the last minute of the stream…",
+    "copyLink": "Copy link",
+    "failed": "This clip could not be made.",
+    "highlightTitle": "Highlight",
+    "length": "{{seconds}}s clip",
+    "linkCopied": "Link copied",
+    "make": "Make clip",
+    "postToShorts": "Post to Shorts",
+    "posted": "Clip posted to Shorts",
+    "postedBody": "Your clip is on Shorts. Share it so more people find the stream.",
+    "rendering": "Cutting your clip. This takes about half a minute…",
+    "starting": "Starting your clip…",
+    "title": "Clip",
+    "titleLabel": "Clip title",
+    "titlePlaceholder": "Give your clip a title",
+    "viewShort": "View Short"
   }
 }
