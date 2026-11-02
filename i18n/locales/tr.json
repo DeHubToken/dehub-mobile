@@ -15936,6 +15936,37 @@
       "thanks_one": "{{count}} destekçiye teşekkürler",
       "thanks_other": "{{count}} destekçiye teşekkürler",
       "top": "Lider: {{name}}"
+    },
+    "gift": {
+      "open": "Abonelik hediye et",
+      "title": "Abonelik hediye et",
+      "plan": "Plan",
+      "mode": {
+        "random": "Sohbetten rastgele izleyiciler",
+        "user": "Belirli bir kişi"
+      },
+      "howMany": "Kaç tane",
+      "randomHint": "Son 30 dakikada sohbete yazan ve henüz abone olmayan kişilere gider.",
+      "who": "Kullanıcı adı veya cüzdan adresi",
+      "whoPlaceholder": "@kullaniciadi",
+      "send_one": "1 abonelik hediye et · ${{price}}",
+      "send_other": "{{count}} abonelik hediye et · ${{price}}",
+      "payHint": "Cüzdanından tek bir transferle DHB olarak ödenir.",
+      "fewer_one": "Şu anda sohbette yalnızca 1 kişi abonelik alabilir, bu yüzden 1 tane ödersin.",
+      "fewer_other": "Şu anda sohbette yalnızca {{count}} kişi abonelik alabilir, bu yüzden {{count}} tane ödersin.",
+      "done_one": "Abonelik hediye edildi!",
+      "done_other": "{{count}} abonelik hediye edildi!",
+      "failed": "Abonelikler hediye edilemedi",
+      "notReady": "Bu plan henüz hediye edilemiyor",
+      "noPlan": "Önce bir plan seç",
+      "noPlans": "{{name}} henüz hediye edilebilecek bir abonelik planına sahip değil.",
+      "cancel": "İptal",
+      "stage": {
+        "preparing": "Hazırlanıyor…",
+        "wallet": "Cüzdanında onayla",
+        "confirming": "İşlem bekleniyor…",
+        "recording": "Tamamlanıyor…"
+      }
     }
   },
   "dmPaidLock": {

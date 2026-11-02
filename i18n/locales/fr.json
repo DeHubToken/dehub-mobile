@@ -15941,6 +15941,37 @@
       "thanks_one": "Merci à {{count}} fan",
       "thanks_other": "Merci à {{count}} fans",
       "top": "En tête : {{name}}"
+    },
+    "gift": {
+      "open": "Offrir des abonnements",
+      "title": "Offrir des abonnements",
+      "plan": "Formule",
+      "mode": {
+        "random": "Spectateurs du chat au hasard",
+        "user": "Une personne précise"
+      },
+      "howMany": "Combien",
+      "randomHint": "Pour les personnes qui ont écrit dans le chat ces 30 dernières minutes et ne sont pas encore abonnées.",
+      "who": "Nom d’utilisateur ou adresse de portefeuille",
+      "whoPlaceholder": "@pseudo",
+      "send_one": "Offrir 1 abonnement · ${{price}}",
+      "send_other": "Offrir {{count}} abonnements · ${{price}}",
+      "payHint": "Payé en DHB depuis votre portefeuille, en un seul transfert.",
+      "fewer_one": "Une seule personne du chat peut recevoir un abonnement pour le moment : vous en payez 1.",
+      "fewer_other": "Seules {{count}} personnes du chat peuvent recevoir un abonnement pour le moment : vous en payez {{count}}.",
+      "done_one": "Abonnement offert !",
+      "done_other": "{{count}} abonnements offerts !",
+      "failed": "Impossible d’offrir les abonnements",
+      "notReady": "Cette formule ne peut pas encore être offerte",
+      "noPlan": "Choisissez d’abord une formule",
+      "noPlans": "{{name}} n’a pas encore de formule d’abonnement à offrir.",
+      "cancel": "Annuler",
+      "stage": {
+        "preparing": "Préparation…",
+        "wallet": "Confirmez dans votre portefeuille",
+        "confirming": "En attente de la transaction…",
+        "recording": "Finalisation…"
+      }
     }
   },
   "dmPaidLock": {

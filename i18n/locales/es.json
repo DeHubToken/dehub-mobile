@@ -15937,6 +15937,37 @@
       "thanks_one": "Gracias a {{count}} fan",
       "thanks_other": "Gracias a {{count}} fans",
       "top": "Top: {{name}}"
+    },
+    "gift": {
+      "open": "Regalar suscripciones",
+      "title": "Regalar suscripciones",
+      "plan": "Plan",
+      "mode": {
+        "random": "Espectadores al azar del chat",
+        "user": "Una persona concreta"
+      },
+      "howMany": "Cuántas",
+      "randomHint": "Van a personas que escribieron en el chat en los últimos 30 minutos y aún no están suscritas.",
+      "who": "Nombre de usuario o dirección de billetera",
+      "whoPlaceholder": "@usuario",
+      "send_one": "Regalar 1 suscripción · ${{price}}",
+      "send_other": "Regalar {{count}} suscripciones · ${{price}}",
+      "payHint": "Se paga en DHB desde tu billetera en una sola transferencia.",
+      "fewer_one": "Ahora mismo solo 1 persona del chat puede recibir una suscripción, así que pagas 1.",
+      "fewer_other": "Ahora mismo solo {{count}} personas del chat pueden recibir una suscripción, así que pagas {{count}}.",
+      "done_one": "¡Suscripción regalada!",
+      "done_other": "¡{{count}} suscripciones regaladas!",
+      "failed": "No se pudieron regalar las suscripciones",
+      "notReady": "Todavía no se puede regalar este plan",
+      "noPlan": "Primero elige un plan",
+      "noPlans": "{{name}} aún no tiene planes de suscripción para regalar.",
+      "cancel": "Cancelar",
+      "stage": {
+        "preparing": "Preparando…",
+        "wallet": "Confirma en tu billetera",
+        "confirming": "Esperando la transacción…",
+        "recording": "Terminando…"
+      }
     }
   },
   "dmPaidLock": {
