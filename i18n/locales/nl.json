@@ -16255,5 +16255,27 @@
   "liveShorts": {
     "live": "LIVE",
     "join": "Doe mee met de live"
+  },
+  "feedFilters": {
+    "clearAll": "Alle filters wissen",
+    "clearAllShort": "Alles wissen",
+    "collapse": "Filters verbergen",
+    "count": "{{count}} filters aan",
+    "deletePreset": "{{name}} verwijderen",
+    "done": "Klaar",
+    "edit": "Bewerken",
+    "groupAccess": "Toegang",
+    "groupDate": "Datum",
+    "groupSort": "Sorteren",
+    "groupTag": "Tag",
+    "groupType": "Type",
+    "myPresets": "Mijn presets",
+    "presetName": "Naam preset",
+    "remove": "{{label}} verwijderen",
+    "save": "Opslaan",
+    "saveCurrent": "+ Huidige opslaan",
+    "savePreset": "Opslaan als preset",
+    "show": "Filters tonen",
+    "updatePreset": "Preset hernoemen"
   }
 }

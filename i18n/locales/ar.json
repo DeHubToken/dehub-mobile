@@ -16012,5 +16012,27 @@
   "liveShorts": {
     "live": "مباشر",
     "join": "انضم إلى البث"
+  },
+  "feedFilters": {
+    "clearAll": "مسح كل الفلاتر",
+    "clearAllShort": "مسح الكل",
+    "collapse": "إخفاء الفلاتر",
+    "count": "{{count}} فلاتر مفعّلة",
+    "deletePreset": "حذف {{name}}",
+    "done": "تم",
+    "edit": "تعديل",
+    "groupAccess": "الوصول",
+    "groupDate": "التاريخ",
+    "groupSort": "الترتيب",
+    "groupTag": "الوسم",
+    "groupType": "النوع",
+    "myPresets": "إعداداتي المحفوظة",
+    "presetName": "اسم الإعداد",
+    "remove": "إزالة {{label}}",
+    "save": "حفظ",
+    "saveCurrent": "+ حفظ الحالي",
+    "savePreset": "حفظ كإعداد",
+    "show": "عرض الفلاتر",
+    "updatePreset": "إعادة تسمية الإعداد"
   }
 }

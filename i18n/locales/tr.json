@@ -16003,5 +16003,27 @@
   "liveShorts": {
     "live": "CANLI",
     "join": "Canlı yayına katıl"
+  },
+  "feedFilters": {
+    "clearAll": "Tüm filtreleri temizle",
+    "clearAllShort": "Tümünü temizle",
+    "collapse": "Filtreleri gizle",
+    "count": "{{count}} filtre açık",
+    "deletePreset": "{{name}} sil",
+    "done": "Bitti",
+    "edit": "Düzenle",
+    "groupAccess": "Erişim",
+    "groupDate": "Tarih",
+    "groupSort": "Sıralama",
+    "groupTag": "Etiket",
+    "groupType": "Tür",
+    "myPresets": "Ön ayarlarım",
+    "presetName": "Ön ayar adı",
+    "remove": "{{label}} kaldır",
+    "save": "Kaydet",
+    "saveCurrent": "+ Mevcutu kaydet",
+    "savePreset": "Ön ayar olarak kaydet",
+    "show": "Filtreleri göster",
+    "updatePreset": "Ön ayarı yeniden adlandır"
   }
 }
