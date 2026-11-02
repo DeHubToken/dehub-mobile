@@ -23,6 +23,9 @@ import { getLockedMedia, unlockLockedMedia } from "../../services/dm/dm.api";
 import type { DmLockStatus, DmMessage } from "../../services/dm/dm.types";
 import { LOCKED_MEDIA_WEB_URL, lockedMediaKey, lockedMediaUri, payForLockedMedia } from "../../libs/dmLocked";
 
+/** Set inline too: rounded-full alongside dark-surface can drop the radius. */
+const ROUND = { borderRadius: 999 } as const;
+
 const fmt = (n: number) => n.toLocaleString(undefined, { maximumFractionDigits: 2 });
 
 interface LockedMediaProps {
@@ -111,14 +114,14 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
         >
           {isVideo ? (
             <View className="flex-1 items-center justify-center dark-surface bg-black">
-              <View className="w-12 h-12 rounded-full items-center justify-center dark-surface bg-black/50">
+              <View style={ROUND} className="w-12 h-12 rounded-full items-center justify-center dark-surface bg-black/50">
                 <Icon name="Play" size={22} color="#fff" />
               </View>
             </View>
           ) : (
             <SmartImage source={{ uri: realUrl }} recyclingKey={realUrl} style={{ width, height }} contentFit="cover" />
           )}
-          <View className="absolute top-1.5 left-1.5 flex-row items-center gap-1 rounded-full px-2 py-0.5 dark-surface bg-black/60">
+          <View style={ROUND} className="absolute top-1.5 left-1.5 flex-row items-center gap-1 rounded-full px-2 py-0.5 dark-surface bg-black/60">
             <Icon name={isMine ? "Lock" : "LockOpen"} size={11} color="#fff" />
             <Text className="text-[11px] font-semibold text-white">{priceLabel}</Text>
             {isMine && sold ? (
@@ -151,7 +154,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
       ) : null}
       <View className="absolute inset-0 dark-surface bg-black/35" />
       <View className="absolute inset-0 items-center justify-center px-4">
-        <View className="w-11 h-11 rounded-full items-center justify-center dark-surface bg-white/15">
+        <View style={ROUND} className="w-11 h-11 rounded-full items-center justify-center dark-surface bg-white/15">
           <Icon name={lock.kind === "video" ? "Play" : "Lock"} size={20} color="#fff" />
         </View>
         <Text className="text-[12px] font-medium text-white/80 mt-2">
@@ -161,6 +164,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
           onPress={handleUnlock}
           disabled={pending || (!isIos && !status)}
           accessibilityRole="button"
+          style={ROUND}
           className="mt-3 flex-row items-center gap-1.5 rounded-full px-4 py-2 dark-surface bg-black/60 border border-white/30"
         >
           {pending ? <ActivityIndicator color="#fff" size="small" /> : <Icon name="LockOpen" size={15} color="#fff" />}

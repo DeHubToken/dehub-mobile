@@ -6,6 +6,7 @@ import React, { memo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { useAppTheme } from "../../context/ThemeContext";
 
 export const LOCK_QUICK_PRICES = [5, 25, 100];
 const MIN = 1;
@@ -21,9 +22,15 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
   const { t } = useTranslation();
   const [custom, setCustom] = useState("");
   const on = !!value;
-
-  const chip = (active: boolean) =>
-    `rounded-full px-3 py-1 ${active ? "bg-white/25" : "bg-white/[0.08]"}`;
+  // The app repaints plain-filled buttons with the theme's control material
+  // (libs/jsx/controls.js). Idle chips take that on purpose; the picked ones
+  // keep their own look by painting it on an inner layer instead.
+  const { colors: c } = useAppTheme();
+  const pill = { borderRadius: 999 } as const;
+  const idle = { ...pill, borderWidth: 1, borderColor: "transparent", backgroundColor: c.muted };
+  const pad = "flex-row items-center gap-1 px-3 py-1";
+  const solid = { ...pill, backgroundColor: c.foreground };
+  const ring = { ...pill, borderWidth: 1.5, borderColor: c.foreground };
 
   return (
     <View className="mt-2">
@@ -32,23 +39,35 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
           onPress={() => { setCustom(""); onChange(on ? null : LOCK_QUICK_PRICES[1]); }}
           accessibilityRole="switch"
           accessibilityState={{ checked: on }}
-          className={`flex-row items-center gap-1 rounded-full px-3 py-1 border ${on ? "bg-white border-white" : "border-white/20 bg-white/[0.06]"}`}
+          style={on ? pill : { ...idle, borderColor: c.border }}
+          className={on ? "" : pad}
         >
-          <Icon name={on ? "Lock" : "LockOpen"} size={12} color={on ? "#09090B" : "#fff"} />
-          <Text className={`text-[12px] font-semibold ${on ? "text-black" : "text-white"}`}>
-            {on
-              ? t("dmPaidLock.lockOnPrice", { defaultValue: "Locked · {{price}} DHB", price: value })
-              : kind === "video"
-                ? t("dmPaidLock.lockVideo", "Lock video")
-                : t("dmPaidLock.lockPhoto", "Lock photo")}
-          </Text>
+          <View style={on ? solid : undefined} className={on ? pad : "flex-row items-center gap-1"}>
+            <Icon name={on ? "Lock" : "LockOpen"} size={12} color={on ? c.background : c.foreground} />
+            <Text style={{ color: on ? c.background : c.foreground }} className="text-[12px] font-semibold">
+              {on
+                ? t("dmPaidLock.lockOnPrice", { defaultValue: "Locked · {{price}} DHB", price: value })
+                : kind === "video"
+                  ? t("dmPaidLock.lockVideo", "Lock video")
+                  : t("dmPaidLock.lockPhoto", "Lock photo")}
+            </Text>
+          </View>
         </Pressable>
         {on
-          ? LOCK_QUICK_PRICES.map((p) => (
-              <Pressable key={p} onPress={() => { setCustom(""); onChange(p); }} className={chip(value === p && !custom)}>
-                <Text className="text-[12px] text-white">{p}</Text>
-              </Pressable>
-            ))
+          ? LOCK_QUICK_PRICES.map((p) => {
+              const sel = value === p && !custom;
+              return (
+                <Pressable key={p} onPress={() => { setCustom(""); onChange(p); }} style={sel ? pill : idle} className={sel ? "" : "px-3 py-1"}>
+                  {sel ? (
+                    <View style={ring} className="px-3 py-1">
+                      <Text style={{ color: c.foreground }} className="text-[12px] font-semibold">{p}</Text>
+                    </View>
+                  ) : (
+                    <Text style={{ color: c.foreground }} className="text-[12px]">{p}</Text>
+                  )}
+                </Pressable>
+              );
+            })
           : null}
         {on ? (
           <TextInput
@@ -61,14 +80,15 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
             }}
             keyboardType="decimal-pad"
             placeholder={t("dmPaidLock.lockCustom", "Other")}
-            placeholderTextColor="#8B8D90"
+            placeholderTextColor={c.mutedForeground}
             accessibilityLabel={t("dmPaidLock.lockCustomLabel", "Custom price in DHB")}
-            className="rounded-full px-3 py-1 bg-white/[0.08] text-white text-[12px] min-w-[64px]"
+            style={[idle, { color: c.foreground }, custom ? { borderColor: c.foreground } : null]}
+            className="rounded-full px-3 py-1 text-[12px] min-w-[64px]"
           />
         ) : null}
       </View>
       {on ? (
-        <Text className="text-[11px] text-white/60 mt-1">
+        <Text style={{ color: c.mutedForeground }} className="text-[11px] mt-1">
           {t("dmPaidLock.lockHint", "They see it blurred until they pay you. Locked files are not end-to-end encrypted.")}
         </Text>
       ) : null}
