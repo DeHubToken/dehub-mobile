@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedStyle,
   withSequence,
   withTiming,
+  withDelay,
   withSpring,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
@@ -248,7 +249,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   useEffect(() => {
     if (!landsNow) return;
     landProgress.value = withSpring(1, { damping: 16, stiffness: 180, mass: 0.9 });
-    highlightOpacity.value = withTiming(0, { duration: 1600 });
+    highlightOpacity.value = withDelay(700, withTiming(0, { duration: 1800 }));
   }, [landsNow, landProgress, highlightOpacity]);
   const landStyle = useAnimatedStyle(() => ({
     opacity: Math.min(1, landProgress.value * 1.6),
@@ -267,12 +268,26 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   // that on the UI thread, and iOS aborts the app.
   // A just-sent comment glows on its text only, softer than a link highlight,
   // and never paints the row box (that box was cut off at the sheet's sides).
-  const glowAlpha = landsNow ? 0.4 : 0.6;
+  const glowAlpha = landsNow ? 0.5 : 0.6;
   const highlightAnimStyle = useAnimatedStyle(() => ({
     textShadowColor: `rgba(194,196,199,${(Math.max(0, highlightOpacity.value) * glowAlpha).toFixed(3)})`,
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6 * highlightOpacity.value,
   }));
+  // A just-sent comment's avatar and name glow with its text, so it is plain
+  // which row is yours and that it went through.
+  const nameGlowStyle = useAnimatedStyle(() => {
+    const v = landsNow ? Math.max(0, highlightOpacity.value) : 0;
+    return {
+      textShadowColor: `rgba(220,222,226,${(v * 0.55).toFixed(3)})`,
+      textShadowOffset: { width: 0, height: 0 },
+      textShadowRadius: 8 * v,
+    };
+  });
+  const avatarGlowStyle = useAnimatedStyle(() => {
+    const v = landsNow ? Math.max(0, highlightOpacity.value) : 0;
+    return { opacity: Number((v * 0.9).toFixed(3)), transform: [{ scale: 0.9 + v * 0.15 }] };
+  });
   const highlightSurfaceStyle = useAnimatedStyle(() => ({
     backgroundColor: `rgba(148,163,184,${(landsNow ? 0 : Math.max(0, highlightOpacity.value) * 0.12).toFixed(3)})`,
     borderRadius: 10,
@@ -644,6 +659,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     >
       <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: dense ? 6 : 10 }, highlightSurfaceStyle, landStyle]}>
         <Pressable onPress={handleUserPress}>
+          {landsNow && (
+            <Animated.View
+              pointerEvents="none"
+              style={[{
+                position: "absolute", left: -5, top: -5, width: 42, height: 42, borderRadius: 21,
+                backgroundColor: "rgba(220,222,226,0.18)",
+                borderWidth: 1.5, borderColor: "rgba(220,222,226,0.45)",
+              }, avatarGlowStyle]}
+            />
+          )}
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
             size={32}
@@ -657,13 +682,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 it has on a feed card rather than the 6px this row puts between
                 the chips that follow. */}
             <View style={{ flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
-              <Text
-                style={{ flexShrink: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
+              <Animated.Text
+                style={[{ flexShrink: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }, nameGlowStyle]}
                 onPress={handleUserPress}
                 numberOfLines={1}
               >
                 {displayName}
-              </Text>
+              </Animated.Text>
               {badgeImg && (
                 <Pressable
                   ref={badgeRef}

@@ -1598,16 +1598,37 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     return { visibleComments: visible, threadMeta: meta };
   }, [flatComments, expandedCommentIds, highlightedId, threadCreator, tipWallIds, tipWallRows, openTipId]);
 
+  // Bring a just-sent comment in front of the reader, wherever it landed in
+  // the list. The scroll waits for the keyboard to finish closing (the list
+  // grows back underneath it), and its timer lives in a ref: clearing
+  // landTempId re-runs this effect, and an effect cleanup used to cancel the
+  // scroll before it ever ran.
+  const landScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (landTempId == null) return;
     const index = visibleComments.findIndex((c) => (c.rowKey ?? c.id) === landTempId);
     setLandTempId(null);
     if (index < 0) return;
-    const timer = setTimeout(() => {
-      try { listRef.current?.scrollToIndex({ index, viewPosition: 0.35, animated: true }); } catch {}
-    }, 120);
-    return () => clearTimeout(timer);
+    if (landScrollTimer.current) clearTimeout(landScrollTimer.current);
+    const scroll = () => {
+      try { listRef.current?.scrollToIndex({ index, viewPosition: 0.3, animated: true }); } catch {}
+    };
+    let sub: { remove: () => void } | null = null;
+    const go = () => {
+      sub?.remove();
+      sub = null;
+      if (landScrollTimer.current) clearTimeout(landScrollTimer.current);
+      landScrollTimer.current = setTimeout(() => { landScrollTimer.current = null; scroll(); }, 60);
+    };
+    if (Keyboard.isVisible()) {
+      sub = Keyboard.addListener("keyboardDidHide", go);
+      // Fallback in case the hide event never comes.
+      landScrollTimer.current = setTimeout(go, 450);
+    } else {
+      go();
+    }
   }, [landTempId, visibleComments]);
+  useEffect(() => () => { if (landScrollTimer.current) clearTimeout(landScrollTimer.current); }, []);
 
   // An opened tip card's comment sits at the top of the list.
   useEffect(() => {
