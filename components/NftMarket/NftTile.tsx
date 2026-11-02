@@ -42,17 +42,24 @@ interface Props {
   price?: { amount: string; decimals: number; symbol: string } | null;
   priceLabel?: string;
   badge?: string | null;
+  /** Art only with the price on the image: the 3-across grid inside a collection. */
+  compact?: boolean;
   onPress: () => void;
 }
 
-const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, onPress }) => (
+const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, compact, onPress }) => (
   <Pressable onPress={onPress} style={({ pressed }) => [styles.tile, pressed && { opacity: 0.85 }]} accessibilityRole="button" accessibilityLabel={name}>
     <View style={styles.artWrap}>
       <NftArt uri={image} style={styles.art} />
-      <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>
-      {badge ? <Text style={[styles.badge, styles.badgeRight]}>{badge}</Text> : null}
+      {compact ? null : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
+      {badge ? <Text style={[styles.badge, styles.badgeRight, compact && styles.badgeSmall]}>{badge}</Text> : null}
+      {compact && price ? (
+        <Text numberOfLines={1} style={styles.pricePill}>
+          {formatPrice(price.amount, price.decimals)} {price.symbol}
+        </Text>
+      ) : null}
     </View>
-    <View style={styles.meta}>
+    {compact ? null : <View style={styles.meta}>
       {collection ? <Text numberOfLines={1} style={styles.collection}>{collection}</Text> : null}
       <Text numberOfLines={1} style={styles.name}>{name}</Text>
       {price ? (
@@ -61,7 +68,7 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
           {formatPrice(price.amount, price.decimals)} <Text style={styles.symbol}>{price.symbol}</Text>
         </Text>
       ) : null}
-    </View>
+    </View>}
   </Pressable>
 );
 
@@ -84,6 +91,21 @@ const styles = StyleSheet.create({
   },
   badgeLeft: { left: 8 },
   badgeRight: { right: 8 },
+  badgeSmall: { top: 6, right: 6, fontSize: 9 },
+  pricePill: {
+    position: "absolute",
+    left: 6,
+    bottom: 6,
+    maxWidth: "88%",
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 999,
+    overflow: "hidden",
+    fontSize: 10.5,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    backgroundColor: "rgba(0,0,0,0.62)",
+  },
   meta: { padding: 10, gap: 2 },
   collection: { color: "#808089", fontSize: 11 },
   name: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },

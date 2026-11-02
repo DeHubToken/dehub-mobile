@@ -21,6 +21,7 @@ import { PageEmpty, PageTabs } from "../components/page/PageKit";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl } from "../components/Feed/DeHubRefreshControl";
 import NftTile from "../components/NftMarket/NftTile";
+import CollectionsRow from "../components/NftMarket/CollectionsRow";
 import NftSheet, { priceNow } from "../components/NftMarket/NftSheet";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
@@ -30,7 +31,7 @@ import { useWeb3Provider } from "../hooks/use-web3";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useUser } from "../context/AuthContext";
 import { canManageAgents } from "../libs/agent-access";
-import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketOrder, type NftTarget, type Signer } from "../services/nft-market.service";
+import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketCollection, type MarketOrder, type NftTarget, type Signer } from "../services/nft-market.service";
 
 type Tab = "browse" | "mine" | "sales";
 type ChainFilter = "all" | (typeof MARKET_CHAINS)[number];
@@ -50,7 +51,10 @@ function inUnitedStates(): boolean {
   }
 }
 
-const pad = <T,>(items: T[]): (T | null)[] => (items.length % 2 ? [...items, null] : items);
+const pad = <T,>(items: T[], cols = 2): (T | null)[] => {
+  const extra = (cols - (items.length % cols)) % cols;
+  return extra ? [...items, ...Array<null>(extra).fill(null)] : items;
+};
 
 const fromOrder = (o: MarketOrder): NftTarget => ({
   chainId: o.chainId,
@@ -81,6 +85,9 @@ export default function NftMarketScreen() {
   const [tab, setTab] = useState<Tab>("browse");
   const [chain, setChain] = useState<ChainFilter>("all");
   const [sort, setSort] = useState<"newest" | "price_asc">("newest");
+  // Collections first: pick one from the trending row to see only its NFTs.
+  const [coll, setColl] = useState<MarketCollection | null>(null);
+  const [collOffer, setCollOffer] = useState<NftTarget | null>(null);
   const [open, setOpen] = useState<NftTarget | null>(() => {
     const p = route.params ?? {};
     return p.chain && p.contract && p.token ? { chainId: Number(p.chain), contract: String(p.contract), tokenId: String(p.token) } : null;
@@ -93,10 +100,28 @@ export default function NftMarketScreen() {
   const walletChain = signer?.chainId ?? 8453;
 
   const listings = useQuery({
-    queryKey: ["nft-market", "orders", "listing", chain, sort],
-    queryFn: () => nftMarket.orders({ kind: "listing", status: "active", chainId: chain === "all" ? undefined : chain, sort, limit: 60 }),
+    queryKey: ["nft-market", "orders", "listing", chain, sort, coll?.chainId, coll?.contract],
+    queryFn: () =>
+      nftMarket.orders({
+        kind: "listing",
+        status: "active",
+        chainId: coll ? coll.chainId : chain === "all" ? undefined : chain,
+        contract: coll?.contract,
+        sort,
+        limit: 60,
+      }),
     enabled: tab === "browse",
   });
+  const collections = useQuery({
+    queryKey: ["nft-market", "collections", chain],
+    queryFn: () => nftMarket.collections({ chainId: chain === "all" ? undefined : chain, limit: 12 }),
+    enabled: tab === "browse",
+    staleTime: 30_000,
+  });
+  // A chain change can hide the picked collection; drop it then.
+  useEffect(() => {
+    if (coll && chain !== "all" && coll.chainId !== chain) setColl(null);
+  }, [chain, coll]);
   const sales = useQuery({
     queryKey: ["nft-market", "orders", "sales", chain],
     queryFn: () => nftMarket.orders({ status: "filled", chainId: chain === "all" ? undefined : chain, sort: "newest", limit: 60 }),
@@ -144,19 +169,43 @@ export default function NftMarketScreen() {
 
   const loading = <View style={styles.center}><DeHubLoader size={56} /></View>;
 
-  const orderGrid = (q: typeof listings, emptyTitle: string, emptyBody?: string, sold?: boolean) => (
+  const browseHeader = (
+    <View>
+      {chips}
+      <CollectionsRow items={collections.data?.items ?? []} selected={coll} onSelect={setColl} />
+      {coll ? (
+        <View style={styles.collBar}>
+          <Text numberOfLines={1} style={styles.collTitle}>
+            {coll.name || t("nftMarket.thisCollection", { defaultValue: "This collection" })}
+            <Text style={styles.collCount}> · {t("nftMarket.listedCount", { n: coll.listed, defaultValue: "{{n}} for sale" })}</Text>
+          </Text>
+          {canTrade && listings.data?.items.length ? (
+            <Chip label={t("nftMarket.collectionOffer", { defaultValue: "Offer on any" })} active={false} onPress={() => setCollOffer(fromOrder(listings.data!.items[0]))} />
+          ) : null}
+          <Chip label={t("nftMarket.showAll", { defaultValue: "Show all" })} active={false} onPress={() => setColl(null)} />
+        </View>
+      ) : null}
+    </View>
+  );
+
+  const orderGrid = (q: typeof listings, emptyTitle: string, emptyBody?: string, sold?: boolean) => {
+    const compact = !sold && !!coll;
+    const cols = compact ? 3 : 2;
+    return (
     <FlatList
-      data={q.isLoading || q.isError ? [] : pad(q.data?.items ?? [])}
+      key={compact ? "grid-3" : "grid-2"}
+      data={q.isLoading || q.isError ? [] : pad(q.data?.items ?? [], cols)}
       keyExtractor={(o, i) => o?.orderHash ?? `spacer-${i}`}
-      numColumns={2}
-      columnWrapperStyle={styles.gridRow}
-      ListHeaderComponent={chips}
+      numColumns={cols}
+      columnWrapperStyle={compact ? styles.gridRowTight : styles.gridRow}
+      ListHeaderComponent={sold ? chips : browseHeader}
       contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 96 }]}
       showsVerticalScrollIndicator={false}
       refreshControl={<DeHubRefreshControl refreshing={q.isRefetching} onRefresh={q.refetch} tintColor="#fff" />}
       renderItem={({ item }) =>
         item ? (
           <NftTile
+            compact={compact}
             name={item.nftName ?? `#${item.tokenId}`}
             collection={item.collectionName}
             image={item.nftImage}
@@ -181,6 +230,7 @@ export default function NftMarketScreen() {
       )}
     />
   );
+  };
 
   const mine = !signer ? (
     <PageEmpty
@@ -250,6 +300,7 @@ export default function NftMarketScreen() {
             : mine}
       </View>
       <NftSheet target={open} onClose={() => setOpen(null)} onSignIn={signIn} signer={signer} canTrade={canTrade} linkOut={linkOut} />
+      <NftSheet target={collOffer} collectionOffer onClose={() => setCollOffer(null)} onSignIn={signIn} signer={signer} canTrade={canTrade} linkOut={linkOut} />
     </View>
   );
 }
@@ -265,6 +316,10 @@ const styles = StyleSheet.create({
   body: { flex: 1 },
   content: { paddingHorizontal: 16, gap: 12 },
   gridRow: { gap: 12 },
+  gridRowTight: { gap: 6 },
+  collBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 10, paddingBottom: 2 },
+  collTitle: { flex: 1, color: "#FFFFFF", fontSize: 13, fontWeight: "700" },
+  collCount: { color: "#808089", fontWeight: "400" },
   spacer: { flex: 1 },
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56 },
   hint: { color: "#808089", fontSize: 12, paddingVertical: 8 },

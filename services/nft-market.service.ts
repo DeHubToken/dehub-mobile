@@ -130,6 +130,16 @@ export interface MarketAlert {
   createdAt: string;
 }
 
+export interface MarketCollection {
+  chainId: number;
+  contract: string;
+  name: string | null;
+  image: string | null;
+  isDehub: boolean;
+  listed: number;
+  floor: { amount: string; symbol: string; decimals: number };
+}
+
 // ─── Reads ───────────────────────────────────────────────────────────────
 
 const open = { isAuthRequired: false, quiet: true } as const;
@@ -138,6 +148,8 @@ export const nftMarket = {
   config: () => apiClient.fetch<MarketConfig>("/market/config", open),
   orders: (params: Record<string, string | number | undefined>) =>
     apiClient.fetch<{ items: MarketOrder[]; hasMore: boolean }>("/market/orders", { ...open, params }),
+  collections: (params: Record<string, string | number | undefined>) =>
+    apiClient.fetch<{ items: MarketCollection[] }>("/market/collections", { ...open, params }),
   nft: (chainId: number, contract: string, tokenId: string) =>
     apiClient.fetch<NftDetail>(`/market/nft/${chainId}/${contract}/${tokenId}`, open),
   wallet: (address: string, chainId: number, pageKey?: string) =>
