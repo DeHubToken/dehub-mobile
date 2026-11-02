@@ -12512,7 +12512,10 @@
       "title": "Payez {{name}} ?",
       "body": "Le jetons va directement dans le portefeuille de l'application, {{wallet}}. Les paiements ne peuvent pas être annulés.",
       "confirm": "Payez {{amount}} jetons",
-      "sent": "Paiement {{amount}} jetons à {{name}}."
+      "sent": "Paiement {{amount}} jetons à {{name}}.",
+      "testBadge": "Mode test",
+      "testBody": "Cette app est à vous, c'est donc un test : aucun jeton ne bouge et le reçu est marqué test.",
+      "testSent": "Paiement test de {{amount}} jetons. Rien n'a été envoyé."
     },
     "add": {
       "title": "Ajouter {{name}} ?",

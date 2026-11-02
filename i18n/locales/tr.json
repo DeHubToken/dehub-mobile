@@ -12504,6 +12504,9 @@
       "art-creativity": "Sanat ve yaratıcılık"
     },
     "pay": {
+      "testBadge": "Test modu",
+      "testBody": "Bu uygulama sizin, bu yüzden bu bir test: token hareket etmez ve makbuz test olarak işaretlenir.",
+      "testSent": "{{amount}} token test ödemesi. Hiçbir şey gönderilmedi.",
       "body": "token doğrudan uygulamanın cüzdanına gider, {{wallet}}. Ödemeler iptal edilemez.",
       "confirm": "Pay {{amount}} token",
       "sent": "Ödenmiş {{amount}} token'yi {{name}}.",

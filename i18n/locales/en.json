@@ -12818,7 +12818,10 @@
       "title": "Pay {{name}}?",
       "body": "The tokens go straight to the app's wallet, {{wallet}}. Payments can't be reversed.",
       "confirm": "Pay {{amount}} tokens",
-      "sent": "Paid {{amount}} tokens to {{name}}."
+      "sent": "Paid {{amount}} tokens to {{name}}.",
+      "testBadge": "Test mode",
+      "testBody": "You own this app, so this is a test: no tokens move and the receipt is marked test.",
+      "testSent": "Test payment of {{amount}} tokens. Nothing was sent."
     },
     "add": {
       "title": "Add {{name}}?",
