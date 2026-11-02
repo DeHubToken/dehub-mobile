@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { startTransition, useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -10,6 +10,8 @@ import { TabBarHideProvider } from "../context/TabBarHideContext";
 import StandaloneTabBar from "../navigation/StandaloneTabBar";
 import { runWhenSettled } from "../libs/run-when-settled";
 import { ScreenNames } from "../navigation/ScreenNames";
+import UserProfileSkeleton from "../components/UserProfile/UserProfileSkeleton";
+import { getAvatarUrl } from "../libs/misc";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -26,6 +28,17 @@ const ProfileScreen: React.FC = () => {
   const asTab = useRoute().name === ScreenNames.ProfileTab;
 
   const goBack = useCallback(() => navigation.goBack(), [navigation]);
+
+  // The full profile (header, tabs, grid, pinned communities) took ~0.7s to
+  // build on a Galaxy S24+, and native-stack only starts the slide once the
+  // first render commits, so the tap looked frozen. The first frame is a
+  // skeleton with your own avatar and name in place; the page builds on the
+  // next frame while the slide runs.
+  const [built, setBuilt] = useState(false);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => startTransition(() => setBuilt(true)));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   // Periodic background refresh of account info
   useEffect(() => {
@@ -59,6 +72,22 @@ const ProfileScreen: React.FC = () => {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
         <ProfileSignInPrompt />
+        <ScreenHeader overlay plainBack title="" canGoBack={canPop} onBackPress={goBack} />
+        {!asTab && <StandaloneTabBar />}
+      </View>
+    );
+  }
+
+  if (!built) {
+    const me = user as any;
+    return (
+      <View className="flex-1 bg-theme-neutrals-900">
+        <UserProfileSkeleton
+          seed={{
+            displayName: me?.displayName || me?.username,
+            avatarUrl: me?.avatarImageUrl ? getAvatarUrl(me.avatarImageUrl, 96) : undefined,
+          }}
+        />
         <ScreenHeader overlay plainBack title="" canGoBack={canPop} onBackPress={goBack} />
         {!asTab && <StandaloneTabBar />}
       </View>
