@@ -14610,5 +14610,17 @@
     "joinedBodyNoEmail": "我们将在令牌启动时向您发送电子邮件。",
     "failed": "无法保存。请重试。",
     "privacy": "仅用于告诉您有关发布的信息。"
+  },
+  "githubLink": {
+    "hint": "登录 GitHub 以证明该帐户属于您。DeHub 只能看到您的公共 GitHub 个人资料。",
+    "verified": "已验证",
+    "verifiedAria": "已验证的 GitHub 帐户",
+    "connect": "连接 GitHub",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已连接",
+    "disconnected": "GitHub 已断开连接",
+    "taken": "该 GitHub 帐户已在另一个 DeHub 个人资料上。",
+    "failed": "无法连接 GitHub。请再试一次。",
+    "unavailable": "GitHub 验证即将推出。"
   }
 }

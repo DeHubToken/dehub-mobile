@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { startTransition, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Keyboard, Platform, useWindowDimensions } from "react-native";
 import { Gesture } from "react-native-gesture-handler";
 import {
@@ -9,6 +9,7 @@ import {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { MOTION, SNAP_SPRING } from "../theme/motion";
 
 /**
  * The post composer as a sheet that follows the finger (Android).
@@ -26,9 +27,9 @@ export const COMPOSER_SHEET = Platform.OS === "android";
 /** Drags that start lower than this share of the screen are left alone
  *  (toolbar, keyboard edge). */
 const GRAB_ZONE = 0.62;
-const OPEN = { duration: 240, easing: Easing.out(Easing.cubic) };
-const SHUT = { duration: 190, easing: Easing.in(Easing.quad) };
-const SPRING = { damping: 24, stiffness: 320, mass: 0.7, overshootClamping: true };
+const OPEN = { duration: MOTION.open - 40, easing: Easing.out(Easing.cubic) };
+const SHUT = { duration: MOTION.close, easing: Easing.in(Easing.cubic) };
+const SPRING = { ...SNAP_SPRING, overshootClamping: true };
 
 type Options = {
   navigation: any;
@@ -39,9 +40,16 @@ type Options = {
   onDismiss: () => void;
   /** True when onDismiss will ask before leaving (discard prompt). */
   willPrompt: () => boolean;
+  /** A drag has started: put the keyboard away. Left up, Android pans the
+   *  whole app to keep the field above the keys once the sheet is pulled
+   *  below them, and the sheet stops following the finger. Returns whether
+   *  the keyboard was up. */
+  onDragStart: () => boolean;
+  /** The sheet sprang back after a drag that began with the keyboard up. */
+  onSettleOpen: () => void;
 };
 
-export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }: Options) {
+export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, onDragStart, onSettleOpen }: Options) {
   const { height } = useWindowDimensions();
   const y = useSharedValue(COMPOSER_SHEET ? height : 0);
   const scrollY = useSharedValue(0);
@@ -50,10 +58,18 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }:
   const startY = useSharedValue(0);
   const leaving = useRef(false);
   const skipSlide = useRef(false);
+  const hadKeyboard = useRef(false);
+  // Everything the first frame does not need (the closed sheets and drawers
+  // the composer can open) mounts once the sheet is up, so the slide starts
+  // as soon as possible after the tap.
+  const [extrasReady, setExtrasReady] = useState(!COMPOSER_SHEET);
 
-  useEffect(() => {
+  // Layout effect: starts the slide before the screen's other effects run.
+  useLayoutEffect(() => {
     if (!COMPOSER_SHEET) return;
     y.value = withTiming(0, OPEN);
+    const timer = setTimeout(() => startTransition(() => setExtrasReady(true)), OPEN.duration + 60);
+    return () => clearTimeout(timer);
     // Mount-only: the sheet slides up once.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,6 +98,13 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }:
     if (willPrompt()) y.value = withSpring(0, SPRING);
     onDismiss();
   }, [onDismiss, willPrompt, y]);
+  const dragStarted = useCallback(() => {
+    hadKeyboard.current = onDragStart();
+  }, [onDragStart]);
+  const settledOpen = useCallback(() => {
+    if (hadKeyboard.current) onSettleOpen();
+    hadKeyboard.current = false;
+  }, [onSettleOpen]);
 
   const pan = useMemo(() => Gesture.Pan()
     .enabled(COMPOSER_SHEET && enabled)
@@ -107,6 +130,9 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }:
       }
       if (dy > 12 && dy > Math.abs(dx) * 1.3) state.activate();
     })
+    .onStart(() => {
+      runOnJS(dragStarted)();
+    })
     .onUpdate((e) => {
       y.value = Math.max(0, e.translationY);
     })
@@ -114,15 +140,21 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }:
       const far = y.value > height * 0.5;
       const flick = e.velocityY > 1600 && y.value > 60;
       if (far || flick) runOnJS(release)();
-      else y.value = withSpring(0, { ...SPRING, velocity: e.velocityY });
+      else {
+        y.value = withSpring(0, { ...SPRING, velocity: e.velocityY });
+        runOnJS(settledOpen)();
+      }
     })
     .onFinalize((_e, success) => {
       if (!success && y.value > 0 && y.value < height) y.value = withSpring(0, SPRING);
-    }), [enabled, height, release, y, scrollY, holdDrag, startX, startY]);
+    }), [enabled, height, release, dragStarted, settledOpen, y, scrollY, holdDrag, startX, startY]);
 
-  /** Lets a scroll view inside the sheet run alongside the drag. */
+  /** Lets the scroll view inside the sheet run alongside the drag. */
   const scroll = useMemo(() => Gesture.Native(), []);
-  const sheetPan = useMemo(() => pan.simultaneousWithExternalGesture(scroll), [pan, scroll]);
+  /** Same for the text box: a native field grabs the touch on its own and a
+   *  pull starting on the text line never reached the sheet. */
+  const text = useMemo(() => Gesture.Native(), []);
+  const sheetPan = useMemo(() => pan.simultaneousWithExternalGesture(scroll, text), [pan, scroll, text]);
 
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: y.value }] }));
   const dimStyle = useAnimatedStyle(() => ({ opacity: 0.45 * (1 - Math.min(1, y.value / height)) }));
@@ -131,5 +163,5 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt }:
     scrollY.value = e.nativeEvent.contentOffset.y;
   }, [scrollY]);
 
-  return { sheetPan, scroll, sheetStyle, dimStyle, onScroll, holdDrag, leaveWithoutSlide };
+  return { sheetPan, scroll, text, sheetStyle, dimStyle, onScroll, holdDrag, leaveWithoutSlide, extrasReady };
 }

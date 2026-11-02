@@ -14565,5 +14565,14 @@
     "invalidEmail": "输入有效个邮箱",
     "joinedTitle": "侬在名单上",
     "joinedBody": "代币上线辰光，我会给{{email}}发邮件。"
+  },
+  "githubLink": {
+    "hint": "登入 GitHub 以證明帳戶是你的。DeHub 只能看到你的公開 GitHub 簡介。",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已連結",
+    "disconnected": "GitHub 已斷開連結",
+    "taken": "這個 GitHub 帳戶已經連結到另一個 DeHub 簡歷。",
+    "failed": "連結 GitHub 失敗。再試一次。",
+    "unavailable": "GitHub 驗證功能即將推出。"
   }
 }

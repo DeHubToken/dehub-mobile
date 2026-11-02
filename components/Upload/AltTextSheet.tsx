@@ -2,26 +2,43 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import GlassModal from "../ui/GlassModal";
+import Icon from "../ui/Icon";
 
 /** The server's limit (dehub-stream-backend src/nft/media-descriptions), and Mastodon's. */
 export const ALT_TEXT_MAX = 1500;
 
 /**
  * The ALT pill on a composer preview. Outlined until the media has a
- * description, filled once it does, so a creator can see which pictures still
- * need one.
+ * description, then a solid white pill with a tick, so a creator can see that
+ * the text was saved. It sits on the photo, so it looks the same on every
+ * theme: dark-surface keeps the theme's control pass from repainting it.
  */
 export function AltTextPill({ hasText, onPress, className }: { hasText: boolean; onPress: () => void; className?: string }) {
   const { t } = useTranslation();
+  const ink = hasText ? "#09090B" : "#FFFFFF";
   return (
     <TouchableOpacity
       onPress={onPress}
       hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
       accessibilityRole="button"
+      accessibilityState={{ selected: hasText }}
       accessibilityLabel={hasText ? t("altText.edit") : t("altText.add")}
-      className={`rounded-lg px-2 py-1 ${hasText ? "bg-white" : "dark-surface bg-black/70 border border-white/30"} ${className ?? ""}`}
+      className={`dark-surface ${className ?? ""}`}
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 2,
+        borderRadius: 8,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderWidth: 1,
+        borderColor: hasText ? "#FFFFFF" : "rgba(255,255,255,0.3)",
+        backgroundColor: hasText ? "#FFFFFF" : "rgba(0,0,0,0.7)",
+        ...(hasText ? { shadowColor: "#000", shadowOpacity: 0.35, shadowRadius: 4, shadowOffset: { width: 0, height: 1 }, elevation: 3 } : null),
+      }}
     >
-      <Text style={{ color: hasText ? "#000" : "#fff", fontSize: 11, fontWeight: "800", letterSpacing: 0.5 }}>
+      {hasText && <Icon name="Check" size={11} color={ink} strokeWidth={3} />}
+      <Text style={{ color: ink, fontSize: 11, fontWeight: "800", letterSpacing: 0.5 }}>
         {t("altText.badge")}
       </Text>
     </TouchableOpacity>

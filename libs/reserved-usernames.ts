@@ -74,6 +74,7 @@ export const RESERVED_USERNAMES = new Set<string>([
  *
  *   stream, feeds, welcome  product paths with no profile behind them
  *   auth-callback           the OAuth redirect target
+ *   github-connected        where Connect GitHub returns
  *   dpay                    a product path the link-card checker already knew
  *                           (`bounty` used to sit here too; it is a reserved
  *                           username now, so it comes in with the set above)
@@ -87,6 +88,7 @@ export const RESERVED_LINK_SEGMENTS = new Set<string>([
   "feeds",
   "welcome",
   "auth-callback",
+  "github-connected",
   "dpay",
   "robots.txt",
   "sitemap.xml",

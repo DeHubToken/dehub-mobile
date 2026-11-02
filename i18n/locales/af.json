@@ -14716,5 +14716,17 @@
     "joinedBodyNoEmail": "Ons sal jou e-pos wanneer die token geloods word.",
     "failed": "Kon dit nie stoor nie. Probeer weer.",
     "privacy": "Slegs gebruik om jou van die bekendstelling in te lig."
+  },
+  "githubLink": {
+    "hint": "Teken in op GitHub om te bewys dat die rekening joune is. DeHub sien slegs jou publieke GitHub-profiel.",
+    "verified": "Geverifieer",
+    "verifiedAria": "Geverifieerde GitHub-rekening",
+    "connect": "Koppel GitHub",
+    "disconnect": "Ontkoppel",
+    "connected": "GitHub verbind",
+    "disconnected": "GitHub ontkoppel",
+    "taken": "Die GitHub-rekening is reeds op 'n ander DeHub-profiel.",
+    "failed": "Kon nie GitHub koppel nie. Probeer weer.",
+    "unavailable": "GitHub is soon."
   }
 }

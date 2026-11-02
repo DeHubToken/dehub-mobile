@@ -14577,5 +14577,16 @@
     "joinedBodyNoEmail": "ພວກເຮົາຈະສົ່ງອີເມວໃຫ້ທ່ານເມື່ອ token ເປີດຕົວ.",
     "failed": "ບໍ່ສາມາດບັນທຶກໄວ້ໄດ້. ລອງໃໝ່.",
     "privacy": "ໃຊ້ພຽງແຕ່ເພື່ອບອກທ່ານກ່ຽວກັບການເປີດຕົວ."
+  },
+  "githubLink": {
+    "verified": "ຢືນຢັນແລ້ວ",
+    "verifiedAria": "ບັນຊີ GitHub ທີ່ຢືນຢັນແລ້ວ",
+    "connect": "ເຊື່ອມຕໍ່ GitHub",
+    "disconnect": "ຕັດການເຊື່ອມຕໍ່",
+    "connected": "GitHub ເຊື່ອມຕໍ່ແລ້ວ",
+    "disconnected": "GitHub ຕັດການເຊື່ອມຕໍ່ແລ້ວ",
+    "taken": "ບັນຊີ GitHub ນັ້ນມີຢູ່ໃນໂປຣໄຟລ໌ DeHub ອື່ນແລ້ວ.",
+    "failed": "ບໍ່ສາມາດເຊື່ອມຕໍ່ GitHub ໄດ້. ລອງໃໝ່ອີກຄັ້ງ.",
+    "unavailable": "ການຢືນຢັນ GitHub ຈະມາເຮັດວຽກໃນໄວໆນີ້."
   }
 }

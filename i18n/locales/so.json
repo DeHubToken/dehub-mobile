@@ -14567,5 +14567,9 @@
   "tokenLaunch": {
     "eyebrow": "Imaanshaha ugu dhakhsaha badan",
     "failed": "Ma badbaadin karo taas. isku day mar kale."
+  },
+  "githubLink": {
+    "connect": "GitHub",
+    "disconnect": "Joojinta"
   }
 }

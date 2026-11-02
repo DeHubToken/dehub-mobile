@@ -14690,5 +14690,17 @@
     "joinedBodyNoEmail": "Chúng tôi sẽ gửi email cho bạn khi token ra mắt.",
     "failed": "Không thể lưu thông tin này. Hãy thử lại.",
     "privacy": "Chỉ được sử dụng để thông báo cho bạn về sự ra mắt."
+  },
+  "githubLink": {
+    "hint": "Đăng nhập vào GitHub để xác minh tài khoản là của bạn. DeHub chỉ xem thông tin công khai của GitHub.",
+    "verified": "Xác minh thành công",
+    "verifiedAria": "Tài khoản GitHub đã xác minh",
+    "connect": "Kết nối GitHub",
+    "disconnect": "Ngắt kết nối",
+    "connected": "GitHub đã kết nối",
+    "disconnected": "GitHub đã ngắt kết nối",
+    "taken": "Tài khoản GitHub này đã được liên kết với một tài khoản DeHub khác.",
+    "failed": "Không thể kết nối GitHub. Vui lòng thử lại.",
+    "unavailable": "Xác minh GitHub đang được chuẩn bị."
   }
 }

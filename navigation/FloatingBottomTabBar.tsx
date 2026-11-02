@@ -26,6 +26,8 @@ import Reanimated, {
   Easing,
   interpolate,
   runOnJS,
+  FadeIn,
+  FadeOut,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { tabBarDraggedAway } from "../libs/tab-bar-presence";
@@ -498,7 +500,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     (next: string[]) => saveNavOrder("bar", next, DEFAULT_BAR_IDS, isAuthed ? barWallet : null),
     [isAuthed, barWallet],
   );
-  const barReorder = useReorder({ ids: barIds, onCommit: commitBarOrder, horizontal: true });
+  const barReorder = useReorder({ ids: barIds, onCommit: commitBarOrder, horizontal: true, liftScale: 1.08 });
   const scrollRef = barReorder.scrollRef;
   const barSlots = useMemo(() => {
     const out = [...barReorder.order];
@@ -797,7 +799,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             const entry = barById.get(id);
             if (!entry) return null;
             return (
-              <ReorderItem key={id} id={id} ctx={barReorder.ctx} style={barReorder.draggingId === id ? styles.liftedSlot : undefined}>
+              <ReorderItem key={id} id={id} ctx={barReorder.ctx}>
+                {barReorder.draggingId === id && (
+                  <Reanimated.View
+                    pointerEvents="none"
+                    entering={FadeIn.duration(250)}
+                    exiting={FadeOut.duration(250)}
+                    style={styles.liftedFill}
+                  />
+                )}
                 {entry.tab ? (
                   <NavButton
                     icon={entry.tab.icon}
@@ -934,8 +944,14 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  // A drag lifts the icon off the pill: give it a fill so it reads as held.
-  liftedSlot: {
+  // A drag lifts the icon off the pill: give it a fill so it reads as held,
+  // inset like the pill's own padding so the pill's edge never cuts it off.
+  liftedFill: {
+    position: "absolute",
+    top: 4,
+    bottom: 4,
+    left: 6,
+    right: 6,
     borderRadius: 14,
     backgroundColor: "rgba(255, 255, 255, 0.16)",
   },

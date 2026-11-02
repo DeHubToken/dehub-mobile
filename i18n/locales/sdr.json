@@ -14637,5 +14637,17 @@
     "joinedBody": "{{email}}-i qeyd qeyd etibarlı olduğu zaman email göndəriləcək.",
     "failed": "نمی‌تونم این رو ذخیره کنم. دوباره امتحان کن.",
     "privacy": "فقط برای تو خبر دادن از راه اندازی استفاده می شود."
+  },
+  "githubLink": {
+    "hint": "GitHub-ya hesabını doğrulayın. DeHub sadece sizin GitHub profilinizi görür.",
+    "verified": "Doğrulanmış",
+    "verifiedAria": "Doğrulanmış GitHub hesabı",
+    "connect": "GitHub'a bağlan",
+    "disconnect": "Bağlantıyı kes",
+    "connected": "GitHub bağlantılı",
+    "disconnected": "GitHub bağlantısı kesildi",
+    "taken": "Oturduğunuz GitHub hesabı başka bir DeHub profilinde zaten var.",
+    "failed": "GitHub'a bağlanmaya çalışırken hata oluştu. Lütfen tekrar deneyin.",
+    "unavailable": "GitHub doğrulaması yakında gelecek."
   }
 }

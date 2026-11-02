@@ -14591,5 +14591,17 @@
     "joinedBodyNoEmail": "Ne do t'ju dërgojmë email kur tokeni të niset.",
     "failed": "Nuk mundi të ruhet. Provoni përsëri.",
     "privacy": "Përdoret vetëm për t'ju informuar për lançimin."
+  },
+  "githubLink": {
+    "hint": "Kysohet të regjistrohuni në GitHub për të provuar se a është konti i juaj. DeHub vetëm shikon profilin publik të GitHub-it tuaj.",
+    "verified": "Verifikuar",
+    "verifiedAria": "Profil i verifikuar i GitHub-it",
+    "connect": "Kërkoni lidhjen me GitHub",
+    "disconnect": "Ndalo lidhjen me GitHub",
+    "connected": "GitHub i lidhur",
+    "disconnected": "GitHub i ndaluar",
+    "taken": "Konti i GitHub-it i tillë është në një profil të tjetër DeHub.",
+    "failed": "Nuk mund të lidhemi me GitHub. Pritni edhe një herë.",
+    "unavailable": "Verifikimi i GitHub-it është në rrugën e pritjes."
   }
 }

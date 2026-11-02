@@ -14591,5 +14591,17 @@
     "joinedBodyNoEmail": "Pošaljat ćemo ti email kada se token lansira.",
     "failed": "Nije uspjelo sačuvati. Pokusaj ponovno.",
     "privacy": "Koristi se samo da bi ti obavijestili o lansiranju."
+  },
+  "githubLink": {
+    "hint": "Prijavite se na GitHub kako biste dokazali da je račun vaš. DeHub vidi samo vaš javni GitHub profil.",
+    "verified": "Verificirano",
+    "verifiedAria": "Verificirani GitHub račun",
+    "connect": "Poveži GitHub",
+    "disconnect": "Prekini vezu",
+    "connected": "GitHub je povezan",
+    "disconnected": "GitHub je odspojen",
+    "taken": "Taj GitHub račun već je na drugom DeHub profilu.",
+    "failed": "Povezivanje s GitHubom nije uspjelo. Pokušajte ponovno.",
+    "unavailable": "Uskoro stiže GitHub potvrda."
   }
 }

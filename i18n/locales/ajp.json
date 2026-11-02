@@ -14587,5 +14587,17 @@
     "joinedBodyNoEmail": "حنبعت إيميل لك لما يطلق التوكن.",
     "failed": "ما قدرنا نحفظ هاد. جرّب مرة تانية.",
     "privacy": "مستخدم بس لنخبرك عن الإطلاق."
+  },
+  "githubLink": {
+    "hint": "تسجيل دخول على GitHub ليبينوا إن الحساب ليك. DeHub بتشوفك فقط من خلال ملفتك العامة على GitHub.",
+    "verifiedAria": "حساب GitHub مصدّق",
+    "disconnect": "تقطع",
+    "failed": "ما شفتش GitHub. حاول تاني.",
+    "verified": "مُصَدَّق",
+    "connect": "اتصل بـ GitHub",
+    "connected": "GitHub مُتصل",
+    "disconnected": "GitHub مُنقطع",
+    "taken": "الحساب ده مُتصل بـ حساب GitHub تاني في بروفيلك DeHub.",
+    "unavailable": "التحقق من GitHub بيجي قريب."
   }
 }

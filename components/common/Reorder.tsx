@@ -8,6 +8,13 @@
  *   - moving before the hold completes is a scroll, and a short tap is a tap;
  *   - the scroller scrolls when the finger nears its edge.
  *
+ * Motion follows dehubweb .agents/skills/dehub-ui-craft (Motion): the press
+ * shows while it holds and the lift grows out of it, the item follows the
+ * finger 1:1 (only scale and shadow ease), neighbours glide one slot, the
+ * drop decelerates into its slot, and a reset glides everything back in a
+ * short stagger. Reanimated's timings and layout transitions follow the
+ * system's reduce-motion setting, so the reorder still happens, unanimated.
+ *
  * Slots are taken by index when the drag starts: every item is the same size
  * and laid out by position, so "which slot is under the finger" never depends
  * on a layout that is still catching up with the last move. The other items
@@ -21,6 +28,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { StyleProp, ViewStyle } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
+  Easing,
   LinearTransition,
   runOnJS,
   scrollTo,
@@ -29,6 +37,7 @@ import Animated, {
   useFrameCallback,
   useScrollOffset,
   useSharedValue,
+  withDelay,
   withTiming,
   type SharedValue,
 } from "react-native-reanimated";
@@ -38,7 +47,17 @@ type Rect = { x: number; y: number; w: number; h: number };
 
 const HOLD_MS = 380;
 const EDGE = 44;
-const SLIDE = LinearTransition.duration(170);
+/** Arrival curve: fast out, soft landing, no bounce. */
+const EASE = Easing.bezier(0.22, 1, 0.36, 1);
+const PRESS_DELAY = 90;
+const PRESS_SCALE = 0.96;
+const LIFT_MS = 250;
+const SLIDE_MS = 320;
+const DROP_MS = 280;
+const STAGGER_MS = 40;
+const SLIDE = LinearTransition.duration(SLIDE_MS).easing(EASE);
+const RESET_SLIDES = Array.from({ length: 11 }, (_, i) =>
+  LinearTransition.duration(SLIDE_MS).easing(EASE).delay(i * STAGGER_MS));
 
 /** When the last drag ended, so a press that rides in on its release is ignored. */
 let lastDropAt = 0;
@@ -49,12 +68,17 @@ interface Options {
   onCommit: (ids: string[]) => void;
   disabled?: boolean;
   horizontal?: boolean;
+  /** Scale while lifted: 1.06 for tiles, 1.08 for small icons. */
+  liftScale?: number;
 }
 
 export interface ReorderCtx {
   disabled: boolean;
   horizontal: boolean;
+  liftScale: number;
   draggingId: string | null;
+  /** Set while a reset glides everything back: each item's stagger slot. */
+  resetIndex: Map<string, number> | null;
   layouts: SharedValue<Record<string, Rect>>;
   order: SharedValue<string[]>;
   slots: SharedValue<Rect[]>;
@@ -76,9 +100,10 @@ export interface ReorderCtx {
   end: (next: string[], committed: boolean) => void;
 }
 
-export function useReorder({ ids, onCommit, disabled = false, horizontal = false }: Options) {
+export function useReorder({ ids, onCommit, disabled = false, horizontal = false, liftScale = 1.06 }: Options) {
   const [liveOrder, setLiveOrder] = useState<string[] | null>(null);
   const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [resetIndex, setResetIndex] = useState<Map<string, number> | null>(null);
   const order = liveOrder ?? ids;
 
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -188,10 +213,24 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     autoScroll.setActive(!!draggingId);
   }, [draggingId, autoScroll]);
 
+  /**
+   * Run `change` (a reset) with every item gliding to its new slot, staggered
+   * in the new reading order. The transitions are switched on a frame before
+   * the order changes so the layout change is the one they animate.
+   */
+  const animateChange = useCallback((change: () => void, nextIds?: string[]) => {
+    const target = nextIds ?? idsRef.current;
+    setResetIndex(new Map(target.map((id, i) => [id, Math.min(i, RESET_SLIDES.length - 1)])));
+    requestAnimationFrame(() => change());
+    setTimeout(() => setResetIndex(null), SLIDE_MS + RESET_SLIDES.length * STAGGER_MS + 120);
+  }, []);
+
   const ctx: ReorderCtx = useMemo(() => ({
     disabled,
     horizontal,
+    liftScale,
     draggingId,
+    resetIndex,
     layouts,
     order: orderSV,
     slots,
@@ -211,9 +250,9 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     begin,
     hitTest,
     end,
-  }), [disabled, horizontal, draggingId, layouts, orderSV, slots, active, startIndex, tx, ty, absX, absY, scroll, scrollStart, viewport, dropX, dropY, dropping, scrollRef, begin, hitTest, end]);
+  }), [disabled, horizontal, liftScale, draggingId, resetIndex, layouts, orderSV, slots, active, startIndex, tx, ty, absX, absY, scroll, scrollStart, viewport, dropX, dropY, dropping, scrollRef, begin, hitTest, end]);
 
-  return { order, draggingId, scrollRef, onViewportLayout, ctx };
+  return { order, draggingId, scrollRef, onViewportLayout, animateChange, ctx };
 }
 
 interface ItemProps {
@@ -225,13 +264,22 @@ interface ItemProps {
 
 export function ReorderItem({ id, ctx, children, style }: ItemProps) {
   const {
-    disabled, horizontal, draggingId, layouts, order, slots, active, startIndex, tx, ty, absX, absY,
+    disabled, horizontal, liftScale, draggingId, resetIndex, layouts, order, slots, active, startIndex, tx, ty, absX, absY,
     scroll, scrollStart, dropX, dropY, dropping, begin, hitTest, end,
   } = ctx;
+
+  // This item's own scale: the press while it holds, the lift, the landing.
+  const scale = useSharedValue(1);
 
   const gesture = useMemo(() => Gesture.Pan()
     .enabled(!disabled)
     .activateAfterLongPress(HOLD_MS)
+    .onBegin(() => {
+      "worklet";
+      if (active.value) return;
+      // Show the press; a scroll or a tap lets go of it in onFinalize.
+      scale.value = withDelay(PRESS_DELAY, withTiming(PRESS_SCALE, { duration: HOLD_MS - PRESS_DELAY, easing: Easing.out(Easing.quad) }));
+    })
     .onStart((e) => {
       "worklet";
       if (active.value) return;
@@ -248,20 +296,27 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
       absY.value = e.absoluteY;
       dropping.value = "";
       active.value = id;
+      // The lift grows out of the press: scale eases, position never does.
+      scale.value = withTiming(liftScale, { duration: LIFT_MS, easing: EASE });
       runOnJS(begin)(id);
     })
     .onUpdate((e) => {
       "worklet";
       if (active.value !== id) return;
       tx.value = e.translationX;
-      ty.value = e.translationY;
+      // A single row: the item slides along it, never off it.
+      ty.value = horizontal ? 0 : e.translationY;
       absX.value = e.absoluteX;
       absY.value = e.absoluteY;
       hitTest();
     })
     .onFinalize(() => {
       "worklet";
-      if (active.value !== id) return;
+      if (active.value !== id) {
+        if (scale.value !== 1) scale.value = withTiming(1, { duration: 150, easing: EASE });
+        return;
+      }
+      scale.value = withTiming(1, { duration: DROP_MS, easing: EASE });
       // Glide from where the finger left it into the slot it now owns.
       const s = slots.value;
       const ord = order.value;
@@ -273,24 +328,24 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
         dropX.value = tx.value + (horizontal ? ds : 0) - (to.x - from.x);
         dropY.value = ty.value + (horizontal ? 0 : ds) - (to.y - from.y);
         dropping.value = id;
-        dropX.value = withTiming(0, { duration: 160 });
-        dropY.value = withTiming(0, { duration: 160 });
+        dropX.value = withTiming(0, { duration: DROP_MS, easing: EASE });
+        dropY.value = withTiming(0, { duration: DROP_MS, easing: EASE });
       }
       active.value = "";
       runOnJS(end)(ord, true);
-    }), [disabled, horizontal, id, active, order, layouts, slots, startIndex, scroll, scrollStart, tx, ty, absX, absY, dropX, dropY, dropping, begin, hitTest, end]);
+    }), [disabled, horizontal, liftScale, id, scale, active, order, layouts, slots, startIndex, scroll, scrollStart, tx, ty, absX, absY, dropX, dropY, dropping, begin, hitTest, end]);
 
   const lifted = useAnimatedStyle(() => {
     if (active.value !== id) {
       if (dropping.value === id) {
-        return { zIndex: 50, transform: [{ translateX: dropX.value }, { translateY: dropY.value }, { scale: 1 }] };
+        return { zIndex: 50, transform: [{ translateX: dropX.value }, { translateY: dropY.value }, { scale: scale.value }] };
       }
-      return { zIndex: 0, transform: [{ translateX: 0 }, { translateY: 0 }, { scale: 1 }] };
+      return { zIndex: 0, transform: [{ translateX: 0 }, { translateY: 0 }, { scale: scale.value }] };
     }
     const s = slots.value;
     const from = s[startIndex.value];
     const ds = scroll.value - scrollStart.value;
-    if (!from) return { zIndex: 50, transform: [{ translateX: tx.value }, { translateY: ty.value }, { scale: 1.08 }] };
+    if (!from) return { zIndex: 50, transform: [{ translateX: tx.value }, { translateY: ty.value }, { scale: scale.value }] };
     // Follow the finger, measured from whichever slot the item owns now.
     const to = s[order.value.indexOf(id)] ?? from;
     return {
@@ -298,7 +353,7 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
       transform: [
         { translateX: tx.value + (horizontal ? ds : 0) - (to.x - from.x) },
         { translateY: ty.value + (horizontal ? 0 : ds) - (to.y - from.y) },
-        { scale: 1.08 },
+        { scale: scale.value },
       ],
     };
   });
@@ -312,7 +367,13 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
     <GestureDetector gesture={gesture}>
       <Animated.View
         onLayout={onLayout}
-        layout={draggingId && draggingId !== id ? SLIDE : undefined}
+        layout={
+          draggingId && draggingId !== id
+            ? SLIDE
+            : resetIndex
+              ? RESET_SLIDES[resetIndex.get(id) ?? RESET_SLIDES.length - 1]
+              : undefined
+        }
         style={[style, lifted]}
       >
         {children}

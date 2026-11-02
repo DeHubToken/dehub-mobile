@@ -14619,5 +14619,17 @@
     "joinedBodyNoEmail": "እኛ ኢሜል እናቀርባለን ቶኬን ሲተራ ።",
     "failed": "ይህን ማስቀመጥ አልቻለም። ደግሞ ይሞክሩ።",
     "privacy": "በተጨማሪ ለማስታወቂያ ብቻ ይጠቀሙ።"
+  },
+  "githubLink": {
+    "hint": "መለያው የእናንተ መሆኑን ለማረጋገጥ ወደ GitHub ይግቡ ። DeHub የእርስዎን የህዝብ GitHub መገለጫ ብቻ ያያል.",
+    "verified": "ተረጋግጧል",
+    "verifiedAria": "የተረጋገጠ የ GitHub መለያ",
+    "connect": "GitHub ን ያገናኙ",
+    "disconnect": "አገናኝን ያቋርጡ",
+    "connected": "GitHub ተገናኝቷል",
+    "disconnected": "GitHub ተሰናክሏል",
+    "taken": "ያ የ GitHub መለያ ቀድሞውኑ በሌላ የ DeHub መገለጫ ላይ ነው ።",
+    "failed": "GitHub ን ማገናኘት አልተቻለም. እንደገና ይሞክሩ.",
+    "unavailable": "GitHub ማረጋገጫ በቅርቡ ይመጣል ።"
   }
 }
