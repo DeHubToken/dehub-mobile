@@ -8,6 +8,7 @@ import Icon, { type IconName } from "../ui/Icon";
 import { androidFrostSupported, useFrostedSource } from "../ui/FrostedBackdrop";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import type { FeedSearchTab } from "../../libs/feed-search";
+import { SNAP_SPRING } from "../../theme/motion";
 
 /**
  * The feed search on the colour themes (everything but System and Minimal),
@@ -31,6 +32,8 @@ export const LENS_HEIGHT = 52;
 export const LENS_DOCK_SPACE = LENS_HEIGHT + 34;
 const DROP = { damping: 15, stiffness: 170, mass: 0.9 };
 const DRAG_CLOSE = 70;
+/** A quick flick up closes too, even when it travels less than DRAG_CLOSE. */
+const FLICK_CLOSE = 700;
 
 interface FeedSearchLensProps {
   tab: FeedSearchTab;
@@ -91,17 +94,31 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
     closing.current = true;
     setPicking(false);
     inputRef.current?.blur();
+    top.value = top.value + drag.value;
+    drag.value = 0;
     top.value = withTiming(fromY - LENS_HEIGHT / 2, { duration: 230, easing: Easing.in(Easing.quad) });
     open.value = withTiming(0, { duration: 230, easing: Easing.in(Easing.quad) }, (done) => { if (done) runOnJS(onClose)(); });
   };
 
-  const pan = Gesture.Pan()
-    .activeOffsetY([-12, 12])
-    .onUpdate((e) => { drag.value = Math.min(0, e.translationY); })
-    .onEnd((e) => {
-      if (e.translationY < -DRAG_CLOSE) runOnJS(close)();
-      drag.value = withSpring(0, DROP);
-    });
+  // Drag up closes from anywhere: the whole lens (its text box and buttons
+  // too, not just the thin rim between them) and the blurred feed behind it.
+  // Before, the pan only won when the finger landed on the rim's few spare
+  // pixels, so dragging the bar itself did nothing.
+  const dragUp = () =>
+    Gesture.Pan()
+      .activeOffsetY([-10, 10])
+      .failOffsetX([-24, 24])
+      .shouldCancelWhenOutside(false)
+      .onUpdate((e) => { drag.value = Math.min(0, e.translationY); })
+      .onEnd((e) => {
+        if (e.translationY < -DRAG_CLOSE || (e.translationY < -16 && e.velocityY < -FLICK_CLOSE)) {
+          runOnJS(close)();
+        } else {
+          drag.value = withSpring(0, SNAP_SPRING);
+        }
+      });
+  const lensPan = dragUp();
+  const blurPan = dragUp();
 
   const lensStyle = useAnimatedStyle(() => ({
     top: top.value + drag.value,
@@ -124,6 +141,7 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
       {!docked ? (
+        <GestureDetector gesture={blurPan}>
         <Reanimated.View style={[StyleSheet.absoluteFill, { top: dockY }, blurStyle]}>
           {Platform.OS === "ios" || (androidFrostSupported && blurSource) ? (
             <BlurView
@@ -141,10 +159,11 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
             accessibilityLabel={_copy("copy.55656b5e434f", { defaultValue: "Close search" })}
           />
         </Reanimated.View>
+        </GestureDetector>
       ) : null}
 
       <Reanimated.View style={[styles.lensHost, lensStyle]} pointerEvents="box-none">
-        <GestureDetector gesture={pan}>
+        <GestureDetector gesture={lensPan}>
           <View
             style={[
               styles.rim,
