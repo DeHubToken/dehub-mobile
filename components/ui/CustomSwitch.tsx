@@ -22,6 +22,13 @@ const THUMB_SIZE = 22;
 const THUMB_MARGIN = 3;
 const TRAVEL = TRACK_W - THUMB_SIZE - THUMB_MARGIN * 2;
 
+function isPale(color: string): boolean {
+  const hex = /^#([\da-f]{6})$/i.exec(color);
+  if (!hex) return /^(?:white|#fff)$/i.test(color);
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex[1].slice(i, i + 2), 16));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 200;
+}
+
 const CustomSwitch: React.FC<CustomSwitchProps> = ({
   value,
   onValueChange,
@@ -33,6 +40,11 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   const { colors, pageColors, isLight } = useAppTheme();
   const offTrack = isLight ? '#A1A1AA' : colors.neutrals[800];
   const offThumb = isLight ? '#FFFFFF' : colors.accentSecondary;
+  // System's accent is white; on a light page that track vanishes, so it
+  // turns to ink there with a white thumb.
+  const paleAccent = isLight && isPale(pageColors.accent);
+  const onTrack = paleAccent ? '#18181B' : pageColors.accent;
+  const onThumb = paleAccent ? '#FFFFFF' : pageColors.accentForeground;
   const progress = useSharedValue(value ? 1 : 0);
 
   useEffect(() => {
@@ -43,18 +55,18 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [offTrack, pageColors.accent],
+      [offTrack, onTrack],
     ),
-  }), [offTrack, pageColors.accent]);
+  }), [offTrack, onTrack]);
 
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: progress.value * TRAVEL }],
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [offThumb, pageColors.accentForeground],
+      [offThumb, onThumb],
     ),
-  }), [offThumb, pageColors.accentForeground]);
+  }), [offThumb, onThumb]);
 
   const handlePress = () => {
     if (!disabled) onValueChange(!value);
