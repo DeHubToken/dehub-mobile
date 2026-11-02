@@ -39,9 +39,15 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
               <View style={styles.meta}>
                 <Text numberOfLines={1} style={styles.name}>{c.name || `${c.contract.slice(0, 6)}…${c.contract.slice(-4)}`}</Text>
                 <Text numberOfLines={1} style={styles.floor}>
-                  {t("nftMarket.floor", { defaultValue: "Floor" })} {formatPrice(c.floor.amount, c.floor.decimals)} {c.floor.symbol}
+                  {c.floor
+                    ? `${t("nftMarket.floor", { defaultValue: "Floor" })} ${formatPrice(c.floor.amount, c.floor.decimals)} ${c.floor.symbol}`
+                    : t("nftMarket.offersOpen", { defaultValue: "Open to offers" })}
                 </Text>
-                <Text numberOfLines={1} style={styles.count}>{t("nftMarket.listedCount", { n: c.listed, defaultValue: "{{n}} for sale" })}</Text>
+                <Text numberOfLines={1} style={styles.count}>
+                  {c.listed
+                    ? t("nftMarket.listedCount", { n: c.listed, defaultValue: "{{n}} for sale" })
+                    : t("nftMarket.mintedCount", { n: c.minted ?? 0, defaultValue: "{{n}} minted" })}
+                </Text>
               </View>
             </Pressable>
           );

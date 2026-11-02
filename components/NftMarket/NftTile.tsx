@@ -53,9 +53,9 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
       <NftArt uri={image} style={styles.art} />
       {compact ? null : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
       {badge ? <Text style={[styles.badge, styles.badgeRight, compact && styles.badgeSmall]}>{badge}</Text> : null}
-      {compact && price ? (
+      {compact && (price || priceLabel) ? (
         <Text numberOfLines={1} style={styles.pricePill}>
-          {formatPrice(price.amount, price.decimals)} {price.symbol}
+          {price ? `${formatPrice(price.amount, price.decimals)} ${price.symbol}` : priceLabel}
         </Text>
       ) : null}
     </View>

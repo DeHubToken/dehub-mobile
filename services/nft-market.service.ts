@@ -137,7 +137,18 @@ export interface MarketCollection {
   image: string | null;
   isDehub: boolean;
   listed: number;
-  floor: { amount: string; symbol: string; decimals: number };
+  floor: { amount: string; symbol: string; decimals: number } | null;
+  /** DeHub Posts: how many are minted (listed or not). */
+  minted?: number;
+}
+
+export interface ShowcaseNft {
+  chainId: number;
+  contract: string;
+  tokenId: string;
+  name: string;
+  image: string | null;
+  minter: string | null;
 }
 
 // ─── Reads ───────────────────────────────────────────────────────────────
@@ -150,6 +161,11 @@ export const nftMarket = {
     apiClient.fetch<{ items: MarketOrder[]; hasMore: boolean }>("/market/orders", { ...open, params }),
   collections: (params: Record<string, string | number | undefined>) =>
     apiClient.fetch<{ items: MarketCollection[] }>("/market/collections", { ...open, params }),
+  showcase: (params: Record<string, string | number | undefined>) =>
+    apiClient.fetch<{ items: ShowcaseNft[]; collections: { chainId: number; contract: string; name: string; image: string | null; minted: number }[] }>(
+      "/market/showcase",
+      { ...open, params },
+    ),
   nft: (chainId: number, contract: string, tokenId: string) =>
     apiClient.fetch<NftDetail>(`/market/nft/${chainId}/${contract}/${tokenId}`, open),
   wallet: (address: string, chainId: number, pageKey?: string) =>
