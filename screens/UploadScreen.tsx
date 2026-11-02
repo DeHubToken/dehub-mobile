@@ -3930,7 +3930,7 @@ export default function UploadScreen() {
 
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
-          <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
+          <Text className="text-base font-semibold mb-2" style={{ color: themeColors.foreground }}>{t("player.moreOptions")}</Text>
           {showPollButton && (
             <TouchableOpacity
               onPress={() => { setShowPostOptions(false); handleTogglePoll(); }}
@@ -3939,9 +3939,9 @@ export default function UploadScreen() {
               className="flex-row items-center px-4 py-3 rounded-xl"
               style={{ backgroundColor: pollEnabled ? "rgba(255,255,255,0.15)" : "transparent" }}
             >
-              <Icon name="ChartBarBig" size={20} color="#fff" />
-              <Text className="flex-1 ml-3 text-white text-sm">{t("upload.addPoll")}</Text>
-              {pollEnabled && <Icon name="Check" size={18} color="#fff" />}
+              <Icon name="ChartBarBig" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{t("upload.addPoll")}</Text>
+              {pollEnabled && <Icon name="Check" size={18} color={themeColors.foreground} />}
             </TouchableOpacity>
           )}
           {/* Comic lives here, under Polls, rather than as a top tab. */}
@@ -3957,9 +3957,9 @@ export default function UploadScreen() {
               className="flex-row items-center px-4 py-3 rounded-xl"
               style={{ backgroundColor: comicMode ? "rgba(255,255,255,0.15)" : "transparent" }}
             >
-              <Icon name="BookOpen" size={20} color="#fff" />
-              <Text className="flex-1 ml-3 text-white text-sm">{t("comic.tab")}</Text>
-              {comicMode && <Icon name="Check" size={18} color="#fff" />}
+              <Icon name="BookOpen" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{t("comic.tab")}</Text>
+              {comicMode && <Icon name="Check" size={18} color={themeColors.foreground} />}
             </TouchableOpacity>
           )}
           {!isLiveMode && (
@@ -3970,9 +3970,9 @@ export default function UploadScreen() {
               className="flex-row items-center px-4 py-3 rounded-xl"
               style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.15)" : "transparent" }}
             >
-              <Ionicons name="warning-outline" size={20} color="#fff" />
-              <Text className="flex-1 ml-3 text-white text-sm">{contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}</Text>
-              {contentWarning !== null && <Icon name="Check" size={18} color="#fff" />}
+              <Ionicons name="warning-outline" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}</Text>
+              {contentWarning !== null && <Icon name="Check" size={18} color={themeColors.foreground} />}
             </TouchableOpacity>
           )}
           {visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && (
