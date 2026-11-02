@@ -318,7 +318,10 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
   return (
     <FeedSplitCommentsContext.Provider value={split}>
     <View ref={rowRef} collapsable={false}>
-    <DislikeVanish key={item.__listKey} tokenId={(item as any).tokenId ?? (item as any).id}>
+    {/* No key here: a key per post remounted the whole card (about 200
+        native views) every time FlashList recycled a cell, which was most of
+        the slow frames while scrolling Home. */}
+    <DislikeVanish tokenId={(item as any).tokenId ?? (item as any).id}>
     <FeedCard
       item={item}
       onCategorySelect={onCategorySelect}

@@ -1851,6 +1851,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderVideoThumbnail = () => (
     <FeedScrubContext.Provider value={stage ? null : scrubBoundary.controller}>
     <FeedVideoPlayer
+      // A recycled Home cell keeps the card but gets a fresh player per post.
+      key={postKey}
       thumbnail={thumbnail}
       inlineWidth={tabletVideoWidth}
       postPage={fullContent}
