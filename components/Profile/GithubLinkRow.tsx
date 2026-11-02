@@ -81,7 +81,7 @@ const GithubLinkRow: React.FC = () => {
             <Icon name="CircleCheck" size={16} color="#34D399" />
           </TouchableOpacity>
         ) : (
-          <Text className="flex-1 text-neutral-500 text-base py-3 pr-2">GitHub</Text>
+          <Text className="flex-1 text-neutral-500 text-base py-3 pr-2">{GITHUB_BRAND}</Text>
         )}
         {!status.isPending ? (
           <TouchableOpacity
@@ -106,4 +106,7 @@ const GithubLinkRow: React.FC = () => {
   );
 };
 
+
+// Brand name, the same in every language.
+const GITHUB_BRAND = "GitHub";
 export default GithubLinkRow;
