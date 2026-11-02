@@ -28,6 +28,7 @@ import Animated from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
+import { FeedSplitCommentsContext, type FeedSplitComments } from "./feedSplitComments";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
@@ -295,15 +296,28 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
   onCategorySelect,
   topChromeInset,
   hideDivider,
+  scrollFeed,
 }: {
   item: UnifiedFeedItem & { __listKey: string };
   store: FeedVisibilityStore;
   onCategorySelect?: (category: string) => void;
   topChromeInset?: number;
   hideDivider?: boolean;
+  scrollFeed?: FeedScroller;
 }) {
   const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
+  // Split comments: the row slides up under the chrome before the sheet
+  // covers the bottom half, so the post stays in view above it.
+  const rowRef = useRef<View>(null);
+  const split = useMemo<FeedSplitComments | null>(() => scrollFeed ? {
+    bringToTop: () => rowRef.current?.measureInWindow((_x, y) => {
+      const dy = y - scrollFeed.topTarget();
+      if (Math.abs(dy) > 2) scrollFeed.scrollBy(dy);
+    }),
+  } : null, [scrollFeed]);
   return (
+    <FeedSplitCommentsContext.Provider value={split}>
+    <View ref={rowRef} collapsable={false}>
     <DislikeVanish key={item.__listKey} tokenId={(item as any).tokenId ?? (item as any).id}>
     <FeedCard
       item={item}
@@ -320,8 +334,17 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
       hideDivider={hideDivider}
     />
     </DislikeVanish>
+    </View>
+    </FeedSplitCommentsContext.Provider>
   );
 });
+
+/** Scrolls the Home list for split comments; one stable object per list. */
+interface FeedScroller {
+  scrollBy: (dy: number) => void;
+  /** Window y the post's top should land on: just under the top chrome. */
+  topTarget: () => number;
+}
 
 export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   params,
@@ -387,6 +410,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // its own scroll listener whatever onScroll is, so no second worklet is
   // needed beside the header's.
   const readOffset = useCallback(() => listRef.current?.getAbsoluteLastScrollOffset() ?? 0, []);
+  // Where the first post sits under the chrome, read at tap time.
+  const chromeInsetRef = useRef(0);
+  const feedScroller = useMemo<FeedScroller>(() => ({
+    scrollBy: (dy) => listRef.current?.scrollToOffset({ offset: Math.max(0, readOffset() + dy), animated: true }),
+    topTarget: () => chromeInsetRef.current,
+  }), [readOffset]);
   // Set for the life of a drag or fling. Count patches that would rewrite
   // cached pages mid-scroll — the live-count poll, the counts a fetched page
   // carries — wait on this and land from settleScroll().
@@ -411,6 +440,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // How far down anything pinned to the top of the list (the refresh mark,
   // the skeleton) has to sit to clear the header.
   const chromeInset = headerInset + firstRowInset;
+  chromeInsetRef.current = chromeInset;
   const skeletonSpacerStyle = useMemo(() => ({ height: appTheme === "system" && !skin && firstRowInset ? headerInset : chromeInset }), [appTheme, skin, firstRowInset, headerInset, chromeInset]);
   // Whether the header row drew anything, so the room under floating chrome
   // goes to it rather than to the first post.
@@ -1307,12 +1337,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           onCategorySelect={onCategorySelect}
           topChromeInset={item.__listKey === firstRowKey ? firstCardInset : undefined}
           hideDivider={item.__listKey === beforeSuggestedKey || beforeShortsKeys.has(item.__listKey)}
+          scrollFeed={feedScroller}
         />
       );
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKeys, shortsBatches, shortsRotation.onViewerOpen, shortsRotation.offsets, landing, pendingRealItem],
+    [visibilityStore, feedScroller, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKeys, shortsBatches, shortsRotation.onViewerOpen, shortsRotation.offsets, landing, pendingRealItem],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer
