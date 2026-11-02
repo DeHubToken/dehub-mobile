@@ -6347,7 +6347,18 @@
     "fixPlaceholder": "ما يجب أن يقوله",
     "fixSubmit": "اقتراح إصلاح"
   },
+  "post": {
+    "destruct": {
+      "offBody": "يبقى المنشور ظاهرًا.",
+      "onBody": "يحذف المنشور نفسه بعد {{value1}} من نشره."
+    }
+  },
   "upload": {
+    "altHint": "اذكر ما فيها لمن لا يستطيع رؤيتها.",
+    "altPlaceholder": "صف هذه الصورة",
+    "altTab": "النص البديل",
+    "editVideo": "تعديل الفيديو",
+    "altPlaceholderVideo": "صف هذا الفيديو",
     "solanaUnavailable": "محفظة سولانا غير متاحة — هذا الجهاز لا يحتفظ بمفتاح محفظتك. سجّل الدخول مرة أخرى لاستعادتها.",
     "solanaTempUnavailable": "النشر على سولانا غير متاح مؤقتًا. جرّب Base أو BNB بدلاً منه.",
     "enterTextFirst": "اكتب بعض النص أولاً",

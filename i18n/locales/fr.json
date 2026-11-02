@@ -6343,7 +6343,18 @@
     "fixPlaceholder": "Ce que cela devrait dire",
     "fixSubmit": "Suggérer une correction"
   },
+  "post": {
+    "destruct": {
+      "offBody": "La publication reste en ligne.",
+      "onBody": "La publication se supprime {{value1}} après sa mise en ligne."
+    }
+  },
   "upload": {
+    "altHint": "Dites ce qu’il contient pour les personnes qui ne peuvent pas le voir.",
+    "altPlaceholder": "Décrivez cette photo",
+    "altTab": "Texte alternatif",
+    "editVideo": "Modifier la vidéo",
+    "altPlaceholderVideo": "Décrivez cette vidéo",
     "solanaUnavailable": "Portefeuille Solana indisponible — cet appareil ne détient pas votre clé. Reconnectez-vous pour la restaurer.",
     "solanaTempUnavailable": "La publication sur Solana est temporairement indisponible. Essayez plutôt Base ou BNB.",
     "enterTextFirst": "Saisissez d'abord du texte",
