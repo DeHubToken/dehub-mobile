@@ -14651,5 +14651,23 @@
     "taken": "Leyo akhawunti ye-GitHub isivele iku-DeHub profile enye.",
     "failed": "Ayikwazanga ukuxhuma i-GitHub. Zama futhi.",
     "unavailable": "Ukuqinisekiswa kwe-GitHub kuzoza ngakusasa."
+  },
+  "comic": {
+    "tab": "i-comic",
+    "title": "i-comic",
+    "open": "Vula ikhomiki, ikhasi {{page}} kuka-{{total}}",
+    "page": "Igama lamapage {{page}}",
+    "goto": "Igama lamapage {{page}}",
+    "alt": "Ukubhala ukuthetho",
+    "cards": "Kuqala kwamabhunu",
+    "readAll": "Ukubona ukhulu kwezinye zonke izinyango",
+    "editor": {
+      "count": "{{count}} of {{limit}} iphakathi",
+      "coverHint": "Iyalo eMoto",
+      "empty": "Engeza amapheji akho nge-button yefoto. Ipheji ngayinye ifumana i-caption ne-alt text.",
+      "cover": "Ikhava",
+      "caption": "Isihloko saleli khasi",
+      "alt": "Alt text: okuthiwa ikhasi libonisa"
+    }
   }
 }

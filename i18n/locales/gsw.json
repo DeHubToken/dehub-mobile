@@ -14642,5 +14642,25 @@
     "taken": "GitHub getrennt",
     "failed": "Dieses GitHub-Konto ist bereits mit einem anderen DeHub-Profil verbunden.",
     "unavailable": "GitHub-Verifizierung ist bald verfügbar."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} Seiten",
+    "open": "Offener Comic, Seite {{page}} von {{total}}",
+    "flip": "Seite {{page}} von {{total}}. Tippe zum Umblättern",
+    "page": "Seite {{page}}",
+    "goto": "Seite {{page}}",
+    "alt": "Alternativtext",
+    "cards": "Zurück zu den Karten",
+    "readAll": "Alle Seiten lesen",
+    "editor": {
+      "count": "{{count}} von {{limit}} Seiten",
+      "coverHint": "Seite 1 is das Titelblatt",
+      "empty": "Füge deine Seiten mit dem Foto-Button hinzu. Jede Seite bekommt einen Titel und Alternativtext.",
+      "cover": "Titelblatt",
+      "caption": "Titel für diese Seite",
+      "alt": "Alternativtext: was die Seite zeigt"
+    }
   }
 }

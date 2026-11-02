@@ -14627,5 +14627,25 @@
     "taken": "Det GitHub-kontot är redan på en annan DeHub-profil.",
     "failed": "Kunde inte ansluta GitHub. Försök igen.",
     "unavailable": "GitHub-verifiering kommer snart."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sidor",
+    "open": "Öppna komik, sida {{page}} av {{total}}",
+    "flip": "Sida {{page}} av {{total}}. Tappar för att vända",
+    "page": "Sida {{page}}",
+    "goto": "Sida {{page}}",
+    "alt": "Alternativtext",
+    "cards": "Tillbaka till korten",
+    "readAll": "Läs alla sidor",
+    "editor": {
+      "count": "{{count}} av {{limit}} sidor",
+      "coverHint": "Sida 1 är omslaget",
+      "empty": "Lägg till dina sidor med foto-knappen. Varje sida får en rubrik och alternativtext.",
+      "cover": "Omslag",
+      "caption": "Rubrik för denna sida",
+      "alt": "Alternativtext: vad sidan visar"
+    }
   }
 }

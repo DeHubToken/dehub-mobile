@@ -14623,5 +14623,25 @@
     "taken": "Tas GitHub konts ir jau pievienots citam DeHub profilm.",
     "failed": "Nespēja savienoties ar GitHub. Mēģiniet vēlreiz.",
     "unavailable": "GitHub verifikācija ir tuvāk."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} lapas",
+    "open": "Atvērt komiksu, lapa {{page}} no {{total}}",
+    "flip": "Lapa {{page}} no {{total}}. Spiediet, lai pagrinātu",
+    "page": "Lapa {{page}}",
+    "goto": "Lapa {{page}}",
+    "alt": "Alternatīvais teksts",
+    "cards": "Atpakaļ kartēm",
+    "readAll": "Lasīt visas lapas",
+    "editor": {
+      "count": "{{count}} no {{limit}} lapām",
+      "coverHint": "Pirmā lapa ir virsraksts",
+      "empty": "Pievienojiet lapas ar foto gumbi. Katrai lapai ir uzraksts un alternatīvais teksts.",
+      "cover": "Virsraksts",
+      "caption": "Uzraksts šai lapai",
+      "alt": "Alternatīvais teksts: ko lapa parāda"
+    }
   }
 }

@@ -14640,5 +14640,20 @@
     "disconnected": "Kamaykuna GitHub q'illaykamaykuna.",
     "taken": "Kay GitHub q'illaykamanaqa DeHub q'illqaykampana q'illqamanta aswan.",
     "failed": "Mana ch'aspaq GitHub. Kunti chaspaq."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "page": "Página {{page}}",
+    "goto": "Página {{page}}",
+    "cards": "Napaykamayuq tarjetaman kutiy",
+    "editor": {
+      "count": "{{count}} de {{limit}} p'unchay",
+      "coverHint": "Pacha 1 kaq iskay p'unchay",
+      "empty": "Kamuykuna p'unchaykuna q'illaykuna q'illaykuna.",
+      "cover": "K'ipana",
+      "caption": "K'ancha k'ancha q'illaynin, k'ancha k'ancha q'illaynin.",
+      "alt": "Alt text: imayna p'anqata rikuchikunman"
+    }
   }
 }

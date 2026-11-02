@@ -14600,5 +14600,25 @@
   "githubLink": {
     "verified": "Tasdiqlanmýş",
     "disconnect": "Baglan"
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sahypa",
+    "open": "Komiksini aç, sahypa {{page}} / {{total}}",
+    "flip": "Sahypa {{page}} / {{total}}. Çevirip geçmek üçin tıklaň",
+    "page": "Sahypa {{page}}",
+    "goto": "Sahypa {{page}}",
+    "alt": "Alt teksti",
+    "cards": "Kartlara dön",
+    "readAll": "Ähli sahypalary oky",
+    "editor": {
+      "count": "{{count}} / {{limit}} sahypa",
+      "coverHint": "1-nji sahypa - muňa",
+      "empty": "Foto düwmesi bilen sahypalaryny goş. Her sahypa başlyk we alt teksti alýar.",
+      "cover": "Muňa",
+      "caption": "Bu sahypa üçin başlyk",
+      "alt": "Alt teksti: sahypa näme görkezýän"
+    }
   }
 }

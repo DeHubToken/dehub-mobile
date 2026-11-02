@@ -14670,5 +14670,25 @@
     "taken": "Oturduğunuz GitHub hesabı başka bir DeHub profilinde zaten var.",
     "failed": "GitHub'a bağlanmaya çalışırken hata oluştu. Lütfen tekrar deneyin.",
     "unavailable": "GitHub doğrulaması yakında gelecek."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} पन्ना",
+    "open": "Comic खोलो, पन्ना {{page}} का {{total}}",
+    "flip": "पन्ना {{page}} का {{total}}। पलटाने के लिए टैप करो",
+    "page": "पन्ना {{page}}",
+    "goto": "पन्ना {{page}}",
+    "alt": "Alt text",
+    "cards": "कार्ड पर वापस जाओ",
+    "readAll": "सभी पन्ने पढ़ो",
+    "editor": {
+      "count": "{{count}} का {{limit}} पन्ना",
+      "coverHint": "पन्ना 1 कवर है",
+      "empty": "फोटो बटन से अपने पन्ने जोड़ो। हर पन्ने को एक शीर्षक और alt text मिलता है।",
+      "cover": "कवर",
+      "caption": "इस पन्ने के लिए शीर्षक",
+      "alt": "Alt text: पन्ना क्या दिखाता है"
+    }
   }
 }

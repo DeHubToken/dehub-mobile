@@ -14621,5 +14621,25 @@
     "taken": "呢個 GitHub 帳號喺另一 DeHub 個人檔案入面已經有咗。",
     "failed": "唔能夠連接 GitHub。試返一次。",
     "unavailable": "GitHub 驗證功能即將推出。"
+  },
+  "comic": {
+    "tab": "漫畫",
+    "title": "漫畫",
+    "chip": "漫畫 · {{count}} 頁",
+    "open": "開啟漫畫，第 {{page}} 頁，共 {{total}} 頁",
+    "flip": "第 {{page}} 頁，共 {{total}} 頁。點擊翻頁",
+    "page": "第 {{page}} 頁",
+    "goto": "第 {{page}} 頁",
+    "alt": "替代文字",
+    "cards": "返回卡片",
+    "readAll": "閱讀所有頁面",
+    "editor": {
+      "count": "{{count}} / {{limit}} 頁",
+      "coverHint": "第 1 頁是封面",
+      "empty": "用相機按鈕新增你的頁面。每一頁都有標題和替代文字。",
+      "cover": "封面",
+      "caption": "此頁的標題",
+      "alt": "替代文字：此頁顯示的內容"
+    }
   }
 }

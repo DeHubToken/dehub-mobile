@@ -14624,5 +14624,25 @@
     "taken": "Aquest compte de GitHub ja està en un altre perfil de DeHub.",
     "failed": "No s'ha pogut connectar a GitHub. Torna-ho a provar.",
     "unavailable": "Aviat arribarà la verificació de GitHub."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pàgines",
+    "open": "Còmic obert, pàgina {{page}} de {{total}}",
+    "flip": "Pàgina {{page}} de {{total}}. Toca per fer la volta",
+    "page": "Pàgina {{page}}",
+    "goto": "Pàgina {{page}}",
+    "alt": "Text alternatiu",
+    "cards": "Torna a les cartes",
+    "readAll": "Llegeix totes les pàgines",
+    "editor": {
+      "count": "{{count}} de {{limit}} pàgines",
+      "coverHint": "La pàgina 1 és la portada",
+      "empty": "Afegeix les teves pàgines amb el botó de foto. Cada pàgina té un títol i text alternatiu.",
+      "cover": "Portada",
+      "caption": "Títol per a aquesta pàgina",
+      "alt": "Text alternatiu: què mostra la pàgina"
+    }
   }
 }

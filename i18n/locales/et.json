@@ -14624,5 +14624,25 @@
     "taken": "See GitHubi konto on juba teisel DeHubi profiilil.",
     "failed": "GitHubiga ei saanud ühendust luua. Proovige uuesti.",
     "unavailable": "GitHubi kinnitus on peagi tulekul."
+  },
+  "comic": {
+    "tab": "Koomik",
+    "title": "Koomik",
+    "chip": "Koomiks · {{count}} lehekülg",
+    "open": "Ava komeet, lehekülg {{page}} {{total}}-st",
+    "flip": "Lehekülg {{page}} {{total}}-st. Tapita, et vahetada",
+    "page": "Lehekülg {{page}}",
+    "goto": "Lehekülg {{page}}",
+    "alt": "Alternatiivtekst",
+    "cards": "Tagasi kaartidele",
+    "readAll": "Lõpuni loe",
+    "editor": {
+      "count": "{{count}} {{limit}}st leheküljest",
+      "coverHint": "Esimene lehekülg on kate",
+      "empty": "Lisa lehekülgi pildiga nuppu. Igale leheküljele lisatakse pealkiri ja alternatiivtekst.",
+      "cover": "Kate",
+      "caption": "Pealkiri selle leheküljele",
+      "alt": "Alternatiivtekst: mis leheküljel näha on"
+    }
   }
 }

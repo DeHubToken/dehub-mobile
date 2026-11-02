@@ -14608,5 +14608,25 @@
     "taken": "Ko te whakapātanga GitHub e taea ana ki te pūrongo DeHub kua tae ki te wāhi nei.",
     "failed": "Ko GitHub e whakaputaina ana. Tirohia anō.",
     "unavailable": "Ka tū mai te whakapānga o GitHub."
+  },
+  "comic": {
+    "tab": "Pakiwaitara",
+    "title": "Pakiwaitara",
+    "chip": "Pakiwaitara · {{count}} whārangi",
+    "open": "Whakatukutuku pakiwaitara, whārangi {{page}} o {{total}}",
+    "flip": "Whārangi {{page}} o {{total}}. Patapatai hei huri",
+    "page": "Whārangi {{page}}",
+    "goto": "Whārangi {{page}}",
+    "alt": "Kupu āhuatanga",
+    "cards": "Hoki ki ngā kāri",
+    "readAll": "Pānui i ngā whārangi katoa",
+    "editor": {
+      "count": "{{count}} o {{limit}} whārangi",
+      "coverHint": "Ko te whārangi 1 te āhuatanga",
+      "empty": "Tāpiri i ō whārangi mā te pūtake whakaahua. Ka whai kupu whakaaturanga me te kupu āhuatanga ia whārangi.",
+      "cover": "Āhuatanga",
+      "caption": "Kupu whakaaturanga mō tēnei whārangi",
+      "alt": "Kupu āhuatanga: he aha te mea e whakaaturia ana e te whārangi"
+    }
   }
 }

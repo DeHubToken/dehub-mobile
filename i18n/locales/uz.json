@@ -14673,5 +14673,25 @@
     "taken": "Bu GitHub akkaunti boshqa DeHub profili bilan bogʻlangan.",
     "failed": "GitHubga ulanish mumkin emas edi. Yangidan urinib ko'ring.",
     "unavailable": "GitHub tasdiqlash yaqinlashib kelmoqda."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} sahifa",
+    "open": "Ochiq komiks, {{page}} sahifasi {{total}}dan.",
+    "flip": "Bet {{page}} dan {{total}} gacha. Tap qilib burish uchun bosing.",
+    "page": "{{page}}-sahifa",
+    "goto": "{{page}}-sahifa",
+    "alt": "Alt matni",
+    "cards": "Kartalarga qaytish",
+    "readAll": "Barcha sahifalarni oʻqish",
+    "editor": {
+      "count": "{{count}}/{{limit}} sahifa",
+      "coverHint": "Birinchi sahifa qopqoq",
+      "empty": "Rasm botonidan sahifalaringizni qoʻshing. Har bir sahifa uchun yozuv va alt matn bering.",
+      "cover": "Qopqoq",
+      "caption": "Bu sahifaning yozuvi",
+      "alt": "Alt matni: sahifada nima ko‘rinadi"
+    }
   }
 }

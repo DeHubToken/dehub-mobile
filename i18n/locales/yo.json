@@ -14621,5 +14621,25 @@
     "taken": "GitHub ẹgbẹ́ rẹ yìí wà nínú ẹgbẹ́ DeHub ẹgbẹ́ rẹ.",
     "failed": "Gbọdọ̀ ṣe GitHub. Ṣe ẹgbẹ́ rẹ.",
     "unavailable": "GitHub ẹgbẹ́ rẹ yìí ṣe ẹgbẹ́ rẹ."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} oju iwe",
+    "open": "Ṣii comic, oju iwe {{page}} ti {{total}}",
+    "flip": "Oju iwe {{page}} ti {{total}}. Tẹ lati yipada",
+    "page": "Oju iwe {{page}}",
+    "goto": "Oju iwe {{page}}",
+    "alt": "Ọrọ iyalẹnu",
+    "cards": "Padà si awọn kaadi",
+    "readAll": "Ka gbogbo oju iwe",
+    "editor": {
+      "count": "{{count}} ti {{limit}} oju iwe",
+      "coverHint": "Oju iwe 1 ni ibadandun",
+      "empty": "Ṣafikun awọn oju iwe rẹ pẹlu bọtini aworan. Oju iwe kọọkan ni akọsilẹ ati ọrọ iyalẹnu.",
+      "cover": "Ibadandun",
+      "caption": "Akọsilẹ fun oju iwe yii",
+      "alt": "Ọrọ iyalẹnu: ohun ti oju iwe naa fihani"
+    }
   }
 }

@@ -14786,5 +14786,25 @@
     "taken": "Tento GitHub účet je už pripojený k inému profilu DeHub.",
     "failed": "Nepodarilo sa pripojiť GitHub. Skúste to znovu.",
     "unavailable": "Verifikácia GitHub je skoro hotová."
+  },
+  "comic": {
+    "tab": "Knižka",
+    "title": "Knižka",
+    "chip": "Knižka · {{count}} stránok",
+    "open": "Otvorená knižka, stránka {{page}} z {{total}}",
+    "flip": "Stránka {{page}} z {{total}}. Dotknite sa na prelistovanie",
+    "page": "Stránka {{page}}",
+    "goto": "Stránka {{page}}",
+    "alt": "Alternatívny text",
+    "cards": "Späť na karty",
+    "readAll": "Prečítaj všetky stránky",
+    "editor": {
+      "count": "{{count}} z {{limit}} stránok",
+      "coverHint": "Prvá stránka je obálka",
+      "empty": "Pridať stránky pomocou tlačítka na foto. Každá stránka dostane nadpis a alternatívny text.",
+      "cover": "Obálka",
+      "caption": "Nadpis pre túto stránku",
+      "alt": "Alternatívny text: čo stránka zobrazuje"
+    }
   }
 }
