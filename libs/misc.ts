@@ -660,17 +660,17 @@ export function getBadgeOpticalStyle(
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
-  // Exo uses a 732-unit cap height on its 1000-unit em; inline artwork is 10% larger.
-  const renderedSize = size * 0.732 * 1.1 * 128 / (bounds.bottom - bounds.top);
+  // Manrope uses a 0.72em cap height; inline artwork is 10% larger.
+  const renderedSize = size * 0.72 * 1.1 * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
   // baseline lies a fixed fraction of the font size below the box's centre
-  // (Roboto and SF both land near 0.34em), independent of the line height.
+  // (Manrope: (ascent - descent) / 2 = 0.383em), independent of the line height.
   // Centre the image in the row, then move only its pixels so the artwork's
   // measured bottom edge finishes on that baseline. A flex baseline on the
   // oversized image would change the name row's height and push the username.
-  const baselineBelowCentre = size * 0.3375;
+  const baselineBelowCentre = size * 0.383;
   const artworkBottomBelowCentre =
     -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +

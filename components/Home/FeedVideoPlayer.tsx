@@ -1912,7 +1912,7 @@ const styles = StyleSheet.create({
   },
   bareSpeedText: {
     color: "#FFFFFF",
-    fontFamily: "Exo_700Bold",
+    fontFamily: "Manrope_700Bold",
     fontSize: 18,
     lineHeight: 18,
     fontWeight: "normal",

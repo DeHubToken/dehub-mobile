@@ -11,7 +11,7 @@ import "react-native-worklets";
 import "./globals";
 import "./i18n";
 
-// Installs Exo — the web app's typeface — over the JSX runtime, so every
+// Installs Manrope — the app typeface — over the JSX runtime, so every
 // <Text>/<TextInput> in the app gets it without a per-file edit. Imported for
 // its side effect and imported *here* rather than in App.tsx: it has to be in
 // place before the first element is created, and an effect in App runs after

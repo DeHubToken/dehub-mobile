@@ -2,11 +2,10 @@ import { StyleSheet } from "react-native";
 import { withPistolEmoji } from "./pistolEmoji";
 
 /**
- * Applies Exo globally, matching the web app.
+ * Applies Manrope globally to every Text and TextInput in the app.
  *
- * The web forces one line of CSS — `* { font-family: Exo, sans-serif }`
- * (dehubweb/src/index.css:58) — but React Native has no universal selector, so
- * the family has to be injected at render time.
+ * React Native has no universal selector like CSS `* { font-family }`, so the
+ * family has to be injected at render time.
  *
  * **Why this is not a `Text.render` patch any more.** It used to be, and that
  * patch had silently done nothing since the RN 0.81 upgrade: `Text` and
@@ -31,29 +30,29 @@ import { withPistolEmoji } from "./pistolEmoji";
  * did.
  *
  * React Native does not synthesise weights for a custom family: giving it
- * `fontFamily: "Exo_400Regular"` + `fontWeight: "700"` renders regular on iOS
+ * `fontFamily: "Manrope_400Regular"` + `fontWeight: "700"` renders regular on iOS
  * and fake-bolds on Android. Each weight therefore resolves to its own loaded
  * file, and the injected style pins `fontWeight` to `normal` so the platform
  * never bolts a synthetic weight on top of a face that already carries one.
  *
- * Weights 800/900 intentionally fall back to Bold rather than shipping two more
- * TTFs — the app's own type scale only uses 400/500/600/700.
+ * Manrope tops out at ExtraBold (800), so 900 maps there too; weights below
+ * 400 stay on Regular to keep the bundle to five TTFs.
  */
 const FAMILY_BY_WEIGHT: Record<string, string> = {
-  "100": "Exo_400Regular",
-  "200": "Exo_400Regular",
-  "300": "Exo_400Regular",
-  "400": "Exo_400Regular",
-  normal: "Exo_400Regular",
-  "500": "Exo_500Medium",
-  "600": "Exo_600SemiBold",
-  "700": "Exo_700Bold",
-  bold: "Exo_700Bold",
-  "800": "Exo_700Bold",
-  "900": "Exo_700Bold",
+  "100": "Manrope_400Regular",
+  "200": "Manrope_400Regular",
+  "300": "Manrope_400Regular",
+  "400": "Manrope_400Regular",
+  normal: "Manrope_400Regular",
+  "500": "Manrope_500Medium",
+  "600": "Manrope_600SemiBold",
+  "700": "Manrope_700Bold",
+  bold: "Manrope_700Bold",
+  "800": "Manrope_800ExtraBold",
+  "900": "Manrope_800ExtraBold",
 };
 
-const DEFAULT_FAMILY = "Exo_400Regular";
+const DEFAULT_FAMILY = "Manrope_400Regular";
 
 /** Largest system font scale text honours; see the cap in wrap(). */
 const MAX_FONT_SCALE = 1.4;
@@ -99,7 +98,7 @@ function injectedFor(family: string) {
 
 type TextStyleish = { fontFamily?: string; fontWeight?: string | number };
 
-function exoStyleFor(style: unknown, className: unknown) {
+function fontStyleFor(style: unknown, className: unknown) {
   let flat: TextStyleish;
   try {
     // Cheap path: no style at all is the common case for className'd nodes.
@@ -177,11 +176,11 @@ function resolveInputTypes(): Set<unknown> {
 
 function wrap(jsx: any) {
   if (typeof jsx !== "function") return jsx;
-  return function exoJsx(type: unknown, props: any, ...rest: unknown[]) {
+  return function fontJsx(type: unknown, props: any, ...rest: unknown[]) {
     if (textTypes === null) textTypes = resolveTextTypes();
     if (inputTypes === null) inputTypes = resolveInputTypes();
     if (props && textTypes.has(type)) {
-      const injected = exoStyleFor(props.style, props.className);
+      const injected = fontStyleFor(props.style, props.className);
       // Appended, not prepended: it has to outrank whatever NativeWind derives
       // from `className`, which is the only other thing setting a weight here.
       if (injected) props = { ...props, style: [props.style, injected] };

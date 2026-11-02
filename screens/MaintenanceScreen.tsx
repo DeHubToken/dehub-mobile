@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   main: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 36 },
   clock: { width: 155, height: 164, marginBottom: 28 },
   eyebrow: { color: '#BBBBBB', fontSize: 11, letterSpacing: 1.7, textTransform: 'uppercase', textAlign: 'center', marginBottom: 18 },
-  title: { color: '#FFFFFF', fontSize: 44, lineHeight: 48, fontFamily: 'Exo_600SemiBold', letterSpacing: -1.8, textAlign: 'center', maxWidth: 330, marginBottom: 24 },
+  title: { color: '#FFFFFF', fontSize: 44, lineHeight: 48, fontFamily: 'Manrope_600SemiBold', letterSpacing: -1.8, textAlign: 'center', maxWidth: 330, marginBottom: 24 },
   description: { color: '#AAAAAA', fontSize: 15, lineHeight: 26, textAlign: 'center', maxWidth: 350, marginBottom: 28 },
   button: { minWidth: 140, minHeight: 44, justifyContent: 'center', borderRadius: 12 },
   community: { color: '#BBBBBB', fontSize: 12, textAlign: 'center', marginTop: 18 },
