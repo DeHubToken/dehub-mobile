@@ -39,6 +39,9 @@ import AssistantBubble from '../components/Assistant/AssistantBubble';
 import AssistantInputBar from '../components/Assistant/AssistantInputBar';
 import { type QuickAction } from '../components/Assistant/QuickActionChips';
 import AssistantStage from '../components/Assistant/AssistantStage';
+import ThinkingDots from '../components/Assistant/ThinkingDots';
+import Animated, { FadeIn, FadeInDown, FadeOut } from 'react-native-reanimated';
+import { isLowEndDevice } from '../libs/deviceTier';
 import { useVoiceChat } from '../hooks/useVoiceChat';
 import { useJobPayment } from '../hooks/useAiPayment';
 import ChatHistorySheet from '../components/Assistant/ChatHistorySheet';
@@ -257,6 +260,16 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
   const composerKeyboard = useComposerKeyboard(0, { gap: 0, restingOffset: studio ? 0 : TAB_BAR_HEIGHT });
   const { lift: kbLift, isVisible: kbVisible } = composerKeyboard;
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
+  // Follow the newest text only while the reader sits at the bottom. Scrolling
+  // up mid-answer leaves them where they are and offers "Jump to latest".
+  const followBottom = useRef(true);
+  const userDragging = useRef(false);
+  const [showJump, setShowJump] = useState(false);
+  const lowEnd = isLowEndDevice();
+  // Turns sent from this screen slide in once; history loads without motion.
+  const freshTurns = useRef(new Set<string>());
+  // Text and picture the send cleared, put back if the answer fails.
+  const sendDraft = useRef<{ text: string; image: string | null } | null>(null);
 
   const walletAddress = user?.walletAddress || user?.address || null;
   const suppliedDraft = useMemo(() => generationDraftForOwner(requestedDraft, walletAddress), [requestedDraft, walletAddress]);
@@ -514,10 +527,23 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
 
   const isEmpty = messages.length === 0;
 
-  const scrollToEnd = useCallback((animated = true) => {
-    setTimeout(() => {
+  /** Scroll to the newest message. Without `force` it only does so while the reader is following. */
+  const scrollToEnd = useCallback((animated = true, force = false) => {
+    if (force) { followBottom.current = true; setShowJump(false); }
+    if (!followBottom.current) { setShowJump(true); return; }
+    requestAnimationFrame(() => {
       flatListRef.current?.scrollToEnd({ animated });
-    }, 100);
+    });
+  }, []);
+
+  const onListScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number }; contentSize: { height: number }; layoutMeasurement: { height: number } } }) => {
+    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+    const fromBottom = contentSize.height - layoutMeasurement.height - contentOffset.y;
+    if (fromBottom < 48) {
+      if (!followBottom.current) { followBottom.current = true; setShowJump(false); }
+    } else if (userDragging.current && followBottom.current) {
+      followBottom.current = false;
+    }
   }, []);
 
   /* ── Diagnostics ─────────────────────────────────────────────────────── */
@@ -545,13 +571,21 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
 
   const doSendChat = useCallback(
     async (text: string, history: AIChatMessage[]) => {
-      const submitted = input;
+      // Empty the box the moment the message goes; it comes back only if the answer fails.
+      const draft = sendDraft.current;
+      sendDraft.current = null;
+      if (draft) {
+        setInput.complete(draft.text, '');
+        setAttachedImage(null);
+      }
       setIsLoading(true);
       setActiveTools([]);
-      scrollToEnd();
+      scrollToEnd(true, true);
 
       const token = (await getAuthToken()) || undefined;
       let streamed = '';
+      let paintTimer: ReturnType<typeof setTimeout> | null = null;
+      const stopPaint = () => { if (paintTimer) { clearTimeout(paintTimer); paintTimer = null; } };
       let swapAction: AIChatMessage['swapAction'];
 
       const commit = (content: string, isError = false) => {
@@ -580,6 +614,12 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           onSwapAction: (action) => { swapAction = action; },
           onDelta: (delta) => {
             streamed += delta;
+            // One paint per frame (a few per second on low-end phones), not one per token.
+            if (paintTimer) return;
+            paintTimer = setTimeout(() => {
+              paintTimer = null;
+              if (streamRef.current) setStreamingContent(streamed);
+            }, lowEnd ? 120 : 32);
             // Render the partial answer as it arrives, but only persist the
             // finished turn — writing on every token would hammer AsyncStorage
             // and the remote mirror.
@@ -589,22 +629,26 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             // half-finished answer, with two streams then writing to the same
             // thread. The spinner is hidden by `streamingContent` instead.
             setActiveTools([]);
-            setStreamingContent(streamed);
           },
           onDone: () => {
+            stopPaint();
             streamRef.current = null;
             setStreamingContent(null);
             setIsLoading(false);
             setActiveTools([]);
-            if (setInput.complete(submitted, '')) setAttachedImage(null);
             commit(streamed || _copy("copy.961136f9207a", { defaultValue: "No response" }));
             scrollToEnd();
           },
           onError: (err) => {
+            stopPaint();
             streamRef.current = null;
             setStreamingContent(null);
             setIsLoading(false);
             setActiveTools([]);
+            if (draft) {
+              setInput((previous) => (previous.trim() ? previous : draft.text));
+              if (draft.image) setAttachedImage((previous) => previous ?? draft.image);
+            }
             log.error('chat error:', err, {
               kind: 'chat',
               model: settings.chatModel,
@@ -617,7 +661,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
       );
     },
     [
-      input, setInput,
+      setInput,
       selectedStyle,
       settings.chatModel,
       userContext,
@@ -1406,6 +1450,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
       ...(creator ? { creatorSettings: creator, creatorOwner: walletAddress?.toLowerCase(), creatorAssetScheme: 'results-v1' as const } : {}),
     };
     const history = [...messages, userMessage];
+    if (userMessage.id && !lowEnd) freshTurns.current.add(userMessage.id);
     if (embedded && creator && userMessage.id) editorRequests.current.add(userMessage.id);
     const hadAttachment = !!attachedImage;
     // The data URL, not the file URI: generate-image hands this straight to the
@@ -1420,17 +1465,22 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         return;
       }
     }
-    await saveMessage(history);
+    // The bubble shows at once (saveMessage sets it before it writes); the
+    // upload and storage run behind, so the answer does not wait on them.
+    saveMessage(history).catch((err) => log.error('could not save the sent turn:', err));
+    scrollToEnd(true, true);
+    sendDraft.current = { text: input, image: attachedImage };
 
     await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id, creator);
     } catch (error) {
       log.error('could not prepare creator references:', error);
       toastError(t('aiChat.couldNotReadImage'));
     } finally {
+      sendDraft.current = null;
       submitLock.current = false;
       setIsLoading(false);
     }
-  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings, walletAddress]);
+  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings, walletAddress, scrollToEnd]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1841,7 +1891,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
   }, [messages, streamingContent]);
 
   const renderMessage = useCallback(
-    ({ item }: { item: AIChatMessage }) => (
+    ({ item }: { item: AIChatMessage }) => {
+      const fresh = !!item.id && freshTurns.current.delete(item.id);
+      const bubble = (
       <AssistantBubble
         message={item}
         onImagePress={handleImagePress}
@@ -1856,7 +1908,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         onShareAudio={shareAudio}
         onRetry={item.isError ? handleRetry : undefined}
       />
-    ),
+      );
+      return fresh ? <Animated.View entering={FadeInDown.duration(220)}>{bubble}</Animated.View> : bubble;
+    },
     [handleImagePress, handleAttachGenerated, handlePostMedia, handleEditMedia, editingMediaUrl, handleRetry, downloadVideo, user?.username, _copy],
   );
 
@@ -2016,7 +2070,15 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           contentContainerStyle={s.messageListContent}
           showsVerticalScrollIndicator={false}
           keyboardDismissMode="interactive"
-          onContentSizeChange={() => scrollToEnd(false)}
+          onScroll={onListScroll}
+          scrollEventThrottle={32}
+          onScrollBeginDrag={() => { userDragging.current = true; }}
+          onScrollEndDrag={() => { userDragging.current = false; }}
+          onMomentumScrollEnd={() => { userDragging.current = false; }}
+          onContentSizeChange={() => {
+            if (followBottom.current) flatListRef.current?.scrollToEnd({ animated: false });
+            else if (isLoading) setShowJump(true);
+          }}
           ListFooterComponent={
             isGeneratingImage ? (
               <View style={s.footerRow}>
@@ -2024,18 +2086,31 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
                 <ImageGenerationSkeleton />
               </View>
             ) : isLoading && streamingContent === null ? (
-              <View style={s.typingRow}>
+              <Animated.View style={s.typingRow} entering={lowEnd ? undefined : FadeIn.duration(180)}>
                 <Image source={AI_AVATAR} style={s.typingAvatar} />
                 <View style={s.typingBubble}>
-                  <ActivityIndicator size="small" color="#F4F4F5" />
+                  <ThinkingDots />
                   <Text style={s.typingText}>
                     {activeTools.length > 0 ? describeTools(activeTools) : _copy("copy.b4739a4f0865", { defaultValue: "Thinking..." })}
                   </Text>
                 </View>
-              </View>
+              </Animated.View>
             ) : null
           }
         />
+      )}
+      {showJump && !isEmpty && (
+        <Animated.View entering={lowEnd ? undefined : FadeIn.duration(150)} exiting={lowEnd ? undefined : FadeOut.duration(120)} style={s.jumpWrap} pointerEvents="box-none">
+          <TouchableOpacity
+            style={s.jumpLatest}
+            onPress={() => scrollToEnd(true, true)}
+            accessibilityRole="button"
+            accessibilityLabel={t("communities.chatPanel.jumpToLatest", { defaultValue: "Jump to latest" })}
+          >
+            <Icon name="ArrowDown" size={14} color="#F4F4F5" />
+            <Text style={s.jumpLatestText}>{t("communities.chatPanel.jumpToLatest", { defaultValue: "Jump to latest" })}</Text>
+          </TouchableOpacity>
+        </Animated.View>
       )}
 
       <View ref={composerKeyboard.ref} collapsable={false} onLayout={composerKeyboard.onLayout}
@@ -2314,6 +2389,25 @@ const s = StyleSheet.create({
     color: '#A6A9AC',
     fontSize: 13,
   },
+  jumpWrap: {
+    alignItems: 'center',
+    marginTop: -44,
+    height: 44,
+    justifyContent: 'center',
+    zIndex: 5,
+  },
+  jumpLatest: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    height: 34,
+    paddingHorizontal: 14,
+    borderRadius: 17,
+    backgroundColor: 'rgba(39,39,42,0.94)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255,255,255,0.14)',
+  },
+  jumpLatestText: { color: '#F4F4F5', fontSize: 13, fontWeight: '600' },
 });
 
 function AIChatScreenForAccount() {
