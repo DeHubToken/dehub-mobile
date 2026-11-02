@@ -2342,7 +2342,22 @@
     "attachmentTooLarge": "Each file must be under 50MB",
     "deleteCommentA11y": "Delete comment",
     "sendCommentA11y": "Send comment",
-    "requestOptions": "Request options"
+    "requestOptions": "Request options",
+    "topBuilders": {
+      "title": "Top builders",
+      "month": "This month",
+      "allTime": "All time",
+      "shipped": "Shipped",
+      "votes": "Votes",
+      "comments": "Comments",
+      "breakdown": "{{shipped}} shipped ({{sp}}) · {{votes}} upvotes ({{vp}}) · {{comments}} comments ({{cp}})",
+      "viewProfile": "View profile",
+      "rule": "10 pts per shipped request, 1 per upvote, 2 per comment on someone else's request.",
+      "you": "You",
+      "pts": "{{n}} pts",
+      "gap": "{{n}} pts to pass {{name}}",
+      "join": "Post a prompt that ships to join the board"
+    }
   },
   "auth": {
     "loginRequired": "Log in required",

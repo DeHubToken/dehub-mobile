@@ -2379,7 +2379,22 @@
     "attachmentTooLarge": "Her dosya 50MB’den küçük olmalı",
     "deleteCommentA11y": "Yorum silme",
     "sendCommentA11y": "Yorum gönder",
-    "requestOptions": "İstek seçenekleri"
+    "requestOptions": "İstek seçenekleri",
+    "topBuilders": {
+      "title": "En iyi geliştiriciler",
+      "month": "Bu ay",
+      "allTime": "Tüm zamanlar",
+      "shipped": "Yayınlanan",
+      "votes": "Oylar",
+      "comments": "Yorumlar",
+      "breakdown": "{{shipped}} yayınlanan ({{sp}}) · {{votes}} oy ({{vp}}) · {{comments}} yorum ({{cp}})",
+      "viewProfile": "Profili gör",
+      "rule": "Yayınlanan her istek 10 puan, her oy 1, başkasının isteğine her yorum 2 puan.",
+      "you": "Sen",
+      "pts": "{{n}} puan",
+      "gap": "{{name}} kişisini geçmek için {{n}} puan",
+      "join": "Listeye girmek için yayınlanacak bir fikir paylaş"
+    }
   },
   "auth": {
     "loginRequired": "Giriş yapılması gerekiyor",

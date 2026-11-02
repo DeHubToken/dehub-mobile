@@ -2379,7 +2379,22 @@
     "attachmentTooLarge": "Chaque fichier doit faire moins de 50 Mo",
     "deleteCommentA11y": "Supprimer le commentaire",
     "sendCommentA11y": "Envoyez un commentaire",
-    "requestOptions": "Options de la demande"
+    "requestOptions": "Options de la demande",
+    "topBuilders": {
+      "title": "Top bâtisseurs",
+      "month": "Ce mois-ci",
+      "allTime": "Depuis toujours",
+      "shipped": "Livrées",
+      "votes": "Votes",
+      "comments": "Commentaires",
+      "breakdown": "{{shipped}} livrées ({{sp}}) · {{votes}} votes ({{vp}}) · {{comments}} commentaires ({{cp}})",
+      "viewProfile": "Voir le profil",
+      "rule": "10 pts par demande livrée, 1 par vote, 2 par commentaire sur la demande d'une autre personne.",
+      "you": "Vous",
+      "pts": "{{n}} pts",
+      "gap": "{{n}} pts pour dépasser {{name}}",
+      "join": "Publiez une idée qui sera livrée pour entrer au classement"
+    }
   },
   "auth": {
     "loginRequired": "Connexion requise",
