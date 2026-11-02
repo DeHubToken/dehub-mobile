@@ -15795,6 +15795,37 @@
       "thanks_one": "Thanks to {{count}} supporter",
       "thanks_other": "Thanks to {{count}} supporters",
       "top": "Top: {{name}}"
+    },
+    "gift": {
+      "open": "Gift subscriptions",
+      "title": "Gift subscriptions",
+      "plan": "Plan",
+      "mode": {
+        "random": "Random viewers in chat",
+        "user": "Someone specific"
+      },
+      "howMany": "How many",
+      "randomHint": "Goes to people who chatted in the last 30 minutes and are not subscribed yet.",
+      "who": "Username or wallet address",
+      "whoPlaceholder": "@username",
+      "send_one": "Gift 1 sub · ${{price}}",
+      "send_other": "Gift {{count}} subs · ${{price}}",
+      "payHint": "Paid in DHB from your wallet in one transfer.",
+      "fewer_one": "Only 1 person in chat can receive a sub right now, so you pay for 1.",
+      "fewer_other": "Only {{count}} people in chat can receive a sub right now, so you pay for {{count}}.",
+      "done_one": "Subscription gifted!",
+      "done_other": "{{count}} subscriptions gifted!",
+      "failed": "Could not gift subscriptions",
+      "notReady": "Gifting is not available for this plan yet",
+      "noPlan": "Pick a plan first",
+      "noPlans": "{{name}} has no subscription plans to gift yet.",
+      "cancel": "Cancel",
+      "stage": {
+        "preparing": "Preparing…",
+        "wallet": "Confirm in your wallet",
+        "confirming": "Waiting for the transaction…",
+        "recording": "Finishing up…"
+      }
     }
   },
   "dmPaidLock": {
