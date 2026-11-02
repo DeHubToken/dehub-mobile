@@ -34,6 +34,17 @@ import {
   validateAttachment,
 } from "../../libs/attachments";
 import { runWithPermissions } from "../../libs/permissions.util";
+import { cleanVideoOptions, type DmVideoOptions } from "../../libs/dm-video-options";
+import { destructShort, type DmDestructChoice } from "../../libs/dm-destruct";
+import DmVideoTile from "./DmVideoTile";
+import DmVideoStudio from "./DmVideoStudio";
+
+const formatClockShort = (sec: number) => {
+  const s = Math.max(0, Math.round(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+};
+const keptSeconds = (m: ChatMediaAttachment) =>
+  Math.max(0, (m.options?.trimEnd ?? m.duration ?? 0) - (m.options?.trimStart ?? 0));
 
 /** Per-kind caps, matching the backend's DM limits. */
 const DM_ATTACH_LIMITS = { image: 10 * 1024 * 1024, video: 50 * 1024 * 1024, audio: 20 * 1024 * 1024 } as const;
@@ -60,6 +71,13 @@ export type ChatMediaAttachment = {
   size?: number;
   /** Videos only — seconds, when the picker reports it. */
   duration?: number;
+  /** Videos only — picked size, so the card and bubble keep the real shape. */
+  width?: number;
+  height?: number;
+  /** Videos only — trim, cover, mirror, rotation and hide from the video sheet. */
+  options?: DmVideoOptions;
+  /** Self-destruct: gone after one view or a set time. */
+  destruct?: DmDestructChoice | null;
 };
 
 interface ChatInputBarProps {
@@ -162,6 +180,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const text = editingMessage ? editText : ordinaryText;
   const setText = editingMessage ? setEditText : setOrdinaryText;
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
+  const [videoStudioOpen, setVideoStudioOpen] = useState(false);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
@@ -332,7 +351,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     // Media with optional caption
     if (media) {
       const caption = text.trim() || undefined;
-      if (!(await onSendMedia(media, caption))) return;
+      const out = media.type === "video" ? { ...media, options: cleanVideoOptions(media.options, media.duration) } : media;
+      if (!(await onSendMedia(out, caption))) return;
+      setVideoStudioOpen(false);
       setMedia(null);
       setText.complete(text, "");
       return;
@@ -386,6 +407,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             mimeType: asset.mimeType,
             // expo-image-picker reports milliseconds.
             duration: asset.duration ? asset.duration / 1000 : undefined,
+            width: asset.width || undefined,
+            height: asset.height || undefined,
+            size: asset.fileSize || undefined,
           });
           return;
         }
@@ -452,6 +476,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   }, [keyboardSwap]);
 
   const handleRemoveMedia = useCallback(() => {
+    setVideoStudioOpen(false);
     setMedia(null);
     setGifUrl(null);
   }, []);
@@ -665,8 +690,74 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           </Animated.View>
         )}
 
+        {/* Picked video: real-shape card, tap to open the video sheet */}
+        {media?.type === "video" && (
+          <Animated.View entering={FadeIn.duration(150)} style={{ flexDirection: "row", alignItems: "flex-end", gap: 8, paddingHorizontal: 12, paddingTop: 10 }}>
+            <View>
+            <DmVideoTile
+              posterUri={media.thumbnailUri}
+              width={media.width}
+              height={media.height}
+              options={media.options}
+              destructLabel={media.destruct ? destructShort(media.destruct) : null}
+              mine
+              hidePlay
+              maxW={200}
+              maxH={150}
+              softPoster={media.options?.hidden === "reveal"}
+              onOpen={() => { Keyboard.dismiss(); setVideoStudioOpen(true); }}
+            >
+              <View pointerEvents="none" style={{ position: "absolute", left: 6, bottom: 6, backgroundColor: "rgba(0,0,0,0.6)", borderRadius: 999, paddingHorizontal: 6, paddingVertical: 2 }}>
+                <Text style={{ color: "#fff", fontSize: 10, fontWeight: "600", fontVariant: ["tabular-nums"] }}>
+                  {[media.duration ? formatClockShort(keptSeconds(media)) : null, media.size ? formatAttachmentSize(media.size) : null].filter(Boolean).join(" · ")}
+                </Text>
+              </View>
+              {media.options?.hidden === "reveal" && (
+                <View pointerEvents="none" style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: "rgba(0,0,0,0.6)", borderRadius: 999, paddingHorizontal: 8, paddingVertical: 3 }}>
+                    <Icon name="EyeOff" size={11} color="#fff" />
+                    <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{t("dmVideo.hiddenTag", { defaultValue: "Hidden" })}</Text>
+                  </View>
+                </View>
+              )}
+            </DmVideoTile>
+              {/* Outside the picture, so it never sits on the chips. */}
+              <TouchableOpacity
+                onPress={handleRemoveMedia}
+                style={{ position: "absolute", right: -6, top: -6, width: 22, height: 22, borderRadius: 11, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" }}
+                hitSlop={10}
+                accessibilityRole="button"
+                accessibilityLabel={t("dm.removeAttachment")}
+              >
+                <Icon name="X" size={12} color="#09090B" />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity onPress={() => { Keyboard.dismiss(); setVideoStudioOpen(true); }} hitSlop={8} accessibilityRole="button">
+              <Text className="text-theme-neutrals-400 text-[12px] pb-1">{t("dmVideo.tapToEdit", { defaultValue: "Tap to edit" })}</Text>
+            </TouchableOpacity>
+            <DmVideoStudio
+              visible={videoStudioOpen}
+              onClose={() => setVideoStudioOpen(false)}
+              uri={media.uri}
+              duration={media.duration}
+              width={media.width}
+              height={media.height}
+              size={media.size}
+              options={media.options ?? {}}
+              onOptionsChange={(o: DmVideoOptions) => setMedia((m) => (m && m.type === "video" ? { ...m, options: o } : m))}
+              destruct={media.destruct ?? null}
+              onDestructChange={(c: DmDestructChoice | null) => setMedia((m) => (m && m.type === "video" ? { ...m, destruct: c } : m))}
+              onCoverFrame={(uri) => setMedia((m) => (m && m.type === "video" ? { ...m, thumbnailUri: uri } : m))}
+              caption={text}
+              onCaptionChange={handleTextChange}
+              onSend={() => { void handleSend(); }}
+              sendDisabled={sending || disabled}
+            />
+          </Animated.View>
+        )}
+
         {/* Selected media / GIF preview */}
-        {(media || gifUrl) && (
+        {((media && media.type !== "video") || gifUrl) && (
           <Animated.View
             entering={FadeIn.duration(150)}
             className="px-3 pt-2"
