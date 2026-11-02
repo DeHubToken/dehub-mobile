@@ -716,7 +716,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 <View pointerEvents="none" style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: "rgba(0,0,0,0.6)", borderRadius: 999, paddingHorizontal: 8, paddingVertical: 3 }}>
                     <Icon name="EyeOff" size={11} color="#fff" />
-                    <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{t("dmVideo.hiddenTag", { defaultValue: "Hidden" })}</Text>
+                    <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{_copy("dmVideo.hiddenTag", { defaultValue: "Hidden" })}</Text>
                   </View>
                 </View>
               )}
@@ -733,7 +733,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               </TouchableOpacity>
             </View>
             <TouchableOpacity onPress={() => { Keyboard.dismiss(); setVideoStudioOpen(true); }} hitSlop={8} accessibilityRole="button">
-              <Text className="text-theme-neutrals-400 text-[12px] pb-1">{t("dmVideo.tapToEdit", { defaultValue: "Tap to edit" })}</Text>
+              <Text className="text-theme-neutrals-400 text-[12px] pb-1">{_copy("dmVideo.tapToEdit", { defaultValue: "Tap to edit" })}</Text>
             </TouchableOpacity>
             <DmVideoStudio
               visible={videoStudioOpen}
