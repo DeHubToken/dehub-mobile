@@ -1,4 +1,5 @@
 import MessageSearch from "../components/DM/MessageSearch";
+import { setLockedMediaPayer } from "../libs/dmLocked";
 import MessageSurface from "../components/DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from "../hooks/useDraftState";
@@ -1088,6 +1089,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     return () => { dmSendQueue.setFeePayer(null); };
   }, [payDmFee]);
 
+  // Unlocking a locked photo is the same tip to the other person in the chat.
+  useEffect(() => {
+    setLockedMediaPayer(payDmFee);
+    return () => { setLockedMediaPayer(null); };
+  }, [payDmFee]);
+
   useEffect(() => {
     dmSendQueue.setConversationResolver(ensureConversation);
     return () => { dmSendQueue.setConversationResolver(null); };
@@ -1255,6 +1262,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         fileName: attachment.name,
         fileSize: attachment.size,
         duration: attachment.duration,
+        lockPrice: attachment.lockPrice || undefined,
         caption: caption?.trim(),
         replyTo,
         dmFee,
@@ -1899,6 +1907,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               <ChatInputBar
                 onSendText={onSendText}
                 onSendMedia={onSendMedia}
+                allowLock
                 onSendGif={onSendGif}
                 onStartVoice={onStartVoice}
                 onTypingChange={onTypingChange}

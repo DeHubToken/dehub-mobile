@@ -86,6 +86,8 @@ interface MediaSendJob extends BaseSendJob {
   fileSize?: number;
   /** Video length in seconds, when the picker reported one. */
   duration?: number;
+  /** Pay-to-unlock price. A locked file is never sealed; the caption still is. */
+  lockPrice?: number;
 }
 
 interface TipSendJob extends BaseSendJob {
@@ -271,6 +273,7 @@ class DmSendQueue {
     fileName?: string;
     fileSize?: number;
     duration?: number;
+    lockPrice?: number;
   }): string {
     const tempId = this.makeTempId();
     const {
@@ -309,6 +312,17 @@ class DmSendQueue {
       paymentStatus: paymentAmount ? "pending" : undefined,
       voiceDuration: params.voiceDuration,
     });
+    const lockPrice = params.lockPrice && params.lockPrice > 0 && (mediaType === "image" || mediaType === "video") && effectiveMsgType === "media"
+      ? params.lockPrice
+      : undefined;
+    if (lockPrice) {
+      // The sender sees their own photo tagged with its price while it uploads.
+      optimistic.lock = {
+        price: lockPrice, symbol: "DHB", kind: mediaType as "image" | "video",
+        previewUrl: null, unlocked: true, mine: true, ready: false,
+        mediaUrl: mediaType === "video" ? (thumbnailUri || uri) : uri,
+      };
+    }
     dmActions.addOptimistic(conversationId, optimistic);
 
     this.enqueueSlow({
@@ -330,6 +344,7 @@ class DmSendQueue {
       fileName: params.fileName,
       fileSize: params.fileSize,
       duration: params.duration,
+      lockPrice,
     });
 
     return tempId;
@@ -666,7 +681,7 @@ class DmSendQueue {
       }
     }
 
-    if (await this.uploadMediaEncrypted(job, convId, txHash, tipTxHash)) return;
+    if (!job.lockPrice && (await this.uploadMediaEncrypted(job, convId, txHash, tipTxHash))) return;
 
     const isVoice = job.msgType === "voice";
     const ext = isVoice ? "m4a" : job.mediaType === "video" ? "mp4" : "jpg";
@@ -701,6 +716,7 @@ class DmSendQueue {
             replyTo: job.replyTo?._id,
             txHash,
             tipTxHash,
+            lockPrice: job.lockPrice,
           }),
           timeout,
           `${job.mediaType} upload`,

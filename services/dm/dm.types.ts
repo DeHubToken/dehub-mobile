@@ -126,6 +126,35 @@ export interface DmForwardedFrom {
   messageId: ID;
 }
 
+/**
+ * A photo or video put behind a price (pay to unlock). The real file is only
+ * ever in `mediaUrl`, for the sender or a buyer; `mediaUrls[0]` is always the
+ * blurred preview.
+ */
+export interface DmLock {
+  price: number;
+  symbol: string;
+  kind: "image" | "video";
+  previewUrl: string | null;
+  unlocked: boolean;
+  mine?: boolean;
+  /** False while the upload is still being processed. */
+  ready?: boolean;
+  unlockCount?: number;
+  mediaUrl?: string;
+  mediaUrlExpiresAt?: string;
+}
+
+export interface DmLockStatus {
+  messageId: string;
+  conversationId: string;
+  /** Who the unlock payment goes to (the sender). */
+  payTo: string;
+  lock: DmLock;
+  pendingTxHash?: string;
+  status?: "unlocked" | "pending";
+}
+
 /** A single DM message. */
 export interface DmMessage {
   _id: ID;
@@ -182,6 +211,9 @@ export interface DmMessage {
 
   /** Emoji -> lowercase wallet addresses that reacted with it. */
   reactions?: Record<string, string[]>;
+
+  /** Set for a locked (pay-to-unlock) photo or video. */
+  lock?: DmLock | null;
 }
 
 /** Server -> Client: reactionUpdated (the message's full reaction map). */
@@ -311,6 +343,8 @@ export interface UploadDmMediaParams {
   replyTo?: ID; // Message._id being replied to
   /** The file is an end-to-end encrypted blob of this kind; `content` must then be an envelope. */
   encryptedKind?: "image" | "video" | "audio" | "file";
+  /** Pay-to-unlock price (DHB). Never combined with encryptedKind. */
+  lockPrice?: number;
 }
 
 
