@@ -23,9 +23,20 @@ import {
   type OrderComponents,
 } from "../libs/market/seaport";
 
-export const MARKET_CHAINS = [56, 8453] as const;
-export const CHAIN_LABEL: Record<number, string> = { 56: "BNB", 8453: "Base" };
-export const EXPLORER: Record<number, string> = { 56: "https://bscscan.com", 8453: "https://basescan.org" };
+export const MARKET_CHAINS = [56, 8453, 1, 4663] as const;
+export const CHAIN_LABEL: Record<number, string> = { 56: "BNB", 8453: "Base", 1: "Ethereum", 4663: "Robinhood" };
+export const EXPLORER: Record<number, string> = {
+  56: "https://bscscan.com",
+  8453: "https://basescan.org",
+  1: "https://etherscan.io",
+  4663: "https://robinhoodchain.blockscout.com",
+};
+
+/** Read-only RPCs for the market's chains (receiptRpcUrls covers BNB and Base). */
+const MARKET_RPC: Record<number, string> = {
+  1: "https://ethereum-rpc.publicnode.com",
+  4663: "https://rpc.mainnet.chain.robinhood.com",
+};
 
 export interface MarketCurrency {
   address: string;
@@ -149,7 +160,7 @@ const readers = new Map<number, ethers.providers.StaticJsonRpcProvider>();
 function reader(chainId: number) {
   let p = readers.get(chainId);
   if (!p) {
-    p = new ethers.providers.StaticJsonRpcProvider({ url: receiptRpcUrls(chainId)[0], timeout: 10000 }, chainId);
+    p = new ethers.providers.StaticJsonRpcProvider({ url: MARKET_RPC[chainId] ?? receiptRpcUrls(chainId)[0], timeout: 10000 }, chainId);
     readers.set(chainId, p);
   }
   return p;
