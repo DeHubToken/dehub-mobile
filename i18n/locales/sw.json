@@ -14592,5 +14592,17 @@
     "joinedBodyNoEmail": "Tutakutumia barua pepe wakati token itakapozinduliwa.",
     "failed": "Hakuwezekani kuhifadhi hilo. Jaribu tena.",
     "privacy": "Inatumika tu kukujulisha kuhusu uzinduzi."
+  },
+  "githubLink": {
+    "hint": "Ingia kwenye GitHub ili kuthibitisha kuwa akaunti ni yako. DeHub inaona tu profili yako ya umma ya GitHub.",
+    "verified": "Tajiri",
+    "verifiedAria": "Kuhusu akaunti ya GitHub iliyeshawekesha (verified)",
+    "connect": "Kutoka GitHub",
+    "disconnect": "Ondoa",
+    "connected": "GitHub imetungajiwa",
+    "disconnected": "GitHub imekopwa",
+    "taken": "Hesabu ya GitHub hiyo imeandikwa katika profaili ya DeHub ya nyingine.",
+    "failed": "Hakuwezi kuunganisha GitHub. Ubaki na kufanya tena.",
+    "unavailable": "GitHub verification itatokea baadaye."
   }
 }

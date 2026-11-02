@@ -15834,5 +15834,17 @@
     "joinedBodyNoEmail": "We zullen je mailen wanneer het token live gaat.",
     "failed": "Kon deze niet opslaan. Probeer het opnieuw.",
     "privacy": "Alleen gebruikt om je op de hoogte te houden van de lancering."
+  },
+  "githubLink": {
+    "hint": "Sign in bij GitHub om te bewijzen dat het account van jou is. DeHub ziet alleen je openbare GitHub-profiel.",
+    "verified": "Geverifieerd",
+    "verifiedAria": "Geverifieerd GitHub-account",
+    "connect": "GitHub verbinden",
+    "disconnect": "Ontkoppelen",
+    "connected": "GitHub verbonden",
+    "disconnected": "GitHub ontkoppeld",
+    "taken": "Dat GitHub-account is al gekoppeld aan een ander DeHub-profiel.",
+    "failed": "Kon GitHub niet verbinden. Probeer het opnieuw.",
+    "unavailable": "GitHub-verificatie komt gauw."
   }
 }

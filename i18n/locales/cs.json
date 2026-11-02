@@ -14595,5 +14595,17 @@
     "joinedBodyNoEmail": "Odesíláme vám email, jakmile token vyjde.",
     "failed": "Nepodařilo se uložit. Zkuste to znovu.",
     "privacy": "Pouze pro informace o lancování."
+  },
+  "githubLink": {
+    "hint": "Přihlaste se na GitHub, abyste dokázali, že je účet váš. DeHub vidí pouze váš veřejný profil na GitHubu.",
+    "verified": "Ověřeno",
+    "verifiedAria": "Ověřený účet na GitHubu",
+    "connect": "Připojit GitHub",
+    "disconnect": "Odpojit",
+    "connected": "Připojeno k GitHubu",
+    "disconnected": "GitHub odpojen",
+    "taken": "Tento účet GitHub je již na jiném profilu DeHub.",
+    "failed": "Nelze připojit GitHub. Zkuste to znovu.",
+    "unavailable": "Ověření na GitHubu již brzy."
   }
 }

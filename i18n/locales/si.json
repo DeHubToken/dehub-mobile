@@ -14609,5 +14609,15 @@
     "invalidEmail": "වලංගු ඊමේල් ඇතුළත් කරන්න",
     "joinedTitle": "ඔබ ලැයිස්ව ඇත.",
     "joinedBodyNoEmail": "ඔබ ටොකන් නිවේදනය වීම සඳහා පණන් යම් තැන් මඟ පෙන්වමු."
+  },
+  "githubLink": {
+    "hint": "GitHub වලට ඉතින් ගිය ගිණුම ඔබේ බව ඔප්පු කරන්න. DeHub ඔබේ ජනතා GitHub පැතිකඩ පමණක් දකිනවා.",
+    "verified": "සත්‍යාපිත",
+    "verifiedAria": "සත්‍යාපිත GitHub ගිණුම",
+    "disconnect": "විසංවර්ධනය කරන්න",
+    "connected": "GitHub සම්බන්ධ වී ඇත",
+    "disconnected": "GitHub විසංවර්ධිත",
+    "taken": "එම GitHub ගිණුම දැනටමත් වෙනත් DeHub පැතිකඩක ඇත.",
+    "unavailable": "GitHub සත්‍යාපනය ඉතා ඉක්මනින් එනවා."
   }
 }

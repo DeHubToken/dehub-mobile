@@ -15582,5 +15582,14 @@
     "joinedBodyNoEmail": "Sizlere tokenın açıldığında e-posta gönderilecektir.",
     "failed": "Kaydedilemedi. Tekrar deneyin.",
     "privacy": "Yalnızca lansmanı haber vermek için kullanılır."
+  },
+  "githubLink": {
+    "verified": "Doğrulanmış",
+    "verifiedAria": "Doğrulanmış GitHub hesabı",
+    "connect": "Bağlan GitHub'a",
+    "connected": "GitHub'a bağlandı",
+    "disconnected": "GitHub bağlantısı kesildi",
+    "failed": "GitHub'a bağlanamadı. Tekrar deneyin.",
+    "unavailable": "GitHub doğrulama yakında gelecek."
   }
 }

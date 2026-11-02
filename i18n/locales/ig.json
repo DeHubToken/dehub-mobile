@@ -14577,5 +14577,17 @@
     "emailPlaceholder": "Email gị",
     "invalidEmail": "Tinye a nti email",
     "joinedBody": "Anyị ga-eziga email {{email}} mgbe akara ngosi ahụ malitere."
+  },
+  "githubLink": {
+    "hint": "Banye na GitHub iji gosipụta na akaụntụ ahụ bụ nke gị. DeHub na-ahụ naanị profaịlụ GitHub gị nke ọha.",
+    "verified": "Nyochara",
+    "verifiedAria": "Akaụntụ GitHub nyochara",
+    "connect": "Jikọọ GitHub",
+    "disconnect": "Kwụpụ",
+    "connected": "GitHub jikọtara",
+    "disconnected": "GitHub kwụsịrị",
+    "taken": "Akaụntụ GitHub ahụ dị na profaịlụ DeHub ọzọ.",
+    "failed": "Enweghị ike jikọọ GitHub. Gbalịa ọzọ.",
+    "unavailable": "Nyocha GitHub ga-abịa n'oge na-adịghị anya."
   }
 }

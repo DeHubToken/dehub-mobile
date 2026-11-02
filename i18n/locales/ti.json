@@ -14574,5 +14574,17 @@
     "joinedBodyNoEmail": "ኢሜይል ብሓንጺጹ ቶክን ምስ ወጠ ክንልክ።",
     "failed": "ሓደ ነገር ክሕዝን ኣይከኣለን። ድሕሪ ሕጂ ሞክር።",
     "privacy": "ብቶክን ምውጣት ንምፍላጥ ጥራይ ይጠቀም።"
+  },
+  "githubLink": {
+    "hint": "ናብ GitHub ተመዓላ ንምክሊ ሂወት ናትካ ምኽያድ። DeHub ብሉጽ GitHub ገጽ ናትካ ጥራይ ይርኢ።",
+    "verified": "ተረጋገጠ",
+    "verifiedAria": "ኣብቲት ግስትርብ ክልልት ክልት ክልት",
+    "connect": "GitHub ተገናኺ",
+    "disconnect": "ተላላይ",
+    "connected": "GitHub ተገናኺ",
+    "disconnected": "GitHub ተላላይ",
+    "taken": "ኣይንታ ግስሰት ኣንድስ ድሕብ ኣዝዝርእ ኣይነው።",
+    "failed": "GitHub ተገናኺ ኣይከኣለን። ድሕሪ ሕጂ ሞክር።",
+    "unavailable": "GitHub ምክሊ ብቐሪቡ ክመጽእ ዝኽእል።"
   }
 }

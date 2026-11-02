@@ -14589,5 +14589,17 @@
     "joinedBodyNoEmail": "我哋會喺令牌啟動嗰陣發電郵畀你。",
     "failed": "救唔到嗰個。再試多次。",
     "privacy": "只係用嚟同你講推出嘅事"
+  },
+  "githubLink": {
+    "hint": "喺 GitHub 登入嚟証明呢個帳號係屬於你嘅。 DeHub 只睇到你嘅公開 GitHub 個人檔案。",
+    "verified": "已經驗證",
+    "verifiedAria": "已經驗證嘅 GitHub 帳號",
+    "connect": "連接 GitHub",
+    "disconnect": "斷開 GitHub",
+    "connected": "GitHub 已經連接",
+    "disconnected": "GitHub 已經斷開",
+    "taken": "呢個 GitHub 帳號喺另一 DeHub 個人檔案入面已經有咗。",
+    "failed": "唔能夠連接 GitHub。試返一次。",
+    "unavailable": "GitHub 驗證功能即將推出。"
   }
 }

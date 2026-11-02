@@ -14629,5 +14629,10 @@
     "joinedBodyNoEmail": "Ergaa email si ergina token yeroo dhufa.",
     "failed": "Kunis kuufuu hin dandeenye. Irra deebi yaali.",
     "privacy": "Dhumarraa kaasee waa'ee dhufa kana siif himan keessatti fayyadama."
+  },
+  "githubLink": {
+    "hint": "Guddisaa fi GitHub-ii isaa dhufeera. DeHub ammoo hubatii fi GitHub-ii isaa keessa jira.",
+    "connected": "GitHub garee garee.",
+    "taken": "Waa GitHub accounttiin isaa DeHub profilettiin walitti bu'ura."
   }
 }

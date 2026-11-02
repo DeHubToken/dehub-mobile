@@ -14620,5 +14620,17 @@
     "joinedBodyNoEmail": "我们将在代币上市时通过邮件通知您。",
     "failed": "无法保存。请重试。",
     "privacy": "仅用于通知您发布的信息。"
+  },
+  "githubLink": {
+    "hint": "请登录 GitHub 以证明账户归属。DeHub 仅能看到您的公开 GitHub 个人资料。",
+    "verified": "验证通过",
+    "verifiedAria": "已验证的 GitHub 账户",
+    "connect": "连接 GitHub",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已连接",
+    "disconnected": "GitHub 断开连接",
+    "taken": "这个 GitHub 账户已经绑定在另一个 DeHub 个人资料上。",
+    "failed": "无法连接 GitHub。请重试。",
+    "unavailable": "GitHub 验证功能即将推出。"
   }
 }

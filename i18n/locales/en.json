@@ -15441,5 +15441,17 @@
     "joinedBodyNoEmail": "We will email you when the token launches.",
     "failed": "Could not save that. Try again.",
     "privacy": "Only used to tell you about the launch."
+  },
+  "githubLink": {
+    "hint": "Sign in to GitHub to prove the account is yours. DeHub only sees your public GitHub profile.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub account",
+    "connect": "Connect GitHub",
+    "disconnect": "Disconnect",
+    "connected": "GitHub connected",
+    "disconnected": "GitHub disconnected",
+    "taken": "That GitHub account is already on another DeHub profile.",
+    "failed": "Couldn't connect GitHub. Try again.",
+    "unavailable": "GitHub verification is coming soon."
   }
 }

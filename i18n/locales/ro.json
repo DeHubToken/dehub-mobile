@@ -14604,5 +14604,17 @@
     "joinedBodyNoEmail": "Vă vom trimite un email când token-ul va fi lansat.",
     "failed": "Imposibil de salvat. Încearcă din nou.",
     "privacy": "Doar pentru a-ți anunța lansarea."
+  },
+  "githubLink": {
+    "hint": "Autentifică-te pe GitHub pentru a dovedi că contul este al tău. DeHub vede doar profilul public GitHub.",
+    "verified": "Verificat",
+    "verifiedAria": "Cont GitHub verificat",
+    "connect": "Conectează GitHub",
+    "disconnect": "Deconectează",
+    "connected": "GitHub conectat",
+    "disconnected": "GitHub deconectat",
+    "taken": "Acest cont GitHub este deja asociat cu un alt profil DeHub.",
+    "failed": "Nu s-a putut conecta GitHub. Încearcă din nou.",
+    "unavailable": "Verificarea GitHub este în curând disponibilă."
   }
 }

@@ -14573,5 +14573,17 @@
     "joinedBodyNoEmail": "Kami bakal ngirim email ke gwe kanggo ngaweni token lanjar.",
     "failed": "Saya nggih ora bisa ngerti apa inggung.",
     "privacy": "Gampang aja ngomongin tentang peluncuran."
+  },
+  "githubLink": {
+    "hint": "Masuk ke GitHub ngawé nganggo akunmu kanggo ngawé bukti akunmu kanggo kanggoan. DeHub cuma nglihat profile GitHubmu kanggo publik aja.",
+    "verified": "Verified",
+    "verifiedAria": "Akun GitHub kanggo verifikasi",
+    "connect": "Hubungin GitHub",
+    "disconnect": "Ngapus hubungan",
+    "connected": "GitHub udah terhubung",
+    "disconnected": "GitHub udah ngapus hubungan",
+    "taken": "Akun GitHub kanggoan udah dihubungin ke profile DeHub kanggoan lanen.",
+    "failed": "Gak bisa hubungin GitHub. Coba lanang.",
+    "unavailable": "Verifikasi GitHub kanggoan bakal sing ngawé."
   }
 }

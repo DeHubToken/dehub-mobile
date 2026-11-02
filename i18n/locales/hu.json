@@ -14595,5 +14595,17 @@
     "joinedBodyNoEmail": "Miután elindul a token, emailben értesítünk téged.",
     "failed": "Nem sikerült menteni. Próbálja újra.",
     "privacy": "Csak azért használjuk, hogy a token indításáról értesítsünk."
+  },
+  "githubLink": {
+    "hint": "Jelentkezzen be a GitHubra, és igazolja, hogy a fiók az Öné. A DeHub csak a nyilvános GitHub-profilodat látja.",
+    "verified": "Igazolt",
+    "verifiedAria": "Igazolt GitHub-fiók",
+    "connect": "GitHub csatlakoztatása",
+    "disconnect": "Leválasztás",
+    "connected": "GitHub csatlakoztatva",
+    "disconnected": "GitHub leválasztva",
+    "taken": "Ez a GitHub-fiók már egy másik DeHub-profilban van.",
+    "failed": "Nem sikerült csatlakozni a GitHubhoz. Próbálkozz újra.",
+    "unavailable": "Hamarosan jön a GitHub-hitelesítés."
   }
 }
