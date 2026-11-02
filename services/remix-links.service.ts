@@ -207,3 +207,44 @@ export async function resolveClip(clipId: string): Promise<{ postTokenId: number
   const row = data as { post_token_id: number | null; stream_token_id: number };
   return { postTokenId: row.post_token_id == null ? null : Number(row.post_token_id), streamTokenId: Number(row.stream_token_id) };
 }
+
+// ─── Tip split ──────────────────────────────────────────────────────────────
+
+export interface RemixShare { sourceTokenId: number; sourceAddress: string; splitBps: number }
+
+/**
+ * The original creator's cut when the tipped post is a duet, stitch or
+ * reaction of their video, as web's use-tip-payment does. Never blocks a tip:
+ * no answer within 2.5s, or any doubt, means no split.
+ */
+export async function remixShareFor(tokenId: string | number | null | undefined, creatorAddress: string, tipper: string): Promise<RemixShare | null> {
+  const id = tokenId == null ? "" : String(tokenId);
+  if (!isTokenId(id) || !creatorAddress || !tipper) return null;
+  const lookup = (async () => {
+    const { data, error } = await supabase
+      .from("remix_links")
+      .select("source_token_id, source_address, remixer_address, split_bps")
+      .eq("remix_token_id", Number(id))
+      .limit(1)
+      .maybeSingle();
+    if (error || !data) return null;
+    return data as { source_token_id: number; source_address: string; remixer_address: string; split_bps: number };
+  })().catch(() => null);
+  const row = await Promise.race([lookup, new Promise<null>((resolve) => setTimeout(() => resolve(null), 2500))]);
+  if (!row) return null;
+  const splitBps = Number(row.split_bps) || 0;
+  const source = String(row.source_address || "").toLowerCase();
+  if (splitBps <= 0 || !source) return null;
+  if (String(row.remixer_address || "").toLowerCase() !== creatorAddress.toLowerCase()) return null;
+  // Tipping a remix of your own video sends the whole tip to the remixer.
+  if (source === tipper.toLowerCase() || source === creatorAddress.toLowerCase()) return null;
+  return { sourceTokenId: Number(row.source_token_id), sourceAddress: source, splitBps };
+}
+
+/** How a tip on a remix divides, in display units: the source creator's part (0 when too small to send) and the rest. */
+export function splitRemixTip(amount: number, share: RemixShare | null): { source: number; remixer: number } {
+  if (!share || share.splitBps <= 0) return { source: 0, remixer: amount };
+  const raw = Math.floor(amount * share.splitBps) / 10000;
+  const source = raw >= 0.01 ? Math.round(raw * 1e6) / 1e6 : 0;
+  return { source, remixer: source ? Math.round((amount - source) * 1e6) / 1e6 : amount };
+}
