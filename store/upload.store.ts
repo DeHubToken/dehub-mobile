@@ -77,6 +77,10 @@ export interface SerializedUploadPayload {
   crossPostAccountIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  /** 'comic' shows the photos as collector cards. */
+  layout?: "comic";
+  /** Comic captions, one per page. */
+  mediaCaptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the text. */

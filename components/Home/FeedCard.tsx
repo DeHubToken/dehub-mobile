@@ -59,6 +59,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import ComicDeck from "./ComicDeck";
 import { useMetaGrey } from "../../theme/metaGrey";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import ArticleCover from "../article/ArticleCover";
@@ -1752,6 +1753,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </Text>
           </View>
         </Pressable>
+      );
+    }
+
+    if (item.layout === "comic" && galleryImages.length > 0) {
+      return (
+        <View className={edgeMedia ? undefined : "mt-2"}>
+          <ComicDeck
+            images={galleryImages}
+            captions={item.mediaCaptions}
+            descriptions={item.mediaDescriptions}
+            title={localTitle}
+            width={edgeMedia || isMinimal ? SCREEN_WIDTH : itemWidth}
+            full={immersive}
+            onOpen={immersive ? undefined : handleCardPress}
+          />
+        </View>
       );
     }
 

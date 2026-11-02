@@ -92,6 +92,10 @@ export interface UnifiedFeedItem {
   imageUrls?: string[]; // For multi-image posts
   /** Alt text, one per piece of media in display order (photos by position, a video first). */
   mediaDescriptions?: string[];
+  /** 'comic' shows the photos as collector cards. */
+  layout?: "comic";
+  /** Comic captions, one per page in display order. */
+  mediaCaptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the caption. */
