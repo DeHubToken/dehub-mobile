@@ -93,7 +93,14 @@ export interface InfiniteFeedProps {
    * feed attached a native player.
    */
   trackFeedCardVisibility?: boolean;
+  /**
+   * Lay rows out as a grid (the profile All tab on phones uses 3). Every cell
+   * is then the same tile shape, so they all share one recycle pool.
+   */
+  numColumns?: number;
 }
+
+const gridItemType = () => "tile";
 
 // Hoisted: a fresh object literal would re-configure the list on every render.
 // FlashList anchors on the first visible row, as FlatList's minIndexForVisible: 1
@@ -189,6 +196,7 @@ const InfiniteFeedBase: React.FC<
   isSignedIn = false,
   loadingComponent,
   trackFeedCardVisibility = true,
+  numColumns,
 }) => {
   const { t } = useTranslation();
   const visibilityStore = useMemo(() => createFeedVisibilityStore(isFocused ?? true), []);
@@ -601,7 +609,8 @@ const InfiniteFeedBase: React.FC<
         showsVerticalScrollIndicator={false}
         data={items}
         keyExtractor={rowKeyOf}
-        getItemType={feedPostType}
+        getItemType={numColumns && numColumns > 1 ? gridItemType : feedPostType}
+        numColumns={numColumns && numColumns > 1 ? numColumns : undefined}
         renderItem={renderFeedItem}
         ListHeaderComponent={composedListHeader}
         maintainVisibleContentPosition={MAINTAIN_POSITION}
