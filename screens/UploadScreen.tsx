@@ -1172,6 +1172,12 @@ export default function UploadScreen() {
     enabled: !postInFlight,
     onDismiss: useCallback(() => closeLatest.current(), []),
     willPrompt: useCallback(() => willPromptRef.current(), []),
+    onDragStart: useCallback(() => {
+      const up = Keyboard.isVisible();
+      if (up) closeKeyboard();
+      return up;
+    }, [closeKeyboard]),
+    onSettleOpen: useCallback(() => bodyInputRef.current?.focus(), []),
   });
   photoDragHold.current = sheet.holdDrag;
 
@@ -2643,7 +2649,7 @@ export default function UploadScreen() {
                 className="text-white text-lg font-medium mb-1"
               />
             )}
-            {!articleMode && <ComposerBodyInput
+            {!articleMode && <GestureDetector gesture={sheet.text}><ComposerBodyInput
               ref={bodyInputRef}
               value={bodyText}
               onChangeText={handleBodyChange}
@@ -2668,7 +2674,7 @@ export default function UploadScreen() {
               style={{ textAlignVertical: "top" }}
               autoFocus
               scrollEnabled={false}
-            />}
+            /></GestureDetector>}
             {articleMode && (
               <ArticleEditor
                 look={articleUi}
@@ -3804,6 +3810,9 @@ export default function UploadScreen() {
 
       </Animated.View>
 
+      {/* The sheets and drawers below are all closed on open; they mount once
+          the composer is up so the first frame stays light. */}
+      {sheet.extrasReady && <>
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
           <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
@@ -4210,6 +4219,7 @@ export default function UploadScreen() {
           }}
         />
       )}
+      </>}
     </View>
   );
 
@@ -4218,7 +4228,7 @@ export default function UploadScreen() {
     <View style={{ flex: 1 }}>
       <Animated.View pointerEvents="none" style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, sheet.dimStyle]} />
       <GestureDetector gesture={sheet.sheetPan}>
-        <Animated.View style={[{ flex: 1 }, sheet.sheetStyle]}>{composer}</Animated.View>
+        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden" }, sheet.sheetStyle]}>{composer}</Animated.View>
       </GestureDetector>
     </View>
   );
