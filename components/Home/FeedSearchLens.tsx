@@ -2,7 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Keyboard, Platform, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
 import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { Gesture, GestureDetector, TextInput as GestureTextInput } from "react-native-gesture-handler";
 import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
 import { androidFrostSupported, useFrostedSource } from "../ui/FrostedBackdrop";
@@ -189,8 +189,8 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
             >
               <Icon name="Settings2" size={16 * 1.18} color={filterActive ? "#FFFFFF" : "#A1A1AA"} strokeWidth={filterActive ? 2 : 1.8} />
             </Pressable>
-            <TextInput
-              ref={inputRef}
+            <GestureTextInput
+              ref={inputRef as unknown as React.Ref<any>}
               value={query}
               onChangeText={onChangeQuery}
               placeholder={placeholder}

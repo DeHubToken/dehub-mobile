@@ -2,7 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useEffect, useRef } from "react";
 import { View, Pressable, StyleSheet, TextInput } from "react-native";
 import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { Gesture, GestureDetector, TextInput as GestureTextInput } from "react-native-gesture-handler";
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { FeedSearchTab } from "../../libs/feed-search";
@@ -140,8 +140,11 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
           {filterActive ? bubble : null}
           <Icon name="Settings2" size={16 * 1.18} color={filterActive ? on : off} strokeWidth={filterActive ? 2 : 1.8} />
         </Pressable>
-        <TextInput
-          ref={inputRef}
+        {/* The gesture-handler TextInput: on Android a plain one keeps the
+            touch for itself, so a drag up that starts on the words never
+            reached the drag-to-close pan. */}
+        <GestureTextInput
+          ref={inputRef as unknown as React.Ref<any>}
           value={query}
           onChangeText={onChangeQuery}
           placeholder={placeholder}
