@@ -232,7 +232,27 @@
     "saved": "Profile fields saved",
     "failed": "That didn't save. Try again.",
     "verified": "Verified link",
-    "verifyHint": "To verify a link, add this to that page, then save again: {{snippet}}"
+    "verifyHint": "To verify a link, add this to that page, then save again: {{snippet}}",
+    "add": "Add field",
+    "remove": "Remove field",
+    "descriptionPresets": "Add a website, pronouns or anything else. Links show with your socials.",
+    "type": "Field type",
+    "needsLabel": "Give each custom field a label",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "City, country",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Filter notifications from",
