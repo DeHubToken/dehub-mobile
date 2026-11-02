@@ -21,6 +21,7 @@ import {
   Modal,
   Keyboard,
   PanResponder,
+  StyleSheet,
 } from "react-native";
 import { Gesture, GestureDetector, ScrollView as GestureScrollView } from "react-native-gesture-handler";
 import { COMPOSER_SHEET, useComposerSheet } from "../hooks/useComposerSheet";
@@ -3199,7 +3200,8 @@ export default function UploadScreen() {
               on web — a text or image post can be gated or sold just like a
               video. Rendered whatever the draft holds, so the options are on
               screen from first open. */}
-          <View>
+          {/* Filled in once the sheet is up (see useComposerSheet); the box keeps its height meanwhile. */}
+          {!sheet.extrasReady ? <View style={{ height: 172 }} /> : <View>
             {/* Mint sits in the list rather than in a card of its own, as
                 web's first PostAccessToggles row. Off by default, so a first
                 post needs no wallet at all. */}
@@ -3487,7 +3489,7 @@ export default function UploadScreen() {
                 <CustomSwitch value={isMature} onValueChange={setIsMature} />
               </View>
               )}
-          </View>
+          </View>}
         </ScrollView>
       </View>
 
@@ -4221,7 +4223,7 @@ export default function UploadScreen() {
     <View style={{ flex: 1 }}>
       <Animated.View pointerEvents="none" style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, sheet.dimStyle]} />
       <GestureDetector gesture={sheet.sheetPan}>
-        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden" }, sheet.sheetStyle]}>{composer}</Animated.View>
+        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden", borderTopWidth: 1, borderLeftWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.14)" }, sheet.sheetStyle]}>{composer}</Animated.View>
       </GestureDetector>
     </View>
   );
