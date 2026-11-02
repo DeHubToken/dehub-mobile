@@ -360,7 +360,14 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
 
   const onLayout = useCallback((e: { nativeEvent: { layout: { x: number; y: number; width: number; height: number } } }) => {
     const { x, y, width, height } = e.nativeEvent.layout;
-    layouts.value = { ...layouts.value, [id]: { x, y, w: width, h: height } };
+    // On the UI thread, in place: every item lays out in the same frame, and
+    // a JS-side `{ ...layouts.value }` read each other's writes before they
+    // landed, so only the last item kept its rect and nothing could be hit.
+    layouts.modify(<T extends Record<string, Rect>>(all: T): T => {
+      "worklet";
+      (all as Record<string, Rect>)[id] = { x, y, w: width, h: height };
+      return all;
+    }, false);
   }, [id, layouts]);
 
   return (
