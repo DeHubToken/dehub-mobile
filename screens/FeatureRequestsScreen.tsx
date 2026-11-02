@@ -105,6 +105,7 @@ import {
   type FeatureSort,
   type FeatureStatus,
 } from "../hooks/useFeatureRequests";
+import { Collapsible, CollapsibleChevron } from "../components/ui/Collapsible";
 
 const COMMENT_MAX = 500;
 const TITLE_MAX = 100;
@@ -762,9 +763,9 @@ const PromptComposer: React.FC<{
       </Pressable>
       <Pressable onPress={() => setDetailsOpen(value => !value)} accessibilityRole="button" accessibilityState={{ expanded: detailsOpen }} style={styles.promptDetails}>
         <Text style={styles.promptHint}>{t("features.promptDetails", "Optional details")}</Text>
-        <Icon name={detailsOpen ? "ChevronUp" : "ChevronDown"} size={14} color="#808089" />
+        <CollapsibleChevron open={detailsOpen} size={14} color="#808089" />
       </Pressable>
-      {detailsOpen && <View>
+      <Collapsible open={detailsOpen}>
         <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
         <TextInput value={title} onChangeText={setTitle} maxLength={TITLE_MAX} editable={!submitting} style={styles.input} />
         <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
@@ -774,7 +775,7 @@ const PromptComposer: React.FC<{
         </Pressable>)}</View>
         <Text style={styles.fieldLabel}>{t("features.promptDevice", "Device & OS (for bugs)")}</Text>
         <TextInput value={device} onChangeText={setDevice} maxLength={DEVICE_MAX} editable={!submitting} style={styles.input} />
-      </View>}
+      </Collapsible>
     </ThemePanel>
   );
 };
