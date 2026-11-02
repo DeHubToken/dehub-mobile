@@ -2637,7 +2637,27 @@
     "saved": "Dirreewwan piroofaayilii olkaa'aman",
     "failed": "Hin olkaa'amne. Irra deebi'ii yaali.",
     "verified": "Liinkii mirkanaa'e",
-    "verifyHint": "Liinkii mirkaneessuuf, kana fuula sana irratti dabali, achiis irra deebi'ii olkaa'i: {{snippet}}"
+    "verifyHint": "Liinkii mirkaneessuuf, kana fuula sana irratti dabali, achiis irra deebi'ii olkaa'i: {{snippet}}",
+    "add": "Dirree dabaluu",
+    "remove": "Dirree haquu",
+    "descriptionPresets": "Weebsaayiti, jecha ofii keessan ykn waan biraa dabaluu. Loojjii socials keessan wajjin mul'ata.",
+    "type": "Gosa dirree",
+    "needsLabel": "Dirree custom tokkoon tokkoon keessatti libaa kennuu",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Magaalaa, biyyaa",
+    "presets": {
+      "website": "Weebsaayiti",
+      "blog": "Bloga",
+      "portfolio": "Foortfoliyoo",
+      "shop": "Manneen gurguraa",
+      "podcast": "Podcast",
+      "newsletter": "Oddeeffannoo",
+      "pronouns": "Jecha ofii",
+      "location": "Bakka jiraachuu",
+      "custom": "Custom",
+      "customOption": "Libaa custom"
+    }
   },
   "notificationFilters": {
     "title": "Beeksisa irraa calali",

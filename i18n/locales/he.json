@@ -2637,7 +2637,26 @@
     "saved": "שדות הפרופיל נשמרו",
     "failed": "לא נשמר. נסה שוב.",
     "verified": "קישור מאומת",
-    "verifyHint": "כדי לאמת קישור, הוסף את זה לעמוד ההוא ושמור שוב: {{snippet}}"
+    "verifyHint": "כדי לאמת קישור, הוסף את זה לעמוד ההוא ושמור שוב: {{snippet}}",
+    "add": "הוסף שדה",
+    "remove": "מחק שדה",
+    "descriptionPresets": "הוסף אתר, זהויות או כל דבר אחר. קישורים יוצגו בחברות הסוציאליות שלך.",
+    "type": "סוג שדה",
+    "needsLabel": "יש לכל שדה תווית",
+    "placeholderPronouns": "הם/הם",
+    "placeholderLocation": "עיר, מדינה",
+    "presets": {
+      "website": "אתר",
+      "blog": "בלוג",
+      "portfolio": "פורטפוליו",
+      "shop": "חנות",
+      "podcast": "פודקאסט",
+      "newsletter": "מבזק",
+      "pronouns": "זהויות",
+      "location": "מיקום",
+      "custom": "מותאם",
+      "customOption": "תווית מותאמת"
+    }
   },
   "notificationFilters": {
     "title": "סינון התראות מ־",

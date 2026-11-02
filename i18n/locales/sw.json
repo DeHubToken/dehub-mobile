@@ -2637,7 +2637,27 @@
     "saved": "Sehemu za wasifu zimehifadhiwa",
     "failed": "Haikuhifadhiwa. Jaribu tena.",
     "verified": "Kiungo kilichothibitishwa",
-    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}"
+    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}",
+    "add": "Add field",
+    "remove": "Remove field",
+    "descriptionPresets": "Kutangaza tovuti, maadili au kitu chochote. Tovuti zinazotazama zinaweza kuonyeshwa na hesabu zangu za kijamii.",
+    "type": "Field type",
+    "needsLabel": "Kuhusu kila chombo cha maelezo ya kawaida, andika jina la kawaida.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "City, country",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Chuja arifa kutoka kwa",

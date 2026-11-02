@@ -2637,7 +2637,27 @@
     "saved": "S'han desat els camps del perfil",
     "failed": "No s'ha desat. Torna-ho a provar.",
     "verified": "Enllaç verificat",
-    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}"
+    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}",
+    "add": "Afegeix un camp",
+    "remove": "Elimina el camp",
+    "descriptionPresets": "Afegeix un lloc web, pronoms o qualsevol altra cosa. Els enllaços es mostren amb les teves xarxes socials.",
+    "type": "Tipus de camp",
+    "needsLabel": "Dona una etiqueta a cada camp personalitzat",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "ells/elles",
+    "placeholderLocation": "Ciutat, país",
+    "presets": {
+      "website": "Lloc web",
+      "blog": "Bloc",
+      "portfolio": "Cartera",
+      "shop": "Botiga",
+      "podcast": "Podcast",
+      "newsletter": "Butlletí",
+      "pronouns": "Pronombres",
+      "location": "Ubicació",
+      "custom": "Personalitzat",
+      "customOption": "Etiqueta personalitzada"
+    }
   },
   "notificationFilters": {
     "title": "Filtra les notificacions de",

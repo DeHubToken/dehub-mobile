@@ -2637,7 +2637,27 @@
     "saved": "Profil meýdanlary ýatda saklandy",
     "failed": "Ýatda saklanmady. Gaýtadan synanyşyň.",
     "verified": "Tassyklanan baglanyşyk",
-    "verifyHint": "Baglanyşygy tassyklamak üçin muny şol sahypa goşuň, soň gaýtadan ýatda saklaň: {{snippet}}"
+    "verifyHint": "Baglanyşygy tassyklamak üçin muny şol sahypa goşuň, soň gaýtadan ýatda saklaň: {{snippet}}",
+    "add": "Meýdan goş",
+    "remove": "Meýdany aýyr",
+    "descriptionPresets": "Websaýty, sözlemeçiligi ýa-da başga zat goşuň. Baglanyşyklar sosial medianyňyz bilen görkezilýär.",
+    "type": "Meýdan görnüşi",
+    "needsLabel": "Her bir adaty meýdana belgi beriň",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Şäher, ülke",
+    "presets": {
+      "website": "Websaýt",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Dükän",
+      "podcast": "Podkast",
+      "newsletter": "Habar ýazylmasy",
+      "pronouns": "Sözlemeçilik",
+      "location": "Ýerleşişi",
+      "custom": "Adaty",
+      "customOption": "Adaty belgi"
+    }
   },
   "notificationFilters": {
     "title": "Bildirişleri süz",

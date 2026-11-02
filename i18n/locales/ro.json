@@ -2637,7 +2637,27 @@
     "saved": "Câmpurile de profil au fost salvate",
     "failed": "Nu s-a salvat. Încearcă din nou.",
     "verified": "Link verificat",
-    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}"
+    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}",
+    "add": "Adaugă câmp",
+    "remove": "Șterge câmp",
+    "descriptionPresets": "Adaugă un site web, pronume sau altceva. Link-urile vor apărea alături de rețelele sociale.",
+    "type": "Tip câmp",
+    "needsLabel": "Dă fiecărui câmp personalizat un etichetă",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Oraș, țară",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portofoliu",
+      "shop": "Magazin",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronume",
+      "location": "Locatie",
+      "custom": "Personalizat",
+      "customOption": "Etichetă personalizată"
+    }
   },
   "notificationFilters": {
     "title": "Filtrează notificările de la",

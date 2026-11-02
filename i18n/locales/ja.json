@@ -2508,7 +2508,26 @@
     "saved": "プロフィール項目を保存しました",
     "failed": "保存できませんでした。もう一度お試しください。",
     "verified": "認証済みリンク",
-    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}"
+    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}",
+    "add": "フィールドを追加する",
+    "remove": "フィールドを削除する",
+    "descriptionPresets": "ウェブサイト、プルノミナル、またはその他のものを追加する。リンクはソーシャルメディアで表示する。",
+    "type": "フィールドのタイプ",
+    "needsLabel": "各カスタムフィールドにラベルを付ける",
+    "placeholderPronouns": "彼ら/彼ら",
+    "placeholderLocation": "都市、国",
+    "presets": {
+      "website": "ウェブサイト",
+      "blog": "ブログ",
+      "portfolio": "ポートフォリオ",
+      "shop": "ショップ",
+      "podcast": "ポッドキャスト",
+      "newsletter": "ニュースレター",
+      "pronouns": "プルノミナル",
+      "location": "場所",
+      "custom": "カスタム",
+      "customOption": "カスタムラベル"
+    }
   },
   "notificationFilters": {
     "title": "通知をフィルターする相手",

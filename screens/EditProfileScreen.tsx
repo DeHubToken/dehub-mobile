@@ -45,6 +45,7 @@ import {
 } from "../libs/social-reach";
 import type { ProfileField } from "../components/Profile/ProfileFieldsList";
 import { saveProfileFields } from "../services/profile-fields.service";
+import ProfileFieldsEditor, { fieldsKey, hasUnverifiedLink, rowToField, rowsOf, type FieldRow } from "../components/Profile/ProfileFieldsEditor";
 import GithubLinkRow from "../components/Profile/GithubLinkRow";
 import {
   TWITTER_SVG_XML,
@@ -151,12 +152,8 @@ const EditProfileScreen = () => {
   // Profile fields — four label/value rows, saved through their own endpoint
   // because that save is when the server checks links for a rel="me".
   const storedFields: ProfileField[] = Array.isArray((user as any)?.profileFields) ? (user as any).profileFields : [];
-  const [fieldRows, setFieldRows] = useState<ProfileField[]>(() => padFieldRows(storedFields));
-  const fieldsKey = (rows: ProfileField[]) =>
-    JSON.stringify(rows.map((r) => [r.name.trim(), r.value.trim()]).filter(([n, v]) => n || v));
-  const fieldsChanged = fieldsKey(fieldRows) !== fieldsKey(storedFields);
-  const updateFieldRow = (index: number, key: "name" | "value", text: string) =>
-    setFieldRows((prev) => prev.map((row, i) => (i === index ? { ...row, [key]: text, verifiedAt: null } : row)));
+  const [fieldRows, setFieldRows] = useState<FieldRow[]>(() => rowsOf(storedFields));
+  const fieldsChanged = fieldsKey(fieldRows.map(rowToField)) !== fieldsKey(storedFields);
 
   const isDirty = useMemo(() => {
     return (
@@ -274,6 +271,10 @@ const EditProfileScreen = () => {
     const prevUserSnapshot = user;
     try {
       setSaving(true);
+      // Before anything saves, so a half-filled custom field does not leave the rest saved.
+      if (fieldRows.some((r) => r.preset === "custom" && r.value.trim() && !r.name.trim())) {
+        throw new Error(t("profileFields.needsLabel", { defaultValue: "Give each custom field a label" }));
+      }
       const usernameChanged = username?.trim() !== initial.username.trim();
       if (usernameChanged && isReservedUsername(username)) {
         throw new Error(t("setProfile.usernameReserved"));
@@ -359,11 +360,11 @@ const EditProfileScreen = () => {
       await AuthService.updateProfile(payload);
       if (fieldsChanged) {
         const saved = await saveProfileFields(
-          fieldRows.filter((r) => r.name.trim() || r.value.trim()).map(({ name, value }) => ({ name, value })),
+          fieldRows.map(rowToField).filter((f): f is { name: string; value: string } => !!f),
         ).catch(() => {
           throw new Error(t("profileFields.failed"));
         });
-        setFieldRows(padFieldRows(saved));
+        setFieldRows(rowsOf(saved));
         await patchUser?.({ profileFields: saved } as any);
       }
       setDisplayName.complete(displayName, displayName);
@@ -572,44 +573,19 @@ const EditProfileScreen = () => {
             {/* Profile fields — label/value lines under the bio, links verified by rel="me". */}
             <View className="mt-2" testID="edit-profile-fields">
               <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("profileFields.title")}</Text>
-              <Text className="text-neutral-500 text-xs mb-3">{t("profileFields.description")}</Text>
-              <View className="gap-2">
-                {fieldRows.map((row, index) => (
-                  <View key={index} className="flex-row gap-2">
-                    <TextInput
-                      className="w-28 bg-theme-neutrals-900 text-white text-sm px-3 py-3 rounded-xl border border-theme-neutrals-700"
-                      placeholderTextColor="#6b7280"
-                      placeholder={t("profileFields.label")}
-                      accessibilityLabel={`${t("profileFields.label")} ${index + 1}`}
-                      value={row.name}
-                      maxLength={30}
-                      onChangeText={(val) => updateFieldRow(index, "name", val.slice(0, 30))}
-                    />
-                    <View className="flex-1 justify-center">
-                      <TextInput
-                        className="bg-theme-neutrals-900 text-white text-sm px-3 py-3 pr-9 rounded-xl border border-theme-neutrals-700"
-                        placeholderTextColor="#6b7280"
-                        placeholder={t("profileFields.content")}
-                        accessibilityLabel={`${t("profileFields.content")} ${index + 1}`}
-                        value={row.value}
-                        maxLength={200}
-                        autoCapitalize="none"
-                        onChangeText={(val) => updateFieldRow(index, "value", val.slice(0, 200))}
-                      />
-                      {!!row.verifiedAt && (
-                        <View className="absolute right-3" accessibilityLabel={t("profileFields.verified")}>
-                          <Icon name="CircleCheck" size={16} color="#34D399" />
-                        </View>
-                      )}
-                    </View>
-                  </View>
-                ))}
-              </View>
-              <Text className="text-neutral-500 text-xs mt-2" selectable>
-                {t("profileFields.verifyHint", {
-                  snippet: relMeSnippet(String(user?.username || user?.address || "").replace(/^@/, "")),
-                })}
-              </Text>
+              <Text className="text-neutral-500 text-xs mb-3">{t("profileFields.descriptionPresets", { defaultValue: "Add a website, pronouns or anything else. Links show with your socials." })}</Text>
+              <ProfileFieldsEditor
+                rows={fieldRows}
+                onChange={setFieldRows}
+                onFocusRow={(node) => scrollIntoView(node)}
+              />
+              {hasUnverifiedLink(fieldRows) ? (
+                <Text className="text-neutral-500 text-xs mt-3" selectable>
+                  {t("profileFields.verifyHint", {
+                    snippet: relMeSnippet(String(user?.username || user?.address || "").replace(/^@/, "")),
+                  })}
+                </Text>
+              ) : null}
             </View>
 
             <View className="mt-2">
@@ -694,11 +670,4 @@ export default EditProfileScreen;
 function relMeSnippet(handle: string): string {
   const linkText = "DeHub";
   return `<a rel="me" href="https://dehub.io/${handle}">${linkText}</a>`;
-}
-
-/** Four editable rows: the stored fields, then blanks. */
-function padFieldRows(fields: ProfileField[] | null | undefined): ProfileField[] {
-  const rows = (fields || []).slice(0, 4).map((f) => ({ name: f.name || "", value: f.value || "", verifiedAt: f.verifiedAt ?? null }));
-  while (rows.length < 4) rows.push({ name: "", value: "", verifiedAt: null });
-  return rows;
 }

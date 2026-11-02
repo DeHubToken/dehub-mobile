@@ -232,7 +232,27 @@
     "saved": "Profil alanları kaydedildi",
     "failed": "Kaydedilmedi. Tekrar dene.",
     "verified": "Doğrulanmış bağlantı",
-    "verifyHint": "Bir bağlantıyı doğrulamak için bunu o sayfaya ekle, sonra yeniden kaydet: {{snippet}}"
+    "verifyHint": "Bir bağlantıyı doğrulamak için bunu o sayfaya ekle, sonra yeniden kaydet: {{snippet}}",
+    "descriptionPresets": "Websitesi, kullanıcı adınızı, dilinizi veya diğer bilgileri ekleyebilirsiniz. Sosyal medya bağlantılarınız da gösterilebilir.",
+    "type": "Alan türü",
+    "needsLabel": "Her özelleştirilmiş alana bir etiket verin.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Şehir, ülke",
+    "presets": {
+      "website": "Web sitesi",
+      "portfolio": "Portföy",
+      "shop": "Mağaza",
+      "podcast": "Podcast",
+      "newsletter": "Duyuru Bülteni",
+      "blog": "Blog",
+      "pronouns": "İsim zamirleri",
+      "location": "Konum",
+      "custom": "Özel",
+      "customOption": "Özel etiket"
+    },
+    "add": "Eklentiyi ekle",
+    "remove": "Alanı kaldır"
   },
   "notificationFilters": {
     "title": "Bildirimleri filtrele",

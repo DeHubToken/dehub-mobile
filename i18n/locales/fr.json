@@ -232,7 +232,27 @@
     "saved": "Champs du profil enregistrés",
     "failed": "Ça n'a pas été enregistré. Réessayez.",
     "verified": "Lien vérifié",
-    "verifyHint": "Pour vérifier un lien, ajoutez ceci à cette page, puis enregistrez à nouveau : {{snippet}}"
+    "verifyHint": "Pour vérifier un lien, ajoutez ceci à cette page, puis enregistrez à nouveau : {{snippet}}",
+    "add": "Ajouter un champ",
+    "remove": "Supprimer le champ",
+    "descriptionPresets": "Ajoutez un site Web, des pronoms ou quoi que ce soit d'autre. Les liens s'affichent avec vos réseaux sociaux.",
+    "type": "Type de champ",
+    "needsLabel": "Donnez une étiquette à chaque champ personnalisé",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "ils/elles",
+    "placeholderLocation": "Ville, pays",
+    "presets": {
+      "website": "Site Web",
+      "blog": "Blog",
+      "portfolio": "Portefeuille",
+      "shop": "Boutique",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronoms",
+      "location": "Emplacement",
+      "custom": "Personnalisé",
+      "customOption": "Étiquette personnalisée"
+    }
   },
   "notificationFilters": {
     "title": "Filtrer les notifications de",

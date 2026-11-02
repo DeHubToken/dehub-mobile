@@ -2637,7 +2637,27 @@
     "saved": "Profiilikentät tallennettu",
     "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
     "verified": "Vahvistettu linkki",
-    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}"
+    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}",
+    "add": "Lisää kenttä",
+    "remove": "Poista kenttä",
+    "descriptionPresets": "Lisää verkkosivusto, pronominit tai jotain muuta. Linkit näkyvät sosiaalisessa mediassa.",
+    "type": "Kentän tyyppi",
+    "needsLabel": "Anna kullekin mukautetulle kentälle tunniste",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "he/heidät",
+    "placeholderLocation": "Kaupunki, maa",
+    "presets": {
+      "website": "Verkkosivusto",
+      "blog": "Blogi",
+      "portfolio": "Portfolio",
+      "shop": "Osta",
+      "podcast": "Podcast",
+      "newsletter": "Uutiskirje",
+      "pronouns": "Pronominit",
+      "location": "Sijainti",
+      "custom": "Mukautettu",
+      "customOption": "Mukautettu tunniste"
+    }
   },
   "notificationFilters": {
     "title": "Suodata ilmoitukset",

@@ -2637,7 +2637,27 @@
     "saved": "Pole profilu uložena",
     "failed": "Neuložilo se. Zkuste to znovu.",
     "verified": "Ověřený odkaz",
-    "verifyHint": "Chcete-li odkaz ověřit, přidejte toto na danou stránku a uložte znovu: {{snippet}}"
+    "verifyHint": "Chcete-li odkaz ověřit, přidejte toto na danou stránku a uložte znovu: {{snippet}}",
+    "add": "Přidat pole",
+    "remove": "Odebrat pole",
+    "descriptionPresets": "Přidej webové stránky, zájmena nebo cokoli jiného. Odkazy se zobrazují na sociálních sítích.",
+    "type": "Typ pole",
+    "needsLabel": "Dejte každému vlastnímu poli štítek",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "oni/oni",
+    "placeholderLocation": "Město, země",
+    "presets": {
+      "website": "Webová stránka",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Obchod",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Zájmena",
+      "location": "Lokalita",
+      "custom": "Vlastní",
+      "customOption": "Vlastní štítek"
+    }
   },
   "notificationFilters": {
     "title": "Filtrovat oznámení od",

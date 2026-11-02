@@ -2637,7 +2637,27 @@
     "saved": "Profil maydonlari saqlandi",
     "failed": "Saqlanmadi. Qayta urinib ko'ring.",
     "verified": "Tasdiqlangan havola",
-    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}"
+    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}",
+    "add": "Oʻrin qoʻshish",
+    "remove": "Oʻrin olib tashlash",
+    "descriptionPresets": "Veb-sayt, unvon yoki boshqa narsani qoʻshing. Havolalar sizning ijtimoiy tarmoqlaringiz bilan koʻrsatiladi.",
+    "type": "Oʻrin turi",
+    "needsLabel": "Har bir maxsus oʻrin uchun etiket bering",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Shahar, mamlakat",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Doʻkon",
+      "podcast": "Podkast",
+      "newsletter": "Habarlar",
+      "pronouns": "Unvonlar",
+      "location": "Manzil",
+      "custom": "Maxsus",
+      "customOption": "Maxsus etiket"
+    }
   },
   "notificationFilters": {
     "title": "Bildirishnomalarni filtrlash",

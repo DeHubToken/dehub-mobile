@@ -2637,7 +2637,26 @@
     "saved": "Profilmezők mentve",
     "failed": "Nem sikerült menteni. Próbáld újra.",
     "verified": "Ellenőrzött hivatkozás",
-    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}"
+    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}",
+    "add": "Add field",
+    "remove": "Remove field",
+    "descriptionPresets": "Add egy weboldalt, nevek vagy bármit más. A linkek a szociális média oldalaidra mutatnak.",
+    "type": "Field type",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "City, country",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Értesítések szűrése tőlük",

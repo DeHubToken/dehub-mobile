@@ -2637,7 +2637,27 @@
     "saved": "Polja profila spremljena",
     "failed": "Nije spremljeno. Pokušaj ponovno.",
     "verified": "Potvrđena poveznica",
-    "verifyHint": "Za potvrdu poveznice dodaj ovo na tu stranicu pa ponovno spremi: {{snippet}}"
+    "verifyHint": "Za potvrdu poveznice dodaj ovo na tu stranicu pa ponovno spremi: {{snippet}}",
+    "add": "Dodaj polje",
+    "remove": "Ukloni polje",
+    "descriptionPresets": "Dodaj web stranicu, zamjenice ili bilo što drugo. Linkovi će se prikazati s vašim društvenim mrežama.",
+    "type": "Tip polja",
+    "needsLabel": "Dajte svom prilagođenom polju naziv",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Grad, država",
+    "presets": {
+      "website": "Web stranica",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Prodavaonica",
+      "podcast": "Podcast",
+      "newsletter": "Brojčana lista",
+      "pronouns": "Zamjenice",
+      "location": "Lokacija",
+      "custom": "Prilagođeno",
+      "customOption": "Prilagođeni naziv"
+    }
   },
   "notificationFilters": {
     "title": "Filtriraj obavijesti od",

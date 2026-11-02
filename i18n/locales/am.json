@@ -2637,7 +2637,26 @@
     "saved": "የመገለጫ መስኮች ተቀምጠዋል",
     "failed": "አልተቀመጠም። እንደገና ይሞክሩ።",
     "verified": "የተረጋገጠ አገናኝ",
-    "verifyHint": "አገናኝን ለማረጋገጥ ይህን በዚያ ገጽ ላይ ያክሉ፣ ከዚያ እንደገና ያስቀምጡ፦ {{snippet}}"
+    "verifyHint": "አገናኝን ለማረጋገጥ ይህን በዚያ ገጽ ላይ ያክሉ፣ ከዚያ እንደገና ያስቀምጡ፦ {{snippet}}",
+    "add": "መስክ ያክሉ",
+    "remove": "መስክ አስወግድ",
+    "descriptionPresets": "ድር ጣቢያ ፣ አጠራሮች ወይም ሌላ ማንኛውንም ነገር ያክሉ ። አገናኞች ከማህበራዊ አውታረ መረቦችዎ ጋር ያሳያሉ ።",
+    "type": "የመስክ አይነት",
+    "needsLabel": "ለእያንዳንዱ ብጁ መስክ መለያ ይስጡ",
+    "placeholderPronouns": "እነሱ/እነሱ",
+    "placeholderLocation": "ከተማ, አገር",
+    "presets": {
+      "website": "ድረ-ገጽ",
+      "blog": "ብሎግ",
+      "portfolio": "ፖርትፎሊዮ",
+      "shop": "ሱቅ",
+      "podcast": "ፖድካስት",
+      "newsletter": "ጋዜጣ",
+      "pronouns": "ስሞችን ሙሉ ገለጻ ያግኙ Pronouns",
+      "location": "አካባቢ",
+      "custom": "ብጁ",
+      "customOption": "ብጁ መለያ"
+    }
   },
   "notificationFilters": {
     "title": "ማሳወቂያዎችን አጣራ ከ",

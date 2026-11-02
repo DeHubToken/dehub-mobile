@@ -2637,7 +2637,27 @@
     "saved": "Profil sahələri yadda saxlanıldı",
     "failed": "Yadda saxlanılmadı. Yenidən cəhd edin.",
     "verified": "Təsdiqlənmiş link",
-    "verifyHint": "Linki təsdiqləmək üçün bunu həmin səhifəyə əlavə edin, sonra yenidən yadda saxlayın: {{snippet}}"
+    "verifyHint": "Linki təsdiqləmək üçün bunu həmin səhifəyə əlavə edin, sonra yenidən yadda saxlayın: {{snippet}}",
+    "add": "Sahə əlavə edin",
+    "remove": "Sahəni sil",
+    "descriptionPresets": "Veb-sayt, əvəzlik və ya başqa bir şey əlavə edin. Linklər sosiallarınızla göstərir.",
+    "type": "Sahə növü",
+    "needsLabel": "Hər bir fərdi sahəyə etiket verin",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "onlar/onlar",
+    "placeholderLocation": "Şəhər, ölkə",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Bloq",
+      "portfolio": "Portfel",
+      "shop": "Mağaza",
+      "podcast": "Podkast",
+      "newsletter": "Xəbər bülleteni",
+      "pronouns": "Pronouns",
+      "location": "Mövqe",
+      "custom": "Fərdi",
+      "customOption": "Fərdi etiket"
+    }
   },
   "notificationFilters": {
     "title": "Bildirişləri süz",

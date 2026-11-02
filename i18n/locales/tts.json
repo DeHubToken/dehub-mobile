@@ -2637,7 +2637,21 @@
     "saved": "บันทึกช่องข้อมูลโปรไฟล์แล้ว",
     "failed": "บันทึกบ่สำเร็จ ลองใหม่",
     "verified": "ลิงก์ที่ยืนยันแล้ว",
-    "verifyHint": "ถ้าสิยืนยันลิงก์ ให้เพิ่มโค้ดนี้ใส่หน้านั้น แล้วบันทึกใหม่: {{snippet}}"
+    "verifyHint": "ถ้าสิยืนยันลิงก์ ให้เพิ่มโค้ดนี้ใส่หน้านั้น แล้วบันทึกใหม่: {{snippet}}",
+    "type": "สายงาน",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "เมือง, ประเทศ",
+    "presets": {
+      "website": "เว็บไซต์",
+      "blog": "บล็อก",
+      "portfolio": "พอร์ตโฟลิโอ",
+      "shop": "ร้านค้า",
+      "podcast": "พอดคาสต์",
+      "newsletter": "นิวส์เล็ตเตอร์",
+      "pronouns": "คำบอกเล่า",
+      "location": "ที่ตั้ง"
+    }
   },
   "notificationFilters": {
     "title": "กรองการแจ้งเตือนจาก",

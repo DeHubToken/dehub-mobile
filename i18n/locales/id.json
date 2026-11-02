@@ -2637,7 +2637,27 @@
     "saved": "Kolom profil tersimpan",
     "failed": "Tidak tersimpan. Coba lagi.",
     "verified": "Tautan terverifikasi",
-    "verifyHint": "Untuk memverifikasi tautan, tambahkan ini ke halaman itu, lalu simpan lagi: {{snippet}}"
+    "verifyHint": "Untuk memverifikasi tautan, tambahkan ini ke halaman itu, lalu simpan lagi: {{snippet}}",
+    "add": "Tambahkan field",
+    "remove": "Hapus field",
+    "descriptionPresets": "Tambahkan situs web, pronome ou qualquer outra coisa. Links serão exibidos junto aos seus canais sociais.",
+    "type": "Tipo de campo",
+    "needsLabel": "Dê um rótulo personalizado para cada campo personalizado",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Cidade, país",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfólio",
+      "shop": "Loja",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomes",
+      "location": "Localização",
+      "custom": "Personalizado",
+      "customOption": "Rótulo personalizado"
+    }
   },
   "notificationFilters": {
     "title": "Saring notifikasi dari",

@@ -2637,7 +2637,27 @@
     "saved": "Profilfälder gspeicheret",
     "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
     "verified": "Bestätigte Link",
-    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}"
+    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}",
+    "add": "Add Feld",
+    "remove": "Entferne Feld",
+    "descriptionPresets": "Website, Pronomen oder anderes hinzufügen. Links werden mit deinen Socials angezeigt.",
+    "type": "Feldtyp",
+    "needsLabel": "Jedes benutzerdefinierte Feld mit einem Label versehen",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Stadt, Land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomen",
+      "location": "Ort",
+      "custom": "Benutzerdefiniert",
+      "customOption": "Benutzerdefiniertes Label"
+    }
   },
   "notificationFilters": {
     "title": "Benachrichtigunge filtere vo",

@@ -2635,7 +2635,14 @@
     "saved": "انحفظت حقول الملف",
     "failed": "ما انحفظ. جرّب كمان مرة.",
     "verified": "رابط موثّق",
-    "verifyHint": "لتوثّق رابط، ضيف هاد عالصفحة وبعدين احفظ كمان مرة: {{snippet}}"
+    "verifyHint": "لتوثّق رابط، ضيف هاد عالصفحة وبعدين احفظ كمان مرة: {{snippet}}",
+    "placeholderPronouns": "هم/هم",
+    "placeholderLocation": "مدينة، بلد",
+    "presets": {
+      "shop": "المتجر",
+      "location": "موقعك",
+      "customOption": "الوسم المخصص"
+    }
   },
   "notificationFilters": {
     "title": "فلترة الإشعارات من",

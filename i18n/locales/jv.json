@@ -2637,7 +2637,25 @@
     "saved": "Kolom profil kesimpen",
     "failed": "Ora kesimpen. Coba maneh.",
     "verified": "Pranala sing diverifikasi",
-    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}"
+    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}",
+    "descriptionPresets": "Kanggo tambah website, pronomina, atawa cangge ngarani lain, link social media kanggo ditampilin.",
+    "type": "Tipe lapur",
+    "needsLabel": "Ganti tiap-tiap field khusus ngarani labelnya.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "ngoko/ngoko gini",
+    "placeholderLocation": "Kota, negara",
+    "presets": {
+      "website": "Situs web",
+      "blog": "Buku Buku",
+      "portfolio": "Panggonan Karya",
+      "shop": "Toko",
+      "podcast": "Pandhawa Swara",
+      "newsletter": "Buletin Newsletter",
+      "pronouns": "Kata Ganti",
+      "location": "Lokasi",
+      "custom": "Custom",
+      "customOption": "Siji label khusus"
+    }
   },
   "notificationFilters": {
     "title": "Saring kabar saka",

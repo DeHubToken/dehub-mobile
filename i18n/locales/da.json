@@ -2637,7 +2637,27 @@
     "saved": "Profilfelter gemt",
     "failed": "Det blev ikke gemt. Prøv igen.",
     "verified": "Bekræftet link",
-    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}"
+    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}",
+    "add": "Tilføj felt",
+    "remove": "Fjern felt",
+    "descriptionPresets": "Tilføj en hjemmeside, pronominer eller noget andet. Links vises med dine sociale medier.",
+    "type": "Felttype",
+    "needsLabel": "Giv hvert brugerdefineret felt en etiket",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "de/dem",
+    "placeholderLocation": "By, land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portefølje",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Nyhedsbrev",
+      "pronouns": "Pronomen",
+      "location": "Placering",
+      "custom": "Tilpasset",
+      "customOption": "Brugerdefineret etiket"
+    }
   },
   "notificationFilters": {
     "title": "Filtrér notifikationer fra",

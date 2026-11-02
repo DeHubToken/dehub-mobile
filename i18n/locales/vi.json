@@ -2637,7 +2637,27 @@
     "saved": "Đã lưu các trường hồ sơ",
     "failed": "Chưa lưu được. Hãy thử lại.",
     "verified": "Liên kết đã xác minh",
-    "verifyHint": "Để xác minh liên kết, hãy thêm đoạn này vào trang đó rồi lưu lại: {{snippet}}"
+    "verifyHint": "Để xác minh liên kết, hãy thêm đoạn này vào trang đó rồi lưu lại: {{snippet}}",
+    "add": "Thêm trường",
+    "remove": "Xóa trường",
+    "descriptionPresets": "Thêm một trang web, từ ngữ chỉ ngôi hoặc bất kỳ thứ gì khác. Các liên kết sẽ hiển thị cùng với mạng xã hội của bạn.",
+    "type": "Loại trường",
+    "needsLabel": "Đặt cho mỗi trường tùy chỉnh một nhãn riêng",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Thành phố, quốc gia",
+    "presets": {
+      "website": "Trang web",
+      "blog": "Blog",
+      "portfolio": "Bộ sưu tập (Portfolio)",
+      "shop": "Cửa hàng (Shop)",
+      "podcast": "Podcast",
+      "newsletter": "Tin tức (Newsletter)",
+      "pronouns": "Từ ngữ chỉ ngôi (Pronouns)",
+      "location": "Vị trí (Location)",
+      "custom": "Tùy chỉnh",
+      "customOption": "Nhãn tùy chỉnh"
+    }
   },
   "notificationFilters": {
     "title": "Lọc thông báo từ",

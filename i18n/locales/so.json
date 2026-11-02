@@ -2637,7 +2637,18 @@
     "saved": "Meelaha astaanta waa la kaydiyay",
     "failed": "Lama kaydin. Isku day mar kale.",
     "verified": "Xiriir la xaqiijiyay",
-    "verifyHint": "Si aad u xaqiijiso xiriir, kan ku dar boggaas, kadibna mar kale kaydi: {{snippet}}"
+    "verifyHint": "Si aad u xaqiijiso xiriir, kan ku dar boggaas, kadibna mar kale kaydi: {{snippet}}",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "iyaga/iyaga",
+    "placeholderLocation": "Magalo, waddanka",
+    "presets": {
+      "website": "Website",
+      "portfolio": "Portfolio",
+      "shop": "Dukaan",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "custom": "Gaar ah"
+    }
   },
   "notificationFilters": {
     "title": "Ka sifee ogeysiisyada",

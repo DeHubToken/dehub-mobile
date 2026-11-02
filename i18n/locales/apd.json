@@ -2637,7 +2637,25 @@
     "saved": "اتحفظت حقول الملف",
     "failed": "ما اتحفظ. جرب تاني.",
     "verified": "رابط موثّق",
-    "verifyHint": "عشان توثّق رابط، ضيف ده في الصفحة وبعدين احفظ تاني: {{snippet}}"
+    "verifyHint": "عشان توثّق رابط، ضيف ده في الصفحة وبعدين احفظ تاني: {{snippet}}",
+    "add": "إضافة field",
+    "remove": "إزالة field",
+    "descriptionPresets": "إضافة ويب، أسماء الأشخاص أو أي شيء آخر. الروابط تظهر مع وسائل التواصل الاجتماعي.",
+    "type": "نوع field",
+    "needsLabel": "أضف تسمية على كل field المخصصة",
+    "placeholderLocation": "المدينة، الدولة",
+    "presets": {
+      "website": "الويب",
+      "blog": "المقالة",
+      "portfolio": "المتجر",
+      "shop": "البرنامج الإذاعي",
+      "podcast": "النشرة الإخبارية",
+      "newsletter": "الاسماء",
+      "pronouns": "الموقع",
+      "location": "الخصائص",
+      "custom": "الخصائص المخصصة",
+      "customOption": "تسمية الخصائص المخصصة"
+    }
   },
   "notificationFilters": {
     "title": "فلترة الإشعارات من",

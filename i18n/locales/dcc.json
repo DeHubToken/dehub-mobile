@@ -2636,7 +2636,22 @@
     "saved": "پروفائل فیلڈ سیو ہوگئے",
     "failed": "سیو نئیں ہوا۔ پھر کوشش کرو۔",
     "verified": "تصدیق شدہ لنک",
-    "verifyHint": "لنک کی تصدیق کو یہ اس صفحے پر جوڑو، پھر دوبارہ سیو کرو: {{snippet}}"
+    "verifyHint": "لنک کی تصدیق کو یہ اس صفحے پر جوڑو، پھر دوبارہ سیو کرو: {{snippet}}",
+    "type": "فیلڈ ٹائپ",
+    "placeholderPronouns": "یہ/وہ",
+    "placeholderLocation": "شہر، ملک",
+    "presets": {
+      "website": "ویب سائٹ",
+      "blog": "بلاگ",
+      "portfolio": "پورٹفولیو",
+      "shop": "دُکّاں",
+      "podcast": "پڈکاسٹ",
+      "newsletter": "نیوز لیٹر",
+      "pronouns": "ضمائر",
+      "location": "مکان",
+      "custom": "کاسٹم",
+      "customOption": "لابل کا نام"
+    }
   },
   "notificationFilters": {
     "title": "ان لوگاں کے نوٹیفکیشن فلٹر کرو",
