@@ -6391,6 +6391,10 @@
     "trimEnd": "Fin del clip",
     "trimHint": "Arrastra los controles blancos para recortar. Toca la tira para moverla.",
     "useFrameAsCover": "Usa este marco como cobertura",
+    "preview": {
+      "title": "Vista previa",
+      "hint": "Así se verá tu publicación en el feed."
+    },
     "recent": {
       "show": "Mostrar fotos recientes",
       "all": "Todo"

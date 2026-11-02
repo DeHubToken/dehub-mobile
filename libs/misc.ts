@@ -259,12 +259,16 @@ const baseUrlWithoutSlash = (env.CDN_BASE_URL ?? "").replace(/\/+$/, "");
  * is accepted for call-site compatibility and intentionally unused — Cloudflare
  * preserves aspect ratio from width alone, and passing both would crop.
  */
+const LOCAL_URI = /^(file|content|ph|assets-library|data|blob):/i;
+
 export function getImageUrl(
   url: string,
   width?: number,
   _height?: number
 ): string {
   if (!url) return "";
+  // A picture still on the phone (the composer's preview) is drawn as it is.
+  if (LOCAL_URI.test(url)) return url;
   const fileName = url.split("/").pop();
   const protocol = url.split(":")[0];
   // Already absolute (external host, or an already-built CDN URL): cdnImage
@@ -336,6 +340,7 @@ export function buildFeedImageUrls(
   if (!apiImageUrls?.length) return [];
   return apiImageUrls.map((imgUrl) => {
     if (!imgUrl) return "";
+    if (LOCAL_URI.test(imgUrl)) return imgUrl;
     if (imgUrl.startsWith("http")) return cdnImage(imgUrl, { width: widthPt });
     const filename = imgUrl.split("/").pop() || "";
     return filename
