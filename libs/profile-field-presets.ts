@@ -36,15 +36,18 @@ export interface ProfileFieldPreset {
   aliases?: string[];
 }
 
+/** The saved label is the id capitalised: "website" -> "Website". */
+const label = (id: string) => id[0].toUpperCase() + id.slice(1);
+
 export const PROFILE_FIELD_PRESETS: readonly ProfileFieldPreset[] = [
-  { id: 'website', name: 'Website', link: true, aliases: ['site', 'web', 'web site', 'homepage', 'home page', 'url', 'www'] },
-  { id: 'blog', name: 'Blog', link: true },
-  { id: 'portfolio', name: 'Portfolio', link: true },
-  { id: 'shop', name: 'Shop', link: true, aliases: ['store', 'merch'] },
-  { id: 'podcast', name: 'Podcast', link: true },
-  { id: 'newsletter', name: 'Newsletter', link: true },
-  { id: 'pronouns', name: 'Pronouns', link: false },
-  { id: 'location', name: 'Location', link: false },
+  { id: 'website', name: label('website'), link: true, aliases: ['site', 'web', 'web site', 'homepage', 'home page', 'url', 'www'] },
+  { id: 'blog', name: label('blog'), link: true },
+  { id: 'portfolio', name: label('portfolio'), link: true },
+  { id: 'shop', name: label('shop'), link: true, aliases: ['store', 'merch'] },
+  { id: 'podcast', name: label('podcast'), link: true },
+  { id: 'newsletter', name: label('newsletter'), link: true },
+  { id: 'pronouns', name: label('pronouns'), link: false },
+  { id: 'location', name: label('location'), link: false },
 ];
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
