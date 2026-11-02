@@ -1161,11 +1161,11 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     backgroundColor: "rgba(255,255,255,0.05)",
   },
-  // Filled like the other selected pills (the notification filters, the
-  // profile tabs): the old faint tint read as no change on a tap.
+  // Amber, as on web's tip modal: the old faint white tint read as no change
+  // on a tap.
   presetChipActive: {
-    borderColor: "#F9FBFF",
-    backgroundColor: "#F9FBFF",
+    borderColor: "rgba(245,158,11,0.5)",
+    backgroundColor: "rgba(245,158,11,0.3)",
   },
   presetText: {
     color: "#F9FBFF",
@@ -1173,7 +1173,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   presetTextActive: {
-    color: "#010305",
+    color: "#FBBF24",
   },
   coinIcon: {
     width: 16,
