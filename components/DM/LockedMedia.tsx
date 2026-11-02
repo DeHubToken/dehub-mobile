@@ -244,14 +244,14 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
         <UnlockConfirmSheet
           visible={sheetOpen}
           onClose={() => setSheetOpen(false)}
-          title={lock.kind === "video" ? t("dmPaidLock.sheetTitleVideo", "Unlock video") : t("dmPaidLock.sheetTitlePhoto", "Unlock photo")}
-          who={senderName ? t("dmPaidLock.sheetFrom", { defaultValue: "From {{name}}", name: senderName }) : t("dmPaidLock.sheetFromThem", "From this chat")}
-          sub={senderName ? t("dmPaidLock.sheetAllTo", { defaultValue: "All of it goes to {{name}}", name: senderName }) : t("dmPaidLock.sheetAllToThem", "All of it goes to them")}
+          title={lock.kind === "video" ? t("ppv.unlockVideo", "Unlock video") : t("dmPaidLock.lockedPhoto", "Locked photo")}
+          who={senderName ? t("appTokens.kindReceived", { defaultValue: "From {{name}}", name: senderName }) : ""}
+          sub=""
           previewUri={previewUri}
           priceLabel={priceLabel}
           dhbLabel={"≈ " + formatLockDhb(dhbNow)}
           phase={phase}
-          doneLabel={lock.kind === "video" ? t("dmPaidLock.sheetOpeningVideo", "Opening your video…") : t("dmPaidLock.sheetOpeningPhoto", "Opening your photo…")}
+          doneLabel={lock.kind === "video" ? t("ppv.canWatchVideo") : t("ppv.canViewImage")}
           onPay={handlePay}
         />
       ) : null}

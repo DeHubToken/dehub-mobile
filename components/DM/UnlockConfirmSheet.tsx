@@ -77,7 +77,7 @@ export default function UnlockConfirmSheet({ visible, onClose, title, who, sub, 
               <Icon name="Check" size={28} color="#F9FBFF" />
             </Animated.View>
             <Animated.Text entering={FadeInDown.delay(120).duration(300)} style={styles.doneTitle}>
-              {t("dmPaidLock.sheetUnlocked", "Unlocked")}
+              {t("dmPaidLock.unlocked", "Unlocked")}
             </Animated.Text>
             <Animated.Text entering={FadeInDown.delay(200).duration(300)} style={styles.sub}>{doneLabel}</Animated.Text>
           </View>
@@ -92,8 +92,8 @@ export default function UnlockConfirmSheet({ visible, onClose, title, who, sub, 
                 {previewUri ? <SmartImage source={{ uri: previewUri }} style={{ width: "100%", height: "100%" }} contentFit="cover" blurRadius={10} /> : null}
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={styles.who} numberOfLines={1}>{who}</Text>
-                <Text style={styles.sub} numberOfLines={1}>{sub}</Text>
+                {who ? <Text style={styles.who} numberOfLines={1}>{who}</Text> : null}
+                {sub ? <Text style={styles.sub} numberOfLines={1}>{sub}</Text> : null}
               </View>
             </View>
             <View style={styles.priceRow}>
@@ -111,17 +111,15 @@ export default function UnlockConfirmSheet({ visible, onClose, title, who, sub, 
                 {busy ? <ActivityIndicator size="small" color="#010305" /> : null}
                 <Text style={styles.payBtnText}>
                   {phase === "paying"
-                    ? t("dmPaidLock.sheetPaying", "Paying")
+                    ? t("paywall.paying", "Paying…")
                     : phase === "confirming"
-                      ? t("dmPaidLock.sheetConfirming", "Confirming")
-                      : t("dmPaidLock.sheetPay", { defaultValue: "Pay {{price}}", price: priceLabel })}
+                      ? t("upload.stageConfirming", "Confirming…")
+                      : t("dmPaidLock.unlockFor", { defaultValue: "Unlock for {{price}}", price: priceLabel })}
                 </Text>
               </TouchableOpacity>
             </View>
             <Text style={styles.statusLine}>
-              {phase === "paying"
-                ? t("dmPaidLock.sheetPayingLine", { defaultValue: "Paying {{dhb}}…", dhb: dhbLabel.replace(/^≈\s*/, "") })
-                : phase === "confirming"
+              {phase === "confirming"
                   ? t("dmPaidLock.confirming", "Confirming payment…")
                   : " "}
             </Text>
