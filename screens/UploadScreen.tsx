@@ -105,6 +105,7 @@ import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
+import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSheet";
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
@@ -270,6 +271,8 @@ const DIALOG_INK = { color: "#FFFFFF" };
 const DIALOG_SOFT = { color: "rgba(255,255,255,0.8)" };
 const DIALOG_MUTED = { color: "#A6A9AC" };
 
+const fmtTrim = (sec: number) => `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
+
 export default function UploadScreen() {
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
@@ -412,6 +415,12 @@ export default function UploadScreen() {
   }, []);
   const [fullscreenImageUri, setFullscreenImageUri] = useState<string | null>(null);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
+  // Trim on the picked video (seconds), cut by the server from the draft upload.
+  const [videoTrim, setVideoTrim] = useState<VideoTrim | null>(null);
+  const [showVideoTrim, setShowVideoTrim] = useState(false);
+  useEffect(() => {
+    setVideoTrim(null);
+  }, [pickedVideo?.uri]);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
   const [audioRecordingElapsed, setAudioRecordingElapsed] = useState(0);
@@ -1225,6 +1234,7 @@ export default function UploadScreen() {
       categories,
       pickedImages,
       pickedVideo,
+      videoTrim,
       pickedAudio,
       thumbnailUri,
       coverUri,
@@ -1257,7 +1267,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -2969,7 +2979,22 @@ export default function UploadScreen() {
                   accessibilityRole="button"
                   accessibilityLabel={t("upload.changeVideo")}
                 >
-                  <Icon name="Pencil" size={16} color="#fff" />
+                  <Icon name="Upload" size={16} color="#fff" />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    player.pause();
+                    setShowVideoTrim(true);
+                  }}
+                  className={`absolute bottom-2 right-2 h-8 px-2.5 rounded-xl dark-surface flex-row items-center z-20 ${videoTrim ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
+                  hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("upload.trimAndCover", { defaultValue: "Trim and cover" })}
+                >
+                  <Icon name="Scissors" size={14} color="#fff" />
+                  <Text className="text-white text-xs font-medium ml-1.5">
+                    {videoTrim ? fmtTrim(videoTrim.end - videoTrim.start) : t("upload.trim", { defaultValue: "Trim" })}
+                  </Text>
                 </TouchableOpacity>
               </View>
               {(thumbnailUri || coverUri) && (
@@ -4135,6 +4160,22 @@ export default function UploadScreen() {
         </View>
       </Modal>
 
+      {showVideoTrim && pickedVideo && (
+        <VideoTrimSheet
+          uri={pickedVideo.uri}
+          duration={pickedVideo.duration ? pickedVideo.duration / 1000 : player.duration || 0}
+          initial={videoTrim}
+          onClose={() => setShowVideoTrim(false)}
+          onApply={(trim) => {
+            setVideoTrim(trim);
+            setShowVideoTrim(false);
+          }}
+          onPickCover={(uri) => {
+            setThumbnailUri(uri);
+            setCoverUri(null);
+          }}
+        />
+      )}
       {ImageEditSheet && imageEdit && pickedImages[imageEdit.index] && (() => {
         const img = pickedImages[imageEdit.index];
         const isFilter = imageEdit.mode === "filter";
