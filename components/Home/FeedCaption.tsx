@@ -6,7 +6,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
  * Detects URLs in text and renders them as blue, tappable links opened in-app.
  */
 import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
+import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData, ScrollView, useWindowDimensions } from "react-native";
 import { openInApp } from "../../libs/links.utils";
 import { reportPostEvent } from "../../services/post-stats.service";
 import { hasValidTLD } from "../../libs/tlds";
@@ -155,6 +155,8 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     [resetKey, fullContent],
   );
   const { showUserProfile } = useUserProfileSheet();
+  const { height: windowHeight } = useWindowDimensions();
+  const boxMax = Math.min(Math.round(windowHeight * 0.36), 260);
 
   const handleTextLayout = useCallback((e: NativeSyntheticEvent<TextLayoutEventData>) => {
     if (fullContent) return;
@@ -318,6 +320,24 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           stacks them, and the top margin sits on the text itself. */}
       {hasDescription && (
         <>
+          {expanded && !fullContent ? (
+            // Opened from "see more": the rest scrolls inside a box with a
+            // height cap instead of pouring into the feed, so the feed only
+            // grows by the cap (36% of the screen, 260pt at most).
+            <ScrollView
+              style={{ maxHeight: boxMax }}
+              nestedScrollEnabled
+              showsVerticalScrollIndicator
+              testID="feed-caption-scroll"
+            >
+              <Text
+                className={large ? "text-theme-neutrals-100 mt-1" : "text-theme-neutrals-300 mt-1"}
+                style={[large ? LARGE_TEXT : { fontSize: 15.75, lineHeight: 23.1 }, mono]}
+              >
+                {renderSegments(descSegments, "d", large ? 19 : 15.75)}
+              </Text>
+            </ScrollView>
+          ) : (
           <Text
             className={large ? "text-theme-neutrals-100 mt-1" : "text-theme-neutrals-300 mt-1"}
             style={[large ? LARGE_TEXT : { fontSize: 15.75, lineHeight: 23.1 }, mono]}
@@ -327,6 +347,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           >
             {renderSegments(descSegments, "d", large ? 19 : 15.75)}
           </Text>
+          )}
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
               <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 14.7, lineHeight: 18.9 }}>
