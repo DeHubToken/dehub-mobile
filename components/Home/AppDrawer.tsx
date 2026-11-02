@@ -726,8 +726,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               {savedMenuOrder.length > 0 && (
                 <TouchableOpacity
                   accessibilityRole="button"
-                  onPress={() => resetNavOrder("menu", isSignedIn ? menuWallet : null)}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  onPress={() => menuReorder.animateChange(
+                    () => resetNavOrder("menu", isSignedIn ? menuWallet : null),
+                    visibleItems.map((item) => navOrderId(item.labelKey)),
+                  )}
+                  hitSlop={{ top: 14, bottom: 14, left: 10, right: 10 }}
                 >
                   <Text style={styles.reorderReset}>{t("nav.reorderReset", { defaultValue: "Reset" })}</Text>
                 </TouchableOpacity>
@@ -920,12 +923,14 @@ const styles = StyleSheet.create({
   },
   reorderHintText: {
     color: "#71717A",
-    fontSize: 11.5,
+    fontSize: 13,
+    lineHeight: 17,
     textAlign: "center",
   },
   reorderReset: {
     color: "#D4D4D8",
-    fontSize: 11.5,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: "600",
   },
   tile: {
