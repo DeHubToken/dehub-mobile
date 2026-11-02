@@ -23,12 +23,14 @@ function formFields(form: any): Record<string, unknown> {
 describe('locked DM media', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('sends the price with a plain photo upload', async () => {
+  it('sends the dollar price, plus its DHB for an older server, with a plain photo upload', async () => {
     post.mockResolvedValue({ _id: 'm1' });
     await uploadDmMedia({
-      conversationId: 'c1', senderId: '0xme', files: [{ uri: 'file:///a.jpg', name: 'a.jpg', type: 'image/jpeg' }], lockPrice: 25,
+      conversationId: 'c1', senderId: '0xme', files: [{ uri: 'file:///a.jpg', name: 'a.jpg', type: 'image/jpeg' }], lockPrice: 5,
     });
-    expect(formFields(post.mock.calls[0][1]).lockPrice).toBe('25');
+    const fields = formFields(post.mock.calls[0][1]);
+    expect(fields.lockPriceUsd).toBe('5');
+    expect(fields.lockPrice).toBe('5000');
   });
 
   it('never sends a price with an encrypted upload', async () => {
@@ -38,6 +40,7 @@ describe('locked DM media', () => {
       encryptedKind: 'image', lockPrice: 25,
     });
     expect(formFields(post.mock.calls[0][1]).lockPrice).toBeUndefined();
+    expect(formFields(post.mock.calls[0][1]).lockPriceUsd).toBeUndefined();
   });
 
   it('reads status and unlocks through the locked routes', async () => {

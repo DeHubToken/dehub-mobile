@@ -1,4 +1,5 @@
 import { apiClient } from "../../libs/api.client";
+import { DHB_PRELISTING_USD } from "../../libs/dmLocked";
 import { getFileName, guessMime } from "../../libs/assets.util";
 import { getAccountSummaries } from "../user.service";
 import { DmAction, DmDisableStatus } from "../enums/dm-preferences.enum";
@@ -163,7 +164,11 @@ export async function uploadDmMedia(
   if (tipTxHash) form.append("tipTxHash", tipTxHash);
   if (replyTo) form.append("replyTo", String(replyTo));
   if (encryptedKind) form.append("encryptedKind", encryptedKind);
-  if (lockPrice && lockPrice > 0 && !encryptedKind) form.append("lockPrice", String(lockPrice));
+  if (lockPrice && lockPrice > 0 && !encryptedKind) {
+    // lockPrice is in USD. The DHB figure rides along for a server without dollar prices.
+    form.append("lockPriceUsd", String(lockPrice));
+    form.append("lockPrice", String(Math.max(1, Math.ceil(lockPrice / DHB_PRELISTING_USD))));
+  }
   if (mediaOptions) form.append("mediaOptions", JSON.stringify(mediaOptions));
   if (destruct) form.append("destruct", String(destruct));
 
