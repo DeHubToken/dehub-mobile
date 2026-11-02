@@ -1,6 +1,8 @@
 /**
- * The DM video sheet: a big playing preview with Cover, Trim, Mirror, Rotate,
- * Hide and Timer, plus the caption and Send, so a video can go out from here.
+ * The DM edit screen, open as soon as a photo or video is picked: a big
+ * preview with Cover, Trim, Mirror, Rotate, Hide and Timer (photos get Hide
+ * and Timer), a strip of everything picked with + to add more, and Confirm
+ * to go back to the chat box. The video can be played and scrubbed here.
  * Nothing is re-encoded; the choices travel with the message and every player
  * applies them. Same flow as dehubweb `DmVideoStudio.tsx`.
  */
@@ -14,7 +16,6 @@ import {
   Pressable,
   ScrollView,
   Text,
-  TextInput,
   View,
   useWindowDimensions,
   type LayoutChangeEvent,
@@ -37,7 +38,7 @@ import {
 import { DESTRUCT_CHOICES, destructLabel, type DmDestructChoice } from "../../libs/dm-destruct";
 import { LOCK_QUICK_PRICES } from "./LockPriceRow";
 
-type Tab = "cover" | "trim" | "mirror" | "rotate" | "hide" | "timer";
+export type Tab = "cover" | "trim" | "mirror" | "rotate" | "hide" | "timer";
 const FRAMES = 10;
 const MIN_KEEP = 1;
 const HANDLE = 14;
@@ -47,10 +48,29 @@ const WHITE = "#fff";
 const MUTED = "#A1A1AA";
 const LINE = "rgba(255,255,255,0.15)";
 
+/** One thumbnail in the strip under the preview. */
+export interface StudioStripItem {
+  key: string;
+  uri: string;
+  kind: "image" | "video";
+  locked?: boolean;
+}
+
 interface Props {
   visible: boolean;
+  /** Closes the screen and drops everything in it. */
   onClose: () => void;
   uri: string;
+  kind?: "image" | "video";
+  /** Everything going out together. */
+  strip?: StudioStripItem[];
+  active?: number;
+  onSelect?: (i: number) => void;
+  onAddMore?: () => void;
+  /** Takes the current photo or video out. */
+  onRemove?: () => void;
+  /** Self-destruct only exists in DMs. */
+  allowTimer?: boolean;
   /** Seconds. */
   duration?: number;
   width?: number;
@@ -62,10 +82,11 @@ interface Props {
   onDestructChange: (c: DmDestructChoice | null) => void;
   /** A still of the chosen cover frame, for the card and the encrypted preview. */
   onCoverFrame?: (uri: string) => void;
-  caption: string;
-  onCaptionChange: (v: string) => void;
-  onSend: () => void;
-  sendDisabled?: boolean;
+  /** Confirm: keeps the choices and goes back. */
+  onConfirm: () => void;
+  confirmLabel?: string;
+  /** Which tool a video opens on. */
+  initialTab?: Tab;
   /** Pay-to-unlock price in DHB; null = not locked. No handler = locking is not offered in this chat. */
   lockPrice?: number | null;
   onLockPriceChange?: (p: number | null) => void;
@@ -73,8 +94,13 @@ interface Props {
 
 function useFilmstrip(uri: string, duration: number, enabled: boolean) {
   const [frames, setFrames] = useState<string[]>([]);
+  const forUri = useRef(uri);
   useEffect(() => {
-    if (!enabled || !duration || frames.length) return;
+    // A different video in the strip needs its own frames.
+    if (forUri.current !== uri) { forUri.current = uri; setFrames([]); }
+  }, [uri]);
+  useEffect(() => {
+    if (!enabled || !duration || (frames.length && forUri.current === uri)) return;
     let alive = true;
     (async () => {
       const out: string[] = [];
@@ -97,16 +123,21 @@ function useFilmstrip(uri: string, duration: number, enabled: boolean) {
 
 export default function DmVideoStudio({
   visible, onClose, uri, duration = 0, width, height, size, options, onOptionsChange,
-  destruct, onDestructChange, onCoverFrame, caption, onCaptionChange, onSend, sendDisabled,
+  destruct, onDestructChange, onCoverFrame, onConfirm, confirmLabel, initialTab = "trim",
   lockPrice = null, onLockPriceChange,
+  kind = "video", strip, active = 0, onSelect, onAddMore, onRemove, allowTimer = true,
 }: Props) {
+  const isVideo = kind === "video";
   const { t: _copy } = _useCopy();
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
-  const [tab, setTab] = useState<Tab>("trim");
+  const [pickedTab, setTab] = useState<Tab>(initialTab);
+  const [playing, setPlaying] = useState(true);
+  const [scrubW, setScrubW] = useState(0);
+  const tab: Tab = isVideo ? pickedTab : (pickedTab === "timer" && allowTimer ? "timer" : "hide");
   const [stripW, setStripW] = useState(0);
   const [now, setNow] = useState(options.trimStart ?? 0);
-  const frames = useFilmstrip(uri, duration, visible && (tab === "trim" || tab === "cover"));
+  const frames = useFilmstrip(uri, duration, visible && isVideo && (tab === "trim" || tab === "cover"));
 
   const start = options.trimStart ?? 0;
   const end = options.trimEnd ?? duration;
@@ -115,13 +146,13 @@ export default function DmVideoStudio({
   range.current = { start, end, options };
   const set = (patch: Partial<DmVideoOptions>) => onOptionsChange({ ...range.current.options, ...patch });
 
-  const player = useVideoPlayer(visible ? uri : null, (p) => {
+  const player = useVideoPlayer(visible && isVideo ? uri : null, (p) => {
     p.loop = false;
     p.muted = true;
     p.timeUpdateEventInterval = 0.1;
   });
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !isVideo) return;
     try { player.currentTime = range.current.start; player.play(); } catch { /* not loaded yet */ }
     const subs = [
       player.addListener("statusChange", ({ status }: { status: string }) => {
@@ -137,9 +168,35 @@ export default function DmVideoStudio({
         }
       }),
       player.addListener("playToEnd", () => { player.currentTime = range.current.start; player.play(); }),
+      player.addListener("playingChange", ({ isPlaying }: { isPlaying: boolean }) => setPlaying(isPlaying)),
     ];
     return () => subs.forEach((s) => s.remove());
-  }, [player, visible]);
+  }, [player, visible, isVideo]);
+
+  const togglePlay = () => {
+    try {
+      if (player.playing) player.pause();
+      else {
+        if (player.currentTime >= range.current.end - 0.1) player.currentTime = range.current.start;
+        player.play();
+      }
+    } catch { /* not loaded yet */ }
+  };
+  // Scrub bar: drag anywhere on it to move through the kept part.
+  const scrubTo = (x: number) => {
+    if (scrubW <= 0) return;
+    const { start: s0, end: e0 } = range.current;
+    const t = s0 + Math.min(1, Math.max(0, x / scrubW)) * Math.max(0, e0 - s0);
+    seek(t);
+  };
+  const scrubPan = useMemo(() => PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderTerminationRequest: () => false,
+    onPanResponderGrant: (e) => scrubTo(e.nativeEvent.locationX),
+    onPanResponderMove: (e) => scrubTo(e.nativeEvent.locationX),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [scrubW]);
 
   const seek = (sec: number) => { try { player.pause(); player.currentTime = sec; setNow(sec); } catch { /* ignore */ } };
 
@@ -189,9 +246,9 @@ export default function DmVideoStudio({
   };
 
   const previewMaxH = Math.round(winH * 0.42);
-  const { boxW, boxH, innerW, innerH } = fitVideoBox(width, height, options, winW - 32, previewMaxH);
+  const { boxW, boxH, innerW, innerH } = fitVideoBox(width, height, isVideo ? options : {}, winW - 32, previewMaxH);
 
-  const tabs: { key: Tab; label: string; icon: IconName }[] = [
+  const allTabs: { key: Tab; label: string; icon: IconName }[] = [
     { key: "cover", label: _copy("dmVideo.cover", { defaultValue: "Cover" }), icon: "Image" },
     { key: "trim", label: _copy("dmVideo.trim", { defaultValue: "Trim" }), icon: "Scissors" },
     { key: "mirror", label: _copy("dmVideo.mirror", { defaultValue: "Mirror" }), icon: "FlipHorizontal2" },
@@ -199,6 +256,10 @@ export default function DmVideoStudio({
     { key: "hide", label: _copy("dmVideo.hide", { defaultValue: "Hide" }), icon: "EyeOff" },
     { key: "timer", label: _copy("dmVideo.timer", { defaultValue: "Timer" }), icon: "Timer" },
   ];
+  // Photos keep Hide (price) and Timer; the rest only means something for a video.
+  const tabs = allTabs.filter((t) =>
+    (t.key !== "timer" || allowTimer)
+    && (isVideo || (t.key === "hide" && !!onLockPriceChange) || t.key === "timer"));
 
   const pill = (active: boolean) => ({
     borderWidth: 1,
@@ -221,24 +282,38 @@ export default function DmVideoStudio({
             </Pressable>
             <View style={{ backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 4 }}>
               <Text style={{ color: WHITE, fontSize: 12, fontWeight: "600", fontVariant: ["tabular-nums"] }}>
-                {kept != null ? formatClock(kept) : "0:00"}{size ? ` · ${formatAttachmentSize(size)}` : ""}
+                {isVideo ? (kept != null ? formatClock(kept) : "0:00") : ""}{isVideo && size ? " · " : ""}{size ? formatAttachmentSize(size) : (isVideo ? "" : _copy("dmVideo.photo", { defaultValue: "Photo" }))}
               </Text>
             </View>
-            <Pressable onPress={onClose} hitSlop={8} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.done", { defaultValue: "Done" })}
+            <Pressable onPress={onRemove ?? onClose} hitSlop={8} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.remove", { defaultValue: "Remove" })}
               style={{ width: 36, height: 36, borderRadius: 18, borderWidth: 1, borderColor: LINE, alignItems: "center", justifyContent: "center" }}>
-              <Icon name="Check" size={18} color={WHITE} />
+              <Icon name="Trash2" size={17} color={WHITE} />
             </Pressable>
           </View>
 
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <View style={{ width: boxW, height: boxH, borderRadius: 12, overflow: "hidden", backgroundColor: "#000" }}>
-              {visible && (
+              {!isVideo && (
+                <SmartImage source={{ uri }} recyclingKey={uri} blurRadius={lockPrice != null ? 28 : undefined} contentFit="cover" style={{ position: "absolute", inset: 0 }} />
+              )}
+              {visible && isVideo && (
                 <VideoView
                   player={player}
                   nativeControls={false}
                   contentFit="cover"
                   style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}
                 />
+              )}
+              {isVideo && (
+                <Pressable onPress={togglePlay} accessibilityRole="button"
+                  accessibilityLabel={playing ? _copy("dmVideo.pause", { defaultValue: "Pause" }) : _copy("dmVideo.play", { defaultValue: "Play video" })}
+                  style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
+                  {!playing && (
+                    <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: "rgba(0,0,0,0.45)", borderWidth: 1, borderColor: "rgba(255,255,255,0.35)", alignItems: "center", justifyContent: "center" }}>
+                      <Icon name="Play" size={20} color={WHITE} fill={WHITE} />
+                    </View>
+                  )}
+                </Pressable>
               )}
               {lockPrice != null && (
                 <View pointerEvents="none" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.35)", alignItems: "center", justifyContent: "flex-end", paddingBottom: 12 }}>
@@ -265,6 +340,50 @@ export default function DmVideoStudio({
             </View>
           </View>
 
+          {isVideo && duration > 0 && (
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 16, paddingTop: 10 }}>
+              <Pressable onPress={togglePlay} hitSlop={8} accessibilityRole="button"
+                accessibilityLabel={playing ? _copy("dmVideo.pause", { defaultValue: "Pause" }) : _copy("dmVideo.play", { defaultValue: "Play video" })}
+                style={{ width: 32, height: 32, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.1)", alignItems: "center", justifyContent: "center" }}>
+                <Icon name={playing ? "Pause" : "Play"} size={15} color={WHITE} fill={WHITE} />
+              </Pressable>
+              <View {...scrubPan.panHandlers} onLayout={(e: LayoutChangeEvent) => setScrubW(e.nativeEvent.layout.width)}
+                accessibilityRole="adjustable" accessibilityLabel={_copy("dmVideo.scrub", { defaultValue: "Scrub through the video" })}
+                style={{ flex: 1, height: 28, justifyContent: "center" }}>
+                <View pointerEvents="none" style={{ height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.18)" }}>
+                  <View style={{ height: 4, borderRadius: 2, backgroundColor: WHITE, width: `${Math.min(100, Math.max(0, ((now - start) / Math.max(0.1, end - start)) * 100))}%` }} />
+                </View>
+                <View pointerEvents="none" style={{ position: "absolute", width: 14, height: 14, borderRadius: 7, backgroundColor: WHITE, left: Math.min(scrubW, Math.max(0, ((now - start) / Math.max(0.1, end - start)) * scrubW)) - 7 }} />
+              </View>
+              <Text style={{ color: MUTED, fontSize: 11, fontVariant: ["tabular-nums"], minWidth: 64, textAlign: "right" }}>
+                {formatClock(Math.max(0, now - start))} / {formatClock(kept ?? 0)}
+              </Text>
+            </View>
+          )}
+
+          {/* Everything going out together; + adds more. */}
+          {(strip?.length || onAddMore) ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled"
+              style={{ flexGrow: 0 }} contentContainerStyle={{ gap: 8, paddingHorizontal: 12, paddingTop: 8 }}>
+              {(strip ?? []).map((it, i) => (
+                <Pressable key={it.key} onPress={() => onSelect?.(i)} accessibilityRole="button" accessibilityState={{ selected: i === active }}
+                  accessibilityLabel={_copy("dmVideo.editItem", { defaultValue: "Edit item {{value1}}", value1: i + 1 })}
+                  style={{ width: 48, height: 48, borderRadius: 8, overflow: "hidden", borderWidth: 2, borderColor: i === active ? WHITE : "transparent", backgroundColor: "#18181B" }}>
+                  {it.uri ? <SmartImage source={{ uri: it.uri }} recyclingKey={it.uri} contentFit="cover" style={{ width: "100%", height: "100%" }} /> : null}
+                  {it.kind === "video" && <View style={{ position: "absolute", left: 3, bottom: 3 }}><Icon name="Play" size={11} color={WHITE} fill={WHITE} /></View>}
+                  {it.locked && <View style={{ position: "absolute", right: 3, top: 3 }}><Icon name="Lock" size={11} color={WHITE} /></View>}
+                </Pressable>
+              ))}
+              {onAddMore && (
+                <Pressable onPress={onAddMore} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.addMore", { defaultValue: "Add photos or videos" })}
+                  style={{ width: 48, height: 48, borderRadius: 8, borderWidth: 1, borderStyle: "dashed", borderColor: "rgba(255,255,255,0.35)", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name="Plus" size={20} color={WHITE} />
+                </Pressable>
+              )}
+            </ScrollView>
+          ) : null}
+
+          {tabs.length > 0 && <>
           <View style={{ flexDirection: "row", justifyContent: "space-around", borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.1)", marginTop: 8 }}>
             {tabs.map(({ key, label, icon }) => {
               const on = tab === key;
@@ -360,7 +479,7 @@ export default function DmVideoStudio({
               <View style={{ flexDirection: "row", gap: 6 }}>
                 {[
                   { on: options.hidden !== "reveal" && lockPrice == null, onPress: () => { set({ hidden: undefined }); onLockPriceChange?.(null); }, icon: "Eye" as IconName, title: _copy("dmVideo.showNormally", { defaultValue: "Show normally" }), body: _copy("dmVideo.showNormallyBody", { defaultValue: "They see it right away" }) },
-                  { on: options.hidden === "reveal" && lockPrice == null, onPress: () => { set({ hidden: "reveal" }); onLockPriceChange?.(null); }, icon: "EyeOff" as IconName, title: _copy("dmVideo.hideUntilTap", { defaultValue: "Hide until tapped" }), body: _copy("dmVideo.hideUntilTapBody", { defaultValue: "Blurred until they tap it" }) },
+                  ...(isVideo ? [{ on: options.hidden === "reveal" && lockPrice == null, onPress: () => { set({ hidden: "reveal" }); onLockPriceChange?.(null); }, icon: "EyeOff" as IconName, title: _copy("dmVideo.hideUntilTap", { defaultValue: "Hide until tapped" }), body: _copy("dmVideo.hideUntilTapBody", { defaultValue: "Blurred until they tap it" }) }] : []),
                   {
                     on: lockPrice != null,
                     disabled: !onLockPriceChange,
@@ -394,7 +513,7 @@ export default function DmVideoStudio({
                   ))}
                 </View>
                 <Text style={{ color: MUTED, fontSize: 11, lineHeight: 15 }}>
-                  {_copy("dmVideo.priceHint", { defaultValue: "They see it blurred until they pay you. Locked videos are not end-to-end encrypted. Other amounts: use Lock under the video." })}
+                  {_copy("dmVideo.priceHint", { defaultValue: "They see it blurred until they pay you. Locked items are not end-to-end encrypted." })}
                 </Text>
               </View>
             )}
@@ -414,28 +533,21 @@ export default function DmVideoStudio({
                 </ScrollView>
                 <Text style={{ color: MUTED, fontSize: 11, lineHeight: 15 }}>
                   {destruct == null
-                    ? _copy("dmVideo.timerOffBody", { defaultValue: "The video stays in the chat." })
+                    ? _copy("dmVideo.timerOffBody", { defaultValue: "It stays in the chat." })
                     : destruct === "view"
-                      ? _copy("dmVideo.timerViewBody", { defaultValue: "Gone for both of you once they have watched it." })
+                      ? _copy("dmVideo.timerViewBody", { defaultValue: "Gone for both of you once they have seen it." })
                       : _copy("dmVideo.timerTimeBody", { defaultValue: "Gone for both of you {{value1}} after you send it.", value1: destructLabel(destruct) })}
                 </Text>
               </View>
             )}
           </View>
+          </>}
 
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginHorizontal: 12, marginTop: 10, borderRadius: 14, borderWidth: 1, borderColor: LINE, paddingLeft: 12, paddingRight: 4, paddingVertical: 4 }}>
-            <TextInput
-              value={caption}
-              onChangeText={onCaptionChange}
-              placeholder={_copy("dmVideo.captionPlaceholder", { defaultValue: "Add a caption…" })}
-              placeholderTextColor="#71717A"
-              style={{ flex: 1, color: WHITE, fontSize: 15, paddingVertical: 6 }}
-            />
-            <Pressable onPress={onSend} disabled={sendDisabled} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.send", { defaultValue: "Send video" })}
-              style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: WHITE, alignItems: "center", justifyContent: "center", opacity: sendDisabled ? 0.4 : 1 }}>
-              <Icon name="Send" size={16} color="#000" />
-            </Pressable>
-          </View>
+          <Pressable onPress={onConfirm} accessibilityRole="button"
+            style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, marginHorizontal: 12, marginTop: 10, height: 46, borderRadius: 14, backgroundColor: WHITE }}>
+            <Icon name="Check" size={17} color="#000" />
+            <Text style={{ color: "#000", fontSize: 15, fontWeight: "700" }}>{confirmLabel ?? _copy("dmVideo.confirm", { defaultValue: "Confirm" })}</Text>
+          </Pressable>
         </View>
       </KeyboardAvoidingView>
     </Modal>

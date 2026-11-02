@@ -1,5 +1,4 @@
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
-import LockPriceRow from "./LockPriceRow";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
@@ -19,6 +18,8 @@ import {
   Keyboard,
   Platform,
   ActivityIndicator,
+  Pressable,
+  ScrollView,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Animated, { FadeIn, FadeOut, SlideInDown } from "react-native-reanimated";
@@ -36,16 +37,9 @@ import {
 } from "../../libs/attachments";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { cleanVideoOptions, type DmVideoOptions } from "../../libs/dm-video-options";
-import { destructShort, type DmDestructChoice } from "../../libs/dm-destruct";
-import DmVideoTile from "./DmVideoTile";
+import { type DmDestructChoice } from "../../libs/dm-destruct";
 import DmVideoStudio from "./DmVideoStudio";
 
-const formatClockShort = (sec: number) => {
-  const s = Math.max(0, Math.round(sec));
-  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
-};
-const keptSeconds = (m: ChatMediaAttachment) =>
-  Math.max(0, (m.options?.trimEnd ?? m.duration ?? 0) - (m.options?.trimStart ?? 0));
 
 /** Per-kind caps, matching the backend's DM limits. */
 const DM_ATTACH_LIMITS = { image: 10 * 1024 * 1024, video: 50 * 1024 * 1024, audio: 20 * 1024 * 1024 } as const;
@@ -186,7 +180,15 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const text = editingMessage ? editText : ordinaryText;
   const setText = editingMessage ? setEditText : setOrdinaryText;
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
-  const [videoStudioOpen, setVideoStudioOpen] = useState(false);
+  // Photos and videos picked for the edit screen; it is open while any are here.
+  const [studio, setStudio] = useState<ChatMediaAttachment[]>([]);
+  const [studioActive, setStudioActive] = useState(0);
+  // The edit screen opens on a pick; Confirm brings the picks back here as a
+  // row above the box. X drops only what was picked since it opened.
+  const [studioOpen, setStudioOpen] = useState(false);
+  const studioOpenRef = useRef(false);
+  studioOpenRef.current = studioOpen;
+  const studioBase = useRef(0);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
@@ -354,12 +356,33 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       return;
     }
 
-    // Media with optional caption
+    // Everything in the edit screen: back to the chat at once, then one
+    // message per photo/video in order, the caption riding on the first.
+    // Whatever fails comes back into the edit screen.
+    if (studio.length) {
+      const queue = [...studio];
+      const caption = text.trim() || undefined;
+      setStudioOpen(false);
+      setStudio([]);
+      setStudioActive(0);
+      setText.complete(text, "");
+      for (let i = 0; i < queue.length; i++) {
+        const m = queue[i];
+        const out = m.type === "video" ? { ...m, options: cleanVideoOptions(m.options, m.duration) } : m;
+        if (!(await onSendMedia(out, i === 0 ? caption : undefined))) {
+          setStudio(queue.slice(i));
+          if (i === 0 && caption) setText(caption);
+          return;
+        }
+      }
+      return;
+    }
+
+    // Audio or a document, with optional caption
     if (media) {
       const caption = text.trim() || undefined;
       const out = media.type === "video" ? { ...media, options: cleanVideoOptions(media.options, media.duration) } : media;
       if (!(await onSendMedia(out, caption))) return;
-      setVideoStudioOpen(false);
       setMedia(null);
       setText.complete(text, "");
       return;
@@ -382,8 +405,46 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     if (editingMessage) setEditText.complete(text, "");
     emitTyping(false);
     } finally { sendInFlight.current = false; }
-  }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);
+  }, [text, media, studio, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);
 
+
+  /** Picked photos/videos join the edit screen, which opens on the newest. */
+  const addToStudio = useCallback((items: ChatMediaAttachment[]) => {
+    if (!items.length) return;
+    Keyboard.dismiss();
+    setGifUrl(null);
+    setMedia(null);
+    setStudio((prev) => {
+      if (!studioOpenRef.current) { studioBase.current = prev.length; studioOpenRef.current = true; }
+      setStudioActive(prev.length);
+      return [...prev, ...items];
+    });
+    setStudioOpen(true);
+  }, []);
+  const openStudioAt = useCallback((i: number) => {
+    Keyboard.dismiss();
+    studioBase.current = studio.length;
+    setStudioActive(i);
+    setStudioOpen(true);
+  }, [studio.length]);
+  const cancelStudio = useCallback(() => {
+    setStudioOpen(false);
+    setStudio((prev) => prev.slice(0, studioBase.current));
+    setStudioActive(0);
+  }, []);
+  const patchStudio = useCallback((patch: Partial<ChatMediaAttachment>) => {
+    setStudio((prev) => prev.map((m, i) => (i === studioActive ? { ...m, ...patch } : m)));
+  }, [studioActive]);
+  const removeStudioAt = useCallback((at: number) => {
+    setStudio((prev) => {
+      const next = prev.filter((_, i) => i !== at);
+      if (at < studioBase.current) studioBase.current -= 1;
+      if (!next.length) setStudioOpen(false);
+      setStudioActive((a) => Math.max(0, Math.min(a > at ? a - 1 : a, next.length - 1)));
+      return next;
+    });
+  }, []);
+  const removeStudioItem = useCallback(() => removeStudioAt(studioActive), [removeStudioAt, studioActive]);
 
   /** Photos AND videos from the gallery in one picker. */
   const handlePickGallery = useCallback(async () => {
@@ -391,45 +452,53 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       try {
         const result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsMultipleSelection: true,
+          selectionLimit: 10,
           quality: 0.85,
           videoMaxDuration: 600,
           // iPhone photos come back as JPEG rather than HEIC.
           preferredAssetRepresentationMode: ImagePicker.UIImagePickerPreferredAssetRepresentationMode.Compatible,
         });
-        if (result.canceled || !result.assets?.[0]) return;
-        const asset = result.assets[0];
-        setGifUrl(null);
-        if (asset.type === "video" || (asset.mimeType || "").startsWith("video/")) {
-          let thumb: string | undefined;
-          try {
-            thumb = (await VideoThumbnails.getThumbnailAsync(asset.uri, { time: 500 })).uri;
-          } catch {
-            /* ignore */
+        if (result.canceled || !result.assets?.length) return;
+        const picked: ChatMediaAttachment[] = [];
+        for (const asset of result.assets) {
+          if (asset.type === "video" || (asset.mimeType || "").startsWith("video/")) {
+            if (asset.fileSize && asset.fileSize > DM_ATTACH_LIMITS.video) {
+              toastError(t("dm.attachTooLarge", { defaultValue: "That file is over the {{size}} MB limit.", size: DM_ATTACH_LIMITS.video / 1024 / 1024 }));
+              continue;
+            }
+            let thumb: string | undefined;
+            try {
+              thumb = (await VideoThumbnails.getThumbnailAsync(asset.uri, { time: 500 })).uri;
+            } catch {
+              /* ignore */
+            }
+            picked.push({
+              type: "video",
+              uri: asset.uri,
+              thumbnailUri: thumb,
+              mimeType: asset.mimeType,
+              // expo-image-picker reports milliseconds.
+              duration: asset.duration ? asset.duration / 1000 : undefined,
+              width: asset.width || undefined,
+              height: asset.height || undefined,
+              size: asset.fileSize || undefined,
+            });
+            continue;
           }
-          setMedia({
-            type: "video",
-            uri: asset.uri,
-            thumbnailUri: thumb,
-            mimeType: asset.mimeType,
-            // expo-image-picker reports milliseconds.
-            duration: asset.duration ? asset.duration / 1000 : undefined,
-            width: asset.width || undefined,
-            height: asset.height || undefined,
-            size: asset.fileSize || undefined,
-          });
-          return;
+          if (asset.fileSize && asset.fileSize > DM_ATTACH_LIMITS.image) {
+            toastError(t("dm.attachTooLarge", { defaultValue: "That file is over the {{size}} MB limit.", size: DM_ATTACH_LIMITS.image / 1024 / 1024 }));
+            continue;
+          }
+          picked.push({ type: "image", uri: asset.uri, mimeType: asset.mimeType || "image/jpeg", width: asset.width || undefined, height: asset.height || undefined, size: asset.fileSize || undefined });
         }
-        if (asset.fileSize && asset.fileSize > DM_ATTACH_LIMITS.image) {
-          toastError(t("dm.attachTooLarge", { defaultValue: "That file is over the {{size}} MB limit.", size: DM_ATTACH_LIMITS.image / 1024 / 1024 }));
-          return;
-        }
-        setMedia({ type: "image", uri: asset.uri, mimeType: asset.mimeType || "image/jpeg" });
+        addToStudio(picked);
       } catch (e: unknown) {
         const err = e as { code?: string };
         if (err?.code !== "E_PICKER_CANCELLED") console.error("[ChatInputBar] gallery picker error", e);
       }
     });
-  }, []);
+  }, [addToStudio]);
 
   /** Any file on the phone: audio, video, a photo or a document. */
   const handlePickAnyFile = useCallback(async () => {
@@ -454,8 +523,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             /* ignore */
           }
         }
-        setGifUrl(null);
-        setMedia({ type: top, uri: asset.uri, mimeType: mime, name: asset.name || undefined, size, thumbnailUri: thumb });
+        if (top === "audio") {
+          setGifUrl(null);
+          setStudio([]);
+          setMedia({ type: top, uri: asset.uri, mimeType: mime, name: asset.name || undefined, size });
+          return;
+        }
+        addToStudio([{ type: top, uri: asset.uri, mimeType: mime, name: asset.name || undefined, size, thumbnailUri: thumb }]);
         return;
       }
       const picked = { uri: asset.uri, name: asset.name || "file", mimeType: mime || "application/octet-stream", size };
@@ -465,12 +539,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
         return;
       }
       setGifUrl(null);
+      setStudio([]);
       setMedia({ type: "file", uri: picked.uri, mimeType: picked.mimeType, name: picked.name, size: picked.size });
     } catch (e) {
       console.error("[ChatInputBar] file picker error", e);
       toastError(t("dm.attachFailed"));
     }
-  }, []);
+  }, [addToStudio]);
 
   const gifPress = useMemo(() => keyboardSwap.pressProps(() => keyboardSwap.swapTo(() => setGifPickerVisible(true))), [keyboardSwap]);
 
@@ -482,7 +557,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   }, [keyboardSwap]);
 
   const handleRemoveMedia = useCallback(() => {
-    setVideoStudioOpen(false);
     setMedia(null);
     setGifUrl(null);
   }, []);
@@ -518,7 +592,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     }
   }, [text, enhancing, setText]);
 
-  const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
+  const hasContent = text.trim().length > 0 || !!media || !!gifUrl || studio.length > 0;
   // Show send button when there's content OR a tip is attached (tip-only send)
   const showSendButton = hasContent || tipAmount > 0;
   // The tray is up in every thread whose last word belongs to the other side —
@@ -528,7 +602,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   // started (text, an attachment, an edit) takes the space back.
   const showTray =
     hasThread && awaitingReply && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage && !composerFocused;
-  const hasMediaOrGif = !!media || !!gifUrl;
+  const hasMediaOrGif = !!media || !!gifUrl || studio.length > 0;
   const placeholder = hasMediaOrGif ? t("dm.addCaption") : t("dm.messagePlaceholder");
 
   // Fee / tip display logic
@@ -696,85 +770,70 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           </Animated.View>
         )}
 
-        {/* Picked video: real-shape card, tap to open the video sheet */}
-        {media?.type === "video" && (
-          <Animated.View entering={FadeIn.duration(150)} style={{ flexDirection: "row", alignItems: "flex-end", gap: 8, paddingHorizontal: 12, paddingTop: 10 }}>
-            <View>
-            <DmVideoTile
-              posterUri={media.thumbnailUri}
-              width={media.width}
-              height={media.height}
-              options={media.options}
-              destructLabel={media.destruct ? destructShort(media.destruct) : null}
-              mine
-              hidePlay
-              maxW={200}
-              maxH={150}
-              softPoster={media.options?.hidden === "reveal"}
-              onOpen={() => { Keyboard.dismiss(); setVideoStudioOpen(true); }}
-            >
-              <View pointerEvents="none" style={{ position: "absolute", left: 6, bottom: 6, backgroundColor: "rgba(0,0,0,0.6)", borderRadius: 999, paddingHorizontal: 6, paddingVertical: 2 }}>
-                <Text style={{ color: "#fff", fontSize: 10, fontWeight: "600", fontVariant: ["tabular-nums"] }}>
-                  {[media.duration ? formatClockShort(keptSeconds(media)) : null, media.size ? formatAttachmentSize(media.size) : null].filter(Boolean).join(" · ")}
-                </Text>
-              </View>
-              {media.options?.hidden === "reveal" && (
-                <View pointerEvents="none" style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: "rgba(0,0,0,0.6)", borderRadius: 999, paddingHorizontal: 8, paddingVertical: 3 }}>
-                    <Icon name="EyeOff" size={11} color="#fff" />
-                    <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{_copy("dmVideo.hiddenTag", { defaultValue: "Hidden" })}</Text>
-                  </View>
-                </View>
-              )}
-            </DmVideoTile>
-              {/* Outside the picture, so it never sits on the chips. */}
-              <TouchableOpacity
-                onPress={handleRemoveMedia}
-                style={{ position: "absolute", right: -6, top: -6, width: 22, height: 22, borderRadius: 11, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" }}
-                hitSlop={10}
-                accessibilityRole="button"
-                accessibilityLabel={t("dm.removeAttachment")}
-              >
-                <Icon name="X" size={12} color="#09090B" />
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity onPress={() => { Keyboard.dismiss(); setVideoStudioOpen(true); }} hitSlop={8} accessibilityRole="button">
-              <Text className="text-theme-neutrals-400 text-[12px] pb-1">{_copy("dmVideo.tapToEdit", { defaultValue: "Tap to edit" })}</Text>
-            </TouchableOpacity>
+        {/* Photos and videos open straight into the edit screen. */}
+        {studio.length > 0 && (() => {
+          const cur = studio[Math.min(studioActive, studio.length - 1)];
+          return (
             <DmVideoStudio
-              visible={videoStudioOpen}
-              onClose={() => setVideoStudioOpen(false)}
-              uri={media.uri}
-              duration={media.duration}
-              width={media.width}
-              height={media.height}
-              size={media.size}
-              options={media.options ?? {}}
-              onOptionsChange={(o: DmVideoOptions) => setMedia((m) => (m && m.type === "video" ? { ...m, options: o } : m))}
-              destruct={media.destruct ?? null}
-              onDestructChange={(c: DmDestructChoice | null) => setMedia((m) => (m && m.type === "video" ? { ...m, destruct: c } : m))}
-              onCoverFrame={(uri) => setMedia((m) => (m && m.type === "video" ? { ...m, thumbnailUri: uri } : m))}
-              caption={text}
-              onCaptionChange={handleTextChange}
-              onSend={() => { void handleSend(); }}
-              sendDisabled={sending || disabled}
-              lockPrice={allowLock ? media.lockPrice ?? null : null}
-              onLockPriceChange={allowLock ? (price) => setMedia((m) => (m && m.type === "video" ? { ...m, lockPrice: price } : m)) : undefined}
+              visible={studioOpen}
+              onClose={cancelStudio}
+              onConfirm={() => { setStudioOpen(false); setTimeout(() => inputRef.current?.focus(), 350); }}
+              uri={cur.uri}
+              kind={cur.type === "video" ? "video" : "image"}
+              strip={studio.map((m, i) => ({ key: `${i}:${m.uri}`, uri: m.thumbnailUri || m.uri, kind: m.type === "video" ? "video" : "image", locked: m.lockPrice != null }))}
+              active={studioActive}
+              onSelect={setStudioActive}
+              onAddMore={() => { void handlePickGallery(); }}
+              onRemove={removeStudioItem}
+              duration={cur.duration}
+              width={cur.width}
+              height={cur.height}
+              size={cur.size}
+              options={cur.options ?? {}}
+              onOptionsChange={(o: DmVideoOptions) => patchStudio({ options: o })}
+              destruct={cur.destruct ?? null}
+              onDestructChange={(c: DmDestructChoice | null) => patchStudio({ destruct: c })}
+              onCoverFrame={(uri) => patchStudio({ thumbnailUri: uri })}
+              lockPrice={allowLock ? cur.lockPrice ?? null : null}
+              onLockPriceChange={allowLock ? (price) => patchStudio({ lockPrice: price }) : undefined}
             />
-          </Animated.View>
-        )}
-        {media?.type === "video" && allowLock && (
-          <View style={{ paddingHorizontal: 12 }}>
-            <LockPriceRow
-              value={media.lockPrice ?? null}
-              kind="video"
-              onChange={(price) => setMedia((m) => (m ? { ...m, lockPrice: price } : m))}
-            />
-          </View>
+          );
+        })()}
+        {studio.length > 0 && (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled"
+            style={{ flexGrow: 0 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12, paddingTop: 12 }}>
+            {studio.map((m, i) => {
+              const veiled = m.lockPrice != null || m.options?.hidden === "reveal";
+              return (
+                <View key={`${i}:${m.uri}`}>
+                  <Pressable onPress={() => openStudioAt(i)} accessibilityRole="button"
+                    accessibilityLabel={_copy("dmVideo.editItem", { defaultValue: "Edit item {{value1}}", value1: i + 1 })}
+                    style={{ width: 64, height: 64, borderRadius: 10, overflow: "hidden" }} className="bg-theme-neutrals-800">
+                    <SmartImage source={{ uri: m.thumbnailUri || m.uri }} recyclingKey={m.thumbnailUri || m.uri} blurRadius={veiled ? 12 : undefined} contentFit="cover" style={{ width: 64, height: 64 }} />
+                    <View pointerEvents="none" style={{ position: "absolute", left: 4, bottom: 4, flexDirection: "row", gap: 3 }}>
+                      {m.type === "video" && <Icon name="Play" size={11} color="#fff" fill="#fff" />}
+                      {m.lockPrice != null && <Icon name="Lock" size={11} color="#fff" />}
+                      {m.options?.hidden === "reveal" && <Icon name="EyeOff" size={11} color="#fff" />}
+                      {m.destruct ? <Icon name="Timer" size={11} color="#fff" /> : null}
+                    </View>
+                  </Pressable>
+                  <TouchableOpacity onPress={() => removeStudioAt(i)} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("dm.removeAttachment")}
+                    style={{ position: "absolute", right: -6, top: -6, width: 20, height: 20, borderRadius: 6, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" }}>
+                    <Icon name="X" size={11} color="#09090B" />
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+            <Pressable onPress={() => { void handlePickGallery(); }} accessibilityRole="button"
+              accessibilityLabel={_copy("dmVideo.addMore", { defaultValue: "Add photos or videos" })}
+              style={{ width: 64, height: 64, borderRadius: 10, borderWidth: 1, borderStyle: "dashed", alignItems: "center", justifyContent: "center" }} className="border-theme-neutrals-600">
+              <Icon name="Plus" size={20} color="#A1A1AA" />
+            </Pressable>
+          </ScrollView>
         )}
 
         {/* Selected media / GIF preview */}
-        {((media && media.type !== "video") || gifUrl) && (
+        {(media || gifUrl) && (
           <Animated.View
             entering={FadeIn.duration(150)}
             className="px-3 pt-2"
@@ -807,11 +866,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                   />
                 </View>
               )}
-              {media?.type === "video" && (
-                <View className="absolute inset-0 items-center justify-center">
-                  <Icon name="CirclePlay" size={28} color="#fff" />
-                </View>
-              )}
               {gifUrl && (
                 <View className="absolute bottom-1 left-1 dark-surface bg-black/60 rounded px-1">
                   <Text className="text-[11px] text-white font-bold">GIF</Text>
@@ -827,13 +881,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 <Icon name="X" size={12} color="#09090B" />
               </TouchableOpacity>
             </View>
-            {allowLock && media && (media.type === "image" || media.type === "video") ? (
-              <LockPriceRow
-                value={media.lockPrice ?? null}
-                kind={media.type}
-                onChange={(price) => setMedia((m) => (m ? { ...m, lockPrice: price } : m))}
-              />
-            ) : null}
           </Animated.View>
         )}
 
