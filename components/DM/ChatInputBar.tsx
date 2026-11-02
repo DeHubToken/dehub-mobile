@@ -1,4 +1,5 @@
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
+import LockPriceRow from "./LockPriceRow";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
@@ -71,6 +72,8 @@ export type ChatMediaAttachment = {
   size?: number;
   /** Videos only — seconds, when the picker reports it. */
   duration?: number;
+  /** Pay-to-unlock price (DHB) for a photo or video. */
+  lockPrice?: number | null;
   /** Videos only — picked size, so the card and bubble keep the real shape. */
   width?: number;
   height?: number;
@@ -83,6 +86,8 @@ export type ChatMediaAttachment = {
 interface ChatInputBarProps {
   onSendText: (text: string) => Promise<boolean>;
   onSendMedia: (attachment: ChatMediaAttachment, caption?: string) => Promise<boolean>;
+  /** Offer "Lock photo" (pay to unlock) on a picked photo or video. 1:1 DMs only. */
+  allowLock?: boolean;
   onSendGif: (url: string, caption?: string) => Promise<boolean>;
   onStartVoice: () => void;
   onTypingChange?: (isTyping: boolean) => void;
@@ -150,6 +155,7 @@ const INPUT_TEXT = {
 const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   onSendText,
   onSendMedia,
+  allowLock = false,
   onSendGif,
   onStartVoice,
   onTypingChange,
@@ -810,6 +816,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 <Icon name="X" size={12} color="#09090B" />
               </TouchableOpacity>
             </View>
+            {allowLock && media && (media.type === "image" || media.type === "video") ? (
+              <LockPriceRow
+                value={media.lockPrice ?? null}
+                kind={media.type}
+                onChange={(price) => setMedia((m) => (m ? { ...m, lockPrice: price } : m))}
+              />
+            ) : null}
           </Animated.View>
         )}
 

@@ -50,6 +50,7 @@ import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { haptic } from "../../libs/haptics";
 import { TipGemIcon } from "../Home/TipGemIcon";
 import EncryptedMedia from "./EncryptedMedia";
+import LockedMedia from "./LockedMedia";
 import DmVideoTile, { useVideoPoster } from "./DmVideoTile";
 import type { DmVideoOptions } from "../../libs/dm-video-options";
 import type { DmDestruct } from "../../libs/dm-destruct";
@@ -484,6 +485,18 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     [navigation, onImagePress, mediaItems],
   );
 
+  // A locked photo opens on its own: the gallery list would be the blurred preview.
+  const handleImageTapUrl = useCallback(
+    (url: string) => {
+      if (onImagePress) {
+        onImagePress(url);
+        return;
+      }
+      navigation.navigate("ImageViewer", { images: [url], initialIndex: 0 });
+    },
+    [navigation, onImagePress],
+  );
+
   const handleVideoTap = useCallback(
     (url: string) => {
       onVideoPress?.(url, {
@@ -834,8 +847,20 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               </View>
             )}
 
+            {/* Pay-to-unlock photo or video: its own card, never the plain media path. */}
+            {isMedia && message.lock ? (
+              <LockedMedia
+                message={message}
+                isMine={isMine}
+                width={MAX_IMAGE_WIDTH}
+                onImagePress={handleImageTapUrl}
+                onVideoPress={onVideoPress}
+                onLongPress={handleLongPress}
+              />
+            ) : null}
+
             {/* Media (images / video / GIF) */}
-            {mediaItems.length > 0 && !isVoice && (
+            {mediaItems.length > 0 && !isVoice && !(isMedia && message.lock) && (
               <View>
                 {mediaItems.map((item, idx) =>
                   item.kind === "audio" ? (

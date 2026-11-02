@@ -16131,5 +16131,25 @@
       "thanks_other": "Dank aan {{count}} supporters",
       "top": "Top: {{name}}"
     }
+  },
+  "dmPaidLock": {
+    "lockPhoto": "Foto vergrendelen",
+    "lockVideo": "Video vergrendelen",
+    "lockOnPrice": "Vergrendeld · {{price}} DHB",
+    "lockCustom": "Anders",
+    "lockCustomLabel": "Eigen prijs in DHB",
+    "lockHint": "Ze zien het wazig tot ze je betalen. Vergrendelde bestanden zijn niet end-to-end versleuteld.",
+    "lockedPhoto": "Vergrendelde foto",
+    "lockedVideo": "Vergrendelde video",
+    "unlockFor": "Ontgrendelen voor {{price}}",
+    "unlockOnWeb": "Ontgrendelen op dehub.io · {{price}}",
+    "confirming": "Betaling bevestigen…",
+    "stillConfirming": "Betaling verstuurd. Het opent zodra die bevestigd is.",
+    "payFailed": "Ontgrendelen mislukt",
+    "unlocked": "Ontgrendeld",
+    "unlockedTag": "Ontgrendeld",
+    "notYet": "Nog niet ontgrendeld",
+    "uploading": "Vergrendelen…",
+    "unlockedByThem": "Je vergrendelde {{kind}} is ontgrendeld: +{{amount}} DHB"
   }
 }

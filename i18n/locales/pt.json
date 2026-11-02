@@ -15628,5 +15628,25 @@
       "thanks_other": "Obrigado aos {{count}} apoiantes",
       "top": "Top: {{name}}"
     }
+  },
+  "dmPaidLock": {
+    "lockPhoto": "Bloquear foto",
+    "lockVideo": "Bloquear vídeo",
+    "lockOnPrice": "Bloqueado · {{price}} DHB",
+    "lockCustom": "Outro",
+    "lockCustomLabel": "Preço personalizado em DHB",
+    "lockHint": "A pessoa vê desfocado até te pagar. Arquivos bloqueados não têm criptografia de ponta a ponta.",
+    "lockedPhoto": "Foto bloqueada",
+    "lockedVideo": "Vídeo bloqueado",
+    "unlockFor": "Desbloquear por {{price}}",
+    "unlockOnWeb": "Desbloquear no dehub.io · {{price}}",
+    "confirming": "Confirmando pagamento…",
+    "stillConfirming": "Pagamento enviado. Abre assim que for confirmado.",
+    "payFailed": "Não foi possível desbloquear",
+    "unlocked": "Desbloqueado",
+    "unlockedTag": "Desbloqueado",
+    "notYet": "Ainda não desbloqueado",
+    "uploading": "Bloqueando…",
+    "unlockedByThem": "Seu {{kind}} bloqueado foi desbloqueado: +{{amount}} DHB"
   }
 }

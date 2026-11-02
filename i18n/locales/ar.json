@@ -15888,5 +15888,25 @@
       "thanks_other": "شكرًا لـ {{count}} داعمين",
       "top": "الأعلى: {{name}}"
     }
+  },
+  "dmPaidLock": {
+    "lockPhoto": "قفل الصورة",
+    "lockVideo": "قفل الفيديو",
+    "lockOnPrice": "مقفل · {{price}} DHB",
+    "lockCustom": "مبلغ آخر",
+    "lockCustomLabel": "سعر مخصص بعملة DHB",
+    "lockHint": "سيراها ضبابية حتى يدفع لك. الملفات المقفلة ليست مشفرة من طرف إلى طرف.",
+    "lockedPhoto": "صورة مقفلة",
+    "lockedVideo": "فيديو مقفل",
+    "unlockFor": "افتح مقابل {{price}}",
+    "unlockOnWeb": "افتح على dehub.io · {{price}}",
+    "confirming": "جارٍ تأكيد الدفع…",
+    "stillConfirming": "تم إرسال الدفع. سيُفتح فور تأكيده.",
+    "payFailed": "تعذّر فتح القفل",
+    "unlocked": "تم فتح القفل",
+    "unlockedTag": "تم فتح القفل",
+    "notYet": "لم يُفتح بعد",
+    "uploading": "جارٍ القفل…",
+    "unlockedByThem": "تم فتح {{kind}} المقفل الخاص بك: +{{amount}} DHB"
   }
 }
