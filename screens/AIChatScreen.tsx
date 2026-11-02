@@ -584,16 +584,45 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
 
       const token = (await getAuthToken()) || undefined;
       let streamed = '';
-      let paintTimer: ReturnType<typeof setTimeout> | null = null;
-      const stopPaint = () => { if (paintTimer) { clearTimeout(paintTimer); paintTimer = null; } };
       let swapAction: AIChatMessage['swapAction'];
+      // The reply types itself out at a steady pace. Android often hands the
+      // stream over in one or two big chunks, which used to drop the whole
+      // answer in at once; now it reveals over about a second, faster the
+      // further behind it is, and is saved once it has all shown.
+      let shown = 0;
+      let streamDone = false;
+      let cancelled = false;
+      let revealTimer: ReturnType<typeof setTimeout> | null = null;
+      const stopReveal = () => { if (revealTimer) { clearTimeout(revealTimer); revealTimer = null; } };
+      const finishReply = () => {
+        stopReveal();
+        if (streamRef.current === live) streamRef.current = null;
+        setStreamingContent(null);
+        setIsLoading(false);
+        setActiveTools([]);
+        commit(streamed || _copy("copy.961136f9207a", { defaultValue: "No response" }));
+        scrollToEnd();
+      };
+      const reveal = () => {
+        revealTimer = null;
+        if (cancelled) return;
+        const backlog = streamed.length - shown;
+        if (backlog > 0) {
+          shown += Math.max(lowEnd ? 24 : 6, Math.ceil(backlog / (lowEnd ? 4 : 10)));
+          if (shown > streamed.length) shown = streamed.length;
+          setStreamingContent(streamed.slice(0, shown));
+        }
+        if (shown < streamed.length) revealTimer = setTimeout(reveal, lowEnd ? 100 : 32);
+        else if (streamDone) finishReply();
+      };
+      const kickReveal = () => { if (!revealTimer && !cancelled) revealTimer = setTimeout(reveal, lowEnd ? 100 : 32); };
 
       const commit = (content: string, isError = false) => {
         const reply: AIChatMessage = { role: 'assistant', content, ...(isError && { isError: true }), ...(!isError && swapAction && { swapAction }) };
         saveMessage([...history, reply]);
       };
 
-      streamRef.current = streamAIChat(
+      const handle = streamAIChat(
         {
           messages: history,
           style: selectedStyle as any,
@@ -614,12 +643,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           onSwapAction: (action) => { swapAction = action; },
           onDelta: (delta) => {
             streamed += delta;
-            // One paint per frame (a few per second on low-end phones), not one per token.
-            if (paintTimer) return;
-            paintTimer = setTimeout(() => {
-              paintTimer = null;
-              if (streamRef.current) setStreamingContent(streamed);
-            }, lowEnd ? 120 : 32);
+            kickReveal();
             // Render the partial answer as it arrives, but only persist the
             // finished turn — writing on every token would hammer AsyncStorage
             // and the remote mirror.
@@ -631,17 +655,14 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             setActiveTools([]);
           },
           onDone: () => {
-            stopPaint();
-            streamRef.current = null;
-            setStreamingContent(null);
-            setIsLoading(false);
-            setActiveTools([]);
-            commit(streamed || _copy("copy.961136f9207a", { defaultValue: "No response" }));
-            scrollToEnd();
+            streamDone = true;
+            if (cancelled) return;
+            if (shown >= streamed.length) finishReply();
+            else kickReveal();
           },
           onError: (err) => {
-            stopPaint();
-            streamRef.current = null;
+            stopReveal();
+            if (streamRef.current === live) streamRef.current = null;
             setStreamingContent(null);
             setIsLoading(false);
             setActiveTools([]);
@@ -659,6 +680,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           },
         },
       );
+      // Stopping (new chat, another thread) also ends a reveal still typing out.
+      const live = { abort: () => { cancelled = true; stopReveal(); handle.abort(); } };
+      streamRef.current = live;
     },
     [
       setInput,
@@ -1478,7 +1502,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
     } finally {
       sendDraft.current = null;
       submitLock.current = false;
-      setIsLoading(false);
+      // A chat reply is still streaming: it clears this itself when it ends.
+      // Clearing it here hid the thinking dots the moment the message went.
+      if (!streamRef.current) setIsLoading(false);
     }
   }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings, walletAddress, scrollToEnd]);
 
