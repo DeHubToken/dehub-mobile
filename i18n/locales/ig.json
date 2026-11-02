@@ -129,6 +129,7 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Jiri nwayọ! Ozi dị ukwuu n'usoro. Nwalee ọzọ n'ime {{wait}}, ma ọ bụ chere ka onye ọzọ zaa.",
     "eabb5c136be4": "Emelitere atụmatụ ahụ adaala",
     "801658c8e591": "Emebeghi atụmatụ ahụ — biko nwaa ọzọ",
     "dd2108f1cda8": "Stop Voice Chat",

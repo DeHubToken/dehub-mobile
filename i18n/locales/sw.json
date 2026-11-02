@@ -129,6 +129,7 @@
     "useNamed": "Tumia {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Polepole! Ujumbe mwingi mfululizo. Jaribu tena baada ya {{wait}}, au subiri mtu mwingine ajibu.",
     "eabb5c136be4": "Imeshindwa kusasisha mpango",
     "801658c8e591": "Lengo hilo halikuundwa — jaribu tena",
     "dd2108f1cda8": "Acha Voice Chat",

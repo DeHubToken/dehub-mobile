@@ -129,6 +129,7 @@
     "useNamed": "Whakamahia {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Āta haere! He maha rawa ngā karere i te raupapa. Whakamātau anō ā te {{wait}}, tatari rānei kia whakautu tētahi atu.",
     "eabb5c136be4": "I rahua te whakahou i te mahere",
     "801658c8e591": "Kaore i hangaia te mahere — tamata ano",
     "dd2108f1cda8": "Whakamutua te kōrerorero reo",

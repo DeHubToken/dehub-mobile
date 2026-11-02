@@ -129,6 +129,7 @@
     "useNamed": "{{name}} fayyadamaa."
   },
   "copy": {
+    "chatSlowDown": "Suuta! Ergaawwan baay'een walitti aanan. {{wait}} booda irra deebi'ii yaali, ykn hanga namni biraa deebisutti eegi.",
     "eabb5c136be4": "Planin akkaa fiiraa qabu qofaa",
     "801658c8e591": "Karoorichi hin uumamne — maaloo irra deebi'ii yaali",
     "dd2108f1cda8": "Stop Voice Chat",

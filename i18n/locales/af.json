@@ -129,6 +129,7 @@
     "useNamed": "Gebruik {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Stadig! Te veel boodskappe agter mekaar. Probeer weer oor {{wait}}, of wag dat iemand anders antwoord.",
     "eabb5c136be4": "Mislukte om plan by te werk",
     "801658c8e591": "Die plan is nie geskep nie — probeer weer",
     "dd2108f1cda8": "Sta op Voice Chat",

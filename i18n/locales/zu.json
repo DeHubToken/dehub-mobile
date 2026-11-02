@@ -129,6 +129,7 @@
     "useNamed": "Sebenzisa {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Phola! Imilayezo eminingi kakhulu ilandelana. Zama futhi ngemuva kwe-{{wait}}, noma ulinde omunye aphendule.",
     "eabb5c136be4": "Ukubuyekeza uhlelo kwehlulekile",
     "801658c8e591": "Lengo liliyopigwa mbali — tafuta tena",
     "dd2108f1cda8": "Misa i-Voice Chat",
