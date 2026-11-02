@@ -6477,7 +6477,18 @@
     "fixPlaceholder": "Wat er zou moeten staan",
     "fixSubmit": "Suggestie voor correctie"
   },
+  "post": {
+    "destruct": {
+      "offBody": "De post blijft staan.",
+      "onBody": "De post verwijdert zichzelf {{value1}} nadat hij online staat."
+    }
+  },
   "upload": {
+    "altHint": "Zeg wat erop staat voor mensen die het niet kunnen zien.",
+    "altPlaceholder": "Beschrijf deze foto",
+    "altTab": "Alt-tekst",
+    "editVideo": "Video bewerken",
+    "altPlaceholderVideo": "Beschrijf deze video",
     "solanaUnavailable": "Solana-wallet niet beschikbaar — dit apparaat heeft je walletsleutel niet. Log opnieuw in om die te herstellen.",
     "solanaTempUnavailable": "Posten op Solana is tijdelijk niet beschikbaar. Probeer in plaats daarvan Base of BNB.",
     "enterTextFirst": "Voer eerst wat tekst in",

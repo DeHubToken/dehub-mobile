@@ -45,6 +45,8 @@ export interface SerializedUploadPayload {
   video: SerializedMedia | null;
   /** The part of the video the creator kept (seconds); cut by the server from the draft. */
   videoTrim?: { start: number; end: number };
+  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number };
+  destruct?: number;
   audio: SerializedMedia | null;
   thumbnailUri: string | null;
   streamInfoJson: string;

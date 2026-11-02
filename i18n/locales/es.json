@@ -6339,7 +6339,18 @@
     "fixPlaceholder": "Lo que debería decir",
     "fixSubmit": "Sugerir arreglo"
   },
+  "post": {
+    "destruct": {
+      "offBody": "La publicación se queda.",
+      "onBody": "La publicación se borra sola {{value1}} después de publicarse."
+    }
+  },
   "upload": {
+    "altHint": "Di qué hay en ella para quienes no pueden verla.",
+    "altPlaceholder": "Describe esta foto",
+    "altTab": "Texto alternativo",
+    "editVideo": "Editar vídeo",
+    "altPlaceholderVideo": "Describe este vídeo",
     "solanaUnavailable": "Cartera de Solana no disponible: este dispositivo no tiene tu clave. Vuelve a iniciar sesión para restaurarla.",
     "solanaTempUnavailable": "Publicar en Solana no está disponible temporalmente. Prueba con Base o BNB.",
     "enterTextFirst": "Primero escribe algo",

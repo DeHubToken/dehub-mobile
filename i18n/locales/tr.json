@@ -6338,7 +6338,18 @@
     "fixPlaceholder": "Ne demeli",
     "fixSubmit": "Düzeltme öner"
   },
+  "post": {
+    "destruct": {
+      "offBody": "Gönderi yayında kalır.",
+      "onBody": "Gönderi yayınlandıktan {{value1}} sonra kendini siler."
+    }
+  },
   "upload": {
+    "altHint": "Göremeyenler için içinde ne olduğunu yazın.",
+    "altPlaceholder": "Bu fotoğrafı açıklayın",
+    "altTab": "Alternatif metin",
+    "editVideo": "Videoyu düzenle",
+    "altPlaceholderVideo": "Bu videoyu açıklayın",
     "solanaUnavailable": "Solana cüzdanı kullanılamıyor — bu cihazda cüzdan anahtarınız yok. Geri almak için yeniden oturum açın.",
     "solanaTempUnavailable": "Solana'da paylaşım geçici olarak kullanılamıyor. Bunun yerine Base veya BNB deneyin.",
     "enterTextFirst": "Önce biraz metin girin",

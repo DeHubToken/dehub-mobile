@@ -6293,7 +6293,18 @@
     "fixPlaceholder": "What it should say",
     "fixSubmit": "Suggest fix"
   },
+  "post": {
+    "destruct": {
+      "offBody": "The post stays up.",
+      "onBody": "The post deletes itself {{value1}} after it goes up."
+    }
+  },
   "upload": {
+    "altHint": "Say what is in it for people who cannot see it.",
+    "altPlaceholder": "Describe this photo",
+    "altTab": "Alt text",
+    "editVideo": "Edit video",
+    "altPlaceholderVideo": "Describe this video",
     "solanaUnavailable": "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.",
     "solanaTempUnavailable": "Solana posting is temporarily unavailable. Try Base or BNB instead.",
     "enterTextFirst": "Enter some text first",
