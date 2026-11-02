@@ -139,7 +139,7 @@ export async function getMessages(
 export async function uploadDmMedia(
   params: UploadDmMediaParams,
 ): Promise<DmMessage> {
-  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind } =
+  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind, mediaOptions, destruct } =
     params;
 
   const form = new FormData();
@@ -162,6 +162,8 @@ export async function uploadDmMedia(
   if (tipTxHash) form.append("tipTxHash", tipTxHash);
   if (replyTo) form.append("replyTo", String(replyTo));
   if (encryptedKind) form.append("encryptedKind", encryptedKind);
+  if (mediaOptions) form.append("mediaOptions", JSON.stringify(mediaOptions));
+  if (destruct) form.append("destruct", String(destruct));
 
   return apiClient.post<DmMessage>("/dm/upload", form, {
     isAuthRequired: true,
@@ -383,4 +385,9 @@ export async function unpinDmMessage(
     data: { messageId, address },
     isAuthRequired: true,
   } as any);
+}
+
+/** The recipient has watched a view-once attachment; the server removes it for both. */
+export async function markDmMessageViewed(messageId: string): Promise<void> {
+  await apiClient.post(`/dm/message/${encodeURIComponent(messageId)}/viewed`, {}, { isAuthRequired: true });
 }
