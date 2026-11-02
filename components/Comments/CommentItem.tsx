@@ -72,6 +72,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { expandEmojiTokens } from "../common/EmojiText";
 import { TipGemIcon } from "../Home/TipGemIcon";
+import { TipAmountChip } from "./TipWall";
 import { subscribePostTipped, commentTipKey } from "../../libs/tip-events";
 
 const ICON_MUTED = "#6F7174";
@@ -750,25 +751,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               </View>
             )}
             {comment.tip && comment.tip.amount > 0 && (
-              <View
-                accessibilityLabel={t("tip.wallLabel")}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 3,
-                  paddingHorizontal: 6,
-                  paddingVertical: 2,
-                  borderRadius: 999,
-                  backgroundColor: "rgba(255,255,255,0.12)",
-                  borderWidth: 1,
-                  borderColor: "rgba(255,255,255,0.18)",
-                  ...(isMinimal ? MINIMAL_UNFILLED : null),
-                }}
-              >
-                <Icon name="Gem" size={10} color="#F9FBFF" />
-                <Text style={{ fontSize: 10, fontWeight: "700", color: "#F9FBFF" }}>
-                  {tipAmountLabel(comment.tip.amount)} {comment.tip.symbol}
-                </Text>
+              <View accessibilityLabel={t("tip.wallLabel")}>
+                <TipAmountChip amount={comment.tip.amount} symbol={comment.tip.symbol} minimal={isMinimal} />
               </View>
             )}
             {/* Same name, different account. Said plainly, and never by hiding
