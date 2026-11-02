@@ -13560,7 +13560,11 @@
     "skippedOtherToast": "{{platforms}} kihagyva: nem tudta felvenni ezt a bejegyzést."
   },
   "builder": {
-    "stakeForAllowance": "Helyezz tétbe DeHub tokeneket, hogy megnöveld a napi build keretedet",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} kredit",
+    "perPrompt": "≈ {{price}} / kérés",
+    "pricingNote": "Minden kérés a kreditjeidből fizetődik a modell költsége plusz 30% áron. A kérés legmagasabb lehetséges költségét futás közben zároljuk, a fel nem használt részt visszaadjuk.",
+    "topUpCredits": "Kredit feltöltése",
     "preview": "Előnézet",
     "openInBrowser": "Megnyitás böngészőben",
     "reload": "Újratöltés",

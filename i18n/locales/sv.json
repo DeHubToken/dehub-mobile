@@ -13560,7 +13560,11 @@
     "skippedOtherToast": "Hoppade över {{platforms}}: de kunde inte ta det här inlägget."
   },
   "builder": {
-    "stakeForAllowance": "Sätt in DeHub-tokens för att höja din dagliga byggräns",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} i krediter",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Varje prompt betalas från dina krediter till modellens kostnad plus 30 %. Det mesta en prompt kan kosta reserveras medan den körs och den oanvända delen återlämnas.",
+    "topUpCredits": "Fyll på krediter",
     "preview": "Förhandsvisning",
     "openInBrowser": "Öppna i webbläsare",
     "reload": "Uppdatera",

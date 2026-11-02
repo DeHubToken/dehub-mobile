@@ -13540,7 +13540,11 @@
     "skippedOtherToast": "تخطى {{platforms}}: ما قدروا ياخدوا هالبوست."
   },
   "builder": {
-    "stakeForAllowance": "راهن بعملات DeHub لتزيد حد البناء اليومي تبعك",
+    "modelLabel": "النموذج",
+    "creditsLeft": "{{amount}} من الرصيد",
+    "perPrompt": "≈ {{price}} لكل طلب",
+    "pricingNote": "يُدفع كل طلب من رصيدك بتكلفة النموذج مضافًا إليها 30%. يُحجز أقصى ما قد يكلفه الطلب أثناء تشغيله ويُعاد الجزء غير المستخدم.",
+    "topUpCredits": "اشحن الرصيد",
     "preview": "معاينة",
     "openInBrowser": "افتح بالمتصفح",
     "reload": "تحديث",

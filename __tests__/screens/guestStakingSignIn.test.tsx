@@ -47,6 +47,7 @@ jest.mock('../../context/AuthContext', () => ({ useUser: () => null, useAuthActi
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../config/links', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
+jest.mock('../../components/Builder/BuilderModelCard', () => 'BuilderModelCard');
 
 const STAKE = ['Dpay', { initialTab: 'stake' }];
 
@@ -93,12 +94,6 @@ describe('staking buttons for guests', () => {
     const screen = render(<RaffleScreen />);
     fireEvent.press(screen.getByText('raffle.findLiveDraw'));
     expect(mockNavigate).toHaveBeenCalledWith('Root', { screen: 'Home' }, { pop: true });
-  });
-
-  it('Builder: the allowance link asks a guest to sign in first', () => {
-    const screen = render(<BuilderScreen />);
-    fireEvent.press(screen.getByText('builder.stakeForAllowance'));
-    expectSignInThenStake();
   });
 
   it('Builder: the keyboard offset does not count the header twice', () => {

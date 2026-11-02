@@ -11936,7 +11936,11 @@
     "skippedOtherToast": "{{platforms}} : ils n'ont pas pu accepter cette publication."
   },
   "builder": {
-    "stakeForAllowance": "Misez des tokens DeHub pour augmenter votre quota de créations quotidien",
+    "modelLabel": "Modèle",
+    "creditsLeft": "{{amount}} de crédits",
+    "perPrompt": "≈ {{price}} par requête",
+    "pricingNote": "Chaque requête est payée avec vos crédits au coût du modèle plus 30 %. Le montant maximal d'une requête est réservé pendant son exécution et la part non utilisée est restituée.",
+    "topUpCredits": "Recharger des crédits",
     "preview": "Aperçu",
     "openInBrowser": "Ouvrir dans le navigateur",
     "reload": "Recharger",

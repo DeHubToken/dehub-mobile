@@ -13558,7 +13558,11 @@
     "skippedOtherToast": "Imeruka {{platforms}}: hawakuweza kuchukua chapisho hili."
   },
   "builder": {
-    "stakeForAllowance": "Weka tokeni za DeHub ili kuongeza kikomo chako cha ujenzi cha kila siku",
+    "modelLabel": "Muundo",
+    "creditsLeft": "{{amount}} katika salio",
+    "perPrompt": "≈ {{price}} kwa kila ombi",
+    "pricingNote": "Kila ombi hulipwa kutoka kwenye salio lako kwa gharama ya muundo pamoja na 30%. Kiasi cha juu zaidi ambacho ombi linaweza kugharimu hushikiliwa linapoendeshwa na sehemu isiyotumika hurejeshwa.",
+    "topUpCredits": "Ongeza salio",
     "preview": "Onyesho la awali",
     "openInBrowser": "Fungua kwenye kivinjari",
     "reload": "Pakia upya",

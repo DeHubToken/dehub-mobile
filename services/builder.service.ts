@@ -114,6 +114,19 @@ export interface BuilderVersion {
   created_at: string;
 }
 
+export interface BuilderModel {
+  id: string;
+  label: string;
+  typicalMicros: number;
+  maxMicros: number;
+}
+
+export interface BuilderPricing {
+  model: string;
+  markup: number;
+  models: BuilderModel[];
+}
+
 async function call<T>(body: Record<string, unknown>): Promise<T> {
   await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
@@ -139,4 +152,7 @@ export const builderApi = {
   previewUrl: (projectId: string) => call<{ url: string; publicUrl: string; expiresAt: string | null }>({ action: "preview_url", projectId }),
   publish: (projectId: string) => call<{ appSlug: string; tier: string; storeUrl: string }>({ action: "publish", projectId }),
   unpublish: (projectId: string) => call<{ ok: true }>({ action: "unpublish", projectId }),
+  /** Models a build can use, what each typically costs per prompt (micros = millionths of USD), and the user's pick. */
+  pricing: () => call<BuilderPricing>({ action: "pricing" }),
+  setModel: (model: string) => call<{ model: string }>({ action: "set_model", model }),
 };

@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "Izlaida {{platforms}}: viņi nevarēja ieņemt šo ziņu."
   },
   "builder": {
-    "stakeForAllowance": "Ieguldiet DeHub žetonus, lai palielinātu savu dienas izveides kvotu",
+    "modelLabel": "Modelis",
+    "creditsLeft": "{{amount}} kredītos",
+    "perPrompt": "≈ {{price}} par uzvedni",
+    "pricingNote": "Katra uzvedne tiek apmaksāta no taviem kredītiem par modeļa cenu plus 30 %. Uzvednes lielākā iespējamā cena izpildes laikā tiek rezervēta, un neizmantotā daļa tiek atgriezta.",
+    "topUpCredits": "Papildināt kredītus",
     "preview": "Priekšskatījums",
     "openInBrowser": "Atvērt pārlūkā",
     "reload": "Ielādēt no jauna",

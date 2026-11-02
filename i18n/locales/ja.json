@@ -13478,7 +13478,11 @@
     "skippedOtherToast": "{{platforms}}をスキップしました：この投稿を投稿できませんでした。"
   },
   "builder": {
-    "stakeForAllowance": "DeHubトークンをステークして1日のビルド上限を増やす",
+    "modelLabel": "モデル",
+    "creditsLeft": "クレジット残高 {{amount}}",
+    "perPrompt": "≈ 1プロンプトあたり {{price}}",
+    "pricingNote": "各プロンプトはモデルのコストに30%を加えた額がクレジットから支払われます。実行中はプロンプトの最大費用が確保され、使われなかった分は返却されます。",
+    "topUpCredits": "クレジットをチャージ",
     "preview": "プレビュー",
     "openInBrowser": "ブラウザで開く",
     "reload": "再読み込み",

@@ -13586,7 +13586,11 @@
     "skippedOtherToast": "تم تخطي {{platforms}}: لم يتمكنوا من قبول هذا المنشور."
   },
   "builder": {
-    "stakeForAllowance": "رَاهن بعملات DeHub باش تزيد الحد ديال البناء اليومي ديالك",
+    "modelLabel": "النموذج",
+    "creditsLeft": "{{amount}} من الرصيد",
+    "perPrompt": "≈ {{price}} لكل طلب",
+    "pricingNote": "يُدفع كل طلب من رصيدك بتكلفة النموذج مضافًا إليها 30%. يُحجز أقصى ما قد يكلفه الطلب أثناء تشغيله ويُعاد الجزء غير المستخدم.",
+    "topUpCredits": "اشحن الرصيد",
     "preview": "معاينة",
     "openInBrowser": "حل فالمتصفح",
     "reload": "عاود حمل",

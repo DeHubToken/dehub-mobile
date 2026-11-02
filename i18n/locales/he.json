@@ -13560,7 +13560,11 @@
     "skippedOtherToast": "דילגו על {{platforms}}: הם לא יכלו לקבל את הפוסט הזה."
   },
   "builder": {
-    "stakeForAllowance": "הימור טוקני DeHub כדי להגדיל את מכסת הבנייה היומית שלך",
+    "modelLabel": "מודל",
+    "creditsLeft": "{{amount}} בקרדיטים",
+    "perPrompt": "≈ {{price}} לכל בקשה",
+    "pricingNote": "כל בקשה משולמת מהקרדיטים שלך לפי עלות המודל ועוד 30%. העלות המרבית של בקשה נשמרת בזמן הריצה והחלק שלא נוצל מוחזר.",
+    "topUpCredits": "טעינת קרדיטים",
     "preview": "תצוגה מקדימה",
     "openInBrowser": "פתח בדפדפן",
     "reload": "טען מחדש",

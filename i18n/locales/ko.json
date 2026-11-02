@@ -13609,7 +13609,11 @@
     "skippedOtherToast": "건너뛴 {{platforms}}: 이 게시물을 가져갈 수 없습니다."
   },
   "builder": {
-    "stakeForAllowance": "DeHub 토큰을 스테이킹하여 일일 빌드 한도를 늘리세요",
+    "modelLabel": "모델",
+    "creditsLeft": "크레딧 {{amount}}",
+    "perPrompt": "≈ 프롬프트당 {{price}}",
+    "pricingNote": "각 프롬프트는 모델 비용에 30%를 더한 금액이 크레딧에서 결제됩니다. 실행 중에는 프롬프트의 최대 비용이 보류되며 사용하지 않은 부분은 반환됩니다.",
+    "topUpCredits": "크레딧 충전",
     "preview": "미리보기",
     "openInBrowser": "브라우저에서 열기",
     "reload": "새로고침",

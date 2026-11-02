@@ -13480,7 +13480,11 @@
     "skippedOtherToast": "已跳过{{platforms}} ：他们无法发表此帖子。"
   },
   "builder": {
-    "stakeForAllowance": "质押 DeHub 代币以提高你的每日构建额度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 积分余额",
+    "perPrompt": "≈ 每次提示 {{price}}",
+    "pricingNote": "每次提示都会从你的积分中扣除，金额为模型成本加 30%。运行期间会预留单次提示的最高费用，未用完的部分会退回。",
+    "topUpCredits": "充值积分",
     "preview": "预览",
     "openInBrowser": "在浏览器中打开",
     "reload": "重新加载",

@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "U anashkalua {{platforms}}: ata nuk mund ta merrnin këtë postim."
   },
   "builder": {
-    "stakeForAllowance": "Vendos token-e DeHub për të rritur kufirin ditor të ndërtimeve",
+    "modelLabel": "Modeli",
+    "creditsLeft": "{{amount}} në kredite",
+    "perPrompt": "≈ {{price}} për kërkesë",
+    "pricingNote": "Çdo kërkesë paguhet nga kreditet e tua me koston e modelit plus 30%. Kostoja maksimale e kërkesës mbahet ndërsa ajo ekzekutohet dhe pjesa e papërdorur kthehet.",
+    "topUpCredits": "Rimbush kreditet",
     "preview": "Parapamje",
     "openInBrowser": "Hap në shfletues",
     "reload": "Rifresko",

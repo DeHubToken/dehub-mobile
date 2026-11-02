@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "{{platforms}} jäi vahele: ta ei saanud seda postitust vastu võtta."
   },
   "builder": {
-    "stakeForAllowance": "Panusta DeHub tokeneid, et suurendada oma igapäevast ehituslimiiti",
+    "modelLabel": "Mudel",
+    "creditsLeft": "{{amount}} krediiti",
+    "perPrompt": "≈ {{price}} päringu kohta",
+    "pricingNote": "Iga päring makstakse sinu krediitidest mudeli hinnaga pluss 30%. Päringu suurim võimalik hind broneeritakse selle käitamise ajaks ja kasutamata osa tagastatakse.",
+    "topUpCredits": "Lisa krediiti",
     "preview": "Eelvaade",
     "openInBrowser": "Ava brauseris",
     "reload": "Laadi uuesti",

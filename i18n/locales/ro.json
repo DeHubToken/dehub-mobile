@@ -13571,7 +13571,11 @@
     "skippedOtherToast": "A omis {{platforms}}: nu a putut accepta această postare."
   },
   "builder": {
-    "stakeForAllowance": "Pune la stake tokenuri DeHub pentru a-ți crește limita zilnică de construire",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} în credite",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Fiecare prompt este plătit din creditele tale la costul modelului plus 30%. Suma maximă pe care o poate costa un prompt este reținută cât rulează, iar partea nefolosită este returnată.",
+    "topUpCredits": "Reîncarcă credite",
     "preview": "Previzualizare",
     "openInBrowser": "Deschide în browser",
     "reload": "Reîncarcă",

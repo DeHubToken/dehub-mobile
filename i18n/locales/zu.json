@@ -13584,7 +13584,11 @@
     "skippedOtherToast": "Yeqa {{platforms}}: abakwazanga ukuthatha le phosti."
   },
   "builder": {
-    "stakeForAllowance": "Faka amathokheni e-DeHub ukwenyusa umkhawulo wakho wokwakha wansuku zonke",
+    "modelLabel": "Imodeli",
+    "creditsLeft": "{{amount}} kumakhredithi",
+    "perPrompt": "≈ {{price}} ngomyalelo ngamunye",
+    "pricingNote": "Umyalelo ngamunye ukhokhelwa ngamakhredithi akho ngenani lemodeli kanye no-30%. Inani eliphezulu lomyalelo libanjwa ngesikhathi lisebenza futhi ingxenye engasetshenzisiwe iyabuyiselwa.",
+    "topUpCredits": "Faka amakhredithi",
     "preview": "Ukubuka kuqala",
     "openInBrowser": "Vula kusiphequluli",
     "reload": "Layisha kabusha",

@@ -12183,7 +12183,11 @@
     "skippedOtherToast": "Overgeslagen {{platforms}}: ze konden dit bericht niet aannemen."
   },
   "builder": {
-    "stakeForAllowance": "Zet DeHub-tokens in om je dagelijkse bouwlimiet te verhogen",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} aan tegoed",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Elke prompt wordt betaald uit je tegoed tegen de kosten van het model plus 30%. Het maximale bedrag van een prompt wordt vastgehouden zolang die loopt en het ongebruikte deel wordt teruggegeven.",
+    "topUpCredits": "Tegoed opwaarderen",
     "preview": "Voorbeeld",
     "openInBrowser": "Openen in browser",
     "reload": "Vernieuwen",
