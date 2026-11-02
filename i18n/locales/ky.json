@@ -14577,5 +14577,12 @@
     "joinedBodyNoEmail": "Токен чыкканда сизге эл-почта жолдонулат.",
     "failed": "Сактамады. Текрөрөнөү.",
     "privacy": "Токен чыгуу тууралуу билдирүү үчүн гана колдонулат."
+  },
+  "githubLink": {
+    "disconnect": "Өчүрүү",
+    "connected": "GitHub байланыштырылды",
+    "disconnected": "GitHub бекте калды",
+    "failed": "GitHubга байланыш жабуу. Төртөкө кайра чалгындоо.",
+    "unavailable": "GitHub verification ачылууда."
   }
 }

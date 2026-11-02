@@ -14618,5 +14618,17 @@
     "joinedBodyNoEmail": "Sizokuthumela i-imeyili uma ithokheni iqaliswa.",
     "failed": "Ayikwazanga ukukugcina lokho. Zama futhi.",
     "privacy": "Kuvame ukukutshela kuphela ngokuqaliswa."
+  },
+  "githubLink": {
+    "hint": "Ngena ku-GitHub ukuze uqinisekise ukuthi i-akhawunti iyeyakho. I-DeHub ibona kuphela iprofayili yakho ye-GitHub eyahlukaniselwe.",
+    "verified": "Kuqinisekisiwe",
+    "verifiedAria": "I-akhawunti ye-GitHub eqinisekisiwe",
+    "connect": "Xhuma i-GitHub",
+    "disconnect": "Ndisulule",
+    "connected": "I-GitHub ixhumile",
+    "disconnected": "I-GitHub indisulule",
+    "taken": "Leyo akhawunti ye-GitHub isivele iku-DeHub profile enye.",
+    "failed": "Ayikwazanga ukuxhuma i-GitHub. Zama futhi.",
+    "unavailable": "Ukuqinisekiswa kwe-GitHub kuzoza ngakusasa."
   }
 }

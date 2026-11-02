@@ -14588,5 +14588,17 @@
     "joinedBodyNoEmail": "A máa fi ímeèlì ránṣẹ́ sí ọ nígbà tí àfihàn náà bá bẹ̀rẹ̀.",
     "failed": "Mi ò lè fi ìyẹn pamọ́. Gbìyànjú lẹ́ẹ̀kan síi.",
     "privacy": "Mo kàn máa ń sọ fún ọ nípa ìfilọ́lẹ̀ náà."
+  },
+  "githubLink": {
+    "hint": "Sọ̀rọ̀ wọlé sí GitHub láti fi hàn pé àkọọlẹ̀ náà jẹ́ ti rẹ. DeHub máa rí ìfọ̀rọ̀wérọ̀ GitHub àgbéléwò rẹ̀ nìkan.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub ẹgbẹ́",
+    "connect": "Kọọkọ GitHub",
+    "disconnect": "Kọọkọkọ",
+    "connected": "GitHub kọọkọ",
+    "disconnected": "GitHub kọọkọkọ",
+    "taken": "GitHub ẹgbẹ́ rẹ yìí wà nínú ẹgbẹ́ DeHub ẹgbẹ́ rẹ.",
+    "failed": "Gbọdọ̀ ṣe GitHub. Ṣe ẹgbẹ́ rẹ.",
+    "unavailable": "GitHub ẹgbẹ́ rẹ yìí ṣe ẹgbẹ́ rẹ."
   }
 }

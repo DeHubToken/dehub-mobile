@@ -14563,5 +14563,15 @@
     "joinedBodyNoEmail": "Wetin we go send you email when token dey launch.",
     "failed": "Wetin no save for you. Try again.",
     "privacy": "Wah! Na me go tell you go launch a go dey."
+  },
+  "githubLink": {
+    "hint": "Log in for GitHub make dem see say di account na yours. DeHub only dey see your public GitHub profile.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub account",
+    "connect": "Connect GitHub",
+    "disconnect": "Disconnect",
+    "connected": "GitHub connected",
+    "disconnected": "GitHub disconnected",
+    "failed": "Couldn't connect GitHub. Try again."
   }
 }

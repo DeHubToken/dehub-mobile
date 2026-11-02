@@ -14605,5 +14605,17 @@
     "joinedBodyNoEmail": "Wir werden Ihnen eine E-Mail schicken, sobald der Token verfügbar ist.",
     "failed": "Das konnte nicht gespeichert werden. Versuchen Sie es erneut.",
     "privacy": "Nur um dich über den Launch zu informieren."
+  },
+  "githubLink": {
+    "hint": "Melden Sie sich bei GitHub an, um zu beweisen, dass das Konto Ihnen gehört. DeHub sieht nur Ihr öffentliches GitHub-Profil.",
+    "verified": "Verifiziert",
+    "verifiedAria": "Verifiziertes GitHub-Konto",
+    "connect": "GitHub verbinden",
+    "disconnect": "Trennen",
+    "connected": "GitHub verbunden",
+    "disconnected": "GitHub getrennt",
+    "taken": "Dieses GitHub-Konto befindet sich bereits in einem anderen DeHub-Profil.",
+    "failed": "GitHub konnte nicht verbunden werden. Versuchen Sie es erneut.",
+    "unavailable": "Die GitHub-Verifizierung kommt bald."
   }
 }

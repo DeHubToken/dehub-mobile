@@ -14613,5 +14613,17 @@
     "joinedBody": "我们将在令牌上线时发邮件给{{email}}。",
     "joinedBodyNoEmail": "我们将在令牌上线时发邮件给你。",
     "privacy": "只用来告诉你关于发布的信息。"
+  },
+  "githubLink": {
+    "hint": "登入 GitHub 来证明账户是你的。DeHub 只能看到你的公开 GitHub 个人资料。",
+    "verified": "已验证",
+    "verifiedAria": "已验证的 GitHub 账户",
+    "connect": "连接 GitHub",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已连接",
+    "disconnected": "GitHub 已断开连接",
+    "taken": "该 GitHub 账户已在另一个 DeHub 个人资料上。",
+    "failed": "无法连接 GitHub。请重试。",
+    "unavailable": "GitHub 验证即将推出。"
   }
 }

@@ -14595,5 +14595,17 @@
     "joinedBodyNoEmail": "נשלח אימייל אליך כאשר הטוקן יושק.",
     "failed": "לא היה ניתן לשמור זאת. נסה שוב.",
     "privacy": "משמש רק כדי להודיע לך על ההשקה."
+  },
+  "githubLink": {
+    "hint": "היכנס ל - GitHub כדי להוכיח שהחשבון שלך. DeHub רואה רק את פרופיל ה - GitHub הציבורי שלך.",
+    "verified": "מאומת",
+    "verifiedAria": "חשבון GitHub מאומת",
+    "connect": "חיבור GitHub",
+    "disconnect": "התנתקות",
+    "connected": "GitHub מחובר",
+    "disconnected": "GitHub מנותק",
+    "taken": "חשבון GitHub זה כבר נמצא בפרופיל DeHub אחר.",
+    "failed": "לא הצלחנו לחבר את GitHub. נסו שוב.",
+    "unavailable": "האימות של GitHub יגיע בקרוב."
   }
 }

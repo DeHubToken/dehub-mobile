@@ -14578,5 +14578,14 @@
     "joinedBodyNoEmail": "Ka īmēra kami ki a koe i te wā e whakatupu ai te token.",
     "failed": "Kaore i taea te tiaki i tēnā. Ngana anō.",
     "privacy": "Anake hei whakamōhio ki a koe mō te whakatupuranga."
+  },
+  "githubLink": {
+    "connect": "Tūhono ki te GitHub",
+    "disconnect": "Tūhuratia",
+    "connected": "GitHub whakapapa",
+    "disconnected": "Ko GitHub e whakaputaina",
+    "taken": "Ko te whakapātanga GitHub e taea ana ki te pūrongo DeHub kua tae ki te wāhi nei.",
+    "failed": "Ko GitHub e whakaputaina ana. Tirohia anō.",
+    "unavailable": "Ka tū mai te whakapānga o GitHub."
   }
 }

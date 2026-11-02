@@ -45,6 +45,7 @@ import {
 } from "../libs/social-reach";
 import type { ProfileField } from "../components/Profile/ProfileFieldsList";
 import { saveProfileFields } from "../services/profile-fields.service";
+import GithubLinkRow from "../components/Profile/GithubLinkRow";
 import {
   TWITTER_SVG_XML,
   INSTAGRAM_SVG_XML,
@@ -676,6 +677,8 @@ const EditProfileScreen = () => {
                     </View>
                   );
                 })}
+                {/* Proven by signing in to GitHub, never typed. */}
+                <GithubLinkRow />
               </View>
             </View>
           </View>

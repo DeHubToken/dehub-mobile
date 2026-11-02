@@ -6499,7 +6499,13 @@
     "coverFrames": "Kies een coverframe",
     "coverFrame": "Frame {{index}} als cover gebruiken",
     "uploadCover": "Coverafbeelding uploaden",
-    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw."
+    "editFailed": "Kon de bewerking niet toepassen. Probeer het opnieuw.",
+    "trim": "Trim",
+    "trimAndCover": "Trim en bedek",
+    "trimStart": "Begin van clip",
+    "trimEnd": "Einde van clip",
+    "trimHint": "Sleep de witte handvatten om te trimmen. Tik op de strip om te verplaatsen.",
+    "useFrameAsCover": "Gebruik dit frame als bedekking"
   },
   "bounty": {
     "claimed": "Geclaimd",
@@ -15914,5 +15920,17 @@
     "wasLive": "Was live",
     "untitled": "Reactie",
     "thisVideo": "deze video"
+  },
+  "githubLink": {
+    "hint": "Sign in bij GitHub om te bewijzen dat het account van jou is. DeHub ziet alleen je openbare GitHub-profiel.",
+    "verified": "Geverifieerd",
+    "verifiedAria": "Geverifieerd GitHub-account",
+    "connect": "GitHub verbinden",
+    "disconnect": "Ontkoppelen",
+    "connected": "GitHub verbonden",
+    "disconnected": "GitHub ontkoppeld",
+    "taken": "Dat GitHub-account is al gekoppeld aan een ander DeHub-profiel.",
+    "failed": "Kon GitHub niet verbinden. Probeer het opnieuw.",
+    "unavailable": "GitHub-verificatie komt gauw."
   }
 }

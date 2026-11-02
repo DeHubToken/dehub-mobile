@@ -14,7 +14,9 @@ import {
   DISCORD_SVG_XML,
   TELEGRAM_SVG_XML,
   FACEBOOK_SVG_XML,
+  GITHUB_SVG_XML,
 } from "../../config/socialIcons";
+import { githubProfileUrl, verifiedGithubLogin } from "../../services/github-link.service";
 
 const PLATFORMS = [
   { key: "twitter", get label() { return _translateCopy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }); }, host: "x.com", svg: TWITTER_SVG_XML },
@@ -49,13 +51,19 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
 
   const links = useMemo(() => {
     if (!source) return [];
-    return PLATFORMS.flatMap((p) => {
+    // A GitHub the owner proved by signing in. Only the top-level
+    // `githubLogin` counts, which nothing but that sign-in writes.
+    const github = verifiedGithubLogin(source.githubLogin);
+    const verified = github
+      ? [{ key: "github", label: "GitHub", host: "github.com", svg: GITHUB_SVG_XML, url: githubProfileUrl(github), verified: true }]
+      : [];
+    return [...verified, ...PLATFORMS.flatMap((p) => {
       const raw = source[`${p.key}Link`] ?? source[p.key];
       if (typeof raw !== "string" || !raw.trim()) return [];
       const url = getSocialLink(raw, p.host);
       if (!url || url === "#") return [];
-      return [{ ...p, url }];
-    });
+      return [{ ...p, url, verified: false }];
+    })];
   }, [source]);
 
   if (links.length === 0) return null;
@@ -101,7 +109,14 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
                 <SvgXml xml={tint(l.svg)} width={18} height={18} />
               </View>
               <View className="flex-1" style={{ minWidth: 0 }}>
-                <Text className="text-white text-sm font-semibold">{l.label}</Text>
+                <View className="flex-row items-center" style={{ gap: 4 }}>
+                  <Text className="text-white text-sm font-semibold">{l.label}</Text>
+                  {l.verified ? (
+                    <View accessible accessibilityLabel={t("githubLink.verifiedAria")}>
+                      <Icon name="CircleCheck" size={14} color="#34D399" />
+                    </View>
+                  ) : null}
+                </View>
                 <Text className="text-theme-neutrals-400 text-xs" numberOfLines={1}>
                   {displayUrl(l.url)}
                 </Text>

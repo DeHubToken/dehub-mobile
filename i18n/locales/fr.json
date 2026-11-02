@@ -6365,7 +6365,13 @@
     "coverFrames": "Choisir une image de couverture",
     "coverFrame": "Utiliser l'image {{index}} comme couverture",
     "uploadCover": "Importer une image de couverture",
-    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez.",
+    "trim": "Trim",
+    "trimAndCover": "Découper et couvrir",
+    "trimStart": "Début de la séquence",
+    "trimEnd": "Fin de la séquence",
+    "trimHint": "Glissez les poignées blanches pour découper. Appuyez sur la bande pour la déplacer.",
+    "useFrameAsCover": "Utilisez ce cadre comme couverture."
   },
   "bounty": {
     "claimed": "Réclamé",
@@ -15667,5 +15673,17 @@
     "wasLive": "Était en direct",
     "untitled": "Réaction",
     "thisVideo": "cette vidéo"
+  },
+  "githubLink": {
+    "hint": "Connectez-vous à GitHub pour prouver que le compte vous appartient. DeHub ne voit que votre profil GitHub public.",
+    "verified": "Vérifié",
+    "verifiedAria": "Compte GitHub vérifié",
+    "connect": "Connecter GitHub",
+    "disconnect": "Déconnecter",
+    "connected": "GitHub connecté",
+    "disconnected": "GitHub déconnecté",
+    "taken": "Ce compte GitHub est déjà sur un autre profil DeHub.",
+    "failed": "Impossible de connecter GitHub. Réessayez.",
+    "unavailable": "La vérification GitHub arrive bientôt."
   }
 }

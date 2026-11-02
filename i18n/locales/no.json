@@ -14589,5 +14589,16 @@
     "joinedBodyNoEmail": "Vi vil sende deg en e-post når tokenet går på markedet.",
     "failed": "Kunne ikke lagre det. Prøv igjen.",
     "privacy": "Bare for å fortelle deg om lanseringen."
+  },
+  "githubLink": {
+    "hint": "Logg inn på GitHub for å bekrefte at kontoen er din. DeHub ser kun din offentlige GitHub-profil.",
+    "verified": "Verifisert",
+    "verifiedAria": "Verifisert GitHub-konto",
+    "connect": "Koble til GitHub",
+    "connected": "GitHub koblet sammen",
+    "disconnected": "GitHub ble avkoblet",
+    "taken": "Den GitHub-kontoen er allerede knyttet til et annet DeHub-profil.",
+    "failed": "Kunne ikke koble til GitHub. Prøv på nytt.",
+    "unavailable": "GitHub-verifisering kommer snart."
   }
 }

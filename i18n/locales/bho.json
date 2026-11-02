@@ -14564,5 +14564,17 @@
     "invalidEmail": "एगो वैध ईमेल आईडी लिखीं",
     "joinedTitle": "आप एह सूची में बांटे जा रहल बा",
     "joinedBodyNoEmail": "- 'ठीक बा, बाकिर आपन पहिचान छुपावले हमन क पहिल उद्देश्य बा!"
+  },
+  "githubLink": {
+    "hint": "GitHub पर साइन इन करें, यह साबित करें कि आपका खाता मौजूद है । अब, आपातकालीन ड्राइव BSRPD के डिजाइन के संबंध में ।",
+    "verified": "सत्यापित कइल गइल",
+    "verifiedAria": "GitHub खाता सत्यापित करें",
+    "connect": "Github पे क्लिक करे",
+    "disconnect": "डिस्कनेक्ट करें",
+    "connected": "पन्ना जेवन \"टेम्पलेटःUser link\" से",
+    "disconnected": "पन्ना जेवन \"टेम्पलेटःUser disconnected\" से जुड़ल बा",
+    "taken": "पन्ना जेवन \"टेम्पलेटःCountry data Dehub\" से जुड़ल बा",
+    "failed": "GitHub से जुड़ने में विफल रहे, फिर से कोशिश करें",
+    "unavailable": "GitHub सत्यापन जल्द ही जारी कइल जाई."
   }
 }

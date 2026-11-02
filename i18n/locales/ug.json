@@ -14572,5 +14572,17 @@
     "joinedBodyNoEmail": "Men sizga tokenning chiqqanida xabar yuboramiz.",
     "failed": "بۇنى ساقلاپ بولالمىدى. قايتا سىناپ بېقىڭ.",
     "privacy": "Men sizni laqiqatni xabar qilish uchun faqat foydalanish uchun ishlatiladi."
+  },
+  "githubLink": {
+    "verified": "Tasdiqlanmighan",
+    "connect": "GitHub نى باغلا",
+    "disconnect": "قۇرالۇش",
+    "disconnected": "GitHub toqtalashdi.",
+    "unavailable": "GitHub tasdiqlash kelish kelayaq.",
+    "hint": "GitHubغا كىرىپ ھېساباتنىڭ سىزگە تەۋە ئىكەنلىكىنى دەلىللەڭ. DeHub پەقەت سىزنىڭ ئاممىۋى GitHub پروفېلىڭىزنى كۆرەلەيدۇ.",
+    "verifiedAria": "دەلىللەنگەن GitHub ھېساباتى",
+    "connected": "GitHub باغلانغان",
+    "taken": "بۇ GitHub ھېساباتى ئاللىقاچان باشقا DeHub پروفېلىدە بار.",
+    "failed": "GitHubنى باغلاپ بولمىدى. قايتا سىناپ بېقىڭ."
   }
 }

@@ -14892,5 +14892,14 @@
     "eyebrow": "Coming soon",
     "notifyMe": "Notify me",
     "emailLabel": "Email"
+  },
+  "githubLink": {
+    "verified": "Tasdîq kirî ye",
+    "verifiedAria": "Accounta GitHubê ya wekandî ye.",
+    "disconnect": "Hevqetandin",
+    "disconnected": "GitHub dereng bûye.",
+    "taken": "Evîfa GitHubê li ser profilek din ê DeHubê ye.",
+    "failed": "Nekare GitHubê ve. Lêgerîn bikin.",
+    "unavailable": "GitHubê diyarkirina bi ser dibe."
   }
 }

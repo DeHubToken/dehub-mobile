@@ -14675,5 +14675,14 @@
     "joinedBodyNoEmail": "Misy email amin'ny fomba fampianarana amin'ny tokana.",
     "failed": "Tsy afaka nandraikitra izany. Andramo indray.",
     "privacy": "Misy tsy voasambatra amin'ny fampahatsiarovana."
+  },
+  "githubLink": {
+    "hint": "Mampiasa GitHub koa fahefana ny fanampiny ny akony. DeHub dia misy fahefana ho anao amin’ny GitHub profile manokana fa tsy manokana ny profile manokana.",
+    "connect": "Mampiasa GitHub",
+    "disconnect": "Atsaharo",
+    "connected": "GitHub ianareo ny endrika fampiasana",
+    "disconnected": "GitHub tsy misy fitaona",
+    "taken": "Ny endriky ny account GitHub dia misy ahoana amin’ny profile DeHub hafa.",
+    "failed": "Nanomboka ny fitahian'ny GitHub. Mifanohana ny fahatratraka."
   }
 }

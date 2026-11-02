@@ -14604,5 +14604,17 @@
     "joinedBodyNoEmail": "Kami akan mengirim email kepada Anda saat token diluncurkan.",
     "failed": "Tidak dapat menyimpannya. Coba lagi.",
     "privacy": "Hanya digunakan untuk memberitahumu tentang peluncuran."
+  },
+  "githubLink": {
+    "hint": "Masuk ke GitHub untuk membuktikan akun tersebut milik Anda. DeHub hanya melihat profil GitHub publik Anda.",
+    "verified": "Terverifikasi",
+    "verifiedAria": "Akun GitHub terverifikasi",
+    "connect": "Hubungkan GitHub",
+    "disconnect": "Putuskan",
+    "connected": "GitHub terhubung",
+    "disconnected": "GitHub terputus",
+    "taken": "Akun GitHub tersebut sudah ada di profil DeHub lain.",
+    "failed": "Tidak dapat menghubungkan GitHub. Coba lagi.",
+    "unavailable": "Verifikasi GitHub akan segera tersedia."
   }
 }

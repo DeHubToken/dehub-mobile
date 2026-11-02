@@ -14609,5 +14609,16 @@
     "joinedBodyNoEmail": "メールでトークンの発売開始をお知らせします。",
     "failed": "保存できませんでした。もう一度お試しください。",
     "privacy": "このリリースについてのみお知らせするために使用されます。"
+  },
+  "githubLink": {
+    "hint": "GitHubにサインインしてアカウントが自分のものであることを証明してください。DeHubはあなたの公開GitHubプロフィールのみを確認します。",
+    "verifiedAria": "認証済みGitHubアカウント",
+    "connect": "GitHubを接続",
+    "disconnect": "GitHubを切断",
+    "connected": "GitHub接続済み",
+    "disconnected": "GitHub切断済み",
+    "taken": "そのGitHubアカウントは既に別のDeHubプロフィールに登録されています。",
+    "failed": "GitHubの接続に失敗しました。もう一度お試しください。",
+    "unavailable": "GitHubの認証機能は近日公開予定です。"
   }
 }
