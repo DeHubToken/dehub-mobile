@@ -6342,6 +6342,10 @@
     "trimEnd": "End of clip",
     "trimHint": "Drag the white handles to trim. Tap the strip to move.",
     "useFrameAsCover": "Use this frame as cover",
+    "recent": {
+      "show": "Show recent photos",
+      "all": "All"
+    },
     "studio": {
       "crop": "Crop",
       "looks": "Looks",

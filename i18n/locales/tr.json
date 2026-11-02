@@ -6388,6 +6388,10 @@
     "trimEnd": "Klip sonu",
     "trimHint": "Beyaz çubukları sürükleyerek kırpın. Şeridi hareket ettirmek için dokunun.",
     "useFrameAsCover": "Kapağı için bu çerçeveyi kullanın.",
+    "recent": {
+      "show": "Son fotoğrafları göster",
+      "all": "Tümü"
+    },
     "addAltText": "Alternatif metin ekle",
     "edit": "Düzenle",
     "editAltText": "Alternatif metni düzenle",

@@ -6391,6 +6391,10 @@
     "trimEnd": "Fin del clip",
     "trimHint": "Arrastra los controles blancos para recortar. Toca la tira para moverla.",
     "useFrameAsCover": "Usa este marco como cobertura",
+    "recent": {
+      "show": "Mostrar fotos recientes",
+      "all": "Todo"
+    },
     "addAltText": "Añadir texto alternativo",
     "edit": "Editar",
     "editAltText": "Editar texto alternativo",

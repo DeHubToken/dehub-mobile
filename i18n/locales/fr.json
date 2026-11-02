@@ -6395,6 +6395,10 @@
     "trimEnd": "Fin de la séquence",
     "trimHint": "Glissez les poignées blanches pour découper. Appuyez sur la bande pour la déplacer.",
     "useFrameAsCover": "Utilisez ce cadre comme couverture.",
+    "recent": {
+      "show": "Voir les photos récentes",
+      "all": "Tout"
+    },
     "addAltText": "Ajouter un texte alternatif",
     "edit": "Modifier",
     "editAltText": "Modifier le texte alternatif",

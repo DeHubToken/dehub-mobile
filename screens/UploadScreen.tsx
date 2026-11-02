@@ -111,6 +111,7 @@ import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCov
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
 import { startDraftImage } from "../services/draftImage";
+import RecentMediaStrip, { type RecentPick } from "../components/Upload/RecentMediaStrip";
 import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
 import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
@@ -792,6 +793,8 @@ export default function UploadScreen() {
     isAudioRecording ||
     (!isLiveMode && !pickedVideo && pickedImages.length >= imageLimit);
   const showMediaButton = !mediaDisabled;
+  // Latest photos and videos above the toolbar, while the post can still take one.
+  const showRecentStrip = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !mediaDisabled;
   // Camera only ever starts a fresh capture, so it goes as soon as media exists.
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
@@ -1942,6 +1945,24 @@ export default function UploadScreen() {
       setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
   }, [pickedImages, imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
+
+  /** A tap on the recent strip: one photo, or the post's one video. */
+  const handleRecentPick = useCallback(async (pick: RecentPick) => {
+    const asset = { ...pick } as unknown as PickedAsset;
+    if (pick.type === "video") {
+      if (pickedImages.length > 0) {
+        toastError(t("upload.imagesOrVideo"));
+        return;
+      }
+      await adoptVideoAsset(asset);
+      return;
+    }
+    if (pickedVideo) {
+      toastError(t("upload.imagesOrVideo"));
+      return;
+    }
+    await adoptImageAssets([asset]);
+  }, [pickedImages.length, pickedVideo, adoptVideoAsset, adoptImageAssets, t]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
@@ -3511,6 +3532,16 @@ export default function UploadScreen() {
             onChange={handleLiveSettingsChange}
           />
         </Animated.View>
+      )}
+
+      {showRecentStrip && (
+        <RecentMediaStrip
+          pickedIds={pickedImages.map((a) => a.assetId).filter((id): id is string => !!id)}
+          photosPicked={pickedImages.length > 0}
+          full={pickedImages.length >= imageLimit}
+          onPick={(pick) => void handleRecentPick(pick)}
+          onOpenAll={() => void handlePickMediaLibrary()}
+        />
       )}
 
       <View className="h-px bg-white/10" />
