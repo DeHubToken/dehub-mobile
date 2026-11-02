@@ -108,7 +108,9 @@ import GlassModal from "../components/ui/GlassModal";
 import FeedCard from "../components/Home/FeedCard";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
-import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSheet";
+import { type VideoTrim } from "../components/Upload/VideoTrimSheet";
+import DmVideoStudio from "../components/DM/DmVideoStudio";
+import type { DmVideoOptions } from "../libs/dm-video-options";
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
@@ -437,6 +439,9 @@ export default function UploadScreen() {
   // Trim on the picked video (seconds), cut by the server from the draft upload.
   const [videoTrim, setVideoTrim] = useState<VideoTrim | null>(null);
   const [showVideoTrim, setShowVideoTrim] = useState(false);
+  // The video edit screen's choices while it is open (Cover and Trim).
+  const [videoEditOpts, setVideoEditOpts] = useState<DmVideoOptions>({});
+  const [videoCoverAt, setVideoCoverAt] = useState<number | undefined>(undefined);
   useEffect(() => {
     setVideoTrim(null);
   }, [pickedVideo?.uri]);
@@ -1863,6 +1868,11 @@ export default function UploadScreen() {
           setPickedVideo(asset);
           setCoverUri(null);
           generateThumbnail(asset.uri);
+          // A new video opens straight into its edit screen, on Cover.
+          setVideoTrim(null);
+          setVideoCoverAt(undefined);
+          setVideoEditOpts({});
+          setShowVideoTrim(true);
         }
       });
     } catch (err) {
@@ -1898,6 +1908,11 @@ export default function UploadScreen() {
       setPickedVideo(asset);
       setCoverUri(null);
       generateThumbnail(asset.uri);
+      // A new video opens straight into its edit screen, on Cover.
+      setVideoTrim(null);
+      setVideoCoverAt(undefined);
+      setVideoEditOpts({});
+      setShowVideoTrim(true);
       return true;
     },
     [generateThumbnail, movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier],
@@ -3016,6 +3031,7 @@ export default function UploadScreen() {
                 <TouchableOpacity
                   onPress={() => {
                     player.pause();
+                    setVideoEditOpts({ trimStart: videoTrim?.start, trimEnd: videoTrim?.end, coverAt: videoCoverAt });
                     setShowVideoTrim(true);
                   }}
                   className={`absolute bottom-2 right-2 h-8 px-2.5 rounded-xl dark-surface flex-row items-center z-20 ${videoTrim ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
@@ -4273,22 +4289,39 @@ export default function UploadScreen() {
         </View>
       </Modal>
 
-      {showVideoTrim && pickedVideo && (
-        <VideoTrimSheet
-          uri={pickedVideo.uri}
-          duration={pickedVideo.duration ? pickedVideo.duration / 1000 : player.duration || 0}
-          initial={videoTrim}
-          onClose={() => setShowVideoTrim(false)}
-          onApply={(trim) => {
-            setVideoTrim(trim);
-            setShowVideoTrim(false);
-          }}
-          onPickCover={(uri) => {
-            setThumbnailUri(uri);
-            setCoverUri(null);
-          }}
-        />
-      )}
+      {showVideoTrim && pickedVideo && (() => {
+        const dur = pickedVideo.duration ? pickedVideo.duration / 1000 : player.duration || 0;
+        return (
+          <DmVideoStudio
+            visible
+            uri={pickedVideo.uri}
+            duration={dur}
+            width={pickedVideo.width || undefined}
+            height={pickedVideo.height || undefined}
+            size={pickedVideo.fileSize || undefined}
+            options={videoEditOpts}
+            onOptionsChange={setVideoEditOpts}
+            destruct={null}
+            onDestructChange={() => undefined}
+            allowTimer={false}
+            onlyTabs={["cover", "trim"]}
+            initialTab="cover"
+            onCoverFrame={(uri) => {
+              setThumbnailUri(uri);
+              setCoverUri(null);
+            }}
+            onClose={() => setShowVideoTrim(false)}
+            onConfirm={() => {
+              const start = videoEditOpts.trimStart ?? 0;
+              const end = videoEditOpts.trimEnd ?? dur;
+              const whole = start < 0.05 && dur - end < 0.05;
+              setVideoTrim(whole ? null : { start, end });
+              setVideoCoverAt(videoEditOpts.coverAt);
+              setShowVideoTrim(false);
+            }}
+          />
+        );
+      })()}
       {PhotoStudio && imageEdit && pickedImages[imageEdit.index] && (() => {
         // GIFs stay out: drawing one flattens it to a single frame.
         const editable = pickedImages.map((img, i) => ({ img, i })).filter(({ img }) => !isGifAsset(img));

@@ -87,6 +87,8 @@ interface Props {
   confirmLabel?: string;
   /** Which tool a video opens on. */
   initialTab?: Tab;
+  /** Only these tools (a post keeps Cover and Trim). */
+  onlyTabs?: Tab[];
   /** Pay-to-unlock price in DHB; null = not locked. No handler = locking is not offered in this chat. */
   lockPrice?: number | null;
   onLockPriceChange?: (p: number | null) => void;
@@ -123,7 +125,7 @@ function useFilmstrip(uri: string, duration: number, enabled: boolean) {
 
 export default function DmVideoStudio({
   visible, onClose, uri, duration = 0, width, height, size, options, onOptionsChange,
-  destruct, onDestructChange, onCoverFrame, onConfirm, confirmLabel, initialTab = "trim",
+  destruct, onDestructChange, onCoverFrame, onConfirm, confirmLabel, initialTab = "trim", onlyTabs,
   lockPrice = null, onLockPriceChange,
   kind = "video", strip, active = 0, onSelect, onAddMore, onRemove, allowTimer = true,
 }: Props) {
@@ -257,7 +259,7 @@ export default function DmVideoStudio({
     { key: "timer", label: _copy("dmVideo.timer", { defaultValue: "Timer" }), icon: "Timer" },
   ];
   // Photos keep Hide (price) and Timer; the rest only means something for a video.
-  const tabs = allTabs.filter((t) =>
+  const tabs = allTabs.filter((t) => (!onlyTabs || onlyTabs.includes(t.key)) &&
     (t.key !== "timer" || allowTimer)
     && (isVideo || (t.key === "hide" && !!onLockPriceChange) || t.key === "timer"));
 
@@ -285,10 +287,12 @@ export default function DmVideoStudio({
                 {isVideo ? (kept != null ? formatClock(kept) : "0:00") : ""}{isVideo && size ? " · " : ""}{size ? formatAttachmentSize(size) : (isVideo ? "" : _copy("dmVideo.photo", { defaultValue: "Photo" }))}
               </Text>
             </View>
-            <Pressable onPress={onRemove ?? onClose} hitSlop={8} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.remove", { defaultValue: "Remove" })}
+{onRemove ? (
+            <Pressable onPress={onRemove} hitSlop={8} accessibilityRole="button" accessibilityLabel={_copy("dmVideo.remove", { defaultValue: "Remove" })}
               style={{ width: 36, height: 36, borderRadius: 18, borderWidth: 1, borderColor: LINE, alignItems: "center", justifyContent: "center" }}>
               <Icon name="Trash2" size={17} color={WHITE} />
             </Pressable>
+            ) : <View style={{ width: 36 }} />}
           </View>
 
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
