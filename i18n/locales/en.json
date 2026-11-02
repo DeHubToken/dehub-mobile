@@ -6313,6 +6313,12 @@
     "typeText": "Type…",
     "textSize": "Text size {{value}}",
     "coverFrames": "Pick a cover frame",
+    "trim": "Trim",
+    "trimAndCover": "Trim and cover",
+    "trimStart": "Start of clip",
+    "trimEnd": "End of clip",
+    "trimHint": "Drag the white handles to trim. Tap the strip to move.",
+    "useFrameAsCover": "Use this frame as cover",
     "coverFrame": "Use frame {{index}} as the cover",
     "uploadCover": "Upload a cover image",
     "editFailed": "Couldn't apply that edit. Try again."

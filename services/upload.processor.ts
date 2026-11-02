@@ -161,6 +161,10 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     if (draftVideoId) {
       // Already on the server: only the thumbnail rides along.
       fd.append("draftVideoId", draftVideoId);
+      if (payload.videoTrim) {
+        fd.append("trimStart", String(payload.videoTrim.start));
+        fd.append("trimEnd", String(payload.videoTrim.end));
+      }
     } else if (payload.video) {
       // @ts-ignore RN FormData file shape
       fd.append("files", {

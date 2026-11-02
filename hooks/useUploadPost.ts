@@ -63,6 +63,8 @@ export type UploadPayload = {
   categories: string[];
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
+  /** Trim on the picked video, seconds. */
+  videoTrim?: { start: number; end: number } | null;
   pickedAudio: PickedAudio | null;
   thumbnailUri: string | null;
   coverUri: string | null;
@@ -319,6 +321,7 @@ export function useUploadPost() {
         postType,
         images,
         video,
+        videoTrim: video && p.videoTrim ? p.videoTrim : undefined,
         audio,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),
