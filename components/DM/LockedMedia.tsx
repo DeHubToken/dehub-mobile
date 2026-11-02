@@ -31,6 +31,12 @@ import {
   lockedMediaUri,
   payForLockedMedia,
 } from "../../libs/dmLocked";
+import UnlockConfirmSheet, { type UnlockPhase } from "./UnlockConfirmSheet";
+import UnlockReveal from "../common/UnlockReveal";
+import { nextUnlockRevealKind, type UnlockRevealKind } from "../../libs/unlockReveal";
+import { Image as ExpoImage } from "expo-image";
+
+const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 /** Set inline too: rounded-full alongside dark-surface can drop the radius. */
 const ROUND = { borderRadius: 999 } as const;
@@ -56,6 +62,10 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
   const isTemp = String(message._id).startsWith("temp-");
   const [paying, setPaying] = useState(false);
   const isIos = Platform.OS === "ios";
+  // Android: confirm in a sheet, then the photo opens with a reveal.
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [phase, setPhase] = useState<UnlockPhase>("idle");
+  const [revealKind, setRevealKind] = useState<UnlockRevealKind | null>(null);
 
   const { data: status } = useQuery<DmLockStatus>({
     queryKey: lockedMediaKey(String(message._id)),
@@ -89,22 +99,47 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
   const dhbNow = status?.lock?.price ?? lockDhbForUsd(usd);
   const priceLabel = formatLockUsd(usd);
   const height = Math.round(width * 1.25);
+  const senderName = typeof message.sender === "object" && message.sender ? (message.sender.displayName || message.sender.username || "") : "";
 
-  const handleUnlock = async () => {
+  const handleUnlock = () => {
     if (paying) return;
     if (isIos) {
       void Linking.openURL(LOCKED_MEDIA_WEB_URL);
       return;
     }
     if (!status) return;
+    setPhase("idle");
+    setSheetOpen(true);
+  };
+
+  // Pay in the sheet: Paying → Confirming → tick → sheet closes → reveal on the photo.
+  const handlePay = async () => {
+    if (paying || !status) return;
     setPaying(true);
+    setPhase("paying");
     try {
       const txHash = await payForLockedMedia(dhbNow);
+      setPhase("confirming");
       const res = await unlockLockedMedia(message._id, txHash);
-      queryClient.setQueryData(lockedMediaKey(String(message._id)), res);
-      if (res.status === "unlocked") toastSuccess(t("dmPaidLock.unlocked", "Unlocked"));
-      else toastSuccess(t("dmPaidLock.stillConfirming", "Payment sent. It opens as soon as it confirms."));
+      // Paid either way: whenever the real file arrives, it opens with a reveal.
+      setRevealKind(nextUnlockRevealKind());
+      if (res.status === "unlocked") {
+        setPhase("done");
+        const real = res.lock?.mediaUrl ? lockedMediaUri(res.lock.mediaUrl) : undefined;
+        await Promise.all([
+          wait(800),
+          real && lock.kind !== "video" ? Promise.race([ExpoImage.prefetch(real).catch(() => false), wait(2500)]) : null,
+        ]);
+        setSheetOpen(false);
+        await wait(250);
+        queryClient.setQueryData(lockedMediaKey(String(message._id)), res);
+      } else {
+        queryClient.setQueryData(lockedMediaKey(String(message._id)), res);
+        setSheetOpen(false);
+        toastSuccess(t("dmPaidLock.stillConfirming", "Payment sent. It opens as soon as it confirms."));
+      }
     } catch (e: any) {
+      setPhase("idle");
       toastError(e?.message || t("dmPaidLock.payFailed", "Could not unlock"));
     } finally {
       setPaying(false);
@@ -124,6 +159,17 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
           style={{ width, height: isVideo ? Math.round(width * 0.75) : height }}
           className="bg-theme-neutrals-700"
         >
+          {revealKind && !isMine ? (
+            <View style={{ position: "absolute", left: 0, top: 0, width, height: isVideo ? Math.round(width * 0.75) : height, zIndex: 2 }} pointerEvents="none">
+              <UnlockReveal
+                kind={revealKind}
+                width={width}
+                height={isVideo ? Math.round(width * 0.75) : height}
+                cover={previewUri ? <SmartImage source={{ uri: previewUri }} style={{ width, height }} contentFit="cover" /> : <View style={{ flex: 1, backgroundColor: "#18181b" }} />}
+                onDone={() => setRevealKind(null)}
+              />
+            </View>
+          ) : null}
           {isVideo ? (
             <View className="flex-1 items-center justify-center dark-surface bg-black">
               <View style={ROUND} className="w-12 h-12 rounded-full items-center justify-center dark-surface bg-black/50">
@@ -194,6 +240,21 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
           </Text>
         ) : null}
       </View>
+      {!isIos ? (
+        <UnlockConfirmSheet
+          visible={sheetOpen}
+          onClose={() => setSheetOpen(false)}
+          title={lock.kind === "video" ? t("ppv.unlockVideo", "Unlock video") : t("dmPaidLock.lockedPhoto", "Locked photo")}
+          who={senderName ? t("appTokens.kindReceived", { defaultValue: "From {{name}}", name: senderName }) : ""}
+          sub=""
+          previewUri={previewUri}
+          priceLabel={priceLabel}
+          dhbLabel={"≈ " + formatLockDhb(dhbNow)}
+          phase={phase}
+          doneLabel={lock.kind === "video" ? t("ppv.canWatchVideo") : t("ppv.canViewImage")}
+          onPay={handlePay}
+        />
+      ) : null}
     </Pressable>
   );
 }

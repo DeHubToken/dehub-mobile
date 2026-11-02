@@ -94,6 +94,8 @@ import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import FeedGatePreview from "./FeedGatePreview";
+import UnlockReveal from "../common/UnlockReveal";
+import { nextUnlockRevealKind, type UnlockRevealKind } from "../../libs/unlockReveal";
 import FeedAudioContent from "./FeedAudioContent";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
@@ -811,6 +813,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
   const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
   const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
+  // A paid photo post plays its reveal over the gate before the card opens.
+  const [revealKind, setRevealKind] = useKeyedState<UnlockRevealKind | null>(postKey, null);
   const [showBountyModal, setShowBountyModal] = useKeyedState(postKey, false);
   const [showAISheet, setShowAISheet] = useKeyedState(postKey, false);
   const [showAddToFolder, setShowAddToFolder] = useKeyedState(postKey, false);
@@ -1253,8 +1257,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // The store re-renders every card showing this post, this one included.
   const handlePPVSuccess = useCallback(() => {
+    if (!isVideo && galleryImages.length > 0 && !isActuallyLockedHoldings) {
+      setRevealKind(nextUnlockRevealKind());
+      return;
+    }
     markTokenUnlocked(tokenId);
-  }, [tokenId]);
+  }, [tokenId, isVideo, galleryImages, isActuallyLockedHoldings, setRevealKind]);
+  const finishReveal = useCallback(() => {
+    setRevealKind(null);
+    markTokenUnlocked(tokenId);
+  }, [tokenId, setRevealKind]);
 
   const handleBountyBadgePress = useCallback(() => {
     requireAuth?.(() => {
@@ -1680,6 +1692,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
 
     // PPV-only locked image: blurred preview with unlock overlay (matches web ImageCard behaviour)
+    if (isActuallyLockedPPV && revealKind) {
+      const revealW = edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH;
+      const revealH = revealW * 0.75;
+      return (
+        <View className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"} style={{ height: revealH }}>
+          <SmartImage source={{ uri: galleryImages[0] }} recyclingKey={galleryImages[0]} style={{ width: "100%", height: "100%" }} contentFit="cover" priority="high" />
+          <UnlockReveal
+            kind={revealKind}
+            width={revealW}
+            height={revealH}
+            cover={<FeedGatePreview uri={lockedPreviewUri} priority="high" />}
+            onDone={finishReveal}
+          />
+        </View>
+      );
+    }
     if (isActuallyLockedPPV) {
       return (
         <Pressable
