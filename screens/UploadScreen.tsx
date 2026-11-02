@@ -110,6 +110,7 @@ import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSh
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
+import { startDraftImage } from "../services/draftImage";
 import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
 import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
@@ -1890,6 +1891,15 @@ export default function UploadScreen() {
     setDraftVideoKey(key);
     return () => cancelDraftVideo(key);
   }, [draftVideoUri]);
+
+  // Photos start uploading as they are attached or edited, so Post only sends ids.
+  const draftPhotos = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !pickedAudio;
+  useEffect(() => {
+    if (!draftPhotos) return;
+    for (const img of pickedImages) {
+      startDraftImage({ uri: img.uri, name: getFileName(img.uri, "image.jpg"), mimeType: guessMime(img.uri, "image/jpeg") });
+    }
+  }, [pickedImages, draftPhotos]);
 
   // A video handed over by another surface, e.g. one finished in the editor.
   // Like pictures, it only fills an empty composer.
