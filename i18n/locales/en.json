@@ -15628,5 +15628,15 @@
     "titleLabel": "Clip title",
     "titlePlaceholder": "Give your clip a title",
     "viewShort": "View Short"
+  },
+  "liveHype": {
+    "train": {
+      "level": "Hype Train · Level {{level}}",
+      "endedLevel": "Hype Train finished level {{level}}!",
+      "ended": "Hype Train ended",
+      "thanks_one": "Thanks to {{count}} supporter",
+      "thanks_other": "Thanks to {{count}} supporters",
+      "top": "Top: {{name}}"
+    }
   }
 }

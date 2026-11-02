@@ -83,6 +83,7 @@ import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
 import ViewerScrubBar from "../common/ViewerScrubBar";
 import LiveClipSheet from "../LiveViewer/LiveClipSheet";
+import HypeTrainBar from "../LiveViewer/HypeTrainBar";
 import { captureLiveClip, type LiveClip } from "../../services/live-clips.service";
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
@@ -1844,6 +1845,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 faces={audienceFaces}
                 onOpenAudience={() => setAudienceOpen(true)}
               />
+
+              {/* A hype train is the room's: drawn for anyone watching, under the pills. */}
+              {isLiveEffective && !isEndedEffective ? (
+                <HypeTrainBar streamId={streamId} socketOn={socketOn} style={{ marginHorizontal: EDGE, marginTop: 8 }} />
+              ) : null}
 
               {/* Middle area - transparent, shows video */}
               <View className="flex-1" pointerEvents="box-none" />
