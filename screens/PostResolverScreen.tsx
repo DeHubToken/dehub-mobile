@@ -11,7 +11,7 @@ import { View } from "react-native";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { resolveNewPost } from "../services/nft.service";
+import { resolveArticleSlug, resolveNewPost } from "../services/nft.service";
 import { resolveClip } from "../services/remix-links.service";
 import { createLogger } from "../libs/logger";
 import { toastError } from "../libs/toast";
@@ -68,6 +68,19 @@ const PostResolverScreen: React.FC = () => {
       } else {
         logger.warn("Slug did not resolve — going home", { newPostId });
         // Say why the link landed on Home instead of the post it promised.
+        toastError(t("common.postNotFound"));
+        goHome();
+      }
+      return;
+    }
+
+    // An article's readable link, /app/post/<title-slug>: resolve it first.
+    if (tokenId && !/^\d+$/.test(tokenId) && !/^[a-f\d]{24}$/i.test(tokenId) && /[a-z]/i.test(tokenId)) {
+      const resolved = await resolveArticleSlug(tokenId);
+      if (resolved) {
+        navigation.replace(ScreenNames.FeedDetail, { tokenId: String(resolved.tokenId), commentId });
+      } else {
+        logger.warn("Article slug did not resolve — going home", { tokenId });
         toastError(t("common.postNotFound"));
         goHome();
       }
