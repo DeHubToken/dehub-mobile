@@ -2636,7 +2636,19 @@
     "saved": "انحفظت حقول الملف",
     "failed": "ما انحفظ. جرب مرة ثانية.",
     "verified": "رابط موثّق",
-    "verifyHint": "عشان توثّق رابط، أضف هذا في الصفحة وبعدين احفظ مرة ثانية: {{snippet}}"
+    "verifyHint": "عشان توثّق رابط، أضف هذا في الصفحة وبعدين احفظ مرة ثانية: {{snippet}}",
+    "placeholderLocation": "مدينة، بلد",
+    "presets": {
+      "blog": "مدونة",
+      "portfolio": "بورتفوليو",
+      "shop": "المتجر",
+      "podcast": "البودكاست",
+      "newsletter": "النشرة الإخبارية",
+      "pronouns": "الضمائر",
+      "location": "الموقع",
+      "custom": "مخصص",
+      "customOption": "الوسم المخصص"
+    }
   },
   "notificationFilters": {
     "title": "فلترة الإشعارات من",

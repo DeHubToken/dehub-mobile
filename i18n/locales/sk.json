@@ -2637,7 +2637,27 @@
     "saved": "Polia profilu uložené",
     "failed": "Neuložilo sa. Skúste to znova.",
     "verified": "Overený odkaz",
-    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}"
+    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}",
+    "add": "Pridať pole",
+    "remove": "Odstrániť pole",
+    "descriptionPresets": "Pridať web, znenie alebo niečo iné. Odkazy sa zobrazia s vašimi sociálnymi sieťami.",
+    "type": "Typ pola",
+    "needsLabel": "Každému vlastnému poli prideltej názov",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Mesto, krajina",
+    "presets": {
+      "website": "Web",
+      "blog": "Blog",
+      "portfolio": "Portfólio",
+      "shop": "Obchod",
+      "podcast": "Podcast",
+      "newsletter": "Novinový zvestovateľ",
+      "pronouns": "Znenie",
+      "location": "Lokácia",
+      "custom": "Vlastné",
+      "customOption": "Vlastný názov"
+    }
   },
   "notificationFilters": {
     "title": "Filtrovať upozornenia od",

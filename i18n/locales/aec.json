@@ -2637,7 +2637,23 @@
     "saved": "اتحفظت حقول الصفحة",
     "failed": "متحفظش. جرب تاني.",
     "verified": "لينك موثّق",
-    "verifyHint": "علشان توثّق لينك، ضيف ده في الصفحة وبعدين احفظ تاني: {{snippet}}"
+    "verifyHint": "علشان توثّق لينك، ضيف ده في الصفحة وبعدين احفظ تاني: {{snippet}}",
+    "descriptionPresets": "اضيف موقع، ضمايير ولا حاجة تانية. الروابط تظهر مع السوشيالز بتوعك.",
+    "type": "نوع الحقل",
+    "needsLabel": "إدي كل حقل مخصص تسمية",
+    "placeholderLocation": "المدينة، البلد",
+    "presets": {
+      "website": "الموقع",
+      "blog": "بلوج",
+      "portfolio": "محفظة",
+      "shop": "المتجر",
+      "podcast": "بودكاست",
+      "newsletter": "نشرة إخبارية",
+      "pronouns": "الضمائر",
+      "location": "المكان",
+      "custom": "مخصص",
+      "customOption": "لابل مخصص"
+    }
   },
   "notificationFilters": {
     "title": "فلترة الإشعارات من",

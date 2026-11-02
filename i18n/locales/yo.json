@@ -2637,7 +2637,27 @@
     "saved": "A ti fi àwọn pápá profaili pamọ́",
     "failed": "Kò fi pamọ́. Tún gbìyànjú.",
     "verified": "Ìjápọ̀ tí a ti fìdí rẹ̀ múlẹ̀",
-    "verifyHint": "Láti fìdí ìjápọ̀ múlẹ̀, fi èyí kún ojú-ìwé yẹn, lẹ́yìn náà tún fi pamọ́: {{snippet}}"
+    "verifyHint": "Láti fìdí ìjápọ̀ múlẹ̀, fi èyí kún ojú-ìwé yẹn, lẹ́yìn náà tún fi pamọ́: {{snippet}}",
+    "add": "Ṣafikun aaye",
+    "remove": "Yọkuro aaye",
+    "descriptionPresets": "Ṣafikun oju-iwe, awọn ọrọ-ara tabi ohun miiran. Awọn ọsuwọn han pẹlu awọn ọrọ-ara rẹ.",
+    "type": "Iru aaye",
+    "needsLabel": "Fun ara aaye kọọkan ni ibadandun kan",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Ilu, orilẹ-ede",
+    "presets": {
+      "website": "Oju-iwe",
+      "blog": "Iwe-itan",
+      "portfolio": "Iwe-iṣẹ",
+      "shop": "Ile itaja",
+      "podcast": "Podcast",
+      "newsletter": "Iroyin",
+      "pronouns": "Awọn ọrọ-ara",
+      "location": "Ipo",
+      "custom": "Custom",
+      "customOption": "Ibadandun custom"
+    }
   },
   "notificationFilters": {
     "title": "Ṣàlẹ̀mọ́ àwọn ìfitónilétí láti ọ̀dọ̀",

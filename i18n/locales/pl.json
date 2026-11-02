@@ -2637,7 +2637,27 @@
     "saved": "Zapisano pola profilu",
     "failed": "Nie zapisano. Spróbuj ponownie.",
     "verified": "Zweryfikowany link",
-    "verifyHint": "Aby zweryfikować link, dodaj to na tamtej stronie i zapisz ponownie: {{snippet}}"
+    "verifyHint": "Aby zweryfikować link, dodaj to na tamtej stronie i zapisz ponownie: {{snippet}}",
+    "add": "Dodaj pole",
+    "remove": "Usuń pole",
+    "descriptionPresets": "Dodaj stronę internetową, zaimka lub coś innego. Linki wyświetlają się wraz z Twoimi profilami społecznościowymi.",
+    "type": "Typ pola",
+    "needsLabel": "Nadaj każdemu polu niestandardowemu etykietę",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Miasto, kraj",
+    "presets": {
+      "website": "Strona internetowa",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Sklep",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Zaimka",
+      "location": "Lokalizacja",
+      "custom": "Niestandardowe",
+      "customOption": "Niestandardowa etykieta"
+    }
   },
   "notificationFilters": {
     "title": "Filtruj powiadomienia od",

@@ -2637,7 +2637,23 @@
     "saved": "ئارخىپ بۆلەكلىرى ساقلاندى",
     "failed": "ساقلانمىدى. قايتا سىناڭ.",
     "verified": "دەلىللەنگەن ئۇلانما",
-    "verifyHint": "ئۇلانمىنى دەلىللەش ئۈچۈن بۇنى شۇ بەتكە قوشۇپ، قايتا ساقلاڭ: {{snippet}}"
+    "verifyHint": "ئۇلانمىنى دەلىللەش ئۈچۈن بۇنى شۇ بەتكە قوشۇپ، قايتا ساقلاڭ: {{snippet}}",
+    "descriptionPresets": "Men menlik qonuniyatlarni qo'llash orqali, biz sizni qo'llab-quvvatlashimiz mumkin.",
+    "type": "مەيدان تىپى",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "Uyghurcha: ul/ul",
+    "placeholderLocation": "شەھەر, مۇستەقىل دۆلەت",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Blog",
+      "portfolio": "مەدەنىيەت ساھەسىدىكى مۇھەندىس",
+      "shop": "Dukon",
+      "newsletter": "Xəbər xəbərləri",
+      "pronouns": "Pronouns",
+      "location": "جايى",
+      "custom": "ئىختىيارىي",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "بۇلاردىن كەلگەن ئۇقتۇرۇشلارنى سۈزۈش",

@@ -2637,7 +2637,27 @@
     "saved": "Profila lauki saglabāti",
     "failed": "Netika saglabāts. Mēģini vēlreiz.",
     "verified": "Apstiprināta saite",
-    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}"
+    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}",
+    "add": "Pievienot lauku",
+    "remove": "Noņemt lauku",
+    "descriptionPresets": "Pievienot vietni, personiskās vārdas vai citu. Saistības parādās ar saviem sociālajiem medijiem.",
+    "type": "Laukā tipa",
+    "needsLabel": "Katram personīgajam laukam piešķir nosaukumu",
+    "placeholderLink": "jūsu vietne.com",
+    "placeholderPronouns": "viņi/viņi",
+    "placeholderLocation": "Pilsēta, valsts",
+    "presets": {
+      "website": "Vietne",
+      "blog": "Blogs",
+      "portfolio": "Portfolio",
+      "shop": "Veikals",
+      "podcast": "Podkasts",
+      "newsletter": "Paziņojumu saraksts",
+      "pronouns": "Personiskās vārdas",
+      "location": "Atrodas",
+      "custom": "Personīgais",
+      "customOption": "Personīgais nosaukums"
+    }
   },
   "notificationFilters": {
     "title": "Filtrēt paziņojumus no",

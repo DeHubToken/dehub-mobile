@@ -2637,7 +2637,27 @@
     "saved": "Kua tiakina ngā āpure kōtaha",
     "failed": "Kāore i tiakina. Whakamātauria anō.",
     "verified": "Hono kua manatokona",
-    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}"
+    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}",
+    "add": "Tāpiri mara",
+    "remove": "Tango mara",
+    "descriptionPresets": "Tāpiri paetukutuku, ingoa tūturu, me ētahi atu mea. Ka whakaatu ngā hononga me ō ōu mea pāhekoheko.",
+    "type": "Momo mara",
+    "needsLabel": "Hoatu he ingoa ki ia mara āhuatanga",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Tāone, whenua",
+    "presets": {
+      "website": "Paetukutuku",
+      "blog": "Pāpāho",
+      "portfolio": "Whare toi",
+      "shop": "Toa",
+      "podcast": "Kōrero whakarongo",
+      "newsletter": "Pūrongorongo",
+      "pronouns": "Ingoa tūturu",
+      "location": "Wāhi",
+      "custom": "Āhuatanga",
+      "customOption": "Ingoa āhuatanga"
+    }
   },
   "notificationFilters": {
     "title": "Tātari pānui mai i",

@@ -2637,7 +2637,26 @@
     "saved": "已儲存個人檔案欄位",
     "failed": "儲存唔到，請再試吓。",
     "verified": "已驗證連結",
-    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}"
+    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}",
+    "add": "新增欄位",
+    "remove": "移除欄位",
+    "descriptionPresets": "新增網站、代詞或其他內容。連結會與你的社交媒體一起顯示。",
+    "type": "欄位類型",
+    "needsLabel": "為每個自訂欄位設定標籤",
+    "placeholderPronouns": "佢/佢",
+    "placeholderLocation": "城市、國家",
+    "presets": {
+      "website": "網站",
+      "blog": "部落格",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "通訊",
+      "pronouns": "代詞",
+      "location": "位置",
+      "custom": "自訂",
+      "customOption": "自訂標籤"
+    }
   },
   "notificationFilters": {
     "title": "過濾以下來源嘅通知",

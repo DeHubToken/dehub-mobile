@@ -232,7 +232,27 @@
     "saved": "Profielvelden opgeslagen",
     "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
     "verified": "Geverifieerde link",
-    "verifyHint": "Om een link te verifiëren, voeg je dit toe aan die pagina en sla je opnieuw op: {{snippet}}"
+    "verifyHint": "Om een link te verifiëren, voeg je dit toe aan die pagina en sla je opnieuw op: {{snippet}}",
+    "add": "Veld toevoegen",
+    "remove": "Veld verwijderen",
+    "descriptionPresets": "Voeg een website, voornaamwoorden of iets anders toe. Links tonen zich met je sociale media.",
+    "type": "Veldtype",
+    "needsLabel": "Geef elk aangepast veld een label",
+    "placeholderLink": "jijwensite.com",
+    "placeholderPronouns": "hij/zij/hun",
+    "placeholderLocation": "Stad, land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Winkel",
+      "podcast": "Podcast",
+      "newsletter": "Nieuwsbrief",
+      "pronouns": "Voornaamwoorden",
+      "location": "Locatie",
+      "custom": "Aangepast",
+      "customOption": "Aangepast label"
+    }
   },
   "notificationFilters": {
     "title": "Meldingen filteren van",

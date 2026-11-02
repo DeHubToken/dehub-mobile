@@ -2637,7 +2637,27 @@
     "saved": "Izinkambu zephrofayela zilondoloziwe",
     "failed": "Akulondolozwanga. Zama futhi.",
     "verified": "Isixhumanisi esiqinisekisiwe",
-    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}"
+    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}",
+    "add": "Engeza insimu",
+    "remove": "Susa insimu",
+    "descriptionPresets": "Engeza iwebhusayithi, izinombolo zesayithi noma okunye. Izixhumanisi zibonakala kunye nezinhlangano zakho zesocial media.",
+    "type": "Uhlobo lwesinsimu",
+    "needsLabel": "Nikeza insimu ngayinye yesigubhu ilebula",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Idolobha, izwe",
+    "presets": {
+      "website": "Iwebhusayithi",
+      "blog": "Ibhulogi",
+      "portfolio": "Ifolofolio",
+      "shop": "Ivenkile",
+      "podcast": "Ipodikasi",
+      "newsletter": "Inewslethi",
+      "pronouns": "Izinombolo zesayithi",
+      "location": "Indawo",
+      "custom": "Yesigubhu",
+      "customOption": "Ilebula lesigubhu"
+    }
   },
   "notificationFilters": {
     "title": "Hlunga izaziso ezivela ku-",

@@ -2635,7 +2635,27 @@
     "saved": "پروفائل فیلڈ سیو ہوئے گیلک",
     "failed": "سیو نی ہولک۔ فیر کوشش کر۔",
     "verified": "تصدیق کرل لنک",
-    "verifyHint": "لنک تصدیق کرے لگِن ایکے اوہ پیج میں جوڑ، فیر سیو کر: {{snippet}}"
+    "verifyHint": "لنک تصدیق کرے لگِن ایکے اوہ پیج میں جوڑ، فیر سیو کر: {{snippet}}",
+    "add": "فیلد اضافه کردن",
+    "remove": "assistant",
+    "descriptionPresets": "वेबसाइट, सर्वनाम या कुछ और भी जोड़ो। लिंक आपके सोशल के साथ दिखाते हैं।",
+    "type": "فیلد تایپ",
+    "needsLabel": "हर कस्टम फील्ड को एक लेबल दो",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "شهر، کشور",
+    "presets": {
+      "website": "وب‌سایت",
+      "blog": "بلگ",
+      "portfolio": "پورتفولیو",
+      "shop": "دکان",
+      "podcast": "پدکاست",
+      "newsletter": "نیوزلتر",
+      "pronouns": "پرونون‌ها",
+      "location": "مکان",
+      "custom": "سفارشی",
+      "customOption": "نام سفارشی"
+    }
   },
   "notificationFilters": {
     "title": "ای لوگ سے سوچنا فلٹر کر",

@@ -2637,7 +2637,27 @@
     "saved": "Na-save ang mga field ng profile",
     "failed": "Hindi na-save. Subukan ulit.",
     "verified": "Na-verify na link",
-    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}"
+    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}",
+    "add": "Iba ang field",
+    "remove": "Alisin ang field",
+    "descriptionPresets": "Ibahin ang website, mga pangalang panlalakay, o anuman. Ang mga link ay magpapakita sa iyong mga socials.",
+    "type": "Uri ng field",
+    "needsLabel": "Ibigay sa bawat field na may label ang pangalan",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Lungsod, bansa",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Tindahan",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pangalang panlalakay",
+      "location": "Lokasyon",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "I-filter ang mga notification mula sa",

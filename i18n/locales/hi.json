@@ -2637,7 +2637,27 @@
     "saved": "प्रोफ़ाइल फ़ील्ड सेव हो गए",
     "failed": "सेव नहीं हुआ। फिर से कोशिश करें।",
     "verified": "सत्यापित लिंक",
-    "verifyHint": "लिंक सत्यापित करने के लिए इसे उस पेज पर जोड़ें, फिर दोबारा सेव करें: {{snippet}}"
+    "verifyHint": "लिंक सत्यापित करने के लिए इसे उस पेज पर जोड़ें, फिर दोबारा सेव करें: {{snippet}}",
+    "add": "क्षेत्र",
+    "remove": "क्षेत्र हटाएं",
+    "descriptionPresets": "मैं एक पेशेवर अनुवादक हूँ।",
+    "type": "फील्ड टाइप",
+    "needsLabel": "कस्टम फ़ील्ड को प्रत्येक के लिए एक लेबल दें",
+    "placeholderLink": "यoursite.com",
+    "placeholderPronouns": "वे/उन्हें",
+    "placeholderLocation": "शहर, देश",
+    "presets": {
+      "website": "वेबसाइट",
+      "blog": "ब्लॉग",
+      "portfolio": "पोर्टफोलियो",
+      "shop": "खरीदारी करें",
+      "podcast": "पॉडकास्ट",
+      "newsletter": "न्यूज़लेटर",
+      "pronouns": "सर्वनाम",
+      "location": "स्थान",
+      "custom": "विशिष्ट",
+      "customOption": "कस्टम लेबल"
+    }
   },
   "notificationFilters": {
     "title": "इनकी सूचनाएँ फ़िल्टर करें",

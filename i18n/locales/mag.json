@@ -2637,7 +2637,27 @@
     "saved": "प्रोफाइल फील्ड सेव भेल",
     "failed": "सेव न भेल। फिन से कोसिस करऽ।",
     "verified": "सत्यापित लिंक",
-    "verifyHint": "लिंक सत्यापित करे ला एकरा ओह पेज पर जोड़ऽ, फिन सेव करऽ: {{snippet}}"
+    "verifyHint": "लिंक सत्यापित करे ला एकरा ओह पेज पर जोड़ऽ, फिन सेव करऽ: {{snippet}}",
+    "add": "अड्डा जोड़ो",
+    "remove": "अड्डा हटाओ",
+    "descriptionPresets": "वेबसाइट, लिंग शब्द (pronouns) या अन्य कुछ भी जोड़ो। सोशल मीडिया के साथ लिंक दिखेगा।",
+    "type": "अड्डा प्रकार",
+    "needsLabel": "हर कस्टम अड्डा को एक लेबल दें",
+    "placeholderLink": "तुइया वेबसाइट",
+    "placeholderPronouns": "तेन/तेन",
+    "placeholderLocation": "शहर, देश",
+    "presets": {
+      "website": "वेबसाइट",
+      "blog": "ब्लॉग",
+      "portfolio": "पोर्टफोलियो",
+      "shop": "शॉप",
+      "podcast": "पॉडकास्ट",
+      "newsletter": "न्यूज़लेटर",
+      "pronouns": "लिंग शब्द (pronouns)",
+      "location": "स्थान",
+      "custom": "कस्टम",
+      "customOption": "कस्टम लेबल"
+    }
   },
   "notificationFilters": {
     "title": "एकरा से सूचना फिल्टर करऽ",

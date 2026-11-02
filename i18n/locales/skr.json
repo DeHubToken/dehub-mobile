@@ -2634,7 +2634,17 @@
     "saved": "پروفائل فیلڈ سیو تھی ڳئے",
     "failed": "سیو نئیں تھیا۔ ولا کوشش کرو۔",
     "verified": "تصدیق تھیا لنک",
-    "verifyHint": "لنک دی تصدیق کیتے ایہ اوں صفحے تے جوڑو، ول سیو کرو: {{snippet}}"
+    "verifyHint": "لنک دی تصدیق کیتے ایہ اوں صفحے تے جوڑو، ول سیو کرو: {{snippet}}",
+    "type": "فیلڈ ٹائپ",
+    "placeholderLink": "یور سائٹ کوم",
+    "placeholderLocation": "شہر، ملک",
+    "presets": {
+      "website": "ویب سائٹ",
+      "shop": "دُکاں",
+      "podcast": "پوڈکاسٹ",
+      "pronouns": "ضمیر",
+      "location": "جاگہ"
+    }
   },
   "notificationFilters": {
     "title": "اِنہاں توں نوٹیفکیشن فلٹر کرو",

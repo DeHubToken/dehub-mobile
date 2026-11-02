@@ -2637,7 +2637,18 @@
     "saved": "Echekwala mpaghara profaịlụ",
     "failed": "Edebeghị ya. Nwaa ọzọ.",
     "verified": "Njikọ akwadoro",
-    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}"
+    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}",
+    "add": "Nkọwa Ọrụ",
+    "remove": "Igbo:",
+    "descriptionPresets": "Tinye websaịtị, mkpụrụ okwu ma ọ bụ ihe ọ bụla. Njikọ na-egosi na ọnụ ọnụ gị.",
+    "type": "Ụdị mpaghara",
+    "needsLabel": "Nye ọkwa ọ bụla nke custom field aha",
+    "placeholderLink": "yoursite.com",
+    "presets": {
+      "blog": "Blaọgụ",
+      "location": "Ebe",
+      "custom": "Omenala"
+    }
   },
   "notificationFilters": {
     "title": "Zachaa ọkwa sitere n'aka",

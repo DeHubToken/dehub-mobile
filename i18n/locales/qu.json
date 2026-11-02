@@ -2637,7 +2637,27 @@
     "saved": "Riqsichikuy t'aqakuna waqaychasqa",
     "failed": "Manam waqaychakurqanchu. Watiqmanta ruray.",
     "verified": "Chiqaqchasqa t'inki",
-    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}"
+    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}",
+    "add": "Llaqita yapay",
+    "remove": "Llaqita qichuy",
+    "descriptionPresets": "Sitio web, pronombres o huk ima yapay. Ligazos rikukunqa sociales ñiyki.",
+    "type": "Llaqita tipo",
+    "needsLabel": "Llaqita kustamuña sapa hunan sutiyoc kachun",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Llaqta, suyu",
+    "presets": {
+      "website": "Sitio web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Tienda",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronombres",
+      "location": "Ñan",
+      "custom": "Kustamuña",
+      "customOption": "Kustamuña sutiyoc"
+    }
   },
   "notificationFilters": {
     "title": "Willakuykunata suysuy",

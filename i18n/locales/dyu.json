@@ -2636,7 +2636,26 @@
     "saved": "Porofili yɔrɔw marala",
     "failed": "A ma mara. A lajɛ tugun.",
     "verified": "Siri lajɛlen",
-    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}"
+    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}",
+    "add": "Ka foro dɔ fara a kan",
+    "remove": "Ka foro bɔ",
+    "type": "Fanga min be sɔrɔ o la",
+    "needsLabel": "O yɔrɔ kelen kelen bɛɛ la, a ka kan ka kɛ yɔrɔ dɔ ye min be weele",
+    "placeholderLink": "lequipe.fr ka koo",
+    "placeholderPronouns": "u, u",
+    "placeholderLocation": "Jamana, dugu",
+    "presets": {
+      "website": "Site web kan",
+      "blog": "Blog a voir",
+      "portfolio": "Fanga min be sɔrɔ o la",
+      "shop": "Dɔnkiliw",
+      "podcast": "A be se ka kɛ podcast ye tugun",
+      "newsletter": "Kunnafoniw",
+      "pronouns": "O kɔrɔ ko:",
+      "location": "Yɔrɔ",
+      "custom": "Fɛɛn minw ka teli ka kɛ",
+      "customOption": "Tɔgɔdafɛ tagamasiɲɛ"
+    }
   },
   "notificationFilters": {
     "title": "Kunnafoniw sɛgɛsɛgɛ ka bɔ",

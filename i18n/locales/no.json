@@ -2637,7 +2637,27 @@
     "saved": "Profilfelt lagret",
     "failed": "Det ble ikke lagret. Prøv igjen.",
     "verified": "Bekreftet lenke",
-    "verifyHint": "For å bekrefte en lenke, legg dette til på den siden og lagre igjen: {{snippet}}"
+    "verifyHint": "For å bekrefte en lenke, legg dette til på den siden og lagre igjen: {{snippet}}",
+    "add": "Legg til felt",
+    "remove": "Fjern felt",
+    "descriptionPresets": "Legg til en nettside, pronomen eller noe annet. Lenker vises med dine sosiale medier.",
+    "type": "Felttype",
+    "needsLabel": "Gi hvert tilpassede felt en etikett",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "By, land",
+    "presets": {
+      "website": "Nettside",
+      "blog": "Blogg",
+      "portfolio": "Portfolio",
+      "shop": "Butikk",
+      "podcast": "Podkast",
+      "newsletter": "Nyhetsbrev",
+      "pronouns": "Pronomen",
+      "location": "Plassering",
+      "custom": "Tilpasset",
+      "customOption": "Tilpasset etikett"
+    }
   },
   "notificationFilters": {
     "title": "Filtrer varsler fra",

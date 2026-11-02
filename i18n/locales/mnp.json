@@ -2636,7 +2636,26 @@
     "saved": "个人资料字段已保存",
     "failed": "没有保存成功，请再试一次。",
     "verified": "已验证的链接",
-    "verifyHint": "要验证链接，请把这段代码加到那个页面，然后再保存一次：{{snippet}}"
+    "verifyHint": "要验证链接，请把这段代码加到那个页面，然后再保存一次：{{snippet}}",
+    "add": "添加字段",
+    "remove": "删除字段",
+    "descriptionPresets": "添加网站、昵称或其他信息。链接显示社交媒体。",
+    "type": "字段类型",
+    "needsLabel": "为每个自定义字段添加标签",
+    "placeholderPronouns": "他们/他们",
+    "placeholderLocation": "城市，国家",
+    "presets": {
+      "website": "网站",
+      "blog": "博客",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "新闻通讯",
+      "pronouns": "昵称",
+      "location": "位置",
+      "custom": "自定义",
+      "customOption": "自定义标签"
+    }
   },
   "notificationFilters": {
     "title": "过滤以下来源的通知",

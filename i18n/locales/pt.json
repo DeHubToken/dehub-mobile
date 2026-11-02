@@ -2532,7 +2532,27 @@
     "saved": "Campos do perfil salvos",
     "failed": "Não foi salvo. Tente de novo.",
     "verified": "Link verificado",
-    "verifyHint": "Para verificar um link, adicione isto àquela página e salve de novo: {{snippet}}"
+    "verifyHint": "Para verificar um link, adicione isto àquela página e salve de novo: {{snippet}}",
+    "add": "Adicionar campo",
+    "remove": "Remover campo",
+    "descriptionPresets": "Adicionar um site, pronomes ou qualquer outra coisa. Links aparecem com suas redes sociais.",
+    "type": "Tipo de campo",
+    "needsLabel": "Dê a cada campo personalizado um rótulo",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Cidade, país",
+    "presets": {
+      "website": "Site",
+      "blog": "Blog",
+      "portfolio": "Portfólio",
+      "shop": "Loja",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomes",
+      "location": "Localização",
+      "custom": "Personalizado",
+      "customOption": "Rótulo personalizado"
+    }
   },
   "notificationFilters": {
     "title": "Filtrar notificações de",

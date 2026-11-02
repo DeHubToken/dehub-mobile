@@ -2637,7 +2637,27 @@
     "saved": "Profilio laukai išsaugoti",
     "failed": "Neišsaugota. Bandykite dar kartą.",
     "verified": "Patvirtinta nuoroda",
-    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}"
+    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}",
+    "add": "Pridėti laukelį",
+    "remove": "Pašalinti laukelį",
+    "descriptionPresets": "Pridėti svetainę, asmeninius žodžius ar ką nors kitą. Nuorodos rodysis su tavo socialinėmis medija.",
+    "type": "Laukelio tipas",
+    "needsLabel": "Kiekvienam papildomam laukeliui suteikti pavadinimą",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "jis/jos",
+    "placeholderLocation": "Miestas, šalis",
+    "presets": {
+      "website": "Svetainė",
+      "blog": "Blogas",
+      "portfolio": "Portfelis",
+      "shop": "Parduotuvė",
+      "podcast": "Podkastas",
+      "newsletter": "Naujienlaiškis",
+      "pronouns": "Asmeniniai žodžiai",
+      "location": "Vieta",
+      "custom": "Papildomas",
+      "customOption": "Papildomas pavadinimas"
+    }
   },
   "notificationFilters": {
     "title": "Filtruoti pranešimus iš",

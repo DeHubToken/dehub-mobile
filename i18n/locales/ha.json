@@ -2637,7 +2637,27 @@
     "saved": "An ajiye filayen bayanan martaba",
     "failed": "Ba a ajiye ba. Sake gwadawa.",
     "verified": "Hanyar haɗi da aka tabbatar",
-    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}"
+    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}",
+    "add": "Ƙara filin",
+    "remove": "Cire filin",
+    "descriptionPresets": "Ƙara gida, jinjina ko wani abu. Hanyoyin haɗi suna nuna tare da jama'arku.",
+    "type": "Nau'in filin",
+    "needsLabel": "Ba da kowane filin na jiya lakabi",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Gida, kasa",
+    "presets": {
+      "website": "Gida",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Jinjina",
+      "location": "Wuri",
+      "custom": "Custom",
+      "customOption": "Lakabi na jiya"
+    }
   },
   "notificationFilters": {
     "title": "Tace sanarwa daga",

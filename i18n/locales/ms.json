@@ -2637,7 +2637,27 @@
     "saved": "Medan profil disimpan",
     "failed": "Tidak disimpan. Cuba lagi.",
     "verified": "Pautan disahkan",
-    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}"
+    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}",
+    "add": "Tambah medan",
+    "remove": "Buang medan",
+    "descriptionPresets": "Tambah laman web, kata ganti atau apa pun yang lain. Pautan ditunjukkan dengan media sosial anda.",
+    "type": "Jenis medan",
+    "needsLabel": "Berikan setiap medan tersuai label",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Bandar, negara",
+    "presets": {
+      "website": "Laman Web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Kedai",
+      "podcast": "Podcast",
+      "newsletter": "Surat Berita",
+      "pronouns": "Kata Ganti",
+      "location": "Lokasi",
+      "custom": "Tersuai",
+      "customOption": "Label tersuai"
+    }
   },
   "notificationFilters": {
     "title": "Tapis pemberitahuan daripada",

@@ -2634,7 +2634,20 @@
     "saved": "Profile fields don save",
     "failed": "E no save. Try again.",
     "verified": "Verified link",
-    "verifyHint": "To verify link, add dis one for dat page, then save again: {{snippet}}"
+    "verifyHint": "To verify link, add dis one for dat page, then save again: {{snippet}}",
+    "add": "Wey you go add field?",
+    "remove": "I no understand wetin you dey talk.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/dem",
+    "placeholderLocation": "City, country 🇳🇬, 🇳🇬🇮🇱🇦🇳🇩🇮🇦",
+    "presets": {
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Filter notifications from",

@@ -2637,7 +2637,23 @@
     "saved": "د پروفایل ساحې خوندي شوې",
     "failed": "خوندي نه شو. بیا هڅه وکړئ.",
     "verified": "تایید شوې لینک",
-    "verifyHint": "د لینک د تایید لپاره دا هغې پاڼې ته ورزیات کړئ، بیا یې خوندي کړئ: {{snippet}}"
+    "verifyHint": "د لینک د تایید لپاره دا هغې پاڼې ته ورزیات کړئ، بیا یې خوندي کړئ: {{snippet}}",
+    "type": "ځانګړی ډول",
+    "placeholderLink": "یوزر سایټ",
+    "placeholderPronouns": "دوی/دوی",
+    "placeholderLocation": "شهری، هېواد",
+    "presets": {
+      "website": "وېبپاڼه",
+      "blog": "بلاګ",
+      "portfolio": "پورتفولیو",
+      "shop": "دوکان",
+      "podcast": "پودکاسټ",
+      "newsletter": "نیوزلېټر",
+      "pronouns": "نومونه",
+      "location": "مکان",
+      "custom": "خپل ډول",
+      "customOption": "خپل نوم"
+    }
   },
   "notificationFilters": {
     "title": "له دې خلکو خبرتیاوې فلټر کړئ",

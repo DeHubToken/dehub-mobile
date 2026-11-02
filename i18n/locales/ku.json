@@ -2651,7 +2651,22 @@
     "saved": "Qadên profîlê hatin tomarkirin",
     "failed": "Ew nehat tomarkirin. Dîsa biceribîne.",
     "verified": "Girêdana piştrastkirî",
-    "verifyHint": "Ji bo piştrastkirina girêdanekê, vê li wê rûpelê zêde bike, paşê dîsa tomar bike: {{snippet}}"
+    "verifyHint": "Ji bo piştrastkirina girêdanekê, vê li wê rûpelê zêde bike, paşê dîsa tomar bike: {{snippet}}",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Şar, welat",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Nirxa standard"
+    }
   },
   "notificationFilters": {
     "title": "Agahdariyan parzûn bike ji",

@@ -2637,7 +2637,27 @@
     "saved": "Fushat e profilit u ruajtën",
     "failed": "Nuk u ruajt. Provo përsëri.",
     "verified": "Lidhje e verifikuar",
-    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}"
+    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}",
+    "add": "Shkarko fushën",
+    "remove": "Hap fushën",
+    "descriptionPresets": "Hap një faqe web, pronome ose çdo gjë tjetër. Lidhjet shfaqen me social media-të tuaja.",
+    "type": "Lloji i fushës",
+    "needsLabel": "Për çdo fushë të personalizuar, dhëna një etiketë",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Qyteti, vendi",
+    "presets": {
+      "website": "Faqja web",
+      "blog": "Blogu",
+      "portfolio": "Portofoliu",
+      "shop": "Dega",
+      "podcast": "Podkasti",
+      "newsletter": "Letra e shpejtë",
+      "pronouns": "Pronomet",
+      "location": "Përbërja",
+      "custom": "Personalizuar",
+      "customOption": "Etiketa personalizuar"
+    }
   },
   "notificationFilters": {
     "title": "Filtro njoftimet nga",

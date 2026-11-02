@@ -2637,7 +2637,26 @@
     "saved": "프로필 항목을 저장했어요",
     "failed": "저장하지 못했어요. 다시 시도해 주세요.",
     "verified": "인증된 링크",
-    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}"
+    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}",
+    "add": "필드 추가",
+    "remove": "필드 삭제",
+    "descriptionPresets": "사이트, 대명사 또는 기타 추가. 링크는 소셜 미디어와 함께 표시됩니다.",
+    "type": "필드 유형",
+    "needsLabel": "각 커스텀 필드에 레이블을 지정해주세요",
+    "placeholderPronouns": "그들/그들의",
+    "placeholderLocation": "도시, 국가",
+    "presets": {
+      "website": "사이트",
+      "blog": "블로그",
+      "portfolio": "포트폴리오",
+      "shop": "쇼프",
+      "podcast": "포드캐스트",
+      "newsletter": "뉴스레터",
+      "pronouns": "대명사",
+      "location": "위치",
+      "custom": "커스텀",
+      "customOption": "커스텀 레이블"
+    }
   },
   "notificationFilters": {
     "title": "알림 필터 대상",

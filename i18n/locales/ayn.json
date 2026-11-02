@@ -2637,7 +2637,26 @@
     "saved": "انحفظت حقول الملف",
     "failed": "ما انحفظ. جرب مرة ثانية.",
     "verified": "رابط موثّق",
-    "verifyHint": "عشان توثّق رابط، أضف هذا للصفحة وبعدين احفظ مرة ثانية: {{snippet}}"
+    "verifyHint": "عشان توثّق رابط، أضف هذا للصفحة وبعدين احفظ مرة ثانية: {{snippet}}",
+    "add": "أضف حقل",
+    "remove": "أزل حقل",
+    "descriptionPresets": "أضف موقع ويب، ضمائر أو أي شيء آخر. الروابط تظهر مع وسائلك الاجتماعية.",
+    "type": "نوع الحقل",
+    "needsLabel": "أعط كل حقل مخصص تسمية",
+    "placeholderPronouns": "هم",
+    "placeholderLocation": "المدينة، الدولة",
+    "presets": {
+      "website": "موقع ويب",
+      "blog": "مدونة",
+      "portfolio": "محفظة",
+      "shop": "متجر",
+      "podcast": "بودكاست",
+      "newsletter": "نشرة إخبارية",
+      "pronouns": "ضمائر",
+      "location": "الموقع",
+      "custom": "مخصص",
+      "customOption": "تسمية مخصصة"
+    }
   },
   "notificationFilters": {
     "title": "فلترة الإشعارات من",

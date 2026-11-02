@@ -2637,7 +2637,25 @@
     "saved": "መዳያታት መግለጺ ተዓቂቦም",
     "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።",
     "verified": "ዝተረጋገጸ ኣገናኝ",
-    "verifyHint": "ኣገናኝ ንምርግጋጽ እዚ ናብቲ ገጽ ወስኹ፣ ድሕሪኡ እንደገና ዓቅቡ፦ {{snippet}}"
+    "verifyHint": "ኣገናኝ ንምርግጋጽ እዚ ናብቲ ገጽ ወስኹ፣ ድሕሪኡ እንደገና ዓቅቡ፦ {{snippet}}",
+    "add": "ሜዳ ወስኽ",
+    "remove": "ሜዳ ኣልግስ",
+    "descriptionPresets": "ድረ-ገጽ፣ ስም ወይ ሌላ ነገር ወስኽ። ሊንክታት ከምቲ ማህደርካ ይርአዩ።",
+    "type": "ዓይነት ሜዳ",
+    "needsLabel": "ንእንቲ ሙላዊ ሜዳ ምልክት ሃብ",
+    "placeholderLocation": "ከተማ፣ ሃገር",
+    "presets": {
+      "website": "ድረ-ገጽ",
+      "blog": "ብሎግ",
+      "portfolio": "ፖርትፎሊዮ",
+      "shop": "ሸቦ",
+      "podcast": "ፖድካስት",
+      "newsletter": "ዜና-ደብዳቤ",
+      "pronouns": "ስም",
+      "location": "ቦታ",
+      "custom": "ሙላዊ",
+      "customOption": "ሙላዊ ምልክት"
+    }
   },
   "notificationFilters": {
     "title": "ምልክታት ካብዚኦም ኣጻሪ",

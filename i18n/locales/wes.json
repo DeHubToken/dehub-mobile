@@ -2636,7 +2636,20 @@
     "saved": "Profile fields don save",
     "failed": "E no save. Try again.",
     "verified": "Verified link",
-    "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}"
+    "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}",
+    "add": "I no understand wetin you mean.",
+    "remove": "I no understand wetin you mean.",
+    "type": "Fild tipe",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "Dem dey use dem",
+    "placeholderLocation": "Siti, kontri",
+    "presets": {
+      "website": "Wesait",
+      "blog": "Blaag",
+      "pronouns": "Pronouns",
+      "location": "Di location.",
+      "customOption": "Na custom label."
+    }
   },
   "notificationFilters": {
     "title": "Filter notifications from",

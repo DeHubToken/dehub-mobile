@@ -2633,7 +2633,27 @@
     "saved": "Campi del profilo salvati",
     "failed": "Non è stato salvato. Riprova.",
     "verified": "Link verificato",
-    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}"
+    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}",
+    "add": "Aggiungi campo",
+    "remove": "Elimina campo",
+    "descriptionPresets": "Aggiungi sito web, pronomi o altro. I link mostrano con i tuoi social.",
+    "type": "Tipo di campo",
+    "needsLabel": "Assegna un etichetta a ogni campo personalizzato",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "loro/loro",
+    "placeholderLocation": "Città, paese",
+    "presets": {
+      "website": "Sito web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Negozio",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomi",
+      "location": "Luogo",
+      "custom": "Personalizzato",
+      "customOption": "Etichetta personalizzata"
+    }
   },
   "notificationFilters": {
     "title": "Filtra le notifiche da",

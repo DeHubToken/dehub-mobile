@@ -2504,7 +2504,27 @@
     "saved": "Profilfelder gespeichert",
     "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
     "verified": "Bestätigter Link",
-    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}"
+    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}",
+    "add": "Feld hinzufügen",
+    "remove": "Feld entfernen",
+    "descriptionPresets": "Fügen Sie eine Website, Pronomen oder etwas anderes hinzu. Links werden in Ihren sozialen Netzwerken angezeigt.",
+    "type": "Feldtyp",
+    "needsLabel": "Geben Sie jedem benutzerdefinierten Feld eine Bezeichnung",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "sie/sie",
+    "placeholderLocation": "Stadt, Land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomen",
+      "location": "Standort",
+      "custom": "Benutzerdefiniert",
+      "customOption": "Benutzerdefiniertes Etikett"
+    }
   },
   "notificationFilters": {
     "title": "Benachrichtigungen filtern von",

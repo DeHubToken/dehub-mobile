@@ -2637,7 +2637,27 @@
     "saved": "Profiiliväljad salvestatud",
     "failed": "Ei salvestunud. Proovi uuesti.",
     "verified": "Kinnitatud link",
-    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}"
+    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}",
+    "add": "Lisa väli",
+    "remove": "Eemalda väli",
+    "descriptionPresets": "Lisa veebisait, asesõnad või midagi muud. Lingid näitavad sinu suhtlusvõrgustikke.",
+    "type": "Välja tüüp",
+    "needsLabel": "Anna igale kohandatud väljale silt",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "nad/neid",
+    "placeholderLocation": "Linn, riik",
+    "presets": {
+      "website": "Veebisait",
+      "blog": "Blogi",
+      "portfolio": "Portfoolio",
+      "shop": "Osta",
+      "podcast": "Podcast",
+      "newsletter": "Uudiskiri",
+      "pronouns": "Asesõnad",
+      "location": "Asukoht",
+      "custom": "Kohandatud",
+      "customOption": "Kohandatud silt"
+    }
   },
   "notificationFilters": {
     "title": "Filtreeri teavitusi",
