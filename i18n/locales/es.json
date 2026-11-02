@@ -2399,7 +2399,22 @@
     "attachmentTooLarge": "Cada archivo debe pesar menos de 50 MB",
     "deleteCommentA11y": "Eliminar comentario",
     "sendCommentA11y": "Enviar comentario",
-    "requestOptions": "Opciones de solicitud"
+    "requestOptions": "Opciones de solicitud",
+    "topBuilders": {
+      "title": "Top creadores",
+      "month": "Este mes",
+      "allTime": "Todo el tiempo",
+      "shipped": "Lanzadas",
+      "votes": "Votos",
+      "comments": "Comentarios",
+      "breakdown": "{{shipped}} lanzadas ({{sp}}) · {{votes}} votos ({{vp}}) · {{comments}} comentarios ({{cp}})",
+      "viewProfile": "Ver perfil",
+      "rule": "10 pts por solicitud lanzada, 1 por voto, 2 por comentario en la solicitud de otra persona.",
+      "you": "Tú",
+      "pts": "{{n}} pts",
+      "gap": "{{n}} pts para superar a {{name}}",
+      "join": "Publica una idea que se lance para entrar en la lista"
+    }
   },
   "auth": {
     "loginRequired": "Inicio de sesión requerido",

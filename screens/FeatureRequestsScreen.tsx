@@ -52,6 +52,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
+import { TopBuildersCard, TopBuildersPin, TopBuildersProvider, usePinVisible } from "../components/FeatureRequests/TopBuilders";
 import GlassModal from "../components/ui/GlassModal";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
@@ -649,6 +650,10 @@ const PromptComposer: React.FC<{
   );
 };
 export default function FeatureRequestsScreen() {
+  return <TopBuildersProvider><FeatureRequestsBoard /></TopBuildersProvider>;
+}
+
+function FeatureRequestsBoard() {
   const { t } = useTranslation();
   // Minimal: the header bento and request cards become edge-to-edge hairline
   // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
@@ -690,6 +695,8 @@ export default function FeatureRequestsScreen() {
   } = useFeatureRequests(sort, category, debouncedSearch);
 
   const shipped = useShippedFeatures();
+  const builderPinVisible = usePinVisible();
+  const showBuilderPin = builderPinVisible && tab === "shipped" && !debouncedSearch && category === "all";
   const inProgress = useInProgressFeatures();
   const { data: counts } = useFeatureCounts();
   const { data: votes } = useUserVotes();
@@ -1022,11 +1029,12 @@ export default function FeatureRequestsScreen() {
           // Minimal: rows run edge to edge and butt up — the hairline is the gap.
           contentContainerStyle={{
             paddingHorizontal: isMinimal ? 0 : 8,
-            paddingBottom: insets.bottom + 24,
+            paddingBottom: insets.bottom + 24 + (showBuilderPin ? 76 : 0),
             paddingTop: isMinimal ? 0 : 8,
             gap: isMinimal ? 0 : 12,
           }}
           ListHeaderComponent={<>
+            {tab === "shipped" && !debouncedSearch && category === "all" && <TopBuildersCard />}
             <View style={tab !== "requests" ? { display: "none" } : undefined}>
               <PromptComposer focusRequest={composerFocus} submitting={submitMutation.isPending} onSubmit={async v => {
                 const result = await submitMutation.mutateAsync(v);
@@ -1075,6 +1083,7 @@ export default function FeatureRequestsScreen() {
             </ThemePanel>
           }
         />
+      {showBuilderPin && <TopBuildersPin bottom={insets.bottom + 12} />}
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );

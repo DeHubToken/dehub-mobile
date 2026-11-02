@@ -2587,7 +2587,22 @@
     "attachmentTooLarge": "Elk bestand moet kleiner zijn dan 50 MB",
     "deleteCommentA11y": "Verwijder reactie",
     "sendCommentA11y": "Opmerking verzenden",
-    "requestOptions": "Aanvraagopties"
+    "requestOptions": "Aanvraagopties",
+    "topBuilders": {
+      "title": "Top bouwers",
+      "month": "Deze maand",
+      "allTime": "Altijd",
+      "shipped": "Uitgebracht",
+      "votes": "Stemmen",
+      "comments": "Reacties",
+      "breakdown": "{{shipped}} uitgebracht ({{sp}}) · {{votes}} stemmen ({{vp}}) · {{comments}} reacties ({{cp}})",
+      "viewProfile": "Profiel bekijken",
+      "rule": "10 pt per uitgebracht verzoek, 1 per stem, 2 per reactie op andermans verzoek.",
+      "you": "Jij",
+      "pts": "{{n}} pt",
+      "gap": "{{n}} pt om {{name}} in te halen",
+      "join": "Plaats een idee dat wordt uitgebracht om op het bord te komen"
+    }
   },
   "auth": {
     "loginRequired": "Inloggen vereist",
