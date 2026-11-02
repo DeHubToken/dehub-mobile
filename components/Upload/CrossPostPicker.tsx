@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSnapshot } from "valtio";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../ui/Icon";
+import { useAppTheme } from "../../context/ThemeContext";
 import { crossPostState, toggleCrossPostAccount } from "../../libs/crosspost-store";
 import { PLATFORM_NAMES, getMultipostStatus } from "../../services/multipost.service";
 import { creditsFor } from "../../libs/social-pricing";
@@ -40,6 +41,7 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
   menuItem = false,
 }) => {
   const { t } = useTranslation();
+  const { colors } = useAppTheme();
   const { hidden, accounts, selected, failed } = useCrossPostAccounts();
   if (hidden) return null;
   const count = accounts.filter((a) => selected.includes(a.id)).length;
@@ -61,7 +63,7 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
       accessibilityHint={failed ? t("multiPost.loadFailed") : undefined}
     >
       <Icon name="Share2" size={16} color="#fff" />
-      {menuItem && <Text className="flex-1 ml-3 text-white text-sm">{t("multiPost.title")}</Text>}
+      {menuItem && <Text className="flex-1 ml-3 text-sm" style={{ color: colors.foreground }}>{t("multiPost.title")}</Text>}
       {count > 0 && (
         <View
           className={menuItem ? "w-5 h-5 rounded-full bg-white items-center justify-center" : "absolute w-4 h-4 rounded-full bg-white items-center justify-center"}
