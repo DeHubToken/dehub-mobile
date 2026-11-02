@@ -51,6 +51,11 @@ jest.mock("../../services/user.service", () => ({
   getMyPosts: jest.fn(() => Promise.resolve({ result: [] })),
 }));
 
+const mockTheirPosts: { result: any[] } = { result: [] };
+jest.mock("../../services/nft.service", () => ({
+  getNFTs: jest.fn(() => Promise.resolve(mockTheirPosts)),
+}));
+
 jest.mock("../../libs/misc", () => ({ buildImageUrl: () => null }));
 
 jest.mock("../../config/web3.constants", () => ({
@@ -82,6 +87,7 @@ beforeEach(() => {
   mockTables.trades = ok([]);
   mockTables.ownListings = ok([]);
   mockTables.listings = ok([]);
+  mockTheirPosts.result = [];
 });
 
 describe("useFractionPortfolio", () => {
@@ -129,5 +135,17 @@ describe("useFractionPortfolio", () => {
     mockBalanceOf.mockResolvedValue(bn(0));
 
     await expect(runQuery()).resolves.toEqual([]);
+  });
+
+  it("counts the creator's own minted uploads on their profile", async () => {
+    mockTheirPosts.result = [
+      { tokenId: 9, chainId: 8453, status: "minted", name: "Mine" },
+      { tokenId: 10, chainId: 8453, status: "signed" },
+    ];
+    mockBalanceOf.mockResolvedValue(bn(1000));
+
+    const positions = await runQuery();
+    expect(positions).toHaveLength(1);
+    expect(positions[0]).toMatchObject({ tokenId: "9", balance: 1000, isCreator: true });
   });
 });

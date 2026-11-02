@@ -1379,8 +1379,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // the only part that waits on a mint, not the whole page.
   const handleInfoPress = useCallback(() => {
     if (tokenId == null) return;
+    // The card already holds the post, so the info page paints it at once
+    // and only the extra reads (holders, sales, stats) fill in after.
+    seedPostDetail(tokenId, item);
+    warmRequest(`info:${tokenId}`, () => getNFT(tokenId));
     navigation.navigate(ScreenNames.PostInfo, { tokenId: String(tokenId) });
-  }, [navigation, tokenId]);
+  }, [navigation, tokenId, item]);
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);

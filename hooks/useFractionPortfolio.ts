@@ -20,6 +20,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { ethersService } from "../services/ethers.service";
 import { getMyPosts } from "../services/user.service";
+import { getNFTs } from "../services/nft.service";
 import { buildImageUrl } from "../libs/misc";
 import { STREAM_COLLECTION_CONTRACT_ADDRESSES } from "../config/web3.constants";
 import { DEFAULT_FRACTION_CHAIN, TOTAL_FRACTIONS, useFractionWallet } from "./useFractionMarket";
@@ -120,6 +121,27 @@ export function useFractionPortfolio(address: string | null | undefined) {
           const mine = await getMyPosts({ page: 0, unit: 50 });
           for (const post of (mine.result || []) as any[]) {
             if (post?.tokenId == null) continue;
+            const tokenId = String(post.tokenId);
+            candidates.set(tokenId, {
+              tokenId,
+              chainId: Number(post.chainId) || DEFAULT_FRACTION_CHAIN,
+              title: post.name || post.title || null,
+              imageUrl: buildImageUrl(post.tokenId, post.imageUrl, 200) || null,
+              postType: post.postType || null,
+              isCreator: true,
+            });
+          }
+        } catch {
+          // The market half of the portfolio is still worth showing.
+        }
+      } else {
+        // Someone else's profile: their minted uploads are positions too (a
+        // creator is minted all 1000). Without this a creator who never
+        // traded showed "no fractions" on their profile tab.
+        try {
+          const theirs = await getNFTs({ minter: key, unit: 50, sortMode: "new" });
+          for (const post of (theirs.result || []) as any[]) {
+            if (post?.tokenId == null || (post.status && post.status !== "minted")) continue;
             const tokenId = String(post.tokenId);
             candidates.set(tokenId, {
               tokenId,
