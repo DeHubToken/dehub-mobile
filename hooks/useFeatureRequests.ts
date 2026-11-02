@@ -122,7 +122,7 @@ const FEATURE_ROW_KEYS = [
   ["feature-request"],
 ] as const;
 
-function patchFeatureRow(
+export function patchFeatureRow(
   queryClient: ReturnType<typeof useQueryClient>,
   id: string,
   patch: (row: FeatureRequest) => FeatureRequest,

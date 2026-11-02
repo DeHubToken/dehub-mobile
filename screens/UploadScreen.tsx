@@ -70,7 +70,7 @@ import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
+import { getComicImageLimitForBadge, getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import ArticleEditor from "../components/article/ArticleEditor";
 import { ARTICLE_BODY_MIN, ARTICLE_SUMMARY_MAX, articleLook, articleSummaryFromBody } from "../libs/article";
@@ -79,6 +79,7 @@ import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import ComicPagesList from "../components/Upload/ComicPagesList";
 import DraftAssetCards from "../components/Upload/DraftAssetCards";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
@@ -104,12 +105,15 @@ import type { ShopLink } from "../services/nft.service";
 import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
+import FeedCard from "../components/Home/FeedCard";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
 import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSheet";
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
+import { startDraftImage } from "../services/draftImage";
+import RecentMediaStrip, { type RecentPick } from "../components/Upload/RecentMediaStrip";
 import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
 import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
@@ -246,6 +250,8 @@ type PickedAsset = ImagePicker.ImagePickerAsset & {
   filterPresetId?: string;
   /** Alt text: what the picture or video shows, for people who cannot see it. */
   description?: string;
+  /** Comic page caption, shown to everyone on the card. */
+  caption?: string;
 };
 
 /** Alt text in upload order: the video, or each photo by position. */
@@ -286,7 +292,7 @@ export default function UploadScreen() {
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.
-  const { isMinimal, theme } = useAppTheme();
+  const { isMinimal, theme, colors: themeColors } = useAppTheme();
   const articleUi = useMemo(() => articleLook(theme), [theme]);
   const queryClient = useQueryClient();
   const nav = useNavigation<any>();
@@ -299,7 +305,9 @@ export default function UploadScreen() {
   const incomingVideo = route.params?.video;
   const authUser = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
-  const imageLimit = getPostImageLimitForBadge(
+  // Comic: a photo post shown as collector cards, each page with a caption.
+  const [comicMode, setComicMode] = useState(false);
+  const imageLimit = (comicMode ? getComicImageLimitForBadge : getPostImageLimitForBadge)(
     authUser?.badgeBalance,
     authUser?.username,
     authUser?.badgeLock,
@@ -408,6 +416,7 @@ export default function UploadScreen() {
   // Who may see the post. Everyone, unless the creator narrows it; fixed once posted.
   const [visibility, setVisibility] = useState<"public" | "followers" | "direct">("public");
   // Hold menu on a photo tile (index), or null.
+  const [showPreview, setShowPreview] = useState(false);
   const [photoMenu, setPhotoMenu] = useState<number | null>(null);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -764,6 +773,8 @@ export default function UploadScreen() {
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
+  const comicLayout = comicMode && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && !pickedVideo && !pickedAudio && pickedImages.length > 0
+    ? ("comic" as const) : undefined;
   // Title input is forced for video/audio (they need a name on-chain) and for
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode || isStageMode;
@@ -791,6 +802,25 @@ export default function UploadScreen() {
     isAudioRecording ||
     (!isLiveMode && !pickedVideo && pickedImages.length >= imageLimit);
   const showMediaButton = !mediaDisabled;
+  // Latest photos and videos above the toolbar, while the post can still take one.
+  const showRecentStrip = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !mediaDisabled;
+  // "Preview": the post as the real feed card draws it, from what is on the phone.
+  const previewItem = useMemo(() => {
+    const body = bodyText.trim();
+    const cover = coverUri || thumbnailUri || undefined;
+    return {
+      postType: pickedVideo ? "video" : pickedImages.length ? "feed-images" : "feed-simple",
+      name: titleText.trim(),
+      description: body,
+      imageUrls: pickedVideo ? [] : pickedImages.map((img) => img.uri),
+      imageUrl: pickedVideo ? cover : pickedImages[0]?.uri,
+      thumbnailUrl: pickedVideo ? cover : undefined,
+      minter: authUser?.address,
+      minterUser: authUser,
+      createdAt: new Date().toISOString(),
+      views: 0,
+    } as any;
+  }, [bodyText, titleText, pickedImages, pickedVideo, coverUri, thumbnailUri, authUser]);
   // Camera only ever starts a fresh capture, so it goes as soon as media exists.
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
@@ -1276,6 +1306,8 @@ export default function UploadScreen() {
       // publish it to everyone there.
       crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      layout: comicLayout,
+      mediaCaptions: comicLayout && pickedImages.some(img => img.caption?.trim()) ? pickedImages.map(img => img.caption?.trim() || "") : undefined,
       spoilerText: contentWarning?.trim() || undefined,
       hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
@@ -1283,7 +1315,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1891,6 +1923,15 @@ export default function UploadScreen() {
     return () => cancelDraftVideo(key);
   }, [draftVideoUri]);
 
+  // Photos start uploading as they are attached or edited, so Post only sends ids.
+  const draftPhotos = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !pickedAudio;
+  useEffect(() => {
+    if (!draftPhotos) return;
+    for (const img of pickedImages) {
+      startDraftImage({ uri: img.uri, name: getFileName(img.uri, "image.jpg"), mimeType: guessMime(img.uri, "image/jpeg") });
+    }
+  }, [pickedImages, draftPhotos]);
+
   // A video handed over by another surface, e.g. one finished in the editor.
   // Like pictures, it only fills an empty composer.
   useEffect(() => {
@@ -1932,6 +1973,24 @@ export default function UploadScreen() {
       setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
   }, [pickedImages, imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
+
+  /** A tap on the recent strip: one photo, or the post's one video. */
+  const handleRecentPick = useCallback(async (pick: RecentPick) => {
+    const asset = { ...pick } as unknown as PickedAsset;
+    if (pick.type === "video") {
+      if (pickedImages.length > 0) {
+        toastError(t("upload.imagesOrVideo"));
+        return;
+      }
+      await adoptVideoAsset(asset);
+      return;
+    }
+    if (pickedVideo) {
+      toastError(t("upload.imagesOrVideo"));
+      return;
+    }
+    await adoptImageAssets([asset]);
+  }, [pickedImages.length, pickedVideo, adoptVideoAsset, adoptImageAssets, t]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
@@ -2463,22 +2522,27 @@ export default function UploadScreen() {
         </View>
       </GestureDetector>
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); }}>
-          <Text className={!isLiveMode && !isStageMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode && !comicMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); setComicMode(false); }}>
+          <Text className={!isLiveMode && !isStageMode && !articleMode && !comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        </TouchableOpacity>
+        <Text className="text-white/25 text-xs">|</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: comicMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(true); setComicMode(true); setPollEnabled(false); setMonetization(emptyMonetization()); }}>
+          <Text className={comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comic.tab", { defaultValue: "Comic" })}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
-          onPress={() => { setIsStageMode(false); setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+          onPress={() => { setIsStageMode(false); setArticleMode(false); setComicMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
           <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setIsStageMode(true); setPollEnabled(false); }}>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setComicMode(false); setIsStageMode(true); setPollEnabled(false); }}>
           <Text className={isStageMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("nav.stages")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setComicMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
           <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
         </TouchableOpacity>
       </View>}
@@ -2862,6 +2926,15 @@ export default function UploadScreen() {
                   </TouchableOpacity>
                 )}
               </GestureScrollView>
+            )}
+
+            {comicMode && !isLiveMode && !pickedVideo && !pickedAudio && (
+              <ComicPagesList
+                pages={pickedImages}
+                limit={imageLimit}
+                onCaption={(index, caption) => setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, caption: caption || undefined } : img)))}
+                onAlt={index => setAltEditor({ kind: "image", index })}
+              />
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (
@@ -3503,6 +3576,16 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
+      {showRecentStrip && (
+        <RecentMediaStrip
+          pickedIds={pickedImages.map((a) => a.assetId).filter((id): id is string => !!id)}
+          photosPicked={pickedImages.length > 0}
+          full={pickedImages.length >= imageLimit}
+          onPick={(pick) => void handleRecentPick(pick)}
+          onOpenAll={() => void handlePickMediaLibrary()}
+        />
+      )}
+
       <View className="h-px bg-white/10" />
 
       <Animated.View
@@ -3731,6 +3814,19 @@ export default function UploadScreen() {
             )}
           </TouchableOpacity>
 
+          {!isLiveMode && !isStageMode && !articleMode && !pickedAudio && !pollIsValid && canPost && !postInFlight && (
+            <TouchableOpacity
+              onPress={() => setShowPreview(true)}
+              activeOpacity={0.7}
+              className="h-8 px-3 mr-2 rounded-xl flex-row items-center justify-center border border-white/20 bg-white/5"
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("upload.preview.title")}
+            >
+              <Icon name="Eye" size={14} color="#fff" />
+            </TouchableOpacity>
+          )}
+
           <TouchableOpacity
             onPress={handlePost}
             disabled={(!isStageMode && !postingChainReady) || (isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight))}
@@ -3788,7 +3884,7 @@ export default function UploadScreen() {
           ];
           return (
             <View className="px-4 pt-2 pb-4" style={{ gap: 4 }}>
-              <Text className="text-white text-base font-semibold mb-2">
+              <Text className="text-base font-semibold mb-2" style={{ color: themeColors.foreground }}>
                 {t("upload.photoN", { defaultValue: "Photo {{n}} of {{total}}", n: idx + 1, total: pickedImages.length })}
               </Text>
               {rows.map((r) => (
@@ -3798,15 +3894,27 @@ export default function UploadScreen() {
                   accessibilityRole="button"
                   className="flex-row items-center px-4 py-3 rounded-xl"
                 >
-                  <Icon name={r.icon} size={20} color={r.danger ? "#f87171" : "#fff"} />
-                  <Text className="flex-1 ml-3 text-sm" style={{ color: r.danger ? "#f87171" : undefined }}>
-                    <Text className={r.danger ? "" : "text-white"}>{r.label}</Text>
+                  <Icon name={r.icon} size={20} color={r.danger ? "#f87171" : themeColors.foreground} />
+                  <Text className="flex-1 ml-3 text-sm" style={{ color: r.danger ? "#f87171" : themeColors.foreground }}>
+                    {r.label}
                   </Text>
                 </TouchableOpacity>
               ))}
             </View>
           );
         })() : null}
+      </GlassModal>
+
+      <GlassModal visible={showPreview} onClose={() => setShowPreview(false)} presentation="bottom" scrollable>
+        {showPreview ? (
+          <View className="px-4 pt-2 pb-4">
+            <Text className="text-base font-semibold mb-3" style={{ color: themeColors.foreground }}>{t("upload.preview.title")}</Text>
+            <View pointerEvents="none">
+              <FeedCard item={previewItem} isVisible={false} isAutoplayActive={false} enablePreview={false} disablePress />
+            </View>
+            <Text className="text-xs text-center mt-3" style={{ color: themeColors.mutedForeground }}>{t("upload.preview.hint")}</Text>
+          </View>
+        ) : null}
       </GlassModal>
 
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>

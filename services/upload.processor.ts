@@ -26,6 +26,7 @@ import type { CreateQuotePostResponse } from "../services/repost.service";
 import { createPoll } from "../services/polls.service";
 import { prepareWalletForQueuedMint } from "../libs/wallet-signing-preflight";
 import { getDraftVideo, releaseDraftVideo, waitForDraftVideo } from "./draftVideo";
+import { forgetDraftImages, resolveDraftImages } from "./draftImage";
 import { watchPostVideo } from "./post-video-watch";
 import { notePostPublished } from "../libs/review-prompt";
 import { translateCopy as _translateCopy } from '../i18n/copy';
@@ -133,7 +134,11 @@ async function resolveDraftVideo(job: UploadJob, abortRef: { current: boolean })
   return job.draftVideoId ?? null;
 }
 
-function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): FormData {
+function rebuildFormData(
+  job: UploadJob,
+  draftVideoId: string | null = null,
+  draftImageIds: (string | null)[] | null = null,
+): FormData {
   const { payload, walletAddress } = job;
   const fd = new FormData();
 
@@ -191,7 +196,10 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
       } as any);
     }
   } else if (payload.postType === "feed-images") {
-    for (const img of payload.images) {
+    // Photos already uploaded from the composer go by id; the rest as files.
+    if (draftImageIds) fd.append("draftImageIds", JSON.stringify(draftImageIds));
+    for (const [i, img] of payload.images.entries()) {
+      if (draftImageIds?.[i]) continue;
       // @ts-ignore RN FormData file shape
       fd.append("feed-images", {
         uri: img.uri,
@@ -248,6 +256,14 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
   // Alt text. Only sent when something was described.
   if (payload.mediaDescriptions?.some(Boolean)) {
     fd.append("mediaDescriptions", JSON.stringify(payload.mediaDescriptions));
+  }
+
+  // Comic: the photos show as collector cards, each page with its caption.
+  if (payload.layout === "comic") {
+    fd.append("layout", "comic");
+    if (payload.mediaCaptions?.some(Boolean)) {
+      fd.append("mediaCaptions", JSON.stringify(payload.mediaCaptions));
+    }
   }
 
   // Content warning. Only sent when there is one.
@@ -333,7 +349,23 @@ async function processJob(job: UploadJob): Promise<void> {
         res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
       }
     } else {
-      res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
+      const imageUris = !job.isQuote && job.payload.postType === "feed-images" ? job.payload.images.map((i) => i.uri) : [];
+      const draftImageIds = await resolveDraftImages(imageUris);
+      if (abortRef.current) throw new Error("Upload cancelled");
+      if (draftImageIds) {
+        try {
+          res = await uploadMintFormData(job, rebuildFormData(job, null, draftImageIds), endpoint, abortRef, onProgress);
+        } catch (e) {
+          const err = e as XhrUploadError;
+          if (err.status !== 409 || err.code !== "DRAFT_UNAVAILABLE") throw e;
+          console.warn("[upload.processor] draft photo unavailable — uploading the files instead");
+          uploadActions.updateProgress(job.id, 0, true);
+          res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
+        }
+      } else {
+        res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
+      }
+      forgetDraftImages(imageUris);
     }
     // The server has the video either way now.
     releaseDraftVideo(job.draftVideoKey);
