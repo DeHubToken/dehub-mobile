@@ -7,6 +7,7 @@ import {
   feedDefaultsCustoms,
   feedDefaultsEvents,
 } from '../libs/feed-defaults';
+import { adoptAccountFeedPresets, feedPresetsCustoms, feedPresetsEvents } from '../libs/feed-presets';
 
 const logger = createLogger('FeedDefaults');
 const SAVE_DELAY_MS = 1500;
@@ -39,9 +40,10 @@ export function useFeedDefaultsSync(onAdopted: () => void) {
     if (adoptedFor.current === userKey || !user) return;
     adoptedFor.current = userKey;
     const { hasTab, hasToggles, changed } = adoptAccountFeedDefaults(customsRef.current);
+    const presets = adoptAccountFeedPresets(customsRef.current);
     if (changed) onAdoptedRef.current();
     // Set on this device before the account had any: send them up.
-    if (!hasTab || !hasToggles) feedDefaultsEvents.emit();
+    if (!hasTab || !hasToggles || !presets.has) feedDefaultsEvents.emit();
   }, [isSignedIn, userKey, user]);
 
   // Changes out: debounced, merged over the latest customs.
@@ -51,7 +53,7 @@ export function useFeedDefaultsSync(onAdopted: () => void) {
     const save = async () => {
       timer = null;
       const existing = { ...(customsRef.current ?? {}) };
-      const next = feedDefaultsCustoms();
+      const next = { ...feedDefaultsCustoms(), ...feedPresetsCustoms() };
       if (Object.entries(next).every(([k, v]) => existing[k] === v)) return;
       const merged = { ...existing, ...next };
       try {
@@ -62,12 +64,15 @@ export function useFeedDefaultsSync(onAdopted: () => void) {
         logger.warn('Saving feed defaults failed', error);
       }
     };
-    const unsubscribe = feedDefaultsEvents.subscribe(() => {
+    const schedule = () => {
       if (timer) clearTimeout(timer);
       timer = setTimeout(save, SAVE_DELAY_MS);
-    });
+    };
+    const unsubscribe = feedDefaultsEvents.subscribe(schedule);
+    const unsubscribePresets = feedPresetsEvents.subscribe(schedule);
     return () => {
       unsubscribe();
+      unsubscribePresets();
       if (timer) { clearTimeout(timer); void save(); }
     };
   }, [isSignedIn, patchUser]);

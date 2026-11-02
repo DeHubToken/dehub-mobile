@@ -16008,5 +16008,27 @@
   "liveShorts": {
     "live": "EN DIRECT",
     "join": "Rejoindre le live"
+  },
+  "feedFilters": {
+    "clearAll": "Effacer tous les filtres",
+    "clearAllShort": "Tout effacer",
+    "collapse": "Masquer les filtres",
+    "count": "{{count}} filtres actifs",
+    "deletePreset": "Supprimer {{name}}",
+    "done": "Terminé",
+    "edit": "Modifier",
+    "groupAccess": "Accès",
+    "groupDate": "Date",
+    "groupSort": "Tri",
+    "groupTag": "Tag",
+    "groupType": "Type",
+    "myPresets": "Mes préréglages",
+    "presetName": "Nom du préréglage",
+    "remove": "Retirer {{label}}",
+    "save": "Enregistrer",
+    "saveCurrent": "+ Enregistrer l'actuel",
+    "savePreset": "Enregistrer comme préréglage",
+    "show": "Voir les filtres",
+    "updatePreset": "Renommer le préréglage"
   }
 }

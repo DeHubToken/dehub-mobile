@@ -15862,5 +15862,27 @@
   "liveShorts": {
     "live": "LIVE",
     "join": "Join live"
+  },
+  "feedFilters": {
+    "clearAll": "Clear all filters",
+    "clearAllShort": "Clear all",
+    "collapse": "Hide filters",
+    "count": "{{count}} filters on",
+    "deletePreset": "Delete {{name}}",
+    "done": "Done",
+    "edit": "Edit",
+    "groupAccess": "Access",
+    "groupDate": "Date",
+    "groupSort": "Sort",
+    "groupTag": "Tag",
+    "groupType": "Type",
+    "myPresets": "My presets",
+    "presetName": "Preset name",
+    "remove": "Remove {{label}}",
+    "save": "Save",
+    "saveCurrent": "+ Save current",
+    "savePreset": "Save as preset",
+    "show": "Show filters",
+    "updatePreset": "Rename preset"
   }
 }
