@@ -60,6 +60,16 @@ export default function VideoTrimSheet({ uri, duration, initial, onClose, onAppl
     p.timeUpdateEventInterval = 0.1;
   });
 
+  // Open on the first kept frame.
+  useEffect(() => {
+    const sub = player.addListener("statusChange", ({ status }: { status: string }) => {
+      if (status === "readyToPlay" && range.current.start > 0 && player.currentTime < range.current.start) {
+        player.currentTime = range.current.start;
+      }
+    });
+    return () => sub.remove();
+  }, [player]);
+
   // Keep playback inside the kept part.
   useEffect(() => {
     const sub = player.addListener("timeUpdate", ({ currentTime }: { currentTime: number }) => {
@@ -170,7 +180,7 @@ export default function VideoTrimSheet({ uri, duration, initial, onClose, onAppl
 
   return (
     <Modal visible animationType="slide" statusBarTranslucent onRequestClose={onClose}>
-      <View className="flex-1 bg-black" style={{ paddingTop: insets.top, paddingBottom: insets.bottom + 8 }}>
+      <View className="flex-1 bg-black dark-surface" style={{ paddingTop: insets.top, paddingBottom: insets.bottom + 8 }}>
         <View className="flex-row items-center justify-between px-4 py-3">
           <Pressable
             onPress={onClose}
@@ -186,11 +196,13 @@ export default function VideoTrimSheet({ uri, duration, initial, onClose, onAppl
           </Text>
           <Pressable
             onPress={apply}
-            className="px-4 py-1.5 rounded-full bg-white"
+            // Literal colours: the editor is black on every theme, and theme
+            // classes would recolour a bg-white pill.
+            style={{ paddingHorizontal: 16, paddingVertical: 6, borderRadius: 999, backgroundColor: "#fff" }}
             accessibilityRole="button"
             accessibilityLabel={t("common.done")}
           >
-            <Text className="text-black text-xs font-semibold">{t("common.done")}</Text>
+            <Text style={{ color: "#000", fontSize: 12, fontWeight: "600" }}>{t("common.done")}</Text>
           </Pressable>
         </View>
 
