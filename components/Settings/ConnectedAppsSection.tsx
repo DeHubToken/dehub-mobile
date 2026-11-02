@@ -9,7 +9,7 @@
  * list, and removing an app, which revokes its tokens at once.
  */
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Divider, SettingsSection } from './SettingsPrimitives';
 import { toastError, toastSuccess } from '../../libs/toast';
@@ -46,6 +46,10 @@ export default function ConnectedAppsSection() {
   const when = (iso: string | null) =>
     iso ? new Date(iso).toLocaleDateString(i18n.language, { year: 'numeric', month: 'short', day: 'numeric' }) : '';
 
+  // Only people who have actually signed a Mastodon app in see this section.
+  // Everyone else (nearly everyone) gets nothing, not an empty card.
+  if (!apps || apps.length === 0) return null;
+
   return (
     <SettingsSection
       label={t('mastodonApps.connectedTitle')}
@@ -53,16 +57,7 @@ export default function ConnectedAppsSection() {
       anchor="connected-apps"
       note={t('mastodonApps.connectedDescription')}
     >
-      {apps === null ? (
-        <View className="px-4 py-3.5">
-          <ActivityIndicator />
-        </View>
-      ) : apps.length === 0 ? (
-        <View className="px-4 py-3.5">
-          <Text className="text-theme-neutrals-400 text-sm">{t('mastodonApps.connectedEmpty')}</Text>
-        </View>
-      ) : (
-        apps.map((app, index) => (
+      {apps.map((app, index) => (
           <React.Fragment key={app.clientId}>
             {index > 0 ? <Divider /> : null}
             <View className="px-4 py-3.5 flex-row items-center" style={{ gap: 8 }} testID="connected-app-row">
@@ -87,8 +82,7 @@ export default function ConnectedAppsSection() {
               </TouchableOpacity>
             </View>
           </React.Fragment>
-        ))
-      )}
+        ))}
     </SettingsSection>
   );
 }
