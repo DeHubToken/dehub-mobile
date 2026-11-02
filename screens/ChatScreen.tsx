@@ -439,8 +439,26 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // The queue removes the exact pending entry after persistence. Matching
     // text here hides a repeated reply (including a failed one) behind an
     // earlier message with the same words.
-    const stillPending = optimisticMsgs.filter(p => !base.some(m => m._id === p._tempId));
-    return [...(stillPending as DmMessage[]), ...base];
+    const stillPending = optimisticMsgs.filter(p => !base.some(m => m._id === p._tempId || m._clientKey === p._tempId));
+    // The socket can deliver our own saved copy a moment before the send
+    // queue swaps it in under the pending line's key. Hide that early copy
+    // while its pending line is still on screen, so the line is never doubled
+    // and never re-mounted: the queue then hands it the same key.
+    const claimed = new Set<string>();
+    const sending = stillPending.filter(p => p.uploadStatus !== "failed");
+    const shown = sending.length
+      ? base.filter(m => {
+          if (m._clientKey || m.author !== "me") return true;
+          const twin = sending.find(p =>
+            !claimed.has(p._tempId) &&
+            (p.msgType || "msg") === (m.msgType || "msg") &&
+            (p.content || "") === (m.content || ""));
+          if (!twin) return true;
+          claimed.add(twin._tempId);
+          return false;
+        })
+      : base;
+    return [...(stillPending as DmMessage[]), ...shown];
   }, [storeMessages, optimisticMsgs]);
 
   // Depends on messageList — must be declared after it
@@ -1686,7 +1704,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction, liftedId],
   );
 
-  const keyExtractor = useCallback((item: DmMessage) => item._id, []);
+  // The temp id a line was drawn under stays its key after the send lands.
+  const keyExtractor = useCallback((item: DmMessage) => item._clientKey ?? item._id, []);
 
   const listFooter = useMemo(
     () =>

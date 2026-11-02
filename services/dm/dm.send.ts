@@ -56,6 +56,8 @@ interface BaseSendJob {
   replyTo?: DmMessage | null;
   dmFee?: DmFee | null;
   tipAmount?: number;
+  /** Set once the fee/tip went through, so a retry never charges twice. */
+  paid?: { txHash?: string; tipTxHash?: string };
 }
 
 interface TextSendJob extends BaseSendJob {
@@ -147,6 +149,8 @@ class DmSendQueue {
   private slowProcessing = false;
 
   private counter = 0;
+  /** Jobs whose send failed, kept so the bubble's Retry can resend them as they were. */
+  private failedJobs = new Map<string, { job: SendJob; lane: "fast" | "slow" }>();
   private deliveryWaiters = new Map<string, (sent: boolean) => void>();
 
   /** Call immediately after enqueueing; resolves only after server confirmation. */
@@ -157,6 +161,27 @@ class DmSendQueue {
   private settleDelivery(tempId: string, sent: boolean): void {
     this.deliveryWaiters.get(tempId)?.(sent);
     this.deliveryWaiters.delete(tempId);
+  }
+
+  /** Resend a failed line in place: same bubble, same job (a paid fee is reused). */
+  retry(tempId: string): boolean {
+    const failed = this.failedJobs.get(tempId);
+    if (!failed) return false;
+    this.failedJobs.delete(tempId);
+    dmActions.retryOptimistic(failed.job.conversationId, tempId);
+    if (failed.lane === "fast") this.enqueueFast(failed.job as FastJob);
+    else this.enqueueSlow(failed.job as SlowJob);
+    return true;
+  }
+
+  /** Drop a failed line the sender no longer wants. */
+  discard(conversationId: ID, tempId: string): void {
+    this.failedJobs.delete(tempId);
+    dmActions.removeOptimistic(conversationId, tempId);
+  }
+
+  canRetry(tempId: string): boolean {
+    return this.failedJobs.has(tempId);
   }
 
   /** Call once from a top-level provider to inject WebSocket reference. */
@@ -479,6 +504,7 @@ class DmSendQueue {
         this.settleDelivery(job.tempId, true);
       } catch (e: any) {
         log.error(`fast send failed [${job.kind}]:`, e?.message || e);
+        this.failedJobs.set(job.tempId, { job, lane: "fast" });
         dmActions.failOptimistic(job.conversationId, job.tempId, e?.message);
         this.settleDelivery(job.tempId, false);
       }
@@ -499,6 +525,7 @@ class DmSendQueue {
         this.settleDelivery(job.tempId, true);
       } catch (e: any) {
         log.error(`slow send failed [${job.kind}]:`, e?.message || e);
+        this.failedJobs.set(job.tempId, { job, lane: "slow" });
         dmActions.failOptimistic(job.conversationId, job.tempId, e?.message);
         this.settleDelivery(job.tempId, false);
       }
@@ -564,6 +591,13 @@ class DmSendQueue {
   }
 
   private async payFeeIfNeeded(job: SendJob): Promise<{ txHash?: string; tipTxHash?: string }> {
+    if (job.paid) return job.paid;
+    const result = await this.payFee(job);
+    if (result.txHash || result.tipTxHash) job.paid = result;
+    return result;
+  }
+
+  private async payFee(job: SendJob): Promise<{ txHash?: string; tipTxHash?: string }> {
     let txHash: string | undefined;
     let tipTxHash: string | undefined;
     const feeRequired = !!job.dmFee?.required && !job.dmFee?.hasFreeAccess;
@@ -624,7 +658,7 @@ class DmSendQueue {
       emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
     }, payload);
     dmActions.upsertMessages(convId, [{
-      ...sent, content: job.content, author: "me", isRead: false,
+      ...sent, _clientKey: job.tempId, content: job.content, author: "me", isRead: false,
       ...(sent.content !== job.content ? { encrypted: true } : {}),
     }]);
     log.debug("emitText sent:", convId);
@@ -647,7 +681,7 @@ class DmSendQueue {
       emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
     }, payload);
     dmActions.upsertMessages(convId, [{
-      ...sent, content: job.caption || "", author: "me", isRead: false,
+      ...sent, _clientKey: job.tempId, content: job.caption || "", author: "me", isRead: false,
       ...(sent.content !== (job.caption || "") ? { encrypted: true } : {}),
     }]);
     log.debug("emitGif sent:", convId);
@@ -744,6 +778,7 @@ class DmSendQueue {
       // caption as sent (ciphertext); the store must hold the plaintext.
       dmActions.upsertMessages(convId, [{
         ...serverMsg,
+        _clientKey: job.tempId,
         ...(captionEncrypted ? { content: job.caption, encrypted: true } : {}),
         author: "me",
         isRead: false,
@@ -844,6 +879,7 @@ class DmSendQueue {
       rememberLocalPlaintext(serverMsg._id, plainUri);
       dmActions.upsertMessages(convId, [{
         ...serverMsg,
+        _clientKey: job.tempId,
         content: job.caption || "",
         encrypted: true,
         undecryptable: false,

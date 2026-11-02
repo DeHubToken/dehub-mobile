@@ -55,6 +55,44 @@ import DmVideoTile, { useVideoPoster } from "./DmVideoTile";
 import type { DmVideoOptions } from "../../libs/dm-video-options";
 import type { DmDestruct } from "../../libs/dm-destruct";
 import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
+import { dmSendQueue } from "../../services/dm/dm.send";
+
+/**
+ * A line of yours that did not go out: it stays where it was sent, with
+ * Retry (resends the same message in place, reusing any fee already paid)
+ * and a cross to drop it.
+ */
+function SendFailedRow({ message }: { message: OptimisticMessage }) {
+  const { t } = useTranslation();
+  const tempId = message._tempId;
+  const canRetry = !!tempId && dmSendQueue.canRetry(tempId);
+  return (
+    <View className="flex-row items-center gap-2">
+      <Text className="text-[11px] text-red-500">{t("dm.notSent", { defaultValue: "Not sent" })}</Text>
+      {canRetry && (
+        <Pressable
+          onPress={() => { haptic.tap(); dmSendQueue.retry(tempId); }}
+          hitSlop={8}
+          accessibilityRole="button"
+          className="flex-row items-center gap-0.5"
+        >
+          <Icon name="RotateCw" size={11} color="#EF4444" />
+          <Text className="text-[11px] font-semibold text-red-500">{t("dm.retrySend", { defaultValue: "Retry" })}</Text>
+        </Pressable>
+      )}
+      {!!tempId && (
+        <Pressable
+          onPress={() => dmSendQueue.discard(String(message.conversation), tempId)}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={t("dm.discardSend", { defaultValue: "Remove" })}
+        >
+          <Icon name="X" size={11} color="rgba(255,255,255,0.5)" />
+        </Pressable>
+      )}
+    </View>
+  );
+}
 
 
 const resolveUrl = (path: string): string => {
@@ -558,14 +596,27 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#808089"} />
       )}
       {isMine && isUploadFailed && (
-        <Text className="text-[11px] text-white/80">{t("dm.failedToSend")}</Text>
+        <SendFailedRow message={message as OptimisticMessage} />
       )}
       {isMine && !isUploadFailed && (
-        <Icon
-          name={(message as OptimisticMessage)._optimistic ? "Clock" : message.isRead ? "CheckCheck" : "Check"}
-          size={12}
-          color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
-        />
+        // One fixed 12px slot: a small spinner while the line is going out,
+        // the tick once it lands. Same box either way, so nothing moves.
+        <View style={{ width: 12, height: 12, alignItems: "center", justifyContent: "center" }}>
+          {(message as OptimisticMessage)._optimistic ? (
+            <ActivityIndicator
+              size="small"
+              color="rgba(255,255,255,0.6)"
+              style={{ transform: [{ scale: 0.5 }] }}
+              accessibilityLabel={t("dm.sending")}
+            />
+          ) : (
+            <Icon
+              name={message.isRead ? "CheckCheck" : "Check"}
+              size={12}
+              color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
+            />
+          )}
+        </View>
       )}
     </View>
   ), [timeStr, isMine, message.isRead, message.encrypted, message, isUploadFailed, t]);
