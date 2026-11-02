@@ -2600,6 +2600,10 @@
     "returnHome": "Ana Sayfaya Dön"
   },
   "profile": {
+    "articleShort": "Makale",
+    "pinnedShort": "Sabitlendi",
+    "post": "Gönderi",
+    "sortBy": "Sırala",
     "mutualsOne": "{{count}} ortak:",
     "mutualsMany": "{{count}} ortak:",
     "dislikesPrivateDesc": "Bu hesap beğenmediklerini kendine saklıyor.",
@@ -6745,6 +6749,7 @@
     "creatorEarnsDirect": "Aboneler DeHub tokenleri ile ödeme yapar. Payınız, abone oldukları anda cüzdanınıza düşer ve rozet seviyenizin platform ücreti düşülür."
   },
   "live": {
+    "liveBadge": "CANLI",
     "bigEvent": "Büyük etkinlik",
     "bigEventHint": "Büyük kitleler için: izleyiciler yayını yaklaşık 20 saniye geriden, daha az kesintiyle izler.",
     "notSet": "Ayarlanmadı",

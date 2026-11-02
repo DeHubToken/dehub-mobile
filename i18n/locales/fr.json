@@ -2600,6 +2600,10 @@
     "returnHome": "Retour à l'accueil"
   },
   "profile": {
+    "articleShort": "Article",
+    "pinnedShort": "Épinglé",
+    "post": "Publication",
+    "sortBy": "Trier par",
     "mutualsOne": "{{count}} en commun :",
     "mutualsMany": "{{count}} en commun :",
     "dislikesPrivateDesc": "Ce compte garde ses « je n'aime pas » pour lui.",
@@ -6750,6 +6754,7 @@
     "creatorEarnsDirect": "Les abonnés paient en jetons DeHub. Votre part atterrit dans votre portefeuille au moment où ils s'abonnent, moins les frais de plateforme pour votre niveau de badge."
   },
   "live": {
+    "liveBadge": "EN DIRECT",
     "bigEvent": "Grand événement",
     "bigEventHint": "Pour un large public : les spectateurs regardent avec environ 20 secondes de décalage, avec moins de coupures.",
     "notSet": "Non défini",
