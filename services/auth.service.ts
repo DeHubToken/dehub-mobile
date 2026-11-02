@@ -8,6 +8,7 @@ import { User } from "../context/AuthContext";
 import { createLogger } from '../libs/logger';
 import { submitWalletProof } from '../libs/wallet-challenge';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { forgetHold, holdFieldFor } from "./usernameHold";
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -272,8 +273,10 @@ export const AuthService = {
     if (!/^[a-zA-Z0-9_]+$/.test(username))
       return { available: false, message: _translateCopy("copy.2a1ddf7ce70a", { defaultValue: "Only letters, numbers, _" }) };
     try {
+      // A name this install reserved reads as available to it, taken to others.
+      const holdToken = holdFieldFor(username);
       const res = await apiClient.get<any>(
-        `/username/check?username=${encodeURIComponent(username)}`,
+        `/username/check?username=${encodeURIComponent(username)}${holdToken ? `&holdToken=${holdToken}` : ""}`,
         { isAuthRequired: false }
       );
       // Expected shape: { status, available, username }
@@ -306,6 +309,9 @@ export const AuthService = {
     Object.entries(data).forEach(([k, v]) => {
       if (v !== undefined && v !== null) formData.append(k, typeof v === 'boolean' ? String(v) : v as any);
     });
+    // The name reserved from a free profile link: lets the server hand it over.
+    const usernameHold = data.username ? holdFieldFor(String(data.username)) : null;
+    if (usernameHold) formData.append("usernameHold", usernameHold);
     const body = await apiClient.post<any>("/update_profile", formData, {
       isAuthRequired: true,
     });
@@ -313,6 +319,7 @@ export const AuthService = {
       throw new Error(
         body?.error_msg || body?.message || _translateCopy("copy.e51c5f7d0545", { defaultValue: "Profile update failed" })
       );
+    if (usernameHold) forgetHold();
     return data as Partial<User>;
   },
 
