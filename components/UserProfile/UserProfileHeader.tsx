@@ -305,18 +305,18 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
       <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
-        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -48 }}>
           <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
-            size={88}
+            size={96}
             style={{ borderWidth: 1.5, borderColor: "#18181b", backgroundColor: "#18181b" }}
             live={live}
             liveQuiet
             onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
           />
           {(!isBlocked || !!onOpenOptions) && (
-            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
               {!isBlocked && renderFollowButton()}
               {!isBlocked && !!onMessage && (
                 <TouchableOpacity
@@ -356,13 +356,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               links used to share this row and cut a long name to one line;
               they now live in the Links pill at the bottom of the header. */}
           <View className="flex-row items-center gap-1.5">
-            <Text ref={identityRef} onLayout={measureIdentity} className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
+            <Text ref={identityRef} onLayout={measureIdentity} className="text-white font-bold" numberOfLines={2} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>{displayName}</Text>
             {badge && badgeImage && (
               <Pressable ref={badgeRef} style={{ alignSelf: "flex-end", height: 28, justifyContent: "center" }} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
                 <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               </Pressable>
             )}
-            <StreamerBadge address={address} canSelect={isOwnProfile} fontSize={20} />
+            <StreamerBadge address={address} canSelect={isOwnProfile} fontSize={24} lineHeight={30} />
           </View>
 
           {/* Wraps, so a long handle plus the .eth / follows-you / patron
@@ -371,7 +371,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View className="flex-row flex-wrap items-center mt-0.5 gap-2">
             {!!username && (
               <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7} style={{ flexShrink: 1, maxWidth: "100%" }}>
-                <Text className="text-zinc-400 text-sm" numberOfLines={1}>@{username}</Text>
+                <Text className="text-zinc-400" style={{ fontSize: 16, lineHeight: 22 }} numberOfLines={1}>@{username}</Text>
               </TouchableOpacity>
             )}
             {/* Beside the handle, never instead of it: the username is what
@@ -402,22 +402,26 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
           {!!bio && (
             <View className="mt-3">
-              <Text className="text-white/90 text-sm">{displayBio}</Text>
-              {showBioTranslate && (
-                <TranslateButton
-                  isTranslated={isBioTranslated}
-                  isLoading={isTranslatingBio}
-                  onTranslate={handleTranslateBio}
-                  onShowOriginal={handleShowOriginalBio}
-                />
-              )}
+              <Text className="text-white/90" style={{ fontSize: 16, lineHeight: 24 }}>{displayBio}</Text>
             </View>
           )}
 
           <ProfileFieldsList fields={profileFields} />
 
-          {!!joinedDate && (
-            <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>
+          {/* Joined, with the bio's translate control beside it, as on web. */}
+          {(!!joinedDate || (!!bio && showBioTranslate)) && (
+            <View className="flex-row flex-wrap items-center mt-3" style={{ columnGap: 8 }}>
+              {!!joinedDate && <Text className="text-zinc-400 text-sm">{t("profile.joined")} {joinedDate}</Text>}
+              {!!bio && showBioTranslate && (
+                <TranslateButton
+                  isTranslated={isBioTranslated}
+                  isLoading={isTranslatingBio}
+                  onTranslate={handleTranslateBio}
+                  onShowOriginal={handleShowOriginalBio}
+                  inline
+                />
+              )}
+            </View>
           )}
 
           {(followingItem || followersItem) ? (
@@ -427,7 +431,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   onPress={onStatPress ? () => onStatPress("following") : undefined}
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
-                  <Text className="text-sm">
+                  <Text style={{ fontSize: 16, lineHeight: 22 }}>
                     <Text className="text-white font-bold">{formatCompactNumber(followingItem.value)}</Text>
                     <Text className="text-zinc-400"> {t("profile.following")}</Text>
                   </Text>
@@ -438,7 +442,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   onPress={onStatPress ? () => onStatPress("followers") : undefined}
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
-                  <Text className="text-sm">
+                  <Text style={{ fontSize: 16, lineHeight: 22 }}>
                     <Text className="text-white font-bold">{formatCompactNumber(followersItem.value)}</Text>
                     <Text className="text-zinc-400"> {t("profile.followers")}</Text>
                   </Text>

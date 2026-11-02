@@ -56,10 +56,8 @@ export function formatJoinedDate(createdAt?: string | null): string | null {
   try {
     const d = new Date(createdAt);
     if (isNaN(d.getTime())) return null;
-    const month = d.toLocaleString(appLocale(), { month: 'long' });
-    const day = d.getDate();
-    const year = d.getFullYear();
-    return `${month} ${day}, ${year}`;
+    // Month and year, as web shows it ("Joined November 2025").
+    return d.toLocaleDateString(appLocale(), { month: 'long', year: 'numeric' });
   } catch {
     return null;
   }
