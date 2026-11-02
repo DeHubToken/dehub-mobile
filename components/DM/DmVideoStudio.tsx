@@ -35,6 +35,7 @@ import {
   type DmVideoOptions,
 } from "../../libs/dm-video-options";
 import { DESTRUCT_CHOICES, destructLabel, type DmDestructChoice } from "../../libs/dm-destruct";
+import { LOCK_QUICK_PRICES } from "./LockPriceRow";
 
 type Tab = "cover" | "trim" | "mirror" | "rotate" | "hide" | "timer";
 const FRAMES = 10;
@@ -65,6 +66,9 @@ interface Props {
   onCaptionChange: (v: string) => void;
   onSend: () => void;
   sendDisabled?: boolean;
+  /** Pay-to-unlock price in DHB; null = not locked. No handler = locking is not offered in this chat. */
+  lockPrice?: number | null;
+  onLockPriceChange?: (p: number | null) => void;
 }
 
 function useFilmstrip(uri: string, duration: number, enabled: boolean) {
@@ -94,6 +98,7 @@ function useFilmstrip(uri: string, duration: number, enabled: boolean) {
 export default function DmVideoStudio({
   visible, onClose, uri, duration = 0, width, height, size, options, onOptionsChange,
   destruct, onDestructChange, onCoverFrame, caption, onCaptionChange, onSend, sendDisabled,
+  lockPrice = null, onLockPriceChange,
 }: Props) {
   const { t: _copy } = _useCopy();
   const insets = useSafeAreaInsets();
@@ -235,6 +240,14 @@ export default function DmVideoStudio({
                   style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}
                 />
               )}
+              {lockPrice != null && (
+                <View pointerEvents="none" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.35)", alignItems: "center", justifyContent: "flex-end", paddingBottom: 12 }}>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 999, backgroundColor: "rgba(0,0,0,0.65)", paddingHorizontal: 10, paddingVertical: 5 }}>
+                    <Icon name="Lock" size={14} color={WHITE} />
+                    <Text style={{ color: WHITE, fontSize: 12, fontWeight: "700" }}>{_copy("dmVideo.lockedFor", { defaultValue: "Unlock for {{value1}} DHB", value1: lockPrice })}</Text>
+                  </View>
+                </View>
+              )}
               {options.hidden === "reveal" && (
                 <View pointerEvents="none" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.12)", alignItems: "center", justifyContent: "center" }}>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 999, backgroundColor: "rgba(0,0,0,0.6)", paddingHorizontal: 10, paddingVertical: 5 }}>
@@ -346,9 +359,18 @@ export default function DmVideoStudio({
             {tab === "hide" && (
               <View style={{ flexDirection: "row", gap: 6 }}>
                 {[
-                  { on: options.hidden !== "reveal", onPress: () => set({ hidden: undefined }), icon: "Eye" as IconName, title: _copy("dmVideo.showNormally", { defaultValue: "Show normally" }), body: _copy("dmVideo.showNormallyBody", { defaultValue: "They see it right away" }) },
-                  { on: options.hidden === "reveal", onPress: () => set({ hidden: "reveal" }), icon: "EyeOff" as IconName, title: _copy("dmVideo.hideUntilTap", { defaultValue: "Hide until tapped" }), body: _copy("dmVideo.hideUntilTapBody", { defaultValue: "Blurred until they tap it" }) },
-                  { on: false, disabled: true, icon: "Lock" as IconName, title: _copy("dmVideo.hidePrice", { defaultValue: "Hide behind a price" }), body: _copy("dmVideo.soon", { defaultValue: "Coming soon" }) },
+                  { on: options.hidden !== "reveal" && lockPrice == null, onPress: () => { set({ hidden: undefined }); onLockPriceChange?.(null); }, icon: "Eye" as IconName, title: _copy("dmVideo.showNormally", { defaultValue: "Show normally" }), body: _copy("dmVideo.showNormallyBody", { defaultValue: "They see it right away" }) },
+                  { on: options.hidden === "reveal" && lockPrice == null, onPress: () => { set({ hidden: "reveal" }); onLockPriceChange?.(null); }, icon: "EyeOff" as IconName, title: _copy("dmVideo.hideUntilTap", { defaultValue: "Hide until tapped" }), body: _copy("dmVideo.hideUntilTapBody", { defaultValue: "Blurred until they tap it" }) },
+                  {
+                    on: lockPrice != null,
+                    disabled: !onLockPriceChange,
+                    onPress: () => { set({ hidden: undefined }); if (lockPrice == null) onLockPriceChange?.(LOCK_QUICK_PRICES[1]); },
+                    icon: "Lock" as IconName,
+                    title: _copy("dmVideo.hidePrice", { defaultValue: "Hide behind a price" }),
+                    body: onLockPriceChange
+                      ? _copy("dmVideo.hidePriceBody", { defaultValue: "Blurred until they pay you" })
+                      : _copy("dmVideo.priceUnavailable", { defaultValue: "Not in this chat" }),
+                  },
                 ].map((o) => (
                   <Pressable key={o.title} onPress={o.onPress} disabled={o.disabled} accessibilityRole="button" accessibilityState={{ selected: o.on, disabled: !!o.disabled }}
                     style={{ flex: 1, gap: 2, borderRadius: 10, borderWidth: 1, borderColor: o.on ? WHITE : LINE, backgroundColor: o.on ? "rgba(255,255,255,0.1)" : "transparent", paddingHorizontal: 8, paddingVertical: 7, opacity: o.disabled ? 0.45 : 1 }}>
@@ -359,6 +381,21 @@ export default function DmVideoStudio({
                     <Text style={{ color: MUTED, fontSize: 10, lineHeight: 13 }}>{o.body}</Text>
                   </Pressable>
                 ))}
+              </View>
+            )}
+            {tab === "hide" && lockPrice != null && onLockPriceChange && (
+              <View style={{ marginTop: 10, gap: 6 }}>
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                  <Text style={{ color: MUTED, fontSize: 11 }}>{_copy("dmVideo.priceLabel", { defaultValue: "Price (DHB)" })}</Text>
+                  {LOCK_QUICK_PRICES.map((p) => (
+                    <Pressable key={p} onPress={() => onLockPriceChange(p)} accessibilityRole="button" accessibilityState={{ selected: lockPrice === p }} style={pill(lockPrice === p)}>
+                      <Text style={pillText(lockPrice === p)}>{p}</Text>
+                    </Pressable>
+                  ))}
+                </View>
+                <Text style={{ color: MUTED, fontSize: 11, lineHeight: 15 }}>
+                  {_copy("dmVideo.priceHint", { defaultValue: "They see it blurred until they pay you. Locked videos are not end-to-end encrypted. Other amounts: use Lock under the video." })}
+                </Text>
               </View>
             )}
             {tab === "timer" && (
