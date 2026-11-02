@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 import StageCoverArt from "../Stages/StageCoverArt";
 import { useStages } from "../../context/StageContext";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -115,14 +116,14 @@ const MusicSearchShelves: React.FC<{ stages: RankedStage[]; stations: RadioStati
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row} keyboardShouldPersistTaps="handled">
             {stages.map((space) => (
               <Pressable key={space.id} onPress={() => { void openStage(space); }} style={[styles.card, { width: STAGE_W, borderColor: colors.border }]}>
-                <View>
+                <KeepDarkScope>
                   <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
                   {space.status === "live" ? (
                     <Text style={[styles.badge, styles.badgeLive]}>{t("music.searchLive", { defaultValue: "Live" })}</Text>
                   ) : space.status === "scheduled" ? (
                     <Text style={styles.badge}>{t("music.searchUpcoming", { defaultValue: "Upcoming" })}</Text>
                   ) : null}
-                </View>
+                </KeepDarkScope>
                 <Text numberOfLines={1} style={[styles.cardTitle, { color: fg }]}>{space.title}</Text>
                 <Text numberOfLines={1} style={[styles.cardSub, { color: dim }]}>@{space.host_username || String(space.host_wallet_address || "").slice(0, 6)}</Text>
               </Pressable>
