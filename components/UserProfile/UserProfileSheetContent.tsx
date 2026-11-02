@@ -148,7 +148,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const handleSubscribePress = useCallback(() => setPendingTab("subscribers"), []);
   const handlePendingTabConsumed = useCallback(() => setPendingTab(null), []);
 
-  const { mutuals, isLoading: mutualsLoading } = useMutualFollowers({
+  const { mutuals, totalCount: mutualsTotal } = useMutualFollowers({
     profileAddress: profileData?.address,
     enabled: !isOwnProfile && !!profileData?.address,
   });
@@ -293,7 +293,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           FallbackBanner={defaultBanner}
           socials={data}
           mutuals={mutuals}
-          mutualsLoading={mutualsLoading}
+          mutualsTotal={mutualsTotal}
           hasPlans={hasPlans}
           plansLoading={plansLoading}
           onSubscribe={handleSubscribePress}
@@ -360,7 +360,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     isPrivate,
     canViewContent,
     mutuals,
-    mutualsLoading,
+    mutualsTotal,
     hasPlans,
     plansLoading,
     handleSubscribePress,
