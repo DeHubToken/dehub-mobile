@@ -10,6 +10,7 @@ import { buildFeedImageUrls, getImageUrl, resolveThumbnail, DEFAULT_BANNER_SENTI
 import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { isStreamLive } from "../../libs/live-status";
+import { useEngagement } from "../../libs/engagementCache";
 
 /**
  * One cell of the profile All grid: every post type side by side, each with
@@ -95,6 +96,9 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   }, [item, kind, images]);
 
   const views = resolveViewCount(item as any);
+  // The list API sends likes as totalVotes.for (there is no `likes` field), so
+  // read it the way feed cards do; a like made elsewhere shows here too.
+  const { likeCount } = useEngagement(item);
   const seconds = (item as any).videoDuration || item.audioDuration;
   // Same clock as web tiles: 0:46, 12:05, 1:02:09 (no padded leading zero).
   const duration = seconds ? (secondsToHMMSS(seconds) ?? "").replace(/^0(\d)/, "$1") : "";
@@ -139,7 +143,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
             <Text numberOfLines={5} style={[styles.words, { color: ink }]}>{words}</Text>
             <View style={styles.stats}>
               <View style={styles.stat}><Icon name="MessageSquare" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.commentCount ?? 0)}</Text></View>
-              <View style={styles.stat}><Icon name="ThumbsUp" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.likes ?? 0)}</Text></View>
+              <View style={styles.stat}><Icon name="ThumbsUp" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(likeCount)}</Text></View>
             </View>
             <Badge icon="MessageSquare" poster />
           </View>
