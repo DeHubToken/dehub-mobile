@@ -48,7 +48,7 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useKidsMode } from "../../hooks/useKidsMode";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 // Minimal composer field and chips: an outline says "control", no fill.
 const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
@@ -1834,9 +1834,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           left: 0,
           right: 0,
           bottom: 0,
-          borderTopWidth: 1,
-          // Minimal: black bar (the #0C0C0E maps to #000) under the shared hairline.
-          borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
+          // No top border: a hairline above the "Type here" bar read as a
+          // stray line across the drawer.
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
           // Glass uses its opaque page tone: the skin's centre colour is a 14%

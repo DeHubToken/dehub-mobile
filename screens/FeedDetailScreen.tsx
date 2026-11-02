@@ -61,7 +61,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 import { useAppTheme } from "../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
+import { MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
 import { peekPostDetailSeed, postWarmKey, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
@@ -1761,7 +1761,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
         <View
-          className={stage ? undefined : "border-t border-theme-neutrals-800 bg-theme-neutrals-900"}
+          className={stage ? undefined : "bg-theme-neutrals-900"}
           testID={stage ? "post-stage-composer" : undefined}
           // The phone dock samples the scrolling list through shared glass.
           style={stage
@@ -1777,7 +1777,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                 backgroundColor: "transparent",
               }
             : isMinimal
-            ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
+            ? { marginBottom: inputLift, backgroundColor: "#000" }
             : skin
               ? { marginBottom: inputLift, backgroundColor: skin.page }
               : { marginBottom: inputLift }}
