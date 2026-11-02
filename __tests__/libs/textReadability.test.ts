@@ -33,3 +33,8 @@ it('preserves semantic colours, dark button labels, light fills and non-text pro
   const light = { className: 'bg-white text-zinc-500' };
   expect(readableTextProps(Text, light)).toBe(light);
 });
+
+it('leaves icon-font glyphs at the grey they were given', () => {
+  const props = { style: { fontFamily: 'LucideIcons', color: '#71717A', fontSize: 20 } };
+  expect(readableTextProps(Text, props)).toBe(props);
+});
