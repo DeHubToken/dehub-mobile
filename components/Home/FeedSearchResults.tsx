@@ -17,6 +17,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import MusicSearchShelves, { useMusicSearchShelves, type MusicSearchExtras } from "./MusicSearchShelves";
 
 /**
  * The grid the feed turns into while its pill is a search box, as on web:
@@ -71,9 +72,20 @@ interface Props {
   params: UnifiedFeedParams;
   topInset: number;
   onSearchEverything: () => void;
+  /** Music only: matching stages and radio stations shown above the grid. */
+  extras?: MusicSearchExtras;
 }
 
-const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSearchEverything }) => {
+/** Music also searches stages and radio stations. */
+const MusicFeedSearchResults: React.FC<Props> = (props) => {
+  const extras = useMusicSearchShelves(useDebounced(props.query.trim(), 250));
+  return <FeedSearchResultsGrid {...props} extras={extras} />;
+};
+
+const FeedSearchResults: React.FC<Props> = (props) =>
+  props.tab === "music" ? <MusicFeedSearchResults {...props} /> : <FeedSearchResultsGrid {...props} />;
+
+const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, onSearchEverything, extras }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -123,7 +135,8 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
   const dim = colors.mutedForeground;
   const content = { paddingTop: topInset + 4, paddingHorizontal: SIDE, paddingBottom: TAB_BAR_CONTENT_INSET + 24 };
 
-  if (feed.isLoading || (typing && items.length === 0)) {
+  const extraCount = (extras?.stages.length ?? 0) + (extras?.stations.length ?? 0);
+  if (extraCount === 0 && (feed.isLoading || (typing && items.length === 0) || (extras?.isLoading && items.length === 0))) {
     return (
       <View style={[StyleSheet.absoluteFill, content]} pointerEvents="none">
         <Text style={[styles.status, { color: dim }]}>{_copy("copy.90f1afe66801", { defaultValue: "Searching for “{{query}}”…", query: query.trim() })}</Text>
@@ -136,7 +149,7 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
     );
   }
 
-  if (items.length === 0 && accounts.length === 0) {
+  if (items.length === 0 && accounts.length === 0 && extraCount === 0) {
     const failed = feed.isError;
     return (
       <View style={[StyleSheet.absoluteFill, content, styles.empty]}>
@@ -189,6 +202,8 @@ const FeedSearchResults: React.FC<Props> = ({ tab, query, params, topInset, onSe
       ) : null}
       {items.length > 0 ? <Text style={[styles.section, { color: dim }]}>{_copy("copy.a80811cf6889", { defaultValue: "Posts" })}</Text> : null}
     </View>
+  ) : extras && extraCount > 0 ? (
+    <MusicSearchShelves stages={extras.stages} stations={extras.stations} showMusicTitle={items.length > 0} />
   ) : null;
 
   const renderItem = ({ item, index }: { item: UnifiedFeedItem; index: number }) => {
