@@ -29,6 +29,7 @@ import BadgeArtwork from "../common/BadgeArtwork";
  * Sizing is the caller's job: this fills whatever box it is given (flex: 1).
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { holderGateOf, runHolderCheck } from "../../libs/holder-gate";
 import {
   View,
   Text,
@@ -314,6 +315,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const alertTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const myAddress = ((user?.walletAddress || user?.address || "") as string).toLowerCase();
+  // Holder groups: re-read this member's balance when the chat opens, so a
+  // top-up lets them talk again and a sale is caught before they type.
+  useEffect(() => {
+    if (!isMember || !myAddress || !holderGateOf(community)) return;
+    if (membership?.role === "owner" || membership?.role === "admin") return;
+    runHolderCheck(community.id, myAddress).catch(() => { /* the send guard still decides */ });
+  }, [isMember, myAddress, community, membership?.role]);
 
   const abilities = useMemo(
     () => getCommunityAbilities(community, membership),
