@@ -2,8 +2,10 @@
  * One NFT: its live listing and offers, and what the viewer can do with it.
  *
  * Android trades here (buy, list, offer, accept, cancel) from the wallet the
- * app already holds. iOS shows the same facts with no trade buttons; in the US
- * storefront it links out to dehub.io, which Apple allows there.
+ * app already holds, including price-drop listings and offers on any NFT of a
+ * collection. iOS shows the same facts with no trade buttons; in the US
+ * storefront it links out to dehub.io, which Apple allows there. Price alerts
+ * are only notifications, so every platform can set them.
  */
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Linking } from "react-native";
@@ -31,7 +33,7 @@ import {
   type NftTarget,
   type Signer,
 } from "../../services/nft-market.service";
-import { NATIVE, buildListing, buildOffer, feeOf, royaltyPaid, sellerProceeds } from "../../libs/market/seaport";
+import { NATIVE, buildListing, buildOffer, currentPrice, feeOf, royaltyPaid, sellerProceeds } from "../../libs/market/seaport";
 
 const DAYS = [7, 30, 90] as const;
 
@@ -58,6 +60,10 @@ function parseAmount(value: string, decimals: number): bigint | null {
   }
 }
 
+/** What a listing costs now (a price-drop auction falls over time). */
+export const priceNow = (o: MarketOrder) =>
+  o.endPrice && o.endPrice !== o.price ? currentPrice(o.components).toString() : o.price;
+
 const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade, linkOut }) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -78,7 +84,10 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
   });
 
   const [busy, setBusy] = useState<string | null>(null);
-  const [mode, setMode] = useState<"none" | "list" | "offer">("none");
+  const [mode, setMode] = useState<"none" | "list" | "offer" | "alert">("none");
+  const [drop, setDrop] = useState(false);
+  const [endPrice, setEndPrice] = useState("");
+  const [wholeCollection, setWholeCollection] = useState(false);
   const [price, setPrice] = useState("");
   const [currencyAddr, setCurrencyAddr] = useState<string>(NATIVE);
   const [days, setDays] = useState<number>(30);
@@ -87,6 +96,9 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
     setPrice("");
     setCurrencyAddr(NATIVE);
     setDays(30);
+    setDrop(false);
+    setEndPrice("");
+    setWholeCollection(false);
   }, [key]);
 
   const chainId = target?.chainId ?? 0;
@@ -96,12 +108,14 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
   const currency = (mode === "offer" ? offerCurrencies : currencies).find((c) => c.address.toLowerCase() === currencyAddr.toLowerCase())
     ?? (mode === "offer" ? offerCurrencies[0] : currencies[0]);
   const amount = currency ? parseAmount(price, currency.decimals) : null;
+  const endAmount = currency && drop ? parseAmount(endPrice, currency.decimals) : null;
+  const dropBad = mode === "list" && drop && (!endAmount || !amount || endAmount >= amount);
 
   const debouncedAmount = useDebouncedValue(amount?.toString() ?? "", 400);
   const terms = useQuery({
     queryKey: ["nft-market", "terms", key, debouncedAmount, currency?.address],
     queryFn: () => nftMarket.terms({ chainId, contract: target!.contract, tokenId: target!.tokenId, price: debouncedAmount, currency: currency!.address }),
-    enabled: visible && mode !== "none" && !!debouncedAmount && !!currency,
+    enabled: visible && (mode === "list" || mode === "offer") && !!debouncedAmount && !!currency,
   });
 
   const listings = detail.data?.listings ?? [];
@@ -133,6 +147,8 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
       toastSuccess(done);
       setMode("none");
       setPrice("");
+      setEndPrice("");
+      setDrop(false);
       refresh();
     } catch (e) {
       const msg = e instanceof WrongChainError
@@ -150,28 +166,44 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
   };
   const accept = (o: MarketOrder) => {
     if (!signer) return onSignIn();
-    void run(`fill:${o.orderHash}`, () => fillOrder(signer, o), t("nftMarket.sold", { defaultValue: "Sold" }));
+    // A collection offer takes whichever of yours this sheet is open on.
+    void run(`fill:${o.orderHash}`, () => fillOrder(signer, o, target?.tokenId), t("nftMarket.sold", { defaultValue: "Sold" }));
   };
   const cancel = (o: MarketOrder) => {
     if (!signer) return onSignIn();
     void run(`cancel:${o.orderHash}`, () => cancelOrder(signer, o), t("nftMarket.cancelledOrder", { defaultValue: "Cancelled on-chain" }));
   };
 
+  const saveAlert = () => {
+    if (!signer) return onSignIn();
+    if (!target) return;
+    const max = price.trim() ? Number(price.trim()) : null;
+    void run("alert", () => nftMarket.addAlert({
+      chainId: target.chainId,
+      contract: target.contract,
+      tokenId: wholeCollection ? null : target.tokenId,
+      maxPrice: max && max > 0 ? max : null,
+      currency: max && currency ? currency.address : null,
+    }), t("nftMarket.alertSaved", { defaultValue: "Alert on. We will tell you when one is listed." }));
+  };
+
   const submit = () => {
+    if (mode === "alert") return saveAlert();
     if (!signer || !target || !currency || !amount) return;
+    if (dropBad) return;
     if (!terms.data || debouncedAmount !== amount.toString()) return;
     const feeTerms = { feeRecipient: terms.data.feeRecipient, feeBps: terms.data.feeBps, royalty: terms.data.royalty };
     const nft = { contract: target.contract, tokenId: target.tokenId, standard, amount: "1" };
     if (mode === "list") {
       void run("list", () => listNft(signer, target.contract, (counter) =>
-        buildListing({ seller: me, nft, currency: currency.address, price: amount, terms: feeTerms, days, counter })),
+        buildListing({ seller: me, nft, currency: currency.address, price: amount, endPrice: endAmount ?? undefined, terms: feeTerms, days, counter })),
       t("nftMarket.listed", { defaultValue: "Listed for sale" }));
     } else {
       void run("offer", async () => {
         const balance = await tokenBalance(currency.address, me, chainId);
         if (balance < amount) throw new Error(t("nftMarket.notEnough", { symbol: currency.symbol, defaultValue: "Not enough {{symbol}} in your wallet" }));
         return offerOnNft(signer, currency.address, amount, (counter) =>
-          buildOffer({ buyer: me, nft, currency: currency.address, price: amount, terms: feeTerms, days, counter, holder: best?.maker }));
+          buildOffer({ buyer: me, nft, currency: currency.address, price: amount, terms: feeTerms, days, counter, holder: wholeCollection ? undefined : best?.maker, collection: wholeCollection }));
       }, t("nftMarket.offerSent", { defaultValue: "Offer sent" }));
     }
   };
@@ -216,8 +248,24 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
       {best ? (
         <Panel>
           <PanelRow strong label={t("nftMarket.price", { defaultValue: "Price" })}>
-            <Text style={sheetStyles.valueStrong}>{formatPrice(best.price, best.currencyDecimals)} {best.currencySymbol}</Text>
+            <Text style={sheetStyles.valueStrong}>{formatPrice(priceNow(best), best.currencyDecimals)} {best.currencySymbol}</Text>
           </PanelRow>
+          {best.endPrice && best.endPrice !== best.price ? (
+            <Text style={styles.offerMeta}>
+              {t("nftMarket.dropsTo", {
+                price: `${formatPrice(best.endPrice, best.currencyDecimals)} ${best.currencySymbol}`,
+                date: new Date(best.endTime).toLocaleDateString(),
+                defaultValue: "Price drops to {{price}} by {{date}}",
+              })}
+            </Text>
+          ) : null}
+          {(best.items?.length ?? 1) > 1 ? (
+            <Text style={styles.offerMeta}>
+              {t("nftMarket.inBundle", { n: best.items!.length, defaultValue: "Sold as a bundle of {{n}}" })}
+              {": "}
+              {best.items!.map((i) => i.name || `#${i.tokenId}`).join(", ")}
+            </Text>
+          ) : null}
           <PanelRow label={t("nftMarket.seller", { defaultValue: "Seller" })}>
             <Text style={sheetStyles.value}>{best.makerProfile?.username ? `@${best.makerProfile.username}` : shortAddress(best.maker)}</Text>
           </PanelRow>
@@ -242,7 +290,10 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
               <View key={o.orderHash} style={styles.offerRow}>
                 <View style={{ flex: 1 }}>
                   <Text style={sheetStyles.value}>{formatPrice(o.price, o.currencyDecimals)} {o.currencySymbol}</Text>
-                  <Text style={styles.offerMeta}>{o.makerProfile?.username ? `@${o.makerProfile.username}` : shortAddress(o.maker)}</Text>
+                  <Text style={styles.offerMeta}>
+                    {o.makerProfile?.username ? `@${o.makerProfile.username}` : shortAddress(o.maker)}
+                    {o.isCollection ? ` · ${t("nftMarket.anyInCollection", { defaultValue: "Any in collection" })}` : ""}
+                  </Text>
                 </View>
                 {canTrade && mine ? (
                   <Pressable onPress={() => cancel(o)} disabled={tradeLocked} accessibilityRole="button">
@@ -277,8 +328,41 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
         ) : null
       ) : null}
 
-      {canTrade && signer && mode !== "none" ? (
+      {signer && mode === "none" && detail.data && !holds ? (
+        <PrimaryButton secondary icon="Bell" label={t("nftMarket.priceAlert", { defaultValue: "Price alert" })} onPress={() => { setMode("alert"); setPrice(""); setCurrencyAddr(NATIVE); }} disabled={!!busy} />
+      ) : null}
+
+      {signer && mode === "alert" ? (
         <View style={{ gap: 12 }}>
+          <View style={styles.chips}>
+            <Chip label={t("nftMarket.thisNft", { defaultValue: "This NFT" })} active={!wholeCollection} onPress={() => setWholeCollection(false)} />
+            <Chip label={t("nftMarket.anyInCollection", { defaultValue: "Any in collection" })} active={wholeCollection} onPress={() => setWholeCollection(true)} />
+          </View>
+          <View style={styles.chips}>
+            {currencies.map((c) => (
+              <Chip key={c.address} label={c.symbol} active={currency?.address === c.address} onPress={() => setCurrencyAddr(c.address)} />
+            ))}
+          </View>
+          <NumberField
+            label={t("nftMarket.alertUnder", { symbol: currency?.symbol ?? "", defaultValue: "Tell me when listed at or under ({{symbol}}, optional)" })}
+            value={price}
+            onChange={setPrice}
+            decimal
+            unit={<Text style={styles.unit}>{currency?.symbol}</Text>}
+          />
+          <PrimaryButton icon="Bell" label={t("nftMarket.turnOnAlert", { defaultValue: "Turn on alert" })} onPress={submit} loading={busy === "alert"} disabled={!!busy} />
+          <PrimaryButton secondary label={t("nftMarket.back", { defaultValue: "Back" })} onPress={() => setMode("none")} disabled={!!busy} />
+        </View>
+      ) : null}
+
+      {canTrade && signer && (mode === "list" || mode === "offer") ? (
+        <View style={{ gap: 12 }}>
+          {mode === "offer" ? (
+            <View style={styles.chips}>
+              <Chip label={t("nftMarket.thisNft", { defaultValue: "This NFT" })} active={!wholeCollection} onPress={() => setWholeCollection(false)} />
+              <Chip label={t("nftMarket.anyInCollection", { defaultValue: "Any in collection" })} active={wholeCollection} onPress={() => setWholeCollection(true)} />
+            </View>
+          ) : null}
           <View style={styles.chips}>
             {(mode === "offer" ? offerCurrencies : currencies).map((c) => (
               <Chip key={c.address} label={`${c.symbol} · ${c.feeBps / 100}%`} active={currency?.address === c.address} onPress={() => setCurrencyAddr(c.address)} />
@@ -291,6 +375,23 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
             decimal
             unit={<Text style={styles.unit}>{currency?.symbol}</Text>}
           />
+          {mode === "list" ? (
+            <Pressable onPress={() => setDrop((d) => !d)} style={styles.toggleRow} accessibilityRole="switch" accessibilityState={{ checked: drop }}>
+              <Text style={styles.toggleText}>{t("nftMarket.priceDrop", { defaultValue: "Price drops over time" })}</Text>
+              <View style={[styles.toggle, drop && styles.toggleOn]}>
+                <View style={[styles.knob, drop && styles.knobOn]} />
+              </View>
+            </Pressable>
+          ) : null}
+          {mode === "list" && drop ? (
+            <NumberField
+              label={t("nftMarket.endPrice", { symbol: currency?.symbol ?? "", defaultValue: "Lowest price, reached at the end ({{symbol}})" })}
+              value={endPrice}
+              onChange={setEndPrice}
+              decimal
+              unit={<Text style={styles.unit}>{currency?.symbol}</Text>}
+            />
+          ) : null}
           <View style={styles.chips}>
             {DAYS.map((d) => (
               <Chip key={d} label={t("nftMarket.days", { count: d, defaultValue: "{{count}} days" })} active={days === d} onPress={() => setDays(d)} />
@@ -301,7 +402,7 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
             label={mode === "list" ? t("nftMarket.list", { defaultValue: "List it" }) : t("nftMarket.sendOffer", { defaultValue: "Send offer" })}
             onPress={submit}
             loading={busy === "list" || busy === "offer"}
-            disabled={tradeLocked || !amount || !terms.data || terms.isFetching}
+            disabled={tradeLocked || !amount || !terms.data || terms.isFetching || dropBad}
           />
           <PrimaryButton secondary label={t("nftMarket.back", { defaultValue: "Back" })} onPress={() => setMode("none")} disabled={!!busy} />
           <Text style={sheetStyles.footnote}>
@@ -356,6 +457,12 @@ const styles = StyleSheet.create({
   chipText: { color: "#A1A1AA", fontSize: 12, lineHeight: 16, fontWeight: "600" },
   chipTextActive: { color: "#FFFFFF" },
   unit: { color: "#A1A1AA", fontSize: 14, fontWeight: "600" },
+  toggleRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", minHeight: 36 },
+  toggleText: { color: "#FFFFFF", fontSize: 14 },
+  toggle: { width: 40, height: 24, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.12)", padding: 2, justifyContent: "center" },
+  toggleOn: { backgroundColor: "#FFFFFF" },
+  knob: { width: 20, height: 20, borderRadius: 10, backgroundColor: "#FFFFFF" },
+  knobOn: { backgroundColor: "#000000", alignSelf: "flex-end" },
 });
 
 export default NftSheet;

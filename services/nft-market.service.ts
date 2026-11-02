@@ -69,6 +69,12 @@ export interface MarketOrder {
   createdAt: string;
   components: OrderComponents;
   signature: string;
+  /** Every NFT in the order (several for a bundle); tokenId "*" = any in the collection. */
+  items?: { contract: string; tokenId: string; standard: "erc721" | "erc1155"; amount: string; name?: string | null; image?: string | null }[];
+  /** An offer on any NFT of the collection. */
+  isCollection?: boolean;
+  /** Price at the end of a price-drop auction (equals price otherwise). */
+  endPrice?: string;
   makerProfile?: { username: string | null; displayName: string | null; avatarImageUrl: string | null } | null;
 }
 
@@ -102,6 +108,17 @@ export interface NftTarget {
   collectionName?: string | null;
 }
 
+export interface MarketAlert {
+  id: string;
+  chainId: number;
+  contract: string;
+  tokenId: string | null;
+  /** In whole tokens (e.g. 0.5), not wei. */
+  maxPrice: number | null;
+  currency: string | null;
+  createdAt: string;
+}
+
 // ─── Reads ───────────────────────────────────────────────────────────────
 
 const open = { isAuthRequired: false, quiet: true } as const;
@@ -120,6 +137,10 @@ export const nftMarket = {
     apiClient.fetch<{ order: MarketOrder }>(`/market/orders/${orderHash}/sync`, { ...open, method: "POST", body: txHash ? { txHash } : {} }),
   post: (body: { kind: "listing" | "offer"; chainId: number; components: OrderComponents; signature: string }) =>
     apiClient.fetch<{ order: MarketOrder }>("/market/orders", { method: "POST", body }),
+  alerts: () => apiClient.fetch<{ items: MarketAlert[] }>("/market/alerts", { quiet: true }),
+  addAlert: (body: { chainId: number; contract: string; tokenId?: string | null; maxPrice?: number | null; currency?: string | null }) =>
+    apiClient.fetch<{ alert: MarketAlert }>("/market/alerts", { method: "POST", body }),
+  removeAlert: (id: string) => apiClient.fetch<{ ok: boolean }>(`/market/alerts/${id}`, { method: "DELETE" }),
 };
 
 // ─── Chain reads ─────────────────────────────────────────────────────────
@@ -235,23 +256,42 @@ export function checkChain(s: Signer, chainId: number) {
   assertChain(s, chainId);
 }
 
-/** Buy a listing, or accept an offer on an NFT you hold. */
-export async function fillOrder(s: Signer, order: MarketOrder): Promise<string> {
+/**
+ * Buy a listing, or accept an offer on an NFT you hold. A collection offer
+ * names no token, so `tokenId` says which of yours it takes.
+ */
+export async function fillOrder(s: Signer, order: MarketOrder, tokenId?: string): Promise<string> {
   assertChain(s, order.chainId);
   if (order.kind === "offer") await ensureNftApproval(s, order.contract);
   const spend = fillerTokenSpend(order.components, order.kind);
   if (spend && spend.amount > 0n) await ensureTokenAllowance(s, spend.token, spend.amount);
   const seaport = await buildContract(s.provider, SEAPORT_ABI, SEAPORT_ADDRESS, true);
   if (!seaport) throw new Error("Wallet not ready");
-  const value = nativeValue(order.components);
-  const hash = await sent(
-    await writeContractAA(
-      seaport,
-      "fulfillOrder",
-      [{ parameters: toOrderParameters(order.components), signature: order.signature }, ethers.constants.HashZero],
-      { value: value > 0n ? value.toString() : undefined, context: order.kind === "listing" ? "nft-buy" : "nft-accept" },
-    ),
-  );
+  const context = order.kind === "listing" ? "nft-buy" : "nft-accept";
+  const tx = order.isCollection
+    ? await writeContractAA(
+        seaport,
+        "fulfillAdvancedOrder",
+        [
+          { parameters: toOrderParameters(order.components), numerator: 1, denominator: 1, signature: order.signature, extraData: "0x" },
+          // side 1 = consideration: the NFT the offerer asked for, resolved to the one being sold.
+          [{ orderIndex: 0, side: 1, index: 0, identifier: tokenId ?? order.tokenId, criteriaProof: [] }],
+          ethers.constants.HashZero,
+          ethers.constants.AddressZero,
+        ],
+        { context },
+      )
+    : await (async () => {
+        // A price-drop auction is sent at its start price; Seaport refunds the difference.
+        const value = nativeValue(order.components);
+        return writeContractAA(
+          seaport,
+          "fulfillOrder",
+          [{ parameters: toOrderParameters(order.components), signature: order.signature }, ethers.constants.HashZero],
+          { value: value > 0n ? value.toString() : undefined, context },
+        );
+      })();
+  const hash = await sent(tx);
   await nftMarket.sync(order.orderHash, hash || undefined).catch(() => undefined);
   return hash;
 }

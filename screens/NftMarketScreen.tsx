@@ -21,7 +21,7 @@ import { PageEmpty, PageTabs } from "../components/page/PageKit";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl } from "../components/Feed/DeHubRefreshControl";
 import NftTile from "../components/NftMarket/NftTile";
-import NftSheet from "../components/NftMarket/NftSheet";
+import NftSheet, { priceNow } from "../components/NftMarket/NftSheet";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
 import { shareWithRef } from "../libs/shareRef";
@@ -152,9 +152,15 @@ export default function NftMarketScreen() {
             collection={item.collectionName}
             image={item.nftImage}
             chainId={item.chainId}
-            price={{ amount: item.price, decimals: item.currencyDecimals, symbol: item.currencySymbol }}
+            price={{ amount: sold ? item.price : priceNow(item), decimals: item.currencyDecimals, symbol: item.currencySymbol }}
             priceLabel={sold ? t("nftMarket.soldFor", { defaultValue: "Sold" }) : undefined}
-            badge={item.isDehub ? "DeHub" : null}
+            badge={
+              (item.items?.length ?? 1) > 1
+                ? t("nftMarket.bundleBadge", { n: item.items!.length, defaultValue: "Bundle ×{{n}}" })
+                : !sold && item.endPrice && item.endPrice !== item.price
+                  ? t("nftMarket.dropBadge", { defaultValue: "Price drop" })
+                  : item.isDehub ? "DeHub" : null
+            }
             onPress={() => setOpen(fromOrder(item))}
           />
         ) : (
