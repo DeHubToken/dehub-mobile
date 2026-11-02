@@ -13561,7 +13561,11 @@
     "skippedOtherToast": "Sprunget over {{platforms}}: De kunne ikke tage dette indlæg."
   },
   "builder": {
-    "stakeForAllowance": "Stak DeHub-tokens for at øge din daglige buildgrænse",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} i kreditter",
+    "perPrompt": "≈ {{price}} pr. prompt",
+    "pricingNote": "Hver prompt betales af dine kreditter til modellens pris plus 30 %. Det mest, en prompt kan koste, reserveres, mens den kører, og den ubrugte del returneres.",
+    "topUpCredits": "Fyld kreditter op",
     "preview": "Forhåndsvisning",
     "openInBrowser": "Åbn i browser",
     "reload": "Genindlæs",

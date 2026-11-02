@@ -13521,7 +13521,11 @@
     "skippedOtherToast": "Wi lef {{platforms}}: dem no fit tek dis post."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub tokens make you daily build limit go up",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} for credit",
+    "perPrompt": "≈ {{price}} for one prompt",
+    "pricingNote": "Each prompt di pay from your credit for the model cost plus 30%. The most wey one prompt fit cost, dem di hold am when e di run, and the part wey you no use, dem di give am back.",
+    "topUpCredits": "Top up credit",
     "preview": "Preview",
     "openInBrowser": "Open for browser",
     "reload": "Reload",

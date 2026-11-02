@@ -13542,7 +13542,11 @@
     "skippedOtherToast": "{{platforms}}: olar bu posty alyp bilmediler."
   },
   "builder": {
-    "stakeForAllowance": "Gündelik gurluş çäginizi ýokarlandyrmak üçin DeHub tokenlerini stake ediň",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} karz",
+    "perPrompt": "≈ her soraga {{price}}",
+    "pricingNote": "Her sorag karzlaryňyzdan modeliň bahasy goşmak 30% bilen tölenýär. Soragyň iň ýokary bahasy işleýän wagty saklanýar we ulanylmadyk bölegi yzyna gaýtarylýar.",
+    "topUpCredits": "Karz doldur",
     "preview": "Öňünden görmek",
     "openInBrowser": "Brauzerde aç",
     "reload": "Täzeden ýükle",

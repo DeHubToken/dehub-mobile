@@ -13554,7 +13554,11 @@
     "skippedOtherToast": "Skipped {{platforms}}: wọn kò lè gba iṣẹ́ yìí."
   },
   "builder": {
-    "stakeForAllowance": "Fi àmì-owó DeHub sí ọ̀wọ́ láti gbé ààlà ìkọ́ ojoojúmọ́ rẹ ga",
+    "modelLabel": "Àwòṣe",
+    "creditsLeft": "{{amount}} nínú kírẹ́dítì",
+    "perPrompt": "≈ {{price}} fún ìbéèrè kọ̀ọ̀kan",
+    "pricingNote": "A máa ń san ìbéèrè kọ̀ọ̀kan láti inú kírẹ́dítì rẹ ní iye owó àwòṣe pẹ̀lú àfikún 30%. A máa ń di iye tó pọ̀ jùlọ tí ìbéèrè lè ná mú nígbà tó ń ṣiṣẹ́, a sì máa ń dá apá tí a kò lò padà.",
+    "topUpCredits": "Fi kírẹ́dítì kún",
     "preview": "Àwòrán ìṣàájú",
     "openInBrowser": "Ṣí nínú ẹ̀rọ àbáwoṣùwẹ̀ẹ̀rí",
     "reload": "Tún gbé wọlé",

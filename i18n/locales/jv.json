@@ -13540,7 +13540,11 @@
     "skippedOtherToast": "Liwat {{platforms}}: dheweke ora bisa njupuk kiriman iki."
   },
   "builder": {
-    "stakeForAllowance": "Stake token DeHub kanggo nambah kuota build saben dinane",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} ing kredit",
+    "perPrompt": "≈ {{price}} saben prompt",
+    "pricingNote": "Saben prompt dibayar saka kreditmu miturut biaya model ditambah 30%. Biaya paling dhuwur ditahan nalika mlaku lan sisa sing ora dienggo dibalekake.",
+    "topUpCredits": "Isi kredit",
     "preview": "Pratonton",
     "openInBrowser": "Bukak ing browser",
     "reload": "Muat maneh",

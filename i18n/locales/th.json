@@ -13601,7 +13601,11 @@
     "skippedOtherToast": "ข้าม {{platforms}}: โพสต์นี้ไม่ได้"
   },
   "builder": {
-    "stakeForAllowance": "สเตก DeHub token เพื่อเพิ่มโควตาสร้างรายวันของคุณ",
+    "modelLabel": "โมเดล",
+    "creditsLeft": "เครดิต {{amount}}",
+    "perPrompt": "≈ {{price}} ต่อพรอมต์",
+    "pricingNote": "แต่ละพรอมต์จะชำระจากเครดิตของคุณตามต้นทุนของโมเดลบวก 30% ระบบจะกันยอดสูงสุดของพรอมต์ไว้ระหว่างทำงาน และคืนส่วนที่ไม่ได้ใช้",
+    "topUpCredits": "เติมเครดิต",
     "preview": "ตัวอย่าง",
     "openInBrowser": "เปิดในเบราว์เซอร์",
     "reload": "โหลดใหม่",

@@ -13521,7 +13521,11 @@
     "skippedOtherToast": "{{platforms}} übersprungen: Sie konnten diesen Beitrag nicht annehmen."
   },
   "builder": {
-    "stakeForAllowance": "Setze DeHub-Token ein, um dein tägliches Build-Limit zu erhöhen",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} Guthaben",
+    "perPrompt": "≈ {{price}} pro Prompt",
+    "pricingNote": "Jeder Prompt wird aus deinem Guthaben zum Preis des Modells plus 30 % bezahlt. Der Höchstbetrag eines Prompts wird während der Ausführung reserviert, der ungenutzte Teil wird zurückerstattet.",
+    "topUpCredits": "Guthaben aufladen",
     "preview": "Vorschau",
     "openInBrowser": "Im Browser öffnen",
     "reload": "Neu laden",

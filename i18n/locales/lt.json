@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "Praleido {{platforms}}: jie negalėjo priimti šio įrašo."
   },
   "builder": {
-    "stakeForAllowance": "Įkelkite DeHub žetonus, kad padidintumėte savo dienos kūrimo kvotą",
+    "modelLabel": "Modelis",
+    "creditsLeft": "{{amount}} kreditų",
+    "perPrompt": "≈ {{price}} už užklausą",
+    "pricingNote": "Kiekviena užklausa apmokama iš jūsų kreditų modelio kaina plius 30 %. Didžiausia galima užklausos kaina rezervuojama jai vykdant, o nepanaudota dalis grąžinama.",
+    "topUpCredits": "Papildyti kreditus",
     "preview": "Peržiūra",
     "openInBrowser": "Atidaryti naršyklėje",
     "reload": "Įkelti iš naujo",

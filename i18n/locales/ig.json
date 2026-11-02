@@ -13534,7 +13534,11 @@
     "skippedOtherToast": "Wepụrụ {{platforms}}: ha enweghị ike ịnabata post a."
   },
   "builder": {
-    "stakeForAllowance": "Tinye ego DeHub iji bawanye ọtụtụ ihe i nwere ike iwu kwa ụbọchị",
+    "modelLabel": "Ụdị",
+    "creditsLeft": "{{amount}} na kredit",
+    "perPrompt": "≈ {{price}} kwa arịrịọ",
+    "pricingNote": "A na-akwụ ụgwọ arịrịọ ọ bụla site na kredit gị na ọnụahịa ụdị ahụ gbakwunyere 30%. A na-ejide ego kachasị arịrịọ nwere ike ịfụ ka ọ na-arụ ọrụ, a na-alaghachi akụkụ a na-ejighị.",
+    "topUpCredits": "Tinye kredit",
     "preview": "Nlele mbụ",
     "openInBrowser": "Meghee na ihe nyocha weebụ",
     "reload": "Bugharịa",

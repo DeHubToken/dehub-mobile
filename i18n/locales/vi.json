@@ -13689,7 +13689,11 @@
     "skippedOtherToast": "Đã bỏ qua {{platforms}}: họ không thể nhận bài đăng này."
   },
   "builder": {
-    "stakeForAllowance": "Stake token DeHub để tăng giới hạn xây dựng hàng ngày của bạn",
+    "modelLabel": "Mô hình",
+    "creditsLeft": "{{amount}} tín dụng",
+    "perPrompt": "≈ {{price}} mỗi lời nhắc",
+    "pricingNote": "Mỗi lời nhắc được trả từ tín dụng của bạn theo chi phí của mô hình cộng 30%. Chi phí tối đa của lời nhắc được tạm giữ khi đang chạy và phần chưa dùng sẽ được hoàn lại.",
+    "topUpCredits": "Nạp tín dụng",
     "preview": "Xem trước",
     "openInBrowser": "Mở trong trình duyệt",
     "reload": "Tải lại",

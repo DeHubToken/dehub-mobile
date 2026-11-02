@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "Hoppet over {{platforms}}: de kunne ikke ta dette innlegget."
   },
   "builder": {
-    "stakeForAllowance": "Sett inn DeHub-tokens for å øke din daglige byggegrense",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} i kreditter",
+    "perPrompt": "≈ {{price}} per ledetekst",
+    "pricingNote": "Hver ledetekst betales fra kredittene dine til modellens kostnad pluss 30 %. Det meste en ledetekst kan koste, holdes av mens den kjører, og den ubrukte delen returneres.",
+    "topUpCredits": "Fyll på kreditter",
     "preview": "Forhåndsvisning",
     "openInBrowser": "Åpne i nettleser",
     "reload": "Last inn på nytt",

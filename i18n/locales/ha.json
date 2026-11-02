@@ -13555,7 +13555,11 @@
     "skippedOtherToast": "An tsallake {{platforms}}: ba su iya karɓar wannan sakon ba."
   },
   "builder": {
-    "stakeForAllowance": "Yi turke da alamun DeHub don ƙara adadin ginin ka na yau da kullum",
+    "modelLabel": "Samfuri",
+    "creditsLeft": "{{amount}} a kiredit",
+    "perPrompt": "≈ {{price}} kowace buƙata",
+    "pricingNote": "Ana biyan kowace buƙata daga kiredit ɗinka a farashin samfurin tare da ƙarin 30%. Ana riƙe mafi yawan abin da buƙata za ta iya ci yayin da take gudana, kuma a mayar da ɓangaren da ba a yi amfani da shi ba.",
+    "topUpCredits": "Ƙara kiredit",
     "preview": "Duba kafin fitarwa",
     "openInBrowser": "Buɗe a mai bincike",
     "reload": "Sake ɗorawa",

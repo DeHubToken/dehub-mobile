@@ -13609,7 +13609,11 @@
     "skippedOtherToast": "{{platforms}} o'tkazib yuborildi: ular bu postni ololmaydilar."
   },
   "builder": {
-    "stakeForAllowance": "Kunlik qurish chegarangizni oshirish uchun DeHub tokenlarini stake qiling",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} kreditda",
+    "perPrompt": "≈ har bir so‘rov uchun {{price}}",
+    "pricingNote": "Har bir so‘rov kreditlaringizdan model narxi ustiga 30% qo‘shilgan holda to‘lanadi. So‘rovning eng yuqori narxi bajarilayotganda ushlab turiladi, ishlatilmagan qismi qaytariladi.",
+    "topUpCredits": "Kreditni to‘ldirish",
     "preview": "Ko'rib chiqish",
     "openInBrowser": "Brauzerda ochish",
     "reload": "Qayta yuklash",

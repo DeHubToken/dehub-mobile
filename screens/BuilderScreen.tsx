@@ -21,7 +21,7 @@ import Icon, { type IconName } from "../components/ui/Icon";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthActions } from "../context/AuthContext";
-import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import BuilderModelCard from "../components/Builder/BuilderModelCard";
 import { ASSISTANT_ADDRESS, ASSISTANT_USERNAME } from "../libs/assistant";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
@@ -146,16 +146,7 @@ export default function BuilderScreen() {
             <Text style={styles.chatPillText}>{t("builder.buildInChat")}</Text>
           </Pressable>
 
-          {/* Staking raises the allowance; the stake screen is a purchase surface, hidden on iOS. */}
-          {DIGITAL_PURCHASES_ENABLED && (
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => requireAuth(() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" }))}
-              style={{ alignSelf: "center", marginTop: 14, padding: 4 }}
-            >
-              <Text style={styles.footnote}>{t("builder.stakeForAllowance")}</Text>
-            </Pressable>
-          )}
+          <BuilderModelCard />
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -216,5 +207,4 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
   },
   chatPillText: { color: "#e8e8ea", fontSize: 14, fontWeight: "500" },
-  footnote: { color: "#949499", fontSize: 13, textAlign: "center" },
 });
