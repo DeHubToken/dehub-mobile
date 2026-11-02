@@ -23,7 +23,9 @@ export enum LivestreamEvents {
   UserMuted = "stream.user.muted",
   StreamError = "stream.error",
   StreamReaction = "stream.reaction",
-  SettingsUpdate = "stream.settings.update"
+  SettingsUpdate = "stream.settings.update",
+  /** A hype train starting, moving or ending in the stream's room. */
+  HypeUpdate = "stream.hype"
 }
 
 export enum StreamActivityType {

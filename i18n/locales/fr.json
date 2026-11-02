@@ -15775,6 +15775,16 @@
     "titlePlaceholder": "Donnez un titre à votre clip",
     "viewShort": "Voir le Short"
   },
+  "liveHype": {
+    "train": {
+      "level": "Hype train · Niveau {{level}}",
+      "endedLevel": "Le hype train a terminé le niveau {{level}} !",
+      "ended": "Le hype train est terminé",
+      "thanks_one": "Merci à {{count}} fan",
+      "thanks_other": "Merci à {{count}} fans",
+      "top": "En tête : {{name}}"
+    }
+  },
   "dmPaidLock": {
     "lockPhoto": "Verrouiller la photo",
     "lockVideo": "Verrouiller la vidéo",

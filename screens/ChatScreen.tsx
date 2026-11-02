@@ -44,6 +44,7 @@ import TipAmountSheet from "../components/DM/TipAmountSheet";
 import PollCard from "../components/DM/PollCard";
 import CreatePollSheet from "../components/DM/CreatePollSheet";
 import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
+import type { DmVideoPlayExtra } from "../components/DM/MessageBubble";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import Avatar from "../components/common/Avatar";
@@ -92,6 +93,7 @@ import {
   addFreeAccess,
   removeFreeAccess,
   bulkDeleteMessages,
+  markDmMessageViewed,
   type DmUserStatus,
   type DmPlanSettings,
   type DmPlanMessageType,
@@ -313,7 +315,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [blockLoading, setBlockLoading] = useState(false);
 
   // Video
-  const [videoUri, setVideoUri] = useState<string | null>(null);
+  const [videoPlay, setVideoPlay] = useState<({ uri: string } & DmVideoPlayExtra) | null>(null);
+  const openVideo = useCallback((uri: string, extra?: DmVideoPlayExtra) => setVideoPlay({ uri, ...extra }), []);
+  const closeVideo = useCallback(() => {
+    // A view-once video is gone for both people once the other side has opened it.
+    if (videoPlay?.viewOnce && videoPlay.messageId) {
+      void markDmMessageViewed(videoPlay.messageId).catch(() => undefined);
+    }
+    setVideoPlay(null);
+  }, [videoPlay]);
 
   // Tip
   const [tipAmount, setTipAmount] = useState(0);
@@ -1263,6 +1273,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         fileSize: attachment.size,
         duration: attachment.duration,
         lockPrice: attachment.lockPrice || undefined,
+        ...(attachment.type === "video" && attachment.options ? { mediaOptions: attachment.options } : {}),
+        ...(attachment.type === "video" && attachment.destruct ? { destruct: attachment.destruct } : {}),
         caption: caption?.trim(),
         replyTo,
         dmFee,
@@ -1660,7 +1672,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             message={item}
             isMine={mine}
             onLongPress={onLongPressMessage}
-            onVideoPress={setVideoUri}
+            onVideoPress={openVideo}
             localMediaUri={(item as OptimisticMessage)?._localMediaUri}
             onSwipeToReply={handleSwipeToReply}
             onReplyPress={handleReplyPress}
@@ -1986,9 +1998,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         {/* Full-screen video player */}
         <FullScreenVideoPlayer
-          visible={!!videoUri}
-          uri={videoUri}
-          onClose={() => setVideoUri(null)}
+          visible={!!videoPlay}
+          uri={videoPlay?.uri}
+          options={videoPlay?.options}
+          onClose={closeVideo}
         />
 
         {/* Tip amount sheet */}

@@ -27,7 +27,6 @@ import Animated, {
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import * as VideoThumbnails from "expo-video-thumbnails";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import { toastError } from "../../libs/toast";
@@ -52,6 +51,9 @@ import { haptic } from "../../libs/haptics";
 import { TipGemIcon } from "../Home/TipGemIcon";
 import EncryptedMedia from "./EncryptedMedia";
 import LockedMedia from "./LockedMedia";
+import DmVideoTile, { useVideoPoster } from "./DmVideoTile";
+import type { DmVideoOptions } from "../../libs/dm-video-options";
+import type { DmDestruct } from "../../libs/dm-destruct";
 import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
 
 
@@ -192,62 +194,43 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
 });
 
 
-interface VideoThumbProps {
-  uri: string;
-  width: number;
-  height: number;
-  onPress?: () => void;
-  onLongPress?: () => void;
+/** What the full-screen player needs beyond the file: how to play it, and whether watching it removes it. */
+export interface DmVideoPlayExtra {
+  options?: DmVideoOptions | null;
+  messageId?: string;
+  viewOnce?: boolean;
 }
 
-const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPress, onLongPress }) => {
-  const [thumb, setThumb] = useState<string | null>(null);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    let active = true;
-    setThumb(null);
-    setFailed(false);
-    VideoThumbnails.getThumbnailAsync(uri, { time: 500 })
-      .then((res) => { if (active) setThumb(res.uri); })
-      .catch(() => { if (active) setFailed(true); });
-    return () => { active = false; };
-  }, [uri]);
-
+/** A plain DM video: the sender's cover frame at the real shape. */
+const PlainDmVideo: React.FC<{
+  uri: string;
+  messageId: string;
+  options?: DmVideoOptions | null;
+  destruct?: DmDestruct | null;
+  mine: boolean;
+  maxW: number;
+  maxH: number;
+  onPress: () => void;
+  onLongPress?: () => void;
+}> = memo(({ uri, messageId, options, destruct, mine, maxW, maxH, onPress, onLongPress }) => {
+  const { poster, failed } = useVideoPoster(uri, options);
   return (
-    <TouchableOpacity
-      activeOpacity={0.85}
-      onPress={onPress}
+    <DmVideoTile
+      posterUri={poster?.uri}
+      width={poster?.w}
+      height={poster?.h}
+      options={options}
+      destruct={destruct}
+      mine={mine}
+      messageId={messageId}
+      maxW={maxW}
+      maxH={maxH}
+      failed={failed}
+      onOpen={onPress}
       onLongPress={onLongPress}
-      delayLongPress={350}
-    >
-      <View className="bg-theme-neutrals-700" style={{ width, height }}>
-        {thumb ? (
-          <SmartImage
-            source={{ uri: thumb }}
-            recyclingKey={thumb}
-            style={{ width, height }}
-            contentFit="cover"
-          />
-        ) : failed ? (
-          <View className="flex-1 items-center justify-center">
-            <Icon name="Video" size={32} color="#555" />
-          </View>
-        ) : (
-          <View className="flex-1 items-center justify-center">
-            <ActivityIndicator size="small" color="#555" />
-          </View>
-        )}
-        <View className="absolute inset-0 items-center justify-center">
-          <View className="dark-surface bg-black/50 rounded-xl p-2">
-            <Icon name="Play" size={24} color="#fff" />
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
+    />
   );
 });
-
 
 interface MessageBubbleProps {
   message: DmMessage;
@@ -259,7 +242,7 @@ interface MessageBubbleProps {
     isMine: boolean,
   ) => void;
   onImagePress?: (url: string) => void;
-  onVideoPress?: (url: string) => void;
+  onVideoPress?: (url: string, play?: DmVideoPlayExtra) => void;
   /** Local URI override for optimistic media (pre-upload). */
   localMediaUri?: string;
   /** Called when the user swipes to reply. */
@@ -516,9 +499,13 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 
   const handleVideoTap = useCallback(
     (url: string) => {
-      onVideoPress?.(url);
+      onVideoPress?.(url, {
+        options: message.mediaOptions ?? message.encMedia?.opts ?? null,
+        messageId: message._id,
+        viewOnce: message.destruct?.mode === "view" && !isMine,
+      });
     },
-    [onVideoPress],
+    [onVideoPress, message.mediaOptions, message.encMedia, message._id, message.destruct, isMine],
   );
 
   /**
@@ -841,6 +828,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {encMedia && (
               <View>
                 <EncryptedMedia
+                  destruct={message.destruct}
                   descriptor={encMedia}
                   rawUrl={encUrl}
                   messageId={message._id}
@@ -923,11 +911,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       <Icon name="Download" size={16} color={isMine ? "#ffffffaa" : "#8B8D90"} />
                     </TouchableOpacity>
                   ) : item.kind === "video" ? (
-                    <VideoThumb
+                    <PlainDmVideo
                       key={idx}
                       uri={item.url}
-                      width={MAX_IMAGE_WIDTH}
-                      height={Math.round(MAX_IMAGE_WIDTH / DEFAULT_ASPECT)}
+                      messageId={message._id}
+                      options={message.mediaOptions}
+                      destruct={message.destruct}
+                      mine={isMine}
+                      maxW={MAX_IMAGE_WIDTH}
+                      maxH={MAX_IMAGE_HEIGHT}
                       onPress={() => handleVideoTap(item.url)}
                       onLongPress={handleLongPress}
                     />

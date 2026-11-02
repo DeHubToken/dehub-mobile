@@ -15770,6 +15770,16 @@
     "titlePlaceholder": "Klibine bir başlık ver",
     "viewShort": "Short'u görüntüle"
   },
+  "liveHype": {
+    "train": {
+      "level": "Hype treni · Seviye {{level}}",
+      "endedLevel": "Hype treni {{level}}. seviyeyi tamamladı!",
+      "ended": "Hype treni sona erdi",
+      "thanks_one": "{{count}} destekçiye teşekkürler",
+      "thanks_other": "{{count}} destekçiye teşekkürler",
+      "top": "Lider: {{name}}"
+    }
+  },
   "dmPaidLock": {
     "lockPhoto": "Fotoğrafı kilitle",
     "lockVideo": "Videoyu kilitle",

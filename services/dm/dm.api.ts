@@ -140,7 +140,7 @@ export async function getMessages(
 export async function uploadDmMedia(
   params: UploadDmMediaParams,
 ): Promise<DmMessage> {
-  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind, lockPrice } =
+  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind, mediaOptions, destruct, lockPrice } =
     params;
 
   const form = new FormData();
@@ -164,6 +164,8 @@ export async function uploadDmMedia(
   if (replyTo) form.append("replyTo", String(replyTo));
   if (encryptedKind) form.append("encryptedKind", encryptedKind);
   if (lockPrice && lockPrice > 0 && !encryptedKind) form.append("lockPrice", String(lockPrice));
+  if (mediaOptions) form.append("mediaOptions", JSON.stringify(mediaOptions));
+  if (destruct) form.append("destruct", String(destruct));
 
   return apiClient.post<DmMessage>("/dm/upload", form, {
     isAuthRequired: true,
@@ -398,4 +400,9 @@ export async function getLockedMedia(messageId: ID): Promise<DmLockStatus> {
  */
 export async function unlockLockedMedia(messageId: ID, txHash: string): Promise<DmLockStatus> {
   return apiClient.post<DmLockStatus>(`/dm/locked/${messageId}/unlock`, { txHash }, { isAuthRequired: true });
+}
+
+/** The recipient has watched a view-once attachment; the server removes it for both. */
+export async function markDmMessageViewed(messageId: string): Promise<void> {
+  await apiClient.post(`/dm/message/${encodeURIComponent(messageId)}/viewed`, {}, { isAuthRequired: true });
 }

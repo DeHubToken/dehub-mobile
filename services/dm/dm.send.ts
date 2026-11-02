@@ -18,6 +18,8 @@ import * as FileSystem from "expo-file-system/legacy";
 import { prepareOutgoing, prepareSession } from "../../libs/dm-e2ee/keys";
 import { encodeMediaDescriptor, type MediaDescriptor, type MediaKind } from "../../libs/dm-e2ee/media";
 import { prepareMediaDescriptor } from "../../libs/dm-e2ee/media-send";
+import type { DmVideoOptions } from "../../libs/dm-video-options";
+import { destructFromChoice, type DmDestructChoice } from "../../libs/dm-destruct";
 import { deleteQuietly, encryptFileToCache, encryptedMediaUrl, openEncryptedMedia, rememberLocalPlaintext } from "../../libs/dm-e2ee/media-files";
 import { peerAddressForConversation } from "../../libs/dm-e2ee/peer";
 import { confirmDmSend, type DmSendPayload } from "../../libs/dm-send-confirmation";
@@ -88,6 +90,9 @@ interface MediaSendJob extends BaseSendJob {
   duration?: number;
   /** Pay-to-unlock price. A locked file is never sealed; the caption still is. */
   lockPrice?: number;
+  /** Video trim, cover, mirror, rotation and hide choices. */
+  mediaOptions?: DmVideoOptions;
+  destruct?: DmDestructChoice;
 }
 
 interface TipSendJob extends BaseSendJob {
@@ -274,6 +279,8 @@ class DmSendQueue {
     fileSize?: number;
     duration?: number;
     lockPrice?: number;
+    mediaOptions?: DmVideoOptions;
+    destruct?: DmDestructChoice;
   }): string {
     const tempId = this.makeTempId();
     const {
@@ -323,6 +330,8 @@ class DmSendQueue {
         mediaUrl: mediaType === "video" ? (thumbnailUri || uri) : uri,
       };
     }
+    if (params.mediaOptions) optimistic.mediaOptions = params.mediaOptions;
+    if (params.destruct) optimistic.destruct = destructFromChoice(params.destruct);
     dmActions.addOptimistic(conversationId, optimistic);
 
     this.enqueueSlow({
@@ -345,6 +354,8 @@ class DmSendQueue {
       fileSize: params.fileSize,
       duration: params.duration,
       lockPrice,
+      mediaOptions: params.mediaOptions,
+      destruct: params.destruct,
     });
 
     return tempId;
@@ -717,6 +728,8 @@ class DmSendQueue {
             txHash,
             tipTxHash,
             lockPrice: job.lockPrice,
+            mediaOptions: job.mediaOptions,
+            destruct: job.destruct,
           }),
           timeout,
           `${job.mediaType} upload`,
@@ -780,7 +793,11 @@ class DmSendQueue {
       });
       plainUri = prepared.plainUri;
       cipher = await encryptFileToCache(prepared.plainUri, prepared.fileKey);
-      descriptor = { ...prepared.descriptor, size: cipher.plainSize };
+      descriptor = {
+        ...prepared.descriptor,
+        size: cipher.plainSize,
+        ...(job.mediaOptions && kind === "video" ? { opts: job.mediaOptions } : {}),
+      };
       const sealed = await prepareOutgoing(peer, encodeMediaDescriptor(descriptor));
       if (!sealed.encrypted) {
         await deleteQuietly(cipher.uri);
@@ -810,6 +827,7 @@ class DmSendQueue {
               txHash,
               tipTxHash,
               encryptedKind: kind,
+              destruct: job.destruct,
             }),
             timeout,
             `${kind} upload`,

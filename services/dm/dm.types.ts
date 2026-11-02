@@ -1,5 +1,7 @@
 
 
+import type { DmVideoOptions } from "../../libs/dm-video-options";
+import type { DmDestruct, DmDestructChoice } from "../../libs/dm-destruct";
 import type { MediaDescriptor } from "../../libs/dm-e2ee/media";
 
 export type ID = string;
@@ -214,6 +216,10 @@ export interface DmMessage {
 
   /** Set for a locked (pay-to-unlock) photo or video. */
   lock?: DmLock | null;
+  /** How a plain video plays (trim, cover, mirror, rotate, hide until tapped). */
+  mediaOptions?: DmVideoOptions | null;
+  /** Self-destruct: gone after a set time, or once the other person watched it. */
+  destruct?: DmDestruct | null;
 }
 
 /** Server -> Client: reactionUpdated (the message's full reaction map). */
@@ -345,6 +351,10 @@ export interface UploadDmMediaParams {
   encryptedKind?: "image" | "video" | "audio" | "file";
   /** Pay-to-unlock price (DHB). Never combined with encryptedKind. */
   lockPrice?: number;
+  /** Video trim/cover/mirror/rotate/hide, for an attachment sent in the clear. */
+  mediaOptions?: DmVideoOptions;
+  /** Self-destruct choice; works for encrypted files too (only the timer is in the clear). */
+  destruct?: DmDestructChoice;
 }
 
 

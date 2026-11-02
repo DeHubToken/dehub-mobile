@@ -15779,6 +15779,16 @@
     "titlePlaceholder": "أعطِ مقطعك عنوانًا",
     "viewShort": "عرض الـShort"
   },
+  "liveHype": {
+    "train": {
+      "level": "قطار الحماس · المستوى {{level}}",
+      "endedLevel": "أكمل قطار الحماس المستوى {{level}}!",
+      "ended": "انتهى قطار الحماس",
+      "thanks_one": "شكرًا لـ {{count}} داعم",
+      "thanks_other": "شكرًا لـ {{count}} داعمين",
+      "top": "الأعلى: {{name}}"
+    }
+  },
   "dmPaidLock": {
     "lockPhoto": "قفل الصورة",
     "lockVideo": "قفل الفيديو",

@@ -15618,6 +15618,16 @@
     "titlePlaceholder": "Dê um título ao seu clipe",
     "viewShort": "Ver Short"
   },
+  "liveHype": {
+    "train": {
+      "level": "Hype Train · Nível {{level}}",
+      "endedLevel": "O Hype Train terminou o nível {{level}}!",
+      "ended": "O Hype Train terminou",
+      "thanks_one": "Obrigado ao {{count}} apoiante",
+      "thanks_other": "Obrigado aos {{count}} apoiantes",
+      "top": "Top: {{name}}"
+    }
+  },
   "dmPaidLock": {
     "lockPhoto": "Bloquear foto",
     "lockVideo": "Bloquear vídeo",

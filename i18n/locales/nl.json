@@ -16022,6 +16022,16 @@
     "titlePlaceholder": "Geef je clip een titel",
     "viewShort": "Short bekijken"
   },
+  "liveHype": {
+    "train": {
+      "level": "Hype train · Level {{level}}",
+      "endedLevel": "De hype train haalde level {{level}}!",
+      "ended": "De hype train is voorbij",
+      "thanks_one": "Dank aan {{count}} supporter",
+      "thanks_other": "Dank aan {{count}} supporters",
+      "top": "Top: {{name}}"
+    }
+  },
   "dmPaidLock": {
     "lockPhoto": "Foto vergrendelen",
     "lockVideo": "Video vergrendelen",
