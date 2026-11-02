@@ -664,7 +664,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             <Animated.View
               pointerEvents="none"
               style={[{
-                position: "absolute", left: -5, top: -5, width: 42, height: 42, borderRadius: 21,
+                // Same rounded-square shape as the avatar (16% of 32px), grown
+                // by the 5px it sticks out, so the ring hugs the corners.
+                position: "absolute", left: -5, top: -5, width: 42, height: 42, borderRadius: Math.round(32 * 0.16) + 5,
                 backgroundColor: "rgba(220,222,226,0.18)",
                 borderWidth: 1.5, borderColor: "rgba(220,222,226,0.45)",
               }, avatarGlowStyle]}
