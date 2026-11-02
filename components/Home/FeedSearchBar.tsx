@@ -144,7 +144,7 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
             touch for itself, so a drag up that starts on the words never
             reached the drag-to-close pan. */}
         <GestureTextInput
-          ref={inputRef}
+          ref={inputRef as unknown as React.Ref<any>}
           value={query}
           onChangeText={onChangeQuery}
           placeholder={placeholder}

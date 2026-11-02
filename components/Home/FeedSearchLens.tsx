@@ -190,7 +190,7 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
               <Icon name="Settings2" size={16 * 1.18} color={filterActive ? "#FFFFFF" : "#A1A1AA"} strokeWidth={filterActive ? 2 : 1.8} />
             </Pressable>
             <GestureTextInput
-              ref={inputRef}
+              ref={inputRef as unknown as React.Ref<any>}
               value={query}
               onChangeText={onChangeQuery}
               placeholder={placeholder}
