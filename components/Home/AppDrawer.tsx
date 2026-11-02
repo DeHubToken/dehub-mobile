@@ -142,6 +142,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
+  // iOS keeps it: the screen is view only there (US gets a link to dehub.io).
+  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.NftMarket },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   // Web sidebar: AI Agents sits just above Advertising.
@@ -185,7 +187,7 @@ const ICON_KEYS: Record<string, string> = {
   "stats.feedback.title": "messages", "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
-  "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
+  "nav.fractions": "fractions", "nav.nfts": "nfts", "screens.usernames": "usernames", "screens.accounts": "accounts",
   "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "miniApps.store.title": "stores", "nav.glossary": "glossary", "nav.bridge": "bridge",
   "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",
   "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",

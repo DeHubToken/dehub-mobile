@@ -123,6 +123,7 @@ export enum ScreenNames {
   Planned = 'Planned',
   Usernames = 'Usernames',
   Fractions = 'Fractions',
+  NftMarket = 'NftMarket',
   Accounts = 'Accounts',
   Stores = 'Stores',
   StoreDetail = 'StoreDetail',

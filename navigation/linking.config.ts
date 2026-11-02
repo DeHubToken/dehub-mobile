@@ -295,6 +295,9 @@ export const DeepLinkPaths = {
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
 
+  // NFT market — dehub.io/nfts (bare, like web).
+  NFTS: 'nfts',
+
   // AI agents — dehub.io/app/agents; the bare /agents is rewritten onto it.
   AGENTS: 'app/agents',
 
@@ -518,6 +521,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 
+          [ScreenNames.NftMarket]: DeepLinkPaths.NFTS,
+
           [ScreenNames.Agents]: DeepLinkPaths.AGENTS,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
@@ -677,7 +682,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare', 'nfts']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });
@@ -932,6 +937,8 @@ export const ShareLinks = {
     `${SHARE_BASE}/accounts?handle=${encodeURIComponent(handle)}`,
   /** Fraction marketplace — dehub.io/app/fractions */
   fractions: () => `${SHARE_BASE}/app/fractions`,
+  /** NFT market — dehub.io/nfts */
+  nfts: () => `${SHARE_BASE}/nfts`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
