@@ -372,6 +372,8 @@ const FollowListScreen: React.FC = () => {
   // in flight is queued instead of ignored, and only the last answer counts.
   const desiredFollowRef = useRef<Record<string, boolean>>({});
   const inFlightFollowRef = useRef<Set<string>>(new Set());
+  // Rows "Follow back all" is sending right now; single taps wait for it.
+  const bulkFollowRef = useRef<Set<string>>(new Set());
   const followBackStreakRef = useRef(0);
 
   // Follow requests state
@@ -672,6 +674,7 @@ const FollowListScreen: React.FC = () => {
       const target = item.user.address;
       const key = lower(target);
       if (!viewerAddress || !target || key === lower(viewerAddress)) return;
+      if (bulkFollowRef.current.has(key)) return;
 
       const shown = relationshipsRef.current[key];
       const wantFollow = !(shown?.isFollowing || shown?.isPending);
@@ -822,22 +825,14 @@ const FollowListScreen: React.FC = () => {
       while (nextIndex < candidates.length) {
         const chunk = candidates.slice(nextIndex, nextIndex + BULK_FOLLOW_BATCH_SIZE);
         const keys = chunk.map((entry) => lower(entry.user.address));
-        setPendingFollow((prev) => {
-          const next = { ...prev };
-          keys.forEach((key) => { next[key] = true; });
-          return next;
-        });
+        keys.forEach((key) => bulkFollowRef.current.add(key));
         let results: FollowBatchResult[] | null = null;
         try {
           results = await followUsersBatch(chunk.map((entry) => entry.user.address));
         } catch (error) {
           console.error("[FollowListScreen] follow back all batch error:", error);
         }
-        setPendingFollow((prev) => {
-          const next = { ...prev };
-          keys.forEach((key) => { delete next[key]; });
-          return next;
-        });
+        keys.forEach((key) => bulkFollowRef.current.delete(key));
         if (!results) {
           if (completed === 0) break;
           completed += chunk.length;
@@ -870,7 +865,7 @@ const FollowListScreen: React.FC = () => {
           const item = candidates[nextIndex++];
           const target = item.user.address;
           const key = lower(target);
-          setPendingFollow((prev) => ({ ...prev, [key]: true }));
+          bulkFollowRef.current.add(key);
 
           try {
             const response = await followUser(viewerAddress, target);
@@ -887,11 +882,7 @@ const FollowListScreen: React.FC = () => {
           } catch (error) {
             console.error("[FollowListScreen] follow back all error:", error);
           } finally {
-            setPendingFollow((prev) => {
-              const next = { ...prev };
-              delete next[key];
-              return next;
-            });
+            bulkFollowRef.current.delete(key);
             completed += 1;
             setBulkFollowProgress({ completed, total: candidates.length });
           }
