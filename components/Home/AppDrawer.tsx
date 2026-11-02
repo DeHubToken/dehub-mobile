@@ -271,7 +271,11 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
       </View>
       <Text
         style={[styles.tileLabel, active && styles.tileLabelActive, skin?.tabIcon ? { color: active ? skin.tabIconActive ?? skin.tabIcon : skin.tabIcon } : null]}
-        numberOfLines={1}
+        // Two-word names wrap onto two lines; a single long word shrinks a
+        // little instead (two lines would break it mid-word on Android).
+        numberOfLines={label.includes(" ") ? 2 : 1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.87}
       >
         {label}
       </Text>
@@ -935,7 +939,8 @@ const styles = StyleSheet.create({
   },
   tile: {
     alignItems: "center",
-    justifyContent: "center",
+    // Top-aligned so icons stay in line across a row where one name wraps.
+    justifyContent: "flex-start",
     gap: 6,
     paddingHorizontal: 4,
     paddingVertical: 10,
