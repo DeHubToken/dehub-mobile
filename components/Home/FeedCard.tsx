@@ -47,6 +47,7 @@ import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
+import { useFeedSplitComments } from "./feedSplitComments";
 import PostStatsSheet from "../Post/stats/PostStatsSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -1255,6 +1256,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
   }, [requireAuth, setShowBountyModal]);
 
+  // Home feed on phones: comments open as the half-screen split right over
+  // the feed, the post slid up into the top half (see feedSplitComments).
+  const feedSplit = useFeedSplitComments();
+  const splitComments = !!feedSplit && !desk;
   const handleCommentPress = useCallback(() => {
     if (onCommentPressProp) {
       onCommentPressProp();
@@ -1263,11 +1268,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // sheet beside it. Same as the web feed card, which opens the room.
       handleCardPress();
     } else if (tokenId != null) {
-      // Feed comment taps open just the comments drawer over the feed;
-      // the post page only opens when the post itself is tapped.
+      // Feed comment taps open the comments over the feed; the post page
+      // only opens when the post itself is tapped.
+      if (splitComments) feedSplit?.bringToTop();
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments]);
+  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments, splitComments, feedSplit]);
 
   // The sheet opens on release; its reads can start on touch-down.
   const queryClient = useQueryClient();
@@ -2113,6 +2119,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           replyPolicy={edits.replyPolicy ?? item.replyPolicy}
           forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
+          split={splitComments}
         />
       )}
 
