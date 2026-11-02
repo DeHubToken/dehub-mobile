@@ -168,6 +168,8 @@ export interface DmMessage {
   conversation: ID;
   sender: DmUser | ID; // aggregate may populate
   author?: "me" | "other";
+  /** Local only: the temp id the line was first drawn under, kept as its list key so the bubble is never re-mounted when the send lands. */
+  _clientKey?: string;
   content?: string;
   /** Set once an `e2e:` envelope has been opened (or failed to open) client-side. */
   encrypted?: boolean;
