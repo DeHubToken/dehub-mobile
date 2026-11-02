@@ -31,7 +31,7 @@ const ROUTE_SEGMENTS = [
   "dao", "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
   "maintenance", "mcp", "mobile-preview", "music", "newpost", "packs", "posts", "premium", "pricing", "prompt", "r",
   "radio", "raffle", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
-  "usernames", "videos", "work", "yt-dlp",
+  "nfts", "usernames", "videos", "work", "yt-dlp",
 
   // /app children — the worker collapses /app/<x> onto /<x>
   "ads", "bookmarks", "buy", "command-centre", "fractions", "glossary", "messages",
