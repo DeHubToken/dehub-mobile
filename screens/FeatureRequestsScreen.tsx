@@ -90,6 +90,8 @@ import {
   useSubmitFeatureRequest,
   useEditFeatureRequest,
   useDeleteFeatureRequest,
+  useSetFeatureStatus,
+  isFeatureStatusEditor,
   featureAttachments,
   isVideoAttachment,
   MAX_FEATURE_ATTACHMENTS,
@@ -283,6 +285,9 @@ const FeatureCard: React.FC<{
 
   const myWallet: string = (user?.walletAddress || user?.address || "").toLowerCase();
   const isAuthor = !!myWallet && myWallet === feature.author_wallet_address.toLowerCase();
+  // The board's owners can move anyone's request to Queued or Shipped.
+  const canSetStatus = isFeatureStatusEditor(myWallet);
+  const statusMutation = useSetFeatureStatus();
 
   const displayName = feature.author_username || feature.author_wallet_address.slice(0, 6);
   const handle = feature.author_username
@@ -296,7 +301,39 @@ const FeatureCard: React.FC<{
   const badge = STATUS_BADGE[feature.status];
 
   const openMenu = useCallback(() => {
+    const isQueued = feature.status === "in_progress";
+    const isShipped = feature.status === "shipped" || feature.status === "completed";
+    const statusButtons = canSetStatus
+      ? [
+          ...(!isQueued
+            ? [{
+                text: t("copy.63eb38b938b8", { defaultValue: "Mark Queued" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "in_progress" as const }),
+              }]
+            : []),
+          ...(!isShipped
+            ? [{
+                text: t("copy.2fffca525795", { defaultValue: "Mark Shipped" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "shipped" as const }),
+              }]
+            : []),
+          ...(isQueued || isShipped
+            ? [{
+                text: t("copy.3ee050a08bfa", { defaultValue: "Back to Requests" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "open" as const }),
+              }]
+            : []),
+        ]
+      : [];
+    if (!isAuthor) {
+      Alert.alert(feature.title, undefined, [
+        ...statusButtons,
+        { text: t("common.cancel", "Cancel"), style: "cancel" },
+      ]);
+      return;
+    }
     Alert.alert(feature.title, undefined, [
+      ...statusButtons,
       {
         text: t("features.edit", "Edit"),
         onPress: () => {
@@ -325,7 +362,7 @@ const FeatureCard: React.FC<{
       },
       { text: t("common.cancel", "Cancel"), style: "cancel" },
     ]);
-  }, [feature, t, deleteMutation, setEditDescription, setEditTitle]);
+  }, [feature, t, deleteMutation, statusMutation, canSetStatus, isAuthor, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
     void shareWithRef({
@@ -355,7 +392,7 @@ const FeatureCard: React.FC<{
             <Text style={styles.time}>{timeAgo(feature.created_at, t)}</Text>
           </View>
         </View>
-        {isAuthor && !editing && (
+        {(isAuthor || canSetStatus) && !editing && (
           <Pressable
             onPress={openMenu}
             hitSlop={10}

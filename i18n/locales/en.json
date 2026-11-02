@@ -12812,6 +12812,13 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "63eb38b938b8": "Mark Queued",
+    "2fffca525795": "Mark Shipped",
+    "3ee050a08bfa": "Back to Requests",
+    "ae6a0ffbe609": "Marked Queued",
+    "366cb56b38ce": "Marked Shipped",
+    "9db7b5ba03bb": "Moved back to Requests",
+    "bb2be752e079": "Couldn't change the status",
     "1d7234ff1b79": "in {{feed}}",
     "e122e5c2b563": "Drag up to close",
     "eabb5c136be4": "Failed to update plan",

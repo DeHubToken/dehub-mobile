@@ -15217,7 +15217,14 @@
     "e63ffac3f5e5": "PEPE",
     "713d24d02e26": "XXXX-XXXX",
     "00c90f4b707a": "SRT / VTT",
-    "f223faa96f22": "Apple"
+    "f223faa96f22": "Apple",
+    "63eb38b938b8": "Markeren als in wachtrij",
+    "2fffca525795": "Markeren als uitgebracht",
+    "3ee050a08bfa": "Terug naar Verzoeken",
+    "ae6a0ffbe609": "Gemarkeerd als in wachtrij",
+    "366cb56b38ce": "Gemarkeerd als uitgebracht",
+    "9db7b5ba03bb": "Terug naar Verzoeken verplaatst",
+    "bb2be752e079": "Kon de status niet wijzigen"
   },
   "creatorSupport": {
     "campaignLabel": "Ondersteuningsadvertenties van creators",

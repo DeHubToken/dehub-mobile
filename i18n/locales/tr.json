@@ -14965,7 +14965,14 @@
     "468415f0e112": "Ag",
     "b62c681738d1": "Cu",
     "b602b7029be6": "Pt",
-    "53e6cdc30765": "you@example.com"
+    "53e6cdc30765": "you@example.com",
+    "63eb38b938b8": "Sıraya alındı olarak işaretle",
+    "2fffca525795": "Yayınlandı olarak işaretle",
+    "3ee050a08bfa": "İsteklere geri dön",
+    "ae6a0ffbe609": "Sıraya alındı olarak işaretlendi",
+    "366cb56b38ce": "Yayınlandı olarak işaretlendi",
+    "9db7b5ba03bb": "İsteklere geri taşındı",
+    "bb2be752e079": "Durum değiştirilemedi"
   },
   "creatorSupport": {
     "sponsoredBy": "{{advertiser}} sponsorluğunda",
