@@ -758,8 +758,19 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               onCaptionChange={handleTextChange}
               onSend={() => { void handleSend(); }}
               sendDisabled={sending || disabled}
+              lockPrice={allowLock ? media.lockPrice ?? null : null}
+              onLockPriceChange={allowLock ? (price) => setMedia((m) => (m && m.type === "video" ? { ...m, lockPrice: price } : m)) : undefined}
             />
           </Animated.View>
+        )}
+        {media?.type === "video" && allowLock && (
+          <View style={{ paddingHorizontal: 12 }}>
+            <LockPriceRow
+              value={media.lockPrice ?? null}
+              kind="video"
+              onChange={(price) => setMedia((m) => (m ? { ...m, lockPrice: price } : m))}
+            />
+          </View>
         )}
 
         {/* Selected media / GIF preview */}
