@@ -129,6 +129,7 @@
     "useNamed": "Fɛɛrɛ kɛ ni {{name}} ye"
   },
   "copy": {
+    "chatSlowDown": "Doucement ! Trop de messages d'affilée. Réessaie dans {{wait}}, ou attends que quelqu'un d'autre réponde.",
     "eabb5c136be4": "A ka kan ka kɛ ni kunnafoni ye min be se k'a dɛmɛ ka koo dɔw",
     "801658c8e591": "Plan tɛ kɛra — ni sɔrɔ, a to a kɔ fɛ",
     "dd2108f1cda8": "Kuma kɛcogo dɔgɔya",

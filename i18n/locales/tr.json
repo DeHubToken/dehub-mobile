@@ -12506,6 +12506,7 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "chatSlowDown": "Yavaş! Arka arkaya çok fazla mesaj. {{wait}} sonra tekrar dene veya başka birinin yanıt vermesini bekle.",
     "1d7234ff1b79": "{{feed}} içinde",
     "e122e5c2b563": "Kapatmak için yukarı sürükle",
     "eabb5c136be4": "Plan güncellemesi başarısız oldu",

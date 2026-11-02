@@ -129,6 +129,7 @@
     "useNamed": "Sử dụng {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Chậm lại nào! Quá nhiều tin nhắn liên tiếp. Thử lại sau {{wait}}, hoặc đợi người khác trả lời.",
     "eabb5c136be4": "Không thể cập nhật kế hoạch",
     "801658c8e591": "Kế hoạch không được tạo — hãy thử lại",
     "dd2108f1cda8": "Dừng Trò chuyện bằng giọng nói",

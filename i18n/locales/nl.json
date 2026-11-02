@@ -12758,6 +12758,7 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "chatSlowDown": "Rustig aan! Te veel berichten achter elkaar. Probeer het over {{wait}} opnieuw, of wacht tot iemand anders reageert.",
     "1d7234ff1b79": "in {{feed}}",
     "e122e5c2b563": "Sleep omhoog om te sluiten",
     "eabb5c136be4": "Planning mislukt bij update",

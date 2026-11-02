@@ -129,6 +129,7 @@
     "useNamed": "Kasuta {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Rahulikumalt! Liiga palju sõnumeid järjest. Proovi uuesti {{wait}} pärast või oota, kuni keegi teine vastab.",
     "eabb5c136be4": "Plaani ei õnnestunud uuendada",
     "801658c8e591": "Plaani ei loodud — proovi uuesti",
     "dd2108f1cda8": "Peata häälvestlus",

@@ -12832,6 +12832,7 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "chatSlowDown": "Slow down! Too many messages in a row. Try again in {{wait}}, or wait for someone else to reply.",
     "63eb38b938b8": "Mark Queued",
     "2fffca525795": "Mark Shipped",
     "3ee050a08bfa": "Back to Requests",

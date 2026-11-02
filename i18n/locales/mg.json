@@ -129,6 +129,7 @@
     "use": "Ampiasao ity môdely ity"
   },
   "copy": {
+    "chatSlowDown": "Moramora! Hafatra be loatra misesy. Andramo indray afaka {{wait}}, na miandrasa olon-kafa hamaly.",
     "eabb5c136be4": "Nahafahalana tsy nisy natao",
     "801658c8e591": "Tsy noforonina ny drafitra — azafady mba andramo indray",
     "dd2108f1cda8": "Hatsahatra ny Voice Chat",

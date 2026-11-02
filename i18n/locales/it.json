@@ -129,6 +129,7 @@
     "useNamed": "Usa {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Rallenta! Troppi messaggi di fila. Riprova tra {{wait}} o aspetta che qualcun altro risponda.",
     "eabb5c136be4": "Aggiornamento del piano fallito",
     "801658c8e591": "Il piano non è stato creato — riprova per favore",
     "dd2108f1cda8": "Stop Voice Chat",

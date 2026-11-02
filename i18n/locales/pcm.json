@@ -129,6 +129,7 @@
     "featured": "Back to featured"
   },
   "copy": {
+    "chatSlowDown": "Slow down small! You don send too many message back to back. Try again for {{wait}}, or wait make another person reply.",
     "eabb5c136be4": "Plan no dey update.",
     "801658c8e591": "Plan no dey make yet — try again, o!",
     "dd2108f1cda8": "Stop Voice Chat",
