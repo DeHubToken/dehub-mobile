@@ -13606,7 +13606,11 @@
     "skippedOtherToast": "Saltato {{platforms}}: non hanno potuto accettare questo post."
   },
   "builder": {
-    "stakeForAllowance": "Metti in stake i token DeHub per aumentare la tua quota giornaliera di build",
+    "modelLabel": "Modello",
+    "creditsLeft": "{{amount}} in crediti",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Ogni prompt viene pagato con i tuoi crediti al costo del modello più il 30%. L'importo massimo di un prompt viene trattenuto durante l'esecuzione e la parte non usata viene restituita.",
+    "topUpCredits": "Ricarica crediti",
     "preview": "Anteprima",
     "openInBrowser": "Apri nel browser",
     "reload": "Ricarica",

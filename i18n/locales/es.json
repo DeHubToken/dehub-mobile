@@ -11932,7 +11932,11 @@
     "skippedOtherToast": "Omitió {{platforms}}: no pudo aceptar esta publicación."
   },
   "builder": {
-    "stakeForAllowance": "Haz staking de tokens DeHub para aumentar tu límite diario de compilaciones",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} en créditos",
+    "perPrompt": "≈ {{price}} por solicitud",
+    "pricingNote": "Cada solicitud se paga con tus créditos al costo del modelo más un 30 %. Lo máximo que puede costar una solicitud se retiene mientras se ejecuta y la parte no usada se devuelve.",
+    "topUpCredits": "Recargar créditos",
     "preview": "Vista previa",
     "openInBrowser": "Abrir en el navegador",
     "reload": "Recargar",

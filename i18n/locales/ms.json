@@ -13813,7 +13813,11 @@
     "skippedOtherToast": "Dilangkau {{platforms}}: mereka tidak dapat menerima hantaran ini."
   },
   "builder": {
-    "stakeForAllowance": "Pertaruhkan token DeHub untuk menaikkan had binaan harian anda",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} dalam kredit",
+    "perPrompt": "≈ {{price}} setiap gesaan",
+    "pricingNote": "Setiap gesaan dibayar daripada kredit anda pada kos model ditambah 30%. Kos maksimum gesaan ditahan semasa ia berjalan dan bahagian yang tidak digunakan dipulangkan.",
+    "topUpCredits": "Tambah nilai kredit",
     "preview": "Pratonton",
     "openInBrowser": "Buka dalam pelayar",
     "reload": "Muat semula",

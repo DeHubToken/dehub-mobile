@@ -13643,7 +13643,11 @@
     "skippedOtherToast": "Voaravaka {{platforms}}: Tsy azon'izy ireo natao ity lahatsoratra ity."
   },
   "builder": {
-    "stakeForAllowance": "Antsoy ny token DeHub mba hampiakarana ny fetran'ny fanamboarana isan'andro",
+    "modelLabel": "Modely",
+    "creditsLeft": "{{amount}} amin'ny crédit",
+    "perPrompt": "≈ {{price}} isaky ny fangatahana",
+    "pricingNote": "Aloa avy amin'ny crédit-nao ny fangatahana tsirairay araka ny vidin'ny modely miampy 30%. Tazonina mandritra ny fandehany ny vidiny ambony indrindra ary averina ny ampahany tsy niasa.",
+    "topUpCredits": "Ampio crédit",
     "preview": "Topi-maso",
     "openInBrowser": "Sokafy amin'ny navigatra",
     "reload": "Avereno",

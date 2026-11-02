@@ -11931,7 +11931,11 @@
     "skippedOtherToast": "{{platforms}} atlandı: Bu gönderiyi alamadılar."
   },
   "builder": {
-    "stakeForAllowance": "Günlük yapım limitinizi artırmak için DeHub token'larını stake edin",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} kredi",
+    "perPrompt": "≈ istem başına {{price}}",
+    "pricingNote": "Her istem, modelin maliyetine %30 eklenerek kredilerinden ödenir. Bir istemin en yüksek maliyeti çalışırken ayrılır ve kullanılmayan kısım iade edilir.",
+    "topUpCredits": "Kredi yükle",
     "preview": "Önizleme",
     "openInBrowser": "Tarayıcıda aç",
     "reload": "Yeniden yükle",

@@ -13575,7 +13575,11 @@
     "skippedOtherToast": "Übersprungen {{platforms}}: sie chönd dä Beitrag nöd übernäh."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub-Token, für dass du dis tägleche Bau-Limit erhöchsch",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} Guthabe",
+    "perPrompt": "≈ {{price}} pro Prompt",
+    "pricingNote": "Jede Prompt wird us dim Guthabe zum Pris vom Modell plus 30 % zahlt. De Höchstbetrag wird reserviert, solang er lauft, und de unbruuchti Teil chunnt zrugg.",
+    "topUpCredits": "Guthabe ufladä",
     "preview": "Vorschau",
     "openInBrowser": "Im Browser öffne",
     "reload": "Neu lade",

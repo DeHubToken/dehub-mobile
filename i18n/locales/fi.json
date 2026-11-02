@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "{{platforms}} ohitettiin: hän ei voinut ottaa tätä julkaisua."
   },
   "builder": {
-    "stakeForAllowance": "Panosta DeHub-tokeneita nostaaksesi päivittäistä rakennuskiintiötäsi",
+    "modelLabel": "Malli",
+    "creditsLeft": "{{amount}} krediittejä",
+    "perPrompt": "≈ {{price}} / kehote",
+    "pricingNote": "Jokainen kehote maksetaan krediiteistäsi mallin hinnalla plus 30 %. Kehotteen enimmäishinta varataan sen ajon ajaksi ja käyttämätön osa palautetaan.",
+    "topUpCredits": "Lisää krediittejä",
     "preview": "Esikatselu",
     "openInBrowser": "Avaa selaimessa",
     "reload": "Lataa uudelleen",

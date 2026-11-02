@@ -13554,7 +13554,11 @@
     "skippedOtherToast": "跳過咗 {{platforms}} ：佢哋攞唔到呢個 post 。"
   },
   "builder": {
-    "stakeForAllowance": "質押DeHub代幣以提高你每日嘅建構額度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 積分",
+    "perPrompt": "≈ 每次提示 {{price}}",
+    "pricingNote": "每次提示都會由你嘅積分扣除，金額係模型成本加 30%。運行期間會預留單次提示嘅最高費用，冇用完嘅部分會退返。",
+    "topUpCredits": "增值積分",
     "preview": "預覽",
     "openInBrowser": "喺瀏覽器度打開",
     "reload": "重新載入",

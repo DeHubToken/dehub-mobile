@@ -13544,7 +13544,11 @@
     "skippedOtherToast": "{{platforms}}: Kaore e taea e ratou te tango i tenei pou."
   },
   "builder": {
-    "stakeForAllowance": "Tāpuhipuhia ngā punaha DeHub kia piki ake tō rohe hanga o ia rā",
+    "modelLabel": "Tauira",
+    "creditsLeft": "{{amount}} i ngā whiwhinga",
+    "perPrompt": "≈ {{price}} mō ia tono",
+    "pricingNote": "Ka utua ia tono i ō whiwhinga ki te utu o te tauira me te 30% atu anō. Ka puritia te utu nui rawa o te tono i a ia e rere ana, ā, ka whakahokia te wāhanga kāore i whakamahia.",
+    "topUpCredits": "Tāpiri whiwhinga",
     "preview": "Arokite",
     "openInBrowser": "Whakatuwhera i te pūtirotiro",
     "reload": "Whakahoutia",

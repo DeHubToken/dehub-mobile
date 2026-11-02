@@ -13595,7 +13595,11 @@
     "skippedOtherToast": "{{platforms}} darbeera: barreeffama kana fudhachuu hin dandeenye."
   },
   "builder": {
-    "stakeForAllowance": "Daangaa ijaarsa guyyaa guyyaan kee ol kaasuuf token DeHub kaa'i",
+    "modelLabel": "Moodeela",
+    "creditsLeft": "{{amount}} kireeditii keessa",
+    "perPrompt": "≈ gaaffii tokkoof {{price}}",
+    "pricingNote": "Gaaffiin hundi kireeditii kee irraa gatii moodeelaa fi dabalata 30%tiin kaffalama. Gatiin olaanaan gaaffii tokkoo yeroo hojjetu qabama, kutaan hin fayyadamne ni deebi'a.",
+    "topUpCredits": "Kireeditii guuti",
     "preview": "Fakkeenya",
     "openInBrowser": "Birawuzaraan bani",
     "reload": "Deebi'ii fe'i",

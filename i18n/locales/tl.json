@@ -13737,7 +13737,11 @@
     "skippedOtherToast": "Nilaktawan ang {{platforms}}: hindi nila makuha ang post na ito."
   },
   "builder": {
-    "stakeForAllowance": "I-stake ang DeHub tokens para taasan ang iyong araw-araw na limitasyon sa build",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} sa credits",
+    "perPrompt": "≈ {{price}} bawat prompt",
+    "pricingNote": "Bawat prompt ay binabayaran mula sa iyong credits sa halaga ng modelo dagdag ang 30%. Ang pinakamataas na posibleng halaga ng prompt ay hinahawakan habang tumatakbo ito at ibinabalik ang hindi nagamit.",
+    "topUpCredits": "Mag-top up ng credits",
     "preview": "Pagsusuri",
     "openInBrowser": "Buksan sa browser",
     "reload": "I-reload",

@@ -13552,7 +13552,11 @@
     "skippedOtherToast": "تخطى {{platforms}}: ما قدروا ياخذوا هذا البوست."
   },
   "builder": {
-    "stakeForAllowance": "راهن بعملات DeHub عشان تزيد حد البناء اليومي مالك",
+    "modelLabel": "النموذج",
+    "creditsLeft": "{{amount}} من الرصيد",
+    "perPrompt": "≈ {{price}} لكل طلب",
+    "pricingNote": "كل طلب ينخصم من رصيدك بتكلفة النموذج زائد 30%. أعلى تكلفة ممكنة للطلب تنحجز وهو شغّال والباقي اللي ما انستخدم يرجع لك.",
+    "topUpCredits": "اشحن الرصيد",
     "preview": "معاينة",
     "openInBrowser": "افتح في المتصفح",
     "reload": "تحديث",

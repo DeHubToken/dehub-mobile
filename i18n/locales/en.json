@@ -12267,7 +12267,11 @@
       "restore": "Restore",
       "restored": "Restored version {{version}}"
     },
-    "stakeForAllowance": "Stake DeHub tokens to raise your daily build allowance",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} in credits",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Each prompt is paid from your credits at the model's cost plus 30%. The most a prompt can cost is held while it runs and the unused part is returned.",
+    "topUpCredits": "Top up credits",
     "preview": "Preview",
     "openInBrowser": "Open in browser",
     "reload": "Reload",

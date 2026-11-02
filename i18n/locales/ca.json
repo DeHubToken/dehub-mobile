@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "S'ha saltat {{platforms}}: no han pogut acceptar aquesta publicació."
   },
   "builder": {
-    "stakeForAllowance": "Fes stake de tokens DeHub per augmentar el teu límit diari de construccions",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} en crèdits",
+    "perPrompt": "≈ {{price}} per petició",
+    "pricingNote": "Cada petició es paga amb els teus crèdits al cost del model més un 30%. El màxim que pot costar una petició es reté mentre s'executa i la part no utilitzada es retorna.",
+    "topUpCredits": "Recarrega crèdits",
     "preview": "Vista prèvia",
     "openInBrowser": "Obre al navegador",
     "reload": "Recarrega",

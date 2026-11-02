@@ -13536,7 +13536,11 @@
     "skippedOtherToast": "Skipped {{platforms}}: ma qaadan karaan qoraalkan."
   },
   "builder": {
-    "stakeForAllowance": "Rux tokenada DeHub si aad u kordhiso xadka dhismaha maalinlaha ah",
+    "modelLabel": "Moodeel",
+    "creditsLeft": "{{amount}} oo deyn ah",
+    "perPrompt": "≈ {{price}} codsi kasta",
+    "pricingNote": "Codsi kasta waxaa laga bixiyaa deyntaada qiimaha moodeelka oo lagu daray 30%. Qiimaha ugu badan ee codsi ayaa la haystaa inta uu socdo, qaybta aan la isticmaalinna waa la soo celiyaa.",
+    "topUpCredits": "Ku shub deyn",
     "preview": "Horeeya",
     "openInBrowser": "Ku fur biraawsarka",
     "reload": "Dib u shubo",

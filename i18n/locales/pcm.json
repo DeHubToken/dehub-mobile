@@ -13519,7 +13519,11 @@
     "skippedOtherToast": "We skip {{platforms}}: dem no fit take this post."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub tokens make you increase your daily build allowance",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} for credits",
+    "perPrompt": "≈ {{price}} for each prompt",
+    "pricingNote": "We dey pay each prompt from your credits for the model cost plus 30%. The most wey one prompt fit cost go dey hold while e dey run, and the part wey you no use go come back.",
+    "topUpCredits": "Top up credits",
     "preview": "Preview",
     "openInBrowser": "Open am for browser",
     "reload": "Reload",

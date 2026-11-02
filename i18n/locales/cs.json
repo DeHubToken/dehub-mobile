@@ -13561,7 +13561,11 @@
     "skippedOtherToast": "Přeskočeno {{platforms}}: nemohli tento příspěvek přijmout."
   },
   "builder": {
-    "stakeForAllowance": "Zastakujte tokeny DeHub a zvyšte si denní limit sestavení",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} v kreditech",
+    "perPrompt": "≈ {{price}} za výzvu",
+    "pricingNote": "Každá výzva se platí z vašich kreditů za cenu modelu plus 30 %. Nejvyšší možná cena výzvy se během běhu blokuje a nevyužitá část se vrací.",
+    "topUpCredits": "Dobít kredity",
     "preview": "Náhled",
     "openInBrowser": "Otevřít v prohlížeči",
     "reload": "Obnovit",

@@ -13576,7 +13576,11 @@
     "skippedOtherToast": "Saltasqa {{platforms}}: mana kay qillqasqata apayta atirqankuchu."
   },
   "builder": {
-    "stakeForAllowance": "DeHub fichaskunata churay p'unchaynin ruwana hark'ayniykita jatunchanaykipaq",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} crédito nisqapi",
+    "perPrompt": "≈ sapa mañakuypaq {{price}}",
+    "pricingNote": "Sapa mañakuyqa creditoykikunamanta modelopa chaninwan 30% yapasqawan pagakun. Aswan hatun chaninqa llamk'ashaqtin hap'isqa kan, mana llamk'achisqa partetaq kutichisqa.",
+    "topUpCredits": "Crédito yapay",
     "preview": "Ñawiriy",
     "openInBrowser": "Buscadorpi kichay",
     "reload": "Kutin cargay",

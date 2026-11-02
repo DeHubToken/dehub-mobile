@@ -13857,7 +13857,11 @@
     "skippedOtherToast": "{{platforms}} hatin derbaskirin: wan nekarî vê şandiyê qebûl bikin."
   },
   "builder": {
-    "stakeForAllowance": "Tokenên DeHub stake bike da ku destûra xwe ya avakirinê ya rojane zêde bikî",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} di krediyan de",
+    "perPrompt": "≈ {{price}} ji bo her daxwazê",
+    "pricingNote": "Her daxwaz ji krediyên te bi bihayê modelê û 30% zêdetir tê dayîn. Herî zêde lêçûna daxwazê dema dixebite tê girtin û beşa nehatî bikaranîn tê vegerandin.",
+    "topUpCredits": "Krediyan barkirin",
     "preview": "Pêşdîtin",
     "openInBrowser": "Di gerokê de veke",
     "reload": "Dîsa bar bike",

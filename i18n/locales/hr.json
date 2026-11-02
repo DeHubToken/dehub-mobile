@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "Preskočeno {{platforms}}: korisnik nije mogao preuzeti ovu objavu."
   },
   "builder": {
-    "stakeForAllowance": "Uložite DeHub tokene kako biste povećali svoju dnevnu kvotu izrade",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} u kreditima",
+    "perPrompt": "≈ {{price}} po upitu",
+    "pricingNote": "Svaki upit plaća se iz tvojih kredita po cijeni modela uz 30 %. Najveći mogući trošak upita zadržava se dok se izvodi, a neiskorišteni dio se vraća.",
+    "topUpCredits": "Nadoplati kredite",
     "preview": "Pregled",
     "openInBrowser": "Otvori u pregledniku",
     "reload": "Ponovno učitaj",

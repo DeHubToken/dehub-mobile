@@ -13606,7 +13606,11 @@
     "skippedOtherToast": "Dilewatkan {{platforms}}: mereka tidak bisa menerima postingan ini."
   },
   "builder": {
-    "stakeForAllowance": "Stake token DeHub untuk menaikkan kuota build harian Anda",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} dalam kredit",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Setiap prompt dibayar dari kreditmu sesuai biaya model ditambah 30%. Biaya maksimum sebuah prompt ditahan selama berjalan dan sisa yang tidak terpakai dikembalikan.",
+    "topUpCredits": "Isi ulang kredit",
     "preview": "Pratinjau",
     "openInBrowser": "Buka di browser",
     "reload": "Muat ulang",

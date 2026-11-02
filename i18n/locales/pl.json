@@ -13671,7 +13671,11 @@
     "skippedOtherToast": "Pominięto {{platforms}}: nie mogli przyjąć tego posta."
   },
   "builder": {
-    "stakeForAllowance": "Zastawiaj tokeny DeHub, aby zwiększyć swój dzienny limit budowania",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} w kredytach",
+    "perPrompt": "≈ {{price}} za prompt",
+    "pricingNote": "Każdy prompt jest opłacany z Twoich kredytów według kosztu modelu plus 30%. Maksymalny koszt promptu jest blokowany na czas działania, a niewykorzystana część wraca.",
+    "topUpCredits": "Doładuj kredyty",
     "preview": "Podgląd",
     "openInBrowser": "Otwórz w przeglądarce",
     "reload": "Odśwież",

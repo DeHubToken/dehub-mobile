@@ -13542,7 +13542,11 @@
     "skippedOtherToast": "跳过 {{platforms}}：伊们无法接收该帖子。"
   },
   "builder": {
-    "stakeForAllowance": "质押DeHub代币来提高侬每日额度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 积分",
+    "perPrompt": "≈ 每趟提示 {{price}}",
+    "pricingNote": "每趟提示侪从侬个积分里扣，金额是模型成本加 30%。运行辰光会预留单趟提示个最高费用，呒没用完个部分会退还。",
+    "topUpCredits": "充值积分",
     "preview": "预览",
     "openInBrowser": "拿浏览器打开",
     "reload": "重新加载",

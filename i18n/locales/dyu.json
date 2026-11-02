@@ -13538,7 +13538,11 @@
   },
   "builder": {
     "example1": "Pomodoro waati jateminɛn, tile o tile ɲɔgɔnkɔtugu bɛ min na",
-    "stakeForAllowance": "I ka DeHub jɛtɔn kɛ stake la walasa ka i ka don o don jɔyɔrɔ ka bon",
+    "modelLabel": "Modeli",
+    "creditsLeft": "{{amount}} kredi la",
+    "perPrompt": "≈ {{price}} ɲininkali kelen o kelen",
+    "pricingNote": "Ɲininkali kelen o kelen sara bɛ bɔ i ka kredi la ni modeli songo ye ani 30% fara a kan. Ɲininkali songo caman bɛ mara a baara waati la, a tɔ min ma baara kɛ bɛ segin i ma.",
+    "topUpCredits": "Kredi fara a kan",
     "preview": "Fɔlɔ filɛli",
     "openInBrowser": "A dabɔ ɲinini yɔrɔ la",
     "reload": "Kura Charger",

@@ -13538,7 +13538,11 @@
     "skippedOtherToast": "ስኪፕ {{platforms}}: ነዚ ጽሑፍ እዚ ክወስዱ ኣይከኣሉን ።"
   },
   "builder": {
-    "stakeForAllowance": "መዓልታዊ ደረጃ ህንጸት ንምዕባይ ናይ DeHub ቶክናት ስተይክ ግበር",
+    "modelLabel": "ሞዴል",
+    "creditsLeft": "{{amount}} ክሬዲት",
+    "perPrompt": "≈ ንሓደ ሕቶ {{price}}",
+    "pricingNote": "ነፍሲ ወከፍ ሕቶ ካብ ክሬዲትካ ብዋጋ እቲ ሞዴል ምስ 30% ወሰኽ ይኽፈል። እቲ ዝለዓለ ዋጋ ሕቶ ኣብ ግዜ ስርሑ ይሕዝ፣ ዘይተጠቐመሉ ክፋል ድማ ይምለስ።",
+    "topUpCredits": "ክሬዲት መልእ",
     "preview": "ቅድመ ርኢቶ",
     "openInBrowser": "ኣብ መሰራጨዊ ክፈት",
     "reload": "ዳግም ጽዓን",

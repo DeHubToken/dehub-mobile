@@ -13682,7 +13682,11 @@
     "skippedOtherToast": "Slaan {{platforms}}: hulle kon nie hierdie pos neem nie."
   },
   "builder": {
-    "stakeForAllowance": "Staak DeHub-tekens om jou daaglikse boulimiet te verhoog",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} in krediete",
+    "perPrompt": "≈ {{price}} per opdrag",
+    "pricingNote": "Elke opdrag word uit jou krediete betaal teen die model se koste plus 30%. Die meeste wat 'n opdrag kan kos, word gehou terwyl dit loop, en die ongebruikte deel word terugbesorg.",
+    "topUpCredits": "Laai krediete aan",
     "preview": "Voorskou",
     "openInBrowser": "Maak in blaaier oop",
     "reload": "Herlaai",

@@ -13557,7 +13557,11 @@
     "skippedOtherToast": "{{platforms}}ötürüldü: bu yazını qəbul edə bilmədi."
   },
   "builder": {
-    "stakeForAllowance": "Gündəlik quraşdırma limitini artırmaq üçün DeHub tokenlərini stayk et",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} kredit",
+    "perPrompt": "≈ sorğu başına {{price}}",
+    "pricingNote": "Hər sorğu modelin dəyəri üstəgəl 30% ilə kreditlərinizdən ödənilir. Sorğunun ola biləcək ən yüksək dəyəri icra zamanı saxlanılır və istifadə olunmayan hissə geri qaytarılır.",
+    "topUpCredits": "Kredit artır",
     "preview": "Önbaxış",
     "openInBrowser": "Brauzerdə aç",
     "reload": "Yenilə",

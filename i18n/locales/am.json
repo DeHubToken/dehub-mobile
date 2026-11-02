@@ -13585,7 +13585,11 @@
     "skippedOtherToast": "{{platforms}} ተዘለዋል፦ ይህን ልጥፍ መቀበል አልቻሉም።"
   },
   "builder": {
-    "stakeForAllowance": "የቀን ግንባታ ገደብህን ለማሳደግ የDeHub ቶከኖችን ስቴክ አድርግ",
+    "modelLabel": "ሞዴል",
+    "creditsLeft": "{{amount}} ክሬዲት",
+    "perPrompt": "≈ {{price}} ለአንድ ጥያቄ",
+    "pricingNote": "እያንዳንዱ ጥያቄ ከክሬዲትዎ በሞዴሉ ወጪ ላይ 30% ተጨምሮ ይከፈላል። አንድ ጥያቄ ሊያስከፍል የሚችለው ከፍተኛ መጠን በሚሰራበት ጊዜ ይያዛል፣ ጥቅም ላይ ያልዋለው ክፍል ይመለሳል።",
+    "topUpCredits": "ክሬዲት ይሙሉ",
     "preview": "ቅድመ እይታ",
     "openInBrowser": "በአሳሽ ውስጥ ክፈት",
     "reload": "እንደገና ጫን",
