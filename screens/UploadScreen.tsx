@@ -109,10 +109,10 @@ import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSh
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
-import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
+import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
+import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
 import { optionalSkia } from "../libs/skia";
-import ImageCropPicker from "react-native-image-crop-picker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
@@ -231,8 +231,10 @@ const CATEGORIES_MAX = 5;
 /** Closing with more words than this saves the post to Drafts without asking. */
 const AUTO_DRAFT_MIN_WORDS = 3;
 type PickedAsset = ImagePicker.ImagePickerAsset & {
-  /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
+  /** The original picture the studio draws its edits over, so edits never stack. */
   editBaseUri?: string;
+  /** Photo studio edits (crop, look, adjust, marks) kept as settings for re-editing. */
+  studio?: StudioEdits;
   filter?: FilterSettings;
   filterPresetId?: string;
   /** Alt text: what the picture or video shows, for people who cannot see it. */
@@ -248,9 +250,9 @@ function mediaDescriptionsOf(video: PickedAsset | null, images: PickedAsset[]): 
 const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
 
-/** Filters and Draw & write are drawn with Skia, which older installs lack. */
-const ImageEditSheet = optionalSkia(
-  () => require("../components/Upload/ImageEditSheet").default as typeof import("../components/Upload/ImageEditSheet").default,
+/** The photo studio is drawn with Skia, which older installs lack. */
+const PhotoStudio = optionalSkia(
+  () => require("../components/Upload/PhotoStudio").default as typeof import("../components/Upload/PhotoStudio").default,
 );
 type MediaMode = "none" | "images" | "video" | "audio";
 
@@ -386,7 +388,7 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
-  const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
+  const [imageEdit, setImageEdit] = useState<{ index: number; tab: StudioTab } | null>(null);
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
@@ -2133,72 +2135,32 @@ export default function UploadScreen() {
   }, []);
 
   /**
-   * A filter keeps the pre-filter picture so it can be re-picked from scratch;
-   * a drawing or a crop is drawn over what the photo looks like now, filter
-   * included, so it becomes the new starting point — as on the web, where the
-   * annotator drops the stored filter settings.
+   * The studio hands back a baked copy of each photo it changed. The original
+   * stays as editBaseUri and the edits as settings, so the next edit starts
+   * from the original and every tool can be changed again.
    */
-  const handleImageEdited = useCallback(
-    (result: ImageEditResult, filter?: { settings: FilterSettings; presetId?: string }) => {
-      const target = imageEdit;
-      setImageEdit(null);
-      if (!target) return;
-      setPickedImages((prev) => prev.map((img, i) => {
-        if (i !== target.index) return img;
-        const next: PickedAsset = {
-          ...img,
-          uri: result.uri,
-          width: result.width,
-          height: result.height,
-          mimeType: result.mimeType,
-          fileName: result.fileName,
-          fileSize: undefined,
-        };
-        return filter
-          ? { ...next, editBaseUri: img.editBaseUri ?? img.uri, filter: filter.settings, filterPresetId: filter.presetId }
-          : { ...next, editBaseUri: undefined, filter: undefined, filterPresetId: undefined };
-      }));
-    },
-    [imageEdit],
-  );
-
-  const handleCropImage = useCallback(async (index: number) => {
-    const img = pickedImages[index];
-    if (!img) return;
-    try {
-      const out = await ImageCropPicker.openCropper({
-        path: img.uri,
-        mediaType: "photo",
-        freeStyleCropEnabled: true,
-        // The frame starts on the whole picture and output is never upscaled.
-        ...(img.width && img.height ? { width: img.width, height: img.height } : {}),
-        compressImageQuality: 0.92,
-        forceJpg: img.mimeType !== "image/png",
-        cropperToolbarTitle: t("upload.cropRotate"),
-        cropperToolbarColor: "#000000",
-        cropperStatusBarLight: false,
-        cropperToolbarWidgetColor: "#ffffff",
-        cropperActiveWidgetColor: "#ffffff",
-        cropperRotateButtonsHidden: false,
-      });
-      setPickedImages((prev) => prev.map((im, i) => (i !== index ? im : {
-        ...im,
-        uri: out.path,
-        width: out.width,
-        height: out.height,
-        mimeType: out.mime,
-        fileName: getFileName(out.path, "image.jpg"),
-        fileSize: out.size,
-        editBaseUri: undefined,
+  const handleStudioDone = useCallback((results: StudioResult[]) => {
+    setImageEdit(null);
+    if (!results.length) return;
+    setPickedImages((prev) => prev.map((img, i) => {
+      const r = results.find((x) => x.index === i);
+      if (!r) return img;
+      return {
+        ...img,
+        editBaseUri: img.editBaseUri ?? img.uri,
+        studio: r.edits,
+        uri: r.uri,
+        width: r.width,
+        height: r.height,
+        mimeType: r.mimeType,
+        fileName: r.fileName,
+        fileSize: undefined,
         filter: undefined,
         filterPresetId: undefined,
-      })));
-    } catch (err: any) {
-      if (err?.code === "E_PICKER_CANCELLED") return;
-      console.warn("[UploadScreen] crop failed:", err);
-      toastError(t("upload.editFailed"));
-    }
-  }, [pickedImages]);
+      };
+    }));
+  }, []);
+
 
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
@@ -2855,10 +2817,10 @@ export default function UploadScreen() {
                           flatten an animated GIF to one frame, so GIFs get none. */}
                       {!isGifAsset(img) && (
                       <View className="absolute bottom-2 right-2 flex-row">
-                        {ImageEditSheet && (
+                        {PhotoStudio && (
                           <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "filter" })}
-                            className={`w-7 h-7 rounded-lg items-center justify-center dark-surface mr-1.5 ${img.filter ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
+                            onPress={() => setImageEdit({ index: idx, tab: "looks" })}
+                            className={`w-7 h-7 rounded-lg items-center justify-center dark-surface mr-1.5 ${img.studio ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
                             hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
                             accessibilityRole="button"
                             accessibilityLabel={t("upload.editFilters")}
@@ -2866,8 +2828,9 @@ export default function UploadScreen() {
                             <Icon name="Palette" size={14} color="#fff" />
                           </TouchableOpacity>
                         )}
+                        {PhotoStudio && (
                         <TouchableOpacity
-                          onPress={() => handleCropImage(idx)}
+                          onPress={() => setImageEdit({ index: idx, tab: "crop" })}
                           className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70 mr-1.5"
                           hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
                           accessibilityRole="button"
@@ -2875,9 +2838,10 @@ export default function UploadScreen() {
                         >
                           <Icon name="Crop" size={14} color="#fff" />
                         </TouchableOpacity>
-                        {ImageEditSheet && (
+                        )}
+                        {PhotoStudio && (
                           <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "draw" })}
+                            onPress={() => setImageEdit({ index: idx, tab: "draw" })}
                             className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
                             hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
                             accessibilityRole="button"
@@ -4185,18 +4149,17 @@ export default function UploadScreen() {
           }}
         />
       )}
-      {ImageEditSheet && imageEdit && pickedImages[imageEdit.index] && (() => {
-        const img = pickedImages[imageEdit.index];
-        const isFilter = imageEdit.mode === "filter";
+      {PhotoStudio && imageEdit && pickedImages[imageEdit.index] && (() => {
+        // GIFs stay out: drawing one flattens it to a single frame.
+        const editable = pickedImages.map((img, i) => ({ img, i })).filter(({ img }) => !isGifAsset(img));
+        const start = Math.max(0, editable.findIndex(({ i }) => i === imageEdit.index));
         return (
-          <ImageEditSheet
-            mode={imageEdit.mode}
-            uri={isFilter ? img.editBaseUri ?? img.uri : img.uri}
-            mimeType={img.mimeType}
-            initialFilter={isFilter ? img.filter : undefined}
-            initialPresetId={isFilter ? img.filterPresetId : undefined}
+          <PhotoStudio
+            photos={editable.map(({ img }) => ({ baseUri: img.editBaseUri ?? img.uri, mimeType: img.mimeType, edits: img.studio }))}
+            startIndex={start}
+            startTab={imageEdit.tab}
             onClose={() => setImageEdit(null)}
-            onApply={handleImageEdited}
+            onDone={(results) => handleStudioDone(results.map((r) => ({ ...r, index: editable[r.index].i })))}
           />
         );
       })()}

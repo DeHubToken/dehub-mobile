@@ -84,6 +84,11 @@ export function paintEdit(canvas: SkCanvas, image: SkImage, w: number, h: number
   if (ops.items?.length) paintAnnotations(canvas, ops.items, w, h);
 }
 
+/** Marks alone, in 0..1 coordinates of a `w` x `h` box. */
+export function paintAnnotationsOnly(canvas: SkCanvas, items: Annotation[], w: number, h: number) {
+  paintAnnotations(canvas, items, w, h);
+}
+
 function paintAnnotations(canvas: SkCanvas, items: Annotation[], w: number, h: number) {
   const unit = Math.min(w, h);
   for (const item of items) {
