@@ -819,6 +819,53 @@ export function useEditFeatureRequest() {
   });
 }
 
+/**
+ * Accounts that can move any request to Queued or Shipped, whoever posted it.
+ * Only decides who sees the controls: the database's
+ * feature_request_status_editor_wallets() is the real check. Same list as web.
+ */
+const FEATURE_STATUS_EDITOR_WALLETS = ["0x9324840523a5d17dd12a2f11a9472e5a199c1937"]; // maldoteth
+
+export function isFeatureStatusEditor(wallet: string | null | undefined): boolean {
+  return !!wallet && FEATURE_STATUS_EDITOR_WALLETS.includes(wallet.toLowerCase());
+}
+
+/** Statuses the owners set from the board: Requests, Queued, Shipped. */
+export type EditableFeatureStatus = "open" | "in_progress" | "shipped";
+
+/** Owner-only status change. Mirrors web's useSetFeatureStatus. */
+export function useSetFeatureStatus() {
+  const { t: _copy } = _useCopy();
+  const queryClient = useQueryClient();
+  const wallet = useWallet();
+
+  return useMutation({
+    mutationFn: async ({ id, status }: { id: string; status: EditableFeatureStatus }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const { error } = await withWalletHeader(
+        (supabase as any).rpc("set_feature_request_status", { p_id: id, p_status: status }),
+        wallet.toLowerCase(),
+      );
+      if (error) throw error;
+      return status;
+    },
+    onSuccess: (status) => {
+      invalidateFeatureRows(queryClient);
+      toastSuccess(
+        status === "shipped"
+          ? _copy("copy.366cb56b38ce", { defaultValue: "Marked Shipped" })
+          : status === "in_progress"
+            ? _copy("copy.ae6a0ffbe609", { defaultValue: "Marked Queued" })
+            : _copy("copy.9db7b5ba03bb", { defaultValue: "Moved back to Requests" }),
+      );
+    },
+    onError: (error) => {
+      log.error("Set feature status failed:", error);
+      toastError(error, _copy("copy.bb2be752e079", { defaultValue: "Couldn't change the status" }));
+    },
+  });
+}
+
 /** Author-only delete. Mirrors web's useDeleteFeatureRequest. */
 export function useDeleteFeatureRequest() {
   const { t: _copy } = _useCopy();
