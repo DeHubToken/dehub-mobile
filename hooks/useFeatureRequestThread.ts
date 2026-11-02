@@ -348,7 +348,7 @@ export function useFeatureThreadActions(featureRequestId: string, feature: { tit
       if (error) throw error;
     },
     onSuccess: () => { void refresh(); },
-    onError: (error) => toastError(error, t("copy.78443791af16", { defaultValue: "Failed to save comment" })),
+    onError: (error) => toastError(error, t("feedCard.saveFailed")),
   });
 
   const remove = useMutation({

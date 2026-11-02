@@ -247,8 +247,8 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
         <View style={styles.banner}>
           <Text style={styles.bannerText} numberOfLines={1}>
             {editing
-              ? t("comments.editing", { defaultValue: "Editing comment" })
-              : t("features.replyingTo", { name: `@${replyTo?.user?.username || replyTo?.address?.slice(0, 8)}` })}
+              ? t("comments.editingComment")
+              : t("governance.discussion.replyingTo", { name: `@${replyTo?.user?.username || replyTo?.address?.slice(0, 8)}` })}
           </Text>
           <Pressable onPress={cancelReplyOrEdit} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.cancel")}>
             <Icon name="X" size={14} color="#808089" />
