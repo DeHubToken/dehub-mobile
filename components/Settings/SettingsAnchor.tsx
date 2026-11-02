@@ -58,7 +58,7 @@ const PanelHeader: React.FC<{ title: string; icon: IconName }> = ({ title, icon 
   const { colors } = useAppTheme();
   return (
     <View className="flex-row items-center mb-2" style={{ gap: 12 }}>
-      <Icon name={icon} size={20} color={colors.neutrals[400]} />
+      <Icon name={icon} size={20} color={colors.neutrals[500]} />
       <Text className="text-white text-lg font-semibold">{title}</Text>
     </View>
   );
