@@ -437,8 +437,10 @@ const glassStyles = StyleSheet.create({
     borderTopRightRadius: 20,
     overflow: "hidden",
   },
+  // Solid, the composer bar's own colour: over a bright post the glass wash
+  // read grey above a near-black "Type here" strip.
   overlay: {
-    backgroundColor: SHEET_GLASS_FILL,
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: SHEET_GLASS_BORDER,
   },
