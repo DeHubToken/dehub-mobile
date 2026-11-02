@@ -115,7 +115,7 @@ import { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
 import { startDraftImage } from "../services/draftImage";
-import RecentMediaStrip, { type RecentPick } from "../components/Upload/RecentMediaStrip";
+import ChoiceRow from "../components/Upload/ChoiceRow";
 import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
 import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
@@ -827,8 +827,6 @@ export default function UploadScreen() {
     isAudioRecording ||
     (!isLiveMode && !pickedVideo && pickedImages.length >= imageLimit);
   const showMediaButton = !mediaDisabled;
-  // Latest photos and videos above the toolbar, while the post can still take one.
-  const showRecentStrip = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !mediaDisabled;
   // "Preview": the post as the real feed card draws it, from what is on the phone.
   const previewItem = useMemo(() => {
     const body = bodyText.trim();
@@ -1998,24 +1996,6 @@ export default function UploadScreen() {
       setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
   }, [pickedImages, imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
-
-  /** A tap on the recent strip: one photo, or the post's one video. */
-  const handleRecentPick = useCallback(async (pick: RecentPick) => {
-    const asset = { ...pick } as unknown as PickedAsset;
-    if (pick.type === "video") {
-      if (pickedImages.length > 0) {
-        toastError(t("upload.imagesOrVideo"));
-        return;
-      }
-      await adoptVideoAsset(asset);
-      return;
-    }
-    if (pickedVideo) {
-      toastError(t("upload.imagesOrVideo"));
-      return;
-    }
-    await adoptImageAssets([asset]);
-  }, [pickedImages.length, pickedVideo, adoptVideoAsset, adoptImageAssets, t]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
@@ -3505,84 +3485,54 @@ export default function UploadScreen() {
                 creator reach on a post they believe is fine, so it sits past
                 the options they came to set rather than second, under the
                 thumb, where a stray tap goes unnoticed. */}
-              {/* Who may see the post — everyone, followers, or only the
-                  people it mentions. First, because it decides the rows
-                  below it: a post nobody else can see cannot be quoted. */}
+              {/* Who may see / quote / reply. Each is one row with a switch:
+                  off is the open default, on shows the narrower choices as
+                  buttons underneath. Same as web's ChoiceRow. */}
               {!isLiveMode && !isQuoteMode && (
-              <View className="py-3">
-                <View className="flex-row items-center">
-                  <Icon name="Eye" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("postVisibility.label")}</Text>
-                </View>
-                <View className="flex-row flex-wrap mt-2 ml-7">
-                  {(["public", "followers", "direct"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setVisibility(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: visibility === option }}
-                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${visibility === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${visibility === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`postVisibility.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-                {visibility === "direct" && (
-                  <Text className="text-theme-neutrals-400 text-xs mt-1 ml-7">{t("postVisibility.directHint")}</Text>
-                )}
-              </View>
+                <ChoiceRow
+                  icon="Eye"
+                  label={t("postVisibility.label")}
+                  value={visibility}
+                  offValue="public"
+                  offLabel={t("postVisibility.public")}
+                  options={[
+                    { value: "followers", label: t("postVisibility.followers") },
+                    { value: "direct", label: t("postVisibility.direct") },
+                  ]}
+                  onChange={setVisibility}
+                  hint={visibility === "direct" ? t("postVisibility.directHint") : undefined}
+                />
               )}
 
-              {/* Who may quote the post — anyone, followers, or only the creator. */}
               {!isLiveMode && visibility === "public" && (
-              <View className="flex-row items-center justify-between py-3">
-                <View className="flex-row items-center flex-1 mr-3">
-                  <Icon name="Quote" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("quotePolicy.label")}</Text>
-                </View>
-                <View className="flex-row">
-                  {(["public", "followers", "nobody"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setQuotePolicy(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: quotePolicy === option }}
-                      className={`ml-1 rounded-lg px-2 py-1 ${quotePolicy === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`quotePolicy.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
+                <ChoiceRow
+                  icon="Quote"
+                  label={t("quotePolicy.label")}
+                  value={quotePolicy}
+                  offValue="public"
+                  offLabel={t("quotePolicy.public")}
+                  options={[
+                    { value: "followers", label: t("quotePolicy.followers") },
+                    { value: "nobody", label: t("quotePolicy.nobody") },
+                  ]}
+                  onChange={setQuotePolicy}
+                />
               )}
 
-              {/* Who may reply — four options, so they wrap under the label. */}
               {!isLiveMode && (
-              <View className="py-3">
-                <View className="flex-row items-center">
-                  <Icon name="Reply" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("replyPolicy.label")}</Text>
-                </View>
-                <View className="flex-row flex-wrap mt-2 ml-7">
-                  {(["public", "followers", "following", "mentioned"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setReplyPolicy(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: replyPolicy === option }}
-                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${replyPolicy === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`replyPolicy.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
+                <ChoiceRow
+                  icon="Reply"
+                  label={t("replyPolicy.label")}
+                  value={replyPolicy}
+                  offValue="public"
+                  offLabel={t("replyPolicy.public")}
+                  options={[
+                    { value: "followers", label: t("replyPolicy.followers") },
+                    { value: "following", label: t("replyPolicy.following") },
+                    { value: "mentioned", label: t("replyPolicy.mentioned") },
+                  ]}
+                  onChange={setReplyPolicy}
+                />
               )}
 
               {MATURE_CONTENT_ENABLED && (
@@ -3611,15 +3561,6 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
-      {showRecentStrip && (
-        <RecentMediaStrip
-          pickedIds={pickedImages.map((a) => a.assetId).filter((id): id is string => !!id)}
-          photosPicked={pickedImages.length > 0}
-          full={pickedImages.length >= imageLimit}
-          onPick={(pick) => void handleRecentPick(pick)}
-          onOpenAll={() => void handlePickMediaLibrary()}
-        />
-      )}
 
       <View className="h-px bg-white/10" />
 
