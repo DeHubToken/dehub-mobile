@@ -3675,6 +3675,9 @@
     "sendWithMessage": "Enviar com mensagem",
     "messageFailed": "Sua mensagem não pôde ser adicionada. Nenhuma gorjeta foi enviada.",
     "wallLabel": "Mensagens de gorjeta",
+    "railTitle": "Gorjetas",
+    "railTotal": "{{amount}} tokens",
+    "tokensUnit": "tokens",
     "messagePrivateNote": "Apenas {{name}} vê, em sua notificação."
   },
   "postOptions": {
