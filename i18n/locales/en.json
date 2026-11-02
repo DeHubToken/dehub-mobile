@@ -1,4 +1,24 @@
 {
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pages",
+    "open": "Open comic, page {{page}} of {{total}}",
+    "flip": "Page {{page}} of {{total}}. Tap to flip",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt text",
+    "cards": "Back to cards",
+    "readAll": "Read all pages",
+    "editor": {
+      "count": "{{count}} of {{limit}} pages",
+      "coverHint": "Page 1 is the cover",
+      "empty": "Add your pages with the photo button. Each page gets a caption and alt text.",
+      "cover": "Cover",
+      "caption": "Caption for this page",
+      "alt": "Alt text: what the page shows"
+    }
+  },
   "nftMarket": {
     "shareMessage": "Buy and sell NFTs on DeHub",
     "allChains": "All chains",

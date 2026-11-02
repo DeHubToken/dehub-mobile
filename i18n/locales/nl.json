@@ -1,4 +1,24 @@
 {
+  "comic": {
+    "tab": "Strip",
+    "title": "Strip",
+    "chip": "Strip · {{count}} pagina's",
+    "open": "Strip openen, pagina {{page}} van {{total}}",
+    "flip": "Pagina {{page}} van {{total}}. Tik om om te draaien",
+    "page": "Pagina {{page}}",
+    "goto": "Pagina {{page}}",
+    "alt": "Alt-tekst",
+    "cards": "Terug naar kaarten",
+    "readAll": "Alle pagina's lezen",
+    "editor": {
+      "count": "{{count}} van {{limit}} pagina's",
+      "coverHint": "Pagina 1 is de cover",
+      "empty": "Voeg je pagina's toe met de fotoknop. Elke pagina krijgt een bijschrift en alt-tekst.",
+      "cover": "Cover",
+      "caption": "Bijschrift voor deze pagina",
+      "alt": "Alt-tekst: wat de pagina laat zien"
+    }
+  },
   "nftMarket": {
     "shareMessage": "Koop en verkoop NFT's op DeHub",
     "allChains": "Alle chains",

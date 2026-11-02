@@ -103,6 +103,8 @@ export type UploadPayload = {
   shopListingIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  layout?: "comic";
+  mediaCaptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the text. */
@@ -334,6 +336,8 @@ export function useUploadPost() {
         shopListingIds: p.shopListingIds,
         crossPostAccountIds: p.crossPostAccountIds,
         mediaDescriptions: p.mediaDescriptions,
+        layout: p.layout,
+        mediaCaptions: p.mediaCaptions,
         spoilerText: p.spoilerText,
         hideAssetCards: p.hideAssetCards,
         quotePolicy: p.quotePolicy,

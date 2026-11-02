@@ -1,4 +1,24 @@
 {
+  "comic": {
+    "tab": "Cómic",
+    "title": "Cómic",
+    "chip": "Cómic · {{count}} páginas",
+    "open": "Abrir cómic, página {{page}} de {{total}}",
+    "flip": "Página {{page}} de {{total}}. Toca para girar",
+    "page": "Página {{page}}",
+    "goto": "Página {{page}}",
+    "alt": "Texto alternativo",
+    "cards": "Volver a las cartas",
+    "readAll": "Leer todas las páginas",
+    "editor": {
+      "count": "{{count}} de {{limit}} páginas",
+      "coverHint": "La página 1 es la portada",
+      "empty": "Añade tus páginas con el botón de foto. Cada página lleva un pie y un texto alternativo.",
+      "cover": "Portada",
+      "caption": "Pie de esta página",
+      "alt": "Texto alternativo: lo que muestra la página"
+    }
+  },
   "nftMarket": {
     "shareMessage": "Compra y vende NFTs en DeHub",
     "allChains": "Todas las cadenas",

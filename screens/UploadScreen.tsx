@@ -70,7 +70,7 @@ import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
+import { getComicImageLimitForBadge, getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import ArticleEditor from "../components/article/ArticleEditor";
 import { ARTICLE_BODY_MIN, ARTICLE_SUMMARY_MAX, articleLook, articleSummaryFromBody } from "../libs/article";
@@ -79,6 +79,7 @@ import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import ComicPagesList from "../components/Upload/ComicPagesList";
 import DraftAssetCards from "../components/Upload/DraftAssetCards";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
@@ -249,6 +250,8 @@ type PickedAsset = ImagePicker.ImagePickerAsset & {
   filterPresetId?: string;
   /** Alt text: what the picture or video shows, for people who cannot see it. */
   description?: string;
+  /** Comic page caption, shown to everyone on the card. */
+  caption?: string;
 };
 
 /** Alt text in upload order: the video, or each photo by position. */
@@ -302,7 +305,9 @@ export default function UploadScreen() {
   const incomingVideo = route.params?.video;
   const authUser = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
-  const imageLimit = getPostImageLimitForBadge(
+  // Comic: a photo post shown as collector cards, each page with a caption.
+  const [comicMode, setComicMode] = useState(false);
+  const imageLimit = (comicMode ? getComicImageLimitForBadge : getPostImageLimitForBadge)(
     authUser?.badgeBalance,
     authUser?.username,
     authUser?.badgeLock,
@@ -768,6 +773,8 @@ export default function UploadScreen() {
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
+  const comicLayout = comicMode && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && !pickedVideo && !pickedAudio && pickedImages.length > 0
+    ? ("comic" as const) : undefined;
   // Title input is forced for video/audio (they need a name on-chain) and for
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode || isStageMode;
@@ -1299,6 +1306,8 @@ export default function UploadScreen() {
       // publish it to everyone there.
       crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      layout: comicLayout,
+      mediaCaptions: comicLayout && pickedImages.some(img => img.caption?.trim()) ? pickedImages.map(img => img.caption?.trim() || "") : undefined,
       spoilerText: contentWarning?.trim() || undefined,
       hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
@@ -1306,7 +1315,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -2513,22 +2522,27 @@ export default function UploadScreen() {
         </View>
       </GestureDetector>
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); }}>
-          <Text className={!isLiveMode && !isStageMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode && !comicMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); setComicMode(false); }}>
+          <Text className={!isLiveMode && !isStageMode && !articleMode && !comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        </TouchableOpacity>
+        <Text className="text-white/25 text-xs">|</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: comicMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(true); setComicMode(true); setPollEnabled(false); setMonetization(emptyMonetization()); }}>
+          <Text className={comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comic.tab", { defaultValue: "Comic" })}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
-          onPress={() => { setIsStageMode(false); setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+          onPress={() => { setIsStageMode(false); setArticleMode(false); setComicMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
           <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setIsStageMode(true); setPollEnabled(false); }}>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setComicMode(false); setIsStageMode(true); setPollEnabled(false); }}>
           <Text className={isStageMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("nav.stages")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setComicMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
           <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
         </TouchableOpacity>
       </View>}
@@ -2912,6 +2926,15 @@ export default function UploadScreen() {
                   </TouchableOpacity>
                 )}
               </GestureScrollView>
+            )}
+
+            {comicMode && !isLiveMode && !pickedVideo && !pickedAudio && (
+              <ComicPagesList
+                pages={pickedImages}
+                limit={imageLimit}
+                onCaption={(index, caption) => setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, caption: caption || undefined } : img)))}
+                onAlt={index => setAltEditor({ kind: "image", index })}
+              />
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (

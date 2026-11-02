@@ -258,6 +258,14 @@ function rebuildFormData(
     fd.append("mediaDescriptions", JSON.stringify(payload.mediaDescriptions));
   }
 
+  // Comic: the photos show as collector cards, each page with its caption.
+  if (payload.layout === "comic") {
+    fd.append("layout", "comic");
+    if (payload.mediaCaptions?.some(Boolean)) {
+      fd.append("mediaCaptions", JSON.stringify(payload.mediaCaptions));
+    }
+  }
+
   // Content warning. Only sent when there is one.
   if (payload.spoilerText?.trim()) {
     fd.append("spoilerText", payload.spoilerText.trim());
