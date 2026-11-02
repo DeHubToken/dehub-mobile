@@ -837,7 +837,7 @@ export default function UploadScreen() {
     !isQuoteMode && (isLiveMode || (!pickedVideo && !pickedAudio && !isAudioRecording));
   // Polls are text-only on web too — no video, no images.
   const showPollButton =
-    !isLiveMode && !isQuoteMode && !pickedVideo && pickedImages.length === 0;
+    !isLiveMode && !isQuoteMode && !comicMode && !pickedVideo && pickedImages.length === 0;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     shareAudioWhenSilent(p);
@@ -2537,14 +2537,9 @@ export default function UploadScreen() {
         </View>
       </GestureDetector>
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode && !comicMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); setComicMode(false); }}>
-          <Text className={!isLiveMode && !isStageMode && !articleMode && !comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
-        </TouchableOpacity>
-        <Text className="text-white/25 text-xs">|</Text>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: comicMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(true); setComicMode(true); setPollEnabled(false); setMonetization(emptyMonetization()); }}>
-          <Text className={comicMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("comic.tab", { defaultValue: "Comic" })}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); if (!comicMode) setShowTitle(false); }}>
+          <Text className={!isLiveMode && !isStageMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
@@ -3775,7 +3770,7 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
               hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-              style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
+              style={{ backgroundColor: pollEnabled || comicMode || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
               accessibilityRole="button"
               accessibilityLabel={t("player.moreOptions")}
               accessibilityState={{ expanded: showPostOptions }}
@@ -3947,6 +3942,24 @@ export default function UploadScreen() {
               <Icon name="ChartBarBig" size={20} color="#fff" />
               <Text className="flex-1 ml-3 text-white text-sm">{t("upload.addPoll")}</Text>
               {pollEnabled && <Icon name="Check" size={18} color="#fff" />}
+            </TouchableOpacity>
+          )}
+          {/* Comic lives here, under Polls, rather than as a top tab. */}
+          {!isLiveMode && !isStageMode && !articleMode && !isQuoteMode && !pickedVideo && !pickedAudio && !pollEnabled && (
+            <TouchableOpacity
+              onPress={() => {
+                setShowPostOptions(false);
+                if (comicMode) { setComicMode(false); setShowTitle(false); }
+                else { setShowTitle(true); setComicMode(true); setPollEnabled(false); setMonetization(emptyMonetization()); }
+              }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: comicMode }}
+              className="flex-row items-center px-4 py-3 rounded-xl"
+              style={{ backgroundColor: comicMode ? "rgba(255,255,255,0.15)" : "transparent" }}
+            >
+              <Icon name="BookOpen" size={20} color="#fff" />
+              <Text className="flex-1 ml-3 text-white text-sm">{t("comic.tab")}</Text>
+              {comicMode && <Icon name="Check" size={18} color="#fff" />}
             </TouchableOpacity>
           )}
           {!isLiveMode && (
