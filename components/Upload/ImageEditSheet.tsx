@@ -31,6 +31,8 @@ import {
 import { bakeEdit, downscale, loadImage, paintEdit, type Annotation, type EditOps, type Point } from "./imageEditSkia";
 import { toastError } from "../../libs/toast";
 import KeyboardPanView from "../common/KeyboardPanView";
+import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { MOTION } from "../../theme/motion";
 
 export type ImageEditMode = "filter" | "draw";
 
@@ -82,6 +84,15 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
   const [settings, setSettings] = useState<FilterSettings>(initialFilter ?? { ...DEFAULT_FILTER_SETTINGS });
   const [presetId, setPresetId] = useState<string | undefined>(initialFilter ? initialPresetId : "normal");
   const [showAdjust, setShowAdjust] = useState(false);
+  // The sliders are mounted (and measured) up front, hidden, so opening can
+  // grow straight to their height and closing can slide them away.
+  const [adjustMounted, setAdjustMounted] = useState(mode === "filter");
+  // 0 = closed, 1 = open. The panel grows to the sliders' measured height and
+  // the photo scales down to fit what is left, all on the UI thread: the
+  // preview never re-renders while the panel moves.
+  const adjust = useSharedValue(0);
+  const adjustH = useSharedValue(0);
+  const moving = useRef(false);
 
   // Draw state
   const [tool, setTool] = useState<"draw" | "text">("draw");
@@ -129,10 +140,39 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
     [mode, settings, items],
   );
 
+  // The photo is sized for the room it has with the sliders closed; while
+  // they are open (or moving) the frame shrinks and the photo is scaled.
+  const adjustOpen = useRef(false);
+  adjustOpen.current = showAdjust;
   const onArea = useCallback((e: LayoutChangeEvent) => {
+    if (adjustOpen.current || moving.current) return;
     const { width, height } = e.nativeEvent.layout;
     setArea({ w: width - 32, h: height - 32 });
   }, []);
+
+  const settle = useCallback(() => {
+    moving.current = false;
+  }, []);
+  const toggleAdjust = () => {
+    const next = !showAdjust;
+    if (next) setAdjustMounted(true);
+    setShowAdjust(next);
+    moving.current = true;
+    adjust.value = withTiming(
+      next ? 1 : 0,
+      { duration: next ? MOTION.open : MOTION.close, easing: next ? Easing.out(Easing.cubic) : Easing.inOut(Easing.cubic) },
+      (done) => { if (done) runOnJS(settle)(); },
+    );
+  };
+  const panelStyle = useAnimatedStyle(() => ({ height: adjustH.value * adjust.value }));
+  const chevronStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${adjust.value * 180}deg` }] }));
+  const boxH = box?.h ?? 0;
+  const areaH = area?.h ?? 0;
+  const previewStyle = useAnimatedStyle(() => {
+    if (boxH <= 0) return { transform: [{ scale: 1 }] };
+    const room = areaH - adjustH.value * adjust.value;
+    return { transform: [{ scale: Math.max(0.2, Math.min(1, room / boxH)) }] };
+  });
 
   // ── filters ──
   const pickPreset = (id: string) => {
@@ -275,7 +315,7 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
 
         <View className="flex-1 items-center justify-center" onLayout={onArea}>
           {image && box ? (
-            <View style={{ width: box.w, height: box.h }}>
+            <Animated.View style={[{ width: box.w, height: box.h }, mode === "filter" ? previewStyle : null]}>
               <EditPreview image={image} width={box.w} height={box.h} ops={ops} />
               {mode === "draw" && (
                 <View
@@ -320,7 +360,7 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
                   )}
                 </View>
               )}
-            </View>
+            </Animated.View>
           ) : (
             <ActivityIndicator color="#fff" />
           )}
@@ -355,7 +395,7 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
 
             <View className="border-t border-white/10">
               <Pressable
-                onPress={() => setShowAdjust((v) => !v)}
+                onPress={toggleAdjust}
                 className="flex-row items-center justify-between px-4 py-3"
                 accessibilityRole="button"
                 accessibilityState={{ expanded: showAdjust }}
@@ -371,10 +411,17 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
                   >
                     <Icon name="RotateCcw" size={16} color="#A1A1AA" />
                   </Pressable>
-                  <Icon name={showAdjust ? "ChevronUp" : "ChevronDown"} size={16} color="#A1A1AA" />
+                  <Animated.View style={chevronStyle}>
+                    <Icon name="ChevronDown" size={16} color="#A1A1AA" />
+                  </Animated.View>
                 </View>
               </Pressable>
-              {showAdjust && (
+              {adjustMounted && (
+                <Animated.View style={[{ overflow: "hidden" }, panelStyle]} pointerEvents={showAdjust ? "auto" : "none"}>
+                <View
+                  style={{ position: "absolute", left: 0, right: 0, top: 0 }}
+                  onLayout={(e) => { adjustH.value = e.nativeEvent.layout.height; }}
+                >
                 <ScrollView style={{ maxHeight: 260 }} contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 12 }}>
                   <Range label={t("editor.app.brightness", { value: settings.brightness })} value={settings.brightness} min={0} max={200} step={1} onLive={slide("brightness")} onDone={() => {}} />
                   <Range label={t("editor.app.contrast", { value: settings.contrast })} value={settings.contrast} min={0} max={200} step={1} onLive={slide("contrast")} onDone={() => {}} />
@@ -383,6 +430,8 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
                   <Range label={t("upload.fade", { value: settings.sepia })} value={settings.sepia} min={0} max={100} step={1} onLive={slide("sepia")} onDone={() => {}} />
                   <Range label={t("upload.grayscale", { value: settings.grayscale })} value={settings.grayscale} min={0} max={100} step={1} onLive={slide("grayscale")} onDone={() => {}} />
                 </ScrollView>
+                </View>
+                </Animated.View>
               )}
             </View>
           </View>

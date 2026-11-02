@@ -12,6 +12,7 @@ import Icon from "../ui/Icon";
 import { useTranscript, type TranscriptSegment } from "../../hooks/useTranscript";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { toastSuccess } from "../../libs/toast";
+import { Collapsible, CollapsibleChevron } from "../ui/Collapsible";
 
 function formatTimestamp(seconds: number) {
   const s = Math.max(0, Math.floor(seconds || 0));
@@ -64,10 +65,10 @@ export default function TranscriptSection({ tokenId, onSeek }: { tokenId: number
           )}
           {inFlight && <ActivityIndicator size="small" color="rgba(255,255,255,0.6)" />}
         </View>
-        <Icon name={open ? "ChevronUp" : "ChevronDown"} size={16} color="rgba(255,255,255,0.6)" />
+        <CollapsibleChevron open={open} size={16} color="rgba(255,255,255,0.6)" />
       </Pressable>
 
-      {open && (
+      <Collapsible open={open}>
         <View style={styles.body}>
           {isLoading && (
             <View style={styles.row}>
@@ -202,7 +203,7 @@ export default function TranscriptSection({ tokenId, onSeek }: { tokenId: number
             </>
           )}
         </View>
-      )}
+      </Collapsible>
     </View>
   );
 }
