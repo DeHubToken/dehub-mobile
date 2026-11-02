@@ -221,6 +221,8 @@ export async function createCommunity(
     avatar_url?: string;
     banner_url?: string;
     is_private?: boolean;
+    kind?: "community" | "group" | "channel";
+    entry_price?: number | null;
   },
 ): Promise<Community> {
   const { data, error } = await withWalletHeader(
@@ -235,6 +237,8 @@ export async function createCommunity(
         creator_wallet_address: walletAddress.toLowerCase(),
         is_private: input.is_private || false,
         rules: [],
+        ...(input.kind && input.kind !== "community" ? { kind: input.kind } : {}),
+        ...(input.entry_price ? { entry_price: input.entry_price } : {}),
       } as any)
       .select()
       .single(),
