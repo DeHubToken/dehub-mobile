@@ -9,8 +9,10 @@ import {
   FlatList,
   KeyboardAvoidingView,
   useWindowDimensions,
-} from "react-native";
-import { shareWithRef } from "../libs/shareRef";
+} from "react-native";
+
+import { shareWithRef } from "../libs/shareRef";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
@@ -57,6 +59,10 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import CommunityDescription from "../components/Communities/CommunityDescription";
+import { TopHolders } from "../components/Communities/TopHolders";
+import { formatHolderAmount, holderGateMessage, holderGateOf, isDehubToken, runHolderCheck } from "../libs/holder-gate";
+
+const DEHUB_COIN = require("../assets/web-icons/dehub-coin.png");
 
 /** Members rendered (and profile-resolved) per page of the Members tab. */
 const MEMBERS_PAGE = 30;
@@ -98,6 +104,7 @@ const CommunityDetailScreen: React.FC = () => {
   // the right it needs, so a partially-privileged admin gets exactly the subset
   // of the panel the server would let them use.
   const abilities = getCommunityAbilities(community, membership);
+  const holderGate = holderGateOf(community);
   const { data: pendingMembers = [] } = usePendingMembersQuery(
     community?.id,
     abilities.can("restrict_members"),
@@ -244,6 +251,16 @@ const CommunityDetailScreen: React.FC = () => {
         } else {
           // Whether this lands as 'active' or 'pending' is decided server-side
           // from the community's privacy, not asked for by the client.
+          // Holder groups: the database reads the wallet's balance first, and
+          // only a passing read lets the membership row in.
+          const gate = holderGateOf(community);
+          if (gate) {
+            const check = await runHolderCheck(community.id, wallet);
+            if (check.status !== "open" && !check.eligible) {
+              toastError(holderGateMessage(check, gate));
+              return;
+            }
+          }
           await joinCommunity(wallet, community.id);
           toastSuccess(
             community.is_private ? t("communities.joinRequestSent") : t("communities.joined"),
@@ -407,6 +424,19 @@ const CommunityDetailScreen: React.FC = () => {
             <Text className="text-zinc-400 text-sm mt-1">
               {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
             </Text>
+            {holderGate && (
+              <View style={styles.holderChip}>
+                {isDehubToken(holderGate)
+                  ? <Image source={DEHUB_COIN} style={{ width: 14, height: 14 }} contentFit="contain" />
+                  : <Icon name="Coins" size={13} color="#d4d4d8" />}
+                <Text className="text-zinc-300 text-xs">
+                  {t("communities.holderGate.chip", {
+                    defaultValue: "Holders only · {{amount}}+",
+                    amount: formatHolderAmount(holderGate.min, holderGate.symbol),
+                  })}
+                </Text>
+              </View>
+            )}
           </View>
         </View>
 
@@ -592,6 +622,8 @@ const CommunityDetailScreen: React.FC = () => {
                   <Text className="text-white text-sm leading-6">{t("communities.noDescription")}</Text>
                 )}
 
+                <TopHolders community={community} />
+
                 {abilities.can("change_info") ? (
                   <CommunityInfoEditor community={community} onSaved={load} />
                 ) : null}
@@ -661,6 +693,19 @@ const CommunityDetailScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  holderChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    gap: 6,
+    marginTop: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.05)",
+  },
   bannerWrap: { height: 140, position: "relative" },
   banner: { width: "100%", height: "100%" },
   bannerPlaceholder: { backgroundColor: theme.colors.neutrals[800] },

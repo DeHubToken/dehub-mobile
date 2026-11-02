@@ -265,6 +265,10 @@ export function communityErrorMessage(error: unknown, fallback: string): string 
     return PERMISSION_DENIED_COPY[permission[1]] ?? _translateCopy("copy.7b2d32bd2e67", { defaultValue: "You do not have permission to {{value1}}", value1: permission[1].replace(/_/g, " ") });
   }
 
+  if (raw.includes("holder_gate_required")) {
+    return _translateCopy("communities.holderGate.required", { defaultValue: "Holders only: your wallet doesn't hold enough of this community's token to chat." });
+  }
+
   const slow = raw.match(/slow_mode_active:(\d+)/);
   if (slow) {
     const seconds = Number(slow[1]);
