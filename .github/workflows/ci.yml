@@ -53,6 +53,9 @@ jobs:
       # notices. orphan-baseline.json is the backlog being worked through — a
       # key outside it is a feature that shipped English-only, and fails here.
       - name: TypeScript check
+        # The project outgrew Node's default ~2 GB heap; tsc ran out of memory.
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
         run: npx tsc --noEmit
 
       # Thresholds are enforced by coverageThreshold in jest.config.js, so a

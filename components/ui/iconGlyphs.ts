@@ -80,6 +80,7 @@ export const iconGlyphs: Partial<Record<string, string>> = {
   Compass: "\ue09f",
   Component: "\ue2ad",
   Contact: "\ue0a0",
+  Contrast: "\ue0a1",
   Cookie: "\ue26b",
   Copy: "\ue0a2",
   CornerDownLeft: "\ue0a5",

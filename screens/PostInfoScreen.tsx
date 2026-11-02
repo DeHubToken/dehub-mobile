@@ -21,7 +21,6 @@ import BuyFractionSheet from "../components/Fractions/BuyFractionSheet";
 import SellFractionsSheet, { type SellTarget } from "../components/Fractions/SellFractionsSheet";
 import MakeOfferSheet, { type OfferTarget } from "../components/Fractions/MakeOfferSheet";
 import { fmt, shortAddress } from "../components/Fractions/fractionFormat";
-import { DeHubLoader } from "../components/DeHubLoader";
 import { getNFT, getPpvSalesCount, togglePostVisibility } from "../services/nft.service";
 import { supabase } from "../services/supabase";
 import { useMintExistingPost } from "../hooks/useMintExistingPost";
@@ -48,6 +47,7 @@ import PostStatsSection from "../components/Post/stats/PostStatsSection";
 import { setPostStartTime } from "../libs/post-start-time";
 import { Image } from "expo-image";
 import { getTokenHolders } from "../libs/token-holders";
+import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 
 const MEDALS: Record<number, number> = {
   1: require("../assets/badges/1-medal.png"),
@@ -104,11 +104,15 @@ export default function PostInfoScreen() {
   const [selling, setSelling] = useState<SellTarget | null>(null);
   const [offering, setOffering] = useState<OfferTarget | null>(null);
 
-  const { data: post, isLoading, refetch } = useQuery({
+  // Paint the post the tapped card already had (or the last copy on disk)
+  // on the first frame; the full read only fills in what the card lacked.
+  // Waiting on it here was the whole page sitting on a loader.
+  const { data: post, isLoading, isPlaceholderData, refetch } = useQuery({
     queryKey: ["post-info", tokenId],
-    queryFn: async () => (await getNFT(tokenId)).result as any,
+    queryFn: async () => (await takeWarmRequest(`info:${tokenId}`, () => getNFT(tokenId))).result as any,
     enabled: !!tokenId,
     staleTime: 60_000,
+    placeholderData: () => peekPostDetailSeed<any>(tokenId) ?? undefined,
   });
 
   const isUnminted = post?.status === "signed";
@@ -145,8 +149,14 @@ export default function PostInfoScreen() {
     queryKey: ["token-holders", tokenId, chainId],
     enabled: isMinted && tokenId != null,
     staleTime: 5 * 60_000,
-    retry: 1,
-    queryFn: () => getTokenHolders(tokenId!, chainId),
+    // A slow chain node used to hold this row on "Loading..." for ages: give
+    // it ten seconds, then say the owners are unavailable.
+    retry: 0,
+    queryFn: () =>
+      Promise.race([
+        getTokenHolders(tokenId!, chainId),
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error("holders timeout")), 10_000)),
+      ]),
   });
 
   const viewer = (user?.address || user?.walletAddress || "").toLowerCase();
@@ -193,11 +203,19 @@ export default function PostInfoScreen() {
     type: post?.postType || undefined,
   };
 
-  if (isLoading) {
+  if (isLoading && !post) {
+    // Cold open from a link: the page's shape right away, not a loader.
     return (
       <View style={styles.root}>
         <ScreenHeader title={t("postInfo.title")} />
-        <View style={styles.center}><DeHubLoader size={56} /></View>
+        <ScrollView contentContainerStyle={styles.body} scrollEnabled={false}>
+          {[96, 64, 132, 88].map((h, i) => (
+            <View key={i} style={[styles.section, styles.skeleton, { height: h }]}>
+              <View style={styles.skeletonLine} />
+              <View style={[styles.skeletonLine, { width: "40%" }]} />
+            </View>
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -216,7 +234,7 @@ export default function PostInfoScreen() {
     );
   }
 
-  if (post.status === "pending") {
+  if (post.status === "pending" && !isPlaceholderData) {
     return (
       <View style={styles.root}>
         <ScreenHeader title={t("postInfo.title")} />
@@ -230,8 +248,10 @@ export default function PostInfoScreen() {
     );
   }
 
-  const likes = post.totalVotes?.for ?? post.like_count ?? 0;
-  const dislikes = post.totalVotes?.against ?? post.dislike_count ?? 0;
+  // The feed copy painted first names these likes/dislikes: read those too
+  // rather than flashing 0 until the full post lands.
+  const likes = post.totalVotes?.for ?? post.like_count ?? post.likes ?? 0;
+  const dislikes = post.totalVotes?.against ?? post.dislike_count ?? post.dislikes ?? 0;
   const views = resolveViewCount(post);
   const comments = post.commentCount ?? post.comment_count ?? 0;
   const likeRatio = likes + dislikes > 0 ? Math.round((likes / (likes + dislikes)) * 100) : 100;
@@ -260,7 +280,11 @@ export default function PostInfoScreen() {
               </Text>
             </View>
           </View>
-          {isUnminted ? (
+          {isPlaceholderData && !post.mintTxHash && !isUnminted ? (
+            <View style={styles.divider}>
+              <ActivityIndicator color="rgba(255,255,255,0.6)" size="small" style={{ alignSelf: "flex-start" }} />
+            </View>
+          ) : isUnminted ? (
             <View style={[styles.divider, styles.placeholder]}>
               <Icon name="Package" size={28} color="rgba(255,255,255,0.4)" />
               <Text style={[styles.muted, styles.centerText]}>{t("postInfo.mintToGenerate")}</Text>
@@ -402,17 +426,17 @@ export default function PostInfoScreen() {
 
             <View style={[styles.rowBetween, { marginTop: 12 }]}>
               <Text style={styles.label}>{t("postInfo.distribution")}</Text>
+              {loadingHolders ? (
+                <ActivityIndicator color="rgba(255,255,255,0.6)" size="small" />
+              ) : (
               <Text style={styles.value}>
-                {loadingHolders
-                  ? t("postInfo.loading")
-                  : holders.length > 0
+                {holders.length > 0
                     ? t("postInfo.owner", { count: holders.length })
                     : t("postInfo.unavailable")}
               </Text>
+              )}
             </View>
-            {loadingHolders ? (
-              <ActivityIndicator color="rgba(255,255,255,0.6)" style={{ paddingVertical: 8 }} />
-            ) : holders.length === 0 ? (
+            {loadingHolders ? null : holders.length === 0 ? (
               // A failed chain read, or no transfers in the scanned window, says
               // nothing about who owns it, so no "creator owns 100%" row here.
               <Text style={styles.muted}>{t("postInfo.ownersUnavailable")}</Text>
@@ -576,6 +600,8 @@ export default function PostInfoScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
+  skeleton: { justifyContent: "center" },
+  skeletonLine: { height: 12, width: "70%", borderRadius: 6, backgroundColor: "rgba(255,255,255,0.08)" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 12 },
   // Same 8pt side inset as the ScreenHeader island above, so the cards and
   // the top pill share their left and right edges.

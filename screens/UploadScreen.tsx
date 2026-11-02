@@ -21,6 +21,7 @@ import {
   Modal,
   Keyboard,
   PanResponder,
+  StyleSheet,
 } from "react-native";
 import { Gesture, GestureDetector, ScrollView as GestureScrollView } from "react-native-gesture-handler";
 import { COMPOSER_SHEET, useComposerSheet } from "../hooks/useComposerSheet";
@@ -29,7 +30,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import Icon from "../components/ui/Icon";
+import Icon, { type IconName } from "../components/ui/Icon";
 import PollDurationChips from "../components/Post/PollDurationChips";
 import Animated, {
   useSharedValue,
@@ -109,10 +110,10 @@ import VideoTrimSheet, { type VideoTrim } from "../components/Upload/VideoTrimSh
 import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
-import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
+import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
+import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
 import { optionalSkia } from "../libs/skia";
-import ImageCropPicker from "react-native-image-crop-picker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
@@ -146,10 +147,18 @@ const SHOULD_MINT_KEY = "post_should_mint";
 const TITLE_MAX = POST_TITLE_MAX;
 
 /** The handle owns the pan, leaving image taps and the composer's scrolling alone. */
-function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
+/** Photo tiles: one row, each in its real shape between these widths. */
+const PHOTO_TILE_H = 200;
+function photoTileWidth(img: { width?: number; height?: number }) {
+  const aspect = img.width && img.height ? img.width / img.height : 1;
+  return Math.round(Math.max(0.6, Math.min(1.6, aspect)) * PHOTO_TILE_H);
+}
+
+function PhotoOrderHandle({ index, count, slotWidth, onMove, onDrag }: {
   index: number;
   count: number;
-  columnWidth: number;
+  /** Roughly one tile plus its gap, to turn a drag into a new position. */
+  slotWidth: number;
   onMove: (from: number, to: number) => void;
   onDrag: (index: number | null, x?: number, y?: number) => void;
 }) {
@@ -159,22 +168,20 @@ function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
     onMoveShouldSetPanResponder: () => true,
     // Claimed at once so the composer sheet never takes the drag as a close.
     onPanResponderGrant: () => onDrag(index, 0, 0),
-    onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, gesture.dy),
+    onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, 0),
     onPanResponderRelease: (_, gesture) => {
-      const row = Math.max(0, Math.round(index / 2 + gesture.dy / 168 - (index % 2) / 2));
-      const column = Math.max(0, Math.min(1, Math.round((index % 2) + gesture.dx / columnWidth)));
-      onMove(index, Math.min(count - 1, row * 2 + column));
+      onMove(index, Math.max(0, Math.min(count - 1, index + Math.round(gesture.dx / slotWidth))));
       onDrag(null);
     },
     onPanResponderTerminate: () => onDrag(null),
     onPanResponderTerminationRequest: () => false,
-  }), [index, count, columnWidth, onMove, onDrag]);
+  }), [index, count, slotWidth, onMove, onDrag]);
 
   return (
     <View {...responder.panHandlers} style={{ position: "absolute", left: 8, bottom: 8, zIndex: 10 }}
-      className="bg-black/80 rounded-lg px-2 py-1 flex-row items-center"
+      className="dark-surface bg-black/70 rounded-full px-2 h-7 flex-row items-center"
       accessible accessibilityRole="button" accessibilityLabel={_copy("copy.8912e65bf642", { defaultValue: "Drag to reorder photo {{value1}} of {{value2}}", value1: index + 1, value2: count })}>
-      <Icon name="Grip" size={16} color="#fff" />
+      <Icon name="Grip" size={14} color="#fff" />
       <Text className="text-white text-xs ml-1">{index + 1}</Text>
     </View>
   );
@@ -231,8 +238,10 @@ const CATEGORIES_MAX = 5;
 /** Closing with more words than this saves the post to Drafts without asking. */
 const AUTO_DRAFT_MIN_WORDS = 3;
 type PickedAsset = ImagePicker.ImagePickerAsset & {
-  /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
+  /** The original picture the studio draws its edits over, so edits never stack. */
   editBaseUri?: string;
+  /** Photo studio edits (crop, look, adjust, marks) kept as settings for re-editing. */
+  studio?: StudioEdits;
   filter?: FilterSettings;
   filterPresetId?: string;
   /** Alt text: what the picture or video shows, for people who cannot see it. */
@@ -248,9 +257,9 @@ function mediaDescriptionsOf(video: PickedAsset | null, images: PickedAsset[]): 
 const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
 
-/** Filters and Draw & write are drawn with Skia, which older installs lack. */
-const ImageEditSheet = optionalSkia(
-  () => require("../components/Upload/ImageEditSheet").default as typeof import("../components/Upload/ImageEditSheet").default,
+/** The photo studio is drawn with Skia, which older installs lack. */
+const PhotoStudio = optionalSkia(
+  () => require("../components/Upload/PhotoStudio").default as typeof import("../components/Upload/PhotoStudio").default,
 );
 type MediaMode = "none" | "images" | "video" | "audio";
 
@@ -386,7 +395,7 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
-  const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
+  const [imageEdit, setImageEdit] = useState<{ index: number; tab: StudioTab } | null>(null);
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
@@ -398,7 +407,8 @@ export default function UploadScreen() {
   const [replyPolicy, setReplyPolicy] = useState<"public" | "followers" | "following" | "mentioned">("public");
   // Who may see the post. Everyone, unless the creator narrows it; fixed once posted.
   const [visibility, setVisibility] = useState<"public" | "followers" | "direct">("public");
-  const [photoGridWidth, setPhotoGridWidth] = useState(0);
+  // Hold menu on a photo tile (index), or null.
+  const [photoMenu, setPhotoMenu] = useState<number | null>(null);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
     setPickedImages(prev => {
@@ -2133,72 +2143,32 @@ export default function UploadScreen() {
   }, []);
 
   /**
-   * A filter keeps the pre-filter picture so it can be re-picked from scratch;
-   * a drawing or a crop is drawn over what the photo looks like now, filter
-   * included, so it becomes the new starting point — as on the web, where the
-   * annotator drops the stored filter settings.
+   * The studio hands back a baked copy of each photo it changed. The original
+   * stays as editBaseUri and the edits as settings, so the next edit starts
+   * from the original and every tool can be changed again.
    */
-  const handleImageEdited = useCallback(
-    (result: ImageEditResult, filter?: { settings: FilterSettings; presetId?: string }) => {
-      const target = imageEdit;
-      setImageEdit(null);
-      if (!target) return;
-      setPickedImages((prev) => prev.map((img, i) => {
-        if (i !== target.index) return img;
-        const next: PickedAsset = {
-          ...img,
-          uri: result.uri,
-          width: result.width,
-          height: result.height,
-          mimeType: result.mimeType,
-          fileName: result.fileName,
-          fileSize: undefined,
-        };
-        return filter
-          ? { ...next, editBaseUri: img.editBaseUri ?? img.uri, filter: filter.settings, filterPresetId: filter.presetId }
-          : { ...next, editBaseUri: undefined, filter: undefined, filterPresetId: undefined };
-      }));
-    },
-    [imageEdit],
-  );
-
-  const handleCropImage = useCallback(async (index: number) => {
-    const img = pickedImages[index];
-    if (!img) return;
-    try {
-      const out = await ImageCropPicker.openCropper({
-        path: img.uri,
-        mediaType: "photo",
-        freeStyleCropEnabled: true,
-        // The frame starts on the whole picture and output is never upscaled.
-        ...(img.width && img.height ? { width: img.width, height: img.height } : {}),
-        compressImageQuality: 0.92,
-        forceJpg: img.mimeType !== "image/png",
-        cropperToolbarTitle: t("upload.cropRotate"),
-        cropperToolbarColor: "#000000",
-        cropperStatusBarLight: false,
-        cropperToolbarWidgetColor: "#ffffff",
-        cropperActiveWidgetColor: "#ffffff",
-        cropperRotateButtonsHidden: false,
-      });
-      setPickedImages((prev) => prev.map((im, i) => (i !== index ? im : {
-        ...im,
-        uri: out.path,
-        width: out.width,
-        height: out.height,
-        mimeType: out.mime,
-        fileName: getFileName(out.path, "image.jpg"),
-        fileSize: out.size,
-        editBaseUri: undefined,
+  const handleStudioDone = useCallback((results: StudioResult[]) => {
+    setImageEdit(null);
+    if (!results.length) return;
+    setPickedImages((prev) => prev.map((img, i) => {
+      const r = results.find((x) => x.index === i);
+      if (!r) return img;
+      return {
+        ...img,
+        editBaseUri: img.editBaseUri ?? img.uri,
+        studio: r.edits,
+        uri: r.uri,
+        width: r.width,
+        height: r.height,
+        mimeType: r.mimeType,
+        fileName: r.fileName,
+        fileSize: undefined,
         filter: undefined,
         filterPresetId: undefined,
-      })));
-    } catch (err: any) {
-      if (err?.code === "E_PICKER_CANCELLED") return;
-      console.warn("[UploadScreen] crop failed:", err);
-      toastError(t("upload.editFailed"));
-    }
-  }, [pickedImages]);
+      };
+    }));
+  }, []);
+
 
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
@@ -2806,24 +2776,37 @@ export default function UploadScreen() {
             )}
 
             {!isLiveMode && mediaMode === "images" && (
-              <View className="mt-3 flex-row flex-wrap -m-1" onLayout={event => setPhotoGridWidth(event.nativeEvent.layout.width)}>
-                {pickedImages.map((img, idx) => (
+              // Photos in their real shape on one side-scrolling row: tap to view,
+              // Edit opens the studio, hold for alt text, replace, move and remove.
+              <GestureScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                scrollEnabled={!draggedPhoto}
+                style={{ marginTop: 12, marginHorizontal: -16 }}
+                contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
+              >
+                {pickedImages.map((img, idx) => {
+                  const tileW = photoTileWidth(img);
+                  return (
                   <View
                     key={`img-${img.assetId || img.uri}-${idx}`}
-                    className="w-1/2 p-1"
-                    style={draggedPhoto?.index === idx ? { zIndex: 20, transform: [{ translateX: draggedPhoto.x }, { translateY: draggedPhoto.y }] } : undefined}
+                    style={[{ width: tileW, height: PHOTO_TILE_H }, draggedPhoto?.index === idx ? { zIndex: 20, transform: [{ translateX: draggedPhoto.x }] } : null]}
                   >
-                    <View className="rounded-xl overflow-hidden border border-theme-neutrals-700">
+                    <View className="flex-1 rounded-xl overflow-hidden border border-theme-neutrals-700">
                       <TouchableOpacity
                         onPress={() => setFullscreenImageUri(img.uri)}
+                        onLongPress={() => setPhotoMenu(idx)}
+                        delayLongPress={350}
                         activeOpacity={0.9}
+                        style={{ flex: 1 }}
                         accessibilityRole="button"
                         accessibilityLabel={t("upload.viewImageFullscreen")}
+                        accessibilityHint={t("upload.photoHoldHint", { defaultValue: "Hold for more options" })}
                       >
                         <SmartImage
                           source={{ uri: img.uri }}
                           recyclingKey={img.uri}
-                          style={{ width: "100%", height: 160 }}
+                          style={{ width: "100%", height: "100%" }}
                           contentFit="cover"
                         />
                       </TouchableOpacity>
@@ -2841,74 +2824,44 @@ export default function UploadScreen() {
                       >
                         <Icon name="X" size={16} color="#fff" />
                       </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => handleChangeImage(idx)}
-                        className="absolute top-2 right-11 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
-                        hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t("upload.changeImage", { index: idx + 1 })}
-                      >
-                        <Icon name="Upload" size={14} color="#fff" />
-                      </TouchableOpacity>
-                      {/* Filters, crop and draw — the web composer's photo tools, bottom right
-                          to leave the top row and the reorder handle clear. Any of them would
-                          flatten an animated GIF to one frame, so GIFs get none. */}
-                      {!isGifAsset(img) && (
-                      <View className="absolute bottom-2 right-2 flex-row">
-                        {ImageEditSheet && (
-                          <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "filter" })}
-                            className={`w-7 h-7 rounded-lg items-center justify-center dark-surface mr-1.5 ${img.filter ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
-                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
-                            accessibilityRole="button"
-                            accessibilityLabel={t("upload.editFilters")}
-                          >
-                            <Icon name="Palette" size={14} color="#fff" />
-                          </TouchableOpacity>
-                        )}
+                      {/* One Edit pill opens the studio (crop, looks, adjust, draw). An
+                          edit would flatten an animated GIF to one frame, so GIFs get none. */}
+                      {PhotoStudio && !isGifAsset(img) && (
                         <TouchableOpacity
-                          onPress={() => handleCropImage(idx)}
-                          className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70 mr-1.5"
-                          hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                          onPress={() => setImageEdit({ index: idx, tab: "looks" })}
+                          className={`absolute bottom-2 right-2 flex-row items-center px-2.5 h-7 rounded-full dark-surface ${img.studio ? "bg-white" : "bg-black/70"}`}
+                          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                           accessibilityRole="button"
-                          accessibilityLabel={t("upload.cropRotate")}
+                          accessibilityLabel={t("upload.editPhoto", { defaultValue: "Edit photo {{n}}", n: idx + 1 })}
                         >
-                          <Icon name="Crop" size={14} color="#fff" />
+                          <Icon name="SlidersHorizontal" size={13} color={img.studio ? "#000" : "#fff"} />
+                          <Text style={{ color: img.studio ? "#000" : "#fff", fontSize: 12, fontWeight: "600", marginLeft: 5 }}>
+                            {img.studio ? t("upload.edited", { defaultValue: "Edited" }) : t("upload.edit", { defaultValue: "Edit" })}
+                          </Text>
                         </TouchableOpacity>
-                        {ImageEditSheet && (
-                          <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "draw" })}
-                            className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
-                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
-                            accessibilityRole="button"
-                            accessibilityLabel={t("upload.drawWrite")}
-                          >
-                            <Icon name="Pencil" size={14} color="#fff" />
-                          </TouchableOpacity>
-                        )}
-                      </View>
                       )}
-                      {pickedImages.length > 1 && photoGridWidth > 0 && (
-                        <PhotoOrderHandle index={idx} count={pickedImages.length} columnWidth={photoGridWidth / 2}
+                      {pickedImages.length > 1 && (
+                        <PhotoOrderHandle index={idx} count={pickedImages.length} slotWidth={tileW + 8}
                           onMove={movePhoto} onDrag={onPhotoDrag} />
                       )}
                     </View>
                   </View>
-                ))}
+                  );
+                })}
                 {pickedImages.length < imageLimit && (
-                  <View className="w-1/2 p-1">
-                    <TouchableOpacity
-                      onPress={handlePickMoreImages}
-                      className="h-40 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
-                    >
-                      <Icon name="Plus" size={28} color="#6F7174" />
-                      <Text className="text-theme-neutrals-500 text-xs mt-1">
-                        {t("dao.addMore")}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                  <TouchableOpacity
+                    onPress={handlePickMoreImages}
+                    style={{ width: 96, height: PHOTO_TILE_H }}
+                    className="rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
+                    accessibilityRole="button"
+                  >
+                    <Icon name="Plus" size={26} color="#6F7174" />
+                    <Text className="text-theme-neutrals-500 text-xs mt-1">
+                      {t("dao.addMore")}
+                    </Text>
+                  </TouchableOpacity>
                 )}
-              </View>
+              </GestureScrollView>
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (
@@ -3247,7 +3200,8 @@ export default function UploadScreen() {
               on web — a text or image post can be gated or sold just like a
               video. Rendered whatever the draft holds, so the options are on
               screen from first open. */}
-          <View>
+          {/* Filled in once the sheet is up (see useComposerSheet); the box keeps its height meanwhile. */}
+          {!sheet.extrasReady ? <View style={{ height: 172 }} /> : <View>
             {/* Mint sits in the list rather than in a card of its own, as
                 web's first PostAccessToggles row. Off by default, so a first
                 post needs no wallet at all. */}
@@ -3535,7 +3489,7 @@ export default function UploadScreen() {
                 <CustomSwitch value={isMature} onValueChange={setIsMature} />
               </View>
               )}
-          </View>
+          </View>}
         </ScrollView>
       </View>
 
@@ -3813,6 +3767,48 @@ export default function UploadScreen() {
       {/* The sheets and drawers below are all closed on open; they mount once
           the composer is up so the first frame stays light. */}
       {sheet.extrasReady && <>
+      <GlassModal visible={photoMenu !== null} onClose={() => setPhotoMenu(null)} presentation="bottom" scrollable>
+        {photoMenu !== null && pickedImages[photoMenu] ? (() => {
+          const idx = photoMenu;
+          const img = pickedImages[idx];
+          const canEdit = !!PhotoStudio && !isGifAsset(img);
+          const rows: { key: string; icon: IconName; label: string; run: () => void; danger?: boolean }[] = [
+            ...(canEdit
+              ? [
+                  { key: "edit", icon: "SlidersHorizontal" as IconName, label: t("upload.studio.looksAdjust", { defaultValue: "Looks and adjust" }), run: () => setImageEdit({ index: idx, tab: "looks" }) },
+                  { key: "crop", icon: "Crop" as IconName, label: t("upload.cropRotate"), run: () => setImageEdit({ index: idx, tab: "crop" }) },
+                  { key: "draw", icon: "Pencil" as IconName, label: t("upload.drawWrite"), run: () => setImageEdit({ index: idx, tab: "draw" }) },
+                ]
+              : []),
+            { key: "alt", icon: "Captions" as IconName, label: img.description ? t("upload.editAltText", { defaultValue: "Edit alt text" }) : t("upload.addAltText", { defaultValue: "Add alt text" }), run: () => setAltEditor({ kind: "image", index: idx }) },
+            { key: "replace", icon: "Upload" as IconName, label: t("upload.changeImage", { index: idx + 1 }), run: () => handleChangeImage(idx) },
+            ...(idx > 0 ? [{ key: "left", icon: "ArrowLeft" as IconName, label: t("upload.moveEarlier", { defaultValue: "Move earlier" }), run: () => movePhoto(idx, idx - 1) }] : []),
+            ...(idx < pickedImages.length - 1 ? [{ key: "right", icon: "ArrowRight" as IconName, label: t("upload.moveLater", { defaultValue: "Move later" }), run: () => movePhoto(idx, idx + 1) }] : []),
+            { key: "remove", icon: "Trash2" as IconName, label: t("upload.removeImage"), run: () => handleRemoveImage(idx), danger: true },
+          ];
+          return (
+            <View className="px-4 pt-2 pb-4" style={{ gap: 4 }}>
+              <Text className="text-white text-base font-semibold mb-2">
+                {t("upload.photoN", { defaultValue: "Photo {{n}} of {{total}}", n: idx + 1, total: pickedImages.length })}
+              </Text>
+              {rows.map((r) => (
+                <TouchableOpacity
+                  key={r.key}
+                  onPress={() => { setPhotoMenu(null); r.run(); }}
+                  accessibilityRole="button"
+                  className="flex-row items-center px-4 py-3 rounded-xl"
+                >
+                  <Icon name={r.icon} size={20} color={r.danger ? "#f87171" : "#fff"} />
+                  <Text className="flex-1 ml-3 text-sm" style={{ color: r.danger ? "#f87171" : undefined }}>
+                    <Text className={r.danger ? "" : "text-white"}>{r.label}</Text>
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          );
+        })() : null}
+      </GlassModal>
+
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
           <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
@@ -4185,18 +4181,17 @@ export default function UploadScreen() {
           }}
         />
       )}
-      {ImageEditSheet && imageEdit && pickedImages[imageEdit.index] && (() => {
-        const img = pickedImages[imageEdit.index];
-        const isFilter = imageEdit.mode === "filter";
+      {PhotoStudio && imageEdit && pickedImages[imageEdit.index] && (() => {
+        // GIFs stay out: drawing one flattens it to a single frame.
+        const editable = pickedImages.map((img, i) => ({ img, i })).filter(({ img }) => !isGifAsset(img));
+        const start = Math.max(0, editable.findIndex(({ i }) => i === imageEdit.index));
         return (
-          <ImageEditSheet
-            mode={imageEdit.mode}
-            uri={isFilter ? img.editBaseUri ?? img.uri : img.uri}
-            mimeType={img.mimeType}
-            initialFilter={isFilter ? img.filter : undefined}
-            initialPresetId={isFilter ? img.filterPresetId : undefined}
+          <PhotoStudio
+            photos={editable.map(({ img }) => ({ baseUri: img.editBaseUri ?? img.uri, mimeType: img.mimeType, edits: img.studio }))}
+            startIndex={start}
+            startTab={imageEdit.tab}
             onClose={() => setImageEdit(null)}
-            onApply={handleImageEdited}
+            onDone={(results) => handleStudioDone(results.map((r) => ({ ...r, index: editable[r.index].i })))}
           />
         );
       })()}
@@ -4228,7 +4223,7 @@ export default function UploadScreen() {
     <View style={{ flex: 1 }}>
       <Animated.View pointerEvents="none" style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, sheet.dimStyle]} />
       <GestureDetector gesture={sheet.sheetPan}>
-        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden" }, sheet.sheetStyle]}>{composer}</Animated.View>
+        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden", borderTopWidth: 1, borderLeftWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.14)" }, sheet.sheetStyle]}>{composer}</Animated.View>
       </GestureDetector>
     </View>
   );

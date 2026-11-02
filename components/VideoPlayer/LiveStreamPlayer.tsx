@@ -82,6 +82,8 @@ import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
 import ViewerScrubBar from "../common/ViewerScrubBar";
+import LiveClipSheet from "../LiveViewer/LiveClipSheet";
+import { captureLiveClip, type LiveClip } from "../../services/live-clips.service";
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 /** Swipe-to-clear distances, the shorts viewer's numbers. */
@@ -1531,6 +1533,29 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Gift modal state
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+  // Clip this moment: the sheet lives outside the options menu, which unmounts on select.
+  const [clipOpen, setClipOpen] = useState(false);
+  const [liveClip, setLiveClip] = useState<LiveClip | null>(null);
+  const [clipStartError, setClipStartError] = useState<string | null>(null);
+  const clipBusy = useRef(false);
+  const startClip = useCallback(() => {
+    const id = (streamEntity?.tokenId as any) || (tokenId as any);
+    if (!id) return;
+    requireAuth?.(async () => {
+      if (clipBusy.current) return;
+      clipBusy.current = true;
+      setLiveClip(null);
+      setClipStartError(null);
+      setClipOpen(true);
+      try {
+        setLiveClip(await captureLiveClip(id));
+      } catch (e) {
+        setClipStartError((e as Error)?.message || t("liveClips.failed", { defaultValue: "This clip could not be made." }));
+      } finally {
+        clipBusy.current = false;
+      }
+    });
+  }, [streamEntity?.tokenId, tokenId, requireAuth, t]);
   const [giftOpen, setGiftOpen] = useState(false);
   const handleGiftPress = useCallback(() => {
     if (!isLiveEffective) return;
@@ -1979,12 +2004,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           // same two the feed card hides on a live post.
           hideEdit
           hideReportContent={isLiveEffective}
+          onClip={isLiveEffective && !isEndedEffective ? startClip : undefined}
           onFollowChange={(following) => setIsFollowing(following)}
           onDeleteSuccess={() => {
             if (navigation.canGoBack()) navigation.goBack();
           }}
         />
       )}
+
+      <LiveClipSheet
+        visible={clipOpen}
+        onClose={() => setClipOpen(false)}
+        clip={liveClip}
+        error={clipStartError}
+        wallet={(user?.walletAddress || user?.address || null) as string | null}
+      />
 
       {/* Gift Modal */}
       <GiftModal
