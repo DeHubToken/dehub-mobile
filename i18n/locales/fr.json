@@ -1,4 +1,24 @@
 {
+  "comic": {
+    "tab": "BD",
+    "title": "BD",
+    "chip": "BD · {{count}} pages",
+    "open": "Ouvrir la BD, page {{page}} sur {{total}}",
+    "flip": "Page {{page}} sur {{total}}. Touchez pour retourner",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Texte alternatif",
+    "cards": "Retour aux cartes",
+    "readAll": "Lire toutes les pages",
+    "editor": {
+      "count": "{{count}} pages sur {{limit}}",
+      "coverHint": "La page 1 est la couverture",
+      "empty": "Ajoutez vos pages avec le bouton photo. Chaque page a une légende et un texte alternatif.",
+      "cover": "Couverture",
+      "caption": "Légende de cette page",
+      "alt": "Texte alternatif : ce que montre la page"
+    }
+  },
   "nftMarket": {
     "shareMessage": "Achetez et vendez des NFT sur DeHub",
     "allChains": "Toutes les chaînes",

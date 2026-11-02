@@ -1,4 +1,24 @@
 {
+  "comic": {
+    "tab": "Çizgi roman",
+    "title": "Çizgi roman",
+    "chip": "Çizgi roman · {{count}} sayfa",
+    "open": "Çizgi romanı aç, sayfa {{page}} / {{total}}",
+    "flip": "Sayfa {{page}} / {{total}}. Çevirmek için dokun",
+    "page": "Sayfa {{page}}",
+    "goto": "Sayfa {{page}}",
+    "alt": "Alternatif metin",
+    "cards": "Kartlara dön",
+    "readAll": "Tüm sayfaları oku",
+    "editor": {
+      "count": "{{count}} / {{limit}} sayfa",
+      "coverHint": "1. sayfa kapaktır",
+      "empty": "Sayfalarını fotoğraf düğmesiyle ekle. Her sayfanın bir açıklaması ve alternatif metni olur.",
+      "cover": "Kapak",
+      "caption": "Bu sayfanın açıklaması",
+      "alt": "Alternatif metin: sayfada ne görünüyor"
+    }
+  },
   "nftMarket": {
     "shareMessage": "DeHub'da NFT al ve sat",
     "allChains": "Tüm ağlar",
