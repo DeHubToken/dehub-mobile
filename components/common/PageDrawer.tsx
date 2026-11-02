@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { BackHandler, PanResponder, Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { MOTION } from "../../theme/motion";
 import { useFocusEffect } from "@react-navigation/native";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
@@ -42,15 +43,15 @@ function Sheet({ onClose, grab, children }: PageDrawerProps) {
   const blur = useSheetBackdrop();
 
   useEffect(() => {
-    translateY.value = withTiming(0, { duration: 300, easing: Easing.out(Easing.cubic) });
-    backdrop.value = withTiming(1, { duration: 250 });
+    translateY.value = withTiming(0, { duration: MOTION.open, easing: Easing.out(Easing.cubic) });
+    backdrop.value = withTiming(1, { duration: MOTION.backdropIn });
     // Mount-only: the sheet slides up once.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const close = useCallback(() => {
-    backdrop.value = withTiming(0, { duration: 180 });
-    translateY.value = withTiming(height, { duration: 220, easing: Easing.in(Easing.cubic) }, (done) => {
+    backdrop.value = withTiming(0, { duration: MOTION.backdropOut });
+    translateY.value = withTiming(height, { duration: MOTION.close, easing: Easing.in(Easing.cubic) }, (done) => {
       if (done) runOnJS(onClose)();
     });
   }, [backdrop, translateY, height, onClose]);

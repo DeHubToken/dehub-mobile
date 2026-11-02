@@ -88,6 +88,8 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   // The provider's inset can read 0 on some screens while the real nav bar is
   // there; the launch-time inset is the nav bar's own height, so never use less.
   navBar.current = Math.max(insets?.bottom ?? 0, initialSafeAreaMetrics.insets.bottom ?? 0);
+  const statusBar = useRef(0);
+  statusBar.current = (StatusBar?.currentHeight ?? 0) || (insets?.top ?? 0) || (initialSafeAreaMetrics.insets.top ?? 0);
   useLayoutEffect(() => {
     applied.current = state.visible ? state.lift : restingOffset;
   }, [state, restingOffset]);
@@ -113,7 +115,11 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
       // (the status bar) while the keyboard's top is in screen coordinates,
       // so the box measured a status bar higher than it sat and stopped that
       // far under the keys (34dp on a Galaxy S24+). Bring it to screen space.
-      const windowTop = Platform.OS === "android" && !screenSpace.current ? StatusBar?.currentHeight ?? 0 : 0;
+      // StatusBar.currentHeight can read 0 (the native constant is taken
+      // before the window has insets), which left every composer a status bar
+      // (36dp on a Galaxy S24+) under the keys. The safe-area top is the same
+      // status bar, so fall back to it.
+      const windowTop = Platform.OS === "android" && !screenSpace.current ? statusBar.current : 0;
       const next = keyboardComposerLift(y + windowTop + measuredHeight, appliedLift, top, settings.current.gap);
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },

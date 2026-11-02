@@ -85,6 +85,7 @@ import { DhbCoin } from "../components/common/DhbCoin";
 import {
   MINIMAL_HAIRLINE,
 } from "../theme/minimal";
+import { Collapsible, CollapsibleChevron } from "../components/ui/Collapsible";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'features' | 'communities' | 'stores' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
@@ -514,10 +515,10 @@ function FilteredNotificationsSection({
           <Icon name="Funnel" size={16} color="#8B8D90" />
           <Text className="ml-2 text-theme-neutrals-400 text-sm">{t("notificationFilters.filteredTitle")}</Text>
         </View>
-        <Icon name={open ? "ChevronUp" : "ChevronDown"} size={16} color="#8B8D90" />
+        <CollapsibleChevron open={open} size={16} color="#8B8D90" />
       </TouchableOpacity>
-      {open &&
-        (items === null ? (
+      <Collapsible open={open}>
+        {items === null ? (
           <View className="py-4 items-center">
             <ActivityIndicator size="small" color="#F4F4F5" />
           </View>
@@ -525,7 +526,8 @@ function FilteredNotificationsSection({
           <Text className="px-4 pb-4 text-theme-neutrals-500 text-sm">{t("notificationFilters.filteredEmpty")}</Text>
         ) : (
           items.map((item) => <View key={item._id}>{renderRow({ item, index: -1 })}</View>)
-        ))}
+        )}
+      </Collapsible>
     </View>
   );
 }

@@ -54,12 +54,39 @@ const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("..
 // swaps for a differently shaped skeleton.
 type DeferredEntry = [key: string, load: () => React.ComponentType<any>];
 const FEED_DETAIL: DeferredEntry = ['../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default];
+const REMIX_LIST: DeferredEntry = ['../screens/RemixListScreen#default', () => require("../screens/RemixListScreen").default];
 const POST_RESOLVER: DeferredEntry = ['../screens/PostResolverScreen#default', () => require("../screens/PostResolverScreen").default];
 const PROFILE: DeferredEntry = ['../screens/ProfileScreen#default', () => require("../screens/ProfileScreen").default];
 const CHAT: DeferredEntry = ['../screens/ChatScreen#default', () => require("../screens/ChatScreen").default];
 const COMMUNITY_DETAIL: DeferredEntry = ['../screens/CommunityDetailScreen#default', () => require("../screens/CommunityDetailScreen").default];
 const FOLLOW_LIST: DeferredEntry = ['../screens/FollowListScreen#default', () => require("../screens/FollowListScreen").default];
-const WARM_SCREENS = [FEED_DETAIL, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
+const UPLOAD: DeferredEntry = ['../screens/UploadScreen#default', () => require("../screens/UploadScreen").default];
+const WARM_SCREENS = [UPLOAD, FEED_DETAIL, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
+
+/**
+ * The composer. On Android it is a sheet over the page it opened from, like
+ * the notifications drawer: the route is a transparentModal that does not
+ * animate, and the composer slides, follows the finger and springs back by
+ * itself (hooks/useComposerSheet). It renders straight away, never behind a
+ * route shell, so the sheet rises with the real composer and its keyboard on
+ * the first frames; its module is warmed with WARM_SCREENS. iOS keeps its
+ * native modal sheet.
+ */
+const getUploadScreen = Platform.OS === 'android'
+  ? () => require("../screens/UploadScreen").default
+  : () => deferredScreen(...UPLOAD);
+const UPLOAD_OPTIONS = Platform.OS === 'android'
+  ? {
+      presentation: 'transparentModal' as const,
+      contentStyle: { backgroundColor: 'transparent' },
+      animation: 'none' as const,
+    }
+  : {
+      presentation: 'modal' as const,
+      animation: 'slide_from_bottom' as const,
+      gestureDirection: 'vertical' as const,
+      gestureEnabled: true,
+    };
 
 /** Load WARM_SCREENS one per idle moment, a few seconds after sign-in settles. */
 function useWarmScreens(enabled: boolean) {
@@ -87,7 +114,11 @@ function useWarmScreens(enabled: boolean) {
  * black between the post and the notification list. The tabs stay awake while
  * a drawer sits right over them, and the drawer itself never freezes.
  */
-const DRAWER_ROUTES = new Set<string>([ScreenNames.Notifications, ScreenNames.ImageFeed, ScreenNames.ShortsViewer]);
+const DRAWER_ROUTES = new Set<string>([
+  ScreenNames.Notifications, ScreenNames.ImageFeed, ScreenNames.ShortsViewer,
+  // The Android composer sheet: the page shows under it while it is dragged.
+  ...(Platform.OS === 'android' ? [ScreenNames.Upload] : []),
+]);
 function opensDrawerOverRoot(state: { routes: { name: string }[] }): boolean {
   const above = state.routes[1];
   return !!above && DRAWER_ROUTES.has(above.name);
@@ -451,6 +482,10 @@ function AppNavigatorContent() {
           getComponent={() => deferredScreen(...POST_RESOLVER)}
         />
         <Stack.Screen
+          name={ScreenNames.PostResolverClip}
+          getComponent={() => deferredScreen(...POST_RESOLVER)}
+        />
+        <Stack.Screen
           name={ScreenNames.FeedDetail}
           getComponent={() => deferredScreen(...FEED_DETAIL)}
           // One route per post, so opening a post from a post pushes a page
@@ -508,6 +543,14 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.FollowList}
           getComponent={() => deferredScreen(...FOLLOW_LIST)}
+        />
+        <Stack.Screen
+          name={ScreenNames.RemixList}
+          getComponent={() => deferredScreen(...REMIX_LIST)}
+        />
+        <Stack.Screen
+          name={ScreenNames.RemixReactions}
+          getComponent={() => deferredScreen(...REMIX_LIST)}
         />
         <Stack.Screen
           name={ScreenNames.RepostQuoteList}
@@ -657,14 +700,9 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Upload}
-              getComponent={() => deferredScreen('../screens/UploadScreen#default', () => require("../screens/UploadScreen").default)}
+              getComponent={getUploadScreen}
               layout={withSolidScreenBoundary}
-              options={{
-                presentation: 'modal',
-                animation: 'slide_from_bottom',
-                gestureDirection: 'vertical',
-                gestureEnabled: true,
-              }}
+              options={UPLOAD_OPTIONS}
             />
             <Stack.Screen
               name={ScreenNames.EditProfile}

@@ -15835,6 +15835,86 @@
     "failed": "Kon deze niet opslaan. Probeer het opnieuw.",
     "privacy": "Alleen gebruikt om je op de hoogte te houden van de lancering."
   },
+  "duet": {
+    "with": "Duet met @{{username}}",
+    "withOriginal": "Duet · bekijk origineel",
+    "unavailable": "Deze video is niet meer beschikbaar voor duetten.",
+    "allowLabel": "Duetten toestaan",
+    "allowDescription": "Wie een duet naast je video's mag opnemen. Je kunt het ook per post aanpassen.",
+    "settingsSection": "Duetten",
+    "policyDefault": "Accountinstelling",
+    "policyEveryone": "Iedereen",
+    "policyFollowers": "Volgers",
+    "policyNobody": "Niemand",
+    "saveFailed": "Opslaan mislukt. Probeer het opnieuw.",
+    "count_one": "{{count}} duet",
+    "count_other": "{{count}} duetten",
+    "pageHeading": "Duetten",
+    "pageTitle": "Duetten van {{title}} door @{{creator}}",
+    "pageTitleNoCreator": "Duetten van {{title}}",
+    "pageDescription": "Bekijk elk duet van deze video op DeHub, of neem je eigen duet naast elkaar op.",
+    "empty": "Nog geen duetten. Open de opties van de video en kies Remix → Duet om de eerste te maken.",
+    "loadMore": "Meer laden",
+    "video": "Video",
+    "notFound": "Deze video is niet beschikbaar.",
+    "notFoundTitle": "Video niet gevonden — DeHub",
+    "browseShorts": "Shorts bekijken"
+  },
+  "remixLinks": {
+    "shareFailed": "Je fooi is verstuurd, maar het deel voor de oorspronkelijke maker is niet gelukt.",
+    "notify": {
+      "duet": "{{name}} heeft een duet gemaakt met je video",
+      "stitch": "{{name}} heeft je video gestitcht",
+      "react": "{{name}} heeft op je video gereageerd",
+      "reactLive": "{{name}} reageert live op je video"
+    },
+    "linkFailed": "Je bericht staat online, maar kon niet aan de originele video worden gekoppeld.",
+    "settingsHeading": "Remixes",
+    "policy": {
+      "default": "Mijn standaard",
+      "everyone": "Iedereen",
+      "followers": "Volgers",
+      "nobody": "Niemand"
+    },
+    "stitch": {
+      "allow": "Stitches toestaan",
+      "allowDesc": "Wie tot 5 seconden van je video's in hun eigen video mag gebruiken. Je kunt dit ook per bericht wijzigen.",
+      "saveFailed": "Je stitch-instelling kon niet worden opgeslagen. Probeer het opnieuw.",
+      "settingFailed": "Je bericht staat online, maar de stitch-instelling is niet opgeslagen. Wijzig deze via Bericht bewerken.",
+      "from": "Stitch van {{name}}",
+      "count_one": "{{count}} stitch",
+      "count_other": "{{count}} stitches",
+      "listTitle": "Stitches",
+      "listFailed": "Stitches konden niet worden geladen. Probeer het opnieuw.",
+      "listEmpty": "Nog geen stitches.",
+      "unavailable": "Deze video is niet meer beschikbaar voor stitches."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Reactie op",
+    "reactingTo": "Reageert op",
+    "count_one": "{{count}} reactie",
+    "count_other": "{{count}} reacties",
+    "allow": "Reacties toestaan",
+    "remixesSection": "Remixes",
+    "allowDescription": "Laat andere makers reageren op je video’s, opgenomen of live. Je kunt het per bericht nog aanpassen.",
+    "policy": {
+      "everyone": "Iedereen",
+      "followers": "Volgers",
+      "nobody": "Niemand",
+      "default": "Accountstandaard ({{value}})"
+    },
+    "pageTitle": "Reacties op {{title}} — DeHub",
+    "pageDescription": "Bekijk hoe makers reageren op “{{title}}” van {{creator}} op DeHub, opgenomen en live.",
+    "heading": "Reacties",
+    "backToVideo": "Terug naar video",
+    "empty": "Nog geen reacties. Open het Remix-menu van de video en kies Reageren om de eerste te zijn.",
+    "more": "Meer tonen",
+    "liveNow": "Live",
+    "wasLive": "Was live",
+    "untitled": "Reactie",
+    "thisVideo": "deze video"
+  },
   "githubLink": {
     "hint": "Sign in bij GitHub om te bewijzen dat het account van jou is. DeHub ziet alleen je openbare GitHub-profiel.",
     "verified": "Geverifieerd",

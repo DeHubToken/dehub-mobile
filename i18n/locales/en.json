@@ -15442,6 +15442,86 @@
     "failed": "Could not save that. Try again.",
     "privacy": "Only used to tell you about the launch."
   },
+  "duet": {
+    "with": "Duet with @{{username}}",
+    "withOriginal": "Duet · see original",
+    "unavailable": "This video is no longer available for duets.",
+    "allowLabel": "Allow duets",
+    "allowDescription": "Who can record a duet next to your videos. You can change it on each post too.",
+    "settingsSection": "Duets",
+    "policyDefault": "Account setting",
+    "policyEveryone": "Everyone",
+    "policyFollowers": "Followers",
+    "policyNobody": "No one",
+    "saveFailed": "Could not save. Try again.",
+    "count_one": "{{count}} duet",
+    "count_other": "{{count}} duets",
+    "pageHeading": "Duets",
+    "pageTitle": "Duets of {{title}} by @{{creator}}",
+    "pageTitleNoCreator": "Duets of {{title}}",
+    "pageDescription": "Watch every duet of this video on DeHub, or record your own side by side.",
+    "empty": "No duets yet. Open the video’s options and choose Remix → Duet to make the first one.",
+    "loadMore": "Load more",
+    "video": "Video",
+    "notFound": "This video is not available.",
+    "notFoundTitle": "Video not found — DeHub",
+    "browseShorts": "Browse Shorts"
+  },
+  "remixLinks": {
+    "shareFailed": "Your tip was sent, but the original creator's share didn't go through.",
+    "notify": {
+      "duet": "{{name}} duetted your video",
+      "stitch": "{{name}} stitched your video",
+      "react": "{{name}} reacted to your video",
+      "reactLive": "{{name}} is reacting live to your video"
+    },
+    "linkFailed": "Your post is up, but it could not be linked to the original video.",
+    "settingsHeading": "Remixes",
+    "policy": {
+      "default": "My default",
+      "everyone": "Everyone",
+      "followers": "Followers",
+      "nobody": "No one"
+    },
+    "stitch": {
+      "allow": "Allow stitches",
+      "allowDesc": "Who can use up to 5 seconds of your videos in their own. You can change it per post too.",
+      "saveFailed": "Could not save your stitch setting. Try again.",
+      "settingFailed": "Your post is up, but its stitch setting was not saved. Change it from Edit post.",
+      "from": "Stitched from {{name}}",
+      "count_one": "{{count}} Stitch",
+      "count_other": "{{count}} Stitches",
+      "listTitle": "Stitches",
+      "listFailed": "Could not load stitches. Try again.",
+      "listEmpty": "No stitches yet.",
+      "unavailable": "This video is no longer available for stitches."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Reaction to",
+    "reactingTo": "Reacting to",
+    "count_one": "{{count}} reaction",
+    "count_other": "{{count}} reactions",
+    "allow": "Allow reactions",
+    "remixesSection": "Remixes",
+    "allowDescription": "Let other creators react to your videos, recorded or live. You can still change it on each post.",
+    "policy": {
+      "everyone": "Everyone",
+      "followers": "Followers",
+      "nobody": "No one",
+      "default": "Account default ({{value}})"
+    },
+    "pageTitle": "Reactions to {{title}} — DeHub",
+    "pageDescription": "Watch creators react to “{{title}}” by {{creator}} on DeHub, recorded and live.",
+    "heading": "Reactions",
+    "backToVideo": "Back to video",
+    "empty": "No reactions yet. Open the video’s Remix menu and choose React to be the first.",
+    "more": "Show more",
+    "liveNow": "Live",
+    "wasLive": "Was live",
+    "untitled": "Reaction",
+    "thisVideo": "this video"
+  },
   "githubLink": {
     "hint": "Sign in to GitHub to prove the account is yours. DeHub only sees your public GitHub profile.",
     "verified": "Verified",

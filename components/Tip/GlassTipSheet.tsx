@@ -70,6 +70,8 @@ import {
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
+import { remixShareFor, splitRemixTip, type RemixShare } from "../../services/remix-links.service";
+import { toastWarning } from "../../libs/toast";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
@@ -512,6 +514,17 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           String(numericAmount),
           tokenMeta.decimals || 18,
         );
+        // A DHB tip on a duet, stitch or reaction sends the original creator
+        // their share (web's use-tip-payment). Comment tips, stablecoin tips
+        // and unlock payments never split.
+        const remixShare: RemixShare | null = !directToken && commentId == null && !isLocked && tokenId > 0
+          ? await remixShareFor(tokenId, toAddress, account)
+          : null;
+        const split = splitRemixTip(numericAmount, remixShare);
+        const creatorAmount = split.source ? split.remixer : numericAmount;
+        const creatorAmountBN = split.source
+          ? ethers.utils.parseUnits(String(creatorAmount), tokenMeta.decimals || 18)
+          : amountBN;
 
         if (payWith && canPayWithOther && !directToken) {
           setPhase("funding");
@@ -549,7 +562,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           const res = await writeContractAA(
             controllerContract,
             "sendTip",
-            [tokenId, amountBN, toAddress, tokenAddress],
+            [tokenId, creatorAmountBN, toAddress, tokenAddress],
             { context: "send" },
           );
           if (tipMessage.current) tipMessage.current.submitted = true;
@@ -592,12 +605,46 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
               void persistTipRecord({
                 senderAddress: account,
                 receiverAddress: toAddress,
-                amount: numericAmount,
+                amount: creatorAmount,
                 chainId,
                 txHash,
                 tokenId,
                 commentId: commentId ?? null,
               });
+            }
+
+            // The original creator's share goes out after the main tip has
+            // landed, so a failure here never undoes the tip itself.
+            if (remixShare && split.source && account) {
+              const share = remixShare;
+              const sourceAmount = split.source;
+              void (async () => {
+                try {
+                  const shareBN = ethers.utils.parseUnits(String(sourceAmount), tokenMeta.decimals || 18);
+                  const shareTx = await writeContractAA(
+                    controllerContract,
+                    "sendTip",
+                    [share.sourceTokenId, shareBN, share.sourceAddress, tokenAddress],
+                    { context: "send" },
+                  );
+                  const shareReceipt: any = await shareTx.wait?.(1);
+                  if (!shareReceipt || shareReceipt.status !== 1) throw new Error("share failed");
+                  const shareHash: string = shareReceipt.transactionHash || shareTx.hash || "";
+                  if (shareHash) {
+                    void persistTipRecord({
+                      senderAddress: account,
+                      receiverAddress: share.sourceAddress,
+                      amount: sourceAmount,
+                      chainId,
+                      txHash: shareHash,
+                      tokenId: share.sourceTokenId,
+                      commentId: null,
+                    });
+                  }
+                } catch {
+                  toastWarning(t("remixLinks.shareFailed", { defaultValue: "Your tip was sent, but the original creator's share didn't go through." }));
+                }
+              })();
             }
 
             // Optimistic balance patch

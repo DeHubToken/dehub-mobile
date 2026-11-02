@@ -39,6 +39,10 @@ export enum ScreenNames {
   DexPool = 'DexPool',
   FollowList = 'FollowList',
   RepostQuoteList = 'RepostQuoteList',
+  // Duets, stitches and reactions of one video. Same component twice: web's
+  // /app/post/:id/duets and /app/post/:id/reactions each need their own path.
+  RemixList = 'RemixList',
+  RemixReactions = 'RemixReactions',
   PrivacySettings = 'PrivacySettings',
   Drafts = 'Drafts',
   MyLibrary = 'MyLibrary',
@@ -46,6 +50,8 @@ export enum ScreenNames {
   /** Same component as PostResolver — react-navigation allows one deep-link
    *  path per screen, and /newpost/:n needs its own. */
   PostResolverNewPost = 'PostResolverNewPost',
+  /** Same component again for dehub.io/clip/:clipId, a posted live clip. */
+  PostResolverClip = 'PostResolverClip',
   LiveChat = 'LiveChat',
   LiveChatInfo = 'LiveChatInfo',
   FullscreenVideo = 'FullscreenVideo',

@@ -205,11 +205,17 @@ export const DeepLinkPaths = {
   // Content — dehub.io/app/post/:tokenId
   POST: 'app/post/:tokenId',
   POST_INFO: 'app/post/:tokenId/info',
+  // Duets and reactions of one video — web's DuetsPage and PostReactionsPage.
+  POST_DUETS: 'app/post/:tokenId/duets',
+  POST_REACTIONS: 'app/post/:tokenId/reactions',
 
   // An off-chain post's own slug — dehub.io/newpost/:newPostId. Top-level,
   // like the canonical share form web hands out. PostResolverScreen resolves
   // it to a tokenId through GET /newpost/:n.
   NEWPOST: 'newpost/:newPostId',
+
+  // A posted live clip — dehub.io/clip/:clipId. Resolved to its Short.
+  CLIP: 'clip/:clipId',
 
   // Legacy content paths (backward compat)
   LEGACY_STREAM: 'stream/:videoId',
@@ -388,6 +394,28 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.POST_INFO,
             parse: {
               tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // URL: dehub.io/app/post/:tokenId/duets and /reactions
+          [ScreenNames.RemixList]: {
+            path: DeepLinkPaths.POST_DUETS,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+          [ScreenNames.RemixReactions]: {
+            path: DeepLinkPaths.POST_REACTIONS,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // URL: dehub.io/clip/:clipId — a live clip, opened as its Short.
+          [ScreenNames.PostResolverClip]: {
+            path: DeepLinkPaths.CLIP,
+            parse: {
+              clipId: (clipId: string) => clipId,
             },
           },
 

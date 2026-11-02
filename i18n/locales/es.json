@@ -15584,6 +15584,86 @@
     "failed": "No se pudo guardar eso. Inténtalo de nuevo.",
     "privacy": "Solo se usa para avisarte sobre el lanzamiento."
   },
+  "duet": {
+    "with": "Dúo con @{{username}}",
+    "withOriginal": "Dúo · ver original",
+    "unavailable": "Este video ya no está disponible para dúos.",
+    "allowLabel": "Permitir dúos",
+    "allowDescription": "Quién puede grabar un dúo junto a tus videos. También puedes cambiarlo en cada publicación.",
+    "settingsSection": "Dúos",
+    "policyDefault": "Ajuste de la cuenta",
+    "policyEveryone": "Todos",
+    "policyFollowers": "Seguidores",
+    "policyNobody": "Nadie",
+    "saveFailed": "No se pudo guardar. Inténtalo de nuevo.",
+    "count_one": "{{count}} dúo",
+    "count_other": "{{count}} dúos",
+    "pageHeading": "Dúos",
+    "pageTitle": "Dúos de {{title}} de @{{creator}}",
+    "pageTitleNoCreator": "Dúos de {{title}}",
+    "pageDescription": "Mira todos los dúos de este video en DeHub o graba el tuyo lado a lado.",
+    "empty": "Aún no hay dúos. Abre las opciones del video y elige Remix → Dúo para hacer el primero.",
+    "loadMore": "Cargar más",
+    "video": "Video",
+    "notFound": "Este video no está disponible.",
+    "notFoundTitle": "Video no encontrado — DeHub",
+    "browseShorts": "Ver Shorts"
+  },
+  "remixLinks": {
+    "shareFailed": "Tu propina se envió, pero la parte del creador original no se completó.",
+    "notify": {
+      "duet": "{{name}} hizo un dúo con tu video",
+      "stitch": "{{name}} hizo un stitch de tu video",
+      "react": "{{name}} reaccionó a tu video",
+      "reactLive": "{{name}} está reaccionando en directo a tu video"
+    },
+    "linkFailed": "Tu publicación está activa, pero no se pudo vincular al video original.",
+    "settingsHeading": "Remezclas",
+    "policy": {
+      "default": "Mi predeterminado",
+      "everyone": "Todos",
+      "followers": "Seguidores",
+      "nobody": "Nadie"
+    },
+    "stitch": {
+      "allow": "Permitir stitches",
+      "allowDesc": "Quién puede usar hasta 5 segundos de tus videos en los suyos. También puedes cambiarlo en cada publicación.",
+      "saveFailed": "No se pudo guardar tu ajuste de stitch. Inténtalo de nuevo.",
+      "settingFailed": "Tu publicación está activa, pero su ajuste de stitch no se guardó. Cámbialo desde Editar publicación.",
+      "from": "Stitch de {{name}}",
+      "count_one": "{{count}} stitch",
+      "count_other": "{{count}} stitches",
+      "listTitle": "Stitches",
+      "listFailed": "No se pudieron cargar los stitches. Inténtalo de nuevo.",
+      "listEmpty": "Aún no hay stitches.",
+      "unavailable": "Este video ya no está disponible para stitches."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Reacción a",
+    "reactingTo": "Reaccionando a",
+    "count_one": "{{count}} reacción",
+    "count_other": "{{count}} reacciones",
+    "allow": "Permitir reacciones",
+    "remixesSection": "Remixes",
+    "allowDescription": "Deja que otros creadores reaccionen a tus vídeos, grabados o en directo. Puedes cambiarlo en cada publicación.",
+    "policy": {
+      "everyone": "Todos",
+      "followers": "Seguidores",
+      "nobody": "Nadie",
+      "default": "Predeterminado de la cuenta ({{value}})"
+    },
+    "pageTitle": "Reacciones a {{title}} — DeHub",
+    "pageDescription": "Mira cómo los creadores reaccionan a «{{title}}» de {{creator}} en DeHub, grabado y en directo.",
+    "heading": "Reacciones",
+    "backToVideo": "Volver al vídeo",
+    "empty": "Aún no hay reacciones. Abre el menú Remix del vídeo y elige Reaccionar para ser el primero.",
+    "more": "Ver más",
+    "liveNow": "En directo",
+    "wasLive": "Fue en directo",
+    "untitled": "Reacción",
+    "thisVideo": "este vídeo"
+  },
   "githubLink": {
     "hint": "Inicia sesión en GitHub para comprobar que la cuenta es tuya. DeHub solo ve tu perfil público de GitHub.",
     "verified": "Verificado",
