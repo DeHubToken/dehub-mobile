@@ -1,6 +1,6 @@
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, type StyleProp, type ViewStyle } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
@@ -40,6 +40,8 @@ const displayUrl = (url: string) =>
 interface ProfileLinksPillProps {
   /** The account record: `twitterLink`, `instagramLink`, … at the top level. */
   source: Record<string, unknown> | null | undefined;
+  /** Extra layout for the icon button, e.g. pushing it to the line's end. */
+  style?: StyleProp<ViewStyle>;
 }
 
 type LinkRow = { key: string; label: string; url: string; verified: boolean; svg?: string; icon?: IconName };
@@ -50,7 +52,7 @@ type LinkRow = { key: string; label: string; url: string; verified: boolean; svg
  * name and a long display name was cut to one line beside them. Tapping them
  * opens the full list.
  */
-const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
+const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source, style }) => {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
@@ -96,7 +98,7 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
         accessibilityLabel={label}
         hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
         className="flex-row items-center"
-        style={{ gap: 6 }}
+        style={[{ gap: 6 }, style]}
       >
         {links.slice(0, 3).map((l) =>
           l.svg ? (

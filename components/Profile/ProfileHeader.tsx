@@ -508,14 +508,9 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
             {/* DeHub followers plus the creator's own figures for their linked
                 socials. Absent until a social carries a count. */}
             <TotalReachPill source={user} followers={followersCount} />
-          </View>
-
-          {/* The bottom row, where other people's profiles show "Followed
-              by …": the social icons sit in its right-hand corner. */}
-          <View className="flex-row justify-end">
-            <View style={{ marginTop: 12 }}>
-              <ProfileLinksPill source={user} />
-            </View>
+            {/* The links ride at the end of the counts line and only wrap
+                below when the line is genuinely full. */}
+            <ProfileLinksPill source={user} style={{ marginLeft: "auto" }} />
           </View>
 
           {/* The streamer ladder. Renders nothing until a stream has ended,

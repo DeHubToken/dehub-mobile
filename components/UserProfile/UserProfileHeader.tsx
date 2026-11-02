@@ -84,9 +84,8 @@ export interface UserProfileHeaderProps {
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
   mutuals?: FollowListItem[];
-  /** True while the mutual-followers request is still in flight — reserves
-   *  the row's height instead of popping it in once the list arrives. */
-  mutualsLoading?: boolean;
+  /** True number of mutual followers (`mutuals` holds the first few faces). */
+  mutualsTotal?: number;
   /** The creator has published at least one subscription plan. */
   hasPlans?: boolean;
   /** True while the creator's plans are still loading — reserves the
@@ -134,7 +133,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   FallbackBanner,
   socials,
   mutuals,
-  mutualsLoading = false,
+  mutualsTotal,
   hasPlans = false,
   plansLoading = false,
   onSubscribe,
@@ -456,31 +455,26 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   followers={followersItem.value}
                 />
               )}
+              {/* The links ride at the end of the counts line and only wrap
+                  below when the line is genuinely full. */}
+              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} style={{ marginLeft: "auto" }} />
             </View>
           ) : null}
         </View>
 
-        {/* Both rows below reserve their real height the moment their query
-            starts, rather than popping in once it resolves (mutuals and plans
-            are separate requests that land after the header has already
-            painted). A profile opened mid-scroll used to grow twice under the
-            reader as each one arrived; the placeholder keeps that height
-            stable and only actually collapses if the answer turns out empty,
-            which happens once, right after mount, not while reading. */}
-        {/* The bottom row: mutual followers on the left, the creator's social
-            icons tucked into the right-hand corner. Each side carries its own
-            top margin, so the row takes no space when both are empty. */}
+        {/* Mutual followers. Nothing is reserved while the request runs: a
+            profile with no mutuals must not show an empty bar under the
+            counts, so the row only appears once there is someone to show. */}
         <View className="flex-row items-center" style={{ gap: 12 }}>
           <View className="flex-1" style={{ minWidth: 0 }}>
-            {mutualsLoading && !mutuals?.length ? (
-              <View style={s.mutualsPlaceholder} />
-            ) : (
-              <MutualFollowers mutuals={mutuals || []} />
-            )}
+            <MutualFollowers mutuals={mutuals || []} totalCount={mutualsTotal} />
           </View>
-          <View style={{ marginTop: 12 }}>
-            <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
-          </View>
+          {/* Counts hidden: the links fall back to this corner. */}
+          {!(followingItem || followersItem) && (
+            <View style={{ marginTop: 12 }}>
+              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
+            </View>
+          )}
         </View>
 
         {/* The streamer ladder. Renders nothing until a stream has ended,
@@ -528,12 +522,6 @@ const s = StyleSheet.create({
   // Same box the real row/button occupies, so the mutuals-loading and
   // plans-loading states don't change the header's height once real content
   // (or nothing) replaces them.
-  mutualsPlaceholder: {
-    height: 20,
-    marginTop: 12,
-    borderRadius: 6,
-    backgroundColor: "rgba(255,255,255,0.06)",
-  },
   subscribePlaceholder: {
     marginTop: 12,
     paddingHorizontal: 0,

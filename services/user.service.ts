@@ -583,6 +583,22 @@ export async function getFollowList(params: GetFollowListParams): Promise<Follow
   return apiClient.get<FollowListResponse>(url, { isAuthRequired: true });
 }
 
+/**
+ * People the signed-in viewer follows who also follow `address`, intersected
+ * on the server over the full lists. `totalCount` is the true number.
+ */
+export async function getMutualFollowers(
+  address: string,
+  limit = 5,
+): Promise<{ items: FollowListItem[]; totalCount: number }> {
+  const url = `/mutual_followers/${encodeURIComponent(address)}?limit=${limit}`;
+  const res = await apiClient.get<{ result?: { items?: FollowListItem[]; totalCount?: number } }>(url, { isAuthRequired: true });
+  const raw = res?.result;
+  if (!raw || !Array.isArray(raw.items)) throw new Error("mutual_followers unavailable");
+  const items = raw.items.filter((i) => i?.user?.address);
+  return { items, totalCount: typeof raw.totalCount === "number" ? raw.totalCount : items.length };
+}
+
 
 /**
  * Response from the follow endpoint.
