@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import { AppState, Platform } from 'react-native';
+import { AppState, Appearance, Platform } from 'react-native';
 import * as SystemUI from 'expo-system-ui';
 import { colorScheme, vars } from 'nativewind';
 import { getAppPrefs, setAppPref, useAppPrefs } from '../hooks/useAppPrefs';
@@ -307,7 +307,26 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     colorScheme.set(isLight ? 'light' : 'dark');
-    SystemUI.setBackgroundColorAsync(pageColors.background).catch(() => {});
+    // The window behind the app follows the phone's own light/dark setting
+    // (light grey in light mode). When the phone flips while the app is open,
+    // Android resets it, and it shows as pale bars at the top and bottom and
+    // a white wash under every sheet. Paint it with the theme again each time.
+    const paint = () => { SystemUI.setBackgroundColorAsync(pageColors.background).catch(() => {}); };
+    paint();
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const repaint = () => {
+      paint();
+      timers.push(setTimeout(paint, 250), setTimeout(paint, 1000));
+    };
+    const appearance = Appearance.addChangeListener?.(repaint);
+    const appState = AppState?.addEventListener?.('change', state => {
+      if (state === 'active') repaint();
+    });
+    return () => {
+      timers.forEach(clearTimeout);
+      appearance?.remove();
+      appState?.remove();
+    };
   }, [pageColors.background, theme, isLight]);
 
   useEffect(() => {
@@ -317,7 +336,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const subscription = AppState?.addEventListener?.('change', state => {
       if (state === 'active') apply();
     });
-    return () => subscription?.remove();
+    const appearance = Appearance.addChangeListener?.(() => apply());
+    return () => {
+      subscription?.remove();
+      appearance?.remove();
+    };
   }, [isLight]);
 
   const setTheme = useCallback((nextTheme: AppThemeName) => {
