@@ -22,7 +22,10 @@ import {
   Keyboard,
   PanResponder,
 } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { Gesture, GestureDetector, ScrollView as GestureScrollView } from "react-native-gesture-handler";
+import { COMPOSER_SHEET, useComposerSheet } from "../hooks/useComposerSheet";
+import { useKeyboardLiftValue } from "../hooks/useKeyboardLiftValue";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -64,7 +67,6 @@ import { getChainOption } from "../components/common/ChainSelector";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
-import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
@@ -154,6 +156,8 @@ function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
   const responder = useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: () => true,
+    // Claimed at once so the composer sheet never takes the drag as a close.
+    onPanResponderGrant: () => onDrag(index, 0, 0),
     onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, gesture.dy),
     onPanResponderRelease: (_, gesture) => {
       const row = Math.max(0, Math.round(index / 2 + gesture.dy / 168 - (index % 2) / 2));
@@ -321,9 +325,10 @@ export default function UploadScreen() {
     }
     Keyboard.dismiss();
   }, []);
-  // Keyboard height minus the bottom inset the root SafeAreaView already spent
-  // — see hooks/useKeyboardLayout.ts.
-  const { lift: kbLift } = useKeyboardLift();
+  // Keyboard height above the screen's bottom edge (see hooks/useKeyboardLayout.ts).
+  // The toolbar's own lift rides with the keys on the UI thread (no re-render).
+  const kbLiftValue = useKeyboardLiftValue(useSafeAreaInsets().bottom);
+  const toolbarLiftStyle = useAnimatedStyle(() => ({ marginBottom: kbLiftValue.value }));
   const { drafts, saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
   const avatarUri = useMemo(
@@ -400,7 +405,9 @@ export default function UploadScreen() {
       return next;
     });
   }, []);
+  const photoDragHold = useRef<{ value: boolean } | null>(null);
   const onPhotoDrag = useCallback((index: number | null, x = 0, y = 0) => {
+    if (photoDragHold.current) photoDragHold.current.value = index !== null;
     setDraggedPhoto(index === null ? null : { index, x, y });
   }, []);
   const [fullscreenImageUri, setFullscreenImageUri] = useState<string | null>(null);
@@ -1134,7 +1141,7 @@ export default function UploadScreen() {
   const closeLatest = useRef(handleClose);
   closeLatest.current = handleClose;
   const dismissPan = useMemo(() => Gesture.Pan()
-    .enabled(!postInFlight)
+    .enabled(!postInFlight && !COMPOSER_SHEET)
     .activeOffsetY(8)
     .failOffsetX([-20, 20])
     .runOnJS(true)
@@ -1144,6 +1151,20 @@ export default function UploadScreen() {
         closeLatest.current();
       }
     }), [postInFlight]);
+
+  // Android: the whole composer is a sheet that follows the finger. A clear
+  // pull down from anywhere in its top part (not only the handle) drags it;
+  // let go past half way and it closes the same way the X does, otherwise it
+  // springs back.
+  const willPromptRef = useRef<() => boolean>(() => false);
+  willPromptRef.current = () => !autoDraftOnClose && formHasContent;
+  const sheet = useComposerSheet({
+    navigation: nav,
+    enabled: !postInFlight,
+    onDismiss: useCallback(() => closeLatest.current(), []),
+    willPrompt: useCallback(() => willPromptRef.current(), []),
+  });
+  photoDragHold.current = sheet.holdDrag;
 
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
@@ -1354,7 +1375,10 @@ export default function UploadScreen() {
     // with the screen still slid up for it: a black band under the nav bar
     // and the new post's card pushed up out of sight.
     closeKeyboard();
-    if (landing === "morph") nav.setOptions({ animation: "none" });
+    if (landing === "morph") {
+      nav.setOptions({ animation: "none" });
+      sheet.leaveWithoutSlide();
+    }
     nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
     // Nothing on Home should hold the keyboard after a post. Android passes
     // focus on to another field when the composer's lets go, so check again
@@ -1366,7 +1390,7 @@ export default function UploadScreen() {
         Keyboard.dismiss();
       }, ms);
     }
-  }, [nav, closeKeyboard]);
+  }, [nav, closeKeyboard, sheet.leaveWithoutSlide]);
 
   const submitPost = useCallback(async () => {
     let payload = getPayload();
@@ -2423,9 +2447,6 @@ export default function UploadScreen() {
     setMonetization(next);
   }, [setMonetization]);
 
-  // 0 when the keyboard is down: this screen already ends above the home
-  // indicator, so padding by insets.bottom again left a dead strip.
-  const bottomPad = kbLift;
 
   // A banned account reads every post on DeHub and writes none of them. The
   // API refuses the mint either way; showing the composer first would only
@@ -2438,7 +2459,7 @@ export default function UploadScreen() {
     );
   }
 
-  return (
+  const composer = (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}
       <GestureDetector gesture={dismissPan}>
         <View className="flex-row items-center justify-center pt-2 pb-1" collapsable={false}>
@@ -2475,12 +2496,15 @@ export default function UploadScreen() {
           <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
         </TouchableOpacity>
       </View>}
-      <ScrollView
-        className="flex-1"
+      <GestureDetector gesture={sheet.scroll}>
+      <GestureScrollView
+        style={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
         showsVerticalScrollIndicator={false}
+        onScroll={sheet.onScroll}
+        scrollEventThrottle={16}
       >
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
@@ -3174,7 +3198,8 @@ export default function UploadScreen() {
           </View>
         </View>
         </Pressable>
-      </ScrollView>
+      </GestureScrollView>
+      </GestureDetector>
       {/* Options scroll in their own short box, as on web: the tabs and the
           editor stay put while the switches scroll underneath them. */}
       <View className="border-t border-white/10">
@@ -3495,9 +3520,9 @@ export default function UploadScreen() {
 
       <View className="h-px bg-white/10" />
 
-      <View
+      <Animated.View
         className="flex-row items-center justify-between px-4 py-2"
-        style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
+        style={toolbarLiftStyle}
       >
         {/* Left cluster. Web sets every control on this row in a 36pt square —
             a 20pt glyph inside 8pt of padding — with the squares almost
@@ -3752,7 +3777,7 @@ export default function UploadScreen() {
           </TouchableOpacity>
         </View>
 
-      </View>
+      </Animated.View>
 
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
@@ -4144,6 +4169,16 @@ export default function UploadScreen() {
           }}
         />
       )}
+    </View>
+  );
+
+  if (!COMPOSER_SHEET) return composer;
+  return (
+    <View style={{ flex: 1 }}>
+      <Animated.View pointerEvents="none" style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, sheet.dimStyle]} />
+      <GestureDetector gesture={sheet.sheetPan}>
+        <Animated.View style={[{ flex: 1 }, sheet.sheetStyle]}>{composer}</Animated.View>
+      </GestureDetector>
     </View>
   );
 }
