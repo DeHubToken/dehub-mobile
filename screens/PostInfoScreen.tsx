@@ -248,8 +248,10 @@ export default function PostInfoScreen() {
     );
   }
 
-  const likes = post.totalVotes?.for ?? post.like_count ?? 0;
-  const dislikes = post.totalVotes?.against ?? post.dislike_count ?? 0;
+  // The feed copy painted first names these likes/dislikes: read those too
+  // rather than flashing 0 until the full post lands.
+  const likes = post.totalVotes?.for ?? post.like_count ?? post.likes ?? 0;
+  const dislikes = post.totalVotes?.against ?? post.dislike_count ?? post.dislikes ?? 0;
   const views = resolveViewCount(post);
   const comments = post.commentCount ?? post.comment_count ?? 0;
   const likeRatio = likes + dislikes > 0 ? Math.round((likes / (likes + dislikes)) * 100) : 100;
