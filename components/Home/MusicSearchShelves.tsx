@@ -112,16 +112,16 @@ const MusicSearchShelves: React.FC<{ stages: RankedStage[]; stations: RadioStati
     <View>
       {stages.length > 0 ? (
         <View style={styles.shelf}>
-          {title(t("music.searchStages", { defaultValue: "Stages" }))}
+          {title(t("nav.stages"))}
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row} keyboardShouldPersistTaps="handled">
             {stages.map((space) => (
               <Pressable key={space.id} onPress={() => { void openStage(space); }} style={[styles.card, { width: STAGE_W, borderColor: colors.border }]}>
                 <KeepDarkScope>
                   <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
                   {space.status === "live" ? (
-                    <Text style={[styles.badge, styles.badgeLive]}>{t("music.searchLive", { defaultValue: "Live" })}</Text>
+                    <Text style={[styles.badge, styles.badgeLive]}>{t("stages.live")}</Text>
                   ) : space.status === "scheduled" ? (
-                    <Text style={styles.badge}>{t("music.searchUpcoming", { defaultValue: "Upcoming" })}</Text>
+                    <Text style={styles.badge}>{t("music.upcoming")}</Text>
                   ) : null}
                 </KeepDarkScope>
                 <Text numberOfLines={1} style={[styles.cardTitle, { color: fg }]}>{space.title}</Text>
@@ -134,7 +134,7 @@ const MusicSearchShelves: React.FC<{ stages: RankedStage[]; stations: RadioStati
 
       {stations.length > 0 ? (
         <View style={styles.shelf}>
-          {title(t("music.searchRadioStations", { defaultValue: "Radio stations" }))}
+          {title(t("music.radioStations"))}
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row} keyboardShouldPersistTaps="handled">
             {stations.map((station) => {
               const onAir = radio.isPlaying && radio.station?.stationuuid === station.stationuuid;
@@ -150,7 +150,7 @@ const MusicSearchShelves: React.FC<{ stages: RankedStage[]; stations: RadioStati
                   </View>
                   <Text numberOfLines={1} style={[styles.cardTitle, { color: fg }]}>{station.name.trim()}</Text>
                   <Text numberOfLines={1} style={[styles.cardSub, { color: dim }]}>
-                    {[genre, station.countrycode].filter(Boolean).join(" · ") || t("music.searchRadio", { defaultValue: "Radio" })}
+                    {[genre, station.countrycode].filter(Boolean).join(" · ") || t("music.radio")}
                   </Text>
                 </Pressable>
               );
@@ -159,7 +159,7 @@ const MusicSearchShelves: React.FC<{ stages: RankedStage[]; stations: RadioStati
         </View>
       ) : null}
 
-      {showMusicTitle ? title(t("music.searchMusic", { defaultValue: "Music" })) : null}
+      {showMusicTitle ? title(t("feed.music")) : null}
     </View>
   );
 };
