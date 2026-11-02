@@ -349,6 +349,13 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     backdropOpacity.value = withTiming(0, { duration: 180 });
   }, [onClose, onSuccess, SHEET_HIDE_OFFSET]);
 
+  // A short tick, then the sheet closes itself and the post plays its reveal.
+  useEffect(() => {
+    if (phase !== "sent") return;
+    const id = setTimeout(handleSuccessContinue, 900);
+    return () => clearTimeout(id);
+  }, [phase, handleSuccessContinue]);
+
   if (!visible && isFullyClosed) return null;
 
   return (
@@ -481,14 +488,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               <Animated.Text entering={FadeInDown.delay(300).duration(350)} style={styles.successSub}>
                 {contentType === "image" ? t("ppv.canViewImage") : t("ppv.canWatchVideo")}
               </Animated.Text>
-
-              <TouchableOpacity
-                onPress={handleSuccessContinue}
-                style={styles.continueBtn}
-                activeOpacity={0.7}
-              >
-                <Text style={styles.continueBtnText}>{t("loginModal.continue")}</Text>
-              </TouchableOpacity>
             </View>
           )}
         </Animated.View>
