@@ -15755,5 +15755,24 @@
     "taken": "Ce compte GitHub est déjà sur un autre profil DeHub.",
     "failed": "Impossible de connecter GitHub. Réessayez.",
     "unavailable": "La vérification GitHub arrive bientôt."
+  },
+  "liveClips": {
+    "button": "Clipper ce moment",
+    "capturing": "Récupération de la dernière minute du live…",
+    "copyLink": "Copier le lien",
+    "failed": "Ce clip n'a pas pu être créé.",
+    "highlightTitle": "Temps fort",
+    "length": "Clip de {{seconds}} s",
+    "linkCopied": "Lien copié",
+    "make": "Créer le clip",
+    "postToShorts": "Publier dans Shorts",
+    "posted": "Clip publié dans Shorts",
+    "postedBody": "Votre clip est dans Shorts. Partagez-le pour que plus de gens trouvent le live.",
+    "rendering": "Découpage de votre clip. Cela prend environ trente secondes…",
+    "starting": "Lancement de votre clip…",
+    "title": "Clip",
+    "titleLabel": "Titre du clip",
+    "titlePlaceholder": "Donnez un titre à votre clip",
+    "viewShort": "Voir le Short"
   }
 }

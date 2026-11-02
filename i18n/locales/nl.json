@@ -16002,5 +16002,24 @@
     "taken": "Dat GitHub-account is al gekoppeld aan een ander DeHub-profiel.",
     "failed": "Kon GitHub niet verbinden. Probeer het opnieuw.",
     "unavailable": "GitHub-verificatie komt gauw."
+  },
+  "liveClips": {
+    "button": "Clip dit moment",
+    "capturing": "De laatste minuut van de stream ophalen…",
+    "copyLink": "Link kopiëren",
+    "failed": "Deze clip kon niet worden gemaakt.",
+    "highlightTitle": "Hoogtepunt",
+    "length": "Clip van {{seconds}} s",
+    "linkCopied": "Link gekopieerd",
+    "make": "Clip maken",
+    "postToShorts": "Plaatsen in Shorts",
+    "posted": "Clip geplaatst in Shorts",
+    "postedBody": "Je clip staat in Shorts. Deel hem zodat meer mensen de stream vinden.",
+    "rendering": "Je clip wordt geknipt. Dit duurt ongeveer een halve minuut…",
+    "starting": "Je clip wordt gestart…",
+    "title": "Clip",
+    "titleLabel": "Cliptitel",
+    "titlePlaceholder": "Geef je clip een titel",
+    "viewShort": "Short bekijken"
   }
 }

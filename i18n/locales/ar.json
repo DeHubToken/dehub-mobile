@@ -15759,5 +15759,24 @@
     "taken": "حساب GitHub هذا موجود بالفعل في ملف تعريف DeHub آخر.",
     "failed": "تعذر الاتصال بـ GitHub. حاول مرة أخرى.",
     "unavailable": "التحقق من GitHub قريبًا."
+  },
+  "liveClips": {
+    "button": "اقتطع هذه اللحظة",
+    "capturing": "جارٍ التقاط آخر دقيقة من البث…",
+    "copyLink": "نسخ الرابط",
+    "failed": "تعذّر إنشاء هذا المقطع.",
+    "highlightTitle": "لقطة مميزة",
+    "length": "مقطع مدته {{seconds}} ث",
+    "linkCopied": "تم نسخ الرابط",
+    "make": "إنشاء المقطع",
+    "postToShorts": "النشر في Shorts",
+    "posted": "تم نشر المقطع في Shorts",
+    "postedBody": "مقطعك الآن في Shorts. شاركه ليجد المزيد من الناس البث.",
+    "rendering": "جارٍ قص مقطعك. يستغرق ذلك نحو نصف دقيقة…",
+    "starting": "جارٍ بدء مقطعك…",
+    "title": "مقطع",
+    "titleLabel": "عنوان المقطع",
+    "titlePlaceholder": "أعطِ مقطعك عنوانًا",
+    "viewShort": "عرض الـShort"
   }
 }

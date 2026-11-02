@@ -15750,5 +15750,24 @@
     "hint": "GitHub'a giriş yapın hesabınızın sizin olduğunuzu kanıtlamak için. DeHub sadece sizin GitHub profilinizi görür.",
     "taken": "O DeHub profilinde zaten bu GitHub hesabı var.",
     "disconnect": "Bağlantıyı kes"
+  },
+  "liveClips": {
+    "button": "Bu anı kırp",
+    "capturing": "Yayının son dakikası alınıyor…",
+    "copyLink": "Bağlantıyı kopyala",
+    "failed": "Bu klip oluşturulamadı.",
+    "highlightTitle": "Öne çıkan an",
+    "length": "{{seconds}} sn klip",
+    "linkCopied": "Bağlantı kopyalandı",
+    "make": "Klibi oluştur",
+    "postToShorts": "Shorts'ta paylaş",
+    "posted": "Klip Shorts'ta paylaşıldı",
+    "postedBody": "Klibin Shorts'ta. Daha fazla kişi yayını bulsun diye paylaş.",
+    "rendering": "Klibin kesiliyor. Bu yaklaşık yarım dakika sürer…",
+    "starting": "Klibin başlatılıyor…",
+    "title": "Klip",
+    "titleLabel": "Klip başlığı",
+    "titlePlaceholder": "Klibine bir başlık ver",
+    "viewShort": "Short'u görüntüle"
   }
 }
