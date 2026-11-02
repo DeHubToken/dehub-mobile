@@ -15769,5 +15769,25 @@
     "titleLabel": "Klip başlığı",
     "titlePlaceholder": "Klibine bir başlık ver",
     "viewShort": "Short'u görüntüle"
+  },
+  "dmPaidLock": {
+    "lockPhoto": "Fotoğrafı kilitle",
+    "lockVideo": "Videoyu kilitle",
+    "lockOnPrice": "Kilitli · {{price}} DHB",
+    "lockCustom": "Diğer",
+    "lockCustomLabel": "DHB cinsinden özel fiyat",
+    "lockHint": "Sana ödeme yapana kadar bulanık görür. Kilitli dosyalar uçtan uca şifreli değildir.",
+    "lockedPhoto": "Kilitli fotoğraf",
+    "lockedVideo": "Kilitli video",
+    "unlockFor": "{{price}} karşılığında aç",
+    "unlockOnWeb": "dehub.io'da aç · {{price}}",
+    "confirming": "Ödeme onaylanıyor…",
+    "stillConfirming": "Ödeme gönderildi. Onaylanır onaylanmaz açılır.",
+    "payFailed": "Kilit açılamadı",
+    "unlocked": "Kilidi açıldı",
+    "unlockedTag": "Kilidi açıldı",
+    "notYet": "Henüz açılmadı",
+    "uploading": "Kilitleniyor…",
+    "unlockedByThem": "Kilitli {{kind}} açıldı: +{{amount}} DHB"
   }
 }

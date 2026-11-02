@@ -15774,5 +15774,25 @@
     "titleLabel": "Titre du clip",
     "titlePlaceholder": "Donnez un titre à votre clip",
     "viewShort": "Voir le Short"
+  },
+  "dmPaidLock": {
+    "lockPhoto": "Verrouiller la photo",
+    "lockVideo": "Verrouiller la vidéo",
+    "lockOnPrice": "Verrouillé · {{price}} DHB",
+    "lockCustom": "Autre",
+    "lockCustomLabel": "Prix personnalisé en DHB",
+    "lockHint": "La personne la voit floutée jusqu'à ce qu'elle vous paie. Les fichiers verrouillés ne sont pas chiffrés de bout en bout.",
+    "lockedPhoto": "Photo verrouillée",
+    "lockedVideo": "Vidéo verrouillée",
+    "unlockFor": "Déverrouiller pour {{price}}",
+    "unlockOnWeb": "Déverrouiller sur dehub.io · {{price}}",
+    "confirming": "Confirmation du paiement…",
+    "stillConfirming": "Paiement envoyé. Elle s'ouvrira dès sa confirmation.",
+    "payFailed": "Impossible de déverrouiller",
+    "unlocked": "Déverrouillé",
+    "unlockedTag": "Déverrouillé",
+    "notYet": "Pas encore déverrouillé",
+    "uploading": "Verrouillage…",
+    "unlockedByThem": "Votre {{kind}} verrouillé a été déverrouillé : +{{amount}} DHB"
   }
 }
