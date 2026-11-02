@@ -15709,5 +15709,9 @@
     "notYet": "Ainda não desbloqueado",
     "uploading": "Bloqueando…",
     "unlockedByThem": "Seu {{kind}} bloqueado foi desbloqueado: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "AO VIVO",
+    "join": "Entrar na live"
   }
 }

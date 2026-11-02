@@ -171,6 +171,10 @@ import { getWatchHistory } from "../services/user.service";
 import { createBrainrotSource } from "../libs/brainrotFeed";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useQuery } from "@tanstack/react-query";
+import { getLiveVideos } from "../services/live.service";
+import { interleaveLive, isLiveSlide, isVerticalFeedLive, LIVE_SLIDE_EVERY, LIVE_SLIDE_MAX, toLiveSlide } from "../libs/live-shorts";
+import LiveShortSlide from "../components/Shorts/LiveShortSlide";
 import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
@@ -2549,6 +2553,30 @@ const ShortsViewerScreen = () => {
   const viewerRestore = useRef({ initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams });
   viewerRestore.current = { initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams };
   const captureViewerState = useCallback(() => viewerRestore.current, []);
+
+  // Lives among the shorts, as on web: on the main Shorts feed only (not a
+  // profile, a search or Following), open and safe streams, one slide in six.
+  // Placed once, after the short the viewer opened on, so nothing under the
+  // viewer moves; later pages are shorts only.
+  const liveSlidesAllowed = !feedParams.minter && !feedParams.search && !feedParams.followingOnly && !feedParams.brainrot
+    && !initialItems.some((it: any) => isLiveSlide(it));
+  const { data: liveRows } = useQuery({
+    queryKey: ["dehub-live-streams", 200, "recent"],
+    queryFn: () => getLiveVideos({ unit: 200, sortMode: "recent" }),
+    enabled: liveSlidesAllowed,
+    staleTime: 60_000,
+    retry: false,
+  });
+  const liveSlidesPlaced = useRef(false);
+  useEffect(() => {
+    if (!liveSlidesAllowed || liveSlidesPlaced.current || !liveRows) return;
+    const rows: any[] = Array.isArray(liveRows) ? liveRows : Array.isArray((liveRows as any)?.result) ? (liveRows as any).result : [];
+    const slides = rows.filter(isVerticalFeedLive).slice(0, LIVE_SLIDE_MAX).map(toLiveSlide);
+    if (!slides.length) { liveSlidesPlaced.current = true; return; }
+    if (items.length < activeIndex + LIVE_SLIDE_EVERY + 1) return;
+    liveSlidesPlaced.current = true;
+    setItems((prev) => interleaveLive(prev, slides, activeIndex) as UnifiedFeedItem[]);
+  }, [liveSlidesAllowed, liveRows, items.length, activeIndex]);
   const endReachedRef = useRef(false);
   const loadFailedAt = useRef(0);
   const [loadRetry, setLoadRetry] = useState(0);
@@ -3013,7 +3041,9 @@ const ShortsViewerScreen = () => {
   const activeVideoRef = useRef<VideoView>(null);
 
   const renderItem = useCallback(
-    ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
+    ({ item, index }: { item: UnifiedFeedItem; index: number }) => isLiveSlide(item) ? (
+      <LiveShortSlide slide={item} isActive={index === activeIndex} height={containerHeight} />
+    ) : (
       <ShortItem
         item={item}
         thumbnailOverride={index === initialIndex ? initialThumbnail : undefined}
@@ -3137,7 +3167,7 @@ const ShortsViewerScreen = () => {
             </Pressable>
           </ChromeTouchTarget>
 
-          <View style={styles.topRight}>
+          {!isLiveSlide(activeItem) && <View style={styles.topRight}>
             {items[activeIndex]?.postType !== "feed-images" && <ChromeTouchTarget><PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} /></ChromeTouchTarget>}
             <ChromeTouchTarget>
               <Pressable
@@ -3191,7 +3221,7 @@ const ShortsViewerScreen = () => {
                 <Icon name="Ellipsis" size={20} color="#fff" />
               </Pressable>
             </ChromeTouchTarget>
-          </View>
+          </View>}
         </View>
       </Animated.View>
 
@@ -3210,7 +3240,7 @@ const ShortsViewerScreen = () => {
 
       {/* Options menu — bookmark, follow, report, block and the owner actions,
           matching the web viewer's options drawer. */}
-      {showOptionsMenu && !!activeItem && (
+      {showOptionsMenu && !!activeItem && !isLiveSlide(activeItem) && (
         <PostOptionsMenu
           visible={showOptionsMenu}
           onClose={() => setShowOptionsMenu(false)}

@@ -15999,5 +15999,9 @@
     "notYet": "Henüz açılmadı",
     "uploading": "Kilitleniyor…",
     "unlockedByThem": "Kilitli {{kind}} açıldı: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "CANLI",
+    "join": "Canlı yayına katıl"
   }
 }
