@@ -134,7 +134,12 @@ export interface DmForwardedFrom {
  * blurred preview.
  */
 export interface DmLock {
+  /** DHB to pay right now for `priceUsd` (live on reads, send-time quote on sockets). */
   price: number;
+  /** What the buyer pays, in USD. */
+  priceUsd?: number;
+  /** DHB rate the server used for `price`. */
+  dhbPriceUsd?: number;
   symbol: string;
   kind: "image" | "video";
   previewUrl: string | null;

@@ -1,16 +1,27 @@
 /**
  * "Lock photo" for a photo or video about to go out in a DM: off by default,
- * one tap turns it on at 25 DHB with quick prices beside it.
+ * one tap turns it on at $5 with quick prices beside it. Prices are in
+ * dollars, like subscriptions; the DHB they come to today shows underneath.
  */
 import React, { memo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { useAppTheme } from "../../context/ThemeContext";
+import {
+  LOCK_DEFAULT_USD,
+  LOCK_MAX_USD,
+  LOCK_MIN_USD,
+  LOCK_QUICK_USD,
+  formatLockDhb,
+  formatLockUsd,
+  lockDhbForUsd,
+} from "../../libs/dmLocked";
 
-export const LOCK_QUICK_PRICES = [5, 25, 100];
-const MIN = 1;
-const MAX = 1_000_000;
+/** Quick prices in USD. */
+export const LOCK_QUICK_PRICES = LOCK_QUICK_USD;
+const MIN = LOCK_MIN_USD;
+const MAX = LOCK_MAX_USD;
 
 interface Props {
   value?: number | null;
@@ -36,7 +47,7 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
     <View className="mt-2">
       <View className="flex-row flex-wrap items-center gap-1.5">
         <Pressable
-          onPress={() => { setCustom(""); onChange(on ? null : LOCK_QUICK_PRICES[1]); }}
+          onPress={() => { setCustom(""); onChange(on ? null : LOCK_DEFAULT_USD); }}
           accessibilityRole="switch"
           accessibilityState={{ checked: on }}
           style={on ? pill : { ...idle, borderColor: c.border }}
@@ -46,7 +57,7 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
             <Icon name={on ? "Lock" : "LockOpen"} size={12} color={on ? c.background : c.foreground} />
             <Text style={{ color: on ? c.background : c.foreground }} className="text-[12px] font-semibold">
               {on
-                ? t("dmPaidLock.lockOnPrice", { defaultValue: "Locked · {{price}} DHB", price: value })
+                ? t("dmPaidLock.lockOnUsd", { defaultValue: "Locked · {{price}}", price: formatLockUsd(value!) })
                 : kind === "video"
                   ? t("dmPaidLock.lockVideo", "Lock video")
                   : t("dmPaidLock.lockPhoto", "Lock photo")}
@@ -60,10 +71,10 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
                 <Pressable key={p} onPress={() => { setCustom(""); onChange(p); }} style={sel ? pill : idle} className={sel ? "" : "px-3 py-1"}>
                   {sel ? (
                     <View style={ring} className="px-3 py-1">
-                      <Text style={{ color: c.foreground }} className="text-[12px] font-semibold">{p}</Text>
+                      <Text style={{ color: c.foreground }} className="text-[12px] font-semibold">{formatLockUsd(p)}</Text>
                     </View>
                   ) : (
-                    <Text style={{ color: c.foreground }} className="text-[12px]">{p}</Text>
+                    <Text style={{ color: c.foreground }} className="text-[12px]">{formatLockUsd(p)}</Text>
                   )}
                 </Pressable>
               );
@@ -79,14 +90,19 @@ function LockPriceRowInner({ value, onChange, kind }: Props) {
               if (Number.isFinite(n) && n >= MIN && n <= MAX) onChange(Math.round(n * 100) / 100);
             }}
             keyboardType="decimal-pad"
-            placeholder={t("dmPaidLock.lockCustom", "Other")}
+            placeholder={t("dmPaidLock.lockCustomUsd", "$ Other")}
             placeholderTextColor={c.mutedForeground}
-            accessibilityLabel={t("dmPaidLock.lockCustomLabel", "Custom price in DHB")}
+            accessibilityLabel={t("dmPaidLock.lockCustomUsdLabel", "Custom price in dollars")}
             style={[idle, { color: c.foreground }, custom ? { borderColor: c.foreground } : null]}
             className="rounded-full px-3 py-1 text-[12px] min-w-[64px]"
           />
         ) : null}
       </View>
+      {on ? (
+        <Text style={{ color: c.foreground }} className="text-[11px] font-medium mt-1">
+          {t("dmPaidLock.lockDhbNow", { defaultValue: "≈ {{dhb}} today. They always pay {{price}}, whatever DHB is worth.", dhb: formatLockDhb(lockDhbForUsd(value!)), price: formatLockUsd(value!) })}
+        </Text>
+      ) : null}
       {on ? (
         <Text style={{ color: c.mutedForeground }} className="text-[11px] mt-1">
           {t("dmPaidLock.lockHint", "They see it blurred until they pay you. Locked files are not end-to-end encrypted.")}

@@ -37,6 +37,7 @@ import {
 } from "../../libs/dm-video-options";
 import { DESTRUCT_CHOICES, destructLabel, type DmDestructChoice } from "../../libs/dm-destruct";
 import { LOCK_QUICK_PRICES } from "./LockPriceRow";
+import { LOCK_DEFAULT_USD, formatLockUsd } from "../../libs/dmLocked";
 
 export type Tab = "cover" | "trim" | "mirror" | "rotate" | "hide" | "timer";
 const FRAMES = 10;
@@ -323,7 +324,7 @@ export default function DmVideoStudio({
                 <View pointerEvents="none" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.35)", alignItems: "center", justifyContent: "flex-end", paddingBottom: 12 }}>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 999, backgroundColor: "rgba(0,0,0,0.65)", paddingHorizontal: 10, paddingVertical: 5 }}>
                     <Icon name="Lock" size={14} color={WHITE} />
-                    <Text style={{ color: WHITE, fontSize: 12, fontWeight: "700" }}>{_copy("dmVideo.lockedFor", { defaultValue: "Unlock for {{value1}} DHB", value1: lockPrice })}</Text>
+                    <Text style={{ color: WHITE, fontSize: 12, fontWeight: "700" }}>{_copy("dmVideo.lockedForUsd", { defaultValue: "Unlock for {{value1}}", value1: formatLockUsd(lockPrice) })}</Text>
                   </View>
                 </View>
               )}
@@ -487,7 +488,7 @@ export default function DmVideoStudio({
                   {
                     on: lockPrice != null,
                     disabled: !onLockPriceChange,
-                    onPress: () => { set({ hidden: undefined }); if (lockPrice == null) onLockPriceChange?.(LOCK_QUICK_PRICES[1]); },
+                    onPress: () => { set({ hidden: undefined }); if (lockPrice == null) onLockPriceChange?.(LOCK_DEFAULT_USD); },
                     icon: "Lock" as IconName,
                     title: _copy("dmVideo.hidePrice", { defaultValue: "Hide behind a price" }),
                     body: onLockPriceChange
@@ -509,10 +510,10 @@ export default function DmVideoStudio({
             {tab === "hide" && lockPrice != null && onLockPriceChange && (
               <View style={{ marginTop: 10, gap: 6 }}>
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-                  <Text style={{ color: MUTED, fontSize: 11 }}>{_copy("dmVideo.priceLabel", { defaultValue: "Price (DHB)" })}</Text>
+                  <Text style={{ color: MUTED, fontSize: 11 }}>{_copy("dmVideo.priceLabelUsd", { defaultValue: "Price" })}</Text>
                   {LOCK_QUICK_PRICES.map((p) => (
                     <Pressable key={p} onPress={() => onLockPriceChange(p)} accessibilityRole="button" accessibilityState={{ selected: lockPrice === p }} style={pill(lockPrice === p)}>
-                      <Text style={pillText(lockPrice === p)}>{p}</Text>
+                      <Text style={pillText(lockPrice === p)}>{formatLockUsd(p)}</Text>
                     </Pressable>
                   ))}
                 </View>

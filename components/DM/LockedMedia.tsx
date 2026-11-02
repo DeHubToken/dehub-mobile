@@ -21,7 +21,16 @@ import { useWebSocketApi } from "../../context/WebSocketContext";
 import { DMSocketEvent } from "../../services/enums/dm-socket-events.enum";
 import { getLockedMedia, unlockLockedMedia } from "../../services/dm/dm.api";
 import type { DmLockStatus, DmMessage } from "../../services/dm/dm.types";
-import { LOCKED_MEDIA_WEB_URL, lockedMediaKey, lockedMediaUri, payForLockedMedia } from "../../libs/dmLocked";
+import {
+  LOCKED_MEDIA_WEB_URL,
+  formatLockDhb,
+  formatLockUsd,
+  lockDhbForUsd,
+  lockUsdOf,
+  lockedMediaKey,
+  lockedMediaUri,
+  payForLockedMedia,
+} from "../../libs/dmLocked";
 
 /** Set inline too: rounded-full alongside dark-surface can drop the radius. */
 const ROUND = { borderRadius: 999 } as const;
@@ -75,7 +84,10 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
   const realUrl = lockedMediaUri(view.mediaUrl || (isMine ? lock.mediaUrl : undefined));
   const pending = !!status?.pendingTxHash || paying;
   const previewUri = lockedMediaUri(view.previewUrl || message.mediaUrls?.[0]?.url);
-  const priceLabel = `${fmt(lock.price)} ${lock.symbol || "DHB"}`;
+  // Priced in dollars; the server's read says what that is in DHB right now.
+  const usd = lockUsdOf(view);
+  const dhbNow = status?.lock?.price ?? lockDhbForUsd(usd);
+  const priceLabel = formatLockUsd(usd);
   const height = Math.round(width * 1.25);
 
   const handleUnlock = async () => {
@@ -87,7 +99,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
     if (!status) return;
     setPaying(true);
     try {
-      const txHash = await payForLockedMedia(lock.price);
+      const txHash = await payForLockedMedia(dhbNow);
       const res = await unlockLockedMedia(message._id, txHash);
       queryClient.setQueryData(lockedMediaKey(String(message._id)), res);
       if (res.status === "unlocked") toastSuccess(t("dmPaidLock.unlocked", "Unlocked"));
@@ -176,6 +188,11 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
                 : t("dmPaidLock.unlockFor", { defaultValue: "Unlock for {{price}}", price: priceLabel })}
           </Text>
         </Pressable>
+        {!pending ? (
+          <Text className="text-[11px] font-medium text-white/75 mt-1.5">
+            {t("dmPaidLock.dhbNow", { defaultValue: "{{dhb}} at today’s price", dhb: formatLockDhb(dhbNow) })}
+          </Text>
+        ) : null}
       </View>
     </Pressable>
   );

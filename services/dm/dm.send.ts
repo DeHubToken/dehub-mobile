@@ -1,4 +1,5 @@
 import { dmActions } from "../../store/dm.store";
+import { lockDhbForUsd } from "../../libs/dmLocked";
 import { DMSocketEvent } from "../enums/dm-socket-events.enum";
 import { uploadDmMedia, tipNotify, forwardDmMessage } from "./dm.api";
 import { guessMime } from "../../libs/assets.util";
@@ -325,7 +326,7 @@ class DmSendQueue {
     if (lockPrice) {
       // The sender sees their own photo tagged with its price while it uploads.
       optimistic.lock = {
-        price: lockPrice, symbol: "DHB", kind: mediaType as "image" | "video",
+        price: lockDhbForUsd(lockPrice), priceUsd: lockPrice, symbol: "DHB", kind: mediaType as "image" | "video",
         previewUrl: null, unlocked: true, mine: true, ready: false,
         mediaUrl: mediaType === "video" ? (thumbnailUri || uri) : uri,
       };
