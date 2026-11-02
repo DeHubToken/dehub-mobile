@@ -1,8 +1,8 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /** Feedback submissions and the paginated, consent-approved public wall. */
 
-import React, { useCallback, useState } from "react";
-import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useCallback, useMemo, useState } from "react";
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,10 @@ import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { KitButton, PageSection } from "../page/PageKit";
+import Avatar from "../common/Avatar";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { getAccountSummariesByUsernames, type AccountSummary } from "../../services/user.service";
+import { getAvatarUrl } from "../../libs/misc";
 
 const MIN_LENGTH = 10;
 const MAX_LENGTH = 1200;
@@ -64,7 +68,30 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
     getNextPageParam: (lastPage, pages) => lastPage.length === 24 ? pages.length * 24 : undefined,
     staleTime: 60_000,
   });
-  const approved = feedback.data?.pages.flat() ?? [];
+  const approved = useMemo(() => feedback.data?.pages.flat() ?? [], [feedback.data]);
+  const { showUserProfile } = useUserProfileSheet();
+
+  // Faces for the wall: one batched lookup per hundred handles, not one per card.
+  const usernamesKey = useMemo(
+    () => [...new Set(approved.map((item) => item.username?.toLowerCase()).filter(Boolean) as string[])].sort().join(","),
+    [approved],
+  );
+  const { data: accounts } = useQuery({
+    queryKey: ["feedback-wall-accounts", usernamesKey],
+    enabled: usernamesKey.length > 0,
+    staleTime: 5 * 60_000,
+    queryFn: async () => {
+      const names = usernamesKey.split(",");
+      const chunks: string[][] = [];
+      for (let i = 0; i < names.length; i += 100) chunks.push(names.slice(i, i + 100));
+      const results = await Promise.all(chunks.map((chunk) => getAccountSummariesByUsernames(chunk).catch(() => [] as AccountSummary[])));
+      const byName: Record<string, AccountSummary> = {};
+      for (const account of results.flat()) {
+        if (account?.username) byName[account.username.toLowerCase()] = account;
+      }
+      return byName;
+    },
+  });
 
   const trimmed = body.trim();
   const canSubmit =
@@ -199,15 +226,34 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
             {!feedback.isPending && !feedback.isError && approved.length === 0 ? t('common.noResults') : null}
             {feedback.isError ? t('common.failedToLoad') : null}
           </Text>
-          {approved.map((item) => (
-            <View key={item.id} style={styles.quote}>
-              <Text style={styles.quoteBody}>“{item.body}”</Text>
-              <Text style={styles.quoteBy}>
-                {item.username ? `@${item.username}` : t("stats.feedback.anonymous", "A DeHub member")}
-                {item.time_using ? ` · ${item.time_using}` : ""}
-              </Text>
-            </View>
-          ))}
+          {approved.map((item) => {
+            const account = item.username ? accounts?.[item.username.toLowerCase()] : undefined;
+            const handle = account?.username ?? item.username;
+            const name = account?.displayName || handle || t("stats.feedback.anonymous", "A DeHub member");
+            const sub = [handle ? `@${handle}` : "", item.time_using ?? ""].filter(Boolean).join(" · ");
+            const target = account?.address || handle;
+            return (
+              <View key={item.id} style={styles.quote}>
+                <Pressable
+                  accessibilityRole={target ? "link" : undefined}
+                  disabled={!target}
+                  onPress={() => { if (target) showUserProfile(target, { source: "feedback" }); }}
+                  style={({ pressed }) => [styles.quoteHead, pressed && { opacity: 0.7 }]}
+                >
+                  <Avatar
+                    uri={account?.avatarImageUrl ? getAvatarUrl(account.avatarImageUrl, 32) : undefined}
+                    name={handle ? name : "“"}
+                    size={32}
+                  />
+                  <View style={styles.quoteWho}>
+                    <Text style={styles.quoteName} numberOfLines={1}>{name}</Text>
+                    {sub ? <Text style={styles.quoteBy} numberOfLines={1}>{sub}</Text> : null}
+                  </View>
+                </Pressable>
+                <Text style={styles.quoteBody}>“{item.body}”</Text>
+              </View>
+            );
+          })}
           {(feedback.isError || feedback.hasNextPage) ? (
             <KitButton variant="quiet" disabled={feedback.isFetching}
               label={t(feedback.isFetching ? 'common.loading' : feedback.isError ? 'common.retry' : 'search.loadMore')}
@@ -258,5 +304,8 @@ const styles = StyleSheet.create({
   link: { color: "#F4F4F5", fontSize: 12, textDecorationLine: "underline" },
   quote: { backgroundColor: "#111111", borderColor: "#333333", borderWidth: 1, borderRadius: 12, padding: 12 },
   quoteBody: { color: "#D4D4D8", fontSize: 12, lineHeight: 18 },
-  quoteBy: { color: "#8B8D90", fontSize: 11, marginTop: 6 },
+  quoteHead: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 8, alignSelf: "flex-start", maxWidth: "100%" },
+  quoteWho: { flexShrink: 1 },
+  quoteName: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
+  quoteBy: { color: "#8B8D90", fontSize: 11 },
 });
