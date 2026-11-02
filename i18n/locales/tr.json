@@ -15670,6 +15670,9 @@
     "connected": "GitHub'a bağlandı",
     "disconnected": "GitHub bağlantısı kesildi",
     "failed": "GitHub'a bağlanamadı. Tekrar deneyin.",
-    "unavailable": "GitHub doğrulama yakında gelecek."
+    "unavailable": "GitHub doğrulama yakında gelecek.",
+    "hint": "GitHub'a giriş yapın hesabınızın sizin olduğunuzu kanıtlamak için. DeHub sadece sizin GitHub profilinizi görür.",
+    "taken": "O DeHub profilinde zaten bu GitHub hesabı var.",
+    "disconnect": "Bağlantıyı kes"
   }
 }
