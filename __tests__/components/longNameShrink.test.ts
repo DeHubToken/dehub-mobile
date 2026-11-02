@@ -32,7 +32,7 @@ describe("long names shrink instead of spilling", () => {
   it("comment header: the name shrinks inside its wrapper so the badge stays in it", () => {
     const src = read("components", "Comments", "CommentItem.tsx");
     expect(src).toContain(
-      'style={{ flexShrink: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}',
+      'style={[{ flexShrink: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }, nameGlowStyle]}',
     );
   });
 
