@@ -3791,7 +3791,7 @@ export default function UploadScreen() {
             )}
           </TouchableOpacity>
 
-          {!isLiveMode && !isStageMode && canPost && !postInFlight && (
+          {!isLiveMode && !isStageMode && !articleMode && !pickedAudio && !pollIsValid && canPost && !postInFlight && (
             <TouchableOpacity
               onPress={() => setShowPreview(true)}
               activeOpacity={0.7}
