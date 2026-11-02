@@ -1,7 +1,7 @@
 /**
  * NftMarketScreen
  * ===============
- * Native port of dehub.io/nfts: browse NFTs for sale on BNB and Base, sell
+ * Native port of dehub.io/nfts: browse NFTs for sale on BNB, Base, Ethereum and Robinhood, sell
  * what you hold, and see recent sales. Orders are Seaport orders kept by the
  * DeHub API, the same ones the website shows.
  *
@@ -219,7 +219,7 @@ export default function NftMarketScreen() {
     <View style={styles.root}>
       <ScreenHeader
         title={t("nftMarket.title", { defaultValue: "NFTs" })}
-        subtitle={t("nftMarket.subtitle", { defaultValue: "Buy and sell on BNB and Base" })}
+        subtitle={t("nftMarket.subtitle", { defaultValue: "Buy and sell on BNB, Base, Ethereum and Robinhood" })}
         icon="nfts"
         rightContent={
           <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("nftMarket.share", { defaultValue: "Share" })}>
