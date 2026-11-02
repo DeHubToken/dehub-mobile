@@ -8,7 +8,6 @@ import React, { useMemo, useState } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { BlurView } from "expo-blur";
 import { supabase } from "../../services/supabase";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useUser } from "../../context/AuthContext";
@@ -192,7 +191,6 @@ export function TopBuildersPin({ bottom }: { bottom: number }) {
   return (
     <View pointerEvents="box-none" style={[styles.pinWrap, { bottom }]}>
       <View style={[styles.pin, isLight && styles.pinLight]}>
-        <BlurView intensity={40} tint={isLight ? "light" : "dark"} style={StyleSheet.absoluteFill} />
         <Text style={[styles.rank, { width: 30 }]}>{pin.rank ? `#${pin.rank}` : "–"}</Text>
         <View style={styles.mid}>
           <View style={styles.topLine}>
@@ -248,7 +246,7 @@ const styles = StyleSheet.create({
   rule: { color: "#71717A", fontSize: 11, marginTop: 6 },
   skeleton: { height: 36, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.05)", marginVertical: 4 },
   pinWrap: { position: "absolute", left: 12, right: 12 },
-  pin: { flexDirection: "row", alignItems: "center", gap: 10, padding: 10, borderRadius: 16, overflow: "hidden", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", backgroundColor: "rgba(24,24,27,0.72)" },
-  pinLight: { backgroundColor: "rgba(255,255,255,0.86)", borderColor: "rgba(0,0,0,0.08)" },
+  pin: { flexDirection: "row", alignItems: "center", gap: 10, padding: 10, borderRadius: 16, overflow: "hidden", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", backgroundColor: "rgba(24,24,27,0.96)" },
+  pinLight: { backgroundColor: "rgba(255,255,255,0.97)", borderColor: "rgba(0,0,0,0.08)" },
   pinBar: { height: 4, borderRadius: 2, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.1)", marginTop: 5 },
 });
