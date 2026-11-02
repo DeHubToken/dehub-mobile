@@ -9,6 +9,8 @@
  * Photos and voice notes open as soon as they are on screen. Videos and
  * documents wait for a tap, since they can be large.
  */
+import DmVideoTile from "./DmVideoTile";
+import type { DmDestruct } from "../../libs/dm-destruct";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, useWindowDimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -103,6 +105,7 @@ interface Props {
   isMine: boolean;
   onVideoPress?: (uri: string) => void;
   onLongPress?: () => void;
+  destruct?: DmDestruct | null;
 }
 
 const Percent: React.FC<{ progress: number }> = ({ progress }) => (
@@ -116,6 +119,7 @@ const EncryptedMediaComponent: React.FC<Props> = ({
   isMine,
   onVideoPress,
   onLongPress,
+  destruct,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
@@ -214,19 +218,22 @@ const EncryptedMediaComponent: React.FC<Props> = ({
 
   if (d.kind === "video") {
     return (
-      <TouchableOpacity activeOpacity={0.85} onPress={openVideo} onLongPress={onLongPress} delayLongPress={350}>
-        <View className="bg-theme-neutrals-700" style={{ width: boxW, height: boxH }}>
-          {placeholder}
-          {overlay(status === "loading" || status === "error" ? null : "Play")}
-          {(d.dur || d.size) && status !== "loading" ? (
-            <View className="absolute bottom-1.5 left-1.5 dark-surface bg-black/60 rounded px-1.5 py-0.5">
-              <Text className="text-[11px] text-white font-medium">
-                {d.dur ? `${Math.floor(d.dur / 60)}:${String(Math.round(d.dur % 60)).padStart(2, "0")}` : formatAttachmentSize(d.size)}
-              </Text>
-            </View>
-          ) : null}
-        </View>
-      </TouchableOpacity>
+      <DmVideoTile
+        posterUri={d.thumb}
+        width={d.w}
+        height={d.h}
+        duration={d.dur}
+        options={d.opts}
+        destruct={destruct}
+        mine={isMine}
+        messageId={messageId}
+        maxW={maxW}
+        maxH={MAX_H}
+        softPoster
+        loading={status === "loading"}
+        onOpen={openVideo}
+        onLongPress={onLongPress}
+      />
     );
   }
 

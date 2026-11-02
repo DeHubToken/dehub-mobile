@@ -21,6 +21,7 @@ import BuyFractionSheet from "../components/Fractions/BuyFractionSheet";
 import SellFractionsSheet, { type SellTarget } from "../components/Fractions/SellFractionsSheet";
 import MakeOfferSheet, { type OfferTarget } from "../components/Fractions/MakeOfferSheet";
 import { fmt, shortAddress } from "../components/Fractions/fractionFormat";
+import { fractionImageFor } from "../libs/fractionThumb";
 import { getNFT, getPpvSalesCount, togglePostVisibility } from "../services/nft.service";
 import { supabase } from "../services/supabase";
 import { useMintExistingPost } from "../hooks/useMintExistingPost";
@@ -199,8 +200,10 @@ export default function PostInfoScreen() {
 
   const postSnapshot = {
     title: post?.name || post?.title || undefined,
-    imageUrl: post?.imageUrl ? getImageUrl(post.imageUrl) : undefined,
+    imageUrl: post?.imageUrl ? getImageUrl(post.imageUrl) : fractionImageFor(post, 400) || undefined,
     type: post?.postType || undefined,
+    creatorAddress: post?.minter || undefined,
+    creatorUsername: post?.minterUsername || post?.mintername || undefined,
   };
 
   if (isLoading && !post) {

@@ -4,7 +4,8 @@ import { useSettledVideoSource } from '../../hooks/useSettledVideoSource';
 import { PersistentVideoView } from './PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, View, TouchableOpacity, Text } from 'react-native';
+import { Modal, View, TouchableOpacity, Text, useWindowDimensions } from 'react-native';
+import { isSideways, videoTransform, type DmVideoOptions } from '../../libs/dm-video-options';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from "../ui/Icon";
@@ -20,9 +21,16 @@ export type FullScreenVideoPlayerProps = {
   visible: boolean;
   uri: string | null | undefined;
   onClose: () => void;
+  /** A DM video's trim, mirror and rotation, applied while it plays. */
+  options?: DmVideoOptions | null;
 };
 
-const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, uri, onClose }) => {
+const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, uri, onClose, options }) => {
+  const win = useWindowDimensions();
+  const trimStart = options?.trimStart ?? 0;
+  const trimEnd = options?.trimEnd;
+  const trim = useRef({ trimStart, trimEnd });
+  trim.current = { trimStart, trimEnd };
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   // The Modal is edge-to-edge, so the controls pay the nav bar themselves.
@@ -106,9 +114,22 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       player.addListener('sourceLoad', ({ duration: durSec }) => {
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         setDuration(durMs);
+        if (trim.current.trimStart > 0) {
+          try { player.currentTime = trim.current.trimStart; } catch {}
+        }
       }),
       player.addListener('timeUpdate', ({ currentTime }) => {
         if (seekingRef.current) return;
+        // Only the part the sender kept plays.
+        const { trimStart: s, trimEnd: e } = trim.current;
+        if (e != null && (currentTime ?? 0) >= e) {
+          try {
+            player.currentTime = s;
+            if (!player.loop) player.pause();
+          } catch {}
+        } else if (s > 0 && (currentTime ?? 0) < s - 0.3) {
+          try { player.currentTime = s; } catch {}
+        }
         const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
         setPosition(curMs);
       }),
@@ -194,7 +215,11 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
             startsPictureInPictureAutomatically={visible && isPlaying}
             key={sessionKey || undefined}
             player={player}
-            style={{ flex: 1, backgroundColor: 'black' }}
+            style={
+              isSideways(options)
+                ? { position: 'absolute', width: win.height, height: win.width, left: (win.width - win.height) / 2, top: (win.height - win.width) / 2, backgroundColor: 'black', transform: videoTransform(options) }
+                : { flex: 1, backgroundColor: 'black', transform: videoTransform(options) }
+            }
             contentFit="contain"
             nativeControls={false}
             onFirstFrameRender={() => recovery.progress()}
@@ -216,12 +241,12 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
         >
           <View className="dark-surface bg-black/50 rounded-xl px-3 py-2">
             <View className="flex-row items-center gap-3">
-              <Text className="text-white text-xs w-10 text-center">{formatTime(position)}</Text>
+              <Text className="text-white text-xs w-10 text-center">{formatTime(Math.max(0, position - trimStart * 1000))}</Text>
               <Slider
                 style={{ flex: 1, height: 28 }}
-                minimumValue={0}
-                maximumValue={Math.max(duration, 1)}
-                value={Math.min(position, duration)}
+                minimumValue={trimStart * 1000}
+                maximumValue={Math.max(trimEnd != null ? trimEnd * 1000 : duration, trimStart * 1000 + 1)}
+                value={Math.max(trimStart * 1000, Math.min(position, trimEnd != null ? trimEnd * 1000 : duration))}
                 onSlidingStart={handleSlidingStart}
                 onSlidingComplete={handleSlidingComplete}
                 minimumTrackTintColor="#FFFFFF"
@@ -229,7 +254,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 thumbTintColor="#FFFFFF"
                 disabled={!sourceUrl}
               />
-              <Text className="text-white text-xs w-10 text-center">{formatTime(duration)}</Text>
+              <Text className="text-white text-xs w-10 text-center">{formatTime((trimEnd != null ? trimEnd * 1000 : duration) - trimStart * 1000)}</Text>
             </View>
             <View className="flex-row items-center justify-between mt-2">
               <PictureInPictureButton videoRef={videoViewRef} />

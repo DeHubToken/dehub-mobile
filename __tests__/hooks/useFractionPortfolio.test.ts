@@ -56,7 +56,7 @@ jest.mock("../../services/nft.service", () => ({
   getNFTs: jest.fn(() => Promise.resolve(mockTheirPosts)),
 }));
 
-jest.mock("../../libs/misc", () => ({ buildImageUrl: () => null }));
+jest.mock("../../libs/misc", () => ({ buildImageUrl: () => null, buildFeedImageUrls: () => [] }));
 
 jest.mock("../../config/web3.constants", () => ({
   STREAM_COLLECTION_CONTRACT_ADDRESSES: { 8453: "0xcollection" },
