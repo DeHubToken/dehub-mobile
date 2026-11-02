@@ -244,8 +244,15 @@
       "portfolio": "Portföy",
       "shop": "Mağaza",
       "podcast": "Podcast",
-      "newsletter": "Duyuru Bülteni"
-    }
+      "newsletter": "Duyuru Bülteni",
+      "blog": "Blog",
+      "pronouns": "İsim zamirleri",
+      "location": "Konum",
+      "custom": "Özel",
+      "customOption": "Özel etiket"
+    },
+    "add": "Eklentiyi ekle",
+    "remove": "Alanı kaldır"
   },
   "notificationFilters": {
     "title": "Bildirimleri filtrele",

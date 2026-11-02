@@ -238,6 +238,7 @@
     "descriptionPresets": "أضف موقع ويب أو ضمائر أو أي شيء آخر. تظهر الروابط مع وسائل التواصل الاجتماعي الخاصة بك.",
     "type": "نوع الحقل",
     "needsLabel": "امنح كل حقل مخصص تسمية",
+    "placeholderLink": "yoursite.com",
     "placeholderPronouns": "هم/هم",
     "placeholderLocation": "المدينة، البلد",
     "presets": {
