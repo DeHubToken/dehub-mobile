@@ -9,6 +9,7 @@ jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('reac
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 jest.mock('react-native', () => ({ RefreshControl: 'RefreshControl', Platform: { OS: 'android' } }));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: jest.requireActual('react').createContext(undefined) }));
 
 function LogoState() {
   return React.createElement('LogoState', { refreshing: useFeedPillRefreshing() });
@@ -73,4 +74,24 @@ it('hands the active home refresh to the spring gesture without parking the nati
   act(() => tree.update(<HomePullRefreshContext.Provider value={null}><DeHubRefreshControl refreshing onRefresh={onRefresh} /></HomePullRefreshContext.Provider>));
   expect(unregister).toHaveBeenCalledTimes(1);
   expect(tree.root.findByType('RefreshControl' as any).props.refreshing).toBe(true);
+});
+
+it('a screen behind the one in front, or a refresh that never ends, stops lighting the logo', () => {
+  jest.useFakeTimers();
+  const { NavigationContext } = jest.requireMock('@react-navigation/native');
+  const listeners: Record<string, () => void> = {};
+  let focused = false;
+  const nav = {
+    isFocused: () => focused,
+    addListener: (name: string, fn: () => void) => { listeners[name] = fn; return () => { delete listeners[name]; }; },
+  };
+  const screen = <NavigationContext.Provider value={nav}><DeHubRefreshMark refreshing /></NavigationContext.Provider>;
+  act(() => { tree = create(<>{screen}<LogoState /></>); });
+  expect(busy()).toBe(false);
+  focused = true;
+  act(() => listeners.focus());
+  expect(busy()).toBe(true);
+  act(() => { jest.advanceTimersByTime(12_000); });
+  expect(busy()).toBe(false);
+  jest.useRealTimers();
 });

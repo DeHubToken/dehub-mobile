@@ -14,7 +14,11 @@ export function DislikeVanish({ tokenId, children }: { tokenId?: string | number
   const hidden = useDislikeHidden(tokenId);
   const height = useRef(0);
   const progress = useRef(new Animated.Value(0)).current;
-  const [leaving, setLeaving] = useState(false);
+  // Keyed by post: a recycled row (FlashList reuses cells for new posts) never
+  // starts out folded away from the post it showed before.
+  const [leavingFor, setLeavingFor] = useState<string | number | null>(null);
+  const leaving = leavingFor != null && leavingFor === tokenId;
+  const setLeaving = (on: boolean) => setLeavingFor(on && tokenId != null ? tokenId : null);
 
   useEffect(() => {
     if (!hidden) {
