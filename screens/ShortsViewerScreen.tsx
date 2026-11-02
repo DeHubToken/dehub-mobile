@@ -1317,11 +1317,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
-    copyToClipboard(ShareLinks.post(String(tokenId)));
+    // A post with a readable slug shares as /app/post/<slug>.
+    const slug = typeof (item as any)?.articleSlug === "string" ? (item as any).articleSlug : "";
+    copyToClipboard(ShareLinks.post(slug || String(tokenId)));
     toastSuccess(t("postOptions.linkCopied"));
     // A copy is a share: it counts once per actor per post, next to reposts.
     trackLinkCopy(tokenId, userAddress, linkCopyCount);
-  }, [tokenId, trackLinkCopy, userAddress, linkCopyCount]);
+  }, [tokenId, item, trackLinkCopy, userAddress, linkCopyCount]);
 
   const commentCount = useCommentCount(tokenId, item.commentCount ?? 0);
   const tipCount = (item as any).totalTips || (item as any).tips || 0;
@@ -2474,7 +2476,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
+          {...(typeof (item as any)?.articleSlug === "string" && (item as any).articleSlug
+            ? { url: ShareLinks.post((item as any).articleSlug) }
+            : { tokenId })}
           postTitle={title || undefined}
         />
       )}
