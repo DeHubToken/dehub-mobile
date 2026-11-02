@@ -2788,6 +2788,10 @@
     "returnHome": "Terug naar home"
   },
   "profile": {
+    "articleShort": "Artikel",
+    "pinnedShort": "Vastgezet",
+    "post": "Bericht",
+    "sortBy": "Sorteren op",
     "mutualsOne": "{{count}} gemeenschappelijk:",
     "mutualsMany": "{{count}} gemeenschappelijk:",
     "dislikesPrivateDesc": "Dit account houdt zijn dislikes voor zichzelf.",
@@ -6884,6 +6888,7 @@
     "creatorEarnsDirect": "Abonnees betalen in DeHub-tokens. Je aandeel komt in je portemonnee terecht op het moment dat ze zich abonneren, minus de platformkosten voor je badge-niveau."
   },
   "live": {
+    "liveBadge": "LIVE",
     "bigEvent": "Groot evenement",
     "bigEventHint": "Voor een groot publiek: kijkers zien het ongeveer 20 seconden later, met minder onderbrekingen.",
     "notSet": "Niet ingesteld",

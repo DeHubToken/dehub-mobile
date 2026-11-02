@@ -2600,6 +2600,10 @@
     "returnHome": "Volver al inicio"
   },
   "profile": {
+    "articleShort": "Artículo",
+    "pinnedShort": "Fijado",
+    "post": "Publicación",
+    "sortBy": "Ordenar por",
     "mutualsOne": "{{count}} en común:",
     "mutualsMany": "{{count}} en común:",
     "dislikesPrivateDesc": "Esta cuenta mantiene sus «no me gusta» en privado.",
@@ -6746,6 +6750,7 @@
     "creatorEarnsDirect": "Los suscriptores pagan en tokens DeHub. Tu acción llega a tu billetera en el momento en que se suscriben, menos la tarifa de la plataforma para tu nivel de insignia."
   },
   "live": {
+    "liveBadge": "EN VIVO",
     "bigEvent": "Gran evento",
     "bigEventHint": "Para grandes audiencias: los espectadores lo ven unos 20 segundos por detrás, con menos interrupciones.",
     "notSet": "Sin definir",
