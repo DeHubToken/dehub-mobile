@@ -14640,5 +14640,17 @@
     "joinedBodyNoEmail": "Biz sizga tokenning chiqishi haqida ma'lumot berish uchun xabarnoma jo'natamiz.",
     "failed": "Saqlab bo'lmadi. Qaytadan urinib ko'ring.",
     "privacy": "Faoliyatga faqat chiqarilish haqida xabar berish uchun ishlatiladi."
+  },
+  "githubLink": {
+    "hint": "Xotira kirishingiz uchun GitHubga kirishingiz kerak, shuning uchun hisobingiz siznikiga tegishli ekanligini isbotlash kerak. DeHub faqat sizning GitHubdagi umumiy profilingizni koʻrishadi.",
+    "verified": "Tasdiqlangan",
+    "verifiedAria": "Tasdiqlangan GitHub akkaunti",
+    "connect": "GitHubga ulangish qiling",
+    "disconnect": "Uzish",
+    "connected": "GitHub ulangan",
+    "disconnected": "GitHub ulanmadi",
+    "taken": "Bu GitHub akkaunti boshqa DeHub profili bilan bogʻlangan.",
+    "failed": "GitHubga ulanish mumkin emas edi. Yangidan urinib ko'ring.",
+    "unavailable": "GitHub tasdiqlash yaqinlashib kelmoqda."
   }
 }

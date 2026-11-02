@@ -14584,5 +14584,13 @@
     "invalidEmail": "ادخل بريد إلكتروني صحيح",
     "failed": "قشيت حفظها. حاول مرة تانية.",
     "privacy": "بِسْتِخْدِمُوْشْ لِلْخَبَرِ عَنِ التَّشْغِيلِ."
+  },
+  "githubLink": {
+    "hint": "تسجيل دخول إلى GitHub ليُثبتوا أن الحساب لك. DeHub تطلع على ملفك العام في GitHub بس.",
+    "verifiedAria": "حساب GitHub مصدّق",
+    "disconnect": "تقطع",
+    "taken": "الحساب ده على GitHub مش موجود في أي ملف على DeHub.",
+    "failed": "مشيتش وصلت ل GitHub. حاول مرة تانية.",
+    "unavailable": "GitHub verification (التحقق من GitHub) بتجي قريب."
   }
 }

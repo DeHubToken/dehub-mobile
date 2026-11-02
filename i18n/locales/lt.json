@@ -14591,5 +14591,17 @@
     "joinedBodyNoEmail": "Mums rašykite jums, kai tokenas bus prieinamas.",
     "failed": "Nepavyko išsaugoti. Bandykite dar kartą.",
     "privacy": "Naudojamas tik pranešti apie išleidimą."
+  },
+  "githubLink": {
+    "hint": "Prisijunkite prie GitHub, kad įrodytumėte, jog paskyra yra jūsų. DeHub mato tik jūsų viešą GitHub profilį.",
+    "verified": "Patvirtinta",
+    "verifiedAria": "Patvirtinta GitHub paskyra",
+    "connect": "Prijungti GitHub",
+    "disconnect": "Atjungti",
+    "connected": "GitHub prijungta",
+    "disconnected": "GitHub atjungta",
+    "taken": "Ta GitHub paskyra jau yra kitame DeHub profilyje.",
+    "failed": "Nepavyko prijungti GitHub. Bandykite dar kartą.",
+    "unavailable": "GitHub patvirtinimas netrukus bus prieinamas."
   }
 }

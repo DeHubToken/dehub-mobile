@@ -14597,5 +14597,17 @@
     "joinedBodyNoEmail": "Us enviarem un correu quan es llanci el token.",
     "failed": "No s'ha pogut guardar. Torneu a intentar-ho.",
     "privacy": "Només s'utilitza per informar-vos del llançament."
+  },
+  "githubLink": {
+    "hint": "Inicia sessió a GitHub per comprovar que el compte és teu. DeHub només veu el teu perfil públic de GitHub.",
+    "verified": "Verificat",
+    "verifiedAria": "Compte de GitHub verificat",
+    "connect": "Connecta el GitHub",
+    "disconnect": "Desconnecta",
+    "connected": "GitHub connectat",
+    "disconnected": "GitHub desconnectat",
+    "taken": "Aquest compte de GitHub ja està en un altre perfil de DeHub.",
+    "failed": "No s'ha pogut connectar a GitHub. Torna-ho a provar.",
+    "unavailable": "Aviat arribarà la verificació de GitHub."
   }
 }

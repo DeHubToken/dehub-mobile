@@ -14594,5 +14594,17 @@
     "joinedBodyNoEmail": "Vi kommer att e‑posta dig när tokenen lanseras.",
     "failed": "Kunde inte spara det. Försök igen.",
     "privacy": "Endast används för att informera dig om lanseringen."
+  },
+  "githubLink": {
+    "hint": "Logga in på GitHub för att bevisa att kontot är ditt. DeHub ser bara din publika GitHub-profil.",
+    "verified": "Verifierad",
+    "verifiedAria": "Verifierad GitHub-konto",
+    "connect": "Anslut GitHub",
+    "disconnect": "Avsluta",
+    "connected": "GitHub ansluten",
+    "disconnected": "GitHub avslutad",
+    "taken": "Det GitHub-kontot är redan på en annan DeHub-profil.",
+    "failed": "Kunde inte ansluta GitHub. Försök igen.",
+    "unavailable": "GitHub-verifiering kommer snart."
   }
 }

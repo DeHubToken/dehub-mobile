@@ -14627,5 +14627,16 @@
     "joinedBodyNoEmail": "غادي نبعث لك إيميل ملي يطلق الرمز.",
     "failed": "ما قدرناش نحتفظ به. جرب مرة أخرى.",
     "privacy": "مستعمل غير باش نخبرك بالطلق."
+  },
+  "githubLink": {
+    "hint": "سجّل الدخول إلى GitHub لإثبات أن الحساب لك. يرى DeHub ملفك الشخصي العام على GitHub فقط.",
+    "verified": "تم التحقق",
+    "verifiedAria": "تم التحقق من حساب GitHub",
+    "disconnect": "قطع الاتصال",
+    "connected": "GitHub متصل",
+    "disconnected": "GitHub غير متصل",
+    "taken": "حساب GitHub هذا موجود بالفعل في ملف تعريف DeHub آخر.",
+    "failed": "تعذر الاتصال بـ GitHub. حاول مرة أخرى.",
+    "unavailable": "التحقق من GitHub قريبًا."
   }
 }

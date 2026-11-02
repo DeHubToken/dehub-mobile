@@ -14595,5 +14595,17 @@
     "joinedBodyNoEmail": "Me lähetämme sinulle sähköpostia, kun token julkaistaan.",
     "failed": "Ei voinut tallentaa sitä. Yritä uudelleen.",
     "privacy": "Ainoastaan kerron sinulle uuden julkaisun tiedoista."
+  },
+  "githubLink": {
+    "hint": "Kirjaudu GitHubiin todistaaksesi, että tili on sinun. DeHub näkee vain julkisen GitHub-profiilisi.",
+    "verified": "Vahvistettu",
+    "verifiedAria": "Vahvistettu GitHub-tili",
+    "connect": "Yhdistä GitHub",
+    "disconnect": "Katkaise yhteys",
+    "connected": "GitHub yhdistetty",
+    "disconnected": "GitHub-yhteys katkaistu",
+    "taken": "Kyseinen GitHub-tili on jo toisessa DeHub-profiilissa.",
+    "failed": "GitHubia ei voitu yhdistää. Yritä uudelleen.",
+    "unavailable": "GitHub-vahvistus on tulossa pian."
   }
 }

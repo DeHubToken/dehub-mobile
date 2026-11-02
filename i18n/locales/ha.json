@@ -14590,5 +14590,17 @@
     "sendTo": "Za mu yi email {{email}}",
     "emailLabel": "Imel",
     "emailPlaceholder": "Imel naka"
+  },
+  "githubLink": {
+    "hint": "Shiga cikin GitHub don tabbatar da asusun naku ne. DeHub kawai yana ganin bayanan ku na GitHub na jama'a.",
+    "verified": "Tabbatacce",
+    "verifiedAria": "Tabbatar da asusun GitHub",
+    "connect": "Haɗa GitHub",
+    "disconnect": "Kashe haɗin kai",
+    "connected": "GitHub da aka haɗa",
+    "disconnected": "GitHub ya katse",
+    "taken": "Cewa asusun GitHub ya riga ya kasance a kan wani bayanin martaba na DeHub.",
+    "failed": "Ba za a iya haɗa GitHub ba. sake gwadawa.",
+    "unavailable": "Tabbatar da GitHub yana zuwa ba da daɗewa ba."
   }
 }

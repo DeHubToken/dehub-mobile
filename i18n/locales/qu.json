@@ -14608,5 +14608,16 @@
     "joinedBodyNoEmail": "Kamaykunapaq k'uskiyki qillqamanta qillqa k'uskiyki.",
     "failed": "Kamuykuna qhaway, mana kaptinapaq.",
     "privacy": "Kamuykuna qhawaykunawan k'ancha k'aspiy."
+  },
+  "githubLink": {
+    "hint": "Sinqi kamarq'akuna GitHub kamarq'akuna. DeHub mana kamarq'akuna qhawaykuna kamarq'akuna qhawaykuna.",
+    "verified": "Wakichasqa",
+    "verifiedAria": "Kamachiyuwan GitHub qillqaynin",
+    "connect": "Kamuykuna GitHubnin ch'antaspa.",
+    "disconnect": "T’aqanakuy",
+    "connected": "Qhaway GitHub q'illay",
+    "disconnected": "Kamaykuna GitHub q'illaykamaykuna.",
+    "taken": "Kay GitHub q'illaykamanaqa DeHub q'illqaykampana q'illqamanta aswan.",
+    "failed": "Mana ch'aspaq GitHub. Kunti chaspaq."
   }
 }

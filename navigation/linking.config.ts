@@ -759,6 +759,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       logger.info('Sign-in page came back to a fresh launch; opening sign-in to finish it');
       return signInState();
     }
+    // Verified GitHub (components/Profile/GithubLinkRow) comes back here; the
+    // in-app browser that opened GitHub already read it.
+    if (segments[0] === 'github-connected') return undefined;
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path: withoutFragment(path) });
       return undefined;

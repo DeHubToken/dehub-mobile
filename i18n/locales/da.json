@@ -14601,5 +14601,17 @@
     "joinedBodyNoEmail": "Vi vil sende dig e-mail, når tokenet går live.",
     "failed": "Kunne ikke gemme det. Prøv igen.",
     "privacy": "Bruges kun til at fortælle dig om lanceringen."
+  },
+  "githubLink": {
+    "hint": "Log ind på GitHub for at bevise, at kontoen er din. DeHub ser kun din offentlige GitHub-profil.",
+    "verified": "Bekræftet",
+    "verifiedAria": "Bekræftet GitHub-konto",
+    "connect": "Forbind GitHub",
+    "disconnect": "Afbryd forbindelsen",
+    "connected": "GitHub tilsluttet",
+    "disconnected": "GitHub blev afbrudt",
+    "taken": "Denne GitHub-konto er allerede på en anden DeHub-profil.",
+    "failed": "Kunne ikke forbinde GitHub. Prøv igen.",
+    "unavailable": "GitHub-bekræftelse kommer snart."
   }
 }

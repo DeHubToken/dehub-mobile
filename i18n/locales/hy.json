@@ -14597,5 +14597,17 @@
     "joinedBodyNoEmail": "Մենք կուղարկենք ձեզ էլեկտրոնային փոստ, երբ տոկենը թողարկվում է։",
     "failed": "Չկարողացա պահպանել այն։ Հնարավել կրկին։",
     "privacy": "Չգործում է միայն տոկենների թողարկման մասին տեղեկացնելու համար։"
+  },
+  "githubLink": {
+    "hint": "Գլխավորացեք GitHub-ում՝ ապացուցելու համար, որ հաշիվը ձերն է։ DeHub-ը միայն տեսնում է ձեր հանրային GitHub պրոֆիլը։",
+    "verified": "Հաստատված",
+    "verifiedAria": "Վերահսկված GitHub հաշիվ:",
+    "connect": "Կոնեկտի՛ր GitHub-ը",
+    "disconnect": "Դիսկոնեկտ",
+    "connected": "GitHub connected",
+    "disconnected": "GitHub disconnected",
+    "taken": "Այդ GitHub հաշիվը արդեն գտնվում է մեկ այլ DeHub պրոֆիլում.",
+    "failed": "Չհաջողվեց միանալ GitHub‑ին։ Փորձեք նորից.",
+    "unavailable": "GitHub-ի ստուգումը շուտով կհասկանա."
   }
 }

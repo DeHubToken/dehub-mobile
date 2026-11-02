@@ -14608,5 +14608,15 @@
     "joinedBodyNoEmail": "이메일을 통해 토큰 출시 시점에 알려드리겠습니다.",
     "failed": "저장할 수 없습니다. 다시 시도해 주세요.",
     "privacy": "오직 출시 소식을 알려주기 위해만 사용됩니다."
+  },
+  "githubLink": {
+    "hint": "로그인하여 GitHub 계정이 자신의 것임을 증명하세요. DeHub은 당신의 공개 GitHub 프로필만 볼 수 있습니다.",
+    "verifiedAria": "인증된 GitHub 계정",
+    "connect": "GitHub에 연결하세요",
+    "disconnect": "분리",
+    "connected": "GitHub 연결됨",
+    "taken": "그 GitHub 계정은 이미 다른 DeHub 프로필에 등록되어 있습니다.",
+    "failed": "GitHub에 연결할 수 없습니다. 다시 시도해 주세요.",
+    "unavailable": "GitHub 인증이 곧 출시됩니다."
   }
 }

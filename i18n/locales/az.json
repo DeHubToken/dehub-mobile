@@ -14591,5 +14591,17 @@
     "joinedBodyNoEmail": "Sizə tokenin buraxılmasından sonra email göndərəcəyik.",
     "failed": "Bunu yaddaşda saxlamaq mümkün olmadı. Yenidən cəhd edin.",
     "privacy": "Yalnız bu ilan üçün istifadə olunur."
+  },
+  "githubLink": {
+    "hint": "Hesabın sizin olduğunu sübut etmək üçün GitHub-a daxil olun. DeHub yalnız ictimai GitHub profilinizi görür.",
+    "verified": "Təsdiqlənib",
+    "verifiedAria": "Təsdiqlənmiş GitHub hesabı",
+    "connect": "GitHub-ı qoşun",
+    "disconnect": "Əlaqəni kəs",
+    "connected": "GitHub qoşuldu",
+    "disconnected": "GitHub bağlantısı kəsildi",
+    "taken": "GitHub hesabı artıq başqa DeHub profilindədir.",
+    "failed": "GitHub-a qoşulmaq mümkün olmadı. Yenidən cəhd edin.",
+    "unavailable": "GitHub təsdiqləməsi tezliklə göndəriləcək."
   }
 }

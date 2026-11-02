@@ -14575,5 +14575,9 @@
     "joinedBodyNoEmail": "Biz size token çykyşy wagtynda e-poçta ibereris.",
     "failed": "Muny saklamak mümkin bolmady. Gaýtadan synanyp görüň.",
     "privacy": "Diňe çykyş barada size habar bermek üçin ulanylýar."
+  },
+  "githubLink": {
+    "verified": "Tasdiqlanmýş",
+    "disconnect": "Baglan"
   }
 }

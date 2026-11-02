@@ -15673,5 +15673,17 @@
     "wasLive": "Était en direct",
     "untitled": "Réaction",
     "thisVideo": "cette vidéo"
+  },
+  "githubLink": {
+    "hint": "Connectez-vous à GitHub pour prouver que le compte vous appartient. DeHub ne voit que votre profil GitHub public.",
+    "verified": "Vérifié",
+    "verifiedAria": "Compte GitHub vérifié",
+    "connect": "Connecter GitHub",
+    "disconnect": "Déconnecter",
+    "connected": "GitHub connecté",
+    "disconnected": "GitHub déconnecté",
+    "taken": "Ce compte GitHub est déjà sur un autre profil DeHub.",
+    "failed": "Impossible de connecter GitHub. Réessayez.",
+    "unavailable": "La vérification GitHub arrive bientôt."
   }
 }

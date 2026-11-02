@@ -14592,5 +14592,10 @@
     "joinedBodyNoEmail": "بنرسل لك إيميل لما يطلق الرمز.",
     "failed": "ما قدرنا نحفظها. جرّب مرة ثانية.",
     "privacy": "بس عشان نخبرك عن الإطلاق."
+  },
+  "githubLink": {
+    "hint": "تسجيل دخول ل GitHub ليُثبتوا إن الحساب لك. DeHub بتشوفك فقط من خلال ملفك العام على GitHub.",
+    "failed": "ما بيسوّد GitHub. حاول تاني.",
+    "unavailable": "GitHub verification (التحقق من GitHub) بتجي قريب."
   }
 }

@@ -14590,5 +14590,17 @@
     "joinedBodyNoEmail": "Jūsūs paziņosim, kad tokens iznāks, ar e-pasta ziņu.",
     "failed": "Nevarēja to saglabāt. Mēģiniet vēlreiz.",
     "privacy": "Tikai lai tevi informētu par izlaidi."
+  },
+  "githubLink": {
+    "hint": "Piejākties GitHub, lai apstiprinātu, ka šis konts ir jūsu. DeHub redz tikai jūsu publisko GitHub profilu.",
+    "verified": "Pārbaūts",
+    "verifiedAria": "Pārbaudīts GitHub konts",
+    "connect": "Sajaukties ar GitHub.",
+    "disconnect": "Atvienot",
+    "connected": "GitHub savienots",
+    "disconnected": "GitHub atvērtās",
+    "taken": "Tas GitHub konts ir jau pievienots citam DeHub profilm.",
+    "failed": "Nespēja savienoties ar GitHub. Mēģiniet vēlreiz.",
+    "unavailable": "GitHub verifikācija ir tuvāk."
   }
 }

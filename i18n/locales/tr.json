@@ -6364,9 +6364,9 @@
     "trim": "Kırp",
     "trimEnd": "Klip sonu",
     "trimHint": "Beyaz çubukları sürükleyerek kırpın. Şeridi hareket ettirmek için dokunun.",
-    "useFrameAsCover": "Bu kareyi kapak yap",
+    "useFrameAsCover": "Kapağı için bu çerçeveyi kullanın.",
     "trimAndCover": "Kırp ve kapak seç",
-    "trimStart": "Klip başlangıcı"
+    "trimStart": "Klip başı"
   },
   "bounty": {
     "claimed": "Alındı",
@@ -15668,5 +15668,17 @@
     "wasLive": "Canlıydı",
     "untitled": "Tepki",
     "thisVideo": "bu video"
+  },
+  "githubLink": {
+    "verified": "Doğrulanmış",
+    "verifiedAria": "Doğrulanmış GitHub hesabı",
+    "connect": "Bağlan GitHub'a",
+    "connected": "GitHub'a bağlandı",
+    "disconnected": "GitHub bağlantısı kesildi",
+    "failed": "GitHub'a bağlanamadı. Tekrar deneyin.",
+    "unavailable": "GitHub doğrulama yakında gelecek.",
+    "hint": "GitHub'a giriş yapın hesabınızın sizin olduğunuzu kanıtlamak için. DeHub sadece sizin GitHub profilinizi görür.",
+    "taken": "O DeHub profilinde zaten bu GitHub hesabı var.",
+    "disconnect": "Bağlantıyı kes"
   }
 }

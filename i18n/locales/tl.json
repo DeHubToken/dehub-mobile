@@ -14770,5 +14770,17 @@
     "joinedBodyNoEmail": "Ibibigay namin email sa iyo kapag maglulabas ang token.",
     "failed": "Hindi natin maipasa ito. Subukan muli.",
     "privacy": "Gagamitin lamang ito upang ipaalam sa iyo tungkol sa paglulabas."
+  },
+  "githubLink": {
+    "hint": "Mag-log in sa GitHub upang ipatunayang ang account ay iyong sarili. Ang DeHub ay lamang nakikita sa iyong profile sa GitHub na maipapamahagi.",
+    "verified": "Verified",
+    "verifiedAria": "Tinatanggap na GitHub account",
+    "connect": "Kumonek sa GitHub",
+    "disconnect": "Huwag magkabit",
+    "connected": "GitHub ay konektado",
+    "disconnected": "Naghihinto ang GitHub.",
+    "taken": "Ang GitHub account na iyon ay nasa ibang profile ng DeHub na.",
+    "failed": "Hindi makapag-ugnay sa GitHub. Subukan mo ulit.",
+    "unavailable": "Ang pagpapatunay ng GitHub ay dumating na."
   }
 }

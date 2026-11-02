@@ -14597,5 +14597,17 @@
     "emailPlaceholder": "તમારું ઇમેઇલ",
     "invalidEmail": "માન્ય ઇમેઇલ દાખલ કરો",
     "joinedTitle": "તમે સૂચિમાં છો"
+  },
+  "githubLink": {
+    "hint": "એકાઉન્ટ તમારું છે તે સાબિત કરવા માટે GitHub માં સાઇન ઇન કરો. DeHub ફક્ત તમારી સાર્વજનિક GitHub પ્રોફાઇલ જુએ છે.",
+    "verified": "ચકાસાયેલ",
+    "verifiedAria": "ચકાસાયેલ GitHub એકાઉન્ટ",
+    "connect": "GitHub ને કનેક્ટ કરો",
+    "disconnect": "ડિસ્કનેક્ટ કરો",
+    "connected": "GitHub જોડાયેલ છે",
+    "disconnected": "GitHub ડિસ્કનેક્ટ થયેલ છે",
+    "taken": "તે GitHub એકાઉન્ટ પહેલાથી જ અન્ય DeHub પ્રોફાઇલ પર છે.",
+    "failed": "GitHub ને કનેક્ટ કરી શક્યા નથી. ફરીથી પ્રયાસ કરો.",
+    "unavailable": "GitHub વેરિફિકેશન ટૂંક સમયમાં આવી રહ્યું છે."
   }
 }
