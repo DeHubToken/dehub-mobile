@@ -518,7 +518,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
   const handleShare = useCallback(async () => {
     if (tokenId == null) return;
-    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+    // An article shares as its readable title link.
+    const articleSlug = typeof post?.articleSlug === "string" ? post.articleSlug : "";
+    const url = `${WEBSITE_LINK || ""}/app/post/${articleSlug || tokenId}`;
     try {
       const result = await shareWithRef({
         message: t("copy.7cbcbe364e76", { defaultValue: "Check out this post {{value1}}", value1: url }),
@@ -527,7 +529,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       if (result.action === Share.sharedAction) reportPostEvent(tokenId, "share");
     } catch {}
     onClose();
-  }, [tokenId, onClose, t]);
+  }, [tokenId, post?.articleSlug, onClose, t]);
 
   const followLabel = isFollowRequestPending
     ? t("postOptions.cancelRequest")

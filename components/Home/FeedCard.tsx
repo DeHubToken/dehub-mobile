@@ -1220,6 +1220,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
   // server-side, so links handed out now keep working after a mint.
   const shareUrl = useMemo(() => {
+    // An article shares as its readable title link.
+    const articleSlug = (item as any).articleSlug;
+    if (typeof articleSlug === "string" && articleSlug) {
+      return `${WEBSITE_LINK || ""}/app/post/${articleSlug}`;
+    }
     const newPostId = (item as any).newPostId;
     if (rawStatus === "signed" && newPostId != null) {
       return `${WEBSITE_LINK || ""}/newpost/${newPostId}`;
