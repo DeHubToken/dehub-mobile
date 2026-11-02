@@ -92,6 +92,12 @@ interface FeedNavBarProps {
     onClose: () => void;
     onPickFeed: (tab: FeedSearchTab) => void;
   } | null;
+  /**
+   * Set while the colour themes' search lens is out (FeedSearchLens). The tab
+   * row stays tappable; the lit tab's glass is gone and a dashed ring marks
+   * where the lens came from.
+   */
+  lensOpen?: boolean;
   /** Back names the surface being closed; image drawers keep the grid label. */
   backLabel?: string;
   onBackPress?: () => void;
@@ -180,6 +186,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backLabel,
   onBackPress,
   search = null,
+  lensOpen = false,
 }) => {
   useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
@@ -289,6 +296,13 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   // The tab row fades out under the search box rather than unmounting, so the
   // indicator keeps its place for when the box melts back into it.
   const hiddenUnderSearch = search ? styles.hiddenUnderSearch : null;
+  const lensGone = search || lensOpen ? styles.hiddenUnderSearch : null;
+  const lensRing = lensOpen && containerWidth > 0 ? (
+    <View
+      pointerEvents="none"
+      style={[styles.lensRing, { left: (isMinimal ? (activeIndex + 1) * buttonWidth : LEAD_SLOT_WIDTH + activeIndex * buttonWidth) + 3, width: buttonWidth - 6 }]}
+    />
+  ) : null;
 
   // Sliding glass indicator — always visible, UI-thread driven. The +1 is the
   // filter/back slot the row now leads with: tab 0 starts one slot in, so
@@ -391,7 +405,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {/* FrostedPill owns the backdrop blur. The moving selection only
               adds its tint and rim, matching the web nav without a second
               blur sample that can leave a seam during tab transitions. */}
-          {containerWidth > 0 && <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle, hiddenUnderSearch]}>
+          {containerWidth > 0 && <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle, lensGone]}>
             {skin ? (
               <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
             ) : (
@@ -450,6 +464,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               />
             ))}
           </View>
+          {lensRing}
           {searchBar(LEAD_SLOT_WIDTH + activeIndex * buttonWidth)}
         </View>
       </View>
@@ -474,6 +489,15 @@ export const NAV_PILL_SIDE_INSET = 8;
 
 const styles = StyleSheet.create({
   hiddenUnderSearch: { opacity: 0 },
+  lensRing: {
+    position: "absolute",
+    top: 4,
+    bottom: 4,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    borderStyle: "dashed",
+    borderColor: "rgba(255,255,255,0.4)",
+  },
   outerWrap: {
     paddingHorizontal: NAV_PILL_SIDE_INSET,
     paddingTop: NAV_PILL_TOP_INSET,

@@ -35,6 +35,7 @@ import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } 
 import NewPostsBead, { CHIP_GAP, CHIP_HEIGHT } from "../components/Home/NewPostsBead";
 import { useNewPostsBead } from "../libs/new-posts-bead";
 import FeedSearchResults from "../components/Home/FeedSearchResults";
+import FeedSearchLens, { LENS_DOCK_SPACE } from "../components/Home/FeedSearchLens";
 import { feedSearchParams, feedSearchTabFor, type FeedSearchTab } from "../libs/feed-search";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
@@ -234,7 +235,7 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth, height: pageHeight } = useWindowDimensions();
   const isFocused = useIsFocused();
-  const { skin, theme, colors } = useAppTheme();
+  const { skin, theme, colors, accent } = useAppTheme();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
@@ -486,6 +487,11 @@ export default function HomeScreen() {
   // the island menu, the bottom bar) just switch feeds.
   const handlePillPostTypeChange = useCallback(
     (postType: PostTypeOption) => {
+      // The lens leaves the tab row tappable: the lit tab again closes it.
+      if (postType === activeTabKey && searchOpen) {
+        closeSearch();
+        return;
+      }
       if (postType === activeTabKey && !feedProfileVisible && !feedPost && !imageFeed && feedSearchTabFor(postType)) {
         setFilterPanelVisible(false);
         setSearchOpen(true);
@@ -496,7 +502,7 @@ export default function HomeScreen() {
       }
       handleNavPostTypeChange(postType);
     },
-    [activeTabKey, feedProfileVisible, feedPost, imageFeed, handleNavPostTypeChange],
+    [activeTabKey, searchOpen, closeSearch, feedProfileVisible, feedPost, imageFeed, handleNavPostTypeChange],
   );
   const pickSearchFeed = useCallback(
     (tab: FeedSearchTab) => {
@@ -719,6 +725,10 @@ export default function HomeScreen() {
   // While words are typed the feed under the pill gives way to a results grid
   // that follows the same filters (libs/feed-search).
   const searching = !!searchTab && searchQuery.trim().length > 0;
+  // Colour themes search through a lens that drops out of the pill (System and
+  // Minimal melt the pill into the box instead), as on web.
+  const searchLens = theme !== "system" && theme !== "minimal";
+  const lensOpen = !!searchTab && searchLens;
   const searchFeedParams = useMemo(
     () => (searchTab ? feedSearchParams(searchTab, searchTab === "home" ? feedListParamsByType.all : feedParams, searchQuery.trim()) : null),
     [searchTab, searchQuery, feedListParamsByType.all, feedParams],
@@ -729,7 +739,7 @@ export default function HomeScreen() {
         tab={searchTab}
         query={searchQuery}
         params={searchFeedParams}
-        topInset={searchTab === "home" ? feedInset : mediaGridInset}
+        topInset={(searchTab === "home" ? feedInset : mediaGridInset) + (searchLens ? LENS_DOCK_SPACE : 0)}
         onSearchEverything={() => pickSearchFeed("home")}
       />
     </View>
@@ -780,8 +790,9 @@ export default function HomeScreen() {
   // A pick switches feeds exactly as the pill's buttons did.
   const handleIslandSelect = useCallback((index: number) => {
     setIslandMenuOpen(false);
-    handleNavPostTypeChange(TAB_ORDER[index]);
-  }, [handleNavPostTypeChange, TAB_ORDER]);
+    // Picking the feed already showing opens its search, as the pill's lit tab does.
+    handlePillPostTypeChange(TAB_ORDER[index]);
+  }, [handlePillPostTypeChange, TAB_ORDER]);
   const handleIslandFilters = useCallback(() => {
     setIslandMenuOpen(false);
     setFilterPanelVisible(true);
@@ -1265,6 +1276,23 @@ export default function HomeScreen() {
       </GestureDetector>
       </FrostedContent>
 
+      {/* Under the header, so the pill and its filter panel stay above it. */}
+      {lensOpen && searchTab ? (
+        <FeedSearchLens
+          tab={searchTab}
+          query={searchQuery}
+          onChangeQuery={setSearchQuery}
+          onClose={closeSearch}
+          onPickFeed={pickSearchFeed}
+          onFilterPress={handleFilterPress}
+          filterActive={filterPanelVisible || hasActiveFilters}
+          dockY={Math.max(pillBottom, feedInset)}
+          fromX={pageWidth * (activeIndex + 1.5) / (TAB_ORDER.length + 1)}
+          fromY={Math.max(pillBottom, feedInset) - 20}
+          accent={`rgb(${accent.join(",")})`}
+        />
+      ) : null}
+
       <Animated.View
         style={[styles.headerClip, glassNav ? styles.headerClear : null, island ? { overflow: "visible" } : null, headerAnimatedStyle]}
         // The island's header is mostly empty space around the capsule; taps
@@ -1318,7 +1346,8 @@ export default function HomeScreen() {
           hasActiveFilters={hasActiveFilters}
           onPostTypeChange={handlePillPostTypeChange}
           onFilterPress={handleFilterPress}
-          search={searchTab ? { tab: searchTab, query: searchQuery, onChangeQuery: setSearchQuery, onClose: closeSearch, onPickFeed: pickSearchFeed } : null}
+          lensOpen={lensOpen}
+          search={searchTab && !searchLens ? { tab: searchTab, query: searchQuery, onChangeQuery: setSearchQuery, onClose: closeSearch, onPickFeed: pickSearchFeed } : null}
           onActiveTabLongPress={handleIslandFilters}
           backMode={feedProfileVisible || !!imageFeed || !!feedPost}
           onBackPress={feedProfileVisible ? hideUserProfile : imageFeed ? handleImageFeedBack : closeFeedPost}
