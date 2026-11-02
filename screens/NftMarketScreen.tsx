@@ -8,7 +8,7 @@
  * Android trades in the app. iOS is view only (App Store 3.1.1); in the US
  * storefront the sheet links out to dehub.io, which Apple allows there.
  */
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -28,6 +28,8 @@ import { shareWithRef } from "../libs/shareRef";
 import { theme } from "../theme";
 import { useWeb3Provider } from "../hooks/use-web3";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import { useUser } from "../context/AuthContext";
+import { canManageAgents } from "../libs/agent-access";
 import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketOrder, type NftTarget, type Signer } from "../services/nft-market.service";
 
 type Tab = "browse" | "mine" | "sales";
@@ -66,6 +68,13 @@ export default function NftMarketScreen() {
   const route = useRoute<any>();
   const insets = useSafeAreaInsets();
   const { provider, account, chainId } = useWeb3Provider();
+  const user = useUser();
+  const owner = canManageAgents(user?.walletAddress || user?.address);
+  useEffect(() => {
+    if (owner) return;
+    if (navigation.canGoBack()) navigation.goBack();
+    else navigation.navigate(ScreenNames.Home);
+  }, [owner, navigation]);
   const canTrade = DIGITAL_PURCHASES_ENABLED;
   const linkOut = Platform.OS === "ios" && inUnitedStates();
 
@@ -214,6 +223,9 @@ export default function NftMarketScreen() {
       )}
     />
   );
+
+  // Owner preview: anyone else who lands here (old deep link) is sent back.
+  if (!owner) return null;
 
   return (
     <View style={styles.root}>

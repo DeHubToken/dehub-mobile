@@ -436,7 +436,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const visibleItems = useMemo(() => {
     const allowed = NAV_ITEMS.filter(
       (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden)
-        && (item.screen !== ScreenNames.Agents || canManageAgents(user?.walletAddress || user?.address)),
+        && ((item.screen !== ScreenNames.Agents && item.screen !== ScreenNames.NftMarket) || canManageAgents(user?.walletAddress || user?.address)),
     );
     const query = menuQuery.trim().toLowerCase();
     if (!query) return allowed.filter((item) => !item.searchOnly);
