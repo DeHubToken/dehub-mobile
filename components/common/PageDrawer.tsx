@@ -38,9 +38,12 @@ function Sheet({ onClose, grab, children }: PageDrawerProps) {
   const { height } = useWindowDimensions();
   const translateY = useSharedValue(height);
   const backdrop = useSharedValue(0);
-  // The page behind blurred, as every other drawer has it: without it the
-  // sheet's wash was all that stood between its rows and the page.
-  const blur = useSheetBackdrop();
+  // The sheet covers all but a thin strip at the top, so the page behind gets
+  // the plain dim, not a live blur. On Android the blur re-samples the whole
+  // page on every frame anything in the window draws, so scrolling this list
+  // paid for a full-screen blur nobody could see (about 1 in 3 frames late
+  // on a Galaxy S24+).
+  const blur = useSheetBackdrop(false);
 
   useEffect(() => {
     translateY.value = withTiming(0, { duration: MOTION.open, easing: Easing.out(Easing.cubic) });
