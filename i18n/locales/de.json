@@ -8648,13 +8648,7 @@
     "coverFrames": "Cover-Bild aus dem Video wählen",
     "coverFrame": "Bild {{index}} als Cover verwenden",
     "uploadCover": "Cover-Bild hochladen",
-    "editFailed": "Die Bearbeitung konnte nicht übernommen werden. Versuche es erneut.",
-    "trim": "Trimmen",
-    "trimAndCover": "Trimmen und abdecken",
-    "trimStart": "Anfang des Clips",
-    "trimEnd": "Ende des Clips",
-    "trimHint": "Ziehen Sie die weißen Handgriffe, um zu trimmen. Tippen Sie auf den Streifen, um ihn zu verschieben.",
-    "useFrameAsCover": "Nutzen Sie dieses Bild als Abdeckung"
+    "editFailed": "Die Bearbeitung konnte nicht übernommen werden. Versuche es erneut."
   },
   "bounty": {
     "claimed": "Eingelöst",

@@ -8639,13 +8639,7 @@
     "coverFrames": "Vælg et billede som cover",
     "coverFrame": "Brug billede {{index}} som cover",
     "uploadCover": "Upload et coverbillede",
-    "editFailed": "Ændringen kunne ikke anvendes. Prøv igen.",
-    "trim": "Trim",
-    "trimAndCover": "Trim og dæk",
-    "trimStart": "Start på klip",
-    "trimEnd": "Slut på klip",
-    "trimHint": "Træk på de hvide håndtag for at trimme. Tryk på striben for at flytte.",
-    "useFrameAsCover": "Brug dette ramme som dækning"
+    "editFailed": "Ændringen kunne ikke anvendes. Prøv igen."
   },
   "bounty": {
     "claimed": "Indløst",

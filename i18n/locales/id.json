@@ -8733,13 +8733,7 @@
     "uploadCover": "Unggah gambar sampul",
     "editFailed": "Tidak dapat menerapkan edit. Coba lagi.",
     "madeForKidsConfirmAudience": "Anak - anak yang menggunakan Mode Anak akan ditampilkan postingan ini. Tidak ada hal lain di DeHub yang menjangkau mereka.",
-    "madeForKidsOnDesc": "Ditampilkan untuk anak-anak di Mode Anak, dan tidak ada di linimasa biasa. Hanya Mode Anak yang dapat berkomentar.",
-    "trim": "Potong",
-    "trimAndCover": "Potong dan tutup",
-    "trimStart": "Awal klip",
-    "trimEnd": "Akhir klip",
-    "trimHint": "Seret pegangan putih untuk memotong. Sentuh strip untuk memindahkan.",
-    "useFrameAsCover": "Gunakan frame ini sebagai tutup"
+    "madeForKidsOnDesc": "Ditampilkan untuk anak-anak di Mode Anak, dan tidak ada di linimasa biasa. Hanya Mode Anak yang dapat berkomentar."
   },
   "bounty": {
     "claimed": "Sudah diklaim",

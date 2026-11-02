@@ -8635,13 +8635,7 @@
     "coverFrames": "Vali kaanepilt",
     "coverFrame": "Kasuta kaanepilti {{index}}",
     "uploadCover": "Lae üles kaanepilt",
-    "editFailed": "Sai edasi teha seda redigeerimist. Proovi uuesti.",
-    "trim": "Trimida",
-    "trimAndCover": "Trimida ja kaetud",
-    "trimStart": "Klippi algus",
-    "trimEnd": "Klippi lõpp",
-    "trimHint": "Laienda valgeid kahvliideseid, et trimida. Taputa striipi, et liikuda.",
-    "useFrameAsCover": "Kasuta seda raami kaetuks."
+    "editFailed": "Sai edasi teha seda redigeerimist. Proovi uuesti."
   },
   "bounty": {
     "claimed": "Lunastatud",

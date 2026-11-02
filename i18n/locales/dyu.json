@@ -8616,10 +8616,7 @@
     "coverFrames": "Choisir une image de couverture",
     "coverFrame": "Utiliser l'image {{index}} comme couverture",
     "uploadCover": "Télécharger une image de couverture",
-    "editFailed": "Impossible d'appliquer cette modification. Réessayez.",
-    "trim": "Trim",
-    "trimStart": "Start of clip",
-    "trimEnd": "End of clip"
+    "editFailed": "Impossible d'appliquer cette modification. Réessayez."
   },
   "bounty": {
     "gasHint": "Hii itasababisha mabadiliko ya kifedha kwenye mstari wa kifedha. Gharama za gesi zinaweza kutokea.",

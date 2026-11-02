@@ -8733,13 +8733,7 @@
     "coverFrames": "Scegli un fotogramma di copertina",
     "coverFrame": "Usa il fotogramma {{index}} come copertina",
     "uploadCover": "Carica un'immagine di copertina",
-    "editFailed": "Impossibile applicare la modifica. Riprova.",
-    "trim": "Trim",
-    "trimAndCover": "Taglia e copri",
-    "trimStart": "Inizio del clip",
-    "trimEnd": "Fine del clip",
-    "trimHint": "Trascina le maniglie bianche per tagliare. Tappa la striscia per spostarla.",
-    "useFrameAsCover": "Usa questo fotogramma come copertura"
+    "editFailed": "Impossibile applicare la modifica. Riprova."
   },
   "bounty": {
     "claimed": "Riscosso",
