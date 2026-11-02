@@ -6601,6 +6601,14 @@
     "trimEnd": "Einde van clip",
     "trimHint": "Sleep de witte handvatten om te trimmen. Tik op de strip om te verplaatsen.",
     "useFrameAsCover": "Gebruik dit frame als bedekking",
+    "preview": {
+      "title": "Voorbeeld",
+      "hint": "Zo ziet je bericht eruit in de feed."
+    },
+    "recent": {
+      "show": "Recente foto's tonen",
+      "all": "Alles"
+    },
     "addAltText": "Alt-tekst toevoegen",
     "edit": "Bewerken",
     "editAltText": "Alt-tekst bewerken",
