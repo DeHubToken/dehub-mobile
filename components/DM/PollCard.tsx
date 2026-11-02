@@ -140,6 +140,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
     removeVote(tokenId).catch(() => {});
   };
 
+  const endedByTime = !!poll.expiresAt && new Date(poll.expiresAt).getTime() <= Date.now();
   const expiresLabel = poll.expiresAt
     ? isOpen
       ? t("dm.pollEnds", { time: formatRelativeTime(poll.expiresAt, t) })
@@ -152,7 +153,9 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
       <View className="flex-row items-start justify-between mb-2">
         <Text className="text-white font-medium text-sm flex-1 mr-2">
           {poll.question}
-          {isEnded && (
+          {/* The footer already says "Ended 1 day ago"; say it once. Kept
+              when the poll was closed early or has no end time. */}
+          {isEnded && !endedByTime && (
             <Text className="text-zinc-500 text-xs"> {t("dm.pollClosed")}</Text>
           )}
         </Text>
