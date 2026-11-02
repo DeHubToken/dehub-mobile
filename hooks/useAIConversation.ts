@@ -384,6 +384,8 @@ export async function fetchAssistantMedia(wallet: string): Promise<AssistantMedi
   }
 }
 
+type WriteContext = { id: string | null; remote: string | null; mirrored: number };
+
 export function useAIConversation(userId: string, surface = 'assistant') {
   const draftSession = useDraftConversation(surface);
   const { t: _copy } = _useCopy();
@@ -558,29 +560,42 @@ export function useAIConversation(userId: string, surface = 'assistant') {
   const writeKey = `${userId}|${draftSession.draft}`;
   const liveWriteKey = useRef(writeKey);
   liveWriteKey.current = writeKey;
-  const writeContexts = useRef(new Map<string, { id: string | null; remote: string | null; mirrored: number }>());
+  const writeContexts = useRef(new Map<string, WriteContext>());
   if (!writeContexts.current.has(writeKey)) writeContexts.current.set(writeKey, { id: conversationId, remote: null, mirrored: 0 });
   const writeContext = writeContexts.current.get(writeKey)!;
   if (conversationId) writeContext.id = conversationId;
   const writeVersion = selectionVersion.current;
+  const saveQueue = useRef<Promise<void>>(Promise.resolve());
+  const persistRef = useRef<(m: AIChatMessage[], cid: string, isCurrent: () => boolean, ctx: WriteContext, account: string, post: AIPostContext | undefined) => Promise<void>>(async () => {});
   const saveMessage = useCallback(
-    async (newMessages: AIChatMessage[]) => {
-      if (!userId) return;
+    (newMessages: AIChatMessage[]): Promise<void> => {
+      if (!userId) return Promise.resolve();
       const isCurrent = () => liveWriteKey.current === writeKey && selectionVersion.current === writeVersion;
-      if (isCurrent()) {
-        setMessages(newMessages);
-        writeContext.remote = remoteIdRef.current;
-        writeContext.mirrored = mirroredCountRef.current;
-      }
+      // The screen updates now; the upload and storage writes queue behind any
+      // earlier save, so a caller that does not wait cannot race the next turn.
+      if (isCurrent()) setMessages(newMessages);
       let cid = writeContext.id;
-      const now = Date.now();
-
       if (!cid) {
         cid = generateId();
         writeContext.id = cid;
         if (isCurrent()) conversationIdRef.current = cid;
         draftSession.assign(cid);
       }
+      const context = writeContext, account = userId, post = postContext;
+      const persist = () => persistRef.current(newMessages, cid!, isCurrent, context, account, post);
+      const run = saveQueue.current.then(persist, persist);
+      saveQueue.current = run.catch(() => {});
+      return run;
+    },
+    [userId, writeKey, writeVersion, writeContext, draftSession.assign, postContext],
+  );
+  const persistMessages = useCallback(
+    async (newMessages: AIChatMessage[], cid: string, isCurrent: () => boolean, writeContext: WriteContext, userId: string, postContext: AIPostContext | undefined) => {
+      if (isCurrent()) {
+        writeContext.remote = remoteIdRef.current;
+        writeContext.mirrored = mirroredCountRef.current;
+      }
+      const now = Date.now();
 
       // Mirror before writing the index, so the entry lands with its remoteId
       // and a later turn does not create a second remote thread.
@@ -636,8 +651,9 @@ export function useAIConversation(userId: string, surface = 'assistant') {
       await writeIndex(userId, index);
       if (isMounted.current && isCurrent()) setConversations([...index]);
     },
-    [userId, postContext, signedIn, draftSession.assign, writeKey, writeVersion, writeContext, _copy],
+    [signedIn, _copy],
   );
+  persistRef.current = persistMessages;
 
   const deleteConversation = useCallback(
     async (entry: ConversationEntry) => {
