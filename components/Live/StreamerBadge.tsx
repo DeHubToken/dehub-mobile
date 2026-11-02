@@ -25,7 +25,7 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size, font
 
   if (!address || !data || !(data.totalStreams > 0) || !equipped) return null;
   const bounds = streamerBadgeBounds(equipped.id, theme);
-  const capHeight = fontSize * 0.732 * 1.1;
+  const capHeight = fontSize * 0.72 * 1.1;
   const scale = capHeight / (bounds.bottom - bounds.top);
 
   return (
@@ -35,7 +35,7 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size, font
       hitSlop={8}
       accessibilityRole="button"
       accessibilityLabel={t(`live.progress.card.${equipped.id}.name`)}
-      style={{ width: (bounds.right - bounds.left) * scale, height: capHeight, flexShrink: 0, alignSelf: "flex-end", marginBottom: lineHeight / 2 - fontSize * 0.3375 }}
+      style={{ width: (bounds.right - bounds.left) * scale, height: capHeight, flexShrink: 0, alignSelf: "flex-end", marginBottom: lineHeight / 2 - fontSize * 0.383 }}
       onPress={() => openStreamerShowcase(equipped.id, address, canSelect, badgeRef.current)}
     >
       <View style={{ position: "absolute", left: -bounds.left * scale, top: -bounds.top * scale }}>
