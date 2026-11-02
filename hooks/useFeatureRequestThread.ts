@@ -406,7 +406,7 @@ export function featureLikersLoader(rows: Map<number, Row>) {
       .eq("comment_id", row.id)
       .order("created_at", { ascending: false });
     if (error) throw error;
-    const positive = ((data || []) as ReactionRow[]).filter((one) => isPositiveReaction(one.reaction as PostReaction));
+    const positive = ((data || []) as unknown as ReactionRow[]).filter((one) => isPositiveReaction(one.reaction as PostReaction));
     const slice = positive.slice(page * limit, page * limit + limit);
     const accounts = await getAccountSummaries(slice.map((one) => one.wallet_address)).catch(() => [] as AccountSummary[]);
     const byAddress = new Map(accounts.map((account) => [account.address.toLowerCase(), account]));
