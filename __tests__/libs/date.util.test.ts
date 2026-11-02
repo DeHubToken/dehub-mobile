@@ -56,7 +56,8 @@ describe('libs/date.util', () => {
       const result = formatJoinedDate('2024-03-15T10:00:00Z');
       expect(result).toBeTruthy();
       expect(result).toContain('2024');
-      expect(result).toContain('15');
+      // Month and year only, as web shows it.
+      expect(result).not.toContain('15');
     });
   });
 

@@ -96,7 +96,8 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
 
   const views = resolveViewCount(item as any);
   const seconds = (item as any).videoDuration || item.audioDuration;
-  const duration = seconds ? secondsToHMMSS(seconds) : "";
+  // Same clock as web tiles: 0:46, 12:05, 1:02:09 (no padded leading zero).
+  const duration = seconds ? (secondsToHMMSS(seconds) ?? "").replace(/^0(\d)/, "$1") : "";
   const isOsaka = theme === "osaka";
   const solid = isOsaka ? "#FF6FB5" : "#FFFFFF";
   const solidInk = isOsaka ? "#1A0C16" : "#000000";
@@ -186,7 +187,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
         {kind === "video" && <Badge icon={resolveContentType(item) === "live" ? "Radio" : "Film"} />}
         {multi && <Badge icon="Images" />}
         {kind === "video" && !!duration && <View style={styles.dur}><Text style={styles.durText}>{duration}</Text></View>}
-        {(kind === "video" || isLive) && views > 0 && <Text style={styles.views}>{formatCompactNumber(views)}</Text>}
+        {(kind === "video" || isLive) && views > 0 && <Text style={styles.views}>{t("music.viewsCount", { count: views, views: formatCompactNumber(views) })}</Text>}
         {isLive && <View style={[StyleSheet.absoluteFill, styles.liveRing]} pointerEvents="none" />}
       </View>
     );

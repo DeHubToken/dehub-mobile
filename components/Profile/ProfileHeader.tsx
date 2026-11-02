@@ -35,8 +35,8 @@ import { shareProfile } from "../../libs/misc";
 import CopyAddressSheet from "../Wallet/CopyAddressSheet";
 import * as ImagePicker from "expo-image-picker";
 
-/** Matches the Avatar `size={88}` below. */
-const PROFILE_AVATAR_PT = 88;
+/** Matches the Avatar `size={96}` below. */
+const PROFILE_AVATAR_PT = 96;
 import {
   openCroppedImagePicker,
   resizeAndCompress,
@@ -46,8 +46,6 @@ import { runWithPermissions } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { ShareLinks } from "../../navigation/linking.config";
-import { translateText, getUserLanguage } from "../../services/translation.service";
-import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
 import ImageViewerModal from "../common/ImageViewerModal";
 import BadgePatronChip from "../common/BadgePatronChip";
@@ -80,8 +78,6 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   const { width: COVER_WIDTH_PT } = useWindowDimensions();
   const user = useUser() as any;
   const { refreshUser, patchUser } = useAuthActions();
-  const [translatedBio, setTranslatedBio] = useState<string | null>(null);
-  const [isTranslatingBio, setIsTranslatingBio] = useState(false);
   const [copyAddressVisible, setCopyAddressVisible] = useState(false);
   // The reader's chosen language, not the handset's: a Turkish reader on an
   // English phone was being served "translations" back into English.
@@ -89,7 +85,6 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   // Left on-demand deliberately, unlike every other surface — this is the
   // signed-in user's OWN bio, which they wrote. Auto-translating someone's own
   // words back at them is not the parity anyone wanted.
-  const targetLang = useRef(getUserLanguage());
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [localAvatarUri, setLocalAvatarUri] = useState<string | null>(null);
   const [uploadingCover, setUploadingCover] = useState(false);
@@ -158,19 +153,6 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   );
 
   const aboutText = (user?.aboutMe || "").trim();
-
-  const handleTranslateBio = useCallback(async () => {
-    if (!aboutText) return;
-    setIsTranslatingBio(true);
-    try {
-      const { translatedText } = await translateText(aboutText, targetLang.current, 'auto', { isPublic: true });
-      setTranslatedBio(translatedText);
-    } catch {
-      // silently ignore
-    } finally {
-      setIsTranslatingBio(false);
-    }
-  }, [aboutText]);
 
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
@@ -329,12 +311,12 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
       <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
-        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -48 }}>
           <View>
             <Avatar
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
               name={displayName}
-              size={88}
+              size={96}
               style={{ borderWidth: 1.5, borderColor: "#18181b", backgroundColor: "#18181b" }}
               live={live}
               liveQuiet
@@ -360,7 +342,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           </View>
 
           {isMinimal ? (
-            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
                 accessibilityLabel={t("settings.editProfile")}
@@ -382,7 +364,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               </TouchableOpacity>
             </View>
           ) : (
-          <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+          <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
@@ -493,13 +475,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           {/* Bio */}
           {!!aboutText && (
             <View className="mt-3">
-              <Text className="text-white/90" style={{ fontSize: 17, lineHeight: 24 }}>{translatedBio ?? aboutText}</Text>
-              <TranslateButton
-                isTranslated={!!translatedBio}
-                isLoading={isTranslatingBio}
-                onTranslate={handleTranslateBio}
-                onShowOriginal={() => setTranslatedBio(null)}
-              />
+              {/* Your own bio is in your own words: no translate control, as on web. */}
+              <Text className="text-white/90" style={{ fontSize: 16, lineHeight: 24 }}>{aboutText}</Text>
             </View>
           )}
 
@@ -513,7 +490,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           {/* Following / Followers */}
           <View className="flex-row flex-wrap items-center gap-4 mt-3">
             <TouchableOpacity onPress={() => goToFollowList("following")} activeOpacity={0.7}>
-              <Text className="text-sm">
+              <Text style={{ fontSize: 16, lineHeight: 22 }}>
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followingCount)}
                 </Text>
@@ -521,7 +498,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => goToFollowList("followers")} activeOpacity={0.7}>
-              <Text className="text-sm">
+              <Text style={{ fontSize: 16, lineHeight: 22 }}>
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followersCount)}
                 </Text>
