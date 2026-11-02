@@ -58,7 +58,14 @@ export function useMusicSearchShelves(q: string) {
       .filter((space) => !seen.has(space.id) && (seen.add(space.id), true))
       .sort((a, b) => (STATUS_ORDER[a.status] ?? 2) - (STATUS_ORDER[b.status] ?? 2));
   }, [enabled, term, liveSpaces, scheduledSpaces, recordings.data]);
-  const stations = useMemo(() => (enabled ? (radio.data ?? []).slice(0, STATION_LIMIT) : []), [enabled, radio.data]);
+  // The directory lists some stations more than once under the same name.
+  const stations = useMemo(() => {
+    if (!enabled) return [];
+    const seen = new Set<string>();
+    return (radio.data ?? [])
+      .filter((station) => { const key = station.name.trim().toLocaleLowerCase(); return !seen.has(key) && (seen.add(key), true); })
+      .slice(0, STATION_LIMIT);
+  }, [enabled, radio.data]);
 
   return { stages, stations, isLoading: enabled && (recordings.isLoading || radio.isLoading) };
 }
