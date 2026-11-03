@@ -4409,6 +4409,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} আর {{second}} “{{community}}”-ত মেসেজ পাডাইয়ে",
+    "communityChatMany": "{{name}} + আরও {{others}} জন “{{community}}”-ত মেসেজ পাডাইয়ে",
+    "communityChatOne": "{{name}} “{{community}}”-ত একখান মেসেজ পাডাইয়ে",
     "custom": {
       "featureComment": "{{name}} আপনার ফিচার অনুরোধে মন্তব্য করেছেন",
       "featureCommentNamed": "{{name}} আপনার ফিচার অনুরোধে মন্তব্য করেছেন “{{title}}”",

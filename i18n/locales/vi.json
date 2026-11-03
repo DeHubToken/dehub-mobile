@@ -4386,6 +4386,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} và {{second}} đã gửi tin nhắn trong “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} người khác đã gửi tin nhắn trong “{{community}}”",
+    "communityChatOne": "{{name}} đã gửi một tin nhắn trong “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} đã nộp đơn cho bounties của bạn",
       "bountyAppliedNamed": "{{name}} đã nộp đơn cho bounties của bạn “{{title}}”",

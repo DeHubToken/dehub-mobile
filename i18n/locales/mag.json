@@ -4362,6 +4362,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} आउ {{second}} “{{community}}” में मैसेज भेजलन",
+    "communityChatMany": "{{name}} + {{others}} आउ लोग “{{community}}” में मैसेज भेजलन",
+    "communityChatOne": "{{name}} “{{community}}” में एगो मैसेज भेजलक",
     "custom": {
       "bountyApplied": "{{name}} ने तुझारी बाउंटी पर अप्लाई कियो",
       "bountyAppliedNamed": "{{name}} ने तुझारी बाउंटी “{{title}}” पर अप्लाई कियो",
@@ -7740,6 +7743,9 @@
     "new": "नया"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} लाइव चैट में तोहर जिक्र कइलक",
+    "mentionedYouPost": "{{name}} एगो पोस्ट में तोहर जिक्र कइलक",
+    "mentionedYouPublicChat": "{{name}} पब्लिक चैट में तोहर जिक्र कइलक",
     "title": "प्रतिक्रिया देवे वाला",
     "privateTitle": "हल निजी संदेश के मुद्दे.",
     "privateDescription": "केवल लेखक द्वारा लिखित अनुमति के साथ पुनर्प्रकाशित ।",

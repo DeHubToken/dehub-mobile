@@ -4356,6 +4356,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} กับ {{second}} ส่งข้อความมาใน “{{community}}”",
+    "communityChatMany": "{{name}} + อีก {{others}} คนส่งข้อความมาใน “{{community}}”",
+    "communityChatOne": "{{name}} ส่งข้อความมาใน “{{community}}”",
     "custom": {
       "commentMention": "{{name}} ตั้งฉากคุณในความคิดเห็น",
       "featureComment": "{{name}} ได้แสดงความคิดเห็นในคำขอฟีเจอร์ของคุณ",
@@ -7733,6 +7736,7 @@
     "new": "ใหม่"
   },
   "reactionInfo": {
+    "mentionedYouComment": "{{name}} เอิ้นถึงเจ้าในคอมเมนต์",
     "title": "ปฏิกิริยา",
     "privateTitle": "ปฏิกิริยาเป็นส่วนตัว",
     "privateDescription": "เฉพาะผู้เขียนโพสต์เท่านั้นที่สามารถดูรายการนี้ได้",

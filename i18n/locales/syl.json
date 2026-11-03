@@ -4431,6 +4431,9 @@
     "addBookmark": "বুকমার্ক দেও"
   },
   "notifications": {
+    "communityChatTwo": "{{name}} আর {{second}} “{{community}}”-এ মেসেজ পাঠাইছইন",
+    "communityChatMany": "{{name}} + আরও {{others}} জন “{{community}}”-এ মেসেজ পাঠাইছইন",
+    "communityChatOne": "{{name}} “{{community}}”-এ একটা মেসেজ পাঠাইছইন",
     "custom": {
       "bountyReply": "{{name}} তোৱা আপনার বাউন্টিয়ে রিপ্লাই কৰিছে",
       "bountyReplyNamed": "{{name}} আপনার বোন্টি “{{title}}” এর উত্তর দিয়েছে",
@@ -7901,6 +7904,9 @@
     "new": "নতুন"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} আপনাকে লাইভ চ্যাটে উল্লেখ করেছে",
+    "mentionedYouPost": "{{name}} আপনাকে একটি পোস্টে উল্লেখ করেছে",
+    "mentionedYouPublicChat": "{{name}} আপনাকে পাবলিক চ্যাটে উল্লেখ করেছে",
     "title": "রিঅ্যাকশন",
     "privateTitle": "রিঅ্যাকশন প্রাইভেট",
     "privateDescription": "শুধুমাত্র পোস্ট লেখক এই তালিকা দেখতে পারবেন।",

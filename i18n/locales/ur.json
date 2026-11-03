@@ -4371,6 +4371,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} اور {{second}} نے “{{community}}” میں پیغامات بھیجے",
+    "communityChatMany": "{{name}} + {{others}} دیگر نے “{{community}}” میں پیغامات بھیجے",
+    "communityChatOne": "{{name}} نے “{{community}}” میں ایک پیغام بھیجا",
     "custom": {
       "bountyApplied": "{{name}} نے آپ کی بونٹی پر درخواست دی",
       "bountyAppliedNamed": "{{name}} نے آپ کی بونٹی \"{{title}}\" پر درخواست دی",

@@ -4357,6 +4357,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} بعتوا رسايل بـ “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} غيرهم بعتوا رسايل بـ “{{community}}”",
+    "communityChatOne": "{{name}} بعت رسالة بـ “{{community}}”",
     "custom": {
       "featureComment": "{{name}} ترك تعليق على طلبتك الخاص",
       "featureLike": "{{name}} أعجبته طلبتك الخاص",
@@ -7737,6 +7740,7 @@
     "new": "جديد"
   },
   "reactionInfo": {
+    "mentionedYouPost": "{{name}} ذكرك بمنشور",
     "title": "التفاعلات",
     "privateTitle": "التفاعلات خاصة",
     "privateDescription": "بس صاحب البوست بيقدر يشوف هالقائمة.",

@@ -4356,6 +4356,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} aur {{second}} ne “{{community}}” mein mesej bheje",
+    "communityChatMany": "{{name}} + {{others}} aur logaan ne “{{community}}” mein mesej bheje",
+    "communityChatOne": "{{name}} ne “{{community}}” mein ek mesej bheja",
     "custom": {
       "featureLike": "{{name}} کو آپ کی خصوصیت کی درخواست پسند آئی",
       "featureMention": "{{name}} نے فیچر کی درخواست پر آپ کا تذکرہ کیا",

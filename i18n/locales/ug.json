@@ -4358,6 +4358,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ۋە {{second}} «{{community}}» دا ئۇچۇرلار ئەۋەتتى",
+    "communityChatMany": "{{name}} + يەنە {{others}} كىشى «{{community}}» دا ئۇچۇرلار ئەۋەتتى",
+    "communityChatOne": "{{name}} «{{community}}» دا ئۇچۇر ئەۋەتتى",
     "custom": {
       "bountyApplied": "{{name}} مۇكاپاتىڭىزغا ئىلتىماس قىلدى",
       "bountyAppliedNamed": "{{name}} «{{title}}» مۇكاپاتىڭىزغا ئىلتىماس قىلدى",

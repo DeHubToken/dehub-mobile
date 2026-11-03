@@ -4363,6 +4363,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} {{second}} च “{{community}}” मध्ये सन्देशान् अप्रेषयताम्",
+    "communityChatMany": "{{name}} + अन्ये {{others}} “{{community}}” मध्ये सन्देशान् अप्रेषयन्",
+    "communityChatOne": "{{name}} “{{community}}” मध्ये सन्देशम् अप्रेषयत्",
     "custom": {
       "bountyApplied": "{{name}} ने बाउंटी पर आवेदन किया",
       "bountyReply": "{{name}} ने बाउंटी पर उत्तर दिया",
@@ -7742,6 +7745,9 @@
     "new": "नूतनम्"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} सजीवसंवादे भवतः उल्लेखम् अकरोत्",
+    "mentionedYouPost": "{{name}} प्रकाशने भवतः उल्लेखम् अकरोत्",
+    "mentionedYouPublicChat": "{{name}} सार्वजनिकसंवादे भवतः उल्लेखम् अकरोत्",
     "title": "अभिक्रियाः",
     "privateTitle": "प्रतिक्रियां निजं",
     "privateDescription": "केवलं लेखकः एव अस्य पृष्ठं द्रष्टुं शक्नोति ।",

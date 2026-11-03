@@ -4354,6 +4354,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} an {{second}} send message dem for “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} oda pipul send message dem for “{{community}}”",
+    "communityChatOne": "{{name}} send message for “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} apply to yam bounty",
       "bountyAppliedNamed": "{{name}} apply to yam bounty “{{title}}”",
@@ -7731,6 +7734,8 @@
     "new": "Nyu"
   },
   "reactionInfo": {
+    "mentionedYouPublicChat": "{{name}} mention yu long public chat",
+    "mentionedYouLiveChat": "{{name}} mention yu long live chat",
     "title": "Reaction dem",
     "empty": "Nobodi don react yet",
     "labels": {

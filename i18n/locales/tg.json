@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ва {{second}} дар «{{community}}» паёмҳо фиристоданд",
+    "communityChatMany": "{{name}} + {{others}} нафари дигар дар «{{community}}» паёмҳо фиристоданд",
+    "communityChatOne": "{{name}} дар «{{community}}» паём фиристод",
     "custom": {
       "featureComment": "{{name}} ба дархости функсияи шумо шарҳ гузошт",
       "featureCommentNamed": "{{name}} ба дархости функсияи шумо “{{title}}” шарҳ гузошт",

@@ -4362,6 +4362,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} अउ {{second}} “{{community}}” म मैसेज भेजिन",
+    "communityChatMany": "{{name}} + {{others}} अउ मन “{{community}}” म मैसेज भेजिन",
+    "communityChatOne": "{{name}} ह “{{community}}” म एक मैसेज भेजिस",
     "custom": {
       "featureLikeNamed": "{{name}} ने आपकी फीचर रिक्वेस्ट “{{title}}” को पसंद किया है",
       "bountySubmitted": "{{name}} ने बाउंटी पर वर्क सबमिट किया",
@@ -7740,6 +7743,9 @@
     "new": "नवा"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} ह लाइव चैट म तोर जिक्र करिस",
+    "mentionedYouPost": "{{name}} ह एक पोस्ट म तोर जिक्र करिस",
+    "mentionedYouPublicChat": "{{name}} ह पब्लिक चैट म तोर जिक्र करिस",
     "title": "प्रतिक्रिया",
     "privateTitle": "निजी प्रतिक्रिया",
     "privateDescription": "केवल लेखक ए सूची ल देख सकत हवय ।",

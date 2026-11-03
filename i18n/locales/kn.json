@@ -4361,6 +4361,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ಮತ್ತು {{second}} “{{community}}” ನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಿದ್ದಾರೆ",
+    "communityChatMany": "{{name}} + ಇನ್ನೂ {{others}} ಜನ “{{community}}” ನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಿದ್ದಾರೆ",
+    "communityChatOne": "{{name}} “{{community}}” ನಲ್ಲಿ ಸಂದೇಶ ಕಳುಹಿಸಿದ್ದಾರೆ",
     "custom": {
       "featureReplyNamed": "“{{title}}” ನಲ್ಲಿ {{name}} ನಿಮಗೆ ಉತ್ತರಿಸಿದ್ದಾರೆ",
       "bountyApplied": "{{name}} ನಿಮ್ಮ ಕೊಡುಗೆಗೆ ಅನ್ವಯಿಸಲಾಗಿದೆ",

@@ -4384,6 +4384,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} sy {{second}} dia nandefa hafatra tao amin'ny “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} hafa dia nandefa hafatra tao amin'ny “{{community}}”",
+    "communityChatOne": "{{name}} dia nandefa hafatra tao amin'ny “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} dia nampihatra tamin’ny valisoanao",
       "bountyAppliedNamed": "{{name}} dia nampihatra tamin’ny valisoanao “{{title}}”",

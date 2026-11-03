@@ -4389,6 +4389,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} және {{second}} «{{community}}» қауымдастығында хабарламалар жіберді",
+    "communityChatMany": "{{name}} + тағы {{others}} адам «{{community}}» қауымдастығында хабарламалар жіберді",
+    "communityChatOne": "{{name}} «{{community}}» қауымдастығында хабарлама жіберді",
     "custom": {
       "bountyApplied": "{{name}} сенің қуаныштылығына үміткер болды",
       "bountyAppliedNamed": "{{name}} сенің ({{title}}) қуаныштылығына үміткер болды",

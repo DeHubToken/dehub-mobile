@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ን {{second}} ን ኣብ “{{community}}” መልእኽቲታት ሰዲዶም",
+    "communityChatMany": "{{name}} + {{others}} ካልኦት ኣብ “{{community}}” መልእኽቲታት ሰዲዶም",
+    "communityChatOne": "{{name}} ኣብ “{{community}}” መልእኽቲ ሰዲዱ",
     "custom": {
       "featureCommentNamed": "{{name}} ኣብቲ ናይ ሓድሽ ባህሪ ሕቶኻ “{{title}}” ርእይቶ ሂቡ",
       "featureLikeNamed": "{{name}} ነቲ ናይ ሓድሽ ባህሪ ሕቶኻ “{{title}}” ፈቲዉዎ",
@@ -7737,6 +7740,7 @@
     "new": "ሓድሽ"
   },
   "reactionInfo": {
+    "mentionedYouPost": "{{name}} ኣብ ጽሑፍ ጠቒሱካ",
     "title": "ግብረ መልሲ",
     "privateTitle": "ግብረ መልሲ ብሕታዊ እዩ ።",
     "privateDescription": "እቲ ደራሲ ጥራይ እዩ ነዚ ዝርዝር እዚ ክርኢ ዝኽእል ።",

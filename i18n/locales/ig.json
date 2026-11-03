@@ -4353,6 +4353,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} na {{second}} zitere ozi na “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} ndị ọzọ zitere ozi na “{{community}}”",
+    "communityChatOne": "{{name}} zitere ozi na “{{community}}”",
     "custom": {
       "bountyReply": "{{name}} zara onyinye gị",
       "bountyReplyNamed": "{{name}} zara onyinye gị “{{title}}”",
@@ -7733,6 +7736,7 @@
     "new": "Ọhụrụ"
   },
   "reactionInfo": {
+    "mentionedYouPost": "{{name}} kwuru gị n'otu post",
     "title": "Mmetụta",
     "privateTitle": "Mmeghachi omume bụ nkeonwe",
     "privateDescription": "Naanị onye dere akwụkwọ ozi nwere ike ilele ndepụta a.",

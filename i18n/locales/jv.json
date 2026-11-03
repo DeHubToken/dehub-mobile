@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} lan {{second}} ngirim pesen ing “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} liyane ngirim pesen ing “{{community}}”",
+    "communityChatOne": "{{name}} ngirim pesen ing “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} wis nglamar bounty-mu",
       "bountyAppliedNamed": "{{name}} wis nglamar bounty-mu “{{title}}”",
@@ -7741,6 +7744,9 @@
     "new": "Anyar"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} nyebut sampeyan ing obrolan langsung",
+    "mentionedYouPost": "{{name}} nyebut sampeyan ing postingan",
+    "mentionedYouPublicChat": "{{name}} nyebut sampeyan ing obrolan umum",
     "title": "Reaksi",
     "privateTitle": "Reaksi iku pribadi",
     "privateDescription": "Mung penulis kiriman bisa ndeleng dhaftar iki.",

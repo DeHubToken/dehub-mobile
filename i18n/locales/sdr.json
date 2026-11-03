@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} आउर {{second}} “{{community}}” में मैसेज भेजलैं",
+    "communityChatMany": "{{name}} + {{others}} आउर लोग “{{community}}” में मैसेज भेजलैं",
+    "communityChatOne": "{{name}} “{{community}}” में एगो मैसेज भेजलक",
     "custom": {
       "bountyApplied": "{{name}} نے آپ کی بونٹی پر درخواست دی",
       "bountyReply": "{{name}} نے آپ کی بونٹی پر جواب دیا",
@@ -7753,6 +7756,9 @@
     "new": "نوا"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} लाइव चैट में तोर जिकर करलक",
+    "mentionedYouPost": "{{name}} एगो पोस्ट में तोर जिकर करलक",
+    "mentionedYouPublicChat": "{{name}} पब्लिक चैट में तोर जिकर करलक",
     "title": "प्रतिक्रियाएं",
     "privateTitle": "प्रतिक्रियाएं निजी हैं",
     "privateDescription": "केवल पोस्ट लेखक इस सूची को देख सकता है।",

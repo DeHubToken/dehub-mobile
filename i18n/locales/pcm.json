@@ -4353,6 +4353,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} and {{second}} send messages for “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} others send messages for “{{community}}”",
+    "communityChatOne": "{{name}} send message for “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} don apply for your bounty",
       "bountyAppliedNamed": "{{name}} don apply for your bounty “{{title}}”",
@@ -7730,6 +7733,9 @@
     "new": "New"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} mention you for live chat",
+    "mentionedYouPost": "{{name}} mention you for post",
+    "mentionedYouPublicChat": "{{name}} mention you for public chat",
     "title": "Likes",
     "empty": "No reaction yet",
     "labels": {

@@ -4358,6 +4358,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} او {{second}} په «{{community}}» کې پیغامونه واستول",
+    "communityChatMany": "{{name}} + {{others}} نورو په «{{community}}» کې پیغامونه واستول",
+    "communityChatOne": "{{name}} په «{{community}}» کې یو پیغام واستاوه",
     "custom": {
       "bountyApplied": "{{name}} ستاسو په انعام کې غوښتنلیک ورکړ",
       "bountyAppliedNamed": "{{name}} ستاسو په انعام \"{{title}}\" کې غوښتنلیک ورکړ",
@@ -7735,6 +7738,9 @@
     "new": "نوی"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} په ژوندۍ چټ کې ستاسو یادونه وکړه",
+    "mentionedYouPost": "{{name}} په یوه پوسټ کې ستاسو یادونه وکړه",
+    "mentionedYouPublicChat": "{{name}} په عامه چټ کې ستاسو یادونه وکړه",
     "title": "عکس العملونه",
     "privateTitle": "ځواب ورکول private ته ځواب لرې کړه",
     "privateDescription": "یوازې د ویب پا ownerې مالک کولی شي دا پا viewه وګوري.",

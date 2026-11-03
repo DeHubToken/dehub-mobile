@@ -4352,6 +4352,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} жана {{second}} «{{community}}» коомчулугунда билдирүүлөрдү жөнөтүштү",
+    "communityChatMany": "{{name}} + дагы {{others}} киши «{{community}}» коомчулугунда билдирүүлөрдү жөнөтүштү",
+    "communityChatOne": "{{name}} «{{community}}» коомчулугунда билдирүү жөнөттү",
     "custom": {
       "repostedPosts": "{{name}} сиздин {{count}} постун кайра жарыялады",
       "stageLive": "{{name}} сценада жүргүлүүдө",

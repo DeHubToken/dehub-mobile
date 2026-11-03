@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} i {{second}} wysłali wiadomości w „{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} innych wysłało wiadomości w „{{community}}”",
+    "communityChatOne": "{{name}} wysłał(a) wiadomość w „{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} złożył wniosek o nagrodę",
       "bountyAppliedNamed": "{{name}} złożył wniosek o nagrodę „{{title}}”",

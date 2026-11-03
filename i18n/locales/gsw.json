@@ -4362,6 +4362,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} und {{second}} händ Nachrichte in «{{community}}» gschickt",
+    "communityChatMany": "{{name}} + {{others}} anderi händ Nachrichte in «{{community}}» gschickt",
+    "communityChatOne": "{{name}} het e Nachricht in «{{community}}» gschickt",
     "custom": {
       "bountyApplied": "{{name}} gäbe auf deim Belohnungsgeld gäbe.",
       "bountyAppliedNamed": "{{name}} gäbe auf deinem Belohnungsangebot “{{title}}” an.",

@@ -4367,6 +4367,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} болон {{second}} «{{community}}» дээр мессеж илгээлээ",
+    "communityChatMany": "{{name}} + өөр {{others}} хүн «{{community}}» дээр мессеж илгээлээ",
+    "communityChatOne": "{{name}} «{{community}}» дээр мессеж илгээлээ",
     "custom": {
       "bountyApplied": "{{name}} таны шагналд бүртгүүллээ",
       "bountyAppliedNamed": "{{name}} таны хөнгөлөлтөнд {{title}} ”",

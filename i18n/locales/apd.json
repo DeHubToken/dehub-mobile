@@ -4370,6 +4370,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} رسّلوا رسايل في “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} تانين رسّلوا رسايل في “{{community}}”",
+    "communityChatOne": "{{name}} رسّل رسالة في “{{community}}”",
     "custom": {
       "bountyApplied": "تم تطبيق {{name}} على مكافأتك",
       "bountyReply": "{{name}} أجاب على مكافأتك",

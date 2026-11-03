@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} i {{second}} poslali su poruke u „{{community}}”",
+    "communityChatMany": "{{name}} + još {{others}} poslali su poruke u „{{community}}”",
+    "communityChatOne": "{{name}} je poslao/la poruku u „{{community}}”",
     "custom": {
       "governanceComment": "{{name}} je komentirao vaš predlog",
       "bountyApplied": "{{name}} primio prijavu za vašu nagradu",

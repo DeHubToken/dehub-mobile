@@ -4353,6 +4353,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} iyo {{second}} ayaa fariimo ku soo diray “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} kale ayaa fariimo ku soo diray “{{community}}”",
+    "communityChatOne": "{{name}} ayaa fariin ku soo diray “{{community}}”",
     "custom": {
       "featureLikeNamed": "{{name}} ayaa ka helay codsigaaga muuqaalka “{{title}}”",
       "bountyApplied": "{{name}} ayaa codsaday abaalmarintaada",

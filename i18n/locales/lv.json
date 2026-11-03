@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} un {{second}} nosūtīja ziņas kopienā “{{community}}”",
+    "communityChatMany": "{{name}} + vēl {{others}} nosūtīja ziņas kopienā “{{community}}”",
+    "communityChatOne": "{{name}} nosūtīja ziņu kopienā “{{community}}”",
     "custom": {
       "featureComment": "{{name}} komentēja jūsu vēlumu",
       "bountyApplied": "{{name}} pieprasīja iesniegt darbu uz jūsu bountiju",

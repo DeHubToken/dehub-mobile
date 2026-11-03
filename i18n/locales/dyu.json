@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ni {{second}} ye cikanw ci “{{community}}” kɔnɔ",
+    "communityChatMany": "{{name}} + mɔgɔ {{others}} wɛrɛw ye cikanw ci “{{community}}” kɔnɔ",
+    "communityChatOne": "{{name}} ye cikan dɔ ci “{{community}}” kɔnɔ",
     "custom": {
       "featureCommentNamed": "{{name}} i ka ɲinini “{{title}}” kɔnɔ kɔmenti kɛ",
       "featureLikeNamed": "{{name}} i ka ɲinini “{{title}}” nɔgɔya",
@@ -7739,6 +7742,10 @@
     "new": "Kura"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} y’i tɔgɔ fɔ live chat kɔnɔ",
+    "mentionedYouComment": "{{name}} y’i tɔgɔ fɔ kɔmenti dɔ kɔnɔ",
+    "mentionedYouPost": "{{name}} y’i tɔgɔ fɔ positi dɔ kɔnɔ",
+    "mentionedYouPublicChat": "{{name}} mention i ka jama ka baro la",
     "title": "O kama, a ka ɲi ka kɛ ni",
     "privateTitle": "Mɔgɔ tɛ se ka min kɛ, o ye ka mɔgɔ ka koo jati",
     "privateDescription": "O la, a ka ɲi ka tɛmɛ o fɛɛrɛw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",

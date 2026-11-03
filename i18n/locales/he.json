@@ -4374,6 +4374,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ו{{second}} שלחו הודעות ב“{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} אחרים שלחו הודעות ב“{{community}}”",
+    "communityChatOne": "{{name}} שלח/ה הודעה ב“{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} התמודד על פרסום הבונוס שלך",
       "bountyAppliedNamed": "{{name}} התמודד על פרסום הבונוס שלך “{{title}}”",

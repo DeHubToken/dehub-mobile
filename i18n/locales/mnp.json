@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} 和 {{second}} 在「{{community}}」發了消息",
+    "communityChatMany": "{{name}} + 另外 {{others}} 人在「{{community}}」發了消息",
+    "communityChatOne": "{{name}} 在「{{community}}」發了一條消息",
     "custom": {
       "featureComment": "{{name}} 在你的功能請求上留了言",
       "featureMention": "{{name}} 在功能請求上提到了你",
@@ -7739,6 +7742,9 @@
     "new": "新"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} 在直播聊天中提到了你",
+    "mentionedYouPost": "{{name}} 在帖子中提到了你",
+    "mentionedYouPublicChat": "{{name}} 在公開聊天中提到了你",
     "title": "反应",
     "privateTitle": "反应是私人的",
     "privateDescription": "只有帖子作者可以查看此列表。",

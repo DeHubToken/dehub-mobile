@@ -4373,6 +4373,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} àti {{second}} fi àwọn ìfiránṣẹ́ ránṣẹ́ nínú “{{community}}”",
+    "communityChatMany": "{{name}} + àwọn {{others}} mìíràn fi àwọn ìfiránṣẹ́ ránṣẹ́ nínú “{{community}}”",
+    "communityChatOne": "{{name}} fi ìfiránṣẹ́ ránṣẹ́ nínú “{{community}}”",
     "custom": {
       "bountyReply": "{{name}} fèsì sí ìpèníjà ẹ̀bùn rẹ",
       "stageLive": "{{name}} wà láàyè lórí pèpéle ohùn kan",

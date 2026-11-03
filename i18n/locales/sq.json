@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} dhe {{second}} dërguan mesazhe në “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} të tjerë dërguan mesazhe në “{{community}}”",
+    "communityChatOne": "{{name}} dërgoi një mesazh në “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} u aplikua në shpërblimin tënd",
       "bountyAppliedNamed": "{{name}} u aplikua në shpërblimin tënd “{{title}}”",

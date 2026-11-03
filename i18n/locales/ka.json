@@ -4392,6 +4392,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}}-მ და {{second}}-მ შეტყობინებები გაგზავნეს „{{community}}“-ში",
+    "communityChatMany": "{{name}} + {{others}} სხვამ შეტყობინებები გაგზავნა „{{community}}“-ში",
+    "communityChatOne": "{{name}}-მ შეტყობინება გაგზავნა „{{community}}“-ში",
     "custom": {
       "bountyApplied": "{{name}} თქვენს პრემიასთან დაკავშირებით გამოყენდა",
       "bountyAppliedNamed": "{{name}} გამოყენებულია თქვენს „{{title}}“ -ზე",

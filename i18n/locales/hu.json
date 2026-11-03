@@ -4374,6 +4374,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} és {{second}} üzeneteket küldtek ide: „{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} másik üzeneteket küldtek ide: „{{community}}”",
+    "communityChatOne": "{{name}} üzenetet küldött ide: „{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} beadta a jelentkezését a bónuszodra",
       "bountyAppliedNamed": "{{name}} beadta a jelentkezését a bónuszodra „{{title}}”",

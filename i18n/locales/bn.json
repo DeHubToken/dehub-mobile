@@ -4371,6 +4371,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} এবং {{second}} “{{community}}”-এ মেসেজ পাঠিয়েছে",
+    "communityChatMany": "{{name}} + আরও {{others}} জন “{{community}}”-এ মেসেজ পাঠিয়েছে",
+    "communityChatOne": "{{name}} “{{community}}”-এ একটি মেসেজ পাঠিয়েছে",
     "custom": {
       "bountyApplied": "{{name}} আপনার বোন্টি প্রয়োগ করেছে",
       "bountyAppliedNamed": "{{name}} আপনার বোন্টি \"{{title}}\" এর জন্য প্রয়োগ করেছে",

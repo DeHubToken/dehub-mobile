@@ -4370,6 +4370,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} మరియు {{second}} “{{community}}”లో సందేశాలు పంపారు",
+    "communityChatMany": "{{name}} + మరో {{others}} మంది “{{community}}”లో సందేశాలు పంపారు",
+    "communityChatOne": "{{name}} “{{community}}”లో ఒక సందేశం పంపారు",
     "custom": {
       "featureReplyNamed": "{{name}} “{{title}}”లో మీకు ప్రత్యుత్తరం ఇచ్చారు",
       "bountyApplied": "{{name}} మీ బౌంటీకి అర్హత పొందారు",
