@@ -124,7 +124,7 @@ export default function OwnAiKeysSection() {
                 {busy === row.id ? <ActivityIndicator size="small" color="#71717a" /> : null}
                 {row.saved ? (
                   <>
-                    {action(t('ownKeys.replace', 'Replace'), () => { setEditing(row.id); setDraft(''); })}
+                    {action(t('ownKeys.replaceKey', 'Replace key'), () => { setEditing(row.id); setDraft(''); })}
                     {row.saved.status !== 'invalid' ? action(t('ownKeys.check', 'Check'), () => void recheck(row)) : null}
                     {action(t('ownKeys.remove', 'Remove'), () => void remove(row))}
                   </>
