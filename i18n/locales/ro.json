@@ -14705,5 +14705,10 @@
     "spotlightForSale": "La vânzare acum",
     "spotlightNew": "A fost mintit recent",
     "buyFor": "Cumpără pentru {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub este acum Riftn",
+    "body": "Aceeași aplicație, același cont, aceiași prieteni. Doar un nume nou.",
+    "continue": "Atinge pentru a continua"
   }
 }

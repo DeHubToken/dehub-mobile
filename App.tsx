@@ -85,6 +85,7 @@ import TapReactionLayer from "./components/Home/TapReactionLayer";
 
 import UploadRuntimeHost from "./components/Upload/UploadRuntimeHost";
 import PostLandingOverlay from "./components/Upload/PostLandingOverlay";
+import RiftnMoveIntro from "./components/common/RiftnMoveIntro";
 import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
 import { CallProvider } from "./context/CallContext";
 import CallModalsHost from "./components/Call/CallModalsHost";
@@ -587,6 +588,8 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
       {coverMounted && (
         <MagneticDockCover reveal={revealStarted} enabled={dockLaunch} onComplete={() => setCoverMounted(false)} />
       )}
+      {/* Once per install: the jump from DeHub to Riftn, after the preloader lifts. */}
+      <RiftnMoveIntro />
     </>
   );
 };

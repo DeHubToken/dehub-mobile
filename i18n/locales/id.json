@@ -14684,5 +14684,10 @@
     "spotlightForSale": "Untuk dijual sekarang",
     "spotlightNew": "Just minted",
     "buyFor": "Belilah untuk {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub kini menjadi Riftn",
+    "body": "Aplikasi yang sama, akun yang sama, teman yang sama. Hanya nama baru.",
+    "continue": "Ketuk untuk lanjut"
   }
 }

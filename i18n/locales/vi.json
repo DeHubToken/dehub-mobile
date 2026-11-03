@@ -14771,5 +14771,10 @@
     "days": "{{count}} ngày",
     "spotlightForSale": "Đang bán hiện nay",
     "buyFor": "Mua cho {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub giờ là Riftn",
+    "body": "Vẫn ứng dụng đó, tài khoản đó, bạn bè đó. Chỉ là tên mới.",
+    "continue": "Chạm để tiếp tục"
   }
 }

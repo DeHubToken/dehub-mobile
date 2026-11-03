@@ -14677,5 +14677,10 @@
     "spotlightForSale": "Most eladó",
     "spotlightNew": "Frissen mintelt",
     "buyFor": "Vásárolj {{price}}ért"
+  },
+  "riftnMove": {
+    "title": "A DeHub mostantól Riftn",
+    "body": "Ugyanaz az app, ugyanaz a fiók, ugyanazok a barátok. Csak új név.",
+    "continue": "Koppints a folytatáshoz"
   }
 }

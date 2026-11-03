@@ -14755,5 +14755,10 @@
     "spotlightForSale": "Do sprzedaży teraz",
     "spotlightNew": "Tutaj właśnie mintowano",
     "buyFor": "Kup za {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub to teraz Riftn",
+    "body": "Ta sama aplikacja, to samo konto, ci sami znajomi. Tylko nowa nazwa.",
+    "continue": "Dotknij, aby kontynuować"
   }
 }

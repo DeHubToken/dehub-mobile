@@ -16214,5 +16214,10 @@
       "ember": "Braises",
       "holo": "Holographique"
     }
+  },
+  "riftnMove": {
+    "title": "DeHub devient Riftn",
+    "body": "Même appli, même compte, mêmes amis. Juste un nouveau nom.",
+    "continue": "Touchez pour continuer"
   }
 }

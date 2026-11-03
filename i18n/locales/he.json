@@ -14676,5 +14676,10 @@
     "days": "{{count}} ימים",
     "spotlightForSale": "למכירה עכשיו",
     "buyFor": "קנה עבור {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub הוא עכשיו Riftn",
+    "body": "אותה אפליקציה, אותו חשבון, אותם חברים. רק שם חדש.",
+    "continue": "הקש כדי להמשיך"
   }
 }
