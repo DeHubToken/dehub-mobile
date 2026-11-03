@@ -326,14 +326,14 @@ export async function signInWithApple(): Promise<string> {
  *
  * The awkward part is the return address. Telegram will only redirect to the
  * domain registered against the bot with BotFather, which rules out sending it
- * straight at `dehub://`. So it comes back to dehub.io/auth/telegram?app=1 —
+ * straight at `dehub://`. So it comes back to riftn.com/auth/telegram?app=1 —
  * a page whose whole job is to bounce the payload at the app's scheme — and
  * openAuthSessionAsync catches that. Both halves have to agree on the path and
  * on the scheme below; the web page is dehubweb src/pages/TelegramAuth.tsx.
  */
 
 /** Registered with BotFather. Not window.location.origin — there is none here. */
-const TELEGRAM_WEB_ORIGIN = "https://dehub.io";
+const TELEGRAM_WEB_ORIGIN = "https://riftn.com";
 
 /**
  * Hardcoded rather than Linking.createURL, because the bridge page has to name
