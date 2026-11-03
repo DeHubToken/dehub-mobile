@@ -45,6 +45,7 @@ import {
 } from "../libs/social-reach";
 import type { ProfileField } from "../components/Profile/ProfileFieldsList";
 import { saveProfileFields } from "../services/profile-fields.service";
+import { openPostBgPicker } from "../components/Profile/PostBgPicker";
 import ProfileFieldsEditor, { fieldsKey, hasUnverifiedLink, rowToField, rowsOf, type FieldRow } from "../components/Profile/ProfileFieldsEditor";
 import GithubLinkRow from "../components/Profile/GithubLinkRow";
 import {
@@ -586,6 +587,20 @@ const EditProfileScreen = () => {
                   })}
                 </Text>
               ) : null}
+            </View>
+
+            {/* Backdrop behind your text posts on your profile (also: hold your profile). */}
+            <View className="mt-2">
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">{t("postBg.title", { defaultValue: "Post background" })}</Text>
+              <TouchableOpacity
+                onPress={() => openPostBgPicker()}
+                activeOpacity={0.8}
+                className="flex-row items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+                accessibilityRole="button"
+              >
+                <Text className="text-white text-sm">{t("postBg.editRow", { defaultValue: "Choose a background for your text posts" })}</Text>
+                <Icon name="ChevronRight" size={16} color="#A1A1AA" />
+              </TouchableOpacity>
             </View>
 
             <View className="mt-2">

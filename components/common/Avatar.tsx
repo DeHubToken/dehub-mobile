@@ -21,6 +21,8 @@ interface AvatarProps {
   /** Corner radius; defaults to 16% of the size. */
   radius?: number;
   onPress?: () => void;
+  /** Hold (450 ms). Only used where onPress is set too. */
+  onLongPress?: () => void;
   style?: ViewStyle;
   fallback?: ImageSourcePropType;
   borderWidth?: number;
@@ -59,6 +61,7 @@ const Avatar: React.FC<AvatarProps> = ({
   size = 40,
   radius: radiusProp,
   onPress,
+  onLongPress,
   style,
   fallback,
   borderWidth = 0,
@@ -177,7 +180,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   if (onPress) {
     return (
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress} className={className}>
+      <TouchableOpacity activeOpacity={0.8} onPress={onPress} onLongPress={onLongPress} delayLongPress={450} className={className}>
         {box}
       </TouchableOpacity>
     );

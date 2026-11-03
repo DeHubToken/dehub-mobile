@@ -16165,5 +16165,39 @@
     "getKey": "Obtener una clave de {{name}}",
     "showLess": "Mostrar solo mis claves",
     "addAnother": "Añadir otro proveedor"
+  },
+  "postBg": {
+    "title": "Fondo de publicaciones",
+    "editRow": "Fondo de publicaciones",
+    "hint": "Desliza la tira. Tu publicación cambia mientras avanzas. Solo tú puedes cambiarlo.",
+    "moving": "Animado",
+    "still": "Fijo",
+    "none": "Ninguno",
+    "plain": "Publicaciones simples",
+    "position": "{{n}} de {{total}}",
+    "sample": "Así se ven tus publicaciones de texto en tu perfil.",
+    "saveFailed": "No se pudo guardar tu fondo. Inténtalo de nuevo.",
+    "names": {
+      "ink": "Tinta aguada",
+      "news": "Papel de periódico",
+      "split": "Atardecer dividido",
+      "blue": "Plano técnico",
+      "terra": "Terrazo",
+      "half": "Semitono pop",
+      "topo": "Curvas de nivel",
+      "velvet": "Terciopelo",
+      "sorbet": "Sorbete",
+      "carbon": "Carbono",
+      "aurora": "Aurora",
+      "lava": "Lámpara de lava",
+      "stars": "Campo de estrellas",
+      "rain": "Lluvia en el cristal",
+      "drive": "Paseo nocturno",
+      "breathe": "Respira",
+      "spin": "Prisma giratorio",
+      "tide": "Marea",
+      "ember": "Brasas",
+      "holo": "Holográfico"
+    }
   }
 }

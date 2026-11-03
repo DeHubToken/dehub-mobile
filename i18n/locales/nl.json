@@ -16416,5 +16416,39 @@
     "getKey": "Een {{name}}-sleutel halen",
     "showLess": "Alleen mijn sleutels tonen",
     "addAnother": "Andere aanbieder toevoegen"
+  },
+  "postBg": {
+    "title": "Achtergrond van berichten",
+    "editRow": "Achtergrond van berichten",
+    "hint": "Veeg door de strook. Je bericht verandert terwijl je kiest. Alleen jij kunt dit wijzigen.",
+    "moving": "Bewegend",
+    "still": "Stilstaand",
+    "none": "Geen",
+    "plain": "Gewone berichten",
+    "position": "{{n}} van {{total}}",
+    "sample": "Zo zien je tekstberichten eruit op je profiel.",
+    "saveFailed": "Je achtergrond kon niet worden opgeslagen. Probeer het opnieuw.",
+    "names": {
+      "ink": "Inktwas",
+      "news": "Krantenpapier",
+      "split": "Gesplitste schemering",
+      "blue": "Blauwdruk",
+      "terra": "Terrazzo",
+      "half": "Rasterpop",
+      "topo": "Hoogtelijnen",
+      "velvet": "Fluweel",
+      "sorbet": "Sorbet",
+      "carbon": "Carbon",
+      "aurora": "Aurora",
+      "lava": "Lavalamp",
+      "stars": "Sterrenveld",
+      "rain": "Regen op glas",
+      "drive": "Nachtrit",
+      "breathe": "Adem",
+      "spin": "Draaiend prisma",
+      "tide": "Getij",
+      "ember": "Gloeiende kooltjes",
+      "holo": "Holofolie"
+    }
   }
 }

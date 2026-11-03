@@ -8,6 +8,7 @@ import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "../common/Avatar";
+import { openPostBgPicker } from "../Profile/PostBgPicker";
 import Icon from "../ui/Icon";
 import { copyToClipboard, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
@@ -316,6 +317,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             live={live}
             liveQuiet
             onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
+            onLongPress={isOwnProfile ? () => openPostBgPicker() : undefined}
           />
           {(!isBlocked || !!onOpenOptions) && (
             <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>

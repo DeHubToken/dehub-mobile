@@ -11,6 +11,7 @@ import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { isStreamLive } from "../../libs/live-status";
 import { useEngagement } from "../../libs/engagementCache";
+import { POST_BG_INK, PostBgLayer, useProfilePostBg } from "./PostBackground";
 
 /**
  * One cell of the profile All grid: every post type side by side, each with
@@ -107,8 +108,11 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const solidInk = isOsaka ? "#1A0C16" : "#000000";
   const posterBg = isOsaka ? "rgba(17,14,28,0.82)" : "rgba(255,255,255,0.07)";
   const posterLine = isOsaka ? "rgba(255,111,181,0.22)" : "rgba(255,255,255,0.1)";
-  const ink = "#FFFFFF";
-  const sub = "rgba(255,255,255,0.6)";
+  // The owner's text-post backdrop (customs.postBg) on their own words only.
+  const profileBg = useProfilePostBg();
+  const postBg = kind === "text" && !(item as any).isRepost ? profileBg : null;
+  const ink = postBg ? POST_BG_INK[postBg.tone].ink : "#FFFFFF";
+  const sub = postBg ? POST_BG_INK[postBg.tone].sub : "rgba(255,255,255,0.6)";
 
   const pinChip = pinned ? (
     <View style={[styles.chip, { backgroundColor: solid }]}>
@@ -123,7 +127,8 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   if (kind === "text" || kind === "article") {
     const words = plainText(kind === "article" ? item.title || item.name : item.description || item.name);
     body = (
-      <View style={[styles.fill, { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
+      <View className={postBg ? "dark-surface" : undefined} style={[styles.fill, postBg ? null : { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
+        {postBg && <PostBgLayer bg={postBg} />}
         {kind === "article" ? (
           <>
             {cover ? (

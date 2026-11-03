@@ -16169,5 +16169,39 @@
     "getKey": "Obtenir une clé {{name}}",
     "showLess": "Afficher seulement mes clés",
     "addAnother": "Ajouter un autre fournisseur"
+  },
+  "postBg": {
+    "title": "Fond des publications",
+    "editRow": "Fond des publications",
+    "hint": "Fais défiler la bande. Ta publication change au fur et à mesure. Toi seul peux le modifier.",
+    "moving": "Animé",
+    "still": "Fixe",
+    "none": "Aucun",
+    "plain": "Publications simples",
+    "position": "{{n}} sur {{total}}",
+    "sample": "Voici à quoi ressemblent tes publications texte sur ton profil.",
+    "saveFailed": "Impossible d'enregistrer ton fond. Réessaie.",
+    "names": {
+      "ink": "Lavis d'encre",
+      "news": "Papier journal",
+      "split": "Crépuscule partagé",
+      "blue": "Plan technique",
+      "terra": "Terrazzo",
+      "half": "Trame pop",
+      "topo": "Courbes de niveau",
+      "velvet": "Velours",
+      "sorbet": "Sorbet",
+      "carbon": "Carbone",
+      "aurora": "Aurore",
+      "lava": "Lampe à lave",
+      "stars": "Champ d'étoiles",
+      "rain": "Pluie sur vitre",
+      "drive": "Route de nuit",
+      "breathe": "Respire",
+      "spin": "Prisme tournant",
+      "tide": "Marée",
+      "ember": "Braises",
+      "holo": "Holographique"
+    }
   }
 }

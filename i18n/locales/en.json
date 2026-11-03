@@ -16023,5 +16023,39 @@
     "getKey": "Get a {{name}} key",
     "showLess": "Show only my keys",
     "addAnother": "Add another provider"
+  },
+  "postBg": {
+    "title": "Post background",
+    "editRow": "Post background",
+    "hint": "Swipe the strip. Your post changes as you go. Only you can change this.",
+    "moving": "Moving",
+    "still": "Still",
+    "none": "None",
+    "plain": "Plain posts",
+    "position": "{{n}} of {{total}}",
+    "sample": "This is how your text posts look on your profile.",
+    "saveFailed": "Couldn't save your background. Try again.",
+    "names": {
+      "ink": "Ink Wash",
+      "news": "Newsprint",
+      "split": "Dusk Split",
+      "blue": "Blueprint",
+      "terra": "Terrazzo",
+      "half": "Halftone Pop",
+      "topo": "Contour",
+      "velvet": "Velvet",
+      "sorbet": "Sorbet",
+      "carbon": "Carbon",
+      "aurora": "Aurora",
+      "lava": "Lava Lamp",
+      "stars": "Starfield",
+      "rain": "Rain on Glass",
+      "drive": "Night Drive",
+      "breathe": "Breathe",
+      "spin": "Prism Spin",
+      "tide": "Tide",
+      "ember": "Embers",
+      "holo": "Holo Foil"
+    }
   }
 }
