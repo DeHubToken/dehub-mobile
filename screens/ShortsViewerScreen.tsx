@@ -169,6 +169,8 @@ import { toggleRepost } from "../services/repost.service";
 import { getShortsFeed, getUnifiedFeed } from "../services/feed.unified.service";
 import { getWatchHistory } from "../services/user.service";
 import { createBrainrotSource } from "../libs/brainrotFeed";
+import { profileFeedParams } from "../libs/profileFeedOrigin";
+import { canOpenPostVideoViewer } from "../navigation/postVideoViewerParams";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useQuery } from "@tanstack/react-query";
@@ -2558,7 +2560,7 @@ const ShortsViewerScreen = () => {
   // profile, a search or Following), open and safe streams, one slide in six.
   // Placed once, after the short the viewer opened on, so nothing under the
   // viewer moves; later pages are shorts only.
-  const liveSlidesAllowed = !feedParams.minter && !feedParams.search && !feedParams.followingOnly && !feedParams.brainrot
+  const liveSlidesAllowed = !feedParams.minter && !feedParams.profileFeed && !feedParams.search && !feedParams.followingOnly && !feedParams.brainrot
     && !initialItems.some((it: any) => isLiveSlide(it));
   const { data: liveRows } = useQuery({
     queryKey: ["dehub-live-streams", 200, "recent"],
@@ -2578,6 +2580,9 @@ const ShortsViewerScreen = () => {
     setItems((prev) => interleaveLive(prev, slides, activeIndex) as UnifiedFeedItem[]);
   }, [liveSlidesAllowed, liveRows, items.length, activeIndex]);
   const endReachedRef = useRef(false);
+  // A profile tab's list starts with the posts before the tapped one; skip
+  // those until it turns up.
+  const profilePastRef = useRef(false);
   const loadFailedAt = useRef(0);
   const [loadRetry, setLoadRetry] = useState(0);
   const fetchingRef = useRef(false);
@@ -2805,6 +2810,40 @@ const ShortsViewerScreen = () => {
           const unique = next.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
           return unique.length ? [...prev, ...unique] : prev;
         });
+        return;
+      }
+      // Opened from a profile tab: that tab's videos, in its order, after the
+      // one tapped.
+      if (feedParams.profileFeed) {
+        let nextPage = page;
+        for (let attempt = 0; attempt < 4; attempt++) {
+          nextPage += 1;
+          const res = await getUnifiedFeed(profileFeedParams(feedParams.profileFeed, nextPage, 20));
+          let batch: UnifiedFeedItem[] = res.result || [];
+          if (!profilePastRef.current) {
+            const at = batch.findIndex((i) => String(i.tokenId ?? i.id) === String(feedParams.fromId));
+            if (at >= 0) profilePastRef.current = true;
+            batch = at >= 0 ? batch.slice(at + 1) : [];
+          }
+          const known = new Set(itemsRef.current.map((i) => String(i.tokenId ?? i.id)));
+          const unique = batch.filter((i) => i.postType === "video" && canOpenPostVideoViewer(i as any) && !known.has(String(i.tokenId ?? i.id)));
+          if (unique.length) {
+            itemsRef.current = [...itemsRef.current, ...unique];
+            setItems((prev) => {
+              const existingIds = new Set(prev.map((i) => String(i.tokenId ?? i.id)));
+              const fresh = unique.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
+              return fresh.length ? [...prev, ...fresh] : prev;
+            });
+          }
+          // Out of pages, or the tapped video never turned up in the first few.
+          if (!res.pagination?.hasMore || (!profilePastRef.current && nextPage >= 5)) {
+            endReachedRef.current = true;
+            setNoMoreShorts(true);
+            break;
+          }
+          if (unique.length) break;
+        }
+        setPage(nextPage);
         return;
       }
       // A page can bring nothing new (everything on it is already playing,

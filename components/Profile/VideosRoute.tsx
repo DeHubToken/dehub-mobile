@@ -2,6 +2,8 @@ import React from 'react';
 import type { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import CompactVideoInfiniteList from '../Home/CompactVideoInfiniteList';
 import { useCinematicPhone } from '../../hooks/useCinematicPhone';
+import { ProfileFeedOriginContext, useProvidedProfileFeed } from '../../libs/profileFeedOrigin';
+import type { FeedRange, FeedSortBy } from '../../services/feed.unified.service';
 
 // Fallback address provided
 const FALLBACK_ADDRESS = '0x4B12Ca78C722253cd174Db212E2122b1E635a18A';
@@ -41,7 +43,21 @@ const VideosRoute: React.FC<VideosRouteProps> = ({
   isLocked,
 }) => {
   const cinematicPhone = useCinematicPhone();
+  // A video opened here plays on through this creator's videos in Shorts.
+  const feedSource = useProvidedProfileFeed(address ? {
+    minter: address,
+    postType: "video",
+    sortBy: sortBy as FeedSortBy | undefined,
+    sortOrder,
+    search,
+    category,
+    range: range as FeedRange | undefined,
+    isPPV,
+    hasBounty,
+    isLocked,
+  } : null);
   return (
+    <ProfileFeedOriginContext.Provider value={feedSource}>
     <CompactVideoInfiniteList
       cinematic={cinematicPhone && !!listHeader}
       listRef={listRef}
@@ -61,6 +77,7 @@ const VideosRoute: React.FC<VideosRouteProps> = ({
       hasBounty={hasBounty}
       isLocked={isLocked}
     />
+    </ProfileFeedOriginContext.Provider>
   );
 };
 

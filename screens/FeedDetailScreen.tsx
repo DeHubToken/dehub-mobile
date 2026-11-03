@@ -69,6 +69,7 @@ import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/Post
 import { useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
+import { peekProfileFeedOrigin } from "../libs/profileFeedOrigin";
 
 /** The post page's phone layout ("Stage") applies below web's sm breakpoint. */
 export const POST_STAGE_MAX_WIDTH = 640;
@@ -1444,10 +1445,14 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // posts as the reader scrolls. No inline comments and no composer; the
   // comment button opens the comments drawer, which has its own.
   const leanPost = !!item && stage && !videoPost && !focusCommentId && resolveContentType(item) === "image";
+  // Opened from a profile tab: the posts under this one are that tab's next
+  // posts, and they keep loading as the reader scrolls.
+  const profileFeed = useMemo(() => peekProfileFeedOrigin(tokenId), [tokenId]);
+  const autoMorePosts = leanPost || !!profileFeed;
   const [morePostsSignal, setMorePostsSignal] = useState(0);
   const handleEndReached = useCallback(() => {
-    if (leanPost) setMorePostsSignal(n => n + 1);
-  }, [leanPost]);
+    if (autoMorePosts) setMorePostsSignal(n => n + 1);
+  }, [autoMorePosts]);
   const stageBack = useStageBack();
   const handlePostBack = onEmbeddedClose ?? stageBack;
   const handleStageAnchor = useCallback((y: number) => {
@@ -1681,7 +1686,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
             {showAllCommentsRow}
             {item && tokenId != null && transitionSettled && (
               <View onLayout={handleContinuationLayout}>
-                <PostDetailContinuation currentPostId={String(tokenId)} loadMoreSignal={leanPost ? morePostsSignal : undefined} />
+                <PostDetailContinuation currentPostId={String(tokenId)} profileFeed={profileFeed} loadMoreSignal={autoMorePosts ? morePostsSignal : undefined} />
               </View>
             )}
           </View>
