@@ -283,7 +283,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
                 source={asset.icon}
                 className="w-8 h-8 rounded-full mr-3"
               />
-              <Text className="text-lg text-white">{asset.name}</Text>
+              <Text className="text-lg text-white">{asset.name === "DHB" ? "Riftn" : asset.name}</Text>
               {asset.hasActions && (
                 <Ionicons
                   name={showDHBOptions ? "chevron-down" : "chevron-forward"}

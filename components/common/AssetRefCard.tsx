@@ -220,9 +220,9 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
 
           <View style={styles.body}>
             <View style={styles.titleRow}>
-              <Text style={styles.symbol}>${asset.symbol}</Text>
+              <Text style={styles.symbol}>${/^(?:DHB|DEHUB|RIFT)$/i.test(asset.symbol) ? "RIFT" : asset.symbol}</Text>
               <Text style={styles.name} numberOfLines={1}>
-                {asset.name}
+                {/^(?:DHB|DEHUB|RIFT)$/i.test(asset.symbol) ? "Riftn" : asset.name}
               </Text>
             </View>
             {meta.length > 0 && (
