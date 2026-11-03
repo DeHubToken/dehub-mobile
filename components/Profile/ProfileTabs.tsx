@@ -5,7 +5,9 @@ import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import ProfilePinnedBar from './ProfilePinnedBar';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { Activity, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
+import { useAuthActions } from "../../context/AuthContext";
+import { ProfilePullFrame, useProfilePullRefresh } from "./ProfilePullRefresh";
 import Animated, { runOnJS, runOnUI, useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
@@ -58,6 +60,11 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   const counts = useProfileContentCounts(address);
   const dislikesCount = useProfileDislikesCount(address, true);
   const collapse = useProfileCollapse(address);
+  // Pull down at the top to reload your header, counts and every tab's posts.
+  const { refreshUser } = useAuthActions();
+  const { width: windowWidth } = useWindowDimensions();
+  const pull = useProfilePullRefresh(!!address, collapse.scrollY, refreshUser);
+  const pullCover = user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl, windowWidth) } : getDefaultBanner(address || '');
   const profileScrollY = collapse.scrollY;
   const headerHeight = useSharedValue(0);
   const tabsStuck = collapse.tabsPinned;
@@ -265,6 +272,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   };
 
   return <ProfilePostBgContext.Provider value={postBg}><View className="flex-1 bg-theme-neutrals-900">
+    <ProfilePullFrame pull={pull} cover={pullCover}>
     <ProfileScrollViewport {...collapse}>
       {paneKeys.map((key) => (
         <Activity key={`${address}:${key}`} mode={key === activeKey ? "visible" : "hidden"}>
@@ -272,6 +280,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         </Activity>
       ))}
     </ProfileScrollViewport>
+    </ProfilePullFrame>
     <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
       <ProfilePinnedBar showIdentity={false} canGoBack={canGoBack} onBackPress={onBackPress}>
         <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned embedded />

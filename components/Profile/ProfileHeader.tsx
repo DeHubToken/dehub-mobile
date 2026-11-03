@@ -1,7 +1,9 @@
 import { PROFILE_COVER_HEIGHT, useProfileIdentityLayout } from './useProfileCollapse';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
+import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
+import { ProfilePullRing, useProfileAvatarPop, useProfileCoverHidden } from "./ProfilePullRefresh";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
 import { openPostBgPicker } from "./PostBgPicker";
@@ -73,7 +75,9 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   const { profileRef, identityRef, actionsRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom, onActionsBottom);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, colors } = useAppTheme();
+  const coverHidden = useProfileCoverHidden();
+  const avatarPop = useProfileAvatarPop();
   const cinematicPhone = useCinematicPhone();
   // The cover is full-bleed, so it is fetched at the window's own (live) width.
   const { width: COVER_WIDTH_PT } = useWindowDimensions();
@@ -281,6 +285,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
           className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
             style={{ height: PROFILE_COVER_HEIGHT }}
         >
+          <Animated.View style={[StyleSheet.absoluteFill, coverHidden]}>
           <SmartImage
             source={
               localCoverUri
@@ -294,6 +299,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
             transition={150}
             style={{ width: "100%", height: "100%", opacity: uploadingCover ? 0.6 : 1 }}
           />
+          </Animated.View>
           <TouchableOpacity
             onPress={startChangeCover}
             className="absolute right-2 bottom-2 dark-surface bg-black/50 rounded-xl p-2"
@@ -315,7 +321,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
         <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-start justify-between" style={{ marginTop: -48 }}>
-          <View>
+          <Animated.View style={avatarPop}>
+            <ProfilePullRing size={96} radius={Math.round(96 * 0.16)} color={colors.accent} />
             <Avatar
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
               name={displayName}
@@ -343,7 +350,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
                 <ActivityIndicator color="#fff" />
               </View>
             )}
-          </View>
+          </Animated.View>
 
           {isMinimal ? (
             <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
