@@ -15972,5 +15972,27 @@
     "savePreset": "Save as preset",
     "show": "Show filters",
     "updatePreset": "Rename preset"
+  },
+  "ownKeys": {
+    "title": "Your own AI keys",
+    "description": "Add a key from an AI provider and Creator tools run on your account instead. DeHub charges nothing for those jobs. Keys are encrypted and never shown again.",
+    "working": "Working",
+    "invalid": "Rejected, replace it",
+    "noCredit": "Out of credit",
+    "disabled": "Turned off by DeHub",
+    "failed": "Something went wrong. Try again.",
+    "saved": "{{name}} key saved. Tools on {{name}} now use your account.",
+    "savedNoCredit": "{{name}} key saved, but the account is out of credit.",
+    "removed": "{{name}} key removed.",
+    "replaceKey": "Replace key",
+    "check": "Check",
+    "remove": "Remove",
+    "add": "Add key",
+    "paste": "Paste your {{name}} key",
+    "save": "Save",
+    "cancel": "Cancel",
+    "getKey": "Get a {{name}} key",
+    "showLess": "Show only my keys",
+    "addAnother": "Add another provider"
   }
 }

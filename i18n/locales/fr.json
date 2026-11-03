@@ -16118,5 +16118,27 @@
     "savePreset": "Enregistrer comme préréglage",
     "show": "Voir les filtres",
     "updatePreset": "Renommer le préréglage"
+  },
+  "ownKeys": {
+    "title": "Vos propres clés IA",
+    "description": "Ajoutez une clé d'un fournisseur d'IA et les outils Creator utiliseront votre compte. DeHub ne facture rien pour ces tâches. Les clés sont chiffrées et ne sont plus jamais affichées.",
+    "working": "Fonctionne",
+    "invalid": "Refusée, remplacez-la",
+    "noCredit": "Plus de crédit",
+    "disabled": "Désactivée par DeHub",
+    "failed": "Une erreur s'est produite. Réessayez.",
+    "saved": "Clé {{name}} enregistrée. Les outils {{name}} utilisent maintenant votre compte.",
+    "savedNoCredit": "Clé {{name}} enregistrée, mais le compte n'a plus de crédit.",
+    "removed": "Clé {{name}} supprimée.",
+    "replaceKey": "Remplacer la clé",
+    "check": "Vérifier",
+    "remove": "Supprimer",
+    "add": "Ajouter une clé",
+    "paste": "Collez votre clé {{name}}",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "getKey": "Obtenir une clé {{name}}",
+    "showLess": "Afficher seulement mes clés",
+    "addAnother": "Ajouter un autre fournisseur"
   }
 }

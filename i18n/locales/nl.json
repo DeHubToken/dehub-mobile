@@ -16365,5 +16365,27 @@
     "savePreset": "Opslaan als preset",
     "show": "Filters tonen",
     "updatePreset": "Preset hernoemen"
+  },
+  "ownKeys": {
+    "title": "Je eigen AI-sleutels",
+    "description": "Voeg een sleutel van een AI-aanbieder toe en Creator-tools draaien op jouw account. DeHub rekent niets voor die taken. Sleutels worden versleuteld en nooit meer getoond.",
+    "working": "Werkt",
+    "invalid": "Geweigerd, vervang hem",
+    "noCredit": "Geen tegoed",
+    "disabled": "Uitgezet door DeHub",
+    "failed": "Er ging iets mis. Probeer het opnieuw.",
+    "saved": "{{name}}-sleutel opgeslagen. Tools op {{name}} gebruiken nu jouw account.",
+    "savedNoCredit": "{{name}}-sleutel opgeslagen, maar het account heeft geen tegoed.",
+    "removed": "{{name}}-sleutel verwijderd.",
+    "replaceKey": "Sleutel vervangen",
+    "check": "Controleren",
+    "remove": "Verwijderen",
+    "add": "Sleutel toevoegen",
+    "paste": "Plak je {{name}}-sleutel",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "getKey": "Een {{name}}-sleutel halen",
+    "showLess": "Alleen mijn sleutels tonen",
+    "addAnother": "Andere aanbieder toevoegen"
   }
 }
