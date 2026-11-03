@@ -1,4 +1,3 @@
-      comicBorder: comicLayout ? comicBorder ?? undefined : undefined,
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
@@ -1380,6 +1379,7 @@ export default function UploadScreen() {
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       layout: comicLayout,
       mediaCaptions: comicLayout && pickedImages.some(img => img.caption?.trim()) ? pickedImages.map(img => img.caption?.trim() || "") : undefined,
+      comicBorder: comicLayout ? comicBorder ?? undefined : undefined,
       spoilerText: contentWarning?.trim() || undefined,
       hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
