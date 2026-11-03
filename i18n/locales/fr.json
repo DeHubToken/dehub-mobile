@@ -567,8 +567,17 @@
       "quote": "Citation",
       "bullets": "Liste à bulles",
       "numbers": "Liste numérotée",
-      "link": "Lien"
-    }
+      "link": "Lien",
+      "image": "Ajouter des images"
+    },
+    "imageLimit": "Un article peut contenir jusqu'à {{count}} images",
+    "imageFailed": "Impossible d'ajouter cette image. Essayez-en une autre.",
+    "imagesUploading": "Ajout des images ({{count}})…",
+    "bodyTooLong": "{{count}} caractères au-delà de la limite",
+    "imagesCount": "Images · {{count}}/{{max}}",
+    "captionPlaceholder": "Ajouter une légende",
+    "captionLabel": "Légende de l'image {{n}}",
+    "removeInlineImage": "Retirer l'image {{n}}"
   },
   "storefront": {
     "unavailable": "Indisponible dans cette version de l'application"

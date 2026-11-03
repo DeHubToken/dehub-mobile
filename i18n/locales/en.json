@@ -540,7 +540,7 @@
     "imagesCount": "Images · {{count}}/{{max}}",
     "captionPlaceholder": "Add a caption",
     "captionLabel": "Caption for image {{n}}",
-    "removeImage": "Remove image {{n}}"
+    "removeInlineImage": "Remove image {{n}}"
   },
   "storefront": {
     "unavailable": "Not available in this version of the app"

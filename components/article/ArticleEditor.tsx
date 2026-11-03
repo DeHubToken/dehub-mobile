@@ -169,7 +169,7 @@ export default function ArticleEditor(p: ArticleEditorProps) {
               />
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel={t('articles.removeImage', { n: img.index + 1, defaultValue: 'Remove image {{n}}' })}
+                accessibilityLabel={t('articles.removeInlineImage', { n: img.index + 1, defaultValue: 'Remove image {{n}}' })}
                 onPress={() => p.onBodyChange(removeArticleImage(p.body, img.index))}
                 style={s.tool}
                 hitSlop={4}

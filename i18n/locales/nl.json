@@ -567,8 +567,17 @@
       "quote": "Aanhalingstekens",
       "bullets": "Puntlijst",
       "numbers": "Nummerde lijst",
-      "link": "Koppelen"
-    }
+      "link": "Koppelen",
+      "image": "Afbeeldingen toevoegen"
+    },
+    "imageLimit": "Artikelen kunnen maximaal {{count}} afbeeldingen bevatten",
+    "imageFailed": "Die afbeelding kon niet worden toegevoegd. Probeer een andere.",
+    "imagesUploading": "Afbeeldingen toevoegen ({{count}})…",
+    "bodyTooLong": "{{count}} tekens boven de limiet",
+    "imagesCount": "Afbeeldingen · {{count}}/{{max}}",
+    "captionPlaceholder": "Voeg een bijschrift toe",
+    "captionLabel": "Bijschrift voor afbeelding {{n}}",
+    "removeInlineImage": "Afbeelding {{n}} verwijderen"
   },
   "storefront": {
     "unavailable": "Niet beschikbaar in deze versie van de app"
