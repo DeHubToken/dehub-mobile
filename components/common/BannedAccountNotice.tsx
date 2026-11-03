@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useBannedAccount } from "../../hooks/useBannedAccount";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
-const DELETE_ACCOUNT_URL = "https://dehub.io/delete-account";
+const DELETE_ACCOUNT_URL = "https://riftn.com/delete-account";
 
 interface BannedAccountNoticeProps {
   variant?: "panel" | "line";

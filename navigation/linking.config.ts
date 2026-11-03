@@ -112,6 +112,8 @@ const renameQueryParams = (queryString: string, names: Record<string, string>): 
  * Add more domains as needed (e.g., 'dehub.io', 'app.dehub.io')
  */
 export const UNIVERSAL_LINK_DOMAINS = [
+  'riftn.com',
+  'www.riftn.com',
   'dehub.io',
   'legacy.dehub.io', // backward compat
 ] as const;
@@ -639,7 +641,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (segments[0] === 'r' && segments[1]) {
       // The attribution listener keeps the first touch for native signup.
       // The web landing owns the inviter's customized destinations.
-      openOnWeb(`https://dehub.io/${pathOnly}${queryString ? `?${queryString}` : ''}`);
+      openOnWeb(`https://riftn.com/${pathOnly}${queryString ? `?${queryString}` : ''}`);
       return homeState();
     }
     if (appSegs.length === 1 && ['wallet', 'buy', 'stake'].includes(appSegs[0])) {
@@ -821,7 +823,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       // Rewrite username.dehub.io → dehub.io/:username so getStateFromPath handles it
       const subdomain = extractSubdomainUsername(url);
       if (subdomain) {
-        const rewritten = `https://dehub.io/${subdomain}`;
+        const rewritten = `https://riftn.com/${subdomain}`;
         logger.info('Subdomain deep link rewritten', { from: url, to: rewritten });
         listener(rewritten);
         return;
@@ -844,7 +846,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // Rewrite username.dehub.io → dehub.io/:username
     const subdomain = extractSubdomainUsername(url);
     if (subdomain) {
-      const rewritten = `https://dehub.io/${subdomain}`;
+      const rewritten = `https://riftn.com/${subdomain}`;
       logger.info('Subdomain launch rewritten', { from: url, to: rewritten });
       return rewritten;
     }
@@ -859,7 +861,7 @@ const SHARE_BASE = `https://${UNIVERSAL_LINK_DOMAINS[0]}`;
  * 
  * @example
  * createDeepLink('POST', { tokenId: 'abc123' })
- * // Returns: 'https://dehub.io/app/post/abc123'
+ * // Returns: 'https://riftn.com/app/post/abc123'
  */
 export const createDeepLink = (
   type: keyof typeof DeepLinkPaths,

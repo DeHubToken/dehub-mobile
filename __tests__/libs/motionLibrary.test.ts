@@ -15,10 +15,10 @@ describe('shared Creator source library', () => {
   it('uses the production catalog and resolves a featured deep link without loading the full collection', async () => {
     const request = jest.spyOn(global, 'fetch').mockResolvedValue({ ok: true, json: async () => ({ clips: [clip], total: 20000 }) } as Response);
     expect((await findMotionClip(clip.id))?.url).toBe(clip.url);
-    expect(request).toHaveBeenCalledWith('https://dehub.io/creator-clips/featured.json');
+    expect(request).toHaveBeenCalledWith('https://riftn.com/creator-clips/featured.json');
     expect(request).toHaveBeenCalledTimes(1);
     await loadFeaturedMotionClips(); expect(request).toHaveBeenCalledTimes(1);
-    await loadMotionCatalog(); expect(request).toHaveBeenCalledWith('https://dehub.io/creator-clips/catalog.json');
+    await loadMotionCatalog(); expect(request).toHaveBeenCalledWith('https://riftn.com/creator-clips/catalog.json');
     request.mockRestore();
   });
   it('keeps the full rap performance within the selected model limits', () => {

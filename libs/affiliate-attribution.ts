@@ -44,7 +44,7 @@ export async function captureInstallReferrer(): Promise<void> {
   if (await AsyncStorage.getItem(INSTALL_REFERRER_READ_KEY)) return;
   const referrer = await Application.getInstallReferrerAsync();
   await AsyncStorage.setItem(INSTALL_REFERRER_READ_KEY, '1');
-  if (referrer) await captureAffiliateUrl(`https://dehub.io/?${referrer.replace(/^[?&]+/, '')}`);
+  if (referrer) await captureAffiliateUrl(`https://riftn.com/?${referrer.replace(/^[?&]+/, '')}`);
 }
 
 export async function attributePendingReferral(wallet: string): Promise<void> {

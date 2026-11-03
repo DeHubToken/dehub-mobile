@@ -19,7 +19,7 @@ export default function QrPanel({ project, selectedId, current, commit, select, 
   const { t } = useTranslation();
   const selected = project.clips.find(c => c.id === selectedId);
   const qr = selected?.kind === "shape" ? selected.qr : undefined;
-  const [content, setContent] = useState("https://dehub.io");
+  const [content, setContent] = useState("https://riftn.com");
   const [foreground, setForeground] = useState("#000000"), [background, setBackground] = useState("#ffffff");
   const [correction, setCorrection] = useState<NonNullable<QrGraphic["errorCorrection"]>>("M"), [quietZone, setQuietZone] = useState(4);
   const preview = useQrPreview(content, foreground, background, correction, quietZone);
@@ -27,7 +27,7 @@ export default function QrPanel({ project, selectedId, current, commit, select, 
   const [copyMessage, setCopyMessage] = useState(""), copyGeneration = useRef(0);
   useEffect(() => { copyGeneration.current++; setCopyMessage(""); return () => { copyGeneration.current++; }; }, [content, selected?.id]);
   const copyContent = async () => { const request = ++copyGeneration.current; try { await Clipboard.setStringAsync(content); if (request === copyGeneration.current) { setCopyMessage(t("editor.qr.contentCopied", { defaultValue: "QR content copied" })); setError(""); } } catch { if (request === copyGeneration.current) { setCopyMessage(""); setError(t("editor.qr.copyFailed", { defaultValue: "Could not copy QR content" })); } } };
-  const reset = () => { setContent(qr?.content ?? "https://dehub.io"); setForeground(qr?.foreground ?? "#000000"); setBackground(qr?.background ?? "#ffffff"); setCorrection(qr?.errorCorrection ?? "M"); setQuietZone(qr?.quietZone ?? 4); setError(""); setCopyMessage(""); setDraftEpoch(value => value + 1); };
+  const reset = () => { setContent(qr?.content ?? "https://riftn.com"); setForeground(qr?.foreground ?? "#000000"); setBackground(qr?.background ?? "#ffffff"); setCorrection(qr?.errorCorrection ?? "M"); setQuietZone(qr?.quietZone ?? 4); setError(""); setCopyMessage(""); setDraftEpoch(value => value + 1); };
   useEffect(() => { if (qr) { setContent(qr.content); setForeground(qr.foreground); setBackground(qr.background); setCorrection(qr.errorCorrection ?? "M"); setQuietZone(qr.quietZone ?? 4); } }, [selected?.id, qr]);
   const apply = () => {
     try {

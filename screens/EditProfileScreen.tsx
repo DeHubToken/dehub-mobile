@@ -669,5 +669,5 @@ export default EditProfileScreen;
 /** The tag a linked page adds so its link here verifies. Markup to paste, not copy to translate. */
 function relMeSnippet(handle: string): string {
   const linkText = "DeHub";
-  return `<a rel="me" href="https://dehub.io/${handle}">${linkText}</a>`;
+  return `<a rel="me" href="https://riftn.com/${handle}">${linkText}</a>`;
 }

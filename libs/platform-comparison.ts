@@ -22,8 +22,8 @@ export const STATUS_LABELS: Record<Status, string> = {
 };
 export const SOURCES: Record<string, { title: string; url: string }> = {
   ...RESEARCH_SOURCES,
-  dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
-  dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://dehub.io/launchpad' },
+  dehub: { title: 'DeHub product guide', url: 'https://riftn.com/docs/dapps' },
+  dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://riftn.com/launchpad' },
   dehubEncryption: { title: 'DeHub encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
   kickModeration: { title: 'KICK chat moderation and polls', url: 'https://help.kick.com/en/articles/7109164-how-to-moderate-your-kick-chat' },
   twitchPolls: { title: 'Twitch polls and chat voting', url: 'https://help.twitch.tv/s/article/how-to-use-polls' },

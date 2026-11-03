@@ -44,7 +44,7 @@ function VideoRemixForAccount() {
   const bridgeKey = useMemo(() => Crypto.randomUUID(), [attempt]);
   const currentBridgeKey = useRef(bridgeKey); currentBridgeKey.current = bridgeKey;
   const params = route.params;
-  const validSource = /^https:\/\//i.test(params.videoUrl) && /^https:\/\/dehub\.io\/(?:app\/post|newpost)\/[^/?#]+(?:[?#].*)?$/.test(params.sourceUrl);
+  const validSource = /^https:\/\//i.test(params.videoUrl) && /^https:\/\/(?:dehub\.io|riftn\.com)\/(?:app\/post|newpost)\/[^/?#]+(?:[?#].*)?$/.test(params.sourceUrl);
   const html = useMemo(() => validSource ? buildRemixStudioHtml({ ...params, bridgeKey }) : "", [params, bridgeKey, validSource]);
   const sourceAvailable = async () => {
     const { result } = await getNFT(params.tokenId);

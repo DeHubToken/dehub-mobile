@@ -15,7 +15,7 @@ const actionNames: Record<string, string> = { dehub_follow: 'agents.tasks.follow
 
 function postActionUrl(post?: { token_id?: string | number; url?: string }) {
   const id = String(post?.token_id ?? '');
-  return /^\d+$/.test(id) ? `https://dehub.io/app/post/${id}` : post?.url;
+  return /^\d+$/.test(id) ? `https://riftn.com/app/post/${id}` : post?.url;
 }
 
 export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AIAgent[] }) {

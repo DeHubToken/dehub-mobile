@@ -47,7 +47,8 @@ import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { getArcadeGame } from "../config/arcade-games";
 import { openInApp } from "../libs/links.utils";
-import { WEBSITE_LINK } from "../config/links";
+// Games are served from dehub.io (see config/arcade-games.ts), not riftn.com.
+const WEBSITE_LINK = "https://dehub.io";
 import { colors } from "../theme/colors";
 import { useAuth } from "../context/AuthContext";
 import { getAuthToken } from "../libs/auth.utils";

@@ -3312,7 +3312,7 @@ const ShortsViewerScreen = () => {
             ? mode => requireAuth(() => {
                 const videoUrl = getVideoUrl(activeTokenId);
                 if (videoUrl) navigation.navigate(ScreenNames.VideoRemix, { mode, tokenId: activeTokenId, videoUrl,
-                  sourceUrl: (activeItem as any).status === "signed" && (activeItem as any).newPostId != null ? `https://dehub.io/newpost/${(activeItem as any).newPostId}` : `https://dehub.io/app/post/${activeTokenId}`,
+                  sourceUrl: (activeItem as any).status === "signed" && (activeItem as any).newPostId != null ? `https://riftn.com/newpost/${(activeItem as any).newPostId}` : `https://riftn.com/app/post/${activeTokenId}`,
                   title: activeItem.name || activeItem.title || "Remix", creator: activeUsername || activeDisplayName });
               })
             : undefined}

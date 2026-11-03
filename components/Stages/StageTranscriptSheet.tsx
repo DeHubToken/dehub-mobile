@@ -492,7 +492,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const handleShare = () => {
     // The stage's own link (dehub.io/stages/<n>). A bare uuid after /stages
     // opened the hub instead of the stage in the app.
-    const url = space ? ShareLinks.stage(space) : `https://dehub.io/stage/${stageId}`;
+    const url = space ? ShareLinks.stage(space) : `https://riftn.com/stage/${stageId}`;
     shareWithRef({
       message: `${t("stages.transcriptShare", { title: space?.title || t("stages.audioStage") })}\n\n${t("stages.transcriptLink", { url })}`,
       title: space?.title || t("stages.audioStageTranscript"),

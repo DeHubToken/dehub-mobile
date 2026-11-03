@@ -6,5 +6,5 @@
  */
 export function postEmbedCode(tokenId: string | number): string {
   const id = Number(tokenId);
-  return `<iframe src="https://dehub.io/app/post/${id}/embed" class="dehub-embed" style="max-width: 100%; border: 0" width="550" height="480" allowfullscreen="allowfullscreen" allow="fullscreen; picture-in-picture" loading="lazy"></iframe><script src="https://dehub.io/embed.js" async="async"></script>`;
+  return `<iframe src="https://riftn.com/app/post/${id}/embed" class="dehub-embed" style="max-width: 100%; border: 0" width="550" height="480" allowfullscreen="allowfullscreen" allow="fullscreen; picture-in-picture" loading="lazy"></iframe><script src="https://riftn.com/embed.js" async="async"></script>`;
 }

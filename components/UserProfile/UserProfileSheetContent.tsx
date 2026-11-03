@@ -235,7 +235,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const handleMenuCopyRssFeed = useCallback(() => {
     const slug = profileData?.username || profileData?.address;
     if (!slug) return;
-    copyToClipboard(`https://dehub.io/${encodeURIComponent(slug)}.rss`);
+    copyToClipboard(`https://riftn.com/${encodeURIComponent(slug)}.rss`);
     setShowProfileMenu(false);
   }, [profileData]);
 

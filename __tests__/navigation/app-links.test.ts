@@ -142,14 +142,14 @@ describe('an /app link with no screen', () => {
   it('opens the web page in the in-app browser, never through the OS', async () => {
     expect(resolve('/app/unmapped-page?tab=send')).toBeUndefined();
     await flush();
-    expect(openBrowser).toHaveBeenCalledWith('https://dehub.io/app/unmapped-page?tab=send', expect.anything());
+    expect(openBrowser).toHaveBeenCalledWith('https://riftn.com/app/unmapped-page?tab=send', expect.anything());
     expect(openURL).not.toHaveBeenCalled();
   });
 
   it('also catches the /app forms that are rewritten before matching', async () => {
     expect(resolve('/app/work')).toBeUndefined();
     await flush();
-    expect(openBrowser).toHaveBeenCalledWith('https://dehub.io/app/work', expect.anything());
+    expect(openBrowser).toHaveBeenCalledWith('https://riftn.com/app/work', expect.anything());
   });
 
   it('does not reopen a link that comes straight back', async () => {

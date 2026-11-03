@@ -9,11 +9,11 @@ import { PRIVACY_POLICY_LINK, TERMS_OF_SERVICE_LINK, WEBSITE_LINK } from '../../
 
 describe('config/links legal pages', () => {
   it('points Terms of Service at the live docs page', () => {
-    expect(TERMS_OF_SERVICE_LINK).toBe('https://dehub.io/docs/terms-of-service');
+    expect(TERMS_OF_SERVICE_LINK).toBe('https://riftn.com/docs/terms-of-service');
   });
 
   it('points Privacy Policy at the live docs page', () => {
-    expect(PRIVACY_POLICY_LINK).toBe('https://dehub.io/docs/privacy');
+    expect(PRIVACY_POLICY_LINK).toBe('https://riftn.com/docs/privacy');
   });
 
   it('keeps both on the main site, never the retired docs host', () => {

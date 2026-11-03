@@ -366,7 +366,7 @@ const FeatureCard: React.FC<{
 
   const onShare = useCallback(() => {
     void shareWithRef({
-      message: `${feature.title}\nhttps://dehub.io/app/features?feature=${feature.id}`,
+      message: `${feature.title}\nhttps://riftn.com/app/features?feature=${feature.id}`,
     });
   }, [feature.id, feature.title]);
 

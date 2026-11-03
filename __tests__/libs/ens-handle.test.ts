@@ -98,14 +98,14 @@ describe('couldBeProfileSegment', () => {
 
 describe('ensProfileUrl', () => {
   it('builds the URL the name earns its holder', () => {
-    expect(ensProfileUrl('mal.eth')).toBe('https://dehub.io/mal.eth');
+    expect(ensProfileUrl('mal.eth')).toBe('https://riftn.com/mal.eth');
   });
 
   it('encodes a non-ASCII name', () => {
-    expect(ensProfileUrl('مرحبا.eth')).toBe('https://dehub.io/%D9%85%D8%B1%D8%AD%D8%A8%D8%A7.eth');
+    expect(ensProfileUrl('مرحبا.eth')).toBe('https://riftn.com/%D9%85%D8%B1%D8%AD%D8%A8%D8%A7.eth');
   });
 
   it('tolerates a trailing slash on the origin', () => {
-    expect(ensProfileUrl('mal.eth', 'https://dehub.io/')).toBe('https://dehub.io/mal.eth');
+    expect(ensProfileUrl('mal.eth', 'https://riftn.com/')).toBe('https://riftn.com/mal.eth');
   });
 });
