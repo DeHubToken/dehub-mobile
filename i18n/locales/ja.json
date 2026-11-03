@@ -14687,5 +14687,10 @@
     "spotlightForSale": "販売中",
     "spotlightNew": "直近ミント",
     "buyFor": "{{price}}で購入"
+  },
+  "riftnMove": {
+    "title": "DeHubはRiftnになりました",
+    "body": "アプリもアカウントも友だちもそのまま。名前が変わっただけです。",
+    "continue": "タップして続ける"
   }
 }

@@ -14870,5 +14870,10 @@
     "days": "{{count}} araw",
     "spotlightNew": "Nagmimintang",
     "buyFor": "Bumili para sa {{price}}"
+  },
+  "riftnMove": {
+    "title": "Riftn na ang DeHub",
+    "body": "Parehong app, parehong account, parehong mga kaibigan. Bagong pangalan lang.",
+    "continue": "I-tap para magpatuloy"
   }
 }

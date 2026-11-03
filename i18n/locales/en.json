@@ -16068,5 +16068,10 @@
       "ember": "Embers",
       "holo": "Holo Foil"
     }
+  },
+  "riftnMove": {
+    "title": "DeHub is now Riftn",
+    "body": "Same app, same account, same friends. Just a new name.",
+    "continue": "Tap to continue"
   }
 }

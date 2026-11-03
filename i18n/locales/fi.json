@@ -14689,5 +14689,10 @@
     "spotlightForSale": "Myytävänä nyt",
     "spotlightNew": "Vain mintattu",
     "buyFor": "Osta {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub on nyt Riftn",
+    "body": "Sama sovellus, sama tili, samat kaverit. Vain uusi nimi.",
+    "continue": "Jatka napauttamalla"
   }
 }

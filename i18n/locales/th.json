@@ -14718,5 +14718,10 @@
     "spotlightForSale": "กำลังขายอยู่",
     "spotlightNew": "เพิ่ง Minted",
     "buyFor": "ซื้อที่ {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub เปลี่ยนเป็น Riftn แล้ว",
+    "body": "แอปเดิม บัญชีเดิม เพื่อนเดิม แค่ชื่อใหม่",
+    "continue": "แตะเพื่อดำเนินการต่อ"
   }
 }

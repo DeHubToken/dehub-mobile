@@ -14691,5 +14691,10 @@
     "spotlightForSale": "अभी बिक्री पर",
     "spotlightNew": "अभी मिंटेड",
     "buyFor": "{{price}} के लिए खरीदें"
+  },
+  "riftnMove": {
+    "title": "DeHub अब Riftn है",
+    "body": "वही ऐप, वही खाता, वही दोस्त। बस नया नाम।",
+    "continue": "जारी रखने के लिए टैप करें"
   }
 }

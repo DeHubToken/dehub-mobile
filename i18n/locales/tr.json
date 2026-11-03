@@ -16209,5 +16209,10 @@
       "ember": "Közler",
       "holo": "Holo folyo"
     }
+  },
+  "riftnMove": {
+    "title": "DeHub artık Riftn",
+    "body": "Aynı uygulama, aynı hesap, aynı arkadaşlar. Sadece yeni bir isim.",
+    "continue": "Devam etmek için dokun"
   }
 }

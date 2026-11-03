@@ -16461,5 +16461,10 @@
       "ember": "Gloeiende kooltjes",
       "holo": "Holofolie"
     }
+  },
+  "riftnMove": {
+    "title": "DeHub heet nu Riftn",
+    "body": "Dezelfde app, hetzelfde account, dezelfde vrienden. Alleen een nieuwe naam.",
+    "continue": "Tik om verder te gaan"
   }
 }

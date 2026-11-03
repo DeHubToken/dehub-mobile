@@ -14689,5 +14689,10 @@
     "spotlightForSale": "而家出售",
     "spotlightNew": "剛鑄造",
     "buyFor": "買 {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub 而家叫 Riftn",
+    "body": "同一個 app、同一個帳戶、同一班朋友。只係換咗個名。",
+    "continue": "撳一下繼續"
   }
 }

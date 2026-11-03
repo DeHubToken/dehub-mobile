@@ -14688,5 +14688,10 @@
     "spotlightForSale": "现出售",
     "spotlightNew": "刚铸造的",
     "buyFor": "为 {{price}} 购买"
+  },
+  "riftnMove": {
+    "title": "DeHub 现已更名为 Riftn",
+    "body": "同一个应用、同一个账户、同一群朋友。只是换了个名字。",
+    "continue": "轻触继续"
   }
 }

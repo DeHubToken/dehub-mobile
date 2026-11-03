@@ -14695,5 +14695,10 @@
     "spotlightForSale": "För sälj nu",
     "spotlightNew": "Nyutgivet",
     "buyFor": "Köp för {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub heter nu Riftn",
+    "body": "Samma app, samma konto, samma vänner. Bara ett nytt namn.",
+    "continue": "Tryck för att fortsätta"
   }
 }

@@ -14696,5 +14696,10 @@
     "spotlightForSale": "Til salg nu",
     "spotlightNew": "Netop slået sammen",
     "buyFor": "Køb for {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub hedder nu Riftn",
+    "body": "Samme app, samme konto, samme venner. Bare et nyt navn.",
+    "continue": "Tryk for at fortsætte"
   }
 }

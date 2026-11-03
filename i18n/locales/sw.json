@@ -14674,5 +14674,10 @@
     "spotlightForSale": "Inauzwa sasa",
     "spotlightNew": "Kujifanya tu",
     "buyFor": "Nunua kwa {{price}}"
+  },
+  "riftnMove": {
+    "title": "DeHub sasa ni Riftn",
+    "body": "Programu ile ile, akaunti ile ile, marafiki wale wale. Jina jipya tu.",
+    "continue": "Gusa ili kuendelea"
   }
 }

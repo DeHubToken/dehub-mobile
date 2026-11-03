@@ -14696,5 +14696,10 @@
     "spotlightForSale": "Nyní na prodej",
     "spotlightNew": "Právě vytvořeno",
     "buyFor": "Koupit za {{price}}"
+  },
+  "riftnMove": {
+    "title": "Z DeHub je teď Riftn",
+    "body": "Stejná aplikace, stejný účet, stejní přátelé. Jen nové jméno.",
+    "continue": "Klepnutím pokračujte"
   }
 }

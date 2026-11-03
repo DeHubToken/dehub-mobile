@@ -14685,5 +14685,10 @@
     "spotlightForSale": "지금 판매 중",
     "spotlightNew": "방금 민팅됨",
     "buyFor": "{{price}}에 구매"
+  },
+  "riftnMove": {
+    "title": "DeHub가 이제 Riftn입니다",
+    "body": "같은 앱, 같은 계정, 같은 친구들. 이름만 바뀌었어요.",
+    "continue": "탭하여 계속"
   }
 }
