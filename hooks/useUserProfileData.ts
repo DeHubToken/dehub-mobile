@@ -320,8 +320,13 @@ export const useUserProfileData = (
   );
 
   const retry = useCallback(() => {
-    if (usernameOrAddress) return load(usernameOrAddress);
+    if (usernameOrAddress) load(usernameOrAddress);
   }, [usernameOrAddress, load]);
+  // Same as retry, but hands back the request so a pull refresh can wait on it.
+  const reload = useCallback(
+    () => (usernameOrAddress ? load(usernameOrAddress) : Promise.resolve()),
+    [usernameOrAddress, load],
+  );
 
   useEffect(() => {
     if (visible && usernameOrAddress) {
@@ -742,6 +747,7 @@ export const useUserProfileData = (
     identitySeed,
     error,
     retry,
+    reload,
     profileData,
     isFollowing,
     isFollowRequestPending,

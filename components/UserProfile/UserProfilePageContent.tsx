@@ -43,6 +43,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
     identitySeed,
     error,
     retry,
+    reload,
     profileData,
     isFollowing,
     isFollowRequestPending,
@@ -74,7 +75,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
 
   // Pull down at the top to reload the header, counts and every tab's posts.
   const { width: windowWidth } = useWindowDimensions();
-  const pull = useProfilePullRefresh(showing && !!profileData, collapse.scrollY, retry);
+  const pull = useProfilePullRefresh(showing && !!profileData, collapse.scrollY, reload);
   const pullCover = coverUrl && coverUrl !== 'default-banner' ? { uri: storageImage(coverUrl, windowWidth) } : defaultBanner;
 
   const handleEditProfile = useCallback(() => {
