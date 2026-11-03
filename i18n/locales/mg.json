@@ -14740,5 +14740,17 @@
       "caption": "Misy ny loantsoinao amin'ny fotoana hafa",
       "alt": "Misy fampahalalana: ny an'ny fanekena ny lanitra"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Tap one amin’ny faha-1 koa ho an’ny fampandrosoana.",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightNew": "Just minted",
+    "buyFor": "Olaona ny {{price}}"
   }
 }

@@ -14690,5 +14690,18 @@
       "caption": "ለዚህ ገጽ መግለጫ",
       "alt": "ተለዋጭ ጽሑፍ: ገጹ ምን እንደሚያሳይ"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "የDeHub ጋዜጠኛዎች",
+    "statMinted": "ተሰራ",
+    "statForSale": "ለማስተዋል",
+    "sellYours": "በሚስጥርህ ለማስተዋል",
+    "sellYoursHint": "ከሚስጥርህ አስተዋል",
+    "latestMints": "የቀድሞ አስተዋል",
+    "tapToOffer": "በአሁን ለማስተዋል",
+    "collections": "ከአንድ አስተዋል",
+    "spotlightForSale": "በማስተዋም ይገኛል",
+    "spotlightNew": "በአሁን ለማስተዋል",
+    "buyFor": "ከ{{price}}"
   }
 }

@@ -14652,5 +14652,19 @@
       "caption": "عنوان لهذه الصفحة",
       "alt": "نص البديل: ما الذي يظهر على الصفحة"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "دِيهوب بوستس",
+    "statMinted": "مِنتد",
+    "statForSale": "لِسّيل",
+    "sellYours": "بيع مالك",
+    "sellYoursHint": "قائمة من محفظتك",
+    "latestMints": "أحدث المِنتس",
+    "tapToOffer": "اضغط واحد لتقدّم عرض",
+    "collections": "مجموعات",
+    "days": "{{count}} أيام",
+    "spotlightForSale": "لِسّيل الآن",
+    "spotlightNew": "مِنتد للتو",
+    "buyFor": "اشتري بـ {{price}}"
   }
 }

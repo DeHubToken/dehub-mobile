@@ -14657,5 +14657,19 @@
       "coverHint": "Səhifə 1 — qapagıdır.",
       "empty": "Səhifələrinizi şəkil düyməsi ilə əlavə edin. Her bir səhifəyə başlıq və alt mətn yazın."
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Postlar",
+    "statMinted": "Minted",
+    "statForSale": "Satqılı",
+    "sellYours": "Satın al",
+    "sellYoursHint": "Üzərinizdəki məhsulu satın",
+    "latestMints": "Sonuncu məhsullar",
+    "tapToOffer": "Birini seçin və təklif et",
+    "collections": "Kolleksiyalar",
+    "days": "{{count}} gün",
+    "spotlightForSale": "Satqılı halda",
+    "spotlightNew": "Sonuncu məhsul",
+    "buyFor": "{{price}}-qədər üçün al"
   }
 }

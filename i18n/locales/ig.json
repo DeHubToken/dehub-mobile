@@ -14632,5 +14632,18 @@
       "caption": "Nkọwa maka peeji a",
       "alt": "Alt text: ihe peeji ahụ na-egosi"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Taa otu ka ị ga-eme ihe nnukwu",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "Ọ dị ka ụgbọrọ n'ụzọ a",
+    "spotlightNew": "Just minted",
+    "buyFor": "Nweta n'anya n'{{price}}"
   }
 }

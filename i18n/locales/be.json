@@ -14703,5 +14703,19 @@
       "caption": "Загалоўак да гэтай старонкі",
       "alt": "Альтэрнатыўны тэкст: што паказвае старонка"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Публікацыі",
+    "statMinted": "Прамінуты",
+    "statForSale": "На продаж",
+    "sellYours": "Прадавай свой",
+    "sellYoursHint": "Спіс з вашага кашалька",
+    "latestMints": "Апошнія праміні",
+    "tapToOffer": "Пстрыкні, каб зрабіць прапанову",
+    "collections": "Калекцыі",
+    "days": "{{count}} дзён",
+    "spotlightForSale": "На продаж зараз",
+    "spotlightNew": "Толькі праміні",
+    "buyFor": "Купіць за {{price}}"
   }
 }

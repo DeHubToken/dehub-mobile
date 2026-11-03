@@ -14649,5 +14649,18 @@
     "taken": "חשבון GitHub זה כבר נמצא בפרופיל DeHub אחר.",
     "failed": "לא הצלחנו לחבר את GitHub. נסו שוב.",
     "unavailable": "האימות של GitHub יגיע בקרוב."
+  },
+  "nftMarket": {
+    "dehubPostsName": "פוסטים של DeHub",
+    "statMinted": "נוצר",
+    "statForSale": "למכירה",
+    "sellYours": "מכור את שלך",
+    "sellYoursHint": "רשימה מהארנק שלך",
+    "latestMints": "ההצעות האחרונות",
+    "tapToOffer": "לחץ אחד כדי להציע הצעה",
+    "collections": "אוסףים",
+    "days": "{{count}} ימים",
+    "spotlightForSale": "למכירה עכשיו",
+    "buyFor": "קנה עבור {{price}}"
   }
 }

@@ -14630,5 +14630,19 @@
       "caption": "اس صفحے کا عنوان",
       "alt": "لکھی ہوئی تصاویر: یہ صفحہ کیا دکھاتا ہے"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ڈی ہب پوسٹس",
+    "statMinted": "منٹڈ",
+    "statForSale": "فور سیل",
+    "sellYours": "اپنا بیچو",
+    "sellYoursHint": "اپنے والیٹ سے لسٹ کریں",
+    "latestMints": "تازہ ترین منٹس",
+    "tapToOffer": "ایک پر ٹیپ کریں اور آفر دیں",
+    "collections": "کلیکشنز",
+    "days": "{{count}} دن",
+    "spotlightForSale": "اب فور سیل",
+    "spotlightNew": "صرف منٹڈ",
+    "buyFor": "{{price}} کے لیے خریدیں"
   }
 }

@@ -14915,5 +14915,19 @@
       "caption": "Teks ini tidak diberikan.",
       "alt": "Teks alternatif: apa yang dipaparkan oleh halaman"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Dijual",
+    "sellYours": "Jual milik anda",
+    "sellYoursHint": "Dari dompet anda",
+    "latestMints": "Mint terbaru",
+    "tapToOffer": "Klik satu untuk membuat tawaran",
+    "collections": "Koleksi",
+    "days": "{{count}} hari",
+    "spotlightForSale": "Dijual sekarang",
+    "spotlightNew": "Baru saja ditempa",
+    "buyFor": "Beli untuk {{price}}"
   }
 }

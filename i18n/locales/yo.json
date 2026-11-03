@@ -14661,5 +14661,14 @@
       "caption": "Akọsilẹ fun oju iwe yii",
       "alt": "Ọrọ iyalẹnu: ohun ti oju iwe naa fihani"
     }
+  },
+  "nftMarket": {
+    "sellYoursHint": "Àkọkọ́ àti òkùnrin lára nínú òkùtà.",
+    "latestMints": "Àgbàjọ mímọ",
+    "tapToOffer": "Tẹle 1 lati ṣe ibẹrẹ.",
+    "collections": "Àgbàjọ",
+    "spotlightForSale": "Ọjọ́ ibẹrẹ.",
+    "spotlightNew": "Ọgbọnrin Ọlọrun",
+    "buyFor": "Kaa fun {{price}}"
   }
 }

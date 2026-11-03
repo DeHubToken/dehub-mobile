@@ -14652,5 +14652,19 @@
       "caption": "Хуудасны хөтөлбөр",
       "alt": "Бичлэл: харагдах хуудас"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Постууд",
+    "statMinted": "Мүнтэд",
+    "statForSale": "Борлуулахаар",
+    "sellYours": "Өөрийнхөө зүйлээ зар",
+    "sellYoursHint": "Таны түрийвчээс жагсаалт",
+    "latestMints": "Сүүлийн үеийн цэцэг",
+    "tapToOffer": "Нэгийг дарж санал өгнө үү",
+    "collections": "Цуглуулга",
+    "days": "{{count}} өдөр",
+    "spotlightForSale": "Хүүхэд",
+    "spotlightNew": "Өөрчлөгдсөн байна.",
+    "buyFor": "Бэхэлэхдээ {{price}}-г худалдаж авна уу."
   }
 }

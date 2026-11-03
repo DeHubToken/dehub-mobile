@@ -14843,5 +14843,18 @@
       "caption": "Tanggapan para sa pahina na ito",
       "alt": "Mga alternatibong teksto: ano ang ipinapakita ng pahina"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "Mga Post ng DeHub",
+    "statMinted": "Minted",
+    "statForSale": "Ikinakalakal",
+    "sellYours": "Mamahalin mo",
+    "sellYoursHint": "Tuklasin ang mga laman ng iyong pera",
+    "latestMints": "Ang mga pinakabagong mints",
+    "tapToOffer": "Tumawag ka sa isang offer",
+    "collections": "Mga Koleksiyon",
+    "days": "{{count}} araw",
+    "spotlightNew": "Nagmimintang",
+    "buyFor": "Bumili para sa {{price}}"
   }
 }

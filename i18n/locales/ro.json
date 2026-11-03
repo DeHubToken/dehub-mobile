@@ -14677,5 +14677,19 @@
       "caption": "Subtitlu pentru această pagină",
       "alt": "Text alternativ: ce arată pagina"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Mintite",
+    "statForSale": "La vânzare",
+    "sellYours": "Vinde-ți propriul",
+    "sellYoursHint": "Listează de la portofelul tău",
+    "latestMints": "Cele mai recente minturi",
+    "tapToOffer": "Apasă pe unul pentru a face o ofertă",
+    "collections": "Colecții",
+    "days": "{{count}} zile",
+    "spotlightForSale": "La vânzare acum",
+    "spotlightNew": "A fost mintit recent",
+    "buyFor": "Cumpără pentru {{price}}"
   }
 }

@@ -14626,5 +14626,13 @@
       "caption": "دې پښتو لپاره عنوان",
       "alt": "Alt text: دا پښتو څه ښيي"
     }
+  },
+  "nftMarket": {
+    "sellYours": "ستاسو وپرې",
+    "latestMints": "تازه ترین نعناع",
+    "tapToOffer": "یو ټپ کړئ چې یو تجویز وکړئ",
+    "collections": "کالکشنز",
+    "spotlightForSale": "اوس د فروخت لپاره",
+    "spotlightNew": "څلۍ"
   }
 }

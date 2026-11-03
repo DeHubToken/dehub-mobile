@@ -14663,5 +14663,19 @@
       "caption": "Uzraksts šai lapai",
       "alt": "Alternatīvais teksts: ko lapa parāda"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Ziņas",
+    "statMinted": "Izlaists",
+    "statForSale": "Pārdošanai",
+    "sellYours": "Pārdod savu",
+    "sellYoursHint": "Uzskaitīt no sava maciņa",
+    "latestMints": "Jaunākie izlaisti",
+    "tapToOffer": "Pieskarieties vienam, lai iesniegtu piedāvājumu",
+    "collections": "Kolekcijas",
+    "days": "{{count}} dienas",
+    "spotlightForSale": "Pārdošanai tagad",
+    "spotlightNew": "Tikko izlaists",
+    "buyFor": "Nopirkt par {{price}}"
   }
 }

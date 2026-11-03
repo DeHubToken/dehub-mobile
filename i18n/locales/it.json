@@ -14662,5 +14662,19 @@
     "taken": "Quel account GitHub è già su un altro profilo DeHub.",
     "failed": "Impossibile connettere GitHub. Riprova.",
     "unavailable": "La verifica di GitHub è in arrivo."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Fuso",
+    "statForSale": "In vendita",
+    "sellYours": "Vendi il tuo",
+    "sellYoursHint": "Elenca dal tuo portafoglio",
+    "latestMints": "Ultimi fusi",
+    "tapToOffer": "Tocca uno per fare un'offerta",
+    "collections": "Collezioni",
+    "days": "{{count}} giorni",
+    "spotlightForSale": "In vendita ora",
+    "spotlightNew": "Appena fuso",
+    "buyFor": "Acquista per {{price}}"
   }
 }

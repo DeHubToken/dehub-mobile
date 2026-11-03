@@ -14826,5 +14826,19 @@
       "caption": "Nadpis pre túto stránku",
       "alt": "Alternatívny text: čo stránka zobrazuje"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Mintované",
+    "statForSale": "Na predaj",
+    "sellYours": "Predaj svoje",
+    "sellYoursHint": "Zoznam z vašej peňazenky",
+    "latestMints": "Najnovšie minty",
+    "tapToOffer": "Kliknite na jednu, aby ste urobili ponuku",
+    "collections": "Kolekcie",
+    "days": "{{count}} dní",
+    "spotlightForSale": "Predávané akýmkoľvek",
+    "spotlightNew": "Práve mintované",
+    "buyFor": "Kúpite za {{price}}"
   }
 }

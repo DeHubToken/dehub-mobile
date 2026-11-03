@@ -14650,5 +14650,16 @@
       "empty": "اپنی صفحات کو فوٹو بٹن کے ساتھ شامل کریں۔ ہر صفحے کو ایک کیپشن اور متبادل متن ملے گا۔",
       "cover": "کور"
     }
+  },
+  "nftMarket": {
+    "sellYours": "اپنا فروختے ہیں",
+    "sellYoursHint": "آپ کے والٹ سے فہرست",
+    "latestMints": "آخری منٹس",
+    "tapToOffer": "ایک کلک کریں اور پیشکش کرو",
+    "collections": "مجموعہ",
+    "days": "{{count}} دن",
+    "spotlightForSale": "آج کے لیے فروخت",
+    "spotlightNew": "اب تک",
+    "buyFor": "خرید کے لیے {{price}}"
   }
 }

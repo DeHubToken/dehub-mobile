@@ -14662,5 +14662,19 @@
     "taken": "そのGitHubアカウントは既に別のDeHubプロフィールに登録されています。",
     "failed": "GitHubの接続に失敗しました。もう一度お試しください。",
     "unavailable": "GitHubの認証機能は近日公開予定です。"
+  },
+  "nftMarket": {
+    "dehubPostsName": "Deハブ ポスト",
+    "statMinted": "ミンテッド",
+    "statForSale": "販売中",
+    "sellYours": "あなたのミントを売る",
+    "sellYoursHint": "ウォレットからリストする",
+    "latestMints": "最新のミント",
+    "tapToOffer": "1つタップしてオファーを出す",
+    "collections": "コレクション",
+    "days": "{{count}} 日",
+    "spotlightForSale": "販売中",
+    "spotlightNew": "直近ミント",
+    "buyFor": "{{price}}で購入"
   }
 }

@@ -14852,5 +14852,11 @@
       "caption": "এই পৃষ্ঠার শিরোনাম",
       "alt": "আল্ট টেক্সট: যে পৃষ্ঠাটি দেখায়"
     }
+  },
+  "nftMarket": {
+    "collections": "সংগ্রহ",
+    "days": "{{count}} দিন",
+    "spotlightForSale": "বিক্রয়ের জন্য এখন",
+    "spotlightNew": "আজ মুদ্রিত"
   }
 }

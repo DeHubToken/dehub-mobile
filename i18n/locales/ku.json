@@ -14939,5 +14939,17 @@
     "taken": "Evîfa GitHubê li ser profilek din ê DeHubê ye.",
     "failed": "Nekare GitHubê ve. Lêgerîn bikin.",
     "unavailable": "GitHubê diyarkirina bi ser dibe."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Tapin bo ji bo teklif bikin",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightNew": "Just minted",
+    "buyFor": "Xwarin bikin li ser {{price}}"
   }
 }

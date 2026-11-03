@@ -14675,5 +14675,18 @@
       "caption": "K'ancha k'ancha q'illaynin, k'ancha k'ancha q'illaynin.",
       "alt": "Alt text: imayna p'anqata rikuchikunman"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "K'antu q'illaykuna.",
+    "latestMints": "Latest mints",
+    "tapToOffer": "K'ancha k'ancha kusi.",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "K'ullana kawsaykuna k'aspiy",
+    "spotlightNew": "Just minted"
   }
 }

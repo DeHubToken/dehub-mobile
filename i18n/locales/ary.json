@@ -14692,5 +14692,15 @@
       "caption": "عنوان لهذه الصفحة",
       "alt": "نص بديل: ما بيظهر في الصفحة"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "منشورات DeHub",
+    "sellYours": "بِعْه",
+    "sellYoursHint": "قائمة من المحفظة ديالك",
+    "tapToOffer": "ضغط على واحد ليقدم عرضك",
+    "collections": "المجموعات",
+    "days": "{{count}} أيام",
+    "spotlightNew": "مُصْنَعْتْ",
+    "buyFor": "شري لـ {{price}}"
   }
 }

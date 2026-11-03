@@ -14663,5 +14663,19 @@
       "caption": "ఈ పేజీకి క్యాప్షన్",
       "alt": "ఆల్ట్ టెక్స్ట్: పేజీలో ఉన్నది ఏమిటి?"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub పోస్ట్‌లు",
+    "statMinted": "మింట్ చేయబడినవి",
+    "statForSale": "విక్రయానికి",
+    "sellYours": "మీది విక్రయించండి",
+    "sellYoursHint": "మీ వాలెట్ నుండి జాబితా చేయండి",
+    "latestMints": "సరికొత్త మింట్‌లు",
+    "tapToOffer": "ఆఫర్ చేయడానికి ఒకటిని ట్యాప్ చేయండి",
+    "collections": "సంగ్రహాలు",
+    "days": "{{count}} రోజులు",
+    "spotlightForSale": "ఇప్పుడు విక్రయానికి",
+    "spotlightNew": "ఇప్పుడే మింట్ చేయబడినవి",
+    "buyFor": "{{price}} కోసం కొనండి"
   }
 }

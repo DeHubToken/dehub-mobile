@@ -14627,5 +14627,15 @@
       "empty": "Jula ka fɔ̃ ni fɔtɔ bɔtɔni la. Jula kelen-kelen ka caption ni alt text kɔ.",
       "cover": "Kuɗa"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "kɔ̀",
+    "sellYoursHint": "Wallet ni ka jɔ",
+    "latestMints": "Minti koraw",
+    "collections": "Jɛkɔrɔw",
+    "days": "{{count}} days",
+    "spotlightForSale": "Bé kɔ̀ tɔ̀",
+    "spotlightNew": "Kàŋ kàŋ"
   }
 }

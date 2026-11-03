@@ -14646,5 +14646,19 @@
     "taken": "Taj GitHub račun već je na drugom DeHub profilu.",
     "failed": "Povezivanje s GitHubom nije uspjelo. Pokušajte ponovno.",
     "unavailable": "Uskoro stiže GitHub potvrda."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Postovi",
+    "statMinted": "Mintirano",
+    "statForSale": "Za prodaju",
+    "sellYours": "Prodaj svoje",
+    "sellYoursHint": "Objavi iz svoje kamilice",
+    "latestMints": "Najnovije mintove",
+    "tapToOffer": "Klikni jedan da napravi ponudu",
+    "collections": "Kolekcije",
+    "days": "{{count}} dana",
+    "spotlightForSale": "Trenutno za prodaju",
+    "spotlightNew": "Samo mintirano",
+    "buyFor": "Kupi za {{price}}"
   }
 }

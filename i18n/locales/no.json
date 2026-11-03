@@ -14661,5 +14661,19 @@
       "caption": "Caption for denne siden",
       "alt": "Alternativ tekst: hva siden viser"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Innlegg",
+    "statMinted": "Slått ut",
+    "statForSale": "Til salgs",
+    "sellYours": "Selg ditt",
+    "sellYoursHint": "List opp fra lommeboken din",
+    "latestMints": "Nye slåtter",
+    "tapToOffer": "Trykk på en for å gjøre et tilbud",
+    "collections": "Samlinger",
+    "days": "{{count}} dager",
+    "spotlightForSale": "Til salgs nå",
+    "spotlightNew": "Nylig slått ut",
+    "buyFor": "Kjøp for {{price}}"
   }
 }

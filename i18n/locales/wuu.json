@@ -14624,5 +14624,13 @@
     "editor": {
       "count": "{{count}} 张 {{limit}} 页"
     }
+  },
+  "nftMarket": {
+    "tapToOffer": "點擊一下就能做出一份報價",
+    "collections": "收藏",
+    "days": "{{count}}天",
+    "spotlightForSale": "現貨出售",
+    "spotlightNew": "新發行",
+    "buyFor": "買{{price}}"
   }
 }

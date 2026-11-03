@@ -3693,7 +3693,6 @@
     "wallLabel": "Mensagens de gorjeta",
     "railTitle": "Gorjetas",
     "railTotal": "{{amount}} tokens",
-    "tokensUnit": "tokens",
     "messagePrivateNote": "Apenas {{name}} vê, em sua notificação."
   },
   "postOptions": {
@@ -15738,5 +15737,19 @@
   "liveShorts": {
     "live": "AO VIVO",
     "join": "Entrar na live"
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Vendido",
+    "sellYours": "Venda o seu",
+    "sellYoursHint": "Liste de sua carteira",
+    "latestMints": "Últimos mints",
+    "tapToOffer": "Toque um para fazer uma oferta",
+    "collections": "Coleções",
+    "days": "{{count}} dias",
+    "spotlightForSale": "Vendido agora",
+    "spotlightNew": "Acabou de ser mintado",
+    "buyFor": "Compre por {{price}}"
   }
 }

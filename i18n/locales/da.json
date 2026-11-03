@@ -14668,5 +14668,19 @@
       "caption": "Caption for denne side",
       "alt": "Alternativ tekst: hvad siden viser"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Indlæg",
+    "statMinted": "Slået sammen",
+    "statForSale": "Til salg",
+    "sellYours": "Sælg dine",
+    "sellYoursHint": "List fra din lommebog",
+    "latestMints": "Seneste slåede sammen",
+    "tapToOffer": "Tryk på en for at lave et tilbud",
+    "collections": "Samlinger",
+    "days": "{{count}} dage",
+    "spotlightForSale": "Til salg nu",
+    "spotlightNew": "Netop slået sammen",
+    "buyFor": "Køb for {{price}}"
   }
 }

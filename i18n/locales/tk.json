@@ -14640,5 +14640,14 @@
       "caption": "Bu sahypa üçin başlyk",
       "alt": "Alt teksti: sahypa näme görkezýän"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Satyn satyn satyly",
+    "sellYours": "Seniňi sat",
+    "tapToOffer": "Tap birini tapýarak teklif berin.",
+    "collections": "Toplamlar",
+    "spotlightNew": "Yeni çap etdim."
   }
 }

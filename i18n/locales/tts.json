@@ -14630,5 +14630,19 @@
       "caption": "คำบรรยายสำหรับหน้านี้",
       "alt": "ข้อความแสดงรูป: สิ่งที่หน้าแสดง"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "ขาย",
+    "sellYours": "ขายของคุณเอง",
+    "sellYoursHint": "รายการจากกระเป๋าเงินของคุณ",
+    "latestMints": "ล่าสุดที่ Minted",
+    "tapToOffer": "กดหนึ่งเพื่อทำการเสนอราคา",
+    "collections": "Collection",
+    "days": "{{count}} วัน",
+    "spotlightForSale": "กำลังขายอยู่",
+    "spotlightNew": "เพิ่ง Minted",
+    "buyFor": "ซื้อที่ {{price}}"
   }
 }

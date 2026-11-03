@@ -14665,5 +14665,19 @@
     "taken": "Этот аккаунт GitHub уже привязан к другому профилю на DeHub.",
     "failed": "Не удалось подключиться к GitHub. Попробуйте ещё раз.",
     "unavailable": "Верфикация GitHub скоро появится."
+  },
+  "nftMarket": {
+    "dehubPostsName": "ДеХаб Посты",
+    "statMinted": "Монетки",
+    "statForSale": "На продажу",
+    "sellYours": "Продай свои",
+    "sellYoursHint": "Добавить с кошелька",
+    "latestMints": "Последние монетки",
+    "tapToOffer": "Нажми на одну, чтобы сделать предложение",
+    "collections": "Коллекции",
+    "days": "{{count}} дней",
+    "spotlightForSale": "На продажу прямо сейчас",
+    "spotlightNew": "Только что монетки",
+    "buyFor": "Купить за {{price}}"
   }
 }

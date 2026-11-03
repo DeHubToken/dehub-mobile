@@ -14690,5 +14690,19 @@
       "caption": "Λεζάντα για αυτή τη σελίδα",
       "alt": "Κείμενο alt: τι δείχνει η σελίδα"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "Δημοσιεύσεις DeHub",
+    "statMinted": "Εκτυπωμένα",
+    "statForSale": "Για πώληση",
+    "sellYours": "Πώλησε το δικό σου",
+    "sellYoursHint": "Κατάλογος από το πορτοφόλι σου",
+    "latestMints": "Τελευταίες εκτυπώσεις",
+    "tapToOffer": "Πατήστε ένα για να κάνετε προσφορά",
+    "collections": "Συλλογές",
+    "days": "{{count}} ημέρες",
+    "spotlightForSale": "Για πώληση τώρα",
+    "spotlightNew": "Μόλις εκτυπωμένο",
+    "buyFor": "Αγοράστε για {{price}}"
   }
 }

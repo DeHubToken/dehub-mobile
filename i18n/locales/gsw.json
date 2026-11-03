@@ -14682,5 +14682,19 @@
       "caption": "Titel für diese Seite",
       "alt": "Alternativtext: was die Seite zeigt"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Gegossen",
+    "statForSale": "Z’verkufe",
+    "sellYours": "Deinens verkaufe",
+    "sellYoursHint": "Aus deinem Wallet listen",
+    "latestMints": "Neuste Gössi",
+    "tapToOffer": "Tippsch auf’s Bild, um ein Offer zu machä",
+    "collections": "Sammlungen",
+    "days": "{{count}} Tage",
+    "spotlightForSale": "Jetzt z’verkufe",
+    "spotlightNew": "Gössi just gemacht",
+    "buyFor": "Kauf für {{price}}"
   }
 }

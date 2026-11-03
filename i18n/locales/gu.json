@@ -14644,5 +14644,19 @@
     "taken": "તે GitHub એકાઉન્ટ પહેલાથી જ અન્ય DeHub પ્રોફાઇલ પર છે.",
     "failed": "GitHub ને કનેક્ટ કરી શક્યા નથી. ફરીથી પ્રયાસ કરો.",
     "unavailable": "GitHub વેરિફિકેશન ટૂંક સમયમાં આવી રહ્યું છે."
+  },
+  "nftMarket": {
+    "dehubPostsName": "ડિહબ પોસ્ટ્સ",
+    "statMinted": "મિંટેડ",
+    "statForSale": "વેચાણ માટે",
+    "sellYours": "તમારું વેચો",
+    "sellYoursHint": "તમારા વૉલેટમાંથી સૂચિબદ્ધ કરો",
+    "latestMints": "તાજેતરના મિંટ્સ",
+    "tapToOffer": "એક પર ટેપ કરીને ઓફર કરો",
+    "collections": "સંગ્રહો",
+    "days": "{{count}} દિવસો",
+    "spotlightForSale": "હવે વેચાણ માટે",
+    "spotlightNew": "હમણાં જ મિંટેડ",
+    "buyFor": "{{price}} માટે ખરીદો"
   }
 }

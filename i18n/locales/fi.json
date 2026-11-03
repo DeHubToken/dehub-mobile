@@ -14662,5 +14662,18 @@
       "caption": "Tämän sivun otsikko",
       "alt": "Alt-teksti: mitä sivulla näkyy"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Julkaisut",
+    "statMinted": "luotu",
+    "statForSale": "Myytävänä",
+    "sellYours": "Myy omaasi",
+    "latestMints": "Viimeisimmät mintit",
+    "tapToOffer": "Tapaa yksi tarjottamaan tarjouksen",
+    "collections": "Kokoelmat",
+    "days": "{{count}} päivää",
+    "spotlightForSale": "Myytävänä nyt",
+    "spotlightNew": "Vain mintattu",
+    "buyFor": "Osta {{price}}"
   }
 }

@@ -14643,5 +14643,19 @@
     "taken": "Та ГитХуб рачун је већ на другом профилу DeHub-а.",
     "failed": "Није успело повезивање са ГитХуб-ом. Покушајте поново.",
     "unavailable": "Верификација ГитХуб рачуна долази ускоро."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Постови",
+    "statMinted": "Кован",
+    "statForSale": "На продају",
+    "sellYours": "Продај свој",
+    "sellYoursHint": "Листа из вашег портфеља",
+    "latestMints": "Најновије ковање",
+    "tapToOffer": "Притисните један да направите понуду",
+    "collections": "Колекције",
+    "days": "{{count}} дана",
+    "spotlightForSale": "На продаји сада",
+    "spotlightNew": "Само ковано",
+    "buyFor": "Купи за {{price}}"
   }
 }

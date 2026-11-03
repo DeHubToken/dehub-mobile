@@ -14646,5 +14646,10 @@
       "caption": "ଏହି ପାଜରେ କାପସା",
       "alt": "ଅଲ୍ତ ବିଷୟ: ଏହାରେ କିଛି ଦେଖାଯାଇଛି"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "spotlightNew": "ମିନ୍ତ କରିଛି",
+    "buyFor": "ଖରିଦ୍ବାକୁ କରନ୍ତୁ {{price}}"
   }
 }

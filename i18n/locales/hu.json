@@ -14649,5 +14649,19 @@
     "taken": "Ez a GitHub-fiók már egy másik DeHub-profilban van.",
     "failed": "Nem sikerült csatlakozni a GitHubhoz. Próbálkozz újra.",
     "unavailable": "Hamarosan jön a GitHub-hitelesítés."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Bejegyzések",
+    "statMinted": "Mintelt",
+    "statForSale": "Eladó",
+    "sellYours": "Értékesítsd a tiedet",
+    "sellYoursHint": "Listázás a pénztárcádból",
+    "latestMints": "Legfrissebb minták",
+    "tapToOffer": "Koppints egyre, hogy ajánlatot tegyél",
+    "collections": "Gyűjtemények",
+    "days": "{{count}} nap",
+    "spotlightForSale": "Most eladó",
+    "spotlightNew": "Frissen mintelt",
+    "buyFor": "Vásárolj {{price}}ért"
   }
 }
