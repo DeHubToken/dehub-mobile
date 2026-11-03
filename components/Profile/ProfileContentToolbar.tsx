@@ -1,17 +1,13 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
 import { FIELD_TEXT } from "../../theme/inputs";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import GlassModal from "../ui/GlassModal";
 
-// Minimal: no filled chips. Every control is a bare 1px outline, and the
-// selected one is picked out by a brighter outline — the same
-// line colour as the active file tab — rather than a lighter fill.
-const MINIMAL_CHIP = { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_HAIRLINE } as const;
-const MINIMAL_CHIP_ACTIVE = { borderColor: MINIMAL_TAB_LINE } as const;
 
 /**
  * Sort, search and filter over one creator's own posts.
@@ -45,12 +41,14 @@ export const PROFILE_SORT_PARAMS: Record<
   likes: { sortBy: "likes", sortOrder: "desc" },
 };
 
-const SORT_LABELS: { key: ProfileSortMode; labelKey: string; fallback: string }[] = [
+/** The Quiet Row's menu says each sort in full; there is room for it. */
+const SORT_MENU_LABELS: { key: ProfileSortMode; labelKey: string; fallback: string }[] = [
   { key: "newest", labelKey: "profile.sort.newest", fallback: "Newest" },
   { key: "oldest", labelKey: "profile.sort.oldest", fallback: "Oldest" },
-  { key: "views", labelKey: "profile.sortViewsShort", fallback: "Views" },
-  { key: "likes", labelKey: "profile.sortLikesShort", fallback: "Likes" },
+  { key: "views", labelKey: "profile.sortMostViewed", fallback: "Most viewed" },
+  { key: "likes", labelKey: "profile.sortMostLiked", fallback: "Most liked" },
 ];
+
 
 interface ProfileContentToolbarProps {
   sort: ProfileSortMode;
@@ -77,8 +75,15 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   // fallback ships the English immediately, and a key added to the catalogue
   // later starts being used without touching this file.
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
   const [isSearchOpen, setIsSearchOpen] = React.useState(Boolean(search));
+  const [isSortOpen, setIsSortOpen] = React.useState(false);
+  // Written dark; System Light's tone pass turns these to ink on white.
+  const { isMinimal, theme } = useAppTheme();
+  const ink = "#FFFFFF";
+  const sub = "rgba(255,255,255,0.5)";
+  const solid = theme === "osaka" ? "#FF6FB5" : ink;
+  const solidInk = theme === "osaka" ? "#1A0C16" : "#000000";
+  const current = SORT_MENU_LABELS.find((item) => item.key === sort) ?? SORT_MENU_LABELS[0];
   const searchInputRef = React.useRef<TextInput>(null);
 
   React.useEffect(() => {
@@ -93,23 +98,15 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   return (
     <View className="px-2 pb-2">
       {isSearchOpen ? (
-        // Minimal: the open search is a field on the page, not a box — no
-        // fill, just a hairline under it.
-        <View
-          className={
-            isMinimal
-              ? "flex-row items-center px-3 h-10"
-              : "flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10"
-          }
-          style={isMinimal ? { borderBottomWidth: 1, borderBottomColor: MINIMAL_HAIRLINE } : undefined}
-        >
-          <Icon name="Search" size={16} color="#808089" />
+        // The open search is a field drawn by a glowing Beam line, not a box.
+        <View className="flex-row items-center h-10 px-1">
+          <Icon name="Search" size={16} color={ink} />
           <TextInput
             ref={searchInputRef}
             value={search}
             onChangeText={onSearchChange}
             placeholder={t("profile.searchThisChannel", "Search this channel")}
-            placeholderTextColor="#808089"
+            placeholderTextColor={sub}
             // A phone keyboard offering autocorrect on a search field turns
             // "dehub" into "debug" and the reader blames the search.
             autoCorrect={false}
@@ -123,70 +120,94 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             hitSlop={8}
             accessibilityLabel={search ? _copy("copy.3b7ea51793e9", { defaultValue: "Clear search" }) : _copy("copy.55656b5e434f", { defaultValue: "Close search" })}
           >
-            <Icon name="X" size={14} color="#ffffff" />
+            <Icon name="X" size={14} color={ink} />
           </Pressable>
+          <View
+            pointerEvents="none"
+            style={[
+              styles.beam,
+              isMinimal
+                ? { backgroundColor: MINIMAL_HAIRLINE, height: 1, shadowOpacity: 0 }
+                : { backgroundColor: ink, shadowColor: ink },
+            ]}
+          />
         </View>
       ) : (
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-        <Pressable
-          onPress={() => setIsSearchOpen(true)}
-          hitSlop={6}
-          accessibilityRole="button"
-          accessibilityLabel={t("profile.searchThisChannel", "Search this channel")}
-          className="h-10 w-10 rounded-xl items-center justify-center bg-white/5 border border-white/10"
-          style={isMinimal ? MINIMAL_CHIP : undefined}
-        >
-          <Icon name="Search" size={16} color="#ffffff" />
-        </Pressable>
-        <Pressable
-          onPress={onFiltersToggle}
-          hitSlop={6}
-          accessibilityRole="button"
-          accessibilityState={{ expanded: filtersOpen }}
-          accessibilityLabel={t("filters.filters", "Filters")}
-          className={
-            filtersOpen || activeFilterCount > 0
-              ? "flex-row items-center justify-center rounded-xl border border-white/30 bg-white/15 px-2 h-10 min-w-10"
-              : "flex-row items-center justify-center rounded-xl border border-white/10 bg-white/5 px-2 h-10 min-w-10"
-          }
-          style={[
-            { gap: 6 },
-            isMinimal && MINIMAL_CHIP,
-            isMinimal && (filtersOpen || activeFilterCount > 0) && MINIMAL_CHIP_ACTIVE,
-          ]}
-        >
-          <Icon
-            name="SlidersHorizontal"
-            size={16}
-            color="#ffffff"
-          />
-          {activeFilterCount > 0 && (
-            <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
-          )}
-        </Pressable>
-        {SORT_LABELS.map(({ key, labelKey, fallback }) => {
-          const isActive = sort === key;
-          return (
-            <Pressable
-              key={key}
-              onPress={() => onSortChange(key)}
-              className={
-                isActive
-                  ? "flex-1 min-w-0 h-10 px-1 rounded-xl items-center justify-center bg-white/20 border border-white/30"
-                  : "flex-1 min-w-0 h-10 px-1 rounded-xl items-center justify-center bg-white/5 border border-white/10"
-              }
-              style={isMinimal ? [MINIMAL_CHIP, isActive && MINIMAL_CHIP_ACTIVE] : undefined}
-            >
-              <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} className="text-white text-xs font-medium">
-                {t(labelKey, fallback)}
-              </Text>
-            </Pressable>
-          );
-        })}
+        // Quiet Row: one sort word that opens a glass menu, then bare search
+        // and filter icons. No boxes.
+        <View style={styles.row}>
+          <Pressable
+            onPress={() => setIsSortOpen(true)}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel={t("profile.sortBy", "Sort by")}
+            accessibilityValue={{ text: t(current.labelKey, current.fallback) }}
+            style={styles.sortTrigger}
+          >
+            <Text className="text-white text-sm font-semibold" numberOfLines={1}>{t(current.labelKey, current.fallback)}</Text>
+            <Icon name="ChevronDown" size={15} color={ink} />
+          </Pressable>
+          <View style={{ flex: 1 }} />
+          <Pressable
+            onPress={() => setIsSearchOpen(true)}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel={t("profile.searchThisChannel", "Search this channel")}
+            style={styles.iconButton}
+          >
+            <Icon name="Search" size={18} color={ink} />
+          </Pressable>
+          <Pressable
+            onPress={onFiltersToggle}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: filtersOpen }}
+            accessibilityLabel={t("filters.filters", "Filters")}
+            style={styles.iconButton}
+          >
+            <Icon name="SlidersHorizontal" size={18} color={ink} />
+            {activeFilterCount > 0 && (
+              <View style={[styles.count, { backgroundColor: solid }]}>
+                <Text style={[styles.countText, { color: solidInk }]}>{activeFilterCount}</Text>
+              </View>
+            )}
+          </Pressable>
         </View>
       )}
+
+      <GlassModal surface="theme" visible={isSortOpen} onClose={() => setIsSortOpen(false)} presentation="bottom" blurIntensity={30}>
+        <View className="pb-6 pt-2 px-3">
+          <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
+            {t("profile.sortBy", "Sort by")}
+          </Text>
+          {SORT_MENU_LABELS.map(({ key, labelKey, fallback }) => {
+            const isActive = sort === key;
+            return (
+              <Pressable
+                key={key}
+                onPress={() => { onSortChange(key); setIsSortOpen(false); }}
+                accessibilityRole="radio"
+                accessibilityState={{ checked: isActive }}
+                className={isActive ? "flex-row items-center justify-between rounded-2xl px-4 h-12 bg-white/10" : "flex-row items-center justify-between rounded-2xl px-4 h-12"}
+              >
+                <Text className={isActive ? "text-white text-base font-semibold" : "text-white/80 text-base"}>{t(labelKey, fallback)}</Text>
+                {isActive && <Icon name="Check" size={18} color={ink} />}
+              </Pressable>
+            );
+          })}
+        </View>
+      </GlassModal>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  row: { flexDirection: "row", alignItems: "center", height: 40, gap: 2 },
+  sortTrigger: { flexDirection: "row", alignItems: "center", gap: 4, height: 40, paddingLeft: 4, paddingRight: 8 },
+  iconButton: { width: 40, height: 40, alignItems: "center", justifyContent: "center" },
+  count: { position: "absolute", top: 4, right: 3, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: "center", justifyContent: "center" },
+  countText: { fontSize: 10, fontWeight: "700" },
+  beam: { position: "absolute", left: 0, right: 0, bottom: 0, height: 2, borderRadius: 2, shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.9, shadowRadius: 6, elevation: 0 },
+});
 
 export default React.memo(ProfileContentToolbar);

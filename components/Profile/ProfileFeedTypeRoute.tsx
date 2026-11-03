@@ -13,6 +13,7 @@ import {
 import type { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
 import { useAuthState } from "../../context/AuthContext";
 import ProfileEmptyState, { type ProfileEmptyStateKind } from "./ProfileEmptyState";
+import { ProfileFeedOriginContext, useProvidedProfileFeed } from "../../libs/profileFeedOrigin";
 
 interface ProfileFeedTypeRouteProps {
   address?: string;
@@ -46,6 +47,8 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   const { isSignedIn } = useAuthState();
   const cinematicPhone = useCinematicPhone();
   const cinematic = cinematicPhone && !!listHeader;
+  // A post opened here continues into this creator's next posts of this type.
+  const feedSource = useProvidedProfileFeed(address ? { minter: address, postType } : null);
 
   const fetchPage = useCallback(
     async (page: number, limit: number): Promise<GetNFTsResponse> => {
@@ -85,6 +88,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   );
 
   return (
+    <ProfileFeedOriginContext.Provider value={feedSource}>
     <View className={`flex-1 ${listHeader ? '' : 'px-2'}`}>
       <InfiniteFeed
         listRef={listRef}
@@ -110,6 +114,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         renderItem={renderItem}
       />
     </View>
+    </ProfileFeedOriginContext.Provider>
   );
 };
 

@@ -129,6 +129,7 @@
     "useNamed": "Whakamahia {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Āta haere! He maha rawa ngā karere i te raupapa. Whakamātau anō ā te {{wait}}, tatari rānei kia whakautu tētahi atu.",
     "eabb5c136be4": "I rahua te whakahou i te mahere",
     "801658c8e591": "Kaore i hangaia te mahere — tamata ano",
     "dd2108f1cda8": "Whakamutua te kōrerorero reo",
@@ -2637,7 +2638,27 @@
     "saved": "Kua tiakina ngā āpure kōtaha",
     "failed": "Kāore i tiakina. Whakamātauria anō.",
     "verified": "Hono kua manatokona",
-    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}"
+    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}",
+    "add": "Tāpiri mara",
+    "remove": "Tango mara",
+    "descriptionPresets": "Tāpiri paetukutuku, ingoa tūturu, me ētahi atu mea. Ka whakaatu ngā hononga me ō ōu mea pāhekoheko.",
+    "type": "Momo mara",
+    "needsLabel": "Hoatu he ingoa ki ia mara āhuatanga",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Tāone, whenua",
+    "presets": {
+      "website": "Paetukutuku",
+      "blog": "Pāpāho",
+      "portfolio": "Whare toi",
+      "shop": "Toa",
+      "podcast": "Kōrero whakarongo",
+      "newsletter": "Pūrongorongo",
+      "pronouns": "Ingoa tūturu",
+      "location": "Wāhi",
+      "custom": "Āhuatanga",
+      "customOption": "Ingoa āhuatanga"
+    }
   },
   "notificationFilters": {
     "title": "Tātari pānui mai i",
@@ -2815,6 +2836,7 @@
     "unavailable": "Kāore i te wātea i tēnei putanga o te taupānga"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Wāhanga",
     "home": "Kāinga",
     "explore": "Tūhura",
@@ -13523,7 +13545,11 @@
     "skippedOtherToast": "{{platforms}}: Kaore e taea e ratou te tango i tenei pou."
   },
   "builder": {
-    "stakeForAllowance": "Tāpuhipuhia ngā punaha DeHub kia piki ake tō rohe hanga o ia rā",
+    "modelLabel": "Tauira",
+    "creditsLeft": "{{amount}} i ngā whiwhinga",
+    "perPrompt": "≈ {{price}} mō ia tono",
+    "pricingNote": "Ka utua ia tono i ō whiwhinga ki te utu o te tauira me te 30% atu anō. Ka puritia te utu nui rawa o te tono i a ia e rere ana, ā, ka whakahokia te wāhanga kāore i whakamahia.",
+    "topUpCredits": "Tāpiri whiwhinga",
     "preview": "Arokite",
     "openInBrowser": "Whakatuwhera i te pūtirotiro",
     "reload": "Whakahoutia",
@@ -14563,5 +14589,49 @@
     "confirm": "Mint i runga i {{chain}}",
     "confirmWithCost": "Mint i runga i {{chain}} · {{cost}}",
     "notAvailable": "Kaore ano kia waatea te peita i runga i tenei mekameka."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kei te tae mai",
+    "title": "Kei te tae mai te token",
+    "body": "Kua katia te whakapaipai i te wa e whakarite ana te token hou. Tīkina he īmēra i te wā e whakatupu ai.",
+    "notifyMe": "Whakamōhiotia mai",
+    "sendTo": "Ka īmēra kami ki {{email}}",
+    "emailLabel": "Īmēra",
+    "emailPlaceholder": "Tō īmēra",
+    "invalidEmail": "Whakauru i te īmēra tika",
+    "joinedTitle": "Kei te rārangi koe",
+    "joinedBody": "Ka īmēra kami ki {{email}} i te wā e whakatupu ai te token.",
+    "joinedBodyNoEmail": "Ka īmēra kami ki a koe i te wā e whakatupu ai te token.",
+    "failed": "Kaore i taea te tiaki i tēnā. Ngana anō.",
+    "privacy": "Anake hei whakamōhio ki a koe mō te whakatupuranga."
+  },
+  "githubLink": {
+    "connect": "Tūhono ki te GitHub",
+    "disconnect": "Tūhuratia",
+    "connected": "GitHub whakapapa",
+    "disconnected": "Ko GitHub e whakaputaina",
+    "taken": "Ko te whakapātanga GitHub e taea ana ki te pūrongo DeHub kua tae ki te wāhi nei.",
+    "failed": "Ko GitHub e whakaputaina ana. Tirohia anō.",
+    "unavailable": "Ka tū mai te whakapānga o GitHub."
+  },
+  "comic": {
+    "tab": "Pakiwaitara",
+    "title": "Pakiwaitara",
+    "chip": "Pakiwaitara · {{count}} whārangi",
+    "open": "Whakatukutuku pakiwaitara, whārangi {{page}} o {{total}}",
+    "flip": "Whārangi {{page}} o {{total}}. Patapatai hei huri",
+    "page": "Whārangi {{page}}",
+    "goto": "Whārangi {{page}}",
+    "alt": "Kupu āhuatanga",
+    "cards": "Hoki ki ngā kāri",
+    "readAll": "Pānui i ngā whārangi katoa",
+    "editor": {
+      "count": "{{count}} o {{limit}} whārangi",
+      "coverHint": "Ko te whārangi 1 te āhuatanga",
+      "empty": "Tāpiri i ō whārangi mā te pūtake whakaahua. Ka whai kupu whakaaturanga me te kupu āhuatanga ia whārangi.",
+      "cover": "Āhuatanga",
+      "caption": "Kupu whakaaturanga mō tēnei whārangi",
+      "alt": "Kupu āhuatanga: he aha te mea e whakaaturia ana e te whārangi"
+    }
   }
 }

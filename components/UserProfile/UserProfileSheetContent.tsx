@@ -24,6 +24,9 @@ import { ShareLinks } from "../../navigation/linking.config";
 import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
+import UsernameReserve from "./UsernameReserve";
+import { useAuthActions, useUser } from "../../context/AuthContext";
+import { isReservedUsername } from "../../libs/reserved-usernames";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 import { dislikesArePublic } from '../../libs/disliked-posts-store';
 
@@ -69,6 +72,8 @@ interface UserProfileSheetContentProps {
   /** Why the profile could not be loaded, when it could not. */
   error?: UserProfileLoadError | null;
   onRetry?: () => void;
+  /** The handle that was looked up, so a free name can be offered. */
+  lookupName?: string | null;
   /** Distance of the back-to-top button from the bottom, clear of the host's chrome. */
   backToTopBottom?: number;
 }
@@ -111,10 +116,13 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onRemoveFollower,
   error = null,
   onRetry,
+  lookupName,
   backToTopBottom,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
+  const viewer = useUser();
+  const { requireAuth } = useAuthActions();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showLendBadge, setShowLendBadge] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
@@ -140,7 +148,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const handleSubscribePress = useCallback(() => setPendingTab("subscribers"), []);
   const handlePendingTabConsumed = useCallback(() => setPendingTab(null), []);
 
-  const { mutuals, isLoading: mutualsLoading } = useMutualFollowers({
+  const { mutuals, totalCount: mutualsTotal } = useMutualFollowers({
     profileAddress: profileData?.address,
     enabled: !isOwnProfile && !!profileData?.address,
   });
@@ -285,7 +293,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           FallbackBanner={defaultBanner}
           socials={data}
           mutuals={mutuals}
-          mutualsLoading={mutualsLoading}
+          mutualsTotal={mutualsTotal}
           hasPlans={hasPlans}
           plansLoading={plansLoading}
           onSubscribe={handleSubscribePress}
@@ -352,13 +360,26 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     isPrivate,
     canViewContent,
     mutuals,
-    mutualsLoading,
+    mutualsTotal,
     hasPlans,
     plansLoading,
     handleSubscribePress,
   ]);
 
   // Without this a failed or empty lookup left the skeleton up for good.
+  // A free name opened by somebody signed out: offer "Reserve now".
+  const reserveName = (lookupName || "").trim().replace(/^@+/, "");
+  if (
+    !data &&
+    error === "notFound" &&
+    !viewer &&
+    /^[a-z0-9_-]{1,30}$/i.test(reserveName) &&
+    !/^0x[a-f0-9]{40}$/i.test(reserveName) &&
+    !isReservedUsername(reserveName)
+  ) {
+    return <UsernameReserve username={reserveName} onSignUp={() => requireAuth(() => {})} signedIn={!!viewer} onTaken={onRetry} />;
+  }
+
   if (!data && error) {
     const failed = error === "failed";
     return (

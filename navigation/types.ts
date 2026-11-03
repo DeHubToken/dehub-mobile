@@ -109,6 +109,9 @@ export type AppStackParamList = {
     newPostId?: string;
     commentId?: string;
   };
+  [ScreenNames.PostResolverClip]: {
+    clipId?: string;
+  };
   [ScreenNames.FeedDetail]: {
     postId?: string;
     tokenId?: string;
@@ -166,6 +169,13 @@ export type AppStackParamList = {
     initialTab?: 'followers' | 'following';
     hideFollowers?: boolean;
     isOwnProfile?: boolean;
+  };
+  [ScreenNames.RemixList]: {
+    tokenId: string;
+    kind?: import('../services/remix-links.service').RemixKind;
+  };
+  [ScreenNames.RemixReactions]: {
+    tokenId: string;
   };
   [ScreenNames.RepostQuoteList]: {
     tokenId: number | string;
@@ -264,6 +274,8 @@ export type AppStackParamList = {
   /** `handle` is the shared-listing deep link (`dehub.io/accounts?handle=x`). */
   [ScreenNames.Accounts]: { handle?: string } | undefined;
   [ScreenNames.Fractions]: undefined;
+  /** `chain`/`contract`/`token` open one NFT (dehub.io/nfts?chain=&contract=&token=). */
+  [ScreenNames.NftMarket]: { chain?: string; contract?: string; token?: string } | undefined;
   [ScreenNames.Packs]: undefined;
   /** `slug` is the pack's share slug (`dehub.io/packs/<slug>`). */
   [ScreenNames.Pack]: { slug: string };

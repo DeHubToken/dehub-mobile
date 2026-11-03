@@ -29,6 +29,7 @@ import BadgeArtwork from "../common/BadgeArtwork";
  * Sizing is the caller's job: this fills whatever box it is given (flex: 1).
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { holderGateOf, runHolderCheck } from "../../libs/holder-gate";
 import {
   View,
   Text,
@@ -56,6 +57,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useCommunityChat } from "../../hooks/useCommunityChat";
 import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
+import { communityKindOf } from "../../libs/community-kinds";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import LinkPreviewCard from "../common/LinkPreviewCard";
@@ -69,6 +71,7 @@ import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 import { useMentions } from "../../hooks/useMentions";
 import GifPicker from "../DM/GifPicker";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
+import ImageViewerModal from "../common/ImageViewerModal";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 import { uploadLiveChatImage } from "../../services/livechat.service";
@@ -147,6 +150,8 @@ const ChatRow: React.FC<{
   );
 
   const profileId = message.username || message.wallet_address;
+  // A tapped picture opens full screen, with Download.
+  const [viewing, setViewing] = useState<string[] | null>(null);
 
   // Web sends a GIF with its URL as the message body and the same URL in
   // image_url. The picture is already on screen, so printing the body as well
@@ -225,12 +230,20 @@ const ChatRow: React.FC<{
             <VoiceNotePlayer audioUrl={message.image_url} compact />
           </View>
         ) : !!message.image_url && (
-          <Image
-            source={storageImageSource(message.image_url, 180)}
-            style={styles.messageImage}
-            contentFit="cover"
-          />
+          <Pressable
+            onPress={() => setViewing([message.image_url!])}
+            onLongPress={() => onLongPress(message)}
+            delayLongPress={300}
+            accessibilityRole="imagebutton"
+          >
+            <Image
+              source={storageImageSource(message.image_url, 180)}
+              style={styles.messageImage}
+              contentFit="cover"
+            />
+          </Pressable>
         )}
+        <ImageViewerModal images={viewing} onClose={() => setViewing(null)} allowDownload />
 
         {/* A shared community or invite leads the message and its words follow,
             matching the DM bubble. The long press reaches through the card so
@@ -314,6 +327,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const alertTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const myAddress = ((user?.walletAddress || user?.address || "") as string).toLowerCase();
+  // Holder groups: re-read this member's balance when the chat opens, so a
+  // top-up lets them talk again and a sale is caught before they type.
+  useEffect(() => {
+    if (!isMember || !myAddress || !holderGateOf(community)) return;
+    if (membership?.role === "owner" || membership?.role === "admin") return;
+    runHolderCheck(community.id, myAddress).catch(() => { /* the send guard still decides */ });
+  }, [isMember, myAddress, community, membership?.role]);
 
   const abilities = useMemo(
     () => getCommunityAbilities(community, membership),
@@ -594,8 +614,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         date: abilities.mutedUntil ? formatWhen(abilities.mutedUntil) : "",
       });
 
+  const readOnlyChannel = communityKindOf(community) === "channel" && !abilities.isOwner && !abilities.isAdmin;
   const composerNotice = !isMember
     ? t("communities.joinToChat", { defaultValue: "Join this community to chat" })
+    : readOnlyChannel
+      ? t("communities.newChat.adminsOnly", { defaultValue: "Only admins post in this channel." })
     : abilities.isMuted
       ? mutedCopy
       : !abilities.can("send_messages")
@@ -604,7 +627,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           })
         : null;
 
-  const noticeIcon: IconName = !isMember ? "Users" : abilities.isMuted ? "MicOff" : "Lock";
+  const noticeIcon: IconName = !isMember ? "Users" : readOnlyChannel ? ("Megaphone" as IconName) : abilities.isMuted ? "MicOff" : "Lock";
 
   const sendDisabled = !text.trim() || sending || cooldown > 0;
 

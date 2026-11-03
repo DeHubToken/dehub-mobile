@@ -8,16 +8,18 @@ import { ImageViewer } from "../../screens/ImageViewerScreen";
  * navigator (a profile on Android), where navigating to ImageViewer opens it
  * underneath them.
  */
-export default function ImageViewerModal({ images, onClose }: {
+export default function ImageViewerModal({ images, onClose, allowDownload }: {
   /** Nothing to show closes it. */
   images: string[] | null;
   onClose: () => void;
+  /** Show the Download button (saves to the gallery). */
+  allowDownload?: boolean;
 }) {
   if (!images?.length) return null;
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <ImageViewer params={{ images, initialIndex: 0 }} onClose={onClose} />
+        <ImageViewer params={{ images, initialIndex: 0, allowDownload }} onClose={onClose} />
       </GestureHandlerRootView>
     </Modal>
   );

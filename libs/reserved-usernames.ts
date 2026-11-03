@@ -25,13 +25,13 @@
 const ROUTE_SEGMENTS = [
   // SPA top-level routes
   "accounts", "admin", "admin-manual", "affiliate", "agents", "apk", "app", "apps", "arcade", "assistant",
-  "auth", "bounty", "bridge", "builder", "cinema", "communities", "compare", "connect", "converter",
+  "auth", "bounty", "bridge", "builder", "cinema", "clip", "communities", "compare", "connect", "converter",
   "creator", "creators",
   "delete-account", "depin", "docs", "editor", "events", "explore", "features", "feedback",
   "dao", "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
   "maintenance", "mcp", "mobile-preview", "music", "newpost", "packs", "posts", "premium", "pricing", "prompt", "r",
   "radio", "raffle", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
-  "usernames", "videos", "work", "yt-dlp",
+  "nfts", "usernames", "videos", "work", "yt-dlp",
 
   // /app children — the worker collapses /app/<x> onto /<x>
   "ads", "bookmarks", "buy", "command-centre", "fractions", "glossary", "messages",
@@ -74,6 +74,7 @@ export const RESERVED_USERNAMES = new Set<string>([
  *
  *   stream, feeds, welcome  product paths with no profile behind them
  *   auth-callback           the OAuth redirect target
+ *   github-connected        where Connect GitHub returns
  *   dpay                    a product path the link-card checker already knew
  *                           (`bounty` used to sit here too; it is a reserved
  *                           username now, so it comes in with the set above)
@@ -87,6 +88,7 @@ export const RESERVED_LINK_SEGMENTS = new Set<string>([
   "feeds",
   "welcome",
   "auth-callback",
+  "github-connected",
   "dpay",
   "robots.txt",
   "sitemap.xml",

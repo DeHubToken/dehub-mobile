@@ -17,37 +17,16 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
 import { storedAvatarSources } from "../../libs/misc";
-import type { AudioSpace } from "../../hooks/useStages";
 import StageCoverArt from "../Stages/StageCoverArt";
 import { ScheduledStageCard, formatStageDate } from "../Stages/StageCards";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { supabase } from "../../services/supabase";
 import ChartShelf from "./ChartShelf";
 import { useChartSearch } from "../../hooks/useChartSearch";
+import { STAGE_FIELDS, searchStageRecordings, type RankedStage } from "../../libs/stage-search";
 import { StageCard, styles } from "./StagesCarousel";
 
 type StagesChartSort = "live" | "upcoming" | "listened" | "recent";
-type RankedStage = AudioSpace & { total_listens?: number | null };
-
-const STAGE_FIELDS = "id,host_wallet_address,host_username,host_avatar,title,description,status,channel_name,listener_count,speaker_count,started_at,ended_at,created_at,recording_url,scheduled_at,cover_image_url,short_id,total_listens";
-
-/** Recorded stages whose title, description or host matches, most listened first. */
-async function searchStageRecordings(query: string): Promise<RankedStage[]> {
-  // PostgREST reads , ( ) as filter syntax and % * as wildcards.
-  const term = query.replace(/[,()%*\\]/g, " ").trim();
-  if (!term) return [];
-  const { data, error } = await supabase
-    .from("audio_spaces")
-    .select(STAGE_FIELDS)
-    .eq("status", "ended")
-    .not("recording_url", "is", null)
-    .neq("recording_url", "")
-    .or(`title.ilike.%${term}%,description.ilike.%${term}%,host_username.ilike.%${term}%`)
-    .order("total_listens", { ascending: false, nullsFirst: false })
-    .limit(20);
-  if (error) throw error;
-  return (data as unknown as RankedStage[]) || [];
-}
 
 /** Ended stages with the most listens. StageProvider only keeps the newest. */
 function useMostListenedStages(enabled: boolean) {

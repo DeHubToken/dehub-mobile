@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { AppState, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import Animated, {
@@ -15,6 +15,9 @@ import { useAmbientMotion } from '../../hooks/useAmbientMotion';
 // Phase of the cycle after which the swing, the red glow and both side ripples
 // (latest echo starts at 0.13 and lasts 0.4) are all back at rest.
 const RING_END = 0.56;
+// Rings per wake-up: when the screen comes into view, the app comes back, or
+// the unread count changes. A scroll pausing and settling is not a wake-up.
+const MAX_RINGS = 3;
 
 type Profile = ReturnType<typeof notificationBellMotion>;
 
@@ -69,6 +72,10 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
     return () => subscription.remove();
   }, []);
   const ambient = useAmbientMotion();
+  const ringsLeft = useRef(MAX_RINGS);
+  useEffect(() => {
+    ringsLeft.current = MAX_RINGS;
+  }, [focused, foreground, profile.unread]);
   useEffect(() => {
     cancelAnimation(phase);
     phase.value = 0;
@@ -77,19 +84,24 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
     // itself is animated and a timer starts the next one. A repeat over the
     // whole cycle asked for a frame on every vsync while the bell sat still,
     // which kept Home redrawing ~70 times a second with nothing moving.
+    // It rings a few times on each wake-up, then rests. Ringing on forever
+    // redrew the whole window for over half of every cycle (~67 frames a
+    // second on a Galaxy S24+ with 20 unread) on every screen with the bell.
     const ring = () => {
+      if (ringsLeft.current <= 0) { clearInterval(timer); return; }
+      ringsLeft.current -= 1;
       phase.value = 0;
       phase.value = withTiming(RING_END, {
         duration: profile.cycleMs * RING_END, easing: Easing.linear, reduceMotion: ReduceMotion.System,
       });
     };
-    ring();
     const timer = setInterval(ring, profile.cycleMs);
+    ring();
     return () => {
       clearInterval(timer);
       cancelAnimation(phase);
     };
-  }, [active, focused, foreground, ambient, profile.unread > 0, profile.cycleMs, reduced, phase]);
+  }, [active, focused, foreground, ambient, profile.unread, profile.cycleMs, reduced, phase]);
   const swing = useAnimatedStyle(() => ({
     transform: [{ rotate: `${reduced ? 0 : interpolate(phase.value,
       [0, .05, .12, .18, .25, .31, .42, 1],

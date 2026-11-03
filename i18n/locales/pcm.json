@@ -129,6 +129,7 @@
     "featured": "Back to featured"
   },
   "copy": {
+    "chatSlowDown": "Slow down small! You don send too many message back to back. Try again for {{wait}}, or wait make another person reply.",
     "eabb5c136be4": "Plan no dey update.",
     "801658c8e591": "Plan no dey make yet — try again, o!",
     "dd2108f1cda8": "Stop Voice Chat",
@@ -2634,7 +2635,20 @@
     "saved": "Profile fields don save",
     "failed": "E no save. Try again.",
     "verified": "Verified link",
-    "verifyHint": "To verify link, add dis one for dat page, then save again: {{snippet}}"
+    "verifyHint": "To verify link, add dis one for dat page, then save again: {{snippet}}",
+    "add": "Wey you go add field?",
+    "remove": "I no understand wetin you dey talk.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/dem",
+    "placeholderLocation": "City, country 🇳🇬, 🇳🇬🇮🇱🇦🇳🇩🇮🇦",
+    "presets": {
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Filter notifications from",
@@ -2812,6 +2826,7 @@
     "unavailable": "E no dey for dis version of di app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraction dem",
     "home": "Home",
     "explore": "Waka Look",
@@ -13505,7 +13520,11 @@
     "skippedOtherToast": "We skip {{platforms}}: dem no fit take this post."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub tokens make you increase your daily build allowance",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} for credits",
+    "perPrompt": "≈ {{price}} for each prompt",
+    "pricingNote": "We dey pay each prompt from your credits for the model cost plus 30%. The most wey one prompt fit cost go dey hold while e dey run, and the part wey you no use go come back.",
+    "topUpCredits": "Top up credits",
     "preview": "Preview",
     "openInBrowser": "Open am for browser",
     "reload": "Reload",
@@ -14545,5 +14564,38 @@
     "priceUnavailable": "Price unavailable",
     "confirm": "Mint on {{chain}}",
     "notAvailable": "Minting for dis chain no dey available yet."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Coming soon",
+    "title": "Token launching soon",
+    "notifyMe": "Notify me",
+    "sendTo": "We go send email to {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email",
+    "joinedBody": "We go send email to {{email}} when token dey launch.",
+    "failed": "No go save dat. Try again.",
+    "privacy": "Wahala na me go tell you about the launch."
+  },
+  "githubLink": {
+    "hint": "Sign in to GitHub wey go prove account be yours. DeHub no dey see any other thing like your private profile, only your public GitHub profile dey.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub account",
+    "connect": "Connect GitHub",
+    "disconnect": "Disconnect",
+    "connected": "GitHub connected",
+    "disconnected": "GitHub disconnected",
+    "failed": "Couldn't connect GitHub. Try again."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pages",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt text",
+    "cards": "Back to cards",
+    "editor": {
+      "cover": "Cover"
+    }
   }
 }

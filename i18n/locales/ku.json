@@ -143,6 +143,7 @@
     "useNamed": "{{name}} bikar bîne"
   },
   "copy": {
+    "chatSlowDown": "Hêdî! Gelek peyam li pey hev. Piştî {{wait}} dîsa biceribîne, an li bersiva kesekî din bisekine.",
     "eabb5c136be4": "Nûkirina planê bi ser neket",
     "801658c8e591": "Plan nehat çêkirin — ji kerema xwe dîsa biceribîne",
     "dd2108f1cda8": "Sohbeta dengî rawestîne",
@@ -2651,7 +2652,22 @@
     "saved": "Qadên profîlê hatin tomarkirin",
     "failed": "Ew nehat tomarkirin. Dîsa biceribîne.",
     "verified": "Girêdana piştrastkirî",
-    "verifyHint": "Ji bo piştrastkirina girêdanekê, vê li wê rûpelê zêde bike, paşê dîsa tomar bike: {{snippet}}"
+    "verifyHint": "Ji bo piştrastkirina girêdanekê, vê li wê rûpelê zêde bike, paşê dîsa tomar bike: {{snippet}}",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Şar, welat",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Nirxa standard"
+    }
   },
   "notificationFilters": {
     "title": "Agahdariyan parzûn bike ji",
@@ -2830,6 +2846,7 @@
     "unavailable": "Di vê guhertoya sepanê de tune ye"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Perçe",
     "home": "Destpêk",
     "explore": "Keşf bike",
@@ -13841,7 +13858,11 @@
     "skippedOtherToast": "{{platforms}} hatin derbaskirin: wan nekarî vê şandiyê qebûl bikin."
   },
   "builder": {
-    "stakeForAllowance": "Tokenên DeHub stake bike da ku destûra xwe ya avakirinê ya rojane zêde bikî",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} di krediyan de",
+    "perPrompt": "≈ {{price}} ji bo her daxwazê",
+    "pricingNote": "Her daxwaz ji krediyên te bi bihayê modelê û 30% zêdetir tê dayîn. Herî zêde lêçûna daxwazê dema dixebite tê girtin û beşa nehatî bikaranîn tê vegerandin.",
+    "topUpCredits": "Krediyan barkirin",
     "preview": "Pêşdîtin",
     "openInBrowser": "Di gerokê de veke",
     "reload": "Dîsa bar bike",
@@ -14888,6 +14909,18 @@
     "emailPlaceholder": "Têkiliyên tîpêjî yên te",
     "joinedTitle": "Tê li ser lîsteyê.",
     "joinedBody": "We {{email}} biyêjin ku tokenê destpê dike.",
-    "failed": "Nêzêk kirina nekir. Bêhn re bi kar bîne."
+    "failed": "Nêzêk kirina nekir. Bêhn re bi kar bîne.",
+    "eyebrow": "Coming soon",
+    "notifyMe": "Notify me",
+    "emailLabel": "Email"
+  },
+  "githubLink": {
+    "verified": "Tasdîq kirî ye",
+    "verifiedAria": "Accounta GitHubê ya wekandî ye.",
+    "disconnect": "Hevqetandin",
+    "disconnected": "GitHub dereng bûye.",
+    "taken": "Evîfa GitHubê li ser profilek din ê DeHubê ye.",
+    "failed": "Nekare GitHubê ve. Lêgerîn bikin.",
+    "unavailable": "GitHubê diyarkirina bi ser dibe."
   }
 }

@@ -1,5 +1,6 @@
 {
   "copy": {
+    "chatSlowDown": "慢一点！连续发送的消息太多了。请在 {{wait}} 后重试，或等其他人回复。",
     "eabb5c136be4": "更新计划失败",
     "801658c8e591": "计划未创建 — 请再试一次",
     "dd2108f1cda8": "停止语音聊天",
@@ -2508,7 +2509,26 @@
     "saved": "个人资料字段已保存",
     "failed": "保存失败，请重试。",
     "verified": "已验证的链接",
-    "verifyHint": "要验证链接，请把这段代码添加到该页面，然后再保存一次：{{snippet}}"
+    "verifyHint": "要验证链接，请把这段代码添加到该页面，然后再保存一次：{{snippet}}",
+    "add": "添加字段",
+    "remove": "移除字段",
+    "descriptionPresets": "添加网站、代词或其他任何内容。链接会与您的社交媒体一起显示。",
+    "type": "字段类型",
+    "needsLabel": "为每个自定义字段添加标签",
+    "placeholderPronouns": "他们/她们",
+    "placeholderLocation": "城市，国家",
+    "presets": {
+      "website": "网站",
+      "blog": "博客",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "新闻通讯",
+      "pronouns": "代词",
+      "location": "位置",
+      "custom": "自定义",
+      "customOption": "自定义标签"
+    }
   },
   "notificationFilters": {
     "title": "过滤以下来源的通知",
@@ -2686,6 +2706,7 @@
     "unavailable": "此版本的应用中不可用"
   },
   "nav": {
+    "nfts": "NFT",
     "dao": "DAO",
     "fractions": "碎片",
     "home": "首页",
@@ -13460,7 +13481,11 @@
     "skippedOtherToast": "已跳过{{platforms}} ：他们无法发表此帖子。"
   },
   "builder": {
-    "stakeForAllowance": "质押 DeHub 代币以提高你的每日构建额度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 积分余额",
+    "perPrompt": "≈ 每次提示 {{price}}",
+    "pricingNote": "每次提示都会从你的积分中扣除，金额为模型成本加 30%。运行期间会预留单次提示的最高费用，未用完的部分会退回。",
+    "topUpCredits": "充值积分",
     "preview": "预览",
     "openInBrowser": "在浏览器中打开",
     "reload": "重新加载",
@@ -14595,5 +14620,32 @@
     "title": "万圣节快乐",
     "otherThemes": "不想要惊悚风？换个主题吧：",
     "enter": "进入地牢"
+  },
+  "tokenLaunch": {
+    "eyebrow": "即将开放，敬请期待",
+    "title": "代币即将推出",
+    "body": "在新代币准备就绪时，购买已关闭。上线后立即收到电子邮件。",
+    "notifyMe": "_李白就象一个浪子一团糟",
+    "sendTo": "我们将发送电子邮件至{{email}}",
+    "emailLabel": "电子邮箱",
+    "emailPlaceholder": "您的邮箱地址",
+    "invalidEmail": "輸入有效 Email!",
+    "joinedTitle": "您已上榜",
+    "joinedBody": "我们将在令牌启动时向{{email}}发送电子邮件。",
+    "joinedBodyNoEmail": "我们将在令牌启动时向您发送电子邮件。",
+    "failed": "无法保存。请重试。",
+    "privacy": "仅用于告诉您有关发布的信息。"
+  },
+  "githubLink": {
+    "hint": "登录 GitHub 以证明该帐户属于您。DeHub 只能看到您的公共 GitHub 个人资料。",
+    "verified": "已验证",
+    "verifiedAria": "已验证的 GitHub 帐户",
+    "connect": "连接 GitHub",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已连接",
+    "disconnected": "GitHub 已断开连接",
+    "taken": "该 GitHub 帐户已在另一个 DeHub 个人资料上。",
+    "failed": "无法连接 GitHub。请再试一次。",
+    "unavailable": "GitHub 验证即将推出。"
   }
 }

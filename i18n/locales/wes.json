@@ -129,6 +129,7 @@
     "useNamed": "Use {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Slow down small! You don send too many message back to back. Try again for {{wait}}, or wait make another person reply.",
     "eabb5c136be4": "Plan no update.",
     "801658c8e591": "I no get plan.",
     "dd2108f1cda8": "Stop Voice Chat",
@@ -2636,7 +2637,20 @@
     "saved": "Profile fields don save",
     "failed": "E no save. Try again.",
     "verified": "Verified link",
-    "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}"
+    "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}",
+    "add": "I no understand wetin you mean.",
+    "remove": "I no understand wetin you mean.",
+    "type": "Fild tipe",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "Dem dey use dem",
+    "placeholderLocation": "Siti, kontri",
+    "presets": {
+      "website": "Wesait",
+      "blog": "Blaag",
+      "pronouns": "Pronouns",
+      "location": "Di location.",
+      "customOption": "Na custom label."
+    }
   },
   "notificationFilters": {
     "title": "Filter notifications from",
@@ -2814,6 +2828,7 @@
     "unavailable": "E no dey for dis version of di app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraction dem",
     "home": "Haus",
     "explore": "Eksplore",
@@ -13507,7 +13522,11 @@
     "skippedOtherToast": "Wi lef {{platforms}}: dem no fit tek dis post."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub tokens make you daily build limit go up",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} for credit",
+    "perPrompt": "≈ {{price}} for one prompt",
+    "pricingNote": "Each prompt di pay from your credit for the model cost plus 30%. The most wey one prompt fit cost, dem di hold am when e di run, and the part wey you no use, dem di give am back.",
+    "topUpCredits": "Top up credit",
     "preview": "Preview",
     "openInBrowser": "Open for browser",
     "reload": "Reload",
@@ -14550,5 +14569,44 @@
     "gasOnly": "≈ {{usd}} gas",
     "priceUnavailable": "Price unavailable",
     "confirm": "Mint on {{chain}}"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Coming soon",
+    "title": "Token launching soon",
+    "body": "\"Buy\" no go dey close while new token dey prepare. You go get email when dem go launch.",
+    "notifyMe": "Notify me",
+    "sendTo": "We go send email fo {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email",
+    "invalidEmail": "Enter one email address valid wey you go use.",
+    "joinedBodyNoEmail": "Wetin we go send you email when token dey launch.",
+    "failed": "Wetin no save for you. Try again.",
+    "privacy": "Wah! Na me go tell you go launch a go dey."
+  },
+  "githubLink": {
+    "hint": "Log in for GitHub make dem see say di account na yours. DeHub only dey see your public GitHub profile.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub account",
+    "connect": "Connect GitHub",
+    "disconnect": "Disconnect",
+    "connected": "GitHub connected",
+    "disconnected": "GitHub disconnected",
+    "failed": "Couldn't connect GitHub. Try again."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pages",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt text",
+    "cards": "Back to cards",
+    "editor": {
+      "coverHint": "Paji 1 na cover.",
+      "empty": "Wen yu wan add poto button to paji wey dey get foto, each paji go get kaption na alt text.",
+      "cover": "Cover",
+      "caption": "Dis na caption for dis page.",
+      "alt": "I no see wetin page dey show."
+    }
   }
 }

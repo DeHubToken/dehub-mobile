@@ -142,6 +142,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
+  // iOS keeps it: the screen is view only there (US gets a link to dehub.io).
+  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.NftMarket },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   // Web sidebar: AI Agents sits just above Advertising.
@@ -185,7 +187,7 @@ const ICON_KEYS: Record<string, string> = {
   "stats.feedback.title": "messages", "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
-  "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
+  "nav.fractions": "fractions", "nav.nfts": "nfts", "screens.usernames": "usernames", "screens.accounts": "accounts",
   "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "miniApps.store.title": "stores", "nav.glossary": "glossary", "nav.bridge": "bridge",
   "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",
   "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",
@@ -271,7 +273,11 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
       </View>
       <Text
         style={[styles.tileLabel, active && styles.tileLabelActive, skin?.tabIcon ? { color: active ? skin.tabIconActive ?? skin.tabIcon : skin.tabIcon } : null]}
-        numberOfLines={1}
+        // Two-word names wrap onto two lines; a single long word shrinks a
+        // little instead (two lines would break it mid-word on Android).
+        numberOfLines={label.includes(" ") ? 2 : 1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.87}
       >
         {label}
       </Text>
@@ -430,7 +436,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const visibleItems = useMemo(() => {
     const allowed = NAV_ITEMS.filter(
       (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden)
-        && (item.screen !== ScreenNames.Agents || canManageAgents(user?.walletAddress || user?.address)),
+        && ((item.screen !== ScreenNames.Agents && item.screen !== ScreenNames.NftMarket) || canManageAgents(user?.walletAddress || user?.address)),
     );
     const query = menuQuery.trim().toLowerCase();
     if (!query) return allowed.filter((item) => !item.searchOnly);
@@ -726,8 +732,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               {savedMenuOrder.length > 0 && (
                 <TouchableOpacity
                   accessibilityRole="button"
-                  onPress={() => resetNavOrder("menu", isSignedIn ? menuWallet : null)}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  onPress={() => menuReorder.animateChange(
+                    () => resetNavOrder("menu", isSignedIn ? menuWallet : null),
+                    visibleItems.map((item) => navOrderId(item.labelKey)),
+                  )}
+                  hitSlop={{ top: 14, bottom: 14, left: 10, right: 10 }}
                 >
                   <Text style={styles.reorderReset}>{t("nav.reorderReset", { defaultValue: "Reset" })}</Text>
                 </TouchableOpacity>
@@ -920,17 +929,20 @@ const styles = StyleSheet.create({
   },
   reorderHintText: {
     color: "#71717A",
-    fontSize: 11.5,
+    fontSize: 13,
+    lineHeight: 17,
     textAlign: "center",
   },
   reorderReset: {
     color: "#D4D4D8",
-    fontSize: 11.5,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: "600",
   },
   tile: {
     alignItems: "center",
-    justifyContent: "center",
+    // Top-aligned so icons stay in line across a row where one name wraps.
+    justifyContent: "flex-start",
     gap: 6,
     paddingHorizontal: 4,
     paddingVertical: 10,

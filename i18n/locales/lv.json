@@ -129,6 +129,7 @@
     "useNamed": "Izmantot {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Lēnāk! Pārāk daudz ziņu pēc kārtas. Mēģini vēlreiz pēc {{wait}} vai pagaidi, kamēr atbild kāds cits.",
     "eabb5c136be4": "Neparedzēts plāna atjaunošanas mēģinājums",
     "801658c8e591": "Plāns nav izveidots — mēģiniet vēlreiz",
     "dd2108f1cda8": "Pārtraukt virtuālo sarunu",
@@ -2637,7 +2638,27 @@
     "saved": "Profila lauki saglabāti",
     "failed": "Netika saglabāts. Mēģini vēlreiz.",
     "verified": "Apstiprināta saite",
-    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}"
+    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}",
+    "add": "Pievienot lauku",
+    "remove": "Noņemt lauku",
+    "descriptionPresets": "Pievienot vietni, personiskās vārdas vai citu. Saistības parādās ar saviem sociālajiem medijiem.",
+    "type": "Laukā tipa",
+    "needsLabel": "Katram personīgajam laukam piešķir nosaukumu",
+    "placeholderLink": "jūsu vietne.com",
+    "placeholderPronouns": "viņi/viņi",
+    "placeholderLocation": "Pilsēta, valsts",
+    "presets": {
+      "website": "Vietne",
+      "blog": "Blogs",
+      "portfolio": "Portfolio",
+      "shop": "Veikals",
+      "podcast": "Podkasts",
+      "newsletter": "Paziņojumu saraksts",
+      "pronouns": "Personiskās vārdas",
+      "location": "Atrodas",
+      "custom": "Personīgais",
+      "customOption": "Personīgais nosaukums"
+    }
   },
   "notificationFilters": {
     "title": "Filtrēt paziņojumus no",
@@ -2815,6 +2836,7 @@
     "unavailable": "Nav pieejams šajā lietotnes versijā"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Frakcijas",
     "home": "Sākums",
     "explore": "Izpētīt",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "Izlaida {{platforms}}: viņi nevarēja ieņemt šo ziņu."
   },
   "builder": {
-    "stakeForAllowance": "Ieguldiet DeHub žetonus, lai palielinātu savu dienas izveides kvotu",
+    "modelLabel": "Modelis",
+    "creditsLeft": "{{amount}} kredītos",
+    "perPrompt": "≈ {{price}} par uzvedni",
+    "pricingNote": "Katra uzvedne tiek apmaksāta no taviem kredītiem par modeļa cenu plus 30 %. Uzvednes lielākā iespējamā cena izpildes laikā tiek rezervēta, un neizmantotā daļa tiek atgriezta.",
+    "topUpCredits": "Papildināt kredītus",
     "preview": "Priekšskatījums",
     "openInBrowser": "Atvērt pārlūkā",
     "reload": "Ielādēt no jauna",
@@ -14590,5 +14616,37 @@
     "joinedBodyNoEmail": "Jūsūs paziņosim, kad tokens iznāks, ar e-pasta ziņu.",
     "failed": "Nevarēja to saglabāt. Mēģiniet vēlreiz.",
     "privacy": "Tikai lai tevi informētu par izlaidi."
+  },
+  "githubLink": {
+    "hint": "Piejākties GitHub, lai apstiprinātu, ka šis konts ir jūsu. DeHub redz tikai jūsu publisko GitHub profilu.",
+    "verified": "Pārbaūts",
+    "verifiedAria": "Pārbaudīts GitHub konts",
+    "connect": "Sajaukties ar GitHub.",
+    "disconnect": "Atvienot",
+    "connected": "GitHub savienots",
+    "disconnected": "GitHub atvērtās",
+    "taken": "Tas GitHub konts ir jau pievienots citam DeHub profilm.",
+    "failed": "Nespēja savienoties ar GitHub. Mēģiniet vēlreiz.",
+    "unavailable": "GitHub verifikācija ir tuvāk."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} lapas",
+    "open": "Atvērt komiksu, lapa {{page}} no {{total}}",
+    "flip": "Lapa {{page}} no {{total}}. Spiediet, lai pagrinātu",
+    "page": "Lapa {{page}}",
+    "goto": "Lapa {{page}}",
+    "alt": "Alternatīvais teksts",
+    "cards": "Atpakaļ kartēm",
+    "readAll": "Lasīt visas lapas",
+    "editor": {
+      "count": "{{count}} no {{limit}} lapām",
+      "coverHint": "Pirmā lapa ir virsraksts",
+      "empty": "Pievienojiet lapas ar foto gumbi. Katrai lapai ir uzraksts un alternatīvais teksts.",
+      "cover": "Virsraksts",
+      "caption": "Uzraksts šai lapai",
+      "alt": "Alternatīvais teksts: ko lapa parāda"
+    }
   }
 }

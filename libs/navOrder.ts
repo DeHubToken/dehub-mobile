@@ -35,6 +35,7 @@ const SHARED_IDS: Record<string, string> = {
   "nav.ads": "nav.advertising",
   "nav.tv": "nav.liveTv",
   "nav.fractions": "fractions.title",
+  "nav.nfts": "nftMarket.title",
   "nav.migrate": "migrate.title",
   "nav.superpowers": "superpowers.title",
 };

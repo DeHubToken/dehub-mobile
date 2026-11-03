@@ -129,6 +129,7 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Jiri nwayọ! Ozi dị ukwuu n'usoro. Nwalee ọzọ n'ime {{wait}}, ma ọ bụ chere ka onye ọzọ zaa.",
     "eabb5c136be4": "Emelitere atụmatụ ahụ adaala",
     "801658c8e591": "Emebeghi atụmatụ ahụ — biko nwaa ọzọ",
     "dd2108f1cda8": "Stop Voice Chat",
@@ -2637,7 +2638,18 @@
     "saved": "Echekwala mpaghara profaịlụ",
     "failed": "Edebeghị ya. Nwaa ọzọ.",
     "verified": "Njikọ akwadoro",
-    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}"
+    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}",
+    "add": "Nkọwa Ọrụ",
+    "remove": "Igbo:",
+    "descriptionPresets": "Tinye websaịtị, mkpụrụ okwu ma ọ bụ ihe ọ bụla. Njikọ na-egosi na ọnụ ọnụ gị.",
+    "type": "Ụdị mpaghara",
+    "needsLabel": "Nye ọkwa ọ bụla nke custom field aha",
+    "placeholderLink": "yoursite.com",
+    "presets": {
+      "blog": "Blaọgụ",
+      "location": "Ebe",
+      "custom": "Omenala"
+    }
   },
   "notificationFilters": {
     "title": "Zachaa ọkwa sitere n'aka",
@@ -2815,6 +2827,7 @@
     "unavailable": "Adịghị na ụdị ngwa a"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Òkè",
     "home": "Ụlọ",
     "explore": "Nyochaa",
@@ -13522,7 +13535,11 @@
     "skippedOtherToast": "Wepụrụ {{platforms}}: ha enweghị ike ịnabata post a."
   },
   "builder": {
-    "stakeForAllowance": "Tinye ego DeHub iji bawanye ọtụtụ ihe i nwere ike iwu kwa ụbọchị",
+    "modelLabel": "Ụdị",
+    "creditsLeft": "{{amount}} na kredit",
+    "perPrompt": "≈ {{price}} kwa arịrịọ",
+    "pricingNote": "A na-akwụ ụgwọ arịrịọ ọ bụla site na kredit gị na ọnụahịa ụdị ahụ gbakwunyere 30%. A na-ejide ego kachasị arịrịọ nwere ike ịfụ ka ọ na-arụ ọrụ, a na-alaghachi akụkụ a na-ejighị.",
+    "topUpCredits": "Tinye kredit",
     "preview": "Nlele mbụ",
     "openInBrowser": "Meghee na ihe nyocha weebụ",
     "reload": "Bugharịa",
@@ -14569,6 +14586,36 @@
     "joinedTitle": "Ndè mma nke ụlọ ụlọ.",
     "joinedBodyNoEmail": "Aga m ezipụta gị ozi mgbe token ahụ na-amalite.",
     "failed": "Ndèrè n'egwèrè nke àlà. Nkèrè n'egwèrè.",
-    "privacy": "Naanị ejiri ya ịkwu gị ihe banyere mmalite ahụ."
+    "privacy": "Naanị ejiri ya ịkwu gị ihe banyere mmalite ahụ.",
+    "eyebrow": "Na-abịa n 'oge na-adịghị anya",
+    "title": "Token launching adịghị anya",
+    "notifyMe": "Gwa m",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Email gị",
+    "invalidEmail": "Tinye a nti email",
+    "joinedBody": "Anyị ga-eziga email {{email}} mgbe akara ngosi ahụ malitere."
+  },
+  "githubLink": {
+    "hint": "Banye na GitHub iji gosipụta na akaụntụ ahụ bụ nke gị. DeHub na-ahụ naanị profaịlụ GitHub gị nke ọha.",
+    "verified": "Nyochara",
+    "verifiedAria": "Akaụntụ GitHub nyochara",
+    "connect": "Jikọọ GitHub",
+    "disconnect": "Kwụpụ",
+    "connected": "GitHub jikọtara",
+    "disconnected": "GitHub kwụsịrị",
+    "taken": "Akaụntụ GitHub ahụ dị na profaịlụ DeHub ọzọ.",
+    "failed": "Enweghị ike jikọọ GitHub. Gbalịa ọzọ.",
+    "unavailable": "Nyocha GitHub ga-abịa n'oge na-adịghị anya."
+  },
+  "comic": {
+    "flip": "Ibe {{page}} nke {{total}}. Taa ka ị tụgharịa",
+    "editor": {
+      "count": "{{count}} nke {{limit}} ihu",
+      "coverHint": "Igbo: Page 1 bụ ihe osisi",
+      "empty": "Tinye ibe gị site na buton foto. Ibe ọ bụla nwere nkọwa na ederede ọzọ.",
+      "cover": "Kpuchie",
+      "caption": "Nkọwa maka peeji a",
+      "alt": "Alt text: ihe peeji ahụ na-egosi"
+    }
   }
 }

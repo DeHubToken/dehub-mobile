@@ -43,6 +43,10 @@ export interface SerializedUploadPayload {
   postType: "video" | "feed-audio" | "feed-images" | "feed-simple" | "short";
   images: SerializedMedia[];
   video: SerializedMedia | null;
+  /** The part of the video the creator kept (seconds); cut by the server from the draft. */
+  videoTrim?: { start: number; end: number };
+  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number };
+  destruct?: number;
   audio: SerializedMedia | null;
   thumbnailUri: string | null;
   streamInfoJson: string;
@@ -75,6 +79,10 @@ export interface SerializedUploadPayload {
   crossPostAccountIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  /** 'comic' shows the photos as collector cards. */
+  layout?: "comic";
+  /** Comic captions, one per page. */
+  mediaCaptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the text. */

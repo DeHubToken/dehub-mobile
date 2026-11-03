@@ -21,12 +21,16 @@ import {
   Modal,
   Keyboard,
   PanResponder,
+  StyleSheet,
 } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { Gesture, GestureDetector, ScrollView as GestureScrollView } from "react-native-gesture-handler";
+import { COMPOSER_SHEET, useComposerSheet } from "../hooks/useComposerSheet";
+import { useKeyboardLiftValue } from "../hooks/useKeyboardLiftValue";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import Icon from "../components/ui/Icon";
+import Icon, { type IconName } from "../components/ui/Icon";
 import PollDurationChips from "../components/Post/PollDurationChips";
 import Animated, {
   useSharedValue,
@@ -64,18 +68,19 @@ import { getChainOption } from "../components/common/ChainSelector";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
-import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
+import { getComicImageLimitForBadge, getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import ArticleEditor from "../components/article/ArticleEditor";
-import { ARTICLE_BODY_MIN, ARTICLE_SUMMARY_MAX, articleLook, articleSummaryFromBody } from "../libs/article";
+import { ARTICLE_BODY_MAX, ARTICLE_BODY_MIN, ARTICLE_IMAGE_MAX, ARTICLE_RAW_MAX, ARTICLE_SUMMARY_MAX, articleImages, articleLook, articleSummaryFromBody, articleTextLength, insertArticleImage } from "../libs/article";
+import { uploadArticleImage } from "../services/articleImage";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import ComicPagesList from "../components/Upload/ComicPagesList";
 import DraftAssetCards from "../components/Upload/DraftAssetCards";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
@@ -101,15 +106,21 @@ import type { ShopLink } from "../services/nft.service";
 import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
+import FeedCard from "../components/Home/FeedCard";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
-import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
-import VideoCoverBox, { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
+import { type VideoTrim } from "../components/Upload/VideoTrimSheet";
+import DmVideoStudio, { type StudioColour } from "../components/DM/DmVideoStudio";
+import { videoEditsPayload, postDestructShort, type PostVideoEdits } from "../libs/post-video-edits";
+import type { DmVideoOptions } from "../libs/dm-video-options";
+import { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
 import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
 import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
-import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
+import { startDraftImage } from "../services/draftImage";
+import ChoiceRow from "../components/Upload/ChoiceRow";
+import type { StudioResult, StudioTab } from "../components/Upload/PhotoStudio";
+import type { StudioEdits } from "../components/Upload/studioPaint";
 import type { FilterSettings } from "../libs/imageFilters";
 import { optionalSkia } from "../libs/skia";
-import ImageCropPicker from "react-native-image-crop-picker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
@@ -143,10 +154,18 @@ const SHOULD_MINT_KEY = "post_should_mint";
 const TITLE_MAX = POST_TITLE_MAX;
 
 /** The handle owns the pan, leaving image taps and the composer's scrolling alone. */
-function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
+/** Photo tiles: one row, each in its real shape between these widths. */
+const PHOTO_TILE_H = 200;
+function photoTileWidth(img: { width?: number; height?: number }) {
+  const aspect = img.width && img.height ? img.width / img.height : 1;
+  return Math.round(Math.max(0.6, Math.min(1.6, aspect)) * PHOTO_TILE_H);
+}
+
+function PhotoOrderHandle({ index, count, slotWidth, onMove, onDrag }: {
   index: number;
   count: number;
-  columnWidth: number;
+  /** Roughly one tile plus its gap, to turn a drag into a new position. */
+  slotWidth: number;
   onMove: (from: number, to: number) => void;
   onDrag: (index: number | null, x?: number, y?: number) => void;
 }) {
@@ -154,22 +173,22 @@ function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
   const responder = useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, gesture.dy),
+    // Claimed at once so the composer sheet never takes the drag as a close.
+    onPanResponderGrant: () => onDrag(index, 0, 0),
+    onPanResponderMove: (_, gesture) => onDrag(index, gesture.dx, 0),
     onPanResponderRelease: (_, gesture) => {
-      const row = Math.max(0, Math.round(index / 2 + gesture.dy / 168 - (index % 2) / 2));
-      const column = Math.max(0, Math.min(1, Math.round((index % 2) + gesture.dx / columnWidth)));
-      onMove(index, Math.min(count - 1, row * 2 + column));
+      onMove(index, Math.max(0, Math.min(count - 1, index + Math.round(gesture.dx / slotWidth))));
       onDrag(null);
     },
     onPanResponderTerminate: () => onDrag(null),
     onPanResponderTerminationRequest: () => false,
-  }), [index, count, columnWidth, onMove, onDrag]);
+  }), [index, count, slotWidth, onMove, onDrag]);
 
   return (
     <View {...responder.panHandlers} style={{ position: "absolute", left: 8, bottom: 8, zIndex: 10 }}
-      className="bg-black/80 rounded-lg px-2 py-1 flex-row items-center"
+      className="dark-surface bg-black/70 rounded-full px-2 h-7 flex-row items-center"
       accessible accessibilityRole="button" accessibilityLabel={_copy("copy.8912e65bf642", { defaultValue: "Drag to reorder photo {{value1}} of {{value2}}", value1: index + 1, value2: count })}>
-      <Icon name="Grip" size={16} color="#fff" />
+      <Icon name="Grip" size={14} color="#fff" />
       <Text className="text-white text-xs ml-1">{index + 1}</Text>
     </View>
   );
@@ -226,12 +245,16 @@ const CATEGORIES_MAX = 5;
 /** Closing with more words than this saves the post to Drafts without asking. */
 const AUTO_DRAFT_MIN_WORDS = 3;
 type PickedAsset = ImagePicker.ImagePickerAsset & {
-  /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
+  /** The original picture the studio draws its edits over, so edits never stack. */
   editBaseUri?: string;
+  /** Photo studio edits (crop, look, adjust, marks) kept as settings for re-editing. */
+  studio?: StudioEdits;
   filter?: FilterSettings;
   filterPresetId?: string;
   /** Alt text: what the picture or video shows, for people who cannot see it. */
   description?: string;
+  /** Comic page caption, shown to everyone on the card. */
+  caption?: string;
 };
 
 /** Alt text in upload order: the video, or each photo by position. */
@@ -243,9 +266,10 @@ function mediaDescriptionsOf(video: PickedAsset | null, images: PickedAsset[]): 
 const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
 
-/** Filters and Draw & write are drawn with Skia, which older installs lack. */
-const ImageEditSheet = optionalSkia(
-  () => require("../components/Upload/ImageEditSheet").default as typeof import("../components/Upload/ImageEditSheet").default,
+/** The photo studio is drawn with Skia, which older installs lack. */
+const studioPaintLib = optionalSkia(() => require("../components/Upload/studioPaint") as typeof import("../components/Upload/studioPaint"));
+const PhotoStudio = optionalSkia(
+  () => require("../components/Upload/PhotoStudio").default as typeof import("../components/Upload/PhotoStudio").default,
 );
 type MediaMode = "none" | "images" | "video" | "audio";
 
@@ -266,11 +290,13 @@ const DIALOG_INK = { color: "#FFFFFF" };
 const DIALOG_SOFT = { color: "rgba(255,255,255,0.8)" };
 const DIALOG_MUTED = { color: "#A6A9AC" };
 
+const fmtTrim = (sec: number) => `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
+
 export default function UploadScreen() {
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.
-  const { isMinimal, theme } = useAppTheme();
+  const { isMinimal, theme, colors: themeColors } = useAppTheme();
   const articleUi = useMemo(() => articleLook(theme), [theme]);
   const queryClient = useQueryClient();
   const nav = useNavigation<any>();
@@ -283,7 +309,9 @@ export default function UploadScreen() {
   const incomingVideo = route.params?.video;
   const authUser = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
-  const imageLimit = getPostImageLimitForBadge(
+  // Comic: a photo post shown as collector cards, each page with a caption.
+  const [comicMode, setComicMode] = useState(false);
+  const imageLimit = (comicMode ? getComicImageLimitForBadge : getPostImageLimitForBadge)(
     authUser?.badgeBalance,
     authUser?.username,
     authUser?.badgeLock,
@@ -321,9 +349,10 @@ export default function UploadScreen() {
     }
     Keyboard.dismiss();
   }, []);
-  // Keyboard height minus the bottom inset the root SafeAreaView already spent
-  // — see hooks/useKeyboardLayout.ts.
-  const { lift: kbLift } = useKeyboardLift();
+  // Keyboard height above the screen's bottom edge (see hooks/useKeyboardLayout.ts).
+  // The toolbar's own lift rides with the keys on the UI thread (no re-render).
+  const kbLiftValue = useKeyboardLiftValue(useSafeAreaInsets().bottom);
+  const toolbarLiftStyle = useAnimatedStyle(() => ({ marginBottom: kbLiftValue.value }));
   const { drafts, saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
   const avatarUri = useMemo(
@@ -348,9 +377,48 @@ export default function UploadScreen() {
     const { start, end } = articleSelection;
     const selected = articleBody.slice(start, end) || placeholder;
     const prefix = block && start > 0 && articleBody[start - 1] !== "\n" ? "\n" : "";
-    setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, 20000));
+    setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, ARTICLE_RAW_MAX));
     setArticleSelection({ start: start + prefix.length + before.length, end: start + prefix.length + before.length + selected.length });
   }, [articleBody, articleSelection, setArticleBody]);
+  // Pictures inside the article upload as soon as they are picked and go in
+  // where the cursor was, each on its own lines with an empty caption.
+  const [articleUploads, setArticleUploads] = useState(0);
+  const articleBodyNow = useRef(articleBody);
+  articleBodyNow.current = articleBody;
+  const addArticleImages = useCallback(async () => {
+    const room = ARTICLE_IMAGE_MAX - articleImages(articleBodyNow.current).length - articleUploads;
+    if (room <= 0) {
+      toastError(t("articles.imageLimit", { count: ARTICLE_IMAGE_MAX, defaultValue: "Articles can hold up to {{count}} images" }));
+      return;
+    }
+    await runWithPermissions(["photos"], async () => {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ["images"],
+        allowsMultipleSelection: true,
+        selectionLimit: room,
+        quality: 1,
+      });
+      if (result.canceled || !result.assets?.length) return;
+      const picked = result.assets.slice(0, room);
+      let at = articleSelection.end;
+      setArticleUploads(n => n + picked.length);
+      for (const asset of picked) {
+        try {
+          const url = await uploadArticleImage(asset);
+          const next = insertArticleImage(articleBodyNow.current, at, url);
+          if (next.body.length > ARTICLE_RAW_MAX) throw new Error("too long");
+          at = next.cursor;
+          articleBodyNow.current = next.body;
+          setArticleBody(next.body);
+          setArticleSelection({ start: next.cursor, end: next.cursor });
+        } catch {
+          toastError(t("articles.imageFailed", { defaultValue: "That image could not be added. Try another one." }));
+        } finally {
+          setArticleUploads(n => n - 1);
+        }
+      }
+    });
+  }, [articleUploads, articleSelection.end, setArticleBody, t]);
   const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
   const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
   const pickArticleImage = useCallback(async () => {
@@ -378,7 +446,9 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
-  const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
+  const [imageEdit, setImageEdit] = useState<{ index: number; tab: StudioTab } | null>(null);
+  const skipPhotoAutoEdit = useRef(false);
+  const seenPhotos = useRef<Set<string>>(new Set());
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
@@ -390,7 +460,9 @@ export default function UploadScreen() {
   const [replyPolicy, setReplyPolicy] = useState<"public" | "followers" | "following" | "mentioned">("public");
   // Who may see the post. Everyone, unless the creator narrows it; fixed once posted.
   const [visibility, setVisibility] = useState<"public" | "followers" | "direct">("public");
-  const [photoGridWidth, setPhotoGridWidth] = useState(0);
+  // Hold menu on a photo tile (index), or null.
+  const [showPreview, setShowPreview] = useState(false);
+  const [photoMenu, setPhotoMenu] = useState<number | null>(null);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
     setPickedImages(prev => {
@@ -400,11 +472,39 @@ export default function UploadScreen() {
       return next;
     });
   }, []);
+  const photoDragHold = useRef<{ value: boolean } | null>(null);
   const onPhotoDrag = useCallback((index: number | null, x = 0, y = 0) => {
+    if (photoDragHold.current) photoDragHold.current.value = index !== null;
     setDraggedPhoto(index === null ? null : { index, x, y });
   }, []);
   const [fullscreenImageUri, setFullscreenImageUri] = useState<string | null>(null);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
+  // Trim on the picked video (seconds), cut by the server from the draft upload.
+  const [videoTrim, setVideoTrim] = useState<VideoTrim | null>(null);
+  const [showVideoTrim, setShowVideoTrim] = useState(false);
+  // The video edit screen's choices while it is open (Cover and Trim).
+  const [videoEditOpts, setVideoEditOpts] = useState<DmVideoOptions>({});
+  const [videoCoverAt, setVideoCoverAt] = useState<number | undefined>(undefined);
+  // Mirror, turn and colour (baked by the server) and the post timer, kept on Confirm.
+  const [videoEdits, setVideoEdits] = useState<PostVideoEdits | null>(null);
+  const [videoDestruct, setVideoDestruct] = useState<number | null>(null);
+  // While the edit screen is open.
+  const [videoColourDraft, setVideoColourDraft] = useState<StudioColour>({});
+  const [videoDestructDraft, setVideoDestructDraft] = useState<number | null>(null);
+  const [videoAltDraft, setVideoAltDraft] = useState("");
+  const [coverPictureDraft, setCoverPictureDraft] = useState<string | null>(null);
+  // The plain frame the cover was taken from, so edits are painted on it only once.
+  const rawThumbRef = useRef<string | null>(null);
+  const bakedThumbs = useRef(new Set<string>());
+  useEffect(() => {
+    setVideoTrim(null);
+    setVideoEdits(null);
+    setVideoDestruct(null);
+    setVideoColourDraft({});
+    setVideoDestructDraft(null);
+    setVideoAltDraft("");
+    setCoverPictureDraft(null);
+  }, [pickedVideo?.uri]);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
   const [audioRecordingElapsed, setAudioRecordingElapsed] = useState(0);
@@ -738,12 +838,15 @@ export default function UploadScreen() {
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
+  const comicLayout = comicMode && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && !pickedVideo && !pickedAudio && pickedImages.length > 0
+    ? ("comic" as const) : undefined;
   // Title input is forced for video/audio (they need a name on-chain) and for
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode || isStageMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
   const canPost = isStageMode ? !!titleText.trim() : !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid || articleMode) &&
-    (!articleMode || (!!titleText.trim() && articleBody.trim().length >= ARTICLE_BODY_MIN && !hasMedia));
+    (!articleMode || (!!titleText.trim() && articleTextLength(articleBody) >= ARTICLE_BODY_MIN && articleTextLength(articleBody) <= ARTICLE_BODY_MAX
+      && articleImages(articleBody).length <= ARTICLE_IMAGE_MAX && articleUploads === 0 && !hasMedia));
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // The post options are rendered unconditionally, as web's PostAccessToggles is.
@@ -765,6 +868,23 @@ export default function UploadScreen() {
     isAudioRecording ||
     (!isLiveMode && !pickedVideo && pickedImages.length >= imageLimit);
   const showMediaButton = !mediaDisabled;
+  // "Preview": the post as the real feed card draws it, from what is on the phone.
+  const previewItem = useMemo(() => {
+    const body = bodyText.trim();
+    const cover = coverUri || thumbnailUri || undefined;
+    return {
+      postType: pickedVideo ? "video" : pickedImages.length ? "feed-images" : "feed-simple",
+      name: titleText.trim(),
+      description: body,
+      imageUrls: pickedVideo ? [] : pickedImages.map((img) => img.uri),
+      imageUrl: pickedVideo ? cover : pickedImages[0]?.uri,
+      thumbnailUrl: pickedVideo ? cover : undefined,
+      minter: authUser?.address,
+      minterUser: authUser,
+      createdAt: new Date().toISOString(),
+      views: 0,
+    } as any;
+  }, [bodyText, titleText, pickedImages, pickedVideo, coverUri, thumbnailUri, authUser]);
   // Camera only ever starts a fresh capture, so it goes as soon as media exists.
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
@@ -776,7 +896,7 @@ export default function UploadScreen() {
     !isQuoteMode && (isLiveMode || (!pickedVideo && !pickedAudio && !isAudioRecording));
   // Polls are text-only on web too — no video, no images.
   const showPollButton =
-    !isLiveMode && !isQuoteMode && !pickedVideo && pickedImages.length === 0;
+    !isLiveMode && !isQuoteMode && !comicMode && !pickedVideo && pickedImages.length === 0;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     shareAudioWhenSilent(p);
@@ -890,6 +1010,7 @@ export default function UploadScreen() {
         assetId: undefined,
         description: incomingDraft.imageAlts?.[i] ?? undefined,
       })) as any[];
+      skipPhotoAutoEdit.current = true;
       setPickedImages(assets);
     }
     // Restore video
@@ -1134,7 +1255,7 @@ export default function UploadScreen() {
   const closeLatest = useRef(handleClose);
   closeLatest.current = handleClose;
   const dismissPan = useMemo(() => Gesture.Pan()
-    .enabled(!postInFlight)
+    .enabled(!postInFlight && !COMPOSER_SHEET)
     .activeOffsetY(8)
     .failOffsetX([-20, 20])
     .runOnJS(true)
@@ -1144,6 +1265,26 @@ export default function UploadScreen() {
         closeLatest.current();
       }
     }), [postInFlight]);
+
+  // Android: the whole composer is a sheet that follows the finger. A clear
+  // pull down from anywhere in its top part (not only the handle) drags it;
+  // let go past half way and it closes the same way the X does, otherwise it
+  // springs back.
+  const willPromptRef = useRef<() => boolean>(() => false);
+  willPromptRef.current = () => !autoDraftOnClose && formHasContent;
+  const sheet = useComposerSheet({
+    navigation: nav,
+    enabled: !postInFlight,
+    onDismiss: useCallback(() => closeLatest.current(), []),
+    willPrompt: useCallback(() => willPromptRef.current(), []),
+    onDragStart: useCallback(() => {
+      const up = Keyboard.isVisible();
+      if (up) closeKeyboard();
+      return up;
+    }, [closeKeyboard]),
+    onSettleOpen: useCallback(() => bodyInputRef.current?.focus(), []),
+  });
+  photoDragHold.current = sheet.holdDrag;
 
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
@@ -1204,6 +1345,9 @@ export default function UploadScreen() {
       categories,
       pickedImages,
       pickedVideo,
+      videoTrim,
+      videoEdits: videoEditsPayload(videoEdits),
+      destruct: videoDestruct,
       pickedAudio,
       thumbnailUri,
       coverUri,
@@ -1229,6 +1373,8 @@ export default function UploadScreen() {
       // publish it to everyone there.
       crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      layout: comicLayout,
+      mediaCaptions: comicLayout && pickedImages.some(img => img.caption?.trim()) ? pickedImages.map(img => img.caption?.trim() || "") : undefined,
       spoilerText: contentWarning?.trim() || undefined,
       hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
@@ -1236,7 +1382,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, videoEdits, videoDestruct, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1354,7 +1500,10 @@ export default function UploadScreen() {
     // with the screen still slid up for it: a black band under the nav bar
     // and the new post's card pushed up out of sight.
     closeKeyboard();
-    if (landing === "morph") nav.setOptions({ animation: "none" });
+    if (landing === "morph") {
+      nav.setOptions({ animation: "none" });
+      sheet.leaveWithoutSlide();
+    }
     nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
     // Nothing on Home should hold the keyboard after a post. Android passes
     // focus on to another field when the composer's lets go, so check again
@@ -1366,7 +1515,7 @@ export default function UploadScreen() {
         Keyboard.dismiss();
       }, ms);
     }
-  }, [nav, closeKeyboard]);
+  }, [nav, closeKeyboard, sheet.leaveWithoutSlide]);
 
   const submitPost = useCallback(async () => {
     let payload = getPayload();
@@ -1739,25 +1888,12 @@ export default function UploadScreen() {
     }
   }, []);
 
-  const videoBox = useVideoPreviewBox(thumbnailUri);
+  // Sized from the plain frame: a turned cover must not turn the preview box.
+  const videoBox = useVideoPreviewBox(rawThumbRef.current ?? thumbnailUri);
+  useEffect(() => {
+    if (thumbnailUri && !bakedThumbs.current.has(thumbnailUri)) rawThumbRef.current = thumbnailUri;
+  }, [thumbnailUri]);
 
-  const handlePickCoverImage = useCallback(async () => {
-    try {
-      await runWithPermissions(["photos"], async () => {
-        const picked = await openCroppedImagePicker({
-          width: 640,
-          height: 360,
-          quality: 0.9,
-          forceJpg: true,
-        });
-        if (picked) {
-          setCoverUri(picked);
-        }
-      });
-    } catch (err) {
-      console.error("[UploadScreen] cover image pick error:", err);
-    }
-  }, []);
 
   const handleChangeVideo = useCallback(async () => {
     try {
@@ -1781,6 +1917,11 @@ export default function UploadScreen() {
           setPickedVideo(asset);
           setCoverUri(null);
           generateThumbnail(asset.uri);
+          // A new video opens straight into its edit screen, on Cover.
+          setVideoTrim(null);
+          setVideoCoverAt(undefined);
+          setVideoEditOpts({});
+          setShowVideoTrim(true);
         }
       });
     } catch (err) {
@@ -1816,6 +1957,11 @@ export default function UploadScreen() {
       setPickedVideo(asset);
       setCoverUri(null);
       generateThumbnail(asset.uri);
+      // A new video opens straight into its edit screen, on Cover.
+      setVideoTrim(null);
+      setVideoCoverAt(undefined);
+      setVideoEditOpts({});
+      setShowVideoTrim(true);
       return true;
     },
     [generateThumbnail, movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier],
@@ -1840,6 +1986,15 @@ export default function UploadScreen() {
     setDraftVideoKey(key);
     return () => cancelDraftVideo(key);
   }, [draftVideoUri]);
+
+  // Photos start uploading as they are attached or edited, so Post only sends ids.
+  const draftPhotos = !isLiveMode && !isStageMode && !isQuoteMode && !articleMode && !pickedVideo && !pickedAudio;
+  useEffect(() => {
+    if (!draftPhotos) return;
+    for (const img of pickedImages) {
+      startDraftImage({ uri: img.uri, name: getFileName(img.uri, "image.jpg"), mimeType: guessMime(img.uri, "image/jpeg") });
+    }
+  }, [pickedImages, draftPhotos]);
 
   // A video handed over by another surface, e.g. one finished in the editor.
   // Like pictures, it only fills an empty composer.
@@ -2093,72 +2248,42 @@ export default function UploadScreen() {
   }, []);
 
   /**
-   * A filter keeps the pre-filter picture so it can be re-picked from scratch;
-   * a drawing or a crop is drawn over what the photo looks like now, filter
-   * included, so it becomes the new starting point — as on the web, where the
-   * annotator drops the stored filter settings.
+   * The studio hands back a baked copy of each photo it changed. The original
+   * stays as editBaseUri and the edits as settings, so the next edit starts
+   * from the original and every tool can be changed again.
    */
-  const handleImageEdited = useCallback(
-    (result: ImageEditResult, filter?: { settings: FilterSettings; presetId?: string }) => {
-      const target = imageEdit;
-      setImageEdit(null);
-      if (!target) return;
-      setPickedImages((prev) => prev.map((img, i) => {
-        if (i !== target.index) return img;
-        const next: PickedAsset = {
-          ...img,
-          uri: result.uri,
-          width: result.width,
-          height: result.height,
-          mimeType: result.mimeType,
-          fileName: result.fileName,
-          fileSize: undefined,
-        };
-        return filter
-          ? { ...next, editBaseUri: img.editBaseUri ?? img.uri, filter: filter.settings, filterPresetId: filter.presetId }
-          : { ...next, editBaseUri: undefined, filter: undefined, filterPresetId: undefined };
-      }));
-    },
-    [imageEdit],
-  );
+  // A newly picked photo opens straight into the photo editor, as on web.
+  useEffect(() => {
+    const keys = pickedImages.map((img) => img.editBaseUri ?? img.uri);
+    const fresh = pickedImages.findIndex((img, i) => !seenPhotos.current.has(keys[i]) && !isGifAsset(img));
+    keys.forEach((k) => seenPhotos.current.add(k));
+    if (skipPhotoAutoEdit.current) { skipPhotoAutoEdit.current = false; return; }
+    if (fresh >= 0 && PhotoStudio && !imageEdit && !comicMode) setImageEdit({ index: fresh, tab: "crop" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pickedImages]);
 
-  const handleCropImage = useCallback(async (index: number) => {
-    const img = pickedImages[index];
-    if (!img) return;
-    try {
-      const out = await ImageCropPicker.openCropper({
-        path: img.uri,
-        mediaType: "photo",
-        freeStyleCropEnabled: true,
-        // The frame starts on the whole picture and output is never upscaled.
-        ...(img.width && img.height ? { width: img.width, height: img.height } : {}),
-        compressImageQuality: 0.92,
-        forceJpg: img.mimeType !== "image/png",
-        cropperToolbarTitle: t("upload.cropRotate"),
-        cropperToolbarColor: "#000000",
-        cropperStatusBarLight: false,
-        cropperToolbarWidgetColor: "#ffffff",
-        cropperActiveWidgetColor: "#ffffff",
-        cropperRotateButtonsHidden: false,
-      });
-      setPickedImages((prev) => prev.map((im, i) => (i !== index ? im : {
-        ...im,
-        uri: out.path,
-        width: out.width,
-        height: out.height,
-        mimeType: out.mime,
-        fileName: getFileName(out.path, "image.jpg"),
-        fileSize: out.size,
-        editBaseUri: undefined,
+  const handleStudioDone = useCallback((results: StudioResult[]) => {
+    setImageEdit(null);
+    if (!results.length) return;
+    setPickedImages((prev) => prev.map((img, i) => {
+      const r = results.find((x) => x.index === i);
+      if (!r) return img;
+      return {
+        ...img,
+        editBaseUri: img.editBaseUri ?? img.uri,
+        studio: r.edits,
+        uri: r.uri,
+        width: r.width,
+        height: r.height,
+        mimeType: r.mimeType,
+        fileName: r.fileName,
+        fileSize: undefined,
         filter: undefined,
         filterPresetId: undefined,
-      })));
-    } catch (err: any) {
-      if (err?.code === "E_PICKER_CANCELLED") return;
-      console.warn("[UploadScreen] crop failed:", err);
-      toastError(t("upload.editFailed"));
-    }
-  }, [pickedImages]);
+      };
+    }));
+  }, []);
+
 
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
@@ -2423,9 +2548,6 @@ export default function UploadScreen() {
     setMonetization(next);
   }, [setMonetization]);
 
-  // 0 when the keyboard is down: this screen already ends above the home
-  // indicator, so padding by insets.bottom again left a dead strip.
-  const bottomPad = kbLift;
 
   // A banned account reads every post on DeHub and writes none of them. The
   // API refuses the mint either way; showing the composer first would only
@@ -2438,7 +2560,7 @@ export default function UploadScreen() {
     );
   }
 
-  return (
+  const composer = (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}
       <GestureDetector gesture={dismissPan}>
         <View className="flex-row items-center justify-center pt-2 pb-1" collapsable={false}>
@@ -2457,30 +2579,33 @@ export default function UploadScreen() {
       </GestureDetector>
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); }}>
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); if (!comicMode) setShowTitle(false); }}>
           <Text className={!isLiveMode && !isStageMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
-          onPress={() => { setIsStageMode(false); setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+          onPress={() => { setIsStageMode(false); setArticleMode(false); setComicMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
           <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setIsStageMode(true); setPollEnabled(false); }}>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setComicMode(false); setIsStageMode(true); setPollEnabled(false); }}>
           <Text className={isStageMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("nav.stages")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setComicMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
           <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
         </TouchableOpacity>
       </View>}
-      <ScrollView
-        className="flex-1"
+      <GestureDetector gesture={sheet.scroll}>
+      <GestureScrollView
+        style={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
         showsVerticalScrollIndicator={false}
+        onScroll={sheet.onScroll}
+        scrollEventThrottle={16}
       >
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
@@ -2609,7 +2734,7 @@ export default function UploadScreen() {
                 className="text-white text-lg font-medium mb-1"
               />
             )}
-            {!articleMode && <ComposerBodyInput
+            {!articleMode && <GestureDetector gesture={sheet.text}><ComposerBodyInput
               ref={bodyInputRef}
               value={bodyText}
               onChangeText={handleBodyChange}
@@ -2634,7 +2759,7 @@ export default function UploadScreen() {
               style={{ textAlignVertical: "top" }}
               autoFocus
               scrollEnabled={false}
-            />}
+            /></GestureDetector>}
             {articleMode && (
               <ArticleEditor
                 look={articleUi}
@@ -2654,6 +2779,8 @@ export default function UploadScreen() {
                 coverUri={articleShareImageUri}
                 onPickCover={pickArticleImage}
                 onRemoveCover={() => { setArticleImageUri(null); setSocialImageUri(null); }}
+                onAddImages={addArticleImages}
+                uploadingImages={articleUploads}
               />
             )}
 
@@ -2766,32 +2893,58 @@ export default function UploadScreen() {
             )}
 
             {!isLiveMode && mediaMode === "images" && (
-              <View className="mt-3 flex-row flex-wrap -m-1" onLayout={event => setPhotoGridWidth(event.nativeEvent.layout.width)}>
-                {pickedImages.map((img, idx) => (
+              // Photos in their real shape on one side-scrolling row: tap to view,
+              // Edit opens the studio, hold for alt text, replace, move and remove.
+              <GestureScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                scrollEnabled={!draggedPhoto}
+                style={{ marginTop: 12, marginHorizontal: -16 }}
+                contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
+              >
+                {pickedImages.map((img, idx) => {
+                  const tileW = photoTileWidth(img);
+                  return (
                   <View
                     key={`img-${img.assetId || img.uri}-${idx}`}
-                    className="w-1/2 p-1"
-                    style={draggedPhoto?.index === idx ? { zIndex: 20, transform: [{ translateX: draggedPhoto.x }, { translateY: draggedPhoto.y }] } : undefined}
+                    style={[{ width: tileW, height: PHOTO_TILE_H }, draggedPhoto?.index === idx ? { zIndex: 20, transform: [{ translateX: draggedPhoto.x }] } : null]}
                   >
-                    <View className="rounded-xl overflow-hidden border border-theme-neutrals-700">
+                    <View className="flex-1 rounded-xl overflow-hidden border border-theme-neutrals-700">
                       <TouchableOpacity
                         onPress={() => setFullscreenImageUri(img.uri)}
+                        onLongPress={() => setPhotoMenu(idx)}
+                        delayLongPress={350}
                         activeOpacity={0.9}
+                        style={{ flex: 1 }}
                         accessibilityRole="button"
                         accessibilityLabel={t("upload.viewImageFullscreen")}
+                        accessibilityHint={t("upload.photoHoldHint", { defaultValue: "Hold for more options" })}
                       >
                         <SmartImage
                           source={{ uri: img.uri }}
                           recyclingKey={img.uri}
-                          style={{ width: "100%", height: 160 }}
+                          style={{ width: "100%", height: "100%" }}
                           contentFit="cover"
                         />
                       </TouchableOpacity>
-                      <AltTextPill
-                        hasText={!!img.description}
-                        onPress={() => setAltEditor({ kind: "image", index: idx })}
-                        className="absolute top-2 left-2"
-                      />
+                      {/* Alt text lives in the photo editor; a GIF has none, so it keeps the pill. */}
+                      {(!PhotoStudio || isGifAsset(img)) ? (
+                        <AltTextPill
+                          hasText={!!img.description}
+                          onPress={() => setAltEditor({ kind: "image", index: idx })}
+                          className="absolute top-2 left-2"
+                        />
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() => handleChangeImage(idx)}
+                          className="absolute top-2 left-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
+                          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                          accessibilityRole="button"
+                          accessibilityLabel={t("upload.changeImage", { index: idx + 1 })}
+                        >
+                          <Icon name="Upload" size={14} color="#fff" />
+                        </TouchableOpacity>
+                      )}
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
@@ -2801,74 +2954,53 @@ export default function UploadScreen() {
                       >
                         <Icon name="X" size={16} color="#fff" />
                       </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => handleChangeImage(idx)}
-                        className="absolute top-2 right-11 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
-                        hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t("upload.changeImage", { index: idx + 1 })}
-                      >
-                        <Icon name="Upload" size={14} color="#fff" />
-                      </TouchableOpacity>
-                      {/* Filters, crop and draw — the web composer's photo tools, bottom right
-                          to leave the top row and the reorder handle clear. Any of them would
-                          flatten an animated GIF to one frame, so GIFs get none. */}
-                      {!isGifAsset(img) && (
-                      <View className="absolute bottom-2 right-2 flex-row">
-                        {ImageEditSheet && (
-                          <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "filter" })}
-                            className={`w-7 h-7 rounded-lg items-center justify-center dark-surface mr-1.5 ${img.filter ? "bg-white/30 border border-white/60" : "bg-black/70"}`}
-                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
-                            accessibilityRole="button"
-                            accessibilityLabel={t("upload.editFilters")}
-                          >
-                            <Icon name="Palette" size={14} color="#fff" />
-                          </TouchableOpacity>
-                        )}
+                      {/* One Edit pill opens the studio (crop, looks, adjust, draw). An
+                          edit would flatten an animated GIF to one frame, so GIFs get none. */}
+                      {PhotoStudio && !isGifAsset(img) && (
                         <TouchableOpacity
-                          onPress={() => handleCropImage(idx)}
-                          className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70 mr-1.5"
-                          hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                          onPress={() => setImageEdit({ index: idx, tab: "looks" })}
+                          className={`absolute bottom-2 right-2 flex-row items-center px-2.5 h-7 rounded-full dark-surface ${img.studio ? "bg-white" : "bg-black/70"}`}
+                          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                           accessibilityRole="button"
-                          accessibilityLabel={t("upload.cropRotate")}
+                          accessibilityLabel={t("upload.editPhoto", { defaultValue: "Edit photo {{n}}", n: idx + 1 })}
                         >
-                          <Icon name="Crop" size={14} color="#fff" />
+                          <Icon name="SlidersHorizontal" size={13} color={img.studio ? "#000" : "#fff"} />
+                          <Text style={{ color: img.studio ? "#000" : "#fff", fontSize: 12, fontWeight: "600", marginLeft: 5 }}>
+                            {img.studio ? t("upload.edited", { defaultValue: "Edited" }) : t("upload.edit", { defaultValue: "Edit" })}
+                          </Text>
                         </TouchableOpacity>
-                        {ImageEditSheet && (
-                          <TouchableOpacity
-                            onPress={() => setImageEdit({ index: idx, mode: "draw" })}
-                            className="w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
-                            hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
-                            accessibilityRole="button"
-                            accessibilityLabel={t("upload.drawWrite")}
-                          >
-                            <Icon name="Pencil" size={14} color="#fff" />
-                          </TouchableOpacity>
-                        )}
-                      </View>
                       )}
-                      {pickedImages.length > 1 && photoGridWidth > 0 && (
-                        <PhotoOrderHandle index={idx} count={pickedImages.length} columnWidth={photoGridWidth / 2}
+                      {pickedImages.length > 1 && (
+                        <PhotoOrderHandle index={idx} count={pickedImages.length} slotWidth={tileW + 8}
                           onMove={movePhoto} onDrag={onPhotoDrag} />
                       )}
                     </View>
                   </View>
-                ))}
+                  );
+                })}
                 {pickedImages.length < imageLimit && (
-                  <View className="w-1/2 p-1">
-                    <TouchableOpacity
-                      onPress={handlePickMoreImages}
-                      className="h-40 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
-                    >
-                      <Icon name="Plus" size={28} color="#6F7174" />
-                      <Text className="text-theme-neutrals-500 text-xs mt-1">
-                        {t("dao.addMore")}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                  <TouchableOpacity
+                    onPress={handlePickMoreImages}
+                    style={{ width: 96, height: PHOTO_TILE_H }}
+                    className="rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
+                    accessibilityRole="button"
+                  >
+                    <Icon name="Plus" size={26} color="#6F7174" />
+                    <Text className="text-theme-neutrals-500 text-xs mt-1">
+                      {t("dao.addMore")}
+                    </Text>
+                  </TouchableOpacity>
                 )}
-              </View>
+              </GestureScrollView>
+            )}
+
+            {comicMode && !isLiveMode && !pickedVideo && !pickedAudio && (
+              <ComicPagesList
+                pages={pickedImages}
+                limit={imageLimit}
+                onCaption={(index, caption) => setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, caption: caption || undefined } : img)))}
+                onAlt={index => setAltEditor({ kind: "image", index })}
+              />
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (
@@ -2879,11 +3011,6 @@ export default function UploadScreen() {
                   style={{ width: "100%", height: "100%", backgroundColor: "#111" }}
                   contentFit="contain"
                   nativeControls={false}
-                />
-                <AltTextPill
-                  hasText={!!pickedVideo.description}
-                  onPress={() => setAltEditor({ kind: "video", index: 0 })}
-                  className="absolute bottom-2 left-12 z-20"
                 />
                 {attachedSound && (
                   <View className="absolute top-2 left-2 dark-surface bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
@@ -2945,12 +3072,36 @@ export default function UploadScreen() {
                   accessibilityRole="button"
                   accessibilityLabel={t("upload.changeVideo")}
                 >
-                  <Icon name="Pencil" size={16} color="#fff" />
+                  <Icon name="Upload" size={16} color="#fff" />
                 </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    player.pause();
+                    setVideoEditOpts({ trimStart: videoTrim?.start, trimEnd: videoTrim?.end, coverAt: videoCoverAt, mirror: videoEdits?.mirror, rotate: videoEdits?.rotate || undefined });
+                    setVideoColourDraft({ look: videoEdits?.look, strength: videoEdits?.strength, adjust: videoEdits?.adjust });
+                    setVideoDestructDraft(videoDestruct);
+                    setVideoAltDraft(pickedVideo.description ?? "");
+                    setCoverPictureDraft(null);
+                    setShowVideoTrim(true);
+                  }}
+                  className={`absolute bottom-2 right-2 h-8 px-2.5 rounded-xl dark-surface flex-row items-center z-20 ${videoTrim || videoEdits ? "bg-white" : "bg-black/70"}`}
+                  hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("upload.editVideo", { defaultValue: "Edit video" })}
+                >
+                  <Icon name="SlidersHorizontal" size={14} color={videoTrim || videoEdits ? "#000" : "#fff"} />
+                  <Text className="text-xs font-medium ml-1.5" style={{ color: videoTrim || videoEdits ? "#000" : "#fff" }}>
+                    {videoTrim ? fmtTrim(videoTrim.end - videoTrim.start) : videoEdits ? t("upload.edited", { defaultValue: "Edited" }) : t("upload.edit", { defaultValue: "Edit" })}
+                  </Text>
+                </TouchableOpacity>
+                {/* What the editor set, at a glance. */}
+                {(videoDestruct || pickedVideo.description) ? (
+                  <View pointerEvents="none" className="absolute bottom-12 right-2 flex-row z-20" style={{ gap: 4 }}>
+                    {pickedVideo.description ? <View className="dark-surface bg-black/70 rounded-md px-1.5 py-0.5"><Text style={{ color: "#fff", fontSize: 9, fontWeight: "700" }}>ALT</Text></View> : null}
+                    {videoDestruct ? <View className="dark-surface bg-black/70 rounded-md px-1.5 py-0.5 flex-row items-center"><Icon name="Timer" size={10} color="#fff" /><Text style={{ color: "#fff", fontSize: 10, fontWeight: "600", marginLeft: 3 }}>{postDestructShort(videoDestruct)}</Text></View> : null}
+                  </View>
+                ) : null}
               </View>
-              {(thumbnailUri || coverUri) && (
-                <VideoCoverBox uri={coverUri ?? thumbnailUri!} style={videoBox.style} onPress={handlePickCoverImage} />
-              )}
               </View>
             )}
 
@@ -2958,18 +3109,6 @@ export default function UploadScreen() {
               <DraftVideoProgress draftKey={draftVideoKey} />
             )}
 
-            {!isLiveMode && mediaMode === "video" && pickedVideo && (
-              <VideoCoverFrames
-                videoUri={pickedVideo.uri}
-                durationMs={pickedVideo.duration}
-                selectedUri={coverUri ? null : thumbnailUri}
-                onPickFrame={(uri) => {
-                  setThumbnailUri(uri);
-                  setCoverUri(null);
-                }}
-                onUpload={handlePickCoverImage}
-              />
-            )}
 
             {isAudioRecording && (
               <ThemePanel className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
@@ -3174,7 +3313,8 @@ export default function UploadScreen() {
           </View>
         </View>
         </Pressable>
-      </ScrollView>
+      </GestureScrollView>
+      </GestureDetector>
       {/* Options scroll in their own short box, as on web: the tabs and the
           editor stay put while the switches scroll underneath them. */}
       <View className="border-t border-white/10">
@@ -3191,7 +3331,8 @@ export default function UploadScreen() {
               on web — a text or image post can be gated or sold just like a
               video. Rendered whatever the draft holds, so the options are on
               screen from first open. */}
-          <View>
+          {/* Filled in once the sheet is up (see useComposerSheet); the box keeps its height meanwhile. */}
+          {!sheet.extrasReady ? <View style={{ height: 172 }} /> : <View>
             {/* Mint sits in the list rather than in a card of its own, as
                 web's first PostAccessToggles row. Off by default, so a first
                 post needs no wallet at all. */}
@@ -3387,84 +3528,54 @@ export default function UploadScreen() {
                 creator reach on a post they believe is fine, so it sits past
                 the options they came to set rather than second, under the
                 thumb, where a stray tap goes unnoticed. */}
-              {/* Who may see the post — everyone, followers, or only the
-                  people it mentions. First, because it decides the rows
-                  below it: a post nobody else can see cannot be quoted. */}
+              {/* Who may see / quote / reply. Each is one row with a switch:
+                  off is the open default, on shows the narrower choices as
+                  buttons underneath. Same as web's ChoiceRow. */}
               {!isLiveMode && !isQuoteMode && (
-              <View className="py-3">
-                <View className="flex-row items-center">
-                  <Icon name="Eye" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("postVisibility.label")}</Text>
-                </View>
-                <View className="flex-row flex-wrap mt-2 ml-7">
-                  {(["public", "followers", "direct"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setVisibility(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: visibility === option }}
-                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${visibility === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${visibility === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`postVisibility.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-                {visibility === "direct" && (
-                  <Text className="text-theme-neutrals-400 text-xs mt-1 ml-7">{t("postVisibility.directHint")}</Text>
-                )}
-              </View>
+                <ChoiceRow
+                  icon="Eye"
+                  label={t("postVisibility.label")}
+                  value={visibility}
+                  offValue="public"
+                  offLabel={t("postVisibility.public")}
+                  options={[
+                    { value: "followers", label: t("postVisibility.followers") },
+                    { value: "direct", label: t("postVisibility.direct") },
+                  ]}
+                  onChange={setVisibility}
+                  hint={visibility === "direct" ? t("postVisibility.directHint") : undefined}
+                />
               )}
 
-              {/* Who may quote the post — anyone, followers, or only the creator. */}
               {!isLiveMode && visibility === "public" && (
-              <View className="flex-row items-center justify-between py-3">
-                <View className="flex-row items-center flex-1 mr-3">
-                  <Icon name="Quote" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("quotePolicy.label")}</Text>
-                </View>
-                <View className="flex-row">
-                  {(["public", "followers", "nobody"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setQuotePolicy(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: quotePolicy === option }}
-                      className={`ml-1 rounded-lg px-2 py-1 ${quotePolicy === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`quotePolicy.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
+                <ChoiceRow
+                  icon="Quote"
+                  label={t("quotePolicy.label")}
+                  value={quotePolicy}
+                  offValue="public"
+                  offLabel={t("quotePolicy.public")}
+                  options={[
+                    { value: "followers", label: t("quotePolicy.followers") },
+                    { value: "nobody", label: t("quotePolicy.nobody") },
+                  ]}
+                  onChange={setQuotePolicy}
+                />
               )}
 
-              {/* Who may reply — four options, so they wrap under the label. */}
               {!isLiveMode && (
-              <View className="py-3">
-                <View className="flex-row items-center">
-                  <Icon name="Reply" size={18} color="#fff" />
-                  <Text className="text-white text-sm ml-3">{t("replyPolicy.label")}</Text>
-                </View>
-                <View className="flex-row flex-wrap mt-2 ml-7">
-                  {(["public", "followers", "following", "mentioned"] as const).map((option) => (
-                    <TouchableOpacity
-                      key={option}
-                      onPress={() => setReplyPolicy(option)}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: replyPolicy === option }}
-                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${replyPolicy === option ? "bg-white" : "bg-white/10"}`}
-                    >
-                      <Text className={`text-xs ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
-                        {t(`replyPolicy.${option}`)}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
+                <ChoiceRow
+                  icon="Reply"
+                  label={t("replyPolicy.label")}
+                  value={replyPolicy}
+                  offValue="public"
+                  offLabel={t("replyPolicy.public")}
+                  options={[
+                    { value: "followers", label: t("replyPolicy.followers") },
+                    { value: "following", label: t("replyPolicy.following") },
+                    { value: "mentioned", label: t("replyPolicy.mentioned") },
+                  ]}
+                  onChange={setReplyPolicy}
+                />
               )}
 
               {MATURE_CONTENT_ENABLED && (
@@ -3479,7 +3590,7 @@ export default function UploadScreen() {
                 <CustomSwitch value={isMature} onValueChange={setIsMature} />
               </View>
               )}
-          </View>
+          </View>}
         </ScrollView>
       </View>
 
@@ -3493,11 +3604,12 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
+
       <View className="h-px bg-white/10" />
 
-      <View
+      <Animated.View
         className="flex-row items-center justify-between px-4 py-2"
-        style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
+        style={toolbarLiftStyle}
       >
         {/* Left cluster. Web sets every control on this row in a 36pt square —
             a 20pt glyph inside 8pt of padding — with the squares almost
@@ -3666,7 +3778,7 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
               hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-              style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
+              style={{ backgroundColor: pollEnabled || comicMode || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
               accessibilityRole="button"
               accessibilityLabel={t("player.moreOptions")}
               accessibilityState={{ expanded: showPostOptions }}
@@ -3721,6 +3833,19 @@ export default function UploadScreen() {
             )}
           </TouchableOpacity>
 
+          {!isLiveMode && !isStageMode && !articleMode && !pickedAudio && !pollIsValid && canPost && !postInFlight && (
+            <TouchableOpacity
+              onPress={() => setShowPreview(true)}
+              activeOpacity={0.7}
+              className="h-8 px-3 mr-2 rounded-xl flex-row items-center justify-center border border-white/20 bg-white/5"
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("upload.preview.title")}
+            >
+              <Icon name="Eye" size={14} color="#fff" />
+            </TouchableOpacity>
+          )}
+
           <TouchableOpacity
             onPress={handlePost}
             disabled={(!isStageMode && !postingChainReady) || (isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight))}
@@ -3752,11 +3877,68 @@ export default function UploadScreen() {
           </TouchableOpacity>
         </View>
 
-      </View>
+      </Animated.View>
+
+      {/* The sheets and drawers below are all closed on open; they mount once
+          the composer is up so the first frame stays light. */}
+      {sheet.extrasReady && <>
+      <GlassModal visible={photoMenu !== null} onClose={() => setPhotoMenu(null)} presentation="bottom" scrollable>
+        {photoMenu !== null && pickedImages[photoMenu] ? (() => {
+          const idx = photoMenu;
+          const img = pickedImages[idx];
+          const canEdit = !!PhotoStudio && !isGifAsset(img);
+          const rows: { key: string; icon: IconName; label: string; run: () => void; danger?: boolean }[] = [
+            ...(canEdit
+              ? [
+                  { key: "edit", icon: "SlidersHorizontal" as IconName, label: t("upload.studio.looksAdjust", { defaultValue: "Looks and adjust" }), run: () => setImageEdit({ index: idx, tab: "looks" }) },
+                  { key: "crop", icon: "Crop" as IconName, label: t("upload.cropRotate"), run: () => setImageEdit({ index: idx, tab: "crop" }) },
+                  { key: "draw", icon: "Pencil" as IconName, label: t("upload.drawWrite"), run: () => setImageEdit({ index: idx, tab: "draw" }) },
+                ]
+              : []),
+            { key: "alt", icon: "Captions" as IconName, label: img.description ? t("upload.editAltText", { defaultValue: "Edit alt text" }) : t("upload.addAltText", { defaultValue: "Add alt text" }), run: () => setAltEditor({ kind: "image", index: idx }) },
+            { key: "replace", icon: "Upload" as IconName, label: t("upload.changeImage", { index: idx + 1 }), run: () => handleChangeImage(idx) },
+            ...(idx > 0 ? [{ key: "left", icon: "ArrowLeft" as IconName, label: t("upload.moveEarlier", { defaultValue: "Move earlier" }), run: () => movePhoto(idx, idx - 1) }] : []),
+            ...(idx < pickedImages.length - 1 ? [{ key: "right", icon: "ArrowRight" as IconName, label: t("upload.moveLater", { defaultValue: "Move later" }), run: () => movePhoto(idx, idx + 1) }] : []),
+            { key: "remove", icon: "Trash2" as IconName, label: t("upload.removeImage"), run: () => handleRemoveImage(idx), danger: true },
+          ];
+          return (
+            <View className="px-4 pt-2 pb-4" style={{ gap: 4 }}>
+              <Text className="text-base font-semibold mb-2" style={{ color: themeColors.foreground }}>
+                {t("upload.photoN", { defaultValue: "Photo {{n}} of {{total}}", n: idx + 1, total: pickedImages.length })}
+              </Text>
+              {rows.map((r) => (
+                <TouchableOpacity
+                  key={r.key}
+                  onPress={() => { setPhotoMenu(null); r.run(); }}
+                  accessibilityRole="button"
+                  className="flex-row items-center px-4 py-3 rounded-xl"
+                >
+                  <Icon name={r.icon} size={20} color={r.danger ? "#f87171" : themeColors.foreground} />
+                  <Text className="flex-1 ml-3 text-sm" style={{ color: r.danger ? "#f87171" : themeColors.foreground }}>
+                    {r.label}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          );
+        })() : null}
+      </GlassModal>
+
+      <GlassModal visible={showPreview} onClose={() => setShowPreview(false)} presentation="bottom" scrollable>
+        {showPreview ? (
+          <View className="px-4 pt-2 pb-4">
+            <Text className="text-base font-semibold mb-3" style={{ color: themeColors.foreground }}>{t("upload.preview.title")}</Text>
+            <View pointerEvents="none">
+              <FeedCard item={previewItem} isVisible={false} isAutoplayActive={false} enablePreview={false} disablePress />
+            </View>
+            <Text className="text-xs text-center mt-3" style={{ color: themeColors.mutedForeground }}>{t("upload.preview.hint")}</Text>
+          </View>
+        ) : null}
+      </GlassModal>
 
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
-          <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
+          <Text className="text-base font-semibold mb-2" style={{ color: themeColors.foreground }}>{t("player.moreOptions")}</Text>
           {showPollButton && (
             <TouchableOpacity
               onPress={() => { setShowPostOptions(false); handleTogglePoll(); }}
@@ -3765,9 +3947,27 @@ export default function UploadScreen() {
               className="flex-row items-center px-4 py-3 rounded-xl"
               style={{ backgroundColor: pollEnabled ? "rgba(255,255,255,0.15)" : "transparent" }}
             >
-              <Icon name="ChartBarBig" size={20} color="#fff" />
-              <Text className="flex-1 ml-3 text-white text-sm">{t("upload.addPoll")}</Text>
-              {pollEnabled && <Icon name="Check" size={18} color="#fff" />}
+              <Icon name="ChartBarBig" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{t("upload.addPoll")}</Text>
+              {pollEnabled && <Icon name="Check" size={18} color={themeColors.foreground} />}
+            </TouchableOpacity>
+          )}
+          {/* Comic lives here, under Polls, rather than as a top tab. */}
+          {!isLiveMode && !isStageMode && !articleMode && !isQuoteMode && !pickedVideo && !pickedAudio && !pollEnabled && (
+            <TouchableOpacity
+              onPress={() => {
+                setShowPostOptions(false);
+                if (comicMode) { setComicMode(false); setShowTitle(false); }
+                else { setShowTitle(true); setComicMode(true); setPollEnabled(false); setMonetization(emptyMonetization()); }
+              }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: comicMode }}
+              className="flex-row items-center px-4 py-3 rounded-xl"
+              style={{ backgroundColor: comicMode ? "rgba(255,255,255,0.15)" : "transparent" }}
+            >
+              <Icon name="BookOpen" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{t("comic.tab")}</Text>
+              {comicMode && <Icon name="Check" size={18} color={themeColors.foreground} />}
             </TouchableOpacity>
           )}
           {!isLiveMode && (
@@ -3778,9 +3978,9 @@ export default function UploadScreen() {
               className="flex-row items-center px-4 py-3 rounded-xl"
               style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.15)" : "transparent" }}
             >
-              <Ionicons name="warning-outline" size={20} color="#fff" />
-              <Text className="flex-1 ml-3 text-white text-sm">{contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}</Text>
-              {contentWarning !== null && <Icon name="Check" size={18} color="#fff" />}
+              <Ionicons name="warning-outline" size={20} color={themeColors.foreground} />
+              <Text className="flex-1 ml-3 text-sm" style={{ color: themeColors.foreground }}>{contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}</Text>
+              {contentWarning !== null && <Icon name="Check" size={18} color={themeColors.foreground} />}
             </TouchableOpacity>
           )}
           {visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && (
@@ -4110,18 +4310,102 @@ export default function UploadScreen() {
         </View>
       </Modal>
 
-      {ImageEditSheet && imageEdit && pickedImages[imageEdit.index] && (() => {
-        const img = pickedImages[imageEdit.index];
-        const isFilter = imageEdit.mode === "filter";
+      {showVideoTrim && pickedVideo && (() => {
+        const dur = pickedVideo.duration ? pickedVideo.duration / 1000 : player.duration || 0;
         return (
-          <ImageEditSheet
-            mode={imageEdit.mode}
-            uri={isFilter ? img.editBaseUri ?? img.uri : img.uri}
-            mimeType={img.mimeType}
-            initialFilter={isFilter ? img.filter : undefined}
-            initialPresetId={isFilter ? img.filterPresetId : undefined}
+          <DmVideoStudio
+            visible
+            uri={pickedVideo.uri}
+            duration={dur}
+            width={pickedVideo.width || undefined}
+            height={pickedVideo.height || undefined}
+            size={pickedVideo.fileSize || undefined}
+            options={videoEditOpts}
+            onOptionsChange={(o) => {
+              // A picked frame takes over from an uploaded cover picture.
+              if (o.coverAt != null && o.coverAt !== videoEditOpts.coverAt) setCoverPictureDraft(null);
+              setVideoEditOpts(o);
+            }}
+            destruct={null}
+            onDestructChange={() => undefined}
+            allowTimer={false}
+            onlyTabs={["cover", "trim", "mirror", "rotate", "looks", "adjust", "expire", "alt"]}
+            initialTab="cover"
+            colour={videoColourDraft}
+            onColourChange={setVideoColourDraft}
+            postTimer={{ value: videoDestructDraft, onChange: setVideoDestructDraft }}
+            alt={{ value: videoAltDraft, onChange: setVideoAltDraft }}
+            coverPictureUri={coverPictureDraft}
+            onUploadCover={async () => {
+              try {
+                await runWithPermissions(["photos"], async () => {
+                  const picked = await openCroppedImagePicker({ width: 640, height: 360, quality: 0.9, forceJpg: true });
+                  if (picked) { setCoverPictureDraft(picked); setVideoEditOpts((o) => ({ ...o, coverAt: undefined })); }
+                });
+              } catch (err) {
+                console.error("[UploadScreen] cover image pick error:", err);
+              }
+            }}
+            onCoverFrame={(uri) => {
+              rawThumbRef.current = uri;
+              setThumbnailUri(uri);
+              setCoverUri(null);
+            }}
+            onClose={() => setShowVideoTrim(false)}
+            onConfirm={() => {
+              const start = videoEditOpts.trimStart ?? 0;
+              const end = videoEditOpts.trimEnd ?? dur;
+              const whole = start < 0.05 && dur - end < 0.05;
+              setVideoTrim(whole ? null : { start, end });
+              setVideoCoverAt(videoEditOpts.coverAt);
+              const edits: PostVideoEdits = {
+                mirror: videoEditOpts.mirror || undefined,
+                rotate: (videoEditOpts.rotate || undefined) as PostVideoEdits["rotate"],
+                look: videoColourDraft.look && videoColourDraft.look !== "normal" ? videoColourDraft.look : undefined,
+                strength: videoColourDraft.strength,
+                adjust: videoColourDraft.adjust,
+              };
+              const keep = videoEditsPayload(edits) ? edits : null;
+              setVideoEdits(keep);
+              setVideoDestruct(videoDestructDraft);
+              const description = videoAltDraft.trim() || undefined;
+              setPickedVideo((prev) => (prev ? { ...prev, description } : prev));
+              if (coverPictureDraft) setCoverUri(coverPictureDraft);
+              setShowVideoTrim(false);
+              // The cover shows the edits too: paint them on the plain frame.
+              const raw = rawThumbRef.current;
+              if (!coverPictureDraft && raw && !keep && thumbnailUri && bakedThumbs.current.has(thumbnailUri)) setThumbnailUri(raw);
+              if (!coverPictureDraft && raw && keep && studioPaintLib) {
+                const base = studioPaintLib.defaultEdits();
+                const e = keep ?? {};
+                void studioPaintLib.bakeStudio(raw, {
+                  ...base,
+                  crop: { ...base.crop, quarter: (e.rotate ?? 0) / 90, flipX: !!e.mirror },
+                  lookId: e.look ?? "normal",
+                  strength: e.strength ?? 100,
+                  adjust: e.adjust ?? base.adjust,
+                }, "image/jpeg").then((r) => { bakedThumbs.current.add(r.uri); setThumbnailUri(r.uri); }).catch(() => undefined);
+              }
+            }}
+          />
+        );
+      })()}
+      {PhotoStudio && imageEdit && pickedImages[imageEdit.index] && (() => {
+        // GIFs stay out: drawing one flattens it to a single frame.
+        const editable = pickedImages.map((img, i) => ({ img, i })).filter(({ img }) => !isGifAsset(img));
+        const start = Math.max(0, editable.findIndex(({ i }) => i === imageEdit.index));
+        return (
+          <PhotoStudio
+            photos={editable.map(({ img }) => ({ baseUri: img.editBaseUri ?? img.uri, mimeType: img.mimeType, edits: img.studio }))}
+            startIndex={start}
+            startTab={imageEdit.tab}
+            descriptions={editable.map(({ img }) => img.description ?? "")}
+            onDescriptions={(d) => setPickedImages((prev) => prev.map((img, i) => {
+              const k = editable.findIndex((e) => e.i === i);
+              return k >= 0 ? { ...img, description: d[k] || undefined } : img;
+            }))}
             onClose={() => setImageEdit(null)}
-            onApply={handleImageEdited}
+            onDone={(results) => handleStudioDone(results.map((r) => ({ ...r, index: editable[r.index].i })))}
           />
         );
       })()}
@@ -4144,6 +4428,17 @@ export default function UploadScreen() {
           }}
         />
       )}
+      </>}
+    </View>
+  );
+
+  if (!COMPOSER_SHEET) return composer;
+  return (
+    <View style={{ flex: 1 }}>
+      <Animated.View pointerEvents="none" style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, sheet.dimStyle]} />
+      <GestureDetector gesture={sheet.sheetPan}>
+        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden", borderTopWidth: 1, borderLeftWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.14)" }, sheet.sheetStyle]}>{composer}</Animated.View>
+      </GestureDetector>
     </View>
   );
 }

@@ -129,6 +129,7 @@
     "useNamed": "{{name}} 을 (를) 사용하세요"
   },
   "copy": {
+    "chatSlowDown": "천천히! 연속으로 보낸 메시지가 너무 많아요. {{wait}} 후에 다시 시도하거나 다른 사람이 답할 때까지 기다려 주세요.",
     "eabb5c136be4": "계획 업데이트 실패",
     "801658c8e591": "계획이 생성되지 않았습니다. 다시 시도하십시오.",
     "dd2108f1cda8": "음성 채팅 중지",
@@ -2637,7 +2638,26 @@
     "saved": "프로필 항목을 저장했어요",
     "failed": "저장하지 못했어요. 다시 시도해 주세요.",
     "verified": "인증된 링크",
-    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}"
+    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}",
+    "add": "필드 추가",
+    "remove": "필드 삭제",
+    "descriptionPresets": "사이트, 대명사 또는 기타 추가. 링크는 소셜 미디어와 함께 표시됩니다.",
+    "type": "필드 유형",
+    "needsLabel": "각 커스텀 필드에 레이블을 지정해주세요",
+    "placeholderPronouns": "그들/그들의",
+    "placeholderLocation": "도시, 국가",
+    "presets": {
+      "website": "사이트",
+      "blog": "블로그",
+      "portfolio": "포트폴리오",
+      "shop": "쇼프",
+      "podcast": "포드캐스트",
+      "newsletter": "뉴스레터",
+      "pronouns": "대명사",
+      "location": "위치",
+      "custom": "커스텀",
+      "customOption": "커스텀 레이블"
+    }
   },
   "notificationFilters": {
     "title": "알림 필터 대상",
@@ -2815,6 +2835,7 @@
     "unavailable": "이 버전의 앱에서는 사용할 수 없습니다"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "프랙션",
     "home": "홈",
     "explore": "탐색",
@@ -13589,7 +13610,11 @@
     "skippedOtherToast": "건너뛴 {{platforms}}: 이 게시물을 가져갈 수 없습니다."
   },
   "builder": {
-    "stakeForAllowance": "DeHub 토큰을 스테이킹하여 일일 빌드 한도를 늘리세요",
+    "modelLabel": "모델",
+    "creditsLeft": "크레딧 {{amount}}",
+    "perPrompt": "≈ 프롬프트당 {{price}}",
+    "pricingNote": "각 프롬프트는 모델 비용에 30%를 더한 금액이 크레딧에서 결제됩니다. 실행 중에는 프롬프트의 최대 비용이 보류되며 사용하지 않은 부분은 반환됩니다.",
+    "topUpCredits": "크레딧 충전",
     "preview": "미리보기",
     "openInBrowser": "브라우저에서 열기",
     "reload": "새로고침",
@@ -14608,5 +14633,15 @@
     "joinedBodyNoEmail": "이메일을 통해 토큰 출시 시점에 알려드리겠습니다.",
     "failed": "저장할 수 없습니다. 다시 시도해 주세요.",
     "privacy": "오직 출시 소식을 알려주기 위해만 사용됩니다."
+  },
+  "githubLink": {
+    "hint": "로그인하여 GitHub 계정이 자신의 것임을 증명하세요. DeHub은 당신의 공개 GitHub 프로필만 볼 수 있습니다.",
+    "verifiedAria": "인증된 GitHub 계정",
+    "connect": "GitHub에 연결하세요",
+    "disconnect": "분리",
+    "connected": "GitHub 연결됨",
+    "taken": "그 GitHub 계정은 이미 다른 DeHub 프로필에 등록되어 있습니다.",
+    "failed": "GitHub에 연결할 수 없습니다. 다시 시도해 주세요.",
+    "unavailable": "GitHub 인증이 곧 출시됩니다."
   }
 }

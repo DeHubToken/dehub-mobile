@@ -1,5 +1,6 @@
 {
   "copy": {
+    "chatSlowDown": "Calma! Mensagens demais seguidas. Tente de novo em {{wait}} ou espere outra pessoa responder.",
     "eabb5c136be4": "Falha ao atualizar o plano",
     "801658c8e591": "O plano não foi criado — tente novamente",
     "dd2108f1cda8": "Parar conversa de voz",
@@ -2532,7 +2533,27 @@
     "saved": "Campos do perfil salvos",
     "failed": "Não foi salvo. Tente de novo.",
     "verified": "Link verificado",
-    "verifyHint": "Para verificar um link, adicione isto àquela página e salve de novo: {{snippet}}"
+    "verifyHint": "Para verificar um link, adicione isto àquela página e salve de novo: {{snippet}}",
+    "add": "Adicionar campo",
+    "remove": "Remover campo",
+    "descriptionPresets": "Adicionar um site, pronomes ou qualquer outra coisa. Links aparecem com suas redes sociais.",
+    "type": "Tipo de campo",
+    "needsLabel": "Dê a cada campo personalizado um rótulo",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Cidade, país",
+    "presets": {
+      "website": "Site",
+      "blog": "Blog",
+      "portfolio": "Portfólio",
+      "shop": "Loja",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomes",
+      "location": "Localização",
+      "custom": "Personalizado",
+      "customOption": "Rótulo personalizado"
+    }
   },
   "notificationFilters": {
     "title": "Filtrar notificações de",
@@ -2714,6 +2735,7 @@
     "unavailable": "Não disponível nesta versão do app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Frações",
     "home": "Início",
     "explore": "Explorar",
@@ -3653,6 +3675,9 @@
     "sendWithMessage": "Enviar com mensagem",
     "messageFailed": "Sua mensagem não pôde ser adicionada. Nenhuma gorjeta foi enviada.",
     "wallLabel": "Mensagens de gorjeta",
+    "railTitle": "Gorjetas",
+    "railTotal": "{{amount}} tokens",
+    "tokensUnit": "tokens",
     "messagePrivateNote": "Apenas {{name}} vê, em sua notificação."
   },
   "postOptions": {
@@ -4720,6 +4745,10 @@
     "returnHome": "Voltar ao início"
   },
   "profile": {
+    "articleShort": "Artigo",
+    "pinnedShort": "Fixado",
+    "post": "Publicação",
+    "sortBy": "Ordenar por",
     "dislikesPrivateDesc": "Esta conta mantém seus «não gostei» só para si.",
     "dislikesPrivateTitle": "Os «não gostei» são privados",
     "dislikesEmptyOther": "Nada marcado com «não gostei» ainda.",
@@ -8851,6 +8880,7 @@
     "creatorEarnsDirect": "Os assinantes pagam em tokens DeHub. A sua parte fica na sua carteira no momento em que é subscrita, menos a taxa da plataforma para o seu nível de emblema."
   },
   "live": {
+    "liveBadge": "AO VIVO",
     "bigEvent": "Grande evento",
     "bigEventHint": "Para grandes públicos: os espectadores assistem com cerca de 20 segundos de atraso, com menos interrupções.",
     "notSet": "Não definido",
@@ -14071,7 +14101,11 @@
     "skippedOtherToast": "Ignorado {{platforms}}: eles não puderam aceitar este post."
   },
   "builder": {
-    "stakeForAllowance": "Faça stake de tokens DeHub para aumentar seu limite diário de builds",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} em créditos",
+    "perPrompt": "≈ {{price}} por prompt",
+    "pricingNote": "Cada prompt é pago com seus créditos pelo custo do modelo mais 30%. O máximo que um prompt pode custar fica reservado enquanto ele roda e a parte não usada é devolvida.",
+    "topUpCredits": "Recarregar créditos",
     "preview": "Prévia",
     "openInBrowser": "Abrir no navegador",
     "reload": "Recarregar",
@@ -15494,5 +15528,198 @@
     "title": "Feliz Halloween",
     "otherThemes": "Sem clima de terror? Encontre outros temas:",
     "enter": "Entrar na masmorra"
+  },
+  "tokenLaunch": {
+    "eyebrow": "Chegando em breve",
+    "title": "Lançamento de token em breve",
+    "body": "Compras estão fechadas enquanto o novo token é preparado. Receba um email assim que for lançado.",
+    "notifyMe": "Avise-me",
+    "sendTo": "Vamos enviar um email para {{email}}.",
+    "emailLabel": "Email",
+    "invalidEmail": "Entre com um e-mail válido",
+    "joinedTitle": "Você está na lista.",
+    "joinedBody": "Vamos enviar um email para {{email}} quando o token for lançado.",
+    "joinedBodyNoEmail": "Vamos te enviar um email quando o token for lançado.",
+    "failed": "Não foi possível salvar isso. Tente novamente.",
+    "privacy": "Apenas para te contar sobre o lançamento."
+  },
+  "duet": {
+    "with": "Dueto com @{{username}}",
+    "withOriginal": "Dueto · ver original",
+    "unavailable": "Este vídeo não está mais disponível para duetos.",
+    "allowLabel": "Permitir duetos",
+    "allowDescription": "Quem pode gravar um dueto ao lado dos seus vídeos. Você pode mudar isso em cada postagem também.",
+    "settingsSection": "Duetos",
+    "policyDefault": "Configuração de conta",
+    "policyEveryone": "Todos",
+    "policyFollowers": "Seguidores",
+    "policyNobody": "Ninguém",
+    "saveFailed": "Não foi possível salvar. Tente novamente.",
+    "count_one": "{{count}} dueto",
+    "count_other": "{{count}} duetos",
+    "pageHeading": "Duetos",
+    "pageTitle": "Duetos de {{title}} por @{{creator}}",
+    "pageTitleNoCreator": "Duetos de {{title}}",
+    "pageDescription": "Assista a todos os duetos deste vídeo no DeHub, ou grave o seu lado a lado.",
+    "empty": "Ainda não há duetos. Abra as opções do vídeo e escolha Remix → Dueto para fazer o primeiro.",
+    "loadMore": "Carregar mais",
+    "video": "Vídeo",
+    "notFound": "Este vídeo não está disponível.",
+    "notFoundTitle": "Vídeo não encontrado — DeHub",
+    "browseShorts": "Explorar Shorts"
+  },
+  "remixLinks": {
+    "shareFailed": "Sua gorjeta foi enviada, mas a parte do criador original não foi concluída.",
+    "notify": {
+      "react": "{{name}} reagiu ao seu vídeo",
+      "reactLive": "{{name}} está reagindo ao seu vídeo ao vivo"
+    },
+    "linkFailed": "O seu post está online, mas não conseguiu ser vinculado ao vídeo original.",
+    "settingsHeading": "Remixes",
+    "policy": {
+      "default": "Meu padrão",
+      "everyone": "Toda a gente",
+      "followers": "Seguidores",
+      "nobody": "Ninguém"
+    },
+    "stitch": {
+      "allow": "Permitir costuras",
+      "allowDesc": "Quem pode usar até 5 segundos de seus vídeos em seus próprios. Você pode mudar isso por post também.",
+      "saveFailed": "Não foi possível salvar sua configuração de stitch. Tente novamente.",
+      "settingFailed": "Seu post foi publicado, mas o ajuste da configuração de costura não foi salvo. Altere para Modificar post.",
+      "from": "Costurado por {{name}}",
+      "count_one": "{{count}} Costura",
+      "count_other": "{{count}} Costuras",
+      "listTitle": "Costuras",
+      "listFailed": "Não foi possível carregar stitches. Tente novamente.",
+      "listEmpty": "Nenhum corte ainda.",
+      "unavailable": "Este vídeo não está mais disponível no Stitches."
+    }
+  },
+  "reactions": {
+    "reactionTo": "Reação para",
+    "reactingTo": "Reagindo a",
+    "count_one": "{{count}} reação",
+    "count_other": "{{count}} reações",
+    "allow": "Permitir reações",
+    "remixesSection": "Remixes",
+    "allowDescription": "Deixe outros criadores reagirem aos seus vídeos, gravados ou ao vivo. Você ainda pode alterar isso em cada postagem.",
+    "policy": {
+      "everyone": "Todos",
+      "followers": "Seguidores",
+      "nobody": "Ninguém",
+      "default": "Padrão da conta ({{value}})"
+    },
+    "pageTitle": "Reações para {{title}} — DeHub",
+    "pageDescription": "Assista criadores reagirem a \"{{title}}\" por {{creator}} no DeHub, gravado e ao vivo.",
+    "heading": "Reações",
+    "backToVideo": "Voltar ao vídeo",
+    "empty": "Nenhuma reação ainda. Abra o menu Remix do vídeo e escolha Reagir para ser o primeiro.",
+    "more": "Mostrar mais",
+    "liveNow": "Ao vivo",
+    "wasLive": "Foi ao vivo",
+    "untitled": "Reação",
+    "thisVideo": "este vídeo"
+  },
+  "githubLink": {
+    "hint": "Faça login no GitHub para comprovar que a conta é sua. O DeHub só vê seu perfil público do GitHub.",
+    "verified": "Verificado",
+    "verifiedAria": "Conta GitHub verificada",
+    "connect": "Conecte-se ao GitHub",
+    "disconnect": "Desconectar",
+    "connected": "GitHub conectado",
+    "disconnected": "GitHub desconectado",
+    "taken": "Essa conta do GitHub já está em outro perfil DeHub.",
+    "failed": "Não foi possível conectar ao GitHub. Tente novamente.",
+    "unavailable": "A verificação do GitHub em breve."
+  },
+  "liveClips": {
+    "button": "Recortar este momento",
+    "capturing": "Capturando o último minuto da transmissão…",
+    "copyLink": "Copiar link",
+    "failed": "Não foi possível criar este clipe.",
+    "highlightTitle": "Destaque",
+    "length": "Clipe de {{seconds}} s",
+    "linkCopied": "Link copiado",
+    "make": "Criar clipe",
+    "postToShorts": "Publicar nos Shorts",
+    "posted": "Clipe publicado nos Shorts",
+    "postedBody": "Seu clipe está nos Shorts. Compartilhe para mais pessoas encontrarem a transmissão.",
+    "rendering": "Cortando seu clipe. Leva cerca de meio minuto…",
+    "starting": "Iniciando seu clipe…",
+    "title": "Clipe",
+    "titleLabel": "Título do clipe",
+    "titlePlaceholder": "Dê um título ao seu clipe",
+    "viewShort": "Ver Short"
+  },
+  "liveHype": {
+    "train": {
+      "level": "Hype Train · Nível {{level}}",
+      "endedLevel": "O Hype Train terminou o nível {{level}}!",
+      "ended": "O Hype Train terminou",
+      "thanks_one": "Obrigado ao {{count}} apoiante",
+      "thanks_other": "Obrigado aos {{count}} apoiantes",
+      "top": "Top: {{name}}"
+    },
+    "gift": {
+      "open": "Assinaturas de presente",
+      "title": "Assinaturas de presente",
+      "plan": "Plano",
+      "mode": {
+        "random": "Espectadores aleatórios no chat",
+        "user": "Alguém específico"
+      },
+      "howMany": "Quantos",
+      "randomHint": "Vai para pessoas que conversaram nos últimos 30 minutos e ainda não são inscritas.",
+      "who": "Nome de usuário ou endereço de carteira",
+      "whoPlaceholder": "@username",
+      "send_one": "Presentear 1 sub · ${{price}}",
+      "send_other": "Presentear {{count}} subs · ${{price}}",
+      "payHint": "Pago em DHB da sua carteira em uma única transferência.",
+      "fewer_one": "Apenas 1 pessoa no chat pode receber uma sub agora, então você paga por 1.",
+      "fewer_other": "Apenas {{count}} pessoas no chat podem receber uma sub agora, então você paga por {{count}}.",
+      "done_one": "Assinatura presenteada!",
+      "done_other": "{{count}} assinaturas presenteadas!",
+      "failed": "Não foi possível presentear assinaturas",
+      "notReady": "Presentear ainda não está disponível para este plano",
+      "noPlan": "Escolha um plano primeiro",
+      "noPlans": "{{name}} não tem planos de assinatura para presentear ainda.",
+      "cancel": "Cancelar",
+      "stage": {
+        "preparing": "Preparando…",
+        "wallet": "Confirme em sua carteira",
+        "confirming": "Aguardando a transação…",
+        "recording": "Finalizando…"
+      }
+    }
+  },
+  "dmPaidLock": {
+    "lockPhoto": "Bloquear foto",
+    "lockVideo": "Bloquear vídeo",
+    "lockOnPrice": "Bloqueado · {{price}} DHB",
+    "lockCustom": "Outro",
+    "lockCustomLabel": "Preço personalizado em DHB",
+    "lockHint": "A pessoa vê desfocado até te pagar. Arquivos bloqueados não têm criptografia de ponta a ponta.",
+    "dhbNow": "{{dhb}} ao preço de hoje",
+    "lockCustomUsd": "$ Outro",
+    "lockCustomUsdLabel": "Preço personalizado em dólares",
+    "lockDhbNow": "≈ {{dhb}} hoje. Sempre pagam {{price}}, seja qual for o valor do DHB.",
+    "lockOnUsd": "Bloqueado · {{price}}",
+    "lockedPhoto": "Foto bloqueada",
+    "lockedVideo": "Vídeo bloqueado",
+    "unlockFor": "Desbloquear por {{price}}",
+    "unlockOnWeb": "Desbloquear no dehub.io · {{price}}",
+    "confirming": "Confirmando pagamento…",
+    "stillConfirming": "Pagamento enviado. Abre assim que for confirmado.",
+    "payFailed": "Não foi possível desbloquear",
+    "unlocked": "Desbloqueado",
+    "unlockedTag": "Desbloqueado",
+    "notYet": "Ainda não desbloqueado",
+    "uploading": "Bloqueando…",
+    "unlockedByThem": "Seu {{kind}} bloqueado foi desbloqueado: +{{amount}} DHB"
+  },
+  "liveShorts": {
+    "live": "AO VIVO",
+    "join": "Entrar na live"
   }
 }

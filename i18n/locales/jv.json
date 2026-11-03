@@ -129,6 +129,7 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "chatSlowDown": "Alon-alon! Kakehan pesen terus-terusan. Coba maneh ing {{wait}}, utawa enteni wong liya mbales.",
     "eabb5c136be4": "Gagal update rencana",
     "801658c8e591": "Rencana gak dibuat — coba lagi",
     "dd2108f1cda8": "Stop Percakapan Suara",
@@ -2637,7 +2638,25 @@
     "saved": "Kolom profil kesimpen",
     "failed": "Ora kesimpen. Coba maneh.",
     "verified": "Pranala sing diverifikasi",
-    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}"
+    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}",
+    "descriptionPresets": "Kanggo tambah website, pronomina, atawa cangge ngarani lain, link social media kanggo ditampilin.",
+    "type": "Tipe lapur",
+    "needsLabel": "Ganti tiap-tiap field khusus ngarani labelnya.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "ngoko/ngoko gini",
+    "placeholderLocation": "Kota, negara",
+    "presets": {
+      "website": "Situs web",
+      "blog": "Buku Buku",
+      "portfolio": "Panggonan Karya",
+      "shop": "Toko",
+      "podcast": "Pandhawa Swara",
+      "newsletter": "Buletin Newsletter",
+      "pronouns": "Kata Ganti",
+      "location": "Lokasi",
+      "custom": "Custom",
+      "customOption": "Siji label khusus"
+    }
   },
   "notificationFilters": {
     "title": "Saring kabar saka",
@@ -2815,6 +2834,7 @@
     "unavailable": "Ora kasedhiya ing versi aplikasi iki"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Bagean",
     "home": "Beranda",
     "explore": "Jelajah",
@@ -13521,7 +13541,11 @@
     "skippedOtherToast": "Liwat {{platforms}}: dheweke ora bisa njupuk kiriman iki."
   },
   "builder": {
-    "stakeForAllowance": "Stake token DeHub kanggo nambah kuota build saben dinane",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} ing kredit",
+    "perPrompt": "≈ {{price}} saben prompt",
+    "pricingNote": "Saben prompt dibayar saka kreditmu miturut biaya model ditambah 30%. Biaya paling dhuwur ditahan nalika mlaku lan sisa sing ora dienggo dibalekake.",
+    "topUpCredits": "Isi kredit",
     "preview": "Pratonton",
     "openInBrowser": "Bukak ing browser",
     "reload": "Muat maneh",
@@ -14573,5 +14597,37 @@
     "joinedBodyNoEmail": "Kami bakal ngirim email ke gwe kanggo ngaweni token lanjar.",
     "failed": "Saya nggih ora bisa ngerti apa inggung.",
     "privacy": "Gampang aja ngomongin tentang peluncuran."
+  },
+  "githubLink": {
+    "hint": "Masuk ke GitHub ngawé nganggo akunmu kanggo ngawé bukti akunmu kanggo kanggoan. DeHub cuma nglihat profile GitHubmu kanggo publik aja.",
+    "verified": "Verified",
+    "verifiedAria": "Akun GitHub kanggo verifikasi",
+    "connect": "Hubungin GitHub",
+    "disconnect": "Ngapus hubungan",
+    "connected": "GitHub udah terhubung",
+    "disconnected": "GitHub udah ngapus hubungan",
+    "taken": "Akun GitHub kanggoan udah dihubungin ke profile DeHub kanggoan lanen.",
+    "failed": "Gak bisa hubungin GitHub. Coba lanang.",
+    "unavailable": "Verifikasi GitHub kanggoan bakal sing ngawé."
+  },
+  "comic": {
+    "tab": "Komedis",
+    "title": "Komedis",
+    "chip": "Komedis · {{count}} halaman",
+    "open": "Buka komedis, halaman {{page}} dari {{total}}",
+    "flip": "Halaman {{page}} dari {{total}}. Geser untuk lipat",
+    "page": "Halaman {{page}}",
+    "goto": "Halaman {{page}}",
+    "alt": "Teks alternatif",
+    "cards": "Kembali ke kartu",
+    "readAll": "Baca semua halaman",
+    "editor": {
+      "count": "{{count}} dari {{limit}} halaman",
+      "coverHint": "Halaman 1 itu sampul",
+      "empty": "Tambahkan halamanmu dengan tombol foto. Setiap halaman punya caption dan teks alternatif.",
+      "cover": "Sampul",
+      "caption": "Caption untuk halaman ini",
+      "alt": "Teks alternatif: apa yang ditampilkan halaman ini"
+    }
   }
 }

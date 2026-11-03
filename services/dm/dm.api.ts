@@ -1,4 +1,5 @@
 import { apiClient } from "../../libs/api.client";
+import { DHB_PRELISTING_USD } from "../../libs/dmLocked";
 import { getFileName, guessMime } from "../../libs/assets.util";
 import { getAccountSummaries } from "../user.service";
 import { DmAction, DmDisableStatus } from "../enums/dm-preferences.enum";
@@ -9,6 +10,7 @@ import {
   type DmMsgType,
   type DmUser,
   type UploadDmMediaParams,
+  type DmLockStatus,
   type ID,
 } from "./dm.types";
 
@@ -139,7 +141,7 @@ export async function getMessages(
 export async function uploadDmMedia(
   params: UploadDmMediaParams,
 ): Promise<DmMessage> {
-  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind } =
+  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind, mediaOptions, destruct, lockPrice } =
     params;
 
   const form = new FormData();
@@ -162,6 +164,13 @@ export async function uploadDmMedia(
   if (tipTxHash) form.append("tipTxHash", tipTxHash);
   if (replyTo) form.append("replyTo", String(replyTo));
   if (encryptedKind) form.append("encryptedKind", encryptedKind);
+  if (lockPrice && lockPrice > 0 && !encryptedKind) {
+    // lockPrice is in USD. The DHB figure rides along for a server without dollar prices.
+    form.append("lockPriceUsd", String(lockPrice));
+    form.append("lockPrice", String(Math.max(1, Math.ceil(lockPrice / DHB_PRELISTING_USD))));
+  }
+  if (mediaOptions) form.append("mediaOptions", JSON.stringify(mediaOptions));
+  if (destruct) form.append("destruct", String(destruct));
 
   return apiClient.post<DmMessage>("/dm/upload", form, {
     isAuthRequired: true,
@@ -383,4 +392,22 @@ export async function unpinDmMessage(
     data: { messageId, address },
     isAuthRequired: true,
   } as any);
+}
+
+/** Price, who to pay, and (for the sender or a buyer) the real file. */
+export async function getLockedMedia(messageId: ID): Promise<DmLockStatus> {
+  return apiClient.get<DmLockStatus>(`/dm/locked/${messageId}`, { isAuthRequired: true });
+}
+
+/**
+ * Hand in the tip that pays for a locked photo. `pending` means the payment
+ * is not indexed yet; a `dmMediaUnlocked` socket event follows.
+ */
+export async function unlockLockedMedia(messageId: ID, txHash: string): Promise<DmLockStatus> {
+  return apiClient.post<DmLockStatus>(`/dm/locked/${messageId}/unlock`, { txHash }, { isAuthRequired: true });
+}
+
+/** The recipient has watched a view-once attachment; the server removes it for both. */
+export async function markDmMessageViewed(messageId: string): Promise<void> {
+  await apiClient.post(`/dm/message/${encodeURIComponent(messageId)}/viewed`, {}, { isAuthRequired: true });
 }

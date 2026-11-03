@@ -129,6 +129,7 @@
     "useNamed": "ይጠቀሙ {{name}}"
   },
   "copy": {
+    "chatSlowDown": "ቀስ ይበሉ! በተከታታይ በጣም ብዙ መልዕክቶች። በ{{wait}} ውስጥ እንደገና ይሞክሩ፣ ወይም ሌላ ሰው እስኪመልስ ይጠብቁ።",
     "eabb5c136be4": "እቅዱን ማዘመን አልተሳካም",
     "801658c8e591": "እቅዱ አልተፈጠረም — እባክዎ እንደገና ይሞክሩ",
     "dd2108f1cda8": "ድምጽ ውይይት ያቁሙ",
@@ -2637,7 +2638,26 @@
     "saved": "የመገለጫ መስኮች ተቀምጠዋል",
     "failed": "አልተቀመጠም። እንደገና ይሞክሩ።",
     "verified": "የተረጋገጠ አገናኝ",
-    "verifyHint": "አገናኝን ለማረጋገጥ ይህን በዚያ ገጽ ላይ ያክሉ፣ ከዚያ እንደገና ያስቀምጡ፦ {{snippet}}"
+    "verifyHint": "አገናኝን ለማረጋገጥ ይህን በዚያ ገጽ ላይ ያክሉ፣ ከዚያ እንደገና ያስቀምጡ፦ {{snippet}}",
+    "add": "መስክ ያክሉ",
+    "remove": "መስክ አስወግድ",
+    "descriptionPresets": "ድር ጣቢያ ፣ አጠራሮች ወይም ሌላ ማንኛውንም ነገር ያክሉ ። አገናኞች ከማህበራዊ አውታረ መረቦችዎ ጋር ያሳያሉ ።",
+    "type": "የመስክ አይነት",
+    "needsLabel": "ለእያንዳንዱ ብጁ መስክ መለያ ይስጡ",
+    "placeholderPronouns": "እነሱ/እነሱ",
+    "placeholderLocation": "ከተማ, አገር",
+    "presets": {
+      "website": "ድረ-ገጽ",
+      "blog": "ብሎግ",
+      "portfolio": "ፖርትፎሊዮ",
+      "shop": "ሱቅ",
+      "podcast": "ፖድካስት",
+      "newsletter": "ጋዜጣ",
+      "pronouns": "ስሞችን ሙሉ ገለጻ ያግኙ Pronouns",
+      "location": "አካባቢ",
+      "custom": "ብጁ",
+      "customOption": "ብጁ መለያ"
+    }
   },
   "notificationFilters": {
     "title": "ማሳወቂያዎችን አጣራ ከ",
@@ -2815,6 +2835,7 @@
     "unavailable": "በዚህ የመተግበሪያ ስሪት ውስጥ አይገኝም"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "ክፍልፋዮች",
     "home": "መነሻ",
     "explore": "አስስ",
@@ -13565,7 +13586,11 @@
     "skippedOtherToast": "{{platforms}} ተዘለዋል፦ ይህን ልጥፍ መቀበል አልቻሉም።"
   },
   "builder": {
-    "stakeForAllowance": "የቀን ግንባታ ገደብህን ለማሳደግ የDeHub ቶከኖችን ስቴክ አድርግ",
+    "modelLabel": "ሞዴል",
+    "creditsLeft": "{{amount}} ክሬዲት",
+    "perPrompt": "≈ {{price}} ለአንድ ጥያቄ",
+    "pricingNote": "እያንዳንዱ ጥያቄ ከክሬዲትዎ በሞዴሉ ወጪ ላይ 30% ተጨምሮ ይከፈላል። አንድ ጥያቄ ሊያስከፍል የሚችለው ከፍተኛ መጠን በሚሰራበት ጊዜ ይያዛል፣ ጥቅም ላይ ያልዋለው ክፍል ይመለሳል።",
+    "topUpCredits": "ክሬዲት ይሙሉ",
     "preview": "ቅድመ እይታ",
     "openInBrowser": "በአሳሽ ውስጥ ክፈት",
     "reload": "እንደገና ጫን",
@@ -14619,5 +14644,36 @@
     "joinedBodyNoEmail": "እኛ ኢሜል እናቀርባለን ቶኬን ሲተራ ።",
     "failed": "ይህን ማስቀመጥ አልቻለም። ደግሞ ይሞክሩ።",
     "privacy": "በተጨማሪ ለማስታወቂያ ብቻ ይጠቀሙ።"
+  },
+  "githubLink": {
+    "hint": "መለያው የእናንተ መሆኑን ለማረጋገጥ ወደ GitHub ይግቡ ። DeHub የእርስዎን የህዝብ GitHub መገለጫ ብቻ ያያል.",
+    "verified": "ተረጋግጧል",
+    "verifiedAria": "የተረጋገጠ የ GitHub መለያ",
+    "connect": "GitHub ን ያገናኙ",
+    "disconnect": "አገናኝን ያቋርጡ",
+    "connected": "GitHub ተገናኝቷል",
+    "disconnected": "GitHub ተሰናክሏል",
+    "taken": "ያ የ GitHub መለያ ቀድሞውኑ በሌላ የ DeHub መገለጫ ላይ ነው ።",
+    "failed": "GitHub ን ማገናኘት አልተቻለም. እንደገና ይሞክሩ.",
+    "unavailable": "GitHub ማረጋገጫ በቅርቡ ይመጣል ።"
+  },
+  "comic": {
+    "tab": "ስእል",
+    "title": "ስእል",
+    "chip": "ስእል · {{count}} ገጾች",
+    "open": "ስእሉን ክፈት፣ ገጽ {{page}} ከ {{total}}",
+    "flip": "ገጽ {{page}} ከ {{total}}። ለመገልበጥ ታፕ ያድርጉ",
+    "page": "ገጽ {{page}}",
+    "goto": "ገጽ {{page}}",
+    "alt": "ተለዋጭ ጽሑፍ",
+    "cards": "ወደ ካርዶች ተመለስ",
+    "editor": {
+      "count": "{{count}} ከ {{limit}} ገጾች",
+      "coverHint": "ገጽ 1 ሽፋኑ ነው",
+      "empty": "ገጾችዎን በፎቶ ቁልፍ ያክሉ። እያንዳንዱ ገጽ መግለጫ እና ተለዋጭ ጽሑፍ ያገኛል።",
+      "cover": "ሽፋን",
+      "caption": "ለዚህ ገጽ መግለጫ",
+      "alt": "ተለዋጭ ጽሑፍ: ገጹ ምን እንደሚያሳይ"
+    }
   }
 }

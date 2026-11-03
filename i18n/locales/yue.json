@@ -129,6 +129,7 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "chatSlowDown": "慢啲！連續發咗太多訊息。{{wait}} 後再試，或者等其他人回覆。",
     "eabb5c136be4": "更新計劃失敗",
     "801658c8e591": "計劃未建立 — 請再試一次",
     "dd2108f1cda8": "停止語音聊天",
@@ -2637,7 +2638,26 @@
     "saved": "已儲存個人檔案欄位",
     "failed": "儲存唔到，請再試吓。",
     "verified": "已驗證連結",
-    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}"
+    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}",
+    "add": "新增欄位",
+    "remove": "移除欄位",
+    "descriptionPresets": "新增網站、代詞或其他內容。連結會與你的社交媒體一起顯示。",
+    "type": "欄位類型",
+    "needsLabel": "為每個自訂欄位設定標籤",
+    "placeholderPronouns": "佢/佢",
+    "placeholderLocation": "城市、國家",
+    "presets": {
+      "website": "網站",
+      "blog": "部落格",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "通訊",
+      "pronouns": "代詞",
+      "location": "位置",
+      "custom": "自訂",
+      "customOption": "自訂標籤"
+    }
   },
   "notificationFilters": {
     "title": "過濾以下來源嘅通知",
@@ -2815,6 +2835,7 @@
     "unavailable": "呢個版本嘅應用程式冇呢個功能"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "碎片",
     "home": "主頁",
     "explore": "探索",
@@ -13534,7 +13555,11 @@
     "skippedOtherToast": "跳過咗 {{platforms}} ：佢哋攞唔到呢個 post 。"
   },
   "builder": {
-    "stakeForAllowance": "質押DeHub代幣以提高你每日嘅建構額度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 積分",
+    "perPrompt": "≈ 每次提示 {{price}}",
+    "pricingNote": "每次提示都會由你嘅積分扣除，金額係模型成本加 30%。運行期間會預留單次提示嘅最高費用，冇用完嘅部分會退返。",
+    "topUpCredits": "增值積分",
     "preview": "預覽",
     "openInBrowser": "喺瀏覽器度打開",
     "reload": "重新載入",
@@ -14574,5 +14599,52 @@
     "confirm": "薄荷上 {{chain}}",
     "confirmWithCost": "薄荷上 {{chain}} · {{cost}}",
     "notAvailable": "呢條鏈嘅鑄造仲未有得賣。"
+  },
+  "tokenLaunch": {
+    "eyebrow": "就快嚟到",
+    "title": "好快就會推出代幣",
+    "body": "喺新代幣準備好嗰陣，買嘢已經閂咗。喺佢上線嗰陣收到電郵。",
+    "notifyMe": "通知我",
+    "sendTo": "我哋會電郵 {{email}}",
+    "emailLabel": "電郵",
+    "emailPlaceholder": "你嘅電郵",
+    "invalidEmail": "輸入有效嘅電郵",
+    "joinedTitle": "你喺名單入面",
+    "joinedBody": "當令牌啟動嗰陣，我哋會電郵 {{email}} 。",
+    "joinedBodyNoEmail": "我哋會喺令牌啟動嗰陣發電郵畀你。",
+    "failed": "救唔到嗰個。再試多次。",
+    "privacy": "只係用嚟同你講推出嘅事"
+  },
+  "githubLink": {
+    "hint": "喺 GitHub 登入嚟証明呢個帳號係屬於你嘅。 DeHub 只睇到你嘅公開 GitHub 個人檔案。",
+    "verified": "已經驗證",
+    "verifiedAria": "已經驗證嘅 GitHub 帳號",
+    "connect": "連接 GitHub",
+    "disconnect": "斷開 GitHub",
+    "connected": "GitHub 已經連接",
+    "disconnected": "GitHub 已經斷開",
+    "taken": "呢個 GitHub 帳號喺另一 DeHub 個人檔案入面已經有咗。",
+    "failed": "唔能夠連接 GitHub。試返一次。",
+    "unavailable": "GitHub 驗證功能即將推出。"
+  },
+  "comic": {
+    "tab": "漫畫",
+    "title": "漫畫",
+    "chip": "漫畫 · {{count}} 頁",
+    "open": "開啟漫畫，第 {{page}} 頁，共 {{total}} 頁",
+    "flip": "第 {{page}} 頁，共 {{total}} 頁。點擊翻頁",
+    "page": "第 {{page}} 頁",
+    "goto": "第 {{page}} 頁",
+    "alt": "替代文字",
+    "cards": "返回卡片",
+    "readAll": "閱讀所有頁面",
+    "editor": {
+      "count": "{{count}} / {{limit}} 頁",
+      "coverHint": "第 1 頁是封面",
+      "empty": "用相機按鈕新增你的頁面。每一頁都有標題和替代文字。",
+      "cover": "封面",
+      "caption": "此頁的標題",
+      "alt": "替代文字：此頁顯示的內容"
+    }
   }
 }

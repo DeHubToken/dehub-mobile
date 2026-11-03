@@ -129,6 +129,7 @@
     "useNamed": "Gamitin ang {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Dahan-dahan! Sobrang daming sunod-sunod na mensahe. Subukan ulit pagkalipas ng {{wait}}, o hintaying may ibang sumagot.",
     "eabb5c136be4": "Nakaligtaan ang pag-upgrade ng plano",
     "801658c8e591": "Ang plano ay hindi na nilikha — subukan ulit",
     "dd2108f1cda8": "Ihinto ang Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Na-save ang mga field ng profile",
     "failed": "Hindi na-save. Subukan ulit.",
     "verified": "Na-verify na link",
-    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}"
+    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}",
+    "add": "Iba ang field",
+    "remove": "Alisin ang field",
+    "descriptionPresets": "Ibahin ang website, mga pangalang panlalakay, o anuman. Ang mga link ay magpapakita sa iyong mga socials.",
+    "type": "Uri ng field",
+    "needsLabel": "Ibigay sa bawat field na may label ang pangalan",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Lungsod, bansa",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Tindahan",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pangalang panlalakay",
+      "location": "Lokasyon",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "I-filter ang mga notification mula sa",
@@ -2815,6 +2836,7 @@
     "unavailable": "Hindi available sa bersyong ito ng app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Mga bahagi",
     "home": "Tahanan",
     "explore": "Galugarin",
@@ -13716,7 +13738,11 @@
     "skippedOtherToast": "Nilaktawan ang {{platforms}}: hindi nila makuha ang post na ito."
   },
   "builder": {
-    "stakeForAllowance": "I-stake ang DeHub tokens para taasan ang iyong araw-araw na limitasyon sa build",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} sa credits",
+    "perPrompt": "≈ {{price}} bawat prompt",
+    "pricingNote": "Bawat prompt ay binabayaran mula sa iyong credits sa halaga ng modelo dagdag ang 30%. Ang pinakamataas na posibleng halaga ng prompt ay hinahawakan habang tumatakbo ito at ibinabalik ang hindi nagamit.",
+    "topUpCredits": "Mag-top up ng credits",
     "preview": "Pagsusuri",
     "openInBrowser": "Buksan sa browser",
     "reload": "I-reload",
@@ -14755,5 +14781,52 @@
     "confirm": "Mint sa {{chain}}",
     "confirmWithCost": "Mint sa {{chain}} ·{{cost}}",
     "notAvailable": "Hindi pa available ang pagmimina sa chain na ito."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Maglalabas na",
+    "title": "Maglalabas na ang token",
+    "body": "Ang pagbibili ay nasara habang naghahanda ang bagong token. Magkaroon ka ng email sa sandali na ito ay maglulabas.",
+    "notifyMe": "Ibaba ang email mo",
+    "sendTo": "Ibibigay namin email sa {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Ito ang iyong email",
+    "invalidEmail": "Ipasok ang isang valid na email",
+    "joinedTitle": "Nasa listahan ka na",
+    "joinedBody": "Ibibigay namin email sa {{email}} kapag maglulabas ang token.",
+    "joinedBodyNoEmail": "Ibibigay namin email sa iyo kapag maglulabas ang token.",
+    "failed": "Hindi natin maipasa ito. Subukan muli.",
+    "privacy": "Gagamitin lamang ito upang ipaalam sa iyo tungkol sa paglulabas."
+  },
+  "githubLink": {
+    "hint": "Mag-log in sa GitHub upang ipatunayang ang account ay iyong sarili. Ang DeHub ay lamang nakikita sa iyong profile sa GitHub na maipapamahagi.",
+    "verified": "Verified",
+    "verifiedAria": "Tinatanggap na GitHub account",
+    "connect": "Kumonek sa GitHub",
+    "disconnect": "Huwag magkabit",
+    "connected": "GitHub ay konektado",
+    "disconnected": "Naghihinto ang GitHub.",
+    "taken": "Ang GitHub account na iyon ay nasa ibang profile ng DeHub na.",
+    "failed": "Hindi makapag-ugnay sa GitHub. Subukan mo ulit.",
+    "unavailable": "Ang pagpapatunay ng GitHub ay dumating na."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} pahina",
+    "open": "Bukas ang komiks, pahina {{page}} ng {{total}}",
+    "flip": "Pahina {{page}} ng {{total}}. Taposan ang pagbasa ng pahina",
+    "page": "Pahina {{page}}",
+    "goto": "Pahina {{page}}",
+    "alt": "Mga alternatibong teksto",
+    "cards": "Pabalik sa mga kartang pista",
+    "readAll": "Basa ang lahat ng mga pahina",
+    "editor": {
+      "count": "{{count}} ng {{limit}} mga pahina",
+      "coverHint": "Ang pahina 1 ay ang cover",
+      "empty": "Pagsama ng mga pahina sa pamamagitan ng button ng larawan. Bawat pahina ay may caption at mga alternatibong teksto.",
+      "cover": "Cover",
+      "caption": "Tanggapan para sa pahina na ito",
+      "alt": "Mga alternatibong teksto: ano ang ipinapakita ng pahina"
+    }
   }
 }

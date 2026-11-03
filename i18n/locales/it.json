@@ -129,6 +129,7 @@
     "useNamed": "Usa {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Rallenta! Troppi messaggi di fila. Riprova tra {{wait}} o aspetta che qualcun altro risponda.",
     "eabb5c136be4": "Aggiornamento del piano fallito",
     "801658c8e591": "Il piano non è stato creato — riprova per favore",
     "dd2108f1cda8": "Stop Voice Chat",
@@ -2633,7 +2634,27 @@
     "saved": "Campi del profilo salvati",
     "failed": "Non è stato salvato. Riprova.",
     "verified": "Link verificato",
-    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}"
+    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}",
+    "add": "Aggiungi campo",
+    "remove": "Elimina campo",
+    "descriptionPresets": "Aggiungi sito web, pronomi o altro. I link mostrano con i tuoi social.",
+    "type": "Tipo di campo",
+    "needsLabel": "Assegna un etichetta a ogni campo personalizzato",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "loro/loro",
+    "placeholderLocation": "Città, paese",
+    "presets": {
+      "website": "Sito web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Negozio",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomi",
+      "location": "Luogo",
+      "custom": "Personalizzato",
+      "customOption": "Etichetta personalizzata"
+    }
   },
   "notificationFilters": {
     "title": "Filtra le notifiche da",
@@ -2815,6 +2836,7 @@
     "unavailable": "Non disponibile in questa versione dell'app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Frazioni",
     "home": "Casa",
     "explore": "Esplora",
@@ -13585,7 +13607,11 @@
     "skippedOtherToast": "Saltato {{platforms}}: non hanno potuto accettare questo post."
   },
   "builder": {
-    "stakeForAllowance": "Metti in stake i token DeHub per aumentare la tua quota giornaliera di build",
+    "modelLabel": "Modello",
+    "creditsLeft": "{{amount}} in crediti",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Ogni prompt viene pagato con i tuoi crediti al costo del modello più il 30%. L'importo massimo di un prompt viene trattenuto durante l'esecuzione e la parte non usata viene restituita.",
+    "topUpCredits": "Ricarica crediti",
     "preview": "Anteprima",
     "openInBrowser": "Apri nel browser",
     "reload": "Ricarica",
@@ -14607,5 +14633,17 @@
     "joinedBodyNoEmail": "Ti invieremo un'email quando il token sarà lanciato.",
     "failed": "Non è stato possibile salvare. Riprova.",
     "privacy": "Utilizzato solo per informarti del lancio."
+  },
+  "githubLink": {
+    "hint": "Accedi a GitHub per dimostrare che l'account è tuo. DeHub vede solo il tuo profilo pubblico GitHub.",
+    "verified": "Verificato",
+    "verifiedAria": "Account GitHub verificato",
+    "connect": "Connetti GitHub",
+    "disconnect": "Disconnetti",
+    "connected": "GitHub connesso",
+    "disconnected": "GitHub disconnesso",
+    "taken": "Quel account GitHub è già su un altro profilo DeHub.",
+    "failed": "Impossibile connettere GitHub. Riprova.",
+    "unavailable": "La verifica di GitHub è in arrivo."
   }
 }

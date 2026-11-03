@@ -237,7 +237,7 @@ const UserProfileBottomContentTabs: React.FC<
     const withCounts = BASE_TAB_ITEMS.map((item) => ({
       ...item,
       label: item.key === "playlists" ? t("profile.tabPlaylists") : item.key === "articles" ? t("profile.tabArticles") : item.label,
-      count: (counts as Record<string, number | undefined>)[item.key] ?? 0,
+      count: (counts as Record<string, number | undefined>)[item.key] ?? (item.key === "fractions" ? undefined : 0),
     }))
       // Public playlists only earn a tab once there is one to show.
       .filter((item) => (item.key !== "playlists" && item.key !== "articles") || (item.count ?? 0) > 0);

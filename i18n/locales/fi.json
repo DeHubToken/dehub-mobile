@@ -129,6 +129,7 @@
     "useNamed": "Käytä {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Hidasta! Liian monta viestiä peräkkäin. Yritä uudelleen {{wait}} kuluttua tai odota, että joku muu vastaa.",
     "eabb5c136be4": "Epäonnistui päivityksen tekeminen",
     "801658c8e591": "Suunnitelma ei ollut luotu — yritä uudelleen",
     "dd2108f1cda8": "Lopeta ääniyhteys",
@@ -2637,7 +2638,27 @@
     "saved": "Profiilikentät tallennettu",
     "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
     "verified": "Vahvistettu linkki",
-    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}"
+    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}",
+    "add": "Lisää kenttä",
+    "remove": "Poista kenttä",
+    "descriptionPresets": "Lisää verkkosivusto, pronominit tai jotain muuta. Linkit näkyvät sosiaalisessa mediassa.",
+    "type": "Kentän tyyppi",
+    "needsLabel": "Anna kullekin mukautetulle kentälle tunniste",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "he/heidät",
+    "placeholderLocation": "Kaupunki, maa",
+    "presets": {
+      "website": "Verkkosivusto",
+      "blog": "Blogi",
+      "portfolio": "Portfolio",
+      "shop": "Osta",
+      "podcast": "Podcast",
+      "newsletter": "Uutiskirje",
+      "pronouns": "Pronominit",
+      "location": "Sijainti",
+      "custom": "Mukautettu",
+      "customOption": "Mukautettu tunniste"
+    }
   },
   "notificationFilters": {
     "title": "Suodata ilmoitukset",
@@ -2815,6 +2836,7 @@
     "unavailable": "Ei saatavilla tässä sovellusversiossa"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraktiot",
     "home": "Koti",
     "explore": "Tutustu",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "{{platforms}} ohitettiin: hän ei voinut ottaa tätä julkaisua."
   },
   "builder": {
-    "stakeForAllowance": "Panosta DeHub-tokeneita nostaaksesi päivittäistä rakennuskiintiötäsi",
+    "modelLabel": "Malli",
+    "creditsLeft": "{{amount}} krediittejä",
+    "perPrompt": "≈ {{price}} / kehote",
+    "pricingNote": "Jokainen kehote maksetaan krediiteistäsi mallin hinnalla plus 30 %. Kehotteen enimmäishinta varataan sen ajon ajaksi ja käyttämätön osa palautetaan.",
+    "topUpCredits": "Lisää krediittejä",
     "preview": "Esikatselu",
     "openInBrowser": "Avaa selaimessa",
     "reload": "Lataa uudelleen",
@@ -14589,5 +14615,37 @@
     "joinedBodyNoEmail": "Me lähetämme sinulle sähköpostia, kun token julkaistaan.",
     "failed": "Ei voinut tallentaa sitä. Yritä uudelleen.",
     "privacy": "Ainoastaan kerron sinulle uuden julkaisun tiedoista."
+  },
+  "githubLink": {
+    "hint": "Kirjaudu GitHubiin todistaaksesi, että tili on sinun. DeHub näkee vain julkisen GitHub-profiilisi.",
+    "verified": "Vahvistettu",
+    "verifiedAria": "Vahvistettu GitHub-tili",
+    "connect": "Yhdistä GitHub",
+    "disconnect": "Katkaise yhteys",
+    "connected": "GitHub yhdistetty",
+    "disconnected": "GitHub-yhteys katkaistu",
+    "taken": "Kyseinen GitHub-tili on jo toisessa DeHub-profiilissa.",
+    "failed": "GitHubia ei voitu yhdistää. Yritä uudelleen.",
+    "unavailable": "GitHub-vahvistus on tulossa pian."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sivua",
+    "open": "Avaa sarjakuva, sivu {{page}} {{total}}:stä",
+    "flip": "Sivu {{page}} {{total}}:stä. Kosketa kääntääksesi",
+    "page": "Sivu {{page}}",
+    "goto": "Sivu {{page}}",
+    "alt": "Alt-teksti",
+    "cards": "Takaisin kortteihin",
+    "readAll": "Lue kaikki sivut",
+    "editor": {
+      "count": "{{count}} {{limit}}:stä sivusta",
+      "coverHint": "Ensimmäinen sivu on kannessa",
+      "empty": "Lisää sivuja valokuvan painikkeella. Jokaiselle sivulle lisätään otsikko ja alt-teksti.",
+      "cover": "Kansi",
+      "caption": "Tämän sivun otsikko",
+      "alt": "Alt-teksti: mitä sivulla näkyy"
+    }
   }
 }

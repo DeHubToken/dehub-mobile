@@ -12,7 +12,7 @@ describe("post detail advertising continuation", () => {
 
   it("places the continuation after the detail screen's comments", () => {
     expect(detail).toContain("{showAllCommentsRow}");
-    expect(detail).toContain('<PostDetailContinuation currentPostId={String(tokenId)} loadMoreSignal={leanPost ? morePostsSignal : undefined} />');
+    expect(detail).toContain('<PostDetailContinuation currentPostId={String(tokenId)} profileFeed={profileFeed} loadMoreSignal={autoMorePosts ? morePostsSignal : undefined} />');
     expect(detail.indexOf("{showAllCommentsRow}")).toBeLessThan(detail.indexOf("<PostDetailContinuation"));
   });
 

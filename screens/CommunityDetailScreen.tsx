@@ -9,8 +9,11 @@ import {
   FlatList,
   KeyboardAvoidingView,
   useWindowDimensions,
-} from "react-native";
-import { shareWithRef } from "../libs/shareRef";
+} from "react-native";
+import { Platform, Linking } from "react-native";
+
+import { shareWithRef } from "../libs/shareRef";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
@@ -57,6 +60,15 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import CommunityDescription from "../components/Communities/CommunityDescription";
+import { TopHolders } from "../components/Communities/TopHolders";
+import { formatHolderAmount, holderGateMessage, holderGateOf, isDehubToken, runHolderCheck } from "../libs/holder-gate";
+import { communityKindOf, confirmEntry, entryPriceOf, entryStatus } from "../libs/community-kinds";
+import { useWeb3Provider, useERC20Contract } from "../hooks/use-web3";
+import { writeContractAA } from "../libs/aa.write";
+import { supportedTokens } from "../config/constants";
+import * as ethersImport from "ethers";
+
+const DEHUB_COIN = require("../assets/web-icons/dehub-coin.png");
 
 /** Members rendered (and profile-resolved) per page of the Members tab. */
 const MEMBERS_PAGE = 30;
@@ -88,7 +100,7 @@ const CommunityDetailScreen: React.FC = () => {
     if (route.params?.tab === "chat") setTab("chat");
   }, [route.params?.tab]);
   const [manageOpen, setManageOpen] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(!!route.params?.invite);
   const [loadError, setLoadError] = useState(false);
   // Which slug the community on screen was loaded for, so a failed read can
   // keep that page up without leaving it behind when the route has moved on.
@@ -98,6 +110,44 @@ const CommunityDetailScreen: React.FC = () => {
   // the right it needs, so a partially-privileged admin gets exactly the subset
   // of the panel the server would let them use.
   const abilities = getCommunityAbilities(community, membership);
+  const holderGate = holderGateOf(community);
+  const kind = communityKindOf(community);
+  // Groups and channels open on their chat, unless a link asked for a tab.
+  useEffect(() => {
+    if (kind !== "community" && !route.params?.tab) setTab("chat");
+  }, [kind, route.params?.tab]);
+  const entryPrice = entryPriceOf(community);
+  const { chainId } = useWeb3Provider();
+  const dhbMeta = useMemo(
+    () => (chainId === 56 || chainId === 8453) ? supportedTokens.find((tk: any) => tk.chainId === chainId && tk.symbol === "DHB") : undefined,
+    [chainId],
+  );
+  const dhbContract = useERC20Contract(dhbMeta?.address);
+  /** Pays the owner the entry price in tokens; the database confirms it from the chain. */
+  const payEntry = async (wallet: string): Promise<boolean> => {
+    if (!community) return false;
+    const before = await entryStatus(community.id, wallet).catch(() => null);
+    if (before?.status === "paid" || before?.status === "free") return true;
+    if (Platform.OS === "ios") {
+      // Paid digital access is bought on the web on iPhone.
+      void Linking.openURL(`https://dehub.io/app/communities/${community.slug}`);
+      return false;
+    }
+    if (!dhbContract || !chainId || !dhbMeta) {
+      toastError(t("communities.entry.switchChain", { defaultValue: "Switch your wallet to BNB Chain or Base to pay." }));
+      return false;
+    }
+    const ethers = (ethersImport as any).ethers || ethersImport;
+    const amount = ethers.utils.parseUnits(String(entryPrice), dhbMeta.decimals || 18);
+    const res = await writeContractAA(dhbContract, "transfer", [community.creator_wallet_address, amount], { context: "channel-entry" });
+    if (!res.hash) throw new Error("no_tx_hash");
+    const result = await confirmEntry(community.id, wallet, chainId, res.hash);
+    if (result.status !== "paid") {
+      toastError(t("communities.entry.failed", { defaultValue: "We couldn't confirm your payment yet. If tokens left your wallet, tap Join again in a minute." }));
+      return false;
+    }
+    return true;
+  };
   const { data: pendingMembers = [] } = usePendingMembersQuery(
     community?.id,
     abilities.can("restrict_members"),
@@ -244,6 +294,17 @@ const CommunityDetailScreen: React.FC = () => {
         } else {
           // Whether this lands as 'active' or 'pending' is decided server-side
           // from the community's privacy, not asked for by the client.
+          // Holder groups: the database reads the wallet's balance first, and
+          // only a passing read lets the membership row in.
+          if (entryPrice > 0 && !isOwner && !(await payEntry(wallet))) return;
+          const gate = holderGateOf(community);
+          if (gate) {
+            const check = await runHolderCheck(community.id, wallet);
+            if (check.status !== "open" && !check.eligible) {
+              toastError(holderGateMessage(check, gate));
+              return;
+            }
+          }
           await joinCommunity(wallet, community.id);
           toastSuccess(
             community.is_private ? t("communities.joinRequestSent") : t("communities.joined"),
@@ -407,6 +468,38 @@ const CommunityDetailScreen: React.FC = () => {
             <Text className="text-zinc-400 text-sm mt-1">
               {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
             </Text>
+            {holderGate && (
+              <View style={styles.holderChip}>
+                {isDehubToken(holderGate)
+                  ? <Image source={DEHUB_COIN} style={{ width: 14, height: 14 }} contentFit="contain" />
+                  : <Icon name="Coins" size={13} color="#d4d4d8" />}
+                <Text className="text-zinc-300 text-xs">
+                  {t("communities.holderGate.chip", {
+                    defaultValue: "Holders only · {{amount}}+",
+                    amount: formatHolderAmount(holderGate.min, holderGate.symbol),
+                  })}
+                </Text>
+              </View>
+            )}
+            {kind !== "community" && (
+              <View style={styles.holderChip} testID={`community-kind-${kind}`}>
+                <Icon name={kind === "channel" ? "Megaphone" : "Users"} size={13} color="#d4d4d8" />
+                <Text className="text-zinc-300 text-xs">
+                  {kind === "channel"
+                    ? t("communities.newChat.channel", { defaultValue: "Channel" })
+                    : t("communities.newChat.group", { defaultValue: "Group" })}
+                </Text>
+                {entryPrice > 0 && (
+                  <>
+                    <Text className="text-zinc-300 text-xs">·</Text>
+                    <Image source={DEHUB_COIN} style={{ width: 14, height: 14 }} contentFit="contain" />
+                    <Text className="text-zinc-300 text-xs">
+                      {t("communities.entry.chip", { defaultValue: "{{amount}} to join", amount: `${entryPrice.toLocaleString("en-US")} ${t("tip.tokensUnit", { defaultValue: "tokens" })}` })}
+                    </Text>
+                  </>
+                )}
+              </View>
+            )}
           </View>
         </View>
 
@@ -592,6 +685,8 @@ const CommunityDetailScreen: React.FC = () => {
                   <Text className="text-white text-sm leading-6">{t("communities.noDescription")}</Text>
                 )}
 
+                <TopHolders community={community} />
+
                 {abilities.can("change_info") ? (
                   <CommunityInfoEditor community={community} onSaved={load} />
                 ) : null}
@@ -661,6 +756,19 @@ const CommunityDetailScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  holderChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    gap: 6,
+    marginTop: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.05)",
+  },
   bannerWrap: { height: 140, position: "relative" },
   banner: { width: "100%", height: "100%" },
   bannerPlaceholder: { backgroundColor: theme.colors.neutrals[800] },

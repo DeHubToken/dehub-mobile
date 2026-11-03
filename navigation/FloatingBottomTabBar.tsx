@@ -26,6 +26,8 @@ import Reanimated, {
   Easing,
   interpolate,
   runOnJS,
+  FadeIn,
+  FadeOut,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { tabBarDraggedAway } from "../libs/tab-bar-presence";
@@ -33,6 +35,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
 import AssistantNavIcon from '../components/ui/AssistantNavIcon';
+import MessagesTabIcon from '../components/common/MessagesTabIcon';
 import type { IconName } from "../components/ui/Icon";
 import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
@@ -333,7 +336,7 @@ const NavButton = memo<{
     <NativeAnimatedPressable
       accessibilityRole="tab"
       // Which tab you are on is conveyed purely by icon colour and a glow, and
-      // the unread count purely by a red badge — neither reaches a screen
+      // the unread count purely by a badge (or the Messages letter) — neither reaches a screen
       // reader on its own. `selected` handles the first; the count is folded
       // into the label because a sibling Text inside a labelled Pressable is
       // not announced.
@@ -354,16 +357,19 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : <View><Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : routeName === ScreenNames.DM ? (
+          <MessagesTabIcon unread={badgeCount} size={22} color={iconColor} strokeWidth={2}
+            letterColor={isLight || isMinimal ? iconColor : colors.accent} />
+        ) : <View><Icon
           name={icon}
           size={icon === "House" || icon === "MessageEnvelope" || icon === "Search" ? 22 : 20}
           color={iconColor}
           strokeWidth={icon === "House" || icon === "MessageEnvelope" || icon === "Search" || isActive ? 2 : 1.75}
         /></View>}
-      {badgeCount > 0 && (
+      {badgeCount > 0 && routeName !== ScreenNames.DM && (
         <View style={styles.badgeAnchor} pointerEvents="none">
-          <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]}>
-            <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
+          <View style={[styles.badge, { backgroundColor: colors.accent }]}>
+            <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
           </View>
@@ -498,7 +504,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     (next: string[]) => saveNavOrder("bar", next, DEFAULT_BAR_IDS, isAuthed ? barWallet : null),
     [isAuthed, barWallet],
   );
-  const barReorder = useReorder({ ids: barIds, onCommit: commitBarOrder, horizontal: true });
+  const barReorder = useReorder({ ids: barIds, onCommit: commitBarOrder, horizontal: true, liftScale: 1.08 });
   const scrollRef = barReorder.scrollRef;
   const barSlots = useMemo(() => {
     const out = [...barReorder.order];
@@ -797,7 +803,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             const entry = barById.get(id);
             if (!entry) return null;
             return (
-              <ReorderItem key={id} id={id} ctx={barReorder.ctx} style={barReorder.draggingId === id ? styles.liftedSlot : undefined}>
+              <ReorderItem key={id} id={id} ctx={barReorder.ctx}>
+                {barReorder.draggingId === id && (
+                  <Reanimated.View
+                    pointerEvents="none"
+                    entering={FadeIn.duration(250)}
+                    exiting={FadeOut.duration(250)}
+                    style={styles.liftedFill}
+                  />
+                )}
                 {entry.tab ? (
                   <NavButton
                     icon={entry.tab.icon}
@@ -934,8 +948,14 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  // A drag lifts the icon off the pill: give it a fill so it reads as held.
-  liftedSlot: {
+  // A drag lifts the icon off the pill: give it a fill so it reads as held,
+  // inset like the pill's own padding so the pill's edge never cuts it off.
+  liftedFill: {
+    position: "absolute",
+    top: 4,
+    bottom: 4,
+    left: 6,
+    right: 6,
     borderRadius: 14,
     backgroundColor: "rgba(255, 255, 255, 0.16)",
   },
@@ -944,10 +964,15 @@ const styles = StyleSheet.create({
     justifyContent: "center" as const,
     height: TAB_BAR_PILL_HEIGHT,
   },
+  // The 22pt icons (Home, Messages, Search, Assistant) are bigger than this
+  // 20pt box. Without centring they hung off its bottom-right corner and sat
+  // visibly low in the pill; centred, they overflow evenly on every side.
   iconWrap: {
     position: "relative",
     width: 20,
     height: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   // The count used to sit absolutely inside the 20pt icon box, and an absolute
   // child is only offered its parent's width to measure in: past one digit

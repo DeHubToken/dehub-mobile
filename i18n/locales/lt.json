@@ -129,6 +129,7 @@
     "useNamed": "Naudoti {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Lėčiau! Per daug žinučių iš eilės. Bandyk dar kartą po {{wait}} arba palauk, kol atsakys kas nors kitas.",
     "eabb5c136be4": "Neįmanoma atnaujinti plano",
     "801658c8e591": "Planas nesukurtas — bandykite dar kartą",
     "dd2108f1cda8": "Sustabdyti balso pokalbį",
@@ -2637,7 +2638,27 @@
     "saved": "Profilio laukai išsaugoti",
     "failed": "Neišsaugota. Bandykite dar kartą.",
     "verified": "Patvirtinta nuoroda",
-    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}"
+    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}",
+    "add": "Pridėti laukelį",
+    "remove": "Pašalinti laukelį",
+    "descriptionPresets": "Pridėti svetainę, asmeninius žodžius ar ką nors kitą. Nuorodos rodysis su tavo socialinėmis medija.",
+    "type": "Laukelio tipas",
+    "needsLabel": "Kiekvienam papildomam laukeliui suteikti pavadinimą",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "jis/jos",
+    "placeholderLocation": "Miestas, šalis",
+    "presets": {
+      "website": "Svetainė",
+      "blog": "Blogas",
+      "portfolio": "Portfelis",
+      "shop": "Parduotuvė",
+      "podcast": "Podkastas",
+      "newsletter": "Naujienlaiškis",
+      "pronouns": "Asmeniniai žodžiai",
+      "location": "Vieta",
+      "custom": "Papildomas",
+      "customOption": "Papildomas pavadinimas"
+    }
   },
   "notificationFilters": {
     "title": "Filtruoti pranešimus iš",
@@ -2815,6 +2836,7 @@
     "unavailable": "Nepasiekiama šioje programėlės versijoje"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Dalys",
     "home": "Pradžia",
     "explore": "Naršyti",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "Praleido {{platforms}}: jie negalėjo priimti šio įrašo."
   },
   "builder": {
-    "stakeForAllowance": "Įkelkite DeHub žetonus, kad padidintumėte savo dienos kūrimo kvotą",
+    "modelLabel": "Modelis",
+    "creditsLeft": "{{amount}} kreditų",
+    "perPrompt": "≈ {{price}} už užklausą",
+    "pricingNote": "Kiekviena užklausa apmokama iš jūsų kreditų modelio kaina plius 30 %. Didžiausia galima užklausos kaina rezervuojama jai vykdant, o nepanaudota dalis grąžinama.",
+    "topUpCredits": "Papildyti kreditus",
     "preview": "Peržiūra",
     "openInBrowser": "Atidaryti naršyklėje",
     "reload": "Įkelti iš naujo",
@@ -14591,5 +14617,17 @@
     "joinedBodyNoEmail": "Mums rašykite jums, kai tokenas bus prieinamas.",
     "failed": "Nepavyko išsaugoti. Bandykite dar kartą.",
     "privacy": "Naudojamas tik pranešti apie išleidimą."
+  },
+  "githubLink": {
+    "hint": "Prisijunkite prie GitHub, kad įrodytumėte, jog paskyra yra jūsų. DeHub mato tik jūsų viešą GitHub profilį.",
+    "verified": "Patvirtinta",
+    "verifiedAria": "Patvirtinta GitHub paskyra",
+    "connect": "Prijungti GitHub",
+    "disconnect": "Atjungti",
+    "connected": "GitHub prijungta",
+    "disconnected": "GitHub atjungta",
+    "taken": "Ta GitHub paskyra jau yra kitame DeHub profilyje.",
+    "failed": "Nepavyko prijungti GitHub. Bandykite dar kartą.",
+    "unavailable": "GitHub patvirtinimas netrukus bus prieinamas."
   }
 }

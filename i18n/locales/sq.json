@@ -129,6 +129,7 @@
     "useNamed": "Përdor {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Më ngadalë! Shumë mesazhe radhazi. Provo përsëri pas {{wait}}, ose prit që dikush tjetër të përgjigjet.",
     "eabb5c136be4": "Nuk u mund të updateua plani",
     "801658c8e591": "Plani nuk u krijua — provo përsëri",
     "dd2108f1cda8": "Ndalo bisedën me zë",
@@ -2637,7 +2638,27 @@
     "saved": "Fushat e profilit u ruajtën",
     "failed": "Nuk u ruajt. Provo përsëri.",
     "verified": "Lidhje e verifikuar",
-    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}"
+    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}",
+    "add": "Shkarko fushën",
+    "remove": "Hap fushën",
+    "descriptionPresets": "Hap një faqe web, pronome ose çdo gjë tjetër. Lidhjet shfaqen me social media-të tuaja.",
+    "type": "Lloji i fushës",
+    "needsLabel": "Për çdo fushë të personalizuar, dhëna një etiketë",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Qyteti, vendi",
+    "presets": {
+      "website": "Faqja web",
+      "blog": "Blogu",
+      "portfolio": "Portofoliu",
+      "shop": "Dega",
+      "podcast": "Podkasti",
+      "newsletter": "Letra e shpejtë",
+      "pronouns": "Pronomet",
+      "location": "Përbërja",
+      "custom": "Personalizuar",
+      "customOption": "Etiketa personalizuar"
+    }
   },
   "notificationFilters": {
     "title": "Filtro njoftimet nga",
@@ -2815,6 +2836,7 @@
     "unavailable": "Nuk ofrohet në këtë version të aplikacionit"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Pjesë",
     "home": "Kryefaqja",
     "explore": "Eksploro",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "U anashkalua {{platforms}}: ata nuk mund ta merrnin këtë postim."
   },
   "builder": {
-    "stakeForAllowance": "Vendos token-e DeHub për të rritur kufirin ditor të ndërtimeve",
+    "modelLabel": "Modeli",
+    "creditsLeft": "{{amount}} në kredite",
+    "perPrompt": "≈ {{price}} për kërkesë",
+    "pricingNote": "Çdo kërkesë paguhet nga kreditet e tua me koston e modelit plus 30%. Kostoja maksimale e kërkesës mbahet ndërsa ajo ekzekutohet dhe pjesa e papërdorur kthehet.",
+    "topUpCredits": "Rimbush kreditet",
     "preview": "Parapamje",
     "openInBrowser": "Hap në shfletues",
     "reload": "Rifresko",
@@ -14576,5 +14602,32 @@
     "confirm": "Mint në {{chain}}",
     "confirmWithCost": "Mint në {{chain}} · {{cost}}",
     "notAvailable": "Gjurmimi në këtë zinxhir nuk është ende i disponueshëm."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Së shpejti",
+    "title": "Tokeni po niset së shpejti",
+    "body": "Blerja është e mbyllur ndërkohë që tokeni i ri po përgatitet. Merrni një email në momentin kur të jetë i drejtpërdrejtë.",
+    "notifyMe": "Njoftomëni",
+    "sendTo": "Ne do t'ju dërgojmë email në {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Emaili juaj",
+    "invalidEmail": "Futni një email të vlefshëm",
+    "joinedTitle": "Jeni në listë",
+    "joinedBody": "Ne do t'ju dërgojmë email në {{email}} kur tokeni të niset.",
+    "joinedBodyNoEmail": "Ne do t'ju dërgojmë email kur tokeni të niset.",
+    "failed": "Nuk mundi të ruhet. Provoni përsëri.",
+    "privacy": "Përdoret vetëm për t'ju informuar për lançimin."
+  },
+  "githubLink": {
+    "hint": "Kysohet të regjistrohuni në GitHub për të provuar se a është konti i juaj. DeHub vetëm shikon profilin publik të GitHub-it tuaj.",
+    "verified": "Verifikuar",
+    "verifiedAria": "Profil i verifikuar i GitHub-it",
+    "connect": "Kërkoni lidhjen me GitHub",
+    "disconnect": "Ndalo lidhjen me GitHub",
+    "connected": "GitHub i lidhur",
+    "disconnected": "GitHub i ndaluar",
+    "taken": "Konti i GitHub-it i tillë është në një profil të tjetër DeHub.",
+    "failed": "Nuk mund të lidhemi me GitHub. Pritni edhe një herë.",
+    "unavailable": "Verifikimi i GitHub-it është në rrugën e pritjes."
   }
 }

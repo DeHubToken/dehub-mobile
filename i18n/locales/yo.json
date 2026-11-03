@@ -129,6 +129,7 @@
     "useNamed": "Lo {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Rọra! Ìfiránṣẹ́ pọ̀ jù lọ ní ìtẹ̀léra. Gbìyànjú lẹ́ẹ̀kan sí i lẹ́yìn {{wait}}, tàbí dúró kí ẹlòmíràn fèsì.",
     "eabb5c136be4": "Ìgbìyànjú láti sọ ètò di tuntun kùnà",
     "801658c8e591": "Eto naa ko ṣẹda — jọwọ gbiyanju lẹẹkansi",
     "dd2108f1cda8": "Dúró Ìjíròrò Ohùn",
@@ -2637,7 +2638,27 @@
     "saved": "A ti fi àwọn pápá profaili pamọ́",
     "failed": "Kò fi pamọ́. Tún gbìyànjú.",
     "verified": "Ìjápọ̀ tí a ti fìdí rẹ̀ múlẹ̀",
-    "verifyHint": "Láti fìdí ìjápọ̀ múlẹ̀, fi èyí kún ojú-ìwé yẹn, lẹ́yìn náà tún fi pamọ́: {{snippet}}"
+    "verifyHint": "Láti fìdí ìjápọ̀ múlẹ̀, fi èyí kún ojú-ìwé yẹn, lẹ́yìn náà tún fi pamọ́: {{snippet}}",
+    "add": "Ṣafikun aaye",
+    "remove": "Yọkuro aaye",
+    "descriptionPresets": "Ṣafikun oju-iwe, awọn ọrọ-ara tabi ohun miiran. Awọn ọsuwọn han pẹlu awọn ọrọ-ara rẹ.",
+    "type": "Iru aaye",
+    "needsLabel": "Fun ara aaye kọọkan ni ibadandun kan",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Ilu, orilẹ-ede",
+    "presets": {
+      "website": "Oju-iwe",
+      "blog": "Iwe-itan",
+      "portfolio": "Iwe-iṣẹ",
+      "shop": "Ile itaja",
+      "podcast": "Podcast",
+      "newsletter": "Iroyin",
+      "pronouns": "Awọn ọrọ-ara",
+      "location": "Ipo",
+      "custom": "Custom",
+      "customOption": "Ibadandun custom"
+    }
   },
   "notificationFilters": {
     "title": "Ṣàlẹ̀mọ́ àwọn ìfitónilétí láti ọ̀dọ̀",
@@ -2815,6 +2836,7 @@
     "unavailable": "Kò sí nínú ẹ̀yà app yìí"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Ìpín",
     "home": "Ilé",
     "explore": "Ṣàwárí",
@@ -13533,7 +13555,11 @@
     "skippedOtherToast": "Skipped {{platforms}}: wọn kò lè gba iṣẹ́ yìí."
   },
   "builder": {
-    "stakeForAllowance": "Fi àmì-owó DeHub sí ọ̀wọ́ láti gbé ààlà ìkọ́ ojoojúmọ́ rẹ ga",
+    "modelLabel": "Àwòṣe",
+    "creditsLeft": "{{amount}} nínú kírẹ́dítì",
+    "perPrompt": "≈ {{price}} fún ìbéèrè kọ̀ọ̀kan",
+    "pricingNote": "A máa ń san ìbéèrè kọ̀ọ̀kan láti inú kírẹ́dítì rẹ ní iye owó àwòṣe pẹ̀lú àfikún 30%. A máa ń di iye tó pọ̀ jùlọ tí ìbéèrè lè ná mú nígbà tó ń ṣiṣẹ́, a sì máa ń dá apá tí a kò lò padà.",
+    "topUpCredits": "Fi kírẹ́dítì kún",
     "preview": "Àwòrán ìṣàájú",
     "openInBrowser": "Ṣí nínú ẹ̀rọ àbáwoṣùwẹ̀ẹ̀rí",
     "reload": "Tún gbé wọlé",
@@ -14573,5 +14599,52 @@
     "confirm": "Mint lori {{chain}}",
     "confirmWithCost": "Mint lori {{chain}} {{cost}}",
     "notAvailable": "A ṣe minting ni wọn ni ó ṣẹlẹ."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Ń bọ̀ láìpẹ́.",
+    "title": "Ṣíṣe ìfilọ́lẹ̀ láìpẹ́",
+    "body": "Bí wọ́n ṣe ń ra nǹkan ti di títì nígbà tí àmì tuntun náà ti wà ní ìmúrasílẹ̀. Gba ẹ̀rọ-ìbánisọ̀rọ̀ ní àsìkò tí ó bá ti wà láàyè.",
+    "notifyMe": "Sọ fún mi",
+    "sendTo": "A máa fi ímeèlì ránṣẹ́ {{email}}",
+    "emailLabel": "Ímeèlì",
+    "emailPlaceholder": "Imeeli rẹ",
+    "invalidEmail": "Tẹ imeeli ti o wulo sii",
+    "joinedTitle": "O wà lórí àtòjọ náà",
+    "joinedBody": "A máa fi ímeèlì ránṣẹ́ {{email}} nígbà tí àfihàn náà bá jáde.",
+    "joinedBodyNoEmail": "A máa fi ímeèlì ránṣẹ́ sí ọ nígbà tí àfihàn náà bá bẹ̀rẹ̀.",
+    "failed": "Mi ò lè fi ìyẹn pamọ́. Gbìyànjú lẹ́ẹ̀kan síi.",
+    "privacy": "Mo kàn máa ń sọ fún ọ nípa ìfilọ́lẹ̀ náà."
+  },
+  "githubLink": {
+    "hint": "Sọ̀rọ̀ wọlé sí GitHub láti fi hàn pé àkọọlẹ̀ náà jẹ́ ti rẹ. DeHub máa rí ìfọ̀rọ̀wérọ̀ GitHub àgbéléwò rẹ̀ nìkan.",
+    "verified": "Verified",
+    "verifiedAria": "Verified GitHub ẹgbẹ́",
+    "connect": "Kọọkọ GitHub",
+    "disconnect": "Kọọkọkọ",
+    "connected": "GitHub kọọkọ",
+    "disconnected": "GitHub kọọkọkọ",
+    "taken": "GitHub ẹgbẹ́ rẹ yìí wà nínú ẹgbẹ́ DeHub ẹgbẹ́ rẹ.",
+    "failed": "Gbọdọ̀ ṣe GitHub. Ṣe ẹgbẹ́ rẹ.",
+    "unavailable": "GitHub ẹgbẹ́ rẹ yìí ṣe ẹgbẹ́ rẹ."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} oju iwe",
+    "open": "Ṣii comic, oju iwe {{page}} ti {{total}}",
+    "flip": "Oju iwe {{page}} ti {{total}}. Tẹ lati yipada",
+    "page": "Oju iwe {{page}}",
+    "goto": "Oju iwe {{page}}",
+    "alt": "Ọrọ iyalẹnu",
+    "cards": "Padà si awọn kaadi",
+    "readAll": "Ka gbogbo oju iwe",
+    "editor": {
+      "count": "{{count}} ti {{limit}} oju iwe",
+      "coverHint": "Oju iwe 1 ni ibadandun",
+      "empty": "Ṣafikun awọn oju iwe rẹ pẹlu bọtini aworan. Oju iwe kọọkan ni akọsilẹ ati ọrọ iyalẹnu.",
+      "cover": "Ibadandun",
+      "caption": "Akọsilẹ fun oju iwe yii",
+      "alt": "Ọrọ iyalẹnu: ohun ti oju iwe naa fihani"
+    }
   }
 }

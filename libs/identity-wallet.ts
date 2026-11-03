@@ -40,6 +40,20 @@ import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("identity-wallet");
 
+/**
+ * Names the step when wallet creation stalls, so a slow password-to-phrase
+ * hand-off can be traced in logcat to the call that held it. Step names only.
+ */
+async function timedStep<T>(step: string, work: Promise<T>): Promise<T> {
+  const started = Date.now();
+  try {
+    return await work;
+  } finally {
+    const ms = Date.now() - started;
+    if (ms > 5_000) log.warn("createWallet:slow-step", { step, ms });
+  }
+}
+
 const EVM_MAP_KEY = "supabase_identity_wallet_map_v1";
 // uid -> address of a wallet whose replacement row has been written but whose
 // cleanup did not finish. Read only by retryPendingResetCleanup, which
@@ -392,7 +406,7 @@ export async function createAndSaveEvmWalletForIdentity(
   const derived = deriveFromSecret(mnemonic);
   const encrypted =
     protection.kind === "password"
-      ? await encryptString(derived.secret, protection.password)
+      ? await timedStep("encrypt", encryptString(derived.secret, protection.password))
       : await enrollBiometricUnlock(derived.ethAddress, derived.secret);
 
   // Paranoia: never "clean up" the wallet we are about to write. A retry that
@@ -417,20 +431,20 @@ export async function createAndSaveEvmWalletForIdentity(
   }
 
   if (abandoning) {
-    await replaceStoredWallet(supabaseUserId, abandoning.address, derived.ethAddress, encrypted);
+    await timedStep("replace", replaceStoredWallet(supabaseUserId, abandoning.address, derived.ethAddress, encrypted));
   } else {
-    await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
+    await timedStep("save", saveWallet(supabaseUserId, derived.ethAddress, encrypted));
   }
 
   if (abandoning) {
     // Only now. Until the upsert landed, the old wallet was still this
     // identity's wallet and these were the user's routes back to it.
-    await runResetCleanup(supabaseUserId, {
+    await timedStep("cleanup", runResetCleanup(supabaseUserId, {
       abandoned: abandoning.address.toLowerCase(),
       replacement: derived.ethAddress.toLowerCase(),
       clearOtherSeedCopies: false,
       attempts: 0,
-    });
+    }));
   }
 
   await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey });

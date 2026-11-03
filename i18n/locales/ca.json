@@ -129,6 +129,7 @@
     "useNamed": "Utilitza {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Més a poc a poc! Massa missatges seguits. Torna-ho a provar d'aquí a {{wait}} o espera que algú altre respongui.",
     "eabb5c136be4": "No s'ha pogut actualitzar el pla",
     "801658c8e591": "El pla no s'ha creat — prova-ho de nou",
     "dd2108f1cda8": "Parar Conversa de Veu",
@@ -2637,7 +2638,27 @@
     "saved": "S'han desat els camps del perfil",
     "failed": "No s'ha desat. Torna-ho a provar.",
     "verified": "Enllaç verificat",
-    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}"
+    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}",
+    "add": "Afegeix un camp",
+    "remove": "Elimina el camp",
+    "descriptionPresets": "Afegeix un lloc web, pronoms o qualsevol altra cosa. Els enllaços es mostren amb les teves xarxes socials.",
+    "type": "Tipus de camp",
+    "needsLabel": "Dona una etiqueta a cada camp personalitzat",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "ells/elles",
+    "placeholderLocation": "Ciutat, país",
+    "presets": {
+      "website": "Lloc web",
+      "blog": "Bloc",
+      "portfolio": "Cartera",
+      "shop": "Botiga",
+      "podcast": "Podcast",
+      "newsletter": "Butlletí",
+      "pronouns": "Pronombres",
+      "location": "Ubicació",
+      "custom": "Personalitzat",
+      "customOption": "Etiqueta personalitzada"
+    }
   },
   "notificationFilters": {
     "title": "Filtra les notificacions de",
@@ -2815,6 +2836,7 @@
     "unavailable": "No disponible en aquesta versió de l'aplicació"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraccions",
     "home": "Inici",
     "explore": "Explorar",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "S'ha saltat {{platforms}}: no han pogut acceptar aquesta publicació."
   },
   "builder": {
-    "stakeForAllowance": "Fes stake de tokens DeHub per augmentar el teu límit diari de construccions",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} en crèdits",
+    "perPrompt": "≈ {{price}} per petició",
+    "pricingNote": "Cada petició es paga amb els teus crèdits al cost del model més un 30%. El màxim que pot costar una petició es reté mentre s'executa i la part no utilitzada es retorna.",
+    "topUpCredits": "Recarrega crèdits",
     "preview": "Vista prèvia",
     "openInBrowser": "Obre al navegador",
     "reload": "Recarrega",
@@ -14591,5 +14617,37 @@
     "joinedBodyNoEmail": "Us enviarem un correu quan es llanci el token.",
     "failed": "No s'ha pogut guardar. Torneu a intentar-ho.",
     "privacy": "Només s'utilitza per informar-vos del llançament."
+  },
+  "githubLink": {
+    "hint": "Inicia sessió a GitHub per comprovar que el compte és teu. DeHub només veu el teu perfil públic de GitHub.",
+    "verified": "Verificat",
+    "verifiedAria": "Compte de GitHub verificat",
+    "connect": "Connecta el GitHub",
+    "disconnect": "Desconnecta",
+    "connected": "GitHub connectat",
+    "disconnected": "GitHub desconnectat",
+    "taken": "Aquest compte de GitHub ja està en un altre perfil de DeHub.",
+    "failed": "No s'ha pogut connectar a GitHub. Torna-ho a provar.",
+    "unavailable": "Aviat arribarà la verificació de GitHub."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pàgines",
+    "open": "Còmic obert, pàgina {{page}} de {{total}}",
+    "flip": "Pàgina {{page}} de {{total}}. Toca per fer la volta",
+    "page": "Pàgina {{page}}",
+    "goto": "Pàgina {{page}}",
+    "alt": "Text alternatiu",
+    "cards": "Torna a les cartes",
+    "readAll": "Llegeix totes les pàgines",
+    "editor": {
+      "count": "{{count}} de {{limit}} pàgines",
+      "coverHint": "La pàgina 1 és la portada",
+      "empty": "Afegeix les teves pàgines amb el botó de foto. Cada pàgina té un títol i text alternatiu.",
+      "cover": "Portada",
+      "caption": "Títol per a aquesta pàgina",
+      "alt": "Text alternatiu: què mostra la pàgina"
+    }
   }
 }

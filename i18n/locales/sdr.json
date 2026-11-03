@@ -129,6 +129,7 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "chatSlowDown": "धीरे चलें! लगातार बहुत ज़्यादा संदेश। {{wait}} में फिर से कोशिश करें, या किसी और के जवाब देने का इंतज़ार करें।",
     "eabb5c136be4": "خطای بروز رسانی برنامه",
     "801658c8e591": "لم يتم إنشاء الخطة — حاول مرة أخرى",
     "dd2108f1cda8": "वॉइस चैट बंद करो",
@@ -2635,7 +2636,27 @@
     "saved": "پروفائل فیلڈ سیو ہوئے گیلک",
     "failed": "سیو نی ہولک۔ فیر کوشش کر۔",
     "verified": "تصدیق کرل لنک",
-    "verifyHint": "لنک تصدیق کرے لگِن ایکے اوہ پیج میں جوڑ، فیر سیو کر: {{snippet}}"
+    "verifyHint": "لنک تصدیق کرے لگِن ایکے اوہ پیج میں جوڑ، فیر سیو کر: {{snippet}}",
+    "add": "فیلد اضافه کردن",
+    "remove": "assistant",
+    "descriptionPresets": "वेबसाइट, सर्वनाम या कुछ और भी जोड़ो। लिंक आपके सोशल के साथ दिखाते हैं।",
+    "type": "فیلد تایپ",
+    "needsLabel": "हर कस्टम फील्ड को एक लेबल दो",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "شهر، کشور",
+    "presets": {
+      "website": "وب‌سایت",
+      "blog": "بلگ",
+      "portfolio": "پورتفولیو",
+      "shop": "دکان",
+      "podcast": "پدکاست",
+      "newsletter": "نیوزلتر",
+      "pronouns": "پرونون‌ها",
+      "location": "مکان",
+      "custom": "سفارشی",
+      "customOption": "نام سفارشی"
+    }
   },
   "notificationFilters": {
     "title": "ای لوگ سے سوچنا فلٹر کر",
@@ -2813,6 +2834,7 @@
     "unavailable": "Bu app versiyasında yoxdur"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "फ़्रैक्शन",
     "home": "گھر",
     "explore": "کھوجو",
@@ -13588,7 +13610,11 @@
     "skippedOtherToast": "छोड़ दे गे {{platforms}}: ओमन ए पोस्ट ले नहीं ले सकिन."
   },
   "builder": {
-    "stakeForAllowance": "अपन रोज के बनावे के सीमा बढ़ावे लगी DeHub टोकन स्टेक करा",
+    "modelLabel": "मॉडल",
+    "creditsLeft": "{{amount}} क्रेडिट में",
+    "perPrompt": "≈ {{price}} हर प्रॉम्प्ट",
+    "pricingNote": "हर प्रॉम्प्ट रो भुगतान थांरे क्रेडिट सूं मॉडल री लागत अर 30% जोड़ने होवै। प्रॉम्प्ट चालतां बगत उणरी सबसूं घणी लागत रोकी जावै अर बच्योड़ो हिस्सो पाछो दियो जावै।",
+    "topUpCredits": "क्रेडिट टॉप अप करो",
     "preview": "प्रीव्यू",
     "openInBrowser": "ब्राउज़र में खोला",
     "reload": "फिर से लोड करा",
@@ -14626,5 +14652,48 @@
     "priceUnavailable": "Price unavailable",
     "confirm": "Mint on {{chain}}",
     "notAvailable": "ماینٹنگ اُپر یہاں یہ ابھی تک دستیاب نہیں ہے۔"
+  },
+  "tokenLaunch": {
+    "body": "بخرید بسته شده است در حالی که توکن جدید آماده می‌شود. یک ایمیل دریافت کنید در دقیقه‌ای که آنلاین می‌شود.",
+    "sendTo": "{{email}}-i email qilishimizda.",
+    "emailLabel": "پست الکترونیکی",
+    "emailPlaceholder": "پست الکترونیکی",
+    "invalidEmail": "एक मान्य ईमेल दर्ज करें",
+    "joinedTitle": "سۆزی لێکەرەوەیەکەیە",
+    "joinedBody": "{{email}}-i qeyd qeyd etibarlı olduğu zaman email göndəriləcək.",
+    "failed": "نمی‌تونم این رو ذخیره کنم. دوباره امتحان کن.",
+    "privacy": "فقط برای تو خبر دادن از راه اندازی استفاده می شود."
+  },
+  "githubLink": {
+    "hint": "GitHub-ya hesabını doğrulayın. DeHub sadece sizin GitHub profilinizi görür.",
+    "verified": "Doğrulanmış",
+    "verifiedAria": "Doğrulanmış GitHub hesabı",
+    "connect": "GitHub'a bağlan",
+    "disconnect": "Bağlantıyı kes",
+    "connected": "GitHub bağlantılı",
+    "disconnected": "GitHub bağlantısı kesildi",
+    "taken": "Oturduğunuz GitHub hesabı başka bir DeHub profilinde zaten var.",
+    "failed": "GitHub'a bağlanmaya çalışırken hata oluştu. Lütfen tekrar deneyin.",
+    "unavailable": "GitHub doğrulaması yakında gelecek."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} पन्ना",
+    "open": "Comic खोलो, पन्ना {{page}} का {{total}}",
+    "flip": "पन्ना {{page}} का {{total}}। पलटाने के लिए टैप करो",
+    "page": "पन्ना {{page}}",
+    "goto": "पन्ना {{page}}",
+    "alt": "Alt text",
+    "cards": "कार्ड पर वापस जाओ",
+    "readAll": "सभी पन्ने पढ़ो",
+    "editor": {
+      "count": "{{count}} का {{limit}} पन्ना",
+      "coverHint": "पन्ना 1 कवर है",
+      "empty": "फोटो बटन से अपने पन्ने जोड़ो। हर पन्ने को एक शीर्षक और alt text मिलता है।",
+      "cover": "कवर",
+      "caption": "इस पन्ने के लिए शीर्षक",
+      "alt": "Alt text: पन्ना क्या दिखाता है"
+    }
   }
 }

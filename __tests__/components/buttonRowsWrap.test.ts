@@ -39,7 +39,7 @@ describe("button rows wrap in longer languages", () => {
     const fontSize = Number(title.match(/fontSize: (\d+)/)?.[1]);
     const lineHeight = Number(title.match(/lineHeight: (\d+)/)?.[1]);
     expect(fontSize).toBe(22);
-    // Exo Bold needs about 1.33x its size for a full line; less clips accents
+    // The app font needs about 1.33x its size for a full line; less clips accents
     // on capitals (É, Ü, Å) and Vietnamese stacked marks.
     expect(lineHeight).toBeGreaterThanOrEqual(Math.ceil(fontSize * 1.33));
   });

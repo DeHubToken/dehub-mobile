@@ -129,6 +129,7 @@
     "useNamed": "Use {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Langsamer! Z vill Nachrichte hinteränand. Probier s i {{wait}} nomol oder wart, bis öpper anders antwortet.",
     "eabb5c136be4": "Plan konnte nicht aktualisiert werden",
     "801658c8e591": "Der Plan wurde nicht erstellt – bitte versuche es erneut",
     "dd2108f1cda8": "Stopp Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Profilfälder gspeicheret",
     "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
     "verified": "Bestätigte Link",
-    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}"
+    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}",
+    "add": "Add Feld",
+    "remove": "Entferne Feld",
+    "descriptionPresets": "Website, Pronomen oder anderes hinzufügen. Links werden mit deinen Socials angezeigt.",
+    "type": "Feldtyp",
+    "needsLabel": "Jedes benutzerdefinierte Feld mit einem Label versehen",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Stadt, Land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomen",
+      "location": "Ort",
+      "custom": "Benutzerdefiniert",
+      "customOption": "Benutzerdefiniertes Label"
+    }
   },
   "notificationFilters": {
     "title": "Benachrichtigunge filtere vo",
@@ -2815,6 +2836,7 @@
     "unavailable": "I dere Version vo de App nöd verfüegbar"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Aateil",
     "home": "Hei",
     "explore": "Entdecke",
@@ -13554,7 +13576,11 @@
     "skippedOtherToast": "Übersprungen {{platforms}}: sie chönd dä Beitrag nöd übernäh."
   },
   "builder": {
-    "stakeForAllowance": "Stake DeHub-Token, für dass du dis tägleche Bau-Limit erhöchsch",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} Guthabe",
+    "perPrompt": "≈ {{price}} pro Prompt",
+    "pricingNote": "Jede Prompt wird us dim Guthabe zum Pris vom Modell plus 30 % zahlt. De Höchstbetrag wird reserviert, solang er lauft, und de unbruuchti Teil chunnt zrugg.",
+    "topUpCredits": "Guthabe ufladä",
     "preview": "Vorschau",
     "openInBrowser": "Im Browser öffne",
     "reload": "Neu lade",
@@ -14609,5 +14635,37 @@
     "joinedBodyNoEmail": "Wir werden dir eine E-Mail schicken, wenn der Token lanciert wird.",
     "failed": "Das konnte nicht gespeichert werden. Versuche es nochmals.",
     "privacy": "Nur für die Info über die Lancierung."
+  },
+  "githubLink": {
+    "hint": "Logg dich bei GitHub ein, um zu beweisen, dass das Konto dir gehört. DeHub sieht nur dein öffentliches GitHub-Profil.",
+    "verified": "Bestätigt",
+    "verifiedAria": "Verifiziert",
+    "connect": "Verifiziertes GitHub-Konto",
+    "disconnect": "GitHub verbinden",
+    "connected": "Trennen",
+    "disconnected": "GitHub verbunden",
+    "taken": "GitHub getrennt",
+    "failed": "Dieses GitHub-Konto ist bereits mit einem anderen DeHub-Profil verbunden.",
+    "unavailable": "GitHub-Verifizierung ist bald verfügbar."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} Seiten",
+    "open": "Offener Comic, Seite {{page}} von {{total}}",
+    "flip": "Seite {{page}} von {{total}}. Tippe zum Umblättern",
+    "page": "Seite {{page}}",
+    "goto": "Seite {{page}}",
+    "alt": "Alternativtext",
+    "cards": "Zurück zu den Karten",
+    "readAll": "Alle Seiten lesen",
+    "editor": {
+      "count": "{{count}} von {{limit}} Seiten",
+      "coverHint": "Seite 1 is das Titelblatt",
+      "empty": "Füge deine Seiten mit dem Foto-Button hinzu. Jede Seite bekommt einen Titel und Alternativtext.",
+      "cover": "Titelblatt",
+      "caption": "Titel für diese Seite",
+      "alt": "Alternativtext: was die Seite zeigt"
+    }
   }
 }

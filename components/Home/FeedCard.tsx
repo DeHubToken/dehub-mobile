@@ -45,8 +45,10 @@ import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { noteProfileFeedOpen, useProfileFeedSource } from '../../libs/profileFeedOrigin';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
+import { useFeedSplitComments } from "./feedSplitComments";
 import PostStatsSheet from "../Post/stats/PostStatsSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -58,6 +60,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import ComicDeck from "./ComicDeck";
 import { useMetaGrey } from "../../theme/metaGrey";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import ArticleCover from "../article/ArticleCover";
@@ -92,6 +95,8 @@ import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import FeedGatePreview from "./FeedGatePreview";
+import UnlockReveal from "../common/UnlockReveal";
+import { nextUnlockRevealKind, type UnlockRevealKind } from "../../libs/unlockReveal";
 import FeedAudioContent from "./FeedAudioContent";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
@@ -110,6 +115,7 @@ import CashtagSheet from "./CashtagSheet";
 import Icon, { type IconName } from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge, { SoundDrift } from "../Post/SoundtrackBadge";
+import RemixCredits from "../Post/RemixCredits";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
@@ -420,6 +426,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
+  const profileFeed = useProfileFeedSource();
   const { t, i18n } = useCopy();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -808,6 +815,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
   const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
   const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
+  // A paid photo post plays its reveal over the gate before the card opens.
+  const [revealKind, setRevealKind] = useKeyedState<UnlockRevealKind | null>(postKey, null);
   const [showBountyModal, setShowBountyModal] = useKeyedState(postKey, false);
   const [showAISheet, setShowAISheet] = useKeyedState(postKey, false);
   const [showAddToFolder, setShowAddToFolder] = useKeyedState(postKey, false);
@@ -962,8 +971,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     onBeforeNavigate?.();
     hideUserProfile();
-    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail));
-  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
+    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
+  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed]);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
@@ -992,6 +1001,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+      noteProfileFeedOpen(profileFeed, tokenId);
       // Text, image and audio posts open in place on Home, under the same
       // logo bar and pill; video keeps its own page.
       if (!isVideo && openPostInFeedHost(tokenId)) return;
@@ -999,7 +1009,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed, profileFeed,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
@@ -1218,6 +1228,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
   // server-side, so links handed out now keep working after a mint.
   const shareUrl = useMemo(() => {
+    // A post with a readable slug (first ten words) shares as that link.
+    const articleSlug = (item as any).articleSlug;
+    if (typeof articleSlug === "string" && articleSlug) {
+      return `${WEBSITE_LINK || ""}/app/post/${articleSlug}`;
+    }
     const newPostId = (item as any).newPostId;
     if (rawStatus === "signed" && newPostId != null) {
       return `${WEBSITE_LINK || ""}/newpost/${newPostId}`;
@@ -1245,8 +1260,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // The store re-renders every card showing this post, this one included.
   const handlePPVSuccess = useCallback(() => {
+    if (!isVideo && galleryImages.length > 0 && !isActuallyLockedHoldings) {
+      setRevealKind(nextUnlockRevealKind());
+      return;
+    }
     markTokenUnlocked(tokenId);
-  }, [tokenId]);
+  }, [tokenId, isVideo, galleryImages, isActuallyLockedHoldings, setRevealKind]);
+  const finishReveal = useCallback(() => {
+    setRevealKind(null);
+    markTokenUnlocked(tokenId);
+  }, [tokenId, setRevealKind]);
 
   const handleBountyBadgePress = useCallback(() => {
     requireAuth?.(() => {
@@ -1254,6 +1277,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
   }, [requireAuth, setShowBountyModal]);
 
+  // Home feed on phones: comments open as the half-screen split right over
+  // the feed, the post slid up into the top half (see feedSplitComments).
+  const feedSplit = useFeedSplitComments();
+  const splitComments = !!feedSplit && !desk;
   const handleCommentPress = useCallback(() => {
     if (onCommentPressProp) {
       onCommentPressProp();
@@ -1262,11 +1289,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // sheet beside it. Same as the web feed card, which opens the room.
       handleCardPress();
     } else if (tokenId != null) {
-      // Feed comment taps open just the comments drawer over the feed;
-      // the post page only opens when the post itself is tapped.
+      // Feed comment taps open the comments over the feed; the post page
+      // only opens when the post itself is tapped.
+      if (splitComments) feedSplit?.bringToTop();
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments]);
+  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments, splitComments, feedSplit]);
 
   // The sheet opens on release; its reads can start on touch-down.
   const queryClient = useQueryClient();
@@ -1378,8 +1406,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // the only part that waits on a mint, not the whole page.
   const handleInfoPress = useCallback(() => {
     if (tokenId == null) return;
+    // The card already holds the post, so the info page paints it at once
+    // and only the extra reads (holders, sales, stats) fill in after.
+    seedPostDetail(tokenId, item);
+    warmRequest(`info:${tokenId}`, () => getNFT(tokenId));
     navigation.navigate(ScreenNames.PostInfo, { tokenId: String(tokenId) });
-  }, [navigation, tokenId]);
+  }, [navigation, tokenId, item]);
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);
@@ -1663,6 +1695,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
 
     // PPV-only locked image: blurred preview with unlock overlay (matches web ImageCard behaviour)
+    if (isActuallyLockedPPV && revealKind) {
+      const revealW = edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH;
+      const revealH = revealW * 0.75;
+      return (
+        <View className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"} style={{ height: revealH }}>
+          <SmartImage source={{ uri: galleryImages[0] }} recyclingKey={galleryImages[0]} style={{ width: "100%", height: "100%" }} contentFit="cover" priority="high" />
+          <UnlockReveal
+            kind={revealKind}
+            width={revealW}
+            height={revealH}
+            cover={<FeedGatePreview uri={lockedPreviewUri} priority="high" />}
+            onDone={finishReveal}
+          />
+        </View>
+      );
+    }
     if (isActuallyLockedPPV) {
       return (
         <Pressable
@@ -1739,6 +1787,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       );
     }
 
+    if (item.layout === "comic" && galleryImages.length > 0) {
+      return (
+        <View className={edgeMedia ? undefined : "mt-2"}>
+          <ComicDeck
+            images={galleryImages}
+            captions={item.mediaCaptions}
+            descriptions={item.mediaDescriptions}
+            title={localTitle}
+            width={edgeMedia || isMinimal ? SCREEN_WIDTH : itemWidth}
+            full={immersive}
+            onOpen={immersive ? undefined : handleCardPress}
+          />
+        </View>
+      );
+    }
+
     if (!hasMultipleImages) {
       return (
         <PostTapSurface
@@ -1790,6 +1854,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderVideoThumbnail = () => (
     <FeedScrubContext.Provider value={stage ? null : scrubBoundary.controller}>
     <FeedVideoPlayer
+      // A recycled Home cell keeps the card but gets a fresh player per post.
+      key={postKey}
       thumbnail={thumbnail}
       inlineWidth={tabletVideoWidth}
       postPage={fullContent}
@@ -2062,6 +2128,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return null;
   }
 
+  // Duet / stitch / reaction credit and counts, as on web's video card.
+  const remixCredits = isVideo && !isLive && tokenId != null ? <RemixCredits tokenId={tokenId} /> : null;
   const actionBar = showActionBar ? (
     <FeedActionBar
       liked={liked}
@@ -2106,6 +2174,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           replyPolicy={edits.replyPolicy ?? item.replyPolicy}
           forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
+          split={splitComments}
         />
       )}
 
@@ -2256,7 +2325,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
+          url={shareUrl}
           postTitle={localTitle || undefined}
         />
       )}
@@ -2347,6 +2416,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               {hasSoundtrack && !soundtrackOnMedia && <View className="mt-2"><SoundtrackBadge key={postKey} title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} isVisible={isVisible} /></View>}
               {(item as any).isQuotePost && <QuotedPostEmbed key={postKey} quotedPost={(item as any).quotedPost} quotedTokenId={(item as any).quotedTokenId} revoked={(item as any).quoteRevoked} quoteTokenId={tokenId ?? undefined} />}
               <DehubLinkCards links={dehubLinks} />
+              {remixCredits}
               <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
               <AssetRefCards refs={assetRefs} />
               {tokenId != null && !(item as any).isQuotePost && <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />}
@@ -2463,6 +2533,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               />
             )}
             <DehubLinkCards links={dehubLinks} />
+            {remixCredits}
             <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
             <AssetRefCards refs={assetRefs} />
           </>
@@ -2535,6 +2606,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             canRepost={isPublicPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
+            tokenId={tokenId ?? undefined}
             shareText={localTitle || undefined}
             quoteCount={stageQuotes}
             repostCount={Math.max(0, repostCount - stageQuotes)}
@@ -2560,6 +2632,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <DehubLinkCards links={dehubLinks} />
+        {remixCredits}
         <LinkPreviewCard key={postKey} text={captionText} statsTokenId={tokenId} />
         <AssetRefCards refs={assetRefs} />
       </>
@@ -3036,6 +3109,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {/* DeHub entity cards — stage, post, profile, community, invite, store,
           item, event, bounty. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
+      {remixCredits}
 
       {/* OG-style preview for the first outside link, when the caption didn't
           already earn one of the entity cards above. */}

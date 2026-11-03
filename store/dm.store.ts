@@ -463,6 +463,17 @@ export const dmActions = {
     );
   },
 
+  /** Put a failed optimistic message back to "sending" for a retry, where it is. */
+  retryOptimistic(conversationId: ID, tempId: string): void {
+    const list = dmState.optimisticByConversation[conversationId];
+    if (!list) return;
+    dmState.optimisticByConversation[conversationId] = list.map((m) =>
+      m._tempId === tempId
+        ? { ...m, uploadStatus: m.msgType === "media" ? ("pending" as const) : undefined, failureReason: undefined }
+        : m,
+    );
+  },
+
   /** Remove a conversation entirely from local state (after permanent delete). */
   removeConversation(conversationId: ID): void {
     delete dmState.contactsById[conversationId];

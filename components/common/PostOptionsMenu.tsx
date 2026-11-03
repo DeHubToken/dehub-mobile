@@ -166,6 +166,8 @@ export interface PostOptionsMenuProps {
    */
   onToggleSave?: () => void;
   onDownloadVideo?: () => void;
+  /** Live streams: opens the clip editor on the last minute ("Clip this moment"). */
+  onClip?: () => void;
   onRemix?: (mode: 'green-screen' | 'collab' | 'sound' | 'cut') => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
@@ -264,6 +266,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onDownloadVideo,
+  onClip,
   onRemix,
   onInfoPress,
   onAskAi,
@@ -515,7 +518,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
   const handleShare = useCallback(async () => {
     if (tokenId == null) return;
-    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+    // An article shares as its readable title link.
+    const articleSlug = typeof post?.articleSlug === "string" ? post.articleSlug : "";
+    const url = `${WEBSITE_LINK || ""}/app/post/${articleSlug || tokenId}`;
     try {
       const result = await shareWithRef({
         message: t("copy.7cbcbe364e76", { defaultValue: "Check out this post {{value1}}", value1: url }),
@@ -524,7 +529,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       if (result.action === Share.sharedAction) reportPostEvent(tokenId, "share");
     } catch {}
     onClose();
-  }, [tokenId, onClose, t]);
+  }, [tokenId, post?.articleSlug, onClose, t]);
 
   const followLabel = isFollowRequestPending
     ? t("postOptions.cancelRequest")
@@ -560,6 +565,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Bookmark / pin / post info — first, as in the web drawer. A host
               that also shows these on its action bar still passes them: the
               menu is where people look for an action by name. */}
+          {!!onClip && (
+            <OptionRow icon="Scissors" label={t("liveClips.button", { defaultValue: "Clip this moment" })}
+              onPress={() => { onClose(); onClip(); }} />
+          )}
           {!!onDownloadVideo && (
             <OptionRow icon="Download" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />

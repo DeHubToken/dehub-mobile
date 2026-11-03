@@ -129,6 +129,7 @@
     "useNamed": "{{name}} használata"
   },
   "copy": {
+    "chatSlowDown": "Lassabban! Túl sok üzenet egymás után. Próbáld újra {{wait}} múlva, vagy várd meg, hogy más is válaszoljon.",
     "eabb5c136be4": "Sikertelen a tervek frissítése",
     "801658c8e591": "A terv nem lett megalkotva — próbálja újra",
     "dd2108f1cda8": "Hagyja abba a Hangos Beszélgetést",
@@ -2637,7 +2638,26 @@
     "saved": "Profilmezők mentve",
     "failed": "Nem sikerült menteni. Próbáld újra.",
     "verified": "Ellenőrzött hivatkozás",
-    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}"
+    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}",
+    "add": "Add field",
+    "remove": "Remove field",
+    "descriptionPresets": "Add egy weboldalt, nevek vagy bármit más. A linkek a szociális média oldalaidra mutatnak.",
+    "type": "Field type",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "City, country",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Értesítések szűrése tőlük",
@@ -2815,6 +2835,7 @@
     "unavailable": "Ebben az alkalmazásverzióban nem érhető el"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Frakciók",
     "home": "Kezdőlap",
     "explore": "Felfedezés",
@@ -13540,7 +13561,11 @@
     "skippedOtherToast": "{{platforms}} kihagyva: nem tudta felvenni ezt a bejegyzést."
   },
   "builder": {
-    "stakeForAllowance": "Helyezz tétbe DeHub tokeneket, hogy megnöveld a napi build keretedet",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} kredit",
+    "perPrompt": "≈ {{price}} / kérés",
+    "pricingNote": "Minden kérés a kreditjeidből fizetődik a modell költsége plusz 30% áron. A kérés legmagasabb lehetséges költségét futás közben zároljuk, a fel nem használt részt visszaadjuk.",
+    "topUpCredits": "Kredit feltöltése",
     "preview": "Előnézet",
     "openInBrowser": "Megnyitás böngészőben",
     "reload": "Újratöltés",
@@ -14595,5 +14620,17 @@
     "joinedBodyNoEmail": "Miután elindul a token, emailben értesítünk téged.",
     "failed": "Nem sikerült menteni. Próbálja újra.",
     "privacy": "Csak azért használjuk, hogy a token indításáról értesítsünk."
+  },
+  "githubLink": {
+    "hint": "Jelentkezzen be a GitHubra, és igazolja, hogy a fiók az Öné. A DeHub csak a nyilvános GitHub-profilodat látja.",
+    "verified": "Igazolt",
+    "verifiedAria": "Igazolt GitHub-fiók",
+    "connect": "GitHub csatlakoztatása",
+    "disconnect": "Leválasztás",
+    "connected": "GitHub csatlakoztatva",
+    "disconnected": "GitHub leválasztva",
+    "taken": "Ez a GitHub-fiók már egy másik DeHub-profilban van.",
+    "failed": "Nem sikerült csatlakozni a GitHubhoz. Próbálkozz újra.",
+    "unavailable": "Hamarosan jön a GitHub-hitelesítés."
   }
 }

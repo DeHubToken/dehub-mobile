@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import MarkdownText from '../ui/MarkdownText';
 import Icon from '../ui/Icon';
+import ArticleFigure from './ArticleFigure';
 import type { ArticleLook } from '../../libs/article';
 
 type Size = 's' | 'm' | 'l';
@@ -25,6 +26,7 @@ export default function ArticleReaderBody({ body, look }: { body: string; look: 
     }).catch(() => { /* default size */ });
   }, []);
   const base = look.mono ? SIZES[size] - 2 : SIZES[size];
+  const renderImage = useCallback((src: string, caption: string, key: string) => <ArticleFigure key={key} src={src} caption={caption} look={look} />, [look]);
   return (
     <View>
       <View style={s.row}>
@@ -43,6 +45,7 @@ export default function ArticleReaderBody({ body, look }: { body: string; look: 
         content={body}
         color={look.ink2}
         accent={look.accent}
+        renderImage={renderImage}
         style={{ fontSize: base, lineHeight: Math.round(base * 1.65), fontFamily: look.font }}
       />
     </View>

@@ -1,5 +1,6 @@
 {
   "copy": {
+    "chatSlowDown": "Langsamer! Zu viele Nachrichten hintereinander. Versuch es in {{wait}} erneut oder warte, bis jemand anderes antwortet.",
     "eabb5c136be4": "Aktualisierungsversuch gescheitert",
     "801658c8e591": "Der Plan wurde nicht erstellt – versuchen Sie es bitte noch einmal",
     "dd2108f1cda8": "Sprach-Chat beenden",
@@ -2504,7 +2505,27 @@
     "saved": "Profilfelder gespeichert",
     "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
     "verified": "Bestätigter Link",
-    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}"
+    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}",
+    "add": "Feld hinzufügen",
+    "remove": "Feld entfernen",
+    "descriptionPresets": "Fügen Sie eine Website, Pronomen oder etwas anderes hinzu. Links werden in Ihren sozialen Netzwerken angezeigt.",
+    "type": "Feldtyp",
+    "needsLabel": "Geben Sie jedem benutzerdefinierten Feld eine Bezeichnung",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "sie/sie",
+    "placeholderLocation": "Stadt, Land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronomen",
+      "location": "Standort",
+      "custom": "Benutzerdefiniert",
+      "customOption": "Benutzerdefiniertes Etikett"
+    }
   },
   "notificationFilters": {
     "title": "Benachrichtigungen filtern von",
@@ -2730,6 +2751,7 @@
     "unavailable": "In dieser Version der App nicht verfügbar"
   },
   "nav": {
+    "nfts": "NFTs",
     "fractions": "Anteile",
     "home": "Startseite",
     "explore": "Entdecken",
@@ -9198,6 +9220,9 @@
     "confirmingOnChain": "Bestätige On-Chain…",
     "sending": "Sende…",
     "failedToSend": "Senden fehlgeschlagen",
+    "notSent": "Nicht gesendet",
+    "retrySend": "Erneut versuchen",
+    "discardSend": "Entfernen",
     "attachment": "Anhang",
     "dmsOpen": "DMs sind offen",
     "canSendMessages": "Sie können Nachrichten senden",
@@ -13500,7 +13525,11 @@
     "skippedOtherToast": "{{platforms}} übersprungen: Sie konnten diesen Beitrag nicht annehmen."
   },
   "builder": {
-    "stakeForAllowance": "Setze DeHub-Token ein, um dein tägliches Build-Limit zu erhöhen",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} Guthaben",
+    "perPrompt": "≈ {{price}} pro Prompt",
+    "pricingNote": "Jeder Prompt wird aus deinem Guthaben zum Preis des Modells plus 30 % bezahlt. Der Höchstbetrag eines Prompts wird während der Ausführung reserviert, der ungenutzte Teil wird zurückerstattet.",
+    "topUpCredits": "Guthaben aufladen",
     "preview": "Vorschau",
     "openInBrowser": "Im Browser öffnen",
     "reload": "Neu laden",
@@ -14605,5 +14634,17 @@
     "joinedBodyNoEmail": "Wir werden Ihnen eine E-Mail schicken, sobald der Token verfügbar ist.",
     "failed": "Das konnte nicht gespeichert werden. Versuchen Sie es erneut.",
     "privacy": "Nur um dich über den Launch zu informieren."
+  },
+  "githubLink": {
+    "hint": "Melden Sie sich bei GitHub an, um zu beweisen, dass das Konto Ihnen gehört. DeHub sieht nur Ihr öffentliches GitHub-Profil.",
+    "verified": "Verifiziert",
+    "verifiedAria": "Verifiziertes GitHub-Konto",
+    "connect": "GitHub verbinden",
+    "disconnect": "Trennen",
+    "connected": "GitHub verbunden",
+    "disconnected": "GitHub getrennt",
+    "taken": "Dieses GitHub-Konto befindet sich bereits in einem anderen DeHub-Profil.",
+    "failed": "GitHub konnte nicht verbunden werden. Versuchen Sie es erneut.",
+    "unavailable": "Die GitHub-Verifizierung kommt bald."
   }
 }

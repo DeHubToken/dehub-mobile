@@ -129,6 +129,7 @@
     "useNamed": "Använd {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Ta det lugnt! För många meddelanden i rad. Försök igen om {{wait}}, eller vänta på att någon annan svarar.",
     "eabb5c136be4": "Misslyckades med att uppdatera plan",
     "801658c8e591": "Planen skapades inte – försök igen",
     "dd2108f1cda8": "Avbryt Tal Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Profilfälten sparades",
     "failed": "Det sparades inte. Försök igen.",
     "verified": "Verifierad länk",
-    "verifyHint": "För att verifiera en länk lägger du till det här på den sidan och sparar igen: {{snippet}}"
+    "verifyHint": "För att verifiera en länk lägger du till det här på den sidan och sparar igen: {{snippet}}",
+    "add": "Lägg till fält",
+    "remove": "Ta bort fält",
+    "descriptionPresets": "Lägg till en webbplats, pronomen eller något annat. Länkar visas med dina sociala medier.",
+    "type": "Fälttyp",
+    "needsLabel": "Ge varje anpassat fält ett etikett",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "hen/hon/hon",
+    "placeholderLocation": "Stad, land",
+    "presets": {
+      "website": "Webbplats",
+      "blog": "Blogg",
+      "portfolio": "Portfölj",
+      "shop": "Butik",
+      "podcast": "Podcast",
+      "newsletter": "Nyhetsbrev",
+      "pronouns": "Pronomen",
+      "location": "Plats",
+      "custom": "Anpassat",
+      "customOption": "Anpassat etikett"
+    }
   },
   "notificationFilters": {
     "title": "Filtrera aviseringar från",
@@ -2815,6 +2836,7 @@
     "unavailable": "Inte tillgängligt i den här versionen av appen"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraktioner",
     "home": "Hem",
     "explore": "Utforska",
@@ -13539,7 +13561,11 @@
     "skippedOtherToast": "Hoppade över {{platforms}}: de kunde inte ta det här inlägget."
   },
   "builder": {
-    "stakeForAllowance": "Sätt in DeHub-tokens för att höja din dagliga byggräns",
+    "modelLabel": "Modell",
+    "creditsLeft": "{{amount}} i krediter",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Varje prompt betalas från dina krediter till modellens kostnad plus 30 %. Det mesta en prompt kan kosta reserveras medan den körs och den oanvända delen återlämnas.",
+    "topUpCredits": "Fyll på krediter",
     "preview": "Förhandsvisning",
     "openInBrowser": "Öppna i webbläsare",
     "reload": "Uppdatera",
@@ -14579,5 +14605,52 @@
     "confirm": "Mynt på {{chain}}",
     "confirmWithCost": "Mynt på {{chain}} · {{cost}}",
     "notAvailable": "Mynta på denna kedja är inte tillgänglig ännu."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kommer snart",
+    "title": "Token lanseras snart",
+    "body": "Köp är stängt medan den nya tokenen förbereds. Få ett e‑mail så snart den går live.",
+    "notifyMe": "Meddela mig",
+    "sendTo": "Vi kommer att e‑posta {{email}}",
+    "emailLabel": "E‑post",
+    "emailPlaceholder": "Din e‑post",
+    "invalidEmail": "Ange en giltig e‑post",
+    "joinedTitle": "Du är på listan",
+    "joinedBody": "Vi kommer att e‑posta {{email}} när tokenen lanseras.",
+    "joinedBodyNoEmail": "Vi kommer att e‑posta dig när tokenen lanseras.",
+    "failed": "Kunde inte spara det. Försök igen.",
+    "privacy": "Endast används för att informera dig om lanseringen."
+  },
+  "githubLink": {
+    "hint": "Logga in på GitHub för att bevisa att kontot är ditt. DeHub ser bara din publika GitHub-profil.",
+    "verified": "Verifierad",
+    "verifiedAria": "Verifierad GitHub-konto",
+    "connect": "Anslut GitHub",
+    "disconnect": "Avsluta",
+    "connected": "GitHub ansluten",
+    "disconnected": "GitHub avslutad",
+    "taken": "Det GitHub-kontot är redan på en annan DeHub-profil.",
+    "failed": "Kunde inte ansluta GitHub. Försök igen.",
+    "unavailable": "GitHub-verifiering kommer snart."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sidor",
+    "open": "Öppna komik, sida {{page}} av {{total}}",
+    "flip": "Sida {{page}} av {{total}}. Tappar för att vända",
+    "page": "Sida {{page}}",
+    "goto": "Sida {{page}}",
+    "alt": "Alternativtext",
+    "cards": "Tillbaka till korten",
+    "readAll": "Läs alla sidor",
+    "editor": {
+      "count": "{{count}} av {{limit}} sidor",
+      "coverHint": "Sida 1 är omslaget",
+      "empty": "Lägg till dina sidor med foto-knappen. Varje sida får en rubrik och alternativtext.",
+      "cover": "Omslag",
+      "caption": "Rubrik för denna sida",
+      "alt": "Alternativtext: vad sidan visar"
+    }
   }
 }

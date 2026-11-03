@@ -129,6 +129,7 @@
     "useNamed": "{{name}} nisqawan yanapachikuy."
   },
   "copy": {
+    "chatSlowDown": "Allillamanta! Achka willakuykuna qatinlla. {{wait}} qhipaman kaqmanta ruway, utaq huk runa kutichinankama suyay.",
     "eabb5c136be4": "Plan musuqyachiyqa manam atikunchu",
     "801658c8e591": "Planqa manam ruwakurqanchu — yapamanta kallpachakuy",
     "dd2108f1cda8": "Voice Chat-ta sara",
@@ -2637,7 +2638,27 @@
     "saved": "Riqsichikuy t'aqakuna waqaychasqa",
     "failed": "Manam waqaychakurqanchu. Watiqmanta ruray.",
     "verified": "Chiqaqchasqa t'inki",
-    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}"
+    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}",
+    "add": "Llaqita yapay",
+    "remove": "Llaqita qichuy",
+    "descriptionPresets": "Sitio web, pronombres o huk ima yapay. Ligazos rikukunqa sociales ñiyki.",
+    "type": "Llaqita tipo",
+    "needsLabel": "Llaqita kustamuña sapa hunan sutiyoc kachun",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Llaqta, suyu",
+    "presets": {
+      "website": "Sitio web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Tienda",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronombres",
+      "location": "Ñan",
+      "custom": "Kustamuña",
+      "customOption": "Kustamuña sutiyoc"
+    }
   },
   "notificationFilters": {
     "title": "Willakuykunata suysuy",
@@ -2815,6 +2836,7 @@
     "unavailable": "Kay app versionpi manam kanchu"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Rakikuna",
     "home": "Qallariy",
     "explore": "Maskay",
@@ -13555,7 +13577,11 @@
     "skippedOtherToast": "Saltasqa {{platforms}}: mana kay qillqasqata apayta atirqankuchu."
   },
   "builder": {
-    "stakeForAllowance": "DeHub fichaskunata churay p'unchaynin ruwana hark'ayniykita jatunchanaykipaq",
+    "modelLabel": "Modelo",
+    "creditsLeft": "{{amount}} crédito nisqapi",
+    "perPrompt": "≈ sapa mañakuypaq {{price}}",
+    "pricingNote": "Sapa mañakuyqa creditoykikunamanta modelopa chaninwan 30% yapasqawan pagakun. Aswan hatun chaninqa llamk'ashaqtin hap'isqa kan, mana llamk'achisqa partetaq kutichisqa.",
+    "topUpCredits": "Crédito yapay",
     "preview": "Ñawiriy",
     "openInBrowser": "Buscadorpi kichay",
     "reload": "Kutin cargay",
@@ -14595,5 +14621,44 @@
     "confirm": "Mint nisqapi {{chain}} nisqapi.",
     "confirmWithCost": "Mint nisqapi {{chain}} · {{cost}} nisqapi.",
     "notAvailable": "Kay cadena nisqapi minting nisqa manaraqmi kanchu."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Chayamuchkanña",
+    "title": "Token nisqayki chaskiytaqa",
+    "body": "Rantikuy pichqa kaylla, musuq token allinakuytaq. Emailta apakuway chayqa kawsaq kaykunaqa.",
+    "notifyMe": "Ama hina kaychu",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Su correo electrónico",
+    "invalidEmail": "Kamaykamaykuna p'unchaykuna q'illaykamaykuna.",
+    "joinedTitle": "Kamuykuna q'umirichisqa",
+    "joinedBodyNoEmail": "Kamaykunapaq k'uskiyki qillqamanta qillqa k'uskiyki.",
+    "failed": "Kamuykuna qhaway, mana kaptinapaq.",
+    "privacy": "Kamuykuna qhawaykunawan k'ancha k'aspiy."
+  },
+  "githubLink": {
+    "hint": "Sinqi kamarq'akuna GitHub kamarq'akuna. DeHub mana kamarq'akuna qhawaykuna kamarq'akuna qhawaykuna.",
+    "verified": "Wakichasqa",
+    "verifiedAria": "Kamachiyuwan GitHub qillqaynin",
+    "connect": "Kamuykuna GitHubnin ch'antaspa.",
+    "disconnect": "T’aqanakuy",
+    "connected": "Qhaway GitHub q'illay",
+    "disconnected": "Kamaykuna GitHub q'illaykamaykuna.",
+    "taken": "Kay GitHub q'illaykamanaqa DeHub q'illqaykampana q'illqamanta aswan.",
+    "failed": "Mana ch'aspaq GitHub. Kunti chaspaq."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "page": "Página {{page}}",
+    "goto": "Página {{page}}",
+    "cards": "Napaykamayuq tarjetaman kutiy",
+    "editor": {
+      "count": "{{count}} de {{limit}} p'unchay",
+      "coverHint": "Pacha 1 kaq iskay p'unchay",
+      "empty": "Kamuykuna p'unchaykuna q'illaykuna q'illaykuna.",
+      "cover": "K'ipana",
+      "caption": "K'ancha k'ancha q'illaynin, k'ancha k'ancha q'illaynin.",
+      "alt": "Alt text: imayna p'anqata rikuchikunman"
+    }
   }
 }

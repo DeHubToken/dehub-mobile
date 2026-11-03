@@ -129,6 +129,7 @@
     "useNamed": "使用{{name}}"
   },
   "copy": {
+    "chatSlowDown": "慢一点！连续发送的消息太多了。请在 {{wait}} 后重试，或等其他人回复。",
     "eabb5c136be4": "更新計畫失敗",
     "801658c8e591": "計劃未建立 — 請再試一次",
     "dd2108f1cda8": "停止語音聊天",
@@ -2637,7 +2638,26 @@
     "saved": "个人资料字段保存好了",
     "failed": "呒没保存好，请再试一趟。",
     "verified": "验证过个链接",
-    "verifyHint": "要验证链接，请拿搿段代码加到伊只页面，再保存一趟：{{snippet}}"
+    "verifyHint": "要验证链接，请拿搿段代码加到伊只页面，再保存一趟：{{snippet}}",
+    "add": "添加字段",
+    "remove": "删除字段",
+    "descriptionPresets": "添加网站、昵称或其他信息。链接显示社交媒体。",
+    "type": "字段类型",
+    "needsLabel": "为每个自定义字段添加标签",
+    "placeholderPronouns": "他们/他们",
+    "placeholderLocation": "城市，国家",
+    "presets": {
+      "website": "网站",
+      "blog": "博客",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "新闻通讯",
+      "pronouns": "昵称",
+      "location": "位置",
+      "custom": "自定义",
+      "customOption": "自定义标签"
+    }
   },
   "notificationFilters": {
     "title": "过滤以下来源个通知",
@@ -2815,6 +2835,7 @@
     "unavailable": "个版本个应用里呒没"
   },
   "nav": {
+    "nfts": "NFT",
     "dao": "DAO",
     "fractions": "碎片",
     "home": "主页",
@@ -13522,7 +13543,11 @@
     "skippedOtherToast": "跳过 {{platforms}}：伊们无法接收该帖子。"
   },
   "builder": {
-    "stakeForAllowance": "质押DeHub代币来提高侬每日额度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 积分",
+    "perPrompt": "≈ 每趟提示 {{price}}",
+    "pricingNote": "每趟提示侪从侬个积分里扣，金额是模型成本加 30%。运行辰光会预留单趟提示个最高费用，呒没用完个部分会退还。",
+    "topUpCredits": "充值积分",
     "preview": "预览",
     "openInBrowser": "拿浏览器打开",
     "reload": "重新加载",
@@ -14558,5 +14583,31 @@
     "confirm": "在 {{chain}} 上铸造",
     "confirmWithCost": "在 {{chain}} · {{cost}} 上铸造",
     "notAvailable": "此链上的铸造功能暂不可用。"
+  },
+  "tokenLaunch": {
+    "body": "买卖暂停，等新代币准备好。收到邮件时即刻上线。",
+    "emailPlaceholder": "你个电邮",
+    "invalidEmail": "输入有效个邮箱",
+    "joinedTitle": "侬在名单上",
+    "joinedBody": "代币上线辰光，我会给{{email}}发邮件。"
+  },
+  "githubLink": {
+    "hint": "登入 GitHub 以證明帳戶是你的。DeHub 只能看到你的公開 GitHub 簡介。",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已連結",
+    "disconnected": "GitHub 已斷開連結",
+    "taken": "這個 GitHub 帳戶已經連結到另一個 DeHub 簡歷。",
+    "failed": "連結 GitHub 失敗。再試一次。",
+    "unavailable": "GitHub 驗證功能即將推出。"
+  },
+  "comic": {
+    "chip": "漫画 · {{count}} 页",
+    "open": "打开漫画，第 {{page}} 页，共 {{total}} 页",
+    "flip": "第 {{page}} 页，共 {{total}} 页。点击翻页",
+    "cards": "回到卡牌",
+    "readAll": "读所有页面",
+    "editor": {
+      "count": "{{count}} 张 {{limit}} 页"
+    }
   }
 }

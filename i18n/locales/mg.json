@@ -129,6 +129,7 @@
     "use": "Ampiasao ity môdely ity"
   },
   "copy": {
+    "chatSlowDown": "Moramora! Hafatra be loatra misesy. Andramo indray afaka {{wait}}, na miandrasa olon-kafa hamaly.",
     "eabb5c136be4": "Nahafahalana tsy nisy natao",
     "801658c8e591": "Tsy noforonina ny drafitra — azafady mba andramo indray",
     "dd2108f1cda8": "Hatsahatra ny Voice Chat",
@@ -2637,7 +2638,26 @@
     "saved": "Voatahiry ny sahan'ny mombamomba",
     "failed": "Tsy voatahiry. Andramo indray.",
     "verified": "Rohy voamarina",
-    "verifyHint": "Mba hanamarinana rohy, ampio ity amin'io pejy io, dia tehirizo indray: {{snippet}}"
+    "verifyHint": "Mba hanamarinana rohy, ampio ity amin'io pejy io, dia tehirizo indray: {{snippet}}",
+    "remove": "Nisy fomba",
+    "descriptionPresets": "Misy toloko, tsy misy toloko.",
+    "type": "Fiteny",
+    "needsLabel": "Fomba fampiasa ny tsanganana fampiasan-kolontsaina",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "Izy no azy.",
+    "placeholderLocation": "Tany, firehana",
+    "presets": {
+      "website": "Toerana",
+      "blog": "Bloga",
+      "portfolio": "Portfolio",
+      "shop": "Mpana-panjanakana",
+      "podcast": "Podkasty",
+      "newsletter": "Fa-instagram",
+      "pronouns": "Fehezanteny",
+      "location": "Toerana",
+      "custom": "Safidy:",
+      "customOption": "Marika voafaritra"
+    }
   },
   "notificationFilters": {
     "title": "Sivano ny fampandrenesana avy amin'ny",
@@ -2815,6 +2835,7 @@
     "unavailable": "Tsy misy amin'ity kinovan'ny app ity"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Amboaram-peon-kira",
     "home": "Fandraisana",
     "explore": "Hikaroka",
@@ -13623,7 +13644,11 @@
     "skippedOtherToast": "Voaravaka {{platforms}}: Tsy azon'izy ireo natao ity lahatsoratra ity."
   },
   "builder": {
-    "stakeForAllowance": "Antsoy ny token DeHub mba hampiakarana ny fetran'ny fanamboarana isan'andro",
+    "modelLabel": "Modely",
+    "creditsLeft": "{{amount}} amin'ny crédit",
+    "perPrompt": "≈ {{price}} isaky ny fangatahana",
+    "pricingNote": "Aloa avy amin'ny crédit-nao ny fangatahana tsirairay araka ny vidin'ny modely miampy 30%. Tazonina mandritra ny fandehany ny vidiny ambony indrindra ary averina ny ampahany tsy niasa.",
+    "topUpCredits": "Ampio crédit",
     "preview": "Topi-maso",
     "openInBrowser": "Sokafy amin'ny navigatra",
     "reload": "Avereno",
@@ -14662,5 +14687,43 @@
     "priceUnavailable": "Price tsy misy",
     "confirmWithCost": "Toriteny amin'ny {{chain}}{{cost}}",
     "notAvailable": "Mbola tsy azo hazavaina ny momba ity kianjan'ny serasera ity amin'izao fotoana izao."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Misy manokana",
+    "title": "Mampitohy ny fanampiana ny token ka hatramin'ny aloha.",
+    "body": "Mampiasa tsy misy fa tsy misy ny fampiasana ny token vao aloha. Misy email ho anao fa tsy misy ny fampiasana ny token vao aloha.",
+    "notifyMe": "Hafahatra ahoana izay matetika",
+    "emailLabel": "Mailaka",
+    "invalidEmail": "Misy email valido",
+    "joinedTitle": "Misy anatin'ny lisitry ny aminao.",
+    "joinedBody": "Misaotra email a {{email}} nandray ny tokeneo.",
+    "joinedBodyNoEmail": "Misy email amin'ny fomba fampianarana amin'ny tokana.",
+    "failed": "Tsy afaka nandraikitra izany. Andramo indray.",
+    "privacy": "Misy tsy voasambatra amin'ny fampahatsiarovana."
+  },
+  "githubLink": {
+    "hint": "Mampiasa GitHub koa fahefana ny fanampiny ny akony. DeHub dia misy fahefana ho anao amin’ny GitHub profile manokana fa tsy manokana ny profile manokana.",
+    "connect": "Mampiasa GitHub",
+    "disconnect": "Atsaharo",
+    "connected": "GitHub ianareo ny endrika fampiasana",
+    "disconnected": "GitHub tsy misy fitaona",
+    "taken": "Ny endriky ny account GitHub dia misy ahoana amin’ny profile DeHub hafa.",
+    "failed": "Nanomboka ny fitahian'ny GitHub. Mifanohana ny fahatratraka."
+  },
+  "comic": {
+    "tab": "Komika",
+    "title": "Komika",
+    "chip": "Komika · {{count}} panaonkavanana",
+    "open": "Manga voalohany, taona {{page}} amin’ny {{total}}.",
+    "flip": "Tongotra {{page}} amin'ny {{total}}. Tap izy ho an'ny fahasalamana.",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Ny alahazina ny ankapobeny",
+    "cards": "Ny amin’ny katsaka",
+    "editor": {
+      "count": "{{count}} amin'ny {{limit}} taona",
+      "caption": "Misy ny loantsoinao amin'ny fotoana hafa",
+      "alt": "Misy fampahalalana: ny an'ny fanekena ny lanitra"
+    }
   }
 }

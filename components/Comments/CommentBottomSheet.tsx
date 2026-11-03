@@ -30,8 +30,7 @@ import {
   minimalTabActive,
   minimalTabStrip,
 } from "../../theme/minimal";
-import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
-import { SheetGlassFill } from "../ui/SheetGlass";
+import { SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const SHEET_FRACTION = 0.82;
@@ -276,11 +275,12 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             sheetStyle,
           ]}
         >
-          {/* Liquid glass: the feed behind is blurred, never shown sharp, so
-              playing video can't bleed through the rows of text. The inline
-              Shorts sheet sits inside the feed it would sample, so it keeps
-              the near-solid wash. */}
-          <SheetGlassFill blur={!inline} backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
+          {/* One surface top to bottom: the body is painted the same solid
+              colour as the composer bar under it (CommentSection), so the
+              list and the "type here" strip read as one drawer. The colour
+              pass gives both the same fill in every theme (Light, Minimal and
+              the canvas themes); Glass uses its page tone, as the bar does. */}
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
 
           {/* The handle and the tab row both start the swipe down — the 24dp
               handle alone was too thin a target. */}
@@ -438,7 +438,8 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: SHEET_GLASS_FILL,
+    // The composer bar's colour (CommentSection), so the two never differ.
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: SHEET_GLASS_BORDER,
   },

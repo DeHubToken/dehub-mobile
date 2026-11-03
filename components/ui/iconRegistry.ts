@@ -80,6 +80,7 @@ import CoinsIcon from "lucide-react-native/dist/esm/icons/coins";
 import CompassIcon from "lucide-react-native/dist/esm/icons/compass";
 import ComponentIcon from "lucide-react-native/dist/esm/icons/component";
 import ContactIcon from "lucide-react-native/dist/esm/icons/contact";
+import ContrastIcon from "lucide-react-native/dist/esm/icons/contrast";
 import CookieIcon from "lucide-react-native/dist/esm/icons/cookie";
 import CopyIcon from "lucide-react-native/dist/esm/icons/copy";
 import CornerDownLeftIcon from "lucide-react-native/dist/esm/icons/corner-down-left";
@@ -408,6 +409,7 @@ export const iconRegistry = {
   Compass: CompassIcon,
   Component: ComponentIcon,
   Contact: ContactIcon,
+  Contrast: ContrastIcon,
   Cookie: CookieIcon,
   Copy: CopyIcon,
   CornerDownLeft: CornerDownLeftIcon,

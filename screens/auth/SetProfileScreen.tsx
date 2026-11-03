@@ -11,6 +11,7 @@
  * account. `completeUsername` — which lets the app open — only runs on the
  * last screen, so the flow stays up until "Enter DeHub".
  */
+import { currentHold } from "../../services/usernameHold";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
@@ -119,6 +120,12 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const age = birth ? ageOn(birth) : null;
 
   const [username, setUsername] = useSurfaceDraft("screens/auth/SetProfileScreen.tsx:username", "");
+  // Came in through "Reserve now" on a free profile link: start with that name.
+  useEffect(() => {
+    const hold = currentHold();
+    if (hold && !username) setUsername(hold.username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [displayName, setDisplayName] = useSurfaceDraft("screens/auth/SetProfileScreen.tsx:displayName", "");
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);

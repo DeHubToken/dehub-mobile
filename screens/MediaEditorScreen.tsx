@@ -33,6 +33,8 @@ import { changeSelectedTextCase, type TextCase } from "../libs/editor/textCase";
  * design shows the frame at STILL_TIME; once the timeline is open (it opens
  * by itself when a video or sound is added) the page shows the playhead.
  */
+import Animated, { FadeIn, FadeInDown, FadeOutDown } from "react-native-reanimated";
+import { MOTION } from "../theme/motion";
 import React, { useLayoutEffect, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
@@ -2133,12 +2135,21 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       {/* Tool panel. A flat 260dp left a ~640dp phone about 200dp of canvas
           once the header, timeline and toolbar took their share; past 35% of
           the window the panel scrolls instead. */}
+      {/* It rises in and drops out instead of popping; switching tools
+          fades the new controls in place. */}
       {tool && (
-        <View className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1" style={{ maxHeight: Math.min(260, windowHeight * 0.35) }}>
+        <Animated.View
+          entering={FadeInDown.duration(MOTION.open)}
+          exiting={FadeOutDown.duration(MOTION.close)}
+          className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1"
+          style={{ maxHeight: Math.min(260, windowHeight * 0.35) }}
+        >
           <EditorControlGestureContext.Provider key={`${project.id}:${selectedId}:${tool}`} value={{ scope: `${project.id}:${selectedId}:${tool}`, begin: () => h.holdEdits(projectReviewSnapshotKey(project)) }}>
-            <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
+            <Animated.View entering={FadeIn.duration(MOTION.quick)} style={{ flexShrink: 1 }}>
+              <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
+            </Animated.View>
           </EditorControlGestureContext.Provider>
-        </View>
+        </Animated.View>
       )}
 
       {/* Toolbar */}

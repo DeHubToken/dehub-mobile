@@ -36,6 +36,8 @@ export interface RepostShareSheetProps {
   onCopyLink: () => void;
   /** The post's public link, for the share targets. */
   shareUrl: string;
+  /** The post's tokenId, for the share count (a readable link carries no number). */
+  tokenId?: string | number;
   /** The post's title, carried along as the share text where a target takes one. */
   shareText?: string;
   quoteCount: number;
@@ -88,6 +90,7 @@ function RepostShareSheetComponent({
   canRepost = true,
   onCopyLink,
   shareUrl,
+  tokenId,
   shareText,
   quoteCount,
   repostCount,
@@ -100,7 +103,10 @@ function RepostShareSheetComponent({
   const radius = skin?.square ? 0 : 12;
 
   // Every way out of this sheet counts as a share in the creator's stats.
-  const reportShare = useCallback(() => reportPostEvent(shareUrl.match(/\/post\/(\d+)/)?.[1], "share"), [shareUrl]);
+  const reportShare = useCallback(
+    () => reportPostEvent(tokenId != null ? String(tokenId) : shareUrl.match(/\/post\/(\d+)/)?.[1], "share"),
+    [tokenId, shareUrl],
+  );
 
   const later = useCallback((fn: () => void) => {
     onClose();

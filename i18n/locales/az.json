@@ -129,6 +129,7 @@
     "useNamed": "{{name}} istifadə edin"
   },
   "copy": {
+    "chatSlowDown": "Yavaş! Ardıcıl çox mesaj. {{wait}} sonra yenidən cəhd edin və ya başqasının cavab verməsini gözləyin.",
     "eabb5c136be4": "Planı yeniləmək mümkün olmadı",
     "801658c8e591": "Plan yaradılmayıb — yenidən cəhd edin",
     "dd2108f1cda8": "Səsli Çatı Dayandır",
@@ -2637,7 +2638,27 @@
     "saved": "Profil sahələri yadda saxlanıldı",
     "failed": "Yadda saxlanılmadı. Yenidən cəhd edin.",
     "verified": "Təsdiqlənmiş link",
-    "verifyHint": "Linki təsdiqləmək üçün bunu həmin səhifəyə əlavə edin, sonra yenidən yadda saxlayın: {{snippet}}"
+    "verifyHint": "Linki təsdiqləmək üçün bunu həmin səhifəyə əlavə edin, sonra yenidən yadda saxlayın: {{snippet}}",
+    "add": "Sahə əlavə edin",
+    "remove": "Sahəni sil",
+    "descriptionPresets": "Veb-sayt, əvəzlik və ya başqa bir şey əlavə edin. Linklər sosiallarınızla göstərir.",
+    "type": "Sahə növü",
+    "needsLabel": "Hər bir fərdi sahəyə etiket verin",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "onlar/onlar",
+    "placeholderLocation": "Şəhər, ölkə",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Bloq",
+      "portfolio": "Portfel",
+      "shop": "Mağaza",
+      "podcast": "Podkast",
+      "newsletter": "Xəbər bülleteni",
+      "pronouns": "Pronouns",
+      "location": "Mövqe",
+      "custom": "Fərdi",
+      "customOption": "Fərdi etiket"
+    }
   },
   "notificationFilters": {
     "title": "Bildirişləri süz",
@@ -2815,6 +2836,7 @@
     "unavailable": "Tətbiqin bu versiyasında mövcud deyil"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraksiyalar",
     "home": "Ana səhifə",
     "explore": "Kəşf et",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "{{platforms}}ötürüldü: bu yazını qəbul edə bilmədi."
   },
   "builder": {
-    "stakeForAllowance": "Gündəlik quraşdırma limitini artırmaq üçün DeHub tokenlərini stayk et",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} kredit",
+    "perPrompt": "≈ sorğu başına {{price}}",
+    "pricingNote": "Hər sorğu modelin dəyəri üstəgəl 30% ilə kreditlərinizdən ödənilir. Sorğunun ola biləcək ən yüksək dəyəri icra zamanı saxlanılır və istifadə olunmayan hissə geri qaytarılır.",
+    "topUpCredits": "Kredit artır",
     "preview": "Önbaxış",
     "openInBrowser": "Brauzerdə aç",
     "reload": "Yenilə",
@@ -14588,5 +14614,33 @@
     "joinedBodyNoEmail": "Sizə tokenin buraxılmasından sonra email göndərəcəyik.",
     "failed": "Bunu yaddaşda saxlamaq mümkün olmadı. Yenidən cəhd edin.",
     "privacy": "Yalnız bu ilan üçün istifadə olunur."
+  },
+  "githubLink": {
+    "hint": "Hesabın sizin olduğunu sübut etmək üçün GitHub-a daxil olun. DeHub yalnız ictimai GitHub profilinizi görür.",
+    "verified": "Təsdiqlənib",
+    "verifiedAria": "Təsdiqlənmiş GitHub hesabı",
+    "connect": "GitHub-ı qoşun",
+    "disconnect": "Əlaqəni kəs",
+    "connected": "GitHub qoşuldu",
+    "disconnected": "GitHub bağlantısı kəsildi",
+    "taken": "GitHub hesabı artıq başqa DeHub profilindədir.",
+    "failed": "GitHub-a qoşulmaq mümkün olmadı. Yenidən cəhd edin.",
+    "unavailable": "GitHub təsdiqləməsi tezliklə göndəriləcək."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} səhifə",
+    "open": "Açıq komik, {{page}} sayfa, {{total}}-ci səhifə",
+    "flip": "Səhifə {{page}}-nın {{total}}-i. Buraxmaq üçün tapın.",
+    "page": "Page {{page}}",
+    "goto": "Page {{page}}",
+    "alt": "Alt metni",
+    "cards": "Qaydağa qayıt",
+    "editor": {
+      "count": "{{count}} of {{limit}} səhifə",
+      "coverHint": "Səhifə 1 — qapagıdır.",
+      "empty": "Səhifələrinizi şəkil düyməsi ilə əlavə edin. Her bir səhifəyə başlıq və alt mətn yazın."
+    }
   }
 }

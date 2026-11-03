@@ -22,10 +22,14 @@ jest.mock('react-native', () => ({
       return { remove: jest.fn() };
     },
   },
+  useWindowDimensions: () => ({ width: 390, height: 844 }),
+  Easing: { out: (f: unknown) => f, in: (f: unknown) => f, cubic: (t: number) => t },
   Animated: {
     View: 'AnimatedView',
-    Value: class { setValue = jest.fn(); },
+    Value: class { setValue = jest.fn(); stopAnimation = jest.fn(); },
     spring: () => ({ start: jest.fn() }),
+    timing: () => ({ start: jest.fn() }),
+    parallel: () => ({ start: jest.fn() }),
   },
   PanResponder: { create: jest.fn((handlers) => ({ panHandlers: handlers })) },
 }));
@@ -241,4 +245,31 @@ it('drags a dragFromContent drawer shut from its list once the list is at the to
   pan.onUpdate({ translationY: 130 });
   pan.onEnd({ velocityY: 0 });
   expect(close).toHaveBeenCalledTimes(1);
+});
+
+it('slides an Android drawer in and keeps it up until it has slid away', () => {
+  const platform = jest.requireMock('react-native').Platform;
+  platform.OS = 'android';
+  const RN = jest.requireMock('react-native');
+  let finishOut: ((r: { finished: boolean }) => void) | null = null;
+  const parallel = RN.Animated.parallel;
+  RN.Animated.parallel = () => ({ start: (cb?: (r: { finished: boolean }) => void) => { if (cb) finishOut = cb; } });
+  try {
+    const screen = render(<GlassModal visible presentation="bottom" onClose={jest.fn()}><View /></GlassModal>);
+    const modal = () => screen.UNSAFE_getByType('Modal' as any);
+    expect(modal().props.animationType).toBe('none');
+    screen.rerender(<GlassModal visible={false} presentation="bottom" onClose={jest.fn()}><View /></GlassModal>);
+    // Still up while it slides down...
+    expect(modal().props.visible).toBe(true);
+    const { act } = jest.requireActual('@testing-library/react-native');
+    act(() => finishOut?.({ finished: true }));
+    // ...and gone once it has.
+    expect(modal().props.visible).toBe(false);
+    // Cards keep the window fade.
+    const card = render(<GlassModal visible onClose={jest.fn()}><View /></GlassModal>);
+    expect(card.UNSAFE_getByType('Modal' as any).props.animationType).toBe('fade');
+  } finally {
+    RN.Animated.parallel = parallel;
+    platform.OS = 'ios';
+  }
 });

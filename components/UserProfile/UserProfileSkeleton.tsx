@@ -37,13 +37,13 @@ const UserProfileSkeleton: React.FC<{ seed?: ProfileIdentitySeed | null }> = ({ 
             <Avatar
               uri={seedAvatar}
               name={seed?.displayName}
-              size={88}
+              size={96}
               style={{ borderWidth: 1.5, borderColor: '#18181b', backgroundColor: '#18181b' }}
             />
           ) : (
             <SkeletonBlock
               className="animate-pulse"
-              style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: colors.background }}
+              style={{ width: 96, height: 96, borderRadius: 12, borderWidth: 3, borderColor: colors.background }}
             />
           )}
           {/* Minimal's header button is a 44pt hairline outline, not a slab. */}

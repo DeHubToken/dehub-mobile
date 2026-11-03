@@ -129,6 +129,7 @@
     "useNamed": "Tumia {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Polepole! Ujumbe mwingi mfululizo. Jaribu tena baada ya {{wait}}, au subiri mtu mwingine ajibu.",
     "eabb5c136be4": "Imeshindwa kusasisha mpango",
     "801658c8e591": "Lengo hilo halikuundwa — jaribu tena",
     "dd2108f1cda8": "Acha Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Sehemu za wasifu zimehifadhiwa",
     "failed": "Haikuhifadhiwa. Jaribu tena.",
     "verified": "Kiungo kilichothibitishwa",
-    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}"
+    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}",
+    "add": "Add field",
+    "remove": "Remove field",
+    "descriptionPresets": "Kutangaza tovuti, maadili au kitu chochote. Tovuti zinazotazama zinaweza kuonyeshwa na hesabu zangu za kijamii.",
+    "type": "Field type",
+    "needsLabel": "Kuhusu kila chombo cha maelezo ya kawaida, andika jina la kawaida.",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "City, country",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronouns",
+      "location": "Location",
+      "custom": "Custom",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "Chuja arifa kutoka kwa",
@@ -2815,6 +2836,7 @@
     "unavailable": "Haipatikani katika toleo hili la programu"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Hisa",
     "home": "Nyumbani",
     "explore": "Gundua",
@@ -13537,7 +13559,11 @@
     "skippedOtherToast": "Imeruka {{platforms}}: hawakuweza kuchukua chapisho hili."
   },
   "builder": {
-    "stakeForAllowance": "Weka tokeni za DeHub ili kuongeza kikomo chako cha ujenzi cha kila siku",
+    "modelLabel": "Muundo",
+    "creditsLeft": "{{amount}} katika salio",
+    "perPrompt": "≈ {{price}} kwa kila ombi",
+    "pricingNote": "Kila ombi hulipwa kutoka kwenye salio lako kwa gharama ya muundo pamoja na 30%. Kiasi cha juu zaidi ambacho ombi linaweza kugharimu hushikiliwa linapoendeshwa na sehemu isiyotumika hurejeshwa.",
+    "topUpCredits": "Ongeza salio",
     "preview": "Onyesho la awali",
     "openInBrowser": "Fungua kwenye kivinjari",
     "reload": "Pakia upya",
@@ -14577,5 +14603,32 @@
     "confirm": "Mint kwenye {{chain}}",
     "confirmWithCost": "Mint kwenye {{chain}} · {{cost}}",
     "notAvailable": "Uwekaji picha kwenye mnyororo huu bado haupatikani."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Inakuja hivi karibuni",
+    "title": "Token itakazoanzishwa hivi karibuni",
+    "body": "Ununaji umefungwa wakati token mpya inajiandaa. Pata barua pepe mara tu itakapokuwa hai.",
+    "notifyMe": "Nijulishe",
+    "sendTo": "Tutawasiliana kwa barua pepe {{email}}",
+    "emailLabel": "Barua pepe",
+    "emailPlaceholder": "Barua pepe yako",
+    "invalidEmail": "Weka barua pepe sahihi",
+    "joinedTitle": "Upo kwenye orodha",
+    "joinedBody": "Tutawasiliana kwa barua pepe {{email}} wakati token itakapozinduliwa.",
+    "joinedBodyNoEmail": "Tutakutumia barua pepe wakati token itakapozinduliwa.",
+    "failed": "Hakuwezekani kuhifadhi hilo. Jaribu tena.",
+    "privacy": "Inatumika tu kukujulisha kuhusu uzinduzi."
+  },
+  "githubLink": {
+    "hint": "Ingia kwenye GitHub ili kuthibitisha kuwa akaunti ni yako. DeHub inaona tu profili yako ya umma ya GitHub.",
+    "verified": "Tajiri",
+    "verifiedAria": "Kuhusu akaunti ya GitHub iliyeshawekesha (verified)",
+    "connect": "Kutoka GitHub",
+    "disconnect": "Ondoa",
+    "connected": "GitHub imetungajiwa",
+    "disconnected": "GitHub imekopwa",
+    "taken": "Hesabu ya GitHub hiyo imeandikwa katika profaili ya DeHub ya nyingine.",
+    "failed": "Hakuwezi kuunganisha GitHub. Ubaki na kufanya tena.",
+    "unavailable": "GitHub verification itatokea baadaye."
   }
 }

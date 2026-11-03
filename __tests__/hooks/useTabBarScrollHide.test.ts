@@ -66,7 +66,7 @@ describe("useTabBarScrollHide", () => {
 
 describe("profile pages carry the home nav", () => {
   it("own profile renders the bar and drives it from every tab", () => {
-    expect(read("screens/ProfileScreen.tsx").match(/<StandaloneTabBar \/>/g)).toHaveLength(2);
+    expect(read("screens/ProfileScreen.tsx").match(/<StandaloneTabBar \/>/g)).toHaveLength(3);
     const tabs = read("components/Profile/ProfileTabs.tsx");
     // Every tab gets a handler: the UI-thread one on the Reanimated lists, the
     // plain one where a plain ScrollView or FlatList can render.

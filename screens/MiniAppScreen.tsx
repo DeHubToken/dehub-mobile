@@ -57,6 +57,7 @@ import {
   mintMiniAppToken,
   recordMiniAppOpen,
   recordMiniAppPayment,
+  recordMiniAppTestPayment,
 } from "../services/miniapps.service";
 import { payPostQuota } from "../services/post-quota-payment";
 import { useFarcasterHost } from "../libs/miniapp/farcaster-host";
@@ -374,6 +375,24 @@ export default function MiniAppScreen() {
           busy.current = true;
           try {
             const wallet = `${app.ownerWallet.slice(0, 6)}…${app.ownerWallet.slice(-4)}`;
+            // Test mode: the developer opening their own app pays nothing for real.
+            if (user?.walletAddress && user.walletAddress.toLowerCase() === app.ownerWallet.toLowerCase()) {
+              const confirmedTest = await confirm(
+                `${t("miniApps.pay.testBadge")} · ${t("miniApps.pay.title", { name: app.name })}`,
+                `${request.amount.toLocaleString()} ${tokenLabel()}${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.testBody")}`,
+                t("miniApps.pay.confirm", { amount: request.amount.toLocaleString() }),
+              );
+              if (!confirmedTest) return fail("rejected", "The user declined to pay.");
+              const testSession = await getAuthToken();
+              if (!testSession) return fail("signin", "Sign in to DeHub first.");
+              const tested = await recordMiniAppTestPayment(testSession, env.SUPABASE_URL, {
+                slug: app.slug,
+                amount: request.amount,
+                memo: request.memo,
+              });
+              toastSuccess(t("miniApps.pay.testSent", { amount: tested.amount }));
+              return ok(tested);
+            }
             const confirmed = await confirm(
               t("miniApps.pay.title", { name: app.name }),
               `${request.amount.toLocaleString()} ${tokenLabel()}${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.body", { wallet })}`,
@@ -413,7 +432,7 @@ export default function MiniAppScreen() {
           return fail("unsupported", `${req.method} is not supported here.`);
       }
     },
-    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage, addAppFlow, confirm, t],
+    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage, addAppFlow, confirm, t, user],
   );
 
   /** Keep the WebView on the app's own host; everything else goes to the browser. */

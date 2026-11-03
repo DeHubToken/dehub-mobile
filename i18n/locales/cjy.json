@@ -129,6 +129,7 @@
     "use": "使用此模板"
   },
   "copy": {
+    "chatSlowDown": "慢一点！连续发送的消息太多了。请在 {{wait}} 后重试，或等其他人回复。",
     "eabb5c136be4": "更新计划失败",
     "801658c8e591": "计划未创建——请重试",
     "dd2108f1cda8": "停止语音聊天",
@@ -2637,7 +2638,26 @@
     "saved": "个人资料字段已保存",
     "failed": "没有保存成功，请再试一次。",
     "verified": "已验证的链接",
-    "verifyHint": "要验证链接，请把这段代码加到那个页面，然后再保存一次：{{snippet}}"
+    "verifyHint": "要验证链接，请把这段代码加到那个页面，然后再保存一次：{{snippet}}",
+    "add": "添加字段",
+    "remove": "删除字段",
+    "descriptionPresets": "添加网站、代词或其他内容。链接将显示在你的社交媒体中。",
+    "type": "字段类型",
+    "needsLabel": "为每个自定义字段添加标签",
+    "placeholderPronouns": "他们/他们的",
+    "placeholderLocation": "城市、国家",
+    "presets": {
+      "website": "网站",
+      "blog": "博客",
+      "portfolio": "作品集",
+      "shop": "商店",
+      "podcast": "播客",
+      "newsletter": "新闻简报",
+      "pronouns": "代词",
+      "location": "位置",
+      "custom": "自定义",
+      "customOption": "自定义标签"
+    }
   },
   "notificationFilters": {
     "title": "过滤以下来源的通知",
@@ -2815,6 +2835,7 @@
     "unavailable": "这个版本的应用里没有"
   },
   "nav": {
+    "nfts": "NFT",
     "dao": "DAO",
     "fractions": "碎片",
     "home": "家",
@@ -13568,7 +13589,11 @@
     "skippedOtherToast": "已跳过{{platforms}}：他们无法接受此帖子。"
   },
   "builder": {
-    "stakeForAllowance": "质押DeHub代币以提高你每日的构建额度",
+    "modelLabel": "模型",
+    "creditsLeft": "{{amount}} 积分",
+    "perPrompt": "≈ 每回提示 {{price}}",
+    "pricingNote": "每回提示都从你的积分里扣，金额是模型成本加 30%。运行时会预留一回提示的最高费用，没用完的部分会退回来。",
+    "topUpCredits": "充值积分",
     "preview": "预览",
     "openInBrowser": "在浏览器中打开",
     "reload": "重新加载",
@@ -14620,5 +14645,37 @@
     "joinedBodyNoEmail": "我们将在代币上市时通过邮件通知您。",
     "failed": "无法保存。请重试。",
     "privacy": "仅用于通知您发布的信息。"
+  },
+  "githubLink": {
+    "hint": "请登录 GitHub 以证明账户归属。DeHub 仅能看到您的公开 GitHub 个人资料。",
+    "verified": "验证通过",
+    "verifiedAria": "已验证的 GitHub 账户",
+    "connect": "连接 GitHub",
+    "disconnect": "断开连接",
+    "connected": "GitHub 已连接",
+    "disconnected": "GitHub 断开连接",
+    "taken": "这个 GitHub 账户已经绑定在另一个 DeHub 个人资料上。",
+    "failed": "无法连接 GitHub。请重试。",
+    "unavailable": "GitHub 验证功能即将推出。"
+  },
+  "comic": {
+    "tab": "漫画",
+    "title": "漫画",
+    "chip": "漫画 · {{count}}页",
+    "open": "打开漫画，第{{page}}页/{{total}}页",
+    "flip": "第{{page}}页/{{total}}页。点击翻页",
+    "page": "第{{page}}页",
+    "goto": "第{{page}}页",
+    "alt": "替代文本",
+    "cards": "返回卡片",
+    "readAll": "阅读所有页",
+    "editor": {
+      "count": "{{count}}/{{limit}}页",
+      "coverHint": "第一页是封面",
+      "empty": "用照片按钮添加你的页码。每页都有一个标题和替代文本。",
+      "cover": "封面",
+      "caption": "此页的标题",
+      "alt": "替代文本：此页展示的内容"
+    }
   }
 }

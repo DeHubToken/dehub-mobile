@@ -129,6 +129,7 @@
     "useNamed": "Gebruik {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Stadig! Te veel boodskappe agter mekaar. Probeer weer oor {{wait}}, of wag dat iemand anders antwoord.",
     "eabb5c136be4": "Mislukte om plan by te werk",
     "801658c8e591": "Die plan is nie geskep nie — probeer weer",
     "dd2108f1cda8": "Sta op Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Profielvelde gestoor",
     "failed": "Dit is nie gestoor nie. Probeer weer.",
     "verified": "Geverifieerde skakel",
-    "verifyHint": "Om 'n skakel te verifieer, voeg dit by daardie bladsy en stoor weer: {{snippet}}"
+    "verifyHint": "Om 'n skakel te verifieer, voeg dit by daardie bladsy en stoor weer: {{snippet}}",
+    "add": "Voeg veld by",
+    "remove": "Verwyder veld",
+    "descriptionPresets": "Voeg 'n webwerf, voornaamwoorde of iets anders by. Maak kontak met jou sosiale netwerke.",
+    "type": "Veldtipe",
+    "needsLabel": "Gee elke pasgemaakte veld 'n etiket",
+    "placeholderLink": "yourite.com",
+    "placeholderPronouns": "hulle/hulle",
+    "placeholderLocation": "Stad, land",
+    "presets": {
+      "website": "Webwerf",
+      "blog": "Blog",
+      "portfolio": "Portefeulje",
+      "shop": "Winkel",
+      "podcast": "Podsending",
+      "newsletter": "Nuusbrief",
+      "pronouns": "Voornaamwoorde",
+      "location": "Ligging",
+      "custom": "Pasmaak",
+      "customOption": "Pasmaak etiket"
+    }
   },
   "notificationFilters": {
     "title": "Filter kennisgewings van",
@@ -2815,6 +2836,7 @@
     "unavailable": "Nie beskikbaar in hierdie weergawe van die app nie"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraksies",
     "home": "Tuis",
     "explore": "Verken",
@@ -13661,7 +13683,11 @@
     "skippedOtherToast": "Slaan {{platforms}}: hulle kon nie hierdie pos neem nie."
   },
   "builder": {
-    "stakeForAllowance": "Staak DeHub-tekens om jou daaglikse boulimiet te verhoog",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} in krediete",
+    "perPrompt": "≈ {{price}} per opdrag",
+    "pricingNote": "Elke opdrag word uit jou krediete betaal teen die model se koste plus 30%. Die meeste wat 'n opdrag kan kos, word gehou terwyl dit loop, en die ongebruikte deel word terugbesorg.",
+    "topUpCredits": "Laai krediete aan",
     "preview": "Voorskou",
     "openInBrowser": "Maak in blaaier oop",
     "reload": "Herlaai",
@@ -14716,5 +14742,37 @@
     "joinedBodyNoEmail": "Ons sal jou e-pos wanneer die token geloods word.",
     "failed": "Kon dit nie stoor nie. Probeer weer.",
     "privacy": "Slegs gebruik om jou van die bekendstelling in te lig."
+  },
+  "githubLink": {
+    "hint": "Teken in op GitHub om te bewys dat die rekening joune is. DeHub sien slegs jou publieke GitHub-profiel.",
+    "verified": "Geverifieer",
+    "verifiedAria": "Geverifieerde GitHub-rekening",
+    "connect": "Koppel GitHub",
+    "disconnect": "Ontkoppel",
+    "connected": "GitHub verbind",
+    "disconnected": "GitHub ontkoppel",
+    "taken": "Die GitHub-rekening is reeds op 'n ander DeHub-profiel.",
+    "failed": "Kon nie GitHub koppel nie. Probeer weer.",
+    "unavailable": "GitHub is soon."
+  },
+  "comic": {
+    "tab": "Komiks",
+    "title": "Komiks",
+    "chip": "Komiks · {{count}} bladsye",
+    "open": "Open komiks, bladsy {{page}} van {{total}}",
+    "flip": "Bladsy {{page}} van {{total}}. Tik om te draai",
+    "page": "Bladsy {{page}}",
+    "goto": "Bladsy {{page}}",
+    "alt": "Alt-teks",
+    "cards": "Terug na kaarte",
+    "readAll": "Lees al die bladsye",
+    "editor": {
+      "count": "{{count}} van {{limit}} bladsye",
+      "coverHint": "Bladsy 1 is die voorblad",
+      "empty": "Voeg jou bladsye by met die foto-knoppie. Elke bladsy kry 'n onderskrif en alt-teks.",
+      "cover": "Voorblad",
+      "caption": "Onderskrif vir hierdie bladsy",
+      "alt": "Alt-teks: wat die bladsy wys"
+    }
   }
 }

@@ -205,11 +205,17 @@ export const DeepLinkPaths = {
   // Content — dehub.io/app/post/:tokenId
   POST: 'app/post/:tokenId',
   POST_INFO: 'app/post/:tokenId/info',
+  // Duets and reactions of one video — web's DuetsPage and PostReactionsPage.
+  POST_DUETS: 'app/post/:tokenId/duets',
+  POST_REACTIONS: 'app/post/:tokenId/reactions',
 
   // An off-chain post's own slug — dehub.io/newpost/:newPostId. Top-level,
   // like the canonical share form web hands out. PostResolverScreen resolves
   // it to a tokenId through GET /newpost/:n.
   NEWPOST: 'newpost/:newPostId',
+
+  // A posted live clip — dehub.io/clip/:clipId. Resolved to its Short.
+  CLIP: 'clip/:clipId',
 
   // Legacy content paths (backward compat)
   LEGACY_STREAM: 'stream/:videoId',
@@ -288,6 +294,9 @@ export const DeepLinkPaths = {
   // Fraction marketplace — dehub.io/app/fractions. Web answers the bare
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
+
+  // NFT market — dehub.io/nfts (bare, like web).
+  NFTS: 'nfts',
 
   // AI agents — dehub.io/app/agents; the bare /agents is rewritten onto it.
   AGENTS: 'app/agents',
@@ -391,6 +400,28 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             },
           },
 
+          // URL: dehub.io/app/post/:tokenId/duets and /reactions
+          [ScreenNames.RemixList]: {
+            path: DeepLinkPaths.POST_DUETS,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+          [ScreenNames.RemixReactions]: {
+            path: DeepLinkPaths.POST_REACTIONS,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // URL: dehub.io/clip/:clipId — a live clip, opened as its Short.
+          [ScreenNames.PostResolverClip]: {
+            path: DeepLinkPaths.CLIP,
+            parse: {
+              clipId: (clipId: string) => clipId,
+            },
+          },
+
           // Off-chain post slug. Same resolver component; it sees newPostId
           // instead of tokenId and resolves through the API first.
           [ScreenNames.PostResolverNewPost]: {
@@ -489,6 +520,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Builder]: DeepLinkPaths.BUILDER,
 
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
+
+          [ScreenNames.NftMarket]: DeepLinkPaths.NFTS,
 
           [ScreenNames.Agents]: DeepLinkPaths.AGENTS,
 
@@ -649,7 +682,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare', 'nfts']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });
@@ -731,6 +764,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       logger.info('Sign-in page came back to a fresh launch; opening sign-in to finish it');
       return signInState();
     }
+    // Verified GitHub (components/Profile/GithubLinkRow) comes back here; the
+    // in-app browser that opened GitHub already read it.
+    if (segments[0] === 'github-connected') return undefined;
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path: withoutFragment(path) });
       return undefined;
@@ -901,6 +937,8 @@ export const ShareLinks = {
     `${SHARE_BASE}/accounts?handle=${encodeURIComponent(handle)}`,
   /** Fraction marketplace — dehub.io/app/fractions */
   fractions: () => `${SHARE_BASE}/app/fractions`,
+  /** NFT market — dehub.io/nfts */
+  nfts: () => `${SHARE_BASE}/nfts`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,

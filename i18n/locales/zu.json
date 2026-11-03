@@ -129,6 +129,7 @@
     "useNamed": "Sebenzisa {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Phola! Imilayezo eminingi kakhulu ilandelana. Zama futhi ngemuva kwe-{{wait}}, noma ulinde omunye aphendule.",
     "eabb5c136be4": "Ukubuyekeza uhlelo kwehlulekile",
     "801658c8e591": "Lengo liliyopigwa mbali — tafuta tena",
     "dd2108f1cda8": "Misa i-Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Izinkambu zephrofayela zilondoloziwe",
     "failed": "Akulondolozwanga. Zama futhi.",
     "verified": "Isixhumanisi esiqinisekisiwe",
-    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}"
+    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}",
+    "add": "Engeza insimu",
+    "remove": "Susa insimu",
+    "descriptionPresets": "Engeza iwebhusayithi, izinombolo zesayithi noma okunye. Izixhumanisi zibonakala kunye nezinhlangano zakho zesocial media.",
+    "type": "Uhlobo lwesinsimu",
+    "needsLabel": "Nikeza insimu ngayinye yesigubhu ilebula",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Idolobha, izwe",
+    "presets": {
+      "website": "Iwebhusayithi",
+      "blog": "Ibhulogi",
+      "portfolio": "Ifolofolio",
+      "shop": "Ivenkile",
+      "podcast": "Ipodikasi",
+      "newsletter": "Inewslethi",
+      "pronouns": "Izinombolo zesayithi",
+      "location": "Indawo",
+      "custom": "Yesigubhu",
+      "customOption": "Ilebula lesigubhu"
+    }
   },
   "notificationFilters": {
     "title": "Hlunga izaziso ezivela ku-",
@@ -2815,6 +2836,7 @@
     "unavailable": "Ayitholakali kule nguqulo ye-app"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Izabelo",
     "home": "Ekhaya",
     "explore": "Hlola",
@@ -13563,7 +13585,11 @@
     "skippedOtherToast": "Yeqa {{platforms}}: abakwazanga ukuthatha le phosti."
   },
   "builder": {
-    "stakeForAllowance": "Faka amathokheni e-DeHub ukwenyusa umkhawulo wakho wokwakha wansuku zonke",
+    "modelLabel": "Imodeli",
+    "creditsLeft": "{{amount}} kumakhredithi",
+    "perPrompt": "≈ {{price}} ngomyalelo ngamunye",
+    "pricingNote": "Umyalelo ngamunye ukhokhelwa ngamakhredithi akho ngenani lemodeli kanye no-30%. Inani eliphezulu lomyalelo libanjwa ngesikhathi lisebenza futhi ingxenye engasetshenzisiwe iyabuyiselwa.",
+    "topUpCredits": "Faka amakhredithi",
     "preview": "Ukubuka kuqala",
     "openInBrowser": "Vula kusiphequluli",
     "reload": "Layisha kabusha",
@@ -14603,5 +14629,50 @@
     "confirm": "Iminti ku- {{chain}}",
     "confirmWithCost": "Iminti ku- {{chain}} · {{cost}}",
     "notAvailable": "Ukuphawula kulolu chungechunge akutholakali okwamanje."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Kuyeza maduzane",
+    "title": "Ukwethulwa kwethokheni maduzane",
+    "body": "Ukuthenga kuvaliwe ngenkathi ithokheni entsha ilungiswa. Thola i-imeyili uma iqala ukusebenza.",
+    "notifyMe": "Ngazise",
+    "sendTo": "Sizothumela i-imeyili ku- {{email}}",
+    "emailLabel": "I-imeyili",
+    "emailPlaceholder": "Ikheli lakho lapha",
+    "invalidEmail": "Faka i-imeyili evumelekile",
+    "joinedTitle": "Usohlwini",
+    "joinedBody": "Sizothumela i-imeyili ku- {{email}} lapho kwethulwa ithokheni.",
+    "joinedBodyNoEmail": "Sizokuthumela i-imeyili uma ithokheni iqaliswa.",
+    "failed": "Ayikwazanga ukukugcina lokho. Zama futhi.",
+    "privacy": "Kuvame ukukutshela kuphela ngokuqaliswa."
+  },
+  "githubLink": {
+    "hint": "Ngena ku-GitHub ukuze uqinisekise ukuthi i-akhawunti iyeyakho. I-DeHub ibona kuphela iprofayili yakho ye-GitHub eyahlukaniselwe.",
+    "verified": "Kuqinisekisiwe",
+    "verifiedAria": "I-akhawunti ye-GitHub eqinisekisiwe",
+    "connect": "Xhuma i-GitHub",
+    "disconnect": "Ndisulule",
+    "connected": "I-GitHub ixhumile",
+    "disconnected": "I-GitHub indisulule",
+    "taken": "Leyo akhawunti ye-GitHub isivele iku-DeHub profile enye.",
+    "failed": "Ayikwazanga ukuxhuma i-GitHub. Zama futhi.",
+    "unavailable": "Ukuqinisekiswa kwe-GitHub kuzoza ngakusasa."
+  },
+  "comic": {
+    "tab": "i-comic",
+    "title": "i-comic",
+    "open": "Vula ikhomiki, ikhasi {{page}} kuka-{{total}}",
+    "page": "Igama lamapage {{page}}",
+    "goto": "Igama lamapage {{page}}",
+    "alt": "Ukubhala ukuthetho",
+    "cards": "Kuqala kwamabhunu",
+    "readAll": "Ukubona ukhulu kwezinye zonke izinyango",
+    "editor": {
+      "count": "{{count}} of {{limit}} iphakathi",
+      "coverHint": "Iyalo eMoto",
+      "empty": "Engeza amapheji akho nge-button yefoto. Ipheji ngayinye ifumana i-caption ne-alt text.",
+      "cover": "Ikhava",
+      "caption": "Isihloko saleli khasi",
+      "alt": "Alt text: okuthiwa ikhasi libonisa"
+    }
   }
 }

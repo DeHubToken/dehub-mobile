@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { BackHandler, PanResponder, Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { MOTION } from "../../theme/motion";
 import { useFocusEffect } from "@react-navigation/native";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
@@ -37,20 +38,23 @@ function Sheet({ onClose, grab, children }: PageDrawerProps) {
   const { height } = useWindowDimensions();
   const translateY = useSharedValue(height);
   const backdrop = useSharedValue(0);
-  // The page behind blurred, as every other drawer has it: without it the
-  // sheet's wash was all that stood between its rows and the page.
-  const blur = useSheetBackdrop();
+  // The sheet covers all but a thin strip at the top, so the page behind gets
+  // the plain dim, not a live blur. On Android the blur re-samples the whole
+  // page on every frame anything in the window draws, so scrolling this list
+  // paid for a full-screen blur nobody could see (about 1 in 3 frames late
+  // on a Galaxy S24+).
+  const blur = useSheetBackdrop(false);
 
   useEffect(() => {
-    translateY.value = withTiming(0, { duration: 300, easing: Easing.out(Easing.cubic) });
-    backdrop.value = withTiming(1, { duration: 250 });
+    translateY.value = withTiming(0, { duration: MOTION.open, easing: Easing.out(Easing.cubic) });
+    backdrop.value = withTiming(1, { duration: MOTION.backdropIn });
     // Mount-only: the sheet slides up once.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const close = useCallback(() => {
-    backdrop.value = withTiming(0, { duration: 180 });
-    translateY.value = withTiming(height, { duration: 220, easing: Easing.in(Easing.cubic) }, (done) => {
+    backdrop.value = withTiming(0, { duration: MOTION.backdropOut });
+    translateY.value = withTiming(height, { duration: MOTION.close, easing: Easing.in(Easing.cubic) }, (done) => {
       if (done) runOnJS(onClose)();
     });
   }, [backdrop, translateY, height, onClose]);

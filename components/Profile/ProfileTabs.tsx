@@ -160,7 +160,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         key: route.key,
         label: route.title,
         icon: route.icon,
-        count: route.key === "dislikes" ? dislikesCount : (counts as Record<string, number | undefined>)[route.key] ?? 0,
+        count: route.key === "dislikes" ? dislikesCount : (counts as Record<string, number | undefined>)[route.key] ?? (route.key === "fractions" ? undefined : 0),
       })),
     [counts, routes, dislikesCount],
   );

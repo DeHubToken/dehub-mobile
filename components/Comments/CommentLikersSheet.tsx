@@ -56,6 +56,8 @@ interface CommentLikersSheetProps {
   visible: boolean;
   onClose: () => void;
   commentId: number | string | null;
+  /** Where the likers come from; post comments read the DeHub API. */
+  loadPage?: typeof getCommentLikers;
 }
 
 const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => void }> = memo(
@@ -99,6 +101,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   visible,
   onClose,
   commentId,
+  loadPage,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -126,7 +129,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
       if (pageNum === 0) setLoading(true);
       else setLoadingMore(true);
       try {
-        const res = await getCommentLikers({ commentId, page: pageNum, limit: PAGE_LIMIT });
+        const res = await (loadPage ?? getCommentLikers)({ commentId, page: pageNum, limit: PAGE_LIMIT });
         setCanView(res.canViewLikers !== false);
         setTotalCount(res.pagination?.totalCount ?? res.data.length);
         if (pageNum === 0) setAnonymousCount(res.anonymousBadgeHolderCount ?? 0);
@@ -142,7 +145,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
         setLoadingMore(false);
       }
     },
-    [commentId],
+    [commentId, loadPage],
   );
 
   useEffect(() => {

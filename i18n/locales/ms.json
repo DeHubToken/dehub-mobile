@@ -129,6 +129,7 @@
     "useNamed": "Gunakan {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Perlahan sikit! Terlalu banyak mesej berturut-turut. Cuba lagi dalam {{wait}}, atau tunggu orang lain membalas.",
     "eabb5c136be4": "Gagal memperbarui rencana",
     "801658c8e591": "Rencana tidak dicipta — sila cuba lagi",
     "dd2108f1cda8": "Hentikan Sembang Suara",
@@ -2637,7 +2638,27 @@
     "saved": "Medan profil disimpan",
     "failed": "Tidak disimpan. Cuba lagi.",
     "verified": "Pautan disahkan",
-    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}"
+    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}",
+    "add": "Tambah medan",
+    "remove": "Buang medan",
+    "descriptionPresets": "Tambah laman web, kata ganti atau apa pun yang lain. Pautan ditunjukkan dengan media sosial anda.",
+    "type": "Jenis medan",
+    "needsLabel": "Berikan setiap medan tersuai label",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Bandar, negara",
+    "presets": {
+      "website": "Laman Web",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Kedai",
+      "podcast": "Podcast",
+      "newsletter": "Surat Berita",
+      "pronouns": "Kata Ganti",
+      "location": "Lokasi",
+      "custom": "Tersuai",
+      "customOption": "Label tersuai"
+    }
   },
   "notificationFilters": {
     "title": "Tapis pemberitahuan daripada",
@@ -2815,6 +2836,7 @@
     "unavailable": "Tidak tersedia dalam versi aplikasi ini"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Pecahan",
     "home": "Laman Utama",
     "explore": "Terokai",
@@ -13792,7 +13814,11 @@
     "skippedOtherToast": "Dilangkau {{platforms}}: mereka tidak dapat menerima hantaran ini."
   },
   "builder": {
-    "stakeForAllowance": "Pertaruhkan token DeHub untuk menaikkan had binaan harian anda",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} dalam kredit",
+    "perPrompt": "≈ {{price}} setiap gesaan",
+    "pricingNote": "Setiap gesaan dibayar daripada kredit anda pada kos model ditambah 30%. Kos maksimum gesaan ditahan semasa ia berjalan dan bahagian yang tidak digunakan dipulangkan.",
+    "topUpCredits": "Tambah nilai kredit",
     "preview": "Pratonton",
     "openInBrowser": "Buka dalam pelayar",
     "reload": "Muat semula",
@@ -14832,5 +14858,47 @@
     "confirm": "Mint pada {{chain}}",
     "confirmWithCost": "Mint pada {{chain}} · {{cost}}",
     "notAvailable": "Percetakan pada rantai ini belum tersedia lagi."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Segera akan datang",
+    "title": "Token pelancaran akan segera",
+    "body": "Belanjaan ditutup sementara token baru sedang disediakan. Dapatkan e-mel segera apabila ia dilancarkan.",
+    "notifyMe": "Beritahu saya",
+    "sendTo": "Kami akan menghantar e-mel kepada {{email}}.",
+    "invalidEmail": "Masukkan email yang sah.",
+    "joinedTitle": "Anda ada dalam senarai.",
+    "joinedBody": "Kami akan menghantar email kepada {{email}} apabila token dilancarkan.",
+    "joinedBodyNoEmail": "Kami akan menghantar email kepada anda apabila token dilancarkan.",
+    "failed": "Tidak dapat menyimpan itu. Coba lagi.",
+    "privacy": "Hanya digunakan untuk memberitahu tentang pelancaran."
+  },
+  "githubLink": {
+    "hint": "Daftar masuk ke GitHub untuk membuktikan akaun itu milik anda. DeHub hanya melihat profil GitHub awam anda.",
+    "verified": "Disahkan",
+    "verifiedAria": "Akaun GitHub yang disahkan",
+    "connect": "Sambungkan GitHub",
+    "disconnect": "Putuskan sambungan",
+    "connected": "GitHub disambungkan",
+    "disconnected": "GitHub diputuskan sambungan",
+    "taken": "Akaun GitHub itu sudah ada pada profil DeHub lain.",
+    "failed": "Tidak dapat menyambungkan GitHub. Cuba lagi.",
+    "unavailable": "Pengesahan GitHub akan datang tidak lama lagi."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} halaman",
+    "open": "Buka komik, halaman {{page}} daripada {{total}}",
+    "flip": "Halaman {{page}} daripada {{total}}. Sentuh untuk membalik.",
+    "page": "Halaman {{page}}",
+    "goto": "Halaman {{page}}",
+    "alt": "Alt teks",
+    "editor": {
+      "count": "{{count}} daripada {{limit}} muka surat",
+      "coverHint": "Halaman 1 ialah sampul.",
+      "empty": "Tambahkan halaman-halaman anda dengan tombol foto. Setiap halaman mendapat tajuk dan teks alt.",
+      "caption": "Teks ini tidak diberikan.",
+      "alt": "Teks alternatif: apa yang dipaparkan oleh halaman"
+    }
   }
 }

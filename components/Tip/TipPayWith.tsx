@@ -24,6 +24,7 @@ import {
 } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
 import { directTipToken } from "../../libs/direct-tip-tokens";
+import { Collapsible, CollapsibleChevron } from "../ui/Collapsible";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
 
@@ -122,7 +123,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
           <Text style={styles.selectedText} numberOfLines={1}>
             {value ? `${value.symbol} · ${TIP_CHAIN_NAMES[value.chainId] ?? ""}` : "DHB"}
           </Text>
-          <Icon name={open ? "ChevronUp" : "ChevronDown"} size={16} color="rgba(255,255,255,0.5)" />
+          <CollapsibleChevron open={open} size={16} color="rgba(255,255,255,0.5)" />
         </View>
       </TouchableOpacity>
 
@@ -168,7 +169,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
         </View>
       ) : null}
 
-      {open ? (
+      <Collapsible open={open}>
         <ScrollView style={styles.list} nestedScrollEnabled keyboardShouldPersistTaps="handled">
           {!requireSource && (
             <TouchableOpacity style={[styles.item, !value && styles.itemActive]} onPress={() => pick(null)}>
@@ -191,7 +192,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
             </TouchableOpacity>
           ))}
         </ScrollView>
-      ) : null}
+      </Collapsible>
     </View>
   );
 }

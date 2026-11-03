@@ -1,6 +1,6 @@
 import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import { openChatMention } from "../libs/openChatMention";
-import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
+import { FlashList } from "@shopify/flash-list";
 import Animated, {
   Easing,
   runOnJS,
@@ -85,6 +86,7 @@ import { DhbCoin } from "../components/common/DhbCoin";
 import {
   MINIMAL_HAIRLINE,
 } from "../theme/minimal";
+import { Collapsible, CollapsibleChevron } from "../components/ui/Collapsible";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'features' | 'communities' | 'stores' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
@@ -514,10 +516,10 @@ function FilteredNotificationsSection({
           <Icon name="Funnel" size={16} color="#8B8D90" />
           <Text className="ml-2 text-theme-neutrals-400 text-sm">{t("notificationFilters.filteredTitle")}</Text>
         </View>
-        <Icon name={open ? "ChevronUp" : "ChevronDown"} size={16} color="#8B8D90" />
+        <CollapsibleChevron open={open} size={16} color="#8B8D90" />
       </TouchableOpacity>
-      {open &&
-        (items === null ? (
+      <Collapsible open={open}>
+        {items === null ? (
           <View className="py-4 items-center">
             <ActivityIndicator size="small" color="#F4F4F5" />
           </View>
@@ -525,7 +527,8 @@ function FilteredNotificationsSection({
           <Text className="px-4 pb-4 text-theme-neutrals-500 text-sm">{t("notificationFilters.filteredEmpty")}</Text>
         ) : (
           items.map((item) => <View key={item._id}>{renderRow({ item, index: -1 })}</View>)
-        ))}
+        )}
+      </Collapsible>
     </View>
   );
 }
@@ -664,6 +667,20 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     opacity: markOpacity.value,
     transform: [{ scale: markScale.value }],
   }));
+
+  // The list reuses a row for another notification as it scrolls, so a row
+  // that was mid-clear, marked or showing a failed thumbnail starts fresh.
+  useLayoutEffect(() => {
+    clearingRef.current = false;
+    clearing.value = 0;
+    collapse.value = 0;
+    markOpacity.value = 1;
+    markScale.value = 1;
+    setThumbFailed(false);
+    setMarking(false);
+    setAppealOpen(false);
+    setAppealRef(null);
+  }, [item._id, clearing, collapse, markOpacity, markScale]);
 
   const handleMarkRead = useCallback(() => {
     if (marking) return;
@@ -1802,6 +1819,12 @@ const NotificationScreen = () => {
     });
   }, [notifications, handleMarkAllRead, walletAddress]);
 
+  const rowTypeOf = useCallback(
+    (item: NotificationItem, index: number) =>
+      index === 0 || feedGroupOf(filteredNotifications[index - 1] ?? item) !== feedGroupOf(item) ? "headed" : "row",
+    [filteredNotifications, feedGroupOf],
+  );
+
   const renderItem = useCallback(
     ({ item, index }: { item: NotificationItem; index: number }) => (
       <NotificationRow
@@ -1995,10 +2018,12 @@ const NotificationScreen = () => {
           showsVerticalScrollIndicator={false}
         />
       ) : (
-        <FlatList
+        <FlashList
           data={filteredNotifications}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
+          // Rows with a day heading above them are taller; keep them in their own pool.
+          getItemType={rowTypeOf}
           contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
           refreshControl={
             <DeHubRefreshControl
@@ -2009,16 +2034,9 @@ const NotificationScreen = () => {
           }
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
-          // Rows are a small avatar and two lines, so they batch cheaply.
-          initialNumToRender={8}
-          maxToRenderPerBatch={8}
-          windowSize={9}
-          updateCellsBatchingPeriod={60}
-          // No removeClippedSubviews: every row is a Reanimated view with its own
-          // animated style, and Android detaching and re-attaching those mid-fling
-          // is the jitter people saw. windowSize above still unmounts distant rows.
-          // Omitting the prop is NOT off: RN defaults it to true on Android.
-          removeClippedSubviews={false}
+          // A FlatList here mounted a fresh batch of rows on most frames of a
+          // fling and kept nine screens of them alive, so about 1 in 3 frames
+          // missed on a Galaxy S24+. FlashList reuses the rows it already has.
           ListFooterComponent={ListFooter}
           ListEmptyComponent={ListEmpty}
           showsVerticalScrollIndicator={false}

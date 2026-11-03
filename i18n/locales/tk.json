@@ -129,6 +129,7 @@
     "useNamed": "{{name}}ullan"
   },
   "copy": {
+    "chatSlowDown": "Haýal! Yzygiderli gaty köp habar. {{wait}} soň gaýtadan synanyşyň ýa-da başga biriniň jogap bermegine garaşyň.",
     "eabb5c136be4": "Meýilnamany täzelemek başartmady",
     "801658c8e591": "Meýilnama döredilmedi — gaýtadan synanyşyň",
     "dd2108f1cda8": "Söhbətə Durdur",
@@ -2637,7 +2638,27 @@
     "saved": "Profil meýdanlary ýatda saklandy",
     "failed": "Ýatda saklanmady. Gaýtadan synanyşyň.",
     "verified": "Tassyklanan baglanyşyk",
-    "verifyHint": "Baglanyşygy tassyklamak üçin muny şol sahypa goşuň, soň gaýtadan ýatda saklaň: {{snippet}}"
+    "verifyHint": "Baglanyşygy tassyklamak üçin muny şol sahypa goşuň, soň gaýtadan ýatda saklaň: {{snippet}}",
+    "add": "Meýdan goş",
+    "remove": "Meýdany aýyr",
+    "descriptionPresets": "Websaýty, sözlemeçiligi ýa-da başga zat goşuň. Baglanyşyklar sosial medianyňyz bilen görkezilýär.",
+    "type": "Meýdan görnüşi",
+    "needsLabel": "Her bir adaty meýdana belgi beriň",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Şäher, ülke",
+    "presets": {
+      "website": "Websaýt",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Dükän",
+      "podcast": "Podkast",
+      "newsletter": "Habar ýazylmasy",
+      "pronouns": "Sözlemeçilik",
+      "location": "Ýerleşişi",
+      "custom": "Adaty",
+      "customOption": "Adaty belgi"
+    }
   },
   "notificationFilters": {
     "title": "Bildirişleri süz",
@@ -2815,6 +2836,7 @@
     "unavailable": "Programmanyň bu wersiýasynda elýeterli däl"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Paýlar",
     "home": "Baş sahypa",
     "explore": "Gözle",
@@ -13521,7 +13543,11 @@
     "skippedOtherToast": "{{platforms}}: olar bu posty alyp bilmediler."
   },
   "builder": {
-    "stakeForAllowance": "Gündelik gurluş çäginizi ýokarlandyrmak üçin DeHub tokenlerini stake ediň",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} karz",
+    "perPrompt": "≈ her soraga {{price}}",
+    "pricingNote": "Her sorag karzlaryňyzdan modeliň bahasy goşmak 30% bilen tölenýär. Soragyň iň ýokary bahasy işleýän wagty saklanýar we ulanylmadyk bölegi yzyna gaýtarylýar.",
+    "topUpCredits": "Karz doldur",
     "preview": "Öňünden görmek",
     "openInBrowser": "Brauzerde aç",
     "reload": "Täzeden ýükle",
@@ -14560,5 +14586,44 @@
     "confirm": "Mint on {{chain}}",
     "confirmWithCost": "{{chain}} {{cost}}",
     "notAvailable": "Häzirki ýaly, bu mekdebiň açylmagy barada hiç hili habar berilmedi."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tezden çykyş",
+    "title": "Token tezden çykyş",
+    "body": "Satyn almak täze token taýynlanýan wagtynda ýapyk. Onuň işe girende e-poçta alyň.",
+    "notifyMe": "Meni habar et",
+    "sendTo": "Biz {{email}} adresine e-poçta ibereris",
+    "emailLabel": "E-poçta",
+    "emailPlaceholder": "Siziň e-poçtaňyz",
+    "invalidEmail": "Dogry e-poçta adresi giriziň",
+    "joinedTitle": "Siz sanawyda barsyňyz",
+    "joinedBody": "Biz {{email}} adresine token çykyşy wagtynda e-poçta ibereris.",
+    "joinedBodyNoEmail": "Biz size token çykyşy wagtynda e-poçta ibereris.",
+    "failed": "Muny saklamak mümkin bolmady. Gaýtadan synanyp görüň.",
+    "privacy": "Diňe çykyş barada size habar bermek üçin ulanylýar."
+  },
+  "githubLink": {
+    "verified": "Tasdiqlanmýş",
+    "disconnect": "Baglan"
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sahypa",
+    "open": "Komiksini aç, sahypa {{page}} / {{total}}",
+    "flip": "Sahypa {{page}} / {{total}}. Çevirip geçmek üçin tıklaň",
+    "page": "Sahypa {{page}}",
+    "goto": "Sahypa {{page}}",
+    "alt": "Alt teksti",
+    "cards": "Kartlara dön",
+    "readAll": "Ähli sahypalary oky",
+    "editor": {
+      "count": "{{count}} / {{limit}} sahypa",
+      "coverHint": "1-nji sahypa - muňa",
+      "empty": "Foto düwmesi bilen sahypalaryny goş. Her sahypa başlyk we alt teksti alýar.",
+      "cover": "Muňa",
+      "caption": "Bu sahypa üçin başlyk",
+      "alt": "Alt teksti: sahypa näme görkezýän"
+    }
   }
 }

@@ -129,6 +129,7 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "chatSlowDown": "לאט! יותר מדי הודעות ברצף. נסו שוב בעוד {{wait}}, או חכו שמישהו אחר יגיב.",
     "eabb5c136be4": "לא הצליחתי לעדכן את התוכנית",
     "801658c8e591": "התוכנית לא נוצרה — נסו שוב",
     "dd2108f1cda8": "עצור שיחת קול",
@@ -2637,7 +2638,26 @@
     "saved": "שדות הפרופיל נשמרו",
     "failed": "לא נשמר. נסה שוב.",
     "verified": "קישור מאומת",
-    "verifyHint": "כדי לאמת קישור, הוסף את זה לעמוד ההוא ושמור שוב: {{snippet}}"
+    "verifyHint": "כדי לאמת קישור, הוסף את זה לעמוד ההוא ושמור שוב: {{snippet}}",
+    "add": "הוסף שדה",
+    "remove": "מחק שדה",
+    "descriptionPresets": "הוסף אתר, זהויות או כל דבר אחר. קישורים יוצגו בחברות הסוציאליות שלך.",
+    "type": "סוג שדה",
+    "needsLabel": "יש לכל שדה תווית",
+    "placeholderPronouns": "הם/הם",
+    "placeholderLocation": "עיר, מדינה",
+    "presets": {
+      "website": "אתר",
+      "blog": "בלוג",
+      "portfolio": "פורטפוליו",
+      "shop": "חנות",
+      "podcast": "פודקאסט",
+      "newsletter": "מבזק",
+      "pronouns": "זהויות",
+      "location": "מיקום",
+      "custom": "מותאם",
+      "customOption": "תווית מותאמת"
+    }
   },
   "notificationFilters": {
     "title": "סינון התראות מ־",
@@ -2815,6 +2835,7 @@
     "unavailable": "לא זמין בגרסה זו של האפליקציה"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "חלקים",
     "home": "דף הבית",
     "explore": "חקור",
@@ -13540,7 +13561,11 @@
     "skippedOtherToast": "דילגו על {{platforms}}: הם לא יכלו לקבל את הפוסט הזה."
   },
   "builder": {
-    "stakeForAllowance": "הימור טוקני DeHub כדי להגדיל את מכסת הבנייה היומית שלך",
+    "modelLabel": "מודל",
+    "creditsLeft": "{{amount}} בקרדיטים",
+    "perPrompt": "≈ {{price}} לכל בקשה",
+    "pricingNote": "כל בקשה משולמת מהקרדיטים שלך לפי עלות המודל ועוד 30%. העלות המרבית של בקשה נשמרת בזמן הריצה והחלק שלא נוצל מוחזר.",
+    "topUpCredits": "טעינת קרדיטים",
     "preview": "תצוגה מקדימה",
     "openInBrowser": "פתח בדפדפן",
     "reload": "טען מחדש",
@@ -14595,5 +14620,17 @@
     "joinedBodyNoEmail": "נשלח אימייל אליך כאשר הטוקן יושק.",
     "failed": "לא היה ניתן לשמור זאת. נסה שוב.",
     "privacy": "משמש רק כדי להודיע לך על ההשקה."
+  },
+  "githubLink": {
+    "hint": "היכנס ל - GitHub כדי להוכיח שהחשבון שלך. DeHub רואה רק את פרופיל ה - GitHub הציבורי שלך.",
+    "verified": "מאומת",
+    "verifiedAria": "חשבון GitHub מאומת",
+    "connect": "חיבור GitHub",
+    "disconnect": "התנתקות",
+    "connected": "GitHub מחובר",
+    "disconnected": "GitHub מנותק",
+    "taken": "חשבון GitHub זה כבר נמצא בפרופיל DeHub אחר.",
+    "failed": "לא הצלחנו לחבר את GitHub. נסו שוב.",
+    "unavailable": "האימות של GitHub יגיע בקרוב."
   }
 }

@@ -129,6 +129,7 @@
     "useNamed": "{{name}}نى ئىشلىتىش"
   },
   "copy": {
+    "chatSlowDown": "ئاستا! ئارقىمۇئارقا بەك كۆپ ئۇچۇر. {{wait}} دىن كېيىن قايتا سىناڭ ياكى باشقىلارنىڭ جاۋاب بېرىشىنى ساقلاڭ.",
     "eabb5c136be4": "پىلاننى يېڭىلاش مەغلۇپ بولدى",
     "801658c8e591": "Plan yaratilmadi — qayta urinib ko'ring",
     "dd2108f1cda8": "ئاۋازلىق سۆھبەتنى توختىتىش",
@@ -2637,7 +2638,23 @@
     "saved": "ئارخىپ بۆلەكلىرى ساقلاندى",
     "failed": "ساقلانمىدى. قايتا سىناڭ.",
     "verified": "دەلىللەنگەن ئۇلانما",
-    "verifyHint": "ئۇلانمىنى دەلىللەش ئۈچۈن بۇنى شۇ بەتكە قوشۇپ، قايتا ساقلاڭ: {{snippet}}"
+    "verifyHint": "ئۇلانمىنى دەلىللەش ئۈچۈن بۇنى شۇ بەتكە قوشۇپ، قايتا ساقلاڭ: {{snippet}}",
+    "descriptionPresets": "Men menlik qonuniyatlarni qo'llash orqali, biz sizni qo'llab-quvvatlashimiz mumkin.",
+    "type": "مەيدان تىپى",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "Uyghurcha: ul/ul",
+    "placeholderLocation": "شەھەر, مۇستەقىل دۆلەت",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Blog",
+      "portfolio": "مەدەنىيەت ساھەسىدىكى مۇھەندىس",
+      "shop": "Dukon",
+      "newsletter": "Xəbər xəbərləri",
+      "pronouns": "Pronouns",
+      "location": "جايى",
+      "custom": "ئىختىيارىي",
+      "customOption": "Custom label"
+    }
   },
   "notificationFilters": {
     "title": "بۇلاردىن كەلگەن ئۇقتۇرۇشلارنى سۈزۈش",
@@ -2815,6 +2832,7 @@
     "unavailable": "ئەپنىڭ بۇ نەشرىدە يوق"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "ئۈلۈشلەر",
     "home": "باش بەت",
     "explore": "ئىزدەش",
@@ -13520,7 +13538,11 @@
     "skippedOtherToast": "{{platforms}}: ئۇلار بۇ يازمىنى قوبۇل قىلالمىدى."
   },
   "builder": {
-    "stakeForAllowance": "كۈندىلىك قۇرۇش چېكىڭىزنى ئۆستۈرۈش ئۈچۈن DeHub توكېنلىرىنى گۆرۈگە قويۇڭ",
+    "modelLabel": "مودېل",
+    "creditsLeft": "{{amount}} كرېدىت",
+    "perPrompt": "≈ ھەر بىر سوراققا {{price}}",
+    "pricingNote": "ھەر بىر سوراق كرېدىتىڭىزدىن مودېل تەننەرخىغا 30% قوشۇلۇپ تۆلىنىدۇ. سوراقنىڭ ئەڭ يۇقىرى چىقىمى ئىجرا بولۇۋاتقاندا تۇتۇپ قېلىنىدۇ، ئىشلىتىلمىگەن قىسمى قايتۇرۇلىدۇ.",
+    "topUpCredits": "كرېدىت تولۇقلاش",
     "preview": "ئالدىن كۆرۈش",
     "openInBrowser": "توركۆرگۈدە ئېچىش",
     "reload": "قايتا يۈكلەش",
@@ -14560,5 +14582,44 @@
     "confirm": "Mint on {{chain}}",
     "confirmWithCost": "Mint on {{chain}} {{cost}}",
     "notAvailable": "بۇ زەنجىرنى ياساش تېخى قوللىنىلمىغان."
+  },
+  "tokenLaunch": {
+    "eyebrow": "پات يېقىندا كېلىدۇ",
+    "body": "Sotuv qayta ajar bo'lishidan oldin yopildi. Yangi token tayyor bo'lganda sizga email yuboriladi.",
+    "notifyMe": "Men sizni xabar qilishimni xohlayman.",
+    "emailLabel": "ئېلېكترونلۇق پوچتا",
+    "emailPlaceholder": "Xabar",
+    "joinedTitle": "سىزىكىڭىز سىزىكىڭىز",
+    "joinedBody": "Men token chiqqanda {{email}} ga elektron ma'lumot yuboramiz.",
+    "joinedBodyNoEmail": "Men sizga tokenning chiqqanida xabar yuboramiz.",
+    "failed": "بۇنى ساقلاپ بولالمىدى. قايتا سىناپ بېقىڭ.",
+    "privacy": "Men sizni laqiqatni xabar qilish uchun faqat foydalanish uchun ishlatiladi."
+  },
+  "githubLink": {
+    "verified": "Tasdiqlanmighan",
+    "connect": "GitHub نى باغلا",
+    "disconnect": "قۇرالۇش",
+    "disconnected": "GitHub toqtalashdi.",
+    "unavailable": "GitHub tasdiqlash kelish kelayaq.",
+    "hint": "GitHubغا كىرىپ ھېساباتنىڭ سىزگە تەۋە ئىكەنلىكىنى دەلىللەڭ. DeHub پەقەت سىزنىڭ ئاممىۋى GitHub پروفېلىڭىزنى كۆرەلەيدۇ.",
+    "verifiedAria": "دەلىللەنگەن GitHub ھېساباتى",
+    "connected": "GitHub باغلانغان",
+    "taken": "بۇ GitHub ھېساباتى ئاللىقاچان باشقا DeHub پروفېلىدە بار.",
+    "failed": "GitHubنى باغلاپ بولمىدى. قايتا سىناپ بېقىڭ."
+  },
+  "comic": {
+    "chip": "Kömik · {{count}} bétik",
+    "open": "Açiq komik, {{page}}-chi saqet, {{total}}-chi jami.",
+    "page": "{{page}}-chi bet",
+    "goto": "{{page}}-chi bet",
+    "cards": "قايملاش",
+    "readAll": "ئۆزىگەچىلىك سەھىپىيىتى",
+    "editor": {
+      "count": "{{count}} sahifasida {{limit}} sahifa",
+      "coverHint": "ئەسلىدىكى سايتى",
+      "empty": "Men sahifalarimni qo'shing. Har bir sahifaga caption va alt text qo'shiladi.",
+      "cover": "Kapas",
+      "caption": "Bətələr"
+    }
   }
 }

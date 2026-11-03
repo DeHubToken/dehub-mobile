@@ -129,6 +129,7 @@
     "use": "ነዚ ቅጥዒ እዚ ተጠቐም"
   },
   "copy": {
+    "chatSlowDown": "ቀስ በል! ተኸታታሊ ብዙሕ መልእኽትታት። ድሕሪ {{wait}} እንደገና ፈትን፣ ወይ ካልእ ሰብ ክሳብ ዝምልስ ተጸበ።",
     "eabb5c136be4": "ፕላን ንምምሕያሽ ተሳኒዩ",
     "801658c8e591": "እቲ መደብ ኣይተፈጥረን — በጃኹም እንደገና ፈትኑ",
     "dd2108f1cda8": "ድምጽ ውይይት ያቁሙ",
@@ -2637,7 +2638,25 @@
     "saved": "መዳያታት መግለጺ ተዓቂቦም",
     "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።",
     "verified": "ዝተረጋገጸ ኣገናኝ",
-    "verifyHint": "ኣገናኝ ንምርግጋጽ እዚ ናብቲ ገጽ ወስኹ፣ ድሕሪኡ እንደገና ዓቅቡ፦ {{snippet}}"
+    "verifyHint": "ኣገናኝ ንምርግጋጽ እዚ ናብቲ ገጽ ወስኹ፣ ድሕሪኡ እንደገና ዓቅቡ፦ {{snippet}}",
+    "add": "ሜዳ ወስኽ",
+    "remove": "ሜዳ ኣልግስ",
+    "descriptionPresets": "ድረ-ገጽ፣ ስም ወይ ሌላ ነገር ወስኽ። ሊንክታት ከምቲ ማህደርካ ይርአዩ።",
+    "type": "ዓይነት ሜዳ",
+    "needsLabel": "ንእንቲ ሙላዊ ሜዳ ምልክት ሃብ",
+    "placeholderLocation": "ከተማ፣ ሃገር",
+    "presets": {
+      "website": "ድረ-ገጽ",
+      "blog": "ብሎግ",
+      "portfolio": "ፖርትፎሊዮ",
+      "shop": "ሸቦ",
+      "podcast": "ፖድካስት",
+      "newsletter": "ዜና-ደብዳቤ",
+      "pronouns": "ስም",
+      "location": "ቦታ",
+      "custom": "ሙላዊ",
+      "customOption": "ሙላዊ ምልክት"
+    }
   },
   "notificationFilters": {
     "title": "ምልክታት ካብዚኦም ኣጻሪ",
@@ -2815,6 +2834,7 @@
     "unavailable": "ኣብዚ ስሪት ናይዚ መተግበሪ ኣይርከብን"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "ክፍልታት",
     "home": "ገዛ",
     "explore": "ድለ",
@@ -13519,7 +13539,11 @@
     "skippedOtherToast": "ስኪፕ {{platforms}}: ነዚ ጽሑፍ እዚ ክወስዱ ኣይከኣሉን ።"
   },
   "builder": {
-    "stakeForAllowance": "መዓልታዊ ደረጃ ህንጸት ንምዕባይ ናይ DeHub ቶክናት ስተይክ ግበር",
+    "modelLabel": "ሞዴል",
+    "creditsLeft": "{{amount}} ክሬዲት",
+    "perPrompt": "≈ ንሓደ ሕቶ {{price}}",
+    "pricingNote": "ነፍሲ ወከፍ ሕቶ ካብ ክሬዲትካ ብዋጋ እቲ ሞዴል ምስ 30% ወሰኽ ይኽፈል። እቲ ዝለዓለ ዋጋ ሕቶ ኣብ ግዜ ስርሑ ይሕዝ፣ ዘይተጠቐመሉ ክፋል ድማ ይምለስ።",
+    "topUpCredits": "ክሬዲት መልእ",
     "preview": "ቅድመ ርኢቶ",
     "openInBrowser": "ኣብ መሰራጨዊ ክፈት",
     "reload": "ዳግም ጽዓን",
@@ -14559,5 +14583,52 @@
     "confirm": "ኣብ {{chain}}",
     "confirmWithCost": "ኣብ {{chain}} {{cost}}",
     "notAvailable": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ።"
+  },
+  "tokenLaunch": {
+    "eyebrow": "ብቍርበት ይመጣል",
+    "title": "ቶክን ብቍርበት ይወጣል",
+    "body": "ግዛት ተዝጊሙ ነው ሓድሽ ቶክን ምስ ዝተዳለወ። ኢሜይል ብሓንጺጹ ክትቀበል ትኽእል።",
+    "notifyMe": "ንዐውተኒ",
+    "sendTo": "ኢሜይል {{email}} ክንልክ",
+    "emailLabel": "ኢሜይል",
+    "emailPlaceholder": "ኢሜይልካ",
+    "invalidEmail": "ሓቅ ዘለዎ ኢሜይል ኣእቱ",
+    "joinedTitle": "ኣብ ዝርዝር ውሕት ኣለካ",
+    "joinedBody": "ኢሜይል {{email}} ብሓንጺጹ ቶክን ምስ ወጠ ክንልክ።",
+    "joinedBodyNoEmail": "ኢሜይል ብሓንጺጹ ቶክን ምስ ወጠ ክንልክ።",
+    "failed": "ሓደ ነገር ክሕዝን ኣይከኣለን። ድሕሪ ሕጂ ሞክር።",
+    "privacy": "ብቶክን ምውጣት ንምፍላጥ ጥራይ ይጠቀም።"
+  },
+  "githubLink": {
+    "hint": "ናብ GitHub ተመዓላ ንምክሊ ሂወት ናትካ ምኽያድ። DeHub ብሉጽ GitHub ገጽ ናትካ ጥራይ ይርኢ።",
+    "verified": "ተረጋገጠ",
+    "verifiedAria": "ኣብቲት ግስትርብ ክልልት ክልት ክልት",
+    "connect": "GitHub ተገናኺ",
+    "disconnect": "ተላላይ",
+    "connected": "GitHub ተገናኺ",
+    "disconnected": "GitHub ተላላይ",
+    "taken": "ኣይንታ ግስሰት ኣንድስ ድሕብ ኣዝዝርእ ኣይነው።",
+    "failed": "GitHub ተገናኺ ኣይከኣለን። ድሕሪ ሕጂ ሞክር።",
+    "unavailable": "GitHub ምክሊ ብቐሪቡ ክመጽእ ዝኽእል።"
+  },
+  "comic": {
+    "tab": "ኮሚክ",
+    "title": "ኮሚክ",
+    "chip": "ኮሚክ · {{count}} ገጾች",
+    "open": "ኮሚክ ክፈት፣ ገጽ {{page}} ከ {{total}}",
+    "flip": "ገጽ {{page}} ከ {{total}}። ንካ ወደ ምልመላ",
+    "page": "ገጽ {{page}}",
+    "goto": "ገጽ {{page}}",
+    "alt": "ተለዋጭ ጽሑፍ",
+    "cards": "ወደ ካርዶች ተመለስ",
+    "readAll": "ሁሉም ገጾች ንብብ",
+    "editor": {
+      "count": "{{count}} ከ {{limit}} ገጾች",
+      "coverHint": "ገጽ 1 ሽፋን ነው",
+      "empty": "ገጾችህን በ ፎቶ ቁልፍ ጨምር። እያንዳንዱ ገጽ ርዕስ እና ተለዋጭ ጽሑፍ ይወስዳል።",
+      "cover": "ሽፋን",
+      "caption": "ለዚህ ገጽ ርዕስ",
+      "alt": "ተለዋጭ ጽሑፍ: ገጹ ምን እንደሚያሳይ"
+    }
   }
 }

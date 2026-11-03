@@ -65,6 +65,7 @@ import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import FediverseHandleSection from "../components/Settings/FediverseHandleSection";
 import ConnectedAppsSection from "../components/Settings/ConnectedAppsSection";
+import OwnAiKeysSection from "../components/Settings/OwnAiKeysSection";
 import EmailSignInSection from "../components/Settings/EmailSignInSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
 import { TwitchMirrorSection } from "../components/Settings/TwitchMirrorSection";
@@ -340,6 +341,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           is an account-level credential, not a per-broadcast one. */}
       {isSignedIn ? <StreamKeySection /> : null}
       {isSignedIn ? <TwitchMirrorSection /> : null}
+      {isSignedIn ? <OwnAiKeysSection /> : null}
       {isSignedIn ? (
         <SettingsSection label={t("liveStudio.settingsLinkTitle")} icon="Radio" anchor="live-studio">
           <SettingsLinkRow

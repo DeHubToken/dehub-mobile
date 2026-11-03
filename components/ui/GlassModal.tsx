@@ -11,6 +11,8 @@ import {
   PanResponder,
   ScrollView,
   TextInput,
+  useWindowDimensions,
+  Easing,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -21,6 +23,7 @@ import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import SheetGlass from "./SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "./SheetBackdrop";
 import { SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import { MOTION, SNAP_SPRING } from "../../theme/motion";
 
 export interface GlassModalProps {
   visible: boolean;
@@ -65,6 +68,9 @@ export interface GlassModalProps {
   opaque?: boolean;
 }
 
+/** Drawers mid slide-out; a newly opened drawer finishes them at once. */
+const exiting = new Set<() => void>();
+
 /** A GestureDetector only where a gesture is wired, so other sheets are untouched. */
 const MaybeDetector: React.FC<{ gesture: React.ComponentProps<typeof GestureDetector>['gesture'] | null; children: React.ReactElement }> = ({ gesture, children }) =>
   gesture ? <GestureDetector gesture={gesture}>{children}</GestureDetector> : children;
@@ -103,6 +109,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
   const { isMinimal, isLight, skin } = useAppTheme();
   const isBottom = presentation === "bottom";
+  // Android drawers with their own panel slide in and out; everything else
+  // (and iOS, whose stacked modals dismiss together if one lingers) keeps the
+  // Modal's window fade.
+  const slides = isBottom && wrapPanel && Platform.OS === "android";
   // Drawers in the default dark theme take web's liquid glass; the canvas
   // themes, Minimal and System Light keep their own sheet material.
   const glassDrawer = isBottom && !skin && !isMinimal && !isLight;
@@ -111,7 +121,14 @@ const GlassModal: React.FC<GlassModalProps> = ({
   // once it has faded out.
   const backdrop = useSheetBackdrop(blurBackdrop);
   const MessageSurface = surface === 'theme' ? require("../DM/MessageSurface").default : null;
-  const translateY = useRef(new Animated.Value(0)).current;
+  const { height: windowHeight } = useWindowDimensions();
+  // Drawers start below the screen and slide up once the panel has measured
+  // itself; they slide back down before the window goes away.
+  const translateY = useRef(new Animated.Value(slides ? windowHeight : 0)).current;
+  const backdropOpacity = useRef(new Animated.Value(slides ? 0 : 1)).current;
+  const panelH = useRef(0);
+  const enterPending = useRef(slides);
+  const phase = useRef<"idle" | "in" | "out">("idle");
   const scrollY = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
   const revealInput = () => {
@@ -119,10 +136,21 @@ const GlassModal: React.FC<GlassModalProps> = ({
     if (input) scrollRef.current?.scrollResponderScrollNativeHandleToKeyboard(input, 24, true);
   };
   const startedAtTop = useRef(true);
-  useEffect(() => {
-    translateY.setValue(0);
-    scrollY.current = 0;
-  }, [visible, translateY]);
+  const snapBack = () => Animated.spring(translateY, { toValue: 0, ...SNAP_SPRING, useNativeDriver: true }).start();
+  const slideIn = () => {
+    enterPending.current = false;
+    phase.current = "in";
+    Animated.parallel([
+      Animated.timing(translateY, { toValue: 0, duration: MOTION.open, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+      Animated.timing(backdropOpacity, { toValue: 1, duration: MOTION.backdropIn, useNativeDriver: true }),
+    ]).start();
+  };
+  // A drag that crossed the line: hand it to the parent. If the parent keeps
+  // the sheet up (a confirm, a locked sheet), it springs back.
+  const dragClose = () => {
+    onClose();
+    setTimeout(() => { if (shownRef.current) snapBack(); }, 48);
+  };
   const makePanResponder = (fromHandle: boolean) => PanResponder.create({
     onStartShouldSetPanResponderCapture: () => {
       startedAtTop.current = scrollY.current <= 1;
@@ -135,14 +163,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
     },
     onPanResponderMove: (_, gesture) => translateY.setValue(Math.max(0, gesture.dy)),
     onPanResponderRelease: (_, gesture) => {
-      if (gesture.dy > 80 || (gesture.dy > 20 && gesture.vy > 0.7)) {
-        onClose();
-      }
-      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+      if (gesture.dy > 80 || (gesture.dy > 20 && gesture.vy > 0.7)) dragClose();
+      else snapBack();
     },
-    onPanResponderTerminate: () => {
-      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
-    },
+    onPanResponderTerminate: snapBack,
   });
   const handleResponder = useMemo(() => makePanResponder(true),
     [dismissible, isBottom, onClose, scrollable, translateY]);
@@ -176,11 +200,11 @@ const GlassModal: React.FC<GlassModalProps> = ({
       const d = pulled.current;
       pullAnchor.current = null;
       pulled.current = 0;
-      if (d > 80 || (d > 20 && e.velocityY > 700)) onClose();
-      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+      if (d > 80 || (d > 20 && e.velocityY > 700)) dragClose();
+      else snapBack();
     })
     .onFinalize(() => {
-      if (pulled.current > 0) Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+      if (pulled.current > 0) snapBack();
       pullAnchor.current = null;
       pulled.current = 0;
     }), [listGesture, onClose, translateY]);
@@ -230,6 +254,64 @@ const GlassModal: React.FC<GlassModalProps> = ({
   // and autofocus — and let go once the sheet is up, so a field inside the
   // sheet is never the one blurred.
   const shown = visible && !yielded;
+  const shownRef = useRef(shown);
+  shownRef.current = shown;
+  // A drawer stays mounted through its slide out; the Modal goes after it.
+  const [mounted, setMounted] = useState(shown);
+  if (shown && !mounted) setMounted(true);
+  useEffect(() => {
+    if (!slides) {
+      if (!shown) setMounted(false);
+      scrollY.current = 0;
+      return;
+    }
+    if (shown) {
+      scrollY.current = 0;
+      // A drawer opened from another one: the old one steps out at once
+      // instead of sliding away underneath.
+      exiting.forEach((finish) => finish());
+      // Already measured (re-opened mid slide-out): go straight back up.
+      // Otherwise the panel's first layout starts the slide.
+      if (phase.current === "in") return;
+      if (panelH.current > 0) slideIn();
+      else enterPending.current = true;
+      return;
+    }
+    if (!mounted) return;
+    enterPending.current = false;
+    phase.current = "out";
+    const out = panelH.current || windowHeight;
+    const finish = () => {
+      exiting.delete(finish);
+      if (shownRef.current) return;
+      panelH.current = 0;
+      phase.current = "idle";
+      enterPending.current = true;
+      translateY.stopAnimation();
+      backdropOpacity.stopAnimation();
+      translateY.setValue(windowHeight);
+      setMounted(false);
+    };
+    exiting.add(finish);
+    Animated.parallel([
+      Animated.timing(translateY, { toValue: out, duration: MOTION.close, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+      Animated.timing(backdropOpacity, { toValue: 0, duration: MOTION.backdropOut, useNativeDriver: true }),
+    ]).start(({ finished }) => {
+      if (finished) finish();
+      else exiting.delete(finish);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shown, slides]);
+  const BackdropFade: React.ComponentType<any> = slides ? Animated.View : View;
+  const onPanelLayout = (e: { nativeEvent: { layout: { height: number } } }) => {
+    if (!slides) return;
+    const h = e.nativeEvent.layout.height;
+    panelH.current = h;
+    if (enterPending.current && shownRef.current) {
+      translateY.setValue(h);
+      slideIn();
+    }
+  };
   const wasShown = useRef(false);
   const inputBehind = useRef<unknown>(null);
   const inputState = (TextInput as any).State;
@@ -248,9 +330,11 @@ const GlassModal: React.FC<GlassModalProps> = ({
 
   return (
     <Modal
-      visible={shown}
+      visible={slides ? mounted : shown}
       transparent
-      animationType="fade"
+      // Drawers draw their own slide and backdrop fade (see above); cards
+      // keep the window fade.
+      animationType={slides ? "none" : "fade"}
       // Prevent Android back button from closing when not dismissible
       onRequestClose={dismissible ? onClose : () => {}}
       // Stepping aside for the unlock prompt is not the sheet closing.
@@ -274,13 +358,15 @@ const GlassModal: React.FC<GlassModalProps> = ({
             card keeps the plain dim it always had. A tap anywhere on it still
             dismisses. */}
         {blurBackdrop ? (
+          <BackdropFade style={slides ? [StyleSheet.absoluteFill, { opacity: backdropOpacity }] : StyleSheet.absoluteFill}>
           <TouchableOpacity
             activeOpacity={1}
-            onPress={() => { if (dismissible) onClose(); }}
+            onPress={() => { if (dismissible && shownRef.current) onClose(); }}
             style={StyleSheet.absoluteFill}
           >
             <SheetBackdrop backdrop={backdrop} />
           </TouchableOpacity>
+          </BackdropFade>
         ) : Platform.OS === "android" ? (
           <TouchableOpacity
             activeOpacity={1}
@@ -340,6 +426,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
             {wrapPanel ? (
               <MaybeDetector gesture={panelGesture}>
               <Animated.View
+                onLayout={onPanelLayout}
                 style={[
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,

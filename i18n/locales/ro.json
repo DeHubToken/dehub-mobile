@@ -129,6 +129,7 @@
     "useNamed": "Folosește {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Mai încet! Prea multe mesaje la rând. Încearcă din nou peste {{wait}} sau așteaptă să răspundă altcineva.",
     "eabb5c136be4": "Erat actualizarea planului",
     "801658c8e591": "Planul nu a fost creat — încercați din nou",
     "dd2108f1cda8": "Opriți Voce de conversație",
@@ -2637,7 +2638,27 @@
     "saved": "Câmpurile de profil au fost salvate",
     "failed": "Nu s-a salvat. Încearcă din nou.",
     "verified": "Link verificat",
-    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}"
+    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}",
+    "add": "Adaugă câmp",
+    "remove": "Șterge câmp",
+    "descriptionPresets": "Adaugă un site web, pronume sau altceva. Link-urile vor apărea alături de rețelele sociale.",
+    "type": "Tip câmp",
+    "needsLabel": "Dă fiecărui câmp personalizat un etichetă",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Oraș, țară",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portofoliu",
+      "shop": "Magazin",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Pronume",
+      "location": "Locatie",
+      "custom": "Personalizat",
+      "customOption": "Etichetă personalizată"
+    }
   },
   "notificationFilters": {
     "title": "Filtrează notificările de la",
@@ -2815,6 +2836,7 @@
     "unavailable": "Indisponibil în această versiune a aplicației"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fracții",
     "home": "Acasă",
     "explore": "Explorează",
@@ -13550,7 +13572,11 @@
     "skippedOtherToast": "A omis {{platforms}}: nu a putut accepta această postare."
   },
   "builder": {
-    "stakeForAllowance": "Pune la stake tokenuri DeHub pentru a-ți crește limita zilnică de construire",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} în credite",
+    "perPrompt": "≈ {{price}} per prompt",
+    "pricingNote": "Fiecare prompt este plătit din creditele tale la costul modelului plus 30%. Suma maximă pe care o poate costa un prompt este reținută cât rulează, iar partea nefolosită este returnată.",
+    "topUpCredits": "Reîncarcă credite",
     "preview": "Previzualizare",
     "openInBrowser": "Deschide în browser",
     "reload": "Reîncarcă",
@@ -14590,5 +14616,51 @@
     "confirm": "Mentă pe {{chain}}",
     "confirmWithCost": "Mentă pe {{chain}} · {{cost}}",
     "notAvailable": "Mentonarea acestui lanț nu este încă disponibilă."
+  },
+  "tokenLaunch": {
+    "eyebrow": "În curând",
+    "body": "Cumpărarea este închisă în timp ce noul token este pregătit. Primești un email în momentul în care devine disponibil.",
+    "notifyMe": "Notifică-mă",
+    "sendTo": "Vă vom trimite un email la {{email}}.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "E-mail-ul tău",
+    "invalidEmail": "Introduceți o adresă de email validă.",
+    "joinedTitle": "Ești pe listă.",
+    "joinedBody": "Vă vom trimite un email la {{email}} când token-ul va fi lansat.",
+    "joinedBodyNoEmail": "Vă vom trimite un email când token-ul va fi lansat.",
+    "failed": "Imposibil de salvat. Încearcă din nou.",
+    "privacy": "Doar pentru a-ți anunța lansarea."
+  },
+  "githubLink": {
+    "hint": "Autentifică-te pe GitHub pentru a dovedi că contul este al tău. DeHub vede doar profilul public GitHub.",
+    "verified": "Verificat",
+    "verifiedAria": "Cont GitHub verificat",
+    "connect": "Conectează GitHub",
+    "disconnect": "Deconectează",
+    "connected": "GitHub conectat",
+    "disconnected": "GitHub deconectat",
+    "taken": "Acest cont GitHub este deja asociat cu un alt profil DeHub.",
+    "failed": "Nu s-a putut conecta GitHub. Încearcă din nou.",
+    "unavailable": "Verificarea GitHub este în curând disponibilă."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} pagini",
+    "open": "Comic deschis, pagină {{page}} din {{total}}",
+    "flip": "Pagină {{page}} din {{total}}. Tap pentru a întoarce",
+    "page": "Pagină {{page}}",
+    "goto": "Pagină {{page}}",
+    "alt": "Text alternativ",
+    "cards": "Înapoi la cărți",
+    "readAll": "Citește toate paginile",
+    "editor": {
+      "count": "{{count}} din {{limit}} pagini",
+      "coverHint": "Pagina 1 este coperta",
+      "empty": "Adaugă paginile cu butonul foto. Fiecare pagină primește un subtitlu și text alternativ.",
+      "cover": "Copertă",
+      "caption": "Subtitlu pentru această pagină",
+      "alt": "Text alternativ: ce arată pagina"
+    }
   }
 }

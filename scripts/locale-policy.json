@@ -40,6 +40,7 @@
     "tipFunding",
     "buyCoins",
     "tokenLaunch",
+    "githubLink",
     "ppvTopUp",
     "accounts"
   ],
@@ -95,6 +96,7 @@
     "stores",
     "nearBuy",
     "fractions",
+    "nftMarket",
     "launchpad",
     "governance",
     "dao",

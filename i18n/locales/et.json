@@ -129,6 +129,7 @@
     "useNamed": "Kasuta {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Rahulikumalt! Liiga palju sõnumeid järjest. Proovi uuesti {{wait}} pärast või oota, kuni keegi teine vastab.",
     "eabb5c136be4": "Plaani ei õnnestunud uuendada",
     "801658c8e591": "Plaani ei loodud — proovi uuesti",
     "dd2108f1cda8": "Peata häälvestlus",
@@ -2637,7 +2638,27 @@
     "saved": "Profiiliväljad salvestatud",
     "failed": "Ei salvestunud. Proovi uuesti.",
     "verified": "Kinnitatud link",
-    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}"
+    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}",
+    "add": "Lisa väli",
+    "remove": "Eemalda väli",
+    "descriptionPresets": "Lisa veebisait, asesõnad või midagi muud. Lingid näitavad sinu suhtlusvõrgustikke.",
+    "type": "Välja tüüp",
+    "needsLabel": "Anna igale kohandatud väljale silt",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "nad/neid",
+    "placeholderLocation": "Linn, riik",
+    "presets": {
+      "website": "Veebisait",
+      "blog": "Blogi",
+      "portfolio": "Portfoolio",
+      "shop": "Osta",
+      "podcast": "Podcast",
+      "newsletter": "Uudiskiri",
+      "pronouns": "Asesõnad",
+      "location": "Asukoht",
+      "custom": "Kohandatud",
+      "customOption": "Kohandatud silt"
+    }
   },
   "notificationFilters": {
     "title": "Filtreeri teavitusi",
@@ -2815,6 +2836,7 @@
     "unavailable": "Selles rakenduse versioonis pole saadaval"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraktsioonid",
     "home": "Avaleht",
     "explore": "Avasta",
@@ -13536,7 +13558,11 @@
     "skippedOtherToast": "{{platforms}} jäi vahele: ta ei saanud seda postitust vastu võtta."
   },
   "builder": {
-    "stakeForAllowance": "Panusta DeHub tokeneid, et suurendada oma igapäevast ehituslimiiti",
+    "modelLabel": "Mudel",
+    "creditsLeft": "{{amount}} krediiti",
+    "perPrompt": "≈ {{price}} päringu kohta",
+    "pricingNote": "Iga päring makstakse sinu krediitidest mudeli hinnaga pluss 30%. Päringu suurim võimalik hind broneeritakse selle käitamise ajaks ja kasutamata osa tagastatakse.",
+    "topUpCredits": "Lisa krediiti",
     "preview": "Eelvaade",
     "openInBrowser": "Ava brauseris",
     "reload": "Laadi uuesti",
@@ -14591,5 +14617,37 @@
     "joinedBodyNoEmail": "Saad e-maili, kui token avaldub.",
     "failed": "E-maili ei saadud. Proovige uuesti.",
     "privacy": "Kasutatakse ainult, et teavitada teid tokeni avaldumisest."
+  },
+  "githubLink": {
+    "hint": "Logi sisse GitHubi, et tõestada, et konto on sinu oma. DeHub näeb ainult sinu avalikku GitHubi profiili.",
+    "verified": "Kinnitatud",
+    "verifiedAria": "Kinnitatud GitHubi konto",
+    "connect": "Ühenda GitHub",
+    "disconnect": "Katkesta ühendus",
+    "connected": "GitHub ühendatud",
+    "disconnected": "GitHubi ühendus on katkestatud",
+    "taken": "See GitHubi konto on juba teisel DeHubi profiilil.",
+    "failed": "GitHubiga ei saanud ühendust luua. Proovige uuesti.",
+    "unavailable": "GitHubi kinnitus on peagi tulekul."
+  },
+  "comic": {
+    "tab": "Koomik",
+    "title": "Koomik",
+    "chip": "Koomiks · {{count}} lehekülg",
+    "open": "Ava komeet, lehekülg {{page}} {{total}}-st",
+    "flip": "Lehekülg {{page}} {{total}}-st. Tapita, et vahetada",
+    "page": "Lehekülg {{page}}",
+    "goto": "Lehekülg {{page}}",
+    "alt": "Alternatiivtekst",
+    "cards": "Tagasi kaartidele",
+    "readAll": "Lõpuni loe",
+    "editor": {
+      "count": "{{count}} {{limit}}st leheküljest",
+      "coverHint": "Esimene lehekülg on kate",
+      "empty": "Lisa lehekülgi pildiga nuppu. Igale leheküljele lisatakse pealkiri ja alternatiivtekst.",
+      "cover": "Kate",
+      "caption": "Pealkiri selle leheküljele",
+      "alt": "Alternatiivtekst: mis leheküljel näha on"
+    }
   }
 }

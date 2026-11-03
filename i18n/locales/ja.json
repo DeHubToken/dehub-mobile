@@ -1,5 +1,6 @@
 {
   "copy": {
+    "chatSlowDown": "ペースを落としてください！連続投稿が多すぎます。{{wait}}後にもう一度試すか、他の人の返信を待ってください。",
     "eabb5c136be4": "プランの更新に失敗しました",
     "801658c8e591": "プランは作成されませんでした — もう一度お試しください",
     "dd2108f1cda8": "音声チャットを停止",
@@ -2508,7 +2509,26 @@
     "saved": "プロフィール項目を保存しました",
     "failed": "保存できませんでした。もう一度お試しください。",
     "verified": "認証済みリンク",
-    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}"
+    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}",
+    "add": "フィールドを追加する",
+    "remove": "フィールドを削除する",
+    "descriptionPresets": "ウェブサイト、プルノミナル、またはその他のものを追加する。リンクはソーシャルメディアで表示する。",
+    "type": "フィールドのタイプ",
+    "needsLabel": "各カスタムフィールドにラベルを付ける",
+    "placeholderPronouns": "彼ら/彼ら",
+    "placeholderLocation": "都市、国",
+    "presets": {
+      "website": "ウェブサイト",
+      "blog": "ブログ",
+      "portfolio": "ポートフォリオ",
+      "shop": "ショップ",
+      "podcast": "ポッドキャスト",
+      "newsletter": "ニュースレター",
+      "pronouns": "プルノミナル",
+      "location": "場所",
+      "custom": "カスタム",
+      "customOption": "カスタムラベル"
+    }
   },
   "notificationFilters": {
     "title": "通知をフィルターする相手",
@@ -2686,6 +2706,7 @@
     "unavailable": "このバージョンのアプリでは利用できません"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "フラクション",
     "home": "ホーム",
     "explore": "検索",
@@ -13458,7 +13479,11 @@
     "skippedOtherToast": "{{platforms}}をスキップしました：この投稿を投稿できませんでした。"
   },
   "builder": {
-    "stakeForAllowance": "DeHubトークンをステークして1日のビルド上限を増やす",
+    "modelLabel": "モデル",
+    "creditsLeft": "クレジット残高 {{amount}}",
+    "perPrompt": "≈ 1プロンプトあたり {{price}}",
+    "pricingNote": "各プロンプトはモデルのコストに30%を加えた額がクレジットから支払われます。実行中はプロンプトの最大費用が確保され、使われなかった分は返却されます。",
+    "topUpCredits": "クレジットをチャージ",
     "preview": "プレビュー",
     "openInBrowser": "ブラウザで開く",
     "reload": "再読み込み",
@@ -14609,5 +14634,16 @@
     "joinedBodyNoEmail": "メールでトークンの発売開始をお知らせします。",
     "failed": "保存できませんでした。もう一度お試しください。",
     "privacy": "このリリースについてのみお知らせするために使用されます。"
+  },
+  "githubLink": {
+    "hint": "GitHubにサインインしてアカウントが自分のものであることを証明してください。DeHubはあなたの公開GitHubプロフィールのみを確認します。",
+    "verifiedAria": "認証済みGitHubアカウント",
+    "connect": "GitHubを接続",
+    "disconnect": "GitHubを切断",
+    "connected": "GitHub接続済み",
+    "disconnected": "GitHub切断済み",
+    "taken": "そのGitHubアカウントは既に別のDeHubプロフィールに登録されています。",
+    "failed": "GitHubの接続に失敗しました。もう一度お試しください。",
+    "unavailable": "GitHubの認証機能は近日公開予定です。"
   }
 }

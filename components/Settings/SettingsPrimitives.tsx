@@ -35,7 +35,7 @@ export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ lab
   }
   return (
     <View className="flex-row items-center mb-2 ml-1">
-      {icon ? <Icon name={icon} size={13} color={colors.neutrals[400]} /> : null}
+      {icon ? <Icon name={icon} size={13} color={colors.neutrals[500]} /> : null}
       <Text
         className={`text-theme-neutrals-500 text-[11px] uppercase tracking-widest font-semibold ${icon ? 'ml-1.5' : ''}`}
       >

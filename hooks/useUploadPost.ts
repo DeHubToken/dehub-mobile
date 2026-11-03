@@ -63,6 +63,12 @@ export type UploadPayload = {
   categories: string[];
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
+  /** Trim on the picked video, seconds. */
+  videoTrim?: { start: number; end: number } | null;
+  /** Mirror, turn, colour and vignette the server bakes into the video. */
+  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number } | null;
+  /** Seconds until the post deletes itself. */
+  destruct?: number | null;
   pickedAudio: PickedAudio | null;
   thumbnailUri: string | null;
   coverUri: string | null;
@@ -101,6 +107,8 @@ export type UploadPayload = {
   shopListingIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  layout?: "comic";
+  mediaCaptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the text. */
@@ -319,6 +327,9 @@ export function useUploadPost() {
         postType,
         images,
         video,
+        videoTrim: video && p.videoTrim ? p.videoTrim : undefined,
+        videoEdits: video && p.videoEdits ? p.videoEdits : undefined,
+        destruct: video && p.destruct ? p.destruct : undefined,
         audio,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),
@@ -331,6 +342,8 @@ export function useUploadPost() {
         shopListingIds: p.shopListingIds,
         crossPostAccountIds: p.crossPostAccountIds,
         mediaDescriptions: p.mediaDescriptions,
+        layout: p.layout,
+        mediaCaptions: p.mediaCaptions,
         spoilerText: p.spoilerText,
         hideAssetCards: p.hideAssetCards,
         quotePolicy: p.quotePolicy,

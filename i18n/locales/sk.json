@@ -129,6 +129,7 @@
     "useNamed": "Použiť {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Spomaľ! Príliš veľa správ za sebou. Skús to znova o {{wait}} alebo počkaj, kým odpovie niekto iný.",
     "eabb5c136be4": "Neúspech pri aktualizácii plánu",
     "801658c8e591": "Plán sa nebol vytvorený – skús to znova",
     "dd2108f1cda8": "Zastavte hlasový chat",
@@ -2637,7 +2638,27 @@
     "saved": "Polia profilu uložené",
     "failed": "Neuložilo sa. Skúste to znova.",
     "verified": "Overený odkaz",
-    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}"
+    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}",
+    "add": "Pridať pole",
+    "remove": "Odstrániť pole",
+    "descriptionPresets": "Pridať web, znenie alebo niečo iné. Odkazy sa zobrazia s vašimi sociálnymi sieťami.",
+    "type": "Typ pola",
+    "needsLabel": "Každému vlastnému poli prideltej názov",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Mesto, krajina",
+    "presets": {
+      "website": "Web",
+      "blog": "Blog",
+      "portfolio": "Portfólio",
+      "shop": "Obchod",
+      "podcast": "Podcast",
+      "newsletter": "Novinový zvestovateľ",
+      "pronouns": "Znenie",
+      "location": "Lokácia",
+      "custom": "Vlastné",
+      "customOption": "Vlastný názov"
+    }
   },
   "notificationFilters": {
     "title": "Filtrovať upozornenia od",
@@ -2815,6 +2836,7 @@
     "unavailable": "V tejto verzii aplikácie nie je k dispozícii"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Podiely",
     "home": "Domov",
     "explore": "Objavovať",
@@ -13698,7 +13720,11 @@
     "skippedOtherToast": "Preskočené {{platforms}}: tento príspevok nemohol prijať."
   },
   "builder": {
-    "stakeForAllowance": "Vsaďte tokeny DeHub a zvýšte si denný limit zostavení",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} v kreditoch",
+    "perPrompt": "≈ {{price}} za výzvu",
+    "pricingNote": "Každá výzva sa platí z vašich kreditov za cenu modelu plus 30 %. Najvyššia možná cena výzvy sa počas behu blokuje a nevyužitá časť sa vracia.",
+    "topUpCredits": "Dobiť kredity",
     "preview": "Náhľad",
     "openInBrowser": "Otvoriť v prehliadači",
     "reload": "Obnoviť",
@@ -14738,5 +14764,52 @@
     "confirm": "Mincovňa {{chain}}",
     "confirmWithCost": "Mincovňa {{chain}} · {{cost}}",
     "notAvailable": "Minting na tomto reťazci ešte nie je k dispozícii."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Približne sa blíži",
+    "title": "Token sa blíži k uvedeniu",
+    "body": "Kúpenie je zatvorené, kým sa nový token neprípravi. Dostanete email, keď sa uvedie do prevádzky.",
+    "notifyMe": "Oznámiť mi",
+    "sendTo": "Budeme Vám emailom poslať {{email}}",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Vaše emailové adresa",
+    "invalidEmail": "Zadajte platnú emailovú adresu",
+    "joinedTitle": "Ste na zozname",
+    "joinedBody": "Budem Vám emailom poslať {{email}}, keď sa token uvedie do prevádzky.",
+    "joinedBodyNoEmail": "Budem Vám emailom poslať informáciu, keď sa token uvedie do prevádzky.",
+    "failed": "Nepodarilo sa uložiť to. Skús to znova.",
+    "privacy": "Použité iba na informovanie o uvedení do prevádzky."
+  },
+  "githubLink": {
+    "hint": "Prihlásite sa na GitHub, aby ste potvrdili, že účet patrí vám. DeHub vidí iba vašu verejnú GitHub profil.",
+    "verified": "Verifikovaný",
+    "verifiedAria": "Verifikovaný GitHub účet",
+    "connect": "Pripoj GitHub",
+    "disconnect": "Odpoj",
+    "connected": "GitHub pripojený",
+    "disconnected": "GitHub odpojený",
+    "taken": "Tento GitHub účet je už pripojený k inému profilu DeHub.",
+    "failed": "Nepodarilo sa pripojiť GitHub. Skúste to znovu.",
+    "unavailable": "Verifikácia GitHub je skoro hotová."
+  },
+  "comic": {
+    "tab": "Knižka",
+    "title": "Knižka",
+    "chip": "Knižka · {{count}} stránok",
+    "open": "Otvorená knižka, stránka {{page}} z {{total}}",
+    "flip": "Stránka {{page}} z {{total}}. Dotknite sa na prelistovanie",
+    "page": "Stránka {{page}}",
+    "goto": "Stránka {{page}}",
+    "alt": "Alternatívny text",
+    "cards": "Späť na karty",
+    "readAll": "Prečítaj všetky stránky",
+    "editor": {
+      "count": "{{count}} z {{limit}} stránok",
+      "coverHint": "Prvá stránka je obálka",
+      "empty": "Pridať stránky pomocou tlačítka na foto. Každá stránka dostane nadpis a alternatívny text.",
+      "cover": "Obálka",
+      "caption": "Nadpis pre túto stránku",
+      "alt": "Alternatívny text: čo stránka zobrazuje"
+    }
   }
 }

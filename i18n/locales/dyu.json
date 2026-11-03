@@ -129,6 +129,7 @@
     "useNamed": "Fɛɛrɛ kɛ ni {{name}} ye"
   },
   "copy": {
+    "chatSlowDown": "Doucement ! Trop de messages d'affilée. Réessaie dans {{wait}}, ou attends que quelqu'un d'autre réponde.",
     "eabb5c136be4": "A ka kan ka kɛ ni kunnafoni ye min be se k'a dɛmɛ ka koo dɔw",
     "801658c8e591": "Plan tɛ kɛra — ni sɔrɔ, a to a kɔ fɛ",
     "dd2108f1cda8": "Kuma kɛcogo dɔgɔya",
@@ -2636,7 +2637,26 @@
     "saved": "Porofili yɔrɔw marala",
     "failed": "A ma mara. A lajɛ tugun.",
     "verified": "Siri lajɛlen",
-    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}"
+    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}",
+    "add": "Ka foro dɔ fara a kan",
+    "remove": "Ka foro bɔ",
+    "type": "Fanga min be sɔrɔ o la",
+    "needsLabel": "O yɔrɔ kelen kelen bɛɛ la, a ka kan ka kɛ yɔrɔ dɔ ye min be weele",
+    "placeholderLink": "lequipe.fr ka koo",
+    "placeholderPronouns": "u, u",
+    "placeholderLocation": "Jamana, dugu",
+    "presets": {
+      "website": "Site web kan",
+      "blog": "Blog a voir",
+      "portfolio": "Fanga min be sɔrɔ o la",
+      "shop": "Dɔnkiliw",
+      "podcast": "A be se ka kɛ podcast ye tugun",
+      "newsletter": "Kunnafoniw",
+      "pronouns": "O kɔrɔ ko:",
+      "location": "Yɔrɔ",
+      "custom": "Fɛɛn minw ka teli ka kɛ",
+      "customOption": "Tɔgɔdafɛ tagamasiɲɛ"
+    }
   },
   "notificationFilters": {
     "title": "Kunnafoniw sɛgɛsɛgɛ ka bɔ",
@@ -2814,6 +2834,7 @@
     "unavailable": "A tɛ sɔrɔ app nin cogo in na"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Tilaw",
     "home": "Kɛnɛ",
     "explore": "Fɛɛrɛ",
@@ -13518,7 +13539,11 @@
   },
   "builder": {
     "example1": "Pomodoro waati jateminɛn, tile o tile ɲɔgɔnkɔtugu bɛ min na",
-    "stakeForAllowance": "I ka DeHub jɛtɔn kɛ stake la walasa ka i ka don o don jɔyɔrɔ ka bon",
+    "modelLabel": "Modeli",
+    "creditsLeft": "{{amount}} kredi la",
+    "perPrompt": "≈ {{price}} ɲininkali kelen o kelen",
+    "pricingNote": "Ɲininkali kelen o kelen sara bɛ bɔ i ka kredi la ni modeli songo ye ani 30% fara a kan. Ɲininkali songo caman bɛ mara a baara waati la, a tɔ min ma baara kɛ bɛ segin i ma.",
+    "topUpCredits": "Kredi fara a kan",
     "preview": "Fɔlɔ filɛli",
     "openInBrowser": "A dabɔ ɲinini yɔrɔ la",
     "reload": "Kura Charger",
@@ -14564,5 +14589,28 @@
     "joinedBodyNoEmail": "A bɛ i jɔ email la sɔrɔ ka token la wuli.",
     "failed": "A man tɛ se ka sɛbɛn. Segin fɔ.",
     "privacy": "A ka se fɛ ka kɔ ni i ma ka sɛbɛn."
+  },
+  "githubLink": {
+    "hint": "I ka kan ka don GitHub la walisa k'a yira ko i ka ladɛrɛsi ye i ta ye. DeHub be i ka GitHub kunnafoniw dɔrɔn lo ye.",
+    "verified": "Ka tugu a kɔ",
+    "verifiedAria": "GitHub ka baara kɛcogo",
+    "connect": "GitHub ka baara kɛcogo",
+    "disconnect": "Ka bɔ ɲɔgɔn na",
+    "connected": "GitHub ka koo",
+    "disconnected": "GitHub ka baara dabila",
+    "taken": "GitHub ka kunnafoniw be sɔrɔ yɔrɔ wɛrɛ la.",
+    "failed": "Ne tɛ se ka GitHub bila ɲɔgɔn na.",
+    "unavailable": "GitHub ka sɛgɛsɛgɛri bena kɛ yanni dɔɔni."
+  },
+  "comic": {
+    "page": "Peejii {{page}}",
+    "goto": "Peejii {{page}}",
+    "alt": "Kɔɔŋɔ",
+    "cards": "Kɔɔ kɛ kɛra",
+    "editor": {
+      "count": "{{count}} ni {{limit}} jikali",
+      "empty": "Jula ka fɔ̃ ni fɔtɔ bɔtɔni la. Jula kelen-kelen ka caption ni alt text kɔ.",
+      "cover": "Kuɗa"
+    }
   }
 }

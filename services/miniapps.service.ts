@@ -111,6 +111,18 @@ export function recordMiniAppPayment(
   });
 }
 
+/** Test mode: the app's own developer "pays" without moving DHB; the receipt says test: true. */
+export function recordMiniAppTestPayment(
+  sessionToken: string,
+  functionsBase: string,
+  input: { slug: string; amount: number; memo: string | null },
+) {
+  return userCall<{ txHash: string; chainId: number; amount: number; receipt: string; test: true }>(sessionToken, functionsBase, {
+    action: "testPayment",
+    ...input,
+  });
+}
+
 export interface AddedApp {
   app_id: string;
   notifications_on: boolean;

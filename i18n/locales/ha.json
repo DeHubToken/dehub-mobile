@@ -129,6 +129,7 @@
     "use": "Yi amfani da wannan samfurin"
   },
   "copy": {
+    "chatSlowDown": "A hankali! Saƙonni da yawa a jere. Sake gwadawa bayan {{wait}}, ko jira wani ya amsa.",
     "eabb5c136be4": "An kasa sabunta shirin",
     "801658c8e591": "Ba a ƙirƙiri shirin ba — da fatan za a sake gwadawa",
     "dd2108f1cda8": "Dakatar da Hirar Murya",
@@ -2637,7 +2638,27 @@
     "saved": "An ajiye filayen bayanan martaba",
     "failed": "Ba a ajiye ba. Sake gwadawa.",
     "verified": "Hanyar haɗi da aka tabbatar",
-    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}"
+    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}",
+    "add": "Ƙara filin",
+    "remove": "Cire filin",
+    "descriptionPresets": "Ƙara gida, jinjina ko wani abu. Hanyoyin haɗi suna nuna tare da jama'arku.",
+    "type": "Nau'in filin",
+    "needsLabel": "Ba da kowane filin na jiya lakabi",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Gida, kasa",
+    "presets": {
+      "website": "Gida",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Newsletter",
+      "pronouns": "Jinjina",
+      "location": "Wuri",
+      "custom": "Custom",
+      "customOption": "Lakabi na jiya"
+    }
   },
   "notificationFilters": {
     "title": "Tace sanarwa daga",
@@ -2815,6 +2836,7 @@
     "unavailable": "Ba a samu a wannan sigar manhajar ba"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Rabe-rabe",
     "home": "Gida",
     "explore": "Bincika",
@@ -13534,7 +13556,11 @@
     "skippedOtherToast": "An tsallake {{platforms}}: ba su iya karɓar wannan sakon ba."
   },
   "builder": {
-    "stakeForAllowance": "Yi turke da alamun DeHub don ƙara adadin ginin ka na yau da kullum",
+    "modelLabel": "Samfuri",
+    "creditsLeft": "{{amount}} a kiredit",
+    "perPrompt": "≈ {{price}} kowace buƙata",
+    "pricingNote": "Ana biyan kowace buƙata daga kiredit ɗinka a farashin samfurin tare da ƙarin 30%. Ana riƙe mafi yawan abin da buƙata za ta iya ci yayin da take gudana, kuma a mayar da ɓangaren da ba a yi amfani da shi ba.",
+    "topUpCredits": "Ƙara kiredit",
     "preview": "Duba kafin fitarwa",
     "openInBrowser": "Buɗe a mai bincike",
     "reload": "Sake ɗorawa",
@@ -14582,6 +14608,37 @@
     "joinedBody": "Muna kiranin {{email}} lokacin da ake kirkire token.",
     "joinedBodyNoEmail": "Muna kallon ku da email lokacin da ake kirkirar daidai token.",
     "failed": "Ba zai iya ajiye wannan ba. sake gwadawa.",
-    "privacy": "Kawai ake magana da ku da shirin da aka kaddamar a cikin wannan wata."
+    "privacy": "Kawai ake magana da ku da shirin da aka kaddamar a cikin wannan wata.",
+    "title": "Token ƙaddamarwa ba da daɗewa ba",
+    "body": "Ana rufe siye yayin da sabon alamar ya shirya. Samu imel lokacin da yake rayuwa.",
+    "notifyMe": "Sanar da ni",
+    "sendTo": "Za mu yi email {{email}}",
+    "emailLabel": "Imel",
+    "emailPlaceholder": "Imel naka"
+  },
+  "githubLink": {
+    "hint": "Shiga cikin GitHub don tabbatar da asusun naku ne. DeHub kawai yana ganin bayanan ku na GitHub na jama'a.",
+    "verified": "Tabbatacce",
+    "verifiedAria": "Tabbatar da asusun GitHub",
+    "connect": "Haɗa GitHub",
+    "disconnect": "Kashe haɗin kai",
+    "connected": "GitHub da aka haɗa",
+    "disconnected": "GitHub ya katse",
+    "taken": "Cewa asusun GitHub ya riga ya kasance a kan wani bayanin martaba na DeHub.",
+    "failed": "Ba za a iya haɗa GitHub ba. sake gwadawa.",
+    "unavailable": "Tabbatar da GitHub yana zuwa ba da daɗewa ba."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "alt": "Alt text",
+    "readAll": "Kuɗa kowane shafi.",
+    "editor": {
+      "count": "{{count}} na {{limit}} page",
+      "coverHint": "Makala 1 ita ce ta kasa",
+      "empty": "Kada kowane shafin kasa, zaki sanya hotuna. Kowane shafin yana da rubutun da aka sanya a cikin hotuna.",
+      "cover": "Kafada",
+      "caption": "Bayani don wannan shafi"
+    }
   }
 }

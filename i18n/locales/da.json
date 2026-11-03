@@ -129,6 +129,7 @@
     "useNamed": "Brug {{name}}"
   },
   "copy": {
+    "chatSlowDown": "Tag den med ro! For mange beskeder i træk. Prøv igen om {{wait}}, eller vent på at en anden svarer.",
     "eabb5c136be4": "Ikke lykkedes at opdatere plan",
     "801658c8e591": "Planen blev ikke oprettet — prøv igen",
     "dd2108f1cda8": "Stop Voice Chat",
@@ -2637,7 +2638,27 @@
     "saved": "Profilfelter gemt",
     "failed": "Det blev ikke gemt. Prøv igen.",
     "verified": "Bekræftet link",
-    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}"
+    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}",
+    "add": "Tilføj felt",
+    "remove": "Fjern felt",
+    "descriptionPresets": "Tilføj en hjemmeside, pronominer eller noget andet. Links vises med dine sociale medier.",
+    "type": "Felttype",
+    "needsLabel": "Giv hvert brugerdefineret felt en etiket",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "de/dem",
+    "placeholderLocation": "By, land",
+    "presets": {
+      "website": "Website",
+      "blog": "Blog",
+      "portfolio": "Portefølje",
+      "shop": "Shop",
+      "podcast": "Podcast",
+      "newsletter": "Nyhedsbrev",
+      "pronouns": "Pronomen",
+      "location": "Placering",
+      "custom": "Tilpasset",
+      "customOption": "Brugerdefineret etiket"
+    }
   },
   "notificationFilters": {
     "title": "Filtrér notifikationer fra",
@@ -2815,6 +2836,7 @@
     "unavailable": "Ikke tilgængelig i denne version af appen"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Fraktioner",
     "home": "Hjem",
     "explore": "Udforsk",
@@ -13540,7 +13562,11 @@
     "skippedOtherToast": "Sprunget over {{platforms}}: De kunne ikke tage dette indlæg."
   },
   "builder": {
-    "stakeForAllowance": "Stak DeHub-tokens for at øge din daglige buildgrænse",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} i kreditter",
+    "perPrompt": "≈ {{price}} pr. prompt",
+    "pricingNote": "Hver prompt betales af dine kreditter til modellens pris plus 30 %. Det mest, en prompt kan koste, reserveres, mens den kører, og den ubrugte del returneres.",
+    "topUpCredits": "Fyld kreditter op",
     "preview": "Forhåndsvisning",
     "openInBrowser": "Åbn i browser",
     "reload": "Genindlæs",
@@ -14595,5 +14621,37 @@
     "joinedBodyNoEmail": "Vi vil sende dig e-mail, når tokenet går live.",
     "failed": "Kunne ikke gemme det. Prøv igen.",
     "privacy": "Bruges kun til at fortælle dig om lanceringen."
+  },
+  "githubLink": {
+    "hint": "Log ind på GitHub for at bevise, at kontoen er din. DeHub ser kun din offentlige GitHub-profil.",
+    "verified": "Bekræftet",
+    "verifiedAria": "Bekræftet GitHub-konto",
+    "connect": "Forbind GitHub",
+    "disconnect": "Afbryd forbindelsen",
+    "connected": "GitHub tilsluttet",
+    "disconnected": "GitHub blev afbrudt",
+    "taken": "Denne GitHub-konto er allerede på en anden DeHub-profil.",
+    "failed": "Kunne ikke forbinde GitHub. Prøv igen.",
+    "unavailable": "GitHub-bekræftelse kommer snart."
+  },
+  "comic": {
+    "tab": "Comic",
+    "title": "Comic",
+    "chip": "Comic · {{count}} sider",
+    "open": "Åben comic, side {{page}} af {{total}}",
+    "flip": "Side {{page}} af {{total}}. Tryk for at vende",
+    "page": "Side {{page}}",
+    "goto": "Side {{page}}",
+    "alt": "Alternativ tekst",
+    "cards": "Tilbage til kort",
+    "readAll": "Læs alle sider",
+    "editor": {
+      "count": "{{count}} af {{limit}} sider",
+      "coverHint": "Side 1 er omslaget",
+      "empty": "Tilføj dine sider med knappen for foto. Hver side får en caption og alternativ tekst.",
+      "cover": "Omslag",
+      "caption": "Caption for denne side",
+      "alt": "Alternativ tekst: hvad siden viser"
+    }
   }
 }

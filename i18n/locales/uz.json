@@ -129,6 +129,7 @@
     "useNamed": "{{name}} dan foydalaning"
   },
   "copy": {
+    "chatSlowDown": "Sekinroq! Ketma-ket juda koʻp xabar. {{wait}} dan keyin qayta urinib koʻring yoki boshqa birov javob berishini kuting.",
     "eabb5c136be4": "Planni yangilashda muammolarni koʻrdik",
     "801658c8e591": "Reja yaratilmadi — iltimos, qaytadan urinib ko‘ring",
     "dd2108f1cda8": "Ovozli suhbatni to&#39;xtatish",
@@ -2637,7 +2638,27 @@
     "saved": "Profil maydonlari saqlandi",
     "failed": "Saqlanmadi. Qayta urinib ko'ring.",
     "verified": "Tasdiqlangan havola",
-    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}"
+    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}",
+    "add": "Oʻrin qoʻshish",
+    "remove": "Oʻrin olib tashlash",
+    "descriptionPresets": "Veb-sayt, unvon yoki boshqa narsani qoʻshing. Havolalar sizning ijtimoiy tarmoqlaringiz bilan koʻrsatiladi.",
+    "type": "Oʻrin turi",
+    "needsLabel": "Har bir maxsus oʻrin uchun etiket bering",
+    "placeholderLink": "yoursite.com",
+    "placeholderPronouns": "they/them",
+    "placeholderLocation": "Shahar, mamlakat",
+    "presets": {
+      "website": "Veb-sayt",
+      "blog": "Blog",
+      "portfolio": "Portfolio",
+      "shop": "Doʻkon",
+      "podcast": "Podkast",
+      "newsletter": "Habarlar",
+      "pronouns": "Unvonlar",
+      "location": "Manzil",
+      "custom": "Maxsus",
+      "customOption": "Maxsus etiket"
+    }
   },
   "notificationFilters": {
     "title": "Bildirishnomalarni filtrlash",
@@ -2815,6 +2836,7 @@
     "unavailable": "Ilovaning bu versiyasida mavjud emas"
   },
   "nav": {
+    "nfts": "NFT",
     "fractions": "Ulushlar",
     "home": "Bosh sahifa",
     "explore": "Kashf qilish",
@@ -13588,7 +13610,11 @@
     "skippedOtherToast": "{{platforms}} o'tkazib yuborildi: ular bu postni ololmaydilar."
   },
   "builder": {
-    "stakeForAllowance": "Kunlik qurish chegarangizni oshirish uchun DeHub tokenlarini stake qiling",
+    "modelLabel": "Model",
+    "creditsLeft": "{{amount}} kreditda",
+    "perPrompt": "≈ har bir so‘rov uchun {{price}}",
+    "pricingNote": "Har bir so‘rov kreditlaringizdan model narxi ustiga 30% qo‘shilgan holda to‘lanadi. So‘rovning eng yuqori narxi bajarilayotganda ushlab turiladi, ishlatilmagan qismi qaytariladi.",
+    "topUpCredits": "Kreditni to‘ldirish",
     "preview": "Ko'rib chiqish",
     "openInBrowser": "Brauzerda ochish",
     "reload": "Qayta yuklash",
@@ -14628,5 +14654,49 @@
     "confirm": "{{chain}} da yalpiz",
     "confirmWithCost": "{{chain}} da yalpiz · {{cost}}",
     "notAvailable": "Ushbu zanjirda zarb qilish hali mavjud emas."
+  },
+  "tokenLaunch": {
+    "eyebrow": "Tez kunlarda",
+    "body": "Sotib olish to‘g‘ri kelmayapti, yangi token tayyorlanmoqda. Token chiqib ketganda, tezda email yuboriladi.",
+    "notifyMe": "Xabar bering.",
+    "sendTo": "Biz {{email}} email yuboramiz.",
+    "emailPlaceholder": "Muhim so'xangiz",
+    "joinedTitle": "Siz roʻyxatda!",
+    "joinedBody": "Biz token chiqqanda {{email}} ga elektron pochta orqali murojaat qilamiz.",
+    "joinedBodyNoEmail": "Biz sizga tokenning chiqishi haqida ma'lumot berish uchun xabarnoma jo'natamiz.",
+    "failed": "Saqlab bo'lmadi. Qaytadan urinib ko'ring.",
+    "privacy": "Faoliyatga faqat chiqarilish haqida xabar berish uchun ishlatiladi."
+  },
+  "githubLink": {
+    "hint": "Xotira kirishingiz uchun GitHubga kirishingiz kerak, shuning uchun hisobingiz siznikiga tegishli ekanligini isbotlash kerak. DeHub faqat sizning GitHubdagi umumiy profilingizni koʻrishadi.",
+    "verified": "Tasdiqlangan",
+    "verifiedAria": "Tasdiqlangan GitHub akkaunti",
+    "connect": "GitHubga ulangish qiling",
+    "disconnect": "Uzish",
+    "connected": "GitHub ulangan",
+    "disconnected": "GitHub ulanmadi",
+    "taken": "Bu GitHub akkaunti boshqa DeHub profili bilan bogʻlangan.",
+    "failed": "GitHubga ulanish mumkin emas edi. Yangidan urinib ko'ring.",
+    "unavailable": "GitHub tasdiqlash yaqinlashib kelmoqda."
+  },
+  "comic": {
+    "tab": "Komik",
+    "title": "Komik",
+    "chip": "Komik · {{count}} sahifa",
+    "open": "Ochiq komiks, {{page}} sahifasi {{total}}dan.",
+    "flip": "Bet {{page}} dan {{total}} gacha. Tap qilib burish uchun bosing.",
+    "page": "{{page}}-sahifa",
+    "goto": "{{page}}-sahifa",
+    "alt": "Alt matni",
+    "cards": "Kartalarga qaytish",
+    "readAll": "Barcha sahifalarni oʻqish",
+    "editor": {
+      "count": "{{count}}/{{limit}} sahifa",
+      "coverHint": "Birinchi sahifa qopqoq",
+      "empty": "Rasm botonidan sahifalaringizni qoʻshing. Har bir sahifa uchun yozuv va alt matn bering.",
+      "cover": "Qopqoq",
+      "caption": "Bu sahifaning yozuvi",
+      "alt": "Alt matni: sahifada nima ko‘rinadi"
+    }
   }
 }

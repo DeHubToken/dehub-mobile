@@ -39,6 +39,7 @@ import EditPostImages from './EditPostImages';
 import EditPostCover from './EditPostCover';
 import { CONTENT_WARNING_MAX } from '../Home/ContentWarningGate';
 import { useTranslation } from "react-i18next";
+import { ARTICLE_BODY_MAX, ARTICLE_IMAGE_MAX, ARTICLE_RAW_MAX, articleImages, articleTextLength } from '../../libs/article';
 
 interface EditPostModalProps {
   visible: boolean;
@@ -276,8 +277,16 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     if (tokenId == null) return;
     const trimmedTitle = title.trim();
     const trimmedDesc = description.trim();
-    if (initialArticleBody !== undefined && articleBody.trim().length < 100) {
+    if (initialArticleBody !== undefined && articleTextLength(articleBody) < 100) {
       toastError(t("articles.bodyTooShort"));
+      return;
+    }
+    if (initialArticleBody !== undefined && articleTextLength(articleBody) > ARTICLE_BODY_MAX) {
+      toastError(t("articles.bodyTooLong", { count: articleTextLength(articleBody) - ARTICLE_BODY_MAX, defaultValue: "{{count}} characters over the limit" }));
+      return;
+    }
+    if (initialArticleBody !== undefined && articleImages(articleBody).length > ARTICLE_IMAGE_MAX) {
+      toastError(t("articles.imageLimit", { count: ARTICLE_IMAGE_MAX, defaultValue: "Articles can hold up to {{count}} images" }));
       return;
     }
 
@@ -558,10 +567,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         {/* Description — only shown if the post has a description */}
         {initialArticleBody !== undefined && <View className="mb-3">
           <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase mb-1">{t("articles.body")}</Text>
-          <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={20000} multiline
+          <TextInput value={articleBody} onChangeText={setArticleBody} maxLength={ARTICLE_RAW_MAX} multiline
             placeholder={t("articles.placeholder")} placeholderTextColor="#8B8D90"
             textAlignVertical="top" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm min-h-[220px]" />
-          <Text className="text-theme-neutrals-500 text-xs text-right">{articleBody.length}/20,000</Text>
+          <Text className="text-theme-neutrals-500 text-xs text-right">{articleTextLength(articleBody).toLocaleString("en-US")}/20,000</Text>
         </View>}
         {initialDescription ? (
           <>

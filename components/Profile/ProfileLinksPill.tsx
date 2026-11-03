@@ -1,6 +1,6 @@
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, type StyleProp, type ViewStyle } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
@@ -14,7 +14,12 @@ import {
   DISCORD_SVG_XML,
   TELEGRAM_SVG_XML,
   FACEBOOK_SVG_XML,
+  GITHUB_SVG_XML,
 } from "../../config/socialIcons";
+import { githubProfileUrl, verifiedGithubLogin } from "../../services/github-link.service";
+import { presetById, splitProfileFields } from "../../libs/profile-field-presets";
+import { PROFILE_FIELD_ICONS } from "./ProfileFieldsEditor";
+import type { IconName } from "../ui/Icon";
 
 const PLATFORMS = [
   { key: "twitter", get label() { return _translateCopy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }); }, host: "x.com", svg: TWITTER_SVG_XML },
@@ -35,7 +40,11 @@ const displayUrl = (url: string) =>
 interface ProfileLinksPillProps {
   /** The account record: `twitterLink`, `instagramLink`, … at the top level. */
   source: Record<string, unknown> | null | undefined;
+  /** Extra layout for the icon button, e.g. pushing it to the line's end. */
+  style?: StyleProp<ViewStyle>;
 }
+
+type LinkRow = { key: string; label: string; url: string; verified: boolean; svg?: string; icon?: IconName };
 
 /**
  * A few bare social icons in the header's bottom right corner. The icons used
@@ -43,20 +52,36 @@ interface ProfileLinksPillProps {
  * name and a long display name was cut to one line beside them. Tapping them
  * opens the full list.
  */
-const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
+const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source, style }) => {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   const links = useMemo(() => {
     if (!source) return [];
-    return PLATFORMS.flatMap((p) => {
+    // A GitHub the owner proved by signing in. Only the top-level
+    // `githubLogin` counts, which nothing but that sign-in writes.
+    const github = verifiedGithubLogin(source.githubLogin);
+    const verified: LinkRow[] = github
+      ? [{ key: "github", label: "GitHub", svg: GITHUB_SVG_XML, url: githubProfileUrl(github), verified: true }]
+      : [];
+    // The owner's own sites (profile fields picked as Website, Blog, …) lead,
+    // right after a proven GitHub.
+    const fields = Array.isArray(source.profileFields) ? (source.profileFields as any[]) : [];
+    const sites: LinkRow[] = splitProfileFields(fields).links.map((f, i) => ({
+      key: `field-${i}`,
+      label: t(`profileFields.presets.${f.preset}`, { defaultValue: presetById(f.preset)!.name }),
+      url: f.url,
+      verified: !!f.verifiedAt,
+      icon: PROFILE_FIELD_ICONS[f.preset],
+    }));
+    return [...verified, ...sites, ...PLATFORMS.flatMap((p): LinkRow[] => {
       const raw = source[`${p.key}Link`] ?? source[p.key];
       if (typeof raw !== "string" || !raw.trim()) return [];
       const url = getSocialLink(raw, p.host);
       if (!url || url === "#") return [];
-      return [{ ...p, url }];
-    });
-  }, [source]);
+      return [{ key: p.key, label: p.label, svg: p.svg, url, verified: false }];
+    })];
+  }, [source, t]);
 
   if (links.length === 0) return null;
 
@@ -73,11 +98,15 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
         accessibilityLabel={label}
         hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
         className="flex-row items-center"
-        style={{ gap: 6 }}
+        style={[{ gap: 6 }, style]}
       >
-        {links.slice(0, 3).map((l) => (
-          <SvgXml key={l.key} xml={tint(l.svg)} width={12} height={12} />
-        ))}
+        {links.slice(0, 3).map((l) =>
+          l.svg ? (
+            <SvgXml key={l.key} xml={tint(l.svg)} width={12} height={12} />
+          ) : (
+            <Icon key={l.key} name={l.icon!} size={12} color={ICON_COLOR} />
+          ),
+        )}
       </TouchableOpacity>
 
       <GlassModal visible={visible} onClose={() => setVisible(false)} presentation="bottom" scrollable>
@@ -98,10 +127,21 @@ const ProfileLinksPill: React.FC<ProfileLinksPillProps> = ({ source }) => {
               className={`flex-row items-center py-3${i > 0 ? " border-t border-white/10" : ""}`}
             >
               <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                <SvgXml xml={tint(l.svg)} width={18} height={18} />
+                {l.svg ? (
+                  <SvgXml xml={tint(l.svg)} width={18} height={18} />
+                ) : (
+                  <Icon name={l.icon!} size={18} color={ICON_COLOR} />
+                )}
               </View>
               <View className="flex-1" style={{ minWidth: 0 }}>
-                <Text className="text-white text-sm font-semibold">{l.label}</Text>
+                <View className="flex-row items-center" style={{ gap: 4 }}>
+                  <Text className="text-white text-sm font-semibold">{l.label}</Text>
+                  {l.verified ? (
+                    <View accessible accessibilityLabel={l.key === "github" ? t("githubLink.verifiedAria") : t("profileFields.verified")}>
+                      <Icon name="CircleCheck" size={14} color="#34D399" />
+                    </View>
+                  ) : null}
+                </View>
                 <Text className="text-theme-neutrals-400 text-xs" numberOfLines={1}>
                   {displayUrl(l.url)}
                 </Text>
