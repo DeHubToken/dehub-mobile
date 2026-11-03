@@ -15,7 +15,7 @@ export function quotedPostViewerParams(post: any, tokenId: string | number) {
   const info = post.streamInfo ?? post.stream?.streamInfo ?? {};
   // Shorts has no purchase or reveal sheet. Keep these posts on the resolver.
   if ((!video && !photo) || post.is_ppv || post.is_locked || post.isLocked ||
-      post.is_w2e || info.isAddBounty ||
+      post.is_w2e || post.is_live || info.isAddBounty ||
       !canOpenPostVideoViewer({ ...post, postType: 'video' })) return null;
   const item = photo && !video ? { ...post, tokenId, postType: 'feed-images', imageUrls: images } : { ...post, tokenId };
   return postVideoViewerParams(item, tokenId);
