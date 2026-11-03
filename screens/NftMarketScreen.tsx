@@ -3,7 +3,7 @@
  * ===============
  * Native port of dehub.io/nfts: browse NFTs for sale on BNB, Base, Ethereum and Robinhood, sell
  * what you hold, and see recent sales. Orders are Seaport orders kept by the
- * DeHub API, the same ones the website shows.
+ * Riftn API, the same ones the website shows.
  *
  * Android trades in the app. iOS is view only (App Store 3.1.1); in the US
  * storefront the sheet links out to dehub.io, which Apple allows there.
@@ -35,7 +35,7 @@ import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketCollection, type Mark
 type Tab = "browse" | "mine" | "sales";
 type ChainFilter = "all" | (typeof MARKET_CHAINS)[number];
 
-/** The one card that stands for DeHub Posts on every chain. */
+/** The one card that stands for Riftn Posts on every chain. */
 const DEHUB_ALL = "dehub:all";
 
 const compactNumber = (n: number) => n.toLocaleString(undefined, { notation: "compact", maximumFractionDigits: 1 });
@@ -118,14 +118,14 @@ export default function NftMarketScreen() {
     enabled: tab === "browse",
     staleTime: 30_000,
   });
-  // Minted DeHub posts, listed or not, so the market never looks empty.
+  // Minted Riftn posts, listed or not, so the market never looks empty.
   const showcase = useQuery({
     queryKey: ["nft-market", "showcase", chain],
     queryFn: () => nftMarket.showcase({ chainId: chain === "all" ? undefined : chain, limit: 30 }),
     enabled: tab === "browse",
     staleTime: 60_000,
   });
-  // DeHub Posts live on every chain as one contract each; show them as one
+  // Riftn Posts live on every chain as one contract each; show them as one
   // collection, not one card per chain. Other collections keep their own card.
   const dehubTotals = useMemo(() => {
     const per = showcase.data?.collections ?? [];
@@ -144,7 +144,7 @@ export default function NftMarketScreen() {
     const dehub: MarketCollection = {
       chainId: 0,
       contract: DEHUB_ALL,
-      name: t("nftMarket.dehubPostsName", { defaultValue: "DeHub Posts" }),
+      name: t("nftMarket.dehubPostsName", { defaultValue: "Riftn Posts" }),
       image: dehubTotals.image,
       isDehub: true,
       listed: dehubTotals.listed,
@@ -174,7 +174,7 @@ export default function NftMarketScreen() {
     standard: "erc1155",
     name: n.name,
     image: n.image,
-    collectionName: t("nftMarket.dehubPostsName", { defaultValue: "DeHub Posts" }),
+    collectionName: t("nftMarket.dehubPostsName", { defaultValue: "Riftn Posts" }),
   });
   const titleOf = (name: string | null | undefined, tokenId: string) => name?.trim() || `#${tokenId}`;
   const listedItems = useMemo(
@@ -237,7 +237,7 @@ export default function NftMarketScreen() {
 
   const share = () => {
     const url = ShareLinks.nfts();
-    void shareWithRef({ message: `${t("nftMarket.shareMessage", { defaultValue: "Buy and sell NFTs on DeHub" })}\n${url}`, url });
+    void shareWithRef({ message: `${t("nftMarket.shareMessage", { defaultValue: "Buy and sell NFTs on Riftn" })}\n${url}`, url });
   };
   const signIn = () => {
     setOpen(null);
@@ -307,7 +307,7 @@ export default function NftMarketScreen() {
     </View>
   );
 
-  // Minted DeHub posts under the listings (or instead of them when none are for sale).
+  // Minted Riftn posts under the listings (or instead of them when none are for sale).
   const showcaseFooter =
     gridMints.length && (!coll || !listedItems.length) ? (
       <View style={styles.showcase}>
@@ -368,7 +368,7 @@ export default function NftMarketScreen() {
                 ? t("nftMarket.bundleBadge", { n: item.items!.length, defaultValue: "Bundle ×{{n}}" })
                 : !sold && item.endPrice && item.endPrice !== item.price
                   ? t("nftMarket.dropBadge", { defaultValue: "Price drop" })
-                  : item.isDehub ? "DeHub" : null
+                  : item.isDehub ? "Riftn" : null
             }
             onPress={() => setOpen(fromOrder(item))}
           />

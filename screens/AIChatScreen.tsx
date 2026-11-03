@@ -1372,7 +1372,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           ...history,
           {
             role: 'assistant',
-            content: _copy("copy.4cef372919b2", { defaultValue: "Here's the official DeHub logo!" }),
+            content: _copy("copy.4cef372919b2", { defaultValue: "Here's the official Riftn logo!" }),
             imageUrl: Image.resolveAssetSource(DEHUB_LOGO).uri,
           },
         ]);

@@ -178,7 +178,7 @@ const LOGO_PHRASES = [
   'ftv brand', 'brand logo', 'company logo',
 ];
 
-/** Artefacts the brand pipeline knows how to make, once DeHub is named. */
+/** Artefacts the brand pipeline knows how to make, once Riftn is named. */
 const DEHUB_BRAND_ARTEFACTS = [
   'poster', 'posters', 'banner', 'banners', 'thumbnail', 'thumbnails',
   'card', 'cards', 'announcement', 'announcements', 'flyer', 'flyers',

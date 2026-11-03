@@ -4,7 +4,7 @@
  * Instant buys and sells are Jupiter swaps (best route across every Solana
  * DEX). Limit orders are Jupiter trigger orders: the maker's tokens sit in an
  * on-chain order account until Jupiter's keepers fill it at the asked price or
- * the maker cancels. Both APIs hand back an unsigned transaction; the DeHub
+ * the maker cancels. Both APIs hand back an unsigned transaction; the Riftn
  * wallet signs it with its derived Solana key (services/solana.service.ts).
  *
  * Every order is priced against USDC, so a pool on Solana reads in dollars
@@ -26,7 +26,7 @@ export const MIN_ORDER_USD = 5;
 /** SOL kept back from a max spend for fees and rent. */
 const SOL_RESERVE = 0.01;
 
-/** The Solana address that trades for the signed-in DeHub wallet. */
+/** The Solana address that trades for the signed-in Riftn wallet. */
 export async function solanaTrader(): Promise<string> {
   const address = await getSolanaAddress();
   if (!address) throw new Error(_translateCopy('copy.a332320bc5c5', { defaultValue: 'Solana wallet unavailable. Sign in again to trade on Solana.' }));

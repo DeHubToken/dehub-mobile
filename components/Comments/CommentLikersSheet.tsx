@@ -56,7 +56,7 @@ interface CommentLikersSheetProps {
   visible: boolean;
   onClose: () => void;
   commentId: number | string | null;
-  /** Where the likers come from; post comments read the DeHub API. */
+  /** Where the likers come from; post comments read the Riftn API. */
   loadPage?: typeof getCommentLikers;
 }
 

@@ -881,7 +881,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, item.detectedLanguage, true, true, postKey);
-  // DeHub links in the caption become entity cards, and the URLs that became
+  // Riftn links in the caption become entity cards, and the URLs that became
   // cards come out of the text — the same contract the DM, comment and
   // community-chat surfaces already follow, and the same one web's PostCard
   // uses. Without this the feed was the one surface where a stage, community
@@ -3110,7 +3110,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {/* DeHub entity cards — stage, post, profile, community, invite, store,
+      {/* Riftn entity cards — stage, post, profile, community, invite, store,
           item, event, bounty. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
       {remixCredits}

@@ -29,7 +29,7 @@ export const CINEMATIC_BARE_BUTTON = 32;
 export const CINEMATIC_BOTTOM_BAND_LOW = CINEMATIC_EDGE + CINEMATIC_BUTTON;
 
 const AVATAR = 30;
-// DeHub's soft corners (the badge plate, the tab pill) rather than circles.
+// Riftn's soft corners (the badge plate, the tab pill) rather than circles.
 const MENU_RADIUS = 12;
 const BUTTON_RADIUS = 10;
 const AVATAR_RADIUS = 8;

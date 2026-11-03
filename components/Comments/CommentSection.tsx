@@ -1985,7 +1985,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loading={mentions.loading}
         />
 
-        {/* A banned account reads every comment on DeHub and writes none of
+        {/* A banned account reads every comment on Riftn and writes none of
            them. The API refuses the write either way. */}
         {accountBanned ? (
           <View style={{ padding: COMPOSER.gutter }}>

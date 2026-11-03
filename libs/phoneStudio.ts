@@ -4,7 +4,7 @@ import { NativeModules, Platform, TurboModuleRegistry } from "react-native";
  * The phone studio's native half: background removal, scene cards and the
  * overlay of logos and widgets, all burned into the outgoing video by frame
  * processors that sit after the camera look in react-native-webrtc's effect
- * chain (android/.../studio/, ios/DeHub/DHBStudio.m).
+ * chain (android/.../studio/, ios/Riftn/DHBStudio.m).
  *
  * Pictures cross the bridge as PNG file paths: JS draws them with Skia, writes
  * the file, and the native side decodes it once and lays it out for the

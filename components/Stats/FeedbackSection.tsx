@@ -135,7 +135,7 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
         <Text style={styles.intro}>
           {t(
             "stats.feedback.intro",
-            "Been using DeHub for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
+            "Been using Riftn for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
           )}
         </Text>
 
@@ -183,7 +183,7 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
               <Text style={styles.consentText}>
                 {t(
                   "stats.feedback.consentPromo",
-                  "I authorise DeHub to quote this feedback in marketing and promotional materials.",
+                  "I authorise Riftn to quote this feedback in marketing and promotional materials.",
                 )}
               </Text>
             </Pressable>
@@ -229,7 +229,7 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
           {approved.map((item) => {
             const account = item.username ? accounts?.[item.username.toLowerCase()] : undefined;
             const handle = account?.username ?? item.username;
-            const name = account?.displayName || handle || t("stats.feedback.anonymous", "A DeHub member");
+            const name = account?.displayName || handle || t("stats.feedback.anonymous", "A Riftn member");
             const sub = [handle ? `@${handle}` : "", item.time_using ?? ""].filter(Boolean).join(" · ");
             const target = account?.address || handle;
             return (

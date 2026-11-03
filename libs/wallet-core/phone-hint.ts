@@ -4,7 +4,7 @@
  * Web3Auth's sms_passwordless connection REQUIRES a login_hint (it does not
  * collect the number itself — omitting it fails with "Invalid params. Missing
  * login_hint for web3auth passwordless login"), and it identifies the user by
- * that hint. Old DeHub accounts store the resulting verifier id as
+ * that hint. Old Riftn accounts store the resulting verifier id as
  * `+34-659265340` — country code, hyphen, subscriber number.
  *
  * That shape is load-bearing. A hint that differs from the one the account was

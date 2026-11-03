@@ -32,7 +32,7 @@ type T = TFunction;
 function describeCost(quote: MintFeeQuoteResponse, sponsored: boolean, t: T) {
   if (sponsored) {
     if (!quote.chargeable || !(quote.amount > 0)) {
-      return { primary: t("mintChain.free", { defaultValue: "Free" }), secondary: t("mintChain.gasCovered", { defaultValue: "Gas covered by DeHub" }) };
+      return { primary: t("mintChain.free", { defaultValue: "Free" }), secondary: t("mintChain.gasCovered", { defaultValue: "Gas covered by Riftn" }) };
     }
     const dollars = usd(quote.retailUsd);
     return {

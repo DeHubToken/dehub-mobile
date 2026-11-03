@@ -133,7 +133,7 @@ export interface User {
   followings?: number; // count of following
   hideFollowers?: boolean; // privacy setting to hide follow lists
   isPrivate?: boolean; // privacy setting to make account private
-  hideBadgeAndBalance?: boolean; // hides public badge/balances and disables incoming DeHub payments
+  hideBadgeAndBalance?: boolean; // hides public badge/balances and disables incoming Riftn payments
   /**
    * This viewer asked to be served mature posts in the public feeds, and to
    * see them without a content warning elsewhere. Off by default. Says
@@ -141,7 +141,7 @@ export interface User {
    */
   showMatureContent?: boolean;
   /**
-   * This account is banned. A ban on DeHub is read-only, not locked-out: the
+   * This account is banned. A ban on Riftn is read-only, not locked-out: the
    * account keeps its sign-in, its feed, its conversations and its data until
    * the person asks for it to be deleted, and loses posting, commenting,
    * reacting, following and messaging. The API refuses every write with

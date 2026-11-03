@@ -33,7 +33,7 @@ type Phase = 'entry' | 'confirm' | 'done';
  * having it take effect immediately is faster and wrong: what is being
  * authorised here is a full session on a device the person may not be able to
  * see, and the only thing standing between that and a device-code phishing
- * attack is a human reading "DeHub TV (SHIELD Android TV)" and deciding whether
+ * attack is a human reading "Riftn TV (SHIELD Android TV)" and deciding whether
  * that is the television in front of them.
  *
  * So: type the code, see what it is, then approve. The warning is stated in

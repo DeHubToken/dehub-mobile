@@ -16,7 +16,7 @@ const EDGE_BASE = env.SUPABASE_EDGE_BASE_URL;
  * Headers the paid AI functions authenticate against.
  *
  * `generate-image`, `generate-video` and `fal-ai-tools` all run
- * through `_shared/ai-payment-guard.ts`, which requires a DeHub token in
+ * through `_shared/ai-payment-guard.ts`, which requires a Riftn token in
  * `x-dehub-token` and answers 401 without one. Until this existed, mobile paid
  * DHB to the treasury from the paywall sheet and then got a 401 from the
  * generation itself — the money went and nothing came back.
@@ -556,7 +556,7 @@ export function toChatTurns(messages: AIChatMessage[]): AIChatMessage[] {
 
 export async function sendAIChat(request: AIChatRequest): Promise<AIChatResponse> {
   // The server gives the full model and higher limit only to a verified
-  // DeHub token, so every signed-in caller sends it, not just the assistant.
+  // Riftn token, so every signed-in caller sends it, not just the assistant.
   return edgeFetch<AIChatResponse>('general-ai-chat', {
     ...request,
     dehubToken: request.dehubToken || (await getAuthToken()) || undefined,
@@ -1059,7 +1059,7 @@ export function isVideoRequest(text: string): boolean {
  *
  * `conversational` is on because every image surface on this app confirms the
  * price in a paywall sheet before anything is signed, which is what makes the
- * looser phrasing ("what does a DeHub poster look like") safe to route.
+ * looser phrasing ("what does a Riftn poster look like") safe to route.
  */
 export function isImageRequest(text: string, hasAttachedImage = false): boolean {
   return requiresImageGeneration(text, hasAttachedImage, { conversational: true });
@@ -1071,13 +1071,13 @@ export function isImageRequest(text: string, hasAttachedImage = false): boolean 
  * the palette rule and the links block are all load-bearing.
  */
 export function buildDeHubBrandPrompt(userRequest: string): string {
-  return `DEHUB BRAND SYSTEM (mandatory):
-- The attached image is the official DeHub wordmark. Composite it prominently, crisp, unaltered, pure white, with clear space around it. Do not redraw, recolor, gradient-fill, warp, or replace it.
+  return `RIFTN BRAND SYSTEM (mandatory):
+- The attached image is the official Riftn wordmark. Composite it prominently, crisp, unaltered, pure white, with clear space around it. Do not redraw, recolor, gradient-fill, warp, or replace it.
 - Palette: deep black / charcoal backgrounds, white text, subtle white-opacity accents. Never use blue.
 - Aesthetic: liquid glass, frosted blur, cinematic, premium, decentralized-tech, lots of negative space, strong focal hierarchy.
 - Typography if any: use the Exo / Exo 2 typeface family (geometric technical sans-serif) for ALL rendered text — Light/Regular for body and links, Medium/SemiBold for headings, Bold only for short display words. Pure white, generous letter-spacing. Never Inter, Poppins, DM Sans, serifs, or script. Fallbacks: Eurostile, Michroma, Rajdhani. No emoji. No generic AI clichés.
 
-OFFICIAL DEHUB LINKS (render ONLY if the user explicitly asks for socials, links, website, QR, or contact info — otherwise omit entirely):
+OFFICIAL RIFTN LINKS (render ONLY if the user explicitly asks for socials, links, website, QR, or contact info — otherwise omit entirely):
 - Website: dehub.io
 - X / Twitter: x.com/dehub_official
 - Telegram (main): t.me/dehub_dhb
@@ -1096,7 +1096,7 @@ USER REQUEST: ${userRequest}`;
 const TOOL_LABELS: Record<string, string> = {
   get lookup_user() { return _translateCopy("copy.f159c06178be", { defaultValue: "Looking up that profile" }); },
   get user_posts() { return _translateCopy("copy.5cc6ab9e7e37", { defaultValue: "Reading their posts" }); },
-  get search() { return _translateCopy("copy.4af83339a6f1", { defaultValue: "Searching DeHub" }); },
+  get search() { return _translateCopy("copy.4af83339a6f1", { defaultValue: "Searching Riftn" }); },
   get get_feed() { return _translateCopy("copy.38e888a3984e", { defaultValue: "Checking the feed" }); },
   get get_post() { return _translateCopy("copy.7a075dd38cf7", { defaultValue: "Opening that post" }); },
   get get_followers() { return _translateCopy("copy.44612f2b9571", { defaultValue: "Checking followers" }); },

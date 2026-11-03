@@ -157,7 +157,7 @@ source.addEventListener('error',()=>liveError(new Error('This video cannot be lo
 source.addEventListener('waiting',()=>{if(recording && (config.mode!=='cut'||(performance.now()-started)/1000<range().cut))liveError(new Error('Source playback stalled. Please retry after it has loaded.'));});
 try {
   if(!['green-screen','collab','sound','cut'].includes(config.mode)||!/^https:\/\//.test(config.videoUrl))throw new Error('Invalid remix source.');
-  if(!navigator.mediaDevices?.getUserMedia || !canvas.captureStream || typeof MediaRecorder==='undefined')throw new Error('Live recording is unavailable in this browser. Use the latest Chrome or the DeHub app.');
+  if(!navigator.mediaDevices?.getUserMedia || !canvas.captureStream || typeof MediaRecorder==='undefined')throw new Error('Live recording is unavailable in this browser. Use the latest Chrome or the Riftn app.');
   await waitMedia(source,'loadeddata',()=>{source.src=config.videoUrl;source.muted=true;});
   if(!Number.isFinite(source.duration)||source.duration<.25)throw new Error('Choose a finished video with a known duration.');
   $('trim').max=String(Math.max(0,source.duration-.5));ready=true;$('sample').disabled=false;controls();status('Choose a source range, then enable your camera.');send('ready');animation=requestAnimationFrame(draw);

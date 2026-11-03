@@ -1077,7 +1077,7 @@ const NotificationScreen = () => {
    * Fire-and-forget mark as read
    */
   const markAsReadAsync = useCallback((notificationId: string) => {
-    // Supabase-side rows are not in the DeHub API, so a PATCH there would 404
+    // Supabase-side rows are not in the Riftn API, so a PATCH there would 404
     // and the row would come back unread on the next refresh. The `custom_`
     // prefix is the only thing distinguishing them — see libs/custom-notifications.
     const mark = isCustomNotificationId(notificationId)

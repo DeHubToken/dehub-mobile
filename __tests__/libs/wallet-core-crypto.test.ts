@@ -158,7 +158,7 @@ describe("wallet-core/crypto — refuses to guess", () => {
         "base64url",
       )}:AAAA`,
     };
-    await expect(decryptString(future, PASSWORD)).rejects.toThrow(/newer version of DeHub/);
+    await expect(decryptString(future, PASSWORD)).rejects.toThrow(/newer version of Riftn/);
   });
 
   it("reports a truncated header as corruption", async () => {

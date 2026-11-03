@@ -131,7 +131,7 @@ export default function DexScreen() {
     .sort((a, b) => listedAt(b) - listedAt(a)), [listings, address]);
   const { bids, asks } = useMemo(() => aggregateBook(venueListings, increment), [venueListings, increment]);
   const bestAsk = snapshot?.price ?? null;
-  // Price and both liquidity sides belong to the DeHub Base pool.
+  // Price and both liquidity sides belong to the Riftn Base pool.
   const usdPrice = snapshot?.usdPrice ?? null;
   const liquidityUsd = snapshot?.liquidityUsd ?? null;
   const lpDhb = snapshot?.lpDhb ?? null;
@@ -152,7 +152,7 @@ export default function DexScreen() {
     const live = venueListings.find((item) => item.poolFee === 0 && Number.isFinite(item.marketPrice) && item.marketPrice > 0);
     return live?.marketPrice ?? null;
   }, [venueListings]);
-  // Both references now describe the same DeHub pool.
+  // Both references now describe the same Riftn pool.
   const referencePrice = useCallback((next: 'buy' | 'sell') => seedReference(next, poolPrice, usdPrice) ?? bestAsk, [poolPrice, usdPrice, bestAsk]);
   const ticketPrice = Number(side === 'buy' ? maxPrice : minPrice);
   const deviation = priceDeviation(ticketPrice, usdPrice);

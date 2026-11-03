@@ -1,4 +1,4 @@
-/** Carry the selected interface language into DeHub documentation and web pages. */
+/** Carry the selected interface language into Riftn documentation and web pages. */
 export function withDeHubLanguage(rawUrl: string, language: string): string {
   try {
     const url = new URL(rawUrl);

@@ -1,9 +1,9 @@
 import SkeletonBlock from '../Feed/SkeletonBlock';
 import { useTranslation as _useCopy } from 'react-i18next';
 /**
- * DeHub Link Card
+ * Riftn Link Card
  * ===============
- * Turns a parsed DeHub entity link into a card. The mobile counterpart of the
+ * Turns a parsed Riftn entity link into a card. The mobile counterpart of the
  * web app's DehubLinkEmbed, and the same deal: every surface that shows
  * user-written text renders links through here, so a shop item looks the same
  * in a DM as it does in the feed.
@@ -670,7 +670,7 @@ interface DehubLinkCardProps {
 }
 
 /**
- * Open a DeHub link inside the app.
+ * Open a Riftn link inside the app.
  *
  * Exported because the feed's caption renderer needs the same routing: a
  * dehub.io link there used to be handed to the in-app browser, so tapping a
@@ -797,7 +797,7 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
 
   const fallback = (
     <RowCard
-      eyebrow="DeHub"
+      eyebrow="Riftn"
       title={_copy("copy.9f68c44b21cf", { defaultValue: "View {{value1}}", value1: dehubLinkLabel(link.kind) })}
       subtitle={`dehub.io${link.path}`}
       fallbackIcon="Link"

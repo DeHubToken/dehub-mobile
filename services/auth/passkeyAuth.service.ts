@@ -115,7 +115,7 @@ export async function signUpWithPasskey(): Promise<string> {
 }
 
 /**
- * Sign in with an existing DeHub passkey. Throws `PasskeyLoginError` with
+ * Sign in with an existing Riftn passkey. Throws `PasskeyLoginError` with
  * code `UNKNOWN_CREDENTIAL` when the chosen passkey has no account, which
  * the screen turns into an offer to create one.
  */

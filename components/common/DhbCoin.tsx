@@ -1,6 +1,6 @@
 import { tokenLabel } from '../../libs/token-label';
 /**
- * The gold DeHub coin, inline, in place of the "DHB" ticker text.
+ * The gold Riftn coin, inline, in place of the "DHB" ticker text.
  *
  * The word after a number reads as noise beside the coin the rest of the app
  * already uses for the same thing, and a three-letter ticker set in a UI font

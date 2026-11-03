@@ -6,7 +6,7 @@
  * disconnects it. A Solana tip or paid unlock is sent straight to this
  * address, so without one the account simply cannot be paid on Solana.
  *
- * Connecting signs the ordinary DeHub login message with the Solana key
+ * Connecting signs the ordinary Riftn login message with the Solana key
  * derived from this wallet (the same proof the purchase flow sends).
  * Disconnecting needs no proof: it only ever costs the person doing it.
  */

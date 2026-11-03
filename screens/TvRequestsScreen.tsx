@@ -27,7 +27,7 @@ import {
 /**
  * Requests raised by a television, waiting for this phone to sign.
  *
- * A DeHub TV can watch but not spend — it holds no wallet key, which is what
+ * A Riftn TV can watch but not spend — it holds no wallet key, which is what
  * makes it safe to leave signed in on an appliance in a shared room. When
  * someone presses Tip over there, the TV raises a request; this screen is where
  * it gets answered, using the wallet this device already has.

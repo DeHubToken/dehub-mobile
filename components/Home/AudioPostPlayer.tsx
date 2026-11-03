@@ -624,7 +624,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     () => ({
       title: resolvedTitle,
       artist: resolvedArtist,
-      albumTitle: t("copy.a2caa0dc28fb", { defaultValue: "DeHub • Audio" }),
+      albumTitle: t("copy.a2caa0dc28fb", { defaultValue: "Riftn • Audio" }),
       artworkUrl: artworkUrl || undefined,
     }),
     [resolvedTitle, resolvedArtist, artworkUrl, t],

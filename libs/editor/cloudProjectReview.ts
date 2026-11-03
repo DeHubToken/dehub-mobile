@@ -18,7 +18,7 @@ export interface ProjectReviewDraft { body: string; atSeconds: number; revision:
 const uuidPattern = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 export function projectReviewWallet(value: string): string {
   const wallet = value.trim().toLowerCase();
-  if (!/^0x[a-f0-9]{40}$/.test(wallet)) throw new Error(_translateCopy("copy.57e0b6c29ec3", { defaultValue: "Enter a valid DeHub wallet address" }));
+  if (!/^0x[a-f0-9]{40}$/.test(wallet)) throw new Error(_translateCopy("copy.57e0b6c29ec3", { defaultValue: "Enter a valid Riftn wallet address" }));
   return wallet;
 }
 export function projectReviewDraft(draft: ProjectReviewDraft): ProjectReviewDraft {

@@ -5,7 +5,7 @@
  * trigger fans `stage_live` rows into `custom_notifications` when a host goes
  * live, and pg_cron writes `stage_reminder` rows ten minutes ahead of a
  * scheduled start. Web reads them. This app never has — its bell is paged
- * entirely from the DeHub API, and those rows live in Supabase — so a
+ * entirely from the Riftn API, and those rows live in Supabase — so a
  * mobile-only account was told nothing at all, in-app or otherwise.
  *
  * ── Why this watches the stages and not the notification rows ──
@@ -30,7 +30,7 @@
  * ── What this does NOT do ──
  *
  * Nothing here reaches a phone whose app is closed. Push registration goes
- * through the DeHub API, and these rows are Supabase-side, so background
+ * through the Riftn API, and these rows are Supabase-side, so background
  * delivery needs the API taught about stage events — server work, not client
  * work. This is the in-app half: if you are using the app, you are told.
  */

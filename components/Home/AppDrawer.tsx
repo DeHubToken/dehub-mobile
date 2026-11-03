@@ -158,7 +158,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
-  { icon: "Scroll", labelKey: "Compare DeHub", screen: ScreenNames.Compare },
+  { icon: "Scroll", labelKey: "Compare Riftn", screen: ScreenNames.Compare },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
@@ -178,7 +178,7 @@ const DEFAULT_MENU_IDS = NAV_ITEMS.filter((item) => !item.searchOnly).map((item)
 // Theme artwork belongs to phone menus. The web desktop sidebar keeps its
 // custom vectors for Editor and Creator.
 const ICON_KEYS: Record<string, string> = {
-  "Compare DeHub": "glossary",
+  "Compare Riftn": "glossary",
   "creator.editor": "videos", "commandCentre.creator": "paint",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",

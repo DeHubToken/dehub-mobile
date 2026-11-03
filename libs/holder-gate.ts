@@ -23,7 +23,7 @@ export async function rpc<T>(fn: string, args: Record<string, unknown>, walletAd
   return data as T;
 }
 
-/** DeHub's own token on each chain. Shown as "tokens" with the DeHub coin. */
+/** Riftn's own token on each chain. Shown as "tokens" with the Riftn coin. */
 export const DEHUB_TOKEN_BY_CHAIN: Record<number, string> = {
   56: "0x680d3113caf77b61b510f332d5ef4cf5b41a761d",
   8453: "0xd20ab1015f6a2de4a6fddebab270113f689c2f7c",
@@ -71,7 +71,7 @@ export function formatHolderAmount(amount: number, symbol?: string | null): stri
   const text = n >= 1000
     ? Math.round(n).toLocaleString('en-US')
     : n.toLocaleString('en-US', { maximumFractionDigits: n < 1 ? 6 : 2 });
-  // DeHub's own token reads as "tokens" everywhere, never "DHB".
+  // Riftn's own token reads as "tokens" everywhere, never "DHB".
   const isDhb = !symbol || /^(?:\$?DHB|DEHUB)$/i.test(symbol.trim());
   return `${text} ${tokenLabel(symbol) || (isDhb ? 'tokens' : symbol)}`;
 }

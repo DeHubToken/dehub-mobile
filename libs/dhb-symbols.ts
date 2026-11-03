@@ -1,6 +1,6 @@
 /**
  * Every cashtag that means our token. $RIFT and $RIFTN are the new brand
- * (DeHub is becoming Riftn), so they resolve to DHB's card, logo and numbers
+ * (Riftn is becoming Riftn), so they resolve to DHB's card, logo and numbers
  * rather than to whatever unrelated coin also uses that ticker. Kept free of
  * imports so the asset resolver can use it without pulling in auth.
  */

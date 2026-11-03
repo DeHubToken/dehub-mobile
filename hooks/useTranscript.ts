@@ -1,5 +1,5 @@
 /**
- * One transcript hook for every kind of thing DeHub transcribes.
+ * One transcript hook for every kind of thing Riftn transcribes.
  *
  * Mirrors dehubweb's `use-transcript`: read the row over PostgREST, follow it
  * over realtime, and call the `transcribe` function only to start one. Videos

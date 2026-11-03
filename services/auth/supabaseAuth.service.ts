@@ -1,5 +1,5 @@
 // Supabase Auth identity layer — mirrors cosmic-echo-hero's use of Supabase
-// purely as an identity/OTP provider. The DeHub backend handshake (sign a
+// purely as an identity/OTP provider. The Riftn backend handshake (sign a
 // message with the local wallet, POST /mobile/auth) stays unchanged; this
 // module only establishes *who the person is* before a local wallet is
 // provisioned/reused for them.
@@ -464,7 +464,7 @@ export async function getSupabaseUserId(): Promise<string | null> {
 }
 
 /**
- * web3AuthMeta for the current Supabase user — the join key the DeHub
+ * web3AuthMeta for the current Supabase user — the join key the Riftn
  * backend stores (as web3AuthMeta.verifierId) to recognize this identity on
  * a future login without a wallet signature. Must match dehubweb's
  * getSupabaseAuthMeta() (verifier: 'dehub-supabase') so an account linked

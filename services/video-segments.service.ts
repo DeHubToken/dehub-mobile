@@ -3,10 +3,10 @@
  * intros, outros and the rest of what a viewer would rather skip.
  *
  * Reads are anonymous: the player skips for signed-out viewers too. Writes
- * carry the DeHub token in `x-dehub-token`; the function derives the submitter
+ * carry the Riftn token in `x-dehub-token`; the function derives the submitter
  * from it and ignores anything we send, so no address goes in the body. The
  * `Authorization` header always holds the publishable key, because that is
- * what the platform's own JWT check reads — the DeHub token is not one.
+ * what the platform's own JWT check reads — the Riftn token is not one.
  *
  * Every write is a POST, removal included: the shared CORS headers on these
  * functions allow GET, POST and OPTIONS only.

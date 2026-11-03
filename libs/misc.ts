@@ -17,7 +17,7 @@ const DEFAULT_AVATAR_PT = 48;
 
 /**
  * True for a value that already addresses an image somewhere other than a
- * stored DeHub avatar path — a full URL, an in-memory preview, or an inline
+ * stored Riftn avatar path — a full URL, an in-memory preview, or an inline
  * payload.
  *
  * These have to be left alone. The flattening below is deliberate for stored

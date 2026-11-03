@@ -606,7 +606,7 @@ export function useSubmitComment() {
       patchCommentCount(queryClient, variables.featureRequestId, 1);
 
       // Tagging @assistant here gets an answer from the assistant itself, in
-      // DeHub's own voice. This board is where the people who reported things
+      // Riftn's own voice. This board is where the people who reported things
       // come back to ask whether the fix landed, and a question that sits
       // unanswered until somebody scrolls past is the whole problem. Fire and
       // forget: the comment is already saved, so a failed reply must not toast

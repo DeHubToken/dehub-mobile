@@ -10,7 +10,7 @@
  * re-run, and matching on text would drop every fix the moment a re-run
  * shifted a word.
  *
- * Reads are anonymous; writes carry the DeHub token in `x-dehub-token` and the
+ * Reads are anonymous; writes carry the Riftn token in `x-dehub-token` and the
  * function derives the submitter from it. `Authorization` always holds the
  * publishable key — that is what the platform's own check reads.
  *

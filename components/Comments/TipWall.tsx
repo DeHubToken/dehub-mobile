@@ -48,7 +48,7 @@ function wholeAmount(amount: number): string {
   return amount.toLocaleString(undefined, { maximumFractionDigits: amount < 1 ? 2 : 0 });
 }
 
-/** The gold coin: DeHub's mark struck into a gold disc. */
+/** The gold coin: Riftn's mark struck into a gold disc. */
 export const GoldCoin = memo(function GoldCoin({ size = 14 }: { size?: number }) {
   return (
     <View style={{ width: size, height: size }}>

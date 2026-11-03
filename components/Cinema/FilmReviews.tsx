@@ -1,6 +1,6 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
- * DeHub's own ratings and reviews for one title. Mirrors web's FilmReviews:
+ * Riftn's own ratings and reviews for one title. Mirrors web's FilmReviews:
  * reads are open, writing needs a signed-in wallet, and while the
  * film-reviews function is not deployed the section renders nothing rather
  * than an empty list that reads as "nobody has reviewed this".

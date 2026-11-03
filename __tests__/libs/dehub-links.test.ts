@@ -235,7 +235,7 @@ describe('findDehubLinks', () => {
   });
 
   it('does not card a foreign URL through its path', () => {
-    // A card claims the content is DeHub's. The bare-path pass used to match
+    // A card claims the content is Riftn's. The bare-path pass used to match
     // the "/app/post/1" sitting inside an already-rejected foreign URL.
     expect(findDehubLinks('look at https://evil.example/app/post/1 now')).toEqual([]);
     expect(findDehubLinks('https://example.com/communities/dehub')).toEqual([]);
@@ -288,7 +288,7 @@ describe('stripping', () => {
     expect(stripDehubLinkMatches(text, [first])).toBe(`and ${b}`);
   });
 
-  it('leaves text with no DeHub links alone', () => {
+  it('leaves text with no Riftn links alone', () => {
     expect(stripDehubLinks('just some words')).toBe('just some words');
   });
 

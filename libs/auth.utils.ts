@@ -16,7 +16,7 @@ export const PREFERRED_CHAIN_ID_KEY = 'preferred_chain_id';
 export const PENDING_CHAIN_SWITCH_KEY = 'pending_chain_switch';
 export const REFRESH_TOKEN_KEY = 'auth_refresh_token';
 export const TOKEN_EXPIRES_AT_KEY = 'auth_token_expires_at';
-/** Tags which Supabase identity produced the current DeHub session (dehubweb: dehub_supabase_uid). */
+/** Tags which Supabase identity produced the current Riftn session (dehubweb: dehub_supabase_uid). */
 export const SUPABASE_UID_KEY = 'auth_supabase_uid';
 
 /**

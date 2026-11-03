@@ -72,7 +72,7 @@ async function fetchWithFallback<T>(endpoint: string): Promise<T> {
   for (let i = 0; i < API_SERVERS.length; i++) {
     try {
       const response = await fetch(`${API_SERVERS[currentServerIndex]}${endpoint}`, {
-        headers: { "User-Agent": "DeHub/1.0" },
+        headers: { "User-Agent": "Riftn/1.0" },
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return (await response.json()) as T;

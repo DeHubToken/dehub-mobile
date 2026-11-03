@@ -6,7 +6,7 @@
  *
  * It keeps the viewer where they are: they pick anything they hold — USDC on
  * Arc, ETH on Ethereum, USDT on BNB, anything on Base — and one tap turns it
- * into DHB and hands straight back to the unlock. The DHB comes from DeHub Pay
+ * into DHB and hands straight back to the unlock. The DHB comes from Riftn Pay
  * first and the Uniswap pool only if DPay cannot fill it (libs/tip-funding).
  */
 

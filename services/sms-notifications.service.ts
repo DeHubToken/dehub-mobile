@@ -3,7 +3,7 @@ import { apiClient } from '../libs';
 /**
  * Text notifications — credit, number and prices
  * ==============================================
- * Client for `/notification/sms/*` on the DeHub API.
+ * Client for `/notification/sms/*` on the Riftn API.
  *
  * This is the only notification channel that costs money, so it is the only one
  * with an API of its own. The switch itself is not here: turning texts on and

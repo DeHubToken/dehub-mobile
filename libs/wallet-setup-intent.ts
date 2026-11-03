@@ -1,6 +1,6 @@
 /**
  * What the person said they came to do BEFORE signing in: bring over an old
- * (Web3Auth-era) DeHub account. Chosen from the "Migrate account" button on
+ * (Web3Auth-era) Riftn account. Chosen from the "Migrate account" button on
  * the sign-in surfaces and read back once the identity exists.
  *
  * Detection is automatic either way — a sign-in that matches an old account

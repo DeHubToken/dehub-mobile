@@ -45,7 +45,7 @@ function randomBytes(n: number): Uint8Array {
  */
 export function encryptionSignMessage(address: string): string {
   return (
-    "DeHub Messages\n\n" +
+    "Riftn Messages\n\n" +
     `Sign to unlock end-to-end encrypted messages for ${address.toLowerCase()}.\n\n` +
     "This signature only derives your message keys on this device. " +
     "It costs nothing and does not authorise any transaction."

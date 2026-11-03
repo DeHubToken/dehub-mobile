@@ -204,7 +204,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               <Text style={styles.recipientText}>
                 {t(
                   "tip.attachDescription",
-                  "Attach DeHub tokens as a tip to your message",
+                  "Attach Riftn tokens as a tip to your message",
                 )}
                 {minAmount > 1
                   ? `. ${t("tip.minAmount", "Min {{amount}} tokens.", {

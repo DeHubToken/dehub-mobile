@@ -1,7 +1,7 @@
 /**
  * Supabase-side notifications, on mobile
  * ======================================
- * Some of DeHub's notifications are not written by the DeHub API at all. Bounty
+ * Some of Riftn's notifications are not written by the Riftn API at all. Bounty
  * applications and submissions, store orders, fraction offers, community joins
  * and stage alerts are all fanned into the Supabase `custom_notifications`
  * table by database triggers. Web's bell reads both sources and merges them.
@@ -23,7 +23,7 @@
  *
  * Merged rows carry `custom_<uuid>` as their `_id`, exactly as web does. It is
  * load-bearing: the bell's mark-read and clear paths route on that prefix to
- * decide whether to PATCH the DeHub API or update Supabase, and an id that is
+ * decide whether to PATCH the Riftn API or update Supabase, and an id that is
  * ambiguous between the two sources would send the write to the wrong place.
  */
 
@@ -308,7 +308,7 @@ export async function markCustomNotificationRead(
 /**
  * Mark every unread Supabase-side row read for this wallet.
  *
- * The bell's "Mark all read" used to reach only the DeHub API, so these rows
+ * The bell's "Mark all read" used to reach only the Riftn API, so these rows
  * stayed unread in the table and came back lit on the next app open, which
  * read as some notifications flipping back to unread at random. Web's bell
  * does both writes; this is the second one.

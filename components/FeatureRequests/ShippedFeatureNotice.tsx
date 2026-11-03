@@ -86,8 +86,8 @@ export default function ShippedFeatureNotice() {
         </Text>
         <Text className="text-zinc-400 text-sm leading-5 mb-4">
           {isPlural
-            ? _copy("copy.905392fbed15", { defaultValue: "Thanks for helping make DeHub better — {{value1}} things you asked for are now live:", value1: items.length })
-            : _copy("copy.2971f9103f78", { defaultValue: "Thanks for helping make DeHub better — something you asked for is now live:" })}
+            ? _copy("copy.905392fbed15", { defaultValue: "Thanks for helping make Riftn better — {{value1}} things you asked for are now live:", value1: items.length })
+            : _copy("copy.2971f9103f78", { defaultValue: "Thanks for helping make Riftn better — something you asked for is now live:" })}
         </Text>
 
         <ScrollView style={{ maxHeight: 192 }} contentContainerStyle={{ gap: 8 }} className="mb-5">

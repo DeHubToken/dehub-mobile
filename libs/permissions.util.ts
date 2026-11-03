@@ -40,7 +40,7 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       icon: "images-outline",
       get title() { return _translateCopy("copy.17327a8bbef2", { defaultValue: "Allow Photo & Video Access" }); },
       get message() {
-        return _translateCopy("copy.c8a13ba198f8", { defaultValue: "DeHub needs access to your photo library so you can share images and videos in your posts, messages, and profile." });
+        return _translateCopy("copy.c8a13ba198f8", { defaultValue: "Riftn needs access to your photo library so you can share images and videos in your posts, messages, and profile." });
       },
     },
     denied: {
@@ -48,8 +48,8 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       get title() { return _translateCopy("copy.367fab14d80e", { defaultValue: "Photo Access Required" }); },
       get message() {
         return Platform.OS === "ios"
-          ? _translateCopy("copy.330a0c47b974", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → DeHub → Photos." })
-          : _translateCopy("copy.726841a807ad", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → Apps → DeHub → Permissions." });
+          ? _translateCopy("copy.330a0c47b974", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → Riftn → Photos." })
+          : _translateCopy("copy.726841a807ad", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → Apps → Riftn → Permissions." });
       },
     },
   },
@@ -58,7 +58,7 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       icon: "camera-outline",
       get title() { return _translateCopy("copy.accbfc31a313", { defaultValue: "Allow Camera Access" }); },
       get message() {
-        return _translateCopy("copy.1abdcc39af0b", { defaultValue: "DeHub needs camera access so you can stream live content to your audience." });
+        return _translateCopy("copy.1abdcc39af0b", { defaultValue: "Riftn needs camera access so you can stream live content to your audience." });
       },
     },
     denied: {
@@ -66,8 +66,8 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       get title() { return _translateCopy("copy.579cddb816f2", { defaultValue: "Camera Access Required" }); },
       get message() {
         return Platform.OS === "ios"
-          ? _translateCopy("copy.1ce8f4323ac9", { defaultValue: "Camera access was denied. Please enable it in Settings → DeHub → Camera to go live." })
-          : _translateCopy("copy.de1f4a628d37", { defaultValue: "Camera access was denied. Please enable it in Settings → Apps → DeHub → Permissions to go live." });
+          ? _translateCopy("copy.1ce8f4323ac9", { defaultValue: "Camera access was denied. Please enable it in Settings → Riftn → Camera to go live." })
+          : _translateCopy("copy.de1f4a628d37", { defaultValue: "Camera access was denied. Please enable it in Settings → Apps → Riftn → Permissions to go live." });
       },
     },
   },
@@ -76,7 +76,7 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       icon: "mic-outline",
       get title() { return _translateCopy("copy.9dbec93384a7", { defaultValue: "Allow Microphone Access" }); },
       get message() {
-        return _translateCopy("copy.aff7721e2cff", { defaultValue: "DeHub needs microphone access for live streaming and voice notes." });
+        return _translateCopy("copy.aff7721e2cff", { defaultValue: "Riftn needs microphone access for live streaming and voice notes." });
       },
     },
     denied: {
@@ -84,8 +84,8 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
       get title() { return _translateCopy("copy.0b6a294eb3ca", { defaultValue: "Microphone Access Required" }); },
       get message() {
         return Platform.OS === "ios"
-          ? _translateCopy("copy.28f7beb11d62", { defaultValue: "Microphone access was denied. Please enable it in Settings → DeHub → Microphone." })
-          : _translateCopy("copy.aece76552fe8", { defaultValue: "Microphone access was denied. Please enable it in Settings → Apps → DeHub → Permissions." });
+          ? _translateCopy("copy.28f7beb11d62", { defaultValue: "Microphone access was denied. Please enable it in Settings → Riftn → Microphone." })
+          : _translateCopy("copy.aece76552fe8", { defaultValue: "Microphone access was denied. Please enable it in Settings → Apps → Riftn → Permissions." });
       },
     },
   },
@@ -100,7 +100,7 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
 // at API 30 for anything targeting API 30+ (we target 35) - the platform denies
 // it without asking and it never appears in the settings UI. So on Android 11
 // and 12 the check reports denied with canAskAgain false, permanently, and no
-// amount of toggling switches under Settings -> Apps -> DeHub changes it. That
+// amount of toggling switches under Settings -> Apps -> Riftn changes it. That
 // is a hard block on picking any photo or video on those devices while the
 // picker itself would have worked fine. Treat photo access as implicit on
 // Android and let the picker be its own gate; iOS still asks properly.

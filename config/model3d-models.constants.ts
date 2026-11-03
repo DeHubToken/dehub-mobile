@@ -2,7 +2,7 @@ import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * 3D Model Generation Configuration
  * =================================
- * Mesh generation runs on fal.ai, which DeHub already pays for (FAL_KEY), so
+ * Mesh generation runs on fal.ai, which Riftn already pays for (FAL_KEY), so
  * this rides the same queue-submit / poll contract the video models use rather
  * than introducing a second provider.
  *

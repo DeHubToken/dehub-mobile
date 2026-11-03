@@ -19,7 +19,7 @@ describe("prepareWalletForQueuedMint", () => {
     ).rejects.toBe(locked);
   });
 
-  it("leaves providers that do not know DeHub's private method alone", async () => {
+  it("leaves providers that do not know Riftn's private method alone", async () => {
     const unsupported = new Error("Unsupported method: dehub_openWallet");
 
     await expect(

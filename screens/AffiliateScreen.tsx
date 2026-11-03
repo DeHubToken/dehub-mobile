@@ -360,7 +360,7 @@ export default function AffiliateScreen() {
         <Text style={styles.intro}>
           {t(
             "affiliate.intro",
-            "Every time someone uses any DeHub revenue-generating feature, you earn residually and perpetually.",
+            "Every time someone uses any Riftn revenue-generating feature, you earn residually and perpetually.",
           )}
         </Text>
         </PageSection>
@@ -554,7 +554,7 @@ export default function AffiliateScreen() {
           <Text style={[styles.cardSub, styles.sectionSub]}>
             {t("affiliate.yourLinkSub", {
               defaultValue:
-                "Share anywhere. You earn {{l1}}% of every dollar your invites ever spend on DeHub, plus {{l2}}% from everyone they invite.",
+                "Share anywhere. You earn {{l1}}% of every dollar your invites ever spend on Riftn, plus {{l2}}% from everyone they invite.",
               l1: AFFILIATE_L1_COMMISSION_PCT,
               l2: AFFILIATE_L2_COMMISSION_PCT,
             })}
@@ -598,7 +598,7 @@ export default function AffiliateScreen() {
         {/* Your affiliates */}
         <PageSection title={t("affiliate.yourAffiliates", "Your affiliates")}>
           <Text style={[styles.cardSub, styles.sectionSub]}>
-            {t("affiliate.yourAffiliatesSub", "The accounts you've referred to DeHub.")}
+            {t("affiliate.yourAffiliatesSub", "The accounts you've referred to Riftn.")}
           </Text>
 
           {hasSecondary && (
@@ -671,7 +671,7 @@ export default function AffiliateScreen() {
           />
           <Step
             n={2}
-            title={t("affiliate.step2Title", "They join DeHub")}
+            title={t("affiliate.step2Title", "They join Riftn")}
             body={t(
               "affiliate.step2Body",
               "Anyone who lands via your link is permanently attributed to you (first-touch wins, 90-day cookie).",
@@ -685,7 +685,7 @@ export default function AffiliateScreen() {
             })}
             body={t("affiliate.step3Body", {
               defaultValue:
-                "You receive {{l1}}% of every dollar of revenue your invites ever generate on DeHub.",
+                "You receive {{l1}}% of every dollar of revenue your invites ever generate on Riftn.",
               l1: AFFILIATE_L1_COMMISSION_PCT,
             })}
           />
@@ -715,7 +715,7 @@ export default function AffiliateScreen() {
   );
 }
 
-/** Web's "Link to a specific page": the invite link that lands on any DeHub page. */
+/** Web's "Link to a specific page": the invite link that lands on any Riftn page. */
 export function DeepLinkBuilder({ inviteLink }: { inviteLink: string }) {
   const { t } = useTranslation();
   const [target, setTarget] = useSurfaceDraft("screens/AffiliateScreen.tsx:deepLinkTarget", "");
@@ -725,7 +725,7 @@ export function DeepLinkBuilder({ inviteLink }: { inviteLink: string }) {
   return (
     <View style={styles.deepLink}>
       <Text style={styles.sectionTitleSmall}>{t("copy.fc036ea0e9f0", { defaultValue: "Link to a specific page" })}</Text>
-      <Text style={styles.cardSub}>{t("copy.ae4410aa9943", { defaultValue: "Paste any DeHub page — a docs section, a bounty, your profile. The link below still attributes the visit to you, then takes them straight there." })}</Text>
+      <Text style={styles.cardSub}>{t("copy.ae4410aa9943", { defaultValue: "Paste any Riftn page — a docs section, a bounty, your profile. The link below still attributes the visit to you, then takes them straight there." })}</Text>
       <TextInput
         value={target}
         onChangeText={setTarget}

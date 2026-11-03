@@ -72,7 +72,7 @@ beforeEach(() => {
 });
 
 describe('isChainAASupported', () => {
-  it('covers the chains DeHub deploys to', () => {
+  it('covers the chains Riftn deploys to', () => {
     expect(isChainAASupported(BASE)).toBe(true);
     expect(isChainAASupported(BNB)).toBe(true);
     expect(isChainAASupported(ETH_MAINNET)).toBe(true);

@@ -30,7 +30,7 @@ it('rejects anything else', () => {
   expect(importSecretKind('')).toBeNull();
   expect(importSecretKind('0x1234')).toBeNull();
   expect(importSecretKind(words12.replace(/about$/, 'abandon'))).toBeNull();
-  // Valid BIP-39 but not a length DeHub offers.
+  // Valid BIP-39 but not a length Riftn offers.
   expect(importSecretKind('abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon')).toBeNull();
   expect(() => privateKeyFromImportSecret('not a secret')).toThrow();
 });

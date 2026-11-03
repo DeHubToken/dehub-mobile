@@ -786,7 +786,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     <Text style={styles.privateNoticeText}>
                       {t(
                         "tip.privateBalanceNotice",
-                        "This account has private balance mode on, so DeHub cannot send tokens or tips to it.",
+                        "This account has private balance mode on, so Riftn cannot send tokens or tips to it.",
                       )}
                     </Text>
                   </View>

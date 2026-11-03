@@ -43,7 +43,7 @@ export async function getEmailLinkStatus(): Promise<EmailLinkStatus | null> {
  * The same question, asked in a way that also repairs the answer.
  *
  * A Google or email signup proves an address to Supabase, and nothing ever
- * copied it onto the DeHub account — which is the one place the notification
+ * copied it onto the Riftn account — which is the one place the notification
  * mailer looks. So `notifyEmail` came back null for nearly everyone and this
  * screen greyed the switch out, telling people to add the address they had
  * just signed in with. Logins record it now, but that only reaches someone the

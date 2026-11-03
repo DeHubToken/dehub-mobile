@@ -17,7 +17,7 @@ interface NotificationPermissionPromptProps {
  * Branded pre-prompt ("soft ask") shown before the OS notification dialog.
  *
  * The system dialog itself cannot be restyled or repositioned by an app, so
- * this stands in front of it: it explains the value in DeHub's own chrome and
+ * this stands in front of it: it explains the value in Riftn's own chrome and
  * only lets the OS prompt appear once the user has said yes. On iOS that also
  * preserves `canAskAgain` — a decline here never burns the one system prompt
  * the platform allows.

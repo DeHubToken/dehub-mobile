@@ -47,7 +47,7 @@ describe('withShareRef', () => {
 it('tags every link inside a message without swallowing trailing punctuation', () => {
   expect(withShareRefText('Look https://dehub.io/app/post/1. And https://dehub.io/@mal!'))
     .toBe('Look https://dehub.io/app/post/1?ref=ABC123. And https://dehub.io/@mal?ref=ABC123!');
-  expect(withShareRefText('Join me on DeHub')).toBe('Join me on DeHub');
+  expect(withShareRefText('Join me on Riftn')).toBe('Join me on Riftn');
 });
 
 it('tags both the message and url fields', () => {

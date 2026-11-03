@@ -445,7 +445,7 @@ export const DETAIL_GROUPS: DetailGroup[] = [
   { category: 'Entertainment and platform tools', web: 'src/pages/app/EventsPage.tsx', mobile: 'screens/EventsScreen.tsx', rows: [
     ['event-pages', 'Dedicated event pages', 'Open supported event detail, timing and agenda information.'],
     ['event-community', 'Community event discovery', 'Discover supported events linked to platform communities.'],
-    ['careers', 'In-app careers listings', 'Browse available DeHub team roles.'],
+    ['careers', 'In-app careers listings', 'Browse available Riftn team roles.'],
     ['prize-draws', 'Prize draw directory', 'View published prize draws and their applicable entry conditions.'],
   ] },
 ];

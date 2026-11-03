@@ -106,7 +106,7 @@ function toCustomRows(prefix: string, items: CustomEmoji[], withAdd: boolean): R
 /**
  * The full Unicode emoji set for the post composer, comments and chat
  * reactions — the same picker as dehubweb's EmojiPanel: search in the
- * viewer's language, a DeHub picks row, recents, a remembered skin tone and,
+ * viewer's language, a Riftn picks row, recents, a remembered skin tone and,
  * on long-press, Google's animated version of the emoji with its name.
  */
 export default function EmojiSheet({ visible, onClose, onSelect, selected }: EmojiSheetProps) {

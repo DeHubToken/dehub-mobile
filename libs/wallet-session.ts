@@ -4,7 +4,7 @@
  * Wallet-scoped RLS reads get_request_wallet_address(), which used to trust the
  * x-wallet-address header on its own. The database now also accepts
  * x-wallet-session, a short-lived signature minted by the `wallet-session`
- * edge function for the wallet the DeHub token proves.
+ * edge function for the wallet the Riftn token proves.
  *
  * `walletSessionFetch` is handed to createClient as its fetch, so every REST
  * and storage request that names a wallet (withWalletHeader and friends) gets
@@ -71,7 +71,7 @@ function fresh(wallet: string): Session | null {
 async function mint(wallet: string, baseFetch: typeof fetch): Promise<Session | null> {
   await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
-  if (!token) throw new MintError("no_token", "no DeHub token stored");
+  if (!token) throw new MintError("no_token", "no Riftn token stored");
   const res = await baseFetch(`${env.SUPABASE_URL}/functions/v1/wallet-session`, {
     method: "POST",
     headers: {
@@ -85,7 +85,7 @@ async function mint(wallet: string, baseFetch: typeof fetch): Promise<Session | 
   });
   const data = await res.json().catch(() => null);
   if (!res.ok) {
-    // A 401 is the DeHub token itself being dead, not a server fault.
+    // A 401 is the Riftn token itself being dead, not a server fault.
     const detail = `${res.status} ${data?.error ?? ""}`.trim();
     throw new MintError(res.status === 401 ? "no_token" : "mint_error", detail);
   }

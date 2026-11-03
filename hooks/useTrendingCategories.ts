@@ -5,7 +5,7 @@
  * the two clients cannot disagree about what is trending. Three things about
  * that table are worth knowing before touching this:
  *
- * **It lives in dehubweb's Supabase, not in the DeHub API.** `category_post_log`
+ * **It lives in dehubweb's Supabase, not in the Riftn API.** `category_post_log`
  * holds one row per post per category, written by a `sync-category-log` edge
  * function that pulls from the feed API. Nothing here writes to it.
  *

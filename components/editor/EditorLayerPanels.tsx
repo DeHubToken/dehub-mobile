@@ -231,7 +231,7 @@ export function BrandPanel(props: {
   onUseSelectedAsLogo: () => void;
   onApply: () => void;
   onAddLogo: () => void;
-  /** One tap: official DeHub colours, fonts and logo, applied to the design. */
+  /** One tap: official Riftn colours, fonts and logo, applied to the design. */
   onUseDehubBrand?: () => void;
   onSaveStyles?: () => void;
   onLoadStyles?: () => void;
@@ -258,9 +258,9 @@ export function BrandPanel(props: {
       {props.onUseDehubBrand && (
         <View style={{ gap: 4 }}>
           <ChipRow>
-            <Chip icon="WandSparkles" label={t("editor.brand.dehubApply", { defaultValue: "Use the DeHub brand" })} active onPress={props.onUseDehubBrand} />
+            <Chip icon="WandSparkles" label={t("editor.brand.dehubApply", { defaultValue: "Use the Riftn brand" })} active onPress={props.onUseDehubBrand} />
           </ChipRow>
-          <Text className="text-theme-neutrals-400 text-xs">{t("editor.brand.dehubHint", { defaultValue: "Official DeHub colours, Exo and Inter fonts, and the DeHub logo, in one click." })}</Text>
+          <Text className="text-theme-neutrals-400 text-xs">{t("editor.brand.dehubHint", { defaultValue: "Official Riftn colours, Exo and Inter fonts, and the Riftn logo, in one click." })}</Text>
         </View>
       )}
       <BrandPresetLibrary value={kit} onLoad={styles => props.onChange({ ...kit, ...styles })} />

@@ -3,10 +3,10 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
- * DeHub Poster Studio.
+ * Riftn Poster Studio.
  * ====================
- * Port of web's `PosterConfigDialog`. Anything that mentions DeHub and a piece
- * of content ("make a DeHub banner for the LCS launch") routes through here
+ * Port of web's `PosterConfigDialog`. Anything that mentions Riftn and a piece
+ * of content ("make a Riftn banner for the LCS launch") routes through here
  * instead of straight to the image paywall, because a brand poster needs a
  * format, a style archetype, which features to spotlight, and a headline that
  * is composited afterwards rather than drawn by the model.
@@ -68,7 +68,7 @@ const DIMENSIONS: { value: PosterConfig['dimension']; label: string; hint: strin
 ];
 
 const STYLES: { value: string; label: string; desc: string; displayDesc: string }[] = [
-  { value: 'dehub-template', get label() { return _translateCopy("copy.6bb795fea2b8", { defaultValue: "🎯 DeHub Banner" }); }, desc: 'On-brand chrome icon + silver headline (like our blog banners)', get displayDesc() { return _translateCopy("copy.395a707bd6a3", { defaultValue: "On-brand chrome icon + silver headline (like our blog banners)" }); } },
+  { value: 'dehub-template', get label() { return _translateCopy("copy.6bb795fea2b8", { defaultValue: "🎯 Riftn Banner" }); }, desc: 'On-brand chrome icon + silver headline (like our blog banners)', get displayDesc() { return _translateCopy("copy.395a707bd6a3", { defaultValue: "On-brand chrome icon + silver headline (like our blog banners)" }); } },
   { value: 'auto', get label() { return _translateCopy("copy.eb1bb7452892", { defaultValue: "🎲 Surprise me" }); }, desc: 'Random top-tier archetype', get displayDesc() { return _translateCopy("copy.e71655704cae", { defaultValue: "Random top-tier archetype" }); } },
   { value: 'apple-keynote', get label() { return _translateCopy("copy.ca01201adaea", { defaultValue: "🍎 Apple Keynote" }); }, desc: 'Minimal product hero, dramatic lighting', get displayDesc() { return _translateCopy("copy.37540e858a4b", { defaultValue: "Minimal product hero, dramatic lighting" }); } },
   { value: 'a24-film', get label() { return _translateCopy("copy.edd50297ca4a", { defaultValue: "🎞️ A24 Film Poster" }); }, desc: 'Cinematic, grainy, moody', get displayDesc() { return _translateCopy("copy.681da2fcb37a", { defaultValue: "Cinematic, grainy, moody" }); } },
@@ -87,7 +87,7 @@ const STYLES: { value: string; label: string; desc: string; displayDesc: string 
 ];
 
 const LOGO_VARIANTS: { value: LogoVariant; label: string; hint: string }[] = [
-  { value: 'primary', get label() { return _translateCopy("copy.d5fda981cc4a", { defaultValue: "Wordmark" }); }, get hint() { return _translateCopy("copy.b68ce1077869", { defaultValue: "Long-form DeHub logo" }); } },
+  { value: 'primary', get label() { return _translateCopy("copy.d5fda981cc4a", { defaultValue: "Wordmark" }); }, get hint() { return _translateCopy("copy.b68ce1077869", { defaultValue: "Long-form Riftn logo" }); } },
   { value: 'icon', get label() { return _translateCopy("copy.a35abcd6dac9", { defaultValue: "Icon" }); }, get hint() { return _translateCopy("copy.ce18d71f9095", { defaultValue: "Compact D-mark" }); } },
   { value: 'both', get label() { return _translateCopy("copy.b6c1d862f9f7", { defaultValue: "Both" }); }, get hint() { return _translateCopy("copy.5499817aec57", { defaultValue: "Wordmark + icon lockup" }); } },
 ];
@@ -111,7 +111,7 @@ const FEATURE_GROUPS: { group: string; displayGroup: string; items: { value: str
       { value: 'livestream', get label() { return _translateCopy("copy.63cede5fbee6", { defaultValue: "Livestreaming" }); }, blurb: 'Native + aggregated streams', get displayBlurb() { return _translateCopy("copy.882538ca4a86", { defaultValue: "Native + aggregated streams" }); } },
       { value: 'streaming-agg', get label() { return _translateCopy("copy.3098854985e6", { defaultValue: "🎬 Streaming Aggregation" }); }, blurb: 'All major platforms in one', get displayBlurb() { return _translateCopy("copy.067dd84ab978", { defaultValue: "All major platforms in one" }); } },
       { value: 'stages', get label() { return _translateCopy("copy.2da0741cd536", { defaultValue: "🎙️ Stages" }); }, blurb: 'Audio rooms with AI TTS hosts', get displayBlurb() { return _translateCopy("copy.3f46fc40ad09", { defaultValue: "Audio rooms with AI TTS hosts" }); } },
-      { value: 'radio', get label() { return _translateCopy("copy.a0b9c4ce5f29", { defaultValue: "📻 DeHub Radio" }); }, blurb: '24/7 crypto radio', get displayBlurb() { return _translateCopy("copy.c8881bd87d15", { defaultValue: "24/7 crypto radio" }); } },
+      { value: 'radio', get label() { return _translateCopy("copy.a0b9c4ce5f29", { defaultValue: "📻 Riftn Radio" }); }, blurb: '24/7 crypto radio', get displayBlurb() { return _translateCopy("copy.c8881bd87d15", { defaultValue: "24/7 crypto radio" }); } },
       { value: 'tv-console', get label() { return _translateCopy("copy.393c70daa40f", { defaultValue: "TV & Console Apps" }); }, blurb: 'Living room takeover', get displayBlurb() { return _translateCopy("copy.50575a8fbd04", { defaultValue: "Living room takeover" }); } },
       { value: 'editor', get label() { return _translateCopy("copy.03bbf31aa251", { defaultValue: "🎬 In-Browser Video Editor" }); }, blurb: 'Multi-track studio at /editor', get displayBlurb() { return _translateCopy("copy.de690b83607b", { defaultValue: "Multi-track studio at /editor" }); } },
     ],
@@ -130,12 +130,12 @@ const FEATURE_GROUPS: { group: string; displayGroup: string; items: { value: str
     group: 'Token & DeFi',
     get displayGroup() { return _translateCopy("copy.6ff093d0306a", { defaultValue: "Token & DeFi" }); },
     items: [
-      { value: 'dhb-staking', get label() { return _translateCopy("copy.0039cdece89a", { defaultValue: "💎 Token Staking (Base)" }); }, blurb: 'Stake DeHub tokens, earn rewards', labelKey: 'poster.features.stakingLabel', blurbKey: 'poster.features.stakingBlurb' },
+      { value: 'dhb-staking', get label() { return _translateCopy("copy.0039cdece89a", { defaultValue: "💎 Token Staking (Base)" }); }, blurb: 'Stake Riftn tokens, earn rewards', labelKey: 'poster.features.stakingLabel', blurbKey: 'poster.features.stakingBlurb' },
       { value: 'lp-farming', get label() { return _translateCopy("copy.ffd397381778", { defaultValue: "🌾 LP Farming" }); }, blurb: 'Provide liquidity, earn yield', get displayBlurb() { return _translateCopy("copy.3e251f21874b", { defaultValue: "Provide liquidity, earn yield" }); } },
       { value: 'token-bridge', get label() { return _translateCopy("copy.5441d9dc54f6", { defaultValue: "🌉 Token Bridge" }); }, blurb: 'BNB ↔ Base cross-chain', get displayBlurb() { return _translateCopy("copy.d25cbdb8a77e", { defaultValue: "BNB ↔ Base cross-chain" }); } },
       { value: 'governance', get label() { return _translateCopy("copy.7e9ecb6a5eff", { defaultValue: "🗳️ Governance" }); }, blurb: 'On-chain proposals & voting', get displayBlurb() { return _translateCopy("copy.62aae18f9b4b", { defaultValue: "On-chain proposals & voting" }); } },
       { value: 'token-utility', get label() { return _translateCopy("copy.e3e81d3d76cf", { defaultValue: "🪙 Token Utility" }); }, blurb: 'Fees, boosts, gating, tipping', get displayBlurb() { return _translateCopy("copy.46ba977c5758", { defaultValue: "Fees, boosts, gating, tipping" }); }, labelKey: 'poster.features.tokenUtilityLabel' },
-      { value: 'fiat-onramp', get label() { return _translateCopy("copy.6818215dba2d", { defaultValue: "💳 Fiat On-Ramp" }); }, blurb: 'Card → USDC → DeHub tokens', blurbKey: 'poster.features.fiatOnrampBlurb' },
+      { value: 'fiat-onramp', get label() { return _translateCopy("copy.6818215dba2d", { defaultValue: "💳 Fiat On-Ramp" }); }, blurb: 'Card → USDC → Riftn tokens', blurbKey: 'poster.features.fiatOnrampBlurb' },
       { value: 'fiat-offramp', get label() { return _translateCopy("copy.b295e355b543", { defaultValue: "💵 Fiat Off-Ramp" }); }, blurb: 'Token-to-cash conversion', get displayBlurb() { return _translateCopy("copy.eaf7645fdf76", { defaultValue: "Token-to-cash conversion" }); } },
       { value: 'uniswap-swap', get label() { return _translateCopy("copy.831e71a8e8c6", { defaultValue: "🔄 In-App Swap" }); }, blurb: 'Uniswap V3, one click', get displayBlurb() { return _translateCopy("copy.cd59a4dfabcd", { defaultValue: "Uniswap V3, one click" }); } },
       { value: 'wallet', get label() { return _translateCopy("copy.e54d786a7b76", { defaultValue: "👛 Cross-Chain Wallet" }); }, blurb: 'BNB + Base aggregated', get displayBlurb() { return _translateCopy("copy.c1919aeb4349", { defaultValue: "BNB + Base aggregated" }); } },
@@ -145,11 +145,11 @@ const FEATURE_GROUPS: { group: string; displayGroup: string; items: { value: str
     group: 'Marketplace & Commerce',
     get displayGroup() { return _translateCopy("copy.92e31dc02897", { defaultValue: "Marketplace & Commerce" }); },
     items: [
-      { value: 'stores', get label() { return _translateCopy("copy.50d8d34a787b", { defaultValue: "🛍️ DeHub Stores" }); }, blurb: 'P2P commerce with DeHub tokens on Base', blurbKey: 'poster.features.storesBlurb' },
+      { value: 'stores', get label() { return _translateCopy("copy.50d8d34a787b", { defaultValue: "🛍️ Riftn Stores" }); }, blurb: 'P2P commerce with Riftn tokens on Base', blurbKey: 'poster.features.storesBlurb' },
       { value: 'fractions', get label() { return _translateCopy("copy.6ee5630c9dde", { defaultValue: "🧩 Fractions" }); }, blurb: 'Fractional NFT marketplace', get displayBlurb() { return _translateCopy("copy.515c1d5bac05", { defaultValue: "Fractional NFT marketplace" }); } },
-      { value: 'work', get label() { return _translateCopy("copy.fb673c9c986e", { defaultValue: "🧑‍💻 DeHub Bounties" }); }, blurb: 'Escrow bounties: social, clips, contracts', get displayBlurb() { return _translateCopy("copy.cb7691b210ac", { defaultValue: "Escrow bounties: social, clips, contracts" }); } },
+      { value: 'work', get label() { return _translateCopy("copy.fb673c9c986e", { defaultValue: "🧑‍💻 Riftn Bounties" }); }, blurb: 'Escrow bounties: social, clips, contracts', get displayBlurb() { return _translateCopy("copy.cb7691b210ac", { defaultValue: "Escrow bounties: social, clips, contracts" }); } },
       { value: 'tipping', get label() { return _translateCopy("copy.2b13f4c55720", { defaultValue: "💸 Tipping" }); }, blurb: 'Reward creators on any post', get displayBlurb() { return _translateCopy("copy.3c0a4db437c9", { defaultValue: "Reward creators on any post" }); } },
-      { value: 'premium', get label() { return _translateCopy("copy.1205929886b3", { defaultValue: "👑 DeHub Extra" }); }, blurb: 'Premium tiers with cashback', get displayBlurb() { return _translateCopy("copy.088dd2c25014", { defaultValue: "Premium tiers with cashback" }); } },
+      { value: 'premium', get label() { return _translateCopy("copy.1205929886b3", { defaultValue: "👑 Riftn Extra" }); }, blurb: 'Premium tiers with cashback', get displayBlurb() { return _translateCopy("copy.088dd2c25014", { defaultValue: "Premium tiers with cashback" }); } },
     ],
   },
   {
@@ -266,10 +266,10 @@ function buildFinalPrompt(cfg: Omit<PosterConfig, 'finalPrompt'>, userPrompt: st
 
   const logoNote =
     cfg.logoVariant === 'icon'
-      ? 'Reserve clear negative space for the DeHub icon mark (compact D-symbol) only — do not draw the wordmark.'
+      ? 'Reserve clear negative space for the Riftn icon mark (compact D-symbol) only — do not draw the wordmark.'
       : cfg.logoVariant === 'both'
-        ? 'Reserve clear negative space for a DeHub lockup combining the icon mark and the long-form wordmark side-by-side or stacked.'
-        : 'Reserve clear negative space for the DeHub long-form wordmark logo.';
+        ? 'Reserve clear negative space for a Riftn lockup combining the icon mark and the long-form wordmark side-by-side or stacked.'
+        : 'Reserve clear negative space for the Riftn long-form wordmark logo.';
   parts.push(logoNote);
 
   if (cfg.style && cfg.style !== 'auto' && cfg.style !== 'dehub-template') {
@@ -282,7 +282,7 @@ function buildFinalPrompt(cfg: Omit<PosterConfig, 'finalPrompt'>, userPrompt: st
       .map((f) => FEATURES.find((x) => x.value === f))
       .filter(Boolean)
       .map((f) => `${f!.label.replace(/^[^\w]+/, '')} (${f!.blurb})`);
-    parts.push(`Spotlight DeHub feature(s): ${featureLabels.join('; ')}.`);
+    parts.push(`Spotlight Riftn feature(s): ${featureLabels.join('; ')}.`);
   }
 
   if (cfg.tagline) {

@@ -3,7 +3,7 @@
  * ===================
  * Both are communities with a `kind`. A group is a chat everyone talks in; a
  * channel is one only the owner and admins post to. Either can charge a
- * one-off entry price in DeHub tokens, paid straight to the owner. The
+ * one-off entry price in Riftn tokens, paid straight to the owner. The
  * database reads the transfer off the chain itself before it lets the member
  * in. Mirrors dehubweb src/lib/community-kinds.ts.
  */
@@ -18,7 +18,7 @@ export function communityKindOf(community: Partial<Community> | null | undefined
   return kind === "group" || kind === "channel" ? kind : "community";
 }
 
-/** Whole DeHub tokens to get in, or 0 when it is free. */
+/** Whole Riftn tokens to get in, or 0 when it is free. */
 export function entryPriceOf(community: Partial<Community> | null | undefined): number {
   const price = Number((community as any)?.entry_price ?? 0);
   return Number.isFinite(price) && price > 0 ? Math.ceil(price) : 0;

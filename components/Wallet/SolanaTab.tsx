@@ -2,7 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 // Solana wallet surface.
 //
 // Posting, tipping and PPV on Solana all spend SOL from a wallet derived from
-// the user's DeHub wallet key (libs/solana-derive.ts). Until this screen
+// the user's Riftn wallet key (libs/solana-derive.ts). Until this screen
 // existed there was no way to learn its address, so nobody could fund it and
 // every Solana action failed on "Insufficient SOL for transaction fees" with
 // no route out. Showing the address and its balance is what makes the chain

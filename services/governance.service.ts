@@ -3,7 +3,7 @@
  * ==================
  * Reads the Supabase `governance_proposals` table, mirroring the web app's
  * use-governance hooks. Votes go through the same `governance-vote` edge
- * function web uses: it reads the voter off the DeHub token and the weight off
+ * function web uses: it reads the voter off the Riftn token and the weight off
  * their badge, so nothing about the vote's worth is decided here. Proposal
  * submission (which can charge a DHB fee) is still web only.
  */

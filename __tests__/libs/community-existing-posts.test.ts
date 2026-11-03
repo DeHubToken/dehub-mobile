@@ -1,7 +1,7 @@
 import { communityPostTarget, validCommunityPostId, resolveCommunityPosts, uniqueCommunityPosts } from '../../libs/community-posts-core';
 
 describe('existing community posts', () => {
-  it('accepts original and off-chain DeHub links, including top-level production URLs', () => {
+  it('accepts original and off-chain Riftn links, including top-level production URLs', () => {
     expect(communityPostTarget('https://dehub.io/post/6552')).toEqual({tokenId:'6552'});
     expect(communityPostTarget('https://dehub.io/app/post/6552?comment=4')).toEqual({tokenId:'6552'});
     expect(communityPostTarget('dehub.io/newpost/12')).toEqual({newPostId:'12'});

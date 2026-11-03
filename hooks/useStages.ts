@@ -854,7 +854,7 @@ export function useStages(): UseStagesReturn {
             "Content-Type": "application/json",
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
             Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
-            // elevenlabs-tts authenticates on the DeHub token, not on the
+            // elevenlabs-tts authenticates on the Riftn token, not on the
             // Supabase key above it. Without this the call is a 401 and the
             // stage hears nothing.
             ...(await dehubAuthHeaders(userAddress)),

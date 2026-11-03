@@ -1,7 +1,7 @@
 /**
- * DeHub Entity Links
+ * Riftn Entity Links
  * ==================
- * One parser for every DeHub URL that deserves to render as a card instead of
+ * One parser for every Riftn URL that deserves to render as a card instead of
  * as a link: posts, profiles, communities, community invites, stores, store
  * listings and events. The web app has the same module at `src/lib/dehub-links.ts`
  * — keep the two in step, because a link built on one client is read on the other.
@@ -13,7 +13,7 @@
  * Two rules worth keeping:
  *
  * 1. **Host is checked.** Only our own hosts (and host-less paths, which can
- *    only be ours) get a card. A card is a claim that the content is DeHub's.
+ *    only be ours) get a card. A card is a claim that the content is Riftn's.
  * 2. **The link is kept.** `path` is the URL as written, so a link carrying a
  *    query string still resolves to the thing it pointed at.
  */
@@ -299,7 +299,7 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
 
 // ── Scanning free text ──────────────────────────────────────────────────────
 
-/** Every DeHub entity link in a block of text, in the order they appear. */
+/** Every Riftn entity link in a block of text, in the order they appear. */
 export function findDehubLinks(text?: string | null): DehubLinkMatch[] {
   if (!text) return [];
 
@@ -336,7 +336,7 @@ export function findDehubLinks(text?: string | null): DehubLinkMatch[] {
   return matches.sort((a, b) => text.indexOf(a.raw) - text.indexOf(b.raw));
 }
 
-/** The first DeHub entity link in a block of text, if any. */
+/** The first Riftn entity link in a block of text, if any. */
 export function findDehubLink(text?: string | null): DehubLinkMatch | null {
   return findDehubLinks(text)[0] ?? null;
 }
@@ -357,7 +357,7 @@ export function stripDehubLinkMatches(
   return cutFromText(text, matches.map(match => match.raw));
 }
 
-/** Remove every DeHub entity URL from text for display. */
+/** Remove every Riftn entity URL from text for display. */
 export function stripDehubLinks(text?: string | null): string {
   if (!text) return text ?? '';
   return stripDehubLinkMatches(text, findDehubLinks(text));

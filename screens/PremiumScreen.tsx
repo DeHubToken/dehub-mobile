@@ -1,7 +1,7 @@
 /**
  * PremiumScreen
  * =============
- * Native port of the web Premium page (dehub.io/premium): the DeHub Extra,
+ * Native port of the web Premium page (dehub.io/premium): the Riftn Extra,
  * Family and Extra Large memberships. Copy is the web's premium.* strings.
  *
  * Nothing is bought in the app. Where Google Play allows it (US users, see
@@ -100,7 +100,7 @@ interface Tier {
 const TIERS: Tier[] = [
   {
     priceId: "dehub_extra_monthly",
-    name: "DeHub Extra",
+    name: "Riftn Extra",
     icon: "Crown",
     price: "$4.99",
     taglineKey: "premium.extraTagline",
@@ -110,7 +110,7 @@ const TIERS: Tier[] = [
   },
   {
     priceId: "dehub_family_monthly",
-    name: "DeHub Family",
+    name: "Riftn Family",
     icon: "Users",
     price: "$11.99",
     taglineKey: "premium.familyTagline",
@@ -122,7 +122,7 @@ const TIERS: Tier[] = [
   },
   {
     priceId: "dehub_xl_monthly",
-    name: "DeHub Extra Large",
+    name: "Riftn Extra Large",
     icon: "Rocket",
     price: "$50.00",
     taglineKey: "premium.xlTagline",

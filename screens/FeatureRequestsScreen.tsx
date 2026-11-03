@@ -913,7 +913,7 @@ function FeatureRequestsBoard() {
               {t("features.promptPageTitle", "Requests")}
             </Text>
             <Text style={styles.pageSubtitle} numberOfLines={1}>
-              {t("features.promptSubtitle", "Build DeHub with a prompt")}
+              {t("features.promptSubtitle", "Build Riftn with a prompt")}
             </Text>
           </View>
           <Pressable

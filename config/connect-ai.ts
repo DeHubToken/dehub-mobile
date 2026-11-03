@@ -14,7 +14,7 @@ export interface AiApp {
   id: AiAppId;
   /** Product name — never translated. */
   name: string;
-  /** Opens the published DeHub connector inside the assistant. */
+  /** Opens the published Riftn connector inside the assistant. */
   appUrl: string;
   /** Where a custom connector is added by hand. */
   settingsUrl: string;

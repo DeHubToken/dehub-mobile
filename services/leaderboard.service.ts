@@ -214,7 +214,7 @@ export interface RefreshPositionResult {
 /**
  * Ask the refresh-leaderboard-user function to re-read the caller's balance.
  *
- * The wallet comes off the verified DeHub token — no address parameter — so a
+ * The wallet comes off the verified Riftn token — no address parameter — so a
  * signed-out caller has nothing to send and gets an error before the network.
  * The server holds a ten-minute cooldown per wallet; the screen adds a
  * thirty-second one so a double tap does not burn it.

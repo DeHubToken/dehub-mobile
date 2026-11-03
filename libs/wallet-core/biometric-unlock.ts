@@ -118,7 +118,7 @@ export async function unlockWithBiometrics(
     throw new BiometricUnavailableError(_translateCopy("copy.3dc3874e681c", { defaultValue: "No biometric-protected wallet is stored on this device." }));
   }
   try {
-    await requireDeviceOwner(_translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your DeHub wallet" }));
+    await requireDeviceOwner(_translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your Riftn wallet" }));
   } catch (error) {
     if (!(error instanceof BiometricRejectedError)) {
       log.error("biometric-verification-unavailable", { errorName: error instanceof Error ? error.name : "unknown" });

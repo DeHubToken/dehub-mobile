@@ -29,7 +29,7 @@ function loop(value: Animated.Value, ms: number) {
 /**
  * All vector, so it stays sharp on every screen: a clean silhouette with
  * shading and a highlight clipped inside it, a white rim, a smooth radial
- * aura behind, and the DeHub mark face riding the same float.
+ * aura behind, and the Riftn mark face riding the same float.
  */
 function Ghost({ size }: { size: number }) {
   const float = useRef(new Animated.Value(0)).current;
@@ -197,7 +197,7 @@ export function GhostPopup({ onClose }: { onClose: () => void }) {
 
 /**
  * Halloween 2026: once per device while the Horror override is on, a ghost
- * with the DeHub mark for a face says Happy Halloween and offers every other
+ * with the Riftn mark for a face says Happy Halloween and offers every other
  * theme. Mounted in App.tsx; renders nothing otherwise.
  */
 export default function HalloweenGhostHost() {

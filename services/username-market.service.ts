@@ -2,7 +2,7 @@
  * Username marketplace — buying and selling handles for DHB
  * =========================================================
  * A profile lives at `dehub.io/:username` and there is exactly one of each, so
- * a good handle is the only genuinely scarce thing on DeHub. This is the rail
+ * a good handle is the only genuinely scarce thing on Riftn. This is the rail
  * for trading them.
  *
  * Two things about the buy path that are not obvious from the endpoint names:

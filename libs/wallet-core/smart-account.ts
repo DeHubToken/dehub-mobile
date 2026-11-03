@@ -32,7 +32,7 @@ interface AAChainInfo {
   tickerName: string;
 }
 
-// Only chains DeHub actually deploys to get a Safe/Pimlico setup. Any other chainId
+// Only chains Riftn actually deploys to get a Safe/Pimlico setup. Any other chainId
 // (Ethereum mainnet, old testnets, ...) falls through to the plain EOA path -- same
 // coverage as web (CHAIN_CONFIGS in src/lib/contracts/dhb-token.ts).
 const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {

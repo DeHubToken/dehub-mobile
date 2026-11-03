@@ -2,7 +2,7 @@
  * Client for the `film-reviews` edge function. Mirrors dehubweb's
  * src/lib/api/film-reviews.ts.
  *
- * Reads are anonymous. Writes carry the DeHub token; the function derives the
+ * Reads are anonymous. Writes carry the Riftn token; the function derives the
  * author from it and ignores any address sent, so none is put in the body.
  */
 import env from '../config/env';

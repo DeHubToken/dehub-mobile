@@ -95,7 +95,7 @@ const SECTIONS: GlossarySection[] = [
   {
     get title() { return _translateCopy("copy.0dbd9ab3c07a", { defaultValue: "Wallet & Tokens" }); },
     entries: [
-      { icon: "Coins", get title() { return _translateCopy("copy.7cd63b610e6d", { defaultValue: "DeHub tokens" }); }, description: { key: "screens.glossaryDhbTokenDesc" } },
+      { icon: "Coins", get title() { return _translateCopy("copy.7cd63b610e6d", { defaultValue: "Riftn tokens" }); }, description: { key: "screens.glossaryDhbTokenDesc" } },
       { icon: "Wallet", get title() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, description: { key: "screens.glossaryWalletDesc" } },
       { icon: "ArrowUpDown", get title() { return _translateCopy("copy.6ec282d40a8a", { defaultValue: "Swap" }); }, get description() { return _translateCopy("copy.13e8618e9f6a", { defaultValue: "Exchange one token for another directly within the app. Swaps happen on-chain using decentralized exchanges." }); } },
       { icon: "TrendingUp", get title() { return _translateCopy("copy.5190ff487713", { defaultValue: "Staking" }); }, description: { key: "screens.glossaryStakingDesc" } },

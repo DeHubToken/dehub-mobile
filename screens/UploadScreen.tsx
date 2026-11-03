@@ -2554,7 +2554,7 @@ export default function UploadScreen() {
   }, [setMonetization]);
 
 
-  // A banned account reads every post on DeHub and writes none of them. The
+  // A banned account reads every post on Riftn and writes none of them. The
   // API refuses the mint either way; showing the composer first would only
   // mean losing whatever was typed into it.
   if (accountBanned) {

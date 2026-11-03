@@ -105,19 +105,19 @@ describe('wallet session fetch', () => {
     ]);
   });
 
-  it('reports a dead DeHub token as no_token', async () => {
+  it('reports a dead Riftn token as no_token', async () => {
     const { createWalletSessionFetch } = require('../../libs/wallet-session');
     const { reportError } = require('../../libs/errorReporter');
     const base = jest.fn(async (input: RequestInfo | URL) => {
       if (String(input).includes('/functions/v1/wallet-session')) {
-        return { ok: false, status: 401, json: async () => ({ error: 'Invalid or expired DeHub token.' }) } as unknown as Response;
+        return { ok: false, status: 401, json: async () => ({ error: 'Invalid or expired Riftn token.' }) } as unknown as Response;
       }
       return { ok: true } as unknown as Response;
     });
     await createWalletSessionFetch(base)(REST, { headers: { 'x-wallet-address': WALLET } });
     expect(reportError).toHaveBeenCalledWith('WalletSession', [
       'Unsigned wallet request (no_token)',
-      expect.objectContaining({ detail: '401 Invalid or expired DeHub token.' }),
+      expect.objectContaining({ detail: '401 Invalid or expired Riftn token.' }),
     ]);
   });
 

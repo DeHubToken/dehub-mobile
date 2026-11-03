@@ -78,7 +78,7 @@ const V2_PREFIX = "v2:";
 
 // Domain separation for the HKDF expand step, so the same key material used for
 // any other purpose can never yield this wrap key. Must match the web value.
-const HKDF_INFO = "DeHub wallet seed wrap v1";
+const HKDF_INFO = "Riftn wallet seed wrap v1";
 
 const utf8 = (s: string): Uint8Array => new Uint8Array(Buffer.from(s, "utf8"));
 const fromUtf8 = (b: Uint8Array): string => Buffer.from(b).toString("utf8");
@@ -196,7 +196,7 @@ function parseCiphertext(ciphertext: string): { header: V2Header | null; body: s
   // Reporting it as corruption would send the user to a data-loss message for
   // an intact wallet, so keep the two distinguishable.
   if (parsed?.kdf !== "argon2id" && parsed?.kdf !== "hkdf") {
-    throw new Error(_translateCopy("copy.de9e2132fd4d", { defaultValue: "This wallet was saved by a newer version of DeHub. Please reload and try again." }));
+    throw new Error(_translateCopy("copy.de9e2132fd4d", { defaultValue: "This wallet was saved by a newer version of Riftn. Please reload and try again." }));
   }
   return { header: parsed, body };
 }

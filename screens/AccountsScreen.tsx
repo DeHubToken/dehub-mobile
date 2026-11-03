@@ -5,7 +5,7 @@ import { getBadgeHoverOpticalStyle } from "../libs/misc";
 /**
  * AccountsScreen
  * ==============
- * Native port of web's /accounts: browse whole DeHub accounts for sale, or
+ * Native port of web's /accounts: browse whole Riftn accounts for sale, or
  * sell the one you are signed in as.
  *
  * The card sells an audience, not a string, so it leads with the numbers a

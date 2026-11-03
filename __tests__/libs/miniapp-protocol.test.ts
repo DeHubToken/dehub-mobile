@@ -15,7 +15,7 @@ import {
 import { parseDehubLink } from '../../libs/dehub-links';
 
 describe('parseAppUrl', () => {
-  it('rejects embedded credentials and trailing-dot DeHub hosts', () => {
+  it('rejects embedded credentials and trailing-dot Riftn hosts', () => {
     expect(parseAppUrl('https://user:secret@app.example.com')).toBeNull();
     expect(parseAppUrl('https://dehub.io./app')).toBeNull();
   });
