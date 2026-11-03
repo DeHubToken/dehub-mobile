@@ -19,6 +19,7 @@ import {
   getProfile,
   currentProfileId,
   removeProfile,
+  removeProfilesForAddress,
   snapshotCurrentSession,
   beginProfileSwitch,
   completeProfileSwitch,
@@ -265,6 +266,31 @@ describe('libs/profiles', () => {
       const profiles = await listProfiles();
       expect(profiles).toHaveLength(1);
       expect(profiles[0].id).toBe(`addr:${ADDR_B.toLowerCase()}`);
+    });
+
+    it('forgets the address a wallet reset rotated away from', async () => {
+      await seedAccountA();
+      await adoptCurrentProfile();
+      await seedAccountB();
+      await adoptCurrentProfile();
+
+      await removeProfilesForAddress(ADDR_A.toUpperCase().replace('0X', '0x'), `addr:${ADDR_B.toLowerCase()}`);
+      const profiles = await listProfiles();
+      expect(profiles.map((p) => p.address)).toEqual([ADDR_B]);
+    });
+
+    it('shows one row per username, the most recently added', async () => {
+      const row = (id: string, address: string, addedAt: number) => ({
+        id, uid: null, address, name: 'Clips', username: 'clips', avatarUrl: null,
+        addedAt, lastActiveAt: 10_000 - addedAt, badgeBalance: null, session: null,
+      });
+      await AsyncStorage.setItem(
+        PROFILES_STORAGE_KEY,
+        JSON.stringify([row(`addr:${ADDR_A}`, ADDR_A, 1), row(`addr:${ADDR_B}`, ADDR_B, 2)])
+      );
+
+      const profiles = await listProfiles();
+      expect(profiles.map((p) => p.address)).toEqual([ADDR_B]);
     });
   });
 });
