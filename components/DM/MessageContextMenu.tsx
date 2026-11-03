@@ -23,6 +23,8 @@ import { formatChatTimeSmart } from "../../libs/date.util";
 import type { DmMessage, DmUser, OptimisticMessage } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
 import { ReactionStrip, REACTION_STRIP_HEIGHT } from "./MessageReactions";
+import { saveMessageFile, saveMessageImage } from "../../libs/saveMessageMedia";
+import { saveToLibrary } from "../../libs/assistantMedia";
 
 
 export interface MessageLayout {
@@ -460,6 +462,37 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     setTimeout(() => onUnpin?.(), 150);
   }, [onClose, onUnpin]);
 
+  /**
+   * The attachment this message can hand over: a plain photo, video or
+   * document. Paid (locked) and end-to-end encrypted attachments are left
+   * out; the first is a blurred preview, the second opens on tap.
+   */
+  const downloadable = useMemo(() => {
+    if (!message || message.msgType !== "media" || message.lock || message.encMedia) return null;
+    const entry = message.mediaUrls?.[0];
+    if (!entry || entry.encrypted || !entry.url) return null;
+    const url = resolveMediaUrl(entry.url);
+    if (!/^(https?|file):/.test(url)) return null;
+    const mime = entry.mimeType || "";
+    const kind: "file" | "video" | "image" =
+      entry.type === "file" ? "file"
+        : entry.type === "video" || mime.startsWith("video/") ? "video"
+          : entry.type === "audio" || mime.startsWith("audio/") ? "file"
+            : "image";
+    return { url, kind, name: entry.name, mime: mime || undefined };
+  }, [message]);
+
+  const handleDownload = useCallback(() => {
+    const target = downloadable;
+    onClose();
+    if (!target) return;
+    setTimeout(() => {
+      if (target.kind === "image") void saveMessageImage(target.url);
+      else if (target.kind === "video") void saveToLibrary(target.url, "video");
+      else void saveMessageFile(target.url, target.name, target.mime);
+    }, 150);
+  }, [downloadable, onClose]);
+
 
   /**
    * The rows this message actually gets, resolved once so the card can be
@@ -492,6 +525,8 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     if (hasContent) rows.push({ icon: "Copy", label: t("common.copy"), onPress: handleCopy });
     if (onForward && !unsent)
       rows.push({ icon: "Forward", label: t("dm.forwardMessage"), onPress: handleForward });
+    if (downloadable && !unsent)
+      rows.push({ icon: "Download", label: t("dm.download", { defaultValue: "Download" }), onPress: handleDownload });
     if (isMine && isTextOnly && !unsent && onEdit)
       rows.push({ icon: "Pencil", label: t("common.edit"), onPress: handleEdit });
     if (onPin && !isPinned && !unsent)
@@ -519,6 +554,8 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     handlePin,
     handleUnpin,
     handleDelete,
+    downloadable,
+    handleDownload,
     t,
   ]);
 

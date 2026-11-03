@@ -7066,6 +7066,9 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "download": "Download",
+    "fileSaved": "File saved",
+    "fileSaveFailed": "Couldn't save the file",
     "attachAnything": "Attach a photo, video, audio or file",
     "attachFileOrAudio": "File or audio",
     "attachPhotoOrVideo": "Photo or video",
