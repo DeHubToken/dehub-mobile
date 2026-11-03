@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "الإطار",
+    "theme": "الثيم",
+    "silver": "فضي",
+    "bronze": "برونزي",
+    "matteBlack": "أسود مطفي",
+    "carbonFibre": "ألياف الكربون",
+    "holographic": "هولوغرافي",
+    "shiny": "لامع",
+    "glitter": "بريق",
+    "saved": "الإطار اتحفظ",
+    "failed": "مقدرناش نحفظ الإطار"
+  },
   "accountConnect": {
     "empty": "لا توجد اتصالات حساب نشطة.",
     "failed": "تعذر إكمال الاتصال. حاول تسجيل الدخول مجددًا.",

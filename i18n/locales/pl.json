@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Pokaż wszystkie strony ({{count}})"
   },
+  "comicBorder": {
+    "title": "Ramka",
+    "theme": "Motyw",
+    "silver": "Srebrna",
+    "bronze": "Brązowa",
+    "matteBlack": "Matowa czerń",
+    "carbonFibre": "Włókno węglowe",
+    "holographic": "Holograficzna",
+    "shiny": "Błyszcząca",
+    "glitter": "Brokat",
+    "saved": "Zapisano ramkę",
+    "failed": "Nie udało się zapisać ramki"
+  },
   "accountConnect": {
     "account": "Przeglądanie publiczne nie wymaga konta. Połącz swoje konto DeHub, aby zarządzać profilem i tworzyć lub publikować treści.",
     "allow": "Zezwól na połączenie",

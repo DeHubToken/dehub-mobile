@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Border",
+    "theme": "Theme",
+    "silver": "Silver",
+    "bronze": "Bronze",
+    "matteBlack": "Matte black",
+    "carbonFibre": "Carbon fibre",
+    "holographic": "Holographic",
+    "shiny": "Shiny",
+    "glitter": "Glitter",
+    "saved": "Border don save",
+    "failed": "We no fit save di border"
+  },
   "accountConnect": {
     "account": "You no need account to browse wetin dey public. Link your DeHub account make you fit manage your profile, create and publish content.",
     "body": "Link your account make you fit manage your profile, publish posts and create content from chat. Connection go expire inside 24 hours. You fit disconnect anytime.",

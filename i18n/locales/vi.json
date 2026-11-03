@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Hiện tất cả {{count}} trang"
   },
+  "comicBorder": {
+    "title": "Viền",
+    "theme": "Chủ đề",
+    "silver": "Bạc",
+    "bronze": "Đồng",
+    "matteBlack": "Đen nhám",
+    "carbonFibre": "Sợi carbon",
+    "holographic": "Ánh ba chiều",
+    "shiny": "Bóng",
+    "glitter": "Kim tuyến",
+    "saved": "Đã lưu viền",
+    "failed": "Không lưu được viền"
+  },
   "accountConnect": {
     "account": "Duyệt web công cộng không cần tài khoản. Liên kết tài khoản DeHub của bạn để quản lý hồ sơ của bạn và tạo hoặc xuất bản nội dung.",
     "allow": "Cho phép kết nối",

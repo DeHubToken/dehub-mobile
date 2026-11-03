@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Shfaq të gjitha {{count}} faqet"
   },
+  "comicBorder": {
+    "title": "Kornizë",
+    "theme": "Temë",
+    "silver": "Argjend",
+    "bronze": "Bronz",
+    "matteBlack": "E zezë mat",
+    "carbonFibre": "Fibër karboni",
+    "holographic": "Holografike",
+    "shiny": "E shndritshme",
+    "glitter": "Shkëlqim",
+    "saved": "Korniza u ruajt",
+    "failed": "Korniza nuk u ruajt"
+  },
   "accountConnect": {
     "generatePrompt": "Më trego modelet e imazheve të DeHub dhe citoni një portret para se ta gjeneroni.",
     "account": "Shfletimi publik nuk ka nevojë për llogari. Lidh llogarinë tënde DeHub për të menaxhuar profilin tënd dhe për të krijuar ose publikuar përmbajtje.",

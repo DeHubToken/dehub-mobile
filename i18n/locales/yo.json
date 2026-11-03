@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Ìlà etí",
+    "theme": "Àkòrí",
+    "silver": "Fàdákà",
+    "bronze": "Idẹ",
+    "matteBlack": "Dúdú tí kò dán",
+    "carbonFibre": "Okùn kábọ́ọ̀nù",
+    "holographic": "Họ́lógíráfíkì",
+    "shiny": "Dídán",
+    "glitter": "Ìtànná",
+    "saved": "A ti fi ìlà etí pamọ́",
+    "failed": "Kò ṣeé ṣe láti fi ìlà etí pamọ́"
+  },
   "accountConnect": {
     "manage": "Ṣàkóso àwọn ìsopọ̀ àkọọ́lẹ̀",
     "signIn": "Wọlé sí DeHub",

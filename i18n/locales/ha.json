@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Iyaka",
+    "theme": "Jigo",
+    "silver": "Azurfa",
+    "bronze": "Tagulla",
+    "matteBlack": "Baƙi mara sheƙi",
+    "carbonFibre": "Zaren carbon",
+    "holographic": "Holographic",
+    "shiny": "Mai sheƙi",
+    "glitter": "Ƙyalƙyali",
+    "saved": "An ajiye iyaka",
+    "failed": "Ba a iya ajiye iyaka ba"
+  },
   "accountConnect": {
     "deny": "Soke",
     "account": "Binciken jama'a yana buƙatar babu asusu. Haɗa asusunka na DeHub don sarrafa bayanin martaba da ƙirƙirar ko buga abun ciki.",

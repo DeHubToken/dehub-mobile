@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Haşiyə",
+    "theme": "Mövzu",
+    "silver": "Gümüş",
+    "bronze": "Bürünc",
+    "matteBlack": "Mat qara",
+    "carbonFibre": "Karbon lif",
+    "holographic": "Holoqrafik",
+    "shiny": "Parlaq",
+    "glitter": "Parıltı",
+    "saved": "Haşiyə saxlanıldı",
+    "failed": "Haşiyəni saxlamaq olmadı"
+  },
   "accountConnect": {
     "account": "İctimai baxışın hesaba ehtiyacı yoxdur. Profilinizi idarə etmək və məzmun yaratmaq və ya dərc etmək üçün DeHub hesabınızı əlaqələndirin.",
     "allow": "Əlaqəyə icazə ver",

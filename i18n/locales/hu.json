@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Mind a(z) {{count}} oldal megjelenítése"
   },
+  "comicBorder": {
+    "title": "Keret",
+    "theme": "Téma",
+    "silver": "Ezüst",
+    "bronze": "Bronz",
+    "matteBlack": "Matt fekete",
+    "carbonFibre": "Szénszál",
+    "holographic": "Holografikus",
+    "shiny": "Fényes",
+    "glitter": "Csillámos",
+    "saved": "Keret mentve",
+    "failed": "Nem sikerült menteni a keretet"
+  },
   "accountConnect": {
     "account": "A nyilvános böngészéshez nincs szükség fiókra. DeHub-fiókod összekapcsolásával kezelheted a profilodat, és tartalmat hozhatsz létre vagy tehetsz közzé.",
     "allow": "Kapcsolódás engedélyezése",

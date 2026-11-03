@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "ደረት",
+    "theme": "ገጽታ",
+    "silver": "ብሩር",
+    "bronze": "ነሓስ",
+    "matteBlack": "ዘይበርህ ጸሊም",
+    "carbonFibre": "ካርቦን ፋይበር",
+    "holographic": "ሆሎግራፊክ",
+    "shiny": "ዝበርህ",
+    "glitter": "ብልጭልጭ",
+    "saved": "ደረት ተዓቂቡ",
+    "failed": "ደረት ክዕቀብ ኣይከኣለን"
+  },
   "accountConnect": {
     "account": "ህዝባዊ መርበብ ዝኾነ ሕሳብ ኣየድልዮን እዩ ። መገለጫኻ ንምምራሕን ትሕዝቶ ንምፍጣርን ወይ ንምትብባዕን ናይ DeHub መለያኻ ጠውቑ ።",
     "allow": "ርክብ ፍቀድ",

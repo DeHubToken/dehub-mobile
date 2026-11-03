@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Mostra tutte le {{count}} pagine"
   },
+  "comicBorder": {
+    "title": "Bordo",
+    "theme": "Tema",
+    "silver": "Argento",
+    "bronze": "Bronzo",
+    "matteBlack": "Nero opaco",
+    "carbonFibre": "Fibra di carbonio",
+    "holographic": "Olografico",
+    "shiny": "Lucido",
+    "glitter": "Glitter",
+    "saved": "Bordo salvato",
+    "failed": "Impossibile salvare il bordo"
+  },
   "accountConnect": {
     "account": "L'accesso pubblico non richiede un account. Collega il tuo account DeHub per gestire il tuo profilo e creare o pubblicare contenuti.",
     "allow": "Consenti la connessione",

@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Hoshiya",
+    "theme": "Mavzu",
+    "silver": "Kumush",
+    "bronze": "Bronza",
+    "matteBlack": "Xira qora",
+    "carbonFibre": "Uglerod tola",
+    "holographic": "Golografik",
+    "shiny": "Yaltiroq",
+    "glitter": "Yaltiroq zarra",
+    "saved": "Hoshiya saqlandi",
+    "failed": "Hoshiyani saqlab bo‘lmadi"
+  },
   "accountConnect": {
     "account": "Ommaviy ko'rish uchun hisob kerak emas. Profilingizni boshqarish va kontent yaratish yoki nashr etish uchun DeHub hisobingizni bog'lang.",
     "allow": "Ulanishga ruxsat berish",

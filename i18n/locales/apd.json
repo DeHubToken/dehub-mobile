@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "الإطار",
+    "theme": "الثيم",
+    "silver": "فضي",
+    "bronze": "برونزي",
+    "matteBlack": "أسود مطفي",
+    "carbonFibre": "ألياف الكربون",
+    "holographic": "هولوغرافي",
+    "shiny": "لامع",
+    "glitter": "بريق",
+    "saved": "الإطار اتحفظ",
+    "failed": "ما قدرنا نحفظ الإطار"
+  },
   "accountConnect": {
     "libraryPrompt": "اعرض أحدث الملفات في مكتبة DeHub Creator الخاصة بي.",
     "profilePrompt": "حدّث نبذتي على DeHub إلى: صانع أفلام وموسيقى مستقل.",

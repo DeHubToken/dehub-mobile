@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Rand",
+    "theme": "Thema",
+    "silver": "Zilver",
+    "bronze": "Brons",
+    "matteBlack": "Matzwart",
+    "carbonFibre": "Koolstofvezel",
+    "holographic": "Holografisch",
+    "shiny": "Glanzend",
+    "glitter": "Glitter",
+    "saved": "Rand opgeslagen",
+    "failed": "Kan de rand niet opslaan"
+  },
   "comic": {
     "showAll": "Alle {{count}} pagina's tonen",
     "tab": "Strip",

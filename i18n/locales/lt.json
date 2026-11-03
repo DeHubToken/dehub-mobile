@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Rodyti visus {{count}} puslapius"
   },
+  "comicBorder": {
+    "title": "Rėmelis",
+    "theme": "Tema",
+    "silver": "Sidabras",
+    "bronze": "Bronza",
+    "matteBlack": "Matinė juoda",
+    "carbonFibre": "Anglies pluoštas",
+    "holographic": "Holografinis",
+    "shiny": "Blizgus",
+    "glitter": "Blizgučiai",
+    "saved": "Rėmelis išsaugotas",
+    "failed": "Nepavyko išsaugoti rėmelio"
+  },
   "accountConnect": {
     "account": "Viešam naršymui paskyros nereikia. Susiek savo „DeHub“ paskyrą, kad galėtum tvarkyti savo profilį ir kurti arba skelbti turinį.",
     "allow": "Leisti ryšį",

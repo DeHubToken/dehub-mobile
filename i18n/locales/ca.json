@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Vora",
+    "theme": "Tema",
+    "silver": "Plata",
+    "bronze": "Bronze",
+    "matteBlack": "Negre mat",
+    "carbonFibre": "Fibra de carboni",
+    "holographic": "Hologràfica",
+    "shiny": "Brillant",
+    "glitter": "Purpurina",
+    "saved": "Vora desada",
+    "failed": "No s’ha pogut desar la vora"
+  },
   "accountConnect": {
     "account": "La navegació pública no necessita cap compte. Vincula el teu compte de DeHub per gestionar el teu perfil i crear o publicar contingut.",
     "allow": "Permet la connexió",

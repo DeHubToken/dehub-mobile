@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "邊框",
+    "theme": "主題",
+    "silver": "銀色",
+    "bronze": "古銅",
+    "matteBlack": "啞黑",
+    "carbonFibre": "碳纖維",
+    "holographic": "全息",
+    "shiny": "亮面",
+    "glitter": "閃粉",
+    "saved": "已儲存邊框",
+    "failed": "儲存唔到邊框"
+  },
   "accountConnect": {
     "generate": "用你嘅積分，確認嘅付款或合資格嘅免費圖像生成媒體",
     "account": "公開瀏覽唔需要帳戶。連結你嘅 DeHub 帳戶嚟管理你嘅個人檔案同埋建立或者發佈內容。",

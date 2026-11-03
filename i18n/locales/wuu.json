@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "边框",
+    "theme": "主题",
+    "silver": "银色",
+    "bronze": "青铜",
+    "matteBlack": "哑光黑",
+    "carbonFibre": "碳纤维",
+    "holographic": "全息",
+    "shiny": "亮面",
+    "glitter": "闪粉",
+    "saved": "边框保存好了",
+    "failed": "边框保存勿脱"
+  },
   "accountConnect": {
     "account": "无需帐户即可浏览公共内容。链接您的 DeHub 帐户来管理您的资料和创建或发布内容。",
     "allow": "允许连接",

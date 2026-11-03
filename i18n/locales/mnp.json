@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "边框",
+    "theme": "主题",
+    "silver": "银色",
+    "bronze": "青铜",
+    "matteBlack": "哑光黑",
+    "carbonFibre": "碳纤维",
+    "holographic": "全息",
+    "shiny": "亮面",
+    "glitter": "闪粉",
+    "saved": "边框已保存",
+    "failed": "无法保存边框"
+  },
   "accountConnect": {
     "body": "链接您的账户管理您的资料、发布帖子和从聊天创建内容。连接有效期为24小时。您可以随时断开连接。",
     "deny": "取消",

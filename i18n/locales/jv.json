@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Pinggiran",
+    "theme": "Tema",
+    "silver": "Salaka",
+    "bronze": "Prunggu",
+    "matteBlack": "Ireng doff",
+    "carbonFibre": "Serat karbon",
+    "holographic": "Holografik",
+    "shiny": "Mengkilap",
+    "glitter": "Glitter",
+    "saved": "Pinggiran disimpen",
+    "failed": "Ora bisa nyimpen pinggiran"
+  },
   "accountConnect": {
     "allow": "Idini sambungan",
     "generatePrompt": "Tuduhna model gambar DeHub lan wenehi taksiran rega kanggo potret sadurunge nggawe.",

@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Ọnụ ọnụ",
+    "theme": "Isiokwu",
+    "silver": "Ọlaọcha",
+    "bronze": "Ọla nchara",
+    "matteBlack": "Oji na-adịghị egbuke",
+    "carbonFibre": "Eriri carbon",
+    "holographic": "Holographic",
+    "shiny": "Na-egbuke egbuke",
+    "glitter": "Ntụpọ na-egbuke",
+    "saved": "Echekwala ọnụ ọnụ",
+    "failed": "Enweghị ike ịchekwa ọnụ ọnụ"
+  },
   "accountConnect": {
     "account": "Nchọgharị ọhaneze achọghị akaụntụ ọbụla. Jikọọ akaụntụ DeHub gị iji jikwaa profaịlụ gị ma mepụta ma ọ bụ bipụta ọdịnaya.",
     "allow": "Ọgani dị ka ịbụ n'akụkụ",

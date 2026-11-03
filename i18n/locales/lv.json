@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Apmale",
+    "theme": "Motīvs",
+    "silver": "Sudrabs",
+    "bronze": "Bronza",
+    "matteBlack": "Matēti melns",
+    "carbonFibre": "Oglekļa šķiedra",
+    "holographic": "Hologrāfiska",
+    "shiny": "Spīdīga",
+    "glitter": "Spīguļi",
+    "saved": "Apmale saglabāta",
+    "failed": "Neizdevās saglabāt apmali"
+  },
   "accountConnect": {
     "account": "Publiskai pārlūkošanai nav nepieciešams konts. Piesaistiet DeHub kontu, lai pārvaldītu savu profilu un izveidotu vai publicētu saturu.",
     "allow": "Piešķirt savienojumu",

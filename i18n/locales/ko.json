@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "{{count}}페이지 모두 보기"
   },
+  "comicBorder": {
+    "title": "테두리",
+    "theme": "테마",
+    "silver": "실버",
+    "bronze": "브론즈",
+    "matteBlack": "무광 블랙",
+    "carbonFibre": "카본 파이버",
+    "holographic": "홀로그램",
+    "shiny": "샤이니",
+    "glitter": "글리터",
+    "saved": "테두리를 저장했어요",
+    "failed": "테두리를 저장하지 못했어요"
+  },
   "accountConnect": {
     "account": "공개 브라우징에는 계정이 필요하지 않습니다. DeHub 계정을 연결하여 프로필을 관리하고 콘텐츠를 만들거나 게시하세요.",
     "allow": "연결 허용",

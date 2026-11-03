@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Daangaa",
+    "theme": "Mata duree",
+    "silver": "Meetii",
+    "bronze": "Naasii",
+    "matteBlack": "Gurraacha hin calaqqisne",
+    "carbonFibre": "Faayibera kaarboonii",
+    "holographic": "Holoogiraafikii",
+    "shiny": "Calaqqisaa",
+    "glitter": "Calaqqee",
+    "saved": "Daangaan olkaa’ame",
+    "failed": "Daangaa olkaa’uu hin dandeenye"
+  },
   "accountConnect": {
     "account": "Daawwannaan ifa ta'e akkaawuntii hin barbaadu. Piroofaayilii kee bulchuuf fi qabiyyee uumuuf ykn maxxansuuf akkaawuntii DeHub kee walqabsiisi.",
     "allow": "Walqabsiisa hayyami",

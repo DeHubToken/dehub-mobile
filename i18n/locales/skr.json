@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "بارڈر",
+    "theme": "تھیم",
+    "silver": "چاندی",
+    "bronze": "کانسی",
+    "matteBlack": "میٹ کالا",
+    "carbonFibre": "کاربن فائبر",
+    "holographic": "ہولوگرافک",
+    "shiny": "چمکدار",
+    "glitter": "گلٹر",
+    "saved": "بارڈر محفوظ تھی ڳیا",
+    "failed": "بارڈر محفوظ نئیں تھی سڳیا"
+  },
   "accountConnect": {
     "generatePrompt": "میری DeHub کی تصویر کے ماڈل دکھائیں اور ایک پورٹریٹ کو کویٹ کریں۔",
     "libraryPrompt": "میری DeHub کریٹر لائبریری میں موجود نئے مواد کو دکھائیں۔",

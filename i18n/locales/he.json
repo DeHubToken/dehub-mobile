@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "הצגת כל {{count}} העמודים"
   },
+  "comicBorder": {
+    "title": "מסגרת",
+    "theme": "ערכת נושא",
+    "silver": "כסף",
+    "bronze": "ארד",
+    "matteBlack": "שחור מט",
+    "carbonFibre": "סיבי פחמן",
+    "holographic": "הולוגרפי",
+    "shiny": "מבריק",
+    "glitter": "נצנצים",
+    "saved": "המסגרת נשמרה",
+    "failed": "לא ניתן לשמור את המסגרת"
+  },
   "accountConnect": {
     "account": "לגלישה ציבורית אין צורך בחשבון. יש לקשר את חשבון ה - DeHub שלכם כדי לנהל את הפרופיל שלכם וליצור או לפרסם תוכן.",
     "allow": "אפשר חיבור",

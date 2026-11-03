@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Ääris",
+    "theme": "Teema",
+    "silver": "Hõbe",
+    "bronze": "Pronks",
+    "matteBlack": "Matt must",
+    "carbonFibre": "Süsinikkiud",
+    "holographic": "Holograafiline",
+    "shiny": "Läikiv",
+    "glitter": "Sädelus",
+    "saved": "Ääris salvestatud",
+    "failed": "Äärist ei õnnestunud salvestada"
+  },
   "accountConnect": {
     "account": "Avalik vaatamine ei vajasta kontot. Ühendage DeHubi konto, et haldada profiili ja loomiseks või avaldada sisu.",
     "allow": "Luba ühendus",

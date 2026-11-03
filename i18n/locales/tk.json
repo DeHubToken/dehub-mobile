@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Serhet",
+    "theme": "Tema",
+    "silver": "Kümüş",
+    "bronze": "Bürünç",
+    "matteBlack": "Mat gara",
+    "carbonFibre": "Uglerod süýümi",
+    "holographic": "Golografik",
+    "shiny": "Ýalpyldawuk",
+    "glitter": "Ýalpyldy",
+    "saved": "Serhet ýatda saklandy",
+    "failed": "Serhedi ýatda saklap bolmady"
+  },
   "accountConnect": {
     "generatePrompt": "Maňa DeHub-yň surat modellerini görkez we portreti döretmezden öň onuň bahasyny aýt.",
     "account": "Halk tarapyndan seretmek üçin hiç hili hasabat gerek däl. DeHub hesabyňyzy öz profilyňyzy dolandyrmak we içerik ýaratmak ýa-da çap etmek üçin baglaň.",

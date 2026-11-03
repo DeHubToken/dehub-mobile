@@ -109,6 +109,7 @@ export type UploadPayload = {
   mediaDescriptions?: string[];
   layout?: "comic";
   mediaCaptions?: string[];
+  comicBorder?: string;
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the text. */
@@ -344,6 +345,7 @@ export function useUploadPost() {
         mediaDescriptions: p.mediaDescriptions,
         layout: p.layout,
         mediaCaptions: p.mediaCaptions,
+        comicBorder: p.comicBorder,
         spoilerText: p.spoilerText,
         hideAssetCards: p.hideAssetCards,
         quotePolicy: p.quotePolicy,

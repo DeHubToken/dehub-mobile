@@ -9,6 +9,8 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { usePagerGestureRef } from "../../context/PagerGestureContext";
 import { measureImageAspect } from "../common/SmartImage";
 import AltTextBadge from "./AltTextBadge";
+import ComicFoil from "./ComicFoil";
+import { BORDER_LOOKS, isComicBorder } from "../../libs/comic-borders";
 
 /**
  * Comic posts as foil collector cards, the same cards as dehub.io.
@@ -47,7 +49,12 @@ const coverRatios = new Map<string, number>();
 
 const pad2 =(n: number) => String(n).padStart(2, "0");
 
-function ComicDeck({ images, captions, descriptions, title, width, onOpen, full = false }: {
+/** The theme's own foil: what a comic with no border preset wears. */
+export function themeFoil(theme: string): Foil {
+  return FOILS[theme] ?? GOLD;
+}
+
+function ComicDeck({ images, captions, descriptions, title, width, onOpen, full = false, border, active = true }: {
   images: string[];
   captions?: string[];
   descriptions?: string[];
@@ -57,10 +64,17 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
   /** Feed: a tap opens the post. Leave out on the post page, where a tap flips. */
   onOpen?: () => void;
   full?: boolean;
+  /** Border preset (libs/comic-borders); absent is the theme's foil. */
+  border?: string;
+  /** On screen. Holographic and glitter strips only move while it is. */
+  active?: boolean;
 }) {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
-  const foil = FOILS[theme] ?? GOLD;
+  const look = isComicBorder(border) ? BORDER_LOOKS[border] : undefined;
+  const foil = look?.foil ?? themeFoil(theme);
+  const accent = look?.accent ?? foil[1];
+  const shine = look?.quiet ? 0.25 : 1;
   const pagerRef = usePagerGestureRef();
   const total = images.length;
   const [index, setIndex] = useState(0);
@@ -151,7 +165,7 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
     ],
   }));
   const holoStyle = useAnimatedStyle(() => ({
-    opacity: 0.12 + Math.min(0.4, (Math.abs(rx.value) + Math.abs(ry.value)) / 40),
+    opacity: (0.12 + Math.min(0.4, (Math.abs(rx.value) + Math.abs(ry.value)) / 40)) * shine,
     transform: [{ translateX: interpolate(ry.value, [-MAX_TILT, MAX_TILT], [-cardW * 0.6, cardW * 0.6]) }],
   }));
   const floorStyle = useAnimatedStyle(() => ({
@@ -192,7 +206,7 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
         {behind.map((i, n) => (
           <LinearGradient
             key={i}
-            colors={[foil[0], foil[1], foil[0], foil[2]]}
+            colors={(look?.strip ?? [foil[0], foil[1], foil[0], foil[2]]) as [string, string, ...string[]]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={[StyleSheet.absoluteFill, styles.side, {
@@ -226,7 +240,7 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
           >
             {/* Front */}
             <Animated.View style={[StyleSheet.absoluteFill, styles.side, frontStyle]}>
-              <LinearGradient colors={[foil[0], foil[1], foil[0], foil[2], foil[0]]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+              <ComicFoil colors={[foil[0], foil[1], foil[0], foil[2], foil[0]]} look={look} width={cardW} height={cardH} animate={active} />
               <View style={[styles.face, { backgroundColor: foil[3] }]}>
                 <View style={styles.top}>
                   <Text style={styles.title} numberOfLines={1}>{name}</Text>
@@ -259,11 +273,11 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
 
             {/* Back */}
             <Animated.View style={[StyleSheet.absoluteFill, styles.side, styles.back, { backgroundColor: foil[3], borderColor: foil[1] }, backStyle]}>
-              <Text style={[styles.lab, { color: foil[1] }]}>{t("comic.page", { defaultValue: "Page {{page}}", page: index + 1 })}</Text>
+              <Text style={[styles.lab, { color: accent }]}>{t("comic.page", { defaultValue: "Page {{page}}", page: index + 1 })}</Text>
               <Text style={styles.backTitle}>{caption || name}</Text>
               {alt ? (
                 <>
-                  <Text style={[styles.lab, { color: foil[1] }]}>{t("comic.alt", { defaultValue: "Alt text" })}</Text>
+                  <Text style={[styles.lab, { color: accent }]}>{t("comic.alt", { defaultValue: "Alt text" })}</Text>
                   <Text style={styles.backAlt}>{alt}</Text>
                 </>
               ) : null}

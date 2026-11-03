@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Patan",
+    "theme": "Rikchay",
+    "silver": "Qullqi",
+    "bronze": "Antawari",
+    "matteBlack": "Yana mana k’anchaq",
+    "carbonFibre": "Karbun q’aytu",
+    "holographic": "Holografiku",
+    "shiny": "K’ancharishaq",
+    "glitter": "Lliphiq",
+    "saved": "Patan waqaychasqa",
+    "failed": "Mana patanta waqaychayta atikunchu"
+  },
   "accountConnect": {
     "account": "Llaqtapaq maskayqa manam yupayta necesitanchu. DeHub yupayniykiwan tinkiy perfilniyki kamachinaykipaq chaymanta ruwanakuna ruwanapaq utaq lluqsichinaykipaq.",
     "allow": "T’inkinakuyta saqiy",

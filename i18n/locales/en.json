@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Border",
+    "theme": "Theme",
+    "silver": "Silver",
+    "bronze": "Bronze",
+    "matteBlack": "Matte black",
+    "carbonFibre": "Carbon fibre",
+    "holographic": "Holographic",
+    "shiny": "Shiny",
+    "glitter": "Glitter",
+    "saved": "Border saved",
+    "failed": "Couldn't save the border"
+  },
   "comic": {
     "showAll": "Show all {{count}} pages",
     "tab": "Comic",
