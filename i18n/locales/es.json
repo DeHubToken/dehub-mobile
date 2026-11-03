@@ -115,7 +115,19 @@
     "bundleBadge": "Paquete ×{{n}}",
     "dropBadge": "Precio a la baja",
     "days_one": "{{count}} día",
-    "days_other": "{{count}} días"
+    "days_other": "{{count}} días",
+    "dehubPostsName": "Publicaciones de DeHub",
+    "statMinted": "Acuñados",
+    "statForSale": "En venta",
+    "sellYours": "Vende el tuyo",
+    "sellYoursHint": "Publica desde tu billetera",
+    "latestMints": "Últimas acuñaciones",
+    "tapToOffer": "Toca uno para hacer una oferta",
+    "collections": "Colecciones",
+    "days": "{{count}} días",
+    "spotlightForSale": "En venta ahora",
+    "spotlightNew": "Recién acuñado",
+    "buyFor": "Comprar por {{price}}"
   },
   "remix": {
     "title": "Remezcla",

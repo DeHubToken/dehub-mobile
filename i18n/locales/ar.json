@@ -115,7 +115,19 @@
     "bundleBadge": "حزمة ×{{n}}",
     "dropBadge": "انخفاض السعر",
     "days_one": "{{count}} يوم",
-    "days_other": "{{count}} يومًا"
+    "days_other": "{{count}} يومًا",
+    "dehubPostsName": "منشورات DeHub",
+    "statMinted": "تم سكّها",
+    "statForSale": "للبيع",
+    "sellYours": "بِع ما لديك",
+    "sellYoursHint": "اعرض من محفظتك",
+    "latestMints": "أحدث ما تم سكّه",
+    "tapToOffer": "اضغط على أحدها لتقديم عرض",
+    "collections": "المجموعات",
+    "days": "{{count}} يوم",
+    "spotlightForSale": "للبيع الآن",
+    "spotlightNew": "سُكّ للتو",
+    "buyFor": "اشترِ مقابل {{price}}"
   },
   "remix": {
     "title": "ريمكس",

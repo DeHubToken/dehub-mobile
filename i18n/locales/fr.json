@@ -115,7 +115,19 @@
     "bundleBadge": "Lot ×{{n}}",
     "dropBadge": "Prix en baisse",
     "days_one": "{{count}} jour",
-    "days_other": "{{count}} jours"
+    "days_other": "{{count}} jours",
+    "dehubPostsName": "Publications DeHub",
+    "statMinted": "Créés",
+    "statForSale": "En vente",
+    "sellYours": "Vends le tien",
+    "sellYoursHint": "Mets en vente depuis ton portefeuille",
+    "latestMints": "Dernières créations",
+    "tapToOffer": "Touche-en un pour faire une offre",
+    "collections": "Collections",
+    "days": "{{count}} jours",
+    "spotlightForSale": "En vente maintenant",
+    "spotlightNew": "Tout juste créé",
+    "buyFor": "Acheter pour {{price}}"
   },
   "remix": {
     "title": "Remix",
