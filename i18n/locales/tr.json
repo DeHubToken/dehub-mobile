@@ -16164,5 +16164,39 @@
     "getKey": "{{name}} anahtarı al",
     "showLess": "Sadece anahtarlarımı göster",
     "addAnother": "Başka sağlayıcı ekle"
+  },
+  "postBg": {
+    "title": "Gönderi arka planı",
+    "editRow": "Gönderi arka planı",
+    "hint": "Şeridi kaydır. Gönderin sen ilerledikçe değişir. Bunu yalnızca sen değiştirebilirsin.",
+    "moving": "Hareketli",
+    "still": "Sabit",
+    "none": "Yok",
+    "plain": "Düz gönderiler",
+    "position": "{{n}} / {{total}}",
+    "sample": "Metin gönderilerin profilinde böyle görünür.",
+    "saveFailed": "Arka planın kaydedilemedi. Tekrar dene.",
+    "names": {
+      "ink": "Mürekkep lavi",
+      "news": "Gazete kağıdı",
+      "split": "İkiye bölünmüş akşam",
+      "blue": "Teknik çizim",
+      "terra": "Terrazzo",
+      "half": "Yarım ton pop",
+      "topo": "Eş yükselti",
+      "velvet": "Kadife",
+      "sorbet": "Şerbet",
+      "carbon": "Karbon",
+      "aurora": "Kutup ışığı",
+      "lava": "Lav lambası",
+      "stars": "Yıldız alanı",
+      "rain": "Camda yağmur",
+      "drive": "Gece sürüşü",
+      "breathe": "Nefes",
+      "spin": "Dönen prizma",
+      "tide": "Gelgit",
+      "ember": "Közler",
+      "holo": "Holo folyo"
+    }
   }
 }
