@@ -16114,5 +16114,27 @@
     "savePreset": "Guardar como ajuste",
     "show": "Ver filtros",
     "updatePreset": "Renombrar ajuste"
+  },
+  "ownKeys": {
+    "title": "Tus propias claves de IA",
+    "description": "Añade una clave de un proveedor de IA y las herramientas de Creator usarán tu cuenta. DeHub no cobra nada por esos trabajos. Las claves se cifran y no se vuelven a mostrar.",
+    "working": "Funciona",
+    "invalid": "Rechazada, reemplázala",
+    "noCredit": "Sin crédito",
+    "disabled": "Desactivada por DeHub",
+    "failed": "Algo salió mal. Inténtalo de nuevo.",
+    "saved": "Clave de {{name}} guardada. Las herramientas de {{name}} ahora usan tu cuenta.",
+    "savedNoCredit": "Clave de {{name}} guardada, pero la cuenta no tiene crédito.",
+    "removed": "Clave de {{name}} eliminada.",
+    "replaceKey": "Reemplazar clave",
+    "check": "Comprobar",
+    "remove": "Quitar",
+    "add": "Añadir clave",
+    "paste": "Pega tu clave de {{name}}",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "getKey": "Obtener una clave de {{name}}",
+    "showLess": "Mostrar solo mis claves",
+    "addAnother": "Añadir otro proveedor"
   }
 }

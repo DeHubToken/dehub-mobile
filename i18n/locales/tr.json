@@ -16113,5 +16113,27 @@
     "savePreset": "Ön ayar olarak kaydet",
     "show": "Filtreleri göster",
     "updatePreset": "Ön ayarı yeniden adlandır"
+  },
+  "ownKeys": {
+    "title": "Kendi yapay zeka anahtarların",
+    "description": "Bir yapay zeka sağlayıcısından anahtar ekle, Creator araçları senin hesabınla çalışsın. DeHub bu işler için ücret almaz. Anahtarlar şifrelenir ve bir daha gösterilmez.",
+    "working": "Çalışıyor",
+    "invalid": "Reddedildi, değiştir",
+    "noCredit": "Kredi bitti",
+    "disabled": "DeHub tarafından kapatıldı",
+    "failed": "Bir şeyler ters gitti. Tekrar dene.",
+    "saved": "{{name}} anahtarı kaydedildi. {{name}} araçları artık senin hesabını kullanıyor.",
+    "savedNoCredit": "{{name}} anahtarı kaydedildi ama hesapta kredi yok.",
+    "removed": "{{name}} anahtarı kaldırıldı.",
+    "replaceKey": "Anahtarı değiştir",
+    "check": "Kontrol et",
+    "remove": "Kaldır",
+    "add": "Anahtar ekle",
+    "paste": "{{name}} anahtarını yapıştır",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "getKey": "{{name}} anahtarı al",
+    "showLess": "Sadece anahtarlarımı göster",
+    "addAnother": "Başka sağlayıcı ekle"
   }
 }
