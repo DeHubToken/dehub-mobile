@@ -4,7 +4,7 @@
  * A live post is a post: the same nine reactions, the same counts, the same
  * shared engagement overlay every mounted card reads. The live viewer used to
  * carry its own heart on `/api/live/:id/like` — a counter on the stream
- * document that nothing else on DeHub reads — so a like there never showed on
+ * document that nothing else on Riftn reads — so a like there never showed on
  * the feed card, never showed on web, and never showed as pressed after a
  * reload. This hook is FeedCard's reaction handler with the card stripped away:
  * seed from the post, write through applyEngagement, roll back on failure.

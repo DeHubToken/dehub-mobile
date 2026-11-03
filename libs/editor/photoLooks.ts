@@ -44,9 +44,9 @@ export function parsePhotoLookFile(raw: string): { name: string; effects: ClipEf
   let bytes = 0; for (const char of raw) { const code = char.codePointAt(0)!; bytes += code < 128 ? 1 : code < 2048 ? 2 : code < 65536 ? 3 : 4; }
   if (bytes > 32768) throw new Error("Choose a photo-look JSON file smaller than 32 KB");
   let value: unknown; try { value = JSON.parse(raw); } catch { throw new Error("Choose a valid photo-look JSON file"); }
-  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Choose a DeHub photo-look file");
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Choose a Riftn photo-look file");
   const file = value as Record<string, unknown>;
-  if (file.kind !== "dehub-photo-look" || file.version !== 1 || typeof file.name !== "string") throw new Error("Choose a supported DeHub photo-look file");
+  if (file.kind !== "dehub-photo-look" || file.version !== 1 || typeof file.name !== "string") throw new Error("Choose a supported Riftn photo-look file");
   return { name: lookName(file.name), effects: normalisePhotoLook(file.effects) };
 }
 const EMPTY: PhotoLook[] = [];

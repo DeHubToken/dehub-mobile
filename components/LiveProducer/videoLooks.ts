@@ -54,7 +54,7 @@ export const VIDEO_LOOKS: VideoLook[] = [
  * test: `_setVideoEffects` exists on every track regardless of whether any
  * processor is registered behind it, so asking the track would always say yes.
  * Both platforms register the same nine names now — Kotlin in
- * android/.../videolooks/VideoLooks.kt, Objective-C in ios/DeHub/DHBVideoLooks.m.
+ * android/.../videolooks/VideoLooks.kt, Objective-C in ios/Riftn/DHBVideoLooks.m.
  */
 export const videoLooksSupported =
   Platform.OS === "android" || Platform.OS === "ios";

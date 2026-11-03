@@ -19,7 +19,7 @@ export function toNumberSafe(v: unknown, fallback = 0): number {
 /**
  * Resolve a follower/following (or similar) count from an API field that may be
  * returned either as a plain number OR as an array of ids/addresses.
- * The DeHub `account_info` endpoint returns `followers`/`followings` as arrays
+ * The Riftn `account_info` endpoint returns `followers`/`followings` as arrays
  * of wallet addresses, so counting `.length` is required. An optional explicit
  * count field (e.g. `follower_count`) takes precedence when present.
  */

@@ -54,7 +54,7 @@ export function applyBrand(p: ProjectSnapshot, kit: BrandKit): ProjectSnapshot {
   return applyBrandStyles(p, kit);
 }
 
-/** The official DeHub look, same as web: monochrome palette, Exo headings, Inter body, white wordmark. */
+/** The official Riftn look, same as web: monochrome palette, Exo headings, Inter body, white wordmark. */
 export const DEHUB_BRAND_COLORS = ["#ffffff", "#c9ccd1", "#6b6f76", "#1a1b1e", "#000000"];
 export const DEHUB_BRAND_FONTS = {
   heading: "'Exo', ui-sans-serif, system-ui, sans-serif",

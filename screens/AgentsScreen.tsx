@@ -171,7 +171,7 @@ export default function AgentsScreen() {
   /**
    * A missing key means this phone could not prove the wallet just now. Try
    * to prove it before asking anyone to sign in: mint a session, and if the
-   * DeHub token has lapsed, refresh it and mint again. Only when that fails is
+   * Riftn token has lapsed, refresh it and mint again. Only when that fails is
    * signing in again the answer.
    */
   const revealKeys = async () => {

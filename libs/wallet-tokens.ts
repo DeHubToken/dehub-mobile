@@ -27,13 +27,13 @@ export const WALLET_CHAINS = [
 ];
 const DEFAULTS: Record<number, Array<[string, string, string, number]>> = {
   8453: [
-    ['0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c', 'DHB', 'DeHub', 18],
+    ['0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c', 'DHB', 'Riftn', 18],
     ['0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2', 'USDT', 'Tether', 6],
     ['0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 'USDC', 'USD Coin', 6],
     ['0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b', 'BTC', 'Bitcoin', 8],
   ],
   56: [
-    ['0x680D3113caf77B61b510f332D5Ef4cf5b41A761D', 'DHB', 'DeHub', 18],
+    ['0x680D3113caf77B61b510f332D5Ef4cf5b41A761D', 'DHB', 'Riftn', 18],
     ['0x55d398326f99059fF775485246999027B3197955', 'USDT', 'Tether', 18],
     ['0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', 'USDC', 'USD Coin', 18],
     ['0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 'BTC', 'Bitcoin', 18],

@@ -62,7 +62,7 @@ export function normalizeRichPreview(link: RichLink, value: unknown, now = Date.
     const publicTrack = link.kind === 'track' && d.is_streamable === true && d.is_stream_gated === false &&
       object(d.access).stream === true && !d.stream_conditions && (authorities == null || (Array.isArray(authorities) && authorities.length === 0));
     if (publicTrack && /^[a-zA-Z0-9]+$/.test(str(d.id))) {
-      result.rich.audioUrl = 'https://api.audius.co/v1/tracks/' + d.id + '/stream?app_name=DeHub';
+      result.rich.audioUrl = 'https://api.audius.co/v1/tracks/' + d.id + '/stream?app_name=Riftn';
     } else if (link.kind === 'track') result.rich.status = 'locked';
   } else if (link.provider === 'ens') {
     if (!/^0x[a-fA-F0-9]{40}$/.test(str(d.address)) || /^0x0{40}$/i.test(str(d.address))) return null;
@@ -134,7 +134,7 @@ async function load(link: RichLink, signal: AbortSignal): Promise<unknown> {
     }
     case 'github': return json('https://api.github.com/repos/' + link.id, signal, { headers: { Accept: 'application/vnd.github+json' } });
     case 'defillama': return json('https://api.llama.fi/tvl/' + encodeURIComponent(link.id), signal);
-    case 'audius': return object(await json('https://api.audius.co/v1/resolve?app_name=DeHub&url=' + encodeURIComponent(link.url), signal)).data;
+    case 'audius': return object(await json('https://api.audius.co/v1/resolve?app_name=Riftn&url=' + encodeURIComponent(link.url), signal)).data;
     case 'ens': return ensRecords(link.id, signal);
     case 'ipfs': {
       const response = await request(link.url, signal, { method: 'HEAD' });

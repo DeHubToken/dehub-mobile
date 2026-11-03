@@ -1623,7 +1623,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
               next = updateClip(added.project, added.clipId, { transform: { x: 0.88, y: 0.1, scale: 0.16, rotation: 0 } });
             }
             h.commit(next);
-            toastSuccess(t("editor.brand.dehubApplied", { count: latest.clips.length, defaultValue: "DeHub brand applied to {{count}} layers." }));
+            toastSuccess(t("editor.brand.dehubApplied", { count: latest.clips.length, defaultValue: "Riftn brand applied to {{count}} layers." }));
           }}
           onAddLogo={() => {
             if (!brand.logoMediaId) return;

@@ -3,7 +3,7 @@
  * (dehubweb src/components/app/settings/OwnAiKeysSetting.tsx).
  *
  * A creator pastes a provider key once; Creator tools on that provider then
- * run on their account and DeHub charges nothing. The server checks the key
+ * run on their account and Riftn charges nothing. The server checks the key
  * with one free call before saving and only ever sends back the last 4.
  * Hidden when the server can't list providers.
  */
@@ -46,7 +46,7 @@ export default function OwnAiKeysSection() {
       working: t('ownKeys.working', 'Working'),
       invalid: t('ownKeys.invalid', 'Rejected, replace it'),
       no_credit: t('ownKeys.noCredit', 'Out of credit'),
-      disabled: t('ownKeys.disabled', 'Turned off by DeHub'),
+      disabled: t('ownKeys.disabled', 'Turned off by Riftn'),
     })[status];
 
   const run = async (id: string, work: () => Promise<void>) => {
@@ -103,7 +103,7 @@ export default function OwnAiKeysSection() {
       anchor="own-ai-keys"
       note={t(
         'ownKeys.description',
-        'Add a key from an AI provider and Creator tools run on your account instead. DeHub charges nothing for those jobs. Keys are encrypted and never shown again.',
+        'Add a key from an AI provider and Creator tools run on your account instead. Riftn charges nothing for those jobs. Keys are encrypted and never shown again.',
       )}
     >
       {visible.map((row, index) => (

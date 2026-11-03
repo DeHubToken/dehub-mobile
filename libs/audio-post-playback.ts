@@ -120,7 +120,7 @@ function lockScreenTrack(track: AudioPostTrack): LockScreenTrack {
   return {
     title: track.title,
     artist: track.artist,
-    albumTitle: _translateCopy("copy.a2caa0dc28fb", { defaultValue: "DeHub • Audio" }),
+    albumTitle: _translateCopy("copy.a2caa0dc28fb", { defaultValue: "Riftn • Audio" }),
     artworkUrl: track.artworkUrl || undefined,
   };
 }

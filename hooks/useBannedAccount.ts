@@ -1,7 +1,7 @@
 /**
  * Is the signed-in account banned?
  * =================================
- * A DeHub ban is read-only, not locked-out. The account keeps its sign-in, its
+ * A Riftn ban is read-only, not locked-out. The account keeps its sign-in, its
  * feed, its conversations, its notifications and everything else it can see,
  * until the person asks for the account to be deleted. What it loses is
  * writing: posting, commenting, reacting, following, messaging.

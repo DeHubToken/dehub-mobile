@@ -1,5 +1,5 @@
 /**
- * The exact text a wallet signs to prove it belongs to a DeHub account.
+ * The exact text a wallet signs to prove it belongs to a Riftn account.
  *
  * The API rebuilds this string byte-for-byte from the address and timestamp it
  * is sent, and verifies the signature against the result — so a stray space or
@@ -19,7 +19,7 @@ export const LOGIN_SIGNATURE_TTL_HOURS = 24;
 export function buildDeHubLoginMessage(address: string, timestampSeconds: number): string {
   const displayedDate = new Date(timestampSeconds * 1000);
   return (
-    `Welcome to DeHub!\n\nClick to sign in for authentication.\n` +
+    `Welcome to Riftn!\n\nClick to sign in for authentication.\n` +
     `Signatures are valid for ${LOGIN_SIGNATURE_TTL_HOURS} hours.\n` +
     `Your wallet address is ${address.toLowerCase()}.\n` +
     `It is ${displayedDate.toUTCString()}.`

@@ -4,7 +4,7 @@
  * What a creator is selling or pointing at, behind a Shop button on the post.
  * Two kinds of row:
  *
- *  - **Listings** from their own DeHub shop, which check out in-app through
+ *  - **Listings** from their own Riftn shop, which check out in-app through
  *    `live-checkout` — server-quoted and chain-verified, the same path the live
  *    shopping overlay uses.
  *  - **Affiliate links**, which leave the app.

@@ -11,7 +11,7 @@
  * Web's twin is dehubweb `src/components/app/badge-showcase/ShowcaseShell.tsx`;
  * every timing, size and ease here is its number. Two things differ, both for
  * the phone: the page goes fully black rather than dimmed and blurred, and if
- * the sticker is still loading when the badge lands, the DeHub loader holds
+ * the sticker is still loading when the badge lands, the Riftn loader holds
  * its place instead of a badge that sits there doing nothing.
  *
  * With an `intro` the opening is a promotion instead: the old badge flies

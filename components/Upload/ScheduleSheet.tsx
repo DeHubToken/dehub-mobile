@@ -276,7 +276,7 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
                   <Text style={styles.fansBasis}>
                     {fans.data?.basis === "followers"
                       ? t("whenSheet.fansBasis", { defaultValue: "Brighter means more of your followers were watching, last {{count}} days.", count: fans.data.days })
-                      : t("whenSheet.everyoneBasis", { defaultValue: "Not enough follower activity yet, so this is everyone on DeHub." })}
+                      : t("whenSheet.everyoneBasis", { defaultValue: "Not enough follower activity yet, so this is everyone on Riftn." })}
                   </Text>
                 </View>
               );

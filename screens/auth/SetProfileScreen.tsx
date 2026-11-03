@@ -9,7 +9,7 @@
  * The profile (name, @, photo) is written in ONE request when the photo step
  * is left, as before. Interests and follows come after, against a real
  * account. `completeUsername` — which lets the app open — only runs on the
- * last screen, so the flow stays up until "Enter DeHub".
+ * last screen, so the flow stays up until "Enter Riftn".
  */
 import { currentHold } from "../../services/usernameHold";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
@@ -363,7 +363,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         return;
       }
       if (age < MIN_AGE) {
-        setError(t("welcome.about.tooYoung", { defaultValue: "You need to be {{age}} or older to use DeHub.", age: MIN_AGE }));
+        setError(t("welcome.about.tooYoung", { defaultValue: "You need to be {{age}} or older to use Riftn.", age: MIN_AGE }));
         return;
       }
       setStep("name");
@@ -406,7 +406,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
 
   const name = trimmedDisplayName || (NAME_STEP_INDEX < stepIndex ? username : "");
   const title: Record<Step, string> = {
-    about: t("welcome.about.title", "Welcome to DeHub"),
+    about: t("welcome.about.title", "Welcome to Riftn"),
     name: t("welcome.name.title", "Your name"),
     username: t("welcome.username.title", "Your @username"),
     photo: t("welcome.photo.title", "Your photo"),
@@ -424,7 +424,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     done: t("welcome.done.sub", "Everyone sees this card from today."),
   };
   const cta =
-    step === "done" ? t("welcome.enter", "Enter DeHub")
+    step === "done" ? t("welcome.enter", "Enter Riftn")
     : step === "photo" && !localAvatar && !saved ? t("welcome.skipPhoto", "Skip for now")
     : step === "interests" && interests.length < MIN_INTERESTS
       ? t("welcome.pickMore", { defaultValue: "Pick {{count}} more", count: MIN_INTERESTS - interests.length })

@@ -52,7 +52,7 @@ const BuyFractionSheet: React.FC<Props> = ({ listing, onClose, onSignIn, onMakeO
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing?.id]);
 
-  // Re-quote once the quantity settles. Quoting needs a DeHub token, so a
+  // Re-quote once the quantity settles. Quoting needs a Riftn token, so a
   // signed-out buyer sees the asking price off the listing and Buy opens
   // sign-in instead.
   useEffect(() => {

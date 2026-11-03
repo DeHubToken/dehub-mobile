@@ -222,7 +222,7 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
     const fmt = (v: bigint) => `${formatPrice(v.toString(), currency.decimals)} ${currency.symbol}`;
     return (
       <Panel>
-        <PanelRow label={t("nftMarket.feeRow", { pct: (terms.data.feeBps / 100).toString(), defaultValue: "DeHub fee ({{pct}}%)" })}>
+        <PanelRow label={t("nftMarket.feeRow", { pct: (terms.data.feeBps / 100).toString(), defaultValue: "Riftn fee ({{pct}}%)" })}>
           <Text style={sheetStyles.value}>{fmt(feeOf(amount, feeTerms))}</Text>
         </PanelRow>
         {royaltyPaid(feeTerms, seller) > 0n ? (

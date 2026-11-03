@@ -3,7 +3,7 @@
  * sign-in sheet.
  *
  * Mobile counterpart of dehubweb's LoginSavedProfiles. Someone with several
- * accounts otherwise has to re-derive which wallet or which email DeHub knows
+ * accounts otherwise has to re-derive which wallet or which email Riftn knows
  * them by, and getting that wrong is where every "it signed me into the wrong
  * account" report starts. Their accounts are already on the device, each with
  * its own stored session (libs/profiles), so naming them is both the fastest

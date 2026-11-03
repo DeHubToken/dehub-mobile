@@ -42,7 +42,7 @@ interface Props {
 
 /**
  * Add subscription tokens: pick a dollar amount, send that much DHB at
- * today's price to DeHub, and the API credits it at the price when the
+ * today's price to Riftn, and the API credits it at the price when the
  * transfer landed.
  */
 const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbPriceUsd }) => {

@@ -25,7 +25,7 @@ interface PasskeyLoginFlowProps {
  * The fingerprint row of the sign-in stack. Collapsed it is one row like the
  * others; tapped, it opens into the two things a passkey can do — sign in
  * with one that exists, or make a new account from a new one — because the
- * OS sheet cannot tell us which the person meant, and a device with no DeHub
+ * OS sheet cannot tell us which the person meant, and a device with no Riftn
  * passkey yet shows an empty picker if we only ever ask to sign in.
  *
  * Mirrors dehubweb's 'passkey' login step.

@@ -1,7 +1,7 @@
 import { parseDehubLink } from './dehub-links';
 
 /**
- * A DeHub page the app has its own screen for, as a dehub:// link, or null.
+ * A Riftn page the app has its own screen for, as a dehub:// link, or null.
  *
  * iOS never hands an app its own universal link: opened from inside the app,
  * dehub.io/app/governance/<id> went to Safari instead of the proposal screen.

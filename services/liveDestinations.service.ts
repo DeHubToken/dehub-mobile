@@ -1,5 +1,5 @@
 /**
- * Multistream destinations: the other platforms a creator's DeHub broadcast is
+ * Multistream destinations: the other platforms a creator's Riftn broadcast is
  * pushed to while they are live. Same API the web Live Studio uses. Stream keys
  * go up once and never come back; the server only returns the last four
  * characters.

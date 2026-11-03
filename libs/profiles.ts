@@ -2,7 +2,7 @@
  * Profiles on this device.
  * ========================
  * Mobile port of dehubweb's src/lib/profiles.ts. One install can hold several
- * DeHub accounts. The registry lives in AsyncStorage (`@dehub_profiles_v1`) and
+ * Riftn accounts. The registry lives in AsyncStorage (`@dehub_profiles_v1`) and
  * keeps each account's public identity plus a snapshot of the session keys it
  * had the last time it was active, so switching back is silent instead of a
  * fresh login.
@@ -190,7 +190,7 @@ export async function removeProfile(id: string): Promise<void> {
 
 /**
  * Drop saved rows for an address this device no longer signs in as. A wallet
- * reset moves the DeHub profile to a new smart account, and the old address's
+ * reset moves the Riftn profile to a new smart account, and the old address's
  * row would otherwise sit beside the new one as a second copy of the same
  * person.
  */
@@ -202,7 +202,7 @@ export async function removeProfilesForAddress(address: string, keepId?: string 
 }
 
 /**
- * One row per DeHub account. Usernames are unique, so two rows sharing one are
+ * One row per Riftn account. Usernames are unique, so two rows sharing one are
  * the same person under an old and a new address (a wallet reset before
  * removeProfilesForAddress existed). The most recently added row is the
  * address the account lives on now.

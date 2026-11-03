@@ -1,7 +1,7 @@
 /**
  * Replay resolution for ended livestreams.
  *
- * The backend records every stream, moves the finished file into DeHub's own
+ * The backend records every stream, moves the finished file into Riftn's own
  * bucket and deletes the provider's copy — so a replay is a plain mp4 on the
  * CDN, not an HLS playlist, and it only exists once that capture reports
  * `ready`. The live ladder is dead the moment ingest stops, so an ended stream

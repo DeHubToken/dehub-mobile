@@ -10,7 +10,7 @@ import { nftToReplyPost, resolveReplyPostThumbnail } from "../../libs/replyPostD
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 /**
- * Rich preview card for a DeHub post link shared in a DM — mirrors the web
+ * Rich preview card for a Riftn post link shared in a DM — mirrors the web
  * chat's link-preview card, but fetches the post's own metadata (title,
  * thumbnail, creator) via getNFT instead of an OG scraper. Tapping opens the
  * post. Falls back to a plain "View post" chip if the metadata can't load.

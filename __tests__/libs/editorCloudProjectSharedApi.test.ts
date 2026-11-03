@@ -30,7 +30,7 @@ it("surfaces conflicts and stops reservation failures before signed upload",asyn
   await expect(cloudProjectApi(actor).editing.prepareMedia(owner,id,source,10,"mp4")).rejects.toThrow("Editing access revoked");expect(mockSigned).not.toHaveBeenCalled();
 });
 it("rejects an invalid owner before contacting the shared save service",()=>{
-  expect(()=>cloudProjectApi(actor).editing.save("someone",id,document,1,source)).toThrow("valid DeHub wallet");expect(mockRpc).not.toHaveBeenCalled();
+  expect(()=>cloudProjectApi(actor).editing.save("someone",id,document,1,source)).toThrow("valid Riftn wallet");expect(mockRpc).not.toHaveBeenCalled();
 });
 
 it("sends saved and mutable draft baselines through the guarded save route",async()=>{

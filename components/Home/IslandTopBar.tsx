@@ -24,7 +24,7 @@ const MARK_HEIGHT = 36;
 export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
-const BRAND_NAME = "DeHub";
+const BRAND_NAME = "Riftn";
 
 // i18n keys for each tab's short name, by post type.
 const TAB_LABEL_KEYS: Record<string, string> = {
@@ -44,7 +44,7 @@ export const ISLAND_CAPSULE_GAP = 6;
 export const ISLAND_BAR_HEIGHT = ISLAND_CAPSULE_HEIGHT + ISLAND_CAPSULE_GAP * 2;
 /** The capsule's corner. */
 const CAPSULE_RADIUS = NAV_PILL_RADIUS;
-/** DeHub's soft corner (the badge plate, the tab pill): not a full circle. */
+/** Riftn's soft corner (the badge plate, the tab pill): not a full circle. */
 const RADIUS = 15;
 /** The avatar, and the rows of the feed menu. */
 const AVATAR_RADIUS = 8;

@@ -59,7 +59,7 @@ const PROVIDERS: { key: LegacyProvider; label: string }[] = [
 /**
  * Self-service recovery for the "linked to more than one wallet" state:
  * Supabase links Google/Email logins that share a verified email into ONE
- * identity, so a person who ended up with two separate DeHub accounts under
+ * identity, so a person who ended up with two separate Riftn accounts under
  * it (e.g. one created on web, one created on this phone) can only ever have
  * ONE of them be what Google/email sign-in resolves to. This lets them pick
  * which one that is, self-service — mirrors dehubweb's "Switch to a

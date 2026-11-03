@@ -149,7 +149,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
         <Text className="text-white/40 text-center text-[10px] leading-4 mt-3 max-w-xs">
           {t(
             'goLive.encoderPermanentHint',
-            'This key never changes. Set your encoder up once — next time just press Start there and DeHub creates the post for you.',
+            'This key never changes. Set your encoder up once — next time just press Start there and Riftn creates the post for you.',
           )}
         </Text>
       ) : null}

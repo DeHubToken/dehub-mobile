@@ -342,7 +342,7 @@ export async function resolveTicker(
   symbol: string,
 ): Promise<ResolvedAsset | null> {
   // $RIFT, $RIFTN and $DEHUB are all our token: resolve them as DHB. The card
-  // draws the DeHub coin when no provider has a logo for it.
+  // draws the Riftn coin when no provider has a logo for it.
   return resolveTickerFromProviders(isDhbSymbol(symbol) ? "DHB" : symbol);
 }
 
@@ -449,7 +449,7 @@ const MAJORS: Array<{
   name: string;
   assetClass: AssetClass;
 }> = [
-  { symbol: "DHB", name: "DeHub", assetClass: "token" },
+  { symbol: "DHB", name: "Riftn", assetClass: "token" },
   { symbol: "BTC", name: "Bitcoin", assetClass: "token" },
   { symbol: "ETH", name: "Ethereum", assetClass: "token" },
   { symbol: "SOL", name: "Solana", assetClass: "token" },

@@ -1,7 +1,7 @@
 /**
  * useAssetPicker
  * ==============
- * `$` typeahead for any TextInput: type `$DH` and pick DeHub, or whichever of
+ * `$` typeahead for any TextInput: type `$DH` and pick Riftn, or whichever of
  * the four tokens trading under that ticker was actually meant.
  *
  * Deliberately shaped like `useMentions` — `handleChangeText`,

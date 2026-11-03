@@ -135,7 +135,7 @@ interface InfiniteVideoFeedProps {
 }
 
 // Reserved height for the footer so its three states are interchangeable
-// without resizing the list. Sized to the DeHub mark plus the padding the
+// without resizing the list. Sized to the Riftn mark plus the padding the
 // spinner block used to carry.
 const FOOTER_SLOT = { height: 84 } as const;
 

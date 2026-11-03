@@ -260,7 +260,7 @@ export async function hardenStoredKey(address: string): Promise<boolean> {
   const addr = address?.toLowerCase();
   if (!addr) return false;
   const pk = await getPrivateKeyForAddress(addr, {
-    purpose: _translateCopy("copy.f3dc7d1cb603", { defaultValue: "Secure your DeHub wallet key on this device" }),
+    purpose: _translateCopy("copy.f3dc7d1cb603", { defaultValue: "Secure your Riftn wallet key on this device" }),
   });
   if (!pk) return false;
   try {
@@ -290,7 +290,7 @@ export async function getLocalAccount(address: string): Promise<LocalAccount | n
 
 export async function getLocalAccountDetails(
   address: string,
-  options: KeyAccessOptions = { purpose: _translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your DeHub wallet" }) },
+  options: KeyAccessOptions = { purpose: _translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your Riftn wallet" }) },
 ): Promise<LocalAccountDetails | null> {
   log.debug("getLocalAccountDetails:start", { address: address?.toLowerCase?.() });
   const meta = await getLocalAccount(address);

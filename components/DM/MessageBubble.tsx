@@ -1045,7 +1045,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               );
             })()}
 
-            {/* Shared DeHub link — rich preview card that opens it on tap */}
+            {/* Shared Riftn link — rich preview card that opens it on tap */}
             {sharedLink ? (
               <>
                 {/* The card leads the bubble and the caption follows it, the

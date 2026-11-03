@@ -243,7 +243,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
   const handleShare = useCallback(
     async (url: string) => {
       const intro = t("communities.manage.inviteShareMessage", {
-        defaultValue: "Join this community on DeHub",
+        defaultValue: "Join this community on Riftn",
       });
       try {
         await shareWithRef({ message: `${intro}\n${url}`, url });

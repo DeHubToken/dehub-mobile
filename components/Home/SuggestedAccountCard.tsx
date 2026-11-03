@@ -351,7 +351,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
             {_copy("follow.followerCount", { defaultValue: "{{compact}} followers", compact: formatCompactNumber(followers) })}
           </Text>
           {isOwnAccount ? null : (
-            // DeHub's chrome glass, squared off: the theme accent as a tint
+            // Riftn's chrome glass, squared off: the theme accent as a tint
             // under a banded white sheen, a bright top edge. The fill sits on
             // an inner view where the control pass leaves it alone.
             <TouchableOpacity

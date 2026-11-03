@@ -12,7 +12,7 @@
  *                               no lookup at all.
  *   :name:                      Slack, GitHub, Mastodon, Misskey, Pleroma,
  *                               Discord's own input box. Either a standard emoji
- *                               (":fire:") or a custom one registered on DeHub.
+ *                               (":fire:") or a custom one registered on Riftn.
  *
  * A `:name:` that resolves to nothing stays as the literal text, so a time like
  * "12:30:45" or someone typing ":this:" is never swallowed.

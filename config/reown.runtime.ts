@@ -2,7 +2,7 @@ import { translateCopy as _translateCopy } from '../i18n/copy';
 import "@walletconnect/react-native-compat";
 // Reown AppKit (WalletConnect) setup for the "Connect Wallet" sign-in option —
 // lets a user authenticate with an EXTERNAL wallet app (MetaMask, Trust
-// Wallet, Coinbase Wallet, Rainbow, ...) instead of DeHub provisioning one.
+// Wallet, Coinbase Wallet, Rainbow, ...) instead of Riftn provisioning one.
 // Imported once, for its side effect (createAppKit), from index.ts.
 //
 // Side-effect imports for walletconnect & ethers shims are already loaded once in index.ts.
@@ -40,8 +40,8 @@ if (!projectId) {
 }
 
 export const metadata = {
-  name: "Dehub.io",
-  get description() { return _translateCopy("copy.273655f6d663", { defaultValue: "Dehub.io Mobile" }); },
+  name: "Riftn.io",
+  get description() { return _translateCopy("copy.273655f6d663", { defaultValue: "Riftn.io Mobile" }); },
   url: "https://dehub.io",
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
   redirect: {
@@ -76,7 +76,7 @@ const WEB_PARITY_WALLET_IDS = [
 // version of this file validated supportedNetworks and then discarded the
 // result in favor of a hardcoded [Ethereum mainnet, Polygon] — chains the
 // rest of the app has no contracts on — which would have offered a
-// wallet-connect flow that could never actually complete a DeHub sign-in.
+// wallet-connect flow that could never actually complete a Riftn sign-in.
 //
 // Returns null rather than throwing, for the same reason as the projectId check
 // above: this runs at module scope during boot, where a throw is a white screen.
@@ -144,7 +144,7 @@ if (!projectId || !chains) {
 
 /**
  * The live AppKit instance, for callers that need to act on it outside a
- * component (e.g. disconnecting the WalletConnect session on DeHub sign-out —
+ * component (e.g. disconnecting the WalletConnect session on Riftn sign-out —
  * see useAuthSession.ts's signOut). Kept off the global key rather than a
  * plain module-level variable so it survives Fast Refresh re-evaluating this
  * file's top level without losing the original instance.

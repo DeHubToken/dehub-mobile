@@ -32,7 +32,7 @@ export function HoldersTab({ community, onSaved }: { community: Community; membe
 
   const [enabled, setEnabled] = useState(!!saved);
   const [chainId, setChainId] = useState<number>(saved?.chainId ?? fallbackChain);
-  // DeHub tokens by default; any other token is one tap away.
+  // Riftn tokens by default; any other token is one tap away.
   const [useDehub, setUseDehub] = useState(!saved || isDehubToken(saved));
   const [otherToken, setToken] = useState(saved && !isDehubToken(saved) ? saved.token : (community.ticker_contract_address ?? ""));
   const token = useDehub ? DEHUB_TOKEN_BY_CHAIN[chainId] : otherToken;
@@ -114,7 +114,7 @@ export function HoldersTab({ community, onSaved }: { community: Community; membe
             <View className="flex-row flex-wrap gap-2">
               <TouchableOpacity onPress={() => setUseDehub(true)} style={[styles.choice, styles.choiceRow, useDehub && styles.choiceActive]}>
                 <Image source={DEHUB_COIN} style={{ width: 16, height: 16 }} />
-                <Text style={[styles.choiceText, useDehub && styles.choiceTextActive]}>{t("communities.holderGate.dehubTokens", { defaultValue: "DeHub tokens" })}</Text>
+                <Text style={[styles.choiceText, useDehub && styles.choiceTextActive]}>{t("communities.holderGate.dehubTokens", { defaultValue: "Riftn tokens" })}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => setUseDehub(false)} style={[styles.choice, !useDehub && styles.choiceActive]}>
                 <Text style={[styles.choiceText, !useDehub && styles.choiceTextActive]}>{t("communities.holderGate.otherToken", { defaultValue: "Another token" })}</Text>

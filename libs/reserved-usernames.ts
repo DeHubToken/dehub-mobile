@@ -45,7 +45,7 @@ const ROUTE_SEGMENTS = [
   "legal", "privacy", "privacy-policy", "terms", "terms-of-service",
 ];
 
-/** Not routes, but a profile at any of these reads as DeHub speaking. */
+/** Not routes, but a profile at any of these reads as Riftn speaking. */
 const RESERVED_VANITY_NAMES = [
   // "accounts" moved to ROUTE_SEGMENTS when the account marketplace shipped.
   "about", "account", "api", "billing", "contact", "dehub",
@@ -96,7 +96,7 @@ export const RESERVED_LINK_SEGMENTS = new Set<string>([
 ]);
 
 /**
- * Brand names. `riftn` is the name DeHub is moving to (riftn.com), so nobody
+ * Brand names. `riftn` is the name Riftn is moving to (riftn.com), so nobody
  * may hold it or an obvious copy of it: `riftn_`, `riftn-official`, `RIFTN`,
  * `r1ftn`, `official_riftn` and the like. Matched by rule rather than listed,
  * because the copies are endless.

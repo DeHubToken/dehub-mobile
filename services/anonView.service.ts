@@ -2,20 +2,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "./supabase";
 
 /**
- * Anonymous views — views from visitors with no DeHub session.
+ * Anonymous views — views from visitors with no Riftn session.
  * ===========================================================
- * The DeHub API requires a valid JWT on /record-view and /view/batch (no header
+ * The Riftn API requires a valid JWT on /record-view and /view/batch (no header
  * → 400 "Invalid signature", bad token → 401), so a signed-out user browsing the
  * feed would record nothing. Those views go to the `anon-views` Supabase edge
  * function instead — the same function the web app uses, so a post's anonymous
  * count is shared across web and mobile.
  *
- * A signed-in user only ever hits the DeHub API and a signed-out one only ever
+ * A signed-in user only ever hits the Riftn API and a signed-out one only ever
  * hits this, so nobody is counted twice. Server-side dedup is one view per
  * viewer per post per UTC day, where the viewer is a salted hash of the device
  * id below plus the request IP.
  *
- * Recording only. The edge function forwards what it records to the DeHub API,
+ * Recording only. The edge function forwards what it records to the Riftn API,
  * which folds it into the post's `totalViews`, so that is where the count is
  * read back from — see resolveViewCount in libs/numbers.util. This module used
  * to expose a fetchAnonViewCounts() the cards added on at display time, which

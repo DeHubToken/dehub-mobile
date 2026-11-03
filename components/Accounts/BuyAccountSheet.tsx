@@ -6,7 +6,7 @@ import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
  *
  * Delivery is the part this sheet exists for. The account does not land on
  * the wallet that pays — it lands on a VACANT wallet the buyer names, one
- * that has signed in to DeHub at least once (that is how the platform knows
+ * that has signed in to Riftn at least once (that is how the platform knows
  * the address is really theirs). The address is validated server-side BEFORE
  * any DHB moves, and the pay button stays dead until that check passes.
  * Paying first and validating later is the one ordering this sheet must
@@ -60,7 +60,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
 
   const isOwn = !!myAddress && myAddress === listing?.seller.address.toLowerCase();
   const listingId = listing?.id;
-  // Quoting needs a DeHub token, so a signed-out browser would only get a 401.
+  // Quoting needs a Riftn token, so a signed-out browser would only get a 401.
   // They see the asking price off the card and Buy opens sign-in; the quote
   // fetches on its own once they are in, because this flips with it.
   const canQuote = visible && !!listingId && isAuthed && !isOwn;

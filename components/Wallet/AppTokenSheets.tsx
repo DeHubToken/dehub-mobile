@@ -15,7 +15,7 @@ import {
 } from "../../services/app-tokens.service";
 
 /**
- * App tokens: DHB held on DeHub, not on a chain. The send sheet moves app
+ * App tokens: DHB held on Riftn, not on a chain. The send sheet moves app
  * tokens to another account and never touches a chain; the history sheet
  * shows the balance and every movement. Mirrors web AppTokens.tsx.
  */

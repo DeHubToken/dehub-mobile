@@ -138,7 +138,7 @@ export interface MarketCollection {
   isDehub: boolean;
   listed: number;
   floor: { amount: string; symbol: string; decimals: number } | null;
-  /** DeHub Posts: how many are minted (listed or not). */
+  /** Riftn Posts: how many are minted (listed or not). */
   minted?: number;
 }
 

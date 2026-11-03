@@ -47,7 +47,7 @@ function viewCooldownKey(): string {
 const recordedViews = new Set<string>();
 
 // Pending batch of token IDs to submit, split by which backend they belong to.
-// A signed-in viewer's views go to the DeHub API, a signed-out viewer's to the
+// A signed-in viewer's views go to the Riftn API, a signed-out viewer's to the
 // anon-views edge function, and auth state can change between a view being
 // queued and the batch flushing — so the destination is decided at queue time,
 // not at flush time.
@@ -162,7 +162,7 @@ function keyFor(tokenId: TokenId): string {
  *   backstop.
  * - Threshold: 10% of duration OR 3 seconds, whichever is first.
  * - Signed-out viewers count too: their views go to the `anon-views` edge
- *   function, since the DeHub API rejects unauthenticated view calls.
+ *   function, since the Riftn API rejects unauthenticated view calls.
  *
  * Returns true if a view was submitted this call, false otherwise.
  */
@@ -363,7 +363,7 @@ export async function flushBatchViews(): Promise<BatchViewResponse | null> {
     }
   }
 
-  // Signed-in views → DeHub API
+  // Signed-in views → Riftn API
   for (const chunk of chunk_(tokenIds)) {
     try {
       const response = await apiClient.post<BatchViewResponse>(

@@ -1,5 +1,5 @@
 /**
- * Profiles — every DeHub account saved on this device.
+ * Profiles — every Riftn account saved on this device.
  * ====================================================
  * Mobile counterpart of dehubweb's ProfilesSection (Settings → Profile). Each
  * row switches to that account; the "Add profile" row opens the sign-in sheet

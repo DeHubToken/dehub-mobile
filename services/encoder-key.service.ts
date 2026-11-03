@@ -1,5 +1,5 @@
 /**
- * Permanent encoder credentials — `/live/ingest-key` on the DeHub API
+ * Permanent encoder credentials — `/live/ingest-key` on the Riftn API
  * ===================================================================
  * Mirrors web's `getEncoderCredentials` in `src/lib/api/dehub/livestream.ts`.
  *

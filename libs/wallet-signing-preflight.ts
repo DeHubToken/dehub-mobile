@@ -1,7 +1,7 @@
 import { OPEN_WALLET_METHOD } from "./provider.registry";
 
 /**
- * Open DeHub's built-in wallet before a queued on-chain post starts.
+ * Open Riftn's built-in wallet before a queued on-chain post starts.
  *
  * The locked-provider shim owns this private RPC method and turns it into the
  * password/biometric sheet. Already-open and external providers may reject the
@@ -13,7 +13,7 @@ export async function prepareWalletForQueuedMint(provider: any): Promise<void> {
   try {
     await provider.request({ method: OPEN_WALLET_METHOD });
   } catch (error: any) {
-    // A refusal from the DeHub unlock sheet must stop the job. Everything else
+    // A refusal from the Riftn unlock sheet must stop the job. Everything else
     // is an unsupported private method on a provider that will prompt normally
     // when the transaction is sent.
     if (error?.name === "WalletLockedError") throw error;

@@ -268,7 +268,7 @@ export interface CdnImageOptions {
 }
 
 /**
- * Wrap a DeHub CDN URL in a Cloudflare image transform sized for the element
+ * Wrap a Riftn CDN URL in a Cloudflare image transform sized for the element
  * that will show it. Anything that is not a transformable CDN URL — and any
  * call with no `width` — is returned exactly as given.
  */

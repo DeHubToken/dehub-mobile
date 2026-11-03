@@ -219,7 +219,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     const slug = profileData?.username || profileData?.address;
     if (!slug) return;
     const url = ShareLinks.profile(slug);
-    const message = t("copy.13de76e4ca28", { defaultValue: "Check out {{value1}} on DeHub {{value2}}", value1: profileData?.displayName || t("copy.0913f7bb109b", { defaultValue: "this user" }), value2: url });
+    const message = t("copy.13de76e4ca28", { defaultValue: "Check out {{value1}} on Riftn {{value2}}", value1: profileData?.displayName || t("copy.0913f7bb109b", { defaultValue: "this user" }), value2: url });
     closeMenuThen(() => { shareProfile(url, message); });
   }, [closeMenuThen, profileData, t]);
 

@@ -4,7 +4,7 @@
  *
  * The OS Now Playing surface (iOS lock screen and Control Center, Android's
  * media notification) is a **single global slot**. expo-audio says as much:
- * "Only one player can control the lock screen at a time." DeHub can have
+ * "Only one player can control the lock screen at a time." Riftn can have
  * several things able to make noise at once — a radio station, a stage
  * recording, an audio post, a video — so calling
  * `setActiveForLockScreen(true, …)` straight from each player means the last

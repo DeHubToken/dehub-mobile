@@ -1,7 +1,7 @@
 /**
  * Share Link Button
  * =================
- * A header action that hands a DeHub link to the OS share sheet.
+ * A header action that hands a Riftn link to the OS share sheet.
  *
  * Stores, shop items and events had no share affordance on mobile at all —
  * ShareLinks knew how to build a post or a community URL and nothing else, so

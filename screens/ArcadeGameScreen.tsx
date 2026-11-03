@@ -344,7 +344,7 @@ const ArcadeGameScreen = () => {
             `window.dispatchEvent(new MessageEvent('message',{data:${JSON.stringify({source:'trenchstar-host',key:d.key,...payload})},source:window,origin:location.origin})); true;`,
           );
           const token = await getAuthToken();
-          if (!token) { reply({error:t("copy.2f147e9971d6", { defaultValue: "Sign in to DeHub to sync desks, join rooms and compete." })}); return; }
+          if (!token) { reply({error:t("copy.2f147e9971d6", { defaultValue: "Sign in to Riftn to sync desks, join rooms and compete." })}); return; }
           try {
             const response = await fetch(`${env.SUPABASE_URL}/functions/v1/trenchstar`, {
               method:'POST', headers:{'Content-Type':'application/json','x-dehub-token':token},

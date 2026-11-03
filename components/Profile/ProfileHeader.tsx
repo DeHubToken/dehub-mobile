@@ -505,7 +505,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
                 <Text className="text-zinc-400"> {t("profile.followers")}</Text>
               </Text>
             </TouchableOpacity>
-            {/* DeHub followers plus the creator's own figures for their linked
+            {/* Riftn followers plus the creator's own figures for their linked
                 socials. Absent until a social carries a count. */}
             <TotalReachPill source={user} followers={followersCount} />
             {/* The links ride at the end of the counts line and only wrap

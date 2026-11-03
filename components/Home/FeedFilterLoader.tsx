@@ -10,7 +10,7 @@
  * stale results underneath a translucent veil is what made the old behaviour
  * read as a frozen screen instead of a loading one.
  *
- * The mark is the shared DeHub preloader, the same art and the same wait the
+ * The mark is the shared Riftn preloader, the same art and the same wait the
  * web app shows from its own FeedFilterLoader. This used to draw a hand-rolled
  * rotating arc with a comment claiming it was "the same mark as the web
  * loader" — it never was, and a filter switch was the most-seen wait in the

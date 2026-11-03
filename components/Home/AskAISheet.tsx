@@ -291,7 +291,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
 
   const buildInitialPrompt = useCallback((): string => {
     const parts: string[] = [];
-    parts.push("You are the DeHub AI assistant. The user just tapped \"Ask AI\" on a post.");
+    parts.push("You are the Riftn AI assistant. The user just tapped \"Ask AI\" on a post.");
     parts.push("Give a comprehensive, informative summary of this post covering all key details.");
     parts.push("Include: what the post is about, who made it, engagement stats, any monetization or special features.");
     parts.push("Be concise but thorough — give the user everything they'd want to know at a glance.");
@@ -415,7 +415,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
         setIsGeneratingImage(true);
         try {
           // `generate-image` charges the caller's DHB credit and answers 401
-          // without a DeHub token, so the wallet has to travel with the request.
+          // without a Riftn token, so the wallet has to travel with the request.
           const imgRes = await generateImage(
             {
               prompt: text,

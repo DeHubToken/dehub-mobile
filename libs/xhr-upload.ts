@@ -33,7 +33,7 @@ export function unwrapUploadResponse<T = any>(res: unknown, unwrapResult = true)
 
 /** What an upstream Solana RPC 429 is reported as. Also recognised by `isRateLimitUploadError`. */
 const solanaRateLimitMessage = () =>
-  _translateCopy("copy.f69016ffb3fc", { defaultValue: "Solana posting is temporarily unavailable — DeHub's server hit an RPC rate limit. Wait a few minutes and retry, or switch to Base/BNB to post now." });
+  _translateCopy("copy.f69016ffb3fc", { defaultValue: "Solana posting is temporarily unavailable — Riftn's server hit an RPC rate limit. Wait a few minutes and retry, or switch to Base/BNB to post now." });
 
 /** True when a thrown/rejected upload error looks like an upstream Solana RPC 429. */
 export function isRateLimitUploadError(message?: string): boolean {

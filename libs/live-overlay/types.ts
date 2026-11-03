@@ -25,7 +25,7 @@ export interface OverlayWidget {
 }
 
 /**
- * Where the overlay is drawn. 'app' — every viewer's DeHub player draws it.
+ * Where the overlay is drawn. 'app' — every viewer's Riftn player draws it.
  * 'video' — an OBS browser source has already burned it into the picture, and
  * the app must stay out of the way or the room sees every alert twice.
  */

@@ -397,7 +397,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         />
       </SettingsSection>
 
-      <Text className="text-center text-theme-neutrals-500 text-xs mt-6">{_copy("copy.1f185710f28a", { defaultValue: "DeHub v" })}{APP_VERSION}
+      <Text className="text-center text-theme-neutrals-500 text-xs mt-6">{_copy("copy.1f185710f28a", { defaultValue: "Riftn v" })}{APP_VERSION}
       </Text>
     </SettingsScrollView>
   );

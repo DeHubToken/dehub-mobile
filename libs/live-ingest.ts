@@ -1,7 +1,7 @@
 /**
  * Where a given live stream's bytes come from.
  *
- * DeHub runs two ingests. Livepeer is the original; a self-hosted MediaMTX is
+ * Riftn runs two ingests. Livepeer is the original; a self-hosted MediaMTX is
  * the cheap one — Livepeer bills delivery per viewer-hour, the only part of the
  * streaming bill that grows with an audience.
  *
@@ -140,7 +140,7 @@ export function whepEndpointFor(
 /**
  * Whether this device can reach the self-hosted ingest at all.
  *
- * The ingest is a bare droplet IP — the one DeHub host not behind Cloudflare,
+ * The ingest is a bare droplet IP — the one Riftn host not behind Cloudflare,
  * because WebRTC cannot ride the proxy — and some carriers null-route whole
  * hosting ranges, so a phone there connects to everything except this. The
  * failure is a silent packet drop, which fetch reports only by hanging, so

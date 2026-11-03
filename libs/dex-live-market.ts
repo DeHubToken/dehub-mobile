@@ -19,7 +19,7 @@ export const isDehubPool = (position: { chain_id: number; poolFee: number; tickS
 /** Do not display an older aggregate snapshot while the pool-scoped feed is unavailable. */
 export function parseDehubMarket<Position>(data: unknown): SharedMarket<Position> {
   const market = parseSharedMarket<Position>(data);
-  if (market.marketScope !== 'base-dhb-usdc-0-1') throw new Error(_translateCopy('copy.7569d3c2d268', { defaultValue: 'DeHub pool snapshot is not available' }));
+  if (market.marketScope !== 'base-dhb-usdc-0-1') throw new Error(_translateCopy('copy.7569d3c2d268', { defaultValue: 'Riftn pool snapshot is not available' }));
   return market;
 }
 export function parseSharedMarket<Position>(data: unknown): SharedMarket<Position> {

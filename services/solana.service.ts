@@ -4,7 +4,7 @@
  * payer, broadcasts it, and confirms with the backend.
  *
  * The keypair is derived on demand rather than stored (see libs/solana-derive.ts):
- * the same DeHub wallet yields the same Solana address on every device, and
+ * the same Riftn wallet yields the same Solana address on every device, and
  * there is no secret left behind to lose with the handset. Any wallet holding
  * an EVM key has one now — including imported (pasted private key) wallets,
  * which previously got no Solana wallet at all.
@@ -264,7 +264,7 @@ export async function broadcastSolanaMint(
       simErrStr.includes("accountnotfound")
     ) {
       // Minting is backend-sponsored (the signer is fee payer), so this is
-      // never the user's own wallet running dry — it's DeHub's funded
+      // never the user's own wallet running dry — it's Riftn's funded
       // wallet. Payments (a different flow, solana-payment.service.ts) do
       // still spend the user's own SOL and keep their own message for this.
       throw new Error(_translateCopy("copy.315963b38d2f", { defaultValue: "Solana minting is temporarily unavailable. Please try again shortly." }));

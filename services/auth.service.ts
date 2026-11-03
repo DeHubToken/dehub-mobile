@@ -128,7 +128,7 @@ export const AuthService = {
   },
 
   /**
-   * Exchange a Supabase access token (Google/email sign-in) for a DeHub
+   * Exchange a Supabase access token (Google/email sign-in) for a Riftn
    * session, with no wallet signature — used to recognize an account this
    * Supabase identity is already linked to (established previously by
    * signInWithWallet's web3AuthMeta), instead of always minting a new local
@@ -162,7 +162,7 @@ export const AuthService = {
       );
       // isNewAccount alone — same rule as signInWithWallet above and as web.
       const needsUsername = !!response?.result?.isNewAccount;
-      // Do NOT persist DeHub tokens here — signInWithSupabaseSession validates
+      // Do NOT persist Riftn tokens here — signInWithSupabaseSession validates
       // the resolved address against user_wallets before adopting. Writing tokens
       // early let a polluted web3AuthMeta link (shubham_new) stick even when the
       // cloud wallet row names a different address (shubham_new2).
@@ -187,7 +187,7 @@ export const AuthService = {
   },
 
   /**
-   * Move this login's existing DeHub account onto `address`, a wallet that has
+   * Move this login's existing Riftn account onto `address`, a wallet that has
    * just been created to replace one nobody can open any more.
    *
    * Accounts are keyed by wallet address, so without this a replacement wallet
@@ -246,7 +246,7 @@ export const AuthService = {
   },
 
   /**
-   * An unfinished signup can have a cloud wallet without a DeHub profile.
+   * An unfinished signup can have a cloud wallet without a Riftn profile.
    * Only a confirmed missing profile permits signup with the replacement;
    * expired identity sessions, conflicting links and other failures must stop.
    */

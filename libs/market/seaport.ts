@@ -1,10 +1,10 @@
 /**
- * Seaport 1.6 orders for the DeHub NFT market (ethers v5 port of dehubweb
+ * Seaport 1.6 orders for the Riftn NFT market (ethers v5 port of dehubweb
  * src/lib/market/seaport.ts).
  *
  * The backend (dehub-stream-backend src/market/seaport.ts) refuses any order
  * shaped differently from what this file builds, so keep all three in step:
- * no zone, no conduit, FULL_OPEN, consideration = [seller or NFT, DeHub fee,
+ * no zone, no conduit, FULL_OPEN, consideration = [seller or NFT, Riftn fee,
  * royalties]. Listings may fall in price over time and hold up to four NFTs;
  * offers may ask for any NFT of a collection.
  */
@@ -201,7 +201,7 @@ export function sellerProceeds(price: bigint, terms: FeeTerms, seller: string): 
 }
 
 /**
- * DeHub fee and royalties. With `endPrice` below `price` every amount falls in
+ * Riftn fee and royalties. With `endPrice` below `price` every amount falls in
  * step (a price-drop auction), worked out the same way the backend checks it.
  */
 function feeItems(itemType: number, currency: string, price: bigint, terms: FeeTerms, seller: string, endPrice = price): ConsiderationItem[] {

@@ -1,5 +1,5 @@
 /**
- * The converter — import a video from another platform as a DeHub post.
+ * The converter — import a video from another platform as a Riftn post.
  * =====================================================================
  * Native side of dehub.io/converter. The endpoint is still called
  * `youtube_import` because that is what it was when it only took YouTube;

@@ -80,7 +80,7 @@ function sharedOldLogin(accounts: LegacyAccountMatch[]): OldLogin | null {
 
 /**
  * Gate shown instead of silently creating a wallet when this Supabase
- * identity's email matches a pre-migration (Web3Auth-era) DeHub account.
+ * identity's email matches a pre-migration (Web3Auth-era) Riftn account.
  *
  * Mirrors dehubweb's "Switch to a different old account" (WalletRecoveryTools
  * -> SwitchOldAccountDialog): sign in with the OLD login once, reconstruct

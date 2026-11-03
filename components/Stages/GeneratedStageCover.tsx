@@ -4,7 +4,7 @@ import { translateCopy as _translateCopy } from '../../i18n/copy';
  * ========================================================================
  * Port of web's component of the same name. The art comes from
  * libs/stage-cover (a hash of the stage id), so a stage shows the same poster
- * here as on dehub.io: "Chrome Mic", a DeHub banner with a smoky brand-kit
+ * here as on dehub.io: "Chrome Mic", a Riftn banner with a smoky brand-kit
  * backdrop, the title in chrome with //STATUS above it, and the 3D chrome mic.
  *
  * The pictures are bundled JS assets (assets/stage-cover) and the chrome is

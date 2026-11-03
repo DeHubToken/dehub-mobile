@@ -261,9 +261,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
             });
           };
 
-          // The top-up step funds the gap from any token, DeHub Pay first and
+          // The top-up step funds the gap from any token, Riftn Pay first and
           // Uniswap only as its fallback. A silent ETH swap here would skip
-          // DeHub Pay entirely, so every Base shortfall goes to the step.
+          // Riftn Pay entirely, so every Base shortfall goes to the step.
           raiseShortfall(canAutoSwap);
           return;
         }

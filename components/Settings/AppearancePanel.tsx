@@ -191,7 +191,7 @@ const AppearancePanel: React.FC = () => {
         <SettingsLinkRow
           icon="House"
           label={t('settings.defaultFeed', 'Default feed')}
-          description={t('settings.defaultFeedDesc', 'Choose which feed opens every time you open DeHub')}
+          description={t('settings.defaultFeedDesc', 'Choose which feed opens every time you open Riftn')}
           value={feedLabel(defaultFeed)}
           onPress={() => setFeedModalVisible(true)}
         />

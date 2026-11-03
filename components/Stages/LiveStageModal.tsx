@@ -376,7 +376,7 @@ const LiveStageModal: React.FC = () => {
   const { t } = useTranslation();
   const handleShare = useCallback(() => {
     if (!currentSpace) return;
-    // The link is the point. This used to send "Join me on DeHub Stages" and
+    // The link is the point. This used to send "Join me on Riftn Stages" and
     // nothing to tap; it is the same link the stage cards share.
     shareWithRef(
       { message: `${t("stages.joinMe", { title: spaceTitle })}\n\n${ShareLinks.stage(currentSpace)}`, title: spaceTitle },

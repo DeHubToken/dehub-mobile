@@ -13,7 +13,7 @@ import DexAddPoolSheet from './DexAddPoolSheet';
 
 const DEHUB_COIN = require('../assets/web-icons/dehub-coin.png');
 // Ticker and venue names, not prose: the same in every language.
-const HOUSE_VENUE = 'DeHub · Base';
+const HOUSE_VENUE = 'Riftn · Base';
 
 export function usePools() {
   return useQuery({ queryKey: ['dex-pools'], queryFn: listPools, staleTime: 60_000 });

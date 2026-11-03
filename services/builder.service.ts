@@ -1,5 +1,5 @@
 /**
- * Where DeHub Builder apps live, and how to render one.
+ * Where Riftn Builder apps live, and how to render one.
  *
  * Builds are started from Messages now — @assistant calls dehubweb's
  * `builder-api` function on the user's behalf — so the app no longer talks to it.
@@ -51,7 +51,7 @@ export async function loadBuilderAppHtml(projectId: string, version?: number): P
 
 // ── Own-origin hosting + owner controls ────────────────────────────────────
 // Each app lives at https://<slug>.dhb.gg. Owners manage it through
-// dehubweb's builder-api function with their DeHub token.
+// dehubweb's builder-api function with their Riftn token.
 
 export const BUILDER_APPS_DOMAIN = "dhb.gg";
 

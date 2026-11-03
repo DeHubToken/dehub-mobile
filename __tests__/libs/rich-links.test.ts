@@ -69,7 +69,7 @@ describe('provider normalization', () => {
   it('only exposes playable public Audius tracks and never fabricates a stream for gated music', () => {
     const p = link('https://audius.co/artist/song');
     const fixture = { id: 'Track123', title: 'A song', user: { name: 'Artist' }, access: { stream: true }, is_streamable: true, is_stream_gated: false, duration: 120 };
-    expect(normalizeRichPreview(p, fixture)?.rich.audioUrl).toContain('/tracks/Track123/stream?app_name=DeHub');
+    expect(normalizeRichPreview(p, fixture)?.rich.audioUrl).toContain('/tracks/Track123/stream?app_name=Riftn');
     for (const patch of [{ is_stream_gated: true }, { access: { stream: false } }, { access_authorities: ['authority'] }, { stream_conditions: { usdc_purchase: {} } }]) {
       expect(normalizeRichPreview(p, { ...fixture, ...patch })?.rich.audioUrl).toBeUndefined();
     }

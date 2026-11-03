@@ -94,7 +94,7 @@ export default function FinanceSection({ days }: { days: number | null }) {
           <Polyline points={points("costs")} fill="none" stroke="#71717A" strokeWidth={2} strokeDasharray="4 4" />
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
-        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub." })}</Text>
+        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by Riftn." })}</Text>
         {query.data.notes?.map((note, index) => <Text key={index} style={styles.hint}>{note}</Text>)}
         {query.data.provenance?.expenseAllocation && <Text style={styles.hint}>{query.data.provenance.expenseAllocation}</Text>}
       </PageSection>
