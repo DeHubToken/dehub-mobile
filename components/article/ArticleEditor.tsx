@@ -1,13 +1,15 @@
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import SmartImage from '../common/SmartImage';
 import MarkdownText from '../ui/MarkdownText';
 import Icon, { type IconName } from '../ui/Icon';
+import ArticleFigure from './ArticleFigure';
 import {
-  ARTICLE_BODY_MAX, ARTICLE_BODY_MIN, articleReadingMinutes, articleSummaryFromBody, articleWordCount, type ArticleLook,
+  ARTICLE_BODY_MAX, ARTICLE_BODY_MIN, ARTICLE_CAPTION_MAX, ARTICLE_IMAGE_MAX, ARTICLE_RAW_MAX, articleImages, articleReadingMinutes,
+  articleSummaryFromBody, articleTextLength, articleWordCount, removeArticleImage, setArticleImageCaption, type ArticleLook,
 } from '../../libs/article';
 
 interface ArticleEditorProps {
@@ -28,6 +30,10 @@ interface ArticleEditorProps {
   coverUri: string | null;
   onPickCover: () => void;
   onRemoveCover: () => void;
+  /** Opens the photo picker for pictures inside the article. */
+  onAddImages: () => void;
+  /** Pictures still uploading. */
+  uploadingImages: number;
 }
 
 type Tool = { key: string; icon?: IconName; glyph?: string; before: string; after: string; placeholder: string; block: boolean };
@@ -53,8 +59,12 @@ export default function ArticleEditor(p: ArticleEditorProps) {
   const { look } = p;
   const words = articleWordCount(p.body);
   const minutes = articleReadingMinutes(p.body);
-  const remaining = ARTICLE_BODY_MIN - p.body.trim().length;
+  const textLength = articleTextLength(p.body);
+  const remaining = ARTICLE_BODY_MIN - textLength;
+  const images = articleImages(p.body);
+  const full = images.length + p.uploadingImages >= ARTICLE_IMAGE_MAX;
   const pill = { borderRadius: look.radius ? 999 : 0 };
+  const renderImage = React.useCallback((src: string, caption: string, key: string) => <ArticleFigure key={key} src={src} caption={caption} look={look} />, [look]);
 
   return (
     <View style={{ gap: 14 }}>
@@ -104,6 +114,17 @@ export default function ArticleEditor(p: ArticleEditorProps) {
             {tool.icon ? <Icon name={tool.icon} size={16} color={look.ink2} /> : <Text style={[s.glyph, { color: look.ink2 }]}>{tool.glyph}</Text>}
           </Pressable>
         ))}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t('articles.format.image', { defaultValue: 'Add images' })}
+          accessibilityState={{ disabled: full }}
+          disabled={full}
+          onPress={p.onAddImages}
+          style={[s.tool, full && { opacity: 0.4 }]}
+          hitSlop={4}
+        >
+          {p.uploadingImages > 0 ? <ActivityIndicator size="small" color={look.ink2} /> : <Icon name="ImagePlus" size={16} color={look.ink2} />}
+        </Pressable>
         <Pressable accessibilityRole="button" onPress={p.onTogglePreview} style={[s.tool, { marginLeft: 'auto' }]} accessibilityLabel={p.preview ? t('articles.edit') : t('articles.preview')}>
           <Icon name={p.preview ? 'Pencil' : 'Eye'} size={16} color={p.preview ? look.accent : look.ink2} />
         </Pressable>
@@ -111,13 +132,13 @@ export default function ArticleEditor(p: ArticleEditorProps) {
 
       {p.preview ? (
         <View style={{ minHeight: 240 }}>
-          <MarkdownText content={p.body || t('articles.previewEmpty')} color={look.ink2} accent={look.accent} style={{ fontSize: look.mono ? 15 : 17, lineHeight: 28, fontFamily: look.font }} />
+          <MarkdownText content={p.body || t('articles.previewEmpty')} color={look.ink2} accent={look.accent} renderImage={renderImage} style={{ fontSize: look.mono ? 15 : 17, lineHeight: 28, fontFamily: look.font }} />
         </View>
       ) : (
         <TextInput
           value={p.body}
           onChangeText={p.onBodyChange}
-          maxLength={ARTICLE_BODY_MAX}
+          maxLength={ARTICLE_RAW_MAX}
           multiline
           scrollEnabled={false}
           selection={p.selection}
@@ -128,8 +149,45 @@ export default function ArticleEditor(p: ArticleEditorProps) {
           style={[s.body, { color: look.ink2, fontFamily: look.font }]}
         />
       )}
+      {!p.preview && images.length > 0 && (
+        <View style={{ gap: 8 }}>
+          <Text style={[s.label, { color: look.accent }]}>
+            {t('articles.imagesCount', { count: images.length, max: ARTICLE_IMAGE_MAX, defaultValue: 'Images · {{count}}/{{max}}' })}
+          </Text>
+          {images.map(img => (
+            <View key={img.index} style={[s.captionRow, { borderColor: look.line, backgroundColor: look.wash, borderRadius: look.radius ? 12 : 0 }]}>
+              <SmartImage source={{ uri: img.url.replace(/#.*$/, '') }} style={[s.thumb, { borderRadius: look.radius ? 10 : 0 }]} contentFit="cover" />
+              <TextInput
+                value={img.caption}
+                onChangeText={v => p.onBodyChange(setArticleImageCaption(p.body, img.index, v))}
+                maxLength={ARTICLE_CAPTION_MAX}
+                placeholder={t('articles.captionPlaceholder', { defaultValue: 'Add a caption' })}
+                placeholderTextColor={look.ink3}
+                accessibilityLabel={t('articles.captionLabel', { n: img.index + 1, defaultValue: 'Caption for image {{n}}' })}
+                returnKeyType="done"
+                style={[s.captionInput, { color: look.ink }]}
+              />
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={t('articles.removeImage', { n: img.index + 1, defaultValue: 'Remove image {{n}}' })}
+                onPress={() => p.onBodyChange(removeArticleImage(p.body, img.index))}
+                style={s.tool}
+                hitSlop={4}
+              >
+                <Icon name="X" size={16} color={look.ink2} />
+              </Pressable>
+            </View>
+          ))}
+        </View>
+      )}
       <Text style={[s.count, { color: look.ink3 }]}>
-        {remaining > 0 ? t('articles.needBody', { count: remaining }) : `${t('articles.wordCount', { count: words })} · ${t('articles.minRead', { count: minutes })}`}
+        {p.uploadingImages > 0
+          ? t('articles.imagesUploading', { count: p.uploadingImages, defaultValue: 'Adding images ({{count}})…' })
+          : remaining > 0
+            ? t('articles.needBody', { count: remaining })
+            : textLength > ARTICLE_BODY_MAX
+              ? t('articles.bodyTooLong', { count: textLength - ARTICLE_BODY_MAX, defaultValue: '{{count}} characters over the limit' })
+              : `${t('articles.wordCount', { count: words })} · ${t('articles.minRead', { count: minutes })}`}
       </Text>
 
       <View style={[s.sep, { backgroundColor: look.line }]} />
@@ -179,6 +237,9 @@ const s = StyleSheet.create({
   glyph: { fontSize: 13, fontWeight: '800' },
   body: { fontSize: 17, lineHeight: 28, minHeight: 240, textAlignVertical: 'top', padding: 0 },
   count: { fontSize: 12, textAlign: 'right' },
+  captionRow: { flexDirection: 'row', alignItems: 'center', gap: 10, padding: 6, borderWidth: 1 },
+  thumb: { width: 56, height: 56 },
+  captionInput: { flex: 1, fontSize: 15, paddingVertical: 6 },
   sep: { height: StyleSheet.hairlineWidth },
   label: { fontSize: 11, fontWeight: '700', letterSpacing: 1.4, textTransform: 'uppercase' },
   summary: { borderWidth: 1, padding: 12, fontSize: 15, lineHeight: 22, minHeight: 90, textAlignVertical: 'top' },
