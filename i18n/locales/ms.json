@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Bingkai",
+    "theme": "Tema",
+    "silver": "Perak",
+    "bronze": "Gangsa",
+    "matteBlack": "Hitam matte",
+    "carbonFibre": "Gentian karbon",
+    "holographic": "Holografik",
+    "shiny": "Berkilat",
+    "glitter": "Gemerlap",
+    "saved": "Bingkai disimpan",
+    "failed": "Tidak dapat menyimpan bingkai"
+  },
   "accountConnect": {
     "account": "Pelayaran awam tidak memerlukan akaun. Pautkan akaun DeHub anda untuk menguruskan profil anda dan cipta atau siarkan kandungan.",
     "allow": "Benarkan sambungan",

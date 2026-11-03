@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Kant",
+    "theme": "Tema",
+    "silver": "Sølv",
+    "bronze": "Bronze",
+    "matteBlack": "Mat sort",
+    "carbonFibre": "Kulfiber",
+    "holographic": "Holografisk",
+    "shiny": "Blank",
+    "glitter": "Glimmer",
+    "saved": "Kant gemt",
+    "failed": "Kunne ikke gemme kanten"
+  },
   "accountConnect": {
     "account": "Offentlig browsing kræver ingen konto. Tilknyt din DeHub-konto for at administrere din profil og oprette eller offentliggøre indhold.",
     "allow": "Tillad forbindelse",

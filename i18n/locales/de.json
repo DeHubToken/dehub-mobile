@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Alle {{count}} Seiten anzeigen"
   },
+  "comicBorder": {
+    "title": "Rahmen",
+    "theme": "Theme",
+    "silver": "Silber",
+    "bronze": "Bronze",
+    "matteBlack": "Mattschwarz",
+    "carbonFibre": "Carbon",
+    "holographic": "Holografisch",
+    "shiny": "Glänzend",
+    "glitter": "Glitzer",
+    "saved": "Rahmen gespeichert",
+    "failed": "Rahmen konnte nicht gespeichert werden"
+  },
   "copy": {
     "chatSlowDown": "Langsamer! Zu viele Nachrichten hintereinander. Versuch es in {{wait}} erneut oder warte, bis jemand anderes antwortet.",
     "eabb5c136be4": "Aktualisierungsversuch gescheitert",

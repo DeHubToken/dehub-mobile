@@ -96,6 +96,8 @@ export interface UnifiedFeedItem {
   layout?: "comic";
   /** Comic captions, one per page in display order. */
   mediaCaptions?: string[];
+  /** The comic's border preset; absent is the theme foil. */
+  comicBorder?: string;
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
   /** The poster closed the price card for the $TICKER / address in the caption. */

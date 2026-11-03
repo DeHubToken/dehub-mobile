@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Okraj",
+    "theme": "Motiv",
+    "silver": "Stříbrná",
+    "bronze": "Bronzová",
+    "matteBlack": "Matná černá",
+    "carbonFibre": "Uhlíkové vlákno",
+    "holographic": "Holografická",
+    "shiny": "Lesklá",
+    "glitter": "Třpytky",
+    "saved": "Okraj uložen",
+    "failed": "Okraj se nepodařilo uložit"
+  },
   "accountConnect": {
     "account": "Veřejné prohlížení nevyžaduje žádný účet. Připojte svůj účet DeHub k řízení svého profilu a vytvoření nebo publikování obsahu.",
     "allow": "Povolte připojení",

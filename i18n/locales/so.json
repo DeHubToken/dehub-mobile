@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Xuduud",
+    "theme": "Muuqaal",
+    "silver": "Lacag",
+    "bronze": "Naxaas",
+    "matteBlack": "Madow aan dhalaalin",
+    "carbonFibre": "Fiber kaarboon",
+    "holographic": "Holografik",
+    "shiny": "Dhalaalaya",
+    "glitter": "Biliqsi",
+    "saved": "Xuduudka waa la keydiyay",
+    "failed": "Lama keydin karin xuduudka"
+  },
   "accountConnect": {
     "account": "Baadhitaanka dadweynaha uma baahna koonto. Isku xir koontadaada DeHub si aad u maamusho astaantaada oo aad u abuurto ama u daabacdo waxyaabaha ku jira.",
     "allow": "U oggolow isku xirnaanta",

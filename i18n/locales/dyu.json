@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Dan",
+    "theme": "Tɛmu",
+    "silver": "Warijɛ",
+    "bronze": "Siranɛ",
+    "matteBlack": "Fin min tɛ manamana",
+    "carbonFibre": "Karbɔni juru",
+    "holographic": "Olografiki",
+    "shiny": "Manamanatɔ",
+    "glitter": "Yeelenmisɛnw",
+    "saved": "Dan marala",
+    "failed": "Dan ma se ka mara"
+  },
   "accountConnect": {
     "profilePrompt": "N ka DeHub biyo yɛlɛma ka kɛ: Kɔrɛatɛri yɛrɛmahɔrɔnya min bɛ filimuw ani fɔli kɛ.",
     "account": "Ka fara o kan, baara kɛbagaw tun tɛ dugu kɔnɔ, u tun tɛ baara kɛ ni naani ye. I ka kan ka sɛbɛri kɛ ka sɔrɔ ka sɛbɛri kɛ.",

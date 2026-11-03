@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "全{{count}}ページを表示"
   },
+  "comicBorder": {
+    "title": "フチ",
+    "theme": "テーマ",
+    "silver": "シルバー",
+    "bronze": "ブロンズ",
+    "matteBlack": "マットブラック",
+    "carbonFibre": "カーボンファイバー",
+    "holographic": "ホログラム",
+    "shiny": "シャイニー",
+    "glitter": "グリッター",
+    "saved": "フチを保存しました",
+    "failed": "フチを保存できませんでした"
+  },
   "copy": {
     "chatSlowDown": "ペースを落としてください！連続投稿が多すぎます。{{wait}}後にもう一度試すか、他の人の返信を待ってください。",
     "eabb5c136be4": "プランの更新に失敗しました",

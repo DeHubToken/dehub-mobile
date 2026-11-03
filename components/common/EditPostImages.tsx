@@ -10,6 +10,8 @@ import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
 import { MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from '../../libs/post-image-allowance';
 import { prepareImageForUpload } from '../../libs/assets.util';
+import ComicBorderPicker from '../Upload/ComicBorderPicker';
+import { isComicBorder, type ComicBorder } from '../../libs/comic-borders';
 
 export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
@@ -17,6 +19,9 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   const { t } = useTranslation();
   const [images, setImages] = useState<string[]>([]);
   const [imageLimit, setImageLimit] = useState<number | null>(null);
+  // Comics only: the strip round the cards, saved as soon as it is picked.
+  const [comic, setComic] = useState(false);
+  const [border, setBorder] = useState<ComicBorder | null>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -35,6 +40,8 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       if (active) {
         setImages(result.postType === 'feed-images' && Array.isArray(result.imageUrls) ? result.imageUrls : []);
         setDescriptions(Array.isArray((result as any).mediaDescriptions) ? (result as any).mediaDescriptions : []);
+        setComic((result as any).layout === 'comic');
+        setBorder(isComicBorder((result as any).comicBorder) ? (result as any).comicBorder : null);
       }
     }).catch(() => { if (active) setFailed(true); })
       .finally(() => { if (active) setLoading(false); });
@@ -117,6 +124,18 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     }
   };
 
+  const saveBorder = async (next: ComicBorder | null) => {
+    const previous = border;
+    setBorder(next);
+    try {
+      await editPost(tokenId, { comicBorder: next ?? '' });
+      toastSuccess(t('comicBorder.saved'));
+    } catch {
+      setBorder(previous);
+      toastError(t('comicBorder.failed'));
+    }
+  };
+
   if (loading) return <Text className="text-zinc-400 text-sm mb-4">{t('editPost.loadingImages')}</Text>;
   if (failed) return <TouchableOpacity onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-300 mb-4">{t('editPost.loadImagesFailed')}</Text></TouchableOpacity>;
   if (!images.length) return null;
@@ -124,6 +143,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   return <View className="mb-4">
     <Text className="text-zinc-300 text-sm mb-2">{t('feed.images')}</Text>
     <Text className="text-zinc-400 text-xs mb-3">{t('editPost.imagesHint')}</Text>
+    {comic ? <View className="mb-3"><ComicBorderPicker value={border} onChange={(next) => { void saveBorder(next); }} cover={previews[0]} disabled={disabled || busyIndex !== null} /></View> : null}
     {imageLimit === null ? <TouchableOpacity disabled={disabled || busyIndex !== null} onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-400 text-xs mb-3">{t('editPost.allowanceUnavailable')}</Text></TouchableOpacity> :
       <Text className="text-zinc-400 text-xs mb-3">{t('editPost.imagesCount', { count: images.length, limit: imageLimit })}</Text>}
     <TouchableOpacity accessibilityRole="button" disabled={disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit}

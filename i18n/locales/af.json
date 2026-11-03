@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Rand",
+    "theme": "Tema",
+    "silver": "Silwer",
+    "bronze": "Brons",
+    "matteBlack": "Mat swart",
+    "carbonFibre": "Koolstofvesel",
+    "holographic": "Holografies",
+    "shiny": "Blink",
+    "glitter": "Glitter",
+    "saved": "Rand gestoor",
+    "failed": "Kon nie die rand stoor nie"
+  },
   "accountConnect": {
     "account": "Openbare blaai benodig geen rekening nie. Skakel jou DeHub-rekening om jou profiel te bestuur en inhoud te skep of te publiseer.",
     "allow": "Toelaat verbinding",

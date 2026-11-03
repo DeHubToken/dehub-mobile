@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Bordure",
+    "theme": "Thème",
+    "silver": "Argent",
+    "bronze": "Bronze",
+    "matteBlack": "Noir mat",
+    "carbonFibre": "Fibre de carbone",
+    "holographic": "Holographique",
+    "shiny": "Brillant",
+    "glitter": "Paillettes",
+    "saved": "Bordure enregistrée",
+    "failed": "Impossible d’enregistrer la bordure"
+  },
   "comic": {
     "showAll": "Voir les {{count}} pages",
     "tab": "BD",

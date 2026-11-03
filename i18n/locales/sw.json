@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Onyesha kurasa zote {{count}}"
   },
+  "comicBorder": {
+    "title": "Ukingo",
+    "theme": "Mandhari",
+    "silver": "Fedha",
+    "bronze": "Shaba",
+    "matteBlack": "Nyeusi isiyong’aa",
+    "carbonFibre": "Nyuzi za kaboni",
+    "holographic": "Holografia",
+    "shiny": "Inayong’aa",
+    "glitter": "Kumetameta",
+    "saved": "Ukingo umehifadhiwa",
+    "failed": "Imeshindwa kuhifadhi ukingo"
+  },
   "accountConnect": {
     "account": "Kuvinjari kwa umma hakuhitaji akaunti. Unganisha akaunti yako ya DeHub ili kudhibiti wasifu wako na kuunda au kuchapisha maudhui.",
     "allow": "Ruhusu muunganisho",

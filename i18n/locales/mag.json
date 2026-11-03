@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "बॉर्डर",
+    "theme": "थीम",
+    "silver": "चाँदी",
+    "bronze": "काँसा",
+    "matteBlack": "मैट करिया",
+    "carbonFibre": "कार्बन फाइबर",
+    "holographic": "होलोग्राफिक",
+    "shiny": "चमकीला",
+    "glitter": "ग्लिटर",
+    "saved": "बॉर्डर सेव हो गेल",
+    "failed": "बॉर्डर सेव न हो सकल"
+  },
   "accountConnect": {
     "account": "DNA: WhatsApp पर कुछ भी प्राइवेट नहीं! अपने DeHub अकाउंट को लिंक करे और अपने प्रोफ़ाइल को मैनेज करे और content को create या publish करे ।",
     "allow": "संपर्क करे",

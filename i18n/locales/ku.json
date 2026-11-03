@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Hemû {{count}} rûpelan nîşan bide"
   },
+  "comicBorder": {
+    "title": "Çarçove",
+    "theme": "Mijar",
+    "silver": "Zîv",
+    "bronze": "Bronz",
+    "matteBlack": "Reşê mat",
+    "carbonFibre": "Fîbera karbonê",
+    "holographic": "Holografîk",
+    "shiny": "Biriqok",
+    "glitter": "Pirpirîk",
+    "saved": "Çarçove hate tomarkirin",
+    "failed": "Çarçove nehate tomarkirin"
+  },
   "remix": {
     "collab": "Hevkarî",
     "cut": "Birrîn",

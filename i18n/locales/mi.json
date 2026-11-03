@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Tapa",
+    "theme": "Kaupapa",
+    "silver": "Hiriwa",
+    "bronze": "Parahi",
+    "matteBlack": "Pango kore kanapa",
+    "carbonFibre": "Muka waro",
+    "holographic": "Hōkaiahua",
+    "shiny": "Kanapa",
+    "glitter": "Kōrapa",
+    "saved": "Kua tiakina te tapa",
+    "failed": "Kāore i taea te tiaki i te tapa"
+  },
   "accountConnect": {
     "account": "Kāore he pūkete e hiahiatia ana mō te tirotiro tūmatanui. Whakapāngia tō pūkete DeHub hei whakahaere i tō kōtaha me te hanga, te whakaputa ihirangi rānei.",
     "allow": "Whakaaetia te hononga",

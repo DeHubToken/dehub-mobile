@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Ver todas as {{count}} páginas"
   },
+  "comicBorder": {
+    "title": "Borda",
+    "theme": "Tema",
+    "silver": "Prata",
+    "bronze": "Bronze",
+    "matteBlack": "Preto fosco",
+    "carbonFibre": "Fibra de carbono",
+    "holographic": "Holográfica",
+    "shiny": "Brilhante",
+    "glitter": "Glitter",
+    "saved": "Borda salva",
+    "failed": "Não foi possível salvar a borda"
+  },
   "copy": {
     "chatSlowDown": "Calma! Mensagens demais seguidas. Tente de novo em {{wait}} ou espere outra pessoa responder.",
     "eabb5c136be4": "Falha ao atualizar o plano",

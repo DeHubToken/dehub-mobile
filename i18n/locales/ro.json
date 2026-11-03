@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Chenar",
+    "theme": "Temă",
+    "silver": "Argintiu",
+    "bronze": "Bronz",
+    "matteBlack": "Negru mat",
+    "carbonFibre": "Fibră de carbon",
+    "holographic": "Holografic",
+    "shiny": "Lucios",
+    "glitter": "Sclipici",
+    "saved": "Chenar salvat",
+    "failed": "Chenarul nu a putut fi salvat"
+  },
   "accountConnect": {
     "account": "Explorarea publică nu necesită un cont. Legați contul DeHub pentru a gestiona profilul și crea sau publica conținut.",
     "allow": "Permiteți conexiunea",

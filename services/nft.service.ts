@@ -1299,6 +1299,8 @@ export interface EditPostInput {
   description?: string;
   /** Replace the post's alt text, one per piece of media in display order. `[]` clears it. */
   mediaDescriptions?: string[];
+  /** The comic's border preset. `''` goes back to the theme's foil. */
+  comicBorder?: string;
   /** Replace the content warning. `''` takes it off. */
   spoilerText?: string;
   /** Who may quote it from now on. Quotes already made stay. */

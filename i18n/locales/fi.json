@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Reunus",
+    "theme": "Teema",
+    "silver": "Hopea",
+    "bronze": "Pronssi",
+    "matteBlack": "Mattamusta",
+    "carbonFibre": "Hiilikuitu",
+    "holographic": "Holografinen",
+    "shiny": "Kiiltävä",
+    "glitter": "Glitter",
+    "saved": "Reunus tallennettu",
+    "failed": "Reunuksen tallennus epäonnistui"
+  },
   "accountConnect": {
     "account": "Julkinen selaaminen ei tarvitse tiliä. Yhdistä DeHub-tilisi hallinnoidaksesi profiiliasi ja luodaksesi tai julkaistaksesi sisältöä.",
     "allow": "Salli yhteys",

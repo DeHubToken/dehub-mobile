@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Rahme",
+    "theme": "Theme",
+    "silver": "Silber",
+    "bronze": "Bronze",
+    "matteBlack": "Mattschwarz",
+    "carbonFibre": "Carbon",
+    "holographic": "Holografisch",
+    "shiny": "Glänzig",
+    "glitter": "Glitzer",
+    "saved": "Rahme gspeicheret",
+    "failed": "Rahme het nöd chöne gspeicheret wärde"
+  },
   "accountConnect": {
     "account": "Öffentliche Browsing benötigt kein Konto. Verbinde dein DeHub-Konto, um dein Profil zu verwalten und Inhalte zu erstellen oder zu publizieren.",
     "allow": "Erlaube die Verbindung",

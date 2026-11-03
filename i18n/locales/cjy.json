@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "边框",
+    "theme": "主题",
+    "silver": "银色",
+    "bronze": "青铜",
+    "matteBlack": "哑光黑",
+    "carbonFibre": "碳纤维",
+    "holographic": "全息",
+    "shiny": "亮面",
+    "glitter": "闪粉",
+    "saved": "边框已保存",
+    "failed": "无法保存边框"
+  },
   "accountConnect": {
     "generatePrompt": "展示 DeHub 的图像模型并引用一幅肖像后再生成。",
     "libraryPrompt": "展示我在 DeHub 创作者库中的最新资产。",

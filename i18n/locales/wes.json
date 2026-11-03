@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Border",
+    "theme": "Theme",
+    "silver": "Silver",
+    "bronze": "Bronze",
+    "matteBlack": "Matte black",
+    "carbonFibre": "Carbon fibre",
+    "holographic": "Holographic",
+    "shiny": "Shiny",
+    "glitter": "Glitter",
+    "saved": "Border don save",
+    "failed": "We no fit save the border"
+  },
   "accountConnect": {
     "profile": "Change yu profile, picture dem and privacy settings",
     "read": "Read yu account, post dem, notification dem and Creator library",

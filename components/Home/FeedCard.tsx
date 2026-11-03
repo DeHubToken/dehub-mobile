@@ -1793,6 +1793,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <ComicDeck
             images={galleryImages}
             captions={item.mediaCaptions}
+            border={item.comicBorder}
+            active={isVisible}
             descriptions={item.mediaDescriptions}
             title={localTitle}
             width={edgeMedia || isMinimal ? SCREEN_WIDTH : itemWidth}

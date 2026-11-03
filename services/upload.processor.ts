@@ -265,6 +265,7 @@ function rebuildFormData(
     if (payload.mediaCaptions?.some(Boolean)) {
       fd.append("mediaCaptions", JSON.stringify(payload.mediaCaptions));
     }
+    if (payload.comicBorder) fd.append("comicBorder", payload.comicBorder);
   }
 
   // Content warning. Only sent when there is one.

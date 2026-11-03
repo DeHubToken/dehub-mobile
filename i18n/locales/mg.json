@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Sisiny",
+    "theme": "Lohahevitra",
+    "silver": "Volafotsy",
+    "bronze": "Varahina",
+    "matteBlack": "Mainty matroka",
+    "carbonFibre": "Kofehy karbôna",
+    "holographic": "Hôlôgrafika",
+    "shiny": "Mamirapiratra",
+    "glitter": "Manjelanjelatra",
+    "saved": "Voatahiry ny sisiny",
+    "failed": "Tsy voatahiry ny sisiny"
+  },
   "accountConnect": {
     "account": "Raha tsy izany, tsy ilaina ny manohana ny kaonty Twitter-nao. Ampifandraiso ny kaontinao DeHub mba hitantana ny mombamomba anao ary hamoronana na hamoahana votoaty.",
     "allow": "Ekeo ny fifandraisana",

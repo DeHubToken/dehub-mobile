@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Border",
+    "theme": "Tema",
+    "silver": "Pilak",
+    "bronze": "Tanso",
+    "matteBlack": "Matte na itim",
+    "carbonFibre": "Carbon fiber",
+    "holographic": "Holographic",
+    "shiny": "Makintab",
+    "glitter": "Glitter",
+    "saved": "Na-save ang border",
+    "failed": "Hindi ma-save ang border"
+  },
   "accountConnect": {
     "account": "Ang pampublikong pagba - browse ay hindi nangangailangan ng account. I - link ang iyong DeHub account upang pamahalaan ang iyong profile at lumikha o mag - publish ng nilalaman.",
     "allow": "Pahintulutan ang koneksyon",

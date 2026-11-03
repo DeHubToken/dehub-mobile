@@ -81,6 +81,8 @@ import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
 import ComicPagesList from "../components/Upload/ComicPagesList";
+import ComicBorderPicker from "../components/Upload/ComicBorderPicker";
+import type { ComicBorder } from "../libs/comic-borders";
 import DraftAssetCards from "../components/Upload/DraftAssetCards";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
@@ -311,6 +313,8 @@ export default function UploadScreen() {
   const { isBanned: accountBanned } = useBannedAccount();
   // Comic: a photo post shown as collector cards, each page with a caption.
   const [comicMode, setComicMode] = useState(false);
+  /** The comic's border preset; null is the theme's own foil. */
+  const [comicBorder, setComicBorder] = useState<ComicBorder | null>(null);
   const imageLimit = (comicMode ? getComicImageLimitForBadge : getPostImageLimitForBadge)(
     authUser?.badgeBalance,
     authUser?.username,
@@ -1375,6 +1379,7 @@ export default function UploadScreen() {
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       layout: comicLayout,
       mediaCaptions: comicLayout && pickedImages.some(img => img.caption?.trim()) ? pickedImages.map(img => img.caption?.trim() || "") : undefined,
+      comicBorder: comicLayout ? comicBorder ?? undefined : undefined,
       spoilerText: contentWarning?.trim() || undefined,
       hideAssetCards: hideAssetCards || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
@@ -1382,7 +1387,7 @@ export default function UploadScreen() {
       // A livestream is always public.
       visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, videoEdits, videoDestruct, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, videoTrim, videoEdits, videoDestruct, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, hideAssetCards, quotePolicy, replyPolicy, visibility, isLiveMode, comicLayout, comicBorder]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -3000,6 +3005,14 @@ export default function UploadScreen() {
                 limit={imageLimit}
                 onCaption={(index, caption) => setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, caption: caption || undefined } : img)))}
                 onAlt={index => setAltEditor({ kind: "image", index })}
+              />
+            )}
+            {comicMode && !isLiveMode && !pickedVideo && !pickedAudio && (
+              <ComicBorderPicker
+                value={comicBorder}
+                onChange={setComicBorder}
+                cover={pickedImages[0]?.uri}
+                title={titleText}
               />
             )}
 

@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Umngcele",
+    "theme": "Itimu",
+    "silver": "Isiliva",
+    "bronze": "Ithusi",
+    "matteBlack": "Mnyama ongacwebezeli",
+    "carbonFibre": "Ifayibha yekhabhoni",
+    "holographic": "I-holographic",
+    "shiny": "Okucwebezelayo",
+    "glitter": "Okucwazimulayo",
+    "saved": "Umngcele ulondoloziwe",
+    "failed": "Ayikwazanga ukulondoloza umngcele"
+  },
   "accountConnect": {
     "account": "Ukuphequlula komphakathi akudingi i-akhawunti. Xhumanisa i-akhawunti yakho ye-DeHub ukuze uphathe iphrofayili yakho futhi udale noma ushicilele okuqukethwe.",
     "allow": "Vumela ukuxhumana",

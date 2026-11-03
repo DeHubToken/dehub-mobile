@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Prikaži svih {{count}} stranica"
   },
+  "comicBorder": {
+    "title": "Obrub",
+    "theme": "Tema",
+    "silver": "Srebrna",
+    "bronze": "Brončana",
+    "matteBlack": "Mat crna",
+    "carbonFibre": "Karbonska vlakna",
+    "holographic": "Holografska",
+    "shiny": "Sjajna",
+    "glitter": "Šljokice",
+    "saved": "Obrub spremljen",
+    "failed": "Spremanje obruba nije uspjelo"
+  },
   "accountConnect": {
     "account": "Javno pregledavanje ne zahtijeva račun. Povežite svoj DeHub račun kako biste upravljali svojim profilom i kreirali ili objavili sadržaj.",
     "allow": "Dopusti povezivanje",

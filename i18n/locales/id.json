@@ -2,6 +2,19 @@
   "comic": {
     "showAll": "Tampilkan semua {{count}} halaman"
   },
+  "comicBorder": {
+    "title": "Bingkai",
+    "theme": "Tema",
+    "silver": "Perak",
+    "bronze": "Perunggu",
+    "matteBlack": "Hitam doff",
+    "carbonFibre": "Serat karbon",
+    "holographic": "Holografik",
+    "shiny": "Mengilap",
+    "glitter": "Glitter",
+    "saved": "Bingkai disimpan",
+    "failed": "Gagal menyimpan bingkai"
+  },
   "accountConnect": {
     "account": "Penjelajahan publik tidak memerlukan akun. Tautkan akun DeHub Anda untuk mengelola profil Anda dan membuat atau memublikasikan konten.",
     "allow": "Mengizinkan koneksi",

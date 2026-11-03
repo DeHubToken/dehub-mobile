@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "Çerçeve",
+    "theme": "Tema",
+    "silver": "Gümüş",
+    "bronze": "Bronz",
+    "matteBlack": "Mat siyah",
+    "carbonFibre": "Karbon fiber",
+    "holographic": "Holografik",
+    "shiny": "Parlak",
+    "glitter": "Simli",
+    "saved": "Çerçeve kaydedildi",
+    "failed": "Çerçeve kaydedilemedi"
+  },
   "comic": {
     "showAll": "{{count}} sayfanın tümünü göster",
     "tab": "Çizgi roman",

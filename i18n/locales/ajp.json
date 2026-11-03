@@ -1,4 +1,17 @@
 {
+  "comicBorder": {
+    "title": "الإطار",
+    "theme": "الثيم",
+    "silver": "فضي",
+    "bronze": "برونزي",
+    "matteBlack": "أسود مطفي",
+    "carbonFibre": "ألياف الكربون",
+    "holographic": "هولوغرافي",
+    "shiny": "لامع",
+    "glitter": "بريق",
+    "saved": "انحفظ الإطار",
+    "failed": "ما قدرنا نحفظ الإطار"
+  },
   "accountConnect": {
     "generatePrompt": "اعرض نماذج الصور في DeHub وسعر صورة شخصية قبل إنشائها.",
     "libraryPrompt": "اعرض أحدث الملفات في مكتبة DeHub Creator الخاصة بي.",
