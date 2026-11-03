@@ -14833,6 +14833,11 @@
     "unavailable": "Ang pagpapatunay ng GitHub ay dumating na."
   },
   "comic": {
+    "toComic": "Gawing komiks",
+    "toCarousel": "Ipakita bilang carousel",
+    "converted": "Ipinapakita na bilang komiks",
+    "unconverted": "Ipinapakita na bilang carousel",
+    "convertFailed": "Hindi mabago ang layout",
     "showAll": "Ipakita ang lahat ng {{count}} pahina",
     "tab": "Komiks",
     "title": "Komiks",

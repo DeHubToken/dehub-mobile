@@ -13,6 +13,11 @@
     "failed": "Impossible d’enregistrer la bordure"
   },
   "comic": {
+    "toComic": "En faire une BD",
+    "toCarousel": "Afficher en carrousel",
+    "converted": "Affiché en BD",
+    "unconverted": "Affiché en carrousel",
+    "convertFailed": "Impossible de changer la mise en page",
     "showAll": "Voir les {{count}} pages",
     "tab": "BD",
     "title": "BD",

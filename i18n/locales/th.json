@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "ทำเป็นการ์ตูน",
+    "toCarousel": "แสดงเป็นภาพเลื่อน",
+    "converted": "ตอนนี้แสดงเป็นการ์ตูน",
+    "unconverted": "ตอนนี้แสดงเป็นภาพเลื่อน",
+    "convertFailed": "เปลี่ยนเลย์เอาต์ไม่ได้",
     "showAll": "แสดงทั้งหมด {{count}} หน้า"
   },
   "comicBorder": {

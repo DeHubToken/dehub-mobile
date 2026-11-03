@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "कॉमिक बनाएं",
+    "toCarousel": "कैरसेल के रूप में दिखाएं",
+    "converted": "अब कॉमिक के रूप में दिख रहा है",
+    "unconverted": "अब कैरसेल के रूप में दिख रहा है",
+    "convertFailed": "लेआउट नहीं बदल सका",
     "showAll": "सभी {{count}} पेज दिखाएं"
   },
   "comicBorder": {

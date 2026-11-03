@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "הפוך לקומיקס",
+    "toCarousel": "הצג כקרוסלה",
+    "converted": "מוצג עכשיו כקומיקס",
+    "unconverted": "מוצג עכשיו כקרוסלה",
+    "convertFailed": "לא ניתן לשנות את הפריסה",
     "showAll": "הצגת כל {{count}} העמודים"
   },
   "comicBorder": {

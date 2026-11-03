@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Trasforma in fumetto",
+    "toCarousel": "Mostra come carosello",
+    "converted": "Ora appare come fumetto",
+    "unconverted": "Ora appare come carosello",
+    "convertFailed": "Impossibile cambiare il layout",
     "showAll": "Mostra tutte le {{count}} pagine"
   },
   "comicBorder": {

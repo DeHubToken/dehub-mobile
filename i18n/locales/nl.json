@@ -13,6 +13,11 @@
     "failed": "Kan de rand niet opslaan"
   },
   "comic": {
+    "toComic": "Maak er een strip van",
+    "toCarousel": "Toon als carrousel",
+    "converted": "Wordt nu als strip getoond",
+    "unconverted": "Wordt nu als carrousel getoond",
+    "convertFailed": "Kon de indeling niet wijzigen",
     "showAll": "Alle {{count}} pagina's tonen",
     "tab": "Strip",
     "title": "Strip",

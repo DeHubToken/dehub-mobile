@@ -14651,6 +14651,11 @@
     "unavailable": "GitHub 驗證功能即將推出。"
   },
   "comic": {
+    "toComic": "轉做漫畫",
+    "toCarousel": "用輪播顯示",
+    "converted": "而家以漫畫顯示",
+    "unconverted": "而家以輪播顯示",
+    "convertFailed": "改唔到版面",
     "showAll": "顯示全部 {{count}} 頁",
     "tab": "漫畫",
     "title": "漫畫",

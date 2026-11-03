@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Jadikan komik",
+    "toCarousel": "Tampilkan sebagai carousel",
+    "converted": "Sekarang tampil sebagai komik",
+    "unconverted": "Sekarang tampil sebagai carousel",
+    "convertFailed": "Tidak bisa mengubah tata letak",
     "showAll": "Tampilkan semua {{count}} halaman"
   },
   "comicBorder": {

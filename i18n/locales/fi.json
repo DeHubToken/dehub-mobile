@@ -14652,6 +14652,11 @@
     "unavailable": "GitHub-vahvistus on tulossa pian."
   },
   "comic": {
+    "toComic": "Tee sarjakuvaksi",
+    "toCarousel": "Näytä karusellina",
+    "converted": "Näkyy nyt sarjakuvana",
+    "unconverted": "Näkyy nyt karusellina",
+    "convertFailed": "Asettelua ei voitu muuttaa",
     "showAll": "Näytä kaikki {{count}} sivua",
     "tab": "Comic",
     "title": "Comic",

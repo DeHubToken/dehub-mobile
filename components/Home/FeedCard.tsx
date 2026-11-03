@@ -231,6 +231,8 @@ type PostEdits = {
   hideAssetCards?: boolean;
   quotePolicy?: "public" | "followers" | "nobody";
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Comic or carousel, switched from the menu. null = carousel. */
+  layout?: "comic" | null;
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -851,6 +853,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Only the fields actually edited are held; everything else keeps reading
   // the post, so a refetch still lands.
   const [edits, setEdits] = useKeyedState<PostEdits>(postKey, NO_EDITS);
+  const postLayout = edits.layout !== undefined ? edits.layout : item.layout;
   // Re-rating a post from its own options menu takes effect at once.
   const localContentRating: string | undefined = edits.contentRating ?? (item as any).contentRating;
   // Same for the Kids Mode marking, so taking it off re-opens the comment box
@@ -1440,6 +1443,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setEdits((prev) => ({ ...prev, ...defined }));
   }, [setEdits]);
 
+  const handleLayoutChange = useCallback((layout: "comic" | null) => {
+    setEdits((prev) => ({ ...prev, layout }));
+  }, [setEdits]);
+
   const handleDeleteSuccess = useCallback(() => {
     setIsDeleted(true);
   }, [setIsDeleted]);
@@ -1787,7 +1794,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       );
     }
 
-    if (item.layout === "comic" && galleryImages.length > 0) {
+    if (postLayout === "comic" && galleryImages.length > 0) {
       return (
         <View className={edgeMedia ? undefined : "mt-2"}>
           <ComicDeck
@@ -2283,6 +2290,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
           currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
+          currentLayout={postLayout === "comic" ? "comic" : null}
+          photoCount={galleryImages.length}
+          onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
