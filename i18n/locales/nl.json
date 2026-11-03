@@ -12868,6 +12868,8 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "3f9b2c71d0a4": "{{n}} resultaten",
+    "8c4e1a6b2f57": "voor “{{query}}”",
     "chatSlowDown": "Rustig aan! Te veel berichten achter elkaar. Probeer het over {{wait}} opnieuw, of wacht tot iemand anders reageert.",
     "1d7234ff1b79": "in {{feed}}",
     "e122e5c2b563": "Sleep omhoog om te sluiten",
