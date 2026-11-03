@@ -27,6 +27,33 @@ interface ProfileTabBarProps<Key extends string = string> {
 
 const TAB_HEIGHT = PINNED_PROFILE_TABS_HEIGHT - 4;
 const TAB_WIDTH = 56;
+const ICON_BOX = 18;
+
+// How much of its box each tab glyph actually draws, as [width, height]. The
+// sets differ: the film strip runs nearly edge to edge while the speech bubble
+// leaves a wide margin, so at one size the Videos tab stood a head taller.
+const ICON_INK: Partial<Record<IconName, [number, number]>> = {
+  House: [0.69, 0.69],
+  MessageSquare: [0.69, 0.625],
+  Image: [0.69, 0.69],
+  Film: [0.69, 0.81],
+  Star: [0.8, 0.78],
+  Play: [0.64, 0.75],
+  Radio: [0.91, 0.69],
+  ChartPie: [0.78, 0.78],
+  Pin: [0.58, 0.83],
+  ListVideo: [0.75, 0.5],
+  Blog: [0.75, 0.75],
+  ThumbsDown: [0.69, 0.69],
+};
+
+/** The size that makes this glyph's drawn shape match the rest of the row. */
+function tabIconSize(name: IconName) {
+  const ink = ICON_INK[name];
+  if (!ink) return ICON_BOX;
+  const scale = Math.min(1.12, Math.max(0.8, Math.min(0.82 / ink[0], 0.7 / ink[1])));
+  return Math.round(ICON_BOX * scale * 2) / 2;
+}
 
 function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pinned = false, embedded = false }: ProfileTabBarProps<Key>) {
   const { isMinimal, colors, skin } = useAppTheme();
@@ -71,7 +98,9 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
         {/* "Beam": a short glowing line under the selected tab, in the tab's
             own ink, instead of a box behind it. Minimal keeps its folder tab. */}
         {focused && !isMinimal && <View pointerEvents="none" style={[styles.beam, { backgroundColor: iconColor, shadowColor: iconColor }]} />}
-        <Icon name={item.icon} size={18} color={iconColor} strokeWidth={2} />
+        <View style={styles.iconBox}>
+          <Icon name={item.icon} size={tabIconSize(item.icon)} color={iconColor} strokeWidth={2} />
+        </View>
         <Text numberOfLines={1} style={[styles.count, { color: iconColor }]}>{typeof item.count === "number" ? formatCompactNumber(item.count) : ""}</Text>
       </TouchableOpacity>
     );
@@ -127,6 +156,7 @@ const styles = StyleSheet.create({
   tab: { width: TAB_WIDTH, height: TAB_HEIGHT, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
   expandedTab: { flex: 1, width: undefined },
   tabIdle: { opacity: 0.6 },
+  iconBox: { width: ICON_BOX, height: ICON_BOX, alignItems: 'center', justifyContent: 'center' },
   beam: { position: 'absolute', bottom: 2, left: '30%', right: '30%', height: 3, borderRadius: 3, shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 } },
   count: { textAlign: 'center', fontSize: 10, lineHeight: 12, marginTop: 1, fontWeight: '500' },
   minimalOuterWrap: { paddingHorizontal: 0 },
