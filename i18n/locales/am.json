@@ -12609,6 +12609,7 @@
     "yourFractions": "የእርስዎ ክፍልፋዮች",
     "acrossPosts_one": "በ{{count}} ልጥፍ ውስጥ",
     "acrossPosts_other": "በ{{count}} ልጥፎች ውስጥ",
+    "deletedPosts": "የተሰረዙ ልጥፎች ({{count}})",
     "noneHeldYet": "እስካሁን ምንም ክፍልፋይ የለዎትም",
     "noneHeldHint": "1000 ክፍልፋዮቹን ለማግኘት ልጥፍ ይመንዝሩ፣ ወይም በሌላ ሰው ልጥፍ ውስጥ ድርሻ ይግዙ።",
     "listedForSale": "ለሽያጭ ቀርቧል",

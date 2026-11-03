@@ -12584,6 +12584,7 @@
     "yourFractions": "Pjesët tuaja",
     "acrossPosts_one": "në {{count}} postim",
     "acrossPosts_other": "në {{count}} postime",
+    "deletedPosts": "Postime të fshira ({{count}})",
     "noneHeldYet": "Ende nuk zotëroni asnjë pjesë",
     "noneHeldHint": "Minto një postim për të marrë 1000 pjesët e tij, ose bli një pjesë në postimin e dikujt tjetër.",
     "listedForSale": "Në shitje",

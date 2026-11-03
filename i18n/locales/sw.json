@@ -12585,6 +12585,7 @@
     "yourFractions": "Sehemu zako",
     "acrossPosts_one": "katika {{count}} chapisho",
     "acrossPosts_other": "katika {{count}} machapisho",
+    "deletedPosts": "Machapisho yaliyofutwa ({{count}})",
     "noneHeldYet": "Hauna sehemu yoyote bado",
     "noneHeldHint": "Fua chapisho ili upate hisa zake 1000, au nunua hisa katika chapisho la mtu mwingine.",
     "listedForSale": "Iliyoandikwa kwa kuuza",

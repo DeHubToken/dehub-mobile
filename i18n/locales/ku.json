@@ -12793,6 +12793,7 @@
     "yourFractions": "Perçeyên te",
     "acrossPosts_one": "di {{count}} şandiyê de",
     "acrossPosts_other": "di {{count}} şandiyan de",
+    "deletedPosts": "Şandiyên jêbirî ({{count}})",
     "noneHeldYet": "Hîn ti perçeyên te tune ne",
     "noneHeldHint": "Şandiyekê mint bike da ku 1000 perçeyên wê bistînî, an jî ji şandiya kesekî din par bikire.",
     "listedForSale": "Ji bo firotinê hatiye lîstekirin",

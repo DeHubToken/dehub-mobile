@@ -12619,6 +12619,7 @@
     "yourFractions": "Qoodaalee kee",
     "acrossPosts_one": "barreeffama {{count}} keessatti",
     "acrossPosts_other": "barreeffamoota {{count}} keessatti",
+    "deletedPosts": "Barreeffamoota haqaman ({{count}})",
     "noneHeldYet": "Hanga ammaatti qooda tokkollee hin qabdu",
     "noneHeldHint": "Qooda isaa 1000 argachuuf barreeffama mint godhi, yookaan barreeffama nama biraa irraa qooda bitadhu.",
     "listedForSale": "Gurgurtaaf tarreeffame",

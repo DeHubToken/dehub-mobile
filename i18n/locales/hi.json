@@ -12688,6 +12688,7 @@
     "yourFractions": "आपके फ़्रैक्शन",
     "acrossPosts_one": "{{count}} पोस्ट में",
     "acrossPosts_other": "{{count}} पोस्ट में",
+    "deletedPosts": "हटाई गई पोस्ट ({{count}})",
     "noneHeldYet": "आपके पास अभी कोई फ़्रैक्शन नहीं है",
     "noneHeldHint": "किसी पोस्ट को मिंट करके उसके 1000 फ़्रैक्शन पाएँ, या किसी और की पोस्ट में हिस्सा खरीदें।",
     "listedForSale": "बिक्री के लिए सूचीबद्ध",

@@ -12581,6 +12581,7 @@
     "yourFractions": "Dine andeler",
     "acrossPosts_one": "fordelt på {{count}} innlegg",
     "acrossPosts_other": "fordelt på {{count}} innlegg",
+    "deletedPosts": "Slettede innlegg ({{count}})",
     "noneHeldYet": "Du eier ingen andeler ennå",
     "noneHeldHint": "Prege et innlegg for å få de 1000 andelene, eller kjøp deg inn i noen andres.",
     "listedForSale": "Lagt ut for salg",

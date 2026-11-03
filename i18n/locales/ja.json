@@ -12554,6 +12554,7 @@
     "yourFractions": "あなたのフラクション",
     "acrossPosts_one": "{{count}}投稿全体",
     "acrossPosts_other": "{{count}}投稿全体",
+    "deletedPosts": "削除された投稿（{{count}}）",
     "noneHeldYet": "まだフラクションを保有していません",
     "noneHeldHint": "投稿をミントして1000フラクションを手に入れるか、他の人の投稿に出資しましょう。",
     "listedForSale": "販売用にリスト",

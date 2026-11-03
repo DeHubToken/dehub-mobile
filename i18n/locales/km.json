@@ -12607,6 +12607,7 @@
     "yourFractions": "ភាគរបស់អ្នក",
     "acrossPosts_one": "នៅទូទាំង {{count}} ប្រកាស",
     "acrossPosts_other": "នៅទូទាំង {{count}} ប្រកាស",
+    "deletedPosts": "ការបង្ហោះដែលបានលុប ({{count}})",
     "noneHeldYet": "អ្នកមិនទាន់កាន់ភាគណាមួយនៅឡើយទេ។",
     "noneHeldHint": "Mint ប្រកាសមួយដើម្បីទទួលបាន 1000 ភាគរបស់វា ឬទិញភាគក្នុងប្រកាសរបស់អ្នកដទៃ។",
     "listedForSale": "បានដាក់លក់",

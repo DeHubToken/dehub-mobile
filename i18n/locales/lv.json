@@ -12581,6 +12581,7 @@
     "yourFractions": "Jūsu daļas",
     "acrossPosts_one": "visā {{count}} pastā",
     "acrossPosts_other": "visos {{count}} pastos",
+    "deletedPosts": "Dzēstās ziņas ({{count}})",
     "noneHeldYet": "Jums vēl nav nevienas daļas",
     "noneHeldHint": "Izkaliet ierakstu, lai iegūtu tā 1000 daļu, vai iegādājieties daļu kāda cita ierakstā.",
     "listedForSale": "Tiek pārdots",

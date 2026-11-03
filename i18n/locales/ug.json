@@ -12561,6 +12561,7 @@
     "yourFractions": "ئۈلۈشلىرىڭىز",
     "acrossPosts_one": "{{count}} يازمىدا",
     "acrossPosts_other": "{{count}} يازمىدا",
+    "deletedPosts": "ئۆچۈرۈلگەن يازمىلار ({{count}})",
     "noneHeldYet": "تېخى ھېچقانداق ئۈلۈشىڭىز يوق",
     "noneHeldHint": "يازمىنى mint قىلىپ ئۇنىڭ 1000 ئۈلۈشىنى ئېلىڭ، ياكى باشقىلارنىڭ يازمىسىدىن ئۈلۈش سېتىۋېلىڭ.",
     "listedForSale": "سېتىشقا قويۇلغان",

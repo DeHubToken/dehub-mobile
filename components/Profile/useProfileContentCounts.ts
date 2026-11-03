@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { apiClient } from "../../libs";
 import { useProfilePins } from "../../hooks/usePinnedPosts";
-import { useFractionPortfolio } from "../../hooks/useFractionPortfolio";
+import { useFractionPortfolio, livePositions } from "../../hooks/useFractionPortfolio";
 
 export interface ProfileContentCounts {
   home?: number;
@@ -61,7 +61,7 @@ export function useProfileContentCounts(address?: string): ProfileContentCounts 
     return () => clearTimeout(timer);
   }, [address]);
   const { data: fractionPositions } = useFractionPortfolio(address, { enabled: fractionsEnabled });
-  const fractions = fractionPositions?.length;
+  const fractions = fractionPositions ? livePositions(fractionPositions).length : undefined;
   return useMemo(() => {
     let out = counts;
     if (pinned !== undefined) out = { ...out, pinned };

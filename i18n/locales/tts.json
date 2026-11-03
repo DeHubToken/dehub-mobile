@@ -12558,6 +12558,7 @@
     "yourFractions": "ส่วนแบ่งของเจ้า",
     "acrossPosts_one": "ใน {{count}} โพสต์",
     "acrossPosts_other": "ใน {{count}} โพสต์",
+    "deletedPosts": "โพสต์ที่ถืกลบ ({{count}})",
     "noneHeldYet": "เจ้ายังบ่มีส่วนแบ่งเลย",
     "noneHeldHint": "มินต์โพสต์เพื่อฮับ 1000 ส่วนแบ่งของมัน หรือซื้อส่วนแบ่งในโพสต์ของคนอื่น",
     "listedForSale": "ลงขายแล้ว",

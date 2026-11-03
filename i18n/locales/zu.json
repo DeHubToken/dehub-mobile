@@ -12608,6 +12608,7 @@
     "yourFractions": "Izabelo zakho",
     "acrossPosts_one": "kokuthunyelwe okungu-{{count}}",
     "acrossPosts_other": "kokuthunyelwe okungu-{{count}}",
+    "deletedPosts": "Okuthunyelwe okususiwe ({{count}})",
     "noneHeldYet": "Awukabi nazo izabelo",
     "noneHeldHint": "Khanda okuthunyelwe ukuze uthole izabelo zakho ezingu-1000, noma uthenge isabelo kokuthunyelwe komunye umuntu.",
     "listedForSale": "Kufakwe ohlwini lokudayiswa",

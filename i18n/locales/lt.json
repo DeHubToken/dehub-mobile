@@ -12584,6 +12584,7 @@
     "yourFractions": "Jūsų dalys",
     "acrossPosts_one": "iš {{count}} įrašo",
     "acrossPosts_other": "iš {{count}} įrašų",
+    "deletedPosts": "Ištrinti įrašai ({{count}})",
     "noneHeldYet": "Dar neturite jokių dalinių",
     "noneHeldHint": "Nukaldinkite įrašą ir gaukite jo 1000 dalių arba nusipirkite dalį kito žmogaus įraše.",
     "listedForSale": "Parduodama",

@@ -12581,6 +12581,7 @@
     "yourFractions": "Sizin fraksiyalarınız",
     "acrossPosts_one": "{{count}} post-da",
     "acrossPosts_other": "{{count}} post-larda",
+    "deletedPosts": "Silinmiş paylaşımlar ({{count}})",
     "noneHeldYet": "Hələ heç bir fraksiyaya sahib deyilsiniz",
     "noneHeldHint": "1000 fraksiyasını almaq üçün paylaşımı zərb edin və ya başqasının paylaşımına qatılın.",
     "listedForSale": "Satış üçün siyahıya alınmış",

@@ -12582,6 +12582,7 @@
     "yourFractions": "آپ کے حصے",
     "acrossPosts_one": "{{count}} پوسٹ میں",
     "acrossPosts_other": "{{count}} پوسٹس میں",
+    "deletedPosts": "حذف شدہ پوسٹس ({{count}})",
     "noneHeldYet": "آپ کے پاس ابھی کوئی حصہ نہیں ہے",
     "noneHeldHint": "پوسٹ منٹ کر کے اس کے 1000 حصے حاصل کریں، یا کسی اور کی پوسٹ میں حصہ خریدیں۔",
     "listedForSale": "فروخت کے لیے درج ہے",

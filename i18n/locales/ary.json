@@ -12610,6 +12610,7 @@
     "yourFractions": "الأجزاء ديالك",
     "acrossPosts_one": "ف {{count}} منشور",
     "acrossPosts_other": "ف {{count}} منشورات",
+    "deletedPosts": "منشورات محذوفة ({{count}})",
     "noneHeldYet": "باقي ما عندك حتى جزء",
     "noneHeldHint": "سكّ شي بوست باش تاخد الأجزاء ديالو الـ 1000، ولا شري ف منشور ديال شي حد آخر.",
     "listedForSale": "معروض للبيع",

@@ -12585,6 +12585,7 @@
     "yourFractions": "Dine brøkdele",
     "acrossPosts_one": "på tværs af {{count}} indlæg",
     "acrossPosts_other": "på tværs af {{count}} indlæg",
+    "deletedPosts": "Slettede opslag ({{count}})",
     "noneHeldYet": "Du ejer endnu ingen brøkdele",
     "noneHeldHint": "Præg et opslag for at få dets 1000 fraktioner, eller køb dig ind i en andens.",
     "listedForSale": "Sat til salg",

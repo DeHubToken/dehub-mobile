@@ -12633,6 +12633,7 @@
     "yourFractions": "Ulushlaringiz",
     "acrossPosts_one": "{{count}} ta postda",
     "acrossPosts_other": "{{count}} ta postda",
+    "deletedPosts": "Oʻchirilgan postlar ({{count}})",
     "noneHeldYet": "Sizda hali ulushlar yo‘q",
     "noneHeldHint": "Postni mint qilib, uning 1000 ulushini oling yoki boshqa birovning postidan ulush sotib oling.",
     "listedForSale": "Sotuvga qo‘yilgan",

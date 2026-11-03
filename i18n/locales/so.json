@@ -12560,6 +12560,7 @@
     "yourFractions": "Saamiyadaada",
     "acrossPosts_one": "{{count}} qoraal gudahood",
     "acrossPosts_other": "{{count}} qoraal gudahood",
+    "deletedPosts": "Qoraallada la tirtiray ({{count}})",
     "noneHeldYet": "Weli ma haysatid wax saami ah",
     "noneHeldHint": "Mint garee qoraal si aad u hesho 1000-kiisa saami, ama saami ka iibso qoraalka qof kale.",
     "listedForSale": "Loo liis geliyay iib",

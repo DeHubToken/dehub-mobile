@@ -12620,6 +12620,7 @@
     "yourFractions": "Ваша долі",
     "acrossPosts_one": "па {{count}} пасту",
     "acrossPosts_other": "па {{count}} пастам",
+    "deletedPosts": "Выдаленыя допісы ({{count}})",
     "noneHeldYet": "Вы яшчэ не маеце долей",
     "noneHeldHint": "Адчаканьце пост, каб атрымаць яго 1000 долей, або купіце долю чужога.",
     "listedForSale": "Выстаўлена на продаж",

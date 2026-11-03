@@ -12638,6 +12638,7 @@
     "yourFractions": "შენი წილები",
     "acrossPosts_one": "{{count}} პოსტში",
     "acrossPosts_other": "{{count}} პოსტში",
+    "deletedPosts": "წაშლილი პოსტები ({{count}})",
     "noneHeldYet": "ჯერ არ გაქვს წილები",
     "noneHeldHint": "მოჭერით პოსტი მისი 1000 წილის მისაღებად, ან იყიდეთ წილი სხვის პოსტში.",
     "listedForSale": "გაყიდვაშია",

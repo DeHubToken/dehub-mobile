@@ -12611,6 +12611,7 @@
     "yourFractions": "سهام‌های شما",
     "acrossPosts_one": "در سراسر {{count}} پست",
     "acrossPosts_other": "در سراسر {{count}} پست",
+    "deletedPosts": "پست‌های حذف‌شده ({{count}})",
     "noneHeldYet": "هنوز هیچ سهامی ندارید",
     "noneHeldHint": "یک پست را ضرب کنید تا 1000 کسری آن را بگیرید، یا در پست شخص دیگری سهم بخرید.",
     "listedForSale": "برای فروش درج شده",

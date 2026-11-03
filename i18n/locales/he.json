@@ -12587,6 +12587,7 @@
     "yourFractions": "השברים שלך",
     "acrossPosts_one": "ב-{{count}} פוסט",
     "acrossPosts_other": "ב-{{count}} פוסטים",
+    "deletedPosts": "פוסטים שנמחקו ({{count}})",
     "noneHeldYet": "עדיין אין לך שברים",
     "noneHeldHint": "הטבע פוסט כדי לקבל את 1000 החלקים שלו, או קנה חלק בפוסט של מישהו אחר.",
     "listedForSale": "מוצע למכירה",

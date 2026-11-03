@@ -12566,6 +12566,7 @@
     "yourFractions": "侬个碎片",
     "acrossPosts_one": "分布勒 {{count}} 只帖子",
     "acrossPosts_other": "分布勒 {{count}} 只帖子",
+    "deletedPosts": "已删除个帖子（{{count}}）",
     "noneHeldYet": "侬还呒没碎片",
     "noneHeldHint": "铸造一只帖子就好拿到伊个 1000 份碎片，要么买点别人帖子个份额。",
     "listedForSale": "挂出来卖个",

@@ -12585,6 +12585,7 @@
     "yourFractions": "Vaše podíly",
     "acrossPosts_one": "v {{count}} příspěvku",
     "acrossPosts_other": "v {{count}} příspěvcích",
+    "deletedPosts": "Smazané příspěvky ({{count}})",
     "noneHeldYet": "Zatím nevlastníte žádné podíly",
     "noneHeldHint": "Vyražte příspěvek a získejte jeho 1000 frakcí, nebo si kupte podíl v cizím.",
     "listedForSale": "Vystaveno na prodej",

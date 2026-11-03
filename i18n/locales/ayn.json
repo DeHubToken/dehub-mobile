@@ -12576,6 +12576,7 @@
     "yourFractions": "أجزاءك",
     "acrossPosts_one": "في {{count}} منشور",
     "acrossPosts_other": "في {{count}} منشورات",
+    "deletedPosts": "منشورات محذوفة ({{count}})",
     "noneHeldYet": "ما معك أي أجزاء لسّا",
     "noneHeldHint": "اصكّ منشور عشان تاخذ أجزاءه الـ 1000، أو اشترِ في منشور حد ثاني.",
     "listedForSale": "معروض للبيع",

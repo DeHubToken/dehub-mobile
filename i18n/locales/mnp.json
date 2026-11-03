@@ -12606,6 +12606,7 @@
     "yourFractions": "你的碎片",
     "acrossPosts_one": "分布在 {{count}} 个帖子",
     "acrossPosts_other": "分布在 {{count}} 个帖子",
+    "deletedPosts": "已刪除的帖子（{{count}}）",
     "noneHeldYet": "你还没有持有任何碎片",
     "noneHeldHint": "铸造一个帖子就能获得它的 1000 份碎片，或者买入别人帖子的份额。",
     "listedForSale": "在售",

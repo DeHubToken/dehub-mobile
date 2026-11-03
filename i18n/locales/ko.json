@@ -12685,6 +12685,7 @@
     "yourFractions": "귀사의 분할",
     "acrossPosts_one": "{{count}} 게시물 전체",
     "acrossPosts_other": "{{count}} 게시물 전체",
+    "deletedPosts": "삭제된 게시물 ({{count}})",
     "noneHeldYet": "아직 보유한 분할이 없습니다",
     "noneHeldHint": "게시물을 민팅해 1000개의 프랙션을 받거나, 다른 사람의 게시물 지분을 구매하세요.",
     "listedForSale": "판매 목록",

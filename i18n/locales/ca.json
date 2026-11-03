@@ -12581,6 +12581,7 @@
     "yourFractions": "Les teves fraccions",
     "acrossPosts_one": "a través de {{count}} publicació",
     "acrossPosts_other": "a través de {{count}} publicacions",
+    "deletedPosts": "Publicacions eliminades ({{count}})",
     "noneHeldYet": "Encara no tens cap fracció",
     "noneHeldHint": "Encunya una publicació per obtenir-ne les 1000 fraccions, o compra'n una part d'algú altre.",
     "listedForSale": "Anunciada a la venda",

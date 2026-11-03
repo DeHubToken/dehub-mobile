@@ -12605,6 +12605,7 @@
     "yourFractions": "ඔබේ භාගයන්",
     "acrossPosts_one": "{{count}} පසුවෙතින්",
     "acrossPosts_other": "{{count}} පසුවෙතින්",
+    "deletedPosts": "මකා දැමූ පළ කිරීම් ({{count}})",
     "noneHeldYet": "ඔබ තවම කිසිදු භාගයක් ගෙන නැත",
     "noneHeldHint": "පළකිරීමක් mint කර එහි කොටස් 1000 ලබා ගන්න, නැතහොත් වෙනත් අයෙකුගේ පළකිරීමක කොටසක් මිලදී ගන්න.",
     "listedForSale": "විකිණීම සඳහා ලැයිස්තුගත",
