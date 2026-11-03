@@ -518,6 +518,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       navigation.navigate("ImageViewer", {
         images: imageUrls.length > 0 ? imageUrls : [url],
         initialIndex: index,
+        allowDownload: true,
       });
     },
     [navigation, onImagePress, mediaItems],
@@ -530,7 +531,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         onImagePress(url);
         return;
       }
-      navigation.navigate("ImageViewer", { images: [url], initialIndex: 0 });
+      navigation.navigate("ImageViewer", { images: [url], initialIndex: 0, allowDownload: true });
     },
     [navigation, onImagePress],
   );

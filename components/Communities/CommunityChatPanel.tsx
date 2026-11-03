@@ -71,6 +71,7 @@ import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 import { useMentions } from "../../hooks/useMentions";
 import GifPicker from "../DM/GifPicker";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
+import ImageViewerModal from "../common/ImageViewerModal";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 import { uploadLiveChatImage } from "../../services/livechat.service";
@@ -149,6 +150,8 @@ const ChatRow: React.FC<{
   );
 
   const profileId = message.username || message.wallet_address;
+  // A tapped picture opens full screen, with Download.
+  const [viewing, setViewing] = useState<string[] | null>(null);
 
   // Web sends a GIF with its URL as the message body and the same URL in
   // image_url. The picture is already on screen, so printing the body as well
@@ -227,12 +230,20 @@ const ChatRow: React.FC<{
             <VoiceNotePlayer audioUrl={message.image_url} compact />
           </View>
         ) : !!message.image_url && (
-          <Image
-            source={storageImageSource(message.image_url, 180)}
-            style={styles.messageImage}
-            contentFit="cover"
-          />
+          <Pressable
+            onPress={() => setViewing([message.image_url!])}
+            onLongPress={() => onLongPress(message)}
+            delayLongPress={300}
+            accessibilityRole="imagebutton"
+          >
+            <Image
+              source={storageImageSource(message.image_url, 180)}
+              style={styles.messageImage}
+              contentFit="cover"
+            />
+          </Pressable>
         )}
+        <ImageViewerModal images={viewing} onClose={() => setViewing(null)} allowDownload />
 
         {/* A shared community or invite leads the message and its words follow,
             matching the DM bubble. The long press reaches through the card so

@@ -7120,6 +7120,9 @@
     "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
+    "download": "تنزيل",
+    "fileSaved": "تم حفظ الملف",
+    "fileSaveFailed": "تعذّر حفظ الملف",
     "online": "متصل",
     "attachFailed": "تعذّر إرفاق هذا الملف.",
     "removeAttachment": "إزالة المرفق",

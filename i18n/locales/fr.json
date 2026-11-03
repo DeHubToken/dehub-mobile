@@ -7116,6 +7116,9 @@
     "viewReposts": "Afficher les reposts"
   },
   "dm": {
+    "download": "Télécharger",
+    "fileSaved": "Fichier enregistré",
+    "fileSaveFailed": "Impossible d’enregistrer le fichier",
     "online": "En ligne",
     "attachFailed": "Impossible de joindre ce fichier.",
     "removeAttachment": "Retirer la pièce jointe",

@@ -7250,6 +7250,9 @@
     "viewReposts": "Reposts bekijken"
   },
   "dm": {
+    "download": "Downloaden",
+    "fileSaved": "Bestand opgeslagen",
+    "fileSaveFailed": "Kan het bestand niet opslaan",
     "online": "Online",
     "attachFailed": "Kan dat bestand niet bijvoegen.",
     "removeAttachment": "Bijlage verwijderen",

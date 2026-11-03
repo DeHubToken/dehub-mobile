@@ -146,7 +146,7 @@ const EncryptedMediaComponent: React.FC<Props> = ({
   }, [uri, start, onVideoPress]);
 
   const openImage = useCallback(() => {
-    if (shown) navigation.navigate("ImageViewer", { images: [shown], initialIndex: 0 });
+    if (shown) navigation.navigate("ImageViewer", { images: [shown], initialIndex: 0, allowDownload: true });
     else if (status === "error" || status === "idle") void start();
   }, [shown, status, start, navigation]);
 

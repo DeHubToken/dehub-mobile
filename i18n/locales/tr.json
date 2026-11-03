@@ -7111,6 +7111,9 @@
     "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
+    "download": "İndir",
+    "fileSaved": "Dosya kaydedildi",
+    "fileSaveFailed": "Dosya kaydedilemedi",
     "online": "Çevrimiçi",
     "attachFailed": "O dosya eklenemedi.",
     "removeAttachment": "Eki kaldır",
