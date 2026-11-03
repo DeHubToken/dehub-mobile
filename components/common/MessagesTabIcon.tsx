@@ -16,8 +16,8 @@ const RUN_MS = 3900;
 const BEATS: Array<[number, number]> = [[OUT, .09], [DOWN, .11], [OUT, .22], [DOWN, .11], [OUT, .22], [REST, .13]];
 
 /**
- * Bottom bar Messages icon. Unread messages show as a small letter in the
- * theme colour peeking out of the envelope instead of a red count badge.
+ * Bottom bar Messages icon. Unread messages show as a small red letter
+ * peeking out of the envelope instead of a count badge.
  * On each wake-up (first show, app back in front, a new message) the letter
  * pops out 3 times, then holds still: one ~4s run, nothing loops.
  */
@@ -61,7 +61,7 @@ export default memo(function MessagesTabIcon({ unread, size, color, letterColor,
           }, letter]}>
             <View style={{
               position: 'absolute', left: 2.2 * u, top: 2.2 * u, width: 9.2 * u, height: 1.3 * u,
-              borderRadius: .65 * u, backgroundColor: 'rgba(0, 0, 0, 0.35)',
+              borderRadius: .65 * u, backgroundColor: 'rgba(255, 255, 255, 0.7)',
             }} />
           </Animated.View>
         </View>

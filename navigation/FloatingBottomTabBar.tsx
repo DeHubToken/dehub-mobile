@@ -359,7 +359,7 @@ const NavButton = memo<{
       >
         {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : routeName === ScreenNames.DM ? (
           <MessagesTabIcon unread={badgeCount} size={22} color={iconColor} strokeWidth={2}
-            letterColor={isLight || isMinimal ? iconColor : colors.accent} />
+            letterColor={isLight ? '#dc3545' : '#ff6874'} />
         ) : <View><Icon
           name={icon}
           size={icon === "House" || icon === "MessageEnvelope" || icon === "Search" ? 22 : 20}
