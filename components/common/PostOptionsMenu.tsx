@@ -104,6 +104,12 @@ export interface PostOptionsMenuProps {
   currentQuotePolicy?: "public" | "followers" | "nobody";
   /** Who may reply to the post, for the edit sheet. */
   currentReplyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Photo posts: 'comic' when it shows as collector cards. Drives the comic/carousel switch. */
+  currentLayout?: "comic" | null;
+  /** How many photos the post has; the switch shows for 2+ or for a comic. */
+  photoCount?: number;
+  /** The author switched the layout from the menu. */
+  onLayoutChange?: (layout: "comic" | null) => void;
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -250,6 +256,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentSpoilerText,
   currentQuotePolicy,
   currentReplyPolicy,
+  currentLayout,
+  photoCount = 0,
+  onLayoutChange,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -360,6 +369,24 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
   const [visibilityLoading, setVisibilityLoading] = useState(false);
+
+  // Comic or carousel: same pages, only the layout flag changes. The card
+  // switches straight away and goes back if the save fails.
+  const handleLayoutToggle = useCallback(async () => {
+    if (tokenId == null) return;
+    const next = currentLayout === "comic" ? null : "comic";
+    onClose();
+    onLayoutChange?.(next);
+    try {
+      await editPost(tokenId, { layout: next ?? "" });
+      toastSuccess(next
+        ? t("comic.converted", { defaultValue: "Now showing as a comic" })
+        : t("comic.unconverted", { defaultValue: "Now showing as a carousel" }));
+    } catch {
+      onLayoutChange?.(currentLayout ?? null);
+      toastError(t("comic.convertFailed", { defaultValue: "Couldn't change the layout" }));
+    }
+  }, [tokenId, currentLayout, onLayoutChange, onClose]);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [blockLoading, setBlockLoading] = useState(false);
 
@@ -730,6 +757,15 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   label={t("postOptions.editPost")}
                   sublabel={t("postOptions.editPostDesc")}
                   onPress={handleOpenEdit}
+                />
+              )}
+              {!!onLayoutChange && tokenId != null && (photoCount > 1 || currentLayout === "comic") && (
+                <OptionRow
+                  icon="BookOpen"
+                  label={currentLayout === "comic"
+                    ? t("comic.toCarousel", { defaultValue: "Show as carousel" })
+                    : t("comic.toComic", { defaultValue: "Make it a comic" })}
+                  onPress={handleLayoutToggle}
                 />
               )}
               {/* Boost. Offered to every owner rather than only to badge

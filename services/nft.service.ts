@@ -1301,6 +1301,8 @@ export interface EditPostInput {
   mediaDescriptions?: string[];
   /** The comic's border preset. `''` goes back to the theme's foil. */
   comicBorder?: string;
+  /** `'comic'` shows a photo post as collector cards; `''` back to the carousel. */
+  layout?: "comic" | "";
   /** Replace the content warning. `''` takes it off. */
   spoilerText?: string;
   /** Who may quote it from now on. Quotes already made stay. */
