@@ -4368,6 +4368,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} بعتوا رسايل في “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} تانيين بعتوا رسايل في “{{community}}”",
+    "communityChatOne": "{{name}} بعت رسالة في “{{community}}”",
     "custom": {
       "bountyReplyNamed": "{{name}} أجاب على مكافأتك “{{title}}”",
       "fractionOffer": "{{name}} قدم عرضًا على أجزاءك",

@@ -4435,6 +4435,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} আর {{second}} “{{community}}”-ত মেসেজ পাঠাইছে",
+    "communityChatMany": "{{name}} + আরো {{others}} জন “{{community}}”-ত মেসেজ পাঠাইছে",
+    "communityChatOne": "{{name}} “{{community}}”-ত একটা মেসেজ পাঠাইছে",
     "custom": {
       "bountyApplied": "{{name}} আপনার বাউন্টিতে আবেদন করেছে",
       "bountyAppliedNamed": "{{name}} আপনার বাউন্টি “{{title}}”-এ আবেদন করেছে",
@@ -7890,6 +7893,9 @@
     "new": "নয়া"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} লাইভ চ্যাটত তোমাৰ নাম মেনশন কৰিছে",
+    "mentionedYouPost": "{{name}} কোনো পোস্টত তোমাৰ নাম মেনশন কৰিছে",
+    "mentionedYouPublicChat": "{{name}} পাবলিক চ্যাটত তোমাৰ নাম মেনশন কৰিছে",
     "title": "প্রতিক্রিয়া",
     "privateTitle": "প্রতিক্রিয়া ব্যক্তিগত",
     "privateDescription": "শুধুমাত্র পোস্ট লেখক এই তালিকা দেখতে পারেন।",

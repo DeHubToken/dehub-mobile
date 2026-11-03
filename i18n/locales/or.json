@@ -4361,6 +4361,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ଏବଂ {{second}} “{{community}}”ରେ ମେସେଜ୍ ପଠାଇଛନ୍ତି",
+    "communityChatMany": "{{name}} + ଆଉ {{others}} ଜଣ “{{community}}”ରେ ମେସେଜ୍ ପଠାଇଛନ୍ତି",
+    "communityChatOne": "{{name}} “{{community}}”ରେ ଏକ ମେସେଜ୍ ପଠାଇଛନ୍ତି",
     "custom": {
       "featureComment": "{{name}} ଆପଣଙ୍କ ଫିଚର୍ ଅନୁରୋଧରେ ମନ୍ତବ୍ୟ କଲେ",
       "featureLike": "{{name}} ଆପଣଙ୍କ ଫିଚର୍ ଅନୁରୋଧକୁ ପସନ୍ଦ କଲେ",
@@ -7740,6 +7743,7 @@
     "new": "ନୂଆ"
   },
   "reactionInfo": {
+    "mentionedYouPost": "{{name}} ଏକ ପୋଷ୍ଟରେ ଆପଣଙ୍କୁ ଉଲ୍ଲେଖ କରିଛନ୍ତି",
     "title": "ପ୍ରତିକ୍ରିୟାଗୁଡିକ",
     "privateTitle": "ପ୍ରତିକ୍ରିୟାଗୁଡିକ ଗୋପନୀୟ ଅଟେ",
     "privateDescription": "କେବଳ ପୋଷ୍ଟର ଲେଖକ ଏହି ତାଲିକା ଦେଖିପାରିବେ ।",

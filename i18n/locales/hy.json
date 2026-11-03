@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}}-ը և {{second}}-ը հաղորդագրություններ ուղարկեցին «{{community}}»-ում",
+    "communityChatMany": "{{name}} + {{others}} ուրիշներ հաղորդագրություններ ուղարկեցին «{{community}}»-ում",
+    "communityChatOne": "{{name}}-ը հաղորդագրություն ուղարկեց «{{community}}»-ում",
     "custom": {
       "featureMention": "{{name}}-ը նշել է ձեզ գործառույթի հարցման մեջ",
       "featureNewNamed": "{{name}}-ը նոր հայտ է հրապարակել ՝ «{{title}}»",

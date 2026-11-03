@@ -4728,6 +4728,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} і {{second}} надіслали повідомлення в «{{community}}»",
+    "communityChatMany": "{{name}} + ще {{others}} надіслали повідомлення в «{{community}}»",
+    "communityChatOne": "{{name}} надсилає повідомлення в «{{community}}»",
     "custom": {
       "bountyApplied": "{{name}} подала заявку на вашу пропозицію",
       "bountyAppliedNamed": "{{name}} подала заявку на вашу пропозицію “{{title}}”",

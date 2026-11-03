@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} og {{second}} sendte meldinger i «{{community}}»",
+    "communityChatMany": "{{name}} + {{others}} andre sendte meldinger i «{{community}}»",
+    "communityChatOne": "{{name}} sendte en melding i «{{community}}»",
     "custom": {
       "bountyApplied": "{{name}} søkte om din bounty",
       "bountyAppliedNamed": "{{name}} søkte om din bounty “{{title}}”",

@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ja {{second}} lähettivät viestejä yhteisöön ”{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} muuta lähettivät viestejä yhteisöön ”{{community}}”",
+    "communityChatOne": "{{name}} lähetti viestin yhteisöön ”{{community}}”",
     "custom": {
       "governanceComment": "{{name}} kommentoi ehdotustasi",
       "bountyApplied": "{{name}} sovelsi hakemuksensa bountylle",

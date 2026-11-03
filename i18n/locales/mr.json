@@ -4370,6 +4370,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} आणि {{second}} यांनी “{{community}}” मध्ये संदेश पाठवले",
+    "communityChatMany": "{{name}} + आणखी {{others}} जणांनी “{{community}}” मध्ये संदेश पाठवले",
+    "communityChatOne": "{{name}} यांनी “{{community}}” मध्ये संदेश पाठवला",
     "custom": {
       "bountyApplied": "{{name}} आपल्या बाऊंटीवर लागू केले",
       "bountyAppliedNamed": "{{name}} तुमच्या बाऊंटीवर “{{title}}” लागू केले",

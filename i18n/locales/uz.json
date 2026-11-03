@@ -4390,6 +4390,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} va {{second}} “{{community}}” hamjamiyatida xabarlar yuborishdi",
+    "communityChatMany": "{{name}} + yana {{others}} kishi “{{community}}” hamjamiyatida xabarlar yuborishdi",
+    "communityChatOne": "{{name}} “{{community}}” hamjamiyatida xabar yubordi",
     "custom": {
       "bountyApplied": "{{name}} sizning boshlangʻich taklifi uchun ariza yubordi",
       "bountyAppliedNamed": "{{name}} sizning “{{title}}” nomli boshlangʻich taklifi uchun ariza yubordi",

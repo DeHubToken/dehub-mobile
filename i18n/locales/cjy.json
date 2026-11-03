@@ -4361,6 +4361,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} 和 {{second}} 在“{{community}}”发了消息",
+    "communityChatMany": "{{name}} + 另外 {{others}} 人在“{{community}}”发了消息",
+    "communityChatOne": "{{name}} 在“{{community}}”发了一条消息",
     "custom": {
       "featureLike": "{{name}} 点赞了你的功能请求",
       "featureReply": "{{name}} 回复了你的评论",

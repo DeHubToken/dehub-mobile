@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} û {{second}} di “{{community}}” de peyam şandin",
+    "communityChatMany": "{{name}} + {{others}} yên din di “{{community}}” de peyam şandin",
+    "communityChatOne": "{{name}} di “{{community}}” de peyamek şand",
     "custom": {
       "bountyApplied": "{{name}} ji bo peywira te ya xelatdar serlêdan kir",
       "bountyAppliedNamed": "{{name}} ji bo peywira te ya xelatdar “{{title}}” serlêdan kir",
@@ -7746,6 +7749,9 @@
     "new": "Nû"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} di sohbeta zindî de behsa te kir",
+    "mentionedYouPost": "{{name}} di şandiyekê de behsa te kir",
+    "mentionedYouPublicChat": "{{name}} di sohbeta giştî de behsa te kir",
     "labels": {
       "respect": "Rûmet",
       "hundred": "100",

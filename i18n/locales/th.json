@@ -4397,6 +4397,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} และ {{second}} ส่งข้อความใน “{{community}}”",
+    "communityChatMany": "{{name}} + อีก {{others}} คนส่งข้อความใน “{{community}}”",
+    "communityChatOne": "{{name}} ส่งข้อความใน “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} ยื่นข้อเสนอให้กับบาวนี่ของคุณ",
       "bountyAppliedNamed": "{{name}} ยื่นข้อเสนอให้กับบาวนี่ของคุณ “{{title}}”",

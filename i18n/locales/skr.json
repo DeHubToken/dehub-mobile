@@ -4349,6 +4349,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} تے {{second}} “{{community}}” وچ سنیہے بھیجے",
+    "communityChatMany": "{{name}} + {{others}} ٻئے “{{community}}” وچ سنیہے بھیجے",
+    "communityChatOne": "{{name}} “{{community}}” وچ ہک سنیہا بھیجیا",
     "custom": {
       "bountyApplied": "{{name}} نے آپ کی بونٹی پر درخواست دی",
       "bountySubmitted": "{{name}} نے آپ کی بونٹی پر کام پیش کیا",
@@ -7730,6 +7733,10 @@
     "new": "نواں"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} لائیو چیٹ وچ تہاڈا ذکر کیتا",
+    "mentionedYouComment": "{{name}} ہک تبصرے وچ تہاڈا ذکر کیتا",
+    "mentionedYouPost": "{{name}} ہک پوسٹ وچ تہاڈا ذکر کیتا",
+    "mentionedYouPublicChat": "{{name}} پبلک چیٹ وچ تہاڈا ذکر کیتا",
     "title": "ردعملیاں",
     "privateTitle": "ردعملیاں نجی ہن",
     "privateDescription": "صرف پوسٹ دے لکھاری ایہ فہرست ویکھ سکدے ن۔",

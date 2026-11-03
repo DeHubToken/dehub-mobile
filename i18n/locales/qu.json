@@ -4363,6 +4363,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} {{second}} ima “{{community}}” nisqapi willakuykunata apachirqanku",
+    "communityChatMany": "{{name}} + {{others}} wakkuna “{{community}}” nisqapi willakuykunata apachirqanku",
+    "communityChatOne": "{{name}} “{{community}}” nisqapi willakuyta apachirqan",
     "custom": {
       "bountyApplied": "{{name}} suñaynikiman mañakusunki",
       "bountyAppliedNamed": "{{name}} “{{title}}” nisqa suñaynikiman mañakusunki",

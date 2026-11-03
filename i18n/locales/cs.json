@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} a {{second}} poslali zprávy v „{{community}}“",
+    "communityChatMany": "{{name}} + {{others}} dalších poslali zprávy v „{{community}}“",
+    "communityChatOne": "{{name}} poslal(a) zprávu v „{{community}}“",
     "custom": {
       "bountyApplied": "{{name}} požádal o vaši odměnu",
       "bountyAppliedNamed": "{{name}} požádal o vaši odměnu “{{title}}”",

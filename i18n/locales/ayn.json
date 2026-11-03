@@ -4371,6 +4371,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} أرسلوا رسائل في “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} آخرين أرسلوا رسائل في “{{community}}”",
+    "communityChatOne": "{{name}} أرسل رسالة في “{{community}}”",
     "custom": {
       "featureComment": "{{name}} ترك تعليق على طلبتك الخاص",
       "featureCommentNamed": "{{name}} ترك تعليق على طلبتك الخاص “{{title}}”",

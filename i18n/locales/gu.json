@@ -4373,6 +4373,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} અને {{second}} એ “{{community}}” માં સંદેશા મોકલ્યા",
+    "communityChatMany": "{{name}} + {{others}} અન્યોએ “{{community}}” માં સંદેશા મોકલ્યા",
+    "communityChatOne": "{{name}} એ “{{community}}” માં સંદેશ મોકલ્યો",
     "custom": {
       "bountyApplied": "{{name}} તમારા બાઉન્ટી પર અરજી કરી છે",
       "bountyAppliedNamed": "{{name}} તમારા બાઉન્ટી “{{title}}” પર અરજી કરી છે",

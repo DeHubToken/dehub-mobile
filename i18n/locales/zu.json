@@ -4373,6 +4373,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "U-{{name}} no-{{second}} bathumele imilayezo ku-“{{community}}”",
+    "communityChatMany": "U-{{name}} + abanye abangu-{{others}} bathumele imilayezo ku-“{{community}}”",
+    "communityChatOne": "U-{{name}} uthumele umlayezo ku-“{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} ufake isicelo emvuzweni wakho",
       "bountyAppliedNamed": "{{name}} ufake isicelo emvuzweni wakho othi “{{title}}”",

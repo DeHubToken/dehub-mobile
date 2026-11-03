@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} și {{second}} au trimis mesaje în „{{community}}”",
+    "communityChatMany": "{{name}} + încă {{others}} au trimis mesaje în „{{community}}”",
+    "communityChatOne": "{{name}} a trimis un mesaj în „{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} a solicitat să participe la bountiful",
       "bountyAppliedNamed": "{{name}} a solicitat să participe la bountiful dvs. “{{title}}”",

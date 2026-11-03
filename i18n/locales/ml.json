@@ -4361,6 +4361,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}}, {{second}} എന്നിവർ “{{community}}”-ൽ സന്ദേശങ്ങൾ അയച്ചു",
+    "communityChatMany": "{{name}} + മറ്റ് {{others}} പേർ “{{community}}”-ൽ സന്ദേശങ്ങൾ അയച്ചു",
+    "communityChatOne": "{{name}} “{{community}}”-ൽ ഒരു സന്ദേശം അയച്ചു",
     "custom": {
       "governanceReplyNamed": "“{{title}}” എന്ന നിർദ്ദേശത്തിൽ {{name}} നിങ്ങൾക്ക് മറുപടി നൽകി",
       "followRequest": "{{name}} നിങ്ങളെ പിന്തുടരാൻ അഭ്യർത്ഥിച്ചു",

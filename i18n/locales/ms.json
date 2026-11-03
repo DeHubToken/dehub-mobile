@@ -4628,6 +4628,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} dan {{second}} menghantar mesej dalam “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} lagi menghantar mesej dalam “{{community}}”",
+    "communityChatOne": "{{name}} menghantar mesej dalam “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} telah memohon hadiah anda",
       "bountyAppliedNamed": "{{name}} telah memohon hadiah anda “{{title}}”",

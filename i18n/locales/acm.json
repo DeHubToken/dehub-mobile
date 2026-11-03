@@ -4363,6 +4363,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} دزّوا رسائل في “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} غيرهم دزّوا رسائل في “{{community}}”",
+    "communityChatOne": "{{name}} دزّ رسالة في “{{community}}”",
     "custom": {
       "bountyReply": "{{name}} أجاب على مكافأة",
       "bountyReplyNamed": "{{name}} أجاب على مكافأتك “{{title}}”",

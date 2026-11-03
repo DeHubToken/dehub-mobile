@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} и {{second}} су послали поруке у „{{community}}”",
+    "communityChatMany": "{{name}} + још {{others}} су послали поруке у „{{community}}”",
+    "communityChatOne": "{{name}} је послао/ла поруку у „{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} се примењује на вашу награду",
       "bountyAppliedNamed": "{{name}} је примењен на вашу награду „{{title}}“",

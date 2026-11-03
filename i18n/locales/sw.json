@@ -4376,6 +4376,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} na {{second}} wametuma jumbe katika “{{community}}”",
+    "communityChatMany": "{{name}} + wengine {{others}} wametuma jumbe katika “{{community}}”",
+    "communityChatOne": "{{name}} ametuma ujumbe katika “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} imetumika kwenye fadhila yako",
       "bountyAppliedNamed": "{{name}} imetumika kwenye fadhila yako \"{{title}}\"",

@@ -4412,6 +4412,9 @@
     "addBookmark": "Pridať záložku"
   },
   "notifications": {
+    "communityChatTwo": "{{name}} a {{second}} poslali správy v „{{community}}“",
+    "communityChatMany": "{{name}} + {{others}} ďalších poslali správy v „{{community}}“",
+    "communityChatOne": "{{name}} poslal(a) správu v „{{community}}“",
     "custom": {
       "bountyApplied": "{{name}} aplikoval na vašu",
       "bountyAppliedNamed": "{{name}} aplikoval na vašu „{{title}}“",

@@ -4360,6 +4360,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ແລະ {{second}} ສົ່ງຂໍ້ຄວາມໃນ “{{community}}”",
+    "communityChatMany": "{{name}} + ອີກ {{others}} ຄົນສົ່ງຂໍ້ຄວາມໃນ “{{community}}”",
+    "communityChatOne": "{{name}} ສົ່ງຂໍ້ຄວາມໃນ “{{community}}”",
     "custom": {
       "featureMention": "{{name}} ໄດ້ກ່າວເຖິງທ່ານໃນຄຳຂໍຟີເຈີ",
       "featureNewNamed": "{{name}} ໄດ້ໂພສ ຄໍາ ຮ້ອງຂໍ ໃຫມ່ \"{{title}}\"",

@@ -4363,6 +4363,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} و{{second}} أرسلوا رسائل في “{{community}}”",
+    "communityChatMany": "{{name}} + {{others}} آخرين أرسلوا رسائل في “{{community}}”",
+    "communityChatOne": "{{name}} أرسل رسالة في “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} تطلب لونتك",
       "bountyReply": "{{name}} رد على بونتك",

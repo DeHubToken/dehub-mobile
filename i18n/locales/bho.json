@@ -4359,6 +4359,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} आ {{second}} “{{community}}” में मैसेज भेजलें",
+    "communityChatMany": "{{name}} + {{others}} अउरी लोग “{{community}}” में मैसेज भेजलें",
+    "communityChatOne": "{{name}} “{{community}}” में एगो मैसेज भेजलें",
     "custom": {
       "bountyReplyNamed": "{{name}} ने आपके बाउंटी \" {{title}}\" पर प्रतिक्रिया दी",
       "commentMention": "{{name}} ने आपको एक कमेंट में उल्लेख किया",
@@ -7736,6 +7739,10 @@
     "new": "नया"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} लाइव चैट में रउआ के जिक्र कइलें",
+    "mentionedYouComment": "{{name}} एगो कमेंट में रउआ के जिक्र कइलें",
+    "mentionedYouPost": "{{name}} एगो पोस्ट में रउआ के जिक्र कइलें",
+    "mentionedYouPublicChat": "{{name}} पब्लिक चैट में रउआ के जिक्र कइलें",
     "title": "प्रतिक्रिया देवे वाला",
     "privateTitle": "प्राइवेसी पर भी उठ रहे सवाल",
     "privateDescription": "इ परिवर्तन रउरी एगो वोट से हो सकेला ।",

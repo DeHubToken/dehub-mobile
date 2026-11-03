@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} fi {{second}} “{{community}}” keessatti ergaawwan ergan",
+    "communityChatMany": "{{name}} + warri biroo {{others}} “{{community}}” keessatti ergaawwan ergan",
+    "communityChatOne": "{{name}} “{{community}}” keessatti ergaa erge",
     "custom": {
       "bountyApplied": "{{name}} badhaasa kee irratti iyyateera",
       "bountyAppliedNamed": "{{name}} badhaasa kee “{{title}}” irratti iyyateera",

@@ -4375,6 +4375,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ir {{second}} išsiuntė žinučių bendruomenėje „{{community}}“",
+    "communityChatMany": "{{name}} + dar {{others}} išsiuntė žinučių bendruomenėje „{{community}}“",
+    "communityChatOne": "{{name}} išsiuntė žinutę bendruomenėje „{{community}}“",
     "custom": {
       "bountyApplied": "{{name}} pritaikė prašymą jūsų premijai",
       "bountyAppliedNamed": "{{name}} pritaikė prašymą jūsų premijai „{{title}}”",

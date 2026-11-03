@@ -4372,6 +4372,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} နှင့် {{second}} တို့ “{{community}}” တွင် မက်ဆေ့ချ်များ ပို့ခဲ့သည်",
+    "communityChatMany": "{{name}} + အခြား {{others}} ဦး “{{community}}” တွင် မက်ဆေ့ချ်များ ပို့ခဲ့သည်",
+    "communityChatOne": "{{name}} က “{{community}}” တွင် မက်ဆေ့ချ် ပို့ခဲ့သည်",
     "custom": {
       "bountyApplied": "{{name}} သည် သင်၏ဆုကြေးအတွက် လျှောက်ထားခဲ့သည်",
       "bountyAppliedNamed": "{{name}} သည် သင်၏ဆုကြေး “{{title}}” အတွက် လျှောက်ထားခဲ့သည်",

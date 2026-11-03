@@ -4370,6 +4370,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} και {{second}} έστειλαν μηνύματα στο «{{community}}»",
+    "communityChatMany": "{{name}} + {{others}} ακόμα έστειλαν μηνύματα στο «{{community}}»",
+    "communityChatOne": "Ο/Η {{name}} έστειλε μήνυμα στο «{{community}}»",
     "custom": {
       "bountyApplied": "{{name}} υποβάλει αιτήσεις για την πρόσκλησή σας",
       "bountyAppliedNamed": "{{name}} υποβάλει αιτήσεις για την πρόσκλησή σας “{{title}}”",

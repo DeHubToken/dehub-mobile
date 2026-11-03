@@ -4362,6 +4362,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "I tukuna e {{name}} rāua ko {{second}} ētahi karere ki “{{community}}”",
+    "communityChatMany": "I tukuna e {{name}} + {{others}} atu ētahi karere ki “{{community}}”",
+    "communityChatOne": "I tukuna e {{name}} he karere ki “{{community}}”",
     "custom": {
       "featureLikeNamed": "I pai a {{name}} ki tō tono āhuatanga “{{title}}”",
       "featureMentionNamed": "I whakahua a {{name}} i a koe ki “{{title}}”",

@@ -4384,6 +4384,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} і {{second}} адправілі паведамленні ў «{{community}}»",
+    "communityChatMany": "{{name}} + {{others}} іншых адправілі паведамленні ў «{{community}}»",
+    "communityChatOne": "{{name}} адправіў паведамленне ў «{{community}}»",
     "custom": {
       "bountyApplied": "{{name}} прымяняецца да вашай узнагароды",
       "bountyAppliedNamed": "{{name}} прымяняецца да вашай узнагароды “{{title}}”",

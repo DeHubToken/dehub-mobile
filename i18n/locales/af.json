@@ -4381,6 +4381,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} en {{second}} het boodskappe in “{{community}}” gestuur",
+    "communityChatMany": "{{name}} + {{others}} ander het boodskappe in “{{community}}” gestuur",
+    "communityChatOne": "{{name}} het 'n boodskap in “{{community}}” gestuur",
     "custom": {
       "governanceComment": "{{name}} het kommentaar gelas op jou voorstel",
       "bountyApplied": "{{name}} het aansoek gedoen vir jou bate",

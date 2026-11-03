@@ -4350,6 +4350,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} ۽ {{second}} “{{community}}” ۾ پيغام موڪليا",
+    "communityChatMany": "{{name}} + {{others}} ٻين “{{community}}” ۾ پيغام موڪليا",
+    "communityChatOne": "{{name}} “{{community}}” ۾ هڪ پيغام موڪليو",
     "custom": {
       "governanceVoteNamed": "{{name}} توهان جي تجويز “{{title}}” تي ووٽ ڏنو",
       "bountyApplied": "{{name}} توهان جي بائونٽي لاءِ اپلائي ڪيو آهي",

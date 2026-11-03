@@ -4362,6 +4362,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} we {{second}} “{{community}}” toparynda habarlar iberdi",
+    "communityChatMany": "{{name}} + ýene {{others}} adam “{{community}}” toparynda habarlar iberdi",
+    "communityChatOne": "{{name}} “{{community}}” toparynda habar iberdi",
     "custom": {
       "featureComment": "{{name}} siziň funksiýa haýyşyňyza teswir ýazdy",
       "featureMention": "{{name}} sizi funksiýa haýyşynda agzady",
@@ -7743,6 +7746,9 @@
     "new": "Täze"
   },
   "reactionInfo": {
+    "mentionedYouLiveChat": "{{name}} göni söhbetdeşlikde sizi belläp geçdi",
+    "mentionedYouPost": "{{name}} ýazgyda sizi belläp geçdi",
+    "mentionedYouPublicChat": "{{name}} umumy söhbetdeşlikde sizi belläp geçdi",
     "title": "Reaksiýalar",
     "privateTitle": "Ähli reaksiýalar özgeçikdir",
     "privateDescription": "Bu listany diňe postyň ýazgyçysy görýär.",

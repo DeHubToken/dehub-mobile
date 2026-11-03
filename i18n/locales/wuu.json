@@ -4361,6 +4361,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} 搭 {{second}} 拉“{{community}}”发了消息",
+    "communityChatMany": "{{name}} + 另外 {{others}} 个人拉“{{community}}”发了消息",
+    "communityChatOne": "{{name}} 拉“{{community}}”发了一条消息",
     "custom": {
       "bountyApplied": "{{name}} 應徵你的獎勵",
       "fractionOffer": "{{name}} 對你的分數（股份）提出報價",

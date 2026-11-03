@@ -4413,6 +4413,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "Nagpadala ng mga mensahe sina {{name}} at {{second}} sa “{{community}}”",
+    "communityChatMany": "Nagpadala ng mga mensahe si {{name}} + {{others}} iba pa sa “{{community}}”",
+    "communityChatOne": "Nagpadala ng mensahe si {{name}} sa “{{community}}”",
     "custom": {
       "bountyApplied": "{{name}} ay nag-aplay sa inyong bounty",
       "bountyAppliedNamed": "{{name}} ay nag-aplay sa inyong bounty “{{title}}”",

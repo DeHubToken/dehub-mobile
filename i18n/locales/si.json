@@ -4373,6 +4373,9 @@
     }
   },
   "notifications": {
+    "communityChatTwo": "{{name}} සහ {{second}} “{{community}}” හි පණිවිඩ යැව්වා",
+    "communityChatMany": "{{name}} + තවත් {{others}} දෙනෙක් “{{community}}” හි පණිවිඩ යැව්වා",
+    "communityChatOne": "{{name}} “{{community}}” හි පණිවිඩයක් යැව්වා",
     "custom": {
       "bountySubmitted": "{{name}} ඔබේ ත්‍යාග කාර්යයට වැඩ ඉදිරිපත් කළා",
       "featureLike": "{{name}} ඔබේ විශේෂාංග ඉල්ලීමට කැමති වුණා",
