@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
+import { storageImage } from "../../libs/cdnImage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
@@ -16,6 +17,7 @@ import StandaloneTabBar from "../../navigation/StandaloneTabBar";
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import { FrostedBackground } from "../ui/FrostedBackdrop";
 import ImageViewerModal from "../common/ImageViewerModal";
+import { ProfilePullFrame, useProfilePullRefresh } from "../Profile/ProfilePullRefresh";
 
 const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
   visible,
@@ -69,6 +71,11 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
     handleMessage,
   } = useUserProfileData(showing, usernameOrAddress);
 
+
+  // Pull down at the top to reload the header, counts and every tab's posts.
+  const { width: windowWidth } = useWindowDimensions();
+  const pull = useProfilePullRefresh(showing && !!profileData, collapse.scrollY, retry);
+  const pullCover = coverUrl && coverUrl !== 'default-banner' ? { uri: storageImage(coverUrl, windowWidth) } : defaultBanner;
 
   const handleEditProfile = useCallback(() => {
     onClose();
@@ -126,7 +133,8 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
     return (
       <SwipeBackBoundary onBack={onClose} enabled={visible}>
       <View className="flex-1 bg-theme-neutrals-900">
-        <UserProfileSheetContent
+        <ProfilePullFrame pull={pull} cover={pullCover}>
+          <UserProfileSheetContent
           collapse={collapse}
           loading={loading}
           data={data}
@@ -167,6 +175,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
           onUnblock={handleUnblock}
           onRemoveFollower={handleRemoveFollower}
         />
+        </ProfilePullFrame>
         {profileBar}
         <UnfollowSheet
           visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
@@ -196,7 +205,8 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
           {/* Absolute header controls need a parent inside the safe area;
               top: 0 on the padded outer view still reaches the status bar. */}
           <View style={{ flex: 1 }}>
-          <UserProfileSheetContent
+          <ProfilePullFrame pull={pull} cover={pullCover}>
+            <UserProfileSheetContent
             collapse={collapse}
             loading={loading}
             data={data}
@@ -237,6 +247,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
             onUnblock={handleUnblock}
             onRemoveFollower={handleRemoveFollower}
           />
+          </ProfilePullFrame>
           {profileBar}
           <StandaloneTabBar onBeforeNavigate={onClose} />
           </View>

@@ -320,7 +320,7 @@ export const useUserProfileData = (
   );
 
   const retry = useCallback(() => {
-    if (usernameOrAddress) load(usernameOrAddress);
+    if (usernameOrAddress) return load(usernameOrAddress);
   }, [usernameOrAddress, load]);
 
   useEffect(() => {

@@ -3,9 +3,11 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
 import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
+import { ProfilePullRing, useProfileAvatarPop, useProfileCoverHidden } from "../Profile/ProfilePullRefresh";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "../common/Avatar";
 import { openPostBgPicker } from "../Profile/PostBgPicker";
@@ -141,7 +143,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useI18n();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, colors } = useAppTheme();
+  const coverHidden = useProfileCoverHidden();
+  const avatarPop = useProfileAvatarPop();
   const cinematicPhone = useCinematicPhone();
   const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
@@ -293,6 +297,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
               decodes it at banner size where ImageBackground decoded every pixel.
               A cover in Supabase Storage is fetched at banner width as well. */}
+          <Animated.View style={[StyleSheet.absoluteFill, coverHidden]}>
           <SmartImage
             source={
               coverUrl === "default-banner"
@@ -303,12 +308,14 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             style={{ width: "100%", height: "100%" }}
             contentFit="cover"
           />
+          </Animated.View>
         </View>
       </TouchableOpacity>
 
       <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-start justify-between" style={{ marginTop: -48 }}>
+          <Animated.View style={avatarPop}>
           <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
@@ -319,6 +326,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
             onLongPress={isOwnProfile ? () => openPostBgPicker() : undefined}
           />
+          <ProfilePullRing size={96} radius={Math.round(96 * 0.16)} color={colors.accent} />
+          </Animated.View>
           {(!isBlocked || !!onOpenOptions) && (
             <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
               {!isBlocked && renderFollowButton()}
