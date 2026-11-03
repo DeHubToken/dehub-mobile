@@ -55,7 +55,12 @@ function communityChatSentence(item: NotificationContent, t: (key: string, optio
 export function localizedNotificationContent(
   item: NotificationContent,
   t: (key: string, options?: any) => string,
+  /** The app's language. The server's milestone sentence names the number but is English. */
+  language = 'en',
 ): string | null {
+  if (item.type === 'video_milestone') {
+    return language.startsWith('en') && item.content ? null : t('notifications.postMilestone');
+  }
   // Climbing a rung has no actor — nobody did it to the reader — so it is
   // answered above the guard below, which exists to hand anything without a
   // name back to the server's own English sentence.
@@ -97,6 +102,12 @@ export function localizedNotificationContent(
     like: 'reactionInfo.reactedPost',
     comment: 'notifications.commentedPost',
     comment_reply: 'notifications.repliedComment',
+    creator_comment_reply: 'notifications.repliedComment',
+    new_message: 'reactionInfo.newMessage',
+    fraction_offer: 'notifications.custom.fractionOffer',
+    fraction_offer_accepted: 'notifications.custom.fractionOfferAccepted',
+    fraction_offer_rejected: 'notifications.custom.fractionOfferRejected',
+    fraction_purchased: 'notifications.custom.fractionPurchased',
     comment_like: 'notifications.likedComment',
     following: 'notifications.startedFollowing',
     subscription: 'notifications.subscribedPlan',
