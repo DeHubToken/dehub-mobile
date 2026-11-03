@@ -35,6 +35,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
 import AssistantNavIcon from '../components/ui/AssistantNavIcon';
+import MessagesTabIcon from '../components/common/MessagesTabIcon';
 import type { IconName } from "../components/ui/Icon";
 import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
@@ -335,7 +336,7 @@ const NavButton = memo<{
     <NativeAnimatedPressable
       accessibilityRole="tab"
       // Which tab you are on is conveyed purely by icon colour and a glow, and
-      // the unread count purely by a red badge — neither reaches a screen
+      // the unread count purely by a badge (or the Messages letter) — neither reaches a screen
       // reader on its own. `selected` handles the first; the count is folded
       // into the label because a sibling Text inside a labelled Pressable is
       // not announced.
@@ -356,16 +357,19 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : <View><Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : routeName === ScreenNames.DM ? (
+          <MessagesTabIcon unread={badgeCount} size={22} color={iconColor} strokeWidth={2}
+            letterColor={isLight || isMinimal ? iconColor : colors.accent} />
+        ) : <View><Icon
           name={icon}
           size={icon === "House" || icon === "MessageEnvelope" || icon === "Search" ? 22 : 20}
           color={iconColor}
           strokeWidth={icon === "House" || icon === "MessageEnvelope" || icon === "Search" || isActive ? 2 : 1.75}
         /></View>}
-      {badgeCount > 0 && (
+      {badgeCount > 0 && routeName !== ScreenNames.DM && (
         <View style={styles.badgeAnchor} pointerEvents="none">
-          <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]}>
-            <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
+          <View style={[styles.badge, { backgroundColor: colors.accent }]}>
+            <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
           </View>
