@@ -78,7 +78,7 @@ const V2_PREFIX = "v2:";
 
 // Domain separation for the HKDF expand step, so the same key material used for
 // any other purpose can never yield this wrap key. Must match the web value.
-const HKDF_INFO = "Riftn wallet seed wrap v1";
+const HKDF_INFO = "DeHub wallet seed wrap v1";
 
 const utf8 = (s: string): Uint8Array => new Uint8Array(Buffer.from(s, "utf8"));
 const fromUtf8 = (b: Uint8Array): string => Buffer.from(b).toString("utf8");

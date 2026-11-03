@@ -3,7 +3,7 @@ import { subtitleLayers } from "./subtitles";
 
 function source() {
   let id = 0;
-  const layers = subtitleLayers([{ start: 1.234, end: 2.345, text: "Riftn and dehub" }, { start: 4.56, end: 6.789, text: "dehub.io/$1" }], () => `c${++id}`);
+  const layers = subtitleLayers([{ start: 1.234, end: 2.345, text: "DeHub and dehub" }, { start: 4.56, end: 6.789, text: "dehub.io/$1" }], () => `c${++id}`);
   return { tracks: [layers.track], clips: layers.clips };
 }
 describe("caption text corrections", () => {
@@ -17,7 +17,7 @@ describe("caption text corrections", () => {
   it("replaces every occurrence with optional case sensitivity", () => {
     const project = source();
     expect(applyCaptionText(project, captionReplacement(project, "dehub", "New")).clips[0].text).toBe("New and New");
-    expect(applyCaptionText(project, captionReplacement(project, "dehub", "New", true)).clips[0].text).toBe("Riftn and New");
+    expect(applyCaptionText(project, captionReplacement(project, "dehub", "New", true)).clips[0].text).toBe("DeHub and New");
   });
   it("excludes locked, hidden and ordinary text layers", () => {
     const project = source(), original = project.clips[0];
@@ -38,7 +38,7 @@ describe("caption text corrections", () => {
     const project = source(), first = { id: project.clips[0].id, text: "Valid" };
     for (const invalid of [{ id: "absent", text: "Wrong" }, first, { id: project.clips[1].id, text: "x".repeat(20_001) }]) {
       expect(() => applyCaptionText(project, { sourceKey: captionTextKey(project), updates: [first, invalid] })).toThrow("invalid");
-      expect(project.clips[0].text).toBe("Riftn and dehub");
+      expect(project.clips[0].text).toBe("DeHub and dehub");
     }
   });
   it("keeps empty and unchanged replacements as no-ops", () => {

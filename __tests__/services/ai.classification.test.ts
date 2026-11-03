@@ -96,10 +96,10 @@ describe('services/ai.service — request classification', () => {
 
   describe('isDeHubBrandedImageRequest', () => {
     it('needs both the brand and a content noun', () => {
-      expect(isDeHubBrandedImageRequest('make a Riftn banner for the LCS launch')).toBe(true);
+      expect(isDeHubBrandedImageRequest('make a DeHub banner for the LCS launch')).toBe(true);
       expect(isDeHubBrandedImageRequest('a dhb promo card')).toBe(true);
       // Brand with no content noun is a question, not a poster.
-      expect(isDeHubBrandedImageRequest('what is Riftn building next?')).toBe(false);
+      expect(isDeHubBrandedImageRequest('what is DeHub building next?')).toBe(false);
       // Content noun with no brand is an ordinary image request.
       expect(isDeHubBrandedImageRequest('make a poster of a husky')).toBe(false);
     });

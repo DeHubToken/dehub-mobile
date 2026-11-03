@@ -25,8 +25,8 @@ import { Buffer } from "buffer";
 
 // Changing either constant changes every user's Solana address, stranding
 // whatever is at the old one. They must not move.
-const SOLANA_HKDF_INFO = "Riftn Solana ed25519 v1";
-const SOLANA_HKDF_SALT = "Riftn Solana derivation salt v1";
+const SOLANA_HKDF_INFO = "DeHub Solana ed25519 v1";
+const SOLANA_HKDF_SALT = "DeHub Solana derivation salt v1";
 
 const utf8 = (s: string): Uint8Array => new Uint8Array(Buffer.from(s, "utf8"));
 
