@@ -13576,6 +13576,12 @@
     "skippedOtherToast": "{{platforms}}: వారు ఈ పోస్ట్ తీసుకోలేకపోయారు."
   },
   "builder": {
+    "liveChip": "సుమారు ఒక నిమిషంలో yourname.dhb.gg లో లైవ్",
+    "tierFast": "వేగం",
+    "tierBalanced": "సమతుల్యం",
+    "tierBest": "ఉత్తమం",
+    "builtThisWeek": "ఈ వారం రూపొందించినవి",
+    "seeAllApps": "అన్ని యాప్‌లను చూడండి",
     "modelLabel": "మోడల్",
     "creditsLeft": "{{amount}} క్రెడిట్‌లో",
     "perPrompt": "≈ ఒక్కో ప్రాంప్ట్‌కు {{price}}",

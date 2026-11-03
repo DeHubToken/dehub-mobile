@@ -13661,6 +13661,12 @@
     "skippedOtherToast": "Voaravaka {{platforms}}: Tsy azon'izy ireo natao ity lahatsoratra ity."
   },
   "builder": {
+    "liveChip": "Mivoaka ao anatin'ny iray minitra eo ho eo ao amin'ny anaranao.dhb.gg",
+    "tierFast": "Haingana",
+    "tierBalanced": "Voalanjalanja",
+    "tierBest": "Tsara indrindra",
+    "builtThisWeek": "Natao tamin'ity herinandro ity",
+    "seeAllApps": "Hijery ny app rehetra",
     "modelLabel": "Modely",
     "creditsLeft": "{{amount}} amin'ny crédit",
     "perPrompt": "≈ {{price}} isaky ny fangatahana",

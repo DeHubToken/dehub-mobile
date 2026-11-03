@@ -13624,6 +13624,12 @@
     "skippedOtherToast": "Saltato {{platforms}}: non hanno potuto accettare questo post."
   },
   "builder": {
+    "liveChip": "Online in circa un minuto su tuonome.dhb.gg",
+    "tierFast": "Veloce",
+    "tierBalanced": "Bilanciato",
+    "tierBest": "Migliore",
+    "builtThisWeek": "Create questa settimana",
+    "seeAllApps": "Vedi tutte le app",
     "modelLabel": "Modello",
     "creditsLeft": "{{amount}} in crediti",
     "perPrompt": "≈ {{price}} per prompt",

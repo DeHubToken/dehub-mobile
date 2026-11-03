@@ -13557,6 +13557,12 @@
     "skippedOtherToast": "ስኪፕ {{platforms}}: ነዚ ጽሑፍ እዚ ክወስዱ ኣይከኣሉን ።"
   },
   "builder": {
+    "liveChip": "ኣብ ሓደ ደቒቕ ኣቢሉ ኣብ yourname.dhb.gg ይቐርብ",
+    "tierFast": "ቅልጡፍ",
+    "tierBalanced": "ሚዛናዊ",
+    "tierBest": "ዝበለጸ",
+    "builtThisWeek": "ኣብዚ ሰሙን ዝተሰርሑ",
+    "seeAllApps": "ኩሎም መተግበሪታት ርአ",
     "modelLabel": "ሞዴል",
     "creditsLeft": "{{amount}} ክሬዲት",
     "perPrompt": "≈ ንሓደ ሕቶ {{price}}",

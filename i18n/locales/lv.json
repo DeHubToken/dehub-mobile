@@ -13575,6 +13575,12 @@
     "skippedOtherToast": "Izlaida {{platforms}}: viņi nevarēja ieņemt šo ziņu."
   },
   "builder": {
+    "liveChip": "Tiešsaistē aptuveni minūtes laikā vietnē tavsvārds.dhb.gg",
+    "tierFast": "Ātrs",
+    "tierBalanced": "Līdzsvarots",
+    "tierBest": "Labākais",
+    "builtThisWeek": "Izveidotas šonedēļ",
+    "seeAllApps": "Skatīt visas lietotnes",
     "modelLabel": "Modelis",
     "creditsLeft": "{{amount}} kredītos",
     "perPrompt": "≈ {{price}} par uzvedni",

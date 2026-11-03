@@ -13692,6 +13692,12 @@
     "skippedOtherToast": "Pominięto {{platforms}}: nie mogli przyjąć tego posta."
   },
   "builder": {
+    "liveChip": "Online w około minutę pod adresem twojanazwa.dhb.gg",
+    "tierFast": "Szybki",
+    "tierBalanced": "Zrównoważony",
+    "tierBest": "Najlepszy",
+    "builtThisWeek": "Zbudowane w tym tygodniu",
+    "seeAllApps": "Zobacz wszystkie aplikacje",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} w kredytach",
     "perPrompt": "≈ {{price}} za prompt",

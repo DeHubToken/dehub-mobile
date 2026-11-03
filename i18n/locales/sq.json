@@ -13578,6 +13578,12 @@
     "skippedOtherToast": "U anashkalua {{platforms}}: ata nuk mund ta merrnin këtë postim."
   },
   "builder": {
+    "liveChip": "Live për rreth një minutë në emriyt.dhb.gg",
+    "tierFast": "I shpejtë",
+    "tierBalanced": "I balancuar",
+    "tierBest": "Më i miri",
+    "builtThisWeek": "Ndërtuar këtë javë",
+    "seeAllApps": "Shiko të gjitha aplikacionet",
     "modelLabel": "Modeli",
     "creditsLeft": "{{amount}} në kredite",
     "perPrompt": "≈ {{price}} për kërkesë",

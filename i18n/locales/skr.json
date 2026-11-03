@@ -13543,6 +13543,12 @@
     "skippedOtherToast": "چھڈیا گیا {{platforms}}: اوہ ایہہ پوسٹ نہیں لے سکدے۔"
   },
   "builder": {
+    "liveChip": "تقریباً ایک منٹ میں yourname.dhb.gg پر لائیو",
+    "tierFast": "تیز",
+    "tierBalanced": "متوازن",
+    "tierBest": "بہترین",
+    "builtThisWeek": "اس ہفتے بنائی گئیں",
+    "seeAllApps": "تمام ایپس دیکھیں",
     "modelLabel": "ماڈل",
     "creditsLeft": "{{amount}} کریڈٹ وچ",
     "perPrompt": "≈ ہر پرامپٹ {{price}}",

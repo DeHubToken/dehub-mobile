@@ -13627,6 +13627,12 @@
     "skippedOtherToast": "{{platforms}} o'tkazib yuborildi: ular bu postni ololmaydilar."
   },
   "builder": {
+    "liveChip": "Taxminan bir daqiqada ismingiz.dhb.gg manzilida ishga tushadi",
+    "tierFast": "Tez",
+    "tierBalanced": "Muvozanatli",
+    "tierBest": "Eng yaxshi",
+    "builtThisWeek": "Shu hafta yaratilganlar",
+    "seeAllApps": "Barcha ilovalarni ko'rish",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} kreditda",
     "perPrompt": "≈ har bir so‘rov uchun {{price}}",

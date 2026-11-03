@@ -13614,6 +13614,12 @@
     "skippedOtherToast": "Прапушчана {{platforms}}: яны не змаглі прыняць гэты пост."
   },
   "builder": {
+    "liveChip": "Анлайн прыкладна праз хвіліну на yourname.dhb.gg",
+    "tierFast": "Хутка",
+    "tierBalanced": "Збалансавана",
+    "tierBest": "Лепш за ўсё",
+    "builtThisWeek": "Створана на гэтым тыдні",
+    "seeAllApps": "Усе праграмы",
     "modelLabel": "Мадэль",
     "creditsLeft": "{{amount}} у крэдытах",
     "perPrompt": "≈ {{price}} за запыт",

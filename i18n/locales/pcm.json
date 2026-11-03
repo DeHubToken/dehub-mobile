@@ -13540,6 +13540,12 @@
     "skippedOtherToast": "We skip {{platforms}}: dem no fit take this post."
   },
   "builder": {
+    "liveChip": "E go dey live for like one minute for yourname.dhb.gg",
+    "tierFast": "Fast",
+    "tierBalanced": "Balance",
+    "tierBest": "Di best",
+    "builtThisWeek": "Wetin dem build dis week",
+    "seeAllApps": "See all apps",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} for credits",
     "perPrompt": "≈ {{price}} for each prompt",

@@ -13562,6 +13562,12 @@
     "skippedOtherToast": "{{platforms}} ഒഴിവാക്കി: അവർക്ക് ഈ പോസ്റ്റ് എടുക്കാൻ കഴിഞ്ഞില്ല."
   },
   "builder": {
+    "liveChip": "ഏകദേശം ഒരു മിനിറ്റിനുള്ളിൽ yourname.dhb.gg-ൽ ലൈവ്",
+    "tierFast": "വേഗം",
+    "tierBalanced": "സന്തുലിതം",
+    "tierBest": "മികച്ചത്",
+    "builtThisWeek": "ഈ ആഴ്ച നിർമ്മിച്ചവ",
+    "seeAllApps": "എല്ലാ ആപ്പുകളും കാണുക",
     "modelLabel": "മോഡൽ",
     "creditsLeft": "{{amount}} ക്രെഡിറ്റിൽ",
     "perPrompt": "≈ ഓരോ പ്രോംപ്റ്റിനും {{price}}",

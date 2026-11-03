@@ -13603,6 +13603,12 @@
     "skippedOtherToast": "Έγινε παράλειψη {{platforms}}: δεν ήταν δυνατή η λήψη αυτής της ανάρτησης."
   },
   "builder": {
+    "liveChip": "Online σε περίπου ένα λεπτό στο toonomasou.dhb.gg",
+    "tierFast": "Γρήγορο",
+    "tierBalanced": "Ισορροπημένο",
+    "tierBest": "Καλύτερο",
+    "builtThisWeek": "Φτιάχτηκαν αυτή την εβδομάδα",
+    "seeAllApps": "Δείτε όλες τις εφαρμογές",
     "modelLabel": "Μοντέλο",
     "creditsLeft": "{{amount}} σε πιστώσεις",
     "perPrompt": "≈ {{price}} ανά αίτημα",

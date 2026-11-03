@@ -13600,6 +13600,12 @@
     "skippedOtherToast": "Skipped {{platforms}}: သူတို့သည် ဤပို့စ်ကို လက်ခံနိုင်မည် မရှိပါ။"
   },
   "builder": {
+    "liveChip": "ခန့်မှန်းခြေ တစ်မိနစ်အတွင်း yourname.dhb.gg တွင် အသုံးပြုနိုင်သည်",
+    "tierFast": "မြန်",
+    "tierBalanced": "မျှတ",
+    "tierBest": "အကောင်းဆုံး",
+    "builtThisWeek": "ဒီအပတ် တည်ဆောက်ထားသည်များ",
+    "seeAllApps": "အက်ပ်အားလုံး ကြည့်ရန်",
     "modelLabel": "မော်ဒယ်",
     "creditsLeft": "ခရက်ဒစ် {{amount}}",
     "perPrompt": "≈ တောင်းဆိုမှုတစ်ခုလျှင် {{price}}",

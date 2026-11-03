@@ -13612,6 +13612,12 @@
     "skippedOtherToast": "تخطى {{platforms}}: ما قدرواش ياخدوا البوست ده."
   },
   "builder": {
+    "liveChip": "متاح خلال دقيقة تقريبًا على yourname.dhb.gg",
+    "tierFast": "سريع",
+    "tierBalanced": "متوازن",
+    "tierBest": "الأفضل",
+    "builtThisWeek": "صُنع هذا الأسبوع",
+    "seeAllApps": "عرض كل التطبيقات",
     "modelLabel": "النموذج",
     "creditsLeft": "{{amount}} من الرصيد",
     "perPrompt": "≈ {{price}} لكل طلب",

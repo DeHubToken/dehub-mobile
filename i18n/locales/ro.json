@@ -13589,6 +13589,12 @@
     "skippedOtherToast": "A omis {{platforms}}: nu a putut accepta această postare."
   },
   "builder": {
+    "liveChip": "Online în aproximativ un minut la numeletau.dhb.gg",
+    "tierFast": "Rapid",
+    "tierBalanced": "Echilibrat",
+    "tierBest": "Cel mai bun",
+    "builtThisWeek": "Create săptămâna aceasta",
+    "seeAllApps": "Vezi toate aplicațiile",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} în credite",
     "perPrompt": "≈ {{price}} per prompt",

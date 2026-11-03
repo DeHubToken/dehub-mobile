@@ -13581,6 +13581,12 @@
     "skippedOtherToast": "דילגו על {{platforms}}: הם לא יכלו לקבל את הפוסט הזה."
   },
   "builder": {
+    "liveChip": "באוויר תוך כדקה ב-yourname.dhb.gg",
+    "tierFast": "מהיר",
+    "tierBalanced": "מאוזן",
+    "tierBest": "הכי טוב",
+    "builtThisWeek": "נבנו השבוע",
+    "seeAllApps": "לכל האפליקציות",
     "modelLabel": "מודל",
     "creditsLeft": "{{amount}} בקרדיטים",
     "perPrompt": "≈ {{price}} לכל בקשה",

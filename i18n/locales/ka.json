@@ -13632,6 +13632,12 @@
     "skippedOtherToast": "{{platforms}} გამოტოვებულია: ამ პოსტის გადაღება ვერ მოხერხდა."
   },
   "builder": {
+    "liveChip": "დაახლოებით ერთ წუთში ხელმისაწვდომი yourname.dhb.gg-ზე",
+    "tierFast": "სწრაფი",
+    "tierBalanced": "დაბალანსებული",
+    "tierBest": "საუკეთესო",
+    "builtThisWeek": "ამ კვირაში შექმნილი",
+    "seeAllApps": "ყველა აპის ნახვა",
     "modelLabel": "მოდელი",
     "creditsLeft": "{{amount}} კრედიტში",
     "perPrompt": "≈ {{price}} თითო მოთხოვნაზე",

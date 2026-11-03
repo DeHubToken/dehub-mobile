@@ -13554,6 +13554,12 @@
     "skippedOtherToast": "{{platforms}} پرېښودل شول: دوی دا پوسټ نه شو اخیستلای."
   },
   "builder": {
+    "liveChip": "په شاوخوا یوه دقیقه کې په yourname.dhb.gg ژوندۍ",
+    "tierFast": "چټک",
+    "tierBalanced": "متوازن",
+    "tierBest": "غوره",
+    "builtThisWeek": "پدې اونۍ کې جوړ شوي",
+    "seeAllApps": "ټول اپونه وګورئ",
     "modelLabel": "ماډل",
     "creditsLeft": "{{amount}} په کریډیټ کې",
     "perPrompt": "≈ د هرې غوښتنې {{price}}",

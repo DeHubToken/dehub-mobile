@@ -13700,6 +13700,12 @@
     "skippedOtherToast": "Slaan {{platforms}}: hulle kon nie hierdie pos neem nie."
   },
   "builder": {
+    "liveChip": "Binne sowat 'n minuut aanlyn by jounaam.dhb.gg",
+    "tierFast": "Vinnig",
+    "tierBalanced": "Gebalanseerd",
+    "tierBest": "Beste",
+    "builtThisWeek": "Hierdie week gebou",
+    "seeAllApps": "Sien alle apps",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} in krediete",
     "perPrompt": "≈ {{price}} per opdrag",

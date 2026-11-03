@@ -13577,6 +13577,12 @@
     "skippedOtherToast": "{{platforms}}: அவர்களால் இந்த இடுகையை எடுக்க முடியவில்லை."
   },
   "builder": {
+    "liveChip": "சுமார் ஒரு நிமிடத்தில் yourname.dhb.gg இல் நேரலை",
+    "tierFast": "வேகம்",
+    "tierBalanced": "சமநிலை",
+    "tierBest": "சிறந்தது",
+    "builtThisWeek": "இந்த வாரம் உருவாக்கியவை",
+    "seeAllApps": "எல்லா ஆப்களையும் காண்க",
     "modelLabel": "மாடல்",
     "creditsLeft": "{{amount}} கிரெடிட்டில்",
     "perPrompt": "≈ ஒரு ப்ராம்ப்டுக்கு {{price}}",

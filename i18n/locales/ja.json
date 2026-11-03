@@ -13496,6 +13496,12 @@
     "skippedOtherToast": "{{platforms}}をスキップしました：この投稿を投稿できませんでした。"
   },
   "builder": {
+    "liveChip": "約1分で yourname.dhb.gg に公開",
+    "tierFast": "高速",
+    "tierBalanced": "バランス",
+    "tierBest": "最高品質",
+    "builtThisWeek": "今週作られたアプリ",
+    "seeAllApps": "すべてのアプリを見る",
     "modelLabel": "モデル",
     "creditsLeft": "クレジット残高 {{amount}}",
     "perPrompt": "≈ 1プロンプトあたり {{price}}",

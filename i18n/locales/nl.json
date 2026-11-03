@@ -12312,6 +12312,12 @@
     "skippedOtherToast": "Overgeslagen {{platforms}}: ze konden dit bericht niet aannemen."
   },
   "builder": {
+    "liveChip": "Binnen een minuut live op jouwnaam.dhb.gg",
+    "tierFast": "Snel",
+    "tierBalanced": "Gebalanceerd",
+    "tierBest": "Beste",
+    "builtThisWeek": "Deze week gebouwd",
+    "seeAllApps": "Alle apps bekijken",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} aan tegoed",
     "perPrompt": "≈ {{price}} per prompt",

@@ -13601,6 +13601,12 @@
     "skippedOtherToast": "បានរំលង {{platforms}}: ពួកគេមិនអាចទទួលយកការបង្ហោះនេះបានទេ ។"
   },
   "builder": {
+    "liveChip": "ដំណើរការក្នុងរយៈពេលប្រហែលមួយនាទីនៅ yourname.dhb.gg",
+    "tierFast": "លឿន",
+    "tierBalanced": "មានតុល្យភាព",
+    "tierBest": "ល្អបំផុត",
+    "builtThisWeek": "បានបង្កើតសប្ដាហ៍នេះ",
+    "seeAllApps": "មើលកម្មវិធីទាំងអស់",
     "modelLabel": "ម៉ូដែល",
     "creditsLeft": "{{amount}} ជាក្រេឌីត",
     "perPrompt": "≈ {{price}} ក្នុងមួយសំណើ",

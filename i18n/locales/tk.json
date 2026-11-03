@@ -13563,6 +13563,12 @@
     "skippedOtherToast": "{{platforms}}: olar bu posty alyp bilmediler."
   },
   "builder": {
+    "liveChip": "Takmynan bir minutda adyň.dhb.gg salgysynda işe girizilýär",
+    "tierFast": "Çalt",
+    "tierBalanced": "Deňagramly",
+    "tierBest": "Iň gowy",
+    "builtThisWeek": "Şu hepde döredilenler",
+    "seeAllApps": "Ähli programmalary gör",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} karz",
     "perPrompt": "≈ her soraga {{price}}",

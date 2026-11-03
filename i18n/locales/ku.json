@@ -13881,6 +13881,12 @@
     "skippedOtherToast": "{{platforms}} hatin derbaskirin: wan nekarî vê şandiyê qebûl bikin."
   },
   "builder": {
+    "liveChip": "Di nêzîkî deqeyekê de li navête.dhb.gg zindî ye",
+    "tierFast": "Bilez",
+    "tierBalanced": "Hevseng",
+    "tierBest": "Çêtirîn",
+    "builtThisWeek": "Vê hefteyê hatine çêkirin",
+    "seeAllApps": "Hemû sepanan bibîne",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} di krediyan de",
     "perPrompt": "≈ {{price}} ji bo her daxwazê",

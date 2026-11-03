@@ -13570,6 +13570,12 @@
     "skippedOtherToast": "{{platforms}}: Тэд энэ бичлэгийг авч чадсангүй."
   },
   "builder": {
+    "liveChip": "Ойролцоогоор нэг минутад yourname.dhb.gg дээр нээгдэнэ",
+    "tierFast": "Хурдан",
+    "tierBalanced": "Тэнцвэртэй",
+    "tierBest": "Шилдэг",
+    "builtThisWeek": "Энэ долоо хоногт бүтээсэн",
+    "seeAllApps": "Бүх аппыг үзэх",
     "modelLabel": "Загвар",
     "creditsLeft": "{{amount}} кредит",
     "perPrompt": "≈ нэг хүсэлтэд {{price}}",

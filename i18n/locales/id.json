@@ -13624,6 +13624,12 @@
     "skippedOtherToast": "Dilewatkan {{platforms}}: mereka tidak bisa menerima postingan ini."
   },
   "builder": {
+    "liveChip": "Langsung aktif dalam sekitar satu menit di namamu.dhb.gg",
+    "tierFast": "Cepat",
+    "tierBalanced": "Seimbang",
+    "tierBest": "Terbaik",
+    "builtThisWeek": "Dibuat minggu ini",
+    "seeAllApps": "Lihat semua aplikasi",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} dalam kredit",
     "perPrompt": "≈ {{price}} per prompt",

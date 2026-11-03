@@ -13578,6 +13578,12 @@
     "skippedOtherToast": "Пропусна {{platforms}}: не можа да приеме тази публикация."
   },
   "builder": {
+    "liveChip": "На живо за около минута на твоетоиме.dhb.gg",
+    "tierFast": "Бързо",
+    "tierBalanced": "Балансирано",
+    "tierBest": "Най-добро",
+    "builtThisWeek": "Създадени тази седмица",
+    "seeAllApps": "Виж всички приложения",
     "modelLabel": "Модел",
     "creditsLeft": "{{amount}} в кредити",
     "perPrompt": "≈ {{price}} на заявка",

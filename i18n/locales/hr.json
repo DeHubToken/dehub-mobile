@@ -13578,6 +13578,12 @@
     "skippedOtherToast": "Preskočeno {{platforms}}: korisnik nije mogao preuzeti ovu objavu."
   },
   "builder": {
+    "liveChip": "Online za otprilike minutu na tvojeime.dhb.gg",
+    "tierFast": "Brzo",
+    "tierBalanced": "Uravnoteženo",
+    "tierBest": "Najbolje",
+    "builtThisWeek": "Izrađeno ovaj tjedan",
+    "seeAllApps": "Prikaži sve aplikacije",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} u kreditima",
     "perPrompt": "≈ {{price}} po upitu",

@@ -13737,6 +13737,12 @@
     "skippedOtherToast": "Preskočené {{platforms}}: tento príspevok nemohol prijať."
   },
   "builder": {
+    "liveChip": "Online približne za minútu na tvojemeno.dhb.gg",
+    "tierFast": "Rýchly",
+    "tierBalanced": "Vyvážený",
+    "tierBest": "Najlepší",
+    "builtThisWeek": "Vytvorené tento týždeň",
+    "seeAllApps": "Zobraziť všetky aplikácie",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} v kreditoch",
     "perPrompt": "≈ {{price}} za výzvu",

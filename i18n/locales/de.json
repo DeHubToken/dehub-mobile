@@ -13542,6 +13542,12 @@
     "skippedOtherToast": "{{platforms}} übersprungen: Sie konnten diesen Beitrag nicht annehmen."
   },
   "builder": {
+    "liveChip": "In etwa einer Minute live unter deinname.dhb.gg",
+    "tierFast": "Schnell",
+    "tierBalanced": "Ausgewogen",
+    "tierBest": "Beste",
+    "builtThisWeek": "Diese Woche gebaut",
+    "seeAllApps": "Alle Apps ansehen",
     "modelLabel": "Modell",
     "creditsLeft": "{{amount}} Guthaben",
     "perPrompt": "≈ {{price}} pro Prompt",

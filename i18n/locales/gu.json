@@ -13576,6 +13576,12 @@
     "skippedOtherToast": "{{platforms}} છોડી દીધું: તેઓ આ પોસ્ટ લઈ શક્યા નહીં."
   },
   "builder": {
+    "liveChip": "લગભગ એક મિનિટમાં yourname.dhb.gg પર લાઇવ",
+    "tierFast": "ઝડપી",
+    "tierBalanced": "સંતુલિત",
+    "tierBest": "શ્રેષ્ઠ",
+    "builtThisWeek": "આ અઠવાડિયે બનાવેલી",
+    "seeAllApps": "બધી એપ્સ જુઓ",
     "modelLabel": "મોડેલ",
     "creditsLeft": "{{amount}} ક્રેડિટમાં",
     "perPrompt": "≈ પ્રતિ પ્રોમ્પ્ટ {{price}}",

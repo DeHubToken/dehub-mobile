@@ -13599,6 +13599,12 @@
     "skippedOtherToast": "{{platforms}} මඟ හැරියා: ඒවාට මෙම පෝස්ට් එක ගත නොහැකි විය."
   },
   "builder": {
+    "liveChip": "මිනිත්තුවක් පමණ ඇතුළත yourname.dhb.gg හි සජීවී",
+    "tierFast": "වේගවත්",
+    "tierBalanced": "සමබර",
+    "tierBest": "හොඳම",
+    "builtThisWeek": "මේ සතියේ සෑදූ",
+    "seeAllApps": "සියලු යෙදුම් බලන්න",
     "modelLabel": "ආකෘතිය",
     "creditsLeft": "ණය {{amount}}",
     "perPrompt": "≈ විමසුමකට {{price}}",

@@ -12061,6 +12061,12 @@
     "skippedOtherToast": "Omitió {{platforms}}: no pudo aceptar esta publicación."
   },
   "builder": {
+    "liveChip": "En línea en un minuto en tunombre.dhb.gg",
+    "tierFast": "Rápido",
+    "tierBalanced": "Equilibrado",
+    "tierBest": "Mejor",
+    "builtThisWeek": "Creadas esta semana",
+    "seeAllApps": "Ver todas las apps",
     "modelLabel": "Modelo",
     "creditsLeft": "{{amount}} en créditos",
     "perPrompt": "≈ {{price}} por solicitud",

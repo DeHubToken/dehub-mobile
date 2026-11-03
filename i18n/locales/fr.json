@@ -12065,6 +12065,12 @@
     "skippedOtherToast": "{{platforms}} : ils n'ont pas pu accepter cette publication."
   },
   "builder": {
+    "liveChip": "En ligne en une minute environ sur tonnom.dhb.gg",
+    "tierFast": "Rapide",
+    "tierBalanced": "Équilibré",
+    "tierBest": "Meilleur",
+    "builtThisWeek": "Créées cette semaine",
+    "seeAllApps": "Voir toutes les apps",
     "modelLabel": "Modèle",
     "creditsLeft": "{{amount}} de crédits",
     "perPrompt": "≈ {{price}} par requête",

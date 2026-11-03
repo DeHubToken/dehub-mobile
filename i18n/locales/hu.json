@@ -13581,6 +13581,12 @@
     "skippedOtherToast": "{{platforms}} kihagyva: nem tudta felvenni ezt a bejegyzést."
   },
   "builder": {
+    "liveChip": "Nagyjából egy perc alatt élesben a neved.dhb.gg címen",
+    "tierFast": "Gyors",
+    "tierBalanced": "Kiegyensúlyozott",
+    "tierBest": "Legjobb",
+    "builtThisWeek": "Ezen a héten készült",
+    "seeAllApps": "Összes alkalmazás",
     "modelLabel": "Modell",
     "creditsLeft": "{{amount}} kredit",
     "perPrompt": "≈ {{price}} / kérés",

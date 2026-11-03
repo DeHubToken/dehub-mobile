@@ -13622,6 +13622,12 @@
     "skippedOtherToast": "ข้าม {{platforms}}: โพสต์นี้ไม่ได้"
   },
   "builder": {
+    "liveChip": "ออนไลน์ในราวหนึ่งนาทีที่ yourname.dhb.gg",
+    "tierFast": "เร็ว",
+    "tierBalanced": "สมดุล",
+    "tierBest": "ดีที่สุด",
+    "builtThisWeek": "สร้างในสัปดาห์นี้",
+    "seeAllApps": "ดูแอปทั้งหมด",
     "modelLabel": "โมเดล",
     "creditsLeft": "เครดิต {{amount}}",
     "perPrompt": "≈ {{price}} ต่อพรอมต์",
