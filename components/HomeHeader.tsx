@@ -104,9 +104,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         <ElectricLogo refreshing={refreshing} pullDistance={pullDistance} onPress={isSignedIn ? onLogoPress : onMenuPress}
           label={isSignedIn ? "Riftn" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
-          source={require("../assets/web-icons/riftn-wordmark-white.png")}
+          source={require("../assets/web-icons/dehub-logo-compact.png")}
           style={{ minWidth: 44, height: 44, alignItems: "center", justifyContent: "center" }}
-          width={61} height={18} tint={colors.foreground} />
+          width={42} height={36} tint={colors.foreground} />
         </DockLogoTarget>
       </View>
 
