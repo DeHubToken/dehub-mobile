@@ -291,7 +291,7 @@
     "135d78ac8f56": "Tamil",
     "138f1ce64e34": "Ngā Rīhi i Whakatūria",
     "13931898084d": "I rahua te urupare",
-    "13af6da03670": "Kāore te whakahua DHB ora i te wātea",
+    "13af6da03670": "Kāore te whakahua tohu ora i te wātea",
     "13db52dc98de": "Sharksnap!",
     "13de76e4ca28": "Tirohia a {{value1}} i runga i a Riftn {{value2}}",
     "14101cfd7af1": "I rahua te tono whatunga",
@@ -350,7 +350,7 @@
     "200c05f0c075": "Kaore e taea te kaweake i nga ki tūmataiti mo nga kaute mohio. Whakamahia he putea kawemai/rohe.",
     "2068c67e4b97": "he kai kawhe e whakarārangitia ana Espresso, Flat White me te Tea",
     "2074fadab822": "Te atamira tirohanga",
-    "2095b6344189": "Kaore e taea te panui i nga toenga DHB i runga i te Base, BNB Chain ranei",
+    "2095b6344189": "Kaore e taea te panui i nga toenga tohu i runga i te Base, BNB Chain ranei",
     "209d989eb7bf": "Te whakawhitinga utu kore utu mai i te tūmau. Tena koa tamata ano.",
     "21026705cfc3": "E hiahiatia ana he tumbnail mo nga rerenga ora.",
     "212400eb3604": "Te wā mahi kanikani",
@@ -396,7 +396,7 @@
     "28f7beb11d62": "I whakakētia te uru ki te hopuoro. Tēnā whakahohea i roto i ngā Tautuhinga → Riftn → Hopuoro.",
     "29011f1a044d": "he kaimahi pī i tētahi māra hua rākau e whiti ana te rā",
     "2944a2fcb1fc": "Kāore i taea te manatoko i te wāhitau pēke. Kāore he mea i panonitia.",
-    "296fa7255dc3": "Kāore i rawaka te DHB i runga i te Base: e hiahiatia ana ko {{value1}}",
+    "296fa7255dc3": "Kāore i rawaka te tohu i runga i te Base: e hiahiatia ana ko {{value1}}",
     "2975104784a4": "Paetukutuku",
     "29cac0bde471": "Kua whakairia, engari kāore i te miniti",
     "2a1ddf7ce70a": "Ngā reta, ngā tau, _ anake",
@@ -413,7 +413,7 @@
     "2c3583161a5f": "Ka taea e koe te pupuri {{value1}} pūkete i runga i tenei pūrere",
     "2c6ef73fc9e2": "Urdu",
     "2cb98d5ef4ac": "he pae tiakarete pouri e mau ana i nga ringa pakeke e rua",
-    "2d34f6196636": "Ko te {{value1}} kaore e huri ki te DHB nui i tenei wa",
+    "2d34f6196636": "Ko te {{value1}} kaore e huri ki te tohu nui i tenei wa",
     "2d38c456a2ec": "Latina",
     "2d46a8b3e864": "Tunnel ki Kapitaina",
     "2d4a48f1702e": "I aukatihia tenei tere e te taatari haumaru o te tauira. Whakamātauria ki te whakaahua i te reira rerekē.",
@@ -526,7 +526,7 @@
     "3e630d2964a0": "Whiringa-a-rangi",
     "3e8ec7933cc7": "Kaore i te waatea nga top-ups i tenei wa. Whakamātauria ano wawe.",
     "3e9abebf2d88": "Solana whakawhitinga mutu. tēnā tamata ano.",
-    "3eff4d981d60": "E hiahia ana koe {{value1}} DHB ki te hoko i tenei kaute.",
+    "3eff4d981d60": "E hiahia ana koe {{value1}} tohu ki te hoko i tenei kaute.",
     "3f46fc40ad09": "Nga ruma oro me nga kaihauturu AI TTS",
     "3f64cf58aa44": "He hapa whatunga e korero ana ki te kaitiaki",
     "3fc7b0d93732": "Na ka hoki mai te whakawhitiwhitinga. Kaore he mahi i whakamahia.",
@@ -535,7 +535,7 @@
     "400bab0f0c7b": "He takutai e tutaki ana nga karaihe ki te moana",
     "402a1d0d6737": "Kāri Whetu Rookie",
     "40345a8f538e": "Kua huri tō putea, kāore rānei e taea te tirotiro. Whakatūwhera tenei mata, me te tamata ano.",
-    "404b95ecc333": "Ko te moni DHB kaore i te waatea",
+    "404b95ecc333": "Ko te moni tohu kaore i te waatea",
     "4055d45303d8": "he tauira i roto i te koti huruhuru nui",
     "405d438698a8": "Te Karate Tāne Nui Whakataetae",
     "40648ebaff2c": "Nga tohutohu motuka, te whakauru, te aratohu",
@@ -569,7 +569,7 @@
     "45accb3d796f": "Aratau Zombie",
     "45f16144c18c": "Tatāriki",
     "45fe5f7cc2e6": "Kāore te tūmau i whakahoki i te whakataunga.",
-    "4607c2cf1754": "Me whai {{value1}} DHB koe hei hoko i tēnei kakau.",
+    "4607c2cf1754": "Me whai {{value1}} tohu koe hei hoko i tēnei kakau.",
     "4608a5d80333": "he taramu kōwhai e hipa ana i tētahi kāpata noho puku i te tōnga o te rā",
     "46124e023603": "Oro",
     "462380995d63": "Kāore ō whakaaetanga ki te tuku pāpāho ki konei",
@@ -618,7 +618,7 @@
     "4d8a0bff64c5": "Kaore e taea te whakakapi i taua whakaahua",
     "4da10f1fbb17": "Whakatuwherahia",
     "4dc5f1795260": "He iti rawa te moni mo tenei waahanga",
-    "4de6a6dfbfe9": "Kāore i te rawaka te DHB. Kei a koe te {{value1}}.",
+    "4de6a6dfbfe9": "Kāore i te rawaka te tohu. Kei a koe te {{value1}}.",
     "4dea37c7724e": "I te wā o te wā, ka puta te āhua o te pōro. Tena koa tamata ano.",
     "4deae69e50af": "Kōrerorero & Comms",
     "4df4dd5fc0be": "Kaore a Bounty i te waatea i runga i nga pou Solana.",
@@ -639,7 +639,7 @@
     "508731a3c5d3": "Pērū",
     "50b673fa43b4": "Ko te nui o te moni e kore e tika!",
     "50c1bea5bfee": "Kaore e taea te whakamana i te utu",
-    "50dd27affcc8": "Kaore te putea hainatanga e rite ki tenei wahitau DHB",
+    "50dd27affcc8": "Kaore te putea hainatanga e rite ki tenei wahitau tohu",
     "50f8429f0d7c": "{{value1}} tangohia",
     "51386f3a6a6a": "Kaore i tutuki te korero a Solana: {{value1}}",
     "51452941c07c": "{{value1}}h i te wiki",
@@ -824,7 +824,7 @@
     "6ff093d0306a": "Toketini me DeFi",
     "701d021d08c5": "Whenua",
     "7029fea5b78f": "Tirohia ko wai e ora ana",
-    "703b991a88fd": "He nui ake te utu o te pounamu. Whakatika i runga ake i te utu mākete ki te rārangi DHB anake.",
+    "703b991a88fd": "He nui ake te utu o te pounamu. Whakatika i runga ake i te utu mākete ki te rārangi tohu anake.",
     "70a116672a2c": "Kaore he putea i runga i tenei kaute. Whakatuwherahia tenei me te haina ano.",
     "70ab9a0182ab": "Kaihanga kore e mohiotia",
     "7129a9869386": "he rohe o te awa ki te papa hokohoko",
@@ -1232,7 +1232,7 @@
     "ba8c74128fa6": "he tohu mo te karapu whakahaere e kiia nei ko \"Pace\"",
     "ba94167247b5": "Kaore e taea te utaina i nga waahanga ({{value1}})",
     "bac798f62cea": "he ringa e whakawhiti ana i te moni ki tetahi atu ringa",
-    "bae646a7db92": "Whakawhiti ki Base mo nga utu USDC, Base/BnB ranei mo nga utu DHB.",
+    "bae646a7db92": "Whakawhiti ki Base mo nga utu USDC, Base/BnB ranei mo nga utu tohu.",
     "bafb66f32cd7": "Reo Arapi",
     "bb0e439e4db7": "Kua mutu te tohatoha kaupapa ora",
     "bb136c3a3d42": "Tukunga Parachute",
@@ -1403,7 +1403,7 @@
     "d30dc251d1dc": "Nga utu peita {{value1}} {{value2}} — runga ake ka tamata ano.",
     "d33e59a4df3c": "Ko ngā utu o te kāpiti e kore e taea te whakamahi i tēnei wā.",
     "d369bf9fe70c": "Te toenga tohu kore-whakaputa",
-    "d37ad7829165": "Kaore e taea te tuku DHB ki tenei whatunga.",
+    "d37ad7829165": "Kaore e taea te tuku tohu ki tenei whatunga.",
     "d3b5f68b4641": "Kaore i tutuki te utu Solana: {{value1}}",
     "d3ebc3fed645": "Te kanikani",
     "d3f74b46d00a": "Kaore i ora te mahere PIN",
@@ -1581,7 +1581,7 @@
     "f1c682d2deb1": "he rama i roto i te whitiki taumaha",
     "f1db1cc9b120": "Roar wikitoria",
     "f21771ab7856": "Te whakamaoritanga...",
-    "f22b5983f90d": "E kore e haere te whakawhiti DHB. Kahore he mea i whakawakia.",
+    "f22b5983f90d": "E kore e haere te whakawhiti tohu. Kahore he mea i whakawakia.",
     "f25499e9df5c": "Reo Whitināmu",
     "f2661a2edcee": "Ko te hononga tono i hangaia",
     "f2835d753fbd": "Kua aukatihia e koe tenei kaiwhakamahi.",
@@ -7241,7 +7241,7 @@
     "glossaryGovernanceDesc": "Tukua me te pooti i ngā tono e whakatau ana i te papa. Ka whakatauhia tō mana pooti e te maha o ngā tohu Riftn kei a koe.",
     "glossaryStakingBadgesDesc": "Ngā tohu e whakaatuhia ana i te taha o tō ingoa kaiwhakamahi i runga i te tapeke o ō pupuranga tohu Riftn (pūkete + raka). E 13 ngā taumata — ka nui ake ngā tohu kei a koe, ka teitei ake tō taumata tohu. Ka nui ake te mana pooti whakahaere me te iti ake o ngā utu papa e ngā taumata teitei.",
     "glossaryLeaderboardDesc": "Ka whakataungia ngā kaiwhakamahi mā te tapeke o te pauna tohu Riftn (pūkete + raka puta noa i ngā mekameka katoa). Ka whakahoutia ngā whakataunga i ngā wā katoa, ā, ka whai i ngā huringa 1-ra me te 1-wiki. Ka taea hoki e koe te tohu mā te tohutohu i tukua, tohutohu i riro mai, ngā kaiwhai, ngā pai, me ngā kaiohauru.",
-    "glossaryDhbTokenDesc": "Ko te DHB te tohu ticker mo nga tohu Riftn, te tohu painga taketake o Riftn. Whakamahia mo te tipping, te ihirangi utu-ki-te-rangi, te pooti whakahaere, me te staking."
+    "glossaryDhbTokenDesc": "Ko te tohu te tohu ticker mo nga tohu Riftn, te tohu painga taketake o Riftn. Whakamahia mo te tipping, te ihirangi utu-ki-te-rangi, te pooti whakahaere, me te staking."
   },
   "arcade": {
     "submitAccessibility": "Tukua he kēmu ki te arcade",
@@ -8069,7 +8069,7 @@
   },
   "stats": {
     "money": {
-      "dhbMarket": "I te wā o tēnei pānuitanga, ko te utu o DHB he ${{price}}.",
+      "dhbMarket": "I te wā o tēnei pānuitanga, ko te utu o tohu he ${{price}}.",
       "chartDaily": "Nga utu me nga utu i ia ra",
       "chartMonthly": "Te utu me te utu i ia ra, te toharite o ia marama",
       "conversionTerm": "Ngā utu",
@@ -8078,7 +8078,7 @@
       "coveredHint": "nga utu e utua ana e nga moni whiwhi",
       "definitionsSubtitle": "Ko ia raina, i te wahi e korerotia ana, me te aha e mahue",
       "definitionsTitle": "He aha te mea e tatau ana",
-      "dhbPeg": "Kahore he utu mākete e wātea ana i roto i tenei pānui, na DHB i runga i te pene.",
+      "dhbPeg": "Kahore he utu mākete e wātea ana i roto i tenei pānui, na tohu i runga i te pene.",
       "estimatedOperations": "Ngā mahi kua whakaritea",
       "estimatedOperationsNote": "Ko ngā utu whakahaere e whai ana i tētahi ia ā-marama kua whakatauira, ka eke ki te $100,000 i te marama o Whiringa-ā-rangi 2021, ā, ka heke i muri iho. Kei roto ko ngā pire kua tuhia, me te kore e tatau rua. He whakatau tata tēnei, ehara i te pukapuka nama.",
       "grossBnbSharingNote": "Kei roto i te moni whiwhi ko te BNB i tiritiria ki ngā kaipupuri me ngā kaiwhakauru. I tohatohahia aua utu, kāore i puritia e Riftn.",
@@ -12981,7 +12981,7 @@
           "4": "Hei tuhi i tētahi reo-rongo, pāwhiritia te ata hopuoro.",
           "5": "Hei tāpiri i tētahi GIF, pāwhiritia te ata GIF ka rapu i tētahi.",
           "6": "Whakamahia ngā #hashtags hei whakarōpū i tō whakairinga (hei tauira, #crypto, #defi).",
-          "7": "Whakamahia ngā $cashtags hei tohutoro i ngā tohu (hei tauira, $DHB, $ETH).",
+          "7": "Whakamahia ngā $cashtags hei tohutoro i ngā tohu (hei tauira, $RIFT, $ETH).",
           "8": "Whakamahia ngā @mentions hei tohu i ētahi atu kaiwhakamahi (hei tauira, @username).",
           "9": "Pāwhiritia te 'Whakairinga' hei whakaputa. Ka puta tō whakairinga ki te pātaka tonu."
         },
@@ -14310,7 +14310,7 @@
       "plain": "Māmā",
       "style": "Kāhua",
       "celebration": "Te whakanui",
-      "minAmount": "He tohutohu iti rawa hei whakaatu (DHB)",
+      "minAmount": "He tohutohu iti rawa hei whakaatu (tohu)",
       "showMessage": "Whakaatuhia te karere tohutohu",
       "confirmedOnly": "Anake i muri i te whakamana o te utu",
       "confirmedOnlyHint": "E tatari ana i etahi hēkona mo te mekameka, kia kore ai e puta he tohu e kore e utua.",
@@ -14383,7 +14383,7 @@
       "name": "Ingoa",
       "when": "Ina",
       "then": "Katahi",
-      "minAmount": "Te tīpuna iti (DHB)",
+      "minAmount": "Te tīpuna iti (tohu)",
       "command": "Whakahau",
       "keyword": "Kupu, kupu rānei",
       "audience": "Ko wai e taea te whakatupu",
@@ -14426,7 +14426,7 @@
         "webhook": "Tukuna he paetukutuku"
       },
       "summary": {
-        "tip": "Tohu o {{amount}} DHB neke atu ranei"
+        "tip": "Tohu o {{amount}} tohu neke atu ranei"
       },
       "presets": {
         "blank": "Ko te ture puru",
@@ -14438,13 +14438,13 @@
       "presetHints": {
         "blank": "Tīmata i tetahi mea",
         "readChat": "Pānuihia ngā karere o ō kaiwhaiwhai, kotahi ia mātakitaki i ia 30 hēkona",
-        "bigTip": "Whakaritea he haona hau me te whakaatu i te whakatupato mo nga tohutohu o te 100,000 DHB neke atu ranei",
+        "bigTip": "Whakaritea he haona hau me te whakaatu i te whakatupato mo nga tohutohu o te 100,000 tohu neke atu ranei",
         "thankFollowers": "Tukuna he mihi ki a koe i roto i to korerorero ina whai ake tetahi",
         "command": "Whakautu a!whakahau i roto i to koutou kōrerorero"
       },
       "presetText": {
         "readChat": "{name} ka mea {message}",
-        "bigTip": "{name} i tukuna {amount} DHB!",
+        "bigTip": "{name} i tukuna {amount} tohu!",
         "thankFollowers": "Mauruuru koe mo te whai ake, {name}!",
         "command": "Kia ora {name}, Nau mai ki te awa!"
       },
@@ -14543,7 +14543,7 @@
     "subathon": {
       "title": "Subathon",
       "intro": "He whakahuatanga whakamutunga i runga i tō kaupapa. Ko ia taonga utua, whai, me te tāpui e tāpiri ana i te wā, koia nei te rūma e pupuri ana i a koe kia ora.",
-      "secondsPerThousand": "Hēkona tāpirihia ia 1,000 DHB taonga tukuna",
+      "secondsPerThousand": "Hēkona tāpirihia ia 1,000 tohu taonga tukuna",
       "secondsPerFollow": "Hēkona tāpirihia ia whai",
       "secondsPerSubscribe": "Hēkona tāpirihia ia tāpui",
       "capHours": "Te roa roa e taea ai te rere (haora)",
@@ -14559,7 +14559,7 @@
     },
     "points": {
       "title": "Kaitirotiro whakapono",
-      "intro": "Ka whiwhi te kaitirotiro i te tohu mō ia meneti e titiro ana ki a koe me te kotahi mō ia 100 DHB e tukuna ana. Ko te korero me ngā whakautu kaore e whiwhi, koia nei kaore e taea te whāngai i ngā tohu.",
+      "intro": "Ka whiwhi te kaitirotiro i te tohu mō ia meneti e titiro ana ki a koe me te kotahi mō ia 100 tohu e tukuna ana. Ko te korero me ngā whakautu kaore e whiwhi, koia nei kaore e taea te whāngai i ngā tohu.",
       "empty": "Kaore he tohu tonu. Ka hangaia aua mea i te mea e titiro ana me te tukuna.",
       "widgetHint": "Tāpiri te Kaitirotiro whakapono widget kia whakaaturia tēnei rārangi i runga i te kaupapa."
     }
