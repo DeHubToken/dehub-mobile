@@ -127,7 +127,10 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   // The inline Shorts sheet has no backdrop: it sits inside the feed.
-  const backdrop = useSheetBackdrop(!inline && !split);
+  // Android gets a plain scrim, not the live blur: the blur re-samples the
+  // whole page on every frame the comment list scrolls (same cost PageDrawer
+  // dropped). iOS keeps its system material, which is cheap.
+  const backdrop = useSheetBackdrop(!inline && !split && Platform.OS !== "android");
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
   /** Something unsent in the composer — CommentSection tells us. */
   const [hasUnsent, setHasUnsent] = useState(false);
