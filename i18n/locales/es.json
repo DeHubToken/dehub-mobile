@@ -7112,6 +7112,9 @@
     "viewReposts": "Ver reposiciones"
   },
   "dm": {
+    "download": "Descargar",
+    "fileSaved": "Archivo guardado",
+    "fileSaveFailed": "No se pudo guardar el archivo",
     "online": "En línea",
     "attachFailed": "No se pudo adjuntar ese archivo.",
     "removeAttachment": "Quitar adjunto",
