@@ -19,7 +19,7 @@ import FeedPillPullEffect from './FeedPillPullEffect';
 import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
 // Use the same padded artwork and image box as the web capsule.
-const MARK = require("../../assets/web-icons/dehub-logo-compact.png");
+const MARK = require("../../assets/web-icons/dehub-island-logo.png");
 const MARK_HEIGHT = 36;
 export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
