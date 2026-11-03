@@ -14695,5 +14695,19 @@
       "caption": "Caasima fuulaa kanaa",
       "alt": "Barruu alt: fuulaan kun maal agarsiisa"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Mint godhame",
+    "statForSale": "Gurgurtaa jira",
+    "sellYours": "Kee gurguri",
+    "sellYoursHint": "Jidhaatti galchi",
+    "latestMints": "Mint amma damee",
+    "tapToOffer": "Tokko cuqaasi waliigalcha gochuu",
+    "collections": "Walitti qabama",
+    "days": "{{count}} guyyaa",
+    "spotlightForSale": "Amma gurgurtaa jira",
+    "spotlightNew": "Amma mint godhame",
+    "buyFor": "{{price}} bitaadhaaf kadi"
   }
 }

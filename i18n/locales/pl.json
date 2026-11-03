@@ -14727,5 +14727,19 @@
     "taken": "To konto GitHub jest już związane z innym profilem Riftn.",
     "failed": "Nie udało się połączyć z GitHub. Spróbuj ponownie.",
     "unavailable": "Weryfikacja GitHub jest w drodze."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Mintowane",
+    "statForSale": "Do sprzedaży",
+    "sellYours": "Sprzedaj swoje",
+    "sellYoursHint": "Dodaj z portfela",
+    "latestMints": "Najnowsze minty",
+    "tapToOffer": "Kliknij jeden, aby złożyć ofertę",
+    "collections": "Zbiory",
+    "days": "{{count}} dni",
+    "spotlightForSale": "Do sprzedaży teraz",
+    "spotlightNew": "Tutaj właśnie mintowano",
+    "buyFor": "Kup za {{price}}"
   }
 }

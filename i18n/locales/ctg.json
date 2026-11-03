@@ -14790,5 +14790,19 @@
       "caption": "এই পেজের ক্যাপশন",
       "alt": "অল্ট টেক্সট: পেজটা কি দেখায়"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ডেহুব পোস্টস",
+    "statMinted": "মিন্টেড",
+    "statForSale": "বিক্রয়ের জন্য",
+    "sellYours": "আপনার বিক্রি করুন",
+    "sellYoursHint": "তুমার ওয়ালেট থেইক্যা লিস্ট",
+    "latestMints": "শেয়ার মার্কেটে আজকের শেয়ার মূল্য পরিবর্তন",
+    "tapToOffer": "একটি প্রস্তাব দিন",
+    "collections": "সংগ্রহ",
+    "days": "{{count}} দিন",
+    "spotlightForSale": "এখন বিক্রির জন্য",
+    "spotlightNew": "শুধু মুদ্রিত",
+    "buyFor": "কিন জন্য {{price}}"
   }
 }

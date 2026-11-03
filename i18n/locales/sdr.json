@@ -14710,5 +14710,13 @@
       "caption": "इस पन्ने के लिए शीर्षक",
       "alt": "Alt text: पन्ना क्या दिखाता है"
     }
+  },
+  "nftMarket": {
+    "statMinted": "Minted",
+    "tapToOffer": "একটি প্রস্তাব দিতে একটি ট্যাপ করুন",
+    "days": "{{count}} rōz",
+    "spotlightForSale": "فروشگاه",
+    "spotlightNew": "अभी मिंट किया गया",
+    "buyFor": "{{price}} के लिए खरीदें"
   }
 }

@@ -14661,5 +14661,19 @@
       "caption": "此頁的標題",
       "alt": "替代文字：此頁顯示的內容"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub 發佈",
+    "statMinted": "鑄造",
+    "statForSale": "出售中",
+    "sellYours": "賣你嘅",
+    "sellYoursHint": "由你個錢包列出",
+    "latestMints": "最新鑄造",
+    "tapToOffer": "點擊一個做出報價",
+    "collections": "收藏",
+    "days": "{{count}} 日",
+    "spotlightForSale": "而家出售",
+    "spotlightNew": "剛鑄造",
+    "buyFor": "買 {{price}}"
   }
 }

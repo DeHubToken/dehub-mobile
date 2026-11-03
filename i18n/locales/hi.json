@@ -14666,5 +14666,19 @@
     "taken": "वह GitHub अकाउंट पहले से ही किसी अन्य Riftn प्रोफ़ाइल पर है।",
     "failed": "GitHub को कनेक्ट नहीं किया जा सका। फिर से कोशिश करें।",
     "unavailable": "GitHub वेरिफ़िकेशन जल्द ही आ रहा है।"
+  },
+  "nftMarket": {
+    "dehubPostsName": "डिहब पोस्ट्स",
+    "statMinted": "मिंटेड",
+    "statForSale": "बिक्री के लिए",
+    "sellYours": "अपना बेचें",
+    "sellYoursHint": "अपने वॉलेट से सूचीबद्ध करें",
+    "latestMints": "नवीनतम मिंट्स",
+    "tapToOffer": "एक पर टैप करके ऑफर दें",
+    "collections": "कलेक्शन",
+    "days": "{{count}} दिन",
+    "spotlightForSale": "अभी बिक्री पर",
+    "spotlightNew": "अभी मिंटेड",
+    "buyFor": "{{price}} के लिए खरीदें"
   }
 }

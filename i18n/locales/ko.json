@@ -14660,5 +14660,19 @@
     "taken": "그 GitHub 계정은 이미 다른 Riftn 프로필에 등록되어 있습니다.",
     "failed": "GitHub에 연결할 수 없습니다. 다시 시도해 주세요.",
     "unavailable": "GitHub 인증이 곧 출시됩니다."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub 게시물",
+    "statMinted": "민팅됨",
+    "statForSale": "판매 중",
+    "sellYours": "당신의 것을 판매하세요",
+    "sellYoursHint": "지갑에서 나열",
+    "latestMints": "최신 민트",
+    "tapToOffer": "하나를 탭하여 제안하기",
+    "collections": "컬렉션",
+    "days": "{{count}} 일",
+    "spotlightForSale": "지금 판매 중",
+    "spotlightNew": "방금 민팅됨",
+    "buyFor": "{{price}}에 구매"
   }
 }

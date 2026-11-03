@@ -14745,5 +14745,17 @@
     "taken": "Tài khoản GitHub này đã được liên kết với một tài khoản Riftn khác.",
     "failed": "Không thể kết nối GitHub. Vui lòng thử lại.",
     "unavailable": "Xác minh GitHub đang được chuẩn bị."
+  },
+  "nftMarket": {
+    "dehubPostsName": "Đăng bài trên DeHub",
+    "statMinted": "Minted",
+    "statForSale": "Đang bán",
+    "sellYours": "Bán của bạn",
+    "sellYoursHint": "Danh sách từ ví của bạn",
+    "tapToOffer": "Nhấn vào một để đưa ra một đề nghị.",
+    "collections": "Sưu tập",
+    "days": "{{count}} ngày",
+    "spotlightForSale": "Đang bán hiện nay",
+    "buyFor": "Mua cho {{price}}"
   }
 }

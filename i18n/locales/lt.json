@@ -14646,5 +14646,19 @@
     "taken": "Ta GitHub paskyra jau yra kitame Riftn profilyje.",
     "failed": "Nepavyko prijungti GitHub. Bandykite dar kartą.",
     "unavailable": "GitHub patvirtinimas netrukus bus prieinamas."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Postai",
+    "statMinted": "Minted",
+    "statForSale": "Pardavimas",
+    "sellYours": "Parduok savo",
+    "sellYoursHint": "Iš sąrašo iš savo valuto",
+    "latestMints": "Paskutinės mintos",
+    "tapToOffer": "Spusti ant vienos, kad pasiūlyk",
+    "collections": "Kolekcijos",
+    "days": "{{count}} dienų",
+    "spotlightForSale": "Pardavimas dabar",
+    "spotlightNew": "Mintos tik pradėtos",
+    "buyFor": "Kupi už {{price}}"
   }
 }

@@ -14664,5 +14664,19 @@
       "caption": "இந்த பக்கத்திற்கான தலைப்பு",
       "alt": "படவிவரம்: இந்த பக்கத்தில் உள்ளதை விளக்கவும்"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "தொகை",
+    "statMinted": "மின்ட்",
+    "statForSale": "விற்பனைக்கு",
+    "sellYours": "உங்களை விற்பது",
+    "sellYoursHint": "வாக்கீடு",
+    "latestMints": "முதல் முறை",
+    "tapToOffer": "ஒரு வரவேற்பு செய்ய",
+    "collections": "கட்டுரைகள்",
+    "days": "{{count}} நாட்கள்",
+    "spotlightForSale": "விற்பனைக்கு தற்போது கிடைக்கிறது",
+    "spotlightNew": "புதியதாக மின்ட் செய்யப்பட்டது",
+    "buyFor": "கட்டணம் செலுத்து {{price}}"
   }
 }

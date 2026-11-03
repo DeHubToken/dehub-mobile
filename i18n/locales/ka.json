@@ -14700,5 +14700,19 @@
     "taken": "ეს GitHub-ის ანგარიში უკვე სხვა Riftn პროფილზეა დარეგისტრირებული.",
     "failed": "არ შეგიძლიათ GitHub-თან კავშირი. გაუსწორეთ.",
     "unavailable": "გიტჰაბის ავტენტიფიკაცია მალე ჩამოყალიბდება."
+  },
+  "nftMarket": {
+    "dehubPostsName": "დეHUB-ის პოსტები",
+    "statMinted": "მინტებული",
+    "statForSale": "გაყიდვისთვის",
+    "sellYours": "გაყიდეთ თქვენი",
+    "sellYoursHint": "დამატეთ თქვენი პორტფელიდან",
+    "latestMints": "ახალი მინტები",
+    "tapToOffer": "გამოჩენეთ ერთი, რომ შესთავაზოთ ოფერი",
+    "collections": "კოლექციები",
+    "days": "{{count}} დღე",
+    "spotlightForSale": "გაყიდვისთვის ახლა",
+    "spotlightNew": "მხოლოდ მინტებულია",
+    "buyFor": "გაყიდეთ {{price}}-ზე"
   }
 }

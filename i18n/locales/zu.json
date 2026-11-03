@@ -14689,5 +14689,19 @@
       "caption": "Isihloko saleli khasi",
       "alt": "Alt text: okuthiwa ikhasi libonisa"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "Ukubhala kwenye wallet yako",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Ukubuyekeza ukhuluma ukuthi ukhuluma",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "Ungcono kwa sasa",
+    "spotlightNew": "Just minted",
+    "buyFor": "Thenga ngo-{{price}}"
   }
 }

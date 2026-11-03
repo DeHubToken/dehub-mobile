@@ -14658,5 +14658,19 @@
       "caption": "ह्या पेजची कॅप्शन",
       "alt": "अल्ट टेक्स्ट: पेजवर काय आहे ते दाखवते"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub पोस्ट्स",
+    "statMinted": "मिंट केलेले",
+    "statForSale": "विक्रीसाठी",
+    "sellYours": "आपले विकण्यासाठी",
+    "sellYoursHint": "वॉलेटमधून यादी",
+    "latestMints": "नवीन मिंट्स",
+    "tapToOffer": "एक टॅप करून ऑफर द्या",
+    "collections": "कलेक्शन्स",
+    "days": "{{count}} दिवस",
+    "spotlightForSale": "आता विक्रीसाठी",
+    "spotlightNew": "नवीन मिंट केलेले",
+    "buyFor": "{{price}} रकमेत खरेदी करा"
   }
 }

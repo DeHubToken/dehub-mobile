@@ -14702,5 +14702,19 @@
       "caption": "यो पृष्ठको टिप्पणी",
       "alt": "अल्ट टेक्स्ट: यो पृष्ठमा के छ भनेको"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub पोस्टहरू",
+    "statMinted": "मिन्ट गरिएको",
+    "statForSale": "बिक्रीमा",
+    "sellYours": "अप्नो बिक्री गर्नुहोस्",
+    "sellYoursHint": "अप्नो वॉलेटबाट सूचीबद्ध गर्नुहोस्",
+    "latestMints": "हालै मिन्ट गरिएका",
+    "tapToOffer": "एक टप गर्नुहोस् प्रस्ताव गर्न",
+    "collections": "सङ्ग्रहहरू",
+    "days": "{{count}} दिन",
+    "spotlightForSale": "हालै बिक्रीमा",
+    "spotlightNew": "हालै मिन्ट गरिएको",
+    "buyFor": "{{price}} मा खरिद गर्नुहोस्"
   }
 }

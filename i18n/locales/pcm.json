@@ -14612,5 +14612,15 @@
     "editor": {
       "cover": "Cover"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightNew": "Just minted"
   }
 }

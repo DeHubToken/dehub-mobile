@@ -14646,5 +14646,18 @@
     "taken": "Konti i GitHub-it i tillë është në një profil të tjetër Riftn.",
     "failed": "Nuk mund të lidhemi me GitHub. Pritni edhe një herë.",
     "unavailable": "Verifikimi i GitHub-it është në rrugën e pritjes."
+  },
+  "nftMarket": {
+    "dehubPostsName": "Postimet e DeHub",
+    "statMinted": "Minted",
+    "statForSale": "Për shitje",
+    "sellYours": "Vendosni atë",
+    "sellYoursHint": "Lista nga portofoliu i tuaj",
+    "latestMints": "Më të fundit mëngjes",
+    "tapToOffer": "Tapa për të bërë një ofertë",
+    "collections": "Kollekime",
+    "days": "{{count}} ditë",
+    "spotlightForSale": "Në shitje tani",
+    "buyFor": "Blëni për {{price}}"
   }
 }

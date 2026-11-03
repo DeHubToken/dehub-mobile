@@ -14618,5 +14618,18 @@
       "caption": "Qoraalka sawirka boggan",
       "alt": "Alt text: waxa boggu muujinayo"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Waxaa la sheegay in la xiray",
+    "sellYours": "Mabda'kaaga aad ku doorto.",
+    "sellYoursHint": "Dhamaan kuwaajijiyahaagaaga.",
+    "latestMints": "Mintiyo kaleeya",
+    "tapToOffer": "Waxa aad u tahay in aad ugu bixisaa offer?",
+    "collections": "Dhaqankaadaha",
+    "days": "{{count}} maalmooda",
+    "spotlightForSale": "Waxaa la sheegay in la xiray",
+    "spotlightNew": "Waxay ahaa midabka hore"
   }
 }

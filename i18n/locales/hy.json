@@ -14646,5 +14646,19 @@
     "taken": "Այդ GitHub հաշիվը արդեն գտնվում է մեկ այլ Riftn պրոֆիլում.",
     "failed": "Չհաջողվեց միանալ GitHub‑ին։ Փորձեք նորից.",
     "unavailable": "GitHub-ի ստուգումը շուտով կհասկանա."
+  },
+  "nftMarket": {
+    "dehubPostsName": "ԴեՀուբ Հրապարակումներ",
+    "statMinted": "Նորած",
+    "statForSale": "Վաճառքի",
+    "sellYours": "Վաճառիր քո",
+    "sellYoursHint": "Ցուցակիր ձեր դրամապանակից",
+    "latestMints": "Վերջին նորածները",
+    "tapToOffer": "Սեղմեք մեկը առաջարկելու համար",
+    "collections": "Հավաքածուներ",
+    "days": "{{count}} օր",
+    "spotlightForSale": "Վաճառքի հիմա",
+    "spotlightNew": "Միայն նորած",
+    "buyFor": "Գնա {{price}}"
   }
 }

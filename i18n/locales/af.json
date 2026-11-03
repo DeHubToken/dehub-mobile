@@ -14789,5 +14789,19 @@
       "caption": "Onderskrif vir hierdie bladsy",
       "alt": "Alt-teks: wat die bladsy wys"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Berigte",
+    "statMinted": "Gemint",
+    "statForSale": "Vir verkoop",
+    "sellYours": "Verkoop jou",
+    "sellYoursHint": "Lys vanaf jou beursie",
+    "latestMints": "Laatste mints",
+    "tapToOffer": "Tik een om 'n aanbod te maak",
+    "collections": "Versamelinge",
+    "days": "{{count}} dae",
+    "spotlightForSale": "Nou vir verkoop",
+    "spotlightNew": "Net gemint",
+    "buyFor": "Koop vir {{price}}"
   }
 }

@@ -14655,5 +14655,19 @@
       "cover": "Kafada",
       "caption": "Bayani don wannan shafi"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "Jerin daga wallet ɗinka",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Danna ɗaya don yin tayin",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "Ana sayar da shi yanzu",
+    "spotlightNew": "Just minted",
+    "buyFor": "Sayi don {{price}}"
   }
 }

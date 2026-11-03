@@ -14694,5 +14694,19 @@
       "caption": "عنوان این صفحه",
       "alt": "متن جایگزین: آنچه صفحه نشان می‌دهد"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "پست‌های DeHub",
+    "statMinted": "دست‌نویس شد",
+    "statForSale": "به فروش",
+    "sellYours": "فروش خود را بکنید",
+    "sellYoursHint": "فهرست از کیف پول خود",
+    "latestMints": "آخرین دست‌نویس‌ها",
+    "tapToOffer": "یک‌را را لمس کنید تا پیشنهاد دهید",
+    "collections": "مجموعه‌ها",
+    "days": "{{count}} روز",
+    "spotlightForSale": "هم‌اکنون به فروش",
+    "spotlightNew": "فقط دست‌نویس شد",
+    "buyFor": "خرید به قیمت {{price}}"
   }
 }

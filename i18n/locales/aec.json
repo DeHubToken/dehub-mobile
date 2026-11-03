@@ -14692,5 +14692,19 @@
       "caption": "عنوان الصفحه دى",
       "alt": "نص بديل: ما فيه الصوره"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "دِهوب بوستس",
+    "statMinted": "مِنت",
+    "statForSale": "لِسـة للبيع",
+    "sellYours": "بيع اللي عندك",
+    "sellYoursHint": "قائمة من محفظتك",
+    "latestMints": "أحدث المِنتس",
+    "tapToOffer": "اضغط على واحد عشان تِقدّم عرض",
+    "collections": "الـكولكشنز",
+    "days": "{{count}} أيام",
+    "spotlightForSale": "لِسـة للبيع دلوقتي",
+    "spotlightNew": "مِنت للتو",
+    "buyFor": "اشتري بـ {{price}}"
   }
 }

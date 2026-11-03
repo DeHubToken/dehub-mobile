@@ -14684,5 +14684,19 @@
       "caption": "ဤစာမျက်နှာအတွက် ခေါင်းစဉ်",
       "alt": "အစားထိုးစာသား - စာမျက်နှာတွင် ပြထားသည်များ"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ဒီဟာဒ် (DeHub) ပိုစ်များ",
+    "statMinted": "မင်တ်လုပ်ထားသည်",
+    "statForSale": "ရောင်းချရန်",
+    "sellYours": "သင်ခွင့်ရောင်းချပါ",
+    "sellYoursHint": "သင်၏ wallet မှ စာရင်းသွင်းပါ",
+    "latestMints": "နောက်ဆုံး mints",
+    "tapToOffer": "တစ်ခုကို ထိပြီး အဆိုပြုမှု ပြုလုပ်ပါ",
+    "collections": "စုစည်းမှုများ",
+    "days": "{{count}} ရက်",
+    "spotlightForSale": "ယခုအခါ ရောင်းချရန်",
+    "spotlightNew": "အခုတလောက် မင်တ်လုပ်ထားသည်",
+    "buyFor": "{{price}} အတွက် ဝယ်ယူပါ"
   }
 }

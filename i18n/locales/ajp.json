@@ -14647,5 +14647,19 @@
       "caption": "وصف هذه الصفحة",
       "alt": "نص البطاقة: ما الذي يظهر على الصفحة"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "مشاركات DeHub",
+    "statMinted": "مُصَدَّق",
+    "statForSale": "للبيع",
+    "sellYours": "بيع مالك",
+    "sellYoursHint": "قائمة من محفظتك",
+    "latestMints": "أحدث القشور",
+    "tapToOffer": "ضغط على زر \"قدم عرض\"",
+    "collections": "المجموعات",
+    "days": "{{count}} أيام",
+    "spotlightForSale": "بيت بيعوا",
+    "spotlightNew": "جدداً",
+    "buyFor": "اشتري لـ {{price}}"
   }
 }

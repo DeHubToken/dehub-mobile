@@ -14659,5 +14659,19 @@
     "taken": "Akun GitHub tersebut sudah ada di profil Riftn lain.",
     "failed": "Tidak dapat menghubungkan GitHub. Coba lagi.",
     "unavailable": "Verifikasi GitHub akan segera tersedia."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "Daftar dari dompetmu",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Tekan satu untuk membuat tawaran",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "Untuk dijual sekarang",
+    "spotlightNew": "Just minted",
+    "buyFor": "Belilah untuk {{price}}"
   }
 }

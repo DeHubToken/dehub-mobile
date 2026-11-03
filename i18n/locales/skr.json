@@ -14622,5 +14622,13 @@
       "caption": "اس صفحے کا عنوان",
       "alt": "لکچر ٹیکسٹ: یہ صفحہ کیا دکھاتا ہے"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "دہیوب پوسٹس",
+    "tapToOffer": "تپوں کو ایک آپریشن کرنے کے لئے پیشکش کرنے کے لئے",
+    "collections": "ڈھیر",
+    "spotlightForSale": "ہن ویلے کے لئے فروخت",
+    "spotlightNew": "جسٹ میٹڈ",
+    "buyFor": "کُپْری {{price}} لُو"
   }
 }

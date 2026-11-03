@@ -14635,5 +14635,19 @@
       "caption": "Бетке сөз",
       "alt": "Алт текст: бетте көрсөтүлгөн нерселер"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "Деүб Postlar",
+    "statMinted": "Минтед",
+    "statForSale": "Сатуу-үзүлүшү",
+    "sellYours": "Сактооңузду сатуңуз",
+    "sellYoursHint": "Сактоочу коштунан көрүшүү.",
+    "latestMints": "Актуалдуу мүнөттөгү мөөттөр",
+    "tapToOffer": "Бирөөнү басып сунуш жасаңыз",
+    "collections": "Коллекциялар",
+    "days": "{{count}} күндү",
+    "spotlightForSale": "Азыр сатылууда",
+    "spotlightNew": "Жеңилдик менен калтырдым.",
+    "buyFor": "Сатып алуу үчүн {{price}}га баруу"
   }
 }

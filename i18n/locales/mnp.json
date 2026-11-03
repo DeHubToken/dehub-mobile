@@ -14684,5 +14684,13 @@
       "caption": "這頁的標題",
       "alt": "替代文字：這頁顯示的內容"
     }
+  },
+  "nftMarket": {
+    "statForSale": "出售",
+    "collections": "收藏",
+    "days": "{{count}} 日",
+    "spotlightForSale": "现在出售",
+    "spotlightNew": "刚刚铸造",
+    "buyFor": "買給{{price}}"
   }
 }

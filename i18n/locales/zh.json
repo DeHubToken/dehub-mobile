@@ -14664,5 +14664,18 @@
     "taken": "该 GitHub 帐户已在另一个 Riftn 个人资料上。",
     "failed": "无法连接 GitHub。请再试一次。",
     "unavailable": "GitHub 验证即将推出。"
+  },
+  "nftMarket": {
+    "statMinted": "提炼过的（或精制的）",
+    "statForSale": "出售中",
+    "sellYours": "卖你的",
+    "sellYoursHint": "我要取钱。",
+    "latestMints": "最新的糖果",
+    "tapToOffer": "點擊一下就能發出邀約",
+    "collections": "收藏",
+    "days": "{{count}}天",
+    "spotlightForSale": "现出售",
+    "spotlightNew": "刚铸造的",
+    "buyFor": "为 {{price}} 购买"
   }
 }

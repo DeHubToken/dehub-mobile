@@ -14660,5 +14660,19 @@
       "caption": "Заглавие за тази страница:",
       "alt": "Алт текст: какъвто е съдържанието на страницата"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ДеХъб Публикации",
+    "statMinted": "Изпечено",
+    "statForSale": "За продажба",
+    "sellYours": "Продайте вашето",
+    "sellYoursHint": "Списък от вашия портфейл",
+    "latestMints": "Последни печати",
+    "tapToOffer": "Натиснете едно, за да направите оферта",
+    "collections": "Колекции",
+    "days": "{{count}} дни",
+    "spotlightForSale": "За продажба сега",
+    "spotlightNew": "Току що изпечено",
+    "buyFor": "Купете за {{price}}"
   }
 }

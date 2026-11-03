@@ -14647,5 +14647,18 @@
     "taken": "Hesabu ya GitHub hiyo imeandikwa katika profaili ya Riftn ya nyingine.",
     "failed": "Hakuwezi kuunganisha GitHub. Ubaki na kufanya tena.",
     "unavailable": "GitHub verification itatokea baadaye."
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Kwa uuzaji",
+    "sellYours": "Unapata kuuza",
+    "sellYoursHint": "Orodha ya pesa zako kwenye mkoba",
+    "latestMints": "Mabati ya mwisho",
+    "tapToOffer": "Tafuta kwa mtu kufanya ujanibishaji",
+    "collections": "Masharti",
+    "spotlightForSale": "Inauzwa sasa",
+    "spotlightNew": "Kujifanya tu",
+    "buyFor": "Nunua kwa {{price}}"
   }
 }

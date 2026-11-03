@@ -14623,5 +14623,16 @@
       "caption": "Dis na caption for dis page.",
       "alt": "I no see wetin page dey show."
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightNew": "Just minted",
+    "buyFor": "Bai for {{price}}"
   }
 }

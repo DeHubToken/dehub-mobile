@@ -15137,5 +15137,18 @@
     "taken": "Цей обліковий запис GitHub вже пов'язаний з іншим профілем на Riftn.",
     "failed": "Не вдалося підключитися до GitHub. Спробуйте ще раз.",
     "unavailable": "GitHub-верифікація скоро буде доступна."
+  },
+  "nftMarket": {
+    "dehubPostsName": "Посты DeHub",
+    "statMinted": "Мінтед",
+    "statForSale": "Для продажу",
+    "sellYours": "Продайте своє",
+    "sellYoursHint": "Список із вашої кишені",
+    "latestMints": "Останні монети",
+    "tapToOffer": "Натисніть на кнопку \"Дати пропозицію\"",
+    "collections": "Збірки",
+    "spotlightForSale": "Тепер продано",
+    "spotlightNew": "Відлито",
+    "buyFor": "Купити за {{price}}"
   }
 }

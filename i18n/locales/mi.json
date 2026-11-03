@@ -14648,5 +14648,19 @@
       "caption": "Kupu whakaaturanga mō tēnei whārangi",
       "alt": "Kupu āhuatanga: he aha te mea e whakaaturia ana e te whārangi"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "Tēnā koe",
+    "statMinted": "Minted",
+    "statForSale": "Hei whakapau",
+    "sellYours": "Hokona tōu",
+    "sellYoursHint": "Whakapau mai i tōu pukapuka",
+    "latestMints": "Ngā whakapau o te mutunga",
+    "tapToOffer": "Tapia tētahi hei whakapau",
+    "collections": "Ngā kohinga",
+    "days": "{{count}} rā",
+    "spotlightForSale": "Hei whakapau i tātou",
+    "spotlightNew": "Kua whakapauhia tērā",
+    "buyFor": "Whakapau hei {{price}}"
   }
 }

@@ -14665,5 +14665,17 @@
       "caption": "ਇਸ ਪੰਨੇ ਲਈ ਕੈਪਸ਼ਨ",
       "alt": "ਅਲਟ ਟੈਕਸਟ: ਪੰਨਾ ਉੱਤੇ ਕੀ ਦਿਖਾਇਆ ਗਿਆ ਹੈ"
     }
+  },
+  "nftMarket": {
+    "statMinted": "ਮਿੰਟਿਡ",
+    "statForSale": "ਵਿਕਰੀ ਵਿਚ",
+    "sellYours": "ਆਪਨਾ ਵੇਚੋ",
+    "sellYoursHint": "ਮੋਹਰੀ ਤੋਂ ਤਾਲਾ",
+    "latestMints": "ਸਭ ਤੋਂ ਹਾਲ ਹੀ ਦੀਆਂ ਮਿੰਟਾਂ",
+    "tapToOffer": "ਤੁਹਾਡੇ ਨੂੰ ਇੱਕ ਪ੍ਰਸਤਾਵ ਦੇਣ ਲਈ ਕਿਸ਼ਤ ਕਰੋ",
+    "collections": "ਸੰਗ੍ਰਹਿ",
+    "days": "{{count}} ਦਿਨ",
+    "spotlightNew": "ਹੁਣੇ ਹੀ ਬਣਾਇਆ",
+    "buyFor": "ਖਰੀਦ ਕਰੋ ਲਈ {{price}}"
   }
 }

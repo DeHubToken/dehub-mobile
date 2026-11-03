@@ -14690,5 +14690,19 @@
     "taken": "บัญชี GitHub นั้นอยู่ในโปรไฟล์ Riftn อีกบัญชีแล้ว",
     "failed": "ไม่สามารถเชื่อมต่อกับ GitHub ได้ ลองอีกครั้ง",
     "unavailable": "การตรวจสอบ GitHub จะมาถึงเร็วๆ นี้"
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub โพสต์",
+    "statMinted": "มินต์",
+    "statForSale": "ขาย",
+    "sellYours": "ขายของคุณ",
+    "sellYoursHint": "จัดจำหน่ายจากกระเป๋าเงินของคุณ",
+    "latestMints": "ล่าสุดที่ Minted",
+    "tapToOffer": "คลิกหนึ่งเพื่อทำการเสนอราคา",
+    "collections": "คอลเล็กชัน",
+    "days": "{{count}} วันที่ผ่านมา",
+    "spotlightForSale": "กำลังขายอยู่",
+    "spotlightNew": "เพิ่ง Minted",
+    "buyFor": "ซื้อที่ {{price}}"
   }
 }

@@ -14645,5 +14645,16 @@
       "caption": "ለዚህ ገጽ ርዕስ",
       "alt": "ተለዋጭ ጽሑፍ: ገጹ ምን እንደሚያሳይ"
     }
+  },
+  "nftMarket": {
+    "statForSale": "ኣብል ኣስተዋል።",
+    "sellYours": "እንኩላን",
+    "sellYoursHint": "ትንሽን ከላይንት",
+    "latestMints": "ስለ የአሁን ጊዜ ማንገስ",
+    "tapToOffer": "ትንሰማ እንተንትንስን",
+    "collections": "አስተዳደር",
+    "spotlightForSale": "በዚህ ወቅት ለማስተዋል",
+    "spotlightNew": "ሕጂ ወሊደ",
+    "buyFor": "ብ {{price}} ግዛ"
   }
 }

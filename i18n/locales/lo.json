@@ -14645,5 +14645,15 @@
       "caption": "ຄໍາບັນຍາຍສໍາລັບໜ້ານີ້",
       "alt": "ຂໍ້ຄວາມທົດແທນ: ສິ່ງທີ່ໜ້າສະແດງ"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ການສະແດງຂ່າວຂອງ DeHub",
+    "statForSale": "ສະຖານສະຫຼາດ",
+    "sellYours": "ສະຫຼາດຂອງທ່ານ",
+    "sellYoursHint": "ການລາຍງານຂອງທ່ານ",
+    "latestMints": "ລາຍການ mint ຫລ້າສຸດ",
+    "tapToOffer": "ແຕະອັນໜຶ່ງເພື່ອສະເໜີລາຄາ",
+    "collections": "ສຳລັບສະກຸນສະກຸນສະກຸນ",
+    "spotlightNew": "ການກະທົບ"
   }
 }

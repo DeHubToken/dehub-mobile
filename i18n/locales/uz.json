@@ -14713,5 +14713,19 @@
       "caption": "Bu sahifaning yozuvi",
       "alt": "Alt matni: sahifada nima ko‘rinadi"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "Sotilmoqda",
+    "sellYours": "Sizningizni sotish",
+    "sellYoursHint": "Walletdan ro'yxatdan o'ting",
+    "latestMints": "Eng yangi mintlar",
+    "tapToOffer": "Birini bosib, taklif qiling",
+    "collections": "Majmualar",
+    "days": "{{count}} kun",
+    "spotlightForSale": "Sotilmoqda",
+    "spotlightNew": "Faqat mint qilingan",
+    "buyFor": "{{price}} uchun sotib oling"
   }
 }

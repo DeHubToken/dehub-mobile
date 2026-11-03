@@ -14634,5 +14634,16 @@
       "caption": "इस पेज का कैप्शन",
       "alt": "अल्ट टेक्स्ट: पेज में क्या है, वो दिखाता है"
     }
+  },
+  "nftMarket": {
+    "statMinted": "बनावल",
+    "statForSale": "बिक्री के लिए",
+    "sellYours": "अपना बेच",
+    "sellYoursHint": "अपना वॉलेट से लिस्ट",
+    "latestMints": "नवीनतम मिंट्स",
+    "tapToOffer": "एक पर टैप करके ऑफर करीं",
+    "collections": "संग्रह",
+    "spotlightForSale": "अब बिक्री पर",
+    "spotlightNew": "अभी मिंट भइल"
   }
 }

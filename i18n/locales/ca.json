@@ -14664,5 +14664,19 @@
       "caption": "Títol per a aquesta pàgina",
       "alt": "Text alternatiu: què mostra la pàgina"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "Publicacions DeHub",
+    "statMinted": "Minted",
+    "statForSale": "En venda",
+    "sellYours": "Vende el teu",
+    "sellYoursHint": "Llista des del teu moneder",
+    "latestMints": "Últims mint",
+    "tapToOffer": "Toca un per fer una oferta",
+    "collections": "Col·leccions",
+    "days": "{{count}} dies",
+    "spotlightForSale": "En venda ara",
+    "spotlightNew": "Acabament mintat",
+    "buyFor": "Compra per {{price}}"
   }
 }

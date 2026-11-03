@@ -14692,5 +14692,19 @@
       "caption": "此页的标题",
       "alt": "替代文本：此页展示的内容"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub 发布",
+    "statMinted": "新铸造",
+    "statForSale": "待售",
+    "sellYours": "出售你的",
+    "sellYoursHint": "从你的钱包列出",
+    "latestMints": "最新铸造",
+    "tapToOffer": "点击一个进行报价",
+    "collections": "收藏",
+    "days": "{{count}} 天",
+    "spotlightForSale": "现在待售",
+    "spotlightNew": "刚刚铸造",
+    "buyFor": "以{{price}}购买"
   }
 }

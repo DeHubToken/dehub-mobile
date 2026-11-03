@@ -14660,5 +14660,19 @@
       "caption": "এই পৃষ্ঠার জন্য ক্যাপশন",
       "alt": "অল্ট টেক্সট: পৃষ্ঠাটি কী দেখাচ্ছে"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "ডি হাব পোস্টস",
+    "statMinted": "মিন্টেড",
+    "statForSale": "বিক্রয়ের জন্য",
+    "sellYours": "আপনারটি বিক্রি করুন",
+    "sellYoursHint": "আপনার ওয়ালেট থেকে তালিকা করুন",
+    "latestMints": "সর্বশেষ মিন্টস",
+    "tapToOffer": "একটি ট্যাপ করে অফার করুন",
+    "collections": "সংগ্রহ",
+    "days": "{{count}} দিন",
+    "spotlightForSale": "এখন বিক্রয়ের জন্য",
+    "spotlightNew": "শুধু মিন্টেড",
+    "buyFor": "{{price}} এর জন্য কিনুন"
   }
 }

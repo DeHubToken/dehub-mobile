@@ -14649,5 +14649,19 @@
       "caption": "ಈ ಪುಟಕ್ಕೆ ಶೀರ್ಷಿಕೆ",
       "alt": "ಅಲ್ಟ್ ಟೆಕ್ಸ್್ಟ್: ಪುಟದಲ್ಲಿ ಏನು ಇದೆ ಎಂಬುದನ್ನು ತೋರಿಸುತ್ತದೆ"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub ಪೋಸ್ಟ್‌ಗಳು",
+    "statMinted": "ಮಿಂಟ್ ಮಾಡಲಾಗಿದೆ",
+    "statForSale": "ಮಾರಾಟಕ್ಕೆ",
+    "sellYours": "ನಿಮ್ಮದನ್ನು ಮಾರಿ",
+    "sellYoursHint": "ನಿಮ್ಮ ವಾಲೆಟ್‌ನಿಂದ ಪಟ್ಟಿ ಮಾಡಿ",
+    "latestMints": "ಇತ್ತೀಚಿನ ಮಿಂಟ್‌ಗಳು",
+    "tapToOffer": "ಆಫರ್ ಮಾಡಲು ಒಂದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ",
+    "collections": "ಸಂಗ್ರಹಗಳು",
+    "days": "{{count}} ದಿನಗಳು",
+    "spotlightForSale": "ಈಗ ಮಾರಾಟಕ್ಕೆ",
+    "spotlightNew": "ಈಗಷ್ಟೇ ಮಿಂಟ್ ಮಾಡಲಾಗಿದೆ",
+    "buyFor": "{{price}} ಗೆ ಖರೀದಿಸಿ"
   }
 }

@@ -14636,5 +14636,18 @@
       "cover": "Kapas",
       "caption": "Bətələr"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "latestMints": "Latest mints",
+    "tapToOffer": "بىرنى چېكىپ تەكلىپ قىلىڭ",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "ئۇيۇنلاردا ساتقۇچى",
+    "spotlightNew": "Just minted",
+    "buyFor": "{{price}} satın al"
   }
 }

@@ -14667,5 +14667,19 @@
       "caption": "Rubrik för denna sida",
       "alt": "Alternativtext: vad sidan visar"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "För sälj",
+    "sellYours": "Sälj ditt",
+    "sellYoursHint": "Lista från din värdehandling",
+    "latestMints": "Senaste mints",
+    "tapToOffer": "Klicka på en för att göra ett bud",
+    "collections": "Samlingar",
+    "days": "{{count}} dagar",
+    "spotlightForSale": "För sälj nu",
+    "spotlightNew": "Nyutgivet",
+    "buyFor": "Köp för {{price}}"
   }
 }

@@ -14644,5 +14644,17 @@
       "caption": "Caption untuk halaman ini",
       "alt": "Teks alternatif: apa yang ditampilkan halaman ini"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "Kanggo ngisorake list lanang dhuwur ing waletmu.",
+    "latestMints": "Latest mints",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightNew": "Just minted",
+    "buyFor": "Kuyéng dhuwur saking {{price}}"
   }
 }

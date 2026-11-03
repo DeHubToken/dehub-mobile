@@ -14626,5 +14626,15 @@
       "caption": "اس صفحے کا کپشن",
       "alt": "لکچر ٹیکسٹ: یہ صفحہ کیا دکھاتا ہے"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub پوسٽس",
+    "sellYoursHint": "ڪھاتي ۾ فهرست",
+    "latestMints": "ڪرنٹ مينٽس",
+    "tapToOffer": "ڪڪڙو ڪري ڪو علاوٰہ ڏنو",
+    "collections": "ڪٽڪر",
+    "spotlightForSale": "ابھي ڪري واپس ڪرڻ لاءِ",
+    "spotlightNew": "جڏھن",
+    "buyFor": "ڪرائے لاءِ {{price}}"
   }
 }

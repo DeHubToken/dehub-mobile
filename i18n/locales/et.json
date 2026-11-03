@@ -14664,5 +14664,19 @@
       "caption": "Pealkiri selle leheküljele",
       "alt": "Alternatiivtekst: mis leheküljel näha on"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "DeHub Postitused",
+    "statMinted": "Mintitud",
+    "statForSale": "Müügile",
+    "sellYours": "Müü oma",
+    "sellYoursHint": "Loetle oma rahakotist",
+    "latestMints": "Viimased mintid",
+    "tapToOffer": "Vajuta üks, et teha pakkumine",
+    "collections": "Kogud",
+    "days": "{{count}} päeva",
+    "spotlightForSale": "Müügile nüüd",
+    "spotlightNew": "Just mintitud",
+    "buyFor": "Osta eest {{price}}"
   }
 }

@@ -14646,5 +14646,19 @@
       "caption": "عنوان لهذه الصفحة",
       "alt": "نص بديل: ما يظهر في الصفحة"
     }
+  },
+  "nftMarket": {
+    "dehubPostsName": "موقع DeHub",
+    "statMinted": "مطبوعات",
+    "statForSale": "للاستئجار",
+    "sellYours": "باعها",
+    "sellYoursHint": "قائمة من محفظتك",
+    "latestMints": "الأحدث",
+    "tapToOffer": "اضغط على واحدة لتقديم عرضك",
+    "collections": "المجموعات",
+    "days": "{{count}} أيام",
+    "spotlightForSale": "للاستئجار الآن",
+    "spotlightNew": "جديدة المطبوعة",
+    "buyFor": "اشتري ل {{price}}"
   }
 }
