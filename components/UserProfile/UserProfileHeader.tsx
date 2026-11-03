@@ -249,7 +249,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           {glassLayers}
           <View style={s.glassBtnContent}>
             <Text style={s.glassBtnLabel}>{t("filters.following")}</Text>
-            <Icon name="Check" size={14} color="#fff" />
+            {/* The tick sits inset in its box: pull it in so both sides of the pill match. */}
+            <View style={s.followingTick}>
+              <Icon name="Check" size={14} color="#fff" />
+            </View>
           </View>
         </TouchableOpacity>
       );
@@ -551,6 +554,9 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 6,
+  },
+  followingTick: {
+    marginRight: -1,
   },
   glassBtnLabel: {
     color: "#fff",

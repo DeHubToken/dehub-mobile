@@ -382,7 +382,8 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
                 </>
               )}
               <View style={styles.followInner}>
-                {done ? <Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /> : null}
+                {/* The tick sits inset in its box: pull it out so both sides of the pill match. */}
+                {done ? <View style={isPending ? undefined : styles.followTick}><Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /></View> : null}
                 <Text style={[styles.followLabel, done ? { color: ink.ink } : styles.followLabelChrome, textMono]}>
                   {followLabel}
                 </Text>
@@ -521,6 +522,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
+  },
+  followTick: {
+    marginLeft: -1,
   },
   followLabel: {
     fontSize: 13,
