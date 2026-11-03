@@ -5,6 +5,7 @@
 import React, { memo, useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { ethers } from "ethers";
 import { ThemeIcon } from "../page/PageKit";
 import { CHAIN_LABEL } from "../../services/nft-market.service";
@@ -21,6 +22,9 @@ export function formatPrice(amount: string, decimals: number): string {
   if (n >= 1) return n.toLocaleString(undefined, { maximumFractionDigits: 3 });
   return n.toLocaleString(undefined, { maximumSignificantDigits: 3 });
 }
+
+// One dot per chain so a mixed grid reads at a glance without a label on every tile.
+const CHAIN_DOT: Record<number, string> = { 56: "#F0B90B", 8453: "#0052FF", 1: "#8A92B2", 4663: "#CCFF00" };
 
 export const NftArt: React.FC<{ uri: string | null | undefined; style?: object }> = ({ uri, style }) => {
   const [broken, setBroken] = useState(false);
@@ -51,12 +55,19 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
   <Pressable onPress={onPress} style={({ pressed }) => [styles.tile, pressed && { opacity: 0.85 }]} accessibilityRole="button" accessibilityLabel={name}>
     <View style={styles.artWrap}>
       <NftArt uri={image} style={styles.art} />
-      {compact ? null : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
+      {compact ? (
+        <View style={[styles.dot, { backgroundColor: CHAIN_DOT[chainId] ?? "#FFFFFF" }]} accessibilityLabel={CHAIN_LABEL[chainId] ?? String(chainId)} />
+      ) : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
       {badge ? <Text style={[styles.badge, styles.badgeRight, compact && styles.badgeSmall]}>{badge}</Text> : null}
-      {compact && (price || priceLabel) ? (
-        <Text numberOfLines={1} style={styles.pricePill}>
-          {price ? `${formatPrice(price.amount, price.decimals)} ${price.symbol}` : priceLabel}
-        </Text>
+      {compact ? (
+        <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.82)"]} style={styles.overlay} pointerEvents="none">
+          <Text numberOfLines={1} style={styles.overlayName}>{name.trim() || "—"}</Text>
+          {price ? (
+            <Text numberOfLines={1} style={styles.overlayPrice}>{`${formatPrice(price.amount, price.decimals)} ${price.symbol}`}</Text>
+          ) : priceLabel ? (
+            <Text numberOfLines={1} style={styles.overlayLabel}>{priceLabel}</Text>
+          ) : null}
+        </LinearGradient>
       ) : null}
     </View>
     {compact ? null : <View style={styles.meta}>
@@ -106,6 +117,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     backgroundColor: "rgba(0,0,0,0.62)",
   },
+  dot: { position: "absolute", left: 7, top: 7, width: 8, height: 8, borderRadius: 4, borderWidth: 1.5, borderColor: "rgba(0,0,0,0.4)" },
+  overlay: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 8, paddingTop: 22, paddingBottom: 6, gap: 1 },
+  overlayName: { color: "#FFFFFF", fontSize: 11.5, fontWeight: "700" },
+  overlayPrice: { color: "#FFFFFF", fontSize: 11, fontWeight: "800" },
+  overlayLabel: { color: "rgba(255,255,255,0.7)", fontSize: 10.5 },
   meta: { padding: 10, gap: 2 },
   collection: { color: "#808089", fontSize: 11 },
   name: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },

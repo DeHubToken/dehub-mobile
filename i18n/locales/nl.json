@@ -115,7 +115,19 @@
     "bundleBadge": "Bundel ×{{n}}",
     "dropBadge": "Prijsdaling",
     "days_one": "{{count}} dag",
-    "days_other": "{{count}} dagen"
+    "days_other": "{{count}} dagen",
+    "dehubPostsName": "DeHub-posts",
+    "statMinted": "Gemint",
+    "statForSale": "Te koop",
+    "sellYours": "Verkoop de jouwe",
+    "sellYoursHint": "Zet te koop vanuit je wallet",
+    "latestMints": "Nieuwste mints",
+    "tapToOffer": "Tik op een NFT om een bod te doen",
+    "collections": "Collecties",
+    "days": "{{count}} dagen",
+    "spotlightForSale": "Nu te koop",
+    "spotlightNew": "Net gemint",
+    "buyFor": "Kopen voor {{price}}"
   },
   "remix": {
     "title": "Remix",

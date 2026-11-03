@@ -115,7 +115,19 @@
     "bundleBadge": "Bundle ×{{n}}",
     "dropBadge": "Price drop",
     "days_one": "{{count}} day",
-    "days_other": "{{count}} days"
+    "days_other": "{{count}} days",
+    "dehubPostsName": "DeHub Posts",
+    "statMinted": "Minted",
+    "statForSale": "For sale",
+    "sellYours": "Sell yours",
+    "sellYoursHint": "List from your wallet",
+    "latestMints": "Latest mints",
+    "tapToOffer": "Tap one to make an offer",
+    "collections": "Collections",
+    "days": "{{count}} days",
+    "spotlightForSale": "For sale now",
+    "spotlightNew": "Just minted",
+    "buyFor": "Buy for {{price}}"
   },
   "remix": {
     "title": "Remix",

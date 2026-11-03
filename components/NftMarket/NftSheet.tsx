@@ -425,9 +425,6 @@ const NftSheet: React.FC<Props> = ({ target, onClose, onSignIn, signer, canTrade
         </View>
       ) : null}
 
-      {canTrade ? (
-        <Text style={sheetStyles.footnote}>{t("nftMarket.feesFootnote", { defaultValue: "Fees: 2%, or 1% when paying in DHB. Every trade is one on-chain swap." })}</Text>
-      ) : null}
     </Sheet>
   );
 };

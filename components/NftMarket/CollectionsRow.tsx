@@ -19,7 +19,7 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
   if (!items.length) return null;
   return (
     <View style={styles.wrap}>
-      <Text style={styles.heading}>{t("nftMarket.trending", { defaultValue: "Trending collections" })}</Text>
+      <Text style={styles.heading}>{t("nftMarket.collections", { defaultValue: "Collections" })}</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.row}>
         {items.map((c) => {
           const on = selected?.chainId === c.chainId && selected.contract === c.contract;
@@ -34,7 +34,7 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
             >
               <View style={styles.artWrap}>
                 <NftArt uri={c.image} style={styles.art} />
-                <Text style={styles.badge}>{CHAIN_LABEL[c.chainId] ?? c.chainId}</Text>
+                <Text style={styles.badge}>{c.chainId ? CHAIN_LABEL[c.chainId] ?? c.chainId : t("nftMarket.allChains", { defaultValue: "All chains" })}</Text>
               </View>
               <View style={styles.meta}>
                 <Text numberOfLines={1} style={styles.name}>{c.name || `${c.contract.slice(0, 6)}…${c.contract.slice(-4)}`}</Text>

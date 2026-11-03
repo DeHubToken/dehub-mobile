@@ -22,6 +22,7 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl } from "../components/Feed/DeHubRefreshControl";
 import NftTile from "../components/NftMarket/NftTile";
 import CollectionsRow from "../components/NftMarket/CollectionsRow";
+import NftSpotlight, { type SpotlightItem } from "../components/NftMarket/NftSpotlight";
 import NftSheet, { priceNow } from "../components/NftMarket/NftSheet";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
@@ -29,12 +30,15 @@ import { shareWithRef } from "../libs/shareRef";
 import { theme } from "../theme";
 import { useWeb3Provider } from "../hooks/use-web3";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import { useUser } from "../context/AuthContext";
-import { canManageAgents } from "../libs/agent-access";
 import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketCollection, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
 
 type Tab = "browse" | "mine" | "sales";
 type ChainFilter = "all" | (typeof MARKET_CHAINS)[number];
+
+/** The one card that stands for DeHub Posts on every chain. */
+const DEHUB_ALL = "dehub:all";
+
+const compactNumber = (n: number) => n.toLocaleString(undefined, { notation: "compact", maximumFractionDigits: 1 });
 
 const TABS: { key: Tab; icon: string; labelKey: string; fallback: string }[] = [
   { key: "browse", icon: "search", labelKey: "nftMarket.tabBrowse", fallback: "Browse" },
@@ -72,13 +76,6 @@ export default function NftMarketScreen() {
   const route = useRoute<any>();
   const insets = useSafeAreaInsets();
   const { provider, account, chainId } = useWeb3Provider();
-  const user = useUser();
-  const owner = canManageAgents(user?.walletAddress || user?.address);
-  useEffect(() => {
-    if (owner) return;
-    if (navigation.canGoBack()) navigation.goBack();
-    else navigation.navigate(ScreenNames.Home);
-  }, [owner, navigation]);
   const canTrade = DIGITAL_PURCHASES_ENABLED;
   const linkOut = Platform.OS === "ios" && inUnitedStates();
 
@@ -90,6 +87,7 @@ export default function NftMarketScreen() {
   const [collOffer, setCollOffer] = useState<NftTarget | null>(null);
   // Chains and sort sit behind one button so the top stays slim.
   const [showFilters, setShowFilters] = useState(false);
+  const [dehubOnly, setDehubOnly] = useState(false);
   const [open, setOpen] = useState<NftTarget | null>(() => {
     const p = route.params ?? {};
     return p.chain && p.contract && p.token ? { chainId: Number(p.chain), contract: String(p.contract), tokenId: String(p.token) } : null;
@@ -127,14 +125,44 @@ export default function NftMarketScreen() {
     enabled: tab === "browse",
     staleTime: 60_000,
   });
-  const allCollections = useMemo<MarketCollection[]>(() => {
-    const listed = collections.data?.items ?? [];
-    const seen = new Set(listed.map((c) => `${c.chainId}:${c.contract}`));
-    const dehub = (showcase.data?.collections ?? [])
-      .filter((c) => !seen.has(`${c.chainId}:${c.contract}`))
-      .map((c) => ({ ...c, isDehub: true, listed: 0, floor: null }));
-    return [...listed, ...dehub];
+  // DeHub Posts live on every chain as one contract each; show them as one
+  // collection, not one card per chain. Other collections keep their own card.
+  const dehubTotals = useMemo(() => {
+    const per = showcase.data?.collections ?? [];
+    const listedDehub = (collections.data?.items ?? []).filter((c) => c.isDehub);
+    return {
+      minted: per.reduce((s, c) => s + (c.minted ?? 0), 0),
+      listed: listedDehub.reduce((s, c) => s + c.listed, 0),
+      image: per[0]?.image ?? listedDehub[0]?.image ?? null,
+      any: per.length > 0 || listedDehub.length > 0,
+    };
   }, [collections.data, showcase.data]);
+  const forSaleTotal = useMemo(() => (collections.data?.items ?? []).reduce((s, c) => s + c.listed, 0), [collections.data]);
+  const allCollections = useMemo<MarketCollection[]>(() => {
+    const others = (collections.data?.items ?? []).filter((c) => !c.isDehub);
+    if (!dehubTotals.any) return others;
+    const dehub: MarketCollection = {
+      chainId: 0,
+      contract: DEHUB_ALL,
+      name: t("nftMarket.dehubPostsName", { defaultValue: "DeHub Posts" }),
+      image: dehubTotals.image,
+      isDehub: true,
+      listed: dehubTotals.listed,
+      floor: null,
+      minted: dehubTotals.minted,
+    };
+    return [dehub, ...others];
+  }, [collections.data, dehubTotals, t]);
+  const pickCollection = (c: MarketCollection | null) => {
+    if (c?.contract === DEHUB_ALL) {
+      setColl(null);
+      setDehubOnly((v) => !v);
+      return;
+    }
+    setDehubOnly(false);
+    setColl(c);
+  };
+  const pickedCollection = dehubOnly ? { chainId: 0, contract: DEHUB_ALL } : coll;
   const showcaseItems = useMemo<ShowcaseNft[]>(() => {
     const items = showcase.data?.items ?? [];
     return coll ? items.filter((n) => n.chainId === coll.chainId && n.contract === coll.contract) : items;
@@ -146,8 +174,41 @@ export default function NftMarketScreen() {
     standard: "erc1155",
     name: n.name,
     image: n.image,
-    collectionName: "DeHub Posts",
+    collectionName: t("nftMarket.dehubPostsName", { defaultValue: "DeHub Posts" }),
   });
+  const titleOf = (name: string | null | undefined, tokenId: string) => name?.trim() || `#${tokenId}`;
+  const listedItems = useMemo(
+    () => (listings.data?.items ?? []).filter((o) => !dehubOnly || o.isDehub),
+    [listings.data, dehubOnly],
+  );
+
+  // The spotlight: newest listings when there are any, newest mints otherwise.
+  // Whatever it shows is left out of the grid below, so nothing appears twice.
+  const spotlightFromListings = !coll && listedItems.length > 0;
+  const spotlight = useMemo<SpotlightItem[]>(() => {
+    if (coll) return [];
+    if (listedItems.length) {
+      return listedItems.slice(0, 5).map((o) => ({
+        key: o.orderHash,
+        name: titleOf(o.nftName, o.tokenId),
+        image: o.nftImage,
+        chainId: o.chainId,
+        price: { amount: priceNow(o), decimals: o.currencyDecimals, symbol: o.currencySymbol },
+        onOpen: () => setOpen(fromOrder(o)),
+      }));
+    }
+    return showcaseItems.filter((n) => n.image).slice(0, 5).map((n) => ({
+      key: `${n.chainId}:${n.contract}:${n.tokenId}`,
+      name: titleOf(n.name, n.tokenId),
+      image: n.image,
+      chainId: n.chainId,
+      onOpen: () => setOpen(showcaseTarget(n)),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coll, listedItems, showcaseItems]);
+  const inSpotlight = useMemo(() => new Set(spotlight.map((s) => s.key)), [spotlight]);
+  const gridListings = spotlightFromListings ? listedItems.filter((o) => !inSpotlight.has(o.orderHash)) : listedItems;
+  const gridMints = spotlightFromListings ? showcaseItems : showcaseItems.filter((n) => !inSpotlight.has(`${n.chainId}:${n.contract}:${n.tokenId}`));
 
   // A chain change can hide the picked collection; drop it then.
   useEffect(() => {
@@ -201,9 +262,26 @@ export default function NftMarketScreen() {
   const loading = <View style={styles.center}><DeHubLoader size={56} /></View>;
 
   const browseHeader = (
-    <View>
+    <View style={styles.headerStack}>
       {showFilters ? chips : null}
-      <CollectionsRow items={allCollections} selected={coll} onSelect={setColl} />
+      <NftSpotlight items={spotlight} />
+      {!coll ? (
+        <View style={styles.stats}>
+          <View style={styles.stat}>
+            <Text style={styles.statValue}>{compactNumber(dehubTotals.minted)}</Text>
+            <Text style={styles.statLabel}>{t("nftMarket.statMinted", { defaultValue: "Minted" })}</Text>
+          </View>
+          <View style={styles.stat}>
+            <Text style={styles.statValue}>{compactNumber(forSaleTotal)}</Text>
+            <Text style={styles.statLabel}>{t("nftMarket.statForSale", { defaultValue: "For sale" })}</Text>
+          </View>
+          <Pressable onPress={() => setTab("mine")} style={({ pressed }) => [styles.stat, pressed && { opacity: 0.85 }]} accessibilityRole="button">
+            <Text style={styles.statCta}>{t("nftMarket.sellYours", { defaultValue: "Sell yours" })} →</Text>
+            <Text style={styles.statLabel}>{t("nftMarket.sellYoursHint", { defaultValue: "List from your wallet" })}</Text>
+          </Pressable>
+        </View>
+      ) : null}
+      {allCollections.length > 1 ? <CollectionsRow items={allCollections} selected={pickedCollection} onSelect={pickCollection} /> : null}
       {coll ? (
         <View style={styles.collBar}>
           <Text numberOfLines={1} style={styles.collTitle}>
@@ -215,38 +293,40 @@ export default function NftMarketScreen() {
                 : t("nftMarket.mintedCount", { n: coll.minted ?? 0, defaultValue: "{{n}} minted" })}
             </Text>
           </Text>
-          {canTrade && (listings.data?.items.length || showcaseItems.length) ? (
+          {canTrade && (listedItems.length || showcaseItems.length) ? (
             <Chip
               label={t("nftMarket.collectionOffer", { defaultValue: "Offer on any" })}
               active={false}
-              onPress={() => setCollOffer(listings.data?.items.length ? fromOrder(listings.data.items[0]) : showcaseTarget(showcaseItems[0]))}
+              onPress={() => setCollOffer(listedItems.length ? fromOrder(listedItems[0]) : showcaseTarget(showcaseItems[0]))}
             />
           ) : null}
           <Chip label={t("nftMarket.showAll", { defaultValue: "Show all" })} active={false} onPress={() => setColl(null)} />
         </View>
       ) : null}
-      {listings.data?.items.length && !coll ? <Text style={styles.sectionTitle}>{t("nftMarket.forSale", { defaultValue: "For sale" })}</Text> : null}
+      {gridListings.length && !coll ? <Text style={styles.sectionTitle}>{t("nftMarket.forSale", { defaultValue: "For sale" })}</Text> : null}
     </View>
   );
 
   // Minted DeHub posts under the listings (or instead of them when none are for sale).
   const showcaseFooter =
-    showcaseItems.length && (!coll || !listings.data?.items.length) ? (
+    gridMints.length && (!coll || !listedItems.length) ? (
       <View style={styles.showcase}>
-        <Text style={styles.sectionTitle}>
-          {coll ? t("nftMarket.openToOffers", { defaultValue: "Open to offers" }) : t("nftMarket.freshMints", { defaultValue: "Fresh from DeHub creators" })}
-        </Text>
-        {Array.from({ length: Math.ceil(showcaseItems.length / 3) }, (_, r) => (
+        <View style={styles.sectionRow}>
+          <Text style={styles.sectionTitle}>
+            {coll ? t("nftMarket.openToOffers", { defaultValue: "Open to offers" }) : t("nftMarket.latestMints", { defaultValue: "Latest mints" })}
+          </Text>
+          {canTrade ? <Text style={styles.sectionHint}>{t("nftMarket.tapToOffer", { defaultValue: "Tap one to make an offer" })}</Text> : null}
+        </View>
+        {Array.from({ length: Math.ceil(gridMints.length / 3) }, (_, r) => (
           <View key={r} style={[styles.gridRowTight, { flexDirection: "row" }]}>
-            {pad(showcaseItems.slice(r * 3, r * 3 + 3), 3).map((n, i) =>
+            {pad(gridMints.slice(r * 3, r * 3 + 3), 3).map((n, i) =>
               n ? (
                 <NftTile
-                  key={`${n.chainId}:${n.tokenId}`}
+                  key={`${n.chainId}:${n.contract}:${n.tokenId}`}
                   compact
-                  name={n.name}
+                  name={titleOf(n.name, n.tokenId)}
                   image={n.image}
                   chainId={n.chainId}
-                  priceLabel={t("nftMarket.makeOffer", { defaultValue: "Make offer" })}
                   onPress={() => setOpen(showcaseTarget(n))}
                 />
               ) : (
@@ -264,7 +344,7 @@ export default function NftMarketScreen() {
     return (
     <FlatList
       key={compact ? "grid-3" : "grid-2"}
-      data={q.isLoading || q.isError ? [] : pad(q.data?.items ?? [], cols)}
+      data={q.isLoading || q.isError ? [] : pad(sold ? q.data?.items ?? [] : gridListings, cols)}
       keyExtractor={(o, i) => o?.orderHash ?? `spacer-${i}`}
       numColumns={cols}
       columnWrapperStyle={compact ? styles.gridRowTight : styles.gridRow}
@@ -277,7 +357,7 @@ export default function NftMarketScreen() {
         item ? (
           <NftTile
             compact={compact}
-            name={item.nftName ?? `#${item.tokenId}`}
+            name={titleOf(item.nftName, item.tokenId)}
             collection={item.collectionName}
             image={item.nftImage}
             chainId={item.chainId}
@@ -345,9 +425,6 @@ export default function NftMarketScreen() {
     />
   );
 
-  // Owner preview: anyone else who lands here (old deep link) is sent back.
-  if (!owner) return null;
-
   return (
     <View style={styles.root}>
       <ScreenHeader
@@ -403,6 +480,14 @@ const styles = StyleSheet.create({
   gridRow: { gap: 12 },
   gridRowTight: { gap: 6 },
   sectionTitle: { color: "#FFFFFF", fontSize: 13, fontWeight: "700", paddingTop: 10, paddingBottom: 6 },
+  sectionRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", gap: 8 },
+  sectionHint: { color: "#808089", fontSize: 11.5 },
+  headerStack: { gap: 10 },
+  stats: { flexDirection: "row", gap: 6 },
+  stat: { flex: 1, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 10, backgroundColor: "rgba(255,255,255,0.05)", borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" },
+  statValue: { color: "#FFFFFF", fontSize: 19, fontWeight: "800", fontVariant: ["tabular-nums"] },
+  statCta: { color: "#FFFFFF", fontSize: 14, fontWeight: "800" },
+  statLabel: { color: "#808089", fontSize: 11, marginTop: 3 },
   showcase: { gap: 6, paddingTop: 4 },
   islandRow: { flexDirection: "row", gap: 6 },
   islandBtnOn: { backgroundColor: "rgba(255,255,255,0.18)" },

@@ -115,7 +115,19 @@
     "bundleBadge": "Paket ×{{n}}",
     "dropBadge": "Fiyat düşüşü",
     "days_one": "{{count}} gün",
-    "days_other": "{{count}} gün"
+    "days_other": "{{count}} gün",
+    "dehubPostsName": "DeHub Gönderileri",
+    "statMinted": "Basılan",
+    "statForSale": "Satışta",
+    "sellYours": "Seninkini sat",
+    "sellYoursHint": "Cüzdanından listele",
+    "latestMints": "Son basılanlar",
+    "tapToOffer": "Teklif vermek için birine dokun",
+    "collections": "Koleksiyonlar",
+    "days": "{{count}} gün",
+    "spotlightForSale": "Şimdi satışta",
+    "spotlightNew": "Yeni basıldı",
+    "buyFor": "{{price}} karşılığında al"
   },
   "remix": {
     "title": "Remiks",
