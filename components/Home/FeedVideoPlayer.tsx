@@ -601,6 +601,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const frameWidth = inlineWidth ?? mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls);
   const stripHeight = controlStripHeight(frameWidth);
   const compactStrip = splitControls && frameWidth < 320;
+  const frameHeight = inlineWidth ? inlineWidth / mediaAspect : mediaBoxHeight(windowSize, frameWidth, mediaAspect, postPage, splitControls);
+  // The video view is boxed to the clip's upright shape and told to fill.
+  // A phone clip stored sideways with a rotate flag reports its stored wide
+  // size to the native view, which then cropped for "cover" from the wrong
+  // shape and rotated: the picture zoomed ~1.8x the moment it started.
+  const coverBox = useMemo(() => {
+    const ratio = videoAspect ?? measuredAspect;
+    const boxH = frameHeight - (splitControls ? stripHeight : 0);
+    if (!ratio || !(ratio > 0) || !(frameWidth > 0) || !(boxH > 0)) return null;
+    const width = frameWidth / boxH > ratio ? frameWidth : boxH * ratio;
+    const height = width / ratio;
+    return { position: 'absolute' as const, width, height, left: (frameWidth - width) / 2, top: (boxH - height) / 2 };
+  }, [videoAspect, measuredAspect, frameHeight, frameWidth, splitControls, stripHeight]);
   const stripOpacity = useRef(new Animated.Value(1)).current;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1339,7 +1352,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          height: inlineWidth ? inlineWidth / mediaAspect : mediaBoxHeight(windowSize, frameWidth, mediaAspect, postPage, splitControls),
+          height: frameHeight,
           // Tablet portrait columns supply their width; other frames stay full width.
           width: frameWidth,
           maxWidth: "100%",
@@ -1372,11 +1385,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       ))}
 
       {canPlay && isVisible && sourceRequested && ownsVideo && player && (
+        <View pointerEvents="none" style={coverBox ? [styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }], styles.videoClip] : StyleSheet.absoluteFill}>
         <PersistentVideoView
           ref={videoViewRef}
           player={player}
           focusable={false}
-          contentFit={cropMedia ? "cover" : "contain"}
+          contentFit={coverBox ? "fill" : cropMedia ? "cover" : "contain"}
           nativeControls={false}
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
@@ -1389,11 +1403,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           // normal view hierarchy, so it respects z-order and clipping.
           surfaceType="textureView"
           onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
-          style={[styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }], { opacity: firstFrameRendered && (hideControls
+          style={[coverBox ?? [styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }]], { opacity: firstFrameRendered && (hideControls
             ? (hasStartedAutoplay && videoReady)
             : (isPlaying || hasStartedAutoplay)
           ) ? 1 : 0 }]}
         />
+        </View>
       )}
 
       {playbackPhase === 'failed' && canPlay && (
@@ -1783,6 +1798,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  videoClip: { overflow: 'hidden' },
   sharedPosterPlayer: {
     ...StyleSheet.absoluteFillObject,
     width: '100%',
