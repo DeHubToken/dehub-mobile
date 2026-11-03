@@ -566,7 +566,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   onRejectFollowRequest,
   groupLabel,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isMinimal, skin, accent, pageColors } = useAppTheme();
   // Unread dot and primary pill: the theme's own colour on the canvas skins,
   // the page ink (white on System, black on System Light) everywhere else.
@@ -590,7 +590,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     item.type !== NotificationType.VIDEO_REMOVAL &&
     item.type !== NotificationType.SYSTEM &&
     item.type !== NotificationType.ACCOUNT_WARNING;
-  const sentence = localizedNotificationContent(item, t) ?? item.content;
+  const sentence = localizedNotificationContent(item, t, i18n.language) ?? item.content;
   const actorName = item.actor?.displayName || item.actor?.username || item.actorUsername;
   const actorBadge = item.actor && !item.actor.hideBadgeAndBalance && !(item.aggregatedCount && item.aggregatedCount > 1)
     ? getBadgeUrlFor(item.actor)
