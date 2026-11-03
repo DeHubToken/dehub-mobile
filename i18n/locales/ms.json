@@ -14899,6 +14899,11 @@
     "unavailable": "Pengesahan GitHub akan datang tidak lama lagi."
   },
   "comic": {
+    "toComic": "Jadikan komik",
+    "toCarousel": "Papar sebagai karusel",
+    "converted": "Kini dipaparkan sebagai komik",
+    "unconverted": "Kini dipaparkan sebagai karusel",
+    "convertFailed": "Tidak dapat menukar susun atur",
     "showAll": "Tunjukkan semua {{count}} halaman",
     "tab": "Komik",
     "title": "Komik",

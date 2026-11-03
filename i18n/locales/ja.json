@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "コミックにする",
+    "toCarousel": "カルーセルで表示",
+    "converted": "コミックとして表示中",
+    "unconverted": "カルーセルとして表示中",
+    "convertFailed": "レイアウトを変更できませんでした",
     "showAll": "全{{count}}ページを表示"
   },
   "comicBorder": {

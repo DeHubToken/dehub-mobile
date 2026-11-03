@@ -13,6 +13,11 @@
     "failed": "Couldn't save the border"
   },
   "comic": {
+    "toComic": "Make it a comic",
+    "toCarousel": "Show as carousel",
+    "converted": "Now showing as a comic",
+    "unconverted": "Now showing as a carousel",
+    "convertFailed": "Couldn't change the layout",
     "showAll": "Show all {{count}} pages",
     "tab": "Comic",
     "title": "Comic",

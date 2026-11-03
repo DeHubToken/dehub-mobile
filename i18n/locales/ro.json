@@ -14658,6 +14658,11 @@
     "unavailable": "Verificarea GitHub este în curând disponibilă."
   },
   "comic": {
+    "toComic": "Transformă în benzi desenate",
+    "toCarousel": "Arată ca un carusel",
+    "converted": "Acum apare ca benzi desenate",
+    "unconverted": "Acum apare ca un carusel",
+    "convertFailed": "Nu am putut schimba aspectul",
     "showAll": "Arată toate cele {{count}} pagini",
     "tab": "Comic",
     "title": "Comic",

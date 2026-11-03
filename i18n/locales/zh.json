@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "转为漫画",
+    "toCarousel": "以轮播显示",
+    "converted": "现在以漫画显示",
+    "unconverted": "现在以轮播显示",
+    "convertFailed": "无法更改布局",
     "showAll": "显示全部 {{count}} 页"
   },
   "comicBorder": {

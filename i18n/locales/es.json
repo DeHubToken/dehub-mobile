@@ -13,6 +13,11 @@
     "failed": "No se pudo guardar el borde"
   },
   "comic": {
+    "toComic": "Convertir en cómic",
+    "toCarousel": "Mostrar como carrusel",
+    "converted": "Ahora se muestra como cómic",
+    "unconverted": "Ahora se muestra como carrusel",
+    "convertFailed": "No se pudo cambiar el diseño",
     "showAll": "Ver las {{count}} páginas",
     "tab": "Cómic",
     "title": "Cómic",

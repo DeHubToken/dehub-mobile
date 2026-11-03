@@ -13,6 +13,11 @@
     "failed": "Çerçeve kaydedilemedi"
   },
   "comic": {
+    "toComic": "Çizgi romana çevir",
+    "toCarousel": "Kaydırmalı göster",
+    "converted": "Artık çizgi roman olarak görünüyor",
+    "unconverted": "Artık kaydırmalı olarak görünüyor",
+    "convertFailed": "Düzen değiştirilemedi",
     "showAll": "{{count}} sayfanın tümünü göster",
     "tab": "Çizgi roman",
     "title": "Çizgi roman",

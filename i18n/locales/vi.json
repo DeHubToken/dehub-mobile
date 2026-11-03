@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Chuyển thành truyện tranh",
+    "toCarousel": "Hiển thị dạng băng chuyền",
+    "converted": "Đang hiển thị dạng truyện tranh",
+    "unconverted": "Đang hiển thị dạng băng chuyền",
+    "convertFailed": "Không thể đổi bố cục",
     "showAll": "Hiện tất cả {{count}} trang"
   },
   "comicBorder": {

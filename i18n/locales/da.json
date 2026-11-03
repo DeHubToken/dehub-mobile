@@ -14649,6 +14649,11 @@
     "unavailable": "GitHub-bekræftelse kommer snart."
   },
   "comic": {
+    "toComic": "Lav til tegneserie",
+    "toCarousel": "Vis som karrusel",
+    "converted": "Vises nu som tegneserie",
+    "unconverted": "Vises nu som karrusel",
+    "convertFailed": "Kunne ikke ændre layoutet",
     "showAll": "Vis alle {{count}} sider",
     "tab": "Comic",
     "title": "Comic",

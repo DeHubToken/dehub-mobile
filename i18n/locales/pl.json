@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Zrób z tego komiks",
+    "toCarousel": "Pokaż jako karuzelę",
+    "converted": "Teraz widoczne jako komiks",
+    "unconverted": "Teraz widoczne jako karuzela",
+    "convertFailed": "Nie udało się zmienić układu",
     "showAll": "Pokaż wszystkie strony ({{count}})"
   },
   "comicBorder": {

@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Geuza kuwa katuni",
+    "toCarousel": "Onyesha kama jukwa",
+    "converted": "Sasa inaonyeshwa kama katuni",
+    "unconverted": "Sasa inaonyeshwa kama jukwa",
+    "convertFailed": "Imeshindwa kubadilisha mpangilio",
     "showAll": "Onyesha kurasa zote {{count}}"
   },
   "comicBorder": {

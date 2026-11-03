@@ -1,5 +1,10 @@
 {
   "comic": {
+    "toComic": "Legyen képregény",
+    "toCarousel": "Megjelenítés körhintaként",
+    "converted": "Most képregényként látszik",
+    "unconverted": "Most körhintaként látszik",
+    "convertFailed": "Nem sikerült módosítani az elrendezést",
     "showAll": "Mind a(z) {{count}} oldal megjelenítése"
   },
   "comicBorder": {

@@ -14649,6 +14649,11 @@
     "unavailable": "Ověření na GitHubu již brzy."
   },
   "comic": {
+    "toComic": "Udělat komiks",
+    "toCarousel": "Zobrazit jako karusel",
+    "converted": "Teď se zobrazuje jako komiks",
+    "unconverted": "Teď se zobrazuje jako karusel",
+    "convertFailed": "Rozvržení nešlo změnit",
     "showAll": "Zobrazit všech {{count}} stránek",
     "tab": "Comik",
     "title": "Comik",

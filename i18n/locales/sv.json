@@ -14648,6 +14648,11 @@
     "unavailable": "GitHub-verifiering kommer snart."
   },
   "comic": {
+    "toComic": "Gör till serie",
+    "toCarousel": "Visa som karusell",
+    "converted": "Visas nu som serie",
+    "unconverted": "Visas nu som karusell",
+    "convertFailed": "Kunde inte ändra layouten",
     "showAll": "Visa alla {{count}} sidor",
     "tab": "Comic",
     "title": "Comic",
