@@ -19,7 +19,7 @@ export const LOGIN_SIGNATURE_TTL_HOURS = 24;
 export function buildDeHubLoginMessage(address: string, timestampSeconds: number): string {
   const displayedDate = new Date(timestampSeconds * 1000);
   return (
-    `Welcome to Riftn!\n\nClick to sign in for authentication.\n` +
+    `Welcome to DeHub!\n\nClick to sign in for authentication.\n` +
     `Signatures are valid for ${LOGIN_SIGNATURE_TTL_HOURS} hours.\n` +
     `Your wallet address is ${address.toLowerCase()}.\n` +
     `It is ${displayedDate.toUTCString()}.`
