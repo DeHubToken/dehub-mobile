@@ -12,7 +12,7 @@ jest.mock('react-native', () => ({
   View: 'View', Image: 'Image',
   useWindowDimensions: () => ({ width: mockWidth, height: 844 }),
   StyleSheet: { absoluteFill: { position: 'absolute', inset: 0 } },
-  Easing: { bezier: () => 'easing' },
+  Easing: { bezier: () => 'easing', out: () => 'easing', cubic: 'cubic' },
   AccessibilityInfo: {
     isReduceMotionEnabled: () => Promise.resolve(mockReduced),
     addEventListener: () => ({ remove: jest.fn() }),
@@ -61,13 +61,13 @@ it('crossfades without hiding the header when reduced motion is enabled', async 
   mockReduced = true;
   register();
   await launch();
-  expect(mockMotions[0].duration).toBe(180);
+  expect(mockMotions[0].duration).toBe(420);
   expect(hide).not.toHaveBeenCalled();
 });
 
 it('crossfades when no focused logo exists and releases a stalled host measurement', async () => {
   await launch();
-  expect(mockMotions[0].duration).toBe(180);
+  expect(mockMotions[0].duration).toBe(420);
   act(() => tree.unmount());
   register();
   await launch(false);

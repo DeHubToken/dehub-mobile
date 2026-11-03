@@ -111,6 +111,7 @@ import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
 import { watchTransformOrigin } from "./libs/cdnImage";
 import { setEdgeToEdgeMedia as publishEdgeToEdgeMedia } from "./libs/edgeToEdgeMedia";
+import { FIRST_SCREEN_MAX_WAIT_MS, whenFirstScreenReady } from "./libs/firstScreenReady";
 
 const logger = createLogger("App");
 markLaunchPhase('appModuleReady');
@@ -348,19 +349,16 @@ const ThemedToaster: React.FC = () => {
 
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
-const REVEAL_FAILSAFE_MS = 5000;
-// A first launch keeps the logo animation up at least this long from boot, so
-// a new user sees it play before the setup instead of a flicker of it.
-const FIRST_RUN_INTRO_MS = 2000;
-// Once per process: switching to System Light during the setup remounts the
-// tree, and that must not replay the intro.
-let firstRunIntroPlayed = false;
+const REVEAL_FAILSAFE_MS = 5000 + FIRST_SCREEN_MAX_WAIT_MS;
+// After the first screen reports ready: lets the list commit and its first
+// images decode before the cover starts to lift.
+const REVEAL_SETTLE_MS = 120;
 // Long enough that a slow network boot is not reported as a stall.
 const BOOT_STALL_MS = 15000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, pageColors, isLight, theme } = useAppTheme();
-  const { isBootLoading, isSignedIn, needsUsername, isFirstTimeUser } = useAuthState();
+  const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const bootStartedAt = useRef(Date.now()).current;
   const openingLaunch = useRef(!bootRevealed).current;
   // Read when the preloader lifts, to tell signed-in launches from the rest.
@@ -460,22 +458,30 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (!staged || !navReady) return;
     let cancelled = false;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;
-    const introLeft = isFirstTimeUser && !isSignedIn && !firstRunIntroPlayed ? FIRST_RUN_INTRO_MS - (Date.now() - bootStartedAt) : 0;
-    // First painted frame proves the shell composited; the short tail covers
-    // the header-measurement commit without being perceptible.
+    let paintFrame = 0;
+    // First painted frame proves the shell composited. Then the first screen
+    // gets to fill in (Home waits for its first feed page, capped) so the
+    // logo lands on a finished page, not on skeletons and posts popping in.
+    // The short tail after it covers the list's commit and the
+    // header-measurement pass without being perceptible.
     const frame = requestAnimationFrame(() => {
-      settleTimer = setTimeout(() => {
+      void whenFirstScreenReady().then(() => {
         if (cancelled) return;
-        firstRunIntroPlayed = true;
-        beginReveal();
-      }, Math.max(40, introLeft));
+        paintFrame = requestAnimationFrame(() => {
+          settleTimer = setTimeout(() => {
+            if (cancelled) return;
+            beginReveal();
+          }, REVEAL_SETTLE_MS);
+        });
+      });
     });
     return () => {
       cancelled = true;
       cancelAnimationFrame(frame);
+      if (paintFrame) cancelAnimationFrame(paintFrame);
       if (settleTimer) clearTimeout(settleTimer);
     };
-  }, [staged, navReady, beginReveal, isFirstTimeUser, isSignedIn, isAuthenticated, bootStartedAt]);
+  }, [staged, navReady, beginReveal]);
 
   // A launch that never gets past the preloader reports nothing else — every
   // other log path lives in screens it never reaches — so one still up after
