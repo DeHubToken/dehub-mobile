@@ -9,6 +9,7 @@ import type { ProfileIdentitySeed } from "../../hooks/useUserProfileData";
 import UserProfileHeader from "./UserProfileHeader";
 import PinnedCommunities from "../Communities/PinnedCommunities";
 import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
+import { ProfilePostBgContext, useResolvedPostBg } from "../Profile/PostBackground";
 import GlassModal from "../ui/GlassModal";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import ConfirmBlockModal from "../common/ConfirmBlockModal";
@@ -132,6 +133,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
   const profileAddress =
     profileData?.walletAddress || profileData?.address || data?.address || data?.walletAddress || "";
+  // The owner's text-post backdrop (customs.postBg), on their text tiles.
+  const postBg = useResolvedPostBg(profileAddress, (data as any)?.customs);
 
   const paymentsHidden = data?.hideBadgeAndBalance === true && !isOwnProfile;
 
@@ -424,6 +427,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
    * the FlatList header; in collapsed it sits above the tabs statically.
    */
   return (
+    <ProfilePostBgContext.Provider value={postBg}>
     <View className="flex-1">
       {!isFullScreen && ProfileHeader}
       <UserProfileBottomContentTabs
@@ -730,6 +734,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         tipContext="user"
       />
     </View>
+    </ProfilePostBgContext.Provider>
   );
 };
 

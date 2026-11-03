@@ -4,6 +4,7 @@ import React, { useState, useMemo, useCallback, useEffect, useRef } from "react"
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
+import { openPostBgPicker } from "./PostBgPicker";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
@@ -266,6 +267,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
       {/* Cover */}
       <TouchableOpacity
         activeOpacity={0.9}
+        onLongPress={() => openPostBgPicker()}
+        delayLongPress={450}
         onPress={() =>
           openViewer(
             localCoverUri ||
@@ -320,6 +323,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               style={{ borderWidth: 1.5, borderColor: "#18181b", backgroundColor: "#18181b" }}
               live={live}
               liveQuiet
+              onLongPress={() => openPostBgPicker()}
               onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl

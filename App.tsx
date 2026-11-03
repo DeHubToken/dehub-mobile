@@ -104,6 +104,7 @@ import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/Them
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 import OnboardingChoicesApplier from "./components/Onboarding/OnboardingChoicesApplier";
 import AvatarPromptHost from "./components/Onboarding/AvatarPromptHost";
+import PostBgPickerHost from "./components/Profile/PostBgPicker";
 import HalloweenGhostHost from "./components/Halloween/HalloweenGhostHost";
 import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
@@ -258,6 +259,8 @@ export default function App() {
               {/* Asks accounts with no profile picture to add one, a few
                   times at most, on Home or Explore. */}
               <AvatarPromptHost />
+              {/* Your profile's text-post background, opened by holding your profile. */}
+              <PostBgPickerHost />
               {/* Halloween 2026 only: once per device while Horror is on. */}
               <HalloweenGhostHost />
               {/* A tapped badge opens here, above whatever screen it was on. */}
