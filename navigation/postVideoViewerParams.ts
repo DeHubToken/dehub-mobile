@@ -1,12 +1,19 @@
 import { isHoldGated } from '../libs/content-gate';
+import type { ProfileFeedOrigin } from '../libs/profileFeedOrigin';
 
-/** Keep every video entry on the same seeded viewer/continuation contract. */
-export function postVideoViewerParams<T>(item: T, tokenId: string | number, initialThumbnail?: string) {
+/**
+ * Keep every video entry on the same seeded viewer/continuation contract.
+ * Opened from a profile tab, the viewer plays on through that tab's videos
+ * instead of the ranked mix.
+ */
+export function postVideoViewerParams<T>(item: T, tokenId: string | number, initialThumbnail?: string, profileFeed?: ProfileFeedOrigin | null) {
   return {
     initialIndex: 0,
     initialItems: [item],
     initialThumbnail,
-    feedParams: { brainrot: true, fromId: String(tokenId) },
+    feedParams: profileFeed
+      ? { profileFeed, fromId: String(tokenId) }
+      : { brainrot: true, fromId: String(tokenId) },
   };
 }
 

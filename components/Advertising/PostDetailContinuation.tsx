@@ -1,5 +1,5 @@
 import { useTranslation as _useCopy } from 'react-i18next';
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -10,12 +10,26 @@ import { getNFT } from "../../services/nft.service";
 import SponsoredAdCard from "./SponsoredAdCard";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../../theme/minimal";
+import {
+  ProfileFeedOriginContext,
+  profileFeedParams,
+  useProvidedProfileFeed,
+  type ProfileFeedOrigin,
+} from "../../libs/profileFeedOrigin";
 
 const HOUSE_AD_POST_ID = "2008";
 const POSTS_PER_PAGE = 6;
+const PROFILE_POSTS_PER_PAGE = 10;
+/** Pages read while looking for the opened post in its profile list. */
+const MAX_SEARCH_PAGES = 5;
 
 interface PostDetailContinuationProps {
   currentPostId: string;
+  /**
+   * Opened from a profile tab: continue through that tab's list, after this
+   * post, instead of the latest posts everywhere.
+   */
+  profileFeed?: ProfileFeedOrigin | null;
   /**
    * When set, more posts load by themselves: the list bumps this as the reader
    * nears the end, and the "Load more" button goes away.
@@ -24,7 +38,7 @@ interface PostDetailContinuationProps {
 }
 
 /** Ad first, then an explicitly paginated continuation of recent posts. */
-export default function PostDetailContinuation({ currentPostId, loadMoreSignal }: PostDetailContinuationProps) {
+export default function PostDetailContinuation({ currentPostId, profileFeed, loadMoreSignal }: PostDetailContinuationProps) {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -43,6 +57,12 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
     return (response?.result ?? response ?? null) as UnifiedFeedItem | null;
   }, [houseAdResponse]);
 
+  // A post that turns out not to be in the profile list (a pinned post from
+  // another creator, say) falls back to the latest posts.
+  const [profileMiss, setProfileMiss] = useState(false);
+  const fromProfile = !!profileFeed && !profileMiss;
+  const feedSource = useProvidedProfileFeed(fromProfile ? profileFeed ?? null : null);
+
   const {
     data,
     fetchNextPage,
@@ -50,15 +70,17 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
     isFetchingNextPage,
     isLoading: postsLoading,
   } = useInfiniteQuery({
-    queryKey: ["post-detail-more-posts", currentPostId],
+    queryKey: fromProfile ? ["post-detail-profile-feed", currentPostId, profileFeed] : ["post-detail-more-posts", currentPostId],
     initialPageParam: 1,
-    queryFn: ({ pageParam }) => getUnifiedFeed({
-      page: pageParam,
-      limit: POSTS_PER_PAGE,
-      sortBy: "createdAt",
-      sortOrder: "desc",
-      status: "all",
-    }),
+    queryFn: ({ pageParam }) => fromProfile && profileFeed
+      ? getUnifiedFeed(profileFeedParams(profileFeed, pageParam, PROFILE_POSTS_PER_PAGE))
+      : getUnifiedFeed({
+        page: pageParam,
+        limit: POSTS_PER_PAGE,
+        sortBy: "createdAt",
+        sortOrder: "desc",
+        status: "all",
+      }),
     getNextPageParam: (lastPage) =>
       lastPage.pagination.hasMore ? lastPage.pagination.page + 1 : undefined,
     staleTime: 5 * 60 * 1000,
@@ -72,17 +94,38 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadMoreSignal]);
 
+  const loaded = useMemo(() => data?.pages.flatMap((page) => page.result) ?? [], [data]);
+  const profileIndex = useMemo(
+    () => (fromProfile ? loaded.findIndex((post) => String(post.tokenId ?? post.id ?? "") === currentPostId) : -1),
+    [fromProfile, loaded, currentPostId],
+  );
+  // The opened post can sit past the first pages: read on until it turns up.
+  const searched = useRef(0);
+  const searching = fromProfile && !!data && profileIndex < 0;
+  useEffect(() => {
+    if (!searching || isFetchingNextPage) return;
+    if (hasNextPage && searched.current < MAX_SEARCH_PAGES) {
+      searched.current += 1;
+      void fetchNextPage();
+    } else {
+      setProfileMiss(true);
+    }
+  }, [searching, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
   const posts = useMemo(() => {
     const seen = new Set<string>();
-    return (data?.pages.flatMap((page) => page.result) ?? []).filter((post) => {
+    if (fromProfile && profileIndex < 0) return [];
+    const source = fromProfile ? loaded.slice(profileIndex + 1) : loaded;
+    return source.filter((post) => {
       const id = String(post.tokenId ?? post.id ?? "");
       if (!id || id === currentPostId || id === HOUSE_AD_POST_ID || seen.has(id)) return false;
       seen.add(id);
       return true;
     });
-  }, [currentPostId, data]);
+  }, [currentPostId, loaded, fromProfile, profileIndex]);
 
   return (
+    <ProfileFeedOriginContext.Provider value={feedSource}>
     <View
       className="border-t border-theme-neutrals-800 pt-5"
       style={isMinimal ? { borderTopColor: MINIMAL_HAIRLINE } : undefined}
@@ -90,7 +133,7 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
       {/* Minimal: no side padding here — the ad lays itself out as a full-width
           feed row with its own 16pt text inset, like a minimal FeedCard. */}
       <View className={isMinimal ? undefined : "px-4"}>
-        {servedAd ? (
+        {fromProfile ? null : servedAd ? (
           <SponsoredAdCard ad={servedAd} />
         ) : houseAd ? (
           <View className={isMinimal ? undefined : "rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"}>
@@ -129,7 +172,7 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
         </View>
       ))}
 
-      {postsLoading && posts.length === 0 && (
+      {(postsLoading || searching) && posts.length === 0 && (
         <View className="items-center py-8">
           <ActivityIndicator color="#A1A1AA" />
         </View>
@@ -161,5 +204,6 @@ export default function PostDetailContinuation({ currentPostId, loadMoreSignal }
         </TouchableOpacity>
       )}
     </View>
+    </ProfileFeedOriginContext.Provider>
   );
 }

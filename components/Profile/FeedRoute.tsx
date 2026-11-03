@@ -13,6 +13,7 @@ import ProfileGridTile, { type GridTileKind } from './ProfileGridTile';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { seedPostDetail, warmRequest } from '../../libs/navPrefetch';
+import { noteProfileFeedOpen, useProvidedProfileFeed } from '../../libs/profileFeedOrigin';
 
 interface FeedRouteProps {
   /** Channel toolbar state, threaded to the API rather than applied on screen. */
@@ -90,6 +91,10 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   const { data: pins } = useProfilePins(address);
   const pinnedPosts = isDefaultView ? (pins || []) : [];
   const navigation = useNavigation<any>();
+  // A post opened here continues into the rest of this list on its page.
+  const feedSource = useProvidedProfileFeed(address ? {
+    minter: address, postType, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked,
+  } : null);
 
   // Every post type in one grid: a photo opens the image viewer, anything
   // else its own post page, as a tap on the same post in a feed would.
@@ -103,8 +108,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     }
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId as any));
+    noteProfileFeedOpen(feedSource, tokenId);
     navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
-  }, [navigation, onBeforeNavigate]);
+  }, [navigation, onBeforeNavigate, feedSource]);
 
   // Pinned posts lead the grid as their own row of tiles, wearing a Pinned chip.
   const header = pinnedPosts.length ? (

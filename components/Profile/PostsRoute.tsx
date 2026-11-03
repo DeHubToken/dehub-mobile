@@ -28,6 +28,7 @@ import ProfileEmptyState from "./ProfileEmptyState";
 import Icon from "../ui/Icon";
 import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
 import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
+import { ProfileFeedOriginContext, useProvidedProfileFeed } from "../../libs/profileFeedOrigin";
 
 const noopScroll = () => {};
 
@@ -77,6 +78,8 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const isOwnProfile = !!(
     address && ownAddress && address.toLowerCase() === ownAddress.toLowerCase()
   );
+  // A text post opened here continues into this creator's next text posts.
+  const feedSource = useProvidedProfileFeed(address ? { minter: address, postType: "feed-simple" } : null);
   const postsKey = JSON.stringify(["posts", address, isOwnProfile]);
   const repliesKey = JSON.stringify(["replies", address]);
   const [cachedPosts] = useState(() => readTabList<UnifiedFeedItem>(postsKey));
@@ -326,6 +329,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const headerElement = listHeader ? <>{listHeader}</> : undefined;
 
   return (
+    <ProfileFeedOriginContext.Provider value={feedSource}>
     <View className="flex-1">
       <Animated.FlatList
       ref={listRef}
@@ -374,6 +378,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
+    </ProfileFeedOriginContext.Provider>
   );
 };
 

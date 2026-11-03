@@ -45,6 +45,7 @@ import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { noteProfileFeedOpen, useProfileFeedSource } from '../../libs/profileFeedOrigin';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import { useFeedSplitComments } from "./feedSplitComments";
@@ -425,6 +426,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
+  const profileFeed = useProfileFeedSource();
   const { t, i18n } = useCopy();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -969,8 +971,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     onBeforeNavigate?.();
     hideUserProfile();
-    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail));
-  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
+    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
+  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed]);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
@@ -999,6 +1001,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+      noteProfileFeedOpen(profileFeed, tokenId);
       // Text, image and audio posts open in place on Home, under the same
       // logo bar and pill; video keeps its own page.
       if (!isVideo && openPostInFeedHost(tokenId)) return;
@@ -1006,7 +1009,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed, profileFeed,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
