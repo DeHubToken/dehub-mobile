@@ -8,7 +8,7 @@ export interface MotionCatalog { captured: string; total?: number; clips: Motion
 let catalogRequest: Promise<MotionCatalog> | undefined;
 let featuredRequest: Promise<MotionCatalog> | undefined;
 export function loadFeaturedMotionClips(): Promise<MotionCatalog> {
-  if (!featuredRequest) featuredRequest = fetch('https://dehub.io/creator-clips/featured.json').then(async response => {
+  if (!featuredRequest) featuredRequest = fetch('https://riftn.com/creator-clips/featured.json').then(async response => {
     if (!response.ok) throw new Error('Motion library could not load.');
     return await response.json() as MotionCatalog;
   }).catch(error => { featuredRequest = undefined; throw error; });
@@ -19,7 +19,7 @@ export async function findMotionClip(id: string): Promise<MotionClip | undefined
     ?? (await loadMotionCatalog()).clips.find(clip => clip.id === id);
 }
 export function loadMotionCatalog(): Promise<MotionCatalog> {
-  if (!catalogRequest) catalogRequest = fetch('https://dehub.io/creator-clips/catalog.json').then(async response => {
+  if (!catalogRequest) catalogRequest = fetch('https://riftn.com/creator-clips/catalog.json').then(async response => {
     if (!response.ok) throw new Error('Motion library could not load.');
     return await response.json() as MotionCatalog;
   }).catch(error => { catalogRequest = undefined; throw error; });

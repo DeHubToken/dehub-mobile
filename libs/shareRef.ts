@@ -3,7 +3,7 @@ import { track } from "./analytics";
 
 // Matches web's affiliateRef VALID rule after upper-casing.
 const CODE = /^[A-Z0-9_-]{3,40}$/;
-const DEHUB_URL = /https?:\/\/(?:www\.)?dehub\.io(?=[/?#\s]|$)[^\s]*/gi;
+const DEHUB_URL = /https?:\/\/(?:www\.)?(?:dehub\.io|riftn\.com)(?=[/?#\s]|$)[^\s]*/gi;
 const TRAILING_PUNCTUATION = /[.,!?;:)\]]+$/;
 
 let ownCode: string | null = null;
@@ -23,7 +23,7 @@ export const getShareRefCode = (): string | null => ownCode;
  */
 export function withShareRef(url: string, code: string | null = ownCode): string {
   if (!url || !code) return url;
-  const match = url.match(/^https?:\/\/(?:www\.)?dehub\.io(\/[^?#]*)?(\?[^#]*)?(#.*)?$/i);
+  const match = url.match(/^https?:\/\/(?:www\.)?(?:dehub\.io|riftn\.com)(\/[^?#]*)?(\?[^#]*)?(#.*)?$/i);
   if (!match) return url;
   const [, path = "", query = "", hash = ""] = match;
   if (/^\/r\//i.test(path)) return url;

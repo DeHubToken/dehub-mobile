@@ -14,7 +14,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  * target, and picking the target is the whole job of this sheet.
  *
  * **One box, two behaviours.** The post picker takes a search term *or* a
- * pasted link. Paste `https://dehub.io/app/post/2008`, the path, or the bare
+ * pasted link. Paste `https://riftn.com/app/post/2008`, the path, or the bare
  * number and it resolves that one post; type anything else and it searches.
  *
  * **Only offer what the server will accept.** Every refusal in the API's

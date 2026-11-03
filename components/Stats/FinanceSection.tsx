@@ -29,7 +29,7 @@ interface FinanceStats {
 const endpoint = "https://dehub.io/api/finance-stats";
 const usd = (value: number) => value.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const sum = (values: Record<string, number>) => Object.values(values).reduce((total, value) => total + value, 0);
-const openLedger = (source?: string, tax = false) => Linking.openURL(`https://dehub.io/stats?finance-view=${tax ? "tax" : "ledger"}${source ? `&finance-source=${encodeURIComponent(source)}` : ""}`);
+const openLedger = (source?: string, tax = false) => Linking.openURL(`https://riftn.com/stats?finance-view=${tax ? "tax" : "ledger"}${source ? `&finance-source=${encodeURIComponent(source)}` : ""}`);
 
 export default function FinanceSection({ days }: { days: number | null }) {
   const { t } = useTranslation();

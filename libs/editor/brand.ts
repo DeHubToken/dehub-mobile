@@ -60,4 +60,4 @@ export const DEHUB_BRAND_FONTS = {
   heading: "'Exo', ui-sans-serif, system-ui, sans-serif",
   body: "'Inter', ui-sans-serif, system-ui, sans-serif",
 };
-export const DEHUB_LOGO_URL = "https://dehub.io/brand-kit/brand/wordmark-white.png";
+export const DEHUB_LOGO_URL = "https://riftn.com/brand-kit/brand/wordmark-white.png";

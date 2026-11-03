@@ -10,7 +10,7 @@ export async function readMaintenanceStatus(): Promise<MaintenanceStatus | null>
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    const response = await fetch('https://dehub.io/maintenance.json', {
+    const response = await fetch('https://riftn.com/maintenance.json', {
       cache: 'no-store', credentials: 'omit', signal: controller.signal,
     });
     if (!response.ok) return null;

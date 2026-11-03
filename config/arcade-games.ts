@@ -49,7 +49,9 @@ import { translateCopy as _translateCopy } from '../i18n/copy';
  * the games follow that deploy and not this one.
  */
 
-import { WEBSITE_LINK } from './links';
+// Games stay on dehub.io after the riftn.com move: installed builds and the
+// game pages are pinned to that origin.
+const WEBSITE_LINK = 'https://dehub.io';
 
 export interface ArcadeGameCredit {
   /** Upstream project name, as its authors write it. */

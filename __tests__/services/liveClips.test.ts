@@ -14,8 +14,8 @@ describe("live clips", () => {
 
   it("credits the streamer and the clipper like web", () => {
     const clip: any = { shortId: 42, kind: "viewer", streamerUsername: "mal", clipperUsername: "erica", clipperAddress: "0xb", streamerAddress: "0xa" };
-    expect(liveClipLink(clip)).toBe("https://dehub.io/clip/42");
-    expect(liveClipCaption(clip)).toBe("Clipped from @mal's live by @erica\nhttps://dehub.io/clip/42");
-    expect(liveClipCaption({ ...clip, clipperAddress: "0xa" })).toBe("Clipped from @mal's live\nhttps://dehub.io/clip/42");
+    expect(liveClipLink(clip)).toBe("https://riftn.com/clip/42");
+    expect(liveClipCaption(clip)).toBe("Clipped from @mal's live by @erica\nhttps://riftn.com/clip/42");
+    expect(liveClipCaption({ ...clip, clipperAddress: "0xa" })).toBe("Clipped from @mal's live\nhttps://riftn.com/clip/42");
   });
 });

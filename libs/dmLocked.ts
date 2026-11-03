@@ -30,7 +30,7 @@ export function lockedMediaUri(path?: string | null): string | undefined {
 }
 
 /** Where an iPhone user pays: the same chat on the website. */
-export const LOCKED_MEDIA_WEB_URL = "https://dehub.io/app/messages";
+export const LOCKED_MEDIA_WEB_URL = "https://riftn.com/app/messages";
 
 // ─── Dollar prices ────────────────────────────────────────────────────────
 // Locked media is priced in USD, like subscriptions. The buyer pays that many

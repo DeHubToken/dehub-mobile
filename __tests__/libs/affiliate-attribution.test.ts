@@ -23,21 +23,21 @@ beforeEach(() => {
 });
 it('serializes competing arrivals and attributes the original tag after signup', async () => {
   await Promise.all([
-    captureAffiliateUrl('https://dehub.io/r/PARENT?sub=john'),
-    captureAffiliateUrl('https://dehub.io/r/OTHER?sub=sarah'),
+    captureAffiliateUrl('https://riftn.com/r/PARENT?sub=john'),
+    captureAffiliateUrl('https://riftn.com/r/OTHER?sub=sarah'),
   ]);
   await attributePendingReferral('0x1111111111111111111111111111111111111111');
   expect(supabase.rpc).toHaveBeenCalledWith('attribute_affiliate_referral', { p_code: 'PARENT', p_sub_id: 'john' });
 });
 it('leaves failed attribution retryable without changing the saved parent', async () => {
-  await captureAffiliateUrl('https://dehub.io/r/PARENT?sub=team');
+  await captureAffiliateUrl('https://riftn.com/r/PARENT?sub=team');
   (supabase.rpc as jest.Mock).mockResolvedValueOnce({ error: new Error('offline') });
   await expect(attributePendingReferral('0x2222222222222222222222222222222222222222')).rejects.toThrow('offline');
   await attributePendingReferral('0x2222222222222222222222222222222222222222');
   expect(supabase.rpc).toHaveBeenCalledTimes(2);
 });
 it('waits for a signed session and preserves attribution when signing is unavailable', async () => {
-  await captureAffiliateUrl('https://dehub.io/r/PARENT?sub=crew');
+  await captureAffiliateUrl('https://riftn.com/r/PARENT?sub=crew');
   (ensureWalletSession as jest.Mock).mockResolvedValueOnce(null);
   await expect(attributePendingReferral('0x3333333333333333333333333333333333333333')).rejects.toThrow('Sign in');
   expect(supabase.rpc).not.toHaveBeenCalled();

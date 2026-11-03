@@ -11,6 +11,6 @@ import { parseDehubLink } from './dehub-links';
 export function inAppDehubUrl(rawUrl: string): string | null {
   const match = parseDehubLink(rawUrl);
   if (match?.kind === 'proposal') return `dehub://app/governance/${match.proposalId}`;
-  const own = rawUrl.match(/^(?:https?:\/\/)?(?:www\.)?dehub\.io\/(app(?:[/?#].*)?)$/i);
+  const own = rawUrl.match(/^(?:https?:\/\/)?(?:www\.)?(?:dehub\.io|riftn\.com)\/(app(?:[/?#].*)?)$/i);
   return own ? `dehub://${own[1]}` : null;
 }

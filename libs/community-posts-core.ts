@@ -5,7 +5,7 @@ export function communityPostTarget(input: string): { tokenId?: string; newPostI
   if (direct) return { tokenId:direct };
   try {
     const url = new URL(input.startsWith('/') ? input : /^https?:\/\//i.test(input) ? input : `https://${input}`, 'https://dehub.io');
-    if (!['https:','http:'].includes(url.protocol) || !['dehub.io','www.dehub.io','legacy.dehub.io'].includes(url.hostname.toLowerCase())) return null;
+    if (!['https:','http:'].includes(url.protocol) || !['riftn.com','www.riftn.com','dehub.io','www.dehub.io','legacy.dehub.io'].includes(url.hostname.toLowerCase())) return null;
     const match = url.pathname.match(/^\/(?:app\/)?(post|posts|video|newpost)\/(\d+)\/?$/);
     const id = validCommunityPostId(match?.[2]);
     return match && id ? match[1]==='newpost' ? {newPostId:id} : {tokenId:id} : null;

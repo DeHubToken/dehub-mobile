@@ -130,7 +130,7 @@ const CommunityDetailScreen: React.FC = () => {
     if (before?.status === "paid" || before?.status === "free") return true;
     if (Platform.OS === "ios") {
       // Paid digital access is bought on the web on iPhone.
-      void Linking.openURL(`https://dehub.io/app/communities/${community.slug}`);
+      void Linking.openURL(`https://riftn.com/app/communities/${community.slug}`);
       return false;
     }
     if (!dhbContract || !chainId || !dhbMeta) {

@@ -73,6 +73,6 @@ export function couldBeProfileSegment(
  * Built here rather than at each call site so the two profile headers and the
  * settings panel cannot drift on the shape of the thing they hand people.
  */
-export function ensProfileUrl(name: string, origin = 'https://dehub.io'): string {
+export function ensProfileUrl(name: string, origin = 'https://riftn.com'): string {
   return `${origin.replace(/\/+$/, '')}/${encodeURIComponent(name)}`;
 }

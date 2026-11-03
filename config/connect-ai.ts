@@ -6,7 +6,7 @@
 // OAuth connects the person's own account. Agent connectors keep their separate
 // key-based endpoint in agents.service.ts.
 export const MCP_URL = 'https://dehub.io/mcp';
-export const ACCOUNT_CONNECTIONS_URL = 'https://dehub.io/connect/chatgpt?manage=1';
+export const ACCOUNT_CONNECTIONS_URL = 'https://riftn.com/connect/chatgpt?manage=1';
 
 export type AiAppId = "chatgpt" | "claude";
 

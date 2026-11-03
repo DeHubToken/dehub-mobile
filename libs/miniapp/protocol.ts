@@ -87,7 +87,7 @@ export function replyError(id: number, code: string, message: string) {
 
 function isDehubHost(hostname: string): boolean {
   const h = hostname.toLowerCase();
-  return h === 'dehub.io' || h.endsWith('.dehub.io') || h === 'dehub.net' || h.endsWith('.dehub.net');
+  return h === 'riftn.com' || h.endsWith('.riftn.com') || h === 'dehub.io' || h.endsWith('.dehub.io') || h === 'dehub.net' || h.endsWith('.dehub.net');
 }
 
 function isLocalHost(hostname: string): boolean {

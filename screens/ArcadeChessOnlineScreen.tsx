@@ -57,7 +57,8 @@ import { useAuth } from "../context/AuthContext";
 import { getAuthToken } from "../libs/auth.utils";
 import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs";
-import { WEBSITE_LINK } from "../config/links";
+// The chess build is served from dehub.io (see config/arcade-games.ts).
+const WEBSITE_LINK = "https://dehub.io";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { colors } from "../theme/colors";
 import {
