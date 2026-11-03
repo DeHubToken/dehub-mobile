@@ -27,6 +27,7 @@ import { resolveCount } from "../libs/numbers.util";
 import { WEBSITE_LINK } from "../config";
 import { patchTipBadges, subscribeTipBadges } from '../libs/tip-badges';
 import { takeWarmRequest, warmRequest } from '../libs/navPrefetch';
+import { readProfileFromDisk, writeProfileToDisk } from '../libs/profile-disk-cache';
 
 export interface RemoteUser {
   username?: string;
@@ -183,6 +184,8 @@ export const useUserProfileData = (
   const isMountedRef = useRef(true);
   
   const authUser = useUser();
+  const viewerRef = useRef<string | null | undefined>(authUser?.address);
+  viewerRef.current = authUser?.address;
   const { requireAuth, patchUser } = useAuthActions();
   const { conversations } = useDM();
   const navigation = useNavigation<any>();
@@ -211,7 +214,15 @@ export const useUserProfileData = (
       lastRequestedRef.current = who;
       setError(null);
 
-      const cached = profileCache.get(key);
+      let cached = profileCache.get(key);
+      if (!cached) {
+        // Seen before an app restart: paint the disk copy, refresh below.
+        const disk = readProfileFromDisk(viewerRef.current, key);
+        if (disk && !isEmptyProfileShell(disk.data)) {
+          cached = { data: disk.data as RemoteUser, ts: 0 };
+          profileCache.set(key, cached);
+        }
+      }
       const isCacheFresh = cached && Date.now() - cached.ts < PROFILE_CACHE_TTL;
 
       // Any cached copy goes on screen straight away, fresh or not, and the
@@ -276,6 +287,7 @@ export const useUserProfileData = (
         ) {
           profileCache.set(key, { data: payload, ts: Date.now() });
           pruneCache();
+          writeProfileToDisk(viewerRef.current, key, payload);
 
           setData(payload);
           setError(null);
