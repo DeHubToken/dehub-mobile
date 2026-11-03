@@ -47,7 +47,7 @@ describe('services/ai.service — request classification', () => {
       'generate an image of a husky',
       'photo of a sunset',
       'draw me a logo concept',
-      'what does a DeHub poster look like',
+      'what does a Riftn poster look like',
       'visualize the roadmap',
     ])('routes %p to image', (text) => {
       expect(isImageRequest(text)).toBe(true);
@@ -77,7 +77,7 @@ describe('services/ai.service — request classification', () => {
   describe('logo handling', () => {
     it('detects a logo request', () => {
       expect(requiresLogoAsset('show me the dehub logo')).toBe(true);
-      expect(requiresLogoAsset('what is DeHub?')).toBe(false);
+      expect(requiresLogoAsset('what is Riftn?')).toBe(false);
     });
 
     // "Show me the logo" displays the bundled asset. Anything more elaborate
@@ -155,7 +155,7 @@ describe('services/ai.service — request classification', () => {
   describe('buildDeHubBrandPrompt', () => {
     it('wraps the request in the brand system', () => {
       const prompt = buildDeHubBrandPrompt('a banner for the token launch');
-      expect(prompt).toContain('DEHUB BRAND SYSTEM (mandatory)');
+      expect(prompt).toContain('RIFTN BRAND SYSTEM (mandatory)');
       expect(prompt).toContain('Exo / Exo 2');
       expect(prompt).toContain('Never use blue');
       expect(prompt).toContain('USER REQUEST: a banner for the token launch');

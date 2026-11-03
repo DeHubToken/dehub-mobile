@@ -5,10 +5,16 @@
  * seconds. It tips up from the wrist, settles, and rests. Same motion as web
  * (.dehub-thumb-nod). Native-driver transforms only; it holds still off screen
  * and when the system asks for reduced motion.
+ *
+ * The rest between nods is a timer, not part of the animation: an
+ * Animated.loop with delays keeps the native driver ticking on every vsync,
+ * so one liked post on screen redrew the whole window 120 times a second
+ * while nothing moved.
  */
 
 import React, { useEffect, useRef, useState } from "react";
 import { AccessibilityInfo, Animated, Easing } from "react-native";
+import { useAmbientMotion } from "../../hooks/useAmbientMotion";
 
 const CYCLE_MS = 5000;
 // Keyframes as fractions of the cycle: tip, swing back, settle, rest.
@@ -35,9 +41,11 @@ export function ThumbNod({
   }, []);
   const rotate = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
+  // Holds while a feed scrolls, behind another screen and in the background.
+  const ambient = useAmbientMotion();
 
   useEffect(() => {
-    if (!playing || reduceMotion) return;
+    if (!playing || reduceMotion || !ambient) return;
     let last = 0;
     const steps = STEPS.map((step) => {
       const duration = (step.at - last) * CYCLE_MS;
@@ -48,16 +56,21 @@ export function ThumbNod({
         Animated.timing(scale, { ...timing, toValue: step.scale }),
       ]);
     });
-    const loop = Animated.loop(
-      Animated.sequence([Animated.delay(350), ...steps, Animated.delay((1 - last) * CYCLE_MS - 350)]),
-    );
-    loop.start();
+    const nodMs = last * CYCLE_MS;
+    let nod: Animated.CompositeAnimation | null = null;
+    let timer: ReturnType<typeof setTimeout> = setTimeout(function run() {
+      nod = Animated.sequence(steps);
+      nod.start(({ finished }) => {
+        if (finished) timer = setTimeout(run, CYCLE_MS - nodMs);
+      });
+    }, 350);
     return () => {
-      loop.stop();
+      clearTimeout(timer);
+      nod?.stop();
       rotate.setValue(0);
       scale.setValue(1);
     };
-  }, [playing, reduceMotion, rotate, scale]);
+  }, [playing, reduceMotion, ambient, rotate, scale]);
 
   return (
     <Animated.View

@@ -8,11 +8,13 @@ import type { FollowListItem } from "../../services/user.service";
 
 interface MutualFollowersProps {
   mutuals: FollowListItem[];
+  /** The true number of mutuals; `mutuals` holds only the first few faces. */
+  totalCount?: number;
 }
 
 const MAX_DISPLAY = 5;
 
-const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
+const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals, totalCount }) => {
   const { t: _copy } = _useCopy();
   if (!mutuals.length) return null;
 
@@ -23,10 +25,11 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
     .filter(Boolean)
     .join(", ");
 
+  const count = Math.max(totalCount ?? 0, mutuals.length);
   const countLabel =
-    mutuals.length === 1
-      ? _copy("profile.mutualsOne", { defaultValue: "{{count}} Mutual:", count: mutuals.length })
-      : _copy("profile.mutualsMany", { defaultValue: "{{count}} Mutuals:", count: mutuals.length });
+    count === 1
+      ? _copy("profile.mutualsOne", { defaultValue: "{{count}} Mutual:", count })
+      : _copy("profile.mutualsMany", { defaultValue: "{{count}} Mutuals:", count });
 
   return (
     <View className="flex-row items-center mt-3 gap-2">

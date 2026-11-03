@@ -1,7 +1,7 @@
 import { parseDehubLink } from './dehub-links';
 
 /**
- * A DeHub page the app has its own screen for, as a dehub:// link, or null.
+ * A Riftn page the app has its own screen for, as a dehub:// link, or null.
  *
  * iOS never hands an app its own universal link: opened from inside the app,
  * dehub.io/app/governance/<id> went to Safari instead of the proposal screen.
@@ -11,6 +11,6 @@ import { parseDehubLink } from './dehub-links';
 export function inAppDehubUrl(rawUrl: string): string | null {
   const match = parseDehubLink(rawUrl);
   if (match?.kind === 'proposal') return `dehub://app/governance/${match.proposalId}`;
-  const own = rawUrl.match(/^(?:https?:\/\/)?(?:www\.)?dehub\.io\/(app(?:[/?#].*)?)$/i);
+  const own = rawUrl.match(/^(?:https?:\/\/)?(?:www\.)?(?:dehub\.io|riftn\.com)\/(app(?:[/?#].*)?)$/i);
   return own ? `dehub://${own[1]}` : null;
 }

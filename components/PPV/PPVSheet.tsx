@@ -277,9 +277,9 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             });
           };
 
-          // The top-up step funds the gap from any token, DeHub Pay first and
+          // The top-up step funds the gap from any token, Riftn Pay first and
           // Uniswap only as its fallback. A silent ETH swap here would skip
-          // DeHub Pay entirely, so every Base shortfall goes to the step.
+          // Riftn Pay entirely, so every Base shortfall goes to the step.
           raiseShortfall(canAutoSwap);
           return;
         }
@@ -348,6 +348,13 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     );
     backdropOpacity.value = withTiming(0, { duration: 180 });
   }, [onClose, onSuccess, SHEET_HIDE_OFFSET]);
+
+  // A short tick, then the sheet closes itself and the post plays its reveal.
+  useEffect(() => {
+    if (phase !== "sent") return;
+    const id = setTimeout(handleSuccessContinue, 900);
+    return () => clearTimeout(id);
+  }, [phase, handleSuccessContinue]);
 
   if (!visible && isFullyClosed) return null;
 
@@ -481,14 +488,6 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               <Animated.Text entering={FadeInDown.delay(300).duration(350)} style={styles.successSub}>
                 {contentType === "image" ? t("ppv.canViewImage") : t("ppv.canWatchVideo")}
               </Animated.Text>
-
-              <TouchableOpacity
-                onPress={handleSuccessContinue}
-                style={styles.continueBtn}
-                activeOpacity={0.7}
-              >
-                <Text style={styles.continueBtnText}>{t("loginModal.continue")}</Text>
-              </TouchableOpacity>
             </View>
           )}
         </Animated.View>

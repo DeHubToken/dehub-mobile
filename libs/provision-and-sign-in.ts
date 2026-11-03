@@ -101,7 +101,7 @@ async function ensureSessionMatchesSupabaseIdentity(supabaseUserId: string): Pro
       // Never block a sign-in on the bookkeeping. Worst case is the old
       // behaviour: the outgoing account is not saved.
       log.warn("provision:stageIncomingIdentity:error", e);
-      // Clear DeHub credentials without signing out the incoming identity.
+      // Clear Riftn credentials without signing out the incoming identity.
       await clearAuthData();
     }
   }
@@ -155,7 +155,7 @@ async function trySessionExchange(
 }
 
 /**
- * After Supabase identity is established (Google/email), finish DeHub sign-in.
+ * After Supabase identity is established (Google/email), finish Riftn sign-in.
  *
  * The server selects the linked profile. A brand-new identity gets its wallet
  * made silently on this device; securing it waits for the first wallet action.

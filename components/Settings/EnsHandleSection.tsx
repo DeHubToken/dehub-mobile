@@ -15,7 +15,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  * **Why there is no "connect wallet" button, and must not be one.**
  *
  * The signature has to come from the wallet the name points at, which is
- * usually NOT the wallet you browse DeHub with. Web cannot connect a second
+ * usually NOT the wallet you browse Riftn with. Web cannot connect a second
  * wallet because its AuthProvider clears the session on a foreign address. On
  * this client it is worse: the only connect path is `useWalletAuth`'s
  * `handleWalletConnect`, and every route through it ends in
@@ -363,7 +363,7 @@ export function EnsHandleSection() {
                   <Text className="text-amber-400 text-xs leading-5 mt-1">
                     {t(
                       'settings.ensHeld',
-                      'Another DeHub account already wears this name. If it has changed hands on-chain since, proving it now takes it back.',
+                      'Another Riftn account already wears this name. If it has changed hands on-chain since, proving it now takes it back.',
                     )}
                   </Text>
                 ) : null}

@@ -94,7 +94,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [passkeyError, setPasskeyError] = useState<string | null>(null);
   const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   // Secret from a create attempt that has not finished yet: it is saved to
-  // Supabase, and either the optional backup offer is still open or the DeHub
+  // Supabase, and either the optional backup offer is still open or the Riftn
   // sign-in step failed (reused on retry so the saved row isn't overwritten by
   // a fresh mnemonic). See handleWalletCreate / handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);

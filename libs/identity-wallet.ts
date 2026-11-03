@@ -40,6 +40,20 @@ import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("identity-wallet");
 
+/**
+ * Names the step when wallet creation stalls, so a slow password-to-phrase
+ * hand-off can be traced in logcat to the call that held it. Step names only.
+ */
+async function timedStep<T>(step: string, work: Promise<T>): Promise<T> {
+  const started = Date.now();
+  try {
+    return await work;
+  } finally {
+    const ms = Date.now() - started;
+    if (ms > 5_000) log.warn("createWallet:slow-step", { step, ms });
+  }
+}
+
 const EVM_MAP_KEY = "supabase_identity_wallet_map_v1";
 // uid -> address of a wallet whose replacement row has been written but whose
 // cleanup did not finish. Read only by retryPendingResetCleanup, which
@@ -139,7 +153,7 @@ export type EvmWalletResolution =
   // `privateKey` is absent when the key was only CONFIRMED PRESENT rather than
   // released. Releasing it costs a fingerprint/passcode prompt (see
   // getPrivateKeyForAddress), and sign-in does not need one: the Supabase
-  // session exchange mints the DeHub token without any signature. Only the
+  // session exchange mints the Riftn token without any signature. Only the
   // signature-login fallback needs the key, and it asks for it there — see
   // releaseWalletKeyForSignIn.
   | { status: "ready"; address: string; privateKey?: string | null }
@@ -277,7 +291,7 @@ export async function resolveEvmWalletForIdentity(
  * the ordinary login never gets here.
  */
 export async function releaseWalletKeyForSignIn(address: string): Promise<string | null> {
-  return recoverLocalWalletKey(address, _translateCopy('copy.caf0f2aff3b3', { defaultValue: 'Sign in to DeHub' }));
+  return recoverLocalWalletKey(address, _translateCopy('copy.caf0f2aff3b3', { defaultValue: 'Sign in to Riftn' }));
 }
 
 /** Supabase-stored wallet address when resolution already knows one. */
@@ -337,7 +351,7 @@ export async function finishBiometricUnlock(
   address: string,
   payload: EncryptedPayload,
 ): Promise<{ address: string; privateKey: string }> {
-  const survivingKey = await recoverLocalWalletKey(address, _translateCopy('copy.69ee84e7ca69', { defaultValue: 'Unlock your DeHub wallet' }));
+  const survivingKey = await recoverLocalWalletKey(address, _translateCopy('copy.69ee84e7ca69', { defaultValue: 'Unlock your Riftn wallet' }));
   if (survivingKey) {
     const derived = deriveFromSecret(survivingKey);
     await finishWalletUnlock(supabaseUserId, address, survivingKey);
@@ -367,7 +381,7 @@ export async function finishBiometricUnlock(
  *
  * `existingSecret` re-protects and re-saves an already-generated wallet
  * instead of minting a new mnemonic — for retrying after a create attempt
- * whose Supabase save succeeded but whose DeHub sign-in failed. Generating
+ * whose Supabase save succeeded but whose Riftn sign-in failed. Generating
  * fresh on retry would overwrite the just-saved user_wallets row with a
  * different wallet, orphaning the first one (and any backend account link it
  * acquired).
@@ -392,7 +406,7 @@ export async function createAndSaveEvmWalletForIdentity(
   const derived = deriveFromSecret(mnemonic);
   const encrypted =
     protection.kind === "password"
-      ? await encryptString(derived.secret, protection.password)
+      ? await timedStep("encrypt", encryptString(derived.secret, protection.password))
       : await enrollBiometricUnlock(derived.ethAddress, derived.secret);
 
   // Paranoia: never "clean up" the wallet we are about to write. A retry that
@@ -417,20 +431,20 @@ export async function createAndSaveEvmWalletForIdentity(
   }
 
   if (abandoning) {
-    await replaceStoredWallet(supabaseUserId, abandoning.address, derived.ethAddress, encrypted);
+    await timedStep("replace", replaceStoredWallet(supabaseUserId, abandoning.address, derived.ethAddress, encrypted));
   } else {
-    await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
+    await timedStep("save", saveWallet(supabaseUserId, derived.ethAddress, encrypted));
   }
 
   if (abandoning) {
     // Only now. Until the upsert landed, the old wallet was still this
     // identity's wallet and these were the user's routes back to it.
-    await runResetCleanup(supabaseUserId, {
+    await timedStep("cleanup", runResetCleanup(supabaseUserId, {
       abandoned: abandoning.address.toLowerCase(),
       replacement: derived.ethAddress.toLowerCase(),
       clearOtherSeedCopies: false,
       attempts: 0,
-    });
+    }));
   }
 
   await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey });
@@ -461,7 +475,7 @@ export async function createAndSaveEvmWalletForIdentity(
  * `local_solana_sk_<address>` is deliberately left in place — see
  * getLegacySolanaSecretKeyHex. On pre-derivation builds it is the only copy of
  * a Solana key nothing can re-derive, and any balance it holds is still the
- * user's regardless of which EVM wallet DeHub now points at.
+ * user's regardless of which EVM wallet Riftn now points at.
  */
 export async function forgetAbandonedWalletLocally(address: string): Promise<void> {
   const addr = address.toLowerCase();
@@ -613,7 +627,7 @@ export async function forgetLocalWalletForIdentity(supabaseUserId: string): Prom
 
 /**
  * Replace the active wallet for a Supabase identity with a DIFFERENT one —
- * e.g. this identity ended up linked to more than one DeHub account (Supabase
+ * e.g. this identity ended up linked to more than one Riftn account (Supabase
  * links Google/Email logins that share a verified email into ONE identity, so
  * only one wallet's Supabase user_wallets row can be canonical at a time; see
  * dehubweb's AuthProvider.switchActiveWallet, which this mirrors). `secret`
@@ -637,7 +651,7 @@ export async function switchActiveWalletForIdentity(
    * recovery path, where the row names an address the user is trying to get
    * back INTO — the write is refused unless the secret derives to it. Without
    * this, one mistyped-but-valid recovery phrase silently replaces the row and
-   * drops the user into a different, empty DeHub account, with the original
+   * drops the user into a different, empty Riftn account, with the original
    * row (and the account behind it) gone.
    *
    * Both the raw EOA and the Safe smart-account address count as a match,
@@ -647,7 +661,7 @@ export async function switchActiveWalletForIdentity(
 ): Promise<{ address: string; privateKey: string }> {
   const derived = deriveFromSecret(secret);
 
-  // Many DeHub accounts (especially pre-migration Web3Auth-era ones, and any
+  // Many Riftn accounts (especially pre-migration Web3Auth-era ones, and any
   // AA-enabled account created via the normal write path -- see
   // wallet-core/smart-account.ts / services/auth/localProviderAdapter.ts)
   // are registered under their Safe SMART-ACCOUNT address, not the raw EOA
@@ -695,7 +709,7 @@ export async function switchActiveWalletForIdentity(
         derived: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
       });
       throw new Error(
-        _translateCopy("copy.ef25f1775919", { defaultValue: "That recovery belongs to a different wallet than this DeHub profile. Nothing was changed." })
+        _translateCopy("copy.ef25f1775919", { defaultValue: "That recovery belongs to a different wallet than this Riftn profile. Nothing was changed." })
       );
     }
   }

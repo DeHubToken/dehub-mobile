@@ -265,7 +265,7 @@ const StakingTab: React.FC = () => {
       }
       if (dbStaked < 0) dbStaked = 0;
 
-      // Old positions can be keyed by either the owner EOA or DeHub's
+      // Old positions can be keyed by either the owner EOA or Riftn's
       // deterministic Safe. Keep the non-zero position instead of assuming
       // the address form stored on the current profile is the one that staked.
       const legacyInfo = legacyInfos.reduce(

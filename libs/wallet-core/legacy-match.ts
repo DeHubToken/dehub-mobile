@@ -25,7 +25,7 @@ export function legacyAccountsForProvider(
 }
 
 /**
- * Connect a recovered owner key to the DeHub profile it actually controls.
+ * Connect a recovered owner key to the Riftn profile it actually controls.
  *
  * Legacy profiles normally store their Safe smart-account address, while a
  * Web3Auth recovery returns the Safe owner's EOA key. Address matching must

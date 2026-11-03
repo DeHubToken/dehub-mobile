@@ -270,7 +270,7 @@ export function useAuthSession({
         log.warn('signOut:revokeRefreshToken:error', e as any);
       }
       // Disconnect any WalletConnect (Connect Wallet) session — otherwise
-      // AppKit's connection outlives the DeHub sign-out, and the next visit
+      // AppKit's connection outlives the Riftn sign-out, and the next visit
       // to the sign-in screen auto-authenticates with whatever wallet was
       // last connected instead of showing the sign-in options. Mirrors
       // dehubweb's clearWagmiStorage() call on disconnect.
@@ -579,7 +579,7 @@ export function useAuthSession({
   );
 
   /**
-   * Exchange a Supabase access token (Google/email sign-in) for a DeHub
+   * Exchange a Supabase access token (Google/email sign-in) for a Riftn
    * session with no wallet signature — used when this Supabase identity is
    * already linked to an account (a link established by a previous
    * signInWithWallet call's web3AuthMeta, on this or another device).

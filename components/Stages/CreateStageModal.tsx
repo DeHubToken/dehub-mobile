@@ -169,7 +169,7 @@ const CreateStageModal: React.FC = () => {
 
   // ── Scheduled: hand over the link ────────────────────────────────────────
   //
-  // Deliberately no auto-post. Publishing on DeHub is an on-chain mint from the
+  // Deliberately no auto-post. Publishing on Riftn is an on-chain mint from the
   // host's wallet, so firing one as a side effect of a form would spend gas they
   // never agreed to. Sharing the link is the cheap path, and pasting it into a
   // post renders the same card.

@@ -1,13 +1,15 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Keyboard, Platform, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
-import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Reanimated, { Easing, ReduceMotion, cancelAnimation, runOnJS, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withSpring, withTiming } from "react-native-reanimated";
+import Svg, { Rect } from "react-native-svg";
+import { Gesture, GestureDetector, TextInput as GestureTextInput } from "react-native-gesture-handler";
 import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
 import { androidFrostSupported, useFrostedSource } from "../ui/FrostedBackdrop";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import type { FeedSearchTab } from "../../libs/feed-search";
+import { SNAP_SPRING } from "../../theme/motion";
 
 /**
  * The feed search on the colour themes (everything but System and Minimal),
@@ -31,6 +33,8 @@ export const LENS_HEIGHT = 52;
 export const LENS_DOCK_SPACE = LENS_HEIGHT + 34;
 const DROP = { damping: 15, stiffness: 170, mass: 0.9 };
 const DRAG_CLOSE = 70;
+/** A quick flick up closes too, even when it travels less than DRAG_CLOSE. */
+const FLICK_CLOSE = 700;
 
 interface FeedSearchLensProps {
   tab: FeedSearchTab;
@@ -47,11 +51,51 @@ interface FeedSearchLensProps {
   fromY: number;
   /** The theme's colour, for the rim glow. */
   accent: string;
+  /** A search is on its way: a lit arc runs slowly round the rim. */
+  loading?: boolean;
 }
 
+const AnimatedRect = Reanimated.createAnimatedComponent(Rect);
+
+/** The lit arc that runs round the rim while results load, as on web. */
+const RimSpinner: React.FC<{ width: number; color: string; loading: boolean }> = ({ width, color, loading }) => {
+  // Centred on the 1.5px border: the rect runs along the border's middle.
+  const w = width - 1.5;
+  const h = LENS_HEIGHT - 1.5;
+  const perimeter = 2 * (w - h) + Math.PI * h;
+  const arc = perimeter * 0.22;
+  const run = useSharedValue(0);
+  const shown = useSharedValue(0);
+  useEffect(() => {
+    shown.value = withTiming(loading ? 1 : 0, { duration: 240 });
+    if (loading) {
+      run.value = 0;
+      run.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.linear, reduceMotion: ReduceMotion.System }), -1, false);
+    } else {
+      cancelAnimation(run);
+    }
+  }, [loading, run, shown]);
+  const props = useAnimatedProps(() => ({ strokeDashoffset: -run.value * perimeter }));
+  const fade = useAnimatedStyle(() => ({ opacity: shown.value }));
+  if (width <= 0) return null;
+  return (
+    <Reanimated.View pointerEvents="none" style={[styles.spinner, { width: w + 4, height: h + 4 }, fade]}>
+      <Svg width={w + 4} height={h + 4}>
+        <AnimatedRect
+          x={2} y={2} width={w} height={h} rx={h / 2} ry={h / 2}
+          fill="none" stroke={color} strokeWidth={2.5} strokeLinecap="round"
+          strokeDasharray={[arc, perimeter - arc]}
+          animatedProps={props}
+        />
+      </Svg>
+    </Reanimated.View>
+  );
+};
+
 const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
-  tab, query, onChangeQuery, onClose, onPickFeed, onFilterPress, filterActive, dockY, fromX, fromY, accent,
+  tab, query, onChangeQuery, onClose, onPickFeed, onFilterPress, filterActive, dockY, fromX, fromY, accent, loading = false,
 }) => {
+  const [rimWidth, setRimWidth] = useState(0);
   const { t: _copy } = _useCopy();
   const { shorts: shortsEnabled } = useAppPrefs();
   const { width, height } = useWindowDimensions();
@@ -91,17 +135,31 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
     closing.current = true;
     setPicking(false);
     inputRef.current?.blur();
+    top.value = top.value + drag.value;
+    drag.value = 0;
     top.value = withTiming(fromY - LENS_HEIGHT / 2, { duration: 230, easing: Easing.in(Easing.quad) });
     open.value = withTiming(0, { duration: 230, easing: Easing.in(Easing.quad) }, (done) => { if (done) runOnJS(onClose)(); });
   };
 
-  const pan = Gesture.Pan()
-    .activeOffsetY([-12, 12])
-    .onUpdate((e) => { drag.value = Math.min(0, e.translationY); })
-    .onEnd((e) => {
-      if (e.translationY < -DRAG_CLOSE) runOnJS(close)();
-      drag.value = withSpring(0, DROP);
-    });
+  // Drag up closes from anywhere: the whole lens (its text box and buttons
+  // too, not just the thin rim between them) and the blurred feed behind it.
+  // Before, the pan only won when the finger landed on the rim's few spare
+  // pixels, so dragging the bar itself did nothing.
+  const dragUp = () =>
+    Gesture.Pan()
+      .activeOffsetY([-10, 10])
+      .failOffsetX([-24, 24])
+      .shouldCancelWhenOutside(false)
+      .onUpdate((e) => { drag.value = Math.min(0, e.translationY); })
+      .onEnd((e) => {
+        if (e.translationY < -DRAG_CLOSE || (e.translationY < -16 && e.velocityY < -FLICK_CLOSE)) {
+          runOnJS(close)();
+        } else {
+          drag.value = withSpring(0, SNAP_SPRING);
+        }
+      });
+  const lensPan = dragUp();
+  const blurPan = dragUp();
 
   const lensStyle = useAnimatedStyle(() => ({
     top: top.value + drag.value,
@@ -114,7 +172,7 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
   const blurStyle = useAnimatedStyle(() => ({ opacity: open.value }));
 
   const placeholder = {
-    home: _copy("copy.57e2faa5ec63", { defaultValue: "Search DeHub" }),
+    home: _copy("copy.57e2faa5ec63", { defaultValue: "Search Riftn" }),
     shorts: _copy("copy.e8756c6865a5", { defaultValue: "Search shorts" }),
     images: _copy("copy.9e13d826baaf", { defaultValue: "Search images" }),
     videos: _copy("copy.c7661da99c41", { defaultValue: "Search videos" }),
@@ -124,6 +182,7 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
       {!docked ? (
+        <GestureDetector gesture={blurPan}>
         <Reanimated.View style={[StyleSheet.absoluteFill, { top: dockY }, blurStyle]}>
           {Platform.OS === "ios" || (androidFrostSupported && blurSource) ? (
             <BlurView
@@ -141,17 +200,20 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
             accessibilityLabel={_copy("copy.55656b5e434f", { defaultValue: "Close search" })}
           />
         </Reanimated.View>
+        </GestureDetector>
       ) : null}
 
       <Reanimated.View style={[styles.lensHost, lensStyle]} pointerEvents="box-none">
-        <GestureDetector gesture={pan}>
+        <GestureDetector gesture={lensPan}>
           <View
             style={[
               styles.rim,
               { borderColor: accent, shadowColor: accent },
             ]}
+            onLayout={(e) => setRimWidth(e.nativeEvent.layout.width)}
           >
             <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.halo, { borderColor: accent }]} />
+            <RimSpinner width={rimWidth} color={accent} loading={loading && docked} />
             <Pressable
               onPress={() => setPicking((v) => !v)}
               style={styles.round}
@@ -170,8 +232,8 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
             >
               <Icon name="Settings2" size={16 * 1.18} color={filterActive ? "#FFFFFF" : "#A1A1AA"} strokeWidth={filterActive ? 2 : 1.8} />
             </Pressable>
-            <TextInput
-              ref={inputRef}
+            <GestureTextInput
+              ref={inputRef as unknown as React.Ref<any>}
               value={query}
               onChangeText={onChangeQuery}
               placeholder={placeholder}
@@ -238,6 +300,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     elevation: 10,
   },
+  spinner: { position: "absolute", left: -2.75, top: -2.75 },
   halo: { margin: -5, borderRadius: LENS_HEIGHT / 2 + 5, borderWidth: 4, opacity: 0.16 },
   round: {
     width: 40,

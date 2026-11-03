@@ -29,7 +29,7 @@ interface FinanceStats {
 const endpoint = "https://dehub.io/api/finance-stats";
 const usd = (value: number) => value.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const sum = (values: Record<string, number>) => Object.values(values).reduce((total, value) => total + value, 0);
-const openLedger = (source?: string, tax = false) => Linking.openURL(`https://dehub.io/stats?finance-view=${tax ? "tax" : "ledger"}${source ? `&finance-source=${encodeURIComponent(source)}` : ""}`);
+const openLedger = (source?: string, tax = false) => Linking.openURL(`https://riftn.com/stats?finance-view=${tax ? "tax" : "ledger"}${source ? `&finance-source=${encodeURIComponent(source)}` : ""}`);
 
 export default function FinanceSection({ days }: { days: number | null }) {
   const { t } = useTranslation();
@@ -94,7 +94,7 @@ export default function FinanceSection({ days }: { days: number | null }) {
           <Polyline points={points("costs")} fill="none" stroke="#71717A" strokeWidth={2} strokeDasharray="4 4" />
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
-        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub." })}</Text>
+        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by Riftn." })}</Text>
         {query.data.notes?.map((note, index) => <Text key={index} style={styles.hint}>{note}</Text>)}
         {query.data.provenance?.expenseAllocation && <Text style={styles.hint}>{query.data.provenance.expenseAllocation}</Text>}
       </PageSection>

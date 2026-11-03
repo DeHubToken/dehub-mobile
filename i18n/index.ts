@@ -160,7 +160,7 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 // Lazy-loaders for all non-English locales
-const packOrigin = process.env.EXPO_PUBLIC_LOCALE_PACK_ORIGIN || 'https://dehub.io';
+const packOrigin = process.env.EXPO_PUBLIC_LOCALE_PACK_ORIGIN || 'https://riftn.com';
 const readPackCache = (key: string) => AsyncStorage.getItem(`locale-pack:${key}`);
 const writePackCache = async (key: string, value: string) => { try { await AsyncStorage.setItem(`locale-pack:${key}`, value); } catch {} };
 

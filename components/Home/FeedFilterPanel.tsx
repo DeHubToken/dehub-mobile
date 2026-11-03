@@ -90,6 +90,8 @@ interface FeedFilterPanelProps {
   /** Homepage System drawer: measured nav height hidden behind the pill. */
   navOverlap?: number;
   chipRadius?: number;
+  /** Rendered above Sort: Home's "My presets" row. */
+  topSlot?: React.ReactNode;
 }
 
 
@@ -283,6 +285,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   inactiveTextColor,
   navOverlap,
   chipRadius = PILL_BORDER_RADIUS,
+  topSlot,
 }) => {
   const { t } = useTranslation();
   const { isLight } = useAppTheme();
@@ -391,6 +394,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={panelStyles.content}
       >
+        {topSlot}
         {!hideSort && (
           <GlassFilterRow title={t("filters.sort").toUpperCase()}>
             {SORT_OPTIONS.map((option) => (

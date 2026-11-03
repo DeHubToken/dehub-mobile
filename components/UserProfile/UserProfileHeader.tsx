@@ -3,11 +3,14 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
 import { openBadgeShowcase } from "../../libs/badgeShowcase";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
+import { ProfilePullRing, useProfileAvatarPop, useProfileCoverHidden } from "../Profile/ProfilePullRefresh";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "../common/Avatar";
+import { openPostBgPicker } from "../Profile/PostBgPicker";
 import Icon from "../ui/Icon";
 import { copyToClipboard, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
@@ -84,9 +87,8 @@ export interface UserProfileHeaderProps {
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
   mutuals?: FollowListItem[];
-  /** True while the mutual-followers request is still in flight — reserves
-   *  the row's height instead of popping it in once the list arrives. */
-  mutualsLoading?: boolean;
+  /** True number of mutual followers (`mutuals` holds the first few faces). */
+  mutualsTotal?: number;
   /** The creator has published at least one subscription plan. */
   hasPlans?: boolean;
   /** True while the creator's plans are still loading — reserves the
@@ -134,14 +136,16 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   FallbackBanner,
   socials,
   mutuals,
-  mutualsLoading = false,
+  mutualsTotal,
   hasPlans = false,
   plansLoading = false,
   onSubscribe,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useI18n();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, colors } = useAppTheme();
+  const coverHidden = useProfileCoverHidden();
+  const avatarPop = useProfileAvatarPop();
   const cinematicPhone = useCinematicPhone();
   const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
@@ -250,7 +254,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           {glassLayers}
           <View style={s.glassBtnContent}>
             <Text style={s.glassBtnLabel}>{t("filters.following")}</Text>
-            <Icon name="Check" size={14} color="#fff" />
+            {/* The tick sits inset in its box: pull it in so both sides of the pill match. */}
+            <View style={s.followingTick}>
+              <Icon name="Check" size={14} color="#fff" />
+            </View>
           </View>
         </TouchableOpacity>
       );
@@ -290,6 +297,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
               decodes it at banner size where ImageBackground decoded every pixel.
               A cover in Supabase Storage is fetched at banner width as well. */}
+          <Animated.View style={[StyleSheet.absoluteFill, coverHidden]}>
           <SmartImage
             source={
               coverUrl === "default-banner"
@@ -300,23 +308,28 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             style={{ width: "100%", height: "100%" }}
             contentFit="cover"
           />
+          </Animated.View>
         </View>
       </TouchableOpacity>
 
       <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
-        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -48 }}>
+          <Animated.View style={avatarPop}>
           <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
-            size={88}
+            size={96}
             style={{ borderWidth: 1.5, borderColor: "#18181b", backgroundColor: "#18181b" }}
             live={live}
             liveQuiet
             onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
+            onLongPress={isOwnProfile ? () => openPostBgPicker() : undefined}
           />
+          <ProfilePullRing size={96} radius={Math.round(96 * 0.16)} color={colors.accent} />
+          </Animated.View>
           {(!isBlocked || !!onOpenOptions) && (
-            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 60, marginRight: cinematicPhone ? -4 : -8 }}>
               {!isBlocked && renderFollowButton()}
               {!isBlocked && !!onMessage && (
                 <TouchableOpacity
@@ -356,13 +369,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               links used to share this row and cut a long name to one line;
               they now live in the Links pill at the bottom of the header. */}
           <View className="flex-row items-center gap-1.5">
-            <Text ref={identityRef} onLayout={measureIdentity} className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
+            <Text ref={identityRef} onLayout={measureIdentity} className="text-white font-bold" numberOfLines={2} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>{displayName}</Text>
             {badge && badgeImage && (
               <Pressable ref={badgeRef} style={{ alignSelf: "flex-end", height: 28, justifyContent: "center" }} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
                 <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />
               </Pressable>
             )}
-            <StreamerBadge address={address} canSelect={isOwnProfile} fontSize={20} />
+            <StreamerBadge address={address} canSelect={isOwnProfile} fontSize={24} lineHeight={30} />
           </View>
 
           {/* Wraps, so a long handle plus the .eth / follows-you / patron
@@ -371,7 +384,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View className="flex-row flex-wrap items-center mt-0.5 gap-2">
             {!!username && (
               <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7} style={{ flexShrink: 1, maxWidth: "100%" }}>
-                <Text className="text-zinc-400 text-sm" numberOfLines={1}>@{username}</Text>
+                <Text className="text-zinc-400" style={{ fontSize: 16, lineHeight: 22 }} numberOfLines={1}>@{username}</Text>
               </TouchableOpacity>
             )}
             {/* Beside the handle, never instead of it: the username is what
@@ -402,22 +415,26 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
           {!!bio && (
             <View className="mt-3">
-              <Text className="text-white/90 text-sm">{displayBio}</Text>
-              {showBioTranslate && (
-                <TranslateButton
-                  isTranslated={isBioTranslated}
-                  isLoading={isTranslatingBio}
-                  onTranslate={handleTranslateBio}
-                  onShowOriginal={handleShowOriginalBio}
-                />
-              )}
+              <Text className="text-white/90" style={{ fontSize: 16, lineHeight: 24 }}>{displayBio}</Text>
             </View>
           )}
 
           <ProfileFieldsList fields={profileFields} />
 
-          {!!joinedDate && (
-            <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>
+          {/* Joined, with the bio's translate control beside it, as on web. */}
+          {(!!joinedDate || (!!bio && showBioTranslate)) && (
+            <View className="flex-row flex-wrap items-center mt-3" style={{ columnGap: 8 }}>
+              {!!joinedDate && <Text className="text-zinc-400 text-sm">{t("profile.joined")} {joinedDate}</Text>}
+              {!!bio && showBioTranslate && (
+                <TranslateButton
+                  isTranslated={isBioTranslated}
+                  isLoading={isTranslatingBio}
+                  onTranslate={handleTranslateBio}
+                  onShowOriginal={handleShowOriginalBio}
+                  inline
+                />
+              )}
+            </View>
           )}
 
           {(followingItem || followersItem) ? (
@@ -427,7 +444,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   onPress={onStatPress ? () => onStatPress("following") : undefined}
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
-                  <Text className="text-sm">
+                  <Text style={{ fontSize: 16, lineHeight: 22 }}>
                     <Text className="text-white font-bold">{formatCompactNumber(followingItem.value)}</Text>
                     <Text className="text-zinc-400"> {t("profile.following")}</Text>
                   </Text>
@@ -438,7 +455,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   onPress={onStatPress ? () => onStatPress("followers") : undefined}
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
-                  <Text className="text-sm">
+                  <Text style={{ fontSize: 16, lineHeight: 22 }}>
                     <Text className="text-white font-bold">{formatCompactNumber(followersItem.value)}</Text>
                     <Text className="text-zinc-400"> {t("profile.followers")}</Text>
                   </Text>
@@ -452,31 +469,26 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   followers={followersItem.value}
                 />
               )}
+              {/* The links ride at the end of the counts line and only wrap
+                  below when the line is genuinely full. */}
+              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} style={{ marginLeft: "auto" }} />
             </View>
           ) : null}
         </View>
 
-        {/* Both rows below reserve their real height the moment their query
-            starts, rather than popping in once it resolves (mutuals and plans
-            are separate requests that land after the header has already
-            painted). A profile opened mid-scroll used to grow twice under the
-            reader as each one arrived; the placeholder keeps that height
-            stable and only actually collapses if the answer turns out empty,
-            which happens once, right after mount, not while reading. */}
-        {/* The bottom row: mutual followers on the left, the creator's social
-            icons tucked into the right-hand corner. Each side carries its own
-            top margin, so the row takes no space when both are empty. */}
+        {/* Mutual followers. Nothing is reserved while the request runs: a
+            profile with no mutuals must not show an empty bar under the
+            counts, so the row only appears once there is someone to show. */}
         <View className="flex-row items-center" style={{ gap: 12 }}>
           <View className="flex-1" style={{ minWidth: 0 }}>
-            {mutualsLoading && !mutuals?.length ? (
-              <View style={s.mutualsPlaceholder} />
-            ) : (
-              <MutualFollowers mutuals={mutuals || []} />
-            )}
+            <MutualFollowers mutuals={mutuals || []} totalCount={mutualsTotal} />
           </View>
-          <View style={{ marginTop: 12 }}>
-            <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
-          </View>
+          {/* Counts hidden: the links fall back to this corner. */}
+          {!(followingItem || followersItem) && (
+            <View style={{ marginTop: 12 }}>
+              <ProfileLinksPill source={socials as Record<string, unknown> | undefined} />
+            </View>
+          )}
         </View>
 
         {/* The streamer ladder. Renders nothing until a stream has ended,
@@ -524,12 +536,6 @@ const s = StyleSheet.create({
   // Same box the real row/button occupies, so the mutuals-loading and
   // plans-loading states don't change the header's height once real content
   // (or nothing) replaces them.
-  mutualsPlaceholder: {
-    height: 20,
-    marginTop: 12,
-    borderRadius: 6,
-    backgroundColor: "rgba(255,255,255,0.06)",
-  },
   subscribePlaceholder: {
     marginTop: 12,
     paddingHorizontal: 0,
@@ -559,6 +565,9 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 6,
+  },
+  followingTick: {
+    marginRight: -1,
   },
   glassBtnLabel: {
     color: "#fff",

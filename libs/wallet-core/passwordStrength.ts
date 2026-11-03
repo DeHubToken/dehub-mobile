@@ -102,27 +102,53 @@ async function sha1Hex(input: string): Promise<string> {
 }
 
 /**
+ * React Native's Android fetch has no connect or read timeout, so a stalled
+ * connection to HIBP left the wallet password step spinning for minutes before
+ * the recovery phrase could appear. The check is advisory and fails open, so
+ * give up quickly instead.
+ */
+export const BREACH_CHECK_TIMEOUT_MS = 5_000;
+
+/**
  * HIBP k-anonymity breach check. Returns true if the password appears in a
  * known breach, false if it doesn't, and null if the check couldn't run
- * (offline / rate-limited) so callers can fail open.
+ * (offline / rate-limited / too slow) so callers can fail open.
  */
 export async function isBreached(pw: string): Promise<boolean | null> {
-  try {
-    const hash = await sha1Hex(pw);
-    const prefix = hash.slice(0, 5);
-    const suffix = hash.slice(5);
-    const res = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
-      headers: { "Add-Padding": "true" },
-    });
-    if (!res.ok) return null;
-    const text = await res.text();
-    for (const line of text.split("\n")) {
-      const [suf, count] = line.trim().split(":");
-      if (suf === suffix && Number(count) > 0) return true;
+  const controller = new AbortController();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<null>((resolve) => {
+    timer = setTimeout(() => {
+      controller.abort();
+      resolve(null);
+    }, BREACH_CHECK_TIMEOUT_MS);
+  });
+  const check = (async (): Promise<boolean | null> => {
+    try {
+      const hash = await sha1Hex(pw);
+      const prefix = hash.slice(0, 5);
+      const suffix = hash.slice(5);
+      const res = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
+        headers: { "Add-Padding": "true" },
+        signal: controller.signal,
+      });
+      if (!res.ok) return null;
+      const text = await res.text();
+      for (const line of text.split("\n")) {
+        const [suf, count] = line.trim().split(":");
+        if (suf === suffix && Number(count) > 0) return true;
+      }
+      return false;
+    } catch {
+      return null;
     }
-    return false;
-  } catch {
-    return null;
+  })();
+  try {
+    // Raced as well as aborted: an abort the native layer ignores must not
+    // hold the screen either.
+    return await Promise.race([check, deadline]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 

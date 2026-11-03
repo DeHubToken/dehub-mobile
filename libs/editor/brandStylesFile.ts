@@ -11,9 +11,9 @@ export function parseBrandStylesFile(text: string): BrandStylesFile {
   if (text.length > 32768) throw new Error("Choose a brand styles file smaller than 32 KB");
   let value: unknown;
   try { value = JSON.parse(text.replace(/^\uFEFF/, "")); } catch { throw new Error("This file does not contain valid brand styles"); }
-  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Choose an exported DeHub brand styles file");
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Choose an exported Riftn brand styles file");
   const file = value as Record<string, unknown>;
-  if (file.kind !== "dehub-brand-styles" || file.version !== 1 || typeof file.name !== "string" || !file.styles || !validBrandStyles(file.styles)) throw new Error("Choose a supported DeHub brand styles file");
+  if (file.kind !== "dehub-brand-styles" || file.version !== 1 || typeof file.name !== "string" || !file.styles || !validBrandStyles(file.styles)) throw new Error("Choose a supported Riftn brand styles file");
   const styles = normaliseBrandStyles(file.styles as BrandStyles);
   if (!styles.colors.length && !styles.headingFont && !styles.bodyFont) throw new Error("This file contains no colours or fonts");
   return { name: cleanName(file.name), styles };

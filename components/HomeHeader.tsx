@@ -102,10 +102,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
       >
         <DockLogoTarget tint={colors.foreground}>
         <ElectricLogo refreshing={refreshing} pullDistance={pullDistance} onPress={isSignedIn ? onLogoPress : onMenuPress}
-          label={isSignedIn ? "DeHub" : t("common.openMenu")}
+          label={isSignedIn ? "Riftn" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-island-logo.png")}
-          style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+          style={{ minWidth: 44, height: 44, alignItems: "center", justifyContent: "center" }}
           width={42} height={36} tint={colors.foreground} />
         </DockLogoTarget>
       </View>

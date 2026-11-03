@@ -64,7 +64,7 @@ const AndroidBiometricUnlockRow: React.FC = () => {
     setBusy(true);
     try {
       if (state?.hasDeviceKey) {
-        await requireDeviceOwner(_copy("copy.37b05565987b", { defaultValue: "Verify DeHub wallet unlock" }));
+        await requireDeviceOwner(_copy("copy.37b05565987b", { defaultValue: "Verify Riftn wallet unlock" }));
         rememberSuccessfulWalletUnlock();
         toastSuccess(_copy("copy.cf10c8a1758c", { defaultValue: "Biometric wallet unlock verified" }));
       } else {

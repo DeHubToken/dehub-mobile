@@ -221,7 +221,7 @@ export async function uploadLiveChatVoice(
  * Upload an image for public chat.
  *
  * Goes to the same Supabase edge function web uses (`dm-upload-media`, see
- * dehubweb src/lib/api/dehub/dm.ts) rather than the DeHub API: livechat has no
+ * dehubweb src/lib/api/dehub/dm.ts) rather than the Riftn API: livechat has no
  * upload route of its own for pictures, only for voice, and the bucket the
  * function writes to is what both clients already render from.
  *

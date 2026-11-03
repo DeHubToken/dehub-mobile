@@ -238,7 +238,7 @@ export function getDeviceLanguage(): string {
  * the device locale only when no choice has been made.
  *
  * Never read the device locale on its own for this — a user running an
- * English phone with DeHub set to Turkish would get English "translations",
+ * English phone with Riftn set to Turkish would get English "translations",
  * and posts already in English would be judged same-language and lose their
  * translate button entirely. Call this at use time, not at module scope: the
  * language can change mid-session from the Settings picker.

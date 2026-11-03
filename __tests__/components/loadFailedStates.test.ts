@@ -59,7 +59,7 @@ describe("Fractions portfolio tab", () => {
   const src = readSource("components/Fractions/PortfolioTab.tsx");
 
   it("shows load-failed with a retry before the 'none held' copy, only when nothing is cached", () => {
-    const failed = src.indexOf("portfolio.isError && positions.length === 0 ? (");
+    const failed = src.indexOf("portfolio.isError && allPositions.length === 0 ? (");
     const none = src.indexOf('t("fractions.noneHeldYet")');
     expect(failed).toBeGreaterThan(-1);
     expect(none).toBeGreaterThan(failed);

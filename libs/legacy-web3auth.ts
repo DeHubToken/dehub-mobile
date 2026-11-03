@@ -2,7 +2,7 @@ import "@web3auth/react-native-sdk/setup";
 // LEGACY Web3Auth — one-time wallet migration only
 // ================================================
 // Native RN port of dehubweb's src/lib/legacy-web3auth.ts: lets a user who has
-// a pre-migration (Web3Auth-era) DeHub account log in through the OLD
+// a pre-migration (Web3Auth-era) Riftn account log in through the OLD
 // provider ONCE, reconstructs the private key on-device via Sapphire DKG (the
 // key never touches our servers), and hands it to switchActiveWalletForIdentity
 // for import. Same key -> same account (followers/uploads/DHB balance intact).
@@ -91,7 +91,7 @@ async function initLegacyWeb3Auth(): Promise<Web3Auth> {
     // We only need the raw EOA key, never a smart account wrapper. Explicit
     // `false` (not omitted) matters: the SDK's initAccountAbstractionConfig()
     // only fills this in from a dashboard-config constant when it's left
-    // `undefined`, and DeHub's dashboard has smart accounts configured for
+    // `undefined`, and Riftn's dashboard has smart accounts configured for
     // the main app -- leaving this unset crashed with
     // "Cannot read property 'SMART_ACCOUNT_WALLET_SCOPE' of undefined".
     useAAWithExternalWallet: false,

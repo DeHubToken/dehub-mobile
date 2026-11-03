@@ -152,8 +152,11 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
   /** Lets the scroll view inside the sheet run alongside the drag. */
   const scroll = useMemo(() => Gesture.Native(), []);
   /** Same for the text box: a native field grabs the touch on its own and a
-   *  pull starting on the text line never reached the sheet. */
-  const text = useMemo(() => Gesture.Native(), []);
+   *  pull starting on the text line never reached the sheet. It also runs
+   *  alongside the scroll view: the field takes the touch the moment a finger
+   *  lands on it, so without this a long post could not be scrolled by
+   *  dragging on its text. */
+  const text = useMemo(() => Gesture.Native().simultaneousWithExternalGesture(scroll), [scroll]);
   const sheetPan = useMemo(() => pan.simultaneousWithExternalGesture(scroll, text), [pan, scroll, text]);
 
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: y.value }] }));

@@ -38,7 +38,7 @@ function pool(over: Record<string, unknown> = {}) {
     dexId: 'uniswap',
     url: 'https://dexscreener.com/base/pool',
     pairAddress: '0xpool',
-    baseToken: { address: DHB, name: 'DeHub', symbol: 'DHB' },
+    baseToken: { address: DHB, name: 'Riftn', symbol: 'DHB' },
     priceUsd: '0.001',
     priceNative: '0.0000004',
     priceChange: { h24: 5 },
@@ -84,7 +84,7 @@ describe('resolveAddress', () => {
     expect(asset).toMatchObject({
       assetClass: 'token',
       symbol: 'DHB',
-      name: 'DeHub',
+      name: 'Riftn',
       price: 0.001,
       changePercent24h: 5,
       chainId: 'base',
@@ -143,7 +143,7 @@ describe('resolveAddress', () => {
     mockFunctions({
       'cmc-market-cap': {
         symbol: 'DHB',
-        name: 'DeHub',
+        name: 'Riftn',
         logo: 'https://cmc/dhb.png',
         cmcRank: 900,
         price: 0.0011,
@@ -192,7 +192,7 @@ describe('resolveTicker', () => {
   });
 
   it('falls back to the DEX market for a ticker nothing else knows', async () => {
-    mockFetch({ '/dex/search': { pairs: [pool({ baseToken: { address: DHB, name: 'DeHub', symbol: 'DHB' } })] } });
+    mockFetch({ '/dex/search': { pairs: [pool({ baseToken: { address: DHB, name: 'Riftn', symbol: 'DHB' } })] } });
 
     const asset = (await resolveTicker('DHB')) as ResolvedAsset;
     expect(asset.assetClass).toBe('token');
@@ -267,7 +267,7 @@ describe('searchAssets', () => {
       'cmc-market-cap:search': {
         results: [
           { symbol: 'DHBX', name: 'Other', cmcRank: 50 },
-          { symbol: 'DHB', name: 'DeHub', cmcRank: 900 },
+          { symbol: 'DHB', name: 'Riftn', cmcRank: 900 },
         ],
       },
     });
@@ -281,7 +281,7 @@ describe('searchAssets', () => {
       '/dex/search': {
         pairs: [
           pool({
-            baseToken: { address: DHB, name: 'DeHub', symbol: 'MOON' },
+            baseToken: { address: DHB, name: 'Riftn', symbol: 'MOON' },
             volume: { h24: 900_000 },
           }),
           pool({

@@ -112,6 +112,8 @@ const renameQueryParams = (queryString: string, names: Record<string, string>): 
  * Add more domains as needed (e.g., 'dehub.io', 'app.dehub.io')
  */
 export const UNIVERSAL_LINK_DOMAINS = [
+  'riftn.com',
+  'www.riftn.com',
   'dehub.io',
   'legacy.dehub.io', // backward compat
 ] as const;
@@ -294,6 +296,9 @@ export const DeepLinkPaths = {
   // Fraction marketplace — dehub.io/app/fractions. Web answers the bare
   // /fractions too; the /app rewrite below maps it here.
   FRACTIONS: 'app/fractions',
+
+  // NFT market — dehub.io/nfts (bare, like web).
+  NFTS: 'nfts',
 
   // AI agents — dehub.io/app/agents; the bare /agents is rewritten onto it.
   AGENTS: 'app/agents',
@@ -518,6 +523,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Fractions]: DeepLinkPaths.FRACTIONS,
 
+          [ScreenNames.NftMarket]: DeepLinkPaths.NFTS,
+
           [ScreenNames.Agents]: DeepLinkPaths.AGENTS,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
@@ -634,7 +641,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (segments[0] === 'r' && segments[1]) {
       // The attribution listener keeps the first touch for native signup.
       // The web landing owns the inviter's customized destinations.
-      openOnWeb(`https://dehub.io/${pathOnly}${queryString ? `?${queryString}` : ''}`);
+      openOnWeb(`https://riftn.com/${pathOnly}${queryString ? `?${queryString}` : ''}`);
       return homeState();
     }
     if (appSegs.length === 1 && ['wallet', 'buy', 'stake'].includes(appSegs[0])) {
@@ -677,7 +684,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare', 'nfts']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });
@@ -816,7 +823,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       // Rewrite username.dehub.io → dehub.io/:username so getStateFromPath handles it
       const subdomain = extractSubdomainUsername(url);
       if (subdomain) {
-        const rewritten = `https://dehub.io/${subdomain}`;
+        const rewritten = `https://riftn.com/${subdomain}`;
         logger.info('Subdomain deep link rewritten', { from: url, to: rewritten });
         listener(rewritten);
         return;
@@ -839,7 +846,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // Rewrite username.dehub.io → dehub.io/:username
     const subdomain = extractSubdomainUsername(url);
     if (subdomain) {
-      const rewritten = `https://dehub.io/${subdomain}`;
+      const rewritten = `https://riftn.com/${subdomain}`;
       logger.info('Subdomain launch rewritten', { from: url, to: rewritten });
       return rewritten;
     }
@@ -854,7 +861,7 @@ const SHARE_BASE = `https://${UNIVERSAL_LINK_DOMAINS[0]}`;
  * 
  * @example
  * createDeepLink('POST', { tokenId: 'abc123' })
- * // Returns: 'https://dehub.io/app/post/abc123'
+ * // Returns: 'https://riftn.com/app/post/abc123'
  */
 export const createDeepLink = (
   type: keyof typeof DeepLinkPaths,
@@ -932,6 +939,8 @@ export const ShareLinks = {
     `${SHARE_BASE}/accounts?handle=${encodeURIComponent(handle)}`,
   /** Fraction marketplace — dehub.io/app/fractions */
   fractions: () => `${SHARE_BASE}/app/fractions`,
+  /** NFT market — dehub.io/nfts */
+  nfts: () => `${SHARE_BASE}/nfts`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,

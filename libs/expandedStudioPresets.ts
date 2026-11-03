@@ -1,4 +1,4 @@
-/** Original DeHub image and video recipes; mirrored in both clients. */
+/** Original Riftn image and video recipes; mirrored in both clients. */
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import type { CreatorTemplate } from './creatorTemplates';
 

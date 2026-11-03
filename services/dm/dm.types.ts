@@ -1,5 +1,7 @@
 
 
+import type { DmVideoOptions } from "../../libs/dm-video-options";
+import type { DmDestruct, DmDestructChoice } from "../../libs/dm-destruct";
 import type { MediaDescriptor } from "../../libs/dm-e2ee/media";
 
 export type ID = string;
@@ -126,12 +128,48 @@ export interface DmForwardedFrom {
   messageId: ID;
 }
 
+/**
+ * A photo or video put behind a price (pay to unlock). The real file is only
+ * ever in `mediaUrl`, for the sender or a buyer; `mediaUrls[0]` is always the
+ * blurred preview.
+ */
+export interface DmLock {
+  /** DHB to pay right now for `priceUsd` (live on reads, send-time quote on sockets). */
+  price: number;
+  /** What the buyer pays, in USD. */
+  priceUsd?: number;
+  /** DHB rate the server used for `price`. */
+  dhbPriceUsd?: number;
+  symbol: string;
+  kind: "image" | "video";
+  previewUrl: string | null;
+  unlocked: boolean;
+  mine?: boolean;
+  /** False while the upload is still being processed. */
+  ready?: boolean;
+  unlockCount?: number;
+  mediaUrl?: string;
+  mediaUrlExpiresAt?: string;
+}
+
+export interface DmLockStatus {
+  messageId: string;
+  conversationId: string;
+  /** Who the unlock payment goes to (the sender). */
+  payTo: string;
+  lock: DmLock;
+  pendingTxHash?: string;
+  status?: "unlocked" | "pending";
+}
+
 /** A single DM message. */
 export interface DmMessage {
   _id: ID;
   conversation: ID;
   sender: DmUser | ID; // aggregate may populate
   author?: "me" | "other";
+  /** Local only: the temp id the line was first drawn under, kept as its list key so the bubble is never re-mounted when the send lands. */
+  _clientKey?: string;
   content?: string;
   /** Set once an `e2e:` envelope has been opened (or failed to open) client-side. */
   encrypted?: boolean;
@@ -182,6 +220,13 @@ export interface DmMessage {
 
   /** Emoji -> lowercase wallet addresses that reacted with it. */
   reactions?: Record<string, string[]>;
+
+  /** Set for a locked (pay-to-unlock) photo or video. */
+  lock?: DmLock | null;
+  /** How a plain video plays (trim, cover, mirror, rotate, hide until tapped). */
+  mediaOptions?: DmVideoOptions | null;
+  /** Self-destruct: gone after a set time, or once the other person watched it. */
+  destruct?: DmDestruct | null;
 }
 
 /** Server -> Client: reactionUpdated (the message's full reaction map). */
@@ -311,6 +356,12 @@ export interface UploadDmMediaParams {
   replyTo?: ID; // Message._id being replied to
   /** The file is an end-to-end encrypted blob of this kind; `content` must then be an envelope. */
   encryptedKind?: "image" | "video" | "audio" | "file";
+  /** Pay-to-unlock price (DHB). Never combined with encryptedKind. */
+  lockPrice?: number;
+  /** Video trim/cover/mirror/rotate/hide, for an attachment sent in the clear. */
+  mediaOptions?: DmVideoOptions;
+  /** Self-destruct choice; works for encrypted files too (only the timer is in the clear). */
+  destruct?: DmDestructChoice;
 }
 
 

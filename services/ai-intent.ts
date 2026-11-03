@@ -178,7 +178,7 @@ const LOGO_PHRASES = [
   'ftv brand', 'brand logo', 'company logo',
 ];
 
-/** Artefacts the brand pipeline knows how to make, once DeHub is named. */
+/** Artefacts the brand pipeline knows how to make, once Riftn is named. */
 const DEHUB_BRAND_ARTEFACTS = [
   'poster', 'posters', 'banner', 'banners', 'thumbnail', 'thumbnails',
   'card', 'cards', 'announcement', 'announcements', 'flyer', 'flyers',
@@ -232,7 +232,7 @@ export function requiresLogoAsset(message: string): boolean {
 }
 
 export function isDeHubBrandedImageRequest(message: string): boolean {
-  const mentionsDeHub = /\bde\s*hub\b/i.test(message) || /\bdhb\b/i.test(message);
+  const mentionsDeHub = /\b(?:de\s*hub|riftn)\b/i.test(message) || /\bdhb\b/i.test(message);
   if (!mentionsDeHub) return false;
   if (isSupportQuestion(message)) return false;
   return matchesAny(message, DEHUB_BRAND_ARTEFACTS);

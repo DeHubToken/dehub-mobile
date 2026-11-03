@@ -1,5 +1,5 @@
 /**
- * DeHub preloader — the animated DeHub mark (a ring sweeping around the "U").
+ * Riftn preloader — the animated Riftn mark (a ring sweeping around the "U").
  *
  * The same art the web app uses (`public/dehub-loader.gif` there), resized
  * 1080² → 240² so it costs ~60 KB: it has to render on exactly the slow

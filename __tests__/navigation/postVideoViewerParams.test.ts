@@ -40,3 +40,10 @@ it('accepts a zero token ID and a post without a poster', () => {
   expect(params.feedParams.fromId).toBe('0');
   expect(params.initialThumbnail).toBeUndefined();
 });
+
+it('continues through the profile tab the video was opened from', () => {
+  const item = { tokenId: 7, postType: 'video' };
+  const profileFeed = { minter: '0xabc', postType: 'video' as const };
+  const params = postVideoViewerParams(item, item.tokenId, undefined, profileFeed);
+  expect(params.feedParams).toEqual({ profileFeed, fromId: '7' });
+});

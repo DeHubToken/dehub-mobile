@@ -1,5 +1,5 @@
 import ThemePanel from '../components/ui/ThemePanel';
-import { CommentLoadError } from '../components/Comments/CommentLoadError';
+import RequestComments from '../components/FeatureRequests/RequestComments';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
@@ -52,6 +52,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
+import { TopBuildersCard, TopBuildersPin, TopBuildersProvider, usePinVisible } from "../components/FeatureRequests/TopBuilders";
 import GlassModal from "../components/ui/GlassModal";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
@@ -76,7 +77,6 @@ import {
 } from "../theme/minimal";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useCanGoBack } from "../hooks/useCanGoBack";
-import { useGrowingTextInput } from "../hooks/useGrowingTextInput";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import {
@@ -90,9 +90,8 @@ import {
   useSubmitFeatureRequest,
   useEditFeatureRequest,
   useDeleteFeatureRequest,
-  useFeatureRequestComments,
-  useSubmitComment,
-  useDeleteComment,
+  useSetFeatureStatus,
+  isFeatureStatusEditor,
   featureAttachments,
   isVideoAttachment,
   MAX_FEATURE_ATTACHMENTS,
@@ -107,7 +106,6 @@ import {
 } from "../hooks/useFeatureRequests";
 import { Collapsible, CollapsibleChevron } from "../components/ui/Collapsible";
 
-const COMMENT_MAX = 500;
 const TITLE_MAX = 100;
 const DESC_MAX = 1000;
 const DEVICE_MAX = 300;
@@ -231,140 +229,6 @@ const Attachments: React.FC<{ feature: FeatureRequest }> = ({ feature }) => {
   );
 };
 
-// ── Comments ────────────────────────────────────────────────────────────────
-
-/**
- * Inline comment thread. Mounted only when the card is expanded, so the query
- * stays gated exactly like web's `useFeatureRequestComments(showComments ? id : null)`.
- */
-const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
-  featureId,
-  isAuthed,
-}) => {
-  const { t } = useTranslation();
-  const navigation = useNavigation<any>();
-  const user = useUser() as any;
-  const { showUserProfile } = useUserProfileSheet();
-  const myWallet: string = (user?.walletAddress || user?.address || "").toLowerCase();
-
-  const { data: comments = [], isLoading, isError, isFetching, refetch } = useFeatureRequestComments(featureId);
-  const submitComment = useSubmitComment();
-  const deleteComment = useDeleteComment();
-  const [draft, setDraft] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:draft", "");
-  const growingInput = useGrowingTextInput(draft, 32, 100);
-
-  const send = useCallback(() => {
-    const content = draft.trim();
-    if (!content || submitComment.isPending) return;
-    if (!isAuthed) {
-      navigation.navigate(ScreenNames.SignIn);
-      return;
-    }
-    submitComment.mutate(
-      { featureRequestId: featureId, content },
-      { onSuccess: () => setDraft.complete(draft, "") },
-    );
-  }, [draft, submitComment, isAuthed, navigation, featureId, setDraft]);
-
-  const confirmDelete = useCallback(
-    (commentId: string) => {
-      Alert.alert(t("features.deleteCommentTitle"), t("features.deleteCommentDescription"), [
-        { text: t("common.cancel", "Cancel"), style: "cancel" },
-        {
-          text: t("common.delete", "Delete"),
-          style: "destructive",
-          onPress: () => deleteComment.mutate({ commentId, featureRequestId: featureId }),
-        },
-      ]);
-    },
-    [deleteComment, featureId, t],
-  );
-
-  return (
-    <View style={styles.commentsWrap}>
-      {isError && <CommentLoadError isFetching={isFetching} onRetry={() => { void refetch(); }} />}
-      {isLoading ? (
-        <ActivityIndicator color="#808089" style={{ paddingVertical: 12 }} />
-      ) : comments.length === 0 ? (
-        !isError && <Text style={styles.noComments}>{t("features.noComments")}</Text>
-      ) : (
-        comments.map((c) => {
-          const name = c.username ? `@${c.username}` : shortAddr(c.wallet_address);
-          const isOwn = !!myWallet && myWallet === c.wallet_address.toLowerCase();
-          return (
-            <View key={c.id} style={styles.commentRow}>
-              <Pressable
-                onPress={() => showUserProfile?.(c.username || c.wallet_address)}
-                style={{ flexShrink: 0 }}
-              >
-                <Avatar uri={getAvatarUrl(c.avatar)} size={24} name={c.username || c.wallet_address} />
-              </Pressable>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <View style={styles.commentHead}>
-                  <Text style={styles.commentAuthor} numberOfLines={1}>
-                    {name}
-                  </Text>
-                  <Text style={styles.commentTime}>{timeAgo(c.created_at, t)}</Text>
-                  {isOwn && (
-                    <Pressable
-                      onPress={() => confirmDelete(c.id)}
-                      hitSlop={10}
-                      style={{ marginLeft: "auto" }}
-                      accessibilityRole="button"
-                      accessibilityLabel={t("features.deleteCommentA11y")}
-                    >
-                      <Icon name="Trash2" size={12} color="#808089" />
-                    </Pressable>
-                  )}
-                </View>
-                <Text style={styles.commentBody}>{c.content}</Text>
-              </View>
-            </View>
-          );
-        })
-      )}
-
-      {isAuthed ? (
-        <View style={styles.composer}>
-          <TextInput
-            value={draft}
-            onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
-            placeholder={t("features.addComment")}
-            placeholderTextColor="#52525B"
-            style={[styles.composerInput, { height: growingInput.height, textAlignVertical: 'top' }]}
-            onContentSizeChange={growingInput.onContentSizeChange}
-            scrollEnabled={growingInput.scrollEnabled}
-            multiline
-          />
-          <Pressable
-            onPress={send}
-            disabled={!draft.trim() || submitComment.isPending}
-            accessibilityRole="button"
-            accessibilityLabel={t("features.sendCommentA11y")}
-            style={[
-              styles.sendBtn,
-              (!draft.trim() || submitComment.isPending) && styles.sendBtnDisabled,
-            ]}
-          >
-            {submitComment.isPending ? (
-              <ActivityIndicator size="small" color="#FFFFFF" />
-            ) : (
-              <Icon name="Send" size={14} color="#FFFFFF" />
-            )}
-          </Pressable>
-        </View>
-      ) : (
-        <Pressable
-          onPress={() => navigation.navigate(ScreenNames.SignIn)}
-          style={styles.signInBar}
-        >
-          <Text style={styles.signInText}>{t("features.signInToComment")}</Text>
-        </Pressable>
-      )}
-    </View>
-  );
-};
-
 // ── Card ────────────────────────────────────────────────────────────────────
 
 const ActionButton: React.FC<{
@@ -406,7 +270,9 @@ const FeatureCard: React.FC<{
   isAuthed: boolean;
   /** Open the thread on mount — set by a comment notification's deep link. */
   defaultCommentsOpen?: boolean;
-}> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false }) => {
+  /** The comment a notification pointed at — ringed in the thread. */
+  highlightCommentId?: string | null;
+}> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false, highlightCommentId }) => {
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
   const user = useUser() as any;
@@ -419,6 +285,9 @@ const FeatureCard: React.FC<{
 
   const myWallet: string = (user?.walletAddress || user?.address || "").toLowerCase();
   const isAuthor = !!myWallet && myWallet === feature.author_wallet_address.toLowerCase();
+  // The board's owners can move anyone's request to Queued or Shipped.
+  const canSetStatus = isFeatureStatusEditor(myWallet);
+  const statusMutation = useSetFeatureStatus();
 
   const displayName = feature.author_username || feature.author_wallet_address.slice(0, 6);
   const handle = feature.author_username
@@ -432,7 +301,39 @@ const FeatureCard: React.FC<{
   const badge = STATUS_BADGE[feature.status];
 
   const openMenu = useCallback(() => {
+    const isQueued = feature.status === "in_progress";
+    const isShipped = feature.status === "shipped" || feature.status === "completed";
+    const statusButtons = canSetStatus
+      ? [
+          ...(!isQueued
+            ? [{
+                text: t("copy.63eb38b938b8", { defaultValue: "Mark Queued" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "in_progress" as const }),
+              }]
+            : []),
+          ...(!isShipped
+            ? [{
+                text: t("copy.2fffca525795", { defaultValue: "Mark Shipped" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "shipped" as const }),
+              }]
+            : []),
+          ...(isQueued || isShipped
+            ? [{
+                text: t("copy.3ee050a08bfa", { defaultValue: "Back to Requests" }),
+                onPress: () => statusMutation.mutate({ id: feature.id, status: "open" as const }),
+              }]
+            : []),
+        ]
+      : [];
+    if (!isAuthor) {
+      Alert.alert(feature.title, undefined, [
+        ...statusButtons,
+        { text: t("common.cancel", "Cancel"), style: "cancel" },
+      ]);
+      return;
+    }
     Alert.alert(feature.title, undefined, [
+      ...statusButtons,
       {
         text: t("features.edit", "Edit"),
         onPress: () => {
@@ -461,11 +362,11 @@ const FeatureCard: React.FC<{
       },
       { text: t("common.cancel", "Cancel"), style: "cancel" },
     ]);
-  }, [feature, t, deleteMutation, setEditDescription, setEditTitle]);
+  }, [feature, t, deleteMutation, statusMutation, canSetStatus, isAuthor, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
     void shareWithRef({
-      message: `${feature.title}\nhttps://dehub.io/app/features?feature=${feature.id}`,
+      message: `${feature.title}\nhttps://riftn.com/app/features?feature=${feature.id}`,
     });
   }, [feature.id, feature.title]);
 
@@ -491,7 +392,7 @@ const FeatureCard: React.FC<{
             <Text style={styles.time}>{timeAgo(feature.created_at, t)}</Text>
           </View>
         </View>
-        {isAuthor && !editing && (
+        {(isAuthor || canSetStatus) && !editing && (
           <Pressable
             onPress={openMenu}
             hitSlop={10}
@@ -636,7 +537,13 @@ const FeatureCard: React.FC<{
       )}
 
       {showComments && !editing && (
-        <CommentsSection featureId={feature.id} isAuthed={isAuthed} />
+        <RequestComments
+          featureId={feature.id}
+          featureTitle={feature.title}
+          authorAddress={feature.author_wallet_address}
+          isAuthed={isAuthed}
+          highlightCommentId={highlightCommentId}
+        />
       )}
     </View>
   );
@@ -780,6 +687,10 @@ const PromptComposer: React.FC<{
   );
 };
 export default function FeatureRequestsScreen() {
+  return <TopBuildersProvider><FeatureRequestsBoard /></TopBuildersProvider>;
+}
+
+function FeatureRequestsBoard() {
   const { t } = useTranslation();
   // Minimal: the header bento and request cards become edge-to-edge hairline
   // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
@@ -821,6 +732,8 @@ export default function FeatureRequestsScreen() {
   } = useFeatureRequests(sort, category, debouncedSearch);
 
   const shipped = useShippedFeatures();
+  const builderPinVisible = usePinVisible();
+  const showBuilderPin = builderPinVisible && tab === "shipped" && !debouncedSearch && category === "all";
   const inProgress = useInProgressFeatures();
   const { data: counts } = useFeatureCounts();
   const { data: votes } = useUserVotes();
@@ -1000,7 +913,7 @@ export default function FeatureRequestsScreen() {
               {t("features.promptPageTitle", "Requests")}
             </Text>
             <Text style={styles.pageSubtitle} numberOfLines={1}>
-              {t("features.promptSubtitle", "Build DeHub with a prompt")}
+              {t("features.promptSubtitle", "Build Riftn with a prompt")}
             </Text>
           </View>
           <Pressable
@@ -1153,11 +1066,12 @@ export default function FeatureRequestsScreen() {
           // Minimal: rows run edge to edge and butt up — the hairline is the gap.
           contentContainerStyle={{
             paddingHorizontal: isMinimal ? 0 : 8,
-            paddingBottom: insets.bottom + 24,
+            paddingBottom: insets.bottom + 24 + (showBuilderPin ? 76 : 0),
             paddingTop: isMinimal ? 0 : 8,
             gap: isMinimal ? 0 : 12,
           }}
           ListHeaderComponent={<>
+            {tab === "shipped" && !debouncedSearch && category === "all" && <TopBuildersCard />}
             <View style={tab !== "requests" ? { display: "none" } : undefined}>
               <PromptComposer focusRequest={composerFocus} submitting={submitMutation.isPending} onSubmit={async v => {
                 const result = await submitMutation.mutateAsync(v);
@@ -1166,7 +1080,7 @@ export default function FeatureRequestsScreen() {
               }} />
             </View>
             {focusedRequest && <FeatureCard feature={focusedRequest} myVote={votes?.[focusedRequest.id]}
-              onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} />}
+              onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} highlightCommentId={focusedCommentId} />}
           </>}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
@@ -1206,6 +1120,7 @@ export default function FeatureRequestsScreen() {
             </ThemePanel>
           }
         />
+      {showBuilderPin && <TopBuildersPin bottom={insets.bottom + 12} />}
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
@@ -1430,54 +1345,6 @@ const styles = StyleSheet.create({
   actionCount: { color: "#8B8D90", fontSize: 12 },
 
   // Comments.
-  commentsWrap: {
-    marginTop: 12,
-    paddingTop: 12,
-    borderTopWidth: 1,
-    borderTopColor: "rgba(255,255,255,0.05)",
-  },
-  noComments: { color: "#808089", fontSize: 12, textAlign: "center", paddingVertical: 8 },
-  commentRow: { flexDirection: "row", gap: 8, paddingVertical: 5 },
-  commentHead: { flexDirection: "row", alignItems: "center", gap: 6 },
-  commentAuthor: { color: "#A1A1AA", fontSize: 11, fontWeight: "500", flexShrink: 1 },
-  commentTime: { color: "#808089", fontSize: 10, flexShrink: 0 },
-  commentBody: { color: "#D4D4D8", fontSize: 12, lineHeight: 18, marginTop: 1 },
-
-  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, marginTop: 10 },
-  composerInput: {
-    flex: 1,
-    minHeight: 32,
-    maxHeight: 100,
-    color: "#FFFFFF",
-    fontSize: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-  },
-  sendBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: GLASS_BG,
-    borderWidth: 1,
-    borderColor: GLASS_BORDER,
-  },
-  sendBtnDisabled: { opacity: 0.3 },
-  signInBar: {
-    marginTop: 10,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    paddingVertical: 10,
-    alignItems: "center",
-  },
-  signInText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "500" },
 
   // Empty / error bento.
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },

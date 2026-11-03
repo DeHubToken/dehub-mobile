@@ -40,6 +40,8 @@ export enum DMSocketEvent {
   DmFeePayment = "dmFeePayment",
   TipSend = "tipSend",
   FeeConfirmed = "feeConfirmed",
+  /** A locked (pay-to-unlock) photo or video in one of my chats was paid for. */
+  DmMediaUnlocked = "dmMediaUnlocked",
 
   // Typing indicators
   Typing = "typing",

@@ -16,18 +16,18 @@ export type RuleAudience = (typeof RULE_AUDIENCES)[number];
 
 /** The sounds a rule can play, by id — served by the web app. The server refuses anything else. */
 export const RULE_SOUND_FILES: Record<string, string> = {
-  airhorn: 'https://dehub.io/sounds/airhorn.wav',
-  applause: 'https://dehub.io/sounds/applause.wav',
-  cricket: 'https://dehub.io/sounds/crickets.mp3',
-  drumroll: 'https://dehub.io/sounds/drumroll.wav',
-  lol: 'https://dehub.io/sounds/lol.mp3',
-  'ooh-ahh': 'https://dehub.io/sounds/ooh-ahh.mp3',
-  'ooh-man': 'https://dehub.io/sounds/ooh-man.wav',
-  'ohh-girl': 'https://dehub.io/sounds/ohh-girl.ogg',
-  'ba-dum-tish': 'https://dehub.io/sounds/ba-dum-tish.wav',
-  spooky: 'https://dehub.io/sounds/spooky.wav',
-  'magic-spell': 'https://dehub.io/sounds/magic-spell.m4a',
-  shhh: 'https://dehub.io/sounds/shhh.m4a',
+  airhorn: 'https://riftn.com/sounds/airhorn.wav',
+  applause: 'https://riftn.com/sounds/applause.wav',
+  cricket: 'https://riftn.com/sounds/crickets.mp3',
+  drumroll: 'https://riftn.com/sounds/drumroll.wav',
+  lol: 'https://riftn.com/sounds/lol.mp3',
+  'ooh-ahh': 'https://riftn.com/sounds/ooh-ahh.mp3',
+  'ooh-man': 'https://riftn.com/sounds/ooh-man.wav',
+  'ohh-girl': 'https://riftn.com/sounds/ohh-girl.ogg',
+  'ba-dum-tish': 'https://riftn.com/sounds/ba-dum-tish.wav',
+  spooky: 'https://riftn.com/sounds/spooky.wav',
+  'magic-spell': 'https://riftn.com/sounds/magic-spell.m4a',
+  shhh: 'https://riftn.com/sounds/shhh.m4a',
 };
 export const RULE_SOUNDS = Object.keys(RULE_SOUND_FILES);
 

@@ -19,6 +19,7 @@ import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { noteProfileFeedOpen, useProfileFeedSource } from '../../libs/profileFeedOrigin';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import { preparePostMediaNavigation } from '../../libs/post-media-session';
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -137,6 +138,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const user = useUser();
   const navigation = useNavigation<any>();
+  const profileFeed = useProfileFeedSource();
   const { isMinimal } = useAppTheme();
   // Minimal: metadata chips read as plain muted text, not filled pills.
   const chipClass = isMinimal ? "" : "bg-theme-neutrals-700 px-1.5 py-0.5 rounded";
@@ -173,7 +175,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     hideUserProfile();
     if (!isLive && canOpenPostVideoViewer(nft)) {
       preparePostMediaNavigation(playbackUrl);
-      navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumbnail));
+      navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
       return;
     }
     // This card can be rendered inside the native profile sheet. Let that
@@ -188,13 +190,14 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           tokenId,
         });
       } else {
+        noteProfileFeedOpen(profileFeed, tokenId);
         navigation.navigate(ScreenNames.FeedDetail, {
           tokenId: String(tokenId),
           postId: String(tokenId),
         });
       }
     });
-  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate, playbackUrl, thumbnail]);
+  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate, playbackUrl, thumbnail, profileFeed]);
   return (
     // Minimal: a row, not a bordered card — no margins, box or fill, the 16pt
     // inset, and one hairline under each row running the list's full width.

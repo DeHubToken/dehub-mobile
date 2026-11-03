@@ -1,4 +1,4 @@
-// Supabase persistence for the DeHub self-custody wallet — mobile counterpart
+// Supabase persistence for the Riftn self-custody wallet — mobile counterpart
 // of dehubweb's src/lib/wallet-core/store.ts. Reads/writes the SAME
 // `user_wallets` table (RLS-scoped to the caller's own row), so a wallet
 // created on the web unlocks on the phone and vice versa: this is what lets

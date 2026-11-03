@@ -104,7 +104,7 @@ export async function toImageDataUrl(uri: string): Promise<string> {
 }
 
 /**
- * The bundled DeHub wordmark as a data URL, for the poster studio's logo
+ * The bundled Riftn wordmark as a data URL, for the poster studio's logo
  * composite. Bundled asset only — the CDN pointer paths return SPA HTML in
  * production rather than the PNG, which is the trap web's comment warns about.
  */
@@ -116,7 +116,7 @@ export async function bundledLogoDataUrl(variant: 'primary' | 'icon' | 'both'): 
   const asset = Asset.fromModule(moduleRef);
   await asset.downloadAsync();
   const localUri = asset.localUri || asset.uri;
-  if (!localUri) throw new Error('Could not resolve the DeHub logo asset');
+  if (!localUri) throw new Error('Could not resolve the Riftn logo asset');
   const base64 = await FileSystem.readAsStringAsync(localUri, {
     encoding: FileSystem.EncodingType.Base64,
   });

@@ -1,6 +1,6 @@
 import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import { openChatMention } from "../libs/openChatMention";
-import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
+import { FlashList } from "@shopify/flash-list";
 import Animated, {
   Easing,
   runOnJS,
@@ -565,7 +566,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   onRejectFollowRequest,
   groupLabel,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isMinimal, skin, accent, pageColors } = useAppTheme();
   // Unread dot and primary pill: the theme's own colour on the canvas skins,
   // the page ink (white on System, black on System Light) everywhere else.
@@ -589,7 +590,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     item.type !== NotificationType.VIDEO_REMOVAL &&
     item.type !== NotificationType.SYSTEM &&
     item.type !== NotificationType.ACCOUNT_WARNING;
-  const sentence = localizedNotificationContent(item, t) ?? item.content;
+  const sentence = localizedNotificationContent(item, t, i18n.language) ?? item.content;
   const actorName = item.actor?.displayName || item.actor?.username || item.actorUsername;
   const actorBadge = item.actor && !item.actor.hideBadgeAndBalance && !(item.aggregatedCount && item.aggregatedCount > 1)
     ? getBadgeUrlFor(item.actor)
@@ -666,6 +667,20 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     opacity: markOpacity.value,
     transform: [{ scale: markScale.value }],
   }));
+
+  // The list reuses a row for another notification as it scrolls, so a row
+  // that was mid-clear, marked or showing a failed thumbnail starts fresh.
+  useLayoutEffect(() => {
+    clearingRef.current = false;
+    clearing.value = 0;
+    collapse.value = 0;
+    markOpacity.value = 1;
+    markScale.value = 1;
+    setThumbFailed(false);
+    setMarking(false);
+    setAppealOpen(false);
+    setAppealRef(null);
+  }, [item._id, clearing, collapse, markOpacity, markScale]);
 
   const handleMarkRead = useCallback(() => {
     if (marking) return;
@@ -1062,7 +1077,7 @@ const NotificationScreen = () => {
    * Fire-and-forget mark as read
    */
   const markAsReadAsync = useCallback((notificationId: string) => {
-    // Supabase-side rows are not in the DeHub API, so a PATCH there would 404
+    // Supabase-side rows are not in the Riftn API, so a PATCH there would 404
     // and the row would come back unread on the next refresh. The `custom_`
     // prefix is the only thing distinguishing them — see libs/custom-notifications.
     const mark = isCustomNotificationId(notificationId)
@@ -1804,6 +1819,12 @@ const NotificationScreen = () => {
     });
   }, [notifications, handleMarkAllRead, walletAddress]);
 
+  const rowTypeOf = useCallback(
+    (item: NotificationItem, index: number) =>
+      index === 0 || feedGroupOf(filteredNotifications[index - 1] ?? item) !== feedGroupOf(item) ? "headed" : "row",
+    [filteredNotifications, feedGroupOf],
+  );
+
   const renderItem = useCallback(
     ({ item, index }: { item: NotificationItem; index: number }) => (
       <NotificationRow
@@ -1997,10 +2018,12 @@ const NotificationScreen = () => {
           showsVerticalScrollIndicator={false}
         />
       ) : (
-        <FlatList
+        <FlashList
           data={filteredNotifications}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
+          // Rows with a day heading above them are taller; keep them in their own pool.
+          getItemType={rowTypeOf}
           contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
           refreshControl={
             <DeHubRefreshControl
@@ -2011,16 +2034,9 @@ const NotificationScreen = () => {
           }
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
-          // Rows are a small avatar and two lines, so they batch cheaply.
-          initialNumToRender={8}
-          maxToRenderPerBatch={8}
-          windowSize={9}
-          updateCellsBatchingPeriod={60}
-          // No removeClippedSubviews: every row is a Reanimated view with its own
-          // animated style, and Android detaching and re-attaching those mid-fling
-          // is the jitter people saw. windowSize above still unmounts distant rows.
-          // Omitting the prop is NOT off: RN defaults it to true on Android.
-          removeClippedSubviews={false}
+          // A FlatList here mounted a fresh batch of rows on most frames of a
+          // fling and kept nine screens of them alive, so about 1 in 3 frames
+          // missed on a Galaxy S24+. FlashList reuses the rows it already has.
           ListFooterComponent={ListFooter}
           ListEmptyComponent={ListEmpty}
           showsVerticalScrollIndicator={false}

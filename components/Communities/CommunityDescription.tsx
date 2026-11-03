@@ -13,7 +13,7 @@ interface CommunityDescriptionProps {
 
 /**
  * A community description with each link shown as a tappable 🔗, matching the
- * web. The 🔗 opens in the in-app browser (DeHub links open in place).
+ * web. The 🔗 opens in the in-app browser (Riftn links open in place).
  */
 const CommunityDescription: React.FC<CommunityDescriptionProps> = ({ text, className, style, singleLine = false }) => {
   const tokens = tokenizeDescription(text, singleLine);

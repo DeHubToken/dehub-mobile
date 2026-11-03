@@ -230,7 +230,7 @@ describe('parseDeepLink', () => {
   it('reads the fraction market at /app/fractions and the bare /fractions', () => {
     expect(parseDeepLink('https://dehub.io/app/fractions')).toEqual({ type: 'fractions', params: {} });
     expect(parseDeepLink('https://dehub.io/fractions')).toEqual({ type: 'fractions', params: {} });
-    expect(ShareLinks.fractions()).toBe('https://dehub.io/app/fractions');
+    expect(ShareLinks.fractions()).toBe('https://riftn.com/app/fractions');
   });
 
   it('still reads the top-level routes that are not /app children', () => {
@@ -268,8 +268,8 @@ describe('ShareLinks', () => {
   it('offers the ENS URL alongside the username one, never instead of it', () => {
     // Two URLs for one profile. The username is what the account is called; a
     // .eth name is a claim on something that can be sold or expire.
-    expect(ShareLinks.profile('mal')).toBe('https://dehub.io/@mal');
-    expect(ShareLinks.profile('@mal')).toBe('https://dehub.io/@mal');
-    expect(ShareLinks.ensProfile('mal.eth')).toBe('https://dehub.io/mal.eth');
+    expect(ShareLinks.profile('mal')).toBe('https://riftn.com/@mal');
+    expect(ShareLinks.profile('@mal')).toBe('https://riftn.com/@mal');
+    expect(ShareLinks.ensProfile('mal.eth')).toBe('https://riftn.com/mal.eth');
   });
 });

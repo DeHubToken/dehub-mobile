@@ -10,29 +10,45 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  *
  * BuilderPreviewScreen stays: that is where the links the bot sends open.
  */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
-import Icon, { type IconName } from "../components/ui/Icon";
+import Icon from "../components/ui/Icon";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
-import { useAuthActions } from "../context/AuthContext";
-import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import { useAuthActions, useAuthState } from "../context/AuthContext";
+import BuilderModelCard from "../components/Builder/BuilderModelCard";
 import { ASSISTANT_ADDRESS, ASSISTANT_USERNAME } from "../libs/assistant";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
+import { Image } from "expo-image";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { builderApi } from "../services/builder.service";
+import { fetchBuilderShowcase } from "../services/miniapps.service";
 
 const EXAMPLE_KEYS = ["builder.example1", "builder.example2", "builder.example3"] as const;
 
-const STEPS: Array<{ icon: IconName; title: string; body: string }> = [
-  { icon: "Sparkles", title: "builder.step1Title", body: "builder.step1Body" },
-  { icon: "Wand", title: "builder.step2Title", body: "builder.step2Body" },
-  { icon: "Share2", title: "builder.step3Title", body: "builder.step3Body" },
-];
+/**
+ * The speed dial under the prompt. Each stop is one model from the builder's
+ * menu; the price beside it is the live per-prompt quote once signed in.
+ */
+const TIERS = [
+  { key: "builder.tierFast", model: "anthropic/claude-haiku-5.5" },
+  { key: "builder.tierBalanced", model: "anthropic/claude-sonnet-5.5" },
+  { key: "builder.tierBest", model: "anthropic/claude-opus-5.5" },
+] as const;
+
+const usd = (value: number) =>
+  value.toLocaleString(undefined, {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: value > 0 && value < 0.1 ? 3 : 2,
+  });
 
 export default function BuilderScreen() {
   const { t } = useTranslation();
@@ -42,10 +58,33 @@ export default function BuilderScreen() {
   const { requireAuth } = useAuthActions();
   const [prompt, setPrompt] = useSurfaceDraft("screens/BuilderScreen.tsx:prompt", "");
   const inputRef = useRef<TextInput>(null);
+  const { isSignedIn } = useAuthState();
+  const queryClient = useQueryClient();
+  const [tier, setTier] = useSurfaceDraft<string>("screens/BuilderScreen.tsx:tier", "anthropic/claude-sonnet-5.5");
+  const { data: pricing } = useQuery({
+    queryKey: ["builder-pricing"],
+    queryFn: () => builderApi.pricing(),
+    enabled: isSignedIn,
+    staleTime: 60_000,
+    retry: false,
+  });
+  const { data: showcase } = useQuery({ queryKey: ["builder-showcase"], queryFn: fetchBuilderShowcase, staleTime: 300_000 });
+
+  // A saved model that is one of the dial's stops lights that stop.
+  useEffect(() => {
+    if (pricing && TIERS.some((x) => x.model === pricing.model)) setTier(pricing.model);
+  }, [pricing?.model]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const active = pricing?.models?.find((m) => m.id === tier);
 
   /** Open the @assistant thread, sending `body` into it when there is one. */
   const openChat = (body?: string) => {
-    requireAuth(() => {
+    requireAuth(async () => {
+      // The prompt is built with whatever the dial says, so save it first.
+      if (body && pricing && pricing.model !== tier) {
+        await builderApi.setModel(tier).catch(() => undefined);
+        queryClient.invalidateQueries({ queryKey: ["builder-pricing"] });
+      }
       nav.navigate(ScreenNames.Chat, {
         targetAddress: ASSISTANT_ADDRESS,
         title: `@${ASSISTANT_USERNAME}`,
@@ -75,6 +114,9 @@ export default function BuilderScreen() {
           contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: insets.bottom + 32 }}
           keyboardShouldPersistTaps="handled"
         >
+          <View style={styles.liveChipRow}>
+            <Text style={styles.liveChip}>{t("builder.liveChip")}</Text>
+          </View>
           <Text style={styles.title}>{t("builder.landerTitle")}</Text>
           <Text style={styles.subtitle}>{t("builder.landerSubtitle")}</Text>
 
@@ -90,6 +132,29 @@ export default function BuilderScreen() {
                 maxLength={2000}
                 style={styles.input}
               />
+              <View style={styles.dialRow}>
+                <View accessibilityRole="radiogroup" accessibilityLabel={t("builder.modelLabel")} style={styles.dial}>
+                  {TIERS.map(({ key, model }) => {
+                    const on = tier === model;
+                    return (
+                      <Pressable
+                        key={model}
+                        accessibilityRole="radio"
+                        accessibilityState={{ checked: on }}
+                        onPress={() => setTier(model)}
+                        style={[styles.dialStop, on && styles.dialStopOn]}
+                      >
+                        <Text style={[styles.dialText, on && styles.dialTextOn]}>{t(key)}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              </View>
+              {active && (
+                <Text style={styles.quote}>
+                  {active.label} · {t("builder.perPrompt", { price: usd(active.typicalMicros / 1_000_000) })}
+                </Text>
+              )}
               <Pressable
                 onPress={send}
                 disabled={!canSend}
@@ -118,44 +183,38 @@ export default function BuilderScreen() {
             ))}
           </View>
 
-          <View style={{ marginTop: 28, gap: 10 }}>
-            {STEPS.map((step, i) => (
-              <LiquidGlass key={step.title} className="rounded-2xl">
-                <View style={styles.step}>
-                  <View style={styles.stepIcon}>
-                    <Icon name={step.icon} size={16} color="#fff" />
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.stepTitle}>
-                      {`${i + 1}. `}
-                      {t(step.title)}
-                    </Text>
-                    <Text style={styles.stepBody}>{t(step.body)}</Text>
-                  </View>
-                </View>
-              </LiquidGlass>
-            ))}
-          </View>
-
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => openChat()}
-            style={({ pressed }) => [styles.chatPill, pressed && { opacity: 0.7 }]}
-          >
-            <Icon name="MessageCircle" size={15} color="#e8e8ea" />
-            <Text style={styles.chatPillText}>{t("builder.buildInChat")}</Text>
-          </Pressable>
-
-          {/* Staking raises the allowance; the stake screen is a purchase surface, hidden on iOS. */}
-          {DIGITAL_PURCHASES_ENABLED && (
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => requireAuth(() => nav.navigate(ScreenNames.Dpay, { initialTab: "stake" }))}
-              style={{ alignSelf: "center", marginTop: 14, padding: 4 }}
-            >
-              <Text style={styles.footnote}>{t("builder.stakeForAllowance")}</Text>
-            </Pressable>
+          {!!showcase?.length && (
+            <View style={{ marginTop: 32 }}>
+              <View style={styles.showcaseHeader}>
+                <Text style={styles.showcaseTitle}>{t("builder.builtThisWeek")}</Text>
+                <Pressable accessibilityRole="link" onPress={() => nav.navigate(ScreenNames.Apps)} hitSlop={8}>
+                  <Text style={styles.seeAll}>{t("builder.seeAllApps")}</Text>
+                </Pressable>
+              </View>
+              <View style={styles.grid}>
+                {showcase.map((app) => (
+                  <Pressable
+                    key={app.slug}
+                    accessibilityRole="button"
+                    onPress={() => nav.navigate(ScreenNames.MiniApp, { slug: app.slug, from: "store" })}
+                    style={({ pressed }) => [styles.tile, pressed && { opacity: 0.7 }]}
+                  >
+                    <LiquidGlass className="rounded-2xl">
+                      <View style={[styles.tileArt, { backgroundColor: app.splash_background_color ?? "#3b2a8a" }]}>
+                        {app.icon_url ? <Image source={{ uri: app.icon_url }} style={styles.tileIcon} /> : null}
+                      </View>
+                      <View style={{ padding: 10 }}>
+                        <Text style={styles.tileName} numberOfLines={1}>{app.name}</Text>
+                        <Text style={styles.tileDomain} numberOfLines={1}>{app.domain}</Text>
+                      </View>
+                    </LiquidGlass>
+                  </Pressable>
+                ))}
+              </View>
+            </View>
           )}
+
+          <BuilderModelCard />
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -191,30 +250,39 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   chipText: { color: "#e8e8ea", fontSize: 14 },
-  step: { flexDirection: "row", gap: 12, padding: 14 },
-  stepIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 9,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  stepTitle: { color: "#fff", fontSize: 15, fontWeight: "700" },
-  stepBody: { color: "#949499", fontSize: 14, lineHeight: 20, marginTop: 3 },
-  chatPill: {
-    alignSelf: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginTop: 24,
+  liveChipRow: { alignItems: "center", marginBottom: 16 },
+  liveChip: {
+    color: "#c7b8ff",
+    fontSize: 13,
     borderRadius: 999,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.09)",
-    backgroundColor: "rgba(20,20,22,0.6)",
-    paddingHorizontal: 14,
-    paddingVertical: 9,
+    backgroundColor: "rgba(10,10,12,0.55)",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    overflow: "hidden",
   },
-  chatPillText: { color: "#e8e8ea", fontSize: 14, fontWeight: "500" },
-  footnote: { color: "#949499", fontSize: 13, textAlign: "center" },
+  dialRow: { flexDirection: "row", marginTop: 10 },
+  dial: {
+    flexDirection: "row",
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.09)",
+    backgroundColor: "rgba(255,255,255,0.04)",
+    padding: 3,
+  },
+  dialStop: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
+  dialStopOn: { backgroundColor: "#7c5cff" },
+  dialText: { color: "#949499", fontSize: 13, fontWeight: "500" },
+  dialTextOn: { color: "#fff" },
+  quote: { color: "#949499", fontSize: 12, marginTop: 6, fontVariant: ["tabular-nums"] },
+  showcaseHeader: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 12 },
+  showcaseTitle: { color: "#fff", fontSize: 18, fontWeight: "700" },
+  seeAll: { color: "#949499", fontSize: 14 },
+  grid: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 10 },
+  tile: { width: "48.5%" },
+  tileArt: { aspectRatio: 16 / 10, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 16, borderTopRightRadius: 16 },
+  tileIcon: { width: 48, height: 48, borderRadius: 14 },
+  tileName: { color: "#fff", fontSize: 14, fontWeight: "600" },
+  tileDomain: { color: "#949499", fontSize: 12, marginTop: 2 },
 });

@@ -14,7 +14,7 @@ export const THEME_ICON_KEYS = [
   'accounts', 'ads', 'arcade', 'assistant', 'audio', 'bookmarks', 'boost', 'bounties',
   'bridge', 'buy', 'careers', 'command', 'comment-anchor', 'communities', 'dao',
   'deep-current', 'email', 'events', 'features', 'flak-jacket', 'fractions', 'front-row',
-  'glossary', 'governance', 'harpoon', 'home', 'images', 'live', 'lock', 'messages',
+  'glossary', 'governance', 'harpoon', 'home', 'images', 'live', 'lock', 'messages', 'nfts',
   'notifications', 'paint', 'pinned', 'posts', 'precision-strike', 'profile', 'search',
   'second-wind', 'settings', 'signal-flare', 'stages', 'staking', 'stats', 'stores',
   'subscriptions', 'superpowers', 'team-up', 'timeline-bomber', 'trend-jacker',

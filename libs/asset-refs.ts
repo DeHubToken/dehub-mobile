@@ -273,7 +273,7 @@ function h24Txns(p: RankablePair): number {
 }
 
 /**
- * Best pool first. Base is preferred because it is DeHub's home chain, then the
+ * Best pool first. Base is preferred because it is Riftn's home chain, then the
  * ordinary liveness signals — a spoof pool for a well-known ticker has neither
  * volume nor trades, and the oldest pool wins the tie because a scam
  * redeploying under a live ticker is always the newer one.

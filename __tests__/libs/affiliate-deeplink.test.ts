@@ -1,12 +1,12 @@
 import { buildReferralDeepLink, sanitizeDeepLinkPath } from "../../libs/affiliate-deeplink";
 
 describe("sanitizeDeepLinkPath", () => {
-  it("keeps DeHub paths and full DeHub URLs", () => {
+  it("keeps Riftn paths and full Riftn URLs", () => {
     expect(sanitizeDeepLinkPath("docs/getting-started")).toBe("/docs/getting-started");
     expect(sanitizeDeepLinkPath("https://dehub.io/app/stores?x=1")).toBe("/app/stores?x=1");
     expect(sanitizeDeepLinkPath("https://staging.dehub.io/bounties")).toBe("/bounties");
   });
-  it("refuses anything that leaves DeHub or loops", () => {
+  it("refuses anything that leaves Riftn or loops", () => {
     expect(sanitizeDeepLinkPath("https://evil.com/x")).toBeNull();
     expect(sanitizeDeepLinkPath("//evil.com")).toBeNull();
     expect(sanitizeDeepLinkPath("/\\evil.com")).toBeNull();

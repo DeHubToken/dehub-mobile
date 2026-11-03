@@ -1,7 +1,7 @@
 /**
  * BannedAccountNotice — what a banned account is told, wherever it tries to write.
  *
- * A ban on DeHub is read-only, not locked-out: the account keeps its sign-in,
+ * A ban on Riftn is read-only, not locked-out: the account keeps its sign-in,
  * its feed, its conversations and its data until the person asks for it to be
  * deleted. The API refuses every write with `403 ACCOUNT_BANNED` — this is the
  * part that says so up front, instead of letting somebody type a post that was
@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useBannedAccount } from "../../hooks/useBannedAccount";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
-const DELETE_ACCOUNT_URL = "https://dehub.io/delete-account";
+const DELETE_ACCOUNT_URL = "https://riftn.com/delete-account";
 
 interface BannedAccountNoticeProps {
   variant?: "panel" | "line";

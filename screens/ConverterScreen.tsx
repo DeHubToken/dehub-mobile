@@ -5,7 +5,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  * ===============
  * Native port of the web converter (dehub.io/converter). Paste a link to a
  * video you own on another platform, confirm the rights, and it publishes to
- * your profile as a DeHub post.
+ * your profile as a Riftn post.
  *
  * The queue is the point. Imports are minutes long and a source can rate-limit
  * us for a stretch, so the backend keeps a rate-limited job and re-runs it

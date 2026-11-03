@@ -9,7 +9,7 @@
  * info page, which has no native twin, and an offer you cannot act on from the
  * app is one that expires unanswered.
  */
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -21,7 +21,7 @@ import SettlementRail from "./SettlementRail";
 import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import FractionPositionGrid from "./FractionPositionGrid";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { useFractionPortfolio, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
+import { useFractionPortfolio, livePositions, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
 import { useOfferResponse } from "../../hooks/useFractionCheckout";
 import {
   useCancelListing,
@@ -92,6 +92,7 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
   const cancelListing = useCancelListing();
   const cancelOffer = useCancelOffer();
   const { accept, reject } = useOfferResponse();
+  const [showDeleted, setShowDeleted] = useState(false);
 
   if (!wallet) {
     return (
@@ -103,7 +104,11 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
     );
   }
 
-  const positions = portfolio.data || [];
+  // Fractions of a deleted post still exist on-chain and can still be sold, so
+  // they stay reachable, folded away under their own toggle.
+  const allPositions = portfolio.data || [];
+  const positions = livePositions(allPositions);
+  const deletedPositions = allPositions.filter((p) => p.postDeleted);
   const totalHeld = positions.reduce((sum, p) => sum + p.balance, 0);
   const refreshing = portfolio.isRefetching;
   const refresh = () => {
@@ -137,7 +142,7 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
           <View style={styles.loader}>
             <DeHubLoader size={48} />
           </View>
-        ) : portfolio.isError && positions.length === 0 ? (
+        ) : portfolio.isError && allPositions.length === 0 ? (
           // A failed lookup is not "you hold nothing". Gated on an empty list so
           // a failed background refetch keeps the cached holdings on screen.
           <View style={styles.emptyBox}>
@@ -152,14 +157,36 @@ const PortfolioTab: React.FC<Props> = ({ onSignIn, onSell, onOpenPost }) => {
               <Text style={styles.retryText}>{t("common.retry")}</Text>
             </Pressable>
           </View>
-        ) : positions.length === 0 ? (
+        ) : allPositions.length === 0 ? (
           <View style={styles.emptyBox}>
             <Icon name="Image" size={30} color="#3F3F46" />
             <Text style={styles.emptyText}>{t("fractions.noneHeldYet")}</Text>
             <Text style={styles.emptyHint}>{t("fractions.noneHeldHint")}</Text>
           </View>
         ) : (
-          <FractionPositionGrid positions={positions} onOpen={onOpenPost} onSell={onSell} />
+          <>
+            {positions.length > 0 && (
+              <FractionPositionGrid positions={positions} onOpen={onOpenPost} onSell={onSell} />
+            )}
+            {deletedPositions.length > 0 && (
+              <View style={styles.deletedBlock}>
+                <Pressable
+                  onPress={() => setShowDeleted((v) => !v)}
+                  style={styles.deletedToggle}
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: showDeleted }}
+                >
+                  <Text style={styles.headingAside}>
+                    {t("fractions.deletedPosts", { count: deletedPositions.length })}
+                  </Text>
+                  <Icon name={showDeleted ? "ChevronUp" : "ChevronDown"} size={14} color="#52525B" />
+                </Pressable>
+                {showDeleted && (
+                  <FractionPositionGrid positions={deletedPositions} onOpen={() => {}} onSell={onSell} />
+                )}
+              </View>
+            )}
+          </>
         )}
       </PageSection>
 
@@ -257,6 +284,8 @@ const styles = StyleSheet.create({
   sectionHead: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", gap: 8 },
   heading: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
   headingAside: { color: "#52525B", fontSize: 11.5 },
+  deletedBlock: { marginTop: 12, gap: 12 },
+  deletedToggle: { flexDirection: "row", alignItems: "center", gap: 4, alignSelf: "flex-start", paddingVertical: 4 },
   loader: { alignItems: "center", paddingVertical: 32 },
   emptyBox: {
     alignItems: "center",

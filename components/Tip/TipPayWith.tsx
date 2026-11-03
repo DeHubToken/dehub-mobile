@@ -6,7 +6,7 @@ import { tokenLabel } from '../../libs/token-label';
  * DHB stays the default and behaves exactly as before. When the Safe does not
  * hold enough DHB on Base, the richest other balance is picked instead — USDC
  * on Arc, ETH on Ethereum, anything on Base — and the sheet funds the tip from
- * it on send — DeHub Pay first, Uniswap as the fallback (see libs/tip-funding).
+ * it on send — Riftn Pay first, Uniswap as the fallback (see libs/tip-funding).
  */
 import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -158,8 +158,8 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
                 {" · "}
                 {planUsesDpay(plan)
                   ? plan.kind === "bridge"
-                    ? t("tip.payViaBridgeDpay", "Moved to Base and paid to DeHub Pay, tokens arrive in about a minute")
-                    : t("tip.payViaDpay", "Paid to DeHub Pay, tokens arrive in about 30s")
+                    ? t("tip.payViaBridgeDpay", "Moved to Base and paid to Riftn Pay, tokens arrive in about a minute")
+                    : t("tip.payViaDpay", "Paid to Riftn Pay, tokens arrive in about 30s")
                   : plan.kind === "bridge"
                     ? t("tip.payViaBridge", "Swapped to tokens on Uniswap, arrives in ~{{seconds}}s", { seconds: Math.max(2, plan.fillSeconds) })
                     : t("tip.payViaSwap", "Swapped to tokens on Uniswap")}
@@ -229,8 +229,8 @@ export function tipStageLabel(
     case "approve": return t("tip.stageApprove", "Approving {{symbol}}…", vars);
     case "bridge": return t("tip.stageBridge", "Sending {{symbol}} from {{chain}}…", vars);
     case "arriving": return t("tip.stageArriving", "Arriving on Base, usually a few seconds…");
-    case "pay": return t("tip.stagePay", "Paying DeHub Pay with {{symbol}}…", vars);
-    case "delivering": return t("tip.stageDelivering", "DeHub Pay is sending your tokens…");
+    case "pay": return t("tip.stagePay", "Paying Riftn Pay with {{symbol}}…", vars);
+    case "delivering": return t("tip.stageDelivering", "Riftn Pay is sending your tokens…");
     case "swap": return t("tip.stageSwap", "Buying tokens on Uniswap…");
     default: return t("tip.payQuoting", "Getting the best price…");
   }

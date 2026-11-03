@@ -31,7 +31,7 @@ const ICON_COLOR = "#9ca3af";
 interface TotalReachPillProps {
   /** The account record: social links top level, self-reported counts under `customs`. */
   source: Record<string, unknown> | null | undefined;
-  /** DeHub followers as counted by DeHub. */
+  /** Riftn followers as counted by Riftn. */
   followers: number;
 }
 
@@ -46,7 +46,7 @@ const ReachRow = ({ icon, label, value }: { icon: React.ReactNode; label: string
 );
 
 /**
- * "Total reach" beside the follower count: DeHub followers plus what the
+ * "Total reach" beside the follower count: Riftn followers plus what the
  * creator reports for each linked social. Renders nothing until a social
  * carries a count, so a profile with links alone looks as it always did.
  * Tapping it opens the per-platform breakdown.

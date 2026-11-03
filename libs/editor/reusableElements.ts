@@ -102,9 +102,9 @@ export function reusableElementFile(name: string, source: DesignClipboard): stri
 export function parseReusableElementFile(text: string): { name: string; source: DesignClipboard } {
   if (text.length > 800000) throw new Error("Choose an element file smaller than 800 KB");
   let input: unknown; try { input = JSON.parse(text.replace(/^\uFEFF/, "")); } catch { throw new Error("This file does not contain a valid saved element"); }
-  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Choose an exported DeHub element file");
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Choose an exported Riftn element file");
   const file = input as Record<string, unknown>;
-  if (file.kind !== "dehub-design-element" || file.version !== 1 || typeof file.name !== "string" || !file.name.trim()) throw new Error("Choose a supported DeHub element file");
+  if (file.kind !== "dehub-design-element" || file.version !== 1 || typeof file.name !== "string" || !file.name.trim()) throw new Error("Choose a supported Riftn element file");
   return { name: file.name.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, 60) || "Saved element", source: validateSource(file.source) };
 }
 export function uniqueReusableElementName(name: string, elements: readonly ReusableDesignElement[]): string {

@@ -106,7 +106,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // for a new one). Cleared once WalletSetupScreen succeeds or is cancelled.
   const [walletSetupRequest, setWalletSetupRequest] = useState<WalletSetupRequest | null>(null);
   // Secret from a create attempt that has not finished yet: it is saved to
-  // Supabase, and either the optional backup offer is still open or the DeHub
+  // Supabase, and either the optional backup offer is still open or the Riftn
   // sign-in step failed (reused on retry so the saved row isn't overwritten by
   // a fresh mnemonic). See handleWalletCreate / handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
@@ -218,7 +218,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   ]);
 
   // Identity established via Supabase (Google/email) -> resolve/create the
-  // local wallet for it -> sign the DeHub auth message with it -> the
+  // local wallet for it -> sign the Riftn auth message with it -> the
   // existing signInWithWallet action does the /mobile/auth handshake exactly
   // as it does for the "Import Wallet" (pasted private key) flow.
   // web3AuthMeta (when present) is what lets the backend recognize this same

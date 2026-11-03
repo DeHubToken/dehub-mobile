@@ -1,7 +1,7 @@
 /**
  * `.eth` handles — the one dotted path that is a person, not a file
  * =================================================================
- * A DeHub account can prove it holds an ENS name and then be reached at
+ * A Riftn account can prove it holds an ENS name and then be reached at
  * `dehub.io/mal.eth` as well as at `dehub.io/mal`. The name is an **alias**:
  * `username` is untouched by it, which is why a `.eth` handle can never
  * collide with one — usernames may not contain a dot (see
@@ -73,6 +73,6 @@ export function couldBeProfileSegment(
  * Built here rather than at each call site so the two profile headers and the
  * settings panel cannot drift on the shape of the thing they hand people.
  */
-export function ensProfileUrl(name: string, origin = 'https://dehub.io'): string {
+export function ensProfileUrl(name: string, origin = 'https://riftn.com'): string {
   return `${origin.replace(/\/+$/, '')}/${encodeURIComponent(name)}`;
 }

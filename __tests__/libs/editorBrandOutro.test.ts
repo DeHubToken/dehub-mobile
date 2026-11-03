@@ -26,9 +26,9 @@ describe("branded video ending", () => {
     expect(Array.from(outroUsername("🙂".repeat(50)))).toHaveLength(40);
     const { ctx, calls } = drawingContext();
     drawBrandOutro(ctx, 1080, 1920, 1.6, "mal", {} as CanvasImageSource);
-    expect(calls).toContainEqual(["text", "dehub.io/mal", 540, expect.any(Number), 1]);
+    expect(calls).toContainEqual(["text", "riftn.com/mal", 540, expect.any(Number), 1]);
     drawBrandOutro(ctx, 1920, 1080, 1.6, "", {} as CanvasImageSource);
-    expect(calls).toContainEqual(["text", "dehub.io", 960, expect.any(Number), 1]);
+    expect(calls).toContainEqual(["text", "riftn.com", 960, expect.any(Number), 1]);
   });
 
   it("keeps the small icon and credit centred in portrait, square and landscape output", () => {

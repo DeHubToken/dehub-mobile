@@ -10,7 +10,7 @@
  *
  * Creating goes through dehub-mcp's plain REST route. The function is a
  * Streamable HTTP MCP server, so a JSON-RPC envelope posted at its root comes
- * back 406 and no agent is created. It needs the owner's DeHub token: the agent
+ * back 406 and no agent is created. It needs the owner's Riftn token: the agent
  * is filed under the wallet that token belongs to.
  */
 import env from "../config/env";

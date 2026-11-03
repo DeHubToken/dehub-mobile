@@ -4,7 +4,7 @@ import { translateCopy as _translateCopy } from '../i18n/copy';
  * Account marketplace data layer
  * ==============================
  * Native port of web's `use-account-market.ts`, against the same
- * `/account_market/*` endpoints on the DeHub API — not Supabase. Accounts ARE
+ * `/account_market/*` endpoints on the Riftn API — not Supabase. Accounts ARE
  * rows in Mongo's accounts collection, so the marketplace lives with them.
  *
  * The buy path is the part with rules, and all of them exist because the money

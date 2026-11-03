@@ -104,6 +104,12 @@ export interface PostOptionsMenuProps {
   currentQuotePolicy?: "public" | "followers" | "nobody";
   /** Who may reply to the post, for the edit sheet. */
   currentReplyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Photo posts: 'comic' when it shows as collector cards. Drives the comic/carousel switch. */
+  currentLayout?: "comic" | null;
+  /** How many photos the post has; the switch shows for 2+ or for a comic. */
+  photoCount?: number;
+  /** The author switched the layout from the menu. */
+  onLayoutChange?: (layout: "comic" | null) => void;
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -166,6 +172,8 @@ export interface PostOptionsMenuProps {
    */
   onToggleSave?: () => void;
   onDownloadVideo?: () => void;
+  /** Live streams: opens the clip editor on the last minute ("Clip this moment"). */
+  onClip?: () => void;
   onRemix?: (mode: 'green-screen' | 'collab' | 'sound' | 'cut') => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
@@ -248,6 +256,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentSpoilerText,
   currentQuotePolicy,
   currentReplyPolicy,
+  currentLayout,
+  photoCount = 0,
+  onLayoutChange,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -264,6 +275,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onDownloadVideo,
+  onClip,
   onRemix,
   onInfoPress,
   onAskAi,
@@ -357,6 +369,24 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
   const [visibilityLoading, setVisibilityLoading] = useState(false);
+
+  // Comic or carousel: same pages, only the layout flag changes. The card
+  // switches straight away and goes back if the save fails.
+  const handleLayoutToggle = useCallback(async () => {
+    if (tokenId == null) return;
+    const next = currentLayout === "comic" ? null : "comic";
+    onClose();
+    onLayoutChange?.(next);
+    try {
+      await editPost(tokenId, { layout: next ?? "" });
+      toastSuccess(next
+        ? t("comic.converted", { defaultValue: "Now showing as a comic" })
+        : t("comic.unconverted", { defaultValue: "Now showing as a carousel" }));
+    } catch {
+      onLayoutChange?.(currentLayout ?? null);
+      toastError(t("comic.convertFailed", { defaultValue: "Couldn't change the layout" }));
+    }
+  }, [tokenId, currentLayout, onLayoutChange, onClose]);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [blockLoading, setBlockLoading] = useState(false);
 
@@ -515,7 +545,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
   const handleShare = useCallback(async () => {
     if (tokenId == null) return;
-    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+    // An article shares as its readable title link.
+    const articleSlug = typeof post?.articleSlug === "string" ? post.articleSlug : "";
+    const url = `${WEBSITE_LINK || ""}/app/post/${articleSlug || tokenId}`;
     try {
       const result = await shareWithRef({
         message: t("copy.7cbcbe364e76", { defaultValue: "Check out this post {{value1}}", value1: url }),
@@ -524,7 +556,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       if (result.action === Share.sharedAction) reportPostEvent(tokenId, "share");
     } catch {}
     onClose();
-  }, [tokenId, onClose, t]);
+  }, [tokenId, post?.articleSlug, onClose, t]);
 
   const followLabel = isFollowRequestPending
     ? t("postOptions.cancelRequest")
@@ -560,6 +592,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Bookmark / pin / post info — first, as in the web drawer. A host
               that also shows these on its action bar still passes them: the
               menu is where people look for an action by name. */}
+          {!!onClip && (
+            <OptionRow icon="Scissors" label={t("liveClips.button", { defaultValue: "Clip this moment" })}
+              onPress={() => { onClose(); onClip(); }} />
+          )}
           {!!onDownloadVideo && (
             <OptionRow icon="Download" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />
@@ -721,6 +757,15 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   label={t("postOptions.editPost")}
                   sublabel={t("postOptions.editPostDesc")}
                   onPress={handleOpenEdit}
+                />
+              )}
+              {!!onLayoutChange && tokenId != null && (photoCount > 1 || currentLayout === "comic") && (
+                <OptionRow
+                  icon="BookOpen"
+                  label={currentLayout === "comic"
+                    ? t("comic.toCarousel", { defaultValue: "Show as carousel" })
+                    : t("comic.toComic", { defaultValue: "Make it a comic" })}
+                  onPress={handleLayoutToggle}
                 />
               )}
               {/* Boost. Offered to every owner rather than only to badge

@@ -1,7 +1,7 @@
 import { tokenizeDescription } from '../../libs/description-links';
 
 const DEHUB_WAVE =
-  'A bunch of us helping DeHub grow—sharing it, bringing people in, and building something big together.  Click the link below to get started: \n\nhttps://docs.google.com/spreadsheets/d/19w68xX7zGJ7Ck7R-fKjLSxYmVNXT1opGc1B4SVWy2Dk/edit?gid=1213196961#gid=1213196961';
+  'A bunch of us helping Riftn grow—sharing it, bringing people in, and building something big together.  Click the link below to get started: \n\nhttps://docs.google.com/spreadsheets/d/19w68xX7zGJ7Ck7R-fKjLSxYmVNXT1opGc1B4SVWy2Dk/edit?gid=1213196961#gid=1213196961';
 
 const shown = (text: string, singleLine = false) =>
   tokenizeDescription(text, singleLine).map(t => (t.type === 'link' ? '🔗' : t.value)).join('');
@@ -9,7 +9,7 @@ const urls = (text: string) =>
   tokenizeDescription(text).flatMap(t => (t.type === 'link' ? [t.url] : []));
 
 describe('tokenizeDescription', () => {
-  it('turns the Dehub Wave sheet link into one 🔗 with the full address', () => {
+  it('turns the Riftn Wave sheet link into one 🔗 with the full address', () => {
     expect(urls(DEHUB_WAVE)).toEqual([
       'https://docs.google.com/spreadsheets/d/19w68xX7zGJ7Ck7R-fKjLSxYmVNXT1opGc1B4SVWy2Dk/edit?gid=1213196961#gid=1213196961',
     ]);

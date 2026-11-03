@@ -8,6 +8,7 @@ import { User } from "../context/AuthContext";
 import { createLogger } from '../libs/logger';
 import { submitWalletProof } from '../libs/wallet-challenge';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { forgetHold, holdFieldFor } from "./usernameHold";
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -127,7 +128,7 @@ export const AuthService = {
   },
 
   /**
-   * Exchange a Supabase access token (Google/email sign-in) for a DeHub
+   * Exchange a Supabase access token (Google/email sign-in) for a Riftn
    * session, with no wallet signature — used to recognize an account this
    * Supabase identity is already linked to (established previously by
    * signInWithWallet's web3AuthMeta), instead of always minting a new local
@@ -161,7 +162,7 @@ export const AuthService = {
       );
       // isNewAccount alone — same rule as signInWithWallet above and as web.
       const needsUsername = !!response?.result?.isNewAccount;
-      // Do NOT persist DeHub tokens here — signInWithSupabaseSession validates
+      // Do NOT persist Riftn tokens here — signInWithSupabaseSession validates
       // the resolved address against user_wallets before adopting. Writing tokens
       // early let a polluted web3AuthMeta link (shubham_new) stick even when the
       // cloud wallet row names a different address (shubham_new2).
@@ -186,7 +187,7 @@ export const AuthService = {
   },
 
   /**
-   * Move this login's existing DeHub account onto `address`, a wallet that has
+   * Move this login's existing Riftn account onto `address`, a wallet that has
    * just been created to replace one nobody can open any more.
    *
    * Accounts are keyed by wallet address, so without this a replacement wallet
@@ -245,7 +246,7 @@ export const AuthService = {
   },
 
   /**
-   * An unfinished signup can have a cloud wallet without a DeHub profile.
+   * An unfinished signup can have a cloud wallet without a Riftn profile.
    * Only a confirmed missing profile permits signup with the replacement;
    * expired identity sessions, conflicting links and other failures must stop.
    */
@@ -272,8 +273,10 @@ export const AuthService = {
     if (!/^[a-zA-Z0-9_]+$/.test(username))
       return { available: false, message: _translateCopy("copy.2a1ddf7ce70a", { defaultValue: "Only letters, numbers, _" }) };
     try {
+      // A name this install reserved reads as available to it, taken to others.
+      const holdToken = holdFieldFor(username);
       const res = await apiClient.get<any>(
-        `/username/check?username=${encodeURIComponent(username)}`,
+        `/username/check?username=${encodeURIComponent(username)}${holdToken ? `&holdToken=${holdToken}` : ""}`,
         { isAuthRequired: false }
       );
       // Expected shape: { status, available, username }
@@ -306,6 +309,9 @@ export const AuthService = {
     Object.entries(data).forEach(([k, v]) => {
       if (v !== undefined && v !== null) formData.append(k, typeof v === 'boolean' ? String(v) : v as any);
     });
+    // The name reserved from a free profile link: lets the server hand it over.
+    const usernameHold = data.username ? holdFieldFor(String(data.username)) : null;
+    if (usernameHold) formData.append("usernameHold", usernameHold);
     const body = await apiClient.post<any>("/update_profile", formData, {
       isAuthRequired: true,
     });
@@ -313,6 +319,7 @@ export const AuthService = {
       throw new Error(
         body?.error_msg || body?.message || _translateCopy("copy.e51c5f7d0545", { defaultValue: "Profile update failed" })
       );
+    if (usernameHold) forgetHold();
     return data as Partial<User>;
   },
 

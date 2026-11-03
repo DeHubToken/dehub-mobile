@@ -35,7 +35,7 @@ import Icon from "../ui/Icon";
 import { FIELD_TEXT } from "../../theme/inputs";
 
 const ASSET_NAMES: Record<string, string> = {
-  DHB: "DeHub",
+  DHB: "Riftn",
   ETH: "Ethereum",
   BNB: "BNB",
   USDC: "USD Coin",

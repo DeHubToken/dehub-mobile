@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { apiClient } from "../../libs";
 import { useProfilePins } from "../../hooks/usePinnedPosts";
+import { useFractionPortfolio, livePositions } from "../../hooks/useFractionPortfolio";
 
 export interface ProfileContentCounts {
   home?: number;
@@ -13,6 +14,7 @@ export interface ProfileContentCounts {
   pinned?: number;
   playlists?: number;
   articles?: number;
+  fractions?: number;
 }
 
 /**
@@ -47,5 +49,23 @@ export function useProfileContentCounts(address?: string): ProfileContentCounts 
   // rather than the count read when the profile opened.
   const { data: pins } = useProfilePins(address);
   const pinned = pins?.length;
-  return useMemo(() => (pinned === undefined ? counts : { ...counts, pinned }), [counts, pinned]);
+  // Fractions are on-chain, not in /profile_counts: the same portfolio read
+  // the tab lists (shared cache). Left out until it answers, so the badge is
+  // blank while loading instead of a false 0. Starts a beat after the profile
+  // so the first content page wins the network.
+  const [fractionsEnabled, setFractionsEnabled] = useState(false);
+  useEffect(() => {
+    setFractionsEnabled(false);
+    if (!address) return;
+    const timer = setTimeout(() => setFractionsEnabled(true), 800);
+    return () => clearTimeout(timer);
+  }, [address]);
+  const { data: fractionPositions } = useFractionPortfolio(address, { enabled: fractionsEnabled });
+  const fractions = fractionPositions ? livePositions(fractionPositions).length : undefined;
+  return useMemo(() => {
+    let out = counts;
+    if (pinned !== undefined) out = { ...out, pinned };
+    if (fractions !== undefined) out = { ...out, fractions };
+    return out;
+  }, [counts, pinned, fractions]);
 }

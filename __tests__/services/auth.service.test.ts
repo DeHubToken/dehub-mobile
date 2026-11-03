@@ -224,7 +224,7 @@ describe('services/auth.service', () => {
       // The signature proves control of the DESTINATION. Without it a Supabase
       // session alone could push the account onto somebody else's wallet.
       expect(mockGetOrCreateAuthSignature).toHaveBeenCalledWith(NEW_ADDRESS, undefined, 8453, 'rotate-wallet');
-      // No DeHub token yet: the account has not moved when this is sent.
+      // No Riftn token yet: the account has not moved when this is sent.
       expect(opts).toEqual({ isAuthRequired: false });
     });
 

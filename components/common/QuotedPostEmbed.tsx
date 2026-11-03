@@ -6,6 +6,7 @@ import SmartImage from "./SmartImage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { quotedPostViewerParams } from "../../navigation/quotedPostViewerParams";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
@@ -96,8 +97,13 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       if (!targetTokenId) return;
 
       hideUserProfile();
+      const viewerParams = isAvailable ? quotedPostViewerParams(quotedPost, targetTokenId) : null;
+      if (viewerParams) {
+        navigation.navigate(ScreenNames.ShortsViewer, viewerParams);
+        return;
+      }
       navigation.navigate(ScreenNames.PostResolver, { tokenId: String(targetTokenId) });
-    }, [navigation, quotedPost, quotedTokenId, hideUserProfile]);
+    }, [navigation, quotedPost, quotedTokenId, hideUserProfile, isAvailable]);
 
     const viewer = (user?.address || user?.walletAddress || "").toLowerCase();
     const isQuotedAuthor =

@@ -320,7 +320,7 @@ export function useProviderLifecycle({
           // After first attempt, try reinit
           await attemptReinitializeProvider(reason + "->empty-accounts");
           
-          // A wallet provider is not the DeHub session. In particular Android
+          // A wallet provider is not the Riftn session. In particular Android
           // backgrounds the app while showing its fingerprint sheet, and a
           // provider can briefly return no accounts as the app resumes. The
           // old final check ran against this callback's stale provider and

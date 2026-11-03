@@ -154,7 +154,7 @@ export function usePhoneStudio({ streamId, enabled, startedAt, micMuted, setMicM
 
   /**
    * "Show widgets in my video" is the same switch an OBS creator flips: while
-   * it is on, DeHub viewers' apps stop drawing their own copy, so nobody sees
+   * it is on, Riftn viewers' apps stop drawing their own copy, so nobody sees
    * an alert twice.
    */
   const setWidgetsInVideo = useCallback(

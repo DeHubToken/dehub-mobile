@@ -41,11 +41,12 @@ import * as WebBrowser from "expo-web-browser";
 import * as ExpoSplashScreen from "expo-splash-screen";
 import {
   useFonts,
-  Exo_400Regular,
-  Exo_500Medium,
-  Exo_600SemiBold,
-  Exo_700Bold,
-} from "@expo-google-fonts/exo";
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from "@expo-google-fonts/manrope";
 import { FeedSuperpowersProvider } from "./context/FeedSuperpowersContext";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
@@ -98,10 +99,12 @@ import { bootRevealed, markBootRevealed } from "./libs/bootReveal";
 import { shouldDockLaunch } from "./libs/magneticDock";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 import DefaultChainSync from "./components/common/DefaultChainSync";
+import AccountLanguageSync from "./components/common/AccountLanguageSync";
 import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/ThemeContext";
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 import OnboardingChoicesApplier from "./components/Onboarding/OnboardingChoicesApplier";
 import AvatarPromptHost from "./components/Onboarding/AvatarPromptHost";
+import PostBgPickerHost from "./components/Profile/PostBgPicker";
 import HalloweenGhostHost from "./components/Halloween/HalloweenGhostHost";
 import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
@@ -123,7 +126,7 @@ ExpoSplashScreen.preventAutoHideAsync().catch(() => {
   // Ignore errors - splash screen might already be hidden
 });
 
-// Started before the first render so it runs alongside Exo and auth. The feed
+// Started before the first render so it runs alongside the app font and auth. The feed
 // waits on it (below) so its icons are glyphs from their first frame instead
 // of SVGs that swap once the font lands.
 const iconFontLoad = loadIconFont();
@@ -131,16 +134,15 @@ const iconFontLoad = loadIconFont();
 export default function App() {
   const { hasInternet, checkConnection } = useNetworkStatus();
 
-  // Exo is the web app's global typeface (dehubweb/src/index.css:46). Nothing
-  // loaded it here before, so every screen rendered in the platform default.
-  // These are bundled TTFs, not a network fetch, so the wait is negligible —
+  // Manrope is the app's global typeface. These are bundled TTFs, not a network fetch, so the wait is negligible —
   // and `fontError` is treated as "done" so a font failure degrades to the
   // system font instead of holding the splash forever.
   const [fontsLoaded, fontError] = useFonts({
-    Exo_400Regular,
-    Exo_500Medium,
-    Exo_600SemiBold,
-    Exo_700Bold,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
   });
   const [fontDeadlineReached, setFontDeadlineReached] = useState(false);
   useEffect(() => {
@@ -166,7 +168,7 @@ export default function App() {
     };
   }, []);
 
-  // Exo itself is installed over the JSX runtime from index.ts, before any
+  // Manrope itself is installed over the JSX runtime from index.ts, before any
   // element exists; all that is left here is holding the splash until the TTFs
   // have actually registered, so nothing paints in the fallback face first.
 
@@ -258,12 +260,16 @@ export default function App() {
               {/* Asks accounts with no profile picture to add one, a few
                   times at most, on Home or Explore. */}
               <AvatarPromptHost />
+              {/* Your profile's text-post background, opened by holding your profile. */}
+              <PostBgPickerHost />
               {/* Halloween 2026 only: once per device while Horror is on. */}
               <HalloweenGhostHost />
               {/* A tapped badge opens here, above whatever screen it was on. */}
               <BadgeShowcaseHost />
               {/* BNB is the starting chain unless the wallet already holds Base tokens. */}
               <DefaultChainSync />
+              {/* Pushes arrive in the language the app is showing. */}
+              <AccountLanguageSync />
               </FeedSuperpowersProvider>
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,

@@ -1,11 +1,13 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useEffect, useRef } from "react";
 import { View, Pressable, StyleSheet, TextInput } from "react-native";
-import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import { Gesture, GestureDetector, TextInput as GestureTextInput } from "react-native-gesture-handler";
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { FeedSearchTab } from "../../libs/feed-search";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
+import { SNAP_SPRING } from "../../theme/motion";
 
 /**
  * What the feed pill turns into when the lit tab is tapped again, as on web:
@@ -23,6 +25,9 @@ const ICONS: Record<FeedSearchTab, IconName> = { home: "House", shorts: "Shorts"
 const ORDER: FeedSearchTab[] = ["home", "shorts", "images", "videos", "music"];
 const MELT = { duration: 340, easing: Easing.bezier(0.16, 1, 0.3, 1) };
 const UNMELT = { duration: 220, easing: Easing.bezier(0.4, 0, 1, 1) };
+/** Drag the bar up this far (or flick it up) and the search closes. */
+const DRAG_CLOSE = 32;
+const FLICK_CLOSE = 600;
 
 interface FeedSearchBarProps {
   tab: FeedSearchTab;
@@ -59,8 +64,14 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
     return () => clearTimeout(id);
   }, [open]);
 
+  const drag = useSharedValue(0);
+  const closing = useRef(false);
+
   const close = () => {
+    if (closing.current) return;
+    closing.current = true;
     inputRef.current?.blur();
+    drag.value = withTiming(0, UNMELT);
     open.value = withTiming(0, UNMELT, (done) => { if (done) runOnJS(onClose)(); });
   };
 
@@ -70,10 +81,28 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
     const left = fromX * (1 - open.value);
     return { left, width: fromWidth + (width - fromWidth) * open.value };
   });
-  const innerStyle = useAnimatedStyle(() => ({ transform: [{ translateX: -fromX * (1 - open.value) }] }));
+  const innerStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: -fromX * (1 - open.value) }, { translateY: drag.value }],
+    opacity: 1 + drag.value / 80,
+  }));
+
+  // Drag the bar up to close it, like the sheets. Sideways drags still fail
+  // through to the pill so it can switch feeds as before.
+  const pan = Gesture.Pan()
+    .activeOffsetY([-8, 8])
+    .failOffsetX([-20, 20])
+    .shouldCancelWhenOutside(false)
+    .onUpdate((e) => { drag.value = Math.max(-40, Math.min(0, e.translationY * 0.6)); })
+    .onEnd((e) => {
+      if (e.translationY < -DRAG_CLOSE || (e.translationY < -12 && e.velocityY < -FLICK_CLOSE)) {
+        runOnJS(close)();
+      } else {
+        drag.value = withSpring(0, SNAP_SPRING);
+      }
+    });
 
   const placeholder = {
-    home: _copy("copy.57e2faa5ec63", { defaultValue: "Search DeHub" }),
+    home: _copy("copy.57e2faa5ec63", { defaultValue: "Search Riftn" }),
     shorts: _copy("copy.e8756c6865a5", { defaultValue: "Search shorts" }),
     images: _copy("copy.9e13d826baaf", { defaultValue: "Search images" }),
     videos: _copy("copy.c7661da99c41", { defaultValue: "Search videos" }),
@@ -87,6 +116,7 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
   );
 
   return (
+    <GestureDetector gesture={pan}>
     <Reanimated.View style={[styles.clip, clipStyle]}>
       <Reanimated.View style={[styles.row, { width }, innerStyle]}>
         <Pressable
@@ -110,8 +140,11 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
           {filterActive ? bubble : null}
           <Icon name="Settings2" size={16 * 1.18} color={filterActive ? on : off} strokeWidth={filterActive ? 2 : 1.8} />
         </Pressable>
-        <TextInput
-          ref={inputRef}
+        {/* The gesture-handler TextInput: on Android a plain one keeps the
+            touch for itself, so a drag up that starts on the words never
+            reached the drag-to-close pan. */}
+        <GestureTextInput
+          ref={inputRef as unknown as React.Ref<any>}
           value={query}
           onChangeText={onChangeQuery}
           placeholder={placeholder}
@@ -134,6 +167,7 @@ const FeedSearchBar: React.FC<FeedSearchBarProps> = ({
         </Pressable>
       </Reanimated.View>
     </Reanimated.View>
+    </GestureDetector>
   );
 };
 

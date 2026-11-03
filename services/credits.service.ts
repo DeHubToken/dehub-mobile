@@ -3,7 +3,7 @@ import { apiClient } from "../libs/api.client";
 import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
- * Subscription tokens: a dollar balance held by DeHub, shown as tokens at
+ * Subscription tokens: a dollar balance held by Riftn, shown as tokens at
  * today's price and spent on AI generation. AI plans grant it; anyone can add
  * to it. It cannot be withdrawn, sent or traded.
  */

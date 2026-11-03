@@ -6,10 +6,10 @@
  * Payments still settle in DHB on Base through the usual contracts, so
  * crediting is unchanged. Where the DHB comes from, in order:
  *
- *   1. DeHub Pay. A token DPay accepts directly (ETH/USDC/USDT on Base,
+ *   1. Riftn Pay. A token DPay accepts directly (ETH/USDC/USDT on Base,
  *      Ethereum, BNB, Robinhood…) is paid to the DPay treasury and DPay sends
- *      the DHB from its own stock. The money stays with DeHub.
- *   2. deBridge → DeHub Pay. Anything else (USDC on Arc…) becomes an exact
+ *      the DHB from its own stock. The money stays with Riftn.
+ *   2. deBridge → Riftn Pay. Anything else (USDC on Arc…) becomes an exact
  *      amount of USDC in the payer's Safe on Base, and that USDC pays DPay.
  *   3. Uniswap, as the fallback, when DPay is out of DHB or turns the order
  *      down: the Base USDC or token buys from the Uniswap v4 DHB/USDC pool.
@@ -231,7 +231,7 @@ async function sendFromSafe(chainId: number, wallet: string, calls: Call[], cont
   }
 }
 
-/* ── DeHub Pay ────────────────────────────────────────────────────── */
+/* ── Riftn Pay ────────────────────────────────────────────────────── */
 
 /** DPay's asset id for a token it accepts straight into its treasury, or null. */
 function dpayAssetId(source: { chainId: number; address: string }): string | null {
@@ -264,7 +264,7 @@ async function quoteDpay(originAsset: string, tokensToReceive: number, decimals:
 }
 
 function dpayPaymentCalls(p: Purchase): Call[] {
-  if (p.paymentDecimals == null) throw new FundingError('dpayNoAmount', 'DeHub Pay did not return a payment amount');
+  if (p.paymentDecimals == null) throw new FundingError('dpayNoAmount', 'Riftn Pay did not return a payment amount');
   const amount = ethers.utils.parseUnits(p.amountInFormatted, p.paymentDecimals);
   if (p.wrapNativePayment && p.paymentTokenAddress) {
     return [
@@ -294,7 +294,7 @@ async function buyFromDpay(originAsset: string, tokensToReceive: number, chainId
   if (purchase.paymentChainId !== chainId || purchase.refundTo?.toLowerCase() !== wallet.toLowerCase()) throw new Error('DPAY_UNAVAILABLE');
 
   stage('pay');
-  const txHash = await sendFromSafe(chainId, wallet, dpayPaymentCalls(purchase), 'DeHub Pay payment');
+  const txHash = await sendFromSafe(chainId, wallet, dpayPaymentCalls(purchase), 'Riftn Pay payment');
 
   // From here the treasury has the money; failures are delays, never refunds to chase.
   stage('delivering');
@@ -309,7 +309,7 @@ async function buyFromDpay(originAsset: string, tokensToReceive: number, chainId
   }
   const dhb = await waitForBalance(ChainId.BASE_MAINNET, DHB_BASE, wallet, needed, 10);
   if (dhb < needed) {
-    throw new FundingError('dpayDelayed', 'DeHub Pay has your payment and is sending the DHB. It will arrive in your wallet shortly; send again once it does.');
+    throw new FundingError('dpayDelayed', 'Riftn Pay has your payment and is sending the DHB. It will arrive in your wallet shortly; send again once it does.');
   }
 }
 
@@ -378,7 +378,7 @@ export async function planTipFunding(input: { source: TipFundingSource; amountDh
   const shortfall = needed - input.dhbOnBase;
   const reserve = NATIVE_GAS_RESERVE[source.chainId] ?? 0n;
 
-  // 1. Straight to DeHub Pay.
+  // 1. Straight to Riftn Pay.
   const assetId = dpayAssetId(source);
   if (assetId) {
     const dpay = await quoteDpay(assetId, dpayTokensFor(shortfall), source.decimals, walletAddress);
@@ -507,7 +507,7 @@ export function formatPayAmount(plan: TipFundingPlan): string | null {
   return n.toLocaleString(undefined, { maximumFractionDigits: n < 1 ? 6 : n < 100 ? 4 : 2 });
 }
 
-/** Whether a plan buys from DeHub Pay (true) or the Uniswap pool (false). */
+/** Whether a plan buys from Riftn Pay (true) or the Uniswap pool (false). */
 export function planUsesDpay(plan: TipFundingPlan): boolean {
   return plan.kind === 'dpay' || (plan.kind === 'bridge' && plan.via === 'dpay');
 }

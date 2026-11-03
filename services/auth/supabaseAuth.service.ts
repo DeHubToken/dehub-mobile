@@ -1,5 +1,5 @@
 // Supabase Auth identity layer — mirrors cosmic-echo-hero's use of Supabase
-// purely as an identity/OTP provider. The DeHub backend handshake (sign a
+// purely as an identity/OTP provider. The Riftn backend handshake (sign a
 // message with the local wallet, POST /mobile/auth) stays unchanged; this
 // module only establishes *who the person is* before a local wallet is
 // provisioned/reused for them.
@@ -326,14 +326,14 @@ export async function signInWithApple(): Promise<string> {
  *
  * The awkward part is the return address. Telegram will only redirect to the
  * domain registered against the bot with BotFather, which rules out sending it
- * straight at `dehub://`. So it comes back to dehub.io/auth/telegram?app=1 —
+ * straight at `dehub://`. So it comes back to riftn.com/auth/telegram?app=1 —
  * a page whose whole job is to bounce the payload at the app's scheme — and
  * openAuthSessionAsync catches that. Both halves have to agree on the path and
  * on the scheme below; the web page is dehubweb src/pages/TelegramAuth.tsx.
  */
 
 /** Registered with BotFather. Not window.location.origin — there is none here. */
-const TELEGRAM_WEB_ORIGIN = "https://dehub.io";
+const TELEGRAM_WEB_ORIGIN = "https://riftn.com";
 
 /**
  * Hardcoded rather than Linking.createURL, because the bridge page has to name
@@ -464,7 +464,7 @@ export async function getSupabaseUserId(): Promise<string | null> {
 }
 
 /**
- * web3AuthMeta for the current Supabase user — the join key the DeHub
+ * web3AuthMeta for the current Supabase user — the join key the Riftn
  * backend stores (as web3AuthMeta.verifierId) to recognize this identity on
  * a future login without a wallet signature. Must match dehubweb's
  * getSupabaseAuthMeta() (verifier: 'dehub-supabase') so an account linked

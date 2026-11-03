@@ -1,7 +1,7 @@
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Animated, {
@@ -24,6 +24,7 @@ import { replyQuoteText } from "../../libs/livechat-cache";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
+import ImageViewerModal from "../common/ImageViewerModal";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 
 const formatTime = (iso: string): string => {
@@ -141,6 +142,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     () => (message.media || []).filter((m) => !!m?.url && m.url !== gif?.url),
     [message.media, gif],
   );
+
+  // A tapped photo opens full screen, with Download, over the live player.
+  const [viewing, setViewing] = useState<string[] | null>(null);
 
   const translationTexts = useMemo(() => ({ content: bodyText }), [bodyText]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
@@ -300,17 +304,25 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             {attachments.length > 0 && message.messageType !== "audio" && message.messageType !== "voice" && (
               <View className="mt-1 flex-row flex-wrap gap-1">
                 {attachments.map((m, i) => (
-                  <View key={i} className="rounded-xl overflow-hidden">
+                  <Pressable
+                    key={i}
+                    className="rounded-xl overflow-hidden"
+                    onPress={() => setViewing([m.url])}
+                    onLongPress={handleLongPress}
+                    delayLongPress={350}
+                    accessibilityRole="imagebutton"
+                  >
                     <SmartImage
                       source={{ uri: m.url }}
                       recyclingKey={m.url}
                       style={{ width: 200, height: 150 }}
                       contentFit="cover"
                     />
-                  </View>
+                  </Pressable>
                 ))}
               </View>
             )}
+            <ImageViewerModal images={viewing} onClose={() => setViewing(null)} allowDownload />
           </>
         )}
 

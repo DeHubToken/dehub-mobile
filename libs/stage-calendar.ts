@@ -25,7 +25,7 @@ export function stageIcs(stage: AudioSpace, now = new Date()): string | null {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//DeHub//Stages//EN",
+    "PRODID:-//Riftn//Stages//EN",
     "BEGIN:VEVENT",
     `UID:stage-${stage.id}@dehub.io`,
     `DTSTAMP:${stamp(now)}`,

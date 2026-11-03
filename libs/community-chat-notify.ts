@@ -2,7 +2,7 @@
  * Community chat notifications
  * ============================
  * Members hear about a community's chat through one grouped row per community
- * ("James + 2 others sent messages in X"), built and throttled by the DeHub API
+ * ("James + 2 others sent messages in X"), built and throttled by the Riftn API
  * (backend community-chat-notification.service.ts). Same two calls web makes:
  *
  * - report: the sender, right after a message is stored, with the signed

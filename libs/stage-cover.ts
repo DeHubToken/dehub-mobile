@@ -7,9 +7,9 @@
  * always gets the same art on every device, and web (src/lib/stage-cover.ts)
  * draws the exact same poster from the same maths.
  *
- * The look is "Chrome Mic", built from DeHub's banner kit (the og-image and
+ * The look is "Chrome Mic", built from Riftn's banner kit (the og-image and
  * guide banners): a smoky monochrome backdrop, grain, a dot grid, a hairline
- * frame, the DEHUB wordmark, a chrome title with //STATUS above it, and the 3D
+ * frame, the RIFTN wordmark, a chrome title with //STATUS above it, and the 3D
  * chrome mic on the right. The only colour is the red dot on a live stage.
  *
  * Keep in sync with dehubweb/src/lib/stage-cover.ts.

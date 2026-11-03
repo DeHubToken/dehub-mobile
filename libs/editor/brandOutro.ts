@@ -17,7 +17,7 @@ export function drawBrandOutro(ctx: CanvasRenderingContext2D | OffscreenCanvasRe
   const logoWidth = unit * 0.13;
   const logoHeight = logoWidth * 1184 / 908;
   const gap = unit * 0.038;
-  const label = username ? "dehub.io/" + username : "dehub.io";
+  const label = username ? "riftn.com/" + username : "riftn.com";
   const progress = Math.max(0, Math.min(1, (t - 0.08) / 0.98));
   const spin = (1 - Math.cos(progress * Math.PI)) / 2;
   const angle = (1 - spin) * Math.PI * 2;

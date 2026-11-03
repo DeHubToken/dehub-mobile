@@ -3,61 +3,28 @@ import { act, create } from 'react-test-renderer';
 import CollapsingProfileHeader from '../../components/Profile/CollapsingProfileHeader';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-jest.mock('expo-image', () => ({ Image: 'Image' }));
-jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', useWindowDimensions: () => ({ width: 390 }), StyleSheet: { create: (x: unknown) => x, absoluteFill: {} } }));
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', StyleSheet: { create: (x: unknown) => x } }));
 jest.mock('../../components/ScreenHeader', () => 'Back');
-jest.mock('../../components/ui/ChromeSurface', () => 'Glass');
-jest.mock('../../components/ui/NavPillSurface', () => 'NavGlass');
-let mockTheme = 'system';
-jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, colors: { neutrals: { 900: '#000' } } }) }));
-jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 let mockReaction: (() => void) | undefined;
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
-  useAnimatedStyle: () => ({}), Extrapolation: { CLAMP: 'clamp' }, interpolate: () => 0,
-  useDerivedValue: (derive: () => boolean) => ({ get value() { return derive(); } }),
+  useAnimatedStyle: () => ({}),
   runOnJS: (fn: unknown) => fn,
   useAnimatedReaction: (prepare: () => boolean, react: (next: boolean, previous: boolean | null) => void) => {
     mockReaction = () => react(prepare(), null);
   },
 }));
 
-it('keeps Back available, reveals Follow after collapse, and restores the expanded state', () => {
-  const scrollY = { value: 0 } as any;
-  const onFollow = jest.fn(), onOpenUnfollow = jest.fn(), onBackPress = jest.fn();
-  const props = { scrollY, identityBottom: { value: 230 } as any, actionsBottom: { value: 190 } as any, tabsPinned: { value: false } as any, name: 'Creator', handle: '@creator', showFollow: true, onFollow, onOpenUnfollow, onBackPress };
+it('shows only a floating Back until the tabs pin, with no compact name or Follow bar', () => {
+  const onBackPress = jest.fn();
+  const props = { scrollY: { value: 200 } as any, identityBottom: { value: 230 } as any, actionsBottom: { value: 190 } as any, tabsPinned: { value: false } as any, name: 'Creator', handle: '@creator', showFollow: true, onBackPress };
   let tree!: ReturnType<typeof create>;
-  act(() => { tree = create(<CollapsingProfileHeader {...props} />); });
-  expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
+  act(() => { tree = create(<CollapsingProfileHeader {...props} />); mockReaction?.(); });
   act(() => tree.root.findByType('Back' as any).props.onBackPress());
   expect(onBackPress).toHaveBeenCalledTimes(1);
-  act(() => { scrollY.value = 180; mockReaction?.(); });
-  expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
-  act(() => { scrollY.value = 200; mockReaction?.(); });
-  expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toEqual(expect.arrayContaining(['Creator', '@creator']));
-  act(() => tree.root.findByType('Button' as any).props.onPress());
-  expect(onFollow).toHaveBeenCalledTimes(1);
-  act(() => { tree.update(<CollapsingProfileHeader {...props} isFollowing />); });
-  act(() => tree.root.findByType('Button' as any).props.onPress());
-  expect(onOpenUnfollow).toHaveBeenCalledTimes(1);
-  act(() => { tree.update(<CollapsingProfileHeader {...props} isPending followLoading />); });
-  expect(tree.root.findByType('Button' as any).props.disabled).toBe(true);
-  act(() => { tree.update(<CollapsingProfileHeader {...props} showFollow={false} />); });
-  expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
-  act(() => { scrollY.value = 0; mockReaction?.(); tree.update(<CollapsingProfileHeader {...props} />); });
-  expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
+  expect(JSON.stringify(tree.toJSON())).not.toContain('Creator');
   act(() => { props.tabsPinned.value = true; mockReaction?.(); });
   expect(tree.toJSON()).toMatchObject({ props: { pointerEvents: 'none', accessibilityElementsHidden: true } });
-  act(() => { props.tabsPinned.value = false; mockReaction?.(); });
   act(() => tree.unmount());
-});
-
-it.each(['hazy', 'cosmic', 'swarms', 'lavalamp', 'winter', 'war', 'osaka', 'jungle', 'island', 'hacker', 'horror'])('uses the shared navigation material without cover artwork on %s', (theme) => {
-  mockTheme = theme;
-  let tree!: ReturnType<typeof create>;
-  act(() => { tree = create(<CollapsingProfileHeader scrollY={{ value: 200 } as any} identityBottom={{ value: 230 } as any} actionsBottom={{ value: 190 } as any} tabsPinned={{ value: false } as any} cover={{ uri: 'https://dehub.io/cover.jpg' }} />); });
-  expect(tree.root.findAllByType('Image' as any)).toHaveLength(0);
-  expect(tree.root.findAllByType('NavGlass' as any)).toHaveLength(1);
-  act(() => tree.unmount());
-  mockTheme = 'system';
 });

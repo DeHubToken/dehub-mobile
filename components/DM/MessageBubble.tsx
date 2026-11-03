@@ -27,7 +27,6 @@ import Animated, {
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import * as VideoThumbnails from "expo-video-thumbnails";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import { toastError } from "../../libs/toast";
@@ -51,7 +50,49 @@ import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { haptic } from "../../libs/haptics";
 import { TipGemIcon } from "../Home/TipGemIcon";
 import EncryptedMedia from "./EncryptedMedia";
+import LockedMedia from "./LockedMedia";
+import DmVideoTile, { useVideoPoster } from "./DmVideoTile";
+import type { DmVideoOptions } from "../../libs/dm-video-options";
+import type { DmDestruct } from "../../libs/dm-destruct";
 import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
+import { dmSendQueue } from "../../services/dm/dm.send";
+
+/**
+ * A line of yours that did not go out: it stays where it was sent, with
+ * Retry (resends the same message in place, reusing any fee already paid)
+ * and a cross to drop it.
+ */
+function SendFailedRow({ message }: { message: OptimisticMessage }) {
+  const { t } = useTranslation();
+  const tempId = message._tempId;
+  const canRetry = !!tempId && dmSendQueue.canRetry(tempId);
+  return (
+    <View className="flex-row items-center gap-2">
+      <Text className="text-[11px] text-red-500">{t("dm.notSent", { defaultValue: "Not sent" })}</Text>
+      {canRetry && (
+        <Pressable
+          onPress={() => { haptic.tap(); dmSendQueue.retry(tempId); }}
+          hitSlop={8}
+          accessibilityRole="button"
+          className="flex-row items-center gap-0.5"
+        >
+          <Icon name="RotateCw" size={11} color="#EF4444" />
+          <Text className="text-[11px] font-semibold text-red-500">{t("dm.retrySend", { defaultValue: "Retry" })}</Text>
+        </Pressable>
+      )}
+      {!!tempId && (
+        <Pressable
+          onPress={() => dmSendQueue.discard(String(message.conversation), tempId)}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={t("dm.discardSend", { defaultValue: "Remove" })}
+        >
+          <Icon name="X" size={11} color="rgba(255,255,255,0.5)" />
+        </Pressable>
+      )}
+    </View>
+  );
+}
 
 
 const resolveUrl = (path: string): string => {
@@ -191,62 +232,43 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
 });
 
 
-interface VideoThumbProps {
-  uri: string;
-  width: number;
-  height: number;
-  onPress?: () => void;
-  onLongPress?: () => void;
+/** What the full-screen player needs beyond the file: how to play it, and whether watching it removes it. */
+export interface DmVideoPlayExtra {
+  options?: DmVideoOptions | null;
+  messageId?: string;
+  viewOnce?: boolean;
 }
 
-const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPress, onLongPress }) => {
-  const [thumb, setThumb] = useState<string | null>(null);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    let active = true;
-    setThumb(null);
-    setFailed(false);
-    VideoThumbnails.getThumbnailAsync(uri, { time: 500 })
-      .then((res) => { if (active) setThumb(res.uri); })
-      .catch(() => { if (active) setFailed(true); });
-    return () => { active = false; };
-  }, [uri]);
-
+/** A plain DM video: the sender's cover frame at the real shape. */
+const PlainDmVideo: React.FC<{
+  uri: string;
+  messageId: string;
+  options?: DmVideoOptions | null;
+  destruct?: DmDestruct | null;
+  mine: boolean;
+  maxW: number;
+  maxH: number;
+  onPress: () => void;
+  onLongPress?: () => void;
+}> = memo(({ uri, messageId, options, destruct, mine, maxW, maxH, onPress, onLongPress }) => {
+  const { poster, failed } = useVideoPoster(uri, options);
   return (
-    <TouchableOpacity
-      activeOpacity={0.85}
-      onPress={onPress}
+    <DmVideoTile
+      posterUri={poster?.uri}
+      width={poster?.w}
+      height={poster?.h}
+      options={options}
+      destruct={destruct}
+      mine={mine}
+      messageId={messageId}
+      maxW={maxW}
+      maxH={maxH}
+      failed={failed}
+      onOpen={onPress}
       onLongPress={onLongPress}
-      delayLongPress={350}
-    >
-      <View className="bg-theme-neutrals-700" style={{ width, height }}>
-        {thumb ? (
-          <SmartImage
-            source={{ uri: thumb }}
-            recyclingKey={thumb}
-            style={{ width, height }}
-            contentFit="cover"
-          />
-        ) : failed ? (
-          <View className="flex-1 items-center justify-center">
-            <Icon name="Video" size={32} color="#555" />
-          </View>
-        ) : (
-          <View className="flex-1 items-center justify-center">
-            <ActivityIndicator size="small" color="#555" />
-          </View>
-        )}
-        <View className="absolute inset-0 items-center justify-center">
-          <View className="dark-surface bg-black/50 rounded-xl p-2">
-            <Icon name="Play" size={24} color="#fff" />
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
+    />
   );
 });
-
 
 interface MessageBubbleProps {
   message: DmMessage;
@@ -258,7 +280,7 @@ interface MessageBubbleProps {
     isMine: boolean,
   ) => void;
   onImagePress?: (url: string) => void;
-  onVideoPress?: (url: string) => void;
+  onVideoPress?: (url: string, play?: DmVideoPlayExtra) => void;
   /** Local URI override for optimistic media (pre-upload). */
   localMediaUri?: string;
   /** Called when the user swipes to reply. */
@@ -496,16 +518,33 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       navigation.navigate("ImageViewer", {
         images: imageUrls.length > 0 ? imageUrls : [url],
         initialIndex: index,
+        allowDownload: true,
       });
     },
     [navigation, onImagePress, mediaItems],
   );
 
+  // A locked photo opens on its own: the gallery list would be the blurred preview.
+  const handleImageTapUrl = useCallback(
+    (url: string) => {
+      if (onImagePress) {
+        onImagePress(url);
+        return;
+      }
+      navigation.navigate("ImageViewer", { images: [url], initialIndex: 0, allowDownload: true });
+    },
+    [navigation, onImagePress],
+  );
+
   const handleVideoTap = useCallback(
     (url: string) => {
-      onVideoPress?.(url);
+      onVideoPress?.(url, {
+        options: message.mediaOptions ?? message.encMedia?.opts ?? null,
+        messageId: message._id,
+        viewOnce: message.destruct?.mode === "view" && !isMine,
+      });
     },
-    [onVideoPress],
+    [onVideoPress, message.mediaOptions, message.encMedia, message._id, message.destruct, isMine],
   );
 
   /**
@@ -558,14 +597,27 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#808089"} />
       )}
       {isMine && isUploadFailed && (
-        <Text className="text-[11px] text-white/80">{t("dm.failedToSend")}</Text>
+        <SendFailedRow message={message as OptimisticMessage} />
       )}
       {isMine && !isUploadFailed && (
-        <Icon
-          name={(message as OptimisticMessage)._optimistic ? "Clock" : message.isRead ? "CheckCheck" : "Check"}
-          size={12}
-          color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
-        />
+        // One fixed 12px slot: a small spinner while the line is going out,
+        // the tick once it lands. Same box either way, so nothing moves.
+        <View style={{ width: 12, height: 12, alignItems: "center", justifyContent: "center" }}>
+          {(message as OptimisticMessage)._optimistic ? (
+            <ActivityIndicator
+              size="small"
+              color="rgba(255,255,255,0.6)"
+              style={{ transform: [{ scale: 0.5 }] }}
+              accessibilityLabel={t("dm.sending")}
+            />
+          ) : (
+            <Icon
+              name={message.isRead ? "CheckCheck" : "Check"}
+              size={12}
+              color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
+            />
+          )}
+        </View>
       )}
     </View>
   ), [timeStr, isMine, message.isRead, message.encrypted, message, isUploadFailed, t]);
@@ -828,6 +880,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {encMedia && (
               <View>
                 <EncryptedMedia
+                  destruct={message.destruct}
                   descriptor={encMedia}
                   rawUrl={encUrl}
                   messageId={message._id}
@@ -846,8 +899,20 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               </View>
             )}
 
+            {/* Pay-to-unlock photo or video: its own card, never the plain media path. */}
+            {isMedia && message.lock ? (
+              <LockedMedia
+                message={message}
+                isMine={isMine}
+                width={MAX_IMAGE_WIDTH}
+                onImagePress={handleImageTapUrl}
+                onVideoPress={onVideoPress}
+                onLongPress={handleLongPress}
+              />
+            ) : null}
+
             {/* Media (images / video / GIF) */}
-            {mediaItems.length > 0 && !isVoice && (
+            {mediaItems.length > 0 && !isVoice && !(isMedia && message.lock) && (
               <View>
                 {mediaItems.map((item, idx) =>
                   item.kind === "audio" ? (
@@ -898,11 +963,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       <Icon name="Download" size={16} color={isMine ? "#ffffffaa" : "#8B8D90"} />
                     </TouchableOpacity>
                   ) : item.kind === "video" ? (
-                    <VideoThumb
+                    <PlainDmVideo
                       key={idx}
                       uri={item.url}
-                      width={MAX_IMAGE_WIDTH}
-                      height={Math.round(MAX_IMAGE_WIDTH / DEFAULT_ASPECT)}
+                      messageId={message._id}
+                      options={message.mediaOptions}
+                      destruct={message.destruct}
+                      mine={isMine}
+                      maxW={MAX_IMAGE_WIDTH}
+                      maxH={MAX_IMAGE_HEIGHT}
                       onPress={() => handleVideoTap(item.url)}
                       onLongPress={handleLongPress}
                     />
@@ -976,7 +1045,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               );
             })()}
 
-            {/* Shared DeHub link — rich preview card that opens it on tap */}
+            {/* Shared Riftn link — rich preview card that opens it on tap */}
             {sharedLink ? (
               <>
                 {/* The card leads the bubble and the caption follows it, the

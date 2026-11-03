@@ -51,7 +51,7 @@ export interface ChatModelOption {
 }
 
 export const CHAT_MODEL_OPTIONS: ChatModelOption[] = [
-  { id: 'auto', name: 'Auto', get description() { return _translateCopy("copy.4a9fd15a895c", { defaultValue: "DeHub trained model" }); }, emoji: '✨' },
+  { id: 'auto', name: 'Auto', get description() { return _translateCopy("copy.4a9fd15a895c", { defaultValue: "Riftn trained model" }); }, emoji: '✨' },
   { id: 'gemini-2.5-flash', name: 'Gemini Flash', get description() { return _translateCopy("copy.98f96a4d8578", { defaultValue: "Fast & free" }); }, emoji: '⚡' },
   { id: 'gemini-2.5-pro', name: 'Gemini Pro', get description() { return _translateCopy("copy.6157bb4bd99f", { defaultValue: "Best reasoning $$" }); }, emoji: '💎' },
   { id: 'gpt-5-mini', name: 'GPT-5 Mini', get description() { return _translateCopy("copy.af4707aebdfa", { defaultValue: "OpenAI $" }); }, emoji: '🧠' },
@@ -224,7 +224,7 @@ export type ImageModelKey = string;
 
 export const DEFAULT_IMAGE_MODEL: ImageModelKey = 'gemini-2.5-flash';
 
-/** The model the DeHub poster studio composites the wordmark with. */
+/** The model the Riftn poster studio composites the wordmark with. */
 export const DEHUB_BRAND_IMAGE_MODEL: ImageModelKey = 'gemini-3.1-flash-image';
 
 /* ── Video models ────────────────────────────────────────────────────────── */

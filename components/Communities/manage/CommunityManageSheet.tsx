@@ -24,6 +24,7 @@ import { InviteLinksTab } from "./InviteLinksTab";
 import { RulesTab } from "./RulesTab";
 import { RecentActionsTab } from "./RecentActionsTab";
 import { DangerZone } from "./DangerZone";
+import { HoldersTab } from "./HoldersTab";
 
 type ManageTabKey =
   | "members"
@@ -32,6 +33,7 @@ type ManageTabKey =
   | "invites"
   | "rules"
   | "log"
+  | "holders"
   | "danger";
 
 interface ManageTabDef {
@@ -106,6 +108,11 @@ export function CommunityManageSheet({
     }
     if (abilities.isOwner) {
       list.push({
+        key: "holders",
+        label: t("communities.holderGate.tab", { defaultValue: "Holders" }),
+        icon: "Coins",
+      });
+      list.push({
         key: "danger",
         label: t("communities.manage.tabs.danger", { defaultValue: "Danger zone" }),
         icon: "TriangleAlert",
@@ -142,6 +149,8 @@ export function CommunityManageSheet({
         return <RulesTab community={community} membership={member} />;
       case "log":
         return <RecentActionsTab community={community} membership={member} />;
+      case "holders":
+        return <HoldersTab community={community} membership={member} />;
       case "danger":
         return <DangerZone community={community} membership={member} onClose={onClose} />;
       default:

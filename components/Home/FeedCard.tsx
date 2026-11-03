@@ -45,8 +45,10 @@ import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { noteProfileFeedOpen, useProfileFeedSource } from '../../libs/profileFeedOrigin';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
+import { useFeedSplitComments } from "./feedSplitComments";
 import PostStatsSheet from "../Post/stats/PostStatsSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -58,6 +60,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import ComicDeck from "./ComicDeck";
 import { useMetaGrey } from "../../theme/metaGrey";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import ArticleCover from "../article/ArticleCover";
@@ -92,6 +95,8 @@ import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import FeedGatePreview from "./FeedGatePreview";
+import UnlockReveal from "../common/UnlockReveal";
+import { nextUnlockRevealKind, type UnlockRevealKind } from "../../libs/unlockReveal";
 import FeedAudioContent from "./FeedAudioContent";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
@@ -226,6 +231,8 @@ type PostEdits = {
   hideAssetCards?: boolean;
   quotePolicy?: "public" | "followers" | "nobody";
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Comic or carousel, switched from the menu. null = carousel. */
+  layout?: "comic" | null;
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -421,6 +428,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
+  const profileFeed = useProfileFeedSource();
   const { t, i18n } = useCopy();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -809,6 +817,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
   const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
   const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
+  // A paid photo post plays its reveal over the gate before the card opens.
+  const [revealKind, setRevealKind] = useKeyedState<UnlockRevealKind | null>(postKey, null);
   const [showBountyModal, setShowBountyModal] = useKeyedState(postKey, false);
   const [showAISheet, setShowAISheet] = useKeyedState(postKey, false);
   const [showAddToFolder, setShowAddToFolder] = useKeyedState(postKey, false);
@@ -843,6 +853,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Only the fields actually edited are held; everything else keeps reading
   // the post, so a refetch still lands.
   const [edits, setEdits] = useKeyedState<PostEdits>(postKey, NO_EDITS);
+  const postLayout = edits.layout !== undefined ? edits.layout : item.layout;
   // Re-rating a post from its own options menu takes effect at once.
   const localContentRating: string | undefined = edits.contentRating ?? (item as any).contentRating;
   // Same for the Kids Mode marking, so taking it off re-opens the comment box
@@ -873,7 +884,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, item.detectedLanguage, true, true, postKey);
-  // DeHub links in the caption become entity cards, and the URLs that became
+  // Riftn links in the caption become entity cards, and the URLs that became
   // cards come out of the text — the same contract the DM, comment and
   // community-chat surfaces already follow, and the same one web's PostCard
   // uses. Without this the feed was the one surface where a stage, community
@@ -963,8 +974,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     onBeforeNavigate?.();
     hideUserProfile();
-    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail));
-  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
+    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
+  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed]);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
@@ -993,6 +1004,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+      noteProfileFeedOpen(profileFeed, tokenId);
       // Text, image and audio posts open in place on Home, under the same
       // logo bar and pill; video keeps its own page.
       if (!isVideo && openPostInFeedHost(tokenId)) return;
@@ -1000,7 +1012,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed, profileFeed,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
@@ -1219,6 +1231,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
   // server-side, so links handed out now keep working after a mint.
   const shareUrl = useMemo(() => {
+    // A post with a readable slug (first ten words) shares as that link.
+    const articleSlug = (item as any).articleSlug;
+    if (typeof articleSlug === "string" && articleSlug) {
+      return `${WEBSITE_LINK || ""}/app/post/${articleSlug}`;
+    }
     const newPostId = (item as any).newPostId;
     if (rawStatus === "signed" && newPostId != null) {
       return `${WEBSITE_LINK || ""}/newpost/${newPostId}`;
@@ -1246,8 +1263,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // The store re-renders every card showing this post, this one included.
   const handlePPVSuccess = useCallback(() => {
+    if (!isVideo && galleryImages.length > 0 && !isActuallyLockedHoldings) {
+      setRevealKind(nextUnlockRevealKind());
+      return;
+    }
     markTokenUnlocked(tokenId);
-  }, [tokenId]);
+  }, [tokenId, isVideo, galleryImages, isActuallyLockedHoldings, setRevealKind]);
+  const finishReveal = useCallback(() => {
+    setRevealKind(null);
+    markTokenUnlocked(tokenId);
+  }, [tokenId, setRevealKind]);
 
   const handleBountyBadgePress = useCallback(() => {
     requireAuth?.(() => {
@@ -1255,6 +1280,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
   }, [requireAuth, setShowBountyModal]);
 
+  // Home feed on phones: comments open as the half-screen split right over
+  // the feed, the post slid up into the top half (see feedSplitComments).
+  const feedSplit = useFeedSplitComments();
+  const splitComments = !!feedSplit && !desk;
   const handleCommentPress = useCallback(() => {
     if (onCommentPressProp) {
       onCommentPressProp();
@@ -1263,11 +1292,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // sheet beside it. Same as the web feed card, which opens the room.
       handleCardPress();
     } else if (tokenId != null) {
-      // Feed comment taps open just the comments drawer over the feed;
-      // the post page only opens when the post itself is tapped.
+      // Feed comment taps open the comments over the feed; the post page
+      // only opens when the post itself is tapped.
+      if (splitComments) feedSplit?.bringToTop();
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments]);
+  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments, splitComments, feedSplit]);
 
   // The sheet opens on release; its reads can start on touch-down.
   const queryClient = useQueryClient();
@@ -1379,8 +1409,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // the only part that waits on a mint, not the whole page.
   const handleInfoPress = useCallback(() => {
     if (tokenId == null) return;
+    // The card already holds the post, so the info page paints it at once
+    // and only the extra reads (holders, sales, stats) fill in after.
+    seedPostDetail(tokenId, item);
+    warmRequest(`info:${tokenId}`, () => getNFT(tokenId));
     navigation.navigate(ScreenNames.PostInfo, { tokenId: String(tokenId) });
-  }, [navigation, tokenId]);
+  }, [navigation, tokenId, item]);
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);
@@ -1407,6 +1441,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       Object.entries(data).filter(([, value]) => value !== undefined),
     ) as PostEdits;
     setEdits((prev) => ({ ...prev, ...defined }));
+  }, [setEdits]);
+
+  const handleLayoutChange = useCallback((layout: "comic" | null) => {
+    setEdits((prev) => ({ ...prev, layout }));
   }, [setEdits]);
 
   const handleDeleteSuccess = useCallback(() => {
@@ -1664,6 +1702,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
 
     // PPV-only locked image: blurred preview with unlock overlay (matches web ImageCard behaviour)
+    if (isActuallyLockedPPV && revealKind) {
+      const revealW = edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH;
+      const revealH = revealW * 0.75;
+      return (
+        <View className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"} style={{ height: revealH }}>
+          <SmartImage source={{ uri: galleryImages[0] }} recyclingKey={galleryImages[0]} style={{ width: "100%", height: "100%" }} contentFit="cover" priority="high" />
+          <UnlockReveal
+            kind={revealKind}
+            width={revealW}
+            height={revealH}
+            cover={<FeedGatePreview uri={lockedPreviewUri} priority="high" />}
+            onDone={finishReveal}
+          />
+        </View>
+      );
+    }
     if (isActuallyLockedPPV) {
       return (
         <Pressable
@@ -1740,6 +1794,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       );
     }
 
+    if (postLayout === "comic" && galleryImages.length > 0) {
+      return (
+        <View className={edgeMedia ? undefined : "mt-2"}>
+          <ComicDeck
+            images={galleryImages}
+            captions={item.mediaCaptions}
+            border={item.comicBorder}
+            active={isVisible}
+            descriptions={item.mediaDescriptions}
+            title={localTitle}
+            width={edgeMedia || isMinimal ? SCREEN_WIDTH : itemWidth}
+            // The post page draws its card with presses off: there the comic
+            // is the full one (page hand, tap to flip), not a feed teaser.
+            full={immersive || disablePress}
+            onOpen={immersive || disablePress ? undefined : handleCardPress}
+          />
+        </View>
+      );
+    }
+
     if (!hasMultipleImages) {
       return (
         <PostTapSurface
@@ -1791,6 +1865,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderVideoThumbnail = () => (
     <FeedScrubContext.Provider value={stage ? null : scrubBoundary.controller}>
     <FeedVideoPlayer
+      // A recycled Home cell keeps the card but gets a fresh player per post.
+      key={postKey}
       thumbnail={thumbnail}
       inlineWidth={tabletVideoWidth}
       postPage={fullContent}
@@ -2109,6 +2185,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           replyPolicy={edits.replyPolicy ?? item.replyPolicy}
           forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
+          split={splitComments}
         />
       )}
 
@@ -2213,6 +2290,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
           currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
+          currentLayout={postLayout === "comic" ? "comic" : null}
+          photoCount={galleryImages.length}
+          onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
@@ -2259,7 +2339,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
+          url={shareUrl}
           postTitle={localTitle || undefined}
         />
       )}
@@ -2540,6 +2620,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             canRepost={isPublicPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
+            tokenId={tokenId ?? undefined}
             shareText={localTitle || undefined}
             quoteCount={stageQuotes}
             repostCount={Math.max(0, repostCount - stageQuotes)}
@@ -3039,7 +3120,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {/* DeHub entity cards — stage, post, profile, community, invite, store,
+      {/* Riftn entity cards — stage, post, profile, community, invite, store,
           item, event, bounty. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
       {remixCredits}

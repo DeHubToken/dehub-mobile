@@ -27,9 +27,21 @@ describe('notification content', () => {
     expect(value).toContain('4');
     expect(value).not.toContain('others');
   });
-  it('leaves custom and private message content to its existing renderer', () => {
-    expect(localizedNotificationContent({ type: 'new_message', actorUsername: 'Araf', content: 'hello' }, translate('en'))).toBeNull();
+  it('leaves custom content to its existing renderer', () => {
     expect(localizedNotificationContent({ type: 'system', content: 'Maintenance' }, translate('en'))).toBeNull();
+  });
+  // The server's message row never carries the message itself, only an
+  // English "sent you a message on DeHub", so the reader's language wins.
+  it('says a message arrived in the reader\'s language', () => {
+    const value = localizedNotificationContent({ type: 'new_message', actorUsername: 'Araf', content: 'Araf sent you a message on DeHub' }, translate('tr'));
+    expect(value).toContain('Araf');
+    expect(value).not.toContain('DeHub');
+    expect(value).not.toContain('sent you a message');
+  });
+  it('keeps the English milestone with its number, and translates it otherwise', () => {
+    const item = { type: 'video_milestone', content: '🎉 Your post reached 100 likes!' };
+    expect(localizedNotificationContent(item, translate('en'), 'en')).toBeNull();
+    expect(localizedNotificationContent(item, translate('tr'), 'tr')).not.toContain('Your post');
   });
 
   it('says where a mention was made', () => {

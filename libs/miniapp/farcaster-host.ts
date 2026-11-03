@@ -2,16 +2,16 @@
  * Farcaster compatibility for the app's mini app player — the native side of
  * dehubweb's src/lib/miniapp/farcaster-host.ts, and the same mapping:
  *
- *   - ready, close, openUrl, composeCast (into the DeHub composer),
+ *   - ready, close, openUrl, composeCast (into the Riftn composer),
  *     viewProfile / viewCast (out to farcaster.xyz) and haptics work;
- *   - `user.fid` is a stable NEGATIVE stand-in (syntheticFid): DeHub users
+ *   - `user.fid` is a stable NEGATIVE stand-in (syntheticFid): Riftn users
  *     have no FID, and a negative one can never collide with a real account;
  *   - signIn and addMiniApp are rejected as user-declined, which every app
  *     already handles; wallet, tokens and notifications reject cleanly.
  *
  * Farcaster's own React Native adapter does the transport and checks each
  * message's page domain against `domain`, the same rule MiniAppScreen applies
- * to DeHub's protocol.
+ * to Riftn's protocol.
  */
 import { useMemo, useRef, type RefObject } from "react";
 import * as Haptics from "expo-haptics";
@@ -37,7 +37,7 @@ const CAPABILITIES: MiniAppHostCapability[] = [
 ];
 
 const unsupported = () => {
-  throw new Error("Not supported on DeHub yet.");
+  throw new Error("Not supported on Riftn yet.");
 };
 
 export interface FarcasterHostOptions {
@@ -47,7 +47,7 @@ export interface FarcasterHostOptions {
   onReady: () => void;
   onClose: () => void;
   onCompose: (text: string) => void;
-  /** DeHub's own add-app flow; absent for a developer preview. */
+  /** Riftn's own add-app flow; absent for a developer preview. */
   addApp?: () => Promise<{ added: boolean }>;
 }
 
@@ -63,8 +63,8 @@ export function useFarcasterHost(options: FarcasterHostOptions): (e: WebViewMess
   const added = options.context.client.added;
   const sdk = useMemo(() => {
     const c = opts.current.context;
-    // Adding goes through DeHub's dialog and notifications; no Farcaster
-    // notificationDetails come back, since DeHub delivers them itself.
+    // Adding goes through Riftn's dialog and notifications; no Farcaster
+    // notificationDetails come back, since Riftn delivers them itself.
     const addViaDehub = async () => {
       const add = opts.current.addApp;
       if (!add || !(await add()).added) throw new AddMiniApp.RejectedByUser();

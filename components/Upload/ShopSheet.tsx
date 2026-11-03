@@ -6,7 +6,7 @@ import { useDraftState } from '../../hooks/useDraftState';
  * live stream — mobile's UploadScreen is both, so one sheet covers what the web
  * splits between the upload drawer and Go Live. Two ways to fill the board:
  *
- *  - **From your shop** — listings the creator already sells on DeHub. These
+ *  - **From your shop** — listings the creator already sells on Riftn. These
  *    check out in-app and the money lands in their wallet, so they are offered
  *    first and listed first.
  *  - **Links** — affiliate and external links, which leave the app.

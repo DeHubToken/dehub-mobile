@@ -11,7 +11,7 @@
 // actually have keeps the address reproducible without forcing a password
 // unlock on every Solana signature. The consequence is that the recovery
 // phrase alone will not reproduce this address in Phantom; the wallet is
-// recoverable through DeHub sign-in, the same way the EVM wallet is.
+// recoverable through Riftn sign-in, the same way the EVM wallet is.
 import { Keypair } from "@solana/web3.js";
 import { deriveSolanaSeed } from "./solana-seed";
 

@@ -63,7 +63,7 @@ export default function ConnectGuideScreen() {
       >
         <View style={styles.badge}>
           <Icon name="Plug" size={13} color="#D4D4D8" />
-          <Text style={styles.badgeText}>{`DeHub × ${app}`}</Text>
+          <Text style={styles.badgeText}>{`Riftn × ${app}`}</Text>
         </View>
         <Text style={styles.title}>{t("connect.guideTitle", { app })}</Text>
         <Text style={styles.subtitle}>{t('accountConnect.intro')}</Text>

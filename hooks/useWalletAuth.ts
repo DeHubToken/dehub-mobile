@@ -1,7 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 // "Connect Wallet" sign-in — authenticates with an EXTERNAL wallet app
 // (MetaMask, Trust Wallet, Coinbase Wallet, ...) via Reown AppKit/WalletConnect,
-// instead of DeHub provisioning a local wallet (see identity-wallet.ts).
+// instead of Riftn provisioning a local wallet (see identity-wallet.ts).
 //
 // An earlier version of this hook only tracked the connected address and
 // called signInWithWallet directly — it never registered the connected
@@ -10,7 +10,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 // had nothing to sign with and would fail with "No signing provider
 // available". setSigningProvider(walletProvider) below is what was missing:
 // it's what makes the connected wallet the thing that actually signs the
-// DeHub auth message.
+// Riftn auth message.
 import "@walletconnect/react-native-compat";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";

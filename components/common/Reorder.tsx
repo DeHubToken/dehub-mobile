@@ -24,7 +24,7 @@
  * `reorder.order`, wrap each item in `<ReorderItem id reorder>`, and give the
  * scroller `ref={reorder.scrollRef}` as a Reanimated ScrollView.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -46,6 +46,12 @@ import * as Haptics from "expo-haptics";
 type Rect = { x: number; y: number; w: number; h: number };
 
 const HOLD_MS = 380;
+/**
+ * How long the finger rests over another slot before the others make room,
+ * as on the Android home screen: sweeping across the grid moves nothing, a
+ * pause does. Letting go over a slot takes it straight away.
+ */
+const DWELL_MS = 200;
 const EDGE = 44;
 /** Arrival curve: fast out, soft landing, no bounce. */
 const EASE = Easing.bezier(0.22, 1, 0.36, 1);
@@ -81,6 +87,8 @@ export interface ReorderCtx {
   resetIndex: Map<string, number> | null;
   layouts: SharedValue<Record<string, Rect>>;
   order: SharedValue<string[]>;
+  /** The order React last laid out: where each item's own slot really is. */
+  rendered: SharedValue<string[]>;
   slots: SharedValue<Rect[]>;
   active: SharedValue<string>;
   startIndex: SharedValue<number>;
@@ -97,6 +105,8 @@ export interface ReorderCtx {
   scrollRef: ReturnType<typeof useAnimatedRef<Animated.ScrollView>>;
   begin: (id: string) => void;
   hitTest: () => void;
+  settle: (force: boolean) => void;
+  pending: SharedValue<number>;
   end: (next: string[], committed: boolean) => void;
 }
 
@@ -110,6 +120,7 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
   const scroll = useScrollOffset(scrollRef);
   const layouts = useSharedValue<Record<string, Rect>>({});
   const orderSV = useSharedValue<string[]>(ids);
+  const rendered = useSharedValue<string[]>(ids);
   const slots = useSharedValue<Rect[]>([]);
   const active = useSharedValue("");
   const startIndex = useSharedValue(-1);
@@ -122,6 +133,13 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
   const dropX = useSharedValue(0);
   const dropY = useSharedValue(0);
   const dropping = useSharedValue("");
+
+  // The lifted item is drawn relative to the slot it is laid out in. The
+  // UI-thread order runs a render ahead of that layout, and measuring from it
+  // made the held icon jump a slot and back each time the others moved.
+  useLayoutEffect(() => {
+    rendered.value = order;
+  }, [order, rendered]);
 
   // Keep the UI-thread copy of the order in step while nothing is lifted.
   useEffect(() => {
@@ -148,6 +166,28 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     if (committed && changed) commitRef.current(next);
   }, []);
 
+  // The slot the finger is resting over, and since when (-1: none).
+  const pending = useSharedValue(-1);
+  const pendingSince = useSharedValue(0);
+
+  /** Move the lifted item into the pending slot once the finger has rested there (or now, with `force`). */
+  const settle = useCallback((force: boolean) => {
+    "worklet";
+    const id = active.value;
+    const i = pending.value;
+    if (!id || i < 0) return;
+    if (!force && Date.now() - pendingSince.value < DWELL_MS) return;
+    pending.value = -1;
+    const ord = orderSV.value;
+    const cur = ord.indexOf(id);
+    if (i === cur || i >= ord.length) return;
+    const next = ord.slice();
+    next.splice(cur, 1);
+    next.splice(i, 0, id);
+    orderSV.value = next;
+    runOnJS(moved)(next);
+  }, [active, pending, pendingSince, orderSV, moved]);
+
   // Which slot the finger is over, by the slots captured at lift.
   const hitTest = useCallback(() => {
     "worklet";
@@ -159,22 +199,26 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     const ds = scroll.value - scrollStart.value;
     const px = from.x + from.w / 2 + tx.value + (horizontal ? ds : 0);
     const py = from.y + from.h / 2 + ty.value + (horizontal ? 0 : ds);
-    const ord = orderSV.value;
-    const cur = ord.indexOf(id);
+    const cur = orderSV.value.indexOf(id);
+    let hit = -1;
     for (let i = 0; i < s.length; i += 1) {
       const r = s[i];
       if (px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) {
-        if (i !== cur) {
-          const next = ord.slice();
-          next.splice(cur, 1);
-          next.splice(i, 0, id);
-          orderSV.value = next;
-          runOnJS(moved)(next);
-        }
-        return;
+        hit = i;
+        break;
       }
     }
-  }, [active, slots, startIndex, scroll, scrollStart, tx, ty, horizontal, orderSV, moved]);
+    // Between slots (the gaps, the pinned + on the bar) keeps what was there.
+    if (hit < 0) return;
+    if (hit === cur) {
+      pending.value = -1;
+      return;
+    }
+    if (hit !== pending.value) {
+      pending.value = hit;
+      pendingSince.value = Date.now();
+    }
+  }, [active, slots, startIndex, scroll, scrollStart, tx, ty, horizontal, orderSV, pending, pendingSince]);
 
   // Edge scrolling while lifted. Worked out in the scroller's own content
   // coordinates (the slots' space), against the visible window: no screen
@@ -183,6 +227,8 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     "worklet";
     const id = active.value;
     if (!id) return;
+    // A finger resting over a slot sends no move events: check the dwell here.
+    settle(false);
     const v = viewport.value;
     const s = slots.value;
     const from = s[startIndex.value];
@@ -233,6 +279,7 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     resetIndex,
     layouts,
     order: orderSV,
+    rendered,
     slots,
     active,
     startIndex,
@@ -249,8 +296,10 @@ export function useReorder({ ids, onCommit, disabled = false, horizontal = false
     scrollRef,
     begin,
     hitTest,
+    settle,
+    pending,
     end,
-  }), [disabled, horizontal, liftScale, draggingId, resetIndex, layouts, orderSV, slots, active, startIndex, tx, ty, absX, absY, scroll, scrollStart, viewport, dropX, dropY, dropping, scrollRef, begin, hitTest, end]);
+  }), [disabled, horizontal, liftScale, draggingId, resetIndex, layouts, orderSV, rendered, slots, active, startIndex, tx, ty, absX, absY, scroll, scrollStart, viewport, dropX, dropY, dropping, scrollRef, begin, hitTest, settle, pending, end]);
 
   return { order, draggingId, scrollRef, onViewportLayout, animateChange, ctx };
 }
@@ -264,8 +313,8 @@ interface ItemProps {
 
 export function ReorderItem({ id, ctx, children, style }: ItemProps) {
   const {
-    disabled, horizontal, liftScale, draggingId, resetIndex, layouts, order, slots, active, startIndex, tx, ty, absX, absY,
-    scroll, scrollStart, dropX, dropY, dropping, begin, hitTest, end,
+    disabled, horizontal, liftScale, draggingId, resetIndex, layouts, order, rendered, slots, active, startIndex, tx, ty, absX, absY,
+    scroll, scrollStart, dropX, dropY, dropping, begin, hitTest, settle, pending, end,
   } = ctx;
 
   // This item's own scale: the press while it holds, the lift, the landing.
@@ -295,6 +344,7 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
       absX.value = e.absoluteX;
       absY.value = e.absoluteY;
       dropping.value = "";
+      pending.value = -1;
       active.value = id;
       // The lift grows out of the press: scale eases, position never does.
       scale.value = withTiming(liftScale, { duration: LIFT_MS, easing: EASE });
@@ -317,6 +367,8 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
         return;
       }
       scale.value = withTiming(1, { duration: DROP_MS, easing: EASE });
+      // Let go over another slot: it goes there, rested on or not.
+      settle(true);
       // Glide from where the finger left it into the slot it now owns.
       const s = slots.value;
       const ord = order.value;
@@ -333,12 +385,19 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
       }
       active.value = "";
       runOnJS(end)(ord, true);
-    }), [disabled, horizontal, liftScale, id, scale, active, order, layouts, slots, startIndex, scroll, scrollStart, tx, ty, absX, absY, dropX, dropY, dropping, begin, hitTest, end]);
+    }), [disabled, horizontal, liftScale, id, scale, active, order, layouts, slots, startIndex, scroll, scrollStart, tx, ty, absX, absY, dropX, dropY, dropping, begin, hitTest, settle, pending, end]);
 
   const lifted = useAnimatedStyle(() => {
     if (active.value !== id) {
       if (dropping.value === id) {
-        return { zIndex: 50, transform: [{ translateX: dropX.value }, { translateY: dropY.value }, { scale: scale.value }] };
+        // dropX/Y are measured from the slot it lands in; until that layout
+        // arrives the item still sits in the slot it was last drawn in.
+        const s = slots.value;
+        const target = s[order.value.indexOf(id)];
+        const laid = s[rendered.value.indexOf(id)] ?? target;
+        const ox = target && laid ? target.x - laid.x : 0;
+        const oy = target && laid ? target.y - laid.y : 0;
+        return { zIndex: 50, transform: [{ translateX: dropX.value + ox }, { translateY: dropY.value + oy }, { scale: scale.value }] };
       }
       return { zIndex: 0, transform: [{ translateX: 0 }, { translateY: 0 }, { scale: scale.value }] };
     }
@@ -346,8 +405,8 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
     const from = s[startIndex.value];
     const ds = scroll.value - scrollStart.value;
     if (!from) return { zIndex: 50, transform: [{ translateX: tx.value }, { translateY: ty.value }, { scale: scale.value }] };
-    // Follow the finger, measured from whichever slot the item owns now.
-    const to = s[order.value.indexOf(id)] ?? from;
+    // Follow the finger, measured from the slot the item is laid out in now.
+    const to = s[rendered.value.indexOf(id)] ?? from;
     return {
       zIndex: 50,
       transform: [
@@ -360,7 +419,14 @@ export function ReorderItem({ id, ctx, children, style }: ItemProps) {
 
   const onLayout = useCallback((e: { nativeEvent: { layout: { x: number; y: number; width: number; height: number } } }) => {
     const { x, y, width, height } = e.nativeEvent.layout;
-    layouts.value = { ...layouts.value, [id]: { x, y, w: width, h: height } };
+    // On the UI thread, in place: every item lays out in the same frame, and
+    // a JS-side `{ ...layouts.value }` read each other's writes before they
+    // landed, so only the last item kept its rect and nothing could be hit.
+    layouts.modify(<T extends Record<string, Rect>>(all: T): T => {
+      "worklet";
+      (all as Record<string, Rect>)[id] = { x, y, w: width, h: height };
+      return all;
+    }, false);
   }, [id, layouts]);
 
   return (

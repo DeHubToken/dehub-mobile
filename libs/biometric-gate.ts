@@ -105,7 +105,7 @@ export type VerificationOutcome = "verified" | "unenforceable";
  * that throws, because a check was possible and was refused.
  *
  * @param purpose Shown in the system prompt. Say what the key is for, e.g.
- *                "Unlock your DeHub wallet" — a vague prompt trains people to
+ *                "Unlock your Riftn wallet" — a vague prompt trains people to
  *                approve reflexively.
  */
 export async function requireDeviceOwner(purpose: string): Promise<VerificationOutcome> {

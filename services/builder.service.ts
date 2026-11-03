@@ -1,5 +1,5 @@
 /**
- * Where DeHub Builder apps live, and how to render one.
+ * Where Riftn Builder apps live, and how to render one.
  *
  * Builds are started from Messages now — @assistant calls dehubweb's
  * `builder-api` function on the user's behalf — so the app no longer talks to it.
@@ -51,7 +51,7 @@ export async function loadBuilderAppHtml(projectId: string, version?: number): P
 
 // ── Own-origin hosting + owner controls ────────────────────────────────────
 // Each app lives at https://<slug>.dhb.gg. Owners manage it through
-// dehubweb's builder-api function with their DeHub token.
+// dehubweb's builder-api function with their Riftn token.
 
 export const BUILDER_APPS_DOMAIN = "dhb.gg";
 
@@ -114,6 +114,19 @@ export interface BuilderVersion {
   created_at: string;
 }
 
+export interface BuilderModel {
+  id: string;
+  label: string;
+  typicalMicros: number;
+  maxMicros: number;
+}
+
+export interface BuilderPricing {
+  model: string;
+  markup: number;
+  models: BuilderModel[];
+}
+
 async function call<T>(body: Record<string, unknown>): Promise<T> {
   await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
@@ -139,4 +152,7 @@ export const builderApi = {
   previewUrl: (projectId: string) => call<{ url: string; publicUrl: string; expiresAt: string | null }>({ action: "preview_url", projectId }),
   publish: (projectId: string) => call<{ appSlug: string; tier: string; storeUrl: string }>({ action: "publish", projectId }),
   unpublish: (projectId: string) => call<{ ok: true }>({ action: "unpublish", projectId }),
+  /** Models a build can use, what each typically costs per prompt (micros = millionths of USD), and the user's pick. */
+  pricing: () => call<BuilderPricing>({ action: "pricing" }),
+  setModel: (model: string) => call<{ model: string }>({ action: "set_model", model }),
 };

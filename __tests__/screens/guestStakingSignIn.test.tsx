@@ -43,10 +43,15 @@ jest.mock('../../hooks/useKeyboardLayout', () => ({ useKeyboardOffset: (...args:
 jest.mock('../../hooks/useWebCheckout', () => ({
   useWebCheckout: () => ({ canBuy: false, checking: false, opening: null, openCheckout: jest.fn() }),
 }));
-jest.mock('../../context/AuthContext', () => ({ useUser: () => null, useAuthActions: () => ({ requireAuth: mockRequireAuth }) }));
+jest.mock('../../context/AuthContext', () => ({ useUser: () => null, useAuthActions: () => ({ requireAuth: mockRequireAuth }), useAuthState: () => ({ isSignedIn: false }) }));
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../config/links', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
+jest.mock('../../components/Builder/BuilderModelCard', () => 'BuilderModelCard');
+jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('@tanstack/react-query', () => ({ useQuery: () => ({ data: undefined }), useQueryClient: () => ({ invalidateQueries: jest.fn() }) }));
+jest.mock('../../services/builder.service', () => ({ builderApi: { pricing: jest.fn(), setModel: jest.fn() } }));
+jest.mock('../../services/miniapps.service', () => ({ fetchBuilderShowcase: jest.fn() }));
 
 const STAKE = ['Dpay', { initialTab: 'stake' }];
 
@@ -93,12 +98,6 @@ describe('staking buttons for guests', () => {
     const screen = render(<RaffleScreen />);
     fireEvent.press(screen.getByText('raffle.findLiveDraw'));
     expect(mockNavigate).toHaveBeenCalledWith('Root', { screen: 'Home' }, { pop: true });
-  });
-
-  it('Builder: the allowance link asks a guest to sign in first', () => {
-    const screen = render(<BuilderScreen />);
-    fireEvent.press(screen.getByText('builder.stakeForAllowance'));
-    expectSignInThenStake();
   });
 
   it('Builder: the keyboard offset does not count the header twice', () => {

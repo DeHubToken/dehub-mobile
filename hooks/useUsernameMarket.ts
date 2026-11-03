@@ -3,7 +3,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
  * Username marketplace data layer
  * ===============================
  * Native port of web's `use-username-market.ts`, against the same
- * `/username_market/*` endpoints on the DeHub API — not Supabase. Handles live
+ * `/username_market/*` endpoints on the Riftn API — not Supabase. Handles live
  * in the accounts collection, so the marketplace lives with them.
  *
  * The buy path is the part with rules, and all three exist because the money

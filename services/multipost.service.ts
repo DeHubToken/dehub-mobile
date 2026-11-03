@@ -113,7 +113,7 @@ export async function crossPost(input: {
       accountIds: input.accountIds,
       mediaItems,
       scheduledAt: input.scheduledAt ? new Date(input.scheduledAt).toISOString() : undefined,
-      link: input.tokenId !== undefined ? `https://dehub.io/app/post/${input.tokenId}` : undefined,
+      link: input.tokenId !== undefined ? `https://riftn.com/app/post/${input.tokenId}` : undefined,
     };
     type PublishResult = { sent: number; failed: number; scheduled: boolean; skipped: { platform: string; reason: string }[] };
     let result: PublishResult;

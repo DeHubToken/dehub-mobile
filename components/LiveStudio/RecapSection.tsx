@@ -56,7 +56,7 @@ export function RecapSection({ address, streamId }: Props) {
   if (recap.isError || !r) return <Text className="text-theme-neutrals-400 text-sm">{t("liveRecap.loadFailed")}</Text>;
 
   const share = () => {
-    const url = r.tokenId != null ? `https://dehub.io/app/post/${r.tokenId}` : "https://dehub.io";
+    const url = r.tokenId != null ? `https://riftn.com/app/post/${r.tokenId}` : "https://riftn.com";
     const text = t("liveRecap.shareText", {
       title: r.title || t("liveRecap.untitled"),
       duration: formatStreamDuration(r.durationSec),

@@ -17,7 +17,7 @@ const DEFAULT_AVATAR_PT = 48;
 
 /**
  * True for a value that already addresses an image somewhere other than a
- * stored DeHub avatar path — a full URL, an in-memory preview, or an inline
+ * stored Riftn avatar path — a full URL, an in-memory preview, or an inline
  * payload.
  *
  * These have to be left alone. The flattening below is deliberate for stored
@@ -259,12 +259,16 @@ const baseUrlWithoutSlash = (env.CDN_BASE_URL ?? "").replace(/\/+$/, "");
  * is accepted for call-site compatibility and intentionally unused — Cloudflare
  * preserves aspect ratio from width alone, and passing both would crop.
  */
+const LOCAL_URI = /^(file|content|ph|assets-library|data|blob):/i;
+
 export function getImageUrl(
   url: string,
   width?: number,
   _height?: number
 ): string {
   if (!url) return "";
+  // A picture still on the phone (the composer's preview) is drawn as it is.
+  if (LOCAL_URI.test(url)) return url;
   const fileName = url.split("/").pop();
   const protocol = url.split(":")[0];
   // Already absolute (external host, or an already-built CDN URL): cdnImage
@@ -336,6 +340,7 @@ export function buildFeedImageUrls(
   if (!apiImageUrls?.length) return [];
   return apiImageUrls.map((imgUrl) => {
     if (!imgUrl) return "";
+    if (LOCAL_URI.test(imgUrl)) return imgUrl;
     if (imgUrl.startsWith("http")) return cdnImage(imgUrl, { width: widthPt });
     const filename = imgUrl.split("/").pop() || "";
     return filename
@@ -655,17 +660,17 @@ export function getBadgeOpticalStyle(
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
-  // Exo uses a 732-unit cap height on its 1000-unit em; inline artwork is 10% larger.
-  const renderedSize = size * 0.732 * 1.1 * 128 / (bounds.bottom - bounds.top);
+  // Manrope uses a 0.72em cap height; inline artwork is 10% larger.
+  const renderedSize = size * 0.72 * 1.1 * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
   // baseline lies a fixed fraction of the font size below the box's centre
-  // (Roboto and SF both land near 0.34em), independent of the line height.
+  // (Manrope: (ascent - descent) / 2 = 0.383em), independent of the line height.
   // Centre the image in the row, then move only its pixels so the artwork's
   // measured bottom edge finishes on that baseline. A flex baseline on the
   // oversized image would change the name row's height and push the username.
-  const baselineBelowCentre = size * 0.3375;
+  const baselineBelowCentre = size * 0.383;
   const artworkBottomBelowCentre =
     -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +

@@ -1,7 +1,7 @@
 /**
  * Affiliate Leaderboard
  * =====================
- * Ranks accounts by how many people they brought to DeHub.
+ * Ranks accounts by how many people they brought to Riftn.
  *
  * Every other leaderboard category is served by `/api/leaderboard`, but
  * referrals aren't in that database — they live in Supabase as

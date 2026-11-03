@@ -6,7 +6,7 @@
  * `register-new-member` edge function — so a member who signs in on the phone
  * shows up in the rail on the web and vice versa.
  *
- * The roster lives in Supabase rather than being asked of the DeHub API
+ * The roster lives in Supabase rather than being asked of the Riftn API
  * because the API cannot answer it: `/api/users_search` ignores `page`,
  * `limit` and every sort parameter, and returns the same ten oldest accounts
  * every time. The edge function is the only writer; clients hold no INSERT
@@ -238,7 +238,7 @@ export function useNewMemberSelf() {
  * Put the signed-in account on the roster, once per app launch.
  *
  * Nothing is passed to the function: it derives the wallet from the verified
- * DeHub token and re-reads the join date from the API, so there is nothing a
+ * Riftn token and re-reads the join date from the API, so there is nothing a
  * client could get wrong or lie about.
  */
 export function useRegisterNewMember() {

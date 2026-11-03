@@ -51,7 +51,7 @@ const COMBINING = /[̀-ͯ]/g;
  * Fold a display name to what a reader actually sees: no accents, no
  * confusables, no invisibles, no punctuation, no repeated letters.
  *
- * Repeats collapse because "DeHubb" and "DeHub" are the same name to a
+ * Repeats collapse because "Riftnb" and "Riftn" are the same name to a
  * skim-reader, and doubling a letter is the cheapest evasion there is.
  */
 export function foldName(name: string): string {

@@ -6,7 +6,7 @@ const log = createLogger("tvRequest");
 /**
  * Approving what a television asked for.
  *
- * A DeHub TV signs in through the Supabase exchange, which issues a session
+ * A Riftn TV signs in through the Supabase exchange, which issues a session
  * that deliberately cannot move funds — no wallet key ever reaches an appliance
  * sitting in a shared room. So when someone presses Tip on the television, the
  * TV does not send anything: it raises a request, and this phone — which

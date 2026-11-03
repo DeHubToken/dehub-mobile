@@ -254,7 +254,7 @@ export function useUploadLive() {
         goToStage("uploading");
 
         // Some carriers cannot reach the self-hosted ingest at all (its bare
-        // droplet IP is the one DeHub host not behind Cloudflare). Ask now
+        // droplet IP is the one Riftn host not behind Cloudflare). Ask now
         // and tell the mint, so the stream is created on Livepeer instead of
         // on a server this phone will never manage to send a byte to.
         // A passing probe is additionally outvoted by a fresh failure marker:

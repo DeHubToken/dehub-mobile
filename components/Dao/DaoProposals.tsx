@@ -215,7 +215,7 @@ function ProposalCard({ proposal, ownVote, ownWeight }: { proposal: DaoProposal;
       {proposal.status === "accepted" && proposal.kind === "buy" && isBuyer && (
         <KitButton
           label={t("copy.a4f6b2e41037", { defaultValue: " Transfer payment" }).trim()}
-          onPress={() => openInApp(`https://dehub.io/app/dao?proposal=${proposal.id}`)}
+          onPress={() => openInApp(`https://riftn.com/app/dao?proposal=${proposal.id}`)}
           style={{ marginTop: 12 }}
         />
       )}

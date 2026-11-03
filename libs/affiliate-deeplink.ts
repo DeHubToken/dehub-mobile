@@ -1,9 +1,9 @@
-// Referral deep links: the invite link plus a DeHub page to land on.
+// Referral deep links: the invite link plus a Riftn page to land on.
 
 /**
  * Reduce input to a safe same-origin path, or null — web's
  * lib/affiliateDeepLink. `/r/<code>/<path>` credits the referrer and then
- * sends the visitor to `/<path>`, so only DeHub paths are allowed through.
+ * sends the visitor to `/<path>`, so only Riftn paths are allowed through.
  * Parsed by hand: React Native's URL does not implement hostname/pathname.
  */
 export function sanitizeDeepLinkPath(raw: string | null | undefined): string | null {

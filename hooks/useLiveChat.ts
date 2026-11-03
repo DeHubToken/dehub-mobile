@@ -8,6 +8,7 @@ import { getAuthToken } from "../libs/auth.utils";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import { toastError } from "../libs/toast";
+import { chatRefusalText, type ChatRefusalPayload } from "../libs/chat-refusal";
 import type {
   LiveChatMessageData,
   LiveChatRoom,
@@ -368,13 +369,15 @@ export const useLiveChat = (
         setCanSend(true);
       });
 
-      socket.on(EVENTS.ERROR, ({ message, code, isBanned: banned }: { message: string; code?: string; isBanned?: boolean }) => {
+      socket.on(EVENTS.ERROR, (data: ChatRefusalPayload = {}) => {
+        const { message, code, isBanned: banned } = data;
         log.debug("Error:", message);
         if (code === "BANNED" || banned) {
           setIsBanned(true);
           setCanSend(false);
         }
-        if (message) toastError(message);
+        const text = chatRefusalText(data);
+        if (text) toastError(text);
       });
 
       // Heartbeat ping

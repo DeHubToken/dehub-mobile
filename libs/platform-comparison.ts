@@ -22,9 +22,9 @@ export const STATUS_LABELS: Record<Status, string> = {
 };
 export const SOURCES: Record<string, { title: string; url: string }> = {
   ...RESEARCH_SOURCES,
-  dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
-  dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://dehub.io/launchpad' },
-  dehubEncryption: { title: 'DeHub encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
+  dehub: { title: 'Riftn product guide', url: 'https://riftn.com/docs/dapps' },
+  dehubLaunchpad: { title: 'Riftn Launchpad', url: 'https://riftn.com/launchpad' },
+  dehubEncryption: { title: 'Riftn encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
   kickModeration: { title: 'KICK chat moderation and polls', url: 'https://help.kick.com/en/articles/7109164-how-to-moderate-your-kick-chat' },
   twitchPolls: { title: 'Twitch polls and chat voting', url: 'https://help.twitch.tv/s/article/how-to-use-polls' },
   twitchRoles: { title: 'Twitch channel roles', url: 'https://help.twitch.tv/s/article/Managing-Roles-for-your-Channel' },
@@ -140,7 +140,7 @@ const CATALOGUE: ComparisonFeature[] = [
     ['scenes', 'Live production scenes', 'Arrange scenes, sources, camera and screen share.'],
     ['mixer', 'Live audio mixer', 'Control live audio sources in the studio.'],
     ['overlays', 'Stream widgets and overlays', 'Add goals, alerts and visual widgets.'],
-    ['obs', 'OBS browser overlays', 'Use DeHub overlays as an OBS browser source.', { rumble: e('rumbleApi', 'Live API data can feed an external OBS integration.', 'ecosystem') }],
+    ['obs', 'OBS browser overlays', 'Use Riftn overlays as an OBS browser source.', { rumble: e('rumbleApi', 'Live API data can feed an external OBS integration.', 'ecosystem') }],
     ['vertical-live', 'Vertical live crop', 'Keep a portrait crop alongside the live broadcast.'],
     ['live-polls', 'Live polls', 'Run audience polls from the studio.'],
     ['gifts', 'Paid live gifts', 'Support a stream with paid gifts; currency and device restrictions apply.', { kick: e('kick', 'Viewers can send KICKs.', 'limited'), twitch: e('twitch', 'Bits support eligible creators.', 'limited'), rumble: e('rumbleApi', 'Paid Rants.', 'limited') }, true],
@@ -165,7 +165,7 @@ const CATALOGUE: ComparisonFeature[] = [
     ['paid-dm', 'Paid direct messages', 'Creators can require a minimum tip to receive a message.', {}, true],
     ['dm-unlock', 'Paid media in messages', 'Recipients can unlock paywalled message media.', {}, true],
     ['affiliate', 'Platform referrals', 'Track referral links and eligible activity rewards.', { rumble: e('rumble', 'Creator Program includes performance rewards; current conditions apply.', 'limited') }, true],
-    ['fees', 'Badge-based platform fees', 'Eligible badge tiers change DeHub platform fees.', {}, true],
+    ['fees', 'Badge-based platform fees', 'Eligible badge tiers change Riftn platform fees.', {}, true],
     ['cashout', 'Bank cash out', 'A bank cash-out route is documented; provider, eligibility and region conditions apply.', {}, true],
     ['watch-rewards', 'Viewer reward features', 'Watch2earn is documented for eligible content; rewards are not guaranteed.', {}, true],
   ]),
@@ -230,7 +230,7 @@ const CATALOGUE: ComparisonFeature[] = [
   ...group('Open web and automation', [
     ['open-network', 'Open social network', 'ActivityPub-compatible public accounts and posts.', { mastodon: e('mastodonNetwork', 'Federated social network.'), bluesky: e('bskyNetwork', 'Federation through AT Protocol; not ActivityPub.'), farcaster: e('farcaster', 'Open social protocol and application development.') }],
     ['activitypub', 'ActivityPub federation', 'Public profiles and posts support fediverse following.', { mastodon: e('mastodonNetwork', 'Federated accounts and conversations.') }],
-    ['third-party-clients', 'Alternative social clients', 'Compatible Mastodon clients can connect to DeHub.', { mastodon: e('mastodonQuotes', 'Third-party clients; feature support depends on client version.', 'limited'), farcaster: e('farcaster', 'Open protocol for building social applications.') }],
+    ['third-party-clients', 'Alternative social clients', 'Compatible Mastodon clients can connect to Riftn.', { mastodon: e('mastodonQuotes', 'Third-party clients; feature support depends on client version.', 'limited'), farcaster: e('farcaster', 'Open protocol for building social applications.') }],
     ['verified-links', 'Verified profile links', 'Verify ownership through a reciprocal website link.'],
     ['rss', 'Profile and hashtag RSS', 'Read public profiles and hashtags through feeds.'],
     ['embeds', 'Embeddable posts', 'Website embeds and oEmbed link previews.'],
@@ -238,14 +238,14 @@ const CATALOGUE: ComparisonFeature[] = [
     ['import', 'Import existing content', 'Import your own supported links through Converter.'],
     ['channel-import', 'Channel migration', 'Select and queue your own channel library for import.'],
     ['podcast-import', 'Podcast RSS import', 'Import selected episodes from a podcast feed.'],
-    ['mini-apps', 'Mini app discovery', 'Discover and open mini apps within DeHub.', { farcaster: e('fcApps', 'Mini app distribution and discovery.') }],
+    ['mini-apps', 'Mini app discovery', 'Discover and open mini apps within Riftn.', { farcaster: e('fcApps', 'Mini app distribution and discovery.') }],
     ['app-auth', 'Sign in for mini apps', 'App-scoped authentication without handing an app your wallet keys.', { farcaster: e('farcaster', 'Sign In with Farcaster and AuthKit.') }],
     ['app-publish', 'Mini app developer tools', 'Validate manifests and preview an app and its feed card.', { farcaster: e('fcApps', 'SDK, publishing and app discovery.') }],
     ['builder', 'App builder', 'Describe an app and work with a generated preview.', {}, true],
     ['assistant', 'In-app assistant', 'Chat with an assistant and mention it in supported conversations.'],
     ['agents', 'Configurable assistants', 'Configure tasks, schedules and account permissions.'],
     ['agent-control', 'Automation controls', 'Pause activity and control workspace access.'],
-    ['mcp', 'Connected assistant tools', 'Connect compatible assistants to scoped DeHub tools.'],
+    ['mcp', 'Connected assistant tools', 'Connect compatible assistants to scoped Riftn tools.'],
   ]),
   ...group('Safety and personalization', [
     ['reply-control', 'Reply and quote controls', 'Choose who can reply to or quote a post.', { mastodon: e('mastodonQuotes', 'Quote consent and revocation on compatible versions.', 'limited') }],
@@ -261,7 +261,7 @@ const CATALOGUE: ComparisonFeature[] = [
     ['multi-account', 'Multiple profiles', 'Switch between supported accounts in the client.'],
     ['passkeys', 'Passkey sign in', 'Passkey account access on supported web and Android flows.'],
     ['social-login', 'Social and email sign in', 'Supported social, email and SMS onboarding routes.'],
-    ['wallet-login', 'Existing-wallet sign in', 'Sign in with supported wallets and ownership proofs.', { farcaster: e('farcaster', 'Sign In with Farcaster is a related identity flow, not arbitrary-wallet DeHub login.', 'limited') }],
+    ['wallet-login', 'Existing-wallet sign in', 'Sign in with supported wallets and ownership proofs.', { farcaster: e('farcaster', 'Sign In with Farcaster is a related identity flow, not arbitrary-wallet Riftn login.', 'limited') }],
     ['delete', 'Account deletion', 'Request account and stored media deletion; public-chain records remain.'],
   ]),
   ...group('Entertainment and platform tools', [
@@ -290,7 +290,7 @@ const ADDITIONAL_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonE
   embeds: { bluesky: e('bskyEmbed', 'Embeddable public posts.') },
   notifications: { bluesky: e('bskyNotifications', 'Granular notifications and account activity notifications.'), mastodon: e('mastodonPreferences', 'Notification category and sender filters.') },
   report: { bluesky: e('bskyFaq', 'Post and account reports.') },
-  themes: { bluesky: e('bskyFaq', 'Light, dark and system appearance; not DeHub theme packs.', 'limited'), mastodon: e('mastodonPreferences', 'Light, dark, system and high-contrast appearance.', 'limited'), instagram: e('igDm', 'Chat-specific themes; not a full-app theme system.', 'limited') },
+  themes: { bluesky: e('bskyFaq', 'Light, dark and system appearance; not Riftn theme packs.', 'limited'), mastodon: e('mastodonPreferences', 'Light, dark, system and high-contrast appearance.', 'limited'), instagram: e('igDm', 'Chat-specific themes; not a full-app theme system.', 'limited') },
   feedback: { bluesky: e('bskyFaq', 'Feedback links on web and mobile.') },
   replays: { twitch: e('twitchVod', 'Past broadcasts; storage must be enabled and retention depends on the account.', 'limited') },
   clips: { twitch: e('twitchVod', 'Clips and Highlights.') },
@@ -354,11 +354,11 @@ function productReviewed(feature: ComparisonFeature, platform: PlatformId, entry
 const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => detail.rows.map(([id, name, note, file = '', mobileOverride]) => {
   const web = detail.web + file, mobile = mobileOverride ?? detail.mobile + file;
   const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
-  SOURCES[webSource] = { title: 'DeHub web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
-  SOURCES[mobileSource] = { title: 'DeHub mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
+  SOURCES[webSource] = { title: 'Riftn web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
+  SOURCES[mobileSource] = { title: 'Riftn mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
   return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'code'), relatedSources: [mobileSource, 'dehub'] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
 }));
-/** Popular rival features DeHub does not offer yet, filed under the topic they belong to. */
+/** Popular rival features Riftn does not offer yet, filed under the topic they belong to. */
 const NOT_YET: ComparisonFeature[] = ([
   ['stories', 'Posts and discovery', 'Stories that disappear after 24 hours'],
   ['duets', 'Studio and creation', 'Duets and side-by-side remixes'],
@@ -371,14 +371,14 @@ const NOT_YET: ComparisonFeature[] = ([
   ['community-notes', 'Safety and personalization', 'Community Notes fact-checks'],
   ['disappearing-messages', 'Communities and messages', 'Disappearing messages'],
 ] as const).map(([id, category, name]) => ({
-  id, category, name, dehub: e('dehub', 'Not available on DeHub yet.', 'not_offered'), peers: {}, iosRestricted: false,
+  id, category, name, dehub: e('dehub', 'Not available on Riftn yet.', 'not_offered'), peers: {}, iosRestricted: false,
 }));
-/** The rival-first inventory: features gathered from each competitor's own docs, with DeHub ticked honestly. */
+/** The rival-first inventory: features gathered from each competitor's own docs, with Riftn ticked honestly. */
 const RIVAL_FEATURES: ComparisonFeature[] = RIVAL_ROWS.map(row => ({
   id: row.id, category: row.category, name: row.name, iosRestricted: false,
-  dehub: row.marks.dehub === 'yes' ? e('dehub', 'Available on DeHub.')
-    : row.marks.dehub === 'partial' ? e('dehub', 'Partly available on DeHub.', 'ecosystem')
-    : e('dehub', 'Not available on DeHub yet.', 'not_offered'),
+  dehub: row.marks.dehub === 'yes' ? e('dehub', 'Available on Riftn.')
+    : row.marks.dehub === 'partial' ? e('dehub', 'Partly available on Riftn.', 'ecosystem')
+    : e('dehub', 'Not available on Riftn yet.', 'not_offered'),
   peers: Object.fromEntries(PLATFORMS.flatMap(({ id }) => {
     const mark = row.marks[id];
     if (!mark) return [];

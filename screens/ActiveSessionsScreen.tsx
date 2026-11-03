@@ -59,7 +59,7 @@ function getSubtitle(session: Session, t: TFunction): string {
   else if (session.platform === 'android') parts.push('Android');
   else parts.push(t("copy.2975104784a4", { defaultValue: "Web" }));
   if (session.osVersion) parts[0] += ` ${session.osVersion}`;
-  if (session.appVersion) parts.push(`DeHub ${session.appVersion}`);
+  if (session.appVersion) parts.push(`Riftn ${session.appVersion}`);
   return parts.join(' · ');
 }
 

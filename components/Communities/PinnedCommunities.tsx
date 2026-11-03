@@ -52,6 +52,9 @@ interface Props {
   renderHeader?: (featuredCommunity: Community | null) => React.ReactNode;
 }
 
+/** Last pins seen per wallet, so reopening a profile does not wait on them. */
+const pinsCache = new Map<string, (Community & { pinId: string })[]>();
+
 const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate, renderHeader }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -60,11 +63,12 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
   const navigation = useNavigation<any>();
   const currentUser = useUser() as any;
   const ownWallet = currentUser?.address || currentUser?.walletAddress || "";
-  const [pinned, setPinned] = useState<(Community & { pinId: string })[]>([]);
+  const [pinned, setPinned] = useState<(Community & { pinId: string })[]>(() => pinsCache.get(walletAddress) ?? []);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const cinematicPhone = useCinematicPhone();
-  const [loading, setLoading] = useState(true);
+  // A profile opened before paints its pins at once and refreshes quietly.
+  const [loading, setLoading] = useState(() => !pinsCache.has(walletAddress));
 
   const loadPins = useCallback(async () => {
     if (!walletAddress) {
@@ -74,17 +78,18 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
     }
     try {
       const rows = await getPinnedCommunities(walletAddress);
-      setPinned(
-        rows
-          .map((p) => {
-            const c = p.communities;
-            if (!c?.id) return null;
-            return { ...c, pinId: p.id };
-          })
-          .filter(Boolean) as (Community & { pinId: string })[],
-      );
+      const next = rows
+        .map((p) => {
+          const c = p.communities;
+          if (!c?.id) return null;
+          return { ...c, pinId: p.id };
+        })
+        .filter(Boolean) as (Community & { pinId: string })[];
+      pinsCache.set(walletAddress, next);
+      if (pinsCache.size > 50) pinsCache.delete(pinsCache.keys().next().value!);
+      setPinned(next);
     } catch {
-      setPinned([]);
+      if (!pinsCache.has(walletAddress)) setPinned([]);
     } finally {
       setLoading(false);
     }
@@ -109,7 +114,10 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
   // One pin shows; the rest wait behind More instead of stacking.
   const shown = featured ? null : remaining[0] ?? null;
   const more = shown ? remaining.slice(1) : remaining;
-  if (loading || (pinned.length === 0 && !isOwnProfile)) return <>{renderHeader?.(null)}</>;
+  // Same outer shape as the loaded return below, so the header (avatar,
+  // name, cover) is kept when the pins arrive instead of being torn down and
+  // built again (the avatar flashed its initial for ~0.6s on every open).
+  if (loading || (pinned.length === 0 && !isOwnProfile)) return <><View>{renderHeader?.(null)}</View></>;
 
   const moveFirst = async (community: Community) => {
     setMoreOpen(false);

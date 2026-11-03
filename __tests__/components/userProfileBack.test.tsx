@@ -3,7 +3,12 @@ import { act, create } from 'react-test-renderer';
 import UserProfileBottomSheet from '../../components/UserProfile/UserProfileBottomSheet';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-jest.mock('react-native', () => ({ View: 'View', TouchableOpacity: 'TouchableOpacity' }));
+jest.mock('react-native', () => ({ View: 'View', TouchableOpacity: 'TouchableOpacity', useWindowDimensions: () => ({ width: 390, height: 844 }) }));
+jest.mock('../../components/Profile/ProfilePullRefresh', () => ({
+  ProfilePullFrame: ({ children }: { children: unknown }) => children,
+  useProfilePullRefresh: () => ({}),
+}));
+jest.mock('../../libs/cdnImage', () => ({ storageImage: (url: string) => url }));
 jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'GestureHandlerRootView' }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0 }) }));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({}) }));

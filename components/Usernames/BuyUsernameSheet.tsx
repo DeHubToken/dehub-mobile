@@ -49,7 +49,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
 
   const isOwn = !!myAddress && myAddress === listing?.seller.address.toLowerCase();
   const listingId = listing?.id;
-  // Quoting needs a DeHub token, so a signed-out browser would only get a 401.
+  // Quoting needs a Riftn token, so a signed-out browser would only get a 401.
   // They see the asking price off the card and Buy opens sign-in; the quote
   // fetches on its own once they are in, because this flips with it.
   const canQuote = visible && !!listingId && isAuthed && !isOwn;

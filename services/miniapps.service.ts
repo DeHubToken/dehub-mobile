@@ -45,6 +45,19 @@ export async function fetchListedApps(): Promise<MiniAppListing[] | null> {
   return (data ?? []) as MiniAppListing[];
 }
 
+/** The newest builder apps (served on dhb.gg) in the store, for the builder lander. */
+export async function fetchBuilderShowcase(): Promise<MiniAppListing[]> {
+  const { data, error } = await db
+    .from("miniapp_apps")
+    .select(COLUMNS)
+    .eq("status", "live")
+    .like("domain", "%.dhb.gg")
+    .order("created_at", { ascending: false })
+    .limit(8);
+  if (error) return [];
+  return (data ?? []) as MiniAppListing[];
+}
+
 export async function fetchAppBySlug(slug: string): Promise<MiniAppListing | null> {
   if (!/^[a-z0-9][a-z0-9-]{1,39}$/.test(slug)) return null;
   const { data, error } = await db.from("miniapp_apps").select(COLUMNS).eq("slug", slug).maybeSingle();
@@ -107,6 +120,18 @@ export function recordMiniAppPayment(
 ) {
   return userCall<{ txHash: string; chainId: number; amount: number; receipt: string }>(sessionToken, functionsBase, {
     action: "payment",
+    ...input,
+  });
+}
+
+/** Test mode: the app's own developer "pays" without moving DHB; the receipt says test: true. */
+export function recordMiniAppTestPayment(
+  sessionToken: string,
+  functionsBase: string,
+  input: { slug: string; amount: number; memo: string | null },
+) {
+  return userCall<{ txHash: string; chainId: number; amount: number; receipt: string; test: true }>(sessionToken, functionsBase, {
+    action: "testPayment",
     ...input,
   });
 }

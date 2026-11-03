@@ -11,7 +11,7 @@
  * tappable on the web and dead on the phone reads as a broken app rather than
  * as two implementations.
  *
- * DeHub's own links are not this module's problem: `dehub-links.ts` matches
+ * Riftn's own links are not this module's problem: `dehub-links.ts` matches
  * those first and the bubble renders them as a card.
  */
 

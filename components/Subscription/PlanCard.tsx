@@ -141,7 +141,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         throw new Error(t("subscriptions.tokenCheckoutNotReady", { defaultValue: "The token subscription checkout is not ready — please try again shortly" }));
       }
 
-      // Paying with another token: DeHub Pay (or Uniswap as the fallback)
+      // Paying with another token: Riftn Pay (or Uniswap as the fallback)
       // turns it into exactly this plan's DHB on Base before the transfer.
       if (payWith && targetChainId === 8453) {
         await fundTip({

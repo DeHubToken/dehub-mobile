@@ -7,7 +7,7 @@ import { normalizeSocialUrl } from './social-links';
 import { inAppDehubUrl } from './in-app-dehub-url';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 
-/** Open a DeHub link on its app screen. True when it was handled. */
+/** Open a Riftn link on its app screen. True when it was handled. */
 function openDehubLinkInApp(url: string): boolean {
   const inApp = inAppDehubUrl(url);
   if (!inApp) return false;

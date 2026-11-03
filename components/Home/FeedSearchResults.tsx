@@ -1,12 +1,12 @@
 import { useTranslation as _useCopy } from 'react-i18next';
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, StyleSheet, FlatList, ScrollView, useWindowDimensions } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { View, Text, Pressable, StyleSheet, FlatList, ScrollView, ActivityIndicator, useWindowDimensions } from "react-native";
+import Animated, { Easing, FadeInDown, ReduceMotion, ZoomIn, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import Icon, { type IconName } from "../ui/Icon";
-import SkeletonBlock from "../Feed/SkeletonBlock";
 import { getUnifiedFeed, type UnifiedFeedItem, type UnifiedFeedParams } from "../../services/feed.unified.service";
 import { searchAccounts } from "../../services/search.service";
 import { buildFeedImageUrls, getAvatarUrl, getImageUrl } from "../../libs/misc";
@@ -60,6 +60,57 @@ function audioCover(item: UnifiedFeedItem, size: number): { uri: string; tint: s
 const titleOf = (item: UnifiedFeedItem) => (item as any).name || item.description || "";
 const handleOf = (item: UnifiedFeedItem) => (item as any).minterUsername || (item as any).mintername || (item as any).minterDisplayName || "";
 
+/** A picture fades in over its tile once it has loaded, never popping in. */
+const Pic = ({ uri, style }: { uri: string; style?: any }) => (
+  <Image source={{ uri }} style={style ?? StyleSheet.absoluteFill} contentFit="cover" transition={{ duration: 420, effect: "cross-dissolve", timing: "ease-out" }} />
+);
+
+/** Placeholder tile: a soft light sweeps across it, as on web. */
+const ShimmerTile = ({ width, height, radius = 8, delay = 0, lens }: { width: number; height: number; radius?: number; delay?: number; lens?: boolean }) => {
+  const x = useSharedValue(-1);
+  useEffect(() => {
+    x.value = withRepeat(withTiming(1, { duration: 1300, easing: Easing.linear, reduceMotion: ReduceMotion.System }), -1, false);
+  }, [x]);
+  const sweep = useAnimatedStyle(() => ({ transform: [{ translateX: x.value * width * 1.5 }] }));
+  return (
+    <Animated.View entering={tileEntering(delay, lens)} style={{ width, height, borderRadius: radius, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.06)" }}>
+      <Animated.View style={[StyleSheet.absoluteFill, sweep]}>
+        <LinearGradient colors={["transparent", "rgba(255,255,255,0.10)", "transparent"]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={StyleSheet.absoluteFill} />
+      </Animated.View>
+    </Animated.View>
+  );
+};
+
+/** Tiles fade up one after another; under the lens they grow out of it instead. */
+function tileEntering(order: number, lens?: boolean) {
+  const delay = Math.min(order, 14) * 50;
+  return (lens ? ZoomIn.springify().damping(16).stiffness(170) : FadeInDown.duration(420).easing(Easing.out(Easing.cubic)))
+    .delay(delay)
+    .reduceMotion(ReduceMotion.System);
+}
+
+/** Photo mosaic, 3 across: a 2x2 "big" beside two squares, then a 1x2 "tall"
+ * beside four, then both again mirrored. Blocks of 3 and 5 posts. */
+const BLOCKS: Array<{ size: number; kind: "big" | "tall"; flip: boolean }> = [
+  { size: 3, kind: "big", flip: false },
+  { size: 5, kind: "tall", flip: false },
+  { size: 3, kind: "big", flip: true },
+  { size: 5, kind: "tall", flip: true },
+];
+type MosaicRow = { key: string; kind: "big" | "tall"; flip: boolean; items: UnifiedFeedItem[]; start: number };
+function toMosaic(items: UnifiedFeedItem[]): MosaicRow[] {
+  const rows: MosaicRow[] = [];
+  let i = 0;
+  let b = 0;
+  while (i < items.length) {
+    const block = BLOCKS[b % BLOCKS.length];
+    rows.push({ key: `${b}-${items[i].tokenId}`, kind: block.kind, flip: block.flip, items: items.slice(i, i + block.size), start: i });
+    i += block.size;
+    b += 1;
+  }
+  return rows;
+}
+
 const Wave = () => (
   <View pointerEvents="none" style={styles.wave}>
     {WAVE.map((h, k) => <View key={k} style={[styles.waveBar, { height: `${h}%` }]} />)}
@@ -74,6 +125,10 @@ interface Props {
   onSearchEverything: () => void;
   /** Music only: matching stages and radio stations shown above the grid. */
   extras?: MusicSearchExtras;
+  /** The colour themes' lens: tiles grow out of it instead of fading up. */
+  lens?: boolean;
+  /** Tells the lens to spin its rim while a search is on its way. */
+  onLoadingChange?: (loading: boolean) => void;
 }
 
 /** Music also searches stages and radio stations. */
@@ -85,11 +140,11 @@ const MusicFeedSearchResults: React.FC<Props> = (props) => {
 const FeedSearchResults: React.FC<Props> = (props) =>
   props.tab === "music" ? <MusicFeedSearchResults {...props} /> : <FeedSearchResultsGrid {...props} />;
 
-const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, onSearchEverything, extras }) => {
+const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, onSearchEverything, extras, lens, onLoadingChange }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
-  const { colors } = useAppTheme();
+  const { colors, accent } = useAppTheme();
   const { width } = useWindowDimensions();
   const q = useDebounced(query.trim(), 250);
   const typing = q !== query.trim();
@@ -120,6 +175,22 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
     return tab === "shorts" ? all.filter((item) => !(item as any).streamInfo?.isPayPerView) : all;
   }, [feed.data, tab]);
   const accounts = people.data?.items ?? [];
+  const mosaic = layout === "images" || layout === "home";
+  const rows = useMemo(() => (mosaic ? toMosaic(items) : []), [mosaic, items]);
+  const total = Math.max(feed.data?.pages[0]?.pagination?.totalCount ?? 0, items.length);
+  // Each tile animates in once: scrolling back up shows it still, and a new
+  // page starts its own short wave instead of waiting behind the first.
+  const seen = useRef(new Set<string>());
+  const seenFor = useRef("");
+  if (seenFor.current !== `${tab}|${q}`) {
+    seenFor.current = `${tab}|${q}`;
+    seen.current = new Set();
+  }
+  const enterFor = (id: string, index: number) => {
+    if (seen.current.has(id)) return undefined;
+    seen.current.add(id);
+    return tileEntering(index % PAGE_SIZE, lens);
+  };
   const open = useCallback((item: UnifiedFeedItem) => navigation.navigate(ScreenNames.FeedDetail, { tokenId: item.tokenId }), [navigation]);
   // A short opens the swipe viewer on the matches, which keeps paging through them.
   const openShort = useCallback((index: number) => {
@@ -136,15 +207,39 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
   const content = { paddingTop: topInset + 4, paddingHorizontal: SIDE, paddingBottom: TAB_BAR_CONTENT_INSET + 24 };
 
   const extraCount = (extras?.stages.length ?? 0) + (extras?.stations.length ?? 0);
-  if (extraCount === 0 && (feed.isLoading || (typing && items.length === 0) || (extras?.isLoading && items.length === 0))) {
+  const loading = extraCount === 0 && (feed.isLoading || (typing && items.length === 0) || (!!extras?.isLoading && items.length === 0));
+  const stale = typing || (feed.isFetching && !feed.isFetchingNextPage);
+  const spinColor = accent ? `rgb(${accent.join(",")})` : fg;
+  useEffect(() => { onLoadingChange?.(loading || stale); }, [loading, stale, onLoadingChange]);
+  useEffect(() => () => onLoadingChange?.(false), [onLoadingChange]);
+  if (loading) {
+    const big = tile * 2 + GAP;
     return (
       <View style={[StyleSheet.absoluteFill, content]} pointerEvents="none">
-        <Text style={[styles.status, { color: dim }]}>{_copy("copy.90f1afe66801", { defaultValue: "Searching for “{{query}}”…", query: query.trim() })}</Text>
-        <View style={styles.wrap}>
-          {Array.from({ length: cols * 3 }, (_, i) => (
-            <SkeletonBlock key={i} style={{ width: tile, height: layout === "videos" ? tile * 0.625 : layout === "shorts" ? tile * 16 / 9 : tile, borderRadius: 8 }} />
-          ))}
+        <View style={styles.statusRow}>
+          <ActivityIndicator size="small" color={spinColor} style={styles.spin} />
+          <Text style={[styles.status, { color: dim }]}>{_copy("copy.90f1afe66801", { defaultValue: "Searching for “{{query}}”…", query: query.trim() })}</Text>
         </View>
+        {mosaic ? (
+          <View style={{ gap: GAP }}>
+            <View style={styles.row}>
+              <ShimmerTile width={big} height={big} lens={lens} />
+              <View style={{ gap: GAP }}><ShimmerTile width={tile} height={tile} delay={1} lens={lens} /><ShimmerTile width={tile} height={tile} delay={2} lens={lens} /></View>
+            </View>
+            <View style={styles.row}>
+              <ShimmerTile width={tile} height={big} delay={3} lens={lens} />
+              <View style={[styles.wrap, { width: big }]}>
+                {[4, 5, 6, 7].map((d) => <ShimmerTile key={d} width={tile} height={tile} delay={d} lens={lens} />)}
+              </View>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.wrap}>
+            {Array.from({ length: cols * 3 }, (_, i) => (
+              <ShimmerTile key={i} delay={i} lens={lens} width={tile} height={layout === "videos" ? tile * 0.625 : layout === "shorts" ? tile * 16 / 9 : tile} radius={layout === "music" ? 12 : 8} />
+            ))}
+          </View>
+        )}
       </View>
     );
   }
@@ -180,7 +275,16 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
     );
   }
 
-  const header = tab === "home" ? (
+  const meta = items.length > 0 ? (
+    <View style={styles.statusRow}>
+      {stale ? <ActivityIndicator size="small" color={spinColor} style={styles.spin} /> : null}
+      <Text numberOfLines={1} style={[styles.status, { color: dim, flexShrink: 1 }]}>
+        <Text style={{ color: fg, fontWeight: "700" }}>{_copy("copy.3f9b2c71d0a4", { defaultValue: "{{n}} results", n: total.toLocaleString() })}</Text>
+        {" "}{_copy("copy.8c4e1a6b2f57", { defaultValue: "for “{{query}}”", query: q })}
+      </Text>
+    </View>
+  ) : null;
+  const sections = tab === "home" ? (
     <View>
       {accounts.length > 0 ? (
         <>
@@ -205,38 +309,44 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
   ) : extras && extraCount > 0 ? (
     <MusicSearchShelves stages={extras.stages} stations={extras.stations} showMusicTitle={items.length > 0} />
   ) : null;
+  const header = <View>{sections}{meta}</View>;
 
   const renderItem = ({ item, index }: { item: UnifiedFeedItem; index: number }) => {
     if (layout === "shorts") {
       const thumb = imageOf(item, Math.round(tile * 2));
       return (
-        <Pressable onPress={() => openShort(index)} style={[styles.short, { width: tile, height: tile * 16 / 9 }]}>
-          {thumb ? <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
-          <LinearGradient colors={["transparent", "rgba(0,0,0,0.7)"]} style={styles.shortShade} pointerEvents="none" />
-          <Text numberOfLines={1} style={styles.shortBy}>@{handleOf(item)}</Text>
-        </Pressable>
+        <Animated.View entering={enterFor(String(item.tokenId), index)}>
+          <Pressable onPress={() => openShort(index)} style={[styles.short, { width: tile, height: tile * 16 / 9 }]}>
+            {thumb ? <Pic uri={thumb} /> : null}
+            <LinearGradient colors={["transparent", "rgba(0,0,0,0.7)"]} style={styles.shortShade} pointerEvents="none" />
+            <Text numberOfLines={1} style={styles.shortBy}>@{handleOf(item)}</Text>
+          </Pressable>
+        </Animated.View>
       );
     }
     if (layout === "videos") {
       const thumb = imageOf(item, Math.round(tile));
       const duration = item.videoDuration ? secondsToHMMSS(item.videoDuration) : undefined;
       return (
-        <Pressable onPress={() => open(item)} style={{ width: tile }}>
-          <View style={[styles.videoThumb, { height: tile * 0.625 }]}>
-            {thumb ? <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
-            {duration ? <Text style={styles.duration}>{duration}</Text> : null}
-          </View>
-          <Text numberOfLines={1} style={[styles.title, { color: fg }]}>{titleOf(item)}</Text>
-          <Text numberOfLines={1} style={[styles.by, { color: dim }]}>@{handleOf(item)}</Text>
-        </Pressable>
+        <Animated.View entering={enterFor(String(item.tokenId), index)}>
+          <Pressable onPress={() => open(item)} style={{ width: tile }}>
+            <View style={[styles.videoThumb, { height: tile * 0.625 }]}>
+              {thumb ? <Pic uri={thumb} /> : null}
+              {duration ? <Text style={styles.duration}>{duration}</Text> : null}
+            </View>
+            <Text numberOfLines={1} style={[styles.title, { color: fg }]}>{titleOf(item)}</Text>
+            <Text numberOfLines={1} style={[styles.by, { color: dim }]}>@{handleOf(item)}</Text>
+          </Pressable>
+        </Animated.View>
       );
     }
     if (layout === "music") {
       const cover = audioCover(item, Math.round(tile));
       return (
+        <Animated.View entering={enterFor(String(item.tokenId), index)}>
         <Pressable onPress={() => open(item)} style={[styles.audioCard, { width: tile, borderColor: colors.border }]}>
           <View style={{ width: tile, height: tile, backgroundColor: cover.tint }}>
-            {cover.uri ? <Image source={{ uri: cover.uri }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
+            {cover.uri ? <Pic uri={cover.uri} /> : null}
             <View style={styles.coverShade} />
             <Wave />
             <View style={styles.play}><Icon name="Play" size={11} color="#000000" /></View>
@@ -244,17 +354,23 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
           <Text numberOfLines={1} style={[styles.title, styles.audioText, { color: fg }]}>{titleOf(item)}</Text>
           <Text numberOfLines={1} style={[styles.by, styles.audioText, { color: dim, paddingBottom: 6 }]}>@{handleOf(item)}</Text>
         </Pressable>
+        </Animated.View>
       );
     }
-    const uri = imageOf(item, Math.round(tile));
+    return null;
+  };
+
+  const renderSquare = (item: UnifiedFeedItem, index: number, w: number, h: number) => {
+    const uri = imageOf(item, Math.round(Math.max(w, h)));
     const audio = (item.postType === "feed-audio" || (item.postType as string) === "audio") && !uri;
     const kind = tab === "home" ? KIND_ICON[item.postType] : undefined;
     return (
-      <Pressable onPress={() => open(item)} style={[styles.square, { width: tile, height: tile, borderColor: colors.border }]}>
+      <Animated.View key={String(item.tokenId)} entering={enterFor(String(item.tokenId), index)}>
+      <Pressable onPress={() => open(item)} style={[styles.square, { width: w, height: h, borderColor: colors.border }]}>
         {audio ? (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: audioCover(item, Math.round(tile)).tint }]}><Wave /></View>
         ) : uri ? (
-          <Image source={{ uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
+          <Pic uri={uri} />
         ) : (
           <View style={styles.textTile}>
             <Text numberOfLines={1} style={[styles.by, { color: dim }]}>@{handleOf(item)}</Text>
@@ -263,13 +379,46 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
         )}
         {kind && (uri || audio) ? <View style={styles.kind}><Icon name={kind} size={10} color="#FFFFFF" /></View> : null}
       </Pressable>
+      </Animated.View>
     );
   };
+
+  const renderRow = ({ item: row }: { item: MosaicRow }) => {
+    const big = tile * 2 + GAP;
+    const [lead, ...rest] = row.items;
+    const at = (k: number) => row.start + k;
+    const leadTile = renderSquare(lead, at(0), row.kind === "big" ? big : tile, big);
+    const side = row.kind === "big" ? (
+      <View style={{ gap: GAP }}>{rest.map((it, k) => renderSquare(it, at(k + 1), tile, tile))}</View>
+    ) : (
+      <View style={[styles.wrap, { width: big }]}>{rest.map((it, k) => renderSquare(it, at(k + 1), tile, tile))}</View>
+    );
+    return <View style={[styles.row, row.flip && styles.rowFlip]}>{leadTile}{side}</View>;
+  };
+
+  const onEnd = () => { if (feed.hasNextPage && !feed.isFetchingNextPage) feed.fetchNextPage().catch(() => {}); };
+  if (mosaic) {
+    return (
+      <FlatList
+        key="mosaic"
+        style={[StyleSheet.absoluteFill, { opacity: stale ? 0.6 : 1 }]}
+        data={rows}
+        keyExtractor={(row) => row.key}
+        contentContainerStyle={[content, { gap: GAP }]}
+        ListHeaderComponent={header}
+        renderItem={renderRow}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        onEndReachedThreshold={0.6}
+        onEndReached={onEnd}
+      />
+    );
+  }
 
   return (
     <FlatList
       key={`${layout}-${cols}`}
-      style={[StyleSheet.absoluteFill, { opacity: typing || (feed.isFetching && !feed.isFetchingNextPage) ? 0.6 : 1 }]}
+      style={[StyleSheet.absoluteFill, { opacity: stale ? 0.6 : 1 }]}
       data={items}
       keyExtractor={(item) => String(item.tokenId)}
       numColumns={cols}
@@ -280,14 +429,18 @@ const FeedSearchResultsGrid: React.FC<Props> = ({ tab, query, params, topInset, 
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
       onEndReachedThreshold={0.6}
-      onEndReached={() => { if (feed.hasNextPage && !feed.isFetchingNextPage) feed.fetchNextPage().catch(() => {}); }}
+      onEndReached={onEnd}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  status: { fontSize: 12, paddingHorizontal: 2, paddingBottom: 8 },
+  statusRow: { flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 2, paddingBottom: 8 },
+  spin: { transform: [{ scale: 0.7 }], width: 14, height: 14 },
+  status: { fontSize: 12 },
   wrap: { flexDirection: "row", flexWrap: "wrap", gap: GAP },
+  row: { flexDirection: "row", gap: GAP },
+  rowFlip: { flexDirection: "row-reverse" },
   section: { fontSize: 11, fontWeight: "700", letterSpacing: 0.8, textTransform: "uppercase", paddingHorizontal: 2, paddingTop: 4, paddingBottom: 8 },
   people: { gap: 12, paddingHorizontal: 2, paddingBottom: 10 },
   person: { width: 56, alignItems: "center", gap: 4 },

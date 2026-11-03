@@ -14,6 +14,6 @@ describe('maintenance status', () => {
     expect(await readMaintenanceStatus()).toEqual({ enabled: false });
     expect(await readMaintenanceStatus()).toBeNull();
     expect(await readMaintenanceStatus()).toBeNull();
-    expect(global.fetch).toHaveBeenCalledWith('https://dehub.io/maintenance.json', expect.objectContaining({ cache: 'no-store', credentials: 'omit' }));
+    expect(global.fetch).toHaveBeenCalledWith('https://riftn.com/maintenance.json', expect.objectContaining({ cache: 'no-store', credentials: 'omit' }));
   });
 });

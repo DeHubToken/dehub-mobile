@@ -1,4 +1,5 @@
 import MessageSearch from "../components/DM/MessageSearch";
+import { setLockedMediaPayer } from "../libs/dmLocked";
 import MessageSurface from "../components/DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from "../hooks/useDraftState";
@@ -43,6 +44,7 @@ import TipAmountSheet from "../components/DM/TipAmountSheet";
 import PollCard from "../components/DM/PollCard";
 import CreatePollSheet from "../components/DM/CreatePollSheet";
 import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
+import type { DmVideoPlayExtra } from "../components/DM/MessageBubble";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import Avatar from "../components/common/Avatar";
@@ -91,6 +93,7 @@ import {
   addFreeAccess,
   removeFreeAccess,
   bulkDeleteMessages,
+  markDmMessageViewed,
   type DmUserStatus,
   type DmPlanSettings,
   type DmPlanMessageType,
@@ -312,7 +315,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [blockLoading, setBlockLoading] = useState(false);
 
   // Video
-  const [videoUri, setVideoUri] = useState<string | null>(null);
+  const [videoPlay, setVideoPlay] = useState<({ uri: string } & DmVideoPlayExtra) | null>(null);
+  const openVideo = useCallback((uri: string, extra?: DmVideoPlayExtra) => setVideoPlay({ uri, ...extra }), []);
+  const closeVideo = useCallback(() => {
+    // A view-once video is gone for both people once the other side has opened it.
+    if (videoPlay?.viewOnce && videoPlay.messageId) {
+      void markDmMessageViewed(videoPlay.messageId).catch(() => undefined);
+    }
+    setVideoPlay(null);
+  }, [videoPlay]);
 
   // Tip
   const [tipAmount, setTipAmount] = useState(0);
@@ -428,8 +439,26 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // The queue removes the exact pending entry after persistence. Matching
     // text here hides a repeated reply (including a failed one) behind an
     // earlier message with the same words.
-    const stillPending = optimisticMsgs.filter(p => !base.some(m => m._id === p._tempId));
-    return [...(stillPending as DmMessage[]), ...base];
+    const stillPending = optimisticMsgs.filter(p => !base.some(m => m._id === p._tempId || m._clientKey === p._tempId));
+    // The socket can deliver our own saved copy a moment before the send
+    // queue swaps it in under the pending line's key. Hide that early copy
+    // while its pending line is still on screen, so the line is never doubled
+    // and never re-mounted: the queue then hands it the same key.
+    const claimed = new Set<string>();
+    const sending = stillPending.filter(p => p.uploadStatus !== "failed");
+    const shown = sending.length
+      ? base.filter(m => {
+          if (m._clientKey || m.author !== "me") return true;
+          const twin = sending.find(p =>
+            !claimed.has(p._tempId) &&
+            (p.msgType || "msg") === (m.msgType || "msg") &&
+            (p.content || "") === (m.content || ""));
+          if (!twin) return true;
+          claimed.add(twin._tempId);
+          return false;
+        })
+      : base;
+    return [...(stillPending as DmMessage[]), ...shown];
   }, [storeMessages, optimisticMsgs]);
 
   // Depends on messageList — must be declared after it
@@ -1088,6 +1117,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     return () => { dmSendQueue.setFeePayer(null); };
   }, [payDmFee]);
 
+  // Unlocking a locked photo is the same tip to the other person in the chat.
+  useEffect(() => {
+    setLockedMediaPayer(payDmFee);
+    return () => { setLockedMediaPayer(null); };
+  }, [payDmFee]);
+
   useEffect(() => {
     dmSendQueue.setConversationResolver(ensureConversation);
     return () => { dmSendQueue.setConversationResolver(null); };
@@ -1255,6 +1290,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         fileName: attachment.name,
         fileSize: attachment.size,
         duration: attachment.duration,
+        lockPrice: attachment.lockPrice || undefined,
+        ...(attachment.type === "video" && attachment.options ? { mediaOptions: attachment.options } : {}),
+        ...(attachment.type === "video" && attachment.destruct ? { destruct: attachment.destruct } : {}),
         caption: caption?.trim(),
         replyTo,
         dmFee,
@@ -1652,7 +1690,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             message={item}
             isMine={mine}
             onLongPress={onLongPressMessage}
-            onVideoPress={setVideoUri}
+            onVideoPress={openVideo}
             localMediaUri={(item as OptimisticMessage)?._localMediaUri}
             onSwipeToReply={handleSwipeToReply}
             onReplyPress={handleReplyPress}
@@ -1666,7 +1704,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction, liftedId],
   );
 
-  const keyExtractor = useCallback((item: DmMessage) => item._id, []);
+  // The temp id a line was drawn under stays its key after the send lands.
+  const keyExtractor = useCallback((item: DmMessage) => item._clientKey ?? item._id, []);
 
   const listFooter = useMemo(
     () =>
@@ -1899,6 +1938,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               <ChatInputBar
                 onSendText={onSendText}
                 onSendMedia={onSendMedia}
+                allowLock
                 onSendGif={onSendGif}
                 onStartVoice={onStartVoice}
                 onTypingChange={onTypingChange}
@@ -1977,9 +2017,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         {/* Full-screen video player */}
         <FullScreenVideoPlayer
-          visible={!!videoUri}
-          uri={videoUri}
-          onClose={() => setVideoUri(null)}
+          visible={!!videoPlay}
+          uri={videoPlay?.uri}
+          options={videoPlay?.options}
+          onClose={closeVideo}
         />
 
         {/* Tip amount sheet */}

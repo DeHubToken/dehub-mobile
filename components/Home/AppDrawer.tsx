@@ -142,6 +142,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
+  // iOS keeps it: the screen is view only there (US gets a link to dehub.io).
+  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.NftMarket },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   // Web sidebar: AI Agents sits just above Advertising.
@@ -156,7 +158,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
-  { icon: "Scroll", labelKey: "Compare DeHub", screen: ScreenNames.Compare },
+  { icon: "Scroll", labelKey: "Compare Riftn", screen: ScreenNames.Compare },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
@@ -176,7 +178,7 @@ const DEFAULT_MENU_IDS = NAV_ITEMS.filter((item) => !item.searchOnly).map((item)
 // Theme artwork belongs to phone menus. The web desktop sidebar keeps its
 // custom vectors for Editor and Creator.
 const ICON_KEYS: Record<string, string> = {
-  "Compare DeHub": "glossary",
+  "Compare Riftn": "glossary",
   "creator.editor": "videos", "commandCentre.creator": "paint",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
@@ -185,7 +187,7 @@ const ICON_KEYS: Record<string, string> = {
   "stats.feedback.title": "messages", "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
-  "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",
+  "nav.fractions": "fractions", "nav.nfts": "nfts", "screens.usernames": "usernames", "screens.accounts": "accounts",
   "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "miniApps.store.title": "stores", "nav.glossary": "glossary", "nav.bridge": "bridge",
   "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",
   "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",

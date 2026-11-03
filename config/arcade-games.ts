@@ -49,7 +49,9 @@ import { translateCopy as _translateCopy } from '../i18n/copy';
  * the games follow that deploy and not this one.
  */
 
-import { WEBSITE_LINK } from './links';
+// Games stay on dehub.io after the riftn.com move: installed builds and the
+// game pages are pinned to that origin.
+const WEBSITE_LINK = 'https://dehub.io';
 
 export interface ArcadeGameCredit {
   /** Upstream project name, as its authors write it. */
@@ -130,7 +132,7 @@ export interface ArcadeGame {
    * already lives in that corner.
    */
   exitPlacement?: 'left' | 'center';
-  /** Enables the DeHub opt-in location bridge in the player WebView. */
+  /** Enables the Riftn opt-in location bridge in the player WebView. */
   socialPresence?: boolean;
 }
 
@@ -150,8 +152,8 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   {
     slug: 'gods-eye',
     get title() { return _translateCopy("copy.925917aad5b0", { defaultValue: "God's Eye" }); },
-    get tagline() { return _translateCopy("copy.d81e05376674", { defaultValue: "Find the DeHub community across a living 3D Earth." }); },
-    get description() { return _translateCopy("copy.9cc9f71c23f2", { defaultValue: "Explore a live spatial-intelligence globe and, if you choose, place a deliberately approximate version of yourself among the DeHub community." }); },
+    get tagline() { return _translateCopy("copy.d81e05376674", { defaultValue: "Find the Riftn community across a living 3D Earth." }); },
+    get description() { return _translateCopy("copy.9cc9f71c23f2", { defaultValue: "Explore a live spatial-intelligence globe and, if you choose, place a deliberately approximate version of yourself among the Riftn community." }); },
     get action() { return _translateCopy("copy.c7dd40da23fc", { defaultValue: "Open the globe" }); },
     art: `${WEBSITE_LINK}/arcade/gods-eye.gif`,
     get artAlt() { return _translateCopy("copy.5d75b8f91016", { defaultValue: "God's Eye View orbiting a live 3D globe through its spatial-intelligence displays" }); },
@@ -293,14 +295,14 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   {
     slug: 'street-slayer',
     get title() { return _translateCopy("copy.71b386d38529", { defaultValue: "Street Slayer" }); },
-    get tagline() { return _translateCopy("copy.883791f091e3", { defaultValue: "A neon-street brawler, made for DeHub alone." }); },
+    get tagline() { return _translateCopy("copy.883791f091e3", { defaultValue: "A neon-street brawler, made for Riftn alone." }); },
     get description() { return _translateCopy("copy.7a56c707abec", { defaultValue: "A side-scrolling beat ’em up down a neon-lit street: pick one of three fighters, then punch, kick and throw your way through everything the block sends at you." }); },
     get action() { return _translateCopy("copy.1ef142c8213e", { defaultValue: "Fight" }); },
     art: `${WEBSITE_LINK}/arcade/street-slayer.webp`,
     get artAlt() { return _translateCopy("copy.4b6b806e9540", { defaultValue: "Three street fighters closing in on the player character outside a neon-lit shopfront in Street Slayer" }); },
     credit: {
       name: 'Street Slayer',
-      // Commissioned for DeHub from Studio Shook Pixel rather than found: there
+      // Commissioned for Riftn from Studio Shook Pixel rather than found: there
       // is no public repository, so this points at the arcade that hosts it.
       url: 'https://dehub.io/arcade/street-slayer',
       licence: 'Proprietary',

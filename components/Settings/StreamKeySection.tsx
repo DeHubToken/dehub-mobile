@@ -127,7 +127,7 @@ export function StreamKeySection() {
         <Text className="text-theme-neutrals-400 text-xs leading-5">
           {t(
             'settings.streamKey.blurb',
-            'Paste these into OBS, your capture app or your console once. They never change — press Start in your encoder and DeHub creates the live post for you.',
+            'Paste these into OBS, your capture app or your console once. They never change — press Start in your encoder and Riftn creates the live post for you.',
           )}
         </Text>
       </View>

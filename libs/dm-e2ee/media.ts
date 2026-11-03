@@ -17,6 +17,7 @@
  * "last" flag in the AAD means a truncated blob fails to open instead of
  * playing a silently shortened file.
  */
+import type { DmVideoOptions } from "../dm-video-options";
 import { xchacha20poly1305 } from "@noble/ciphers/chacha";
 import * as ExpoCrypto from "expo-crypto";
 import { Buffer } from "buffer";
@@ -56,6 +57,8 @@ export interface MediaDescriptor {
   wave?: number[];
   /** the caption the sender typed, if any */
   caption?: string;
+  /** video trim, cover, mirror, rotation and hide-until-tapped */
+  opts?: DmVideoOptions;
 }
 
 function chunkNonce(prefix: Uint8Array, index: number): Uint8Array {

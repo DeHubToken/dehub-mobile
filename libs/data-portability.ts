@@ -1,7 +1,7 @@
 /**
  * Data Portability
  * ================
- * Export everything this account has built up on DeHub as one JSON file, and
+ * Export everything this account has built up on Riftn as one JSON file, and
  * import that file into another account.
  *
  * The point is the import. A list of accounts you follow is not portable data
@@ -223,10 +223,10 @@ export function exportFileName(data: DeHubDataExport): string {
 export function parseExport(raw: string): DeHubDataExport {
   const parsed = JSON.parse(raw);
   if (!parsed || parsed.format !== EXPORT_FORMAT) {
-    throw new Error(_translateCopy("copy.25085aff20ef", { defaultValue: "That is not a DeHub export file." }));
+    throw new Error(_translateCopy("copy.25085aff20ef", { defaultValue: "That is not a Riftn export file." }));
   }
   if (Number(parsed.version) > EXPORT_VERSION) {
-    throw new Error(_translateCopy("copy.646aac7d320a", { defaultValue: "That file was made by a newer version of DeHub." }));
+    throw new Error(_translateCopy("copy.646aac7d320a", { defaultValue: "That file was made by a newer version of Riftn." }));
   }
   return {
     format: EXPORT_FORMAT,

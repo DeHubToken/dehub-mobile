@@ -2,7 +2,7 @@ import { tokenLabel } from '../libs/token-label';
 /**
  * MiniAppScreen
  * =============
- * One mini app, full screen, under a header only DeHub draws. The native
+ * One mini app, full screen, under a header only Riftn draws. The native
  * counterpart of dehubweb's MiniAppPage (/apps/:slug and /apps/dev/run).
  *
  * The app is a third-party website loaded as the WebView's top document, so
@@ -57,6 +57,7 @@ import {
   mintMiniAppToken,
   recordMiniAppOpen,
   recordMiniAppPayment,
+  recordMiniAppTestPayment,
 } from "../services/miniapps.service";
 import { payPostQuota } from "../services/post-quota-payment";
 import { useFarcasterHost } from "../libs/miniapp/farcaster-host";
@@ -230,13 +231,13 @@ export default function MiniAppScreen() {
     [t],
   );
 
-  // Adding and paying both need an explicit tap on a dialog DeHub draws.
+  // Adding and paying both need an explicit tap on a dialog Riftn draws.
   const addAppFlow = useCallback(async () => {
     if (!app?.slug) return { added: false };
     const ok = await confirm(t("miniApps.add.title", { name: app.name }), `${app.url.host}\n\n${t("miniApps.add.body")}`, t("miniApps.add.confirm"));
     if (!ok) return { added: false };
     const session = await getAuthToken();
-    if (!session) throw Object.assign(new Error("Sign in to DeHub first."), { code: "signin" });
+    if (!session) throw Object.assign(new Error("Sign in to Riftn first."), { code: "signin" });
     await addMiniApp(session, env.SUPABASE_URL, app.slug);
     setAdded(true);
     return { added: true };
@@ -308,7 +309,7 @@ export default function MiniAppScreen() {
         case "getCapabilities":
           return ok([...HOST_CAPABILITIES]);
         case "auth.getToken": {
-          if (!context.user) return fail("signin", "The user is not signed in to DeHub.");
+          if (!context.user) return fail("signin", "The user is not signed in to Riftn.");
           if (signingIn.current) return fail("busy", "A sign-in request is already open.");
           signingIn.current = true;
           try {
@@ -318,7 +319,7 @@ export default function MiniAppScreen() {
               await AsyncStorage.setItem(CONSENT_KEY(host), "1");
             }
             const session = await getAuthToken();
-            if (!session) return fail("signin", "Sign in to DeHub first.");
+            if (!session) return fail("signin", "Sign in to Riftn first.");
             return ok(await mintMiniAppToken(session, host, env.SUPABASE_URL));
           } catch (error) {
             const err = error as Error & { code?: string };
@@ -334,7 +335,7 @@ export default function MiniAppScreen() {
         }
         case "actions.viewProfile": {
           const handle = cleanHandle(req.params.handle);
-          if (!handle) return fail("invalid", "A DeHub handle is required.");
+          if (!handle) return fail("invalid", "A Riftn handle is required.");
           ok();
           return showUserProfile(handle, { source: "deeplink" });
         }
@@ -353,7 +354,7 @@ export default function MiniAppScreen() {
         }
         case "actions.addApp": {
           if (!app.slug) return fail("unsupported", "Only registered apps can be added.");
-          if (!context.user) return fail("signin", "The user is not signed in to DeHub.");
+          if (!context.user) return fail("signin", "The user is not signed in to Riftn.");
           if (busy.current) return fail("busy", "Another request is already open.");
           busy.current = true;
           try {
@@ -367,13 +368,31 @@ export default function MiniAppScreen() {
         }
         case "actions.pay": {
           if (!app.slug || !app.ownerWallet) return fail("unsupported", "This app cannot take payments.");
-          if (!context.user) return fail("signin", "The user is not signed in to DeHub.");
+          if (!context.user) return fail("signin", "The user is not signed in to Riftn.");
           const request = cleanPayment(req.params);
           if (!request) return fail("invalid", "amount must be a positive number of DHB.");
           if (busy.current) return fail("busy", "Another request is already open.");
           busy.current = true;
           try {
             const wallet = `${app.ownerWallet.slice(0, 6)}…${app.ownerWallet.slice(-4)}`;
+            // Test mode: the developer opening their own app pays nothing for real.
+            if (user?.walletAddress && user.walletAddress.toLowerCase() === app.ownerWallet.toLowerCase()) {
+              const confirmedTest = await confirm(
+                `${t("miniApps.pay.testBadge")} · ${t("miniApps.pay.title", { name: app.name })}`,
+                `${request.amount.toLocaleString()} ${tokenLabel()}${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.testBody")}`,
+                t("miniApps.pay.confirm", { amount: request.amount.toLocaleString() }),
+              );
+              if (!confirmedTest) return fail("rejected", "The user declined to pay.");
+              const testSession = await getAuthToken();
+              if (!testSession) return fail("signin", "Sign in to Riftn first.");
+              const tested = await recordMiniAppTestPayment(testSession, env.SUPABASE_URL, {
+                slug: app.slug,
+                amount: request.amount,
+                memo: request.memo,
+              });
+              toastSuccess(t("miniApps.pay.testSent", { amount: tested.amount }));
+              return ok(tested);
+            }
             const confirmed = await confirm(
               t("miniApps.pay.title", { name: app.name }),
               `${request.amount.toLocaleString()} ${tokenLabel()}${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.body", { wallet })}`,
@@ -382,7 +401,7 @@ export default function MiniAppScreen() {
             if (!confirmed) return fail("rejected", "The user declined to pay.");
             const sent = await payPostQuota(request.amount, app.ownerWallet, app.name);
             const session = await getAuthToken();
-            if (!session) return fail("signin", "Sign in to DeHub first.");
+            if (!session) return fail("signin", "Sign in to Riftn first.");
             const recorded = await recordMiniAppPayment(session, env.SUPABASE_URL, {
               slug: app.slug,
               txHash: sent.txHash,
@@ -413,7 +432,7 @@ export default function MiniAppScreen() {
           return fail("unsupported", `${req.method} is not supported here.`);
       }
     },
-    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage, addAppFlow, confirm, t],
+    [app, context, close, askSignIn, navigation, showUserProfile, onFarcasterMessage, addAppFlow, confirm, t, user],
   );
 
   /** Keep the WebView on the app's own host; everything else goes to the browser. */

@@ -382,6 +382,11 @@ function AppNavigatorContent() {
           name={ScreenNames.Fractions}
           getComponent={() => deferredScreen('../screens/FractionsScreen#default', () => require("../screens/FractionsScreen").default)}
         />
+        {/* NFT market (dehub.io/nfts) — browse signed-out; Android trades, iOS views. */}
+        <Stack.Screen
+          name={ScreenNames.NftMarket}
+          getComponent={() => deferredScreen('../screens/NftMarketScreen#default', () => require("../screens/NftMarketScreen").default)}
+        />
         {/* Account marketplace — whole accounts, same posture. */}
         <Stack.Screen
           name={ScreenNames.Accounts}

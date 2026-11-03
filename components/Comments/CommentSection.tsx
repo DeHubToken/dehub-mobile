@@ -48,7 +48,7 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useKidsMode } from "../../hooks/useKidsMode";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 // Minimal composer field and chips: an outline says "control", no fill.
 const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
@@ -1598,16 +1598,37 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     return { visibleComments: visible, threadMeta: meta };
   }, [flatComments, expandedCommentIds, highlightedId, threadCreator, tipWallIds, tipWallRows, openTipId]);
 
+  // Bring a just-sent comment in front of the reader, wherever it landed in
+  // the list. The scroll waits for the keyboard to finish closing (the list
+  // grows back underneath it), and its timer lives in a ref: clearing
+  // landTempId re-runs this effect, and an effect cleanup used to cancel the
+  // scroll before it ever ran.
+  const landScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (landTempId == null) return;
     const index = visibleComments.findIndex((c) => (c.rowKey ?? c.id) === landTempId);
     setLandTempId(null);
     if (index < 0) return;
-    const timer = setTimeout(() => {
-      try { listRef.current?.scrollToIndex({ index, viewPosition: 0.35, animated: true }); } catch {}
-    }, 120);
-    return () => clearTimeout(timer);
+    if (landScrollTimer.current) clearTimeout(landScrollTimer.current);
+    const scroll = () => {
+      try { listRef.current?.scrollToIndex({ index, viewPosition: 0.3, animated: true }); } catch {}
+    };
+    let sub: { remove: () => void } | null = null;
+    const go = () => {
+      sub?.remove();
+      sub = null;
+      if (landScrollTimer.current) clearTimeout(landScrollTimer.current);
+      landScrollTimer.current = setTimeout(() => { landScrollTimer.current = null; scroll(); }, 60);
+    };
+    if (Keyboard.isVisible()) {
+      sub = Keyboard.addListener("keyboardDidHide", go);
+      // Fallback in case the hide event never comes.
+      landScrollTimer.current = setTimeout(go, 450);
+    } else {
+      go();
+    }
   }, [landTempId, visibleComments]);
+  useEffect(() => () => { if (landScrollTimer.current) clearTimeout(landScrollTimer.current); }, []);
 
   // An opened tip card's comment sits at the top of the list.
   useEffect(() => {
@@ -1834,9 +1855,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           left: 0,
           right: 0,
           bottom: 0,
-          borderTopWidth: 1,
-          // Minimal: black bar (the #0C0C0E maps to #000) under the shared hairline.
-          borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
+          // No top border: a hairline above the "Type here" bar read as a
+          // stray line across the drawer.
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
           // Glass uses its opaque page tone: the skin's centre colour is a 14%
@@ -1965,7 +1985,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loading={mentions.loading}
         />
 
-        {/* A banned account reads every comment on DeHub and writes none of
+        {/* A banned account reads every comment on Riftn and writes none of
            them. The API refuses the write either way. */}
         {accountBanned ? (
           <View style={{ padding: COMPOSER.gutter }}>

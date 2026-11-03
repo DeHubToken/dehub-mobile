@@ -2,7 +2,7 @@
  * A creator's overlay, drawn over their stream in the viewer's own player. The
  * twin of dehubweb src/components/app/live/overlay/LiveOverlayLayer.tsx.
  *
- * Every DeHub viewer draws the creator's widgets locally from the stream's room
+ * Every Riftn viewer draws the creator's widgets locally from the stream's room
  * events, whatever the stream comes from. When the creator has moved the
  * overlay into their video through OBS (`renderIn: 'video'`) this draws
  * nothing, or every alert would land twice.

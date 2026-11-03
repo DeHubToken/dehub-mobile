@@ -1,12 +1,12 @@
 /**
  * Rival-first feature inventory, 2026-10-28. Built from each competitor's own help
- * centre, creator, premium, ads and developer pages, then every brand (DeHub too)
- * was ticked against the full list. Rows that DeHub's own catalogue already covers
+ * centre, creator, premium, ads and developer pages, then every brand (Riftn too)
+ * was ticked against the full list. Rows that Riftn's own catalogue already covers
  * are left out here, so nothing is counted twice.
  *
  * Each line: `id | Feature | marks`. Marks are yt x ki tw fb ig tt ru ma bs fc dh.
  * A trailing `?` means only partly, or through a separate app. A competitor that is
- * not listed stays unconfirmed (never a cross). DeHub not listed means DeHub lacks it.
+ * not listed stays unconfirmed (never a cross). Riftn not listed means Riftn lacks it.
  */
 import type { PlatformId } from './platform-comparison';
 

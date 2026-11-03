@@ -81,6 +81,8 @@ import { FrostedBackground, FrostedContent } from "../components/ui/FrostedBackd
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import FollowTagBar from "../components/Home/FollowTagBar";
+import FeedFilterLine, { FeedPresetsRow, type FeedFilterLineItem } from "../components/Home/FeedFilterLine";
+import { deleteFeedPreset, feedPresetsEvents, presetMatches, readFeedPresets, saveFeedPreset, type AppFeedPreset } from "../libs/feed-presets";
 import { setFeedPostHost } from "../libs/feedPostHost";
 
 // The post page Home opens in place. Required on first use so the screen's
@@ -730,6 +732,7 @@ export default function HomeScreen() {
   // Colour themes search through a lens that drops out of the pill (System and
   // Minimal melt the pill into the box instead), as on web.
   const searchLens = theme !== "system" && theme !== "minimal";
+  const [searchLoading, setSearchLoading] = useState(false);
   const lensOpen = !!searchTab && searchLens;
   const searchFeedParams = useMemo(
     () => (searchTab ? feedSearchParams(searchTab, searchTab === "home" ? feedListParamsByType.all : feedParams, searchQuery.trim()) : null),
@@ -743,6 +746,8 @@ export default function HomeScreen() {
         params={searchFeedParams}
         topInset={(searchTab === "home" ? feedInset : mediaGridInset) + (searchLens ? LENS_DOCK_SPACE : 0)}
         onSearchEverything={() => pickSearchFeed("home")}
+        lens={searchLens}
+        onLoadingChange={setSearchLoading}
       />
     </View>
   ) : null;
@@ -909,19 +914,108 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [beginFilterTransition]);
 
-  // One hashtag picked — where a tapped #tag lands: offer to follow it above
-  // the feed (FollowTagBar). Otherwise the header is just the stages bar.
+  // Every active filter in one line above the feed (FeedFilterLine), with
+  // saved presets. One hashtag on its own keeps the Follow bar.
+  const [feedPresets, setFeedPresets] = useState<AppFeedPreset[]>(readFeedPresets);
+  useEffect(() => feedPresetsEvents.subscribe(() => setFeedPresets(readFeedPresets())), []);
+  const [presetSaveRequest, setPresetSaveRequest] = useState(0);
+  const homeFilterPostType = filters.postType === "article" || filters.postType === "feed-simple" ? filters.postType : undefined;
+  const currentPreset = useMemo<Omit<AppFeedPreset, "name">>(() => ({
+    sortBy: filters.sortBy !== DEFAULT_FILTERS.sortBy ? filters.sortBy : undefined,
+    dateRange: filters.dateRange || undefined,
+    postType: homeFilterPostType,
+    category: selectedCategory,
+    contentAccess: filters.contentAccess.length ? [...filters.contentAccess] : undefined,
+  }), [filters.sortBy, filters.dateRange, filters.contentAccess, homeFilterPostType, selectedCategory]);
+  const activePresetName = useMemo(
+    () => feedPresets.find((p) => presetMatches(p, currentPreset))?.name ?? null,
+    [feedPresets, currentPreset],
+  );
+  const clearAllFilters = useCallback(() => {
+    beginFilterTransition();
+    setSelectedCategory(undefined);
+    clearPersistedCategory();
+    setFilters((prev) => ({
+      ...DEFAULT_FILTERS,
+      postType: prev.postType === "article" || prev.postType === "feed-simple" ? "all" : prev.postType,
+    }));
+  }, [beginFilterTransition]);
+  const applyPreset = useCallback((name: string) => {
+    const preset = feedPresets.find((p) => p.name === name);
+    if (!preset) return;
+    beginFilterTransition();
+    setSelectedCategory(preset.category);
+    try { storage.set(CATEGORY_STORAGE_KEY, preset.category ?? ""); } catch {}
+    setFilters((prev) => ({
+      sortBy: (preset.sortBy ?? DEFAULT_FILTERS.sortBy) as FeedFilters["sortBy"],
+      dateRange: (preset.dateRange ?? "") as FeedFilters["dateRange"],
+      postType: (preset.postType ?? (prev.postType === "article" || prev.postType === "feed-simple" ? "all" : prev.postType)) as FeedFilters["postType"],
+      contentAccess: (preset.contentAccess ?? []) as FeedFilters["contentAccess"],
+    }));
+  }, [feedPresets, beginFilterTransition]);
+  const filterLineItems = useMemo<FeedFilterLineItem[]>(() => {
+    const items: FeedFilterLineItem[] = [];
+    if (homeFilterPostType) items.push({
+      key: "type",
+      group: t("feedFilters.groupType", "Type"),
+      label: homeFilterPostType === "article" ? t("articles.label") : t("filters.text"),
+      onRemove: () => applyFilters({ ...filters, postType: "all" }),
+    });
+    if (selectedCategory) items.push({
+      key: "tag",
+      group: t("feedFilters.groupTag", "Tag"),
+      label: `#${selectedCategory.replace(/^#+/, "")}`,
+      onRemove: () => handleCategorySelect("All"),
+    });
+    if (filters.dateRange) items.push({
+      key: "date",
+      group: t("feedFilters.groupDate", "Date"),
+      label: ({ day: "1d", week: "1w", month: "1m", year: "1y" } as Record<string, string>)[filters.dateRange] ?? filters.dateRange,
+      onRemove: () => applyFilters({ ...filters, dateRange: "" }),
+    });
+    if (filters.sortBy !== DEFAULT_FILTERS.sortBy) {
+      const sortLabels: Record<string, string> = {
+        score: t("filters.forYou", "For You"), following: t("filters.following"), likes: t("filters.mostLiked"),
+        tips: t("filters.mostTips"), views: t("filters.mostViewed"), comments: t("filters.mostComments"), random: t("filters.random"),
+      };
+      items.push({
+        key: "sort",
+        group: t("feedFilters.groupSort", "Sort"),
+        label: sortLabels[filters.sortBy] ?? filters.sortBy,
+        onRemove: () => applyFilters({ ...filters, sortBy: DEFAULT_FILTERS.sortBy }),
+      });
+    }
+    filters.contentAccess.forEach((a) => items.push({
+      key: `access:${a}`,
+      group: t("feedFilters.groupAccess", "Access"),
+      label: t(`filters.${a}`),
+      onRemove: () => applyFilters({ ...filters, contentAccess: filters.contentAccess.filter((x) => x !== a) }),
+    }));
+    return items;
+  }, [t, filters, homeFilterPostType, selectedCategory, applyFilters, handleCategorySelect]);
+  const onlyTag = !!selectedCategory && filterLineItems.length === 1;
   const feedHeader = useMemo(
     () =>
-      selectedCategory ? (
+      onlyTag && selectedCategory ? (
         <>
           <FollowTagBar tag={selectedCategory} onClear={() => handleCategorySelect("All")} />
+          {LIVE_STAGES_HEADER}
+        </>
+      ) : filterLineItems.length > 0 ? (
+        <>
+          <FeedFilterLine
+            items={filterLineItems}
+            presetName={activePresetName}
+            onClearAll={clearAllFilters}
+            onSavePreset={(name) => saveFeedPreset({ name, ...currentPreset })}
+            saveRequest={presetSaveRequest}
+          />
           {LIVE_STAGES_HEADER}
         </>
       ) : (
         LIVE_STAGES_HEADER
       ),
-    [selectedCategory, handleCategorySelect],
+    [onlyTag, selectedCategory, handleCategorySelect, filterLineItems, activePresetName, clearAllFilters, currentPreset, presetSaveRequest],
   );
 
   const handleRefresh = useCallback(() => {
@@ -1205,6 +1299,16 @@ export default function HomeScreen() {
       onCategoryPress={handleCategoryPress}
       onResetFilters={handleResetFilters}
       showFollowingSort
+      topSlot={
+        <FeedPresetsRow
+          presets={feedPresets}
+          activeName={activePresetName}
+          onApply={applyPreset}
+          onDelete={deleteFeedPreset}
+          canSaveCurrent={filterLineItems.length > 0 && !activePresetName}
+          onSaveCurrent={() => { setFilterPanelVisible(false); setPresetSaveRequest((n) => n + 1); }}
+        />
+      }
       navOverlap={theme === 'system' ? navOverlap : undefined}
       chipRadius={theme === 'system' ? 8 : undefined}
     />
@@ -1292,6 +1396,7 @@ export default function HomeScreen() {
           fromX={pageWidth * (activeIndex + 1.5) / (TAB_ORDER.length + 1)}
           fromY={Math.max(pillBottom, feedInset) - 20}
           accent={`rgb(${accent.join(",")})`}
+          loading={searchLoading}
         />
       ) : null}
 

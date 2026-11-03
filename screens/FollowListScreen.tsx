@@ -40,6 +40,7 @@ import Avatar from "../components/common/Avatar";
 import SwipeableRow, { type SwipeAction } from "../components/common/SwipeableRow";
 import ScreenHeader from "../components/ScreenHeader";
 import GlassFollowButton from "../components/ui/GlassFollowButton";
+import { reportActionError } from "../libs/error-feedback";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import GlassModal from "../components/ui/GlassModal";
 import { FIELD_TEXT } from "../theme/inputs";
@@ -95,7 +96,6 @@ interface FollowUserRowProps {
   item: FollowListItem;
   relationship?: Relationship;
   isSelf: boolean;
-  busy: boolean;
   showFollowButton: boolean;
   onPress: (address: string) => void;
   onToggleFollow: (item: FollowListItem) => void;
@@ -107,7 +107,7 @@ interface FollowUserRowProps {
 }
 
 const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
-  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress, allowSwipeUnfollow, isNew }) => {
+  ({ item, relationship, isSelf, showFollowButton, onPress, onToggleFollow, onLongPress, allowSwipeUnfollow, isNew }) => {
     const { t } = useTranslation();
     const { isMinimal } = useAppTheme();
     const user = item.user;
@@ -145,7 +145,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
           },
         ];
       }
-      if (allowSwipeUnfollow && relationship?.isFollowing && !busy) {
+      if (allowSwipeUnfollow && relationship?.isFollowing) {
         return [
           {
             key: "unfollow",
@@ -157,7 +157,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
         ];
       }
       return [];
-    }, [isSelf, onLongPress, allowSwipeUnfollow, relationship?.isFollowing, busy, user.address, onToggleFollow, item, t]);
+    }, [isSelf, onLongPress, allowSwipeUnfollow, relationship?.isFollowing, user.address, onToggleFollow, item, t]);
 
     return (
       <SwipeableRow actions={swipeActions} backgroundClassName="bg-theme-background">
@@ -214,7 +214,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
           <GlassFollowButton
             isFollowing={!!relationship?.isFollowing}
             isPending={!!relationship?.isPending}
-            isLoading={busy}
+            isLoading={false}
             followsYou={!!relationship?.followsYou}
             onPress={handleFollow}
             style={{ minWidth: 92 }}
@@ -360,15 +360,20 @@ const FollowListScreen: React.FC = () => {
 
   // Viewer's own relationship to each listed account, keyed by lowercased address.
   const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
-  const [pendingFollow, setPendingFollow] = useState<Record<string, boolean>>({});
   const followingSetRef = useRef<Set<string> | null>(null);
   // Read by the follow handler so it can stay identity-stable. A handler that
   // closes over the maps is rebuilt on every toggle, which re-renders every
   // memoised row in the list instead of the one that changed.
   const relationshipsRef = useRef(relationships);
   relationshipsRef.current = relationships;
-  const pendingFollowRef = useRef(pendingFollow);
-  pendingFollowRef.current = pendingFollow;
+  // Follow taps never wait on the server. The row shows what was tapped at
+  // once; `desiredFollowRef` holds the state the person last asked for and
+  // `inFlightFollowRef` the rows with a call out, so a second tap while one is
+  // in flight is queued instead of ignored, and only the last answer counts.
+  const desiredFollowRef = useRef<Record<string, boolean>>({});
+  const inFlightFollowRef = useRef<Set<string>>(new Set());
+  // Rows "Follow back all" is sending right now; single taps wait for it.
+  const bulkFollowRef = useRef<Set<string>>(new Set());
   const followBackStreakRef = useRef(0);
 
   // Follow requests state
@@ -669,62 +674,91 @@ const FollowListScreen: React.FC = () => {
       const target = item.user.address;
       const key = lower(target);
       if (!viewerAddress || !target || key === lower(viewerAddress)) return;
-      if (pendingFollowRef.current[key]) return;
+      if (bulkFollowRef.current.has(key)) return;
 
-      const current = relationshipsRef.current[key];
-      const wasFollowing = !!current?.isFollowing || !!current?.isPending;
-      const isFollowBack = isOwnFollowersList && !!current?.followsYou && !wasFollowing;
+      const shown = relationshipsRef.current[key];
+      const wantFollow = !(shown?.isFollowing || shown?.isPending);
+      const isFollowBack = isOwnFollowersList && !!shown?.followsYou && wantFollow;
       if (!isFollowBack) followBackStreakRef.current = 0;
 
-      setPendingFollow((prev) => ({ ...prev, [key]: true }));
-      // Optimistic: the row flips now, and reverts below if the call fails.
+      // The row flips on this frame. Nothing else in the list changes.
+      desiredFollowRef.current[key] = wantFollow;
       setRelationships((prev) => ({
         ...prev,
         [key]: {
-          isFollowing: !wasFollowing,
+          isFollowing: wantFollow,
           followsYou: prev[key]?.followsYou ?? false,
           isPending: false,
         },
       }));
 
+      // A call is already out for this row: it picks up the new wish when it
+      // lands, so taps never stack up requests or get dropped.
+      if (inFlightFollowRef.current.has(key)) return;
+      inFlightFollowRef.current.add(key);
+
+      // What the server holds, as far as this screen knows.
+      let serverFollowing = !!(shown?.isFollowing || shown?.isPending);
+      let serverPending = !!shown?.isPending;
       try {
-        if (wasFollowing) {
-          await unfollowUser(viewerAddress, target);
-          followingSetRef.current?.delete(key);
-        } else {
-          const res = await followUser(viewerAddress, target);
-          const isPending = res.status === "pending";
-          setRelationships((prev) => ({
+        while (desiredFollowRef.current[key] !== serverFollowing) {
+          const next = desiredFollowRef.current[key];
+          try {
+            if (next) {
+              const res = await followUser(viewerAddress, target);
+              serverPending = res.status === "pending";
+              if (!serverPending) followingSetRef.current?.add(key);
+              if (isFollowBack) recordFollowBack();
+            } else {
+              await unfollowUser(viewerAddress, target);
+              serverPending = false;
+              followingSetRef.current?.delete(key);
+            }
+            serverFollowing = next;
+          } catch (e) {
+            const message = String((e as { message?: unknown })?.message ?? "").toLowerCase();
+            // The server already agrees with the tap (double tap from another
+            // screen, a retried request): keep what the row shows.
+            if (next && message.includes("already")) {
+              serverPending = message.includes("pending");
+              serverFollowing = true;
+              continue;
+            }
+            if (!next && message.includes("not following")) {
+              serverPending = false;
+              serverFollowing = false;
+              continue;
+            }
+            if (isFollowBack) followBackStreakRef.current = 0;
+            console.warn("[FollowListScreen] follow toggle error:", e);
+            desiredFollowRef.current[key] = serverFollowing;
+            reportActionError(
+              e,
+              next ? t("toasts.failed_to_follow_user") : t("toasts.failed_to_unfollow")
+            );
+            break;
+          }
+        }
+      } finally {
+        inFlightFollowRef.current.delete(key);
+        // Settle the row on what the server holds: a private account answers
+        // "Requested", and a failed call puts the old state back.
+        setRelationships((prev) => {
+          const row = prev[key];
+          const isFollowing = serverFollowing && !serverPending;
+          if (row && row.isFollowing === isFollowing && !!row.isPending === serverPending) return prev;
+          return {
             ...prev,
             [key]: {
-              isFollowing: !isPending,
-              followsYou: prev[key]?.followsYou ?? false,
-              isPending,
+              isFollowing,
+              followsYou: row?.followsYou ?? false,
+              isPending: serverPending,
             },
-          }));
-          if (!isPending) followingSetRef.current?.add(key);
-          if (isFollowBack) recordFollowBack();
-        }
-      } catch (e) {
-        if (isFollowBack) followBackStreakRef.current = 0;
-        console.error("[FollowListScreen] follow toggle error:", e);
-        setRelationships((prev) => ({
-          ...prev,
-          [key]: {
-            isFollowing: wasFollowing,
-            followsYou: prev[key]?.followsYou ?? false,
-            isPending: !!current?.isPending,
-          },
-        }));
-      } finally {
-        setPendingFollow((prev) => {
-          const next = { ...prev };
-          delete next[key];
-          return next;
+          };
         });
       }
     },
-    [isOwnFollowersList, recordFollowBack, viewerAddress]
+    [isOwnFollowersList, recordFollowBack, viewerAddress, t]
   );
 
   const getEntireFollowList = useCallback(async (type: "followers" | "following") => {
@@ -791,22 +825,14 @@ const FollowListScreen: React.FC = () => {
       while (nextIndex < candidates.length) {
         const chunk = candidates.slice(nextIndex, nextIndex + BULK_FOLLOW_BATCH_SIZE);
         const keys = chunk.map((entry) => lower(entry.user.address));
-        setPendingFollow((prev) => {
-          const next = { ...prev };
-          keys.forEach((key) => { next[key] = true; });
-          return next;
-        });
+        keys.forEach((key) => bulkFollowRef.current.add(key));
         let results: FollowBatchResult[] | null = null;
         try {
           results = await followUsersBatch(chunk.map((entry) => entry.user.address));
         } catch (error) {
           console.error("[FollowListScreen] follow back all batch error:", error);
         }
-        setPendingFollow((prev) => {
-          const next = { ...prev };
-          keys.forEach((key) => { delete next[key]; });
-          return next;
-        });
+        keys.forEach((key) => bulkFollowRef.current.delete(key));
         if (!results) {
           if (completed === 0) break;
           completed += chunk.length;
@@ -839,7 +865,7 @@ const FollowListScreen: React.FC = () => {
           const item = candidates[nextIndex++];
           const target = item.user.address;
           const key = lower(target);
-          setPendingFollow((prev) => ({ ...prev, [key]: true }));
+          bulkFollowRef.current.add(key);
 
           try {
             const response = await followUser(viewerAddress, target);
@@ -856,11 +882,7 @@ const FollowListScreen: React.FC = () => {
           } catch (error) {
             console.error("[FollowListScreen] follow back all error:", error);
           } finally {
-            setPendingFollow((prev) => {
-              const next = { ...prev };
-              delete next[key];
-              return next;
-            });
+            bulkFollowRef.current.delete(key);
             completed += 1;
             setBulkFollowProgress({ completed, total: candidates.length });
           }
@@ -985,7 +1007,6 @@ const FollowListScreen: React.FC = () => {
           item={item}
           relationship={relationships[key]}
           isSelf={!!viewerAddress && key === lower(viewerAddress)}
-          busy={!!pendingFollow[key]}
           showFollowButton={!!viewerAddress}
           onPress={handleUserPress}
           onToggleFollow={handleToggleFollow}
@@ -1007,7 +1028,6 @@ const FollowListScreen: React.FC = () => {
       isOwner,
       activeTab,
       relationships,
-      pendingFollow,
       viewerAddress,
     ]
   );

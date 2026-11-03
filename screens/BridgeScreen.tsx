@@ -1,7 +1,7 @@
 /**
  * BridgeScreen
  * ============
- * Native port of the web Bridge page (dehub.io/app/bridge): move DeHub tokens
+ * Native port of the web Bridge page (dehub.io/app/bridge): move Riftn tokens
  * between Base and BNB Chain, plus the public list of recent bridge transfers.
  *
  * The bridge itself is the wallet's Bridge tab (components/Wallet/BridgeTab) —

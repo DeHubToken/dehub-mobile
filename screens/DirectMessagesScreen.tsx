@@ -19,6 +19,13 @@ import LoadErrorState from "../components/ui/LoadErrorState";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import NewDMModal from "../components/DM/NewDMModal";
+import NewChatChooser from "../components/DM/NewChatChooser";
+import GroupChatRow from "../components/DM/GroupChatRow";
+import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
+import { getUserCommunities } from "../services/communities.service";
+import { chatsFromMemberships } from "../libs/community-kinds";
+import { useQuery } from "@tanstack/react-query";
+import type { Community } from "../types/community";
 import DMSettingsModal from "../components/DM/DMSettingsModal";
 import DMSettingsMenu from "../components/DM/DMSettingsMenu";
 import ConversationItem from "../components/DM/ConversationItem";
@@ -73,6 +80,21 @@ const DirectMessagesInner: React.FC = () => {
 
   const [query, setQuery] = useSurfaceDraft("screens/DirectMessagesScreen.tsx:query", "");
   const [menuVisible, setMenuVisible] = useState(false);
+  const [chooserVisible, setChooserVisible] = useState(false);
+  const [newChatKind, setNewChatKind] = useState<"group" | "channel" | null>(null);
+  const { data: memberships } = useQuery({
+    queryKey: ["communities", "user", myAddress],
+    queryFn: () => getUserCommunities(myAddress),
+    enabled: !!myAddress,
+    staleTime: 30_000,
+  });
+  const groupChats = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return chatsFromMemberships(memberships).filter((c) => !q || c.name.toLowerCase().includes(q));
+  }, [memberships, query]);
+  const openGroupChat = useCallback((c: Community, invite = false) => {
+    navigation.navigate(ScreenNames.CommunityDetail as any, { slug: c.slug, tab: "chat", ...(invite ? { invite: true } : {}) });
+  }, [navigation]);
   const [dnd, setDnd] = useState(false);
   const [newDmVisible, setNewDmVisible] = useState(false);
   const [dmSettingsVisible, setDmSettingsVisible] = useState(false);
@@ -399,9 +421,15 @@ const DirectMessagesInner: React.FC = () => {
         )}
       </TouchableOpacity>
       <View style={SEPARATOR} />
+      {groupChats.map((c) => (
+        <React.Fragment key={c.id}>
+          <GroupChatRow community={c} onPress={() => openGroupChat(c)} />
+          <View style={SEPARATOR} />
+        </React.Fragment>
+      ))}
       </>
     ),
-    [handleOpenLiveChat, publicUnread, t],
+    [handleOpenLiveChat, publicUnread, t, groupChats, openGroupChat],
   );
 
   const itemSeparator = useCallback(() => <View style={SEPARATOR} />, []);
@@ -432,7 +460,7 @@ const DirectMessagesInner: React.FC = () => {
                 accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
                 <Icon name="RefreshCw" size={16} color="#71717A" />
               </TouchableOpacity>
-              <TouchableOpacity onPress={openNewDM} style={SEARCH_ACTION} hitSlop={4}
+              <TouchableOpacity onPress={() => setChooserVisible(true)} style={SEARCH_ACTION} hitSlop={4}
                 accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
                 <Icon name="Plus" size={16} color="#71717A" />
               </TouchableOpacity>
@@ -490,6 +518,22 @@ const DirectMessagesInner: React.FC = () => {
           onOpenDmSettings={openDmSettings}
           dnd={dnd}
           onToggleDnd={toggleDnd}
+        />
+
+        <NewChatChooser
+          visible={chooserVisible}
+          onClose={() => setChooserVisible(false)}
+          onMessage={openNewDM}
+          onGroup={() => setNewChatKind("group")}
+          onChannel={() => setNewChatKind("channel")}
+        />
+
+        <CreateCommunitySheet
+          kind={newChatKind ?? "group"}
+          visible={!!newChatKind}
+          walletAddress={myAddress}
+          onClose={() => setNewChatKind(null)}
+          onCreated={(c) => openGroupChat(c, true)}
         />
 
         <NewDMModal

@@ -1,5 +1,5 @@
 /**
- * The exact text a wallet signs to prove it belongs to a DeHub account.
+ * The exact text a wallet signs to prove it belongs to a Riftn account.
  *
  * The API rebuilds this string byte-for-byte from the address and timestamp it
  * is sent, and verifies the signature against the result — so a stray space or

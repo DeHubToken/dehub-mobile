@@ -1173,6 +1173,18 @@ export interface NewPostResolution {
  * The mapping survives minting, so a link shared while the post was off-chain
  * keeps working forever. Null on unknown slugs and transport failure alike.
  */
+/** Resolve an article's readable link (dehub.io/app/post/<title-slug>) to its tokenId. */
+export async function resolveArticleSlug(slug: string): Promise<{ tokenId: number; articleSlug: string } | null> {
+  try {
+    const res = await apiClient.get<any>(`/article/${encodeURIComponent(slug.toLowerCase())}`);
+    const raw = (res as any)?.data ?? res;
+    return raw && typeof raw.tokenId === "number" ? raw : null;
+  } catch (e) {
+    console.warn("[NFTService] resolveArticleSlug failed", e);
+    return null;
+  }
+}
+
 export async function resolveNewPost(n: number | string): Promise<NewPostResolution | null> {
   try {
     const res = await apiClient.get<any>(`/newpost/${encodeURIComponent(String(n))}`);
@@ -1287,6 +1299,10 @@ export interface EditPostInput {
   description?: string;
   /** Replace the post's alt text, one per piece of media in display order. `[]` clears it. */
   mediaDescriptions?: string[];
+  /** The comic's border preset. `''` goes back to the theme's foil. */
+  comicBorder?: string;
+  /** `'comic'` shows a photo post as collector cards; `''` back to the carousel. */
+  layout?: "comic" | "";
   /** Replace the content warning. `''` takes it off. */
   spoilerText?: string;
   /** Who may quote it from now on. Quotes already made stay. */

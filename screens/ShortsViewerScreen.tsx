@@ -169,8 +169,14 @@ import { toggleRepost } from "../services/repost.service";
 import { getShortsFeed, getUnifiedFeed } from "../services/feed.unified.service";
 import { getWatchHistory } from "../services/user.service";
 import { createBrainrotSource } from "../libs/brainrotFeed";
+import { profileFeedParams } from "../libs/profileFeedOrigin";
+import { canOpenPostVideoViewer } from "../navigation/postVideoViewerParams";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useQuery } from "@tanstack/react-query";
+import { getLiveVideos } from "../services/live.service";
+import { interleaveLive, isLiveSlide, isVerticalFeedLive, LIVE_SLIDE_EVERY, LIVE_SLIDE_MAX, toLiveSlide } from "../libs/live-shorts";
+import LiveShortSlide from "../components/Shorts/LiveShortSlide";
 import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
@@ -1317,11 +1323,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
-    copyToClipboard(ShareLinks.post(String(tokenId)));
+    // A post with a readable slug shares as /app/post/<slug>.
+    const slug = typeof (item as any)?.articleSlug === "string" ? (item as any).articleSlug : "";
+    copyToClipboard(ShareLinks.post(slug || String(tokenId)));
     toastSuccess(t("postOptions.linkCopied"));
     // A copy is a share: it counts once per actor per post, next to reposts.
     trackLinkCopy(tokenId, userAddress, linkCopyCount);
-  }, [tokenId, trackLinkCopy, userAddress, linkCopyCount]);
+  }, [tokenId, item, trackLinkCopy, userAddress, linkCopyCount]);
 
   const commentCount = useCommentCount(tokenId, item.commentCount ?? 0);
   const tipCount = (item as any).totalTips || (item as any).tips || 0;
@@ -2474,7 +2482,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
-          tokenId={tokenId}
+          {...(typeof (item as any)?.articleSlug === "string" && (item as any).articleSlug
+            ? { url: ShareLinks.post((item as any).articleSlug) }
+            : { tokenId })}
           postTitle={title || undefined}
         />
       )}
@@ -2545,7 +2555,34 @@ const ShortsViewerScreen = () => {
   const viewerRestore = useRef({ initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams });
   viewerRestore.current = { initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams };
   const captureViewerState = useCallback(() => viewerRestore.current, []);
+
+  // Lives among the shorts, as on web: on the main Shorts feed only (not a
+  // profile, a search or Following), open and safe streams, one slide in six.
+  // Placed once, after the short the viewer opened on, so nothing under the
+  // viewer moves; later pages are shorts only.
+  const liveSlidesAllowed = !feedParams.minter && !feedParams.profileFeed && !feedParams.search && !feedParams.followingOnly && !feedParams.brainrot
+    && !initialItems.some((it: any) => isLiveSlide(it));
+  const { data: liveRows } = useQuery({
+    queryKey: ["dehub-live-streams", 200, "recent"],
+    queryFn: () => getLiveVideos({ unit: 200, sortMode: "recent" }),
+    enabled: liveSlidesAllowed,
+    staleTime: 60_000,
+    retry: false,
+  });
+  const liveSlidesPlaced = useRef(false);
+  useEffect(() => {
+    if (!liveSlidesAllowed || liveSlidesPlaced.current || !liveRows) return;
+    const rows: any[] = Array.isArray(liveRows) ? liveRows : Array.isArray((liveRows as any)?.result) ? (liveRows as any).result : [];
+    const slides = rows.filter(isVerticalFeedLive).slice(0, LIVE_SLIDE_MAX).map(toLiveSlide);
+    if (!slides.length) { liveSlidesPlaced.current = true; return; }
+    if (items.length < activeIndex + LIVE_SLIDE_EVERY + 1) return;
+    liveSlidesPlaced.current = true;
+    setItems((prev) => interleaveLive(prev, slides, activeIndex) as UnifiedFeedItem[]);
+  }, [liveSlidesAllowed, liveRows, items.length, activeIndex]);
   const endReachedRef = useRef(false);
+  // A profile tab's list starts with the posts before the tapped one; skip
+  // those until it turns up.
+  const profilePastRef = useRef(false);
   const loadFailedAt = useRef(0);
   const [loadRetry, setLoadRetry] = useState(0);
   const fetchingRef = useRef(false);
@@ -2773,6 +2810,40 @@ const ShortsViewerScreen = () => {
           const unique = next.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
           return unique.length ? [...prev, ...unique] : prev;
         });
+        return;
+      }
+      // Opened from a profile tab: that tab's videos, in its order, after the
+      // one tapped.
+      if (feedParams.profileFeed) {
+        let nextPage = page;
+        for (let attempt = 0; attempt < 4; attempt++) {
+          nextPage += 1;
+          const res = await getUnifiedFeed(profileFeedParams(feedParams.profileFeed, nextPage, 20));
+          let batch: UnifiedFeedItem[] = res.result || [];
+          if (!profilePastRef.current) {
+            const at = batch.findIndex((i) => String(i.tokenId ?? i.id) === String(feedParams.fromId));
+            if (at >= 0) profilePastRef.current = true;
+            batch = at >= 0 ? batch.slice(at + 1) : [];
+          }
+          const known = new Set(itemsRef.current.map((i) => String(i.tokenId ?? i.id)));
+          const unique = batch.filter((i) => i.postType === "video" && canOpenPostVideoViewer(i as any) && !known.has(String(i.tokenId ?? i.id)));
+          if (unique.length) {
+            itemsRef.current = [...itemsRef.current, ...unique];
+            setItems((prev) => {
+              const existingIds = new Set(prev.map((i) => String(i.tokenId ?? i.id)));
+              const fresh = unique.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
+              return fresh.length ? [...prev, ...fresh] : prev;
+            });
+          }
+          // Out of pages, or the tapped video never turned up in the first few.
+          if (!res.pagination?.hasMore || (!profilePastRef.current && nextPage >= 5)) {
+            endReachedRef.current = true;
+            setNoMoreShorts(true);
+            break;
+          }
+          if (unique.length) break;
+        }
+        setPage(nextPage);
         return;
       }
       // A page can bring nothing new (everything on it is already playing,
@@ -3009,7 +3080,9 @@ const ShortsViewerScreen = () => {
   const activeVideoRef = useRef<VideoView>(null);
 
   const renderItem = useCallback(
-    ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
+    ({ item, index }: { item: UnifiedFeedItem; index: number }) => isLiveSlide(item) ? (
+      <LiveShortSlide slide={item} isActive={index === activeIndex} height={containerHeight} />
+    ) : (
       <ShortItem
         item={item}
         thumbnailOverride={index === initialIndex ? initialThumbnail : undefined}
@@ -3133,7 +3206,7 @@ const ShortsViewerScreen = () => {
             </Pressable>
           </ChromeTouchTarget>
 
-          <View style={styles.topRight}>
+          {!isLiveSlide(activeItem) && <View style={styles.topRight}>
             {items[activeIndex]?.postType !== "feed-images" && <ChromeTouchTarget><PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} /></ChromeTouchTarget>}
             <ChromeTouchTarget>
               <Pressable
@@ -3187,7 +3260,7 @@ const ShortsViewerScreen = () => {
                 <Icon name="Ellipsis" size={20} color="#fff" />
               </Pressable>
             </ChromeTouchTarget>
-          </View>
+          </View>}
         </View>
       </Animated.View>
 
@@ -3206,7 +3279,7 @@ const ShortsViewerScreen = () => {
 
       {/* Options menu — bookmark, follow, report, block and the owner actions,
           matching the web viewer's options drawer. */}
-      {showOptionsMenu && !!activeItem && (
+      {showOptionsMenu && !!activeItem && !isLiveSlide(activeItem) && (
         <PostOptionsMenu
           visible={showOptionsMenu}
           onClose={() => setShowOptionsMenu(false)}
@@ -3239,7 +3312,7 @@ const ShortsViewerScreen = () => {
             ? mode => requireAuth(() => {
                 const videoUrl = getVideoUrl(activeTokenId);
                 if (videoUrl) navigation.navigate(ScreenNames.VideoRemix, { mode, tokenId: activeTokenId, videoUrl,
-                  sourceUrl: (activeItem as any).status === "signed" && (activeItem as any).newPostId != null ? `https://dehub.io/newpost/${(activeItem as any).newPostId}` : `https://dehub.io/app/post/${activeTokenId}`,
+                  sourceUrl: (activeItem as any).status === "signed" && (activeItem as any).newPostId != null ? `https://riftn.com/newpost/${(activeItem as any).newPostId}` : `https://riftn.com/app/post/${activeTokenId}`,
                   title: activeItem.name || activeItem.title || "Remix", creator: activeUsername || activeDisplayName });
               })
             : undefined}

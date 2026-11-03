@@ -2,7 +2,7 @@
  * Profiles on this device.
  * ========================
  * Mobile port of dehubweb's src/lib/profiles.ts. One install can hold several
- * DeHub accounts. The registry lives in AsyncStorage (`@dehub_profiles_v1`) and
+ * Riftn accounts. The registry lives in AsyncStorage (`@dehub_profiles_v1`) and
  * keeps each account's public identity plus a snapshot of the session keys it
  * had the last time it was active, so switching back is silent instead of a
  * fresh login.
@@ -177,7 +177,7 @@ export async function currentProfileId(): Promise<string | null> {
 }
 
 export async function listProfiles(): Promise<StoredProfile[]> {
-  return (await readStore()).sort((a, b) => b.lastActiveAt - a.lastActiveAt);
+  return withoutStaleDuplicates(await readStore()).sort((a, b) => b.lastActiveAt - a.lastActiveAt);
 }
 
 export async function getProfile(id: string): Promise<StoredProfile | null> {
@@ -186,6 +186,39 @@ export async function getProfile(id: string): Promise<StoredProfile | null> {
 
 export async function removeProfile(id: string): Promise<void> {
   await writeStore((await readStore()).filter((p) => p.id !== id));
+}
+
+/**
+ * Drop saved rows for an address this device no longer signs in as. A wallet
+ * reset moves the Riftn profile to a new smart account, and the old address's
+ * row would otherwise sit beside the new one as a second copy of the same
+ * person.
+ */
+export async function removeProfilesForAddress(address: string, keepId?: string | null): Promise<void> {
+  const target = address.toLowerCase();
+  const profiles = await readStore();
+  const kept = profiles.filter((p) => p.id === keepId || p.address.toLowerCase() !== target);
+  if (kept.length !== profiles.length) await writeStore(kept);
+}
+
+/**
+ * One row per Riftn account. Usernames are unique, so two rows sharing one are
+ * the same person under an old and a new address (a wallet reset before
+ * removeProfilesForAddress existed). The most recently added row is the
+ * address the account lives on now.
+ */
+function withoutStaleDuplicates(profiles: StoredProfile[]): StoredProfile[] {
+  const newest = new Map<string, StoredProfile>();
+  for (const p of profiles) {
+    const key = p.username?.toLowerCase();
+    if (!key) continue;
+    const seen = newest.get(key);
+    if (!seen || p.addedAt > seen.addedAt) newest.set(key, p);
+  }
+  return profiles.filter((p) => {
+    const key = p.username?.toLowerCase();
+    return !key || newest.get(key) === p;
+  });
 }
 
 /** The Supabase client persists its session under one of these keys. */
@@ -228,8 +261,8 @@ async function snapshotSession(adopt: boolean): Promise<void> {
   // A half-established flow (cleared wallet, no token yet) is not a profile.
   if (!identity || !token) return;
 
-  const profiles = await readStore();
-  const existingIndex = profiles.findIndex((p) => p.id === identity.id);
+  let profiles = await readStore();
+  let existingIndex = profiles.findIndex((p) => p.id === identity.id);
   if (!adopt && existingIndex < 0) return;
 
   let user: CachedUser | null = null;
@@ -261,6 +294,14 @@ async function snapshotSession(adopt: boolean): Promise<void> {
       supabase: await readSupabaseSession(),
     },
   };
+
+  // The live session is the account's current address; any other row under
+  // the same username is the address it was rotated away from.
+  const username = entry.username?.toLowerCase();
+  if (username) {
+    profiles = profiles.filter((p) => p.id === entry.id || p.username?.toLowerCase() !== username);
+    existingIndex = profiles.findIndex((p) => p.id === entry.id);
+  }
 
   if (existingIndex >= 0) {
     // Already saved — updating a profile in place can never exceed the limit.

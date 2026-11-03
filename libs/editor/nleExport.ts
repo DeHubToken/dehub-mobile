@@ -2,7 +2,7 @@
  * Timeline handoff to Premiere Pro, Final Cut Pro and DaVinci Resolve.
  * Writes FCPXML 1.10 (Final Cut, Resolve) and XMEML v4 (Premiere, Resolve)
  * that point at the media files bundled beside them in media/.
- * Text and shapes travel as timeline markers; effects stay in DeHub.
+ * Text and shapes travel as timeline markers; effects stay in Riftn.
  */
 import type { Clip, MediaClip, ProjectSnapshot } from "./types";
 
@@ -71,8 +71,8 @@ export function nleExport(snapshot: ProjectSnapshot, media: NleMedia[]): NleFile
 ${assets}
   </resources>
   <library>
-    <event name="DeHub">
-      <project name="${esc(snapshot.title || "DeHub project")}">
+    <event name="Riftn">
+      <project name="${esc(snapshot.title || "Riftn project")}">
         <sequence format="r1" duration="${rt(total)}" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
           <spine>
             <gap name="Timeline" offset="0s" start="0s" duration="${rt(total)}">
@@ -110,7 +110,7 @@ ${[connected, markers].filter(Boolean).join("\n").replace(/^ {8}/gm, "          
   const premiere = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xmeml>
 <xmeml version="4">
-<sequence id="sequence-1"><name>${esc(snapshot.title || "DeHub project")}</name><duration>${frames(total)}</duration>${rate}
+<sequence id="sequence-1"><name>${esc(snapshot.title || "Riftn project")}</name><duration>${frames(total)}</duration>${rate}
 <media>
 <video><format><samplecharacteristics>${rate}<width>${width}</width><height>${height}</height></samplecharacteristics></format>
 ${trackXml(visualTracks, false) || "<track/>"}

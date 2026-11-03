@@ -1,7 +1,7 @@
 /**
  * "Copy address" when the account has two of them.
  *
- * A DeHub wallet is payable on the EVM chains at an `0x…` address and on Solana
+ * A Riftn wallet is payable on the EVM chains at an `0x…` address and on Solana
  * at a base58 one, and the two address spaces do not overlap: SOL or an SPL
  * token sent to the EVM address is unrecoverable. So every surface that offers
  * to copy "your address" asks which one first, rather than picking for the user

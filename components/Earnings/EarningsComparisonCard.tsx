@@ -20,7 +20,7 @@ import { getMyPosts } from "../../services/user.service";
 import { getDHBPrice } from "../../services/ai.service";
 
 /**
- * Side-by-side: what this creator actually earned on DeHub, against what the
+ * Side-by-side: what this creator actually earned on Riftn, against what the
  * same view count would have paid on YouTube, Twitch, TikTok or Reels.
  *
  * Two honesty constraints shape the whole card (mirrors the web version):
@@ -30,7 +30,7 @@ import { getDHBPrice } from "../../services/ai.service";
  *    ranges used as defaults, every one is editable, and the footer says
  *    "estimate" plainly. Flattering fixed numbers would make this marketing.
  *
- * 2. The DeHub side is real money — receivedTips converted at the live DHB
+ * 2. The Riftn side is real money — receivedTips converted at the live DHB
  *    price, never padded with projected earnings. If the price lookup fails,
  *    the card degrades to DHB-only rather than showing a false $0 comparison.
  */
