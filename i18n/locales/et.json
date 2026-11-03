@@ -14631,6 +14631,7 @@
     "unavailable": "GitHubi kinnitus on peagi tulekul."
   },
   "comic": {
+    "showAll": "Näita kõiki {{count}} lehekülge",
     "tab": "Koomik",
     "title": "Koomik",
     "chip": "Koomiks · {{count}} lehekülg",

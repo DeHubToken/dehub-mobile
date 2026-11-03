@@ -14680,6 +14680,7 @@
     "unavailable": "GitHub tasdiqlash yaqinlashib kelmoqda."
   },
   "comic": {
+    "showAll": "Barcha {{count}} sahifani ko‘rsatish",
     "tab": "Komik",
     "title": "Komik",
     "chip": "Komik · {{count}} sahifa",

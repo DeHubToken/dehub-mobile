@@ -14885,6 +14885,7 @@
     "unavailable": "Pengesahan GitHub akan datang tidak lama lagi."
   },
   "comic": {
+    "showAll": "Tunjukkan semua {{count}} halaman",
     "tab": "Komik",
     "title": "Komik",
     "chip": "Komik · {{count}} halaman",

@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Shfaq të gjitha {{count}} faqet"
+  },
   "accountConnect": {
     "generatePrompt": "Më trego modelet e imazheve të DeHub dhe citoni një portret para se ta gjeneroni.",
     "account": "Shfletimi publik nuk ka nevojë për llogari. Lidh llogarinë tënde DeHub për të menaxhuar profilin tënd dhe për të krijuar ose publikuar përmbajtje.",

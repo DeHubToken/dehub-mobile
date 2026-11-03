@@ -14628,6 +14628,7 @@
     "unavailable": "GitHub-verifisering kommer snart."
   },
   "comic": {
+    "showAll": "Vis alle {{count}} sidene",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} sider",

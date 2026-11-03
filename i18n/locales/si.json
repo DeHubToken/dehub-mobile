@@ -14645,6 +14645,7 @@
     "unavailable": "GitHub සත්‍යාපනය ඉතා ඉක්මනින් එනවා."
   },
   "comic": {
+    "showAll": "පිටු {{count}} ම පෙන්වන්න",
     "tab": "කොමික",
     "title": "කොමික",
     "chip": "Comic · {{count}} පිටු",

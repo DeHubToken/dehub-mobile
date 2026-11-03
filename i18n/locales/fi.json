@@ -14629,6 +14629,7 @@
     "unavailable": "GitHub-vahvistus on tulossa pian."
   },
   "comic": {
+    "showAll": "Näytä kaikki {{count}} sivua",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} sivua",

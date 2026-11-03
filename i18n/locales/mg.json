@@ -14711,6 +14711,7 @@
     "failed": "Nanomboka ny fitahian'ny GitHub. Mifanohana ny fahatratraka."
   },
   "comic": {
+    "showAll": "Asehoy ny pejy {{count}} rehetra",
     "tab": "Komika",
     "title": "Komika",
     "chip": "Komika · {{count}} panaonkavanana",

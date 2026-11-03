@@ -1,5 +1,6 @@
 {
   "comic": {
+    "showAll": "Voir les {{count}} pages",
     "tab": "BD",
     "title": "BD",
     "chip": "BD · {{count}} pages",

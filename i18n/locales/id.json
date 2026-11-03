@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Tampilkan semua {{count}} halaman"
+  },
   "accountConnect": {
     "account": "Penjelajahan publik tidak memerlukan akun. Tautkan akun DeHub Anda untuk mengelola profil Anda dan membuat atau memublikasikan konten.",
     "allow": "Mengizinkan koneksi",

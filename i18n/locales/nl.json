@@ -1,5 +1,6 @@
 {
   "comic": {
+    "showAll": "Alle {{count}} pagina's tonen",
     "tab": "Strip",
     "title": "Strip",
     "chip": "Strip · {{count}} pagina's",

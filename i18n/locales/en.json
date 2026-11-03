@@ -1,5 +1,6 @@
 {
   "comic": {
+    "showAll": "Show all {{count}} pages",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} pages",

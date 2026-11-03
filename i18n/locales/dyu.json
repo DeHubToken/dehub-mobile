@@ -14603,6 +14603,7 @@
     "unavailable": "GitHub ka sɛgɛsɛgɛri bena kɛ yanni dɔɔni."
   },
   "comic": {
+    "showAll": "Ɲɛ {{count}} bɛɛ jira",
     "page": "Peejii {{page}}",
     "goto": "Peejii {{page}}",
     "alt": "Kɔɔŋɔ",

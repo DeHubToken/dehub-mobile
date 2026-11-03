@@ -14662,6 +14662,7 @@
     "taken": "Waa GitHub accounttiin isaa DeHub profilettiin walitti bu'ura."
   },
   "comic": {
+    "showAll": "Fuula {{count}} hunda agarsiisi",
     "tab": "Komikii",
     "title": "Komikii",
     "chip": "Komikii · {{count}} fuulaa",

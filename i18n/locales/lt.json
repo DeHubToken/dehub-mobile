@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Rodyti visus {{count}} puslapius"
+  },
   "accountConnect": {
     "account": "Viešam naršymui paskyros nereikia. Susiek savo „DeHub“ paskyrą, kad galėtum tvarkyti savo profilį ir kurti arba skelbti turinį.",
     "allow": "Leisti ryšį",

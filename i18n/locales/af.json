@@ -14756,6 +14756,7 @@
     "unavailable": "GitHub is soon."
   },
   "comic": {
+    "showAll": "Wys al {{count}} bladsye",
     "tab": "Komiks",
     "title": "Komiks",
     "chip": "Komiks · {{count}} bladsye",

@@ -14614,6 +14614,7 @@
     "unavailable": "ການຢືນຢັນ GitHub ຈະມາເຮັດວຽກໃນໄວໆນີ້."
   },
   "comic": {
+    "showAll": "ສະແດງທັງໝົດ {{count}} ໜ້າ",
     "chip": "Comic · {{count}} ໜ້າ",
     "open": "ເປີດ comic, ໜ້າ {{page}} ຂອງ {{total}}",
     "flip": "ໜ້າ {{page}} ຂອງ {{total}}. ແຕະເພື່ອພິກ",

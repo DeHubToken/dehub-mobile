@@ -14793,6 +14793,7 @@
     "unavailable": "Verifikácia GitHub je skoro hotová."
   },
   "comic": {
+    "showAll": "Zobraziť všetkých {{count}} strán",
     "tab": "Knižka",
     "title": "Knižka",
     "chip": "Knižka · {{count}} stránok",

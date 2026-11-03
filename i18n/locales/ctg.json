@@ -14757,6 +14757,7 @@
     "unavailable": "GitHub verification আশা করি নিকটেই আসিবে।"
   },
   "comic": {
+    "showAll": "সব {{count}}টা পেজ দেহাও",
     "tab": "কমিক",
     "title": "কমিক",
     "chip": "কমিক · {{count}} পেজ",

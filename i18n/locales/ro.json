@@ -14644,6 +14644,7 @@
     "unavailable": "Verificarea GitHub este în curând disponibilă."
   },
   "comic": {
+    "showAll": "Arată toate cele {{count}} pagini",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} pagini",

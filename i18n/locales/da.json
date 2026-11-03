@@ -14635,6 +14635,7 @@
     "unavailable": "GitHub-bekræftelse kommer snart."
   },
   "comic": {
+    "showAll": "Vis alle {{count}} sider",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} sider",

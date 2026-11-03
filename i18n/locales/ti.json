@@ -14612,6 +14612,7 @@
     "unavailable": "GitHub ምክሊ ብቐሪቡ ክመጽእ ዝኽእል።"
   },
   "comic": {
+    "showAll": "ኩሉ {{count}} ገጻት ኣርኢ",
     "tab": "ኮሚክ",
     "title": "ኮሚክ",
     "chip": "ኮሚክ · {{count}} ገጾች",

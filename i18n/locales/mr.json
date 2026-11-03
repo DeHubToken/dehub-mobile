@@ -14625,6 +14625,7 @@
     "unavailable": "GitHub सत्यापन लवकरच येणार आहे."
   },
   "comic": {
+    "showAll": "सर्व {{count}} पाने दाखवा",
     "tab": "कॉमिक",
     "title": "कॉमिक",
     "chip": "कॉमिक · {{count}} पेज",

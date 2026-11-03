@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Hiện tất cả {{count}} trang"
+  },
   "accountConnect": {
     "account": "Duyệt web công cộng không cần tài khoản. Liên kết tài khoản DeHub của bạn để quản lý hồ sơ của bạn và tạo hoặc xuất bản nội dung.",
     "allow": "Cho phép kết nối",

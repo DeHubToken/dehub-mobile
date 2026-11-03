@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Ver todas as {{count}} páginas"
+  },
   "copy": {
     "chatSlowDown": "Calma! Mensagens demais seguidas. Tente de novo em {{wait}} ou espere outra pessoa responder.",
     "eabb5c136be4": "Falha ao atualizar o plano",

@@ -14629,6 +14629,7 @@
     "unavailable": "Tabbatar da GitHub yana zuwa ba da daɗewa ba."
   },
   "comic": {
+    "showAll": "Nuna dukkan shafuka {{count}}",
     "tab": "Comic",
     "title": "Comic",
     "alt": "Alt text",

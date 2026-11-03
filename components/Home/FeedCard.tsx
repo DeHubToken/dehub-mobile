@@ -1796,8 +1796,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             descriptions={item.mediaDescriptions}
             title={localTitle}
             width={edgeMedia || isMinimal ? SCREEN_WIDTH : itemWidth}
-            full={immersive}
-            onOpen={immersive ? undefined : handleCardPress}
+            // The post page draws its card with presses off: there the comic
+            // is the full one (page hand, tap to flip), not a feed teaser.
+            full={immersive || disablePress}
+            onOpen={immersive || disablePress ? undefined : handleCardPress}
           />
         </View>
       );

@@ -14647,6 +14647,7 @@
     "failed": "Mana ch'aspaq GitHub. Kunti chaspaq."
   },
   "comic": {
+    "showAll": "Llapan {{count}} rapikunata rikuchiy",
     "tab": "Comic",
     "title": "Comic",
     "page": "Página {{page}}",

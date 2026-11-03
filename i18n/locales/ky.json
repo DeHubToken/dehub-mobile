@@ -14602,6 +14602,7 @@
     "unavailable": "GitHub verification ачылууда."
   },
   "comic": {
+    "showAll": "Бардык {{count}} баракты көрсөтүү",
     "tab": "Комикс",
     "title": "Комикс",
     "chip": "Комикс · {{count}} бет",

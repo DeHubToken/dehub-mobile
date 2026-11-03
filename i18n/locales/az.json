@@ -14628,6 +14628,7 @@
     "unavailable": "GitHub təsdiqləməsi tezliklə göndəriləcək."
   },
   "comic": {
+    "showAll": "Bütün {{count}} səhifəni göstər",
     "tab": "Komik",
     "title": "Komik",
     "chip": "Komik · {{count}} səhifə",

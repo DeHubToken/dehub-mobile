@@ -14658,6 +14658,7 @@
     "unavailable": "Ukuqinisekiswa kwe-GitHub kuzoza ngakusasa."
   },
   "comic": {
+    "showAll": "Bonisa wonke amakhasi angu-{{count}}",
     "tab": "i-comic",
     "title": "i-comic",
     "open": "Vula ikhomiki, ikhasi {{page}} kuka-{{total}}",

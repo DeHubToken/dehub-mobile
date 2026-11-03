@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Mostra tutte le {{count}} pagine"
+  },
   "accountConnect": {
     "account": "L'accesso pubblico non richiede un account. Collega il tuo account DeHub per gestire il tuo profilo e creare o pubblicare contenuti.",
     "allow": "Consenti la connessione",

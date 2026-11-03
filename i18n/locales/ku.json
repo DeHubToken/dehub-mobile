@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Hemû {{count}} rûpelan nîşan bide"
+  },
   "remix": {
     "collab": "Hevkarî",
     "cut": "Birrîn",
