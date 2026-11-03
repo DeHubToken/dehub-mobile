@@ -530,8 +530,17 @@
       "quote": "Quote",
       "bullets": "Bullet list",
       "numbers": "Numbered list",
-      "link": "Link"
-    }
+      "link": "Link",
+      "image": "Add images"
+    },
+    "imageLimit": "Articles can hold up to {{count}} images",
+    "imageFailed": "That image could not be added. Try another one.",
+    "imagesUploading": "Adding images ({{count}})…",
+    "bodyTooLong": "{{count}} characters over the limit",
+    "imagesCount": "Images · {{count}}/{{max}}",
+    "captionPlaceholder": "Add a caption",
+    "captionLabel": "Caption for image {{n}}",
+    "removeInlineImage": "Remove image {{n}}"
   },
   "storefront": {
     "unavailable": "Not available in this version of the app"

@@ -567,8 +567,17 @@
       "quote": "Alıntı",
       "bullets": "Dolgu liste",
       "numbers": "Numaralı liste",
-      "link": "Bağlantı"
-    }
+      "link": "Bağlantı",
+      "image": "Görsel ekle"
+    },
+    "imageLimit": "Makaleler en fazla {{count}} görsel içerebilir",
+    "imageFailed": "Bu görsel eklenemedi. Başka bir tane deneyin.",
+    "imagesUploading": "Görseller ekleniyor ({{count}})…",
+    "bodyTooLong": "Sınırın {{count}} karakter üzerinde",
+    "imagesCount": "Görseller · {{count}}/{{max}}",
+    "captionPlaceholder": "Açıklama ekle",
+    "captionLabel": "{{n}}. görselin açıklaması",
+    "removeInlineImage": "{{n}}. görseli kaldır"
   },
   "storefront": {
     "unavailable": "Uygulamanın bu sürümünde kullanılamaz"

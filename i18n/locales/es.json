@@ -567,8 +567,17 @@
       "quote": "Cita",
       "bullets": "Lista de puntos",
       "numbers": "Lista numerada",
-      "link": "Enlace"
-    }
+      "link": "Enlace",
+      "image": "Añadir imágenes"
+    },
+    "imageLimit": "Los artículos pueden tener hasta {{count}} imágenes",
+    "imageFailed": "No se pudo añadir esa imagen. Prueba con otra.",
+    "imagesUploading": "Añadiendo imágenes ({{count}})…",
+    "bodyTooLong": "{{count}} caracteres por encima del límite",
+    "imagesCount": "Imágenes · {{count}}/{{max}}",
+    "captionPlaceholder": "Añade un pie de foto",
+    "captionLabel": "Pie de foto de la imagen {{n}}",
+    "removeInlineImage": "Quitar la imagen {{n}}"
   },
   "storefront": {
     "unavailable": "No disponible en esta versión de la aplicación"

@@ -5,9 +5,71 @@
 import { Platform } from 'react-native';
 import type { AppThemeName } from '../theme/colors';
 
+/** Characters of writing. Picture markup does not count toward it. */
 export const ARTICLE_BODY_MAX = 20000;
 export const ARTICLE_BODY_MIN = 100;
 export const ARTICLE_SUMMARY_MAX = 500;
+/** Pictures inside one article (the cover is separate). Same as web and the backend. */
+export const ARTICLE_IMAGE_MAX = 40;
+/** Raw body cap: the writing plus room for every picture with a long caption. */
+export const ARTICLE_RAW_MAX = ARTICLE_BODY_MAX + ARTICLE_IMAGE_MAX * 450;
+export const ARTICLE_CAPTION_MAX = 200;
+
+const IMAGE_MARKUP = /!\[([^\]\n]*)\]\(([^)\s]*)(?:\s+"([^"\n]*)")?\)/g;
+/** A line that is only a picture. */
+export const ARTICLE_IMAGE_LINE = /^\s*!\[([^\]\n]*)\]\(([^)\s]+)(?:\s+"([^"\n]*)")?\)\s*$/;
+
+export interface ArticleImage { index: number; start: number; end: number; url: string; caption: string }
+
+/** Every picture in the body, in order, with where its markup sits. */
+export function articleImages(markdown: string): ArticleImage[] {
+  const out: ArticleImage[] = [];
+  for (const m of markdown.matchAll(IMAGE_MARKUP)) {
+    out.push({ index: out.length, start: m.index ?? 0, end: (m.index ?? 0) + m[0].length, url: m[2], caption: m[3] ?? m[1] });
+  }
+  return out;
+}
+
+/** The writing's length, without picture markup. */
+export function articleTextLength(markdown: string): number {
+  return markdown.replace(IMAGE_MARKUP, '').trim().length;
+}
+
+export function cleanArticleCaption(caption: string): string {
+  return caption.replace(/[[\]\n\r]+/g, ' ').replace(/\s{2,}/g, ' ').slice(0, ARTICLE_CAPTION_MAX);
+}
+
+export function articleImageMarkdown(url: string, caption = ''): string {
+  return `![${cleanArticleCaption(caption)}](${url})`;
+}
+
+export function setArticleImageCaption(markdown: string, index: number, caption: string): string {
+  const img = articleImages(markdown)[index];
+  if (!img) return markdown;
+  return markdown.slice(0, img.start) + articleImageMarkdown(img.url, caption) + markdown.slice(img.end);
+}
+
+export function removeArticleImage(markdown: string, index: number): string {
+  const img = articleImages(markdown)[index];
+  if (!img) return markdown;
+  return (markdown.slice(0, img.start).replace(/\n+$/, '') + '\n\n' + markdown.slice(img.end).replace(/^\n+/, '')).replace(/^\n+/, '');
+}
+
+/** Puts a picture on its own lines at `at`. Returns the body and where the cursor goes. */
+export function insertArticleImage(markdown: string, at: number, url: string): { body: string; cursor: number } {
+  const pos = Math.min(Math.max(0, at), markdown.length);
+  const before = markdown.slice(0, pos).replace(/\n*$/, '');
+  const after = markdown.slice(pos).replace(/^\n*/, '');
+  const block = `${before ? '\n\n' : ''}${articleImageMarkdown(url)}\n\n`;
+  return { body: `${before}${block}${after}`, cursor: before.length + block.length };
+}
+
+/** Width and height a picture's address carries (`#w=1200&h=800`). */
+export function articleImageSize(url: string | undefined): { w: number; h: number } | null {
+  const m = /#w=(\d+)&h=(\d+)$/.exec(url ?? '');
+  const w = Number(m?.[1]); const h = Number(m?.[2]);
+  return w > 0 && h > 0 ? { w, h } : null;
+}
 
 export function articlePlainText(markdown: string): string {
   return markdown

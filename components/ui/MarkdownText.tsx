@@ -27,7 +27,14 @@ interface MarkdownTextProps {
   color?: string;
   /** Colours quote rules and list markers (articles use the theme's accent). */
   accent?: string;
+  /**
+   * Draws a line that is only a picture, `![caption](url)`. Without it such a
+   * line renders as text, as before. Articles pass one.
+   */
+  renderImage?: (src: string, caption: string, key: string) => React.ReactNode;
 }
+
+const IMAGE_LINE_RE = /^\s*!\[([^\]\n]*)\]\(([^)\s]+)(?:\s+"([^"\n]*)")?\)\s*$/;
 
 const LINK_RE = /^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)$/s;
 const BOLD_RE = /^(.*?)(\*\*|__)(.+?)\2(.*)$/s;
@@ -43,7 +50,7 @@ function trimUrl(url: string): { url: string; trailing: string } {
   return { url: url.slice(0, -match[0].length), trailing: match[0] };
 }
 
-const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF', accent }) => {
+const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF', accent, renderImage }) => {
   const { t: _copy } = _useCopy();
   const openUrl = useCallback((url: string) => {
     Linking.openURL(inAppDehubUrl(url) ?? url).catch(() => {
@@ -211,6 +218,12 @@ const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F
 
     if (line.trim() === '') {
       blocks.push(<View key={`sp-${index}`} style={s.spacer} />);
+      return;
+    }
+
+    const imageMatch = renderImage ? line.match(IMAGE_LINE_RE) : null;
+    if (imageMatch && renderImage) {
+      blocks.push(<React.Fragment key={`img-${index}`}>{renderImage(imageMatch[2], imageMatch[3] ?? imageMatch[1], `img-${index}`)}</React.Fragment>);
       return;
     }
 

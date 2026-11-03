@@ -567,8 +567,17 @@
       "quote": "اقتباس",
       "bullets": "قائمة ب Bullet",
       "numbers": "قائمة مرقمة",
-      "link": "رابط"
-    }
+      "link": "رابط",
+      "image": "إضافة صور"
+    },
+    "imageLimit": "يمكن أن يحتوي المقال على {{count}} صورة كحد أقصى",
+    "imageFailed": "تعذّرت إضافة هذه الصورة. جرّب صورة أخرى.",
+    "imagesUploading": "جارٍ إضافة الصور ({{count}})…",
+    "bodyTooLong": "{{count}} حرفًا فوق الحد",
+    "imagesCount": "الصور · {{count}}/{{max}}",
+    "captionPlaceholder": "أضف تعليقًا للصورة",
+    "captionLabel": "تعليق الصورة {{n}}",
+    "removeInlineImage": "إزالة الصورة {{n}}"
   },
   "storefront": {
     "unavailable": "غير متاح في هذا الإصدار من التطبيق"

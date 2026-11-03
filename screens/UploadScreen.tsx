@@ -73,7 +73,8 @@ import { getAvatarUrl } from "../libs/misc";
 import { getComicImageLimitForBadge, getPostImageBytesForBadge, getPostImageLimitForBadge, MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import ArticleEditor from "../components/article/ArticleEditor";
-import { ARTICLE_BODY_MIN, ARTICLE_SUMMARY_MAX, articleLook, articleSummaryFromBody } from "../libs/article";
+import { ARTICLE_BODY_MAX, ARTICLE_BODY_MIN, ARTICLE_IMAGE_MAX, ARTICLE_RAW_MAX, ARTICLE_SUMMARY_MAX, articleImages, articleLook, articleSummaryFromBody, articleTextLength, insertArticleImage } from "../libs/article";
+import { uploadArticleImage } from "../services/articleImage";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
@@ -376,9 +377,48 @@ export default function UploadScreen() {
     const { start, end } = articleSelection;
     const selected = articleBody.slice(start, end) || placeholder;
     const prefix = block && start > 0 && articleBody[start - 1] !== "\n" ? "\n" : "";
-    setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, 20000));
+    setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, ARTICLE_RAW_MAX));
     setArticleSelection({ start: start + prefix.length + before.length, end: start + prefix.length + before.length + selected.length });
   }, [articleBody, articleSelection, setArticleBody]);
+  // Pictures inside the article upload as soon as they are picked and go in
+  // where the cursor was, each on its own lines with an empty caption.
+  const [articleUploads, setArticleUploads] = useState(0);
+  const articleBodyNow = useRef(articleBody);
+  articleBodyNow.current = articleBody;
+  const addArticleImages = useCallback(async () => {
+    const room = ARTICLE_IMAGE_MAX - articleImages(articleBodyNow.current).length - articleUploads;
+    if (room <= 0) {
+      toastError(t("articles.imageLimit", { count: ARTICLE_IMAGE_MAX, defaultValue: "Articles can hold up to {{count}} images" }));
+      return;
+    }
+    await runWithPermissions(["photos"], async () => {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ["images"],
+        allowsMultipleSelection: true,
+        selectionLimit: room,
+        quality: 1,
+      });
+      if (result.canceled || !result.assets?.length) return;
+      const picked = result.assets.slice(0, room);
+      let at = articleSelection.end;
+      setArticleUploads(n => n + picked.length);
+      for (const asset of picked) {
+        try {
+          const url = await uploadArticleImage(asset);
+          const next = insertArticleImage(articleBodyNow.current, at, url);
+          if (next.body.length > ARTICLE_RAW_MAX) throw new Error("too long");
+          at = next.cursor;
+          articleBodyNow.current = next.body;
+          setArticleBody(next.body);
+          setArticleSelection({ start: next.cursor, end: next.cursor });
+        } catch {
+          toastError(t("articles.imageFailed", { defaultValue: "That image could not be added. Try another one." }));
+        } finally {
+          setArticleUploads(n => n - 1);
+        }
+      }
+    });
+  }, [articleUploads, articleSelection.end, setArticleBody, t]);
   const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
   const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
   const pickArticleImage = useCallback(async () => {
@@ -805,7 +845,8 @@ export default function UploadScreen() {
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode || isStageMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
   const canPost = isStageMode ? !!titleText.trim() : !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid || articleMode) &&
-    (!articleMode || (!!titleText.trim() && articleBody.trim().length >= ARTICLE_BODY_MIN && !hasMedia));
+    (!articleMode || (!!titleText.trim() && articleTextLength(articleBody) >= ARTICLE_BODY_MIN && articleTextLength(articleBody) <= ARTICLE_BODY_MAX
+      && articleImages(articleBody).length <= ARTICLE_IMAGE_MAX && articleUploads === 0 && !hasMedia));
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // The post options are rendered unconditionally, as web's PostAccessToggles is.
@@ -2738,6 +2779,8 @@ export default function UploadScreen() {
                 coverUri={articleShareImageUri}
                 onPickCover={pickArticleImage}
                 onRemoveCover={() => { setArticleImageUri(null); setSocialImageUri(null); }}
+                onAddImages={addArticleImages}
+                uploadingImages={articleUploads}
               />
             )}
 
