@@ -13555,6 +13555,12 @@
     "skippedOtherToast": "{{platforms}} ଛାଡି ଦିଆଗଲା: ସେମାନେ ଏହି ପୋଷ୍ଟ ନେଇପାରିଲେ ନାହିଁ।"
   },
   "builder": {
+    "liveChip": "ପ୍ରାୟ ଏକ ମିନିଟରେ yourname.dhb.gg ରେ ଲାଇଭ୍",
+    "tierFast": "ଦ୍ରୁତ",
+    "tierBalanced": "ସନ୍ତୁଳିତ",
+    "tierBest": "ସର୍ବୋତ୍ତମ",
+    "builtThisWeek": "ଏହି ସପ୍ତାହରେ ତିଆରି",
+    "seeAllApps": "ସମସ୍ତ ଆପ୍ ଦେଖନ୍ତୁ",
     "modelLabel": "ମଡେଲ",
     "creditsLeft": "{{amount}} କ୍ରେଡିଟରେ",
     "perPrompt": "≈ ପ୍ରତି ପ୍ରମ୍ପ୍ଟ {{price}}",

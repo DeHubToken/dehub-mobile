@@ -13557,6 +13557,12 @@
     "skippedOtherToast": "{{platforms}}: ພວກເຂົາບໍ່ສາມາດເອົາຂໍ້ຄວາມນີ້ໄດ້."
   },
   "builder": {
+    "liveChip": "ອອນລາຍໃນປະມານໜຶ່ງນາທີທີ່ yourname.dhb.gg",
+    "tierFast": "ໄວ",
+    "tierBalanced": "ສົມດຸນ",
+    "tierBest": "ດີທີ່ສຸດ",
+    "builtThisWeek": "ສ້າງໃນອາທິດນີ້",
+    "seeAllApps": "ເບິ່ງແອັບທັງໝົດ",
     "modelLabel": "ໂມເດວ",
     "creditsLeft": "{{amount}} ເປັນເຄຣດິດ",
     "perPrompt": "≈ {{price}} ຕໍ່ຄຳສັ່ງ",

@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "{{platforms}} jäi vahele: ta ei saanud seda postitust vastu võtta."
   },
   "builder": {
+    "liveChip": "Umbes minutiga avalik aadressil sinunimi.dhb.gg",
+    "tierFast": "Kiire",
+    "tierBalanced": "Tasakaalus",
+    "tierBest": "Parim",
+    "builtThisWeek": "Sel nädalal loodud",
+    "seeAllApps": "Vaata kõiki rakendusi",
     "modelLabel": "Mudel",
     "creditsLeft": "{{amount}} krediiti",
     "perPrompt": "≈ {{price}} päringu kohta",

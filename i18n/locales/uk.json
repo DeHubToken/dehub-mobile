@@ -14099,6 +14099,12 @@
     "skippedOtherToast": "Пропущено {{platforms}}: не вдалося прийняти цей допис."
   },
   "builder": {
+    "liveChip": "Онлайн приблизно за хвилину на yourname.dhb.gg",
+    "tierFast": "Швидко",
+    "tierBalanced": "Збалансовано",
+    "tierBest": "Найкраще",
+    "builtThisWeek": "Створено цього тижня",
+    "seeAllApps": "Усі застосунки",
     "modelLabel": "Модель",
     "creditsLeft": "{{amount}} у кредитах",
     "perPrompt": "≈ {{price}} за запит",

@@ -13599,6 +13599,12 @@
     "skippedOtherToast": "Yeqa {{platforms}}: abakwazanga ukuthatha le phosti."
   },
   "builder": {
+    "liveChip": "Kuvela cishe ngomzuzu owodwa ku-igamalakho.dhb.gg",
+    "tierFast": "Ngokushesha",
+    "tierBalanced": "Kulinganisile",
+    "tierBest": "Okuhle kakhulu",
+    "builtThisWeek": "Kwakhiwe kuleli sonto",
+    "seeAllApps": "Bona wonke ama-app",
     "modelLabel": "Imodeli",
     "creditsLeft": "{{amount}} kumakhredithi",
     "perPrompt": "≈ {{price}} ngomyalelo ngamunye",

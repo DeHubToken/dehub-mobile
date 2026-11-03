@@ -13552,6 +13552,12 @@
     "platformNotes": "YouTube mako be videwo la. Instagram, TikTok, Pinterest ani Snapchat mako be foto wala videwo la. I ka Instagram ka kan ka kɛ i ka jagoyɔrɔ wala i ka danbaga ka kunnafoni ye. TikTok ka sitew be bɔ kɛnɛ kan ni kumaden dɔw ye, u be mɔgɔ weele ka na u ka sitew la ani u be mɔgɔ weele ka na u ka sitew la."
   },
   "builder": {
+    "liveChip": "Miniti kelen kɔnɔ a bɛ yourname.dhb.gg kan",
+    "tierFast": "Teliya",
+    "tierBalanced": "Bɛnnin",
+    "tierBest": "Ɲumanba",
+    "builtThisWeek": "Nin dɔgɔkun in na dilannenw",
+    "seeAllApps": "Appu bɛɛ lajɛ",
     "example1": "Pomodoro waati jateminɛn, tile o tile ɲɔgɔnkɔtugu bɛ min na",
     "modelLabel": "Modeli",
     "creditsLeft": "{{amount}} kredi la",

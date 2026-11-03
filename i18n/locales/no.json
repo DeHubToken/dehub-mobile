@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "Hoppet over {{platforms}}: de kunne ikke ta dette innlegget."
   },
   "builder": {
+    "liveChip": "Live på omtrent ett minutt på dittnavn.dhb.gg",
+    "tierFast": "Rask",
+    "tierBalanced": "Balansert",
+    "tierBest": "Best",
+    "builtThisWeek": "Bygget denne uken",
+    "seeAllApps": "Se alle apper",
     "modelLabel": "Modell",
     "creditsLeft": "{{amount}} i kreditter",
     "perPrompt": "≈ {{price}} per ledetekst",

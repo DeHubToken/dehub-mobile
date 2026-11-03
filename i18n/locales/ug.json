@@ -13552,6 +13552,12 @@
     "skippedOtherToast": "{{platforms}}: ئۇلار بۇ يازمىنى قوبۇل قىلالمىدى."
   },
   "builder": {
+    "liveChip": "تەخمىنەن بىر مىنۇتتا yourname.dhb.gg دا ئېچىلىدۇ",
+    "tierFast": "تېز",
+    "tierBalanced": "تەڭپۇڭ",
+    "tierBest": "ئەڭ ياخشى",
+    "builtThisWeek": "بۇ ھەپتە ياسالغانلار",
+    "seeAllApps": "بارلىق ئەپلەرنى كۆرۈش",
     "modelLabel": "مودېل",
     "creditsLeft": "{{amount}} كرېدىت",
     "perPrompt": "≈ ھەر بىر سوراققا {{price}}",

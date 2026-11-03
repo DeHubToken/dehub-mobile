@@ -13569,6 +13569,12 @@
     "skippedOtherToast": "Skipped {{platforms}}: wọn kò lè gba iṣẹ́ yìí."
   },
   "builder": {
+    "liveChip": "Yóò wà lórí ayélujára ní nǹkan bí ìṣẹ́jú kan ní orúkọrẹ.dhb.gg",
+    "tierFast": "Kíákíá",
+    "tierBalanced": "Ìwọ̀ntúnwọ̀nsì",
+    "tierBest": "Èyí tó dára jù",
+    "builtThisWeek": "Tí a kọ́ ní ọ̀sẹ̀ yìí",
+    "seeAllApps": "Wo gbogbo àwọn áàpù",
     "modelLabel": "Àwòṣe",
     "creditsLeft": "{{amount}} nínú kírẹ́dítì",
     "perPrompt": "≈ {{price}} fún ìbéèrè kọ̀ọ̀kan",

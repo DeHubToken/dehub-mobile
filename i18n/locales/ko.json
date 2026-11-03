@@ -13627,6 +13627,12 @@
     "skippedOtherToast": "건너뛴 {{platforms}}: 이 게시물을 가져갈 수 없습니다."
   },
   "builder": {
+    "liveChip": "약 1분 만에 yourname.dhb.gg에 공개",
+    "tierFast": "빠름",
+    "tierBalanced": "균형",
+    "tierBest": "최고",
+    "builtThisWeek": "이번 주에 만든 앱",
+    "seeAllApps": "모든 앱 보기",
     "modelLabel": "모델",
     "creditsLeft": "크레딧 {{amount}}",
     "perPrompt": "≈ 프롬프트당 {{price}}",

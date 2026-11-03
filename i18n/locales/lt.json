@@ -13575,6 +13575,12 @@
     "skippedOtherToast": "Praleido {{platforms}}: jie negalėjo priimti šio įrašo."
   },
   "builder": {
+    "liveChip": "Veiks maždaug per minutę adresu tavovardas.dhb.gg",
+    "tierFast": "Greitas",
+    "tierBalanced": "Subalansuotas",
+    "tierBest": "Geriausias",
+    "builtThisWeek": "Sukurta šią savaitę",
+    "seeAllApps": "Žiūrėti visas programėles",
     "modelLabel": "Modelis",
     "creditsLeft": "{{amount}} kreditų",
     "perPrompt": "≈ {{price}} už užklausą",

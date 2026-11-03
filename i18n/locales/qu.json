@@ -13591,6 +13591,12 @@
     "skippedOtherToast": "Saltasqa {{platforms}}: mana kay qillqasqata apayta atirqankuchu."
   },
   "builder": {
+    "liveChip": "Huk minutollapi sutiyki.dhb.gg nisqapi kawsachkanqa",
+    "tierFast": "Utqaylla",
+    "tierBalanced": "Kuskachasqa",
+    "tierBest": "Aswan allin",
+    "builtThisWeek": "Kay simanapi ruwasqakuna",
+    "seeAllApps": "Llapan appkunata qhaway",
     "modelLabel": "Modelo",
     "creditsLeft": "{{amount}} crédito nisqapi",
     "perPrompt": "≈ sapa mañakuypaq {{price}}",

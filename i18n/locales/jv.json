@@ -13555,6 +13555,12 @@
     "skippedOtherToast": "Liwat {{platforms}}: dheweke ora bisa njupuk kiriman iki."
   },
   "builder": {
+    "liveChip": "Langsung aktif kira-kira sak menit ing jenengmu.dhb.gg",
+    "tierFast": "Cepet",
+    "tierBalanced": "Imbang",
+    "tierBest": "Paling apik",
+    "builtThisWeek": "Digawe minggu iki",
+    "seeAllApps": "Deleng kabeh aplikasi",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} ing kredit",
     "perPrompt": "≈ {{price}} saben prompt",

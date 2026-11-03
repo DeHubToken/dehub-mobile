@@ -13498,6 +13498,12 @@
     "skippedOtherToast": "已跳过{{platforms}} ：他们无法发表此帖子。"
   },
   "builder": {
+    "liveChip": "约一分钟即可在 yourname.dhb.gg 上线",
+    "tierFast": "快速",
+    "tierBalanced": "均衡",
+    "tierBest": "最佳",
+    "builtThisWeek": "本周新作",
+    "seeAllApps": "查看全部应用",
     "modelLabel": "模型",
     "creditsLeft": "{{amount}} 积分余额",
     "perPrompt": "≈ 每次提示 {{price}}",

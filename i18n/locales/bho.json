@@ -13548,6 +13548,12 @@
     "skippedOtherToast": "{{platforms}} छोड़ दिहल गइल: ऊ ई पोस्ट ना ले पवलस।"
   },
   "builder": {
+    "liveChip": "लगभग एक मिनट में yourname.dhb.gg पर लाइव",
+    "tierFast": "तेज़",
+    "tierBalanced": "संतुलित",
+    "tierBest": "सबसे अच्छा",
+    "builtThisWeek": "इस हफ़्ते बने",
+    "seeAllApps": "सभी ऐप देखें",
     "modelLabel": "मॉडल",
     "creditsLeft": "{{amount}} क्रेडिट में",
     "perPrompt": "≈ {{price}} हर प्रॉम्प्ट",

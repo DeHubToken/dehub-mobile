@@ -13772,6 +13772,12 @@
     "skippedOtherToast": "স্কিপ করা হল {{platforms}}: তারা এই পোস্টটা নিতে পারে না।"
   },
   "builder": {
+    "liveChip": "প্রায় এক মিনিটে yourname.dhb.gg-এ লাইভ",
+    "tierFast": "দ্রুত",
+    "tierBalanced": "ভারসাম্যপূর্ণ",
+    "tierBest": "সেরা",
+    "builtThisWeek": "এই সপ্তাহে তৈরি",
+    "seeAllApps": "সব অ্যাপ দেখুন",
     "modelLabel": "মডেল",
     "creditsLeft": "{{amount}} ক্রেডিট",
     "perPrompt": "≈ প্রতি প্রম্পটে {{price}}",

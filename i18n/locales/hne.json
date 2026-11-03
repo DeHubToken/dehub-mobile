@@ -13598,6 +13598,12 @@
     "skippedOtherToast": "Skipped {{platforms}}: ओमन ए पोस्ट ल नइ ले सकिन ।"
   },
   "builder": {
+    "liveChip": "लगभग एक मिनट में yourname.dhb.gg पर लाइव",
+    "tierFast": "तेज़",
+    "tierBalanced": "संतुलित",
+    "tierBest": "सबसे अच्छा",
+    "builtThisWeek": "इस हफ़्ते बने",
+    "seeAllApps": "सभी ऐप देखें",
     "modelLabel": "मॉडल",
     "creditsLeft": "{{amount}} क्रेडिट म",
     "perPrompt": "≈ {{price}} हर प्रॉम्प्ट",

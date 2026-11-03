@@ -13752,6 +13752,12 @@
     "skippedOtherToast": "Nilaktawan ang {{platforms}}: hindi nila makuha ang post na ito."
   },
   "builder": {
+    "liveChip": "Live sa loob ng halos isang minuto sa pangalanmo.dhb.gg",
+    "tierFast": "Mabilis",
+    "tierBalanced": "Balanse",
+    "tierBest": "Pinakamahusay",
+    "builtThisWeek": "Ginawa ngayong linggo",
+    "seeAllApps": "Tingnan lahat ng app",
     "modelLabel": "Modelo",
     "creditsLeft": "{{amount}} sa credits",
     "perPrompt": "≈ {{price}} bawat prompt",

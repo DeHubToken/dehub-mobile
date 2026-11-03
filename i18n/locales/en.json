@@ -12371,6 +12371,12 @@
     "skippedOtherToast": "Skipped {{platforms}}: they couldn't take this post."
   },
   "builder": {
+    "liveChip": "Live in about a minute at yourname.dhb.gg",
+    "tierFast": "Fast",
+    "tierBalanced": "Balanced",
+    "tierBest": "Best",
+    "builtThisWeek": "Built this week",
+    "seeAllApps": "See all apps",
     "manage": {
       "open": "Manage",
       "address": "App address",

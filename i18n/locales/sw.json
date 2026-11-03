@@ -13576,6 +13576,12 @@
     "skippedOtherToast": "Imeruka {{platforms}}: hawakuweza kuchukua chapisho hili."
   },
   "builder": {
+    "liveChip": "Hewani ndani ya takriban dakika moja kwenye jinalako.dhb.gg",
+    "tierFast": "Haraka",
+    "tierBalanced": "Uwiano",
+    "tierBest": "Bora zaidi",
+    "builtThisWeek": "Zilizoundwa wiki hii",
+    "seeAllApps": "Tazama programu zote",
     "modelLabel": "Muundo",
     "creditsLeft": "{{amount}} katika salio",
     "perPrompt": "≈ {{price}} kwa kila ombi",

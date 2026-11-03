@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "S'ha saltat {{platforms}}: no han pogut acceptar aquesta publicació."
   },
   "builder": {
+    "liveChip": "En línia en un minut aproximadament a elteunom.dhb.gg",
+    "tierFast": "Ràpid",
+    "tierBalanced": "Equilibrat",
+    "tierBest": "El millor",
+    "builtThisWeek": "Creades aquesta setmana",
+    "seeAllApps": "Mostra totes les apps",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} en crèdits",
     "perPrompt": "≈ {{price}} per petició",

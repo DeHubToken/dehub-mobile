@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "{{platforms}} वगळले: ते ही पोस्ट घेऊ शकले नाहीत."
   },
   "builder": {
+    "liveChip": "सुमारे एका मिनिटात yourname.dhb.gg वर लाइव्ह",
+    "tierFast": "जलद",
+    "tierBalanced": "संतुलित",
+    "tierBest": "सर्वोत्तम",
+    "builtThisWeek": "या आठवड्यात बनवलेले",
+    "seeAllApps": "सर्व ॲप्स पाहा",
     "modelLabel": "मॉडेल",
     "creditsLeft": "{{amount}} क्रेडिटमध्ये",
     "perPrompt": "≈ प्रति प्रॉम्प्ट {{price}}",

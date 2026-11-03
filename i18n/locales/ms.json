@@ -13828,6 +13828,12 @@
     "skippedOtherToast": "Dilangkau {{platforms}}: mereka tidak dapat menerima hantaran ini."
   },
   "builder": {
+    "liveChip": "Disiarkan dalam kira-kira seminit di namaanda.dhb.gg",
+    "tierFast": "Pantas",
+    "tierBalanced": "Seimbang",
+    "tierBest": "Terbaik",
+    "builtThisWeek": "Dibina minggu ini",
+    "seeAllApps": "Lihat semua aplikasi",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} dalam kredit",
     "perPrompt": "≈ {{price}} setiap gesaan",

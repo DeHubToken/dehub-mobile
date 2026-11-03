@@ -13536,6 +13536,12 @@
     "skippedOtherToast": "Wi lef {{platforms}}: dem no fit tek dis post."
   },
   "builder": {
+    "liveChip": "E go dey live for like one minute for yourname.dhb.gg",
+    "tierFast": "Quick",
+    "tierBalanced": "Balance",
+    "tierBest": "Di best",
+    "builtThisWeek": "Weti dey build dis week",
+    "seeAllApps": "See all apps",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} for credit",
     "perPrompt": "≈ {{price}} for one prompt",

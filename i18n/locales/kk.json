@@ -13625,6 +13625,12 @@
     "skippedOtherToast": "{{platforms}} жіберілді: олар бұл лауазымды ала алмады."
   },
   "builder": {
+    "liveChip": "Шамамен бір минутта yourname.dhb.gg мекенжайында іске қосылады",
+    "tierFast": "Жылдам",
+    "tierBalanced": "Теңгерімді",
+    "tierBest": "Ең үздік",
+    "builtThisWeek": "Осы аптада жасалғандар",
+    "seeAllApps": "Барлық қолданбаларды көру",
     "modelLabel": "Модель",
     "creditsLeft": "{{amount}} кредит",
     "perPrompt": "≈ бір сұрауға {{price}}",

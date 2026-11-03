@@ -13569,6 +13569,12 @@
     "skippedOtherToast": "跳過咗 {{platforms}} ：佢哋攞唔到呢個 post 。"
   },
   "builder": {
+    "liveChip": "大約一分鐘就喺 yourname.dhb.gg 上線",
+    "tierFast": "快速",
+    "tierBalanced": "平衡",
+    "tierBest": "最好",
+    "builtThisWeek": "今個星期整嘅",
+    "seeAllApps": "睇晒所有 App",
     "modelLabel": "模型",
     "creditsLeft": "{{amount}} 積分",
     "perPrompt": "≈ 每次提示 {{price}}",

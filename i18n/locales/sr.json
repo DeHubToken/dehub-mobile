@@ -13565,6 +13565,12 @@
     "skippedOtherToast": "Прескочено: {{platforms}}. Нису могле да приме ову објаву."
   },
   "builder": {
+    "liveChip": "Уживо за отприлике минут на yourname.dhb.gg",
+    "tierFast": "Брзо",
+    "tierBalanced": "Уравнотежено",
+    "tierBest": "Најбоље",
+    "builtThisWeek": "Направљено ове недеље",
+    "seeAllApps": "Погледај све апликације",
     "modelLabel": "Модел",
     "creditsLeft": "{{amount}} у кредитима",
     "perPrompt": "≈ {{price}} по упиту",

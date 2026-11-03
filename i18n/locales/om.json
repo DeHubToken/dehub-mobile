@@ -13610,6 +13610,12 @@
     "skippedOtherToast": "{{platforms}} darbeera: barreeffama kana fudhachuu hin dandeenye."
   },
   "builder": {
+    "liveChip": "Daqiiqaa tokko keessatti maqaakee.dhb.gg irratti ni mul'ata",
+    "tierFast": "Saffisaa",
+    "tierBalanced": "Madaalawaa",
+    "tierBest": "Isa caalu",
+    "builtThisWeek": "Torban kana kan ijaaraman",
+    "seeAllApps": "Appii hunda ilaali",
     "modelLabel": "Moodeela",
     "creditsLeft": "{{amount}} kireeditii keessa",
     "perPrompt": "≈ gaaffii tokkoof {{price}}",

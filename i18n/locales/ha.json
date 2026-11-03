@@ -13570,6 +13570,12 @@
     "skippedOtherToast": "An tsallake {{platforms}}: ba su iya karɓar wannan sakon ba."
   },
   "builder": {
+    "liveChip": "Kai tsaye cikin kusan minti ɗaya a sunanka.dhb.gg",
+    "tierFast": "Mai sauri",
+    "tierBalanced": "Daidaitacce",
+    "tierBest": "Mafi kyau",
+    "builtThisWeek": "Waɗanda aka gina a wannan makon",
+    "seeAllApps": "Duba duk manhajoji",
     "modelLabel": "Samfuri",
     "creditsLeft": "{{amount}} a kiredit",
     "perPrompt": "≈ {{price}} kowace buƙata",

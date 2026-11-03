@@ -13549,6 +13549,12 @@
     "skippedOtherToast": "Wepụrụ {{platforms}}: ha enweghị ike ịnabata post a."
   },
   "builder": {
+    "liveChip": "Ọ ga-adị ndụ n'ihe dị ka otu nkeji na aha gị.dhb.gg",
+    "tierFast": "Ngwa ngwa",
+    "tierBalanced": "Nhazi ziri ezi",
+    "tierBest": "Kacha mma",
+    "builtThisWeek": "Ndị e wuru n'izu a",
+    "seeAllApps": "Hụ ngwa niile",
     "modelLabel": "Ụdị",
     "creditsLeft": "{{amount}} na kredit",
     "perPrompt": "≈ {{price}} kwa arịrịọ",

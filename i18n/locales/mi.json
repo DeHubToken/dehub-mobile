@@ -13559,6 +13559,12 @@
     "skippedOtherToast": "{{platforms}}: Kaore e taea e ratou te tango i tenei pou."
   },
   "builder": {
+    "liveChip": "Ka ora i roto i te meneti kotahi pea ki tōingoa.dhb.gg",
+    "tierFast": "Tere",
+    "tierBalanced": "Taurite",
+    "tierBest": "Pai rawa",
+    "builtThisWeek": "I hangaia i tēnei wiki",
+    "seeAllApps": "Tirohia ngā taupānga katoa",
     "modelLabel": "Tauira",
     "creditsLeft": "{{amount}} i ngā whiwhinga",
     "perPrompt": "≈ {{price}} mō ia tono",

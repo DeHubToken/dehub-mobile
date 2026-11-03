@@ -13551,6 +13551,12 @@
     "skippedOtherToast": "Skipped {{platforms}}: ma qaadan karaan qoraalkan."
   },
   "builder": {
+    "liveChip": "Toos u noqo qiyaastii hal daqiiqo magacaaga.dhb.gg",
+    "tierFast": "Degdeg",
+    "tierBalanced": "Isku dheelitiran",
+    "tierBest": "Ugu fiican",
+    "builtThisWeek": "Kuwa la dhisay toddobaadkan",
+    "seeAllApps": "Arag dhammaan apps-ka",
     "modelLabel": "Moodeel",
     "creditsLeft": "{{amount}} oo deyn ah",
     "perPrompt": "≈ {{price}} codsi kasta",

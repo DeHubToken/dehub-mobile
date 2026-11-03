@@ -12060,6 +12060,12 @@
     "skippedOtherToast": "{{platforms}} atlandı: Bu gönderiyi alamadılar."
   },
   "builder": {
+    "liveChip": "Yaklaşık bir dakikada adın.dhb.gg adresinde yayında",
+    "tierFast": "Hızlı",
+    "tierBalanced": "Dengeli",
+    "tierBest": "En iyi",
+    "builtThisWeek": "Bu hafta yapılanlar",
+    "seeAllApps": "Tüm uygulamaları gör",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} kredi",
     "perPrompt": "≈ istem başına {{price}}",

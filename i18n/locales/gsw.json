@@ -13590,6 +13590,12 @@
     "skippedOtherToast": "Übersprungen {{platforms}}: sie chönd dä Beitrag nöd übernäh."
   },
   "builder": {
+    "liveChip": "In etwa einer Minute live unter deinname.dhb.gg",
+    "tierFast": "Schnell",
+    "tierBalanced": "Ausgewogen",
+    "tierBest": "Beste",
+    "builtThisWeek": "Diese Woche gebaut",
+    "seeAllApps": "Alle Apps ansehen",
     "modelLabel": "Modell",
     "creditsLeft": "{{amount}} Guthabe",
     "perPrompt": "≈ {{price}} pro Prompt",

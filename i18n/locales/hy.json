@@ -13575,6 +13575,12 @@
     "skippedOtherToast": "Բաց թողնված {{platforms}}. նա չկարողացավ վերցնել այս գրառումը ։"
   },
   "builder": {
+    "liveChip": "Մոտ մեկ րոպեում հասանելի yourname.dhb.gg հասցեով",
+    "tierFast": "Արագ",
+    "tierBalanced": "Հավասարակշռված",
+    "tierBest": "Լավագույն",
+    "builtThisWeek": "Ստեղծված այս շաբաթ",
+    "seeAllApps": "Տեսնել բոլոր հավելվածները",
     "modelLabel": "Մոդել",
     "creditsLeft": "{{amount}} կրեդիտ",
     "perPrompt": "≈ {{price}} մեկ հարցման համար",

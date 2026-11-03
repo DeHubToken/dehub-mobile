@@ -13707,6 +13707,12 @@
     "skippedOtherToast": "Đã bỏ qua {{platforms}}: họ không thể nhận bài đăng này."
   },
   "builder": {
+    "liveChip": "Trực tuyến sau khoảng một phút tại tencuaban.dhb.gg",
+    "tierFast": "Nhanh",
+    "tierBalanced": "Cân bằng",
+    "tierBest": "Tốt nhất",
+    "builtThisWeek": "Được tạo tuần này",
+    "seeAllApps": "Xem tất cả ứng dụng",
     "modelLabel": "Mô hình",
     "creditsLeft": "{{amount}} tín dụng",
     "perPrompt": "≈ {{price}} mỗi lời nhắc",

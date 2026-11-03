@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "{{platforms}} ohitettiin: hän ei voinut ottaa tätä julkaisua."
   },
   "builder": {
+    "liveChip": "Julki noin minuutissa osoitteessa nimesi.dhb.gg",
+    "tierFast": "Nopea",
+    "tierBalanced": "Tasapainoinen",
+    "tierBest": "Paras",
+    "builtThisWeek": "Tällä viikolla tehdyt",
+    "seeAllApps": "Näytä kaikki sovellukset",
     "modelLabel": "Malli",
     "creditsLeft": "{{amount}} krediittejä",
     "perPrompt": "≈ {{price}} / kehote",

@@ -14118,6 +14118,12 @@
     "skippedOtherToast": "Ignorado {{platforms}}: eles não puderam aceitar este post."
   },
   "builder": {
+    "liveChip": "No ar em cerca de um minuto em seunome.dhb.gg",
+    "tierFast": "Rápido",
+    "tierBalanced": "Equilibrado",
+    "tierBest": "Melhor",
+    "builtThisWeek": "Criadas esta semana",
+    "seeAllApps": "Ver todas as apps",
     "modelLabel": "Modelo",
     "creditsLeft": "{{amount}} em créditos",
     "perPrompt": "≈ {{price}} por prompt",

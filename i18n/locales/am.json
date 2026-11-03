@@ -13600,6 +13600,12 @@
     "skippedOtherToast": "{{platforms}} ተዘለዋል፦ ይህን ልጥፍ መቀበል አልቻሉም።"
   },
   "builder": {
+    "liveChip": "በአንድ ደቂቃ ገደማ በyourname.dhb.gg ላይ ይገኛል",
+    "tierFast": "ፈጣን",
+    "tierBalanced": "ሚዛናዊ",
+    "tierBest": "ምርጥ",
+    "builtThisWeek": "በዚህ ሳምንት የተሰሩ",
+    "seeAllApps": "ሁሉንም መተግበሪያዎች ይመልከቱ",
     "modelLabel": "ሞዴል",
     "creditsLeft": "{{amount}} ክሬዲት",
     "perPrompt": "≈ {{price}} ለአንድ ጥያቄ",

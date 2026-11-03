@@ -13556,6 +13556,12 @@
     "skippedOtherToast": "{{platforms}}: онҳо ин паёмро гирифта натавонистанд."
   },
   "builder": {
+    "liveChip": "Тақрибан дар як дақиқа дар yourname.dhb.gg фаъол",
+    "tierFast": "Тез",
+    "tierBalanced": "Мутавозин",
+    "tierBest": "Беҳтарин",
+    "builtThisWeek": "Дар ҳамин ҳафта сохташуда",
+    "seeAllApps": "Ҳамаи барномаҳоро бинед",
     "modelLabel": "Модел",
     "creditsLeft": "{{amount}} дар кредит",
     "perPrompt": "≈ {{price}} барои ҳар дархост",

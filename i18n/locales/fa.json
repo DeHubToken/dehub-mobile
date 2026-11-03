@@ -13602,6 +13602,12 @@
     "skippedOtherToast": "از {{platforms}} صرف نظر شد: آنها نتوانستند این پست را بگیرند."
   },
   "builder": {
+    "liveChip": "در حدود یک دقیقه روی yourname.dhb.gg فعال می‌شود",
+    "tierFast": "سریع",
+    "tierBalanced": "متعادل",
+    "tierBest": "بهترین",
+    "builtThisWeek": "ساخته‌شده در این هفته",
+    "seeAllApps": "دیدن همه برنامه‌ها",
     "modelLabel": "مدل",
     "creditsLeft": "{{amount}} اعتبار",
     "perPrompt": "≈ {{price}} برای هر درخواست",

@@ -13572,6 +13572,12 @@
     "skippedOtherToast": "{{platforms}}ötürüldü: bu yazını qəbul edə bilmədi."
   },
   "builder": {
+    "liveChip": "Təxminən bir dəqiqəyə adın.dhb.gg ünvanında canlı",
+    "tierFast": "Sürətli",
+    "tierBalanced": "Balanslı",
+    "tierBest": "Ən yaxşı",
+    "builtThisWeek": "Bu həftə yaradılanlar",
+    "seeAllApps": "Bütün tətbiqlərə bax",
     "modelLabel": "Model",
     "creditsLeft": "{{amount}} kredit",
     "perPrompt": "≈ sorğu başına {{price}}",

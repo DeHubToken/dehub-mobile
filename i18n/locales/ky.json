@@ -13550,6 +13550,12 @@
     "skippedOtherToast": "Өткөрүлгөн {{platforms}}: алар бул билдирүүнү ала алышкан жок."
   },
   "builder": {
+    "liveChip": "Болжол менен бир мүнөттө yourname.dhb.gg дарегинде иштейт",
+    "tierFast": "Тез",
+    "tierBalanced": "Тең салмактуу",
+    "tierBest": "Эң мыкты",
+    "builtThisWeek": "Ушул аптада түзүлгөндөр",
+    "seeAllApps": "Бардык колдонмолорду көрүү",
     "modelLabel": "Модель",
     "creditsLeft": "{{amount}} кредит",
     "perPrompt": "≈ бир суроо үчүн {{price}}",
