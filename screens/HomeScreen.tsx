@@ -730,6 +730,7 @@ export default function HomeScreen() {
   // Colour themes search through a lens that drops out of the pill (System and
   // Minimal melt the pill into the box instead), as on web.
   const searchLens = theme !== "system" && theme !== "minimal";
+  const [searchLoading, setSearchLoading] = useState(false);
   const lensOpen = !!searchTab && searchLens;
   const searchFeedParams = useMemo(
     () => (searchTab ? feedSearchParams(searchTab, searchTab === "home" ? feedListParamsByType.all : feedParams, searchQuery.trim()) : null),
@@ -743,6 +744,8 @@ export default function HomeScreen() {
         params={searchFeedParams}
         topInset={(searchTab === "home" ? feedInset : mediaGridInset) + (searchLens ? LENS_DOCK_SPACE : 0)}
         onSearchEverything={() => pickSearchFeed("home")}
+        lens={searchLens}
+        onLoadingChange={setSearchLoading}
       />
     </View>
   ) : null;
@@ -1391,6 +1394,7 @@ export default function HomeScreen() {
           fromX={pageWidth * (activeIndex + 1.5) / (TAB_ORDER.length + 1)}
           fromY={Math.max(pillBottom, feedInset) - 20}
           accent={`rgb(${accent.join(",")})`}
+          loading={searchLoading}
         />
       ) : null}
 

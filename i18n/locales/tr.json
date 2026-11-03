@@ -12615,6 +12615,8 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "3f9b2c71d0a4": "{{n}} sonuç",
+    "8c4e1a6b2f57": "“{{query}}” için",
     "chatSlowDown": "Yavaş! Arka arkaya çok fazla mesaj. {{wait}} sonra tekrar dene veya başka birinin yanıt vermesini bekle.",
     "1d7234ff1b79": "{{feed}} içinde",
     "e122e5c2b563": "Kapatmak için yukarı sürükle",

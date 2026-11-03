@@ -1,7 +1,8 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Keyboard, Platform, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
-import Reanimated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import Reanimated, { Easing, ReduceMotion, cancelAnimation, runOnJS, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withSpring, withTiming } from "react-native-reanimated";
+import Svg, { Rect } from "react-native-svg";
 import { Gesture, GestureDetector, TextInput as GestureTextInput } from "react-native-gesture-handler";
 import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
@@ -50,11 +51,51 @@ interface FeedSearchLensProps {
   fromY: number;
   /** The theme's colour, for the rim glow. */
   accent: string;
+  /** A search is on its way: a lit arc runs slowly round the rim. */
+  loading?: boolean;
 }
 
+const AnimatedRect = Reanimated.createAnimatedComponent(Rect);
+
+/** The lit arc that runs round the rim while results load, as on web. */
+const RimSpinner: React.FC<{ width: number; color: string; loading: boolean }> = ({ width, color, loading }) => {
+  // Centred on the 1.5px border: the rect runs along the border's middle.
+  const w = width - 1.5;
+  const h = LENS_HEIGHT - 1.5;
+  const perimeter = 2 * (w - h) + Math.PI * h;
+  const arc = perimeter * 0.22;
+  const run = useSharedValue(0);
+  const shown = useSharedValue(0);
+  useEffect(() => {
+    shown.value = withTiming(loading ? 1 : 0, { duration: 240 });
+    if (loading) {
+      run.value = 0;
+      run.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.linear, reduceMotion: ReduceMotion.System }), -1, false);
+    } else {
+      cancelAnimation(run);
+    }
+  }, [loading, run, shown]);
+  const props = useAnimatedProps(() => ({ strokeDashoffset: -run.value * perimeter }));
+  const fade = useAnimatedStyle(() => ({ opacity: shown.value }));
+  if (width <= 0) return null;
+  return (
+    <Reanimated.View pointerEvents="none" style={[styles.spinner, { width: w + 4, height: h + 4 }, fade]}>
+      <Svg width={w + 4} height={h + 4}>
+        <AnimatedRect
+          x={2} y={2} width={w} height={h} rx={h / 2} ry={h / 2}
+          fill="none" stroke={color} strokeWidth={2.5} strokeLinecap="round"
+          strokeDasharray={[arc, perimeter - arc]}
+          animatedProps={props}
+        />
+      </Svg>
+    </Reanimated.View>
+  );
+};
+
 const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
-  tab, query, onChangeQuery, onClose, onPickFeed, onFilterPress, filterActive, dockY, fromX, fromY, accent,
+  tab, query, onChangeQuery, onClose, onPickFeed, onFilterPress, filterActive, dockY, fromX, fromY, accent, loading = false,
 }) => {
+  const [rimWidth, setRimWidth] = useState(0);
   const { t: _copy } = _useCopy();
   const { shorts: shortsEnabled } = useAppPrefs();
   const { width, height } = useWindowDimensions();
@@ -169,8 +210,10 @@ const FeedSearchLens: React.FC<FeedSearchLensProps> = ({
               styles.rim,
               { borderColor: accent, shadowColor: accent },
             ]}
+            onLayout={(e) => setRimWidth(e.nativeEvent.layout.width)}
           >
             <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.halo, { borderColor: accent }]} />
+            <RimSpinner width={rimWidth} color={accent} loading={loading && docked} />
             <Pressable
               onPress={() => setPicking((v) => !v)}
               style={styles.round}
@@ -257,6 +300,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     elevation: 10,
   },
+  spinner: { position: "absolute", left: -2.75, top: -2.75 },
   halo: { margin: -5, borderRadius: LENS_HEIGHT / 2 + 5, borderWidth: 4, opacity: 0.16 },
   round: {
     width: 40,
