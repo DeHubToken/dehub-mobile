@@ -12584,6 +12584,7 @@
     "yourFractions": "Az Ön törtjei",
     "acrossPosts_one": "{{count}} poszt között",
     "acrossPosts_other": "{{count}} posztok között",
+    "deletedPosts": "Törölt bejegyzések ({{count}})",
     "noneHeldYet": "Még nem rendelkezel törtekkel",
     "noneHeldHint": "Verj egy bejegyzést, hogy megkapd az 1000 frakcióját, vagy vásárolj részt valaki más bejegyzéséből.",
     "listedForSale": "Eladásra kijelölt",

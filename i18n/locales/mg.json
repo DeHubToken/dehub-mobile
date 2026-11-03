@@ -12667,6 +12667,7 @@
     "yourFractions": "Ireo tapaka anao",
     "acrossPosts_one": "amin'ny lahatsoratra {{count}}",
     "acrossPosts_other": "amin'ny lahatsoratra {{count}}",
+    "deletedPosts": "Lahatsoratra voafafa ({{count}})",
     "noneHeldYet": "Ary tsy mbola misy ny fibebahana azonao atao",
     "noneHeldHint": "Mint-eo ny lahatsoratra mba hahazoanao ny ampahany 1000 ao aminy, na mividiana anjara amin'ny lahatsoratry ny hafa.",
     "listedForSale": "Varotra amidy",

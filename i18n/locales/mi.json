@@ -12568,6 +12568,7 @@
     "yourFractions": "Ōu wāhanga",
     "acrossPosts_one": "puta noa i te {{count}} pānui",
     "acrossPosts_other": "puta noa i ngā pānui {{count}}",
+    "deletedPosts": "Ngā pou kua mukua ({{count}})",
     "noneHeldYet": "Kāore anō koe kia pupuri i tētahi wāhanga",
     "noneHeldHint": "Mintia tētahi pānui kia whiwhi i ōna wāhanga 1000, kia hoko rānei i tētahi wāhanga o te pānui a tētahi atu.",
     "listedForSale": "Kua rārangihia hei hoko",

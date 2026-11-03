@@ -12529,6 +12529,7 @@
     "yourFractions": "Your fraction dem",
     "acrossPosts_one": "for {{count}} post",
     "acrossPosts_other": "for {{count}} post dem",
+    "deletedPosts": "Posts wey dem don delete ({{count}})",
     "noneHeldYet": "You never get any fraction yet",
     "noneHeldHint": "Mint one post make you get yi 1000 fraction, or buy inside another person yi post.",
     "listedForSale": "E dey for sell",

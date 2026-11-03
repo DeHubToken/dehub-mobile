@@ -12580,6 +12580,7 @@
     "yourFractions": "আপনার ভগ্নাংশ",
     "acrossPosts_one": "{{count}} পোস্ট জুড়ে",
     "acrossPosts_other": "{{count}} পোস্ট জুড়ে",
+    "deletedPosts": "মুছে ফেলা পোস্ট ({{count}})",
     "noneHeldYet": "আপনি এখনও কোনো ভগ্নাংশ ধারণ করেননি",
     "noneHeldHint": "একটি পোস্ট মিন্ট করে এর 1000টি ফ্র্যাকশন পান, অথবা অন্য কারো পোস্টে অংশ কিনুন।",
     "listedForSale": "বিক্রয়ের জন্য তালিকাভুক্ত",

@@ -11308,6 +11308,7 @@
     "yourFractions": "Jouw fracties",
     "acrossPosts_one": "over {{count}} bericht",
     "acrossPosts_other": "over {{count}} berichten",
+    "deletedPosts": "Verwijderde berichten ({{count}})",
     "noneHeldYet": "Je bezit nog geen fracties",
     "noneHeldHint": "Mint een post om zijn 1000 fracties te krijgen, of koop je in bij de post van iemand anders.",
     "listedForSale": "Te koop aangeboden",

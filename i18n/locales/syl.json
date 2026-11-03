@@ -12781,6 +12781,7 @@
     "yourFractions": "তুমার ফ্র্যাকশন",
     "acrossPosts_one": "{{count}}টা পোস্টো",
     "acrossPosts_other": "{{count}}টা পোস্টো",
+    "deletedPosts": "মুছা পোস্ট ({{count}})",
     "noneHeldYet": "তুমার কাছে এখনো কুনু ফ্র্যাকশন নাই",
     "noneHeldHint": "একটা পোস্ট মিন্ট করিয়া উগুর 1000 ফ্র্যাকশন নেও, নাইলে আরেকজনর পোস্টো ভাগ কিনো।",
     "listedForSale": "বেচার লাগি লিস্ট করা",

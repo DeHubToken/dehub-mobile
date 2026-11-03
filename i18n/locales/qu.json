@@ -12600,6 +12600,7 @@
     "yourFractions": "Rakiykikuna",
     "acrossPosts_one": "{{count}} churasqapi",
     "acrossPosts_other": "{{count}} churasqakunapi",
+    "deletedPosts": "Qullusqa willakuykuna ({{count}})",
     "noneHeldYet": "Manaraqmi mayqan rakitapas hap'inkichu",
     "noneHeldHint": "Willakuyta mintiy 1000 rakinkunata chaskinaykipaq, utaq huk runaq willakuyninpi rakita rantiy.",
     "listedForSale": "Rantikunapaq churasqa",

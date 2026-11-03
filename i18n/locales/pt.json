@@ -13173,6 +13173,7 @@
     "yourFractions": "Suas frações",
     "acrossPosts_one": "em {{count}} post",
     "acrossPosts_other": "em {{count}} posts",
+    "deletedPosts": "Publicações excluídas ({{count}})",
     "noneHeldYet": "Você ainda não possui nenhuma fração",
     "noneHeldHint": "Cunhe uma publicação para receber suas 1000 frações, ou compre uma parte da de outra pessoa.",
     "listedForSale": "Listado à venda",

@@ -12579,6 +12579,7 @@
     "yourFractions": "તમારા હિસ્સા",
     "acrossPosts_one": "{{count}} પોસ્ટમાં",
     "acrossPosts_other": "{{count}} પોસ્ટમાં",
+    "deletedPosts": "કાઢી નાખેલી પોસ્ટ ({{count}})",
     "noneHeldYet": "તમારી પાસે હજી કોઈ હિસ્સા નથી",
     "noneHeldHint": "પોસ્ટ મિન્ટ કરો અને તેના 1000 હિસ્સા મેળવો, અથવા બીજા કોઈની પોસ્ટમાં હિસ્સો ખરીદો.",
     "listedForSale": "વેચાણ માટે લિસ્ટ કરેલ",

@@ -12558,6 +12558,7 @@
     "yourFractions": "Òkè gị",
     "acrossPosts_one": "n'ime post {{count}}",
     "acrossPosts_other": "n'ime post {{count}}",
+    "deletedPosts": "Ozi ehichapụrụ ({{count}})",
     "noneHeldYet": "Ị nwebeghị òkè ọ bụla",
     "noneHeldHint": "Mint post ka i nweta òkè ya 1000, ma ọ bụ zụta òkè na post onye ọzọ.",
     "listedForSale": "Edepụtara maka ire",

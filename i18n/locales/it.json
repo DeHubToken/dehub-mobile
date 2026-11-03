@@ -12679,6 +12679,7 @@
     "yourFractions": "Le tue frazioni",
     "acrossPosts_one": "su {{count}} post",
     "acrossPosts_other": "su {{count}} post",
+    "deletedPosts": "Post eliminati ({{count}})",
     "noneHeldYet": "Non possiedi ancora alcuna frazione",
     "noneHeldHint": "Conia un post per ottenerne le 1000 frazioni, oppure compra una quota di quello di qualcun altro.",
     "listedForSale": "In vendita",

@@ -24,6 +24,7 @@ import { getNFTs } from "../services/nft.service";
 import { fractionImageFor } from "../libs/fractionThumb";
 import { STREAM_COLLECTION_CONTRACT_ADDRESSES } from "../config/web3.constants";
 import { DEFAULT_FRACTION_CHAIN, TOTAL_FRACTIONS, useFractionWallet } from "./useFractionMarket";
+import env from "../config/env";
 
 export interface PortfolioPosition {
   tokenId: string;
@@ -36,9 +37,44 @@ export interface PortfolioPosition {
   postType: string | null;
   /** True when this is a post you uploaded, not one you bought into. */
   isCreator: boolean;
+  /**
+   * The post behind these fractions was deleted. The fractions still exist
+   * on-chain, so the position is kept, but every surface hides it by default.
+   */
+  postDeleted?: boolean;
 }
 
-type Candidate = Omit<PortfolioPosition, "balance" | "percentage">;
+/** Positions whose post still exists, which is what the portfolio shows by default. */
+export function livePositions(positions: PortfolioPosition[]): PortfolioPosition[] {
+  return positions.filter((p) => !p.postDeleted);
+}
+
+type Candidate = Omit<PortfolioPosition, "balance" | "percentage" | "postDeleted">;
+
+/**
+ * Flag positions whose post was deleted.
+ *
+ * Deleting a post does not burn its fractions, so the balance read still finds
+ * them and they sat in the portfolio as tiles that open nothing. The post API
+ * answers 404 for a deleted post and only that counts: any other failure leaves
+ * the position showing, so an outage never hides real holdings.
+ */
+async function markDeletedPosts(positions: PortfolioPosition[]): Promise<void> {
+  const base = env.API_URL || "https://api.dehub.io/api";
+  const STEP = 8;
+  for (let i = 0; i < positions.length; i += STEP) {
+    await Promise.all(
+      positions.slice(i, i + STEP).map(async (position) => {
+        try {
+          const res = await fetch(`${base}/nft_info/${encodeURIComponent(position.tokenId)}`);
+          if (res.status === 404) position.postDeleted = true;
+        } catch {
+          // Unknown is not deleted.
+        }
+      }),
+    );
+  }
+}
 
 const BALANCE_ABI = [
   "function balanceOf(address account, uint256 id) view returns (uint256)",
@@ -140,6 +176,7 @@ async function resolveBalances(candidates: Candidate[], address: string): Promis
   if (candidates.length > 0 && failed === candidates.length) {
     throw new Error("Fraction balance reads failed");
   }
+  await markDeletedPosts(positions);
   return positions.sort((a, b) => b.balance - a.balance);
 }
 

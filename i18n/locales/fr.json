@@ -11110,6 +11110,7 @@
     "yourFractions": "Vos fractions",
     "acrossPosts_one": "sur {{count}} publication",
     "acrossPosts_other": "sur {{count}} publications",
+    "deletedPosts": "Publications supprimées ({{count}})",
     "noneHeldYet": "Vous ne détenez encore aucune fraction",
     "noneHeldHint": "Frappez une publication pour obtenir ses 1000 fractions, ou achetez une part de celle de quelqu'un d'autre.",
     "listedForSale": "Mise en vente",

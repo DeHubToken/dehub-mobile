@@ -58,6 +58,8 @@ jest.mock("../../services/nft.service", () => ({
 
 jest.mock("../../libs/misc", () => ({ buildImageUrl: () => null, buildFeedImageUrls: () => [] }));
 
+jest.mock("../../config/env", () => ({ __esModule: true, default: { API_URL: "https://api.dehub.io/api" } }));
+
 jest.mock("../../config/web3.constants", () => ({
   STREAM_COLLECTION_CONTRACT_ADDRESSES: { 8453: "0xcollection" },
 }));
@@ -82,7 +84,12 @@ function runQuery() {
   return options.queryFn();
 }
 
+const mockFetch = jest.fn();
+(global as any).fetch = mockFetch;
+
 beforeEach(() => {
+  mockFetch.mockReset();
+  mockFetch.mockResolvedValue({ status: 200 });
   mockBalanceOf.mockReset();
   mockTables.trades = ok([]);
   mockTables.ownListings = ok([]);
@@ -147,5 +154,21 @@ describe("useFractionPortfolio", () => {
     const positions = await runQuery();
     expect(positions).toHaveLength(1);
     expect(positions[0]).toMatchObject({ tokenId: "9", balance: 1000, isCreator: true });
+  });
+
+  it("flags positions whose post was deleted, and only on a 404", async () => {
+    mockTables.trades = ok([row(1), row(2), row(3)]);
+    mockBalanceOf.mockResolvedValue(bn(10));
+    mockFetch.mockImplementation((url: string) =>
+      url.endsWith("/1")
+        ? Promise.resolve({ status: 404 })
+        : url.endsWith("/2")
+          ? Promise.reject(new Error("offline"))
+          : Promise.resolve({ status: 200 }),
+    );
+
+    const positions = await runQuery();
+    const deleted = Object.fromEntries(positions.map((p: any) => [p.tokenId, !!p.postDeleted]));
+    expect(deleted).toEqual({ "1": true, "2": false, "3": false });
   });
 });

@@ -12565,6 +12565,7 @@
     "yourFractions": "Ҳиссаҳои шумо",
     "acrossPosts_one": "дар {{count}} нашр",
     "acrossPosts_other": "дар {{count}} нашр",
+    "deletedPosts": "Паёмҳои нестшуда ({{count}})",
     "noneHeldYet": "Шумо ҳанӯз ягон ҳисса надоред",
     "noneHeldHint": "Постро минт кунед, то 1000 ҳиссаи онро гиред, ё аз пости каси дигар ҳисса харед.",
     "listedForSale": "Барои фурӯш гузошта шуд",

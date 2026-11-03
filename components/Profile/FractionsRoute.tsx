@@ -8,7 +8,7 @@
  * into selling it, and the empty state points at the market.
  */
 import Animated from "react-native-reanimated";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +21,7 @@ import SellFractionsSheet, { type SellTarget } from "../Fractions/SellFractionsS
 import { padGrid } from "../Fractions/fractionFormat";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useFractionPortfolio, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
+import { useFractionPortfolio, livePositions, type PortfolioPosition } from "../../hooks/useFractionPortfolio";
 
 interface FractionsRouteProps {
   address?: string;
@@ -42,7 +42,8 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
   const [selling, setSelling] = useState<SellTarget | null>(null);
-  const { data: positions = [], isLoading, isError, refetch, isRefetching } = useFractionPortfolio(address);
+  const { data: allPositions, isLoading, isError, refetch, isRefetching } = useFractionPortfolio(address);
+  const positions = useMemo(() => livePositions(allPositions || []), [allPositions]);
 
   const openPost = useCallback(
     (tokenId: string) => {

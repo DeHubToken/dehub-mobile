@@ -12557,6 +12557,7 @@
     "yourFractions": "ستاسو ونډې",
     "acrossPosts_one": "په {{count}} پوسټ کې",
     "acrossPosts_other": "په {{count}} پوسټونو کې",
+    "deletedPosts": "ړنګې شوې خپرونې ({{count}})",
     "noneHeldYet": "تاسو تر اوسه هېڅ ونډې نه لرئ",
     "noneHeldHint": "یو پوسټ mint کړئ ترڅو د هغه 1000 ونډې ترلاسه کړئ، یا د بل چا په پوسټ کې ونډه واخلئ.",
     "listedForSale": "د پلور لپاره لیست شوې",

@@ -12584,6 +12584,7 @@
     "yourFractions": "Dina fraktioner",
     "acrossPosts_one": "över {{count}} inlägg",
     "acrossPosts_other": "över {{count}} inlägg",
+    "deletedPosts": "Raderade inlägg ({{count}})",
     "noneHeldYet": "Du äger inga fraktioner än",
     "noneHeldHint": "Prägla ett inlägg för att få dess 1000 fraktioner, eller köp in dig i någon annans.",
     "listedForSale": "Listad till försäljning",

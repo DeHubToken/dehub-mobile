@@ -12743,6 +12743,7 @@
     "yourFractions": "Vaše podiely",
     "acrossPosts_one": "v {{count}} príspevku",
     "acrossPosts_other": "v {{count}} príspevkoch",
+    "deletedPosts": "Odstránené príspevky ({{count}})",
     "noneHeldYet": "Zatiaľ nedržíte žiadne podiely",
     "noneHeldHint": "Vyrazte príspevok a získajte jeho 1000 podielov, alebo si kúpte podiel v cudzom.",
     "listedForSale": "Ponúknuté na predaj",

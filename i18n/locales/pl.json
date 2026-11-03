@@ -12695,6 +12695,7 @@
     "yourFractions": "Twoje ułamki",
     "acrossPosts_one": "w {{count}} poście",
     "acrossPosts_other": "w {{count}} postach",
+    "deletedPosts": "Usunięte posty ({{count}})",
     "noneHeldYet": "Nie posiadasz jeszcze żadnych ułamków",
     "noneHeldHint": "Zmintuj post, aby dostać jego 1000 frakcji, albo kup udział w cudzym poście.",
     "listedForSale": "Wystawione na sprzedaż",

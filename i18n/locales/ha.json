@@ -12579,6 +12579,7 @@
     "yourFractions": "Rabe-rabenka",
     "acrossPosts_one": "a cikin rubutu {{count}}",
     "acrossPosts_other": "a cikin rubuce-rubuce {{count}}",
+    "deletedPosts": "Rubuce-rubucen da aka goge ({{count}})",
     "noneHeldYet": "Ba ka riƙe da wani rabo ba tukuna",
     "noneHeldHint": "Yi minting na sako don samun rabonsa 1000, ko ka saya rabo a sakon wani.",
     "listedForSale": "An saka don sayarwa",

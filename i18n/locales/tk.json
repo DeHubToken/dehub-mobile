@@ -12566,6 +12566,7 @@
     "yourFractions": "Siziň paýlaryňyz",
     "acrossPosts_one": "{{count}} ýazgyda",
     "acrossPosts_other": "{{count}} ýazgyda",
+    "deletedPosts": "Pozulan ýazgylar ({{count}})",
     "noneHeldYet": "Sizde entek paý ýok",
     "noneHeldHint": "1000 paýyny almak üçin ýazgyny mint ediň ýa-da başga biriniň ýazgysyndan paý satyn alyň.",
     "listedForSale": "Satuwa goýuldy",

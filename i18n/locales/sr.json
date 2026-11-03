@@ -12520,6 +12520,7 @@
     "yourFractions": "Ваши удели",
     "acrossPosts_one": "у {{count}} објави",
     "acrossPosts_other": "у {{count}} објава",
+    "deletedPosts": "Обрисане објаве ({{count}})",
     "noneHeldYet": "Још не поседујете ниједан удео",
     "noneHeldHint": "Искујте објаву да добијете њених 1000 удела или купите удео у туђој.",
     "listedForSale": "На продају",

@@ -12584,6 +12584,7 @@
     "yourFractions": "Вашите дялове",
     "acrossPosts_one": "в {{count}} пост",
     "acrossPosts_other": "в {{count}} постове",
+    "deletedPosts": "Изтрити публикации ({{count}})",
     "noneHeldYet": "Все още не притежавате никакви дялове",
     "noneHeldHint": "Изсечете публикация, за да получите нейните 1000 дяла, или купете дял от чужда.",
     "listedForSale": "Списък за продажба",

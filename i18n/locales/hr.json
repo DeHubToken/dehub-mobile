@@ -12581,6 +12581,7 @@
     "yourFractions": "Tvoji razlomci",
     "acrossPosts_one": "preko {{count}} objave",
     "acrossPosts_other": "preko {{count}} objava",
+    "deletedPosts": "Izbrisane objave ({{count}})",
     "noneHeldYet": "Još nemaš nikakve razlomke",
     "noneHeldHint": "Iskujte objavu da dobijete njezinih 1000 frakcija ili kupite udio u tuđoj.",
     "listedForSale": "Navedeno na prodaju",
