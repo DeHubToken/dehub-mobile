@@ -19,8 +19,8 @@ import FeedPillPullEffect from './FeedPillPullEffect';
 import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
 // Use the same padded artwork and image box as the web capsule.
-const MARK = require("../../assets/web-icons/riftn-wordmark-white.png");
-const MARK_HEIGHT = 18;
+const MARK = require("../../assets/web-icons/dehub-logo-compact.png");
+const MARK_HEIGHT = 36;
 export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
@@ -122,7 +122,7 @@ export const IslandCapsule = memo(function IslandCapsule({
           </View>
         </View>
         <DockLogoTarget tint="#FFFFFF" style={styles.mark}>
-        <ElectricLogo refreshing={refreshing} pullDistance={pullMotion?.distance} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={61}
+        <ElectricLogo refreshing={refreshing} pullDistance={pullMotion?.distance} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={42}
           height={MARK_HEIGHT} tint="#FFFFFF" label={isSignedIn ? `${BRAND_NAME}, ${label}` : t("screens.signIn")}
           expanded={isSignedIn ? menuOpen : undefined} style={styles.mark}
           hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />
