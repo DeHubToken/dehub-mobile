@@ -14649,6 +14649,7 @@
     "unavailable": "GitHub-Verifizierung ist bald verfügbar."
   },
   "comic": {
+    "showAll": "Alli {{count}} Siite zeige",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} Seiten",

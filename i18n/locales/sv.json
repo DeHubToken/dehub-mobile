@@ -14634,6 +14634,7 @@
     "unavailable": "GitHub-verifiering kommer snart."
   },
   "comic": {
+    "showAll": "Visa alla {{count}} sidor",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} sidor",

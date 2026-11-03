@@ -14597,6 +14597,7 @@
     "unavailable": "GitHub verification (การยืนยันตัวตนของ GitHub) จะมาถึงเร็วๆ นี้"
   },
   "comic": {
+    "showAll": "แสดงทั้งหมด {{count}} หน้า",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} หน้า",

@@ -14621,6 +14621,7 @@
     "unavailable": "GitHub verification (التحقق من GitHub) هيا بتجي قريب."
   },
   "comic": {
+    "showAll": "عرض كل الصفحات الـ {{count}}",
     "tab": "كوميك",
     "title": "كوميك",
     "chip": "كوميك · {{count}} صفحات",

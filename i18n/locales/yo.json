@@ -14628,6 +14628,7 @@
     "unavailable": "GitHub ẹgbẹ́ rẹ yìí ṣe ẹgbẹ́ rẹ."
   },
   "comic": {
+    "showAll": "Fi gbogbo ojú ìwé {{count}} hàn",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} oju iwe",

@@ -14590,6 +14590,7 @@
     "disconnect": "Joojinta"
   },
   "comic": {
+    "showAll": "Muuji dhammaan {{count}} bog",
     "page": "Page {{page}}",
     "goto": "Page {{page}}",
     "alt": "Mawduuc aad u ah",

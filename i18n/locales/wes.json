@@ -14594,6 +14594,7 @@
     "failed": "Couldn't connect GitHub. Try again."
   },
   "comic": {
+    "showAll": "Show all {{count}} pages",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} pages",

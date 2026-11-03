@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Alle {{count}} Seiten anzeigen"
+  },
   "copy": {
     "chatSlowDown": "Langsamer! Zu viele Nachrichten hintereinander. Versuch es in {{wait}} erneut oder warte, bis jemand anderes antwortet.",
     "eabb5c136be4": "Aktualisierungsversuch gescheitert",

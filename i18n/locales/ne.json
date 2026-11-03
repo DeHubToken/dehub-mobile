@@ -14670,6 +14670,7 @@
     "unavailable": "GitHubको सत्यापन (Verification) जल्दै आउँदैछ।"
   },
   "comic": {
+    "showAll": "सबै {{count}} पृष्ठ देखाउनुहोस्",
     "tab": "कमिक",
     "title": "कमिक",
     "chip": "कमिक · {{count}} पृष्ठहरू",

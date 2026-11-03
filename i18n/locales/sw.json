@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Onyesha kurasa zote {{count}}"
+  },
   "accountConnect": {
     "account": "Kuvinjari kwa umma hakuhitaji akaunti. Unganisha akaunti yako ya DeHub ili kudhibiti wasifu wako na kuunda au kuchapisha maudhui.",
     "allow": "Ruhusu muunganisho",

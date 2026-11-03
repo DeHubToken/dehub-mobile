@@ -14611,6 +14611,7 @@
     "unavailable": "Verifikasi GitHub kanggoan bakal sing ngawé."
   },
   "comic": {
+    "showAll": "Tampilake kabeh {{count}} kaca",
     "tab": "Komedis",
     "title": "Komedis",
     "chip": "Komedis · {{count}} halaman",

@@ -14608,6 +14608,7 @@
     "failed": "GitHubنى باغلاپ بولمىدى. قايتا سىناپ بېقىڭ."
   },
   "comic": {
+    "showAll": "ھەممە {{count}} بەتنى كۆرسەت",
     "chip": "Kömik · {{count}} bétik",
     "open": "Açiq komik, {{page}}-chi saqet, {{total}}-chi jami.",
     "page": "{{page}}-chi bet",

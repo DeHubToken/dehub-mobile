@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Mind a(z) {{count}} oldal megjelenítése"
+  },
   "accountConnect": {
     "account": "A nyilvános böngészéshez nincs szükség fiókra. DeHub-fiókod összekapcsolásával kezelheted a profilodat, és tartalmat hozhatsz létre vagy tehetsz közzé.",
     "allow": "Kapcsolódás engedélyezése",

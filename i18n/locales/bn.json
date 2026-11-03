@@ -14627,6 +14627,7 @@
     "unavailable": "GitHub যাচাইকরণ শীঘ্রই আসছে ।"
   },
   "comic": {
+    "showAll": "সব {{count}}টি পৃষ্ঠা দেখান",
     "tab": "কমিক",
     "title": "কমিক",
     "chip": "কমিক · {{count}} পৃষ্ঠা",

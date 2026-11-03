@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "显示全部 {{count}} 页"
+  },
   "copy": {
     "chatSlowDown": "慢一点！连续发送的消息太多了。请在 {{wait}} 后重试，或等其他人回复。",
     "eabb5c136be4": "更新计划失败",

@@ -42,7 +42,10 @@ const HOLO = ["#ff6ec4", "#ffd36e", "#7af0c6", "#6ea8ff", "#c58bff", "#ff6ec4", 
 const SPRING = { stiffness: 160, damping: 14, mass: 1 };
 const MAX_TILT = 14;
 
-const pad2 = (n: number) => String(n).padStart(2, "0");
+/** Cover URL to its clamped aspect ratio. */
+const coverRatios = new Map<string, number>();
+
+const pad2 =(n: number) => String(n).padStart(2, "0");
 
 function ComicDeck({ images, captions, descriptions, title, width, onOpen, full = false }: {
   images: string[];
@@ -63,16 +66,28 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [reading, setReading] = useState(false);
-  const [ratio, setRatio] = useState(0.75);
+  const [ratio, setRatio] = useState(() => coverRatios.get(images[0]) ?? 0.75);
 
   // The art box takes the cover's shape, kept between tall and wide.
+  // Remembered per cover, so the post page opens at the size the feed card
+  // already had instead of starting portrait and jumping.
   useEffect(() => {
     let live = true;
-    if (images[0]) measureImageAspect(images[0]).then(r => { if (live && r) setRatio(Math.max(0.62, Math.min(1.5, r))); });
+    const cover = images[0];
+    const known = cover ? coverRatios.get(cover) : undefined;
+    if (known) setRatio(known);
+    else if (cover) measureImageAspect(cover).then(r => {
+      if (!r) return;
+      const next = Math.max(0.62, Math.min(1.5, r));
+      coverRatios.set(cover, next);
+      if (live) setRatio(next);
+    });
     return () => { live = false; };
   }, [images]);
 
-  const cardW = Math.round(Math.min(ratio > 1 ? width * 0.88 : width * 0.78, ratio > 1 ? 420 : 340));
+  // Tablets get the bigger desktop card.
+  const roomy = width >= 700;
+  const cardW = Math.round(Math.min(ratio > 1 ? width * 0.9 : width * 0.82, ratio > 1 ? (roomy ? 600 : 440) : (roomy ? 440 : 360)));
   const artW = cardW - 12 - 16;
   const artH = Math.round(artW / ratio);
 
@@ -172,11 +187,7 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
   }
 
   return (
-    <View style={{ alignItems: "center", paddingTop: 44, paddingBottom: full ? 12 : 20 }}>
-      <View style={styles.chip} pointerEvents="none">
-        <Text style={styles.chipText}>✦ {t("comic.chip", { defaultValue: "Comic · {{count}} pages", count: total })}</Text>
-      </View>
-
+    <View style={{ alignItems: "center", paddingTop: 12, paddingBottom: full ? 12 : 20 }}>
       <View style={{ width: cardW, height: cardH }}>
         {behind.map((i, n) => (
           <LinearGradient
@@ -295,9 +306,9 @@ function ComicDeck({ images, captions, descriptions, title, width, onOpen, full 
         </ScrollView>
       ) : null}
 
-      {full ? (
-        <Pressable onPress={() => setReading(true)} style={[styles.pill, { marginTop: 12 }]} accessibilityRole="button">
-          <Text style={styles.pillText}>{t("comic.readAll", { defaultValue: "Read all pages" })}</Text>
+      {full && total > 1 ? (
+        <Pressable onPress={() => setReading(true)} style={[styles.pill, { marginTop: 16 }]} accessibilityRole="button">
+          <Text style={styles.pillText}>{t("comic.showAll", { defaultValue: "Show all {{count}} pages", count: total })}</Text>
         </Pressable>
       ) : null}
     </View>
@@ -339,13 +350,11 @@ const styles = StyleSheet.create({
   backAlt: { color: "rgba(255,255,255,0.72)", fontSize: 13, lineHeight: 19 },
   backFoot: { marginTop: "auto", flexDirection: "row", justifyContent: "space-between", gap: 8 },
   footText: { color: "rgba(255,255,255,0.5)", fontFamily: MONO, fontSize: 10 },
-  chip: { position: "absolute", top: 8, left: 8, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999, backgroundColor: "rgba(10,6,8,0.62)", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" },
-  chipText: { color: "#fff", fontSize: 11, fontWeight: "500" },
   warm: { width: 1, height: 1, opacity: 0, position: "absolute" },
   mini: { width: 34, height: 48, padding: 2, borderRadius: 6, borderWidth: 2, backgroundColor: "#111" },
   miniImg: { flex: 1, borderRadius: 3 },
-  pill: { paddingHorizontal: 16, paddingVertical: 7, borderRadius: 999, borderWidth: 1, borderColor: "rgba(255,255,255,0.25)" },
-  pillText: { color: "#fff", fontSize: 12, fontWeight: "500" },
+  pill: { height: 36, justifyContent: "center", paddingHorizontal: 16, borderRadius: 12, borderWidth: 1, borderColor: "rgba(255,255,255,0.25)" },
+  pillText: { color: "#fff", fontSize: 14, fontWeight: "500" },
   readHead: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8, paddingVertical: 8 },
   readTitle: { flex: 1, color: "#fff", fontWeight: "600", fontSize: 15 },
   readNum: { color: "rgba(255,255,255,0.5)", fontFamily: MONO, fontSize: 11, paddingTop: 2 },

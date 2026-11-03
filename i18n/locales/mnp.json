@@ -14652,6 +14652,7 @@
     "unavailable": "GitHub 验证即将推出。"
   },
   "comic": {
+    "showAll": "顯示全部 {{count}} 頁",
     "tab": "漫畫",
     "title": "漫畫",
     "chip": "漫畫 · {{count}} 頁",

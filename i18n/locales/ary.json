@@ -14659,6 +14659,7 @@
     "unavailable": "التحقق من GitHub قريبًا."
   },
   "comic": {
+    "showAll": "عرض كل الصفحات الـ {{count}}",
     "tab": "كوميك",
     "title": "كوميك",
     "chip": "كوميك · {{count}} صفح",

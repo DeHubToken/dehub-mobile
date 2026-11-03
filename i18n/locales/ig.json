@@ -14608,6 +14608,7 @@
     "unavailable": "Nyocha GitHub ga-abịa n'oge na-adịghị anya."
   },
   "comic": {
+    "showAll": "Gosi ibe {{count}} niile",
     "flip": "Ibe {{page}} nke {{total}}. Taa ka ị tụgharịa",
     "editor": {
       "count": "{{count}} nke {{limit}} ihu",

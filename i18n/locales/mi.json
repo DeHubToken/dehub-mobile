@@ -14615,6 +14615,7 @@
     "unavailable": "Ka tū mai te whakapānga o GitHub."
   },
   "comic": {
+    "showAll": "Whakaaturia ngā whārangi {{count}} katoa",
     "tab": "Pakiwaitara",
     "title": "Pakiwaitara",
     "chip": "Pakiwaitara · {{count}} whārangi",

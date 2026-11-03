@@ -14810,6 +14810,7 @@
     "unavailable": "Ang pagpapatunay ng GitHub ay dumating na."
   },
   "comic": {
+    "showAll": "Ipakita ang lahat ng {{count}} pahina",
     "tab": "Komiks",
     "title": "Komiks",
     "chip": "Komiks · {{count}} pahina",

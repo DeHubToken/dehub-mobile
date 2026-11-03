@@ -14607,6 +14607,7 @@
     "disconnect": "Baglan"
   },
   "comic": {
+    "showAll": "Ähli {{count}} sahypany görkez",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} sahypa",

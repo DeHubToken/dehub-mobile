@@ -14593,6 +14593,7 @@
     "unavailable": "GitHub د ورکړې/تایید (Verification) د ورځو په لړ کې راغلی دی."
   },
   "comic": {
+    "showAll": "ټولې {{count}} پاڼې وښایاست",
     "tab": "کومیک",
     "title": "کومیک",
     "chip": "کومیک · {{count}} پښتوې",

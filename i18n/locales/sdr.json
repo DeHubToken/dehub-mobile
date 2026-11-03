@@ -14677,6 +14677,7 @@
     "unavailable": "GitHub doğrulaması yakında gelecek."
   },
   "comic": {
+    "showAll": "सब {{count}} पन्ना देखाव",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} पन्ना",

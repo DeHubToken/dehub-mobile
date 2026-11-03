@@ -1,5 +1,6 @@
 {
   "comic": {
+    "showAll": "{{count}} sayfanın tümünü göster",
     "tab": "Çizgi roman",
     "title": "Çizgi roman",
     "chip": "Çizgi roman · {{count}} sayfa",

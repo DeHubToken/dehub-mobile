@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "Prikaži svih {{count}} stranica"
+  },
   "accountConnect": {
     "account": "Javno pregledavanje ne zahtijeva račun. Povežite svoj DeHub račun kako biste upravljali svojim profilom i kreirali ili objavili sadržaj.",
     "allow": "Dopusti povezivanje",

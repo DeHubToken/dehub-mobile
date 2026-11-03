@@ -14635,6 +14635,7 @@
     "unavailable": "Ověření na GitHubu již brzy."
   },
   "comic": {
+    "showAll": "Zobrazit všech {{count}} stránek",
     "tab": "Comik",
     "title": "Comik",
     "chip": "Comik · {{count}} stran",

@@ -14658,6 +14658,7 @@
     "unavailable": "GitHub ማረጋገጫ በቅርቡ ይመጣል ።"
   },
   "comic": {
+    "showAll": "ሁሉንም {{count}} ገጾች አሳይ",
     "tab": "ስእል",
     "title": "ስእል",
     "chip": "ስእል · {{count}} ገጾች",

@@ -14630,6 +14630,7 @@
     "unavailable": "GitHub verifikācija ir tuvāk."
   },
   "comic": {
+    "showAll": "Rādīt visas {{count}} lapas",
     "tab": "Komiks",
     "title": "Komiks",
     "chip": "Komiks · {{count}} lapas",

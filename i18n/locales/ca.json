@@ -14631,6 +14631,7 @@
     "unavailable": "Aviat arribarà la verificació de GitHub."
   },
   "comic": {
+    "showAll": "Mostra les {{count}} pàgines",
     "tab": "Comic",
     "title": "Comic",
     "chip": "Comic · {{count}} pàgines",

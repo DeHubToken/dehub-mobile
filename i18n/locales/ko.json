@@ -1,4 +1,7 @@
 {
+  "comic": {
+    "showAll": "{{count}}페이지 모두 보기"
+  },
   "accountConnect": {
     "account": "공개 브라우징에는 계정이 필요하지 않습니다. DeHub 계정을 연결하여 프로필을 관리하고 콘텐츠를 만들거나 게시하세요.",
     "allow": "연결 허용",
