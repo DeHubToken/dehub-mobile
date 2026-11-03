@@ -67,8 +67,8 @@ describe('services/auth/supabaseAuth.service telegram', () => {
       const [url, redirect] = mockOpenAuth.mock.calls[0];
       expect(url).toContain('https://oauth.telegram.org/auth');
       expect(url).toContain('bot_id=7788990011');
-      expect(url).toContain(`origin=${encodeURIComponent('https://dehub.io')}`);
-      expect(url).toContain(`return_to=${encodeURIComponent('https://dehub.io/auth/telegram?app=1')}`);
+      expect(url).toContain(`origin=${encodeURIComponent('https://riftn.com')}`);
+      expect(url).toContain(`return_to=${encodeURIComponent('https://riftn.com/auth/telegram?app=1')}`);
       expect(redirect).toBe('dehub://auth-callback');
     });
 
