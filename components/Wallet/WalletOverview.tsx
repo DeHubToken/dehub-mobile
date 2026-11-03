@@ -30,6 +30,7 @@ import ArcSendSheet from './ArcSendSheet';
 import { AppTokenHistorySheet, AppTokenSendSheet } from './AppTokenSheets';
 import { useAppTokens, useAppTokensEnabled } from '../../hooks/useAppTokens';
 import AddressInputTools from '../common/AddressInputTools';
+import { tokenLabel } from '../../libs/token-label';
 
 const ICONS: Record<string, any> = {
   DHB: require('../../assets/web-icons/dehub-coin.png'),
@@ -245,7 +246,7 @@ function SendTokenSheet({ token, owner, onClose, onSent }: { token: WalletToken;
   return <GlassModal visible onClose={onClose} presentation="bottom" scrollable dismissible={!busy}>
     <View style={s.sheet}>
       <Text style={s.title}>{t('wallet.sendToken', { symbol: token.symbol })}</Text>
-      <Text style={s.muted}>{networkName(token.chainId)} · {format(Number(token.balance))} {token.symbol}</Text>
+      <Text style={s.muted}>{networkName(token.chainId)} · {format(Number(token.balance))} {tokenLabel(token.symbol)}</Text>
       <TextInput accessibilityLabel={t('wallet.recipientAddress')} placeholder={t('wallet.recipientAddress')} placeholderTextColor="#999" value={to} onChangeText={setTo} autoCapitalize="none" autoCorrect={false} editable={!busy && !hash} style={[s.input, FIELD_TEXT]} />
       <AddressInputTools onValue={setTo} scan disabled={busy || !!hash} />
       <TextInput accessibilityLabel={t('wallet.amount')} placeholder={t('wallet.amount')} placeholderTextColor="#999" value={amount} onChangeText={setAmount} keyboardType="decimal-pad" editable={!busy && !hash} style={[s.input, FIELD_TEXT]} />

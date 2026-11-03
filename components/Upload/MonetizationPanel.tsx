@@ -93,7 +93,7 @@ const SplTokenSelector: React.FC<{
           }`}
         >
           <Text className={active ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
-            {t.symbol}
+            {/^(?:DHB|DEHUB)$/i.test(t.symbol) ? "Riftn" : t.symbol}
           </Text>
         </TouchableOpacity>
       );
