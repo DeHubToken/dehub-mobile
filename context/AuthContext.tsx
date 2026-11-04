@@ -540,12 +540,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const { isVerifiedCachedProfile } = await import('../libs/auth.utils');
       const { supabase } = await import('../services/supabase');
       const { readStoredSessionUserId } = await import('../libs/supabase-session');
-      const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
+      const { resilientAsyncStorage } = await import('../libs/storage-full');
       // Read from disk, not getSession(): that refreshes an expired token over
       // the network first, which held the splash on most launches. The client
       // still refreshes in the background, and APIs and signing keep their own
       // live-token checks; this only decides whether the cached profile shows.
-      const uid = await readStoredSessionUserId(AsyncStorage, (supabase.auth as any).storageKey);
+      const uid = await readStoredSessionUserId(resilientAsyncStorage, (supabase.auth as any).storageKey);
       return !!uid && isVerifiedCachedProfile(cached, token, uid);
     },
     reconcileProfile: async () => {

@@ -1,4 +1,5 @@
 import i18n from "i18next";
+import { isStorageFullError } from "./storage-full";
 
 /**
  * What to show for a failed sign-in step. Supabase, the code-sending
@@ -9,6 +10,13 @@ import i18n from "i18next";
 export function serverAuthText(message: unknown, fallback: string): string {
   const text = typeof message === "string" ? message.trim() : "";
   if (!text) return fallback;
+  // A raw "database or disk is full (code 13 SQLITE_FULL)" means nothing to
+  // anyone. Sign-in saves around a full store now, so this is a last resort.
+  if (isStorageFullError(text)) {
+    return i18n.t("auth.storageFull", {
+      defaultValue: "Your phone is out of space. Free up some storage, then try again.",
+    });
+  }
   const language = i18n.resolvedLanguage || i18n.language || "en";
   return language === "en" || language.startsWith("en-") ? text : fallback;
 }

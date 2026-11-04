@@ -11,6 +11,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MMKV } from 'react-native-mmkv';
 import { I18nManager } from 'react-native';
 
 /**
@@ -161,8 +162,44 @@ export const SUPPORTED_LANGUAGES = [
 
 // Lazy-loaders for all non-English locales
 const packOrigin = process.env.EXPO_PUBLIC_LOCALE_PACK_ORIGIN || 'https://riftn.com';
-const readPackCache = (key: string) => AsyncStorage.getItem(`locale-pack:${key}`);
-const writePackCache = async (key: string, value: string) => { try { await AsyncStorage.setItem(`locale-pack:${key}`, value); } catch {} };
+// Downloaded packs live in their own MMKV file, never AsyncStorage. On Android
+// AsyncStorage is one SQLite file capped at 6 MB; a single language is ~0.9 MB
+// and every translation update used to add a fresh copy without dropping the
+// old one, until the file was full and sign-in failed with SQLITE_FULL.
+// Only the current manifest version is kept.
+const packStore = new MMKV({ id: 'locale-packs' });
+const PACK_VERSION_PREFIX = `${manifest.version}:`;
+const LEGACY_PACK_PREFIX = 'locale-pack:';
+try {
+  for (const key of packStore.getAllKeys()) {
+    if (!key.startsWith(PACK_VERSION_PREFIX)) packStore.delete(key);
+  }
+} catch {}
+// Free the space old builds used in AsyncStorage. Packs for this version are
+// moved across on first read (below) rather than downloaded again.
+AsyncStorage.getAllKeys()
+  .then((keys) => {
+    const stale = keys.filter((k) => k.startsWith(LEGACY_PACK_PREFIX) && !k.startsWith(LEGACY_PACK_PREFIX + PACK_VERSION_PREFIX));
+    return stale.length ? AsyncStorage.multiRemove(stale) : undefined;
+  })
+  .catch(() => {});
+const readPackCache = async (key: string): Promise<string | null> => {
+  try {
+    const value = packStore.getString(key);
+    if (value !== undefined) return value;
+  } catch {}
+  try {
+    const legacy = await AsyncStorage.getItem(LEGACY_PACK_PREFIX + key);
+    if (legacy !== null) {
+      try { packStore.set(key, legacy); } catch {}
+      AsyncStorage.removeItem(LEGACY_PACK_PREFIX + key).catch(() => {});
+    }
+    return legacy;
+  } catch {
+    return null;
+  }
+};
+const writePackCache = async (key: string, value: string) => { try { packStore.set(key, value); } catch {} };
 
 const loadedPacks = new Set<string>();
 const retryAfter = new Map<string, number>();

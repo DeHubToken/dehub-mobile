@@ -19,6 +19,7 @@
  * per-address in SecureStore (@/libs/wallets.local), and switching locks the
  * signing provider away so each profile starts sealed and unlocks on demand.
  */
+import { clearFallbackKeys, resilientAsyncStorage } from "./storage-full";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import {
@@ -432,6 +433,15 @@ export async function stageIncomingIdentity(preserveSupabaseUserId?: string): Pr
       }
       if (doomed.length) await AsyncStorage.multiRemove(doomed);
     } catch {}
+    clearFallbackKeys((key, raw) => {
+      if (!SB_KEY_PATTERN.test(key)) return false;
+      if (!preserveSupabaseUserId) return true;
+      try {
+        return JSON.parse(raw)?.user?.id !== preserveSupabaseUserId;
+      } catch {
+        return true;
+      }
+    });
     // Per-account caches die with the displaced session — engagement overlays,
     // link-copy floors, PPV unlocks and viewer-shaped query caches would all
     // otherwise paint the outgoing account's state for the incoming one.
@@ -537,6 +547,7 @@ async function applyStash(session: StoredProfileSession | null): Promise<void> {
     const doomed = keys.filter((k) => SB_KEY_PATTERN.test(k));
     if (doomed.length) await AsyncStorage.multiRemove(doomed);
   } catch {}
+  clearFallbackKeys((key) => SB_KEY_PATTERN.test(key));
   try {
     clearAllEngagement();
   } catch {}
@@ -557,7 +568,7 @@ async function applyStash(session: StoredProfileSession | null): Promise<void> {
     }
     if (session.supabase) {
       try {
-        await AsyncStorage.setItem(
+        await resilientAsyncStorage.setItem(
           session.supabase.storageKey,
           JSON.stringify({
             access_token: session.supabase.access_token,
