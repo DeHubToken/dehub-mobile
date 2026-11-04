@@ -7780,7 +7780,25 @@
     "requestPendingBody": "Yêu cầu theo dõi của bạn đã được gửi. Bạn sẽ có thể xem bài đăng của họ sau khi họ phê duyệt yêu cầu của bạn.",
     "followToSeePosts": "Theo dõi tài khoản này để xem bài đăng của họ.",
     "loadFailed": "Không thể tải danh sách này",
-    "new": "Mới"
+    "new": "Mới",
+    "nonFollowers": {
+      "title": "Dọn danh sách đang theo dõi?",
+      "body": "{{count}} tài khoản bạn theo dõi không theo dõi lại bạn.",
+      "cta": "Bỏ theo dõi cả {{count}}",
+      "notNow": "Để sau",
+      "confirmTitle": "Bỏ theo dõi {{count}} tài khoản?",
+      "confirmBody": "Họ sẽ không được thông báo. Bạn có thể theo dõi lại bất kỳ ai sau.",
+      "confirm": "Có, bỏ theo dõi {{count}}",
+      "cancel": "Hủy",
+      "working": "Đang bỏ theo dõi {{done}}/{{total}}...",
+      "background": "Tiếp tục chạy nền",
+      "failed": "Không thể bắt đầu. Hãy thử lại sau một phút.",
+      "close": "Đóng",
+      "doneTitle": "Đã dọn xong",
+      "doneAll": "Đã bỏ theo dõi {{done}} tài khoản không theo dõi lại bạn.",
+      "doneSome": "Đã bỏ theo dõi {{done}} tài khoản. {{failed}} tài khoản không bỏ được.",
+      "doneToast": "Đã bỏ theo dõi {{done}} tài khoản không theo dõi lại bạn"
+    }
   },
   "reactionInfo": {
     "title": "Phản ứng",

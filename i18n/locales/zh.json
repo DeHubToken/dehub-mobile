@@ -7692,7 +7692,25 @@
     "requestPendingBody": "您的关注请求已发送。一旦他们批准您的请求，您就可以看到他们的帖子。",
     "followToSeePosts": "关注此帐户以查看他们的帖子。",
     "loadFailed": "无法加载此心愿单",
-    "new": "新"
+    "new": "新",
+    "nonFollowers": {
+      "title": "清理你的关注列表？",
+      "body": "你关注的 {{count}} 个账号没有回关你。",
+      "cta": "全部取消关注 {{count}} 个",
+      "notNow": "以后再说",
+      "confirmTitle": "取消关注 {{count}} 个账号？",
+      "confirmBody": "对方不会收到通知。你以后随时可以重新关注。",
+      "confirm": "确定，取消关注 {{count}} 个",
+      "cancel": "取消",
+      "working": "正在取消关注 {{done}}/{{total}}...",
+      "background": "在后台继续",
+      "failed": "无法开始，请一分钟后再试。",
+      "close": "关闭",
+      "doneTitle": "已全部清理",
+      "doneAll": "已取消关注 {{done}} 个没有回关你的账号。",
+      "doneSome": "已取消关注 {{done}} 个账号，{{failed}} 个未能取消。",
+      "doneToast": "已取消关注 {{done}} 个没有回关你的账号"
+    }
   },
   "reactionInfo": {
     "title": "反应",
