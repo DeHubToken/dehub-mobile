@@ -234,17 +234,21 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         <View className="flex-1 min-w-0 justify-center">
           <View className="flex-row items-center gap-1.5">
             <View className="flex-1 min-w-0 flex-row items-center gap-1.5">
-              <Text
-                className="text-[14px] font-bold text-white"
-                style={{ flexShrink: 1 }}
-                numberOfLines={1}
-              >
-                {displayName}
-              </Text>
+              {/* Name and badge share one gap-free row so the badge sits on the
+                  name's baseline at the feed's spacing; the online dot follows. */}
+              <View style={{ flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
+                <Text
+                  className="text-[14px] font-bold text-white"
+                  style={{ flexShrink: 1, lineHeight: 20 }}
+                  numberOfLines={1}
+                >
+                  {displayName}
+                </Text>
+                {badgeImg && (
+                  <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 14, 0, 20)} contentFit="contain" />
+                )}
+              </View>
               <OnlineDot address={other?.address} />
-              {badgeImg && (
-                <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 15, 0, 21)} contentFit="contain" />
-              )}
               <NewMemberChip address={other?.address} />
               {username && (
                 <Text

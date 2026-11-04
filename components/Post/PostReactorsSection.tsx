@@ -17,7 +17,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getPostLikers } from "../../services/nft.service";
 import { REACTION_LIST } from "../../libs/reactions";
 import { engagementWeight } from "../../libs/engagement-weight";
-import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 
 const PREVIEW_COUNT = 5;
@@ -66,9 +66,9 @@ const PostReactorsSection: React.FC<{ tokenId: number | string }> = ({ tokenId }
               >
                 <Avatar uri={getAvatarUrl(person.avatarImageUrl)} size={36} name={displayName} />
                 <View style={{ flex: 1 }}>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                    <Text style={styles.name} numberOfLines={1}>{displayName}</Text>
-                    {badge && <BadgeArtwork source={badge} style={{ width: 16, height: 16 }} />}
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Text style={[styles.name, { lineHeight: 20 }]} numberOfLines={1}>{displayName}</Text>
+                    {badge && <BadgeArtwork source={badge} style={getBadgeHoverOpticalStyle(badge, 14, 0, 20)} />}
                   </View>
                   {!!person.username && (
                     <Text style={styles.handle} numberOfLines={1}>@{person.username.replace("@", "")}</Text>

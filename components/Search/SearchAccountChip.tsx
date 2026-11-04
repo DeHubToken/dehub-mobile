@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useSearchFollowState } from "../../hooks/useSearchFollowState";
 import Avatar from "../common/Avatar";
@@ -44,7 +44,8 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
   const avatarSrc = getAvatarUrl(account.avatarImageUrl || "");
   const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
   const followers = account.followers ?? 0;
-  const badgeImage = getBadgeUrl(account.hideBadgeAndBalance ? 0 : (account.badgeBalance ?? 0), { username: account.username });
+  // Balance and grandfathered tier together, like the account cards below.
+  const badgeImage = account.hideBadgeAndBalance ? undefined : getBadgeUrlFor(account);
 
   const handlePress = useCallback(() => {
     const identifier = account.username || account.address;
