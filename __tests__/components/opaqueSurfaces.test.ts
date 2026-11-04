@@ -9,7 +9,6 @@ const ALLOWED = [
   "components/Comments/CommentContextMenu.tsx",
   "components/DM/ConversationContextMenu.tsx",
   "components/DM/MessageContextMenu.tsx",
-  "components/LiveChat/LiveChatContextMenu.tsx",
   // The feed search lens blurs the feed behind it while it waits for words.
   "components/Home/FeedSearchLens.tsx",
   "components/ui/ChromeSurface.tsx",
