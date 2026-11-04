@@ -2,11 +2,10 @@
 //
 // Mirrors the web app's `getOrCreateAffiliateCode` (cosmic-echo-hero/src/lib/affiliate.ts):
 // each wallet owns a stable code in the shared Supabase `affiliate_codes` table.
-// Sharing `${APP_ORIGIN}/r/{code}` lets the web SSR edge function unfurl the
+// Sharing `https://riftn.com/r/{code}` lets the web SSR edge function unfurl the
 // affiliate share image and attribute referrals (first-touch wins, 90-day cookie).
 
 import { supabase } from "../services/supabase";
-import env from "../config/env";
 import { shareProfile } from "./misc";
 import { withWalletHeader } from "./supabase-wallet-client";
 import { setShareRefCode } from "./shareRef";
@@ -152,8 +151,7 @@ export async function findAffiliateCode(ownerAddress: string): Promise<string | 
 }
 
 export function buildInviteLink(code: string): string {
-  const origin = (env.APP_ORIGIN || "https://dehub.io").replace(/\/+$/, "");
-  return `${origin}/r/${code}`;
+  return `https://riftn.com/r/${code}`;
 }
 
 export function buildInviteMessage(code: string, link: string): string {
