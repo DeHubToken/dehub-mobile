@@ -26,17 +26,19 @@ export function Collapsible({ open, children, style }: { open: boolean; children
     );
   }, [open, progress]);
 
-  const animated = useAnimatedStyle(() => {
-    // Not measured yet and fully open (mounted open): let it size itself.
-    if (height.value === 0) return progress.value === 1 ? { opacity: 1 } : { height: 0, opacity: 0 };
-    return { height: height.value * progress.value, opacity: Math.min(1, progress.value * 1.6) };
-  });
+  const animated = useAnimatedStyle(() => ({
+    height: height.value * progress.value,
+    opacity: Math.min(1, progress.value * 1.6),
+  }));
 
   if (!rendered) return null;
+  // The content is measured out of flow (absolute), so a zero-height box can
+  // never squash it to 0 and leave the section stuck shut. That happened on
+  // iOS: the chevron turned but nothing opened.
   return (
     <Animated.View style={[{ overflow: "hidden" }, animated]} pointerEvents={open ? "auto" : "none"}>
       <Animated.View
-        style={style}
+        style={[{ position: "absolute", top: 0, left: 0, right: 0 }, style]}
         onLayout={(e) => {
           height.value = e.nativeEvent.layout.height;
         }}

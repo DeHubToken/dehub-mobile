@@ -109,7 +109,18 @@ export function getTransactionLink(chainId: number, txHash: string) {
 
 export type SocialPlatform = "facebook" | "instagram" | "twitter" | "x" | "discord" | "tiktok" | "youtube" | "telegram";
 
-const trimInput = (v: string) => (v || "").trim();
+/**
+ * Trim, and give a pasted link without https:// its protocol back
+ * ("t.me/@name", "www.instagram.com/name"), so it is checked as a link
+ * instead of being glued onto the site address as a handle. Also drops an
+ * @ right after the site ("t.me/@name" -> "t.me/name"); TikTok keeps it.
+ */
+const trimInput = (v: string) => {
+  let out = (v || "").trim();
+  if (!/^https?:\/\//i.test(out) && /^(www\.|m\.|mobile\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}\//i.test(out)) out = `https://${out}`;
+  if (!/tiktok\.com/i.test(out)) out = out.replace(/^(https?:\/\/[^/]+\/)@+/i, "$1");
+  return out;
+};
 const stripAtAndSlash = (v: string) => trimInput(v).replace(/^@+/, "").replace(/^\/+/, "").replace(/\/+$/, "");
 const hasProtocol = (v: string) => /^https?:\/\//i.test(v);
 
@@ -120,7 +131,7 @@ const validators = {
     const v = trimInput(urlOrHandle);
     if (!v) return { valid: true, normalized: "" };
     const normalized = hasProtocol(v) ? v : asUrl("https://facebook.com", v);
-    const re = /^https?:\/\/(www\.)?facebook\.com\/[A-Za-z0-9\.]{3,}(?:\/?|$)/i;
+    const re = /^https?:\/\/(www\.|m\.|mobile\.)?facebook\.com\/[A-Za-z0-9\.]{3,}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: _translateCopy("copy.eeb22fa8250a", { defaultValue: "Enter a valid facebook.com profile/page URL or handle" }) };
@@ -129,7 +140,7 @@ const validators = {
     const v = trimInput(urlOrHandle);
     if (!v) return { valid: true, normalized: "" };
     const normalized = hasProtocol(v) ? v : asUrl("https://instagram.com", v);
-    const re = /^https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9._]{1,30}(?:\/?|$)/i;
+    const re = /^https?:\/\/(www\.|m\.)?instagram\.com\/[A-Za-z0-9._]{1,30}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: _translateCopy("copy.fcf6c0caef78", { defaultValue: "Enter a valid instagram.com username or handle" }) };
@@ -138,7 +149,7 @@ const validators = {
     const v = trimInput(urlOrHandle);
     if (!v) return { valid: true, normalized: "" };
     const normalized = hasProtocol(v) ? v : asUrl("https://x.com", v);
-    const re = /^https?:\/\/(www\.)?(x\.com|twitter\.com)\/[A-Za-z0-9_]{1,15}(?:\/?|$)/i;
+    const re = /^https?:\/\/(www\.|m\.|mobile\.)?(x\.com|twitter\.com)\/[A-Za-z0-9_]{1,15}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: _translateCopy("copy.8a97e490255b", { defaultValue: "Enter a valid x.com/twitter.com username or handle" }) };
@@ -161,7 +172,7 @@ const validators = {
     if (!v) return { valid: true, normalized: "" };
     let handle = stripAtAndSlash(v);
     const normalized = hasProtocol(v) ? v : `https://tiktok.com/@${handle}`;
-    const re = /^https?:\/\/(www\.)?tiktok\.com\/@[A-Za-z0-9_.]{1,24}(?:\/?|$)/i;
+    const re = /^https?:\/\/(www\.|m\.|vm\.)?tiktok\.com\/@[A-Za-z0-9_.]{1,24}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: _translateCopy("copy.bbcf8a431fb3", { defaultValue: "Enter a valid TikTok username or profile URL" }) };
@@ -170,7 +181,7 @@ const validators = {
     const v = trimInput(urlOrHandle);
     if (!v) return { valid: true, normalized: "" };
     const normalized = hasProtocol(v) ? v : asUrl("https://youtube.com", v);
-    const re = /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/(channel\/|c\/|@)?[A-Za-z0-9_-]{1,}(?:\/?|$)/i;
+    const re = /^https?:\/\/(www\.|m\.)?(youtube\.com|youtu\.be)\/(channel\/|c\/|@)?[A-Za-z0-9_-]{1,}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: _translateCopy("copy.06cbf3db335f", { defaultValue: "Enter a valid YouTube channel URL or handle" }) };
