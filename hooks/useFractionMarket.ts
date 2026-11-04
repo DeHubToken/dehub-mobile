@@ -18,6 +18,7 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tansta
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { getAccount } from "../services/user.service";
 
 /** Fractions minted per upload. Every token id is 1000 units, always. */
 export const TOTAL_FRACTIONS = 1000;
@@ -211,11 +212,21 @@ export function useMarketListings(sort: MarketSort = "newest", search = "") {
     queryFn: async () => {
       let q = supabase.from("fraction_listings").select("*").eq("status", "active");
 
-      const term = search.trim().replace(/[,()]/g, " ");
+      const term = search.trim().replace(/^@+/, "").replace(/[,()]/g, " ").trim();
       if (term) {
         const digits = term.replace(/^#/, "");
         const clauses = [`post_title.ilike.%${term}%`, `creator_username.ilike.%${term}%`];
         if (/^\d+$/.test(digits)) clauses.push(`token_id.eq.${digits}`);
+        // Most listings carry no creator name, so a username matched nothing.
+        // Look the name up once and match the seller's and creator's wallet too.
+        if (/^[A-Za-z0-9_.]{2,30}$/.test(term) && !/^\d+$/.test(term)) {
+          const address = await getAccount(term)
+            .then((res: any) => String((res?.result ?? res?.data ?? res)?.address ?? "").toLowerCase())
+            .catch(() => "");
+          if (/^0x[0-9a-f]{40}$/.test(address)) {
+            clauses.push(`seller_address.eq.${address}`, `creator_address.eq.${address}`);
+          }
+        }
         q = q.or(clauses.join(","));
       }
 
