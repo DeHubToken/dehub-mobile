@@ -114,7 +114,7 @@ import { getAccount, isFollowing as checkIsFollowing } from "../services/user.se
 import { blockUser, unblockUser } from "../services/block.service";
 import { truncateAddress } from "../libs/strings.util";
 import { dmDraftKey } from "../libs/draft-cache";
-import { getAvatarUrl } from "../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast";
 import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
 import { createLogger } from "../libs/logger";
@@ -392,7 +392,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     const username =
       (target as any)?.username || undefined;
     const avatarRaw = (target as any)?.avatarImageUrl || undefined;
-    if (!currentConvId) return { address: addr, displayName, username, avatarImageUrl: avatarRaw };
+    if (!currentConvId) return { address: addr, displayName, username, avatarImageUrl: avatarRaw, badgeImg: (target as any)?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(target as any) };
     const c = conversations.find((x) => x._id === currentConvId);
     const other = c?.participants?.find(
       (p) =>
@@ -405,6 +405,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       displayName: String(other?.displayName || displayName || ""),
       username: String(other?.username || username || ""),
       avatarImageUrl: other?.avatarImageUrl || avatarRaw,
+      badgeImg: ((other as any) ?? (target as any))?.hideBadgeAndBalance ? undefined : getBadgeUrlFor((other as any) ?? (target as any)),
     };
   }, [currentConvId, conversations, target, targetAddress, userId, address]);
 
@@ -1764,6 +1765,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         leftContent={LeftHeader}
         rightContent={RightHeader}
         subtitle={remoteTyping ? _copy("copy.30f5934e6249", { defaultValue: "typing…" }) : peer.username ? `@${peer.username}` : undefined}
+        titleBadge={(peer as any).badgeImg}
         titleAccessory={<OnlineDot address={peer.address} />}
       />
 
