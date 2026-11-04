@@ -9,7 +9,7 @@ import { useAuthState } from '../../context/AuthContext';
 import { useUser } from '../../context/AuthContext';
 import { getMyPosts } from '../../services/user.service';
 import ProfileEmptyState from './ProfileEmptyState';
-import ProfileGridTile, { type GridTileKind } from './ProfileGridTile';
+import ProfileGridTile from './ProfileGridTile';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { seedPostDetail, warmRequest } from '../../libs/navPrefetch';
@@ -96,16 +96,12 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     minter: address, postType, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked,
   } : null);
 
-  // Every post type in one grid: a photo opens the image viewer, anything
-  // else its own post page, as a tap on the same post in a feed would.
-  const openTile = useCallback((item: UnifiedFeedItem, kind: GridTileKind, images: string[]) => {
+  // Every post type in one grid, and every tile opens its own post page, so
+  // a photo comes with its likes, comments, save and share like any post.
+  const openTile = useCallback((item: UnifiedFeedItem) => {
     const tokenId = item.tokenId ?? item.id;
     if (tokenId == null) return;
     onBeforeNavigate?.();
-    if (kind === 'photo' && images.length > 0) {
-      navigation.navigate(ScreenNames.ImageViewer, { images, galleryKey: String(tokenId), initialIndex: 0 });
-      return;
-    }
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId as any));
     noteProfileFeedOpen(feedSource, tokenId);
