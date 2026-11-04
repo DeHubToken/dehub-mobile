@@ -37,7 +37,6 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { ShareLinks } from "../navigation/linking.config";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import env from "../config/env";
 import { openInApp } from "../libs/links.utils";
 import { appLocale } from "../libs/date.util";
 import { toastError, toastSuccess } from "../libs";
@@ -165,7 +164,7 @@ export default function CreatorFlowScreen() {
     <Pressable
       accessibilityRole="link"
       accessibilityLabel={t("creatorFlow.openCanvas")}
-      onPress={() => void openInApp(`${env.APP_ORIGIN}/creator/flow`)}
+      onPress={() => void openInApp(`https://riftn.com/creator/flow`)}
       hitSlop={10}
       style={styles.headerBtn}
     >
@@ -201,7 +200,7 @@ export default function CreatorFlowScreen() {
                 <Pressable
                   accessibilityRole="link"
                   style={styles.secondaryBtn}
-                  onPress={() => void openInApp(`${env.APP_ORIGIN}/creator/flow`)}
+                  onPress={() => void openInApp(`https://riftn.com/creator/flow`)}
                 >
                   <Icon name="Plus" size={16} color="#FFFFFF" />
                   <Text style={styles.secondaryText}>{t("creatorFlow.newFlowOnCanvas")}</Text>

@@ -19,7 +19,6 @@
  */
 
 import i18n from 'i18next';
-import env from '../config/env';
 import { isEnsHandle } from './ens-handle';
 import { RESERVED_LINK_SEGMENTS } from './reserved-usernames';
 import { cutFromText } from './cut-from-text';
@@ -369,4 +368,4 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
 }
 
 /** Share origin — the same host the web app builds links on. */
-export const SHARE_ORIGIN = (env.APP_ORIGIN || 'https://dehub.io').replace(/\/+$/, '');
+export const SHARE_ORIGIN = 'https://riftn.com';
