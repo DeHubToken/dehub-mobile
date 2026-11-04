@@ -8,6 +8,8 @@ import {
   getPlaybackUrl,
 } from '../../libs/misc';
 import { markHlsFailed } from '../../libs/hls-fallback';
+import { Image } from 'react-native';
+import { ASSISTANT_ADDRESS } from '../../libs/assistant';
 
 jest.mock('../../config/env', () => ({
   __esModule: true,
@@ -18,6 +20,19 @@ jest.mock('../../config/env', () => ({
 }));
 
 describe('libs/misc', () => {
+  it('uses the bundled assistant portrait for legacy, revisioned and wallet avatar sources', () => {
+    const resolve = jest.spyOn(Image, 'resolveAssetSource').mockReturnValue({
+      uri: 'file:///assistant-portrait.png', width: 1280, height: 1280, scale: 1,
+    });
+    try {
+      expect(getAvatarUrl(`avatars/${ASSISTANT_ADDRESS}.jpg`)).toBe('file:///assistant-portrait.png');
+      expect(getAvatarUrl(`https://api.dehub.io/avatars/${ASSISTANT_ADDRESS}-abcdef.png?v=old`)).toBe('file:///assistant-portrait.png');
+      expect(getWalletAvatarUrl(ASSISTANT_ADDRESS.toUpperCase())).toBe('file:///assistant-portrait.png');
+      expect(getAvatarUrl('avatars/someone-else.jpg', 0)).toBe('https://cdn.test.dehub.io/avatars/someone-else.jpg');
+    } finally {
+      resolve.mockRestore();
+    }
+  });
   describe('getAvatarUrl', () => {
     it('preserves content revisions and uses the platform-compatible image format', () => {
       const key = '0xrevision-0123456789abcdef0123456789abcdef.webp';
