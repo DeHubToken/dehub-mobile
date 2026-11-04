@@ -15,6 +15,7 @@ import {
   AppState,
   Platform,
 } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Icon from "../components/ui/Icon";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -510,6 +511,13 @@ const LiveChatScreen: React.FC = () => {
     []
   );
 
+  // Held line: the list slides up so it clears the hold sheet, and back after.
+  const holdLift = useSharedValue(0);
+  const holdLiftStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -holdLift.value }] }));
+  const handleHoldLift = useCallback((px: number) => {
+    holdLift.value = withTiming(px, { duration: px ? 260 : 200 });
+  }, [holdLift]);
+
   const handleContextMenuClose = useCallback(() => {
     setContextMenuVisible(false);
     setContextMenuMessage(null);
@@ -850,6 +858,7 @@ const LiveChatScreen: React.FC = () => {
       )}
 
       <View className="flex-1">
+        <Animated.View style={[{ flex: 1 }, holdLiftStyle]}>
         <FlatList
           ref={flatListRef}
           data={listItems}
@@ -888,6 +897,7 @@ const LiveChatScreen: React.FC = () => {
             }, 300);
           }}
         />
+        </Animated.View>
 
         {!atBottom && messages.length > 10 && (
           <TouchableOpacity
@@ -974,6 +984,7 @@ const LiveChatScreen: React.FC = () => {
         onBan={handleContextBan}
         onUnban={handleContextUnban}
         translate={contextMenuTranslate}
+        onLift={handleHoldLift}
       />
 
       <ConfirmModal
