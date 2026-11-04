@@ -133,8 +133,10 @@ function Row({ b, rank, max, open, onToggle }: { b: TopBuilder; rank: number; ma
   );
 }
 
-export function TopBuildersCard() {
+/** compact: the Prompts tab version, top 3 with a "Show top 8" toggle. */
+export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
   const { skin, isMinimal } = useAppTheme();
   const shippedColor = useShippedColor();
   const [period, setPeriod] = React.useContext(PeriodContext);
@@ -142,6 +144,7 @@ export function TopBuildersCard() {
   const { builders, isLoading } = useTopBuilders(period);
   if (!isLoading && builders.length === 0) return null;
   const max = builders[0]?.points ?? 1;
+  const limit = compact && !expanded ? 3 : SHOWN;
 
   return (
     <ThemePanel style={[styles.card, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
@@ -167,9 +170,18 @@ export function TopBuildersCard() {
       </View>
       {isLoading
         ? [0, 1, 2, 3].map((i) => <View key={i} style={styles.skeleton} />)
-        : builders.slice(0, SHOWN).map((b, i) => (
+        : builders.slice(0, limit).map((b, i) => (
           <Row key={b.wallet} b={b} rank={i + 1} max={max} open={openKey === b.wallet} onToggle={() => setOpenKey((k) => (k === b.wallet ? null : b.wallet))} />
         ))}
+      {compact && !isLoading && builders.length > 3 && (
+        <Pressable onPress={() => setExpanded((v) => !v)} style={styles.moreBtn} hitSlop={6} accessibilityRole="button">
+          <Text style={styles.moreText}>
+            {expanded
+              ? t("features.topBuilders.showLess", "Show less")
+              : t("features.topBuilders.showAll", "Show top {{n}}", { n: Math.min(SHOWN, builders.length) })}
+          </Text>
+        </Pressable>
+      )}
       <Text style={styles.rule}>{t("features.topBuilders.rule", "10 pts per shipped request, 1 per upvote, 2 per comment on someone else's request.")}</Text>
     </ThemePanel>
   );
@@ -217,6 +229,8 @@ export function usePinVisible() {
 }
 
 const styles = StyleSheet.create({
+  moreBtn: { alignSelf: "center", marginTop: 6, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.07)" },
+  moreText: { color: "#D4D4D8", fontSize: 12 },
   card: { backgroundColor: "#18181B", borderRadius: 16, padding: 12, marginBottom: 12, borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" },
   head: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },
   title: { flexDirection: "row", alignItems: "center", gap: 8 },

@@ -2447,6 +2447,8 @@
       "votes": "Votes",
       "comments": "Comments",
       "breakdown": "{{shipped}} shipped ({{sp}}) · {{votes}} upvotes ({{vp}}) · {{comments}} comments ({{cp}})",
+      "showAll": "Show top {{n}}",
+      "showLess": "Show less",
       "viewProfile": "View profile",
       "rule": "10 pts per shipped request, 1 per upvote, 2 per comment on someone else's request.",
       "you": "You",
