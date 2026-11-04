@@ -79,6 +79,7 @@
       </intent-filter>
       <intent-filter android:autoVerify="true" data-generated="true">
         <action android:name="android.intent.action.VIEW"/>
+        <data android:scheme="https" android:host="riftn.com"/>
         <data android:scheme="https" android:host="dehub.io" android:path="/app"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/app/"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/newpost/"/>
