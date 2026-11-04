@@ -3,6 +3,7 @@ import React from 'react';
 import { toast } from 'sonner-native';
 import GlassToast, { GlassToastProps } from '../components/ui/GlassToast';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { clearAppCaches, freeAsyncStorageSpace, isStorageFullError } from './storage-full';
 
 // Normalize unknown error shapes to a string message
 function extractMessage(err: unknown): string {
@@ -82,6 +83,23 @@ export const toastError = (
     error === null || error === undefined
       ? fallback
       : (extractMessage(error) || fallback);
+  // Never show "database or disk is full (code 13 SQLITE_FULL)". Free what we
+  // can straight away and offer the rest behind one button.
+  if (isStorageFullError(message)) {
+    freeAsyncStorageSpace().catch(() => {});
+    return createGlassToast('error', _translateCopy('auth.storageFull', {
+      defaultValue: 'Your phone is out of space. Free up some storage, then try again.',
+    }), {
+      duration: 8000,
+      actionLabel: _translateCopy('settings.clearCache', { defaultValue: 'Clear cache' }),
+      onActionPress: () => {
+        clearAppCaches()
+          .then(() => toastSuccess(_translateCopy('settings.cacheCleared', { defaultValue: 'Cache cleared. Try again.' })))
+          .catch(() => {});
+      },
+      ...options,
+    });
+  }
   return createGlassToast('error', message, options);
 };
 

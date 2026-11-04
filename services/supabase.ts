@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { resilientAsyncStorage } from "../libs/storage-full";
 import env from "../config/env";
 // The token accessor directly, not services/ai.service's dehubAuthHeaders:
 // that module imports nothing from here today, but a service importing a
@@ -10,7 +10,9 @@ import { createSupabaseRelayFetch } from "../libs/supabaseRelayFetch";
 
 export const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
   auth: {
-    storage: AsyncStorage,
+    // Never AsyncStorage directly: on Android it is a 6 MB SQLite file, and a
+    // full one made every sign-in fail with SQLITE_FULL.
+    storage: resilientAsyncStorage,
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
