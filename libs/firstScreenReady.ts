@@ -8,7 +8,9 @@
  * first screen claims nothing and reveals at once, and the boot gate caps the
  * wait (FIRST_SCREEN_MAX_WAIT_MS) so a slow network still opens the app.
  */
-export const FIRST_SCREEN_MAX_WAIT_MS = 2500;
+// Short on purpose: a saved feed releases at once, so this cap only decides
+// how long slow connections stare at the logo. Posts fill in after it lands.
+export const FIRST_SCREEN_MAX_WAIT_MS = 800;
 
 let claimed = false;
 let ready = false;
