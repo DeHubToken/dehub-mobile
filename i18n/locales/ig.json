@@ -7733,7 +7733,25 @@
     "requestPendingBody": "E zigara arịrịọ ịgbaso gị. Ị ga-enwe ike ịhụ posts ha ozugbo ha kwadoro arịrịọ gị.",
     "followToSeePosts": "Soro akaụntụ a ka ịhụ posts ha.",
     "loadFailed": "Agaghị ebubatagharị ndesịta a",
-    "new": "Ọhụrụ"
+    "new": "Ọhụrụ",
+    "nonFollowers": {
+      "title": "Hichapụ ndị ị na-eso?",
+      "body": "{{count}} akaụntụ ị na-eso anaghị alaghachi gị.",
+      "cta": "Wepụ ịgbaso niile {{count}}",
+      "notNow": "Ọ bụghị ugbu a",
+      "confirmTitle": "Wepụ ịgbaso {{count}} akaụntụ?",
+      "confirmBody": "A gaghị agwa ha. Ị nwere ike iso onye ọzọ ọzọ n’oge ọzọ.",
+      "confirm": "Ee, wepụ ịgbaso {{count}}",
+      "cancel": "Kagbuo",
+      "working": "Na-ewepụ ịgbaso {{done}} nke {{total}}...",
+      "background": "Nọgide na-aga n’azụ",
+      "failed": "Enweghị ike ịmalite. Gbalịa ọzọ n’ime nkeji.",
+      "close": "Mechie",
+      "doneTitle": "Ihe niile ehichapụrụ",
+      "doneAll": "Wepụ ịgbaso akaụntụ {{done}} ndị na-alaghachi gị.",
+      "doneSome": "Wepụ ịgbaso akaụntụ {{done}}. Enweghị ike wepụ ịgbaso {{failed}}.",
+      "doneToast": "Wepụ ịgbaso akaụntụ {{done}} ndị na-alaghachi gị."
+    }
   },
   "reactionInfo": {
     "mentionedYouPost": "{{name}} kwuru gị n'otu post",

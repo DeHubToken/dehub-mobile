@@ -7734,7 +7734,25 @@
     "requestPendingBody": "Codsigaaga raacida waa la soo diray. Waxaad awoodi doontaa inaad aragto qoraaladooda marka ay ansixiyaan codsigaaga.",
     "followToSeePosts": "Raac koontadan si aad u aragto qoraaladooda.",
     "loadFailed": "Ma buuxin karo liiskan",
-    "new": "Cusub"
+    "new": "Cusub",
+    "nonFollowers": {
+      "title": "Nadiifi cidda aad raacdo?",
+      "body": "{{count}} akoonnada aad raacdo ma kuu raacaan.",
+      "cta": "Ka tag dhammaan {{count}}",
+      "notNow": "Maya hadda",
+      "confirmTitle": "Ka tag {{count}} akoonnada?",
+      "confirmBody": "Ma la sheegi doonaa. Waxaad mar kale qof kasta ku raaci kartaa dambe.",
+      "confirm": "Haa, ka tag {{count}}",
+      "cancel": "Jooji",
+      "working": "Ka tagaya {{done}} ee {{total}}...",
+      "background": "Ku sii wad asaga asaga",
+      "failed": "Ma bilaabi karo. Mar kale isku day hal daqiiqad.",
+      "close": "Xir",
+      "doneTitle": "Dhammaan la nadiifiyey",
+      "doneAll": "Ka tagay {{done}} akoonnada aan kuu raacin.",
+      "doneSome": "Ka tagay {{done}} akoonnada. {{failed}} ma la tagi karo.",
+      "doneToast": "Ka tagay {{done}} akoonnada aan kuu raacin."
+    }
   },
   "reactionInfo": {
     "title": "Falcelinta",

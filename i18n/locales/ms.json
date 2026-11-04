@@ -8009,7 +8009,25 @@
     "requestPendingBody": "Permintaan ikut anda telah dihantar. Anda akan dapat melihat siaran mereka setelah mereka meluluskan permintaan anda.",
     "followToSeePosts": "Ikuti akaun ini untuk melihat siaran mereka.",
     "loadFailed": "Tidak dapat memuatkan senarai ini",
-    "new": "Baharu"
+    "new": "Baharu",
+    "nonFollowers": {
+      "title": "Bersihkan siapa yang anda ikuti?",
+      "body": "{{count}} akaun yang anda ikuti tidak mengikut anda kembali.",
+      "cta": "Nyahikuti semua {{count}}",
+      "notNow": "Tidak sekarang",
+      "confirmTitle": "Nyahikuti {{count}} akaun?",
+      "confirmBody": "Mereka tidak akan diberitahu. Anda boleh mengikuti sesiapa lagi kemudian.",
+      "confirm": "Ya, nyahikuti {{count}}",
+      "cancel": "Batal",
+      "working": "Menyahikuti {{done}} daripada {{total}}...",
+      "background": "Teruskan di latar belakang",
+      "failed": "Tidak dapat memulakan. Cuba lagi dalam seminit.",
+      "close": "Tutup",
+      "doneTitle": "Semua dibersihkan",
+      "doneAll": "Menyahikuti {{done}} akaun yang tidak mengikut anda kembali.",
+      "doneSome": "Menyahikuti {{done}} akaun. {{failed}} tidak dapat disyahikuti.",
+      "doneToast": "Menyahikuti {{done}} akaun yang tidak mengikut anda kembali"
+    }
   },
   "reactionInfo": {
     "title": "Tindak balas",

@@ -7753,7 +7753,24 @@
     "requestPendingBody": "İzləmə tələbiniz göndərildi. Tələbinizi təsdiqlədikdən sonra onun yazılarını görə biləcəksiniz.",
     "followToSeePosts": "Onun yazılarını görmək üçün bu hesaba abunə olun.",
     "loadFailed": "Bu siyahını yükləmək mümkün olmadı",
-    "new": "Yeni"
+    "new": "Yeni",
+    "nonFollowers": {
+      "title": "Kimə əməl etdiyinizi təmizləyin?",
+      "body": "{{count}} İzlədiyiniz hesablar sizə geri qayıtmır.",
+      "cta": "Hamısını ləğv edin {{count}}",
+      "notNow": "İndi yox",
+      "confirmTitle": "{{count}} hesabları ləğv edilsin?",
+      "confirmBody": "Onlara heç bir məlumat verilməyəcək. Daha sonra hər kəsi yenidən izləyə bilərsiniz.",
+      "confirm": "Bəli, unfollow {{count}}",
+      "cancel": "Ləğv et",
+      "background": "Arxa planda davam edin",
+      "failed": "Başlaya bilmədi. Bir dəqiqə sonra yenidən cəhd edin.",
+      "close": "Bağla",
+      "doneTitle": "Hamısı təmizləndi",
+      "doneAll": "Geri izləmədiyiniz {{done}} hesabları ləğv edildi.",
+      "doneSome": "Doldurulmamış {{done}} hesabları. {{failed}} deaktiv edilə bilmədi.",
+      "doneToast": "Geri izləmədiyiniz{{done}} hesabları ləğv edildi"
+    }
   },
   "reactionInfo": {
     "title": "Reaksiyalar",

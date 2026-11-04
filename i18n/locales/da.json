@@ -7757,7 +7757,25 @@
     "requestPendingBody": "Din følges anmodning er sendt. Du vil kunne se deres opslag, når de godkender din anmodning.",
     "followToSeePosts": "Følg denne konto for at se deres opslag.",
     "loadFailed": "Kunne ikke indlæse denne liste",
-    "new": "Ny"
+    "new": "Ny",
+    "nonFollowers": {
+      "title": "Ryd op i, hvem du følger?",
+      "body": "{{count}}-konti, du følger, følger dig ikke tilbage.",
+      "cta": "Følg ikke længere alle {{count}}",
+      "notNow": "Ikke nu",
+      "confirmTitle": "Vil du ophøre med at følge {{count}}-konti?",
+      "confirmBody": "De vil ikke blive fortalt det. Du kan følge med igen senere.",
+      "confirm": "Ja, følg ikke længere {{count}}",
+      "cancel": "Annuller",
+      "working": "Affølger {{done}} af {{total}}...",
+      "background": "Fortsæt i baggrunden",
+      "failed": "Kunne ikke starte. Prøv igen om et minut.",
+      "close": "Luk",
+      "doneTitle": "Alle ryddet",
+      "doneAll": "Har ikke fulgt {{done}}-konti, der ikke fulgte dig tilbage.",
+      "doneSome": "Affølgede {{done}}-konti. {{failed}} kunne ikke affølges.",
+      "doneToast": "Ikke-følgede {{done}}-konti følger dig ikke tilbage"
+    }
   },
   "reactionInfo": {
     "title": "Reaktioner",

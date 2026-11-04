@@ -7753,7 +7753,25 @@
     "requestPendingBody": "Cererea ta de urmărire a fost trimisă. Vei putea vedea postările lor odată ce aceștia îți aprobă cererea.",
     "followToSeePosts": "Urmărește acest cont pentru a vedea postările sale.",
     "loadFailed": "Nu s-a putut încărca această listă",
-    "new": "Nou"
+    "new": "Nou",
+    "nonFollowers": {
+      "title": "Curăță pe cine urmezi?",
+      "body": "{{count}} conturi pe care le urmărești nu te urmăresc înapoi.",
+      "cta": "Dezactivează toate {{count}}",
+      "notNow": "Nu acum",
+      "confirmTitle": "Dezactivează {{count}} conturi?",
+      "confirmBody": "Nu vor fi anunțați. Poți să urmărești din nou pe oricine mai târziu.",
+      "confirm": "Da, dezactivează {{count}}",
+      "cancel": "Anulează",
+      "working": "Dezactivând {{done}} din {{total}}...",
+      "background": "Continuă în fundal",
+      "failed": "Nu s-a putut începe. Încearcă din nou peste un minut.",
+      "close": "Închide",
+      "doneTitle": "Totul a fost curățat",
+      "doneAll": "Au fost dezactivate {{done}} conturi care nu te urmăreau înapoi.",
+      "doneSome": "Au fost dezactivate {{done}} conturi. {{failed}} nu au putut fi dezactivate.",
+      "doneToast": "Au fost dezactivate {{done}} conturi care nu te urmăresc înapoi"
+    }
   },
   "reactionInfo": {
     "title": "Reacții",

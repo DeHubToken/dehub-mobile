@@ -7756,7 +7756,25 @@
     "requestPendingBody": "Jūsų sekimo užklausa išsiųsta. Jų įrašus galėsite matyti, kai jie patvirtins jūsų užklausą.",
     "followToSeePosts": "Sekite šią paskyrą, kad matytumėte jos įrašus.",
     "loadFailed": "Nepavyko įkelti šio sąrašo",
-    "new": "Nauja"
+    "new": "Nauja",
+    "nonFollowers": {
+      "title": "Išvalyti, kuriuos sekate?",
+      "body": "{{count}} paskyros, kurias sekate, neseka jus atgal.",
+      "cta": "Nebesekti visų {{count}}",
+      "notNow": "Ne dabar",
+      "confirmTitle": "Nebesekti {{count}} paskyrų?",
+      "confirmBody": "Jiems nebus pranešta. Vėliau vėl galėsite sekti bet ką.",
+      "confirm": "Taip, nebesekti {{count}}",
+      "cancel": "Atšaukti",
+      "working": "Nebesekama {{done}} iš {{total}}...",
+      "background": "Tęsti fone",
+      "failed": "Negalima pradėti. Bandykite dar kartą po minutės.",
+      "close": "Uždaryti",
+      "doneTitle": "Viskas išvalyta",
+      "doneAll": "Nebesekta {{done}} paskyrų, kurios nesekė jūsų atgal.",
+      "doneSome": "Nebesekta {{done}} paskyrų. {{failed}} nepavyko nebesekti.",
+      "doneToast": "Nebesekta {{done}} paskyrų, nes sekiančių jus atgal."
+    }
   },
   "reactionInfo": {
     "title": "Reakcijos",

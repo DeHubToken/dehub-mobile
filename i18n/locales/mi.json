@@ -7742,7 +7742,25 @@
     "requestPendingBody": "Kua tukuna tō tono whai. Ka taea e koe te kite i ā rātou whakairinga i te wā e whakaae ai rātou ki tō tono.",
     "followToSeePosts": "Whai i tēnei pūkete kia kite i ā rātou whakairinga.",
     "loadFailed": "Kaore e taea te whakauru i tenei raarangi",
-    "new": "Hou"
+    "new": "Hou",
+    "nonFollowers": {
+      "title": "Mahi ki te whakatika i te tangata e whai ana koe?",
+      "body": "{{count}} ngā akoranga e whai ana koe, kāore i whai koe i a rātou.",
+      "cta": "Kaua e whai i ngā {{count}} katoa",
+      "notNow": "Kāore i tēnei wā",
+      "confirmTitle": "Kaua e whai i ngā {{count}} akoranga?",
+      "confirmBody": "Kaore e kī atu. Ka taea e koe te whai i tētahi atu i muri.",
+      "confirm": "Āe, kaua e whai i ngā {{count}}",
+      "cancel": "Whakakore",
+      "working": "E whakakore ana i ngā {{done}} o {{total}}...",
+      "background": "Haere tonu i te taiao",
+      "failed": "Kāore i taea te tīmata. Ngā mihi anō i te nuinga o te meneti.",
+      "close": "Kapa",
+      "doneTitle": "Kua whakakapi katoa",
+      "doneAll": "Kua whakakore i ngā {{done}} akoranga kāore i whai koe i a rātou.",
+      "doneSome": "Kua whakakore i ngā {{done}} akoranga. Kāore i taea te whakakore i ngā {{failed}}.",
+      "doneToast": "Kua whakakore i ngā {{done}} akoranga kāore i whai koe i a rātou."
+    }
   },
   "reactionInfo": {
     "title": "Ngā urupare",

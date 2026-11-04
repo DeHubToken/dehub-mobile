@@ -7739,7 +7739,19 @@
     "requestPendingBody": "I ka tuguli ɲinini cira. Ni u sɔnna i ka ɲinini ma, i bɛna se ka u ka postw ye.",
     "followToSeePosts": "Nin jatebɔsɛbɛ tugu walasa ka a ka postw ye.",
     "loadFailed": "I tɛ se ka o sɛbɛnin ta",
-    "new": "Kura"
+    "new": "Kura",
+    "nonFollowers": {
+      "title": "I be tugu ne kɔ wa?",
+      "cta": "Add all {{count}}",
+      "notNow": "O ma kɛ halibi.",
+      "confirmBody": "O loon na, mɔgɔ si ma deli ka taga n'a ye. O kɔ, i be se ka tugu mɔgɔ wɛrɛ kɔ.",
+      "cancel": "Kanali",
+      "background": "Aw ye to ka miiri o la.",
+      "failed": "I be se ka o kɛ tugu miniti damanin kɔnɔ.",
+      "close": "O kɔ, a ye dɔ fara",
+      "doneTitle": "A bɛɛ saniyanin lo",
+      "doneSome": "{{done}}accounts. {{failed}} tun tɛ se ka tugu."
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} y’i tɔgɔ fɔ live chat kɔnɔ",

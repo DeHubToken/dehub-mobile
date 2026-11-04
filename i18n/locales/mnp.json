@@ -7739,7 +7739,25 @@
     "followToSeePosts": "关注此帐户以查看他们的帖子。",
     "thisUser": "此用戶",
     "loadFailed": "該列表載入失敗",
-    "new": "新"
+    "new": "新",
+    "nonFollowers": {
+      "title": "清理你关注的人？",
+      "body": "{{count}} 你关注的账户没有回关你。",
+      "cta": "全部取消关注 {{count}}",
+      "notNow": "现在不",
+      "confirmTitle": "取消关注 {{count}} 账户？",
+      "confirmBody": "他们不会被告知。你可以稍后再次关注任何人。",
+      "confirm": "是的，取消关注 {{count}}",
+      "cancel": "取消",
+      "working": "正在取消关注 {{done}} / {{total}}...",
+      "background": "在后台继续",
+      "failed": "无法启动。请一分钟后再试。",
+      "close": "关闭",
+      "doneTitle": "全部已清除",
+      "doneAll": "已取消关注 {{done}} 个未回关你的账户。",
+      "doneSome": "已取消关注 {{done}} 个账户。{{failed}} 无法取消关注。",
+      "doneToast": "已取消关注 {{done}} 个未回关你的账户"
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} 在直播聊天中提到了你",

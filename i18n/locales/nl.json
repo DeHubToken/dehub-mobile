@@ -1745,7 +1745,6 @@
     "payDirect": "Rechtstreeks naar {{name}} gestuurd in {{symbol}} op {{chain}}. Geen swap.",
     "payDirectNoName": "Rechtstreeks naar de maker gestuurd in {{symbol}} op {{chain}}. Geen swap.",
     "payViaBridgeDpay": "Verplaatst naar Base en betaald aan Riftn Pay, tokens arriveren in ongeveer een minuut",
-    "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
@@ -5806,7 +5805,25 @@
     "requestPendingBody": "Je volgverzoek is verzonden. Je kunt hun berichten zien zodra ze je verzoek goedkeuren.",
     "followToSeePosts": "Volg dit account om hun berichten te zien.",
     "loadFailed": "Kan deze lijst niet laden",
-    "new": "Nieuw"
+    "new": "Nieuw",
+    "nonFollowers": {
+      "title": "Opruimen wie je volgt?",
+      "body": "{{count}} accounts die je volgt, volgen jou niet terug.",
+      "cta": "Alle {{count}} ontvolgen",
+      "notNow": "Niet nu",
+      "confirmTitle": "{{count}} accounts ontvolgen?",
+      "confirmBody": "Ze krijgen geen melding. Je kunt iedereen later weer volgen.",
+      "confirm": "Ja, {{count}} ontvolgen",
+      "cancel": "Annuleren",
+      "working": "{{done}} van {{total}} ontvolgen...",
+      "background": "Op de achtergrond doorgaan",
+      "failed": "Kon niet starten. Probeer het over een minuut opnieuw.",
+      "close": "Sluiten",
+      "doneTitle": "Helemaal opgeruimd",
+      "doneAll": "{{done}} accounts ontvolgd die jou niet terugvolgden.",
+      "doneSome": "{{done}} accounts ontvolgd. {{failed}} konden niet worden ontvolgd.",
+      "doneToast": "{{done}} accounts ontvolgd die jou niet terugvolgden"
+    }
   },
   "reactionInfo": {
     "title": "Reacties",

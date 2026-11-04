@@ -7786,7 +7786,25 @@
     "requestPendingBody": "Jou volgversoek is gestuur. Jy sal hul plasings kan sien sodra hulle jou versoek goedkeur.",
     "followToSeePosts": "Volg hierdie rekening om hul plasings te sien.",
     "loadFailed": "Kon nie hierdie lys laai nie",
-    "new": "Nuut"
+    "new": "Nuut",
+    "nonFollowers": {
+      "title": "Skoonmaak van wie jy volg?",
+      "body": "{{count}} rekeninge wat jy volg, volg jou nie terug nie.",
+      "cta": "Ontvolg almal {{count}}",
+      "notNow": "Nie nou nie",
+      "confirmTitle": "Ontfout {{count}} rekeninge?",
+      "confirmBody": "Hulle sal nie vertel word nie. Jy kan almal later weer volg.",
+      "confirm": "Ja, volg ons {{count}}",
+      "cancel": "Kanselleer",
+      "working": "Ontvolg {{done}} van {{total}}...",
+      "background": "Gaan voort in die agtergrond",
+      "failed": "Kon nie begin nie. Probeer weer oor 'n minuut.",
+      "close": "Sluit",
+      "doneTitle": "Alles skoongemaak",
+      "doneAll": "Ongevolg {{done}} rekeninge wat jou nie teruggevolg het nie.",
+      "doneSome": "Ongevolg {{done}} rekeninge. {{failed}} kon nie gevolg word nie.",
+      "doneToast": "Ongevolg {{done}} rekeninge volg jou nie terug nie"
+    }
   },
   "reactionInfo": {
     "title": "Reaksies",

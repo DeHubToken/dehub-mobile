@@ -1,4 +1,5 @@
 import { apiClient } from '../libs/api.client';
+import { noteUnfollow } from '../libs/non-follower-streak';
 import { User } from '../context/AuthContext';
 import { getNFTs, GetNFTsResponse, SearchParams } from './nft.service';
 import type { PostReaction } from '../libs/reactions';
@@ -657,11 +658,43 @@ export async function unfollowUser(followerAddress: string, followingAddress: st
   const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}&unFollowing=true`;
   const res = await apiClient.get<any>(url, { isAuthRequired: true });
   const payload = res?.data?.result || res?.result || res;
+  const body: any = (res as any)?.data ?? res;
+  const wasPending = !!(payload?.wasPending ?? body?.wasPending);
+  // Cancelling a pending request is not unfollowing someone.
+  if (!wasPending) noteUnfollow(typeof body?.followsYou === 'boolean' ? body.followsYou : undefined);
   return {
     status: payload?.status || 'unfollowed',
     isPrivateAccount: !!payload?.isPrivateAccount,
-    wasPending: !!payload?.wasPending,
+    wasPending,
   };
+}
+
+export interface NonFollowerJob {
+  running: boolean;
+  total: number;
+  done: number;
+  failed: number;
+}
+
+/** How many people you follow who do not follow you back (accepted follows only). */
+export async function getNonFollowerCount(): Promise<{ count: number; job: NonFollowerJob | null }> {
+  const res: any = await apiClient.get<any>('/non_followers/count', { isAuthRequired: true });
+  const body = res?.data ?? res;
+  return { count: Number(body?.count) || 0, job: body?.job ?? null };
+}
+
+/** Starts the server-side job that unfollows all of them, in the background. */
+export async function unfollowAllNonFollowers(): Promise<NonFollowerJob> {
+  const res: any = await apiClient.post<any>('/non_followers/unfollow', {}, { isAuthRequired: true });
+  const body = res?.data ?? res;
+  if (!body?.job) throw new Error(body?.error || 'Could not start');
+  return body.job;
+}
+
+export async function getUnfollowNonFollowersStatus(): Promise<NonFollowerJob | null> {
+  const res: any = await apiClient.get<any>('/non_followers/unfollow/status', { isAuthRequired: true });
+  const body = res?.data ?? res;
+  return body?.job ?? null;
 }
 
 

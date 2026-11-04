@@ -7774,7 +7774,23 @@
     "requestPendingBody": "Kamachisqaykiqa kachasqañam. Paykuna allinyachiptinkumanta rikunkichu paypa kaqnin.",
     "followToSeePosts": "Kamachiy kay p'anqata rikuy imanta kaqnin.",
     "loadFailed": "Kay listataqa manam kargayta atirqanchu",
-    "new": "Musuq"
+    "new": "Musuq",
+    "nonFollowers": {
+      "title": "¿Sumaq k'uchuykuykita?",
+      "cta": "Tukuy {{count}} nisqaykuna chinkay",
+      "notNow": "Mana chaymi",
+      "confirmTitle": "¿{{count}} konta chinkay?",
+      "confirmBody": "Mana rikhuykuchkan. Qhapaqmi chaymi chinkaykuykuchkan.",
+      "confirm": "Arí, unfollow {{count}}",
+      "cancel": "Paqay",
+      "working": "Kunanqa {{done}} chinkaykuy {{total}}...",
+      "background": "Sumaqmi chinkaykuy ñawpaq",
+      "failed": "Mana rikhuykuykita. Chaymi chinkaykuykita.",
+      "close": "suyay",
+      "doneTitle": "Llapaq chinkay",
+      "doneSome": "K'uchuykuykita {{done}} ñawpaqta. {{failed}} k'uchuykuykita mana rikhuykuykita.",
+      "doneToast": "Kunanmi chay {{done}} ñawpaqmi chaymi chaymi"
+    }
   },
   "reactionInfo": {
     "title": "Reacciones nisqakuna",

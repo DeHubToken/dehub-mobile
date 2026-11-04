@@ -1557,7 +1557,6 @@
     "payDirect": "{{chain}} üzerinde {{symbol}} olarak doğrudan {{name}} kişisine gönderilir. Takas yok.",
     "payDirectNoName": "{{chain}} üzerinde {{symbol}} olarak doğrudan içerik üreticisine gönderilir. Takas yok.",
     "payViaBridgeDpay": "Base'e taşındı ve Riftn Pay'e ödendi, tokenlar yaklaşık bir dakikada gelir",
-    "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
@@ -5667,7 +5666,25 @@
     "requestPendingBody": "Takip isteğiniz gönderildi. İsteğinizi onayladıklarında gönderilerini görebileceksiniz.",
     "followToSeePosts": "Gönderilerini görmek için bu hesabı takip edin.",
     "loadFailed": "Bu liste yüklenemedi",
-    "new": "Yeni"
+    "new": "Yeni",
+    "nonFollowers": {
+      "title": "Takip ettiklerini temizlemek ister misin?",
+      "body": "Takip ettiğin {{count}} hesap seni geri takip etmiyor.",
+      "cta": "{{count}} hesabın hepsini takipten çık",
+      "notNow": "Şimdi değil",
+      "confirmTitle": "{{count}} hesabı takipten çıkarsın mı?",
+      "confirmBody": "Onlara haber verilmez. İstediğini daha sonra yeniden takip edebilirsin.",
+      "confirm": "Evet, {{count}} hesabı takipten çık",
+      "cancel": "İptal",
+      "working": "{{total}} hesaptan {{done}} tanesi takipten çıkarılıyor...",
+      "background": "Arka planda devam et",
+      "failed": "Başlatılamadı. Bir dakika sonra tekrar dene.",
+      "close": "Kapat",
+      "doneTitle": "Hepsi temizlendi",
+      "doneAll": "Seni geri takip etmeyen {{done}} hesabı takipten çıktın.",
+      "doneSome": "{{done}} hesabı takipten çıktın. {{failed}} hesap çıkarılamadı.",
+      "doneToast": "Seni geri takip etmeyen {{done}} hesabı takipten çıktın"
+    }
   },
   "reactionInfo": {
     "title": "Tepkiler",

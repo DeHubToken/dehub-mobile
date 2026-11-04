@@ -7756,7 +7756,25 @@
     "requestPendingBody": "Vaš zahtjev za praćenje je poslan. Moći ćete vidjeti njihove objave nakon što odobre vaš zahtjev.",
     "followToSeePosts": "Pratite ovaj račun da biste vidjeli njihove objave.",
     "loadFailed": "Učitavanje ovog popisa nije uspjelo",
-    "new": "Novo"
+    "new": "Novo",
+    "nonFollowers": {
+      "title": "Očisti tko ti prati?",
+      "body": "{{count}} računa koje pratiš ne prati te nazad.",
+      "cta": "Prestani pratiti sve {{count}}",
+      "notNow": "Ne sada",
+      "confirmTitle": "Prestati pratiti {{count}} računa?",
+      "confirmBody": "Neće im biti rečeno. Kasnije možeš ponovno pratiti bilo koga.",
+      "confirm": "Da, prestani pratiti {{count}}",
+      "cancel": "Otkaži",
+      "working": "Prestajem pratiti {{done}} od {{total}}...",
+      "background": "Nastavi u pozadini",
+      "failed": "Nije moguće pokrenuti. Pokušaj ponovno za minutu.",
+      "close": "Zatvori",
+      "doneTitle": "Sve očišćeno",
+      "doneAll": "Prestao/la pratiti {{done}} računa koji te nisu pratili nazad.",
+      "doneSome": "Prestao/la pratiti {{done}} računa. {{failed}} nije se mogao/la prestati pratiti.",
+      "doneToast": "Prestao/la pratiti {{done}} računa koji te ne prate nazad"
+    }
   },
   "reactionInfo": {
     "title": "Reakcije",

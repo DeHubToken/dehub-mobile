@@ -7818,7 +7818,25 @@
     "requestPendingBody": "La tua richiesta di follow è stata inviata. Potrai vedere i loro post una volta approvata la tua richiesta.",
     "followToSeePosts": "Segui questo account per vedere i loro post.",
     "loadFailed": "Impossibile caricare questo elenco",
-    "new": "Novità"
+    "new": "Novità",
+    "nonFollowers": {
+      "title": "Pulisci chi segui?",
+      "body": "{{count}} account che segui non ti seguono.",
+      "cta": "Smetti di seguire tutti i {{count}}",
+      "notNow": "Non ora",
+      "confirmTitle": "Smettere di seguire {{count}} account?",
+      "confirmBody": "Non saranno informati. Puoi seguire chiunque di nuovo più tardi.",
+      "confirm": "Sì, smetti di seguire {{count}}",
+      "cancel": "Annulla",
+      "working": "Smettere di seguire {{done}} di {{total}}...",
+      "background": "Continua in background",
+      "failed": "Impossibile avviare. Riprova tra un minuto.",
+      "close": "Chiudi",
+      "doneTitle": "Tutto cancellato",
+      "doneAll": "Hai smesso di seguire {{done}} account che non ti seguivano.",
+      "doneSome": "Hai smesso di seguire {{done}} account. {{failed}} non è stato possibile smettere di seguire.",
+      "doneToast": "Hai smesso di seguire {{done}} account che non ti seguivano"
+    }
   },
   "reactionInfo": {
     "title": "Reazioni",

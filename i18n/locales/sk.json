@@ -7858,7 +7858,25 @@
     "requestPendingBody": "Vaša žiadosť o sledovanie bola odoslaná. Ich príspevky budete môcť vidieť, keď schvália vašu žiadosť.",
     "followToSeePosts": "Sledujte tento účet, aby ste videli jeho príspevky.",
     "loadFailed": "Tento zoznam sa nepodarilo načítať",
-    "new": "Nové"
+    "new": "Nové",
+    "nonFollowers": {
+      "title": "Vyčistiť, koho sleduješ?",
+      "body": "{{count}} účty, ktoré sleduješ, ti nevracajú sledovanie.",
+      "cta": "Zrušiť sledovanie všetkých {{count}}",
+      "notNow": "Teraz nie",
+      "confirmTitle": "Zrušiť sledovanie {{count}} účtov?",
+      "confirmBody": "Nebudú o tom informovaní. Môžeš ich neskôr znova sledovať.",
+      "confirm": "Áno, zrušiť sledovanie {{count}}",
+      "cancel": "Zrušiť",
+      "working": "Zrušovanie {{done}} z {{total}}...",
+      "background": "Pokračuj v pozadí",
+      "failed": "Nebolo možné spustiť. Skús znova za minútu.",
+      "close": "Zavrieť",
+      "doneTitle": "Všetko vymazané",
+      "doneAll": "Zrušené sledovanie {{done}} účtov, ktoré ti nevracajú sledovanie.",
+      "doneSome": "Zrušené sledovanie {{done}} účtov. {{failed}} sa nedalo zrušiť sledovanie.",
+      "doneToast": "Zrušené sledovanie {{done}} účtov, ktoré ti nevracajú sledovanie"
+    }
   },
   "reactionInfo": {
     "title": "Reakcie",

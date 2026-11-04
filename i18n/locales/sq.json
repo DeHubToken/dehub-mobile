@@ -7756,7 +7756,25 @@
     "requestPendingBody": "Kërkesa juaj për ndjekje është dërguar. Do të mund t'i shihni postimet e tyre pasi ata të miratojnë kërkesën tuaj.",
     "followToSeePosts": "Ndiqni këtë llogari për të parë postimet e tyre.",
     "loadFailed": "E pamundur ngarkimi i kësaj liste",
-    "new": "E re"
+    "new": "E re",
+    "nonFollowers": {
+      "title": "Pastroje këto që ndjek?",
+      "body": "{{count}} llogaritë që ndjek nuk të ndjekin në kthim.",
+      "cta": "Ndërprer të gjitha {{count}}",
+      "notNow": "Jo tani",
+      "confirmTitle": "Ndërprer llogaritë {{count}}?",
+      "confirmBody": "Nuk do t’i informohen. Mund të ndjekësh dikë përsëri më vonë.",
+      "confirm": "Po, ndërprer {{count}}",
+      "cancel": "Anulo",
+      "working": "Duke ndërprerë {{done}} nga {{total}}...",
+      "background": "Vazhdo në sfond",
+      "failed": "Nuk u arrit të fillosh. Provo përsëri pas një minutë.",
+      "close": "Mbyll",
+      "doneTitle": "Të gjitha e pastër",
+      "doneAll": "Ndërprerëra {{done}} llogaritë që nuk të ndjekin në kthim.",
+      "doneSome": "Ndërprerëra {{done}} llogaritë. {{failed}} nuk u arrit të ndërprerë.",
+      "doneToast": "Ndërprerëra {{done}} llogaritë që nuk të ndjekin në kthim"
+    }
   },
   "reactionInfo": {
     "title": "Reagimet",

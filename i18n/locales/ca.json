@@ -7753,7 +7753,25 @@
     "requestPendingBody": "La teva sol·licitud de seguir s'ha enviat. Podràs veure les seves publicacions un cop aprovin la teva sol·licitud.",
     "followToSeePosts": "Segueix aquest compte per veure les seves publicacions.",
     "loadFailed": "No s'ha pogut carregar aquesta llista",
-    "new": "Nou"
+    "new": "Nou",
+    "nonFollowers": {
+      "title": "Neteja a qui segueixes?",
+      "body": "Els {{count}} comptes que segueixes no et tornen a seguir.",
+      "cta": "Deixa de seguir tot {{count}}",
+      "notNow": "Ara no",
+      "confirmTitle": "Vols deixar de seguir els comptes de {{count}}?",
+      "confirmBody": "No se'ls dirà. Pots tornar a seguir a qualsevol persona més tard.",
+      "confirm": "Sí, deixa de seguir {{count}}",
+      "cancel": "Cancel·la",
+      "working": "Deixant de seguir {{done}} de {{total}}...",
+      "background": "Segueix en un segon pla",
+      "failed": "No s'ha pogut iniciar. Torna-ho a provar en un minut.",
+      "close": "Tanca",
+      "doneTitle": "Tot netejat",
+      "doneAll": "Has deixat de seguir {{done}} comptes que no et seguien.",
+      "doneSome": "S'han deixat de seguir {{done}} comptes. No s'ha pogut deixar de seguir {{failed}}.",
+      "doneToast": "Els comptes {{done}} que han deixat de seguir-te no et segueixen"
+    }
   },
   "reactionInfo": {
     "title": "Reaccions",
