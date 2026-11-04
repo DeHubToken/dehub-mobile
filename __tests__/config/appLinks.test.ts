@@ -57,6 +57,16 @@ describe('App Links agree across app.json and the committed Android manifest', (
     }
   });
 
+  it('opens riftn.com links on the same paths as dehub.io', () => {
+    // Data tags in one filter merge, so this host takes every path listed above.
+    expect(verifiedFilter).toContain('<data android:scheme="https" android:host="riftn.com"/>');
+    const riftn = appJson.expo.android.intentFilters
+      .filter((f) => f.autoVerify)
+      .flatMap((f) => f.data)
+      .filter((d) => d.host === 'riftn.com');
+    expect(riftn).toEqual([{ scheme: 'https', host: 'riftn.com' }]);
+  });
+
   it('claims mini app links', () => {
     expect(fromManifest).toContain('path /apps');
     expect(fromManifest).toContain('pathPrefix /apps/');
