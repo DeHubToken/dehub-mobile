@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import BadgeArtwork from "./common/BadgeArtwork";
-import { getBadgeHoverOpticalStyle } from "../libs/misc";
 import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -34,6 +32,9 @@ export const SCREEN_HEADER_TITLE_HEIGHT = 64;
  * the height again lifts the field that far above the keyboard. The offset is
  * only where that parent starts on screen — see `hooks/useKeyboardLayout.ts`.
  */
+/** Title text size, for sizing an inline title badge. */
+export const SCREEN_HEADER_TITLE_FONT_SIZE = 17;
+
 export const SCREEN_HEADER_HEIGHT = SCREEN_HEADER_TITLE_HEIGHT;
 
 export interface ScreenHeaderProps {
@@ -45,8 +46,9 @@ export interface ScreenHeaderProps {
   leftContent?: React.ReactNode;
   /** Small inline content right after the title text (e.g. an online dot). */
   titleAccessory?: React.ReactNode;
-  /** Staking badge art for the person the title names, drawn on its baseline. */
-  titleBadge?: number;
+  /** Staking badge for the person the title names, placed straight after the
+   *  title with no gap (size it with getBadgeOpticalStyle at TITLE_FONT_SIZE). */
+  titleBadge?: React.ReactNode;
   onBackPress?: () => void;
   /** Immersive pages (a post whose media runs edge to edge at the top): no
    *  top bar and no title, just a round back button floating over the media,
@@ -244,9 +246,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
                 >
                   {title}
                 </Text>
-                {titleBadge ? (
-                  <BadgeArtwork source={titleBadge} style={getBadgeHoverOpticalStyle(titleBadge, styles.title.fontSize, 0, 23)} contentFit="contain" />
-                ) : null}
+                {titleBadge ?? null}
                 {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
               </View>
               {subtitle ? (
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.08)',
   },
   icon: { width: 32, height: 32, marginRight: 10 },
-  title: { fontSize: 17, fontWeight: '700', letterSpacing: 0.1 },
+  title: { fontSize: SCREEN_HEADER_TITLE_FONT_SIZE, fontWeight: '700', letterSpacing: 0.1 },
   subtitle: { fontSize: 11.5, marginTop: 1 },
 });
 
