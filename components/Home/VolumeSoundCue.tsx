@@ -65,13 +65,14 @@ export function VolumeTrack({ value, active, fillColor, trackColor, height = 10,
       <Defs>
         <ClipPath id={`${id}tube`}><Rect x={inset} y={-height / 2} width={span} height={height} rx={height / 2} /></ClipPath>
         <ClipPath id={`${id}knob`}><AnimatedPath animatedProps={cutoff} /></ClipPath>
+        <ClipPath id={`${id}exit`}><Rect x={inset} y={-height / 2} width={width + 36} height={height} /></ClipPath>
       </Defs>
       <G transform={`translate(0 ${layoutHeight / 2 + 32})`}>
-        <AnimatedG animatedProps={group} clipPath={`url(#${id}tube)`}>
-          <G clipPath={`url(#${id}knob)`}>
+        <AnimatedG animatedProps={group}>
+          <G clipPath={`url(#${id}tube)`}><G clipPath={`url(#${id}knob)`}>
             {Array.from({ length: Math.min(64, Math.ceil(width / 9)) }, (_, i) => <Note key={i} index={i} clock={clock} width={width} height={height} ink={ink} />)}
-          </G>
-          <AnimatedG animatedProps={small}><Glyph ink={ink} /></AnimatedG>
+          </G></G>
+          <G clipPath={`url(#${id}exit)`}><AnimatedG animatedProps={small}><Glyph ink={ink} /></AnimatedG></G>
         </AnimatedG>
       </G>
     </Svg>}
