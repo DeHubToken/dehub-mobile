@@ -7821,7 +7821,25 @@
     "requestPendingBody": "팔로우 요청이 전송되었습니다. 해당 사용자가 요청을 승인하면 게시물을 볼 수 있습니다.",
     "followToSeePosts": "이 계정을 팔로우하여 게시물을 확인하세요.",
     "loadFailed": "이 목록을 로드할 수 없습니다",
-    "new": "신규"
+    "new": "신규",
+    "nonFollowers": {
+      "title": "당신이 팔로우하는 사람 정리하기",
+      "body": "{{count}} 계정이 당신을 팔로우하지 않습니다.",
+      "cta": "모두 언팔 {{count}}",
+      "notNow": "지금은 아니요",
+      "confirmTitle": "{{count}} 계정 언팔로우?",
+      "confirmBody": "그들은 알 수 없습니다. 나중에 다시 팔로우할 수 있습니다.",
+      "confirm": "네, {{count}} 언팔로우",
+      "cancel": "취소",
+      "working": "{{done}} / {{total}} 중 언팔로우 중...",
+      "background": "백그라운드에서 계속 진행",
+      "failed": "시작할 수 없습니다. 1분 후에 다시 시도하세요.",
+      "close": "닫기",
+      "doneTitle": "모두 정리됨",
+      "doneAll": "당신을 팔로우하지 않는 {{done}} 계정 언팔로우 완료.",
+      "doneSome": "{{done}} 계정 언팔로우 완료. {{failed}} 은(는) 언팔로우할 수 없었습니다.",
+      "doneToast": "당신을 팔로우하지 않는 {{done}} 계정 언팔로우 완료."
+    }
   },
   "reactionInfo": {
     "title": "반응",

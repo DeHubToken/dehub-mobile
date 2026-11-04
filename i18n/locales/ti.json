@@ -7737,7 +7737,25 @@
     "privateBody": "{{name}} ንተከታተልቱን ዝተኸተሎምን ሓበሬታ ብሕቡእ ንኽገብሮም መሪጹ ኣሎ።",
     "removeFollowerBody": "{{name}} ካብቶም ተከታተልትኻ ከም ዝተወስድካ ኣይፍለጦን።",
     "loadFailed": "ነዚ ዝርዝር እዚ ክጭፍልቕ ኣይከኣልኩን ።",
-    "new": "ሓድሽ"
+    "new": "ሓድሽ",
+    "nonFollowers": {
+      "title": "ሰባብ ምን ትከተሉ?",
+      "body": "{{count}} ሳባብ ምን ትከተሉ ኣብ ምልዋጅ ኣይተሓዋወሱን።",
+      "cta": "ሓንቲ {{count}} ምልዋጅ",
+      "notNow": "ሕጂ ኣይኮነን",
+      "confirmTitle": "{{count}} ሳባብ ምልዋጅ?",
+      "confirmBody": "ኣብ ምግላጽ ኣይተሓዋወሱን። ሕጂ ሓንቲ ሰብ ምልዋጅ ይከኣል።",
+      "confirm": "ወ {{count}} ምልዋጅ",
+      "cancel": "ምስራዕ",
+      "working": "{{done}} ካብ {{total}} ምልዋጅ...",
+      "background": "ኣብ ድሕሪት ቀጽል",
+      "failed": "ምስራዕ ኣይከኣለን። ድሕሪ ደቂቕ ሓደ ሞክር።",
+      "close": "ዕጽፍ",
+      "doneTitle": "ሓንቲ ጸሊዩ",
+      "doneAll": "{{done}} ሳባብ ምን ትከተሉ ኣብ ምልዋጅ ተሓዋወሱ።",
+      "doneSome": "{{done}} ሳባብ ምልዋጅ ተሓዋወሱ። {{failed}} ምልዋጅ ኣይከኣለን።",
+      "doneToast": "{{done}} ሳባብ ምን ትከተሉ ኣብ ምልዋጅ ተሓዋወሱ"
+    }
   },
   "reactionInfo": {
     "mentionedYouPost": "{{name}} ኣብ ጽሑፍ ጠቒሱካ",

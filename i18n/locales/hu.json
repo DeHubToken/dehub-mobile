@@ -7764,7 +7764,25 @@
     "requestPendingBody": "A követési kérelem el lett küldve. Akkor láthatod a bejegyzéseit, ha jóváhagyja a kérésedet.",
     "followToSeePosts": "Kövesd ezt a fiókot, hogy lásd a bejegyzéseit.",
     "loadFailed": "Nem sikerült betölteni ezt az albumot",
-    "new": "Új"
+    "new": "Új",
+    "nonFollowers": {
+      "title": "Tisztítsd meg, kiket követsz?",
+      "body": "{{count}} fiók, amelyet követsz, nem követ vissza.",
+      "cta": "Minden {{count}} követésének megszüntetése",
+      "notNow": "Most nem",
+      "confirmTitle": "Megszüntetni {{count}} fiók követését?",
+      "confirmBody": "Nem fognak értesülni. Később újra bárkit követhetsz.",
+      "confirm": "Igen, szüntesd meg {{count}} követését",
+      "cancel": "Mégse",
+      "working": "{{done}} / {{total}} követésének megszüntetése...",
+      "background": "Folyamatosan a háttérben",
+      "failed": "Nem indítható. Próbáld újra egy perc múlva.",
+      "close": "Bezárás",
+      "doneTitle": "Minden törölve",
+      "doneAll": "Megszüntetted {{done}} fiók követését, amelyek nem követték vissza.",
+      "doneSome": "Megszüntetted {{done}} fiók követését. {{failed}} nem szüntethető meg.",
+      "doneToast": "Megszüntetted {{done}} fiók követését, amelyek nem követték vissza"
+    }
   },
   "reactionInfo": {
     "title": "Reakciók",

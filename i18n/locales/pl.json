@@ -7769,7 +7769,25 @@
     "requestPendingBody": "Twoja prośba o obserwowanie została wysłana. Będziesz mógł zobaczyć ich posty, gdy zatwierdzą Twoją prośbę.",
     "followToSeePosts": "Obserwuj to konto, aby zobaczyć ich posty.",
     "loadFailed": "Nie można załadować tej listy",
-    "new": "Nowość"
+    "new": "Nowość",
+    "nonFollowers": {
+      "title": "Czyścić kogo śledzisz?",
+      "body": "{{count}} konta, które śledzisz, nie śledzą cię z powrotem.",
+      "cta": "Przestań śledzić wszystkie {{count}}",
+      "notNow": "Nie teraz",
+      "confirmTitle": "Przestań śledzić {{count}} konta?",
+      "confirmBody": "Nie zostaną o tym poinformowani. Możesz ponownie śledzić kogoś później.",
+      "confirm": "Tak, przestań śledzić {{count}}",
+      "cancel": "Anuluj",
+      "working": "Przestawanie śledzenia {{done}} z {{total}}...",
+      "background": "Kontynuuj w tle",
+      "failed": "Nie można rozpocząć. Spróbuj ponownie za minutę.",
+      "close": "Zamknij",
+      "doneTitle": "Wszystko wyczyszczone",
+      "doneAll": "Przestałeś śledzić {{done}} konta, które nie śledziły cię z powrotem.",
+      "doneSome": "Przestałeś śledzić {{done}} konta. Nie udało się przestać śledzić {{failed}}.",
+      "doneToast": "Przestałeś śledzić {{done}} konta, które nie śledzą cię z powrotem"
+    }
   },
   "reactionInfo": {
     "title": "Reakcje",

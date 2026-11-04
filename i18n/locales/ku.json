@@ -7746,7 +7746,25 @@
     "followToSeePosts": "Vî hesabî bişopîne da ku şandiyên wî bibînî.",
     "thisUser": "Ev bikarhêner",
     "loadFailed": "Ev lîste nehat barkirin",
-    "new": "Nû"
+    "new": "Nû",
+    "nonFollowers": {
+      "title": "Çêke ku tu têkiliyê dikin?",
+      "body": "{{count}} hesabên ku tu têkiliyê dikin tu ne têkiliyê dikin.",
+      "cta": "Hemû {{count}} jêbirin",
+      "notNow": "Nêzîkî",
+      "confirmTitle": "Jêbirin {{count}} hesabên?",
+      "confirmBody": "Ew nayê gotin. Tu dikarî her kesê din herî dawî têkiliyê bikî.",
+      "confirm": "Erê, jêbirin {{count}}",
+      "cancel": "Betal",
+      "working": "Jêbirin {{done}} ji {{total}}...",
+      "background": "Bêyî destpêkê di binpêş de bidomîne",
+      "failed": "Destpêk nikaribû. Dîsa di dema kêm de biceribîne.",
+      "close": "Girt",
+      "doneTitle": "Hemû hatin paqij kirin",
+      "doneAll": "Jêbirî {{done}} hesabên ku ne têkiliyê dikin.",
+      "doneSome": "Jêbirî {{done}} hesabên. {{failed}} nikaribû jêbirin.",
+      "doneToast": "Jêbirî {{done}} hesabên ne têkiliyê dikin."
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} di sohbeta zindî de behsa te kir",

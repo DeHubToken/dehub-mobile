@@ -7753,7 +7753,25 @@
     "requestPendingBody": "Jūsu sekošanas pieprasījums ir nosūtīts. Jūs varēsit redzēt viņu ziņas, kad viņi apstiprinās jūsu pieprasījumu.",
     "followToSeePosts": "Seko šim kontam, lai redzētu viņu ziņas.",
     "loadFailed": "Nevarēja ielādēt šo sarakstu",
-    "new": "Jauns"
+    "new": "Jauns",
+    "nonFollowers": {
+      "title": "Iztīrīt, ko sekojat?",
+      "body": "{{count}} konti, ko sekojat, neietver jūs atpakaļ.",
+      "cta": "Atseko visus {{count}}",
+      "notNow": "Tagad nav",
+      "confirmTitle": "Atseko {{count}} kontus?",
+      "confirmBody": "Viņi netiks informēti. Jūs varat vēlreiz sekot kādam vēlāk.",
+      "confirm": "Jā, atseko {{count}}",
+      "cancel": "Atcelt",
+      "working": "Atseko {{done}} no {{total}}...",
+      "background": "Turpini fona režīmā",
+      "failed": "Nevarēja sākt. Mēģini vēlreiz pēc minūtes.",
+      "close": "Aizvērt",
+      "doneTitle": "Viss iztīrīts",
+      "doneAll": "Atsekoju {{done}} kontus, kas neietver jūs atpakaļ.",
+      "doneSome": "Atsekoju {{done}} kontus. {{failed}} neizdevās atsekot.",
+      "doneToast": "Atsekoju {{done}} kontus, kas neietver jūs atpakaļ"
+    }
   },
   "reactionInfo": {
     "title": "Reakcijas",

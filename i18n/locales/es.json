@@ -1557,7 +1557,6 @@
     "payDirect": "Enviado directamente a {{name}} en {{symbol}} en {{chain}}. Sin swap.",
     "payDirectNoName": "Enviado directamente al creador en {{symbol}} en {{chain}}. Sin swap.",
     "payViaBridgeDpay": "Movido a Base y pagado a Riftn Pay, los tokens llegan en aproximadamente un minuto",
-    "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
@@ -5668,7 +5667,25 @@
     "requestPendingBody": "Se ha enviado tu solicitud de seguimiento. Podrás ver sus publicaciones una vez que aprueben tu solicitud.",
     "followToSeePosts": "Sigue esta cuenta para ver sus publicaciones.",
     "loadFailed": "No se ha podido cargar esta lista",
-    "new": "Nuevo"
+    "new": "Nuevo",
+    "nonFollowers": {
+      "title": "¿Limpiar a quién sigues?",
+      "body": "{{count}} cuentas que sigues no te siguen.",
+      "cta": "Dejar de seguir a las {{count}}",
+      "notNow": "Ahora no",
+      "confirmTitle": "¿Dejar de seguir {{count}} cuentas?",
+      "confirmBody": "No se les avisará. Puedes volver a seguir a quien quieras más tarde.",
+      "confirm": "Sí, dejar de seguir {{count}}",
+      "cancel": "Cancelar",
+      "working": "Dejando de seguir {{done}} de {{total}}...",
+      "background": "Seguir en segundo plano",
+      "failed": "No se pudo iniciar. Inténtalo en un minuto.",
+      "close": "Cerrar",
+      "doneTitle": "Todo listo",
+      "doneAll": "Dejaste de seguir {{done}} cuentas que no te seguían.",
+      "doneSome": "Dejaste de seguir {{done}} cuentas. {{failed}} no se pudieron dejar de seguir.",
+      "doneToast": "Dejaste de seguir {{done}} cuentas que no te seguían"
+    }
   },
   "reactionInfo": {
     "title": "Reacciones",

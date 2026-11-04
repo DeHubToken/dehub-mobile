@@ -7811,7 +7811,25 @@
     "requestPendingBody": "Sua solicitação de seguir foi enviada. Você poderá ver as postagens deles assim que eles aprovarem sua solicitação.",
     "followToSeePosts": "Siga esta conta para ver as postagens dela.",
     "loadFailed": "Não foi possível carregar esta lista",
-    "new": "Novo"
+    "new": "Novo",
+    "nonFollowers": {
+      "title": "Limpar quem você segue?",
+      "body": "{{count}} contas que você segue não te seguem de volta.",
+      "cta": "Deixar de seguir as {{count}}",
+      "notNow": "Agora não",
+      "confirmTitle": "Deixar de seguir {{count}} contas?",
+      "confirmBody": "Elas não serão avisadas. Você pode seguir qualquer um de novo depois.",
+      "confirm": "Sim, deixar de seguir {{count}}",
+      "cancel": "Cancelar",
+      "working": "Deixando de seguir {{done}} de {{total}}...",
+      "background": "Continuar em segundo plano",
+      "failed": "Não foi possível começar. Tente de novo em um minuto.",
+      "close": "Fechar",
+      "doneTitle": "Tudo limpo",
+      "doneAll": "Você deixou de seguir {{done}} contas que não te seguiam.",
+      "doneSome": "Você deixou de seguir {{done}} contas. {{failed}} não puderam ser removidas.",
+      "doneToast": "Você deixou de seguir {{done}} contas que não te seguiam"
+    }
   },
   "reactionInfo": {
     "title": "Reacções",

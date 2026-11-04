@@ -7756,7 +7756,25 @@
     "requestPendingBody": "Gaafii hordoffii kee ergameera. Gaafii isaanii erga fudhatanii booda barruulee isaanii argachuu dandeessa.",
     "followToSeePosts": "Akaawuntii kana hordofiitii barruulee isaanii argi.",
     "loadFailed": "Tarree kana fe'uu hin dandeenye",
-    "new": "Haaraa"
+    "new": "Haaraa",
+    "nonFollowers": {
+      "title": "Maqaa kee hordofuu qulqulleessi?",
+      "body": "{{count}} maqaaleen hordoftu si hordofuu hin dandeenye.",
+      "cta": "Hordofaa hundaa dhiisi {{count}}",
+      "notNow": "Amma hin ta'in",
+      "confirmTitle": "Hordofaa {{count}} maqaaleen dhiisi?",
+      "confirmBody": "Isaan hin beeksifamu. Siin booda namni kamiyyuu irra deebi'uu dandeessa.",
+      "confirm": "Eeyyee, hordofaa {{count}} dhiisi",
+      "cancel": "Haquu",
+      "working": "Hordofaa {{done}} keessaa {{total}} dhiisuu...",
+      "background": "Gara fuula dura deemaa",
+      "failed": "Hin jalqaban. Yeroo muraasa booda yaali.",
+      "close": "Cufuu",
+      "doneTitle": "Hunduu qulqulleessame",
+      "doneAll": "Hordofaa {{done}} maqaaleen si hordofuu hin dandeenye dhiisuu.",
+      "doneSome": "Hordofaa {{done}} maqaaleen dhiisuu. {{failed}} hin dhiisamne.",
+      "doneToast": "Hordofaa {{done}} maqaaleen si hordofuu hin dandeenye dhiisuu"
+    }
   },
   "reactionInfo": {
     "title": "deebii kennuu",

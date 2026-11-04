@@ -7753,7 +7753,25 @@
     "requestPendingBody": "Følgespørringen din er sendt. Du vil kunne se innleggene deres når de godkjenner forespørselen din.",
     "followToSeePosts": "Følg denne kontoen for å se innleggene deres.",
     "loadFailed": "Kunne ikke laste inn denne listen",
-    "new": "Ny"
+    "new": "Ny",
+    "nonFollowers": {
+      "title": "Rydd opp hvem du følger?",
+      "body": "{{count}} kontoer du følger følger ikke deg tilbake.",
+      "cta": "Fjern sporing av alle {{count}}",
+      "notNow": "Ikke nå",
+      "confirmTitle": "Fjern sporing av {{count}} kontoer?",
+      "confirmBody": "De vil ikke bli fortalt. Du kan følge hvem som helst igjen senere.",
+      "confirm": "Ja, fjern sporing av {{count}}",
+      "cancel": "Avbryt",
+      "working": "Fjerner sporing av {{done}} av {{total}}...",
+      "background": "Fortsett i bakgrunnen",
+      "failed": "Kunne ikke starte. Prøv igjen om et minutt.",
+      "close": "Lukk",
+      "doneTitle": "Alt ryddet",
+      "doneAll": "Fjernet sporing av {{done}} kontoer som ikke fulgte deg tilbake.",
+      "doneSome": "Fjernet sporing av {{done}} kontoer. {{failed}} kunne ikke fjernes.",
+      "doneToast": "Fjernet sporing av {{done}} kontoer som ikke fulgte deg."
+    }
   },
   "reactionInfo": {
     "title": "Reaksjon",

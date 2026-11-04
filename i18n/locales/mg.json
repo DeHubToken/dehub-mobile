@@ -7765,7 +7765,25 @@
     "requestPendingBody": "Voalefa ny fangatahanao fanarahana. Ho afaka hahita ny zavatra nosoratany ianao rehefa ankatoaviny ny fangatahanao.",
     "followToSeePosts": "Araho ity kaonty ity mba hahitana ny zavatra nosoratany.",
     "loadFailed": "Tsy afaka naka ny rakitra “%s”: %s",
-    "new": "Vaovao"
+    "new": "Vaovao",
+    "nonFollowers": {
+      "title": "Madio ve izay arahanao?",
+      "body": "{{count}} kaonty arahanao dia tsy manaraka anao.",
+      "cta": "Atsaharo rehetra {{count}}",
+      "notNow": "Tsy izao",
+      "confirmTitle": "Atsaharo {{count}} kaonty?",
+      "confirmBody": "Tsy ho lazaina izy ireo. Afaka manaraka olona hafa indray ianao aorian'izany.",
+      "confirm": "Eny, atsaharo {{count}}",
+      "cancel": "Ajanona",
+      "working": "Atsaharo {{done}} amin'ny {{total}}...",
+      "background": "Mitohy amin'ny background",
+      "failed": "Tsy afaka nanomboka. Andramo indray amin'ny minitra.",
+      "close": "Mikatona",
+      "doneTitle": "Voadio rehetra",
+      "doneAll": "Atsaharo {{done}} kaonty izay tsy manaraka anao.",
+      "doneSome": "Atsaharo {{done}} kaonty. Tsy afaka atsaharo ny {{failed}}.",
+      "doneToast": "Atsaharo {{done}} kaonty tsy manaraka anao."
+    }
   },
   "reactionInfo": {
     "title": "Fanehoan-kevitra",

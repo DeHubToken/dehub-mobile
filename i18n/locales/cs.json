@@ -7757,7 +7757,25 @@
     "requestPendingBody": "Vaše žádost o sledování byla odeslána. Jejich příspěvky budete moci vidět, jakmile vaši žádost schválí.",
     "followToSeePosts": "Sledujte tento účet a uvidíte jeho příspěvky.",
     "loadFailed": "Tento seznam se nepodařilo načíst",
-    "new": "Novinka"
+    "new": "Novinka",
+    "nonFollowers": {
+      "title": "Ukliď, koho sleduješ?",
+      "body": "Účty {{count}}, které sledujete, vás nesledují zpět.",
+      "cta": "Přestat sledovat vše {{count}}",
+      "notNow": "Teď ne",
+      "confirmTitle": "Přestat sledovat účty {{count}}?",
+      "confirmBody": "Nebude jim to řečeno. Později můžeš kohokoliv znovu sledovat.",
+      "confirm": "Ano, přestat sledovat {{count}}",
+      "cancel": "Zrušit",
+      "working": "Nesleduji uživatele{{done}} z {{total}}...",
+      "background": "Pokračuj v pozadí",
+      "failed": "Nelze spustit. Zkuste to znovu za minutu.",
+      "close": "Zavřít",
+      "doneTitle": "Vše vymazáno",
+      "doneAll": "Nesledované účty uživatele {{done}}, které vás nesledovaly.",
+      "doneSome": "Nesledované účty {{done}}. {{failed}} nelze zrušit.",
+      "doneToast": "Nesledované {{done}} účty, které vás nesledují zpět"
+    }
   },
   "reactionInfo": {
     "title": "Reakce",

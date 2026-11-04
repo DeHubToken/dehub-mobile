@@ -1506,7 +1506,7 @@
     "wallLabel": "رسائل الإكراميات",
     "railTitle": "الإكراميات",
     "railTotal": "{{amount}} توكن",
-    "tokensUnit": "توكن",
+    "tokensUnit": "رموز",
     "messagePrivateNote": "يراها {{name}} فقط في إشعاره.",
     "title": "إرسال إكرامية",
     "toCreator": "إكرامية لـ {{name}}",
@@ -1557,7 +1557,6 @@
     "payDirect": "يُرسل مباشرة إلى {{name}} بعملة {{symbol}} على {{chain}}. بدون مبادلة.",
     "payDirectNoName": "يُرسل مباشرة إلى صانع المحتوى بعملة {{symbol}} على {{chain}}. بدون مبادلة.",
     "payViaBridgeDpay": "تم النقل إلى Base والدفع إلى Riftn Pay، تصل الرموز في حوالي دقيقة",
-    "tokensUnit": "رموز",
     "tokenAmount": "{{amount}} رموز"
   },
   "postOptions": {
@@ -5676,7 +5675,25 @@
     "requestPendingBody": "تم إرسال طلب المتابعة الخاص بك. ستتمكن من رؤية منشوراتهم بمجرد موافقتهم على طلبك.",
     "followToSeePosts": "تابع هذا الحساب لرؤية منشوراتهم.",
     "loadFailed": "تعذر تحميل هذه القائمة",
-    "new": "جديد"
+    "new": "جديد",
+    "nonFollowers": {
+      "title": "هل تريد ترتيب من تتابعهم؟",
+      "body": "{{count}} حسابًا تتابعه لا يتابعك.",
+      "cta": "إلغاء متابعة الـ {{count}} كلها",
+      "notNow": "ليس الآن",
+      "confirmTitle": "إلغاء متابعة {{count}} حسابًا؟",
+      "confirmBody": "لن يتم إخبارهم. يمكنك متابعة أي شخص مجددًا لاحقًا.",
+      "confirm": "نعم، ألغِ متابعة {{count}}",
+      "cancel": "إلغاء",
+      "working": "جارٍ إلغاء متابعة {{done}} من {{total}}...",
+      "background": "متابعة في الخلفية",
+      "failed": "تعذّر البدء. حاول مجددًا بعد دقيقة.",
+      "close": "إغلاق",
+      "doneTitle": "تم التنظيف",
+      "doneAll": "ألغيت متابعة {{done}} حسابًا لم يكونوا يتابعونك.",
+      "doneSome": "ألغيت متابعة {{done}} حسابًا. تعذّر إلغاء متابعة {{failed}}.",
+      "doneToast": "ألغيت متابعة {{done}} حسابًا لا يتابعونك"
+    }
   },
   "reactionInfo": {
     "title": "ردود الفعل",

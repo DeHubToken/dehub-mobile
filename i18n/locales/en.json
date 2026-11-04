@@ -5627,7 +5627,25 @@
     "requestPendingBody": "Your follow request has been sent. You'll be able to see their posts once they approve your request.",
     "followToSeePosts": "Follow this account to see their posts.",
     "loadFailed": "Couldn't load this list",
-    "new": "New"
+    "new": "New",
+    "nonFollowers": {
+      "title": "Clean up who you follow?",
+      "body": "{{count}} accounts you follow do not follow you back.",
+      "cta": "Unfollow all {{count}}",
+      "notNow": "Not now",
+      "confirmTitle": "Unfollow {{count}} accounts?",
+      "confirmBody": "They will not be told. You can follow anyone again later.",
+      "confirm": "Yes, unfollow {{count}}",
+      "cancel": "Cancel",
+      "working": "Unfollowing {{done}} of {{total}}...",
+      "background": "Keep going in the background",
+      "failed": "Could not start. Try again in a minute.",
+      "close": "Close",
+      "doneTitle": "All cleared",
+      "doneAll": "Unfollowed {{done}} accounts that were not following you back.",
+      "doneSome": "Unfollowed {{done}} accounts. {{failed}} could not be unfollowed.",
+      "doneToast": "Unfollowed {{done}} accounts not following you back"
+    }
   },
   "reactionInfo": {
     "title": "Reactions",

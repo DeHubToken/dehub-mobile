@@ -7753,7 +7753,25 @@
     "requestPendingBody": "Teie jälgimistaotlus on saadetud. Saate nende postitusi näha, kui nad teie taotluse heaks kiidavad.",
     "followToSeePosts": "Jälgi seda kontot, et näha nende postitusi.",
     "loadFailed": "Seda loendit ei saanud laadida",
-    "new": "Uus"
+    "new": "Uus",
+    "nonFollowers": {
+      "title": "Kas puhastada, keda jälitad?",
+      "body": "{{count}} kontod, mida jälgid, ei jälgi sind.",
+      "cta": "Tühista kõigi {{count}} jälgimine",
+      "notNow": "Mitte praegu",
+      "confirmTitle": "Kas lõpetada {{count}} konto jälgimine?",
+      "confirmBody": "Neile ei öelda. Hiljem saad kellelegi järgneda.",
+      "confirm": "Jah, lõpeta jälgimine {{count}}",
+      "cancel": "Tühista",
+      "working": "{{done}}/{{total}}-st lõpetatakse jälgimine...",
+      "background": "Jätka taustal",
+      "failed": "Ei saanud alustada. Proovige mõne minuti pärast uuesti.",
+      "close": "Sulge",
+      "doneTitle": "Kõik on kustutatud",
+      "doneAll": "{{done}} kontot, mis ei jälitanud sind, ei jälgitud.",
+      "doneSome": "Kontode {{done}} jälgimise lõpetamine. {{failed}} jälgimise lõpetamine ebaõnnestus.",
+      "doneToast": "Kontosid, mida ei jälgita {{done}}, ei jälitata tagasi"
+    }
   },
   "reactionInfo": {
     "title": "Reaktsioonid",

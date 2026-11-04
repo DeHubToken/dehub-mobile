@@ -7741,7 +7741,25 @@
     "requestPendingBody": "Panjaluk tindakake wis dikirim. Sampeyan bakal bisa ndeleng kirimane sawise dheweke nyetujoni panjaluk sampeyan.",
     "followToSeePosts": "Tindakake akun iki kanggo ndeleng kirimane.",
     "loadFailed": "Ora bisa mbukak dhaptar iki",
-    "new": "Anyar"
+    "new": "Anyar",
+    "nonFollowers": {
+      "title": "Resikna sapa sing sampeyan tindakake?",
+      "body": "{{count}} akun sing sampeyan tindakake ora ngetutake sampeyan bali.",
+      "cta": "Mbusak tindak kabeh {{count}}",
+      "notNow": "Ora saiki",
+      "confirmTitle": "Mbusak tindak {{count}} akun?",
+      "confirmBody": "Dheweke ora bakal diwenehi kabar. Sampeyan bisa ngetutake sapa wae maneh mengko.",
+      "confirm": "Ya, mbusak tindak {{count}}",
+      "cancel": "Batal",
+      "working": "Mbusak tindak {{done}} saka {{total}}...",
+      "background": "Terus mlaku ing latar mburi",
+      "failed": "Ora bisa miwiti. Coba maneh sakmenit.",
+      "close": "Tutup",
+      "doneTitle": "Kabeh wis dibusak",
+      "doneAll": "Mbusak tindak {{done}} akun sing ora ngetutake sampeyan bali.",
+      "doneSome": "Mbusak tindak {{done}} akun. {{failed}} ora bisa dibusak.",
+      "doneToast": "Mbusak tindak {{done}} akun sing ora ngetutake sampeyan bali"
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} nyebut sampeyan ing obrolan langsung",

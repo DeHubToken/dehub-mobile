@@ -7730,7 +7730,20 @@
     "removeFollowerBody": "We no go tell {{name}} say you don remove dem from your followers.",
     "removeFollowerHint": "Press and hold follower to remove am.",
     "loadFailed": "We no fit load dis list",
-    "new": "New"
+    "new": "New",
+    "nonFollowers": {
+      "notNow": "Not now",
+      "confirmTitle": "Unfollow {{count}} accounts?",
+      "confirmBody": "Dem no go tell dem. You fit follow anybody again later.",
+      "confirm": "Yes, unfollow {{count}}",
+      "cancel": "Cancel",
+      "background": "Keep goin for background",
+      "failed": "No fit start. Try again for one minute.",
+      "close": "Close",
+      "doneTitle": "All cleared",
+      "doneAll": "Unfollowed {{done}} accounts wey no dey follow you back.",
+      "doneToast": "Unfollowed {{done}} accounts wey no dey follow you back"
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} mention you for live chat",

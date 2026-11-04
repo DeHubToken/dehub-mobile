@@ -1557,7 +1557,6 @@
     "payDirect": "Envoyé directement à {{name}} en {{symbol}} sur {{chain}}. Sans swap.",
     "payDirectNoName": "Envoyé directement au créateur en {{symbol}} sur {{chain}}. Sans swap.",
     "payViaBridgeDpay": "Déplacé vers Base et payé à Riftn Pay, les jetons arrivent dans environ une minute",
-    "tokensUnit": "jetons",
     "tokenAmount": "{{amount}} jetons"
   },
   "postOptions": {
@@ -5672,7 +5671,25 @@
     "requestPendingBody": "Votre demande de suivi a été envoyée. Vous pourrez voir ses publications une fois qu'il aura approuvé votre demande.",
     "followToSeePosts": "Suivez ce compte pour voir ses publications.",
     "loadFailed": "Impossible de charger cette liste",
-    "new": "Nouveau"
+    "new": "Nouveau",
+    "nonFollowers": {
+      "title": "Faire le tri dans vos abonnements ?",
+      "body": "{{count}} comptes que vous suivez ne vous suivent pas.",
+      "cta": "Ne plus suivre les {{count}}",
+      "notNow": "Plus tard",
+      "confirmTitle": "Ne plus suivre {{count}} comptes ?",
+      "confirmBody": "Ils ne seront pas prévenus. Vous pourrez les suivre à nouveau plus tard.",
+      "confirm": "Oui, ne plus suivre {{count}}",
+      "cancel": "Annuler",
+      "working": "Désabonnement {{done}} sur {{total}}...",
+      "background": "Continuer en arrière-plan",
+      "failed": "Impossible de démarrer. Réessayez dans une minute.",
+      "close": "Fermer",
+      "doneTitle": "C'est fait",
+      "doneAll": "Vous ne suivez plus {{done}} comptes qui ne vous suivaient pas.",
+      "doneSome": "Vous ne suivez plus {{done}} comptes. {{failed}} n'ont pas pu être retirés.",
+      "doneToast": "Vous ne suivez plus {{done}} comptes qui ne vous suivaient pas"
+    }
   },
   "reactionInfo": {
     "title": "Réactions",

@@ -7753,7 +7753,23 @@
     "requestPendingBody": "داواکاری شوێنکەوتنت نێردرا. کاتێک داواکارییەکەت پەسەند کرا، دەتوانیت نامەکانیان ببینیت.",
     "followToSeePosts": "ان کی پوسٹیں دیکھنے کے لیے اس اکاؤنٹ کو فالو کرو۔",
     "loadFailed": "ओ सूची लोड नहिं कर सकलें",
-    "new": "نوا"
+    "new": "نوا",
+    "nonFollowers": {
+      "title": "जिन्हें तु फॉलो करै हो, उनन साफ़ कर?",
+      "cta": "सभी के अनफ़ॉलो करें {{count}}",
+      "notNow": "Not now",
+      "confirmTitle": "Unfollow {{count}} accounts?",
+      "confirmBody": "उन्हें बताया नहीं जाएगा। आप बाद में किसी को फिर से फॉलो कर सकते हैं।",
+      "confirm": "Yes, unfollow {{count}}",
+      "cancel": "Cancel",
+      "working": "अनफॉलो कर रहल बा {{done}} के {{total}} से...",
+      "background": "पृष्ठभूमि में आगे बढ़ते रहो",
+      "failed": "कुड़ु शुरू न होइ। एक मिनट में फेर कोशिश कर।",
+      "close": "Close",
+      "doneTitle": "All cleared",
+      "doneSome": "अनफ़ॉलो कइले {{done}} खाता. {{failed}} अनफ़ॉलो नहीं हो सकल.",
+      "doneToast": "आपके द्वारा अनफ़ॉलो किए गए {{done}} खाते आपको वापस फॉलो नहीं कर रहे हैं"
+    }
   },
   "reactionInfo": {
     "mentionedYouLiveChat": "{{name}} लाइव चैट में तोर जिकर करलक",

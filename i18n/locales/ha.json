@@ -7751,7 +7751,25 @@
     "requestPendingBody": "An aika buƙatar biyan ku. Za ku iya ganin bayanan su idan sun amince da buƙatar ku.",
     "followToSeePosts": "Bi wannan asusun don ganin bayanan su.",
     "loadFailed": "Ba za a iya ɗora wannan jerin ba",
-    "new": "Sabo"
+    "new": "Sabo",
+    "nonFollowers": {
+      "title": "Tsaftace waɗanda kake bi?",
+      "body": "{{count}} asusun da kake bi ba su bi ka ba.",
+      "cta": "Cire bin duk {{count}}",
+      "notNow": "Ba yanzu",
+      "confirmTitle": "Cire bin asusun {{count}}?",
+      "confirmBody": "Ba za a sanar da su ba. Za ka iya bin kowa daga baya.",
+      "confirm": "I, cire bin {{count}}",
+      "cancel": "Soke",
+      "working": "Cire bin {{done}} daga {{total}}...",
+      "background": "Ci gaba a bango",
+      "failed": "Ba a iya fara ba. Sake gwadawa cikin minti ɗaya.",
+      "close": "Rufe",
+      "doneTitle": "Duk an share",
+      "doneAll": "An cire bin asusun {{done}} da ba su bi ka ba.",
+      "doneSome": "An cire bin asusun {{done}}. Ba a iya cire bin {{failed}}.",
+      "doneToast": "An cire bin asusun {{done}} da ba su bi ka ba"
+    }
   },
   "reactionInfo": {
     "title": "Ra'ayoyi",
