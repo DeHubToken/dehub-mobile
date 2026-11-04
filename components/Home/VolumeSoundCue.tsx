@@ -1,163 +1,102 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, type LayoutChangeEvent } from "react-native";
-import Animated, {
-  cancelAnimation,
-  Easing,
-  useAnimatedStyle,
-  useReducedMotion,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-  type SharedValue,
-} from "react-native-reanimated";
-import Svg, { Path } from "react-native-svg";
+import React, { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
+import { AppState, Dimensions, StyleSheet, View } from 'react-native';
+import Animated, { runOnJS, useAnimatedProps, useAnimatedReaction, useAnimatedStyle, useFrameCallback, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
+import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
+import { DOUBLE_HEAD, DOUBLE_STEM, NOTE_HEAD, NOTE_STEM, escapePose, knobCutoff, tubeNote } from './bubbleLift';
+import { canEscapeMusicNote, escapeMusicNote, getEscapedMusicNotes, subscribeEscapedMusicNotes } from './escapedMusicNotes';
+import { useMusicMotion } from './useMusicMotion';
 
-/**
- * The volume bar, drawn by hand so it can be as thick as the colour bar beside
- * it (the native slider on top keeps its thumb, touch and the Android/iOS hold
- * effects, with its own tracks made transparent). While sound is coming out,
- * notes drift inside the volume tube and a thin arc slides out
- * of the handle on each beat. Still when paused, muted or with reduced motion.
- *
- * Same numbers as web (dehubweb src/components/app/audio/VolumeSoundCue.tsx).
- * Plain Views on Reanimated shared values, nothing native the app lacks.
- */
-const BPM = 112;
-const ECHO_LIFE = 1.15;
-const CLOCK_SPAN = 3600;
-const ECHO_INK = "#f0f8fa";
-// ♪ and ♫ on a 12px box.
-const NOTE_PATHS = [
-  ["M1 9.4a2.6 2 0 1 0 5.2 0a2.6 2 0 1 0-5.2 0z", "M5.4 1h1v8.4h-1z", "M6.4 1c1.6.8 3.2 2 2.8 4.8c-.4-1.4-1.4-2.2-2.8-2.4z"],
-  ["M.6 9.8a2.2 1.7 0 1 0 4.4 0a2.2 1.7 0 1 0-4.4 0z", "M6.6 8.6a2.2 1.7 0 1 0 4.4 0a2.2 1.7 0 1 0-4.4 0z", "M4.2 2.4h.8v7.4h-.8z", "M10.2 1.2h.8v7.4h-.8z", "M4.2 2.4L11 1.2V3L4.2 4.2z"],
-];
-const NOTE_SLOTS = 9;
-const NOTE_FILL = "#f4fbfc";
-const NOTE_EDGE = "rgba(10,20,26,.5)";
-
-function rand(n: number) {
-  "worklet";
-  const v = Math.sin(n * 12.9898) * 43758.5453;
-  return v - Math.floor(v);
-}
-
+const AnimatedG = Animated.createAnimatedComponent(G);
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 interface VolumeTrackProps {
-  /** 0..1, the slider's value. */
-  value: number;
-  /** Sound is actually coming out: playing and not muted. */
-  active: boolean;
-  fillColor: string;
-  trackColor: string;
-  /** Matches the colour bar: 10pt thick, 10pt in from each side. */
-  height?: number;
-  inset?: number;
+  value: number; active: boolean; fillColor: string; trackColor: string;
+  height?: number; inset?: number; held?: boolean; children?: React.ReactNode;
 }
 
-export const VolumeTrack: React.FC<VolumeTrackProps> = ({ value, active, fillColor, trackColor, height = 10, inset = 10 }) => {
-  const reduced = useReducedMotion();
-  const [width, setWidth] = useState(0);
-  const clock = useSharedValue(0);
-  const fade = useSharedValue(0);
-  const level = useSharedValue(value);
-  const span = useSharedValue(0);
-  const on = active && !reduced && width > 0;
-
-  useEffect(() => { level.value = value; }, [level, value]);
-  useEffect(() => { span.value = Math.max(0, width - inset * 2); }, [span, width, inset]);
+export function VolumeTrack({ value, active, fillColor, trackColor, height = 10, inset = 10, held = false, children }: VolumeTrackProps) {
+  const ref = useRef<View>(null);
+  const [width, setWidth] = useState(0), [layoutHeight, setLayoutHeight] = useState(36);
+  const { reduced, foreground } = useMusicMotion();
+  const clock = useSharedValue(0), fade = useSharedValue(0), level = useSharedValue(value);
+  const emitted = useSharedValue(-1);
+  const notes = useSyncExternalStore(subscribeEscapedMusicNotes, getEscapedMusicNotes);
+  const canEscape = canEscapeMusicNote();
+  const on = active && value > 0 && !reduced && foreground && width > 0;
+  const shown = Math.max(0, Math.min(1, value)), span = Math.max(0, width - inset * 2);
+  const radius = held ? 15 : inset;
+  const ink = fillColor === '#394955' ? '#eff9fc' : '#203944';
+  const id = useId().replace(/:/g, '');
+  const current = useRef({ on, width, layoutHeight, value: shown, radius, reduced });
+  current.current = { on, width, layoutHeight, value: shown, radius, reduced };
+  useEffect(() => { level.value = shown; }, [level, shown]);
+  const frame = useFrameCallback(info => { clock.value += Math.min(50, info.timeSincePreviousFrame ?? 16) / 1000; }, false);
   useEffect(() => {
     fade.value = withTiming(on ? 1 : 0, { duration: on ? 300 : 450 });
-    if (!on) return;
-    clock.value = withRepeat(withTiming(clock.value + CLOCK_SPAN, { duration: CLOCK_SPAN * 1000, easing: Easing.linear }), -1, false);
-    return () => cancelAnimation(clock);
-  }, [on, clock, fade]);
-
-  const onLayout = (e: LayoutChangeEvent) => setWidth(e.nativeEvent.layout.width);
-  const shown = Math.max(0, Math.min(1, value));
-  const radius = height / 2;
-  // The native thumb is about 20pt wide and travels from `inset` to width - `inset`.
-  const thumbRadius = inset;
-
-  return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
-      <View style={[styles.bar, { left: inset, right: inset, height, marginTop: -radius, borderRadius: radius, backgroundColor: trackColor }]} />
-      <View style={[styles.bar, { left: inset, width: shown * Math.max(0, width - inset * 2), height, marginTop: -radius, borderRadius: radius, backgroundColor: fillColor }]} />
-      {!reduced && (
-        <View style={[styles.bar, { left: inset, right: inset, height, marginTop: -radius, borderRadius: radius, overflow: "hidden" }]}>
-          {Array.from({ length: NOTE_SLOTS }, (_, i) => (
-            <Note key={i} index={i} clock={clock} fade={fade} level={level} span={span} barHeight={height} thumbRadius={thumbRadius} />
-          ))}
-        </View>
-      )}
-      {!reduced && [0, 1].map((j) => (
-        <Echo key={j} offset={j} clock={clock} fade={fade} level={level} span={span} inset={inset} />
-      ))}
-    </View>
-  );
-};
-
-/**
- * Every cycle a note drifts along the fill, contained by the rounded tube.
- * Same maths as web's noteAt().
- */
-function Note({ index, clock, fade, level, span, barHeight, thumbRadius }: {
-  index: number; clock: SharedValue<number>; fade: SharedValue<number>; level: SharedValue<number>; span: SharedValue<number>;
-  barHeight: number; thumbRadius: number;
-}) {
-  const note = barHeight * 0.65;
-  const box = note * 1.35;
-  const style = useAnimatedStyle(() => {
-    const fillEnd = Math.max(0, level.value * span.value - thumbRadius);
-    const count = Math.max(2, Math.min(NOTE_SLOTS, Math.round(fillEnd / 18)));
-    if (index >= count || fillEnd <= note) return { opacity: 0 };
-    const duration = (1.8 + 1.6 * rand(index + 0.13)) / (0.75 + 0.5 * level.value);
-    const phase = clock.value / duration + rand(index + 0.71);
-    const cycle = Math.floor(phase);
-    const p = phase - cycle;
-    const r = (j: number) => rand(index * 31.7 + cycle * 7.3 + j);
-    const x = r(1) * fillEnd * 0.85 + p * (18 + 30 * r(2));
-    const y = Math.sin(p * Math.PI * 2 * (0.6 + r(5)) + r(6) * Math.PI * 2) * barHeight * 0.08;
-    const alpha = Math.pow(Math.sin(Math.PI * p), 0.8) * Math.max(0, Math.min(1, (fillEnd + 14 - x) / 10));
-    const scale = (0.8 + 0.2 * r(7)) / 1.35;
-    return {
-      opacity: 0.75 * fade.value * alpha,
-      transform: [{ translateX: x }, { translateY: y }, { rotate: `${(r(8) - 0.5) * 0.3}rad` }, { scale }],
-    };
+    frame.setActive(on);
+    return () => frame.setActive(false);
+  }, [on, frame, fade]);
+  const emit = useCallback(() => {
+    if (!current.current.on || !canEscapeMusicNote()) return;
+    ref.current?.measureInWindow((x, y, measuredWidth, measuredHeight) => {
+      const live = current.current, screen = Dimensions.get('window');
+      if (!live.on || live.reduced || AppState.currentState !== 'active' || measuredWidth <= 0 || measuredHeight <= 0) return;
+      const px = x + inset + live.value * Math.max(0, measuredWidth - inset * 2) + live.radius + 12;
+      const py = y + measuredHeight / 2 - 1.2 * height / 8;
+      if (px < 0 || px > screen.width || py < 0 || py > screen.height) return;
+      escapeMusicNote(px, py);
+    });
+  }, [inset, height]);
+  useAnimatedReaction(() => escapePose(clock.value, 0, radius, height), p => {
+    if (on && canEscape && p.ready && p.cycle !== emitted.value) { emitted.value = p.cycle; runOnJS(emit)(); }
+  }, [on, canEscape, emit, radius, height, notes.length]);
+  const cutoff = useAnimatedProps(() => ({ d: knobCutoff(inset + level.value * span, radius, height / 2) }));
+  const group = useAnimatedProps(() => ({ opacity: fade.value }));
+  const small = useAnimatedProps(() => {
+    const p = escapePose(clock.value, inset + level.value * span, radius, height);
+    const s = .48 * height / 8, a = s * Math.cos(-.18), b = s * Math.sin(-.18);
+    return { opacity: p.ready || !canEscape ? 0 : p.opacity * .9,
+      matrix: [a, b, -b, a, p.x - 3 * a, p.y - 3 * b] };
   });
-  return (
-    <Animated.View style={[{ position: "absolute", left: 0, top: "50%", marginTop: -box / 2, width: box, height: box }, style]}>
-      <Svg width={box} height={box} viewBox="-0.5 -0.5 13 13">
-        {NOTE_PATHS[index % 2].map((d) => <Path key={d} d={d} fill={NOTE_FILL} stroke={NOTE_EDGE} strokeWidth={1} strokeLinejoin="round" />)}
-      </Svg>
-    </Animated.View>
-  );
+  return <View ref={ref} collapsable={false} style={{ width: '100%', height: '100%', justifyContent: 'center' }} onLayout={e => { setWidth(e.nativeEvent.layout.width); setLayoutHeight(e.nativeEvent.layout.height); }}>
+    <View pointerEvents="none" style={[styles.bar, { left: inset, right: inset, height, marginTop: -height / 2, borderRadius: height / 2, backgroundColor: trackColor }]} />
+    <View pointerEvents="none" style={[styles.bar, { left: inset, width: shown * span, height, marginTop: -height / 2, borderRadius: height / 2, backgroundColor: fillColor }]} />
+    {children}
+    {!reduced && width > 0 && <Svg pointerEvents="none" width={width + 36} height={layoutHeight + 64} style={{ position: 'absolute', left: 0, top: -32 }}>
+      <Defs>
+        <ClipPath id={`${id}tube`}><Rect x={inset} y={-height / 2} width={span} height={height} rx={height / 2} /></ClipPath>
+        <ClipPath id={`${id}knob`}><AnimatedPath animatedProps={cutoff} /></ClipPath>
+      </Defs>
+      <G transform={`translate(0 ${layoutHeight / 2 + 32})`}>
+        <AnimatedG animatedProps={group} clipPath={`url(#${id}tube)`}>
+          <G clipPath={`url(#${id}knob)`}>
+            {Array.from({ length: Math.min(64, Math.ceil(width / 9)) }, (_, i) => <Note key={i} index={i} clock={clock} width={width} height={height} ink={ink} />)}
+          </G>
+          <AnimatedG animatedProps={small}><Glyph ink={ink} /></AnimatedG>
+        </AnimatedG>
+      </G>
+    </Svg>}
+    {!reduced && [0, 1].map(offset => <Echo key={offset} offset={offset} clock={clock} fade={fade} level={level} span={span} inset={inset} />)}
+  </View>;
 }
 
-/** One thin arc to the right of the handle per beat: a ring with only its right edge inked. */
-function Echo({ offset, clock, fade, level, span, inset }: {
-  offset: number; clock: SharedValue<number>; fade: SharedValue<number>; level: SharedValue<number>; span: SharedValue<number>;
-  inset: number;
-}) {
-  const base = inset + 2;
-  const grow = 12;
-  const size = (base + grow) * 2;
-  const style = useAnimatedStyle(() => {
-    const beats = (clock.value * BPM) / 60;
-    const age = ((((beats + offset) / 2) % 1) * 2) / ECHO_LIFE;
-    const thumbX = inset + level.value * span.value;
-    if (age >= 1) return { opacity: 0, transform: [{ translateX: thumbX - size / 2 }, { scale: 0 }] };
-    const radius = base + age * grow;
-    return {
-      opacity: 0.55 * fade.value * (0.55 + 0.45 * level.value) * Math.pow(1 - age, 1.6),
-      transform: [{ translateX: thumbX - size / 2 }, { scale: radius / (base + grow) }],
-    };
-  });
-  return (
-    <Animated.View
-      style={[{ position: "absolute", left: 0, top: "50%", marginTop: -size / 2, width: size, height: size, borderRadius: size / 2, borderWidth: 1.3, borderColor: "transparent", borderRightColor: ECHO_INK }, style]}
-    />
-  );
+function Glyph({ ink, double = false }: { ink: string; double?: boolean }) {
+  return <><Path d={NOTE_HEAD} fill={ink} /><Path d={double ? DOUBLE_STEM : NOTE_STEM} fill="none" stroke={ink} strokeWidth={1.05} strokeLinecap="round" strokeLinejoin="round" />{double && <Path d={DOUBLE_HEAD} fill={ink} />}</>;
 }
-
-const styles = StyleSheet.create({
-  bar: { position: "absolute", top: "50%" },
-});
+function Note({ index, clock, width, height, ink }: { index: number; clock: SharedValue<number>; width: number; height: number; ink: string }) {
+  const props = useAnimatedProps(() => {
+    const p = tubeNote(index, clock.value, width, height);
+    const a = p.size * Math.cos(p.rotation), b = p.size * Math.sin(p.rotation);
+    return { opacity: p.opacity, matrix: [a, b, -b, a, p.x - 3 * a, p.y - 3 * b] };
+  });
+  return <AnimatedG animatedProps={props}><Glyph ink={ink} double={index % 4 === 0} /></AnimatedG>;
+}
+function Echo({ offset, clock, fade, level, span, inset }: { offset: number; clock: SharedValue<number>; fade: SharedValue<number>; level: SharedValue<number>; span: number; inset: number }) {
+  const base = inset + 2, size = (base + 12) * 2;
+  const style = useAnimatedStyle(() => {
+    const age = (((clock.value * 112 / 60 + offset) / 2) % 1) * 2 / 1.15;
+    return { opacity: age >= 1 ? 0 : .55 * fade.value * (.55 + .45 * level.value) * Math.pow(1 - age, 1.6),
+      transform: [{ translateX: inset + level.value * span - size / 2 }, { scale: (base + Math.min(1, age) * 12) / (base + 12) }] };
+  });
+  return <Animated.View pointerEvents="none" style={[{ position: 'absolute', left: 0, top: '50%', marginTop: -size / 2, width: size, height: size, borderRadius: size / 2, borderWidth: 1.3, borderColor: 'transparent', borderRightColor: '#f0f8fa' }, style]} />;
+}
+const styles = StyleSheet.create({ bar: { position: 'absolute', top: '50%' } });
