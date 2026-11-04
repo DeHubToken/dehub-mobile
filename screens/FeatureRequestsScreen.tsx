@@ -47,6 +47,7 @@ import { shareWithRef } from "../libs/shareRef";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
+import { useVideoPlayer, VideoView } from "expo-video";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -185,48 +186,59 @@ const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 const Attachments: React.FC<{ feature: FeatureRequest }> = ({ feature }) => {
   const urls = featureAttachments(feature);
   const { width } = useWindowDimensions();
+  const navigation = useNavigation<any>();
   if (urls.length === 0) return null;
 
   // Card is screen − 16 (page gutters) − 24 (card padding); two-up splits it.
   const tile = (width - 40 - 6) / 2;
+  // Screenshots open full screen; videos play where they are.
+  const images = urls.filter(u => !isVideoAttachment(u));
+  const openImage = (url: string) => navigation.navigate(ScreenNames.ImageViewer, {
+    images, galleryKey: `request-${feature.id}`, initialIndex: Math.max(0, images.indexOf(url)),
+  });
+  const media = (url: string, fit: "contain" | "cover", badge: number) => isVideoAttachment(url)
+    ? <RequestVideo url={url} badge={badge} />
+    : (
+      <Pressable onPress={() => openImage(url)} style={StyleSheet.absoluteFill} accessibilityRole="imagebutton">
+        <Image source={{ uri: url }} style={StyleSheet.absoluteFill} contentFit={fit} transition={200} />
+      </Pressable>
+    );
 
   if (urls.length === 1) {
-    return (
-      <View style={styles.mediaSingle}>
-        <Image
-          source={{ uri: urls[0] }}
-          style={StyleSheet.absoluteFill}
-          contentFit="contain"
-          transition={200}
-        />
-        {isVideoAttachment(urls[0]) && (
-          <View style={styles.playBadge}>
-            <Icon name="Play" size={16} color="#FFFFFF" />
-          </View>
-        )}
-      </View>
-    );
+    return <View style={styles.mediaSingle}>{media(urls[0], "contain", 16)}</View>;
   }
 
   return (
     <View style={styles.mediaGrid}>
       {urls.map((url) => (
         <View key={url} style={[styles.mediaTile, { width: tile, height: tile * 0.5625 }]}>
-          <Image
-            source={{ uri: url }}
-            style={StyleSheet.absoluteFill}
-            contentFit="cover"
-            transition={200}
-          />
-          {isVideoAttachment(url) && (
-            <View style={styles.playBadge}>
-              <Icon name="Play" size={14} color="#FFFFFF" />
-            </View>
-          )}
+          {media(url, "cover", 14)}
         </View>
       ))}
     </View>
   );
+};
+
+/**
+ * A video attached to a request. It used to be handed to the image view,
+ * which can't draw a video, so it showed black and never played. The player
+ * is only made on tap, so a long board doesn't open one per video.
+ */
+const RequestVideo: React.FC<{ url: string; badge: number }> = ({ url, badge }) => {
+  const [playing, setPlaying] = useState(false);
+  if (playing) return <RequestVideoPlayer url={url} />;
+  return (
+    <Pressable onPress={() => setPlaying(true)} style={StyleSheet.absoluteFill} accessibilityRole="button">
+      <View className="dark-surface" style={styles.playBadge}>
+        <Icon name="Play" size={badge} color="#FFFFFF" />
+      </View>
+    </Pressable>
+  );
+};
+
+const RequestVideoPlayer: React.FC<{ url: string }> = ({ url }) => {
+  const player = useVideoPlayer(url, p => { p.play(); });
+  return <VideoView player={player} style={StyleSheet.absoluteFill} contentFit="contain" nativeControls />;
 };
 
 // ── Card ────────────────────────────────────────────────────────────────────
