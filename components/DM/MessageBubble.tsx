@@ -56,6 +56,8 @@ import type { DmVideoOptions } from "../../libs/dm-video-options";
 import type { DmDestruct } from "../../libs/dm-destruct";
 import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
 import { dmSendQueue } from "../../services/dm/dm.send";
+import { useDmTranslation, toggleDmTranslation } from "../../libs/dm-translation-store";
+import TranslateButton from "../ui/TranslateButton";
 
 /**
  * A line of yours that did not go out: it stays where it was sent, with
@@ -499,6 +501,23 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     () => (assetRefs.length ? stripAssetRefs(message.content ?? "", assetRefs) : message.content),
     [message.content, assetRefs],
   );
+
+  // Translate from the hold menu: the bubble swaps in the translation and
+  // shows "Show original" under it.
+  const translation = useDmTranslation(message._id);
+  const translated = translation?.status === "shown" ? translation.text : null;
+  const translationStatus = translation ? (
+    <View className="px-3 pt-1">
+      <TranslateButton
+        inline
+        statusOnly
+        isTranslated={translation.status === "shown"}
+        isLoading={translation.status === "loading"}
+        onTranslate={() => void toggleDmTranslation(message._id, message.content)}
+        onShowOriginal={() => void toggleDmTranslation(message._id, message.content)}
+      />
+    </View>
+  ) : null;
 
   const handleLongPress = useCallback(() => {
     containerRef.current?.measureInWindow((x, y, width, height) => {
@@ -1060,20 +1079,21 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 />
                 {!!sharedLink.caption && sharedLink.link.kind !== "post" && (
                   <LinkedText
-                    text={sharedLink.caption}
+                    text={translated ?? sharedLink.caption}
                     className={`px-3 pt-2 text-[15px] leading-5 ${
                       isMine ? "text-white" : "text-theme-neutrals-100"
                     }`}
                     onLongPress={handleLongPress}
                   />
                 )}
+                {sharedLink.link.kind !== "post" && translationStatus}
               </>
             ) : (
               hasText && (
                 <>
                   {!!assetDisplayText?.trim() && (
                     <LinkedText
-                      text={assetDisplayText}
+                      text={translated ?? assetDisplayText}
                       className={`px-3 ${
                         mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
                       } text-[15px] leading-5 ${
@@ -1082,6 +1102,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       onLongPress={handleLongPress}
                     />
                   )}
+                  {translationStatus}
                   {/* A contract address or a $TICKER in a message cards up the
                       same way it does in a post. Entity shares are left alone:
                       they already have a card above. The width is fixed because

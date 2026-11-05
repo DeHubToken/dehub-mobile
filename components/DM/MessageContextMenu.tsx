@@ -25,6 +25,7 @@ import { getSenderUser } from "../../services/dm/dm.types";
 import { ReactionStrip, REACTION_STRIP_HEIGHT } from "./MessageReactions";
 import { saveMessageFile, saveMessageImage } from "../../libs/saveMessageMedia";
 import { saveToLibrary } from "../../libs/assistantMedia";
+import { canTranslateDm, getDmTranslation, toggleDmTranslation } from "../../libs/dm-translation-store";
 
 
 export interface MessageLayout {
@@ -523,6 +524,21 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     if (onReply && !unsent)
       rows.push({ icon: "MessageCircle", label: t("dm.reply"), onPress: handleReply });
     if (hasContent) rows.push({ icon: "Copy", label: t("common.copy"), onPress: handleCopy });
+    // Translate the other person's words, the same as web. Shows the
+    // translation in the bubble; held again it offers the original back.
+    if (!isMine && !unsent && message._id && canTranslateDm(message.content)) {
+      const shown = getDmTranslation(message._id)?.status === "shown";
+      rows.push({
+        icon: shown ? "RotateCcw" : "Languages",
+        label: shown ? t("common.showOriginal") : t("common.translate"),
+        onPress: () => {
+          const id = message._id;
+          const content = message.content;
+          onClose();
+          void toggleDmTranslation(id, content);
+        },
+      });
+    }
     if (onForward && !unsent)
       rows.push({ icon: "Forward", label: t("dm.forwardMessage"), onPress: handleForward });
     if (downloadable && !unsent)
@@ -556,6 +572,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     handleDelete,
     downloadable,
     handleDownload,
+    onClose,
     t,
   ]);
 
