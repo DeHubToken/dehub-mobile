@@ -57,6 +57,8 @@ export interface InfiniteFeedProps {
   cacheKey: readonly unknown[];
   params?: Partial<SearchParams>;
   pageSize?: number;
+  /** Screens of runway before the next page is asked for (default 2.5). */
+  endReachedThreshold?: number;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   onEndReachedAll?: () => void;
@@ -180,6 +182,7 @@ const InfiniteFeedBase: React.FC<
   cacheKey,
   params,
   pageSize = 20,
+  endReachedThreshold = 2.5,
   contentContainerStyle,
   headerComponent,
   onEndReachedAll,
@@ -633,7 +636,7 @@ const InfiniteFeedBase: React.FC<
         // Keep multiple screens of runway. Fast flings can consume a single
         // screen before the request completes, leaving the gesture pinned at
         // the old content boundary.
-        onEndReachedThreshold={2.5}
+        onEndReachedThreshold={endReachedThreshold}
         viewabilityConfig={VIEWABILITY_CONFIG}
         onViewableItemsChanged={handleViewableItemsChanged}
         refreshControl={refreshControl}

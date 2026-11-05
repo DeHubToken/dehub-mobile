@@ -206,7 +206,10 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
           isLocked ? "locked" : "",
         ]}
         fetchPage={fetchPage}
-        pageSize={20}
+        // 10 fill the first screen; the next page waits until the visitor
+        // scrolls within about half a screen of the end.
+        pageSize={10}
+        endReachedThreshold={0.6}
         isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0, paddingHorizontal: 1 }}
         numColumns={3}
