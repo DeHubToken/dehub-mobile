@@ -55,7 +55,8 @@ const StandaloneTabBar: React.FC<{ onBeforeNavigate?: () => void; appWide?: bool
     };
   }, [isAuthed, onBeforeNavigate]);
 
-  return <FloatingBottomTabBar {...(props as any)} />;
+  // The bar is already on screen when this copy takes over: no entrance.
+  return <FloatingBottomTabBar {...(props as any)} noEntrance />;
 };
 
 export default StandaloneTabBar;

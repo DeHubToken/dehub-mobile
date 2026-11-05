@@ -454,7 +454,13 @@ const ScrollNavButton = memo<{
   },
 );
 
-const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
+/**
+ * `noEntrance`: a copy of the bar drawn over a pushed page or sheet (see
+ * StandaloneTabBar). The bar is already on screen when that copy mounts, so
+ * replaying the slide-up and icon stagger there read as the bar flashing and
+ * redrawing every time a profile or post opened.
+ */
+const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean }> = ({ state, navigation, noEntrance = false }) => {
   const { t } = useTranslation();
   const { t: _copyNav } = _useCopy();
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
@@ -527,7 +533,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   });
 
   useEffect(() => {
-    if (hasAnimated.current || !bootRevealed) return;
+    if (hasAnimated.current || !bootRevealed || noEntrance) return;
     hasAnimated.current = true;
     animProgress.setValue(0);
     containerAnim.value = 0;
@@ -539,7 +545,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     });
     animation.start();
     return () => animation.stop();
-  }, [animProgress, containerAnim, entranceFade]);
+  }, [animProgress, containerAnim, entranceFade, noEntrance]);
 
   // Nudge the nav pill sideways once, ever, to show it scrolls. It used to fire
   // on a 1500ms timer every single launch — a JS-driven ScrollView animation
