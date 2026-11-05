@@ -9,6 +9,11 @@
  *           height (three 16:9 tiles at half width ≈ one 9:16 tile)
  *  - hero:  one wide video across the full width at 16:9
  *
+ * When the list is complete a lone short left at the very end never sits on
+ * half a row: it joins the pair before it as a row of three, or takes the
+ * wide clips just before it into a stack, or (only when there is nothing
+ * else) spans the full width.
+ *
  * Rows follow a fixed rhythm (stack, hero, pair, …) and fall back to whatever
  * the next few items allow. The packer only looks a fixed window ahead and
  * holds back the tail while more pages can still arrive, so loading the next
@@ -19,6 +24,7 @@ export type BrickShape = 'tall' | 'wide';
 
 export type BrickRow<T> =
   | { kind: 'pair'; key: string; items: [T, T] }
+  | { kind: 'trio'; key: string; items: [T, T, T] }
   | { kind: 'stack'; key: string; tall: T; wides: T[]; tallSide: 'left' | 'right' }
   | { kind: 'hero'; key: string; item: T }
   | { kind: 'single'; key: string; item: T };
@@ -96,6 +102,25 @@ export function packBricks<T>(
       const item = queue.shift()!;
       rows.push({ kind: 'single', key: `s-${idOf(item)}`, item });
     }
+  }
+  return closeTail(rows, idOf);
+}
+
+/** Fold a lone short at the end into the rows before it so no half row is left empty. */
+function closeTail<T>(rows: BrickRow<T>[], idOf: (item: T) => string): BrickRow<T>[] {
+  const last = rows[rows.length - 1];
+  if (!last || last.kind !== 'single') return rows;
+  const prev = rows[rows.length - 2];
+  if (prev?.kind === 'pair') {
+    const items: [T, T, T] = [prev.items[0], prev.items[1], last.item];
+    return [...rows.slice(0, -2), { kind: 'trio', key: `t-${idOf(items[0])}`, items }];
+  }
+  // Wide clips right before it stack beside it at the short's height.
+  let start = rows.length - 1;
+  while (start > 0 && rows.length - 1 - start < 3 && rows[start - 1].kind === 'hero') start--;
+  if (start < rows.length - 1) {
+    const wides = rows.slice(start, -1).map((row) => (row as { item: T }).item);
+    return [...rows.slice(0, start), { kind: 'stack', key: `k-${idOf(last.item)}`, tall: last.item, wides, tallSide: 'left' }];
   }
   return rows;
 }
