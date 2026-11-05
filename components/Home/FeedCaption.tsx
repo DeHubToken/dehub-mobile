@@ -210,6 +210,11 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const titleSegments = useMemo(() => parseTextToSegments(displayTitle || ""), [displayTitle]);
   const descSegments = useMemo(() => parseTextToSegments(cleanDescription), [cleanDescription]);
 
+  // System Light drew the title and hashtags' class colour near-white on
+  // white while the description beside them was ink; an explicit ink holds.
+  const { isLight } = useAppTheme();
+  const lightInk = isLight ? LIGHT_INK_TEXT : null;
+
   const renderSegments = useCallback(
     (segments: Segment[], keyPrefix: string, fontSize: number) =>
       segments.map((seg, idx) => {
@@ -258,6 +263,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             <Text
               key={`${keyPrefix}-h-${idx}`}
               className="font-bold text-theme-neutrals-100"
+              style={lightInk}
               onPress={() => handleHashtagPress(seg.tag)}
               suppressHighlighting
             >
@@ -271,7 +277,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           </Text>
         );
       }),
-    [handleOpenLink, handleMentionPress, handleCashtagPress, handleHashtagPress, flagged],
+    [handleOpenLink, handleMentionPress, handleCashtagPress, handleHashtagPress, flagged, lightInk],
   );
 
   // Build the caption text
@@ -280,10 +286,6 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const hasCategories = showCategories && categories && categories.length > 0;
   // War sets captions as readouts: monospace, tracked out (web war-theme.css).
   const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
-  // iPhone in System Light drew the title's class colour near-white on white
-  // while the description beside it was ink; an explicit ink holds on both.
-  const { isLight } = useAppTheme();
-  const lightInk = isLight ? LIGHT_INK_TEXT : null;
 
   if (!hasTitle && !hasDescription && !hasCategories) {
     return null;
