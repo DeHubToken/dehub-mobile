@@ -69,3 +69,24 @@ export function correctVisitors(daily: SiteStatsDay[], zones?: SiteStatsZone[]):
   }
   return [...byDate.keys()].sort().map((k) => byDate.get(k)!);
 }
+
+/**
+ * Today is still filling up, so plotted raw it dives at the right edge every
+ * day. For the chart only, top it up with yesterday's pace for the part of the
+ * day not yet elapsed (web's Stats chart does the same). Tiles keep raw counts.
+ */
+export function smoothToday(rows: SiteStatsDay[], now: number = Date.now()): SiteStatsDay[] {
+  const last = rows.length - 1;
+  if (last < 1) return rows;
+  const start = Date.parse(`${rows[last].date}T00:00:00Z`);
+  const remaining = 1 - (now - start) / 86_400_000;
+  if (!(remaining > 0 && remaining <= 1)) return rows;
+  const prev = rows[last - 1];
+  const cur = rows[last];
+  return [...rows.slice(0, last), {
+    ...cur,
+    visitors: Math.round(cur.visitors + prev.visitors * remaining),
+    pageViews: Math.round(cur.pageViews + prev.pageViews * remaining),
+    requests: Math.round(cur.requests + prev.requests * remaining),
+  }];
+}
