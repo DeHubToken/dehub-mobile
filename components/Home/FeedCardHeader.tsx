@@ -30,6 +30,7 @@ const CORNER_ICON_DROP = CORNER_INSET - HEADER_ICON_SIZE * (4 / 32);
 const BOOST_END_SPACE = 14 - 8 - 2 * HEADER_ICON_PAD - MENU_ICON_END_SPACE;
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
+const TEXT_LIFT = 4;
 const HOLDER_BADGE_SIZE = 16;
 const HOLDER_BADGE_GAP = 0;
 // A bare Text onPress is the least forgiving target on Android: a thin line of
@@ -154,7 +155,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           blank space beside the name falls through to the card and opens
           the post. The column still fills the space left by the avatar and
           controls, so names truncate only at the available edge. */}
-      <View style={{ flex: 1, minWidth: 0, marginRight: 8, alignItems: "flex-start" }}>
+      {/* Lifted 4px: the 36px name + @handle stack sat low against the 32px
+          avatar. Now the name's tallest letters meet the avatar's top and the
+          handle's tails meet its bottom. */}
+      <View style={{ flex: 1, minWidth: 0, marginRight: 8, alignItems: "flex-start", top: -TEXT_LIFT }}>
         <Pressable
           onPress={onUserPress}
           onPressIn={onUserPress ? warmProfile : undefined}
