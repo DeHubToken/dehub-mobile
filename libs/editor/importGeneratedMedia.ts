@@ -3,7 +3,7 @@ import { assertGeneratedMediaUrl, generatedMediaFormat, generatedMediaName, type
 import { probeGeneratedMedia, throwIfImportAborted } from "./generatedMediaProbe";
 import { importClipFile, importPicture, MAX_MEDIA_BYTES, MediaTooLargeError } from "./storage";
 
-export interface GeneratedMediaSource { url: string; kind: GeneratedMediaKind; name?: string }
+export interface GeneratedMediaSource { url: string; kind: GeneratedMediaKind; name?: string; expectedDimensions?: { width: number; height: number }; layerSet?: import('./imageLayersContract').ImageLayerSet; layerChoices?: import('./imageLayersContract').LayerChoice[]; owner?: string }
 
 async function downloadGeneratedMedia(url: string, temporary: string, signal?: AbortSignal) {
   let stopped: Error | undefined;
@@ -71,10 +71,11 @@ export async function importGeneratedMedia(source: GeneratedMediaSource, signal?
       temporary = renamed;
     }
     const dimensions = await probeGeneratedMedia(temporary, source.kind, signal);
+    if (source.expectedDimensions && (dimensions.width !== source.expectedDimensions.width || dimensions.height !== source.expectedDimensions.height || actual.mime !== 'image/png')) throw new Error('Layer canvas changed');
     throwIfImportAborted(signal);
     const picked = { uri: temporary, ...dimensions, mimeType: actual.mime,
       fileName: generatedMediaName(source.kind, source.name || `generated-${source.kind}-${Date.now()}`, actual.ext) };
-    return source.kind === "image" ? await importPicture(picked) : await importClipFile({ ...picked, kind: source.kind });
+    return source.kind === "image" ? source.expectedDimensions ? await importPicture(picked, { preservePng: true }) : await importPicture(picked) : await importClipFile({ ...picked, kind: source.kind });
   } finally {
     await FileSystem.deleteAsync(temporary, { idempotent: true }).catch(() => {});
   }

@@ -34,6 +34,16 @@ it("preserves a PNG image through picture storage rather than treating it as vid
   expect(importPicture).toHaveBeenCalledWith(expect.objectContaining({ mimeType: "image/png", width: 1920, height: 1080, fileName: "transparent-image.png" }));
   expect(importClipFile).not.toHaveBeenCalled();
 });
+it('preserves original 4096 by 1024 PNG layer bytes and rejects a changed canvas', async () => {
+  download.mockResolvedValue({ status:200,headers:{'Content-Type':'image/png'} } as never);
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({width:4096,height:1024});
+  await importGeneratedMedia({url:'https://media.example/layer.png',kind:'image',expectedDimensions:{width:4096,height:1024}});
+  expect(importPicture).toHaveBeenCalledWith(expect.objectContaining({width:4096,height:1024,mimeType:'image/png'}),{preservePng:true});
+  jest.mocked(importPicture).mockClear();
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({width:2560,height:640});
+  await expect(importGeneratedMedia({url:'https://media.example/layer.png',kind:'image',expectedDimensions:{width:4096,height:1024}})).rejects.toThrow('Layer canvas changed');
+  expect(importPicture).not.toHaveBeenCalled();
+});
 it.each([403, 500])("rejects an HTTP %s result and removes its temporary file", async status => {
   download.mockResolvedValue({ status } as never);
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow();
