@@ -110,7 +110,7 @@ function Metric({ label, value, hint }: { label: string; value: number; hint?: s
 }
 
 export default function StatsScreen() {
-  const [range, setRange] = useState<Range>("30d");
+  const [range, setRange] = useState<Range>("all");
   const query = useQuery({
     queryKey: ["public-user-stats"],
     queryFn: fetchStats,
