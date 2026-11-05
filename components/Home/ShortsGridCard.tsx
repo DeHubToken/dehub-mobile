@@ -72,7 +72,7 @@ interface ShortsGridCardProps {
   width?: number;
   /**
    * Brick-row tiles (Shorts tab): the tile's exact size. A wide video gets a
-   * duration chip, a wide badge and, across the full width, its title.
+   * duration chip, its creator and, across the full width, its title.
    */
   frame?: { width: number; height: number; wide?: boolean; hero?: boolean; still?: boolean };
 }
@@ -239,7 +239,10 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   return (
     // Minimal: the cell behind a loading poster is black, not a grey box.
-    <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, !frame && styles.tall, isMinimal && styles.minimalCard]}>
+    // Brick tiles: no fill behind the picture. System Light's colour pass
+    // turned the dark grey pale, and it showed as a thin light rim round
+    // every video.
+    <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, !frame && styles.tall, isMinimal && styles.minimalCard, frame && styles.brickCard]}>
       {/* Thumbnail base layer — always rendered */}
       <Image
         source={thumbnailUri}
@@ -273,18 +276,24 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
       {wide ? (
         <>
-          <View style={styles.wideBadge} pointerEvents="none">
-            <View style={styles.wideBadgeGlyph} />
-          </View>
           <View style={[styles.bottomInfo, { right: 48 }]} pointerEvents="none">
             {frame?.hero && !!item.name && (
               <Text style={styles.wideTitle} numberOfLines={1}>{item.name}</Text>
             )}
-            <View style={styles.stat}>
-              <Icon name="Eye" size={9} strokeWidth={1.6} color="#EDEDED" />
-              <Text style={styles.statText} numberOfLines={1}>
-                {frame?.hero && username ? `@${username} · ` : ""}{formatCompactNumber(views)}
-              </Text>
+            {/* The creator, as on the tall tiles beside it. */}
+            <View style={styles.metadataRow}>
+              <Image
+                source={avatarUri && avatarUri !== "default-avatar" ? avatarUri : undefined}
+                style={[styles.avatar, isMinimal && styles.minimalAvatar]}
+                contentFit="cover"
+              />
+              <View style={styles.creatorInfo}>
+                {!!username && <Text style={styles.username} numberOfLines={1}>@{username}</Text>}
+                <View style={styles.stat}>
+                  <Icon name="Eye" size={9} strokeWidth={1.6} color="#EDEDED" />
+                  <Text style={styles.statText} numberOfLines={1}>{formatCompactNumber(views)}</Text>
+                </View>
+              </View>
             </View>
           </View>
           {(item.videoDuration ?? 0) > 0 && (
@@ -359,6 +368,7 @@ const styles = StyleSheet.create({
   // narrow tile with blank space beside it.
   tall: { aspectRatio: 9 / 16 },
   minimalCard: { backgroundColor: "#000" },
+  brickCard: { backgroundColor: "transparent" },
   minimalAvatar: { backgroundColor: "rgba(255,255,255,0.04)" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -428,26 +438,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 2,
     includeFontPadding: false,
-  },
-  wideBadge: {
-    position: "absolute",
-    top: 6,
-    right: 6,
-    width: 20,
-    height: 20,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.25)",
-    backgroundColor: "rgba(0,0,0,0.35)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  wideBadgeGlyph: {
-    width: 11,
-    height: 7,
-    borderRadius: 1.5,
-    borderWidth: 1.6,
-    borderColor: "#FFFFFF",
   },
   durationChip: {
     position: "absolute",
