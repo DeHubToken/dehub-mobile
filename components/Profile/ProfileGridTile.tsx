@@ -61,10 +61,10 @@ function plainText(text?: string): string {
     .trim();
 }
 
-function Badge({ icon, poster }: { icon: IconName; poster?: boolean }) {
+function Badge({ icon, poster, light }: { icon: IconName; poster?: boolean; light?: boolean }) {
   return (
-    <View style={[styles.badge, poster && styles.badgePoster]}>
-      <Icon name={icon} size={12} color="#FFFFFF" />
+    <View style={[styles.badge, poster && styles.badgePoster, poster && light && styles.badgePosterLight]}>
+      <Icon name={icon} size={12} color={poster && light ? "#17161B" : "#FFFFFF"} />
     </View>
   );
 }
@@ -81,7 +81,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const { t } = useTranslation();
   // Written dark, like the rest of the app: System Light's tone pass turns
   // the poster tiles to ink on white, and media tiles stay dark-surface.
-  const { theme } = useAppTheme();
+  const { theme, isLight } = useAppTheme();
   const kind = gridTileKind(item);
   const id = String(item.tokenId ?? item.id ?? "");
 
@@ -110,13 +110,17 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const isOsaka = theme === "osaka";
   const solid = isOsaka ? "#FF6FB5" : "#FFFFFF";
   const solidInk = isOsaka ? "#1A0C16" : "#000000";
-  const posterBg = isOsaka ? "rgba(17,14,28,0.82)" : "rgba(255,255,255,0.07)";
-  const posterLine = isOsaka ? "rgba(255,111,181,0.22)" : "rgba(255,255,255,0.1)";
+  // Poster tiles carry their own solid card and ink, kept out of the System
+  // Light tone pass (dark-surface): a see-through fill toned on a page that
+  // stayed dark left near-black words on near-black, only the emoji showing.
+  const lightPoster = isLight && !isOsaka;
+  const posterBg = isOsaka ? "rgba(17,14,28,0.82)" : lightPoster ? "#F2F2F4" : "#141416";
+  const posterLine = isOsaka ? "rgba(255,111,181,0.22)" : lightPoster ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)";
   // The owner's text-post backdrop (customs.postBg) on their own words only.
   const profileBg = useProfilePostBg();
   const postBg = kind === "text" && !(item as any).isRepost ? profileBg : null;
-  const ink = postBg ? POST_BG_INK[postBg.tone].ink : "#FFFFFF";
-  const sub = postBg ? POST_BG_INK[postBg.tone].sub : "rgba(255,255,255,0.6)";
+  const ink = postBg ? POST_BG_INK[postBg.tone].ink : lightPoster ? "#17161B" : "#FFFFFF";
+  const sub = postBg ? POST_BG_INK[postBg.tone].sub : lightPoster ? "rgba(23,22,27,0.62)" : "rgba(255,255,255,0.6)";
   const holdProps = usePostBgHoldProps(!!ownerHold && kind === "text" && !(item as any).isRepost);
 
   const pinChip = pinned ? (
@@ -132,7 +136,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   if (kind === "text" || kind === "article") {
     const words = plainText(kind === "article" ? item.title || item.name : item.description || item.name);
     body = (
-      <View className={postBg ? "dark-surface" : undefined} style={[styles.fill, postBg ? null : { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
+      <View className="dark-surface" style={[styles.fill, postBg ? null : { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
         {postBg && <PostBgLayer bg={postBg} />}
         {kind === "article" ? (
           <>
@@ -145,7 +149,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
               <Text numberOfLines={3} style={[styles.articleTitle, { color: ink }]}>{words}</Text>
               <Text style={[styles.meta, { color: sub }]}>{t("profile.articleShort", "Article")}</Text>
             </View>
-            <Badge icon="Blog" poster />
+            <Badge icon="Blog" poster light={lightPoster && !postBg} />
           </>
         ) : (
           <View style={styles.textInner}>
@@ -155,7 +159,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
               <View style={styles.stat}><Icon name="MessageSquare" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.commentCount ?? 0)}</Text></View>
               <View style={styles.stat}><Icon name="ThumbsUp" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(likeCount)}</Text></View>
             </View>
-            <Badge icon="MessageSquare" poster />
+            <Badge icon="MessageSquare" poster light={lightPoster && !postBg} />
           </View>
         )}
         {kind === "article" && pinChip}
@@ -251,6 +255,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.28)",
   },
   badgePoster: { backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.22)" },
+  badgePosterLight: { backgroundColor: "rgba(0,0,0,0.06)", borderColor: "rgba(0,0,0,0.12)" },
   chip: {
     position: "absolute",
     top: 6,
