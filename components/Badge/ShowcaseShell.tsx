@@ -60,6 +60,7 @@ import { haptic } from "../../libs/haptics";
 import { useAppTheme } from "../../context/ThemeContext";
 import { badgeAnimationStyle } from "../../libs/badgeAnimationStyle";
 import { badgeWorld } from "../../libs/badgeWorld";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 
 export interface ShowcaseEntry {
   key: string;
@@ -658,6 +659,9 @@ export default function ShowcaseShell({
 
   return (
     <Modal transparent visible animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={requestClose}>
+      {/* The showcase is a dark stage in every theme; System Light's colour
+          pass would turn its white type to ink on the black backdrop. */}
+      <KeepDarkScope>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View style={[{ flex: 1 }, rootStyle]} accessibilityViewIsModal accessibilityLabel={dialogLabel(index)}>
           {/* The page falls away behind the badge. */}
@@ -818,6 +822,7 @@ export default function ShowcaseShell({
           ) : null}
         </Animated.View>
       </GestureHandlerRootView>
+      </KeepDarkScope>
     </Modal>
   );
 }
