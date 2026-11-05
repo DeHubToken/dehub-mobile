@@ -9,12 +9,15 @@ import { useAuthState } from '../../context/AuthContext';
 import { useUser } from '../../context/AuthContext';
 import { getMyPosts } from '../../services/user.service';
 import ProfileEmptyState from './ProfileEmptyState';
-import ProfileGridTile from './ProfileGridTile';
+import ProfileGridTile, { gridTileKind } from './ProfileGridTile';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { seedPostDetail, warmRequest } from '../../libs/navPrefetch';
 import { noteProfileFeedOpen, useProvidedProfileFeed } from '../../libs/profileFeedOrigin';
 import { useProfilePostBg } from './PostBackground';
+
+// One recycle pool per tile kind: photo, video, text and song tiles draw different trees.
+const gridItemTypeOf = (item: any) => gridTileKind(item as UnifiedFeedItem);
 
 interface FeedRouteProps {
   /** Channel toolbar state, threaded to the API rather than applied on screen. */
@@ -213,6 +216,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0, paddingHorizontal: 1 }}
         numColumns={3}
+        gridItemType={gridItemTypeOf}
         enableBackToTop={false}
         headerComponent={header}
         loadingComponent={<GridSkeleton />}

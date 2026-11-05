@@ -100,6 +100,12 @@ export interface InfiniteFeedProps {
    * is then the same tile shape, so they all share one recycle pool.
    */
   numColumns?: number;
+  /**
+   * Recycle pool per tile kind in a grid. Tiles of different kinds draw
+   * different view trees; sharing one pool rebuilt a whole tile every time a
+   * photo cell was reused for a text post during a fling.
+   */
+  gridItemType?: (item: FeedItem) => string;
 }
 
 const gridItemType = () => "tile";
@@ -200,6 +206,7 @@ const InfiniteFeedBase: React.FC<
   loadingComponent,
   trackFeedCardVisibility = true,
   numColumns,
+  gridItemType: gridItemTypeProp,
 }) => {
   const { t } = useTranslation();
   const visibilityStore = useMemo(() => createFeedVisibilityStore(isFocused ?? true), []);
@@ -612,7 +619,7 @@ const InfiniteFeedBase: React.FC<
         showsVerticalScrollIndicator={false}
         data={items}
         keyExtractor={rowKeyOf}
-        getItemType={numColumns && numColumns > 1 ? gridItemType : feedPostType}
+        getItemType={numColumns && numColumns > 1 ? gridItemTypeProp ?? gridItemType : feedPostType}
         numColumns={numColumns && numColumns > 1 ? numColumns : undefined}
         renderItem={renderFeedItem}
         ListHeaderComponent={composedListHeader}
