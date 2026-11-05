@@ -23,7 +23,7 @@ import { AuthService, WalletNotLinkedError, WalletLinkAmbiguousError } from "../
 import { apiClient } from "../libs/api.client";
 import { clearEoaSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
-import { unregisterPushTokens } from "../services/push/push.service";
+import { clearPushTokenCache, unregisterCurrentDeviceToken } from "../services/push/push.service";
 import { getAppKitInstance } from "../config/reown.config";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { fetchWalletReliably } from "../libs/wallet-core/store";
@@ -239,12 +239,15 @@ export function useAuthSession({
     // Belongs to the identity signing out — the next one must not inherit it.
     clearWalletDrift();
     try {
-      // Unregister push tokens before clearing auth
+      // Stop pushes to this phone only. Signing out here must not silence the
+      // same account's other phones and browsers.
       try {
-        await unregisterPushTokens();
+        await unregisterCurrentDeviceToken();
       } catch (e) {
-        log.warn('signOut:unregisterPushTokens:error', e as any);
+        log.warn('signOut:unregisterCurrentDeviceToken:error', e as any);
       }
+      // The next account to sign in on this phone must register it again.
+      clearPushTokenCache();
       // "Log out" means this device forgets the session — its stored profile
       // snapshot (now-dead tokens) goes with it. Other saved profiles stay.
       // Session-expiry paths pass false so a possibly-recoverable stash
