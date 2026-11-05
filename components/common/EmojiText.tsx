@@ -108,7 +108,7 @@ export function expandEmojiTokens(
     }
     const tokens = tokenizeEmoji(part);
     if (tokens.length === 1 && tokens[0].kind === "text") {
-      out.push(part);
+      out.push(tokens[0].text);
       return;
     }
     tokens.forEach((t, ti) => {

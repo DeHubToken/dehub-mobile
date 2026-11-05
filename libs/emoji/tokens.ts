@@ -17,6 +17,11 @@
  * A `:name:` that resolves to nothing stays as the literal text, so a time like
  * "12:30:45" or someone typing ":this:" is never swallowed.
  *
+ * Typed faces (<3 :) :D ;) :( :P </3 XD ...) become the Unicode emoji inside
+ * plain-text runs. They only count when they stand alone (space or start
+ * before, space/punctuation/end after), so "a<3b", "16:9", "C:/x" and links
+ * stay as typed, and nothing inside `backticks` is touched.
+ *
  * Kept free of React so dehub-mobile can carry the same file.
  */
 
@@ -41,13 +46,66 @@ const TOKEN_RE = new RegExp(
   'g',
 );
 
-/** Cheap pre-check so text with no ':' at all skips the regex walk. */
+/** Typed faces, checked in order (longest / most specific first). */
+const EMOTICONS: Array<[RegExp, string]> = [
+  [/^<\/3$/, '\u{1F494}'],
+  [/^<3+$/, '\u2764\uFE0F'],
+  [/^>:-?\($/, '\u{1F620}'],
+  [/^:'-?\($/, '\u{1F622}'],
+  [/^:-?\)+$/, '\u{1F642}'],
+  [/^:-?\(+$/, '\u{1F641}'],
+  [/^:-?D+$/, '\u{1F603}'],
+  [/^;-?\)+$/, '\u{1F609}'],
+  [/^:-?[pP]$/, '\u{1F61B}'],
+  [/^;-?[pP]$/, '\u{1F61C}'],
+  [/^:-?[oO]$/, '\u{1F62E}'],
+  [/^:-?\*$/, '\u{1F618}'],
+  [/^[xX]D+$/, '\u{1F606}'],
+  [/^:-?\/$/, '\u{1F615}'],
+  [/^:-?\|$/, '\u{1F610}'],
+  [/^\^_?\^$/, '\u{1F60A}'],
+];
+
+const EMOTICON_RE =
+  /(^|[\s(["'])(<\/3|<3+|>:-?\(|:'-?\(|:-?\)+|:-?\(+|:-?D+|;-?\)+|:-?[pP]|;-?[pP]|:-?[oO]|:-?\*|[xX]D+|:-?\/|:-?\||\^_?\^)(?=$|[\s.,!?)\]"'\u2026])/g;
+
+const EMOTICON_HINT = /[:;<^]|[xX]D/;
+
+function emoticonFor(face: string): string | null {
+  for (const [re, emoji] of EMOTICONS) if (re.test(face)) return emoji;
+  return null;
+}
+
+/** "<3" -> "❤️" etc. in plain text; `code spans` are left alone. */
+export function replaceEmoticons(text: string): string {
+  if (!EMOTICON_HINT.test(text)) return text;
+  return text
+    .split(/(`[^`\n]*`)/)
+    .map((chunk) =>
+      chunk.startsWith('`') && chunk.endsWith('`') && chunk.length > 1
+        ? chunk
+        : chunk.replace(EMOTICON_RE, (m, lead: string, face: string) => {
+            const emoji = emoticonFor(face);
+            return emoji ? lead + emoji : m;
+          }),
+    )
+    .join('');
+}
+
+/** Cheap pre-check so text with nothing emoji-like skips the regex walk. */
 export function mayContainEmojiTokens(text: string): boolean {
-  return text.indexOf(':') !== -1;
+  return text.indexOf(':') !== -1 || EMOTICON_HINT.test(text);
 }
 
 export function tokenizeEmoji(text: string): EmojiToken[] {
   if (!mayContainEmojiTokens(text)) return [{ kind: 'text', text }];
+  const out = tokenizeCodes(text);
+  for (const t of out) if (t.kind === 'text') t.text = replaceEmoticons(t.text);
+  return out;
+}
+
+function tokenizeCodes(text: string): EmojiToken[] {
+  if (text.indexOf(':') === -1) return [{ kind: 'text', text }];
   const out: EmojiToken[] = [];
   let last = 0;
   TOKEN_RE.lastIndex = 0;
