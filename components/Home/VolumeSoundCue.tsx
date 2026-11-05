@@ -1,10 +1,19 @@
 import React, { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import { AppState, Dimensions, StyleSheet, View } from 'react-native';
-import Animated, { runOnJS, useAnimatedProps, useAnimatedReaction, useAnimatedStyle, useFrameCallback, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedProps, useAnimatedReaction, useAnimatedStyle, useDerivedValue, useFrameCallback, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 import { DOUBLE_HEAD, DOUBLE_STEM, NOTE_HEAD, NOTE_STEM, escapePose, knobCutoff, tubeNote } from './bubbleLift';
 import { canEscapeMusicNote, escapeMusicNote, getEscapedMusicNotes, subscribeEscapedMusicNotes } from './escapedMusicNotes';
 import { useMusicMotion } from './useMusicMotion';
+import { optionalSkia } from '../../libs/skia';
+
+// Skia draws the same anti-aliased strokes as web's canvas. Builds without
+// Skia keep the SVG version below.
+const skia = optionalSkia(() => {
+  const s = require('@shopify/react-native-skia') as typeof import('@shopify/react-native-skia');
+  const draw = require('./musicNotesSkia') as typeof import('./musicNotesSkia');
+  return { Canvas: s.Canvas, Picture: s.Picture, volumePicture: draw.volumePicture };
+});
 
 const AnimatedG = Animated.createAnimatedComponent(G);
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -22,6 +31,13 @@ export function VolumeTrack({ value, active, fillColor, trackColor, height = 10,
   const notes = useSyncExternalStore(subscribeEscapedMusicNotes, getEscapedMusicNotes);
   const canEscape = canEscapeMusicNote();
   const on = active && value > 0 && !reduced && foreground && width > 0;
+  // Keep the Skia layer only while playing (plus the fade out), so idle cards hold no canvas.
+  const [painting, setPainting] = useState(on);
+  useEffect(() => {
+    if (on) { setPainting(true); return; }
+    const t = setTimeout(() => setPainting(false), 600);
+    return () => clearTimeout(t);
+  }, [on]);
   const shown = Math.max(0, Math.min(1, value)), span = Math.max(0, width - inset * 2);
   const radius = held ? 15 : inset;
   const ink = fillColor === '#394955' ? '#eff9fc' : '#203944';
@@ -61,7 +77,8 @@ export function VolumeTrack({ value, active, fillColor, trackColor, height = 10,
     <View pointerEvents="none" style={[styles.bar, { left: inset, right: inset, height, marginTop: -height / 2, borderRadius: height / 2, backgroundColor: trackColor }]} />
     <View pointerEvents="none" style={[styles.bar, { left: inset, width: shown * span, height, marginTop: -height / 2, borderRadius: height / 2, backgroundColor: fillColor }]} />
     {children}
-    {!reduced && width > 0 && <Svg pointerEvents="none" width={width + 36} height={layoutHeight + 64} style={{ position: 'absolute', left: 0, top: -32 }}>
+    {skia && painting && !reduced && width > 0 && <SkiaNotes clock={clock} fade={fade} level={level} width={width} layoutHeight={layoutHeight} height={height} inset={inset} radius={radius} ink={ink} showTraveller={canEscape} />}
+    {!skia && !reduced && width > 0 && <Svg pointerEvents="none" width={width + 36} height={layoutHeight + 64} style={{ position: 'absolute', left: 0, top: -32 }}>
       <Defs>
         <ClipPath id={`${id}tube`}><Rect x={inset} y={-height / 2} width={span} height={height} rx={height / 2} /></ClipPath>
         <ClipPath id={`${id}knob`}><AnimatedPath animatedProps={cutoff} /></ClipPath>
@@ -76,10 +93,21 @@ export function VolumeTrack({ value, active, fillColor, trackColor, height = 10,
         </AnimatedG>
       </G>
     </Svg>}
-    {!reduced && [0, 1].map(offset => <Echo key={offset} offset={offset} clock={clock} fade={fade} level={level} span={span} inset={inset} />)}
+    {!skia && !reduced && [0, 1].map(offset => <Echo key={offset} offset={offset} clock={clock} fade={fade} level={level} span={span} inset={inset} />)}
   </View>;
 }
 
+function SkiaNotes({ clock, fade, level, width, layoutHeight, height, inset, radius, ink, showTraveller }: {
+  clock: SharedValue<number>; fade: SharedValue<number>; level: SharedValue<number>;
+  width: number; layoutHeight: number; height: number; inset: number; radius: number; ink: string; showTraveller: boolean;
+}) {
+  const draw = skia!, volumePicture = draw.volumePicture;
+  const picture = useDerivedValue(() => volumePicture({ clock: clock.value, fade: fade.value, level: level.value,
+    width, layoutHeight, trackHeight: height, inset, radius, ink, showTraveller }), [width, layoutHeight, height, inset, radius, ink, showTraveller]);
+  return <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: -32, width: width + 36, height: layoutHeight + 64 }}>
+    <draw.Canvas style={{ width: width + 36, height: layoutHeight + 64 }}><draw.Picture picture={picture} /></draw.Canvas>
+  </View>;
+}
 function Glyph({ ink, double = false }: { ink: string; double?: boolean }) {
   return <><Path d={NOTE_HEAD} fill={ink} /><Path d={double ? DOUBLE_STEM : NOTE_STEM} fill="none" stroke={ink} strokeWidth={1.05} strokeLinecap="round" strokeLinejoin="round" />{double && <Path d={DOUBLE_HEAD} fill={ink} />}</>;
 }

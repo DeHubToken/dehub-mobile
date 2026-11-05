@@ -1,4 +1,4 @@
-import { ESCAPE_AT, ESCAPE_PERIOD, escapePose, floatingNote, knobCutoff, tubeNote } from './bubbleLift';
+import { ESCAPE_AT, ESCAPE_PERIOD, NOTE_LIFETIME, NOTE_POP_TIME, escapePose, floatingNote, knobCutoff, notePop, popShape, tubeNote } from './bubbleLift';
 
 describe('Bubble lift motion', () => {
   it('moves every note up and right between off-tube respawns, with varied sizes', () => {
@@ -32,5 +32,15 @@ describe('Bubble lift motion', () => {
         expect(p.opacity).toBeGreaterThan(0);
       }
     }
+  });
+  it('pops each escaped bubble after its lifetime', () => {
+    expect(notePop(NOTE_LIFETIME - 1)).toBe(0);
+    expect(notePop(NOTE_LIFETIME + NOTE_POP_TIME / 2)).toBeCloseTo(.5);
+    expect(notePop(NOTE_LIFETIME + NOTE_POP_TIME + .01)).toBe(1);
+    const start = popShape(0, .4), end = popShape(1, .4);
+    expect(end.ring).toBeGreaterThan(start.ring);
+    expect(end.ringAlpha).toBe(0);
+    expect(end.glyphAlpha).toBe(0);
+    expect(start.drops).toHaveLength(6);
   });
 });

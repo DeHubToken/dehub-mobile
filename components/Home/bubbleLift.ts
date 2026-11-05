@@ -2,6 +2,9 @@
 export const ESCAPE_PERIOD = 7;
 export const ESCAPE_AT = 2.4;
 export const MAX_ESCAPED_NOTES = 64;
+// Escaped bubbles float for this long, then pop.
+export const NOTE_LIFETIME = 15;
+export const NOTE_POP_TIME = .42;
 export const NOTE_HEAD = 'M0 2.1a1.35 .88 -16 1 0 2.7 0a1.35 .88 -16 1 0-2.7 0';
 export const NOTE_STEM = 'M2.35 2V-2.7C4-2.15 4.7-1.4 4.2-.25';
 export const DOUBLE_HEAD = 'M3.85 1.7a1.35 .88 -16 1 0 2.7 0a1.35 .88 -16 1 0-2.7 0';
@@ -54,4 +57,22 @@ export function floatingNote(age: number, seed: number, x: number, y: number, wi
     size: (.48 + Math.min(1, age / 2) * (.35 + seed * .35)) * .88,
     rotation: Math.sin(age * .8 + phase) * .22,
     opacity: .62 + .18 * Math.sin(age * .7 + phase) };
+}
+// 0 while floating, then 0..1 through the pop; 1 means gone.
+export function notePop(age: number) {
+  'worklet';
+  return Math.max(0, Math.min(1, (age - NOTE_LIFETIME) / NOTE_POP_TIME));
+}
+// The burst ring and droplets, in the glyph's own units around the bubble centre.
+export function popShape(pop: number, seed: number) {
+  'worklet';
+  const ease = 1 - Math.pow(1 - pop, 3), fade = 1 - pop;
+  const drops: { x: number; y: number; r: number }[] = [];
+  for (let k = 0; k < 6; k++) {
+    const angle = seed * 6.283 + k * 1.047 + (noteRandom(seed * 31 + k) - .5) * .6;
+    const reach = 6.4 + ease * (5 + noteRandom(seed * 47 + k) * 4);
+    drops.push({ x: 3 + Math.cos(angle) * reach, y: Math.sin(angle) * reach, r: .75 * fade });
+  }
+  return { ring: 6 * (1 + .55 * ease), ringAlpha: .55 * fade * fade, ringWidth: .9 - .5 * pop,
+    glyphAlpha: fade * fade, glyphScale: 1 - .45 * ease, dropAlpha: .8 * fade, drops };
 }
