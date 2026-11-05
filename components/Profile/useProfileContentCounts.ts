@@ -15,35 +15,39 @@ export interface ProfileContentCounts {
   playlists?: number;
   articles?: number;
   fractions?: number;
+  /** True once /profile_counts answered for this address (badges stay blank until then, never a false 0). */
+  loaded?: boolean;
 }
 
 /**
  * Loads per-tab content counts for a profile so the tab bar can show
  * count badges like the web profile page.
  */
+const EMPTY: ProfileContentCounts = {};
+
 export function useProfileContentCounts(address?: string): ProfileContentCounts {
-  const [counts, setCounts] = useState<ProfileContentCounts>({});
+  // Kept with the address it belongs to, so opening another profile never
+  // shows the last person's numbers while the new ones load.
+  const [read, setRead] = useState<{ address?: string; counts: ProfileContentCounts }>({ counts: {} });
 
   useEffect(() => {
-    if (!address) {
-      setCounts({});
-      return;
-    }
+    if (!address) return;
     let cancelled = false;
     (async () => {
       try {
         const response = await apiClient.get<{ result: ProfileContentCounts }>(
           `/profile_counts/${encodeURIComponent(address)}`,
         );
-        if (!cancelled) setCounts(response?.result || {});
+        if (!cancelled) setRead({ address, counts: { ...(response?.result || {}), loaded: true } });
       } catch {
-        if (!cancelled) setCounts({});
+        if (!cancelled) setRead({ address, counts: { loaded: true } });
       }
     })();
     return () => {
       cancelled = true;
     };
   }, [address]);
+  const counts = read.address === address ? read.counts : EMPTY;
 
   // The Pinned badge follows the pins list a pin or unpin patches at once,
   // rather than the count read when the profile opened.
