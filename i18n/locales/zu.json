@@ -4915,7 +4915,9 @@
     "tabAudio": "Umsindo",
     "tabLive": "Okubukhoma",
     "tabPinned": "Okunamathiselwe",
-    "lockedPost": "Iphosti evaliwe"
+    "lockedPost": "Iphosti evaliwe",
+    "viewGrid": "Ukubuka igridi",
+    "viewList": "Ukubukwa kohlu"
   },
   "tv": {
     "title": "TV",

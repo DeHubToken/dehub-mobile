@@ -4918,7 +4918,9 @@
     "tabAudio": "صوتی",
     "tabLive": "زنده",
     "tabPinned": "پین شده",
-    "lockedPost": "پست قفل شده"
+    "lockedPost": "پست قفل شده",
+    "viewGrid": "نمای شبکه‌ای",
+    "viewList": "نمای فهرست"
   },
   "tv": {
     "title": "تلویزیون",

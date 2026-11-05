@@ -4989,7 +4989,9 @@
     "tabPosts": "পোস্ট",
     "tabAudio": "অডিও",
     "tabLive": "লাইভ",
-    "lockedPost": "লকড পোস্ট"
+    "lockedPost": "লকড পোস্ট",
+    "viewGrid": "গ্রিড ভিউ",
+    "viewList": "লিস্ট ভিউ"
   },
   "tv": {
     "title": "টিভি",

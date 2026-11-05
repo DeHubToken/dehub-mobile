@@ -4934,7 +4934,9 @@
     "tabAudio": "Audio",
     "tabLive": "Langsung",
     "tabPinned": "Disematkan",
-    "lockedPost": "Postingan terkunci"
+    "lockedPost": "Postingan terkunci",
+    "viewGrid": "Tampilan kisi",
+    "viewList": "Tampilan daftar"
   },
   "tv": {
     "title": "TV",

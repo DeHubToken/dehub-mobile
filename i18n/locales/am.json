@@ -4917,7 +4917,9 @@
     "tabAudio": "ኦዲዮ",
     "tabLive": "ቀጥታ",
     "tabPinned": "የተሰካ",
-    "lockedPost": "የተቆለፈ ልጥፍ"
+    "lockedPost": "የተቆለፈ ልጥፍ",
+    "viewGrid": "የፍርግርግ እይታ",
+    "viewList": "የዝርዝር እይታ"
   },
   "tv": {
     "title": "ቴሌቪዥን",

@@ -5038,7 +5038,9 @@
     "tabAudio": "অডিও",
     "tabLive": "লাইভ",
     "tabPinned": "পিন্ড",
-    "lockedPost": "লকড পোস্ট"
+    "lockedPost": "লকড পোস্ট",
+    "viewGrid": "গ্রিড ভিউ",
+    "viewList": "লিস্ট ভিউ"
   },
   "tv": {
     "title": "টিভি",

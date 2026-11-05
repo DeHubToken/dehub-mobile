@@ -4900,7 +4900,9 @@
     "tabAudio": "صوتي",
     "tabLive": "د لېوۍ",
     "tabPinned": "پښول",
-    "lockedPost": "تړل شوی پوسته"
+    "lockedPost": "تړل شوی پوسته",
+    "viewGrid": "منظره سرخ منظره",
+    "viewList": "منظره منظره"
   },
   "tv": {
     "title": "TV",

@@ -4916,7 +4916,9 @@
     "tabAudio": "Αυdio",
     "tabLive": "Ζωντανά",
     "tabPinned": "Κολλημένες",
-    "lockedPost": "Κλειδωμένη ανάρτηση"
+    "lockedPost": "Κλειδωμένη ανάρτηση",
+    "viewGrid": "Προβολή πλέγματος",
+    "viewList": "Προβολή λίστας"
   },
   "tv": {
     "title": "TV",

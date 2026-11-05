@@ -4907,7 +4907,9 @@
     "tabAudio": "Oro",
     "tabLive": "Ora",
     "tabPinned": "Kua piri",
-    "lockedPost": "Tuhinga ka whai mai"
+    "lockedPost": "Tuhinga ka whai mai",
+    "viewGrid": "Tirohanga Grid",
+    "viewList": "Tirohanga rārangi"
   },
   "tv": {
     "title": "Pouaka whakaata",

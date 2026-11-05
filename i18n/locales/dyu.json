@@ -4904,7 +4904,9 @@
     "tabPinned": "A tugura",
     "emptyUnlocked": "O tɛ se ka kɛ halibi.",
     "emptyWatched": "O tɛ se ka kɛ halibi.",
-    "lockedPost": "Barokun min be sɔrɔ o yɔrɔ la"
+    "lockedPost": "Barokun min be sɔrɔ o yɔrɔ la",
+    "viewGrid": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
+    "viewList": "A filɛ, a be se ka kɛ cogo"
   },
   "tv": {
     "title": "TV",

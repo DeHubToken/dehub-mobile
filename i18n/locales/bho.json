@@ -4901,7 +4901,9 @@
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
     "tabPinned": "पिन्ड",
-    "lockedPost": "पोस्ट बांधे जा रहे"
+    "lockedPost": "पोस्ट बांधे जा रहे",
+    "viewGrid": "लाल देखने वाला",
+    "viewList": "सूची देखने के बिंदु"
   },
   "tv": {
     "title": "टीवी",

@@ -4918,7 +4918,9 @@
     "tabAudio": "Səs",
     "tabLive": "Yaşayış",
     "tabPinned": "Pinlənmiş",
-    "lockedPost": "Kilidlənmiş yazı"
+    "lockedPost": "Kilidlənmiş yazı",
+    "viewGrid": "Şəbəkə mənzərəli",
+    "viewList": "Siyahı görünüşü"
   },
   "tv": {
     "title": "TV",

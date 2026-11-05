@@ -4907,7 +4907,9 @@
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
     "tabPinned": "पिन",
-    "lockedPost": "अवरुद्धं पदम्"
+    "lockedPost": "अवरुद्धं पदम्",
+    "viewGrid": "रेषा दृश्यम्",
+    "viewList": "सूचि दृश्यम्"
   },
   "tv": {
     "title": "दूरदर्शनम्",

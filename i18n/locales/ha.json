@@ -4916,7 +4916,9 @@
     "tabAudio": "Sauti",
     "tabLive": "Kai tsaye",
     "tabPinned": "An saka",
-    "lockedPost": "An kulle post"
+    "lockedPost": "An kulle post",
+    "viewGrid": "Ra'ayin Grid",
+    "viewList": "Lissafin Lissafi"
   },
   "tv": {
     "title": "Talabijin",

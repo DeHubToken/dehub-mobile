@@ -4900,7 +4900,9 @@
     "tabAudio": "ئۈن",
     "tabLive": "ياۋروپ",
     "tabPinned": "ئېغىش",
-    "lockedPost": "قۇلۇپلانغان يازما"
+    "lockedPost": "قۇلۇپلانغان يازما",
+    "viewGrid": "تور كۆرگۈ",
+    "viewList": "تىزىملىك كۆرۈنۈشى"
   },
   "tv": {
     "title": "تېلېۋىزور",

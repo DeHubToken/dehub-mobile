@@ -4907,7 +4907,9 @@
     "tabAudio": "ಆಡಿಯೊ",
     "tabLive": "ಲೈವ್",
     "tabPinned": "ಪಿನ್ನ್ಡ್",
-    "lockedPost": "ಲಾಕ್ ಮಾಡಲಾದ ಪೋಸ್ಟ್"
+    "lockedPost": "ಲಾಕ್ ಮಾಡಲಾದ ಪೋಸ್ಟ್",
+    "viewGrid": "ಗ್ರಿಡ್ ವೀಕ್ಷಣೆ",
+    "viewList": "ಪಟ್ಟಿ ವೀಕ್ಷಣೆ"
   },
   "tv": {
     "title": "ಟಿವಿ",

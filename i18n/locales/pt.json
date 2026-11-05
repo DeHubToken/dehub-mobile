@@ -4864,7 +4864,9 @@
     "tabPinned": "Fixado",
     "mutualsOne": "{{count}} Mútuo:",
     "mutualsMany": "{{count}} Mútuos:",
-    "lockedPost": "Post bloqueado"
+    "lockedPost": "Post bloqueado",
+    "viewGrid": "Vista de grelha",
+    "viewList": "Visualização de lista"
   },
   "tv": {
     "title": "TV",

@@ -4804,7 +4804,9 @@
     "tabAudio": "オーディオ",
     "tabLive": "ライブ",
     "tabPinned": "ピン留め",
-    "lockedPost": "ロックされた投稿"
+    "lockedPost": "ロックされた投稿",
+    "viewGrid": "グリッドビュー",
+    "viewList": "リストビュー"
   },
   "tv": {
     "title": "テレビ",

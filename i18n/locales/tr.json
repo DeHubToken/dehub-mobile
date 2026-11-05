@@ -2796,7 +2796,9 @@
     "tabAudio": "Ses",
     "tabLive": "Canlı",
     "tabPinned": "Sabitlendi",
-    "lockedPost": "Kilitli gönderi"
+    "lockedPost": "Kilitli gönderi",
+    "viewGrid": "Izgara görünümü",
+    "viewList": "Liste görünümü"
   },
   "tv": {
     "title": "TV",

@@ -4909,7 +4909,9 @@
     "tabAudio": "Audio nisqa",
     "tabLive": "Kawsay",
     "tabPinned": "Pinchasqa",
-    "lockedPost": "Wichqasqa poste"
+    "lockedPost": "Wichqasqa poste",
+    "viewGrid": "Rejilla qhaway",
+    "viewList": "Lista qhaway"
   },
   "tv": {
     "title": "TV",

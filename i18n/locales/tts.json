@@ -4898,7 +4898,9 @@
     "tabAudio": "เสียง",
     "tabLive": "สด",
     "tabPinned": "โพสต์ที่ติดปากกา",
-    "lockedPost": "โพสต์ล็อก"
+    "lockedPost": "โพสต์ล็อก",
+    "viewGrid": "มุมมองกริด",
+    "viewList": "รายการมุมมอง"
   },
   "tv": {
     "title": "โทรทัศน์",

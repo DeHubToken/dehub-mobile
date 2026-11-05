@@ -4915,7 +4915,9 @@
     "tabAudio": "Ohùn",
     "tabLive": "Ìgbésí ayé",
     "tabPinned": "Tí a fi sí ipò gíga",
-    "lockedPost": "Ifiweranṣẹ Titiipa"
+    "lockedPost": "Ifiweranṣẹ Titiipa",
+    "viewGrid": "Iwoye grid",
+    "viewList": "Wo àtòjọ"
   },
   "tv": {
     "title": "TV",

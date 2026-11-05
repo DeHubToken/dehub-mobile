@@ -4947,7 +4947,9 @@
     "tabAudio": "Klank",
     "tabLive": "Leef",
     "tabPinned": "Geheg",
-    "lockedPost": "Geslote plasing"
+    "lockedPost": "Geslote plasing",
+    "viewGrid": "Roosteraansig",
+    "viewList": "Lysaansig"
   },
   "tv": {
     "title": "TV",

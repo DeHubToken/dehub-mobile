@@ -4906,7 +4906,9 @@
     "tabAudio": "Suarané",
     "tabLive": "Nyumbul",
     "tabPinned": "Dipasang",
-    "lockedPost": "Kiriman terkunci"
+    "lockedPost": "Kiriman terkunci",
+    "viewGrid": "Tampilan kisi",
+    "viewList": "Tampilan dhaptar"
   },
   "tv": {
     "title": "TV",

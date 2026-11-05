@@ -4940,7 +4940,9 @@
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
     "tabPinned": "पिन किया गया",
-    "lockedPost": "लॉक की गई पोस्ट"
+    "lockedPost": "लॉक की गई पोस्ट",
+    "viewGrid": "ग्रिड व्यू",
+    "viewList": "लिस्ट व्यू"
   },
   "tv": {
     "title": "टीवी",

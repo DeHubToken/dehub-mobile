@@ -4895,7 +4895,9 @@
     "tabPinned": "Dem pin am",
     "offerWorthNow": "Wia di current rate, {{amount}} tokens dey be.",
     "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am.",
-    "lockedPost": "Locked post"
+    "lockedPost": "Locked post",
+    "viewGrid": "Grid view",
+    "viewList": "List view"
   },
   "tv": {
     "title": "TV",

@@ -4918,7 +4918,9 @@
     "tabAudio": "Lyd",
     "tabLive": "Live",
     "tabPinned": "Fastgjort",
-    "lockedPost": "Låst indlæg"
+    "lockedPost": "Låst indlæg",
+    "viewGrid": "Gittervisning",
+    "viewList": "Listevisning"
   },
   "tv": {
     "title": "TV",

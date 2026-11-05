@@ -4925,7 +4925,9 @@
     "tabAudio": "שמע",
     "tabLive": "שידור חי",
     "tabPinned": "מוצמדת",
-    "lockedPost": "עמדה נעולה"
+    "lockedPost": "עמדה נעולה",
+    "viewGrid": "תצוגת רשת",
+    "viewList": "תצוגת רשימה"
   },
   "tv": {
     "title": "טלוויזיה",

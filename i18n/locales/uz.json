@@ -4933,7 +4933,9 @@
     "tabAudio": "Audio",
     "tabLive": "Jonli",
     "tabPinned": "Mahkamlangan",
-    "lockedPost": "Qulflangan post"
+    "lockedPost": "Qulflangan post",
+    "viewGrid": "Panjara ko'rinishi",
+    "viewList": "Ro'yxat ko'rinishi"
   },
   "tv": {
     "title": "Televizor",

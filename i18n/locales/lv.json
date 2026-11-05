@@ -4918,7 +4918,9 @@
     "tabAudio": "Audio",
     "tabLive": "Tiešraide",
     "tabPinned": "Piesprausts",
-    "lockedPost": "Slēgts ieraksts"
+    "lockedPost": "Slēgts ieraksts",
+    "viewGrid": "Režģa skats",
+    "viewList": "Saraksta skats"
   },
   "tv": {
     "title": "TV",

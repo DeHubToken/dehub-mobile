@@ -4921,7 +4921,9 @@
     "tabAudio": "Sagalee",
     "tabLive": "Aduu",
     "tabPinned": "Qabame",
-    "lockedPost": "Post cufame"
+    "lockedPost": "Post cufame",
+    "viewGrid": "Mul'ata giiridii",
+    "viewList": "Mul'ata tarree"
   },
   "tv": {
     "title": "TV",

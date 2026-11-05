@@ -4925,7 +4925,9 @@
     "tabAudio": "Audió",
     "tabLive": "Élő",
     "tabPinned": "Kitűzve",
-    "lockedPost": "Zárolt bejegyzés"
+    "lockedPost": "Zárolt bejegyzés",
+    "viewGrid": "Rácsnézet",
+    "viewList": "Lista nézet"
   },
   "tv": {
     "title": "TV",

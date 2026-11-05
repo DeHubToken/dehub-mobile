@@ -4918,7 +4918,9 @@
     "tabAudio": "Heli",
     "tabLive": "Ühiskonnas",
     "tabPinned": "Pinnatud",
-    "lockedPost": "Lukustatud postitus"
+    "lockedPost": "Lukustatud postitus",
+    "viewGrid": "Ruudustiku vaade",
+    "viewList": "Loendivaade"
   },
   "tv": {
     "title": "TV",

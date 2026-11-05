@@ -2800,7 +2800,9 @@
     "tabAudio": "الصوت",
     "tabLive": "الحية",
     "tabPinned": "المنثور",
-    "lockedPost": "منشور مغلق"
+    "lockedPost": "منشور مغلق",
+    "viewGrid": "طريقة عرض الشبكة",
+    "viewList": "عرض القائمة"
   },
   "tv": {
     "title": "تلفزيون",

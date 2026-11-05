@@ -4921,7 +4921,9 @@
     "tabAudio": "Zvuk",
     "tabLive": "Uživo",
     "tabPinned": "Pine",
-    "lockedPost": "Zaključana objava"
+    "lockedPost": "Zaključana objava",
+    "viewGrid": "Prikaz rešetke",
+    "viewList": "Prikaz popisa"
   },
   "tv": {
     "title": "TV",

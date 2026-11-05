@@ -4921,7 +4921,9 @@
     "tabAudio": "Աուդիո",
     "tabLive": "Ուղիղ",
     "tabPinned": "Կցված",
-    "lockedPost": "Արգելափակված գրառում"
+    "lockedPost": "Արգելափակված գրառում",
+    "viewGrid": "Ցանցային տեսարան",
+    "viewList": "Ցուցակի դիտում"
   },
   "tv": {
     "title": "TV",

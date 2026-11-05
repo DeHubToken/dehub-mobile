@@ -4917,7 +4917,9 @@
     "tabAudio": "Deng",
     "tabLive": "Zindî",
     "tabPinned": "Pînkirî",
-    "lockedPost": "Postê girtî"
+    "lockedPost": "Postê girtî",
+    "viewGrid": "Dîtina torê",
+    "viewList": "Dîtina lîsteyê"
   },
   "tv": {
     "title": "TV",

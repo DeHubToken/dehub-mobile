@@ -4918,7 +4918,9 @@
     "tabAudio": "Ääni",
     "tabLive": "Suora",
     "tabPinned": "Pinnatut",
-    "lockedPost": "Lukittu julkaisu"
+    "lockedPost": "Lukittu julkaisu",
+    "viewGrid": "Ruudukkonäkymä",
+    "viewList": "Listanäkymä"
   },
   "tv": {
     "title": "TV",
