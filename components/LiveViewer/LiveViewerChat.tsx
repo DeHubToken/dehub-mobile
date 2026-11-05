@@ -7,7 +7,7 @@ import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getInlineBadgeOpticalStyle } from "../../libs/misc";
 import BadgeArtwork from "../common/BadgeArtwork";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -173,9 +173,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) 
             >
               {displayName}
               {badgeImg ? (
-                <View style={{ height: 14, marginLeft: 2, justifyContent: "center" }}>
-                  <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13, 0, 14), { marginLeft: 0 }]} contentFit="contain" />
-                </View>
+                <BadgeArtwork source={badgeImg} style={getInlineBadgeOpticalStyle(badgeImg, 13)} contentFit="contain" />
               ) : null}{" "}
             </Text>
             {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{translation.isTranslated ? translation.translatedTexts.content : a.meta?.content}</Text> : null}

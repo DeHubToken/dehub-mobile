@@ -51,7 +51,7 @@ import { localizedNotificationContent } from "../libs/notification-content";
 import { formatShortAgo } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { seedUserProfileCache } from "../hooks/useUserProfileData";
-import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl, getBadgeOpticalStyle } from "../libs";
+import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl, getInlineBadgeOpticalStyle } from "../libs";
 import { cdnImage } from "../libs/cdnImage";
 import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
 import { openInApp } from "../libs/links.utils";
@@ -793,7 +793,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             style={{ fontSize: 14.5, lineHeight: 20 }}
             numberOfLines={3}
           >
-            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={getBadgeOpticalStyle(actorBadge!, 14, 0, 20)} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
+            {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={getInlineBadgeOpticalStyle(actorBadge!, 14.5, false)} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
             <Text className="text-theme-neutrals-500" style={{ fontSize: 13 }}>
               {' · '}{formatShortAgo(item.updatedAt || item.createdAt)}
             </Text>

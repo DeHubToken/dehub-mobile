@@ -209,12 +209,19 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
-          <Text
-            className={`font-bold text-[14px] text-white`}
-            numberOfLines={1}
-          >
-            {displayName}
-          </Text>
+          {/* Name and badge share one 20pt row so the badge's resting line lands on the name's baseline. */}
+          <View style={{ flexDirection: "row", alignItems: "center", height: 20, flexShrink: 1, minWidth: 0 }}>
+            <Text
+              className={`font-bold text-[14px] text-white`}
+              style={{ lineHeight: 20, includeFontPadding: false, flexShrink: 1 }}
+              numberOfLines={1}
+            >
+              {displayName}
+            </Text>
+            {!!badgeImg && (
+              <BadgeArtwork source={badgeImg} style={getBadgeOpticalStyle(badgeImg, 14, 0, 20)} contentFit="contain" />
+            )}
+          </View>
           {message.isPinned && (
             <View className="flex-row items-center bg-white/10 rounded px-1.5 py-0.5 gap-0.5">
               <Icon name="Pin" size={9} color="#D4D4D8" />
@@ -230,9 +237,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             <View className="bg-white/10 rounded px-1.5 py-0.5">
               <Text className="text-theme-neutrals-200 text-[10px] font-bold">{_copy("copy.a4d1abed0b2b", { defaultValue: "MOD" })}</Text>
             </View>
-          )}
-          {!!badgeImg && (
-            <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} contentFit="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}

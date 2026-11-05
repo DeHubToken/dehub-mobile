@@ -4,7 +4,7 @@ import {
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
   resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
-  getBadgeOpticalStyle, badgeImageFor, getWalletAvatarUrl, storedAvatarSources,
+  getBadgeOpticalStyle, BADGE_CAP_SCALE, badgeImageFor, getWalletAvatarUrl, storedAvatarSources,
   getPlaybackUrl,
 } from '../../libs/misc';
 import { markHlsFailed } from '../../libs/hls-fallback';
@@ -503,28 +503,29 @@ describe('libs/misc', () => {
     });
 
     // Bounds measured from the shipped PNGs at alpha > 16.
+    // Last column: the row the body rests on (a quarter of the widest span).
     it.each([
-      ["Crab", 9, 16, 120, 118],
-      ["Ghost Lobster", 16, 14, 112, 111],
-      ["Piranha", 7, 11, 120, 119],
-      ["Giant Tortoise", 8, 16, 119, 114],
-      ["King Cobra", 15, 8, 111, 119],
-      ["Octopus", 10, 14, 118, 120],
-      ["Crocodile", 8, 12, 121, 117],
-      ["Dolphin", 15, 12, 111, 120],
-      ["Tiger Shark", 8, 15, 120, 120],
-      ["Killer Whale", 19, 17, 109, 121],
-      ["Great White Shark", 8, 13, 121, 120],
-      ["Blue Whale", 7, 13, 119, 121],
-      ["Megalodon", 8, 15, 120, 117],
-    ])('fits %s to 121% capital height and the name baseline', (tier, left, top, right, bottom) => {
+      ["Crab", 9, 16, 120, 118, 114],
+      ["Ghost Lobster", 16, 14, 112, 111, 108],
+      ["Piranha", 7, 11, 120, 119, 112],
+      ["Giant Tortoise", 8, 16, 119, 114, 112],
+      ["King Cobra", 15, 8, 111, 119, 117],
+      ["Octopus", 10, 14, 118, 120, 118],
+      ["Crocodile", 8, 12, 121, 117, 115],
+      ["Dolphin", 15, 12, 111, 120, 117],
+      ["Tiger Shark", 8, 15, 120, 120, 113],
+      ["Killer Whale", 19, 17, 109, 121, 118],
+      ["Great White Shark", 8, 13, 121, 120, 114],
+      ["Blue Whale", 7, 13, 119, 121, 115],
+      ["Megalodon", 8, 15, 120, 117, 114],
+    ])('fits %s to 127% capital height and rests it on the name baseline', (tier, left, top, right, bottom, sit) => {
       const source = badgeImageFor(String(tier));
       expect(source).toBeDefined();
       const style = getBadgeOpticalStyle(source!, 16, 0, 20);
       const pixels = style.height - 2 * style.padding;
-      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72 * 1.21);
-      const artworkBottom = -style.height / 2 + style.padding + pixels * Number(bottom) / 128 + style.transform[0].translateY;
-      expect(artworkBottom).toBeCloseTo(16 * 0.383);
+      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72 * BADGE_CAP_SCALE);
+      const restingLine = -style.height / 2 + style.padding + pixels * Number(sit) / 128 + style.transform[0].translateY;
+      expect(restingLine).toBeCloseTo(16 * 0.383);
       expect(style.marginLeft + style.padding + pixels * Number(left) / 128).toBeCloseTo(3);
       expect(style.height + style.marginTop + style.marginBottom).toBeLessThanOrEqual(20);
     });
