@@ -51,7 +51,10 @@ export default function FrostedPill({ tint, borderRadius, bordered = true, live 
   const surfaceActive = useFeedSurfaceActive();
   const { isLight } = useAppTheme();
   const scrolling = useSyncExternalStore(subscribeAndroidScroll, androidScrollSnapshot, androidScrollSnapshot);
-  if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} />;
+  // iPhone's dark glass is for the dark themes only. Under System Light it put
+  // a smoked slab behind ink icons (bottom bar, page headers, tab strips) and
+  // they disappeared; System Light takes the pale frost below on both phones.
+  if (Platform.OS === "ios" && !isLight) return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} />;
   // Opacity on a covered page does not stop native blur target sampling.
   // Each Android blur consumer redraws the full feed-sized target. Keep the
   // existing material while it moves; resume sampling only after it settles.
@@ -63,9 +66,12 @@ export default function FrostedPill({ tint, borderRadius, bordered = true, live 
     return (
       <KeepDarkScope>
         <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
-          {/* Solid underneath either way, so the blur fades over it. */}
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} />
-          {blur ? (
+          {/* iPhone blurs whatever is behind the pill, as its dark glass does.
+              Android: solid underneath either way, so the blur fades over it. */}
+          {Platform.OS === "ios" ? (
+            <BlurView intensity={60} tint="systemUltraThinMaterialLight" style={StyleSheet.absoluteFill} />
+          ) : <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} />}
+          {Platform.OS !== "ios" && blur ? (
             <FadingBlur>
               <BlurView
                 blurTarget={target}

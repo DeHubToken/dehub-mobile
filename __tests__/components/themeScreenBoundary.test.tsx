@@ -6,11 +6,13 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 let mockTheme = 'system';
 let mockLight = false;
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
-jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, isLight: mockLight }) }));
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, isLight: mockLight }), useThemeRootStyle: () => ({}) }));
 jest.mock('../../components/ErrorBoundary', () => ({ __esModule: true, default: ({ children }: any) => children }));
 jest.mock('../../libs/crashRecovery', () => ({ restartApp: jest.fn() }));
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('@expo/vector-icons/Ionicons', () => () => null);
+// The shared react-native mock has no View; the boundary wraps screens in one.
+(require('react-native') as { View?: unknown }).View ??= 'View';
 
 it.each([
   ['Settings', 2],

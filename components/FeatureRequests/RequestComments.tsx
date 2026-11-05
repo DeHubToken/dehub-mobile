@@ -296,6 +296,10 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
             </>
           )}
           <View style={styles.inputBox}>
+            {/* Own column, as the post comment box has: an iPhone multiline
+                field sitting straight in a row sizes itself to its text, so
+                long lines ran off the right edge of the box. */}
+            <View style={styles.inputColumn}>
             <TextInput
               ref={inputRef}
               value={text}
@@ -309,6 +313,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
               maxLength={500}
               multiline
             />
+            </View>
             <Pressable
               onPress={() => { Keyboard.dismiss(); setEmojiOpen(true); }}
               hitSlop={8}
@@ -417,7 +422,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     minHeight: COMPOSER.control,
   },
-  input: { flex: 1, color: "#F9FBFF", fontSize: 14, maxHeight: 140, paddingVertical: 0, textAlignVertical: "center" },
+  inputColumn: { flex: 1, minWidth: 0, flexShrink: 1, flexDirection: "column", justifyContent: "center" },
+  input: { width: "100%", color: "#F9FBFF", fontSize: 14, maxHeight: 140, paddingVertical: 0, paddingHorizontal: 0, textAlignVertical: "center" },
   gifGlyph: { color: "#8B8D90", fontSize: 12, fontWeight: "700" },
   sendBtn: { width: COMPOSER.control, height: COMPOSER.control, borderRadius: 10, alignItems: "center", justifyContent: "center" },
   signIn: { marginTop: 6, height: 36, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.05)" },
