@@ -21,7 +21,8 @@ jest.mock('../../config/env', () => ({
 
 describe('libs/misc', () => {
   it('uses the bundled assistant portrait for legacy, revisioned and wallet avatar sources', () => {
-    const resolve = jest.spyOn(Image, 'resolveAssetSource').mockReturnValue({
+    const previous = Image.resolveAssetSource;
+    Image.resolveAssetSource = jest.fn().mockReturnValue({
       uri: 'file:///assistant-portrait.png', width: 1280, height: 1280, scale: 1,
     });
     try {
@@ -30,7 +31,7 @@ describe('libs/misc', () => {
       expect(getWalletAvatarUrl(ASSISTANT_ADDRESS.toUpperCase())).toBe('file:///assistant-portrait.png');
       expect(getAvatarUrl('avatars/someone-else.jpg', 0)).toBe('https://cdn.test.dehub.io/avatars/someone-else.jpg');
     } finally {
-      resolve.mockRestore();
+      Image.resolveAssetSource = previous;
     }
   });
   describe('getAvatarUrl', () => {
