@@ -8,6 +8,8 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { ethers } from "ethers";
 import { ThemeIcon } from "../page/PageKit";
+import { cdnImage } from "../../libs/cdnImage";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 import { CHAIN_LABEL } from "../../services/nft-market.service";
 
 export function formatPrice(amount: string, decimals: number): string {
@@ -26,7 +28,12 @@ export function formatPrice(amount: string, decimals: number): string {
 // One dot per chain so a mixed grid reads at a glance without a label on every tile.
 const CHAIN_DOT: Record<number, string> = { 56: "#F0B90B", 8453: "#0052FF", 1: "#8A92B2", 4663: "#CCFF00" };
 
-export const NftArt: React.FC<{ uri: string | null | undefined; style?: object }> = ({ uri, style }) => {
+/**
+ * `width` is the art's on-screen width in points: our own CDN pictures are
+ * then fetched at that size instead of the full upload (a 1080x1920 post
+ * photo for a 148pt card took ages on a phone connection).
+ */
+export const NftArt: React.FC<{ uri: string | null | undefined; style?: object; width?: number }> = ({ uri, style, width }) => {
   const [broken, setBroken] = useState(false);
   if (!uri || broken) {
     return (
@@ -35,7 +42,17 @@ export const NftArt: React.FC<{ uri: string | null | undefined; style?: object }
       </View>
     );
   }
-  return <Image source={{ uri }} style={style} contentFit="cover" cachePolicy="disk" onError={() => setBroken(true)} />;
+  return (
+    <Image
+      source={{ uri: width ? cdnImage(uri, { width }) : uri }}
+      style={style}
+      contentFit="cover"
+      cachePolicy="disk"
+      recyclingKey={uri}
+      transition={150}
+      onError={() => setBroken(true)}
+    />
+  );
 };
 
 interface Props {
@@ -48,13 +65,17 @@ interface Props {
   badge?: string | null;
   /** Art only with the price on the image: the 3-across grid inside a collection. */
   compact?: boolean;
+  /** On-screen width of the tile in points, for the CDN size. */
+  artWidth?: number;
   onPress: () => void;
 }
 
-const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, compact, onPress }) => (
+const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, compact, artWidth, onPress }) => (
   <Pressable onPress={onPress} style={({ pressed }) => [styles.tile, pressed && { opacity: 0.85 }]} accessibilityRole="button" accessibilityLabel={name}>
+    {/* Badges and the name strip sit on the art, so System Light leaves them dark. */}
+    <KeepDarkScope>
     <View style={styles.artWrap}>
-      <NftArt uri={image} style={styles.art} />
+      <NftArt uri={image} style={styles.art} width={artWidth} />
       {compact ? (
         <View style={[styles.dot, { backgroundColor: CHAIN_DOT[chainId] ?? "#FFFFFF" }]} accessibilityLabel={CHAIN_LABEL[chainId] ?? String(chainId)} />
       ) : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
@@ -70,6 +91,7 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
         </LinearGradient>
       ) : null}
     </View>
+    </KeepDarkScope>
     {compact ? null : <View style={styles.meta}>
       {collection ? <Text numberOfLines={1} style={styles.collection}>{collection}</Text> : null}
       <Text numberOfLines={1} style={styles.name}>{name}</Text>

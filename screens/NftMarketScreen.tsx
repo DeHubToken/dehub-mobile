@@ -9,7 +9,7 @@
  * storefront the sheet links out to dehub.io, which Apple allows there.
  */
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, useWindowDimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -75,6 +75,10 @@ export default function NftMarketScreen() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const insets = useSafeAreaInsets();
+  const { width: screenW } = useWindowDimensions();
+  // Tile widths for the CDN size: 16pt page gutters, 6pt (3-up) / 12pt (2-up) gaps.
+  const tile3 = Math.ceil((screenW - 32 - 12) / 3);
+  const tile2 = Math.ceil((screenW - 32 - 12) / 2);
   const { provider, account, chainId } = useWeb3Provider();
   const canTrade = DIGITAL_PURCHASES_ENABLED;
   const linkOut = Platform.OS === "ios" && inUnitedStates();
@@ -245,7 +249,7 @@ export default function NftMarketScreen() {
   };
 
   const chips = (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipScroll} contentContainerStyle={styles.chipRow}>
+    <ScrollView horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} style={styles.chipScroll} contentContainerStyle={styles.chipRow}>
       {(["all", ...MARKET_CHAINS] as ChainFilter[]).map((c) => (
         <Chip key={String(c)} label={c === "all" ? t("nftMarket.allChains", { defaultValue: "All chains" }) : CHAIN_LABEL[c]} active={chain === c} onPress={() => setChain(c)} />
       ))}
@@ -324,6 +328,7 @@ export default function NftMarketScreen() {
                 <NftTile
                   key={`${n.chainId}:${n.contract}:${n.tokenId}`}
                   compact
+                  artWidth={tile3}
                   name={titleOf(n.name, n.tokenId)}
                   image={n.image}
                   chainId={n.chainId}
@@ -357,6 +362,7 @@ export default function NftMarketScreen() {
         item ? (
           <NftTile
             compact={compact}
+            artWidth={compact ? tile3 : tile2}
             name={titleOf(item.nftName, item.tokenId)}
             collection={item.collectionName}
             image={item.nftImage}
@@ -408,6 +414,7 @@ export default function NftMarketScreen() {
         const listed = listedByMe.get(`${walletChain}:${item.contract.toLowerCase()}:${item.tokenId}`);
         return (
           <NftTile
+            artWidth={tile2}
             name={item.name ?? `#${item.tokenId}`}
             collection={item.collectionName}
             image={item.image}

@@ -1,11 +1,15 @@
 /**
- * The market's opening shot: one NFT at full width, its art blurred behind it,
- * cycling through the newest few. Listings lead; minted posts fill in when
- * nothing is for sale yet. Colours are fixed: everything sits on the art.
+ * The market's opening shot: one NFT at full width, cycling through the newest
+ * few. Listings lead; minted posts fill in when nothing is for sale yet.
+ * Colours are fixed (KeepDarkScope): everything sits on the art.
+ *
+ * No blurred copy of the art behind it: on phones the art fills the whole card,
+ * so the blur was never seen, and on Android it was a second full-size decode
+ * plus a software blur on every slide.
  */
 import React, { useEffect, useState } from "react";
-import { View, Text, Pressable, StyleSheet, AccessibilityInfo } from "react-native";
-import BlurSafeImage from "../common/BlurSafeImage";
+import { View, Text, Pressable, StyleSheet, AccessibilityInfo, useWindowDimensions } from "react-native";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import { NftArt, formatPrice } from "./NftTile";
@@ -23,6 +27,7 @@ export interface SpotlightItem {
 const NftSpotlight: React.FC<{ items: SpotlightItem[] }> = ({ items }) => {
   const { t } = useTranslation();
   const [at, setAt] = useState(0);
+  const { width } = useWindowDimensions();
   const count = items.length;
 
   useEffect(() => {
@@ -43,10 +48,10 @@ const NftSpotlight: React.FC<{ items: SpotlightItem[] }> = ({ items }) => {
   const item = items[Math.min(at, count - 1)];
 
   return (
+    <KeepDarkScope>
     <View style={styles.wrap}>
-      {item.image ? <BlurSafeImage source={{ uri: item.image }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={40} cachePolicy="disk" transition={400} /> : null}
       <Pressable onPress={item.onOpen} accessibilityRole="button" accessibilityLabel={item.name}>
-        <NftArt uri={item.image} style={styles.art} />
+        <NftArt uri={item.image} style={styles.art} width={width - 32} />
         <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.88)"]} style={styles.shade} pointerEvents="none" />
       </Pressable>
       <View style={styles.copy} pointerEvents="box-none">
@@ -76,6 +81,7 @@ const NftSpotlight: React.FC<{ items: SpotlightItem[] }> = ({ items }) => {
         </View>
       </View>
     </View>
+    </KeepDarkScope>
   );
 };
 
@@ -90,14 +96,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: "rgba(255,255,255,0.16)",
+    // Dark, not frosted white: a white tint vanished over bright photos.
+    backgroundColor: "rgba(0,0,0,0.62)",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.22)",
     color: "#FFFFFF",
     fontSize: 10.5,
     fontWeight: "700",
     letterSpacing: 0.8,
     textTransform: "uppercase",
   },
-  title: { color: "#FFFFFF", fontSize: 22, lineHeight: 26, fontWeight: "800" },
+  title: { color: "#FFFFFF", fontSize: 22, lineHeight: 26, fontWeight: "800", textShadowColor: "rgba(0,0,0,0.55)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 6 },
   row: { flexDirection: "row", alignItems: "center", gap: 12 },
   cta: { backgroundColor: "#FFFFFF", borderRadius: 999, paddingHorizontal: 16, paddingVertical: 9 },
   ctaText: { color: "#000000", fontSize: 13.5, fontWeight: "800" },
