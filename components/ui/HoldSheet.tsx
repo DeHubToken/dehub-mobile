@@ -16,8 +16,8 @@ import MessageSurface from "../DM/MessageSurface";
 import Icon, { type IconName } from "./Icon";
 
 /**
- * The hold menu for a chat line or a comment: the held row stays where it is
- * (nothing is redrawn), everything above and below it dims, the list slides up
+ * The hold menu for a chat line or a comment: the held row stays where it is,
+ * unframed (nothing is redrawn), everything above and below it dims, the list slides up
  * so the row clears a glass bottom sheet, and the sheet carries the reactions
  * and the actions. The old menus drew a second card of the row over the real
  * one, which on Android (no blur) read as the message twice.
@@ -149,26 +149,6 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
           <Animated.View entering={FadeIn.duration(180)} exiting={FadeOut.duration(120)} style={{ flex: 1, backgroundColor: dim }} />
         )}
       </Pressable>
-
-      {/* Soft glow on the real row, where it sits. Nothing is redrawn. */}
-      {layout && (
-        <Animated.View
-          pointerEvents="none"
-          entering={FadeIn.duration(180)}
-          exiting={FadeOut.duration(120)}
-          style={{
-            position: "absolute",
-            left: 6,
-            right: 6,
-            top: rowTop,
-            height: rowH,
-            borderRadius: 16,
-            borderWidth: 1,
-            borderColor: rgba(ink, 0.18),
-            backgroundColor: rgba(ink, 0.06),
-          }}
-        />
-      )}
 
       <Animated.View
         entering={SlideInDown.duration(240)}
