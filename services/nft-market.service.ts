@@ -140,6 +140,47 @@ export interface MarketCollection {
   floor: { amount: string; symbol: string; decimals: number } | null;
   /** Riftn Posts: how many are minted (listed or not). */
   minted?: number;
+  /** Sales so far and their total, in the coin it sells in most. */
+  sales?: number;
+  volume?: { amount: number; symbol: string } | null;
+}
+
+export interface BestOffer {
+  contract: string;
+  tokenId: string;
+  orderHash: string;
+  price: string;
+  currencySymbol: string;
+  currencyDecimals: number;
+  isCollection: boolean;
+}
+
+/** A listing on OpenSea, bought through their fulfillment API. */
+export interface OpenSeaListing {
+  source: "opensea";
+  orderHash: string;
+  protocolAddress: string;
+  chainId: number;
+  contract: string;
+  tokenId: string;
+  standard: "erc721" | "erc1155";
+  price: string;
+  currencySymbol: string;
+  currencyDecimals: number;
+  collectionName: string | null;
+  collectionSlug: string;
+  nftName: string | null;
+  nftImage: string | null;
+}
+
+/** Chains OpenSea lists that the market also runs on. */
+export const OPENSEA_CHAINS = [8453, 1] as const;
+
+/** "1.24 ETH" style, short. */
+export function formatVolume(v: { amount: number; symbol: string }): string {
+  const n = v.amount;
+  const s = n >= 1000 ? n.toLocaleString(undefined, { maximumFractionDigits: 0 }) : n.toLocaleString(undefined, { maximumSignificantDigits: 3 });
+  return `${s} ${v.symbol}`;
 }
 
 export interface ShowcaseNft {
@@ -176,6 +217,11 @@ export const nftMarket = {
     apiClient.fetch<{ order: MarketOrder }>(`/market/orders/${orderHash}/sync`, { ...open, method: "POST", body: txHash ? { txHash } : {} }),
   post: (body: { kind: "listing" | "offer"; chainId: number; components: OrderComponents; signature: string }) =>
     apiClient.fetch<{ order: MarketOrder }>("/market/orders", { method: "POST", body }),
+  bestOffers: (chainId: number, items: { contract: string; tokenId: string }[]) =>
+    apiClient.fetch<{ items: BestOffer[] }>("/market/best-offers", { ...open, method: "POST", body: { chainId, items: items.slice(0, 100) } }),
+  openSea: (chainId: number) => apiClient.fetch<{ items: OpenSeaListing[] }>("/market/opensea", { ...open, params: { chainId } }),
+  openSeaFulfill: (body: { chainId: number; orderHash: string; protocolAddress: string; fulfiller: string }) =>
+    apiClient.fetch<{ to: string; value: string; data: string; function: string; chainId: number }>("/market/opensea/fulfill", { ...open, method: "POST", body }),
   alerts: () => apiClient.fetch<{ items: MarketAlert[] }>("/market/alerts", { quiet: true }),
   addAlert: (body: { chainId: number; contract: string; tokenId?: string | null; maxPrice?: number | null; currency?: string | null }) =>
     apiClient.fetch<{ alert: MarketAlert }>("/market/alerts", { method: "POST", body }),
@@ -369,6 +415,23 @@ export async function fillListings(s: Signer, orders: MarketOrder[]): Promise<st
   );
   await Promise.all(orders.map((o) => nftMarket.sync(o.orderHash, hash || undefined).catch(() => undefined)));
   return hash;
+}
+
+/**
+ * Buy one OpenSea listing. OpenSea returns the signed transaction data; it is
+ * rebuilt by function name here so it goes through the same wallet path.
+ */
+export async function buyOpenSea(s: Signer, l: OpenSeaListing): Promise<string> {
+  assertChain(s, l.chainId);
+  const tx = await nftMarket.openSeaFulfill({ chainId: l.chainId, orderHash: l.orderHash, protocolAddress: l.protocolAddress, fulfiller: s.account });
+  if (tx.to.toLowerCase() !== l.protocolAddress.toLowerCase()) throw new Error("That listing cannot be bought here");
+  const fragment = `function ${tx.function} payable`;
+  const iface = new ethers.utils.Interface([fragment]);
+  const name = Object.values(iface.functions)[0].name;
+  const args = iface.decodeFunctionData(name, tx.data);
+  const c = await buildContract(s.provider, [fragment], tx.to, true);
+  if (!c) throw new Error("Wallet not ready");
+  return sent(await writeContractAA(c, name, [...args], { value: BigInt(tx.value) > 0n ? tx.value : undefined, context: "nft-buy" }));
 }
 
 /** Cancel on-chain so a copy of the signed order can never be filled later. */
