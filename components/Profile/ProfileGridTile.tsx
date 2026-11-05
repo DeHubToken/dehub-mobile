@@ -93,7 +93,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
 
   const cover = useMemo(() => {
     if (kind === "photo") return images[0] ?? "";
-    if (kind === "article") return item.articleImageUrl ? getImageUrl(item.articleImageUrl, TILE_FETCH_WIDTH) : "";
+    if (kind === "article") return item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], TILE_FETCH_WIDTH)[0] ?? "" : "";
     const raw = (item as any).thumbnail || (item as any).stream?.thumbnail || item.thumbnailUrl || item.imageUrl || "";
     if (raw) return getImageUrl(raw, TILE_FETCH_WIDTH);
     const resolved = resolveThumbnail(item as any, TILE_FETCH_WIDTH);
