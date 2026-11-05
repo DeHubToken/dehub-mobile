@@ -1,6 +1,7 @@
 const mockSet = jest.fn();
 let mockNative: any = { setHardwareBitmapsEnabled: mockSet };
-jest.mock('react-native', () => ({ Platform: { OS: 'android' } }));
+const mockPlatform = { OS: 'android', Version: 34 };
+jest.mock('react-native', () => ({ get Platform() { return mockPlatform; } }));
 jest.mock('expo-modules-core', () => ({ requireOptionalNativeModule: () => mockNative }));
 jest.mock('../../libs/device', () => ({ getDeviceId: async () => 'device-abc' }));
 
@@ -8,8 +9,15 @@ import { applyHardwareImageDecode, rolloutBucket, HARDWARE_IMAGE_ROLLOUT_PERCENT
 
 beforeEach(() => { mockSet.mockClear(); mockNative = { setHardwareBitmapsEnabled: mockSet }; });
 
-it('ships switched off', () => {
-  expect(HARDWARE_IMAGE_ROLLOUT_PERCENT).toBe(0);
+it('is on for every install', () => {
+  expect(HARDWARE_IMAGE_ROLLOUT_PERCENT).toBe(100);
+});
+
+it('stays off below Android 12', async () => {
+  mockPlatform.Version = 30;
+  expect(await applyHardwareImageDecode(100)).toBe(false);
+  expect(mockSet).not.toHaveBeenCalled();
+  mockPlatform.Version = 34;
 });
 
 it('does nothing at 0%', async () => {

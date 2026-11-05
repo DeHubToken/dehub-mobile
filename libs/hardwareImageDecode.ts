@@ -12,8 +12,13 @@ import { getDeviceId } from "./device";
  *
  * Rollout: raise the percentage and ship an update. 0 switches it off
  * everywhere on the next launch.
+ *
+ * On for every Android 12+ phone (2026-11-05, Images tab jank). Older Android
+ * stays off: below 12 a frosted surface would draw pictures through a
+ * software canvas, which cannot read a hardware bitmap.
  */
-export const HARDWARE_IMAGE_ROLLOUT_PERCENT = 0;
+export const HARDWARE_IMAGE_ROLLOUT_PERCENT = 100;
+export const HARDWARE_IMAGE_MIN_ANDROID_API = 31;
 
 type NativeImage = { setHardwareBitmapsEnabled?: (on: boolean) => void };
 
@@ -26,6 +31,7 @@ export function rolloutBucket(id: string): number {
 
 export async function applyHardwareImageDecode(percent: number = HARDWARE_IMAGE_ROLLOUT_PERCENT): Promise<boolean> {
   if (Platform.OS !== "android" || percent <= 0) return false;
+  if (Number(Platform.Version) < HARDWARE_IMAGE_MIN_ANDROID_API) return false;
   try {
     const native = requireOptionalNativeModule<NativeImage>("ExpoImage");
     if (!native?.setHardwareBitmapsEnabled) return false;
