@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Image as ExpoImage, type ImageProps } from "expo-image";
-import { Image as RNImage, PixelRatio, Platform, View, type ImageResizeMode, type ImageSourcePropType } from "react-native";
+import { Platform, View, type LayoutChangeEvent } from "react-native";
 
 /**
  * Blurred pictures that can't crash Android.
@@ -10,66 +10,65 @@ import { Image as RNImage, PixelRatio, Platform, View, type ImageResizeMode, typ
  * (null pointer in libRSDriver on Glide's thread) while scrolling a profile
  * with audio tiles. That crash can't be caught from Java or JS.
  *
- * On Android a blurred picture is drawn by React Native's own Image instead,
- * which blurs in plain code (Fresco's box blur). iOS and unblurred pictures
- * stay on expo-image.
+ * On Android the picture is instead drawn a few dozen pixels wide and scaled
+ * up on the GPU, which softens it like a blur. It stays on expo-image, so it
+ * comes straight from the cache the feed already filled: a first try that
+ * re-fetched through React Native's Image left the Shorts backdrop empty for
+ * the first frames of every open. iOS and unblurred pictures are unchanged.
  */
 
-const FIT: Record<string, ImageResizeMode> = {
-  cover: "cover",
-  contain: "contain",
-  fill: "stretch",
-  none: "center",
-  "scale-down": "contain",
-};
-
-/**
- * expo-image capped the radius at 25 and blurred a quarter-size copy, so its
- * blur reached about 4x the radius in real pixels. React Native takes dp.
- */
-export function androidBlurRadius(radius: number): number {
-  return Math.max(1, Math.round((Math.min(radius, 25) * 4) / PixelRatio.get()));
+/** Width in dp of the small copy: a stronger blur draws it smaller. */
+export function blurSampleWidth(boxWidth: number, radius: number): number {
+  return Math.max(8, Math.min(64, Math.round((boxWidth * 1.2) / Math.max(4, Math.min(radius, 40)))));
 }
 
 export function needsSafeBlur(blurRadius: number | null | undefined): boolean {
   return Platform.OS === "android" && !!blurRadius && blurRadius > 0;
 }
 
-function toRNSource(source: ImageProps["source"]): ImageSourcePropType | undefined {
-  const first = Array.isArray(source) ? source[0] : source;
-  if (first == null) return undefined;
-  if (typeof first === "number") return first;
-  if (typeof first === "string") return first ? { uri: first } : undefined;
-  if (typeof first === "object" && "uri" in first && first.uri) {
-    const { uri, headers } = first as { uri: string; headers?: Record<string, string> };
-    return headers ? { uri, headers } : { uri };
-  }
-  return undefined;
-}
-
-type SafeBlurProps = Pick<ImageProps, "source" | "style" | "contentFit" | "blurRadius" | "accessible" | "accessibilityLabel" | "testID"> & {
+type SafeBlurProps = Pick<ImageProps, "source" | "style" | "contentFit" | "blurRadius" | "accessible" | "accessibilityLabel" | "testID" | "cachePolicy"> & {
   onError?: () => void;
   onLoadEnd?: () => void;
 };
 
 /** The Android path on its own, for components that already wrap expo-image. */
-export function AndroidBlurredImage({ source, style, contentFit = "cover", blurRadius, accessible, accessibilityLabel, testID, onError, onLoadEnd }: SafeBlurProps) {
-  const rnSource = toRNSource(source);
-  // Never fall back to the unblurred picture: blur also hides locked media.
-  if (!rnSource) return <View style={style as any} />;
+export function AndroidBlurredImage({ source, style, contentFit = "cover", blurRadius, accessible, accessibilityLabel, testID, cachePolicy, onError, onLoadEnd }: SafeBlurProps) {
+  const [box, setBox] = useState<{ w: number; h: number } | null>(null);
+  const onLayout = useCallback((e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    setBox((prev) => (prev && prev.w === width && prev.h === height ? prev : { w: width, h: height }));
+  }, []);
+  // Never fall back to the full picture: blur also hides locked media.
+  const sample = box && box.w > 0 && box.h > 0 ? blurSampleWidth(box.w, blurRadius ?? 0) : 0;
+  const sampleH = sample && box ? (sample * box.h) / box.w : 0;
   return (
-    <RNImage
-      source={rnSource}
-      style={style as any}
-      resizeMode={FIT[contentFit as string] ?? "cover"}
-      blurRadius={androidBlurRadius(blurRadius ?? 0)}
-      fadeDuration={0}
+    <View
+      style={[style as any, { overflow: "hidden" }]}
+      onLayout={onLayout}
       accessible={accessible}
       accessibilityLabel={accessibilityLabel}
       testID={testID}
-      onError={onError}
-      onLoadEnd={onLoadEnd}
-    />
+      pointerEvents="none"
+    >
+      {sample > 0 && box ? (
+        <ExpoImage
+          source={source}
+          contentFit={contentFit}
+          cachePolicy={cachePolicy}
+          transition={0}
+          onError={onError ? () => onError() : undefined}
+          onLoadEnd={onLoadEnd}
+          style={{
+            position: "absolute",
+            width: sample,
+            height: sampleH,
+            left: (box.w - sample) / 2,
+            top: (box.h - sampleH) / 2,
+            transform: [{ scale: box.w / sample }],
+          }}
+        />
+      ) : null}
+    </View>
   );
 }
 
