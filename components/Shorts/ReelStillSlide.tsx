@@ -27,6 +27,8 @@ function readable(text: string): string {
   return text
     .replace(/!\[[^\]]*]\([^)]*\)/g, "")
     .replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
+    // `<riftn.com>` asks for the address as text: keep it, drop the brackets.
+    .replace(/<([^\s<>]+\.[^\s<>]+)>/g, "$1")
     .replace(/https?:\/\/(www\.)?/g, "")
     .replace(/\b([a-z0-9-]+(\.[a-z0-9-]+)+\/\S{18,})/gi, (link: string) => `${link.slice(0, 26)}…`)
     .replace(/[*_`~>#]+/g, "")

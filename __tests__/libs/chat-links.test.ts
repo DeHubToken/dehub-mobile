@@ -58,3 +58,13 @@ describe('tokenizeChatText', () => {
     expect(tokenizeChatText(null)).toEqual([]);
   });
 });
+
+describe('tokenizeChatText: <link> written as text', () => {
+  it('keeps the link and drops the brackets', () => {
+    expect(tokenizeChatText('move to <riftn.com> now')).toEqual([
+      { type: 'text', value: 'move to ' },
+      { type: 'link', value: 'riftn.com', url: 'https://riftn.com' },
+      { type: 'text', value: ' now' },
+    ]);
+  });
+});
