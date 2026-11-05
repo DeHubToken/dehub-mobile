@@ -829,7 +829,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     {part.text}
                   </Text>
                 ) : (
-                  <Text key={idx}>{expandEmojiTokens(part.text, { fontSize: 16, keyPrefix: `em-${idx}` })}</Text>
+                  <Text key={idx}>{expandEmojiTokens(part.text, { fontSize: 16, keyPrefix: `em-${idx}`, glued: idx > 0 })}</Text>
                 )
               )}
             </Animated.Text>

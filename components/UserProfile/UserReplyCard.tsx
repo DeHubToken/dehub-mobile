@@ -502,7 +502,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
                   key={idx}
                   className={part.isMention ? "font-bold text-white" : "font-normal"}
                 >
-                  {part.isMention ? part.text : expandEmojiTokens(part.text, { fontSize: 14, keyPrefix: `em-${idx}` })}
+                  {part.isMention ? part.text : expandEmojiTokens(part.text, { fontSize: 14, keyPrefix: `em-${idx}`, glued: idx > 0 })}
                 </Text>
               ))}
             </Text>

@@ -64,3 +64,28 @@ describe('shortcodes', () => {
     expect(codes['100']).toBe('💯');
   });
 });
+
+describe('typed faces', () => {
+  const txt = (s: string) => tokenizeEmoji(s).map((t) => (t.kind === 'text' ? t.text : t.raw)).join('');
+  it('turns <3 and friends into emoji', () => {
+    expect(txt('love you <3')).toBe('love you \u2764\uFE0F');
+    expect(txt('<3')).toBe('\u2764\uFE0F');
+    expect(txt('so sad </3 :(')).toBe('so sad \u{1F494} \u{1F641}');
+    expect(txt(':) :D ;) :P XD')).toBe('\u{1F642} \u{1F603} \u{1F609} \u{1F61B} \u{1F606}');
+    expect(txt('thanks :)!')).toBe('thanks \u{1F642}!');
+  });
+  it('leaves links, maths, times and code alone', () => {
+    expect(txt('a<3b and 1<3')).toBe('a<3b and 1<3');
+    expect(txt('16:9 at 12:30')).toBe('16:9 at 12:30');
+    expect(txt('https://x.com/:)')).toBe('https://x.com/:)');
+    expect(txt('type `<3` here <3')).toBe('type `<3` here \u2764\uFE0F');
+  });
+  it('keeps a face glued to the end of a link', () => {
+    expect(txt(':) ok')).toBe('\u{1F642} ok');
+    expect(tokenizeEmoji(':) ok', { glued: true }).map((t) => (t.kind === 'text' ? t.text : '')).join('')).toBe(':) ok');
+    expect(tokenizeEmoji(' :) ok', { glued: true }).map((t) => (t.kind === 'text' ? t.text : '')).join('')).toBe(' \u{1F642} ok');
+  });
+  it('still finds shortcodes next to faces', () => {
+    expect(tokenizeEmoji(':fire: <3').map((t) => t.kind)).toEqual(['shortcode', 'text']);
+  });
+});
