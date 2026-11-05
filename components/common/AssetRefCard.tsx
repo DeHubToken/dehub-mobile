@@ -269,16 +269,79 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
   );
 };
 
+// ── Our own token ───────────────────────────────────────────────────────────
+
+/** Brand name, not copy: it reads the same in every language. */
+const OWN_TOKEN_NAME = 'Riftn';
+
+/** The old token's contract addresses, which now mean "coming soon" too. */
+const OWN_TOKEN_ADDRESSES = new Set([
+  '0xd20ab1015f6a2de4a6fddebab270113f689c2f7c',
+  '0x680d3113caf77b61b510f332d5ef4cf5b41a761d',
+  '0x99bb69ee1bbfc7706c3ebb79b21c5b698fe58ec0',
+]);
+
+function isOwnTokenRef(ref: AssetRef): boolean {
+  return ref.kind === 'ticker'
+    ? isDhbSymbol(ref.value)
+    : OWN_TOKEN_ADDRESSES.has(ref.value.toLowerCase());
+}
+
+/**
+ * $RIFT, $RIFTN, $DHB and $DEHUB all mean our token, and the new one is not
+ * trading yet. No lookup, no price, no contract: the card says it is coming
+ * soon, and a tap opens the ticker sheet with the launch list.
+ */
+const OwnTokenComingSoonCard: React.FC = () => {
+  const { t } = _useCopy();
+  const [sheetOpen, setSheetOpen] = useState(false);
+  return (
+    <>
+      <TouchableOpacity
+        style={styles.card}
+        activeOpacity={0.85}
+        onPress={() => setSheetOpen(true)}
+        testID="own-token-coming-soon"
+      >
+        <View style={styles.row}>
+          <Image source={DEHUB_COIN} style={styles.logo} contentFit="cover" />
+          <View style={styles.body}>
+            <View style={styles.titleRow}>
+              <Text style={styles.symbol}>$RIFT</Text>
+              <Text style={styles.name} numberOfLines={1}>{OWN_TOKEN_NAME}</Text>
+              <View style={styles.soonBadge}>
+                <Text style={styles.soonBadgeText}>{t('hero.comingSoon', 'Coming Soon')}</Text>
+              </View>
+            </View>
+            <Text style={styles.soonTitle}>{t('tokenLaunch.title', 'Token launching soon')}</Text>
+            <Text style={styles.meta}>
+              {t('cashtag.listingBody', "Riftn tokens aren't trading yet. Get an email when trading opens.")}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      {sheetOpen && (
+        <CashtagSheet visible={sheetOpen} symbol="RIFT" onClose={() => setSheetOpen(false)} />
+      )}
+    </>
+  );
+};
+
 const AssetRefCardComponent: React.FC<{ assetRef: AssetRef }> = ({
   assetRef,
 }) => {
+  const ownToken = isOwnTokenRef(assetRef);
   const { data: asset, isLoading } = useQuery({
     queryKey: ['asset', assetRef.kind, assetRef.value],
     queryFn: () => resolveAssetRef(assetRef),
+    enabled: !ownToken,
     staleTime: 60_000,
     gcTime: 10 * 60_000,
     retry: 1,
   });
+
+  if (ownToken) return <OwnTokenComingSoonCard />;
 
   if (isLoading) return <SkeletonBlock style={styles.skeleton} />;
   if (!asset) {
@@ -359,6 +422,15 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(255,255,255,0.1)',
   },
+  soonBadge: {
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignSelf: 'center',
+  },
+  soonBadgeText: { color: 'rgba(255,255,255,0.7)', fontSize: 9, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.4 },
+  soonTitle: { color: '#fff', fontSize: 13, fontWeight: '600', marginTop: 4 },
   chipText: { color: 'rgba(255,255,255,0.6)', fontSize: 11, fontFamily: 'monospace' },
 });
 
