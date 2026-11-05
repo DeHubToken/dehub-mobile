@@ -24,6 +24,7 @@ import {
   TextInput,
   ActivityIndicator,
   Alert,
+  Dimensions,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { TFunction } from "i18next";
@@ -34,6 +35,7 @@ import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { getAvatarUrl } from "../libs/misc";
 import AccountBadge from "../components/common/AccountBadge";
+import FocusAnchor from "../components/common/FocusAnchor";
 import TranslateButton from "../components/ui/TranslateButton";
 import { useTranslation as useAutoTranslate } from "../hooks/useTranslation";
 import { formatCompactNumber } from "../libs";
@@ -88,7 +90,8 @@ const CommentRow: React.FC<{
   threadLineBelow?: boolean;
   onReply: (comment: ProposalComment) => void;
   onDelete: (comment: ProposalComment) => void;
-}> = ({ comment, isOwn, isProposalAuthor, highlighted, threadLineAbove, threadLineBelow, onReply, onDelete }) => {
+  onHighlightMeasured?: (windowY: number, height: number) => void;
+}> = ({ comment, isOwn, isProposalAuthor, highlighted, threadLineAbove, threadLineBelow, onReply, onDelete, onHighlightMeasured }) => {
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
   const name = comment.username ? `@${comment.username}` : shortAddr(comment.wallet_address);
@@ -99,6 +102,7 @@ const CommentRow: React.FC<{
   const body = translation.isTranslated ? (translation.translatedTexts.content || comment.content) : comment.content;
 
   return (
+    <FocusAnchor active={highlighted} onMeasured={onHighlightMeasured}>
     <Pressable
       onPress={() => onReply(comment)}
       style={[styles.commentRow, highlighted && styles.commentRowHighlighted]}
@@ -166,6 +170,7 @@ const CommentRow: React.FC<{
         </View>
       </View>
     </Pressable>
+    </FocusAnchor>
   );
 };
 
@@ -206,6 +211,13 @@ export default function GovernanceProposalScreen() {
   const inputRef = useRef<TextInput>(null);
   const discussionY = useRef(0);
   const scrolledToFocus = useRef(false);
+  const scrollOffsetRef = useRef(0);
+  // Lands the linked comment itself a third of the way down the screen; the
+  // jump to the discussion's top above is only the first step toward it.
+  const scrollToFocusedComment = useCallback((windowY: number, height: number) => {
+    const target = scrollOffsetRef.current + windowY - Dimensions.get("window").height * 0.35 + height / 2;
+    if (target > 0) scrollRef.current?.scrollTo({ y: target, animated: true });
+  }, []);
 
   // A thread holding the linked comment opens itself, or the row the
   // notification was about would sit behind "Show N more replies".
@@ -293,6 +305,7 @@ export default function GovernanceProposalScreen() {
         threadLineBelow={lines.below}
         onReply={handleReply}
         onDelete={confirmDelete}
+        onHighlightMeasured={scrollToFocusedComment}
       />
     );
     return (
@@ -409,6 +422,8 @@ export default function GovernanceProposalScreen() {
         <>
           <ScrollView
             ref={scrollRef}
+            onScroll={(e) => { scrollOffsetRef.current = e.nativeEvent.contentOffset.y; }}
+            scrollEventThrottle={64}
             contentContainerStyle={{ paddingBottom: 16, paddingTop: 4 }}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"

@@ -314,7 +314,7 @@ export type AppStackParamList = {
   /** One proposal and its discussion. `commentId` is the comment a
    *  notification was about, opened and lit inside the thread. */
   [ScreenNames.GovernanceProposal]: { proposalId: string; commentId?: string };
-  [ScreenNames.Dao]: undefined;
+  [ScreenNames.Dao]: { proposalId?: string } | undefined;
   [ScreenNames.SuperPowers]: undefined;
 };
 

@@ -41,6 +41,7 @@ import {
   Platform,
   Linking,
   useWindowDimensions,
+  Dimensions,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { shareWithRef } from "../libs/shareRef";
@@ -295,7 +296,8 @@ const FeatureCard: React.FC<{
   defaultCommentsOpen?: boolean;
   /** The comment a notification pointed at — ringed in the thread. */
   highlightCommentId?: string | null;
-}> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false, highlightCommentId }) => {
+  onHighlightMeasured?: (windowY: number, height: number) => void;
+}> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false, highlightCommentId, onHighlightMeasured }) => {
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
   const user = useUser() as any;
@@ -621,6 +623,7 @@ const FeatureCard: React.FC<{
           authorAddress={feature.author_wallet_address}
           isAuthed={isAuthed}
           highlightCommentId={highlightCommentId}
+          onHighlightMeasured={onHighlightMeasured}
         />
       )}
     </View>
@@ -799,6 +802,13 @@ function FeatureRequestsBoard() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [composerFocus, setComposerFocus] = useState(0);
   const listRef = React.useRef<FlatList<FeatureRequest>>(null);
+  // The list is still at the top when a notification opens it, so the row's
+  // place on screen is its offset: scroll until it sits a third of the way down.
+  const scrollOffsetRef = React.useRef(0);
+  const scrollToFocusedComment = React.useCallback((windowY: number, height: number) => {
+    const target = scrollOffsetRef.current + windowY - Dimensions.get("window").height * 0.35 + height / 2;
+    if (target > 0) listRef.current?.scrollToOffset({ offset: target, animated: true });
+  }, []);
   const [iconFailed, setIconFailed] = useState(false);
 
   // 300ms to match web's useDebouncedValue(searchInput, 300) on FeaturesPage.
@@ -1175,6 +1185,8 @@ function FeatureRequestsBoard() {
       {/* Content */}
         <FlatList
           ref={listRef}
+          onScroll={(e) => { scrollOffsetRef.current = e.nativeEvent.contentOffset.y; }}
+          scrollEventThrottle={64}
           automaticallyAdjustKeyboardInsets
           keyboardDismissMode="on-drag"
           data={loading || showListError ? [] : items}
@@ -1197,7 +1209,7 @@ function FeatureRequestsBoard() {
             </View>
             {tab === "requests" && !debouncedSearch && category === "all" && <TopBuildersCard compact />}
             {focusedRequest && <FeatureCard feature={focusedRequest} myVote={votes?.[focusedRequest.id]}
-              onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} highlightCommentId={focusedCommentId} />}
+              onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} highlightCommentId={focusedCommentId} onHighlightMeasured={scrollToFocusedComment} />}
           </>}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"

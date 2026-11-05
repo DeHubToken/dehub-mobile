@@ -4,7 +4,7 @@
  * Port of web's dao/DaoProposals. Paying an accepted buy offer opens the web
  * page for that proposal, where the multi-chain payment flow lives.
  */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -58,7 +58,7 @@ const STATUS_TONE: Record<string, { fg: string; bg: string }> = {
   open: { fg: "#FDE68A", bg: "rgba(251,191,36,0.12)" },
 };
 
-function ProposalCard({ proposal, ownVote, ownWeight }: { proposal: DaoProposal; ownVote?: 1 | -1; ownWeight: number }) {
+function ProposalCard({ proposal, ownVote, ownWeight, focused }: { proposal: DaoProposal; ownVote?: 1 | -1; ownWeight: number; focused?: boolean }) {
   const { t } = useTranslation();
   const user = useUser() as any;
   const { isSignedIn } = useAuthState();
@@ -107,7 +107,7 @@ function ProposalCard({ proposal, ownVote, ownWeight }: { proposal: DaoProposal;
   const noWeight = isSignedIn && ownWeight <= 0;
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, focused && styles.cardFocused]}>
       <View style={styles.cardTop}>
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={styles.metaRow}>
@@ -380,10 +380,18 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
   );
 }
 
-export default function DaoProposals() {
+/**
+ * `focusedId` is the proposal a notification named: it goes to the top of the
+ * list with a brighter edge, the same as web's `/dao?proposal=`.
+ */
+export default function DaoProposals({ focusedId }: { focusedId?: string } = {}) {
   const { t } = useTranslation();
   const { requireAuth } = useAuthActions();
-  const { proposals, myVotes, myEligibility, isLoading, isError } = useDaoProposals();
+  const { proposals: listed, myVotes, myEligibility, isLoading, isError } = useDaoProposals();
+  const proposals = useMemo(
+    () => (focusedId ? [...listed].sort((a, b) => Number(b.id === focusedId) - Number(a.id === focusedId)) : listed),
+    [focusedId, listed],
+  );
   const [proposeOpen, setProposeOpen] = useState(false);
 
   return (
@@ -412,7 +420,7 @@ export default function DaoProposals() {
         ) : (
           <View style={{ gap: 10 }}>
             {proposals.map((p) => (
-              <ProposalCard key={p.id} proposal={p} ownVote={myVotes[p.id]} ownWeight={myEligibility[p.id] ?? 0} />
+              <ProposalCard key={p.id} proposal={p} focused={p.id === focusedId} ownVote={myVotes[p.id]} ownWeight={myEligibility[p.id] ?? 0} />
             ))}
           </View>
         )}
@@ -424,6 +432,7 @@ export default function DaoProposals() {
 
 const styles = StyleSheet.create({
   card: { borderRadius: 16, borderWidth: 1, borderColor: "rgba(255,255,255,0.1)", backgroundColor: "rgba(255,255,255,0.03)", padding: 14 },
+  cardFocused: { borderColor: "rgba(255,255,255,0.4)", backgroundColor: "rgba(255,255,255,0.07)" },
   cardTop: { flexDirection: "row", gap: 10 },
   metaRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 6 },
   kind: { color: "#A1A1AA", fontSize: 10, textTransform: "uppercase", letterSpacing: 0.6 },
