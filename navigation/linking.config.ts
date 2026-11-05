@@ -940,7 +940,7 @@ export const ShareLinks = {
   /** Fraction marketplace — dehub.io/app/fractions */
   fractions: () => `${SHARE_BASE}/app/fractions`,
   /** NFT market — dehub.io/nfts */
-  nfts: () => `${SHARE_BASE}/nfts`,
+  nfts: () => `${SHARE_BASE}/fractions?tab=nfts`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,

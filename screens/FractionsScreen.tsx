@@ -8,11 +8,15 @@
  * is already divisible. The drawer row used to open the website for this;
  * buying from a listing, settling an open trade and answering an offer all
  * sign from the wallet the app already holds, so they belong here.
+ *
+ * The NFT market is the NFTs tab here (route param `tab: "nfts"`). iOS keeps
+ * only that tab: fraction trading is left out of the App Store build, and the
+ * market is view only there.
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { shareWithRef } from "../libs/shareRef";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
@@ -26,6 +30,8 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
 import { theme } from "../theme";
 import { PageTabs } from "../components/page/PageKit";
+import { NftMarketView } from "./NftMarketScreen";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import {
   DEFAULT_FRACTION_CHAIN,
   useFractionWallet,
@@ -33,20 +39,32 @@ import {
   type FractionListing,
 } from "../hooks/useFractionMarket";
 
-type Tab = "browse" | "portfolio" | "activity";
+type Tab = "browse" | "nfts" | "portfolio" | "activity";
 
 /** Tab artwork: theme icon keys (theme/icons.ts). */
-const TABS: { key: Tab; icon: string; labelKey: string }[] = [
-  { key: "browse", icon: "search", labelKey: "fractions.tabBrowse" },
+const ALL_TABS: { key: Tab; icon: string; labelKey: string; fallback?: string }[] = [
+  { key: "browse", icon: "search", labelKey: "fractions.title" },
+  { key: "nfts", icon: "nfts", labelKey: "nftMarket.shortTitle", fallback: "NFTs" },
   { key: "portfolio", icon: "fractions", labelKey: "fractions.tabPortfolio" },
   { key: "activity", icon: "stats", labelKey: "fractions.tabActivity" },
 ];
+const TABS = DIGITAL_PURCHASES_ENABLED ? ALL_TABS : ALL_TABS.filter((x) => x.key === "nfts");
 
 export default function FractionsScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const wallet = useFractionWallet();
-  const [tab, setTab] = useState<Tab>("browse");
+  const route = useRoute<any>();
+  const [tab, setTab] = useState<Tab>(() => {
+    const asked = route.params?.tab as Tab | undefined;
+    return asked && TABS.some((x) => x.key === asked) ? asked : TABS[0].key;
+  });
+  // A second link into an already open screen (a notification, the menu row).
+  useEffect(() => {
+    const asked = route.params?.tab as Tab | undefined;
+    if (asked && TABS.some((x) => x.key === asked)) setTab(asked);
+  }, [route.params?.tab]);
+  const nftsOnly = TABS.length === 1;
   const [buying, setBuying] = useState<FractionListing | null>(null);
   const [selling, setSelling] = useState<SellTarget | null>(null);
   const [offering, setOffering] = useState<OfferTarget | null>(null);
@@ -63,16 +81,17 @@ export default function FractionsScreen() {
   const openPost = (tokenId: string) => navigation.navigate(ScreenNames.FeedDetail, { postId: tokenId });
 
   const share = () => {
-    const url = ShareLinks.fractions();
-    void shareWithRef({ message: `${t("fractions.shareMessage")}\n${url}`, url });
+    const url = tab === "nfts" ? ShareLinks.nfts() : ShareLinks.fractions();
+    const message = tab === "nfts" ? t("nftMarket.shareMessage", { defaultValue: "Buy and sell NFTs on Riftn" }) : t("fractions.shareMessage");
+    void shareWithRef({ message: `${message}\n${url}`, url });
   };
 
   return (
     <View style={styles.root}>
       <ScreenHeader
-        title={t("fractions.title")}
-        subtitle={t("fractions.perUpload")}
-        icon="fractions"
+        title={nftsOnly ? t("nftMarket.shortTitle", { defaultValue: "NFTs" }) : t("fractions.title")}
+        subtitle={tab === "nfts" ? t("fractions.nftsSubtitle", { defaultValue: "Any NFT, one-step swaps" }) : t("fractions.perUpload")}
+        icon={nftsOnly ? "nfts" : "fractions"}
         rightContent={
           <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("fractions.share")}>
             <View style={styles.islandBtn}>
@@ -82,23 +101,25 @@ export default function FractionsScreen() {
         }
         tabs={
           /* Anything with a clock on it gets a count on the tab. */
-          <PageTabs
+          nftsOnly ? undefined : <PageTabs
             value={tab}
             onChange={setTab}
-            tabs={TABS.map(({ key, icon, labelKey }) => ({
+            tabs={TABS.map(({ key, icon, labelKey, fallback }) => ({
               id: key,
               icon,
               label:
                 key === "portfolio" && needsAction > 0
                   ? t("fractions.tabPortfolioCount", { count: needsAction })
-                  : t(labelKey),
+                  : t(labelKey, fallback ? { defaultValue: fallback } : undefined),
             }))}
           />
         }
       />
 
       <View style={styles.body}>
-        {tab === "browse" ? (
+        {tab === "nfts" ? (
+          <NftMarketView embedded />
+        ) : tab === "browse" ? (
           <BrowseFractionsTab onOpenListing={setBuying} />
         ) : tab === "portfolio" ? (
           <PortfolioTab

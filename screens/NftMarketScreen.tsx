@@ -7,6 +7,10 @@
  *
  * Android trades in the app. iOS is view only (App Store 3.1.1); in the US
  * storefront the sheet links out to dehub.io, which Apple allows there.
+ *
+ * Lives as the NFTs tab of the Fractions screen (`NftMarketView embedded`).
+ * The NftMarket route stays registered so old links and notifications keep
+ * working; it hands straight over to Fractions with the same params.
  */
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, useWindowDimensions } from "react-native";
@@ -71,6 +75,23 @@ const fromOrder = (o: MarketOrder): NftTarget => ({
 });
 
 export default function NftMarketScreen() {
+  const navigation = useNavigation<any>();
+  const route = useRoute<any>();
+  useEffect(() => {
+    const p = route.params ?? {};
+    const { tab: oldTab, ...rest } = p;
+    navigation.replace(ScreenNames.Fractions, {
+      ...rest,
+      tab: "nfts",
+      ...(oldTab && oldTab !== "browse" ? { view: oldTab } : null),
+    });
+    // Once, on arrival.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return <View style={styles.root} />;
+}
+
+export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -83,7 +104,10 @@ export default function NftMarketScreen() {
   const canTrade = DIGITAL_PURCHASES_ENABLED;
   const linkOut = Platform.OS === "ios" && inUnitedStates();
 
-  const [tab, setTab] = useState<Tab>("browse");
+  const [tab, setTab] = useState<Tab>(() => {
+    const v = route.params?.view;
+    return v === "mine" || v === "sales" ? v : "browse";
+  });
   const [chain, setChain] = useState<ChainFilter>("all");
   const [sort, setSort] = useState<"newest" | "price_asc">("newest");
   // Collections first: pick one from the trending row to see only its NFTs.
@@ -432,35 +456,48 @@ export default function NftMarketScreen() {
     />
   );
 
+  const islandButtons = (
+    <View style={styles.islandRow}>
+      {tab === "browse" ? (
+        <Pressable
+          onPress={() => setShowFilters((v) => !v)}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityState={{ selected: showFilters }}
+          accessibilityLabel={t("nftMarket.filters", { defaultValue: "Filters" })}
+        >
+          <View style={[styles.islandBtn, (showFilters || chain !== "all" || sort !== "newest") && styles.islandBtnOn]}>
+            <Icon name="SlidersHorizontal" size={18} color={theme.colors.accent} />
+          </View>
+        </Pressable>
+      ) : null}
+      {/* Embedded: the Fractions header already has the share button. */}
+      {embedded ? null : (
+        <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("nftMarket.share", { defaultValue: "Share" })}>
+          <View style={styles.islandBtn}>
+            <Icon name="Share2" size={18} color={theme.colors.accent} />
+          </View>
+        </Pressable>
+      )}
+    </View>
+  );
+  const subTabs = <PageTabs size="sm" value={tab} onChange={setTab} tabs={TABS.map(({ key, labelKey, fallback }) => ({ id: key, label: t(labelKey, { defaultValue: fallback }) }))} />;
+
   return (
     <View style={styles.root}>
-      <ScreenHeader
-        title={t("nftMarket.shortTitle", { defaultValue: "NFTs" })}
-        icon="nfts"
-        rightContent={
-          <View style={styles.islandRow}>
-            {tab === "browse" ? (
-              <Pressable
-                onPress={() => setShowFilters((v) => !v)}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityState={{ selected: showFilters }}
-                accessibilityLabel={t("nftMarket.filters", { defaultValue: "Filters" })}
-              >
-                <View style={[styles.islandBtn, (showFilters || chain !== "all" || sort !== "newest") && styles.islandBtnOn]}>
-                  <Icon name="SlidersHorizontal" size={18} color={theme.colors.accent} />
-                </View>
-              </Pressable>
-            ) : null}
-            <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("nftMarket.share", { defaultValue: "Share" })}>
-              <View style={styles.islandBtn}>
-                <Icon name="Share2" size={18} color={theme.colors.accent} />
-              </View>
-            </Pressable>
-          </View>
-        }
-        tabs={<PageTabs size="sm" value={tab} onChange={setTab} tabs={TABS.map(({ key, labelKey, fallback }) => ({ id: key, label: t(labelKey, { defaultValue: fallback }) }))} />}
-      />
+      {embedded ? (
+        <View style={styles.embeddedBar}>
+          <View style={styles.embeddedTabs}>{subTabs}</View>
+          {islandButtons}
+        </View>
+      ) : (
+        <ScreenHeader
+          title={t("nftMarket.shortTitle", { defaultValue: "NFTs" })}
+          icon="nfts"
+          rightContent={islandButtons}
+          tabs={subTabs}
+        />
+      )}
       <View style={styles.body}>
         {tab === "browse"
           ? orderGrid(listings, t("nftMarket.noneForSale", { defaultValue: "Nothing for sale yet" }), canTrade ? t("nftMarket.startHint", { defaultValue: "List an NFT from Yours to be first." }) : undefined)
@@ -497,6 +534,8 @@ const styles = StyleSheet.create({
   statLabel: { color: "#808089", fontSize: 11, marginTop: 3 },
   showcase: { gap: 6, paddingTop: 4 },
   islandRow: { flexDirection: "row", gap: 6 },
+  embeddedBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 4, paddingBottom: 8 },
+  embeddedTabs: { flex: 1, minWidth: 0 },
   islandBtnOn: { backgroundColor: "rgba(255,255,255,0.18)" },
   collBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 10, paddingBottom: 2 },
   collTitle: { flex: 1, color: "#FFFFFF", fontSize: 13, fontWeight: "700" },

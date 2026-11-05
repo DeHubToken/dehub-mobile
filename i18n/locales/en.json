@@ -11413,6 +11413,7 @@
   "fractions": {
     "title": "Fractions",
     "perUpload": "1000 per upload",
+    "nftsSubtitle": "Any NFT, one-step swaps",
     "tabBrowse": "Browse",
     "tabPortfolio": "Portfolio",
     "tabPortfolioCount": "Portfolio ({{count}})",
