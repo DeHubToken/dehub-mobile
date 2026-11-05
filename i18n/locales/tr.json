@@ -2768,7 +2768,8 @@
     "tabVideos": "Videolar",
     "tabAudio": "Ses",
     "tabLive": "Canlı",
-    "tabPinned": "Sabitlendi"
+    "tabPinned": "Sabitlendi",
+    "lockedPost": "Kilitli gönderi"
   },
   "tv": {
     "title": "TV",
@@ -16266,5 +16267,11 @@
     "title": "DeHub artık Riftn",
     "body": "Aynı uygulama, aynı hesap, aynı arkadaşlar. Sadece yeni bir isim.",
     "continue": "Devam etmek için dokun"
+  },
+  "reel": {
+    "readAll": "Tümünü oku",
+    "openPost": "Gönderiyi aç",
+    "readArticle": "Makaleyi okuyun",
+    "openToUnlock": "Kilidi açmak için aç"
   }
 }

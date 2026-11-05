@@ -4905,7 +4905,8 @@
     "tabVideos": "Vidéo",
     "tabAudio": "Suarané",
     "tabLive": "Nyumbul",
-    "tabPinned": "Dipasang"
+    "tabPinned": "Dipasang",
+    "lockedPost": "Kiriman terkunci"
   },
   "tv": {
     "title": "TV",
@@ -14686,5 +14687,11 @@
     "days": "{{count}} days",
     "spotlightNew": "Just minted",
     "buyFor": "Kuyéng dhuwur saking {{price}}"
+  },
+  "reel": {
+    "readAll": "Waca kabeh",
+    "openPost": "Bukak kiriman",
+    "readArticle": "Waca artikel",
+    "openToUnlock": "Bukak kanggo mbukak kunci"
   }
 }

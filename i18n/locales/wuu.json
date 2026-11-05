@@ -4904,7 +4904,8 @@
     "tabVideos": "視頻",
     "tabAudio": "音頻",
     "tabLive": "直播",
-    "tabPinned": "釘選"
+    "tabPinned": "釘選",
+    "lockedPost": "锁住个帖子"
   },
   "tv": {
     "title": "电视",
@@ -14641,5 +14642,11 @@
     "spotlightForSale": "現貨出售",
     "spotlightNew": "新發行",
     "buyFor": "買{{price}}"
+  },
+  "reel": {
+    "readAll": "阅读全部",
+    "openPost": "打开帖子",
+    "readArticle": "阅读文章",
+    "openToUnlock": "打开来解锁"
   }
 }

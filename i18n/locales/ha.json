@@ -4915,7 +4915,8 @@
     "tabVideos": "Bidiyo",
     "tabAudio": "Sauti",
     "tabLive": "Kai tsaye",
-    "tabPinned": "An saka"
+    "tabPinned": "An saka",
+    "lockedPost": "An kulle post"
   },
   "tv": {
     "title": "Talabijin",
@@ -14696,5 +14697,11 @@
     "spotlightForSale": "Ana sayar da shi yanzu",
     "spotlightNew": "Just minted",
     "buyFor": "Sayi don {{price}}"
+  },
+  "reel": {
+    "readAll": "Karanta duk",
+    "openPost": "Buɗe post",
+    "readArticle": "Karanta labarin",
+    "openToUnlock": "Bude don buɗewa"
   }
 }

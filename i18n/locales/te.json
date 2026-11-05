@@ -4914,7 +4914,8 @@
     "tabVideos": "వీడియోలు",
     "tabAudio": "ఆడియో",
     "tabLive": "లైవ్",
-    "tabPinned": "పిన్ చేయబడింది"
+    "tabPinned": "పిన్ చేయబడింది",
+    "lockedPost": "లాక్ చేసిన పోస్ట్"
   },
   "tv": {
     "title": "టీవీ",
@@ -14704,5 +14705,11 @@
     "spotlightForSale": "ఇప్పుడు విక్రయానికి",
     "spotlightNew": "ఇప్పుడే మింట్ చేయబడినవి",
     "buyFor": "{{price}} కోసం కొనండి"
+  },
+  "reel": {
+    "readAll": "అన్నీ చదవండి",
+    "openPost": "పోస్ట్ ‌ ను తెరవండి",
+    "readArticle": "కథనాన్ని చదవండి",
+    "openToUnlock": "అన్ ‌ లాక్ చేయడానికి తెరవండి"
   }
 }

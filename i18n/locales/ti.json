@@ -4901,7 +4901,8 @@
     "tabVideos": "ቪድዮታት",
     "tabAudio": "ድምጺ",
     "tabLive": "ህያው",
-    "tabPinned": "ዕንጨይቲ"
+    "tabPinned": "ዕንጨይቲ",
+    "lockedPost": "ዝተዓጸወ ፖስታ"
   },
   "tv": {
     "title": "ቲቪ",
@@ -14684,5 +14685,11 @@
     "spotlightForSale": "በዚህ ወቅት ለማስተዋል",
     "spotlightNew": "ሕጂ ወሊደ",
     "buyFor": "ብ {{price}} ግዛ"
+  },
+  "reel": {
+    "readAll": "ንዅሉ ኣንብብ",
+    "openPost": "ክፉት ልኡኽ",
+    "readArticle": "ጽሑፍ ኣንብብ",
+    "openToUnlock": "ክፉት"
   }
 }

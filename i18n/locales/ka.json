@@ -4937,7 +4937,8 @@
     "tabVideos": "ვიდეოები",
     "tabAudio": "აუდიო",
     "tabLive": "პირდაპირ ეთერში",
-    "tabPinned": "მიმაგრებული"
+    "tabPinned": "მიმაგრებული",
+    "lockedPost": "დაბლოკილი პოსტი"
   },
   "tv": {
     "title": "ტელევიზია",
@@ -14741,5 +14742,11 @@
     "spotlightForSale": "გაყიდვისთვის ახლა",
     "spotlightNew": "მხოლოდ მინტებულია",
     "buyFor": "გაყიდეთ {{price}}-ზე"
+  },
+  "reel": {
+    "readAll": "ყველას წაკითხვა",
+    "openPost": "პოსტის გახსნა",
+    "readArticle": "სტატიის წაკითხვა",
+    "openToUnlock": "გახსნა განბლოკვისთვის"
   }
 }

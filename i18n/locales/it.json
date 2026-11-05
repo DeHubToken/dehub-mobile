@@ -4933,7 +4933,8 @@
     "tabVideos": "Video",
     "tabAudio": "Audio",
     "tabLive": "Vivere",
-    "tabPinned": "Bloccato"
+    "tabPinned": "Bloccato",
+    "lockedPost": "Post bloccato"
   },
   "tv": {
     "title": "TV",
@@ -14710,5 +14711,11 @@
     "title": "DeHub ora è Riftn",
     "body": "Stessa app, stesso account, stessi amici. Solo un nome nuovo.",
     "continue": "Tocca per continuare"
+  },
+  "reel": {
+    "readAll": "Leggi tutto",
+    "openPost": "Apri post",
+    "readArticle": "Leggi l'articolo",
+    "openToUnlock": "Apri per sbloccare"
   }
 }

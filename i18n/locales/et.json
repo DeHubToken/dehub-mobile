@@ -4917,7 +4917,8 @@
     "tabVideos": "Videod",
     "tabAudio": "Heli",
     "tabLive": "Ühiskonnas",
-    "tabPinned": "Pinnatud"
+    "tabPinned": "Pinnatud",
+    "lockedPost": "Lukustatud postitus"
   },
   "tv": {
     "title": "TV",
@@ -14705,5 +14706,11 @@
     "spotlightForSale": "Müügile nüüd",
     "spotlightNew": "Just mintitud",
     "buyFor": "Osta eest {{price}}"
+  },
+  "reel": {
+    "readAll": "Loe kõiki",
+    "openPost": "Ava postitus",
+    "readArticle": "Loe artiklit",
+    "openToUnlock": "Ava avamiseks"
   }
 }

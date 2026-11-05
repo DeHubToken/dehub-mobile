@@ -4904,7 +4904,8 @@
     "tabVideos": "वीडियो",
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
-    "tabPinned": "पिन किए गए"
+    "tabPinned": "पिन किए गए",
+    "lockedPost": "पोस्ट लॉक करे"
   },
   "tv": {
     "anon": "अनोन",
@@ -14727,5 +14728,11 @@
     "spotlightForSale": "अब बिक्री के लिए",
     "spotlightNew": "अभी मिंट करे गे",
     "buyFor": "खरीदें के लिए {{price}}"
+  },
+  "reel": {
+    "readAll": "सब्बो पढ़व",
+    "openPost": "जगह खोलव",
+    "readArticle": "आलेख पढ़व",
+    "openToUnlock": "अनलॉक करे बर खोलव"
   }
 }

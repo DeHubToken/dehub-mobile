@@ -4993,7 +4993,8 @@
     "tabVideos": "Video",
     "tabAudio": "Zvuk",
     "tabLive": "Živé",
-    "tabPinned": "Pripnútené"
+    "tabPinned": "Pripnútené",
+    "lockedPost": "Zamknutý príspevok"
   },
   "tv": {
     "title": "TV",
@@ -14867,5 +14868,11 @@
     "spotlightForSale": "Predávané akýmkoľvek",
     "spotlightNew": "Práve mintované",
     "buyFor": "Kúpite za {{price}}"
+  },
+  "reel": {
+    "readAll": "Prečítať všetko",
+    "openPost": "Otvoriť príspevok",
+    "readArticle": "Prečítajte si článok",
+    "openToUnlock": "Otvoriť a odomknúť"
   }
 }

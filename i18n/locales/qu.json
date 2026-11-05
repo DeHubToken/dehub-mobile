@@ -4908,7 +4908,8 @@
     "tabVideos": "Videokuna",
     "tabAudio": "Audio nisqa",
     "tabLive": "Kawsay",
-    "tabPinned": "Pinchasqa"
+    "tabPinned": "Pinchasqa",
+    "lockedPost": "Wichqasqa poste"
   },
   "tv": {
     "title": "TV",
@@ -14713,5 +14714,11 @@
     "days": "{{count}} days",
     "spotlightForSale": "K'ullana kawsaykuna k'aspiy",
     "spotlightNew": "Just minted"
+  },
+  "reel": {
+    "readAll": "Llapanta ñawinchay",
+    "openPost": "Kichasqa qillqasqa",
+    "readArticle": "Qillqasqata ñawinchay",
+    "openToUnlock": "Kichay kicharinapaq"
   }
 }

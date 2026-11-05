@@ -4899,7 +4899,8 @@
     "tabVideos": "ګړي",
     "tabAudio": "صوتي",
     "tabLive": "د لېوۍ",
-    "tabPinned": "پښول"
+    "tabPinned": "پښول",
+    "lockedPost": "تړل شوی پوسته"
   },
   "tv": {
     "title": "TV",
@@ -14664,5 +14665,11 @@
     "collections": "کالکشنز",
     "spotlightForSale": "اوس د فروخت لپاره",
     "spotlightNew": "څلۍ"
+  },
+  "reel": {
+    "readAll": "همه چی بخونه",
+    "openPost": "د پرانیستې پوستې",
+    "readArticle": "د مقالې لوستل",
+    "openToUnlock": "د تړلو لپاره خلاص کړئ"
   }
 }

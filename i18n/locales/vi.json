@@ -4944,7 +4944,8 @@
     "tabVideos": "Video",
     "tabAudio": "Âm thanh",
     "tabLive": "Trực tiếp",
-    "tabPinned": "Đã ghim"
+    "tabPinned": "Đã ghim",
+    "lockedPost": "Bài đăng bị khóa"
   },
   "tv": {
     "title": "TV",
@@ -14794,5 +14795,11 @@
     "title": "DeHub giờ là Riftn",
     "body": "Vẫn ứng dụng đó, tài khoản đó, bạn bè đó. Chỉ là tên mới.",
     "continue": "Chạm để tiếp tục"
+  },
+  "reel": {
+    "readAll": "Đọc tất cả",
+    "openPost": "Mở bài đăng",
+    "readArticle": "Đọc bài viết",
+    "openToUnlock": "Mở để mở khóa"
   }
 }

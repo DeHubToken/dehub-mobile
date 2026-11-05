@@ -4917,7 +4917,8 @@
     "tabVideos": "Vídeos",
     "tabAudio": "Àudio",
     "tabLive": "En directe",
-    "tabPinned": "Fixat"
+    "tabPinned": "Fixat",
+    "lockedPost": "Publicació bloquejada"
   },
   "tv": {
     "title": "TV",
@@ -14705,5 +14706,11 @@
     "spotlightForSale": "En venda ara",
     "spotlightNew": "Acabament mintat",
     "buyFor": "Compra per {{price}}"
+  },
+  "reel": {
+    "readAll": "Llegir-ho tot",
+    "openPost": "Obre la publicació",
+    "readArticle": "Llegeix l'article",
+    "openToUnlock": "Obre per desbloquejar"
   }
 }

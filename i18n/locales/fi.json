@@ -4917,7 +4917,8 @@
     "tabVideos": "Videot",
     "tabAudio": "Ääni",
     "tabLive": "Suora",
-    "tabPinned": "Pinnatut"
+    "tabPinned": "Pinnatut",
+    "lockedPost": "Lukittu julkaisu"
   },
   "tv": {
     "title": "TV",
@@ -14711,5 +14712,11 @@
     "title": "DeHub on nyt Riftn",
     "body": "Sama sovellus, sama tili, samat kaverit. Vain uusi nimi.",
     "continue": "Jatka napauttamalla"
+  },
+  "reel": {
+    "readAll": "Lue kaikki",
+    "openPost": "Avaa julkaisu",
+    "readArticle": "Lue artikkeli",
+    "openToUnlock": "Avaa avataksesi"
   }
 }

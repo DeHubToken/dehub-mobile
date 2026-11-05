@@ -4895,7 +4895,8 @@
     "tabVideos": "Video dem",
     "tabAudio": "Odio",
     "tabLive": "Live",
-    "tabPinned": "Dem don pin am"
+    "tabPinned": "Dem don pin am",
+    "lockedPost": "Locked post"
   },
   "tv": {
     "title": "TV",
@@ -14645,5 +14646,11 @@
     "days": "{{count}} days",
     "spotlightNew": "Just minted",
     "buyFor": "Bai for {{price}}"
+  },
+  "reel": {
+    "readAll": "Read all",
+    "openPost": "Open post",
+    "readArticle": "Read article",
+    "openToUnlock": "Open to unlock"
   }
 }

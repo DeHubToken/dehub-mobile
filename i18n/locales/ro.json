@@ -4917,7 +4917,8 @@
     "tabVideos": "Videoclipuri",
     "tabAudio": "Audio",
     "tabLive": "Fază",
-    "tabPinned": "Pins"
+    "tabPinned": "Pins",
+    "lockedPost": "Post blocat"
   },
   "tv": {
     "title": "TV",
@@ -14728,5 +14729,11 @@
     "title": "DeHub este acum Riftn",
     "body": "Aceeași aplicație, același cont, aceiași prieteni. Doar un nume nou.",
     "continue": "Atinge pentru a continua"
+  },
+  "reel": {
+    "readAll": "Citește tot",
+    "openPost": "Postare deschisă",
+    "readArticle": "Citește articolul",
+    "openToUnlock": "Deschide pentru a debloca"
   }
 }

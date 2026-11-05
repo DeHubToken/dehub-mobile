@@ -4897,7 +4897,8 @@
     "tabVideos": "Vidio",
     "tabAudio": "Odu",
     "tabLive": "Iru na ị",
-    "tabPinned": "Akpọgidere"
+    "tabPinned": "Akpọgidere",
+    "lockedPost": "Ekpochi post"
   },
   "tv": {
     "title": "Igwe onyonyo",
@@ -14673,5 +14674,11 @@
     "spotlightForSale": "Ọ dị ka ụgbọrọ n'ụzọ a",
     "spotlightNew": "Just minted",
     "buyFor": "Nweta n'anya n'{{price}}"
+  },
+  "reel": {
+    "readAll": "Gụọ ihe niile",
+    "openPost": "Mepee post",
+    "readArticle": "Gụọ isiokwu",
+    "openToUnlock": "Mepee ka ị kpọghee"
   }
 }

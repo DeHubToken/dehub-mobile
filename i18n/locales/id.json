@@ -4933,7 +4933,8 @@
     "tabVideos": "Video",
     "tabAudio": "Audio",
     "tabLive": "Langsung",
-    "tabPinned": "Disematkan"
+    "tabPinned": "Disematkan",
+    "lockedPost": "Postingan terkunci"
   },
   "tv": {
     "title": "TV",
@@ -14707,5 +14708,11 @@
     "title": "DeHub kini menjadi Riftn",
     "body": "Aplikasi yang sama, akun yang sama, teman yang sama. Hanya nama baru.",
     "continue": "Ketuk untuk lanjut"
+  },
+  "reel": {
+    "readAll": "Baca semua",
+    "openPost": "Buka postingan",
+    "readArticle": "Baca artikel",
+    "openToUnlock": "Buka untuk membuka kunci"
   }
 }

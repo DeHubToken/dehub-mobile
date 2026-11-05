@@ -4906,7 +4906,8 @@
     "tabVideos": "ವೀಡಿಯೊಗಳು",
     "tabAudio": "ಆಡಿಯೊ",
     "tabLive": "ಲೈವ್",
-    "tabPinned": "ಪಿನ್ನ್ಡ್"
+    "tabPinned": "ಪಿನ್ನ್ಡ್",
+    "lockedPost": "ಲಾಕ್ ಮಾಡಲಾದ ಪೋಸ್ಟ್"
   },
   "tv": {
     "title": "ಟಿವಿ",
@@ -14690,5 +14691,11 @@
     "spotlightForSale": "ಈಗ ಮಾರಾಟಕ್ಕೆ",
     "spotlightNew": "ಈಗಷ್ಟೇ ಮಿಂಟ್ ಮಾಡಲಾಗಿದೆ",
     "buyFor": "{{price}} ಗೆ ಖರೀದಿಸಿ"
+  },
+  "reel": {
+    "readAll": "ಎಲ್ಲವನ್ನೂ ಓದಿ",
+    "openPost": "ಪೋಸ್ಟ್ ತೆರೆಯಿರಿ",
+    "readArticle": "ಲೇಖನವನ್ನು ಓದಿ",
+    "openToUnlock": "ಅನ್‌ಲಾಕ್ ಮಾಡಲು ತೆರೆಯಿರಿ"
   }
 }

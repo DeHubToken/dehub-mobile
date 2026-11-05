@@ -4899,7 +4899,8 @@
     "tabVideos": "سىن",
     "tabAudio": "ئۈن",
     "tabLive": "ياۋروپ",
-    "tabPinned": "ئېغىش"
+    "tabPinned": "ئېغىش",
+    "lockedPost": "قۇلۇپلانغان يازما"
   },
   "tv": {
     "title": "تېلېۋىزور",
@@ -14658,5 +14659,11 @@
     "spotlightForSale": "ئۇيۇنلاردا ساتقۇچى",
     "spotlightNew": "Just minted",
     "buyFor": "{{price}} satın al"
+  },
+  "reel": {
+    "readAll": "ھەممىنى ئوقۇش",
+    "openPost": "يازمىنى ئېچىش",
+    "readArticle": "ماقالىنى ئوقۇش",
+    "openToUnlock": "قۇلۇپنى ئېچىشقا ئېچىش"
   }
 }

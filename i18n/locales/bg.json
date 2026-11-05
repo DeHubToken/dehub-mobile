@@ -4916,7 +4916,8 @@
     "tabVideos": "Видео",
     "tabAudio": "Аудио",
     "tabLive": "Онлайн",
-    "tabPinned": "Пиннати"
+    "tabPinned": "Пиннати",
+    "lockedPost": "Заключена публикация"
   },
   "tv": {
     "title": "ТВ",
@@ -14701,5 +14702,11 @@
     "spotlightForSale": "За продажба сега",
     "spotlightNew": "Току що изпечено",
     "buyFor": "Купете за {{price}}"
+  },
+  "reel": {
+    "readAll": "Четене на всички",
+    "openPost": "Отваряне на публикация",
+    "readArticle": "Прочетете статията",
+    "openToUnlock": "Отваряне за отключване"
   }
 }

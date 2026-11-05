@@ -4920,7 +4920,8 @@
     "tabVideos": "Տեսանյութեր",
     "tabAudio": "Աուդիո",
     "tabLive": "Ուղիղ",
-    "tabPinned": "Կցված"
+    "tabPinned": "Կցված",
+    "lockedPost": "Արգելափակված գրառում"
   },
   "tv": {
     "title": "TV",
@@ -14687,5 +14688,11 @@
     "spotlightForSale": "Վաճառքի հիմա",
     "spotlightNew": "Միայն նորած",
     "buyFor": "Գնա {{price}}"
+  },
+  "reel": {
+    "readAll": "Կարդալ բոլորը",
+    "openPost": "Բացել գրառումը",
+    "readArticle": "Կարդալ հոդվածը",
+    "openToUnlock": "Բացել բացելու համար"
   }
 }

@@ -4917,7 +4917,8 @@
     "tabVideos": "Video",
     "tabAudio": "Zvuk",
     "tabLive": "Živo",
-    "tabPinned": "Přilnavé"
+    "tabPinned": "Přilnavé",
+    "lockedPost": "Zamčený příspěvek"
   },
   "tv": {
     "title": "TV",
@@ -14719,5 +14720,11 @@
     "title": "Z DeHub je teď Riftn",
     "body": "Stejná aplikace, stejný účet, stejní přátelé. Jen nové jméno.",
     "continue": "Klepnutím pokračujte"
+  },
+  "reel": {
+    "readAll": "Přečíst vše",
+    "openPost": "Otevřít příspěvek",
+    "readArticle": "Přečíst článek",
+    "openToUnlock": "Otevřít pro odemknutí"
   }
 }

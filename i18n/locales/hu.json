@@ -4924,7 +4924,8 @@
     "tabVideos": "Videók",
     "tabAudio": "Audió",
     "tabLive": "Élő",
-    "tabPinned": "Kitűzve"
+    "tabPinned": "Kitűzve",
+    "lockedPost": "Zárolt bejegyzés"
   },
   "tv": {
     "title": "TV",
@@ -14700,5 +14701,11 @@
     "title": "A DeHub mostantól Riftn",
     "body": "Ugyanaz az app, ugyanaz a fiók, ugyanazok a barátok. Csak új név.",
     "continue": "Koppints a folytatáshoz"
+  },
+  "reel": {
+    "readAll": "Összes olvasása",
+    "openPost": "Bejegyzés megnyitása",
+    "readArticle": "Cikk elolvasása",
+    "openToUnlock": "Megnyitás a zárolás feloldásához"
   }
 }

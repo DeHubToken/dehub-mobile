@@ -4898,7 +4898,8 @@
     "tabVideos": "Fiidiyowga",
     "tabAudio": "Codka",
     "tabLive": "Toos",
-    "tabPinned": "La dhajiyay"
+    "tabPinned": "La dhajiyay",
+    "lockedPost": "Boostada la qufulay"
   },
   "tv": {
     "title": "TV",
@@ -14658,5 +14659,11 @@
     "days": "{{count}} maalmooda",
     "spotlightForSale": "Waxaa la sheegay in la xiray",
     "spotlightNew": "Waxay ahaa midabka hore"
+  },
+  "reel": {
+    "readAll": "Dhammaan akhri",
+    "openPost": "Boostada Furan",
+    "readArticle": "Akhri maqaalka",
+    "openToUnlock": "Fur si aad u furto"
   }
 }

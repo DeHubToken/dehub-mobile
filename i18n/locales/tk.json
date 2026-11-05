@@ -4907,7 +4907,8 @@
     "tabVideos": "Wideolar",
     "tabAudio": "Audiolar",
     "tabLive": "Göni ýaýlym",
-    "tabPinned": "Goýlan"
+    "tabPinned": "Goýlan",
+    "lockedPost": "Garawul diňi"
   },
   "tv": {
     "title": "TV",
@@ -14661,5 +14662,11 @@
     "tapToOffer": "Tap birini tapýarak teklif berin.",
     "collections": "Toplamlar",
     "spotlightNew": "Yeni çap etdim."
+  },
+  "reel": {
+    "readAll": "Okylanlaryň ählisi",
+    "openPost": "Posty Aç",
+    "readArticle": "Makala okamak",
+    "openToUnlock": "Açylmak üçin açyl"
   }
 }

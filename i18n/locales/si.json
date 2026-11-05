@@ -4917,7 +4917,8 @@
     "tabVideos": "වීඩියෝ",
     "tabAudio": "ශ්‍රව්‍ය",
     "tabLive": "සජීවී",
-    "tabPinned": "සලකුණු කර ඇත"
+    "tabPinned": "සලකුණු කර ඇත",
+    "lockedPost": "අගුලු දැමූ පශ්චාත්"
   },
   "tv": {
     "title": "රූපවාහිනී",
@@ -14714,5 +14715,11 @@
     "collections": "එකතු කිරීම්",
     "days": "{{count}} දිනයේ",
     "buyFor": "මෙමින්දෙන් කියාගන්න {{price}}"
+  },
+  "reel": {
+    "readAll": "සියල්ල කියවන්න",
+    "openPost": "තනතුර විවෘත කරන්න",
+    "readArticle": "ලිපිය කියවන්න",
+    "openToUnlock": "අගුළු හැරීමට විවෘතයි"
   }
 }

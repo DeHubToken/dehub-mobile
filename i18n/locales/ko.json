@@ -4932,7 +4932,8 @@
     "tabVideos": "비디오",
     "tabAudio": "오디오",
     "tabLive": "라이브",
-    "tabPinned": "핀"
+    "tabPinned": "핀",
+    "lockedPost": "잠긴 포스트"
   },
   "tv": {
     "title": "TV",
@@ -14708,5 +14709,11 @@
     "title": "DeHub가 이제 Riftn입니다",
     "body": "같은 앱, 같은 계정, 같은 친구들. 이름만 바뀌었어요.",
     "continue": "탭하여 계속"
+  },
+  "reel": {
+    "readAll": "모두 읽기",
+    "openPost": "포스트 열기",
+    "readArticle": "게시글 읽기",
+    "openToUnlock": "열어서 잠금 해제하기"
   }
 }

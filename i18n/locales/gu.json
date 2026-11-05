@@ -4918,7 +4918,8 @@
     "tabVideos": "વિડિયો",
     "tabAudio": "આઉડિયો",
     "tabLive": "લાઇવ",
-    "tabPinned": "પિન્ડ"
+    "tabPinned": "પિન્ડ",
+    "lockedPost": "લૉક કરેલી પોસ્ટ"
   },
   "tv": {
     "title": "TV",
@@ -14685,5 +14686,11 @@
     "spotlightForSale": "હવે વેચાણ માટે",
     "spotlightNew": "હમણાં જ મિંટેડ",
     "buyFor": "{{price}} માટે ખરીદો"
+  },
+  "reel": {
+    "readAll": "બધું વાંચો",
+    "openPost": "પોસ્ટ ખોલો",
+    "readArticle": "લેખ વાંચો",
+    "openToUnlock": "અનલૉક કરવા માટે ખોલો"
   }
 }

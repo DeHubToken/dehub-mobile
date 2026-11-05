@@ -4899,7 +4899,8 @@
     "tabVideos": "ویڈیوز",
     "tabAudio": "آڈیو",
     "tabLive": "لائیو",
-    "tabPinned": "پنڈ"
+    "tabPinned": "پنڈ",
+    "lockedPost": "لاکڈ پوسٹ"
   },
   "tv": {
     "title": "ٹی وی",
@@ -14671,5 +14672,11 @@
     "spotlightForSale": "اب فور سیل",
     "spotlightNew": "صرف منٹڈ",
     "buyFor": "{{price}} کے لیے خریدیں"
+  },
+  "reel": {
+    "readAll": "ریڈ آل",
+    "openPost": "اوپن پوسٹ",
+    "readArticle": "ریڈ آرٹیکل",
+    "openToUnlock": "اوپن ٹو انلاک"
   }
 }

@@ -4906,7 +4906,8 @@
     "tabVideos": "वीडियो",
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
-    "tabPinned": "पिन"
+    "tabPinned": "पिन",
+    "lockedPost": "अवरुद्धं पदम्"
   },
   "tv": {
     "title": "दूरदर्शनम्",
@@ -14670,5 +14671,11 @@
     "statForSale": "विक्रयार्थम्",
     "sellYours": "विक्रय कृपया करिए।",
     "buyFor": "क्रीणु {{price}} के लिए"
+  },
+  "reel": {
+    "readAll": "सर्वं वाच्यम्",
+    "openPost": "उद्घाट्यताम्",
+    "readArticle": "वाच्यम् लेखः",
+    "openToUnlock": "उद्घाट्यताम् उद्घाट्यताम्"
   }
 }

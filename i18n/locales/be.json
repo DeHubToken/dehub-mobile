@@ -4929,7 +4929,8 @@
     "tabVideos": "Відэа",
     "tabAudio": "Аўдыё",
     "tabLive": "У жывым часе",
-    "tabPinned": "Заклеймоўаныя"
+    "tabPinned": "Заклеймоўаныя",
+    "lockedPost": "Заблакаваны пост"
   },
   "tv": {
     "title": "ТБ",
@@ -14744,5 +14745,11 @@
     "spotlightForSale": "На продаж зараз",
     "spotlightNew": "Толькі праміні",
     "buyFor": "Купіць за {{price}}"
+  },
+  "reel": {
+    "readAll": "Прачытайце ўсё",
+    "openPost": "Адкрыць паведамленне",
+    "readArticle": "Прачытайце артыкул",
+    "openToUnlock": "Адкрыць для разблакіроўкі"
   }
 }

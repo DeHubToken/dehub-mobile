@@ -4914,7 +4914,8 @@
     "tabVideos": "Amavidiyo",
     "tabAudio": "Umsindo",
     "tabLive": "Okubukhoma",
-    "tabPinned": "Okunamathiselwe"
+    "tabPinned": "Okunamathiselwe",
+    "lockedPost": "Iphosti evaliwe"
   },
   "tv": {
     "title": "TV",
@@ -14712,5 +14713,11 @@
     "spotlightForSale": "Ungcono kwa sasa",
     "spotlightNew": "Just minted",
     "buyFor": "Thenga ngo-{{price}}"
+  },
+  "reel": {
+    "readAll": "Funda konke",
+    "openPost": "Vula iphosti",
+    "readArticle": "Funda isihloko",
+    "openToUnlock": "Vula ukuze uvule"
   }
 }

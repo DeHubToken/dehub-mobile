@@ -4904,7 +4904,8 @@
     "tabVideos": "ଭିଡ଼ିଓ",
     "tabAudio": "ଧ୍ୱନି",
     "tabLive": "ଲାଇଭ",
-    "tabPinned": "ପିନ୍ ‌ ହୋଇଥିବା"
+    "tabPinned": "ପିନ୍ ‌ ହୋଇଥିବା",
+    "lockedPost": "ଅପହଞ୍ଚ ପୋଷ୍ଟ"
   },
   "tv": {
     "title": "TV",
@@ -14679,5 +14680,11 @@
     "dehubPostsName": "DeHub Posts",
     "spotlightNew": "ମିନ୍ତ କରିଛି",
     "buyFor": "ଖରିଦ୍ବାକୁ କରନ୍ତୁ {{price}}"
+  },
+  "reel": {
+    "readAll": "ସବୁ ପଢ଼ନ୍ତୁ",
+    "openPost": "ପୋଷ୍ଟ ଖୋଲନ୍ତୁ",
+    "readArticle": "ଲେଖା ପଢ଼ନ୍ତୁ",
+    "openToUnlock": "ଖୋଲିବା ପାଇଁ ଖୋଲନ୍ତୁ"
   }
 }

@@ -4914,7 +4914,8 @@
     "tabVideos": "影片",
     "tabAudio": "音頻",
     "tabLive": "生活",
-    "tabPinned": "固定咗"
+    "tabPinned": "固定咗",
+    "lockedPost": "鎖定咗嘅帖子"
   },
   "tv": {
     "title": "電視",
@@ -14694,5 +14695,11 @@
     "title": "DeHub 而家叫 Riftn",
     "body": "同一個 app、同一個帳戶、同一班朋友。只係換咗個名。",
     "continue": "撳一下繼續"
+  },
+  "reel": {
+    "readAll": "睇晒",
+    "openPost": "開帖子",
+    "readArticle": "睇文章",
+    "openToUnlock": "打開嚟解鎖"
   }
 }

@@ -4914,7 +4914,8 @@
     "tabVideos": "Àwọn fídíò",
     "tabAudio": "Ohùn",
     "tabLive": "Ìgbésí ayé",
-    "tabPinned": "Tí a fi sí ipò gíga"
+    "tabPinned": "Tí a fi sí ipò gíga",
+    "lockedPost": "Ifiweranṣẹ Titiipa"
   },
   "tv": {
     "title": "TV",
@@ -14679,5 +14680,11 @@
     "spotlightForSale": "Ọjọ́ ibẹrẹ.",
     "spotlightNew": "Ọgbọnrin Ọlọrun",
     "buyFor": "Kaa fun {{price}}"
+  },
+  "reel": {
+    "readAll": "Ka gbogbo",
+    "openPost": "Ṣii ifiweranṣẹ",
+    "readArticle": "Ka àpilẹ̀kọ",
+    "openToUnlock": "Ṣii lati ṣii"
   }
 }

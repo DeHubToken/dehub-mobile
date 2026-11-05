@@ -4917,7 +4917,8 @@
     "tabVideos": "Videoer",
     "tabAudio": "Lyd",
     "tabLive": "Live",
-    "tabPinned": "Fastgjort"
+    "tabPinned": "Fastgjort",
+    "lockedPost": "Låst indlæg"
   },
   "tv": {
     "title": "TV",
@@ -14719,5 +14720,11 @@
     "title": "DeHub hedder nu Riftn",
     "body": "Samme app, samme konto, samme venner. Bare et nyt navn.",
     "continue": "Tryk for at fortsætte"
+  },
+  "reel": {
+    "readAll": "Læs alle",
+    "openPost": "Åbn indlæg",
+    "readArticle": "Læs artikel",
+    "openToUnlock": "Åbn for at låse op"
   }
 }

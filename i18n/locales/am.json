@@ -4916,7 +4916,8 @@
     "tabVideos": "ቪዲዮዎች",
     "tabAudio": "ኦዲዮ",
     "tabLive": "ቀጥታ",
-    "tabPinned": "የተሰካ"
+    "tabPinned": "የተሰካ",
+    "lockedPost": "የተቆለፈ ልጥፍ"
   },
   "tv": {
     "title": "ቴሌቪዥን",
@@ -14729,5 +14730,11 @@
     "spotlightForSale": "በማስተዋም ይገኛል",
     "spotlightNew": "በአሁን ለማስተዋል",
     "buyFor": "ከ{{price}}"
+  },
+  "reel": {
+    "readAll": "ሁሉንም ያንብቡ",
+    "openPost": "ክፈት ልጥፍ",
+    "readArticle": "ርዕስ አንብብ",
+    "openToUnlock": "ለመክፈት ክፈት"
   }
 }

@@ -4933,7 +4933,8 @@
     "tabVideos": "Бейнелер",
     "tabAudio": "Аудио",
     "tabLive": "Тікелей эфир",
-    "tabPinned": "Түрлендірілген"
+    "tabPinned": "Түрлендірілген",
+    "lockedPost": "Құлыпталған лауазым"
   },
   "tv": {
     "title": "Теледидар",
@@ -14752,5 +14753,11 @@
     "spotlightForSale": "Қазір сатылуда",
     "spotlightNew": "Жаңа басылды",
     "buyFor": "{{price}} үшін сатып алу"
+  },
+  "reel": {
+    "readAll": "Барлығын оқу",
+    "openPost": "Постты ашу",
+    "readArticle": "Мақаланы оқу",
+    "openToUnlock": "Құлыптан босату үшін ашыңыз"
   }
 }

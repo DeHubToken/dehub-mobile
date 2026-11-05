@@ -4897,7 +4897,8 @@
     "tabVideos": "วิดีโอ",
     "tabAudio": "เสียง",
     "tabLive": "สด",
-    "tabPinned": "โพสต์ที่ติดปากกา"
+    "tabPinned": "โพสต์ที่ติดปากกา",
+    "lockedPost": "โพสต์ล็อก"
   },
   "tv": {
     "title": "โทรทัศน์",
@@ -14654,5 +14655,11 @@
     "spotlightForSale": "กำลังขายอยู่",
     "spotlightNew": "เพิ่ง Minted",
     "buyFor": "ซื้อที่ {{price}}"
+  },
+  "reel": {
+    "readAll": "อ่านทั้งหมด",
+    "openPost": "เปิดโพสต์",
+    "readArticle": "อ่านบทความ",
+    "openToUnlock": "เปิดเพื่อปลดล็อก"
   }
 }

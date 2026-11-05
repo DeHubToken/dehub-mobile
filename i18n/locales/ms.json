@@ -5173,7 +5173,8 @@
     "tabVideos": "Video",
     "tabAudio": "Audio",
     "tabLive": "Secara Langsung",
-    "tabPinned": "Tersepit"
+    "tabPinned": "Tersepit",
+    "lockedPost": "Hantaran terkunci"
   },
   "tv": {
     "title": "TV",
@@ -14966,5 +14967,11 @@
     "title": "DeHub kini Riftn",
     "body": "Aplikasi sama, akaun sama, rakan sama. Cuma nama baharu.",
     "continue": "Ketik untuk teruskan"
+  },
+  "reel": {
+    "readAll": "Baca semua",
+    "openPost": "Buka hantaran",
+    "readArticle": "Baca artikel",
+    "openToUnlock": "Buka untuk membuka kunci"
   }
 }
