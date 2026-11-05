@@ -271,6 +271,9 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
 
 // ── Our own token ───────────────────────────────────────────────────────────
 
+/** Brand name, not copy: it reads the same in every language. */
+const OWN_TOKEN_NAME = 'Riftn';
+
 /** The old token's contract addresses, which now mean "coming soon" too. */
 const OWN_TOKEN_ADDRESSES = new Set([
   '0xd20ab1015f6a2de4a6fddebab270113f689c2f7c',
@@ -305,7 +308,7 @@ const OwnTokenComingSoonCard: React.FC = () => {
           <View style={styles.body}>
             <View style={styles.titleRow}>
               <Text style={styles.symbol}>$RIFT</Text>
-              <Text style={styles.name} numberOfLines={1}>Riftn</Text>
+              <Text style={styles.name} numberOfLines={1}>{OWN_TOKEN_NAME}</Text>
               <View style={styles.soonBadge}>
                 <Text style={styles.soonBadgeText}>{t('hero.comingSoon', 'Coming Soon')}</Text>
               </View>
