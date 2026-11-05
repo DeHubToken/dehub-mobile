@@ -1079,6 +1079,7 @@ function FeatureRequestsBoard() {
                 return result;
               }} />
             </View>
+            {tab === "requests" && !debouncedSearch && category === "all" && <TopBuildersCard compact />}
             {focusedRequest && <FeatureCard feature={focusedRequest} myVote={votes?.[focusedRequest.id]}
               onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} highlightCommentId={focusedCommentId} />}
           </>}
