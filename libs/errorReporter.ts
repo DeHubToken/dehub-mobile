@@ -77,6 +77,16 @@ let rowsThisSession = 0;
 let userAddress: string | null = readLogIdentity();
 let installed = false;
 
+/**
+ * The last few error messages this session, kept in memory only. Attached to
+ * Requests board posts so a bug report shows what just went wrong.
+ */
+const RECENT_MAX = 5;
+const recentErrors: { at: string; message: string }[] = [];
+export function getRecentErrors(): { at: string; message: string }[] {
+  return recentErrors.slice();
+}
+
 /** Called by AuthContext so a row can be tied to the account that hit it. */
 export function setLogUserAddress(address?: string | null): void {
   userAddress = address ? String(address).toLowerCase() : null;
@@ -204,6 +214,13 @@ export function reportError(
   }
   if (!row) return;
   if (options?.level) row.level = options.level;
+  if (row.level === "error") {
+    recentErrors.push({
+      at: new Date().toISOString(),
+      message: `${row.component ? `${row.component}: ` : ""}${row.message}`.slice(0, 200),
+    });
+    if (recentErrors.length > RECENT_MAX) recentErrors.shift();
+  }
   if (options?.metadata) row.metadata = { ...row.metadata, ...options.metadata };
 
   rowsThisSession += 1;

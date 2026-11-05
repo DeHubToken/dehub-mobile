@@ -93,6 +93,7 @@ import {
   useDeleteFeatureRequest,
   useSetFeatureStatus,
   isFeatureStatusEditor,
+  useFeatureDeviceInfoIds,
   featureAttachments,
   isVideoAttachment,
   MAX_FEATURE_ATTACHMENTS,
@@ -106,6 +107,7 @@ import {
   type FeatureStatus,
 } from "../hooks/useFeatureRequests";
 import { Collapsible, CollapsibleChevron } from "../components/ui/Collapsible";
+import DeviceInfoPanel from "../components/FeatureRequests/DeviceInfoPanel";
 
 const TITLE_MAX = 100;
 const DESC_MAX = 1000;
@@ -299,6 +301,8 @@ const FeatureCard: React.FC<{
   const isAuthor = !!myWallet && myWallet === feature.author_wallet_address.toLowerCase();
   // The board's owners can move anyone's request to Queued or Shipped.
   const canSetStatus = isFeatureStatusEditor(myWallet);
+  const { data: deviceInfoIds } = useFeatureDeviceInfoIds();
+  const hasDeviceInfo = canSetStatus && !!deviceInfoIds?.has(feature.id);
   const statusMutation = useSetFeatureStatus();
 
   const displayName = feature.author_username || feature.author_wallet_address.slice(0, 6);
@@ -519,6 +523,9 @@ const FeatureCard: React.FC<{
             )}
           </View>
 
+          {/* Board owners only: where it was sent from, to reproduce bugs. */}
+          {hasDeviceInfo && <DeviceInfoPanel featureId={feature.id} />}
+
           {/* Actions — dislike · share · comment · like, spread edge to edge
               exactly as the feed's FeedActionBar does. */}
           <View style={styles.actionRow}>
@@ -675,6 +682,7 @@ const PromptComposer: React.FC<{
         </Pressable>
         <Text style={styles.promptCount}>{description.length}/{DESC_MAX}</Text>
       </View>
+      <Text style={[styles.promptCount, { marginBottom: 8 }]}>{t("features.deviceInfoNote", "Device info is attached to help us fix bugs.")}</Text>
       <Pressable onPress={handleSubmit} disabled={!valid || submitting} accessibilityRole="button"
         style={[styles.glassBtn, (!valid || submitting) && styles.disabled]}>
         {submitting ? <ActivityIndicator color="#FFFFFF" /> : <Icon name="ArrowUp" size={16} color="#FFFFFF" />}

@@ -2496,7 +2496,14 @@
       "pts": "{{n}} pts",
       "gap": "{{n}} pts pour dépasser {{name}}",
       "join": "Publiez une idée qui sera livrée pour entrer au classement"
-    }
+    },
+    "deviceInfoNote": "Les infos de l'appareil sont jointes pour nous aider à corriger les bugs.",
+    "deviceInfo": "Infos de l'appareil",
+    "deviceInfoOwners": "Visible uniquement par les propriétaires du tableau",
+    "deviceInfoError": "Impossible de charger les infos de l'appareil",
+    "deviceInfoNone": "Aucune info d'appareil pour cette demande",
+    "deviceInfoErrors": "Erreurs récentes",
+    "deviceInfoNoErrors": "Aucune"
   },
   "auth": {
     "loginRequired": "Connexion requise",

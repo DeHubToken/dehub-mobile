@@ -40,7 +40,7 @@ export default function ReportBugModal({ visible, onClose, context }: Props) {
     if (!isSignedIn || !user) { onClose(); requireAuth(() => {}); return; }
     submitting.current = true; setFailed(false);
     try {
-      await submit.mutateAsync({ title: message.trim().replace(/\s+/g, ' ').slice(0, 120), description: describePageBug(message, details), category: 'bug_fix', attachments: attachment ? [attachment] : [] });
+      await submit.mutateAsync({ title: message.trim().replace(/\s+/g, ' ').slice(0, 120), description: describePageBug(message, details), category: 'bug_fix', attachments: attachment ? [attachment] : [], screen: details.screen });
       setAttachment(null); if (setMessage.complete(message, '')) onClose();
     } catch { setFailed(true); } finally { submitting.current = false; }
   };

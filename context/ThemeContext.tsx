@@ -371,6 +371,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;
 };
 
+/** Theme name where a provider exists, null otherwise (non-throwing). */
+export function useOptionalThemeName(): string | null {
+  return useContext(AppThemeContext)?.theme ?? null;
+}
+
 export function useAppTheme(): AppThemeContextValue {
   const value = useContext(AppThemeContext);
   if (!value) throw new Error('useAppTheme must be used within AppThemeProvider');
