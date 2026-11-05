@@ -1,3 +1,4 @@
+import { EscapedMusicNotesHost } from './components/Home/EscapedMusicNotesHost';
 import { VideoDownloadProvider } from "./context/VideoDownloadContext";
 import { ScreenNames } from "./navigation/ScreenNames";
 import {
@@ -296,6 +297,7 @@ export default function App() {
             <WalletRuntimeHost />
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
+            <EscapedMusicNotesHost />
             <DimLightsOverlay />
             {/* Offline is an overlay, never a replacement for the tree.
                 Returning NoInternetScreen instead of the app — which is what
