@@ -51,12 +51,12 @@ describe("notification tap targets", () => {
     );
   });
 
-  it("makes DAO rows tappable and sends them to the DAO screen", () => {
+  it("makes DAO rows tappable and sends them to the DAO screen with their proposal", () => {
     const screen = readSource("screens/NotificationScreen.tsx");
 
     expect(screen).toContain("if (String(typeStr).startsWith('dao_')) return true;");
     expect(screen).toMatch(
-      /default:[\s\S]*?if \(String\(type\)\.startsWith\('dao_'\)\) \{\s*navigation\.navigate\(ScreenNames\.Dao\);\s*break;\s*\}/,
+      /default:[\s\S]*?if \(String\(type\)\.startsWith\('dao_'\)\) \{\s*const proposalId = \(notification as CustomNotificationItem\)\.customReferenceId;\s*navigation\.navigate\(ScreenNames\.Dao as never, \(proposalId \? \{ proposalId \} : undefined\) as never\);\s*break;\s*\}/,
     );
   });
 
