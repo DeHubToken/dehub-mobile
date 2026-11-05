@@ -21,6 +21,12 @@ import { POST_BG_INK, PostBgLayer } from "../Profile/PostBackground";
 import ComicDeck from "../Home/ComicDeck";
 import { Ionicons } from "@expo/vector-icons";
 import { CHROME_RADIUS, CHROME_SIZE, ChromeFill, EDGE, TEXT_SHADOW } from "../common/ViewerChrome";
+import { parseTextToSegments } from "../Home/FeedCaption";
+import CashtagSheet from "../Home/CashtagSheet";
+import { openInApp } from "../../libs/links.utils";
+import { openCategoryFeed } from "../../libs/openCategoryFeed";
+import { hasValidTLD } from "../../libs/tlds";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 /** Words only: links shortened, markdown marks dropped, line breaks kept. */
 function readable(text: string): string {
@@ -35,6 +41,25 @@ function readable(text: string): string {
     .replace(/\r/g, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
+}
+
+/**
+ * The poster's words with their links kept: markdown marks dropped and a bare
+ * address written `<address>` so it prints as tappable text, with @names,
+ * $tags and #tags left for the caption parser (FeedCaption).
+ */
+function posterText(text: string): string {
+  return text
+    .replace(/!\[[^\]]*]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)]\(([^)\s]+)\)/g, "$1 <$2>")
+    .replace(/^\s{0,3}(#{1,6}|>)\s+/gm, "")
+    .replace(/(\*\*|__|`|~~)/g, "")
+    .replace(/\r/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+    .replace(/(^|[\s(])((?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/[^\s<>]*?)?)([.,:;?!)]*)(?=\s|$)/g, (all, lead: string, url: string, tail: string) =>
+      /^(https?:\/\/|www\.)/i.test(url) || hasValidTLD(url) ? `${lead}<${url}>${tail}` : all,
+    );
 }
 
 /** Short posts read big, long ones settle to a reading size. */
@@ -58,7 +83,10 @@ interface Props {
 
 function TextPoster({ still, height, isActive, bgId }: Props) {
   const { t } = useTranslation();
-  const words = useMemo(() => readable(still.text || ""), [still.text]);
+  const words = useMemo(() => posterText(still.text || ""), [still.text]);
+  const segments = useMemo(() => parseTextToSegments(words), [words]);
+  const { showUserProfile } = useUserProfileSheet();
+  const [cashtag, setCashtag] = useState<string | null>(null);
   const bg = postBgById(bgId);
   const ink = bg ? POST_BG_INK[bg.tone] : POST_BG_INK.dark;
   const size = posterSize(words.length);
@@ -70,7 +98,21 @@ function TextPoster({ still, height, isActive, bgId }: Props) {
     if (!expanded) setOverflows(e.nativeEvent.layout.height > maxTextHeight + 12);
   };
   const body = (
-    <Text onLayout={onTextLayout} style={[styles.words, size, { color: ink.ink }]}>{words}</Text>
+    <Text onLayout={onTextLayout} style={[styles.words, size, { color: ink.ink }]}>
+      {segments.map((seg, i) => {
+        if (seg.type === "text") return seg.value;
+        const onPress =
+          seg.type === "link" ? () => openInApp(seg.url)
+          : seg.type === "mention" ? () => showUserProfile(seg.username)
+          : seg.type === "cashtag" ? () => setCashtag(seg.symbol)
+          : () => openCategoryFeed(seg.tag);
+        return (
+          <Text key={i} onPress={onPress} suppressHighlighting={false} style={seg.type === "link" ? styles.link : styles.tag}>
+            {seg.value}
+          </Text>
+        );
+      })}
+    </Text>
   );
   return (
     <View style={StyleSheet.absoluteFill} className={bg ? "dark-surface" : undefined}>
@@ -101,6 +143,7 @@ function TextPoster({ still, height, isActive, bgId }: Props) {
           </Pressable>
         )}
       </View>
+      {!!cashtag && <CashtagSheet visible symbol={cashtag} onClose={() => setCashtag(null)} />}
     </View>
   );
 }
@@ -165,6 +208,8 @@ const styles = StyleSheet.create({
   posterBody: { flex: 1, justifyContent: "center", paddingHorizontal: EDGE, paddingTop: 84, paddingBottom: 170 },
   quote: { fontSize: 64, lineHeight: 52, opacity: 0.4, fontFamily: "serif", marginBottom: 2 },
   words: { fontWeight: "600", letterSpacing: -0.2 },
+  link: { textDecorationLine: "underline" },
+  tag: { fontWeight: "800" },
   fade: { height: 56, marginTop: -56 },
   // The caption's "more": 12pt at 60%, 4pt under the words.
   more: { alignSelf: "flex-start", marginTop: 4 },
