@@ -12675,6 +12675,8 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "71988c4d8e08": "Metin",
+    "147170e793c6": "Geniş",
     "3f9b2c71d0a4": "{{n}} sonuç",
     "8c4e1a6b2f57": "“{{query}}” için",
     "chatSlowDown": "Yavaş! Arka arkaya çok fazla mesaj. {{wait}} sonra tekrar dene veya başka birinin yanıt vermesini bekle.",

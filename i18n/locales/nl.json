@@ -12927,6 +12927,8 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "71988c4d8e08": "Tekst",
+    "147170e793c6": "Breed",
     "3f9b2c71d0a4": "{{n}} resultaten",
     "8c4e1a6b2f57": "voor “{{query}}”",
     "chatSlowDown": "Rustig aan! Te veel berichten achter elkaar. Probeer het over {{wait}} opnieuw, of wacht tot iemand anders reageert.",
