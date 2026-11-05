@@ -262,3 +262,7 @@ export const colors = new Proxy(systemColors, {
  * turns around; a plain '#FFFFFF' there comes out as ink.
  */
 export const LIGHT_PAGE_FILL = 'hsla(0,0%,100%,1)';
+
+/** System Light's ink (#18181B), in hsla() for the same reason: the colour
+ *  pass leaves it alone instead of turning it white. */
+export const LIGHT_INK = 'hsla(240,6%,10%,1)';

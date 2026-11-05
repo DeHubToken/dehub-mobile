@@ -2405,7 +2405,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             padding: 12, marginVertical: 6,
             borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: MINIMAL_HAIRLINE,
           } : skin ? [skin.card, { padding: 12, marginVertical: 6 }] : {
-            borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
+            borderWidth: theme === 'system' ? 0 : 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
             backgroundColor: theme === 'system' ? 'transparent' : 'rgba(255,255,255,0.03)',
             padding: 12, marginVertical: 6,
           }}
@@ -2966,9 +2966,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         skin.card,
         { paddingTop: 12, paddingHorizontal: 12, paddingBottom: 12, marginVertical: 6 },
       ] : {
-        borderWidth: 1,
+        // System has no bento (no frame, no fill), same as web.
+        borderWidth: theme === 'system' ? 0 : 1,
         borderColor: 'rgba(255,255,255,0.12)',
-        // System has no post fill on either platform; transparent also keeps the
+        // Transparent also keeps the
         // control-material pass from repainting this card as a grey button.
         backgroundColor: theme === 'system'
           ? 'transparent'
