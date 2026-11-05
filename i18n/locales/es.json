@@ -15191,7 +15191,16 @@
     "ae6a0ffbe609": "Marcado en cola",
     "366cb56b38ce": "Marcado como lanzado",
     "9db7b5ba03bb": "Devuelto a Solicitudes",
-    "bb2be752e079": "No se pudo cambiar el estado"
+    "bb2be752e079": "No se pudo cambiar el estado",
+    "2ab63e6ced90": "No viable",
+    "79688f176607": "Marcado como no viable",
+    "465fe84f18fc": "Marcar como no viable",
+    "0d24977e6943": "Editar motivo",
+    "0a54f1d10336": "¿Por qué no es viable? (opcional)",
+    "3d024b567634": "Motivo breve que verá la gente",
+    "ad389aa4c08e": "Motivo:",
+    "78b3ae9561ee": "Nada descartado",
+    "89b4d1850766": "Aquí aparecen las solicitudes que no podemos hacer ahora, con el motivo."
   },
   "liveOverlay": {
     "eyebrow": {

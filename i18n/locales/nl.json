@@ -15427,7 +15427,16 @@
     "ae6a0ffbe609": "Gemarkeerd als in wachtrij",
     "366cb56b38ce": "Gemarkeerd als uitgebracht",
     "9db7b5ba03bb": "Terug naar Verzoeken verplaatst",
-    "bb2be752e079": "Kon de status niet wijzigen"
+    "bb2be752e079": "Kon de status niet wijzigen",
+    "2ab63e6ced90": "Niet haalbaar",
+    "79688f176607": "Gemarkeerd als niet haalbaar",
+    "465fe84f18fc": "Markeer als niet haalbaar",
+    "0d24977e6943": "Reden bewerken",
+    "0a54f1d10336": "Waarom is dit niet haalbaar? (optioneel)",
+    "3d024b567634": "Korte reden die mensen zien",
+    "ad389aa4c08e": "Waarom:",
+    "78b3ae9561ee": "Niets afgewezen",
+    "89b4d1850766": "Verzoeken die we nu niet kunnen bouwen staan hier, met de reden."
   },
   "creatorSupport": {
     "campaignLabel": "Ondersteuningsadvertenties van creators",

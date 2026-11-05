@@ -2499,7 +2499,16 @@
     "b3e8d1c6f0a2": "Toque para enviar",
     "c9f2a4e7d1b5": "Ouvindo... toque na bola para enviar",
     "22577ebd908e": "Gerar vídeo Wan 3.0 · trilha sonora original",
-    "1fa2357ab7e1": "Gerar vídeo Seedance 720p · trilha sonora original"
+    "1fa2357ab7e1": "Gerar vídeo Seedance 720p · trilha sonora original",
+    "2ab63e6ced90": "Inviável",
+    "79688f176607": "Marcado como inviável",
+    "465fe84f18fc": "Marcar como inviável",
+    "0d24977e6943": "Editar motivo",
+    "0a54f1d10336": "Por que isso é inviável? (opcional)",
+    "3d024b567634": "Motivo curto que as pessoas verão",
+    "ad389aa4c08e": "Motivo:",
+    "78b3ae9561ee": "Nada descartado",
+    "89b4d1850766": "Pedidos que não podemos fazer agora aparecem aqui, com o motivo."
   },
   "dehubLinks": {
     "kind": {
