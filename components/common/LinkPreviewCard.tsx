@@ -21,7 +21,7 @@ import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
 import { reportPostEvent } from '../../services/post-stats.service';
 import { parseDehubLink } from '../../libs/dehub-links';
-import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, subscribeLinkPreviewRefresh, type LinkPreviewData } from '../../libs/link-preview';
+import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, peekLinkPreview, subscribeLinkPreviewRefresh, type LinkPreviewData } from '../../libs/link-preview';
 import { useAppTheme } from '../../context/ThemeContext';
 import { minimalFlat } from '../../theme/minimal';
 import { useNavigation } from '@react-navigation/native';
@@ -66,8 +66,12 @@ interface LinkPreviewCardProps {
 const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style, statsTokenId }) => {
   // The URL regex is a wide unicode pattern; run it per caption, not per render.
   const url = useMemo(() => firstExternalUrl(text), [text]);
-  const [preview, setPreview] = useState<LinkPreviewData | null>(null);
-  const [loading, setLoading] = useState(!!url);
+  // A link this session has already read draws at its final size on the first
+  // frame. Feed cards remount every time they scroll back into the render
+  // window, and starting each one as a short skeleton that grew into the real
+  // card once the scroll settled moved every post below it, mid-read.
+  const [preview, setPreview] = useState<LinkPreviewData | null>(() => (url ? peekLinkPreview(url) : null));
+  const [loading, setLoading] = useState(() => !!url && !peekLinkPreview(url));
   const [failedImage, setFailedImage] = useState<string | null>(null);
   const [loadedFavicon, setLoadedFavicon] = useState<string | null>(null);
   const [failedFavicon, setFailedFavicon] = useState<string | null>(null);
@@ -87,12 +91,14 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(!!url);
-    setPreview(null);
+    const known = url && refreshes === 0 ? peekLinkPreview(url) : null;
+    setLoading(!!url && !known);
+    setPreview(known);
     setApp(null);
     if (!url) return;
     // Not while the feed is still moving: the fetch, its parse and the card
-    // swap can all wait for the scroll to settle.
+    // swap can all wait for the scroll to settle. A known preview is already
+    // on screen; only a market's live odds are worth reading again.
     const cancel = runWhenSettled(() => {
       let host = '';
       try {
@@ -103,6 +109,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
       if (!parsePredictionLink(url) && !parseRichLink(url)) void fetchAppByDomain(host).then((row) => {
         if (!cancelled) setApp(row);
       });
+      if (known && !known.prediction) return;
       fetchLinkPreview(url).then((data) => {
         if (cancelled) return;
         setPreview(data);
@@ -116,7 +123,19 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
   }, [url, refreshes]);
 
   if (!url) return null;
-  if (loading) return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
+  // Shaped like the card most links turn into (a share image over two lines
+  // of copy, or a square beside them on glass), so the swap is close to the
+  // same height when a preview does have to be read.
+  if (loading) {
+    if (style) return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
+    if (skin?.material === 'glass') return <SkeletonBlock style={[styles.skeleton, styles.glassSkeleton, isMinimal && styles.minimalSkeleton]} />;
+    return (
+      <View style={styles.skeletonCard}>
+        <SkeletonBlock style={[styles.skeletonImage, isMinimal && styles.minimalSkeleton]} />
+        <SkeletonBlock style={[styles.skeletonBody, isMinimal && styles.minimalSkeleton]} />
+      </View>
+    );
+  }
   if (!preview) return null;
   if (preview.rich) return <RichLinkCard preview={{ ...preview, rich: preview.rich }} style={style} />;
 
@@ -206,6 +225,10 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.05)',
   },
+  glassSkeleton: { height: 112 },
+  skeletonCard: { marginTop: 8, gap: 8 },
+  skeletonImage: { width: '100%', aspectRatio: 1.91, borderRadius: 14, backgroundColor: 'rgba(255,255,255,0.05)' },
+  skeletonBody: { height: 56, borderRadius: 14, backgroundColor: 'rgba(255,255,255,0.05)' },
   minimalImage: { backgroundColor: 'rgba(255,255,255,0.04)' },
   minimalBody: { paddingHorizontal: 0, paddingTop: 8, paddingBottom: 0 },
   minimalSkeleton: { backgroundColor: 'rgba(255,255,255,0.04)' },

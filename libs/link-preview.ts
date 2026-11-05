@@ -69,9 +69,59 @@ export function getLinkPreviewImage(url: string, image: unknown): string | null 
 export function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const pending = pendingPreviews.get(url);
   if (pending) return pending;
-  const request = loadLinkPreview(url).finally(() => pendingPreviews.delete(url));
+  const request = loadLinkPreview(url)
+    .then((data) => {
+      if (data) settledPreviews.set(url, data);
+      return data;
+    })
+    .finally(() => pendingPreviews.delete(url));
   pendingPreviews.set(url, request);
   return request;
+}
+
+// Every answer a card has been given, whatever kind of link it was (a crawled
+// page, a rich provider card, a market, or the compact fallback for a site that
+// could not be read). A feed card is remounted each time it scrolls back into
+// the render window; reading this synchronously lets it draw at its final
+// height on its first frame instead of a short skeleton that grows a moment
+// later and shoves every post below it.
+const settledPreviews = new LruCache<string, LinkPreviewData>(512);
+
+/** The preview this link already resolved to, without waiting. */
+export function peekLinkPreview(url: string): LinkPreviewData | null {
+  return settledPreviews.get(url) ?? null;
+}
+
+// Feed pages are warmed as they arrive, a few at a time, so a card's preview
+// is usually known before the card is ever mounted.
+const PREFETCH_CONCURRENCY = 3;
+const prefetchQueue: string[] = [];
+const prefetchQueued = new Set<string>();
+let prefetchInFlight = 0;
+
+function pumpPrefetch() {
+  while (prefetchInFlight < PREFETCH_CONCURRENCY && prefetchQueue.length) {
+    const url = prefetchQueue.shift()!;
+    prefetchQueued.delete(url);
+    if (settledPreviews.get(url)) continue;
+    prefetchInFlight += 1;
+    fetchLinkPreview(url)
+      .catch(() => null)
+      .finally(() => {
+        prefetchInFlight -= 1;
+        pumpPrefetch();
+      });
+  }
+}
+
+/** Warm the preview for each of these links, in order, without blocking. */
+export function prefetchLinkPreviews(urls: Iterable<string>): void {
+  for (const url of urls) {
+    if (!url || prefetchQueued.has(url) || pendingPreviews.has(url) || settledPreviews.get(url)) continue;
+    prefetchQueued.add(url);
+    prefetchQueue.push(url);
+  }
+  pumpPrefetch();
 }
 
 async function loadLinkPreview(url: string): Promise<LinkPreviewData | null> {
@@ -119,6 +169,7 @@ export async function refreshLinkPreview(url: string): Promise<boolean> {
   if (prediction) forgetPredictionPreview(prediction.url);
   else if (rich) await forgetRichPreview(rich.url);
   else ok = (await crawlLinkPreview(url, true)) !== null;
+  settledPreviews.delete(url);
   refreshListeners.forEach((listener) => listener(url));
   return ok;
 }
