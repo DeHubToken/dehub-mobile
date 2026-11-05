@@ -40,7 +40,8 @@ const NAV_ITEMS: NavItem[] = [
   { icon: "House", postType: "all", get tooltip() { return _translateCopy("copy.3a78695388b3", { defaultValue: "Home" }); } },
   { icon: "Shorts", postType: "short", get tooltip() { return _translateCopy("copy.3c784a16cf27", { defaultValue: "Shorts" }); } },
   { icon: "Image", postType: "feed-images", get tooltip() { return _translateCopy("copy.be7e2f201293", { defaultValue: "Images" }); } },
-  { icon: "Video", postType: "video", get tooltip() { return _translateCopy("copy.c9a9639463c2", { defaultValue: "Videos" }); } },
+  // Text posts took the Videos slot: the Shorts tab now holds wide videos too.
+  { icon: "Quote", postType: "feed-simple", get tooltip() { return _translateCopy("copy.71988c4d8e08", { defaultValue: "Text" }); } },
   { icon: "Mic", postType: "feed-audio", get tooltip() { return _translateCopy("copy.6eb00b4b2614", { defaultValue: "Music" }); } },
   { icon: "Radio", postType: "live", get tooltip() { return _translateCopy("copy.b64ac05f17e6", { defaultValue: "Live" }); } },
 ];
