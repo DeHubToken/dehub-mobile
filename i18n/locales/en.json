@@ -2466,7 +2466,15 @@
       "you": "You",
       "pts": "{{n}} pts",
       "gap": "{{n}} pts to pass {{name}}",
-      "join": "Post a prompt that ships to join the board"
+      "join": "Post a prompt that ships to join the board",
+      "points": "Points",
+      "infoLabel": "How points work",
+      "infoShipped": "per shipped request",
+      "infoVote": "per upvote on your requests",
+      "infoComment": "per comment on someone else's request",
+      "infoCap": "Comments count up to {{n}} per period.",
+      "pt": "1 pt",
+      "infoTitle": "How points work"
     }
   },
   "auth": {

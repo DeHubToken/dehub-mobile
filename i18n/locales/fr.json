@@ -2495,7 +2495,15 @@
       "you": "Vous",
       "pts": "{{n}} pts",
       "gap": "{{n}} pts pour dépasser {{name}}",
-      "join": "Publiez une idée qui sera livrée pour entrer au classement"
+      "join": "Publiez une idée qui sera livrée pour entrer au classement",
+      "points": "Points",
+      "infoLabel": "Comment fonctionnent les points",
+      "infoShipped": "par demande livrée",
+      "infoVote": "par vote sur vos demandes",
+      "infoComment": "par commentaire sur la demande de quelqu'un d'autre",
+      "infoCap": "Les commentaires comptent jusqu'à {{n}} par période.",
+      "pt": "1 pt",
+      "infoTitle": "Comment fonctionnent les points"
     },
     "deviceInfoNote": "Les infos de l'appareil sont jointes pour nous aider à corriger les bugs.",
     "deviceInfo": "Infos de l'appareil",

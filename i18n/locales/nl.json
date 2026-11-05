@@ -2683,7 +2683,15 @@
       "you": "Jij",
       "pts": "{{n}} pt",
       "gap": "{{n}} pt om {{name}} in te halen",
-      "join": "Plaats een idee dat wordt uitgebracht om op het bord te komen"
+      "join": "Plaats een idee dat wordt uitgebracht om op het bord te komen",
+      "points": "Punten",
+      "infoLabel": "Zo werken punten",
+      "infoShipped": "per uitgebracht verzoek",
+      "infoVote": "per upvote op je verzoeken",
+      "infoComment": "per reactie op het verzoek van iemand anders",
+      "infoCap": "Reacties tellen tot {{n}} per periode.",
+      "pt": "1 pt",
+      "infoTitle": "Zo werken punten"
     },
     "deviceInfoNote": "Apparaatinfo wordt meegestuurd om ons te helpen bugs op te lossen.",
     "deviceInfo": "Apparaatinfo",
