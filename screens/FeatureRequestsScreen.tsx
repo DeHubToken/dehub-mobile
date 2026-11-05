@@ -53,7 +53,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
-import { TopBuildersCard, TopBuildersPin, TopBuildersProvider, usePinVisible } from "../components/FeatureRequests/TopBuilders";
+import { TopBuildersCard, TopBuildersProvider } from "../components/FeatureRequests/TopBuilders";
 import GlassModal from "../components/ui/GlassModal";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
@@ -819,8 +819,6 @@ function FeatureRequestsBoard() {
   } = useFeatureRequests(sort, listCategory, debouncedSearch);
 
   const shipped = useShippedFeatures();
-  const builderPinVisible = usePinVisible();
-  const showBuilderPin = builderPinVisible && tab === "shipped" && !debouncedSearch && category === "all";
   const inProgress = useInProgressFeatures();
   const notFeasible = useNotFeasibleFeatures();
   const { data: counts } = useFeatureCounts();
@@ -1185,12 +1183,11 @@ function FeatureRequestsBoard() {
           // Minimal: rows run edge to edge and butt up — the hairline is the gap.
           contentContainerStyle={{
             paddingHorizontal: isMinimal ? 0 : 8,
-            paddingBottom: insets.bottom + 24 + (showBuilderPin ? 76 : 0),
+            paddingBottom: insets.bottom + 24,
             paddingTop: isMinimal ? 0 : 8,
             gap: isMinimal ? 0 : 12,
           }}
           ListHeaderComponent={<>
-            {tab === "shipped" && !debouncedSearch && category === "all" && <TopBuildersCard />}
             <View style={tab !== "requests" || showNotFeasible ? { display: "none" } : undefined}>
               <PromptComposer focusRequest={composerFocus} submitting={submitMutation.isPending} onSubmit={async v => {
                 const result = await submitMutation.mutateAsync(v);
@@ -1240,7 +1237,6 @@ function FeatureRequestsBoard() {
             </ThemePanel>
           }
         />
-      {showBuilderPin && <TopBuildersPin bottom={insets.bottom + 12} />}
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
