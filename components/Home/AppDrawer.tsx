@@ -223,7 +223,10 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
     : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)");
   // Offline or a failed download would otherwise leave an empty tile.
   const [artFailed, setArtFailed] = useState(false);
-  useEffect(() => setArtFailed(false), [iconUrl]);
+  // The glyph stays until the artwork reports it is on screen: on some Android
+  // phones the download came back blank without an error, leaving empty tiles.
+  const [artShown, setArtShown] = useState(false);
+  useEffect(() => { setArtFailed(false); setArtShown(false); }, [iconUrl]);
   return (
     <TouchableOpacity
       accessibilityRole="button"
@@ -251,18 +254,20 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
       ) : null}
       {skin?.brackets ? <HudBrackets color={skin.brackets} length={8} width={1} /> : null}
       <View style={styles.tileIcon}>
+        {!(iconUrl && !artFailed && artShown) ? (
+          <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
+        ) : null}
         {iconUrl && !artFailed ? (
           <Image
             source={{ uri: iconUrl }}
-            style={styles.tileImage}
+            style={[styles.tileImage, !artShown && StyleSheet.absoluteFill]}
             contentFit="contain"
             cachePolicy="disk"
             transition={120}
+            onDisplay={() => setArtShown(true)}
             onError={() => setArtFailed(true)}
           />
-        ) : (
-          <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
-        )}
+        ) : null}
         {badgeCount > 0 && (
           <View className="dark-surface" style={{ position: "absolute", top: -3, right: -5, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, backgroundColor: "#ef4444", alignItems: "center", justifyContent: "center" }}>
             <Text style={{ color: "#ffffff", fontSize: 10, fontWeight: "700" }}>
