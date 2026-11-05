@@ -1,4 +1,5 @@
-import React, { createContext, memo, useContext, useEffect, useId, useMemo, useState, useSyncExternalStore } from "react";
+import React, { createContext, memo, useContext, useEffect, useId, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useAmbientMotion } from "../../hooks/useAmbientMotion";
 import { StyleSheet, View, type LayoutChangeEvent } from "react-native";
 import Animated, {
   Easing,
@@ -7,6 +8,7 @@ import Animated, {
   useReducedMotion,
   useSharedValue,
   withRepeat,
+  withSequence,
   withTiming,
 } from "react-native-reanimated";
 import Svg, {
@@ -71,15 +73,25 @@ const still = isLowEndDevice();
 function useLoop(duration: number, mode: "loop" | "alternate", active: boolean) {
   const reduce = useReducedMotion();
   const p = useSharedValue(0);
+  const started = useRef(false);
   const run = active && !reduce && !still;
   useEffect(() => {
-    if (!run) { cancelAnimation(p); p.value = 0.35; return; }
-    p.value = 0;
-    p.value = withRepeat(
-      withTiming(1, { duration, easing: mode === "loop" ? Easing.linear : Easing.inOut(Easing.sin) }),
-      -1,
-      mode === "alternate",
-    );
+    if (!run) {
+      cancelAnimation(p);
+      // Paused (scrolling, another screen): hold the frame it is on. Never
+      // moving at all (reduced motion, low-end phone): a resting frame.
+      if (!started.current) p.value = 0.35;
+      return;
+    }
+    const easing = mode === "loop" ? Easing.linear : Easing.inOut(Easing.sin);
+    // Pick up from the held frame instead of jumping back to the start.
+    const from = started.current ? Math.min(1, Math.max(0, p.value)) : 0;
+    started.current = true;
+    const rest = withTiming(1, { duration: Math.max(1, (1 - from) * duration), easing });
+    p.value = from;
+    p.value = mode === "loop"
+      ? withSequence(rest, withTiming(0, { duration: 0 }), withRepeat(withTiming(1, { duration, easing }), -1, false))
+      : withSequence(rest, withRepeat(withTiming(0, { duration, easing }), -1, true));
     return () => cancelAnimation(p);
   }, [run, duration, mode, p]);
   return p;
@@ -420,6 +432,10 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
  */
 export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg: PostBg | null; active?: boolean }) {
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+  // A moving backdrop is an endless loop per tile: it holds while the list
+  // scrolls, behind other screens and in the background (useAmbientMotion),
+  // so a profile full of them doesn't redraw the window on every fling frame.
+  const ambient = useAmbientMotion();
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
     if (!size || Math.abs(size.w - width) > 1 || Math.abs(size.h - height) > 1) setSize({ w: width, h: height });
@@ -427,7 +443,7 @@ export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg
   if (!bg) return null;
   return (
     <View pointerEvents="none" style={[fill, { overflow: "hidden" }]} onLayout={bg.kind === "moving" ? onLayout : undefined}>
-      {bg.kind === "still" ? <Still id={bg.id} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active} /> : null}
+      {bg.kind === "still" ? <Still id={bg.id} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active && ambient} /> : null}
     </View>
   );
 });
