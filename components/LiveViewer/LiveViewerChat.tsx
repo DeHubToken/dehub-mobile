@@ -59,7 +59,14 @@ export interface ChatActivity {
     message?: string;
   };
   optimistic?: boolean;
+  /** The line this one answers, quoted above it. */
+  replyTo?: { name: string; content: string };
+  /** emoji -> addresses that used it. */
+  reactions?: Record<string, string[]>;
 }
+
+/** Where the held line sits on screen, so the hold sheet can leave it bright. */
+export interface ChatHoldLayout { x: number; y: number; width: number; height: number }
 
 interface LiveViewerChatProps {
   /**
@@ -67,7 +74,7 @@ interface LiveViewerChatProps {
    * another language, plus the moderation actions for the stream's creator
    * and the moderators they appointed.
    */
-  onHold?: (activity: ChatActivity, translate?: TranslateToggle) => void;
+  onHold?: (activity: ChatActivity, translate?: TranslateToggle, layout?: ChatHoldLayout) => void;
   activities: ChatActivity[];
 }
 
@@ -126,7 +133,7 @@ const resolveProfileId = (a: ChatActivity): string | undefined =>
 interface ChatBubbleProps {
   a: ChatActivity;
   onUserPress: (identifier: string) => void;
-  onHold?: (activity: ChatActivity, translate?: TranslateToggle) => void;
+  onHold?: (activity: ChatActivity, translate?: TranslateToggle, layout?: ChatHoldLayout) => void;
 }
 
 const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) => {
@@ -147,29 +154,58 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) 
     if (profileId) onUserPress(profileId);
   }, [profileId, onUserPress]);
 
+  // Hold a line for reactions, Reply, Copy, Translate and (for the creator)
+  // moderation. 300ms, and measured so the sheet keeps the line lit.
+  const rowRef = useRef<View>(null);
+  const handleHold = useCallback(() => {
+    if (!onHold) return;
+    const translate = translation.shouldShow
+      ? { isTranslated: translation.isTranslated, toggle: translation.isTranslated ? translation.handleShowOriginal : translation.handleTranslate }
+      : undefined;
+    const row = rowRef.current;
+    if (!row) { onHold(a, translate); return; }
+    let done = false;
+    const fallback = setTimeout(() => { if (!done) { done = true; onHold(a, translate); } }, 120);
+    row.measureInWindow((x, y, width, height) => {
+      if (done) return;
+      done = true;
+      clearTimeout(fallback);
+      onHold(a, translate, width ? { x, y, width, height } : undefined);
+    });
+  }, [onHold, a, translation.shouldShow, translation.isTranslated, translation.handleShowOriginal, translation.handleTranslate]);
+  const reactionEntries = useMemo(
+    () => Object.entries(a.reactions ?? {}).filter(([, who]) => who?.length > 0),
+    [a.reactions],
+  );
+
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
         <Pressable
-          onLongPress={onHold ? () => onHold(
-            a,
-            translation.shouldShow
-              ? { isTranslated: translation.isTranslated, toggle: translation.isTranslated ? translation.handleShowOriginal : translation.handleTranslate }
-              : undefined,
-          ) : undefined}
-          delayLongPress={350}
+          ref={rowRef}
+          collapsable={false}
+          onLongPress={onHold ? handleHold : undefined}
+          delayLongPress={300}
           disabled={!onHold}
           className="mb-2 self-start max-w-[92%] flex-row items-start"
         >
-          <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
+          <TouchableOpacity onPress={handlePress} onLongPress={onHold ? handleHold : undefined} delayLongPress={300} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
           <View className="flex-1 flex-shrink">
+          {a.replyTo ? (
+            <Text numberOfLines={1} style={{ ...TEXT_SHADOW, color: "rgba(255,255,255,0.6)" }} className="text-[11px] mb-0.5">
+              {"\u21B3 "}<Text className="font-semibold">{a.replyTo.name}</Text>{a.replyTo.content ? ` ${a.replyTo.content}` : ""}
+            </Text>
+          ) : null}
           <Text style={MESSAGE_TEXT} className="text-[13px] leading-[18px]">
             <Text
               className="font-bold"
               style={{ color: colorForUser(displayName) }}
               onPress={handlePress}
+              // The name is its own press target, so it has to take the hold
+              // too; holding a name used to do nothing at all.
+              onLongPress={onHold ? handleHold : undefined}
             >
               {displayName}
               {badgeImg ? (
@@ -189,6 +225,16 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) 
               statusOnly
             />
           )}
+          {reactionEntries.length > 0 ? (
+            <View className="mt-1 flex-row flex-wrap gap-1">
+              {reactionEntries.map(([emoji, who]) => (
+                <View key={emoji} className="flex-row items-center rounded-full px-1.5 py-0.5" style={{ backgroundColor: "rgba(0,0,0,0.35)" }}>
+                  <Text style={{ fontSize: 12 }}>{emoji}</Text>
+                  {who.length > 1 ? <Text style={{ ...TEXT_SHADOW, color: "#fff", fontSize: 11, marginLeft: 3 }}>{who.length}</Text> : null}
+                </View>
+              ))}
+            </View>
+          ) : null}
           </View>
         </Pressable>
       );
