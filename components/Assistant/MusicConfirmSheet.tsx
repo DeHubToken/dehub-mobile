@@ -44,6 +44,7 @@ import { createLogger } from '../../libs/logger';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
+import { ownKeyHeaders } from "../../services/ai.service";
 
 const log = createLogger('MusicConfirmSheet');
 
@@ -164,6 +165,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
     setIsGeneratingLyrics(true);
     try {
       const { data, error } = await supabase.functions.invoke('generate-lyrics', {
+        headers: await ownKeyHeaders(),
         body: { title, style, voiceGender, existingLyrics: lyrics, userPrompt },
       });
       if (error) throw error;

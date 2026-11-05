@@ -35,6 +35,15 @@ export async function dehubAuthHeaders(
   return headers;
 }
 
+/**
+ * Who is asking, for the free text tools. When the creator saved their own AI
+ * key in Settings the server runs the job on it; signed out sends nothing.
+ */
+export async function ownKeyHeaders(): Promise<Record<string, string>> {
+  const token = await getAuthToken();
+  return token ? { 'x-dehub-token': token } : {};
+}
+
 export interface AIChatMessage {
   /**
    * Stable id for turns that get patched in place later — a video render or an
@@ -173,7 +182,8 @@ export type EnhanceMode = 'spellcheck' | 'grammar' | 'style';
 /**
  * Enhance post copy through the same `enhance-text` edge function dehubweb's
  * post composer uses, so both apps produce identical results for a given
- * mode/style. The function is public (IP rate-limited), so no auth header.
+ * mode/style. The function is public (IP rate-limited); the token only lets it
+ * run on the creator's own AI key when they saved one.
  */
 export async function enhanceText(
   text: string,
@@ -182,7 +192,7 @@ export async function enhanceText(
 ): Promise<string> {
   const res = await fetch(`${EDGE_BASE}/enhance-text`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...(await ownKeyHeaders()) },
     body: JSON.stringify({ text: text.trim(), mode, style }),
   });
 
@@ -1025,7 +1035,7 @@ export async function suggestReplies(
   thread: SmartReplyTurn[],
   peerName?: string,
 ): Promise<SmartReplyResponse> {
-  return edgeFetch<SmartReplyResponse>('suggest-replies', { thread, peerName });
+  return edgeFetch<SmartReplyResponse>('suggest-replies', { thread, peerName }, await ownKeyHeaders());
 }
 
 /* ── Request classification ──────────────────────────────────────────────── */
