@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import {
   View,
   FlatList,
-  StyleSheet,
   Text,
   Pressable,
   NativeSyntheticEvent,
@@ -18,7 +17,6 @@ import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/n
 import ShortsGridCard, { useShortsCardSize, GRID_GAP, shortsPosterUri } from "./ShortsGridCard";
 import { brickShape, packBricks, type BrickRow } from "../../libs/shorts-bricks";
 import { storedVideoAspect } from "../../libs/video-aspect";
-import { storage } from "../../libs/storage";
 import ShortsGridSkeleton from "./ShortsGridSkeleton";
 import Icon from "../ui/Icon";
 import { getShortsFeed } from "../../services/feed.unified.service";
@@ -88,15 +86,12 @@ const GridCell = memo(function GridCell({ store, item, index, onPress, onUnavail
   return <ShortsGridCard item={item} index={index} isVisible={playing} onPress={onPress} onUnavailable={onUnavailable} frame={frame} />;
 });
 
-type ShapeFilter = "all" | "tall" | "wide";
-const SHAPE_KEY = "shorts.shapeFilter";
-const SHAPES: readonly ShapeFilter[] = ["all", "tall", "wide"];
 const itemKey = (item: UnifiedFeedItem) => String(item.tokenId ?? item.id);
 const shapeOf = (item: UnifiedFeedItem) => brickShape(item.postType === "feed-images" ? undefined : storedVideoAspect(item.videoInfo));
 
 /** The item a row offers for autoplay: its short, or its full-width video. */
 function rowLead(row: BrickRow<UnifiedFeedItem>): UnifiedFeedItem {
-  if (row.kind === "pair") return row.items[0];
+  if (row.kind === "pair" || row.kind === "trio") return row.items[0];
   if (row.kind === "stack") return row.tall;
   return row.item;
 }
@@ -228,18 +223,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     [items, unavailableKeys],
   );
 
-  // All / Shorts / Wide, kept per device like web's chips.
-  const [shape, setShapeState] = useState<ShapeFilter>(() => {
-    try { const v = storage.getString(SHAPE_KEY); return (SHAPES as readonly string[]).includes(v ?? "") ? (v as ShapeFilter) : "all"; } catch { return "all"; }
-  });
-  const setShape = useCallback((next: ShapeFilter) => {
-    setShapeState(next);
-    try { storage.set(SHAPE_KEY, next); } catch {}
-  }, []);
-  const shapeItems = useMemo(
-    () => (shape === "all" ? displayItems : displayItems.filter((it) => shapeOf(it) === shape)),
-    [displayItems, shape],
-  );
+  const shapeItems = displayItems;
   const indexById = useMemo(() => {
     const map = new Map<string, number>();
     shapeItems.forEach((it, i) => map.set(itemKey(it), i));
@@ -351,34 +335,6 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     if (urls.length) Image.prefetch(urls, "disk").catch(() => {});
   }, [shapeItems, cardWidth]);
 
-  const shapeLabels: Record<ShapeFilter, string> = {
-    all: t("copy.a52ace420f21", { defaultValue: "All" }),
-    tall: t("copy.3c784a16cf27", { defaultValue: "Shorts" }),
-    wide: t("copy.147170e793c6", { defaultValue: "Wide" }),
-  };
-  const listHeaderWithChips = (
-    <View>
-      {listHeader}
-      <View style={styles.chips}>
-        {SHAPES.map((value) => {
-          const on = shape === value;
-          return (
-            <Pressable
-              key={value}
-              accessibilityRole="tab"
-              accessibilityState={{ selected: on }}
-              onPress={() => setShape(value)}
-              style={[styles.chip, on ? styles.chipOn : styles.chipOff]}
-            >
-              {value !== "all" && <View style={[value === "tall" ? styles.glyphTall : styles.glyphWide, { borderColor: on ? "#000" : "#E4E4E7" }]} />}
-              <Text style={[styles.chipText, { color: on ? "#000" : "#E4E4E7" }]}>{shapeLabels[value]}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
-    </View>
-  );
-
   const tallHeight = cardWidth * (16 / 9);
   const fullWidth = cardWidth * 2 + GRID_GAP;
   const heroHeight = fullWidth * (9 / 16);
@@ -406,8 +362,17 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           </View>
         );
       }
+      if (row.kind === "trio") {
+        const third = (fullWidth - GRID_GAP * 2) / 3;
+        return (
+          <View style={{ flexDirection: "row", gap: GRID_GAP }}>
+            {row.items.map((it) => cell(it, { width: third, height: third * (16 / 9) }))}
+          </View>
+        );
+      }
       if (row.kind === "single") {
-        return <View style={{ flexDirection: "row" }}>{cell(row.item, { width: cardWidth, height: tallHeight })}</View>;
+        // Only ever the one short in the list: full width, never half a row.
+        return cell(row.item, { width: fullWidth, height: heroHeight, wide: true, hero: true });
       }
       // Stacked wide clips share the short's height; posters only, so a row
       // never runs more than the one preview the grid allows.
@@ -463,7 +428,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         data={rows}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        ListHeaderComponent={listHeaderWithChips}
+        ListHeaderComponent={listHeader}
         // paddingBottom was missing entirely, so the last row of shorts sat
         // permanently under the floating nav pill — unreadable and untappable,
         // and it left bright video hard against the pill's edge, which is what
@@ -521,16 +486,6 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  chips: { flexDirection: "row", gap: 6, paddingTop: 2, paddingBottom: 8 },
-  chip: { flexDirection: "row", alignItems: "center", gap: 4, borderRadius: 999, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 5 },
-  chipOn: { backgroundColor: "#FFFFFF", borderColor: "transparent" },
-  chipOff: { backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.14)" },
-  chipText: { fontSize: 12, fontWeight: "600", includeFontPadding: false },
-  glyphTall: { width: 7, height: 11, borderRadius: 1.5, borderWidth: 1.6 },
-  glyphWide: { width: 11, height: 7, borderRadius: 1.5, borderWidth: 1.6 },
-});
 
 // Kept mounted as one of Home's six pager pages — see InfiniteVideoFeed's note.
 export default memo(ShortsGrid);
