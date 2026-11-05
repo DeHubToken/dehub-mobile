@@ -5,7 +5,7 @@
  */
 import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, StyleSheet, AccessibilityInfo } from "react-native";
-import { Image } from "expo-image";
+import BlurSafeImage from "../common/BlurSafeImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import { NftArt, formatPrice } from "./NftTile";
@@ -44,7 +44,7 @@ const NftSpotlight: React.FC<{ items: SpotlightItem[] }> = ({ items }) => {
 
   return (
     <View style={styles.wrap}>
-      {item.image ? <Image source={{ uri: item.image }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={40} cachePolicy="disk" transition={400} /> : null}
+      {item.image ? <BlurSafeImage source={{ uri: item.image }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={40} cachePolicy="disk" transition={400} /> : null}
       <Pressable onPress={item.onOpen} accessibilityRole="button" accessibilityLabel={item.name}>
         <NftArt uri={item.image} style={styles.art} />
         <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.88)"]} style={styles.shade} pointerEvents="none" />

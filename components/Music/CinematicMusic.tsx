@@ -29,6 +29,7 @@ import { shareWithRef } from "../../libs/shareRef";
 import Animated from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
+import BlurSafeImage from "../common/BlurSafeImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -175,7 +176,7 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
   return (
     <View style={[styles.hero, { height }]}>
       {logo ? (
-        <Image
+        <BlurSafeImage
           source={{ uri: logo }}
           style={[StyleSheet.absoluteFill, styles.heroBackdrop]}
           contentFit="cover"

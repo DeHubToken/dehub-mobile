@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
+import BlurSafeImage from "../common/BlurSafeImage";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -159,7 +160,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   } else if (kind === "audio") {
     body = (
       <View className="dark-surface" style={[styles.fill, styles.audioBg]}>
-        {!!cover && <Image source={{ uri: cover }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={18} recyclingKey={`${id}-blur`} transition={0} />}
+        {!!cover && <BlurSafeImage source={{ uri: cover }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={18} recyclingKey={`${id}-blur`} transition={0} />}
         <View style={[StyleSheet.absoluteFill, styles.audioDim]} />
         <View style={styles.audioCoverWrap}>
           {cover ? (

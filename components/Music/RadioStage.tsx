@@ -15,6 +15,7 @@
 import React, { useCallback, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
+import BlurSafeImage from "../common/BlurSafeImage";
 import { useTranslation } from "react-i18next";
 
 import Icon from "../ui/Icon";
@@ -63,7 +64,7 @@ const RadioStage: React.FC<{ station: RadioStation; next?: RadioStation; onNext?
   return (
     <KeepDarkScope>
       <View style={styles.stage}>
-        {logo && <Image source={{ uri: logo }} style={styles.backdrop} contentFit="cover" blurRadius={40} />}
+        {logo && <BlurSafeImage source={{ uri: logo }} style={styles.backdrop} contentFit="cover" blurRadius={40} />}
         <LinearGradient colors={["rgba(0,0,0,.25)", "rgba(0,0,0,.8)"]} style={styles.scrim} pointerEvents="none" />
         <View style={styles.head}>
           <View style={styles.logo}>

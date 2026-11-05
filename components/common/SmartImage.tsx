@@ -3,6 +3,7 @@ import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
 import { cdnImage, cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
 import { isLowEndDevice } from "../../libs/deviceTier";
+import { AndroidBlurredImage, needsSafeBlur } from "./BlurSafeImage";
 
 const TRANSFORM_PREFIX = "https://dehub.io/cdn-cgi/image/";
 /** A resized copy still loading after this long is dropped for the original. */
@@ -154,6 +155,23 @@ export const SmartImage: React.FC<SmartImageProps> = ({
     syncAnimation();
     onLoad?.(event);
   }, [onLoad, syncAnimation]);
+  if (needsSafeBlur(blurRadius)) {
+    // expo-image blurs with RenderScript on Android, which crashes natively on
+    // new Android builds; see BlurSafeImage.
+    return (
+      <AndroidBlurredImage
+        source={resolvedSource}
+        contentFit={contentFit}
+        blurRadius={blurRadius}
+        accessible={accessible}
+        accessibilityLabel={accessibilityLabel}
+        testID={testID}
+        style={style}
+        onError={handleError}
+        onLoadEnd={onLoadEnd}
+      />
+    );
+  }
   return (
     <Image
       ref={imageRef}
