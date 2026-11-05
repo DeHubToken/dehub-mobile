@@ -61,7 +61,8 @@ const CHAT: DeferredEntry = ['../screens/ChatScreen#default', () => require("../
 const COMMUNITY_DETAIL: DeferredEntry = ['../screens/CommunityDetailScreen#default', () => require("../screens/CommunityDetailScreen").default];
 const FOLLOW_LIST: DeferredEntry = ['../screens/FollowListScreen#default', () => require("../screens/FollowListScreen").default];
 const UPLOAD: DeferredEntry = ['../screens/UploadScreen#default', () => require("../screens/UploadScreen").default];
-const WARM_SCREENS = [UPLOAD, FEED_DETAIL, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
+const IMAGE_VIEWER: DeferredEntry = ['../screens/ImageViewerScreen#default', () => require("../screens/ImageViewerScreen").default];
+const WARM_SCREENS = [UPLOAD, FEED_DETAIL, IMAGE_VIEWER, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
 
 /**
  * The composer. On Android it is a sheet over the page it opened from, like
@@ -517,7 +518,11 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.ImageViewer}
-          getComponent={() => deferredScreen('../screens/ImageViewerScreen#default', () => require("../screens/ImageViewerScreen").default)}
+          getComponent={() => deferredScreen(...IMAGE_VIEWER)}
+          // A photo the reader tapped is already decoded in the feed: open on
+          // it at once with a short fade, not the page slide-up that held a
+          // grey page sketch for the whole entrance.
+          options={{ animation: 'fade', animationDuration: 150 }}
         />
         <Stack.Screen
           name={ScreenNames.FullscreenVideo}

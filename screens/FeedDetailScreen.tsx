@@ -1082,6 +1082,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     setExpandedThreads((prev) => (prev.has(focusRoot) ? prev : new Set(prev).add(focusRoot)));
   }, [focusRoot]);
 
+  // Comment rows wait for the open slide to finish: building a page of them
+  // (avatars, badges, reactions) in the same frames as the slide made opening
+  // a post stutter (29% janky frames on a Galaxy S24+). The skeleton holds
+  // their place for those ~300ms.
+  const listComments = transitionSettled || embedded ? visibleComments : EMPTY_COMMENTS;
   /**
    * Bring the linked comment into view once the list holds it.
    *
@@ -1095,7 +1100,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   const scrolledToFocusRef = useRef<string | null>(null);
   useEffect(() => {
     if (!focusCommentId || scrolledToFocusRef.current === focusCommentId) return;
-    const index = visibleComments.findIndex((c) => String(c.id) === focusCommentId);
+    const index = listComments.findIndex((c) => String(c.id) === focusCommentId);
     if (index < 0) return;
     scrolledToFocusRef.current = focusCommentId;
     focusDraggedRef.current = false;
@@ -1117,9 +1122,9 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     // started scrolling themselves.
     focusTimersRef.current.forEach(clearTimeout);
     focusTimersRef.current = [700, 1600, 2800].map((ms) => setTimeout(jump, ms));
-  }, [focusCommentId, visibleComments]);
-  const visibleCommentsRef = useRef(visibleComments);
-  visibleCommentsRef.current = visibleComments;
+  }, [focusCommentId, listComments]);
+  const visibleCommentsRef = useRef(listComments);
+  visibleCommentsRef.current = listComments;
   const focusDraggedRef = useRef(false);
   const focusTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => focusTimersRef.current.forEach(clearTimeout), []);
@@ -1680,7 +1685,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       <FlatList
         ref={listRef}
         showsVerticalScrollIndicator={false}
-        data={leanPost ? EMPTY_COMMENTS : visibleComments}
+        data={leanPost ? EMPTY_COMMENTS : listComments}
         keyExtractor={(c) => String(c.id)}
         // An element, not the function: FlatList treats a function as a
         // component type, so every new renderHeader identity (loading flips,
@@ -1703,7 +1708,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         onScrollToIndexFailed={handleScrollToIndexFailed}
         onEndReached={handleEndReached}
         onEndReachedThreshold={1.5}
-        ListEmptyComponent={leanPost ? null : loading ? (
+        ListEmptyComponent={leanPost ? null : loading || (!transitionSettled && !embedded && !noComments && !loadError) ? (
           <View className="px-4 py-3">
             <CommentsSkeleton />
           </View>

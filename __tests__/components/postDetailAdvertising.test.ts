@@ -18,7 +18,7 @@ describe("post detail advertising continuation", () => {
 
   it("puts the ad straight under phone text and image posts and keeps loading posts", () => {
     expect(detail).toContain('const leanPost = !!item && stage && !videoPost && !focusCommentId && resolveContentType(item) === "image";');
-    expect(detail).toContain("data={leanPost ? EMPTY_COMMENTS : visibleComments}");
+    expect(detail).toContain("data={leanPost ? EMPTY_COMMENTS : listComments}");
     expect(detail).toContain("onEndReached={handleEndReached}");
     expect(continuation).toContain("{hasNextPage && !autoLoad && (");
   });
