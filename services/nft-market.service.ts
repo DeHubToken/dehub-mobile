@@ -335,6 +335,42 @@ export async function fillOrder(s: Signer, order: MarketOrder, tokenId?: string)
   return hash;
 }
 
+/**
+ * Buy several listings in one transaction (the cart). All on one chain, in
+ * one currency; a listing that sold meanwhile is skipped and refunded.
+ */
+export async function fillListings(s: Signer, orders: MarketOrder[]): Promise<string> {
+  if (!orders.length) throw new Error("Nothing to buy");
+  if (orders.length === 1) return fillOrder(s, orders[0]);
+  const chainId = orders[0].chainId;
+  if (orders.some((o) => o.kind !== "listing" || o.chainId !== chainId || o.currency !== orders[0].currency)) {
+    throw new Error("Pick listings on one chain, in one currency");
+  }
+  assertChain(s, chainId);
+  const spends = orders.map((o) => fillerTokenSpend(o.components, "listing")).filter((x): x is { token: string; amount: bigint } => !!x);
+  const spendTotal = spends.reduce((sum, x) => sum + x.amount, 0n);
+  if (spends.length && spendTotal > 0n) await ensureTokenAllowance(s, spends[0].token, spendTotal);
+  const seaport = await buildContract(s.provider, SEAPORT_ABI, SEAPORT_ADDRESS, true);
+  if (!seaport) throw new Error("Wallet not ready");
+  const value = orders.reduce((sum, o) => sum + nativeValue(o.components), 0n);
+  const hash = await sent(
+    await writeContractAA(
+      seaport,
+      "fulfillAvailableOrders",
+      [
+        orders.map((o) => ({ parameters: toOrderParameters(o.components), signature: o.signature })),
+        orders.flatMap((o, i) => o.components.offer.map((_, j) => [{ orderIndex: i, itemIndex: j }])),
+        orders.flatMap((o, i) => o.components.consideration.map((_, j) => [{ orderIndex: i, itemIndex: j }])),
+        ethers.constants.HashZero,
+        orders.length,
+      ],
+      { value: value > 0n ? value.toString() : undefined, context: "nft-buy" },
+    ),
+  );
+  await Promise.all(orders.map((o) => nftMarket.sync(o.orderHash, hash || undefined).catch(() => undefined)));
+  return hash;
+}
+
 /** Cancel on-chain so a copy of the signed order can never be filled later. */
 export async function cancelOrder(s: Signer, order: MarketOrder): Promise<string> {
   assertChain(s, order.chainId);

@@ -142,8 +142,11 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
-  // iOS keeps it: the screen is view only there (US gets a link to dehub.io).
-  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.NftMarket },
+  // The NFT market is the Fractions screen's NFTs tab. Android reaches it
+  // from the Fractions row (this one only shows for a menu search like
+  // "nft"); iOS hides Fractions, so this row is its way in (view only there,
+  // US gets a link to the website).
+  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.Fractions, params: { tab: "nfts" }, searchOnly: DIGITAL_PURCHASES_ENABLED },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   // Web sidebar: AI Agents sits just above Advertising.

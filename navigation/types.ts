@@ -273,9 +273,9 @@ export type AppStackParamList = {
   [ScreenNames.Usernames]: { handle?: string; tab?: "browse" | "mine" | "sell" | "offers" } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/accounts?handle=x`). */
   [ScreenNames.Accounts]: { handle?: string } | undefined;
-  [ScreenNames.Fractions]: undefined;
+  [ScreenNames.Fractions]: { tab?: "browse" | "nfts" | "portfolio" | "activity"; view?: string; chain?: string; contract?: string; token?: string } | undefined;
   /** `chain`/`contract`/`token` open one NFT (dehub.io/nfts?chain=&contract=&token=). */
-  [ScreenNames.NftMarket]: { chain?: string; contract?: string; token?: string } | undefined;
+  [ScreenNames.NftMarket]: { chain?: string; contract?: string; token?: string; tab?: string } | undefined;
   [ScreenNames.Packs]: undefined;
   /** `slug` is the pack's share slug (`dehub.io/packs/<slug>`). */
   [ScreenNames.Pack]: { slug: string };

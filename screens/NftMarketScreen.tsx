@@ -7,6 +7,10 @@
  *
  * Android trades in the app. iOS is view only (App Store 3.1.1); in the US
  * storefront the sheet links out to dehub.io, which Apple allows there.
+ *
+ * Lives as the NFTs tab of the Fractions screen (`NftMarketView embedded`).
+ * The NftMarket route stays registered so old links and notifications keep
+ * working; it hands straight over to Fractions with the same params.
  */
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, useWindowDimensions } from "react-native";
@@ -20,7 +24,9 @@ import ScreenHeader from "../components/ScreenHeader";
 import { PageEmpty, PageTabs } from "../components/page/PageKit";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl } from "../components/Feed/DeHubRefreshControl";
-import NftTile from "../components/NftMarket/NftTile";
+import NftTile, { NftArt, formatPrice } from "../components/NftMarket/NftTile";
+import { useQueryClient } from "@tanstack/react-query";
+import { toastError, toastInfo, toastSuccess } from "../libs/toast";
 import CollectionsRow from "../components/NftMarket/CollectionsRow";
 import NftSpotlight, { type SpotlightItem } from "../components/NftMarket/NftSpotlight";
 import NftSheet, { priceNow } from "../components/NftMarket/NftSheet";
@@ -30,9 +36,21 @@ import { shareWithRef } from "../libs/shareRef";
 import { theme } from "../theme";
 import { useWeb3Provider } from "../hooks/use-web3";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import { CHAIN_LABEL, MARKET_CHAINS, nftMarket, type MarketCollection, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
+import { CHAIN_LABEL, MARKET_CHAINS, WrongChainError, fillListings, nftMarket, type MarketCollection, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
 
-type Tab = "browse" | "mine" | "sales";
+type Tab = "browse" | "mine" | "activity";
+type ActivityKind = "all" | "sale" | "listing" | "offer";
+
+/** How long ago, short: 5m, 3h, 2d. */
+function ago(iso: string | null | undefined): string {
+  if (!iso) return "";
+  const s = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
+  if (s < 60) return "now";
+  if (s < 3600) return `${Math.floor(s / 60)}m`;
+  if (s < 86400) return `${Math.floor(s / 3600)}h`;
+  if (s < 86400 * 30) return `${Math.floor(s / 86400)}d`;
+  return new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
 type ChainFilter = "all" | (typeof MARKET_CHAINS)[number];
 
 /** The one card that stands for Riftn Posts on every chain. */
@@ -43,7 +61,7 @@ const compactNumber = (n: number) => n.toLocaleString(undefined, { notation: "co
 const TABS: { key: Tab; icon: string; labelKey: string; fallback: string }[] = [
   { key: "browse", icon: "search", labelKey: "nftMarket.tabBrowse", fallback: "Browse" },
   { key: "mine", icon: "nfts", labelKey: "nftMarket.tabMine", fallback: "Yours" },
-  { key: "sales", icon: "stats", labelKey: "nftMarket.tabSales", fallback: "Sales" },
+  { key: "activity", icon: "stats", labelKey: "nftMarket.tabActivity", fallback: "Activity" },
 ];
 
 /** iOS outside the US gets no link out at all. */
@@ -71,6 +89,23 @@ const fromOrder = (o: MarketOrder): NftTarget => ({
 });
 
 export default function NftMarketScreen() {
+  const navigation = useNavigation<any>();
+  const route = useRoute<any>();
+  useEffect(() => {
+    const p = route.params ?? {};
+    const { tab: oldTab, ...rest } = p;
+    navigation.replace(ScreenNames.Fractions, {
+      ...rest,
+      tab: "nfts",
+      ...(oldTab && oldTab !== "browse" ? { view: oldTab } : null),
+    });
+    // Once, on arrival.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return <View style={styles.root} />;
+}
+
+export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -83,7 +118,11 @@ export default function NftMarketScreen() {
   const canTrade = DIGITAL_PURCHASES_ENABLED;
   const linkOut = Platform.OS === "ios" && inUnitedStates();
 
-  const [tab, setTab] = useState<Tab>("browse");
+  const [tab, setTab] = useState<Tab>(() => {
+    const v = route.params?.view;
+    if (v === "sales" || v === "activity") return "activity";
+    return v === "mine" ? v : "browse";
+  });
   const [chain, setChain] = useState<ChainFilter>("all");
   const [sort, setSort] = useState<"newest" | "price_asc">("newest");
   // Collections first: pick one from the trending row to see only its NFTs.
@@ -218,11 +257,72 @@ export default function NftMarketScreen() {
   useEffect(() => {
     if (coll && chain !== "all" && coll.chainId !== chain) setColl(null);
   }, [chain, coll]);
-  const sales = useQuery({
-    queryKey: ["nft-market", "orders", "sales", chain],
-    queryFn: () => nftMarket.orders({ status: "filled", chainId: chain === "all" ? undefined : chain, sort: "newest", limit: 60 }),
-    enabled: tab === "sales",
+  // Activity: sales, new listings and offers on one tape, newest first.
+  const [activityKind, setActivityKind] = useState<ActivityKind>("all");
+  const activity = useQuery({
+    queryKey: ["nft-market", "activity", chain],
+    queryFn: async () => {
+      const chainId = chain === "all" ? undefined : chain;
+      const [sold, listed, offered] = await Promise.all([
+        nftMarket.orders({ status: "filled", chainId, limit: 40 }),
+        nftMarket.orders({ kind: "listing", chainId, limit: 40 }),
+        nftMarket.orders({ kind: "offer", chainId, limit: 40 }).catch(() => ({ items: [] as MarketOrder[], hasMore: false })),
+      ]);
+      const rows = [
+        ...sold.items.map((o) => ({ type: "sale" as const, at: o.filledAt ?? o.createdAt, o })),
+        ...listed.items.map((o) => ({ type: "listing" as const, at: o.createdAt, o })),
+        ...offered.items.map((o) => ({ type: "offer" as const, at: o.createdAt, o })),
+      ];
+      return rows.sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime());
+    },
+    enabled: tab === "activity",
+    staleTime: 30_000,
   });
+  const activityRows = useMemo(
+    () => (activity.data ?? []).filter((r) => activityKind === "all" || r.type === activityKind),
+    [activity.data, activityKind],
+  );
+
+  // Cart: pick several listings, buy them in one transaction (one chain, one coin).
+  const queryClient = useQueryClient();
+  const [cartMode, setCartMode] = useState(false);
+  const [cart, setCart] = useState<MarketOrder[]>([]);
+  const [buying, setBuying] = useState(false);
+  const me = signer?.account ?? "";
+  const cartFits = (o: MarketOrder) =>
+    o.maker.toLowerCase() !== me && (!cart.length || (o.chainId === cart[0].chainId && o.currency === cart[0].currency));
+  const toggleCart = (o: MarketOrder) => {
+    if (cart.some((c) => c.orderHash === o.orderHash)) {
+      setCart((list) => list.filter((c) => c.orderHash !== o.orderHash));
+      return;
+    }
+    if (o.maker.toLowerCase() === me) return toastInfo(t("nftMarket.cartOwn", { defaultValue: "That one is yours" }));
+    if (!cartFits(o)) return toastInfo(t("nftMarket.cartOneCoin", { defaultValue: "One chain and one coin per cart. Clear it to switch." }));
+    if (cart.length >= 20) return toastInfo(t("nftMarket.cartFull", { defaultValue: "Up to 20 at a time" }));
+    setCart((list) => [...list, o]);
+  };
+  const cartTotal = cart.reduce((sum, o) => sum + BigInt(priceNow(o)), 0n);
+  const exitCart = () => {
+    setCartMode(false);
+    setCart([]);
+  };
+  const buyCart = async () => {
+    if (!signer) return signIn();
+    setBuying(true);
+    try {
+      await fillListings(signer, cart);
+      toastSuccess(t("nftMarket.cartBought", { n: cart.length, defaultValue: "Bought {{n}}. They are in your wallet now." }));
+      exitCart();
+      void queryClient.invalidateQueries({ queryKey: ["nft-market"] });
+    } catch (e) {
+      const msg = e instanceof WrongChainError
+        ? t("nftMarket.wrongChain", { chain: e.message, defaultValue: "Switch your wallet to {{chain}} to trade this" })
+        : (e as Error)?.message || t("nftMarket.failed", { defaultValue: "That didn't go through. Try again." });
+      toastError(/user rejected|denied|cancel/i.test(msg) ? t("nftMarket.cancelled", { defaultValue: "Cancelled" }) : msg);
+    } finally {
+      setBuying(false);
+    }
+  };
   const wallet = useQuery({
     queryKey: ["nft-market", "wallet", signer?.account, walletChain],
     queryFn: () => nftMarket.wallet(signer!.account, walletChain),
@@ -307,7 +407,24 @@ export default function NftMarketScreen() {
           <Chip label={t("nftMarket.showAll", { defaultValue: "Show all" })} active={false} onPress={() => setColl(null)} />
         </View>
       ) : null}
-      {gridListings.length && !coll ? <Text style={styles.sectionTitle}>{t("nftMarket.forSale", { defaultValue: "For sale" })}</Text> : null}
+      {gridListings.length ? (
+        <View style={styles.sectionRow}>
+          <Text style={styles.sectionTitle}>
+            {cartMode
+              ? t("nftMarket.cartPick", { defaultValue: "Tap to add to cart" })
+              : coll
+                ? t("nftMarket.forSaleHere", { defaultValue: "For sale here" })
+                : t("nftMarket.forSale", { defaultValue: "For sale" })}
+          </Text>
+          {canTrade && (gridListings.length > 1 || cartMode) ? (
+            <Chip
+              label={cartMode ? t("nftMarket.cancel", { defaultValue: "Cancel" }) : t("nftMarket.buySeveral", { defaultValue: "Buy several" })}
+              active={cartMode}
+              onPress={() => (cartMode ? exitCart() : setCartMode(true))}
+            />
+          ) : null}
+        </View>
+      ) : null}
     </View>
   );
 
@@ -376,7 +493,9 @@ export default function NftMarketScreen() {
                   ? t("nftMarket.dropBadge", { defaultValue: "Price drop" })
                   : item.isDehub ? "Riftn" : null
             }
-            onPress={() => setOpen(fromOrder(item))}
+            selected={cartMode && !sold ? cart.some((c) => c.orderHash === item.orderHash) : undefined}
+            dimmed={cartMode && !sold && !cart.some((c) => c.orderHash === item.orderHash) && !cartFits(item)}
+            onPress={() => (cartMode && !sold ? toggleCart(item) : setOpen(fromOrder(item)))}
           />
         ) : (
           <View style={styles.spacer} />
@@ -388,6 +507,63 @@ export default function NftMarketScreen() {
     />
   );
   };
+
+  const activityList = (
+    <FlatList
+      data={activity.isLoading || activity.isError ? [] : activityRows}
+      keyExtractor={(r) => `${r.type}:${r.o.orderHash}`}
+      ListHeaderComponent={
+        <View>
+          {chips}
+          <ScrollView horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} style={styles.chipScroll} contentContainerStyle={[styles.chipRow, { paddingTop: 0 }]}>
+            {(["all", "sale", "listing", "offer"] as ActivityKind[]).map((k) => (
+              <Chip
+                key={k}
+                label={
+                  k === "all" ? t("nftMarket.actAll", { defaultValue: "All" })
+                  : k === "sale" ? t("nftMarket.actSales", { defaultValue: "Sales" })
+                  : k === "listing" ? t("nftMarket.actListings", { defaultValue: "Listings" })
+                  : t("nftMarket.actOffers", { defaultValue: "Offers" })
+                }
+                active={activityKind === k}
+                onPress={() => setActivityKind(k)}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      }
+      contentContainerStyle={[styles.content, { gap: 0, paddingBottom: insets.bottom + 96 }]}
+      showsVerticalScrollIndicator={false}
+      refreshControl={<DeHubRefreshControl refreshing={activity.isRefetching} onRefresh={activity.refetch} tintColor="#fff" />}
+      renderItem={({ item: { type, at, o } }) => (
+        <Pressable onPress={() => setOpen(fromOrder(o))} style={({ pressed }) => [styles.actRow, pressed && { opacity: 0.8 }]} accessibilityRole="button">
+          <NftArt uri={o.nftImage} style={styles.actArt} width={44} />
+          <View style={styles.actMid}>
+            <Text numberOfLines={1} style={styles.actName}>{o.isCollection ? o.collectionName || t("nftMarket.anyInCollection", { defaultValue: "Any in collection" }) : titleOf(o.nftName, o.tokenId)}</Text>
+            <Text numberOfLines={1} style={styles.actMeta}>
+              <Text style={styles.actKind}>
+                {type === "sale"
+                  ? t("nftMarket.actSale", { defaultValue: "Sale" })
+                  : type === "listing"
+                    ? t("nftMarket.actListed", { defaultValue: "Listed" })
+                    : o.isCollection
+                      ? t("nftMarket.actCollectionOffer", { defaultValue: "Collection offer" })
+                      : t("nftMarket.actOffer", { defaultValue: "Offer" })}
+              </Text>
+              {` · ${CHAIN_LABEL[o.chainId] ?? o.chainId}`}
+            </Text>
+          </View>
+          <View style={styles.actRight}>
+            <Text numberOfLines={1} style={styles.actPrice}>{`${formatPrice(o.price, o.currencyDecimals)} ${o.currencySymbol}`}</Text>
+            <Text style={styles.actAgo}>{ago(at)}</Text>
+          </View>
+        </Pressable>
+      )}
+      ListEmptyComponent={activity.isLoading ? loading : (
+        <PageEmpty icon="stats" title={activity.isError ? t("nftMarket.loadFailed", { defaultValue: "Couldn't load the market. Pull to retry." }) : t("nftMarket.noActivity", { defaultValue: "Nothing here yet" })} />
+      )}
+    />
+  );
 
   const mine = !signer ? (
     <PageEmpty
@@ -432,42 +608,73 @@ export default function NftMarketScreen() {
     />
   );
 
+  const islandButtons = (
+    <View style={styles.islandRow}>
+      {tab === "browse" ? (
+        <Pressable
+          onPress={() => setShowFilters((v) => !v)}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityState={{ selected: showFilters }}
+          accessibilityLabel={t("nftMarket.filters", { defaultValue: "Filters" })}
+        >
+          <View style={[styles.islandBtn, (showFilters || chain !== "all" || sort !== "newest") && styles.islandBtnOn]}>
+            <Icon name="SlidersHorizontal" size={18} color={theme.colors.accent} />
+          </View>
+        </Pressable>
+      ) : null}
+      {/* Embedded: the Fractions header already has the share button. */}
+      {embedded ? null : (
+        <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("nftMarket.share", { defaultValue: "Share" })}>
+          <View style={styles.islandBtn}>
+            <Icon name="Share2" size={18} color={theme.colors.accent} />
+          </View>
+        </Pressable>
+      )}
+    </View>
+  );
+  const subTabs = <PageTabs size="sm" value={tab} onChange={setTab} tabs={TABS.map(({ key, labelKey, fallback }) => ({ id: key, label: t(labelKey, { defaultValue: fallback }) }))} />;
+
   return (
     <View style={styles.root}>
-      <ScreenHeader
-        title={t("nftMarket.shortTitle", { defaultValue: "NFTs" })}
-        icon="nfts"
-        rightContent={
-          <View style={styles.islandRow}>
-            {tab === "browse" ? (
-              <Pressable
-                onPress={() => setShowFilters((v) => !v)}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityState={{ selected: showFilters }}
-                accessibilityLabel={t("nftMarket.filters", { defaultValue: "Filters" })}
-              >
-                <View style={[styles.islandBtn, (showFilters || chain !== "all" || sort !== "newest") && styles.islandBtnOn]}>
-                  <Icon name="SlidersHorizontal" size={18} color={theme.colors.accent} />
-                </View>
-              </Pressable>
-            ) : null}
-            <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("nftMarket.share", { defaultValue: "Share" })}>
-              <View style={styles.islandBtn}>
-                <Icon name="Share2" size={18} color={theme.colors.accent} />
-              </View>
-            </Pressable>
-          </View>
-        }
-        tabs={<PageTabs size="sm" value={tab} onChange={setTab} tabs={TABS.map(({ key, labelKey, fallback }) => ({ id: key, label: t(labelKey, { defaultValue: fallback }) }))} />}
-      />
+      {embedded ? (
+        <View style={styles.embeddedBar}>
+          <View style={styles.embeddedTabs}>{subTabs}</View>
+          {islandButtons}
+        </View>
+      ) : (
+        <ScreenHeader
+          title={t("nftMarket.shortTitle", { defaultValue: "NFTs" })}
+          icon="nfts"
+          rightContent={islandButtons}
+          tabs={subTabs}
+        />
+      )}
       <View style={styles.body}>
         {tab === "browse"
           ? orderGrid(listings, t("nftMarket.noneForSale", { defaultValue: "Nothing for sale yet" }), canTrade ? t("nftMarket.startHint", { defaultValue: "List an NFT from Yours to be first." }) : undefined)
-          : tab === "sales"
-            ? orderGrid(sales, t("nftMarket.noSales", { defaultValue: "No sales yet" }), undefined, true)
+          : tab === "activity"
+            ? activityList
             : mine}
       </View>
+      {cartMode && cart.length ? (
+        <View style={[styles.cartWrap, { bottom: insets.bottom + 84 }]} pointerEvents="box-none">
+          <View style={styles.cartBar}>
+            <View style={styles.cartThumbs}>
+              {cart.slice(0, 3).map((o, i) => (
+                <NftArt key={o.orderHash} uri={o.nftImage} width={32} style={[styles.cartThumb, i > 0 && { marginLeft: -10 }]} />
+              ))}
+            </View>
+            <View style={styles.actMid}>
+              <Text style={styles.actName}>{t("nftMarket.cartCount", { n: cart.length, defaultValue: "{{n}} in cart" })}</Text>
+              <Text numberOfLines={1} style={styles.actMeta}>{`${formatPrice(cartTotal.toString(), cart[0].currencyDecimals)} ${cart[0].currencySymbol} · ${CHAIN_LABEL[cart[0].chainId] ?? ""}`}</Text>
+            </View>
+            <Pressable onPress={buyCart} disabled={buying} style={({ pressed }) => [styles.signIn, (pressed || buying) && { opacity: 0.8 }]} accessibilityRole="button">
+              {buying ? <DeHubLoader size={22} /> : <Text style={styles.signInText}>{t("nftMarket.buyAll", { defaultValue: "Buy all" })}</Text>}
+            </Pressable>
+          </View>
+        </View>
+      ) : null}
       <NftSheet target={open} onClose={() => setOpen(null)} onSignIn={signIn} signer={signer} canTrade={canTrade} linkOut={linkOut} />
       <NftSheet target={collOffer} collectionOffer onClose={() => setCollOffer(null)} onSignIn={signIn} signer={signer} canTrade={canTrade} linkOut={linkOut} />
     </View>
@@ -497,6 +704,21 @@ const styles = StyleSheet.create({
   statLabel: { color: "#808089", fontSize: 11, marginTop: 3 },
   showcase: { gap: 6, paddingTop: 4 },
   islandRow: { flexDirection: "row", gap: 6 },
+  actRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 10, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "rgba(255,255,255,0.1)" },
+  actArt: { width: 44, height: 44, borderRadius: 8, overflow: "hidden" },
+  actMid: { flex: 1, minWidth: 0 },
+  actName: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
+  actMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
+  actKind: { color: "#E4E4E7", fontWeight: "700" },
+  actRight: { alignItems: "flex-end" },
+  actPrice: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  actAgo: { color: "#A1A1AA", fontSize: 11, marginTop: 2, fontVariant: ["tabular-nums"] },
+  cartWrap: { position: "absolute", left: 16, right: 16, alignItems: "center" },
+  cartBar: { width: "100%", maxWidth: 440, flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 14, paddingVertical: 12, borderRadius: 18, backgroundColor: "#18181B", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" },
+  cartThumbs: { flexDirection: "row" },
+  cartThumb: { width: 32, height: 32, borderRadius: 8, overflow: "hidden", borderWidth: 2, borderColor: "#18181B" },
+  embeddedBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 4, paddingBottom: 8 },
+  embeddedTabs: { flex: 1, minWidth: 0 },
   islandBtnOn: { backgroundColor: "rgba(255,255,255,0.18)" },
   collBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 10, paddingBottom: 2 },
   collTitle: { flex: 1, color: "#FFFFFF", fontSize: 13, fontWeight: "700" },
