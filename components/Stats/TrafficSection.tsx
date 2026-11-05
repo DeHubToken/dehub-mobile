@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import Svg, { Line, Polyline } from "react-native-svg";
 import { PageSection } from "../page/PageKit";
 import { getCountryFlag } from "../../libs/radio-browser";
-import { correctVisitors, summarizeTraffic, type SiteStatsBreakdownDay, type SiteStatsDay, type SiteStatsZone } from "../../libs/site-traffic";
+import { correctVisitors, smoothToday, summarizeTraffic, type SiteStatsBreakdownDay, type SiteStatsDay, type SiteStatsZone } from "../../libs/site-traffic";
 
 const ENDPOINT = "https://riftn.com/api/stats";
 
@@ -105,7 +105,7 @@ export default function TrafficSection({ days }: { days: number | null }) {
         </View>
       </PageSection>
       <PageSection title={t("stats.chart.daily")} action={<Text style={styles.metricHint}>{t("stats.chart.dailyHint")}</Text>}>
-        <VisitorsChart rows={view.rows} />
+        <VisitorsChart rows={smoothToday(view.rows)} />
       </PageSection>
       {view.countries.length > 0 && (
         <PageSection title={t("stats.countries.title")} action={<Text style={styles.metricHint}>{t("stats.countries.window", { days: view.breakdownDays })}</Text>}>
