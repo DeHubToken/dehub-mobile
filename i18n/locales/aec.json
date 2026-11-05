@@ -4911,7 +4911,9 @@
     "tabAudio": "الصوت",
     "tabLive": "الحية",
     "tabPinned": "المرفق",
-    "lockedPost": "بوست مقفل"
+    "lockedPost": "بوست مقفل",
+    "viewGrid": "عرض الشبكة",
+    "viewList": "قائمة العرض"
   },
   "tv": {
     "title": "التلفزيون",

@@ -4930,7 +4930,9 @@
     "tabAudio": "Feo",
     "tabLive": "Mivantana",
     "tabPinned": "Voapetraka",
-    "lockedPost": "Voageja lahatsoratra"
+    "lockedPost": "Voageja lahatsoratra",
+    "viewGrid": "Seho an-kavia",
+    "viewList": "Fijerin'ny lisitra"
   },
   "tv": {
     "title": "Fahitalavitra",

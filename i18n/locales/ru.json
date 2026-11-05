@@ -4933,7 +4933,9 @@
     "tabAudio": "Аудио",
     "tabLive": "Эфир",
     "tabPinned": "Закреплено",
-    "lockedPost": "Заблокированный пост"
+    "lockedPost": "Заблокированный пост",
+    "viewGrid": "Вид сетки",
+    "viewList": "Вид списка"
   },
   "tv": {
     "title": "ТВ",

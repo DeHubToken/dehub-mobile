@@ -4953,7 +4953,9 @@
     "tabAudio": "เสียง",
     "tabLive": "สด",
     "tabPinned": "โพสต์ที่ติดป้ายไว้",
-    "lockedPost": "โพสต์ที่ล็อกไว้"
+    "lockedPost": "โพสต์ที่ล็อกไว้",
+    "viewGrid": "มุมมองตาราง",
+    "viewList": "มุมมองรายการ"
   },
   "tv": {
     "title": "TV",

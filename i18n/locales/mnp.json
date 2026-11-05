@@ -4904,7 +4904,9 @@
     "tabAudio": "音频",
     "tabLive": "直播",
     "tabPinned": "固定",
-    "lockedPost": "已锁定的帖子"
+    "lockedPost": "已锁定的帖子",
+    "viewGrid": "网格视图",
+    "viewList": "列表视图"
   },
   "tv": {
     "title": "电视",

@@ -4898,7 +4898,9 @@
     "tabAudio": "Odu",
     "tabLive": "Iru na ị",
     "tabPinned": "Akpọgidere",
-    "lockedPost": "Ekpochi post"
+    "lockedPost": "Ekpochi post",
+    "viewGrid": "Ngosi grid",
+    "viewList": "Ngosi ndesịta"
   },
   "tv": {
     "title": "Igwe onyonyo",

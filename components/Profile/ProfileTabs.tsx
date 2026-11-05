@@ -233,7 +233,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
           endpoints, where sorting by "most viewed" would do nothing. */}
       {CONTENT_BACKED_TABS.includes(activeKey) && (
         <>
-          <ProfileContentToolbar {...toolbar} />
+          <ProfileContentToolbar {...toolbar} showViewToggle={activeKey === "home"} />
           <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
         </>
       )}

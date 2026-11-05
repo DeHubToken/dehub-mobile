@@ -4918,7 +4918,9 @@
     "tabAudio": "Lyd",
     "tabLive": "Bo",
     "tabPinned": "Festet",
-    "lockedPost": "Låst innlegg"
+    "lockedPost": "Låst innlegg",
+    "viewGrid": "Rutenettvisning",
+    "viewList": "Listevisning"
   },
   "tv": {
     "title": "TV",

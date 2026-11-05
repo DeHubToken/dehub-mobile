@@ -2796,7 +2796,9 @@
     "tabAudio": "L'audio",
     "tabLive": "En direct",
     "tabPinned": "Épinglé",
-    "lockedPost": "Poste verrouillé"
+    "lockedPost": "Poste verrouillé",
+    "viewGrid": "Vue grille",
+    "viewList": "Vue en liste"
   },
   "tv": {
     "title": "Télévision",

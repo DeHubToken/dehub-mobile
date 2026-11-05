@@ -4918,7 +4918,9 @@
     "tabAudio": "Àudio",
     "tabLive": "En directe",
     "tabPinned": "Fixat",
-    "lockedPost": "Publicació bloquejada"
+    "lockedPost": "Publicació bloquejada",
+    "viewGrid": "Vista de graella",
+    "viewList": "Visualització de la llista"
   },
   "tv": {
     "title": "TV",

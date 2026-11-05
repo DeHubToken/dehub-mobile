@@ -4916,7 +4916,9 @@
     "tabAudio": "ਆਡੀਓ",
     "tabLive": "ਲਾਈਵ",
     "tabPinned": "ਪਿੰਨ ਕੀਤੇ",
-    "lockedPost": "ਤਾਲਾਬੰਦ ਪੋਸਟ"
+    "lockedPost": "ਤਾਲਾਬੰਦ ਪੋਸਟ",
+    "viewGrid": "ਗਰਿੱਡ ਝਲਕ",
+    "viewList": "ਸੂਚੀ ਦ੍ਰਿਸ਼"
   },
   "tv": {
     "title": "ਟੀਵੀ",

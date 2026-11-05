@@ -4908,7 +4908,9 @@
     "tabAudio": "Töön",
     "tabLive": "Lebe",
     "tabPinned": "Gepinnt",
-    "lockedPost": "Gschlosse Beitrag"
+    "lockedPost": "Gschlosse Beitrag",
+    "viewGrid": "Gitter‑Ansicht",
+    "viewList": "Listä Ansicht"
   },
   "tv": {
     "title": "TV",

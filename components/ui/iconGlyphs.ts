@@ -165,6 +165,7 @@ export const iconGlyphs: Partial<Record<string, string>> = {
   Lightbulb: "\ue1c2",
   Link: "\ue108",
   Link2: "\ue109",
+  List: "\ue10c",
   ListFilter: "\ue465",
   ListVideo: "\ue2e2",
   Loader: "\ue10d",

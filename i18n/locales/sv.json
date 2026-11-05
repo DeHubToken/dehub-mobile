@@ -4917,7 +4917,9 @@
     "tabAudio": "Ljud",
     "tabLive": "Liv",
     "tabPinned": "Fäst",
-    "lockedPost": "Låst inlägg"
+    "lockedPost": "Låst inlägg",
+    "viewGrid": "Rutnätsvy",
+    "viewList": "Listvy"
   },
   "tv": {
     "title": "TV",

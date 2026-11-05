@@ -2654,6 +2654,8 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "viewGrid": "Grid view",
+    "viewList": "List view",
     "articleShort": "Article",
     "lockedPost": "Locked post",
     "pinnedShort": "Pinned",

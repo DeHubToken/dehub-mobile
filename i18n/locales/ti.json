@@ -4902,7 +4902,9 @@
     "tabAudio": "ድምጺ",
     "tabLive": "ህያው",
     "tabPinned": "ዕንጨይቲ",
-    "lockedPost": "ዝተዓጸወ ፖስታ"
+    "lockedPost": "ዝተዓጸወ ፖስታ",
+    "viewGrid": "ናይ ምስሊ መግለጺ",
+    "viewList": "ናይ ምርኣይ ዝርዝር"
   },
   "tv": {
     "title": "ቲቪ",

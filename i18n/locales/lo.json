@@ -4905,7 +4905,9 @@
     "tabAudio": "ສຽງ",
     "tabLive": "ສົດ",
     "tabPinned": "ຖືກປັກໝຸດ",
-    "lockedPost": "Post ລັອກ"
+    "lockedPost": "Post ລັອກ",
+    "viewGrid": "ການເບິ່ງຕາຕະລາງ",
+    "viewList": "ເບິ່ງລາຍການ"
   },
   "tv": {
     "title": "ໂທລະພາບ",

@@ -4905,7 +4905,9 @@
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
     "tabPinned": "पिन किए गए",
-    "lockedPost": "पोस्ट लॉक करे"
+    "lockedPost": "पोस्ट लॉक करे",
+    "viewGrid": "ग्रिड दृस्य",
+    "viewList": "सूची दृस्य"
   },
   "tv": {
     "anon": "अनोन",

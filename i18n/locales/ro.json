@@ -4918,7 +4918,9 @@
     "tabAudio": "Audio",
     "tabLive": "Fază",
     "tabPinned": "Pins",
-    "lockedPost": "Post blocat"
+    "lockedPost": "Post blocat",
+    "viewGrid": "Vizualizare grilă",
+    "viewList": "Vizualizare listă"
   },
   "tv": {
     "title": "TV",

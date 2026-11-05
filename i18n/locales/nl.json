@@ -2984,7 +2984,9 @@
     "tabAudio": "Geluid",
     "tabLive": "Leven",
     "tabPinned": "Vastgepind",
-    "lockedPost": "Vergrendelde paal"
+    "lockedPost": "Vergrendelde paal",
+    "viewGrid": "Rasterweergave",
+    "viewList": "Lijstweergave"
   },
   "tv": {
     "title": "TV",

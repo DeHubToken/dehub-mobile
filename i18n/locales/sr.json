@@ -4921,7 +4921,9 @@
     "tabAudio": "Аудио",
     "tabLive": "Ливе",
     "tabPinned": "Заклепљени",
-    "lockedPost": "Закључана објава"
+    "lockedPost": "Закључана објава",
+    "viewGrid": "Приказ мреже",
+    "viewList": "Приказ листе"
   },
   "tv": {
     "title": "ТВ",

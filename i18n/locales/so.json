@@ -4899,7 +4899,9 @@
     "tabAudio": "Codka",
     "tabLive": "Toos",
     "tabPinned": "La dhajiyay",
-    "lockedPost": "Boostada la qufulay"
+    "lockedPost": "Boostada la qufulay",
+    "viewGrid": "Muuqaalka Grid",
+    "viewList": "Muuqaalka Liiska"
   },
   "tv": {
     "title": "TV",

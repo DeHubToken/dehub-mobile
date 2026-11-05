@@ -4912,7 +4912,9 @@
     "tabAudio": "الصوت",
     "tabLive": "حَيّ",
     "tabPinned": "المرفق",
-    "lockedPost": "بوست مقفل"
+    "lockedPost": "بوست مقفل",
+    "viewGrid": "عرض الشبكة",
+    "viewList": "قائمة العرض"
   },
   "tv": {
     "title": "التلفزيون",

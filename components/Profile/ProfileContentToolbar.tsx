@@ -7,6 +7,7 @@ import { FIELD_TEXT } from "../../theme/inputs";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import GlassModal from "../ui/GlassModal";
+import { setProfileViewMode, useProfileViewMode } from "../../libs/profileViewMode";
 
 
 /**
@@ -59,6 +60,8 @@ interface ProfileContentToolbarProps {
   onFiltersToggle: () => void;
   /** How many filter rows are narrowing the list right now. 0 hides the badge. */
   activeFilterCount: number;
+  /** The All tab: show the grid / list toggle on the left of the row. */
+  showViewToggle?: boolean;
 }
 
 const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
@@ -69,6 +72,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   filtersOpen,
   onFiltersToggle,
   activeFilterCount,
+  showViewToggle,
 }) => {
   const { t: _copy } = _useCopy();
   // Translated through `t(key, fallback)` rather than new locale entries: the
@@ -85,6 +89,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   const solidInk = theme === "osaka" ? "#1A0C16" : "#000000";
   const current = SORT_MENU_LABELS.find((item) => item.key === sort) ?? SORT_MENU_LABELS[0];
   const searchInputRef = React.useRef<TextInput>(null);
+  const viewMode = useProfileViewMode();
 
   React.useEffect(() => {
     if (isSearchOpen) requestAnimationFrame(() => searchInputRef.current?.focus());
@@ -136,6 +141,28 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
         // Quiet Row: one sort word that opens a glass menu, then bare search
         // and filter icons. No boxes.
         <View style={styles.row}>
+          {showViewToggle && (
+            // Grid or list, on the side away from search and filters. The
+            // chosen view is lit, the other dimmed.
+            <View style={styles.viewToggle} accessibilityRole="radiogroup">
+              {([
+                { key: "grid", icon: "LayoutGrid", label: t("profile.viewGrid", "Grid view") },
+                { key: "list", icon: "List", label: t("profile.viewList", "List view") },
+              ] as const).map(({ key, icon, label }) => (
+                <Pressable
+                  key={key}
+                  onPress={() => setProfileViewMode(key)}
+                  hitSlop={4}
+                  accessibilityRole="radio"
+                  accessibilityState={{ checked: viewMode === key }}
+                  accessibilityLabel={label}
+                  style={styles.viewButton}
+                >
+                  <Icon name={icon} size={17} color={viewMode === key ? ink : sub} />
+                </Pressable>
+              ))}
+            </View>
+          )}
           <Pressable
             onPress={() => setIsSortOpen(true)}
             hitSlop={6}
@@ -205,6 +232,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", height: 40, gap: 2 },
   sortTrigger: { flexDirection: "row", alignItems: "center", gap: 4, height: 40, paddingLeft: 4, paddingRight: 8 },
   iconButton: { width: 40, height: 40, alignItems: "center", justifyContent: "center" },
+  viewToggle: { flexDirection: "row", alignItems: "center", marginRight: 2 },
+  viewButton: { width: 32, height: 40, alignItems: "center", justifyContent: "center" },
   count: { position: "absolute", top: 4, right: 3, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: "center", justifyContent: "center" },
   countText: { fontSize: 10, fontWeight: "700" },
   beam: { position: "absolute", left: 0, right: 0, bottom: 0, height: 2, borderRadius: 2, shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.9, shadowRadius: 6, elevation: 0 },

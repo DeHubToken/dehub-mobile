@@ -2796,7 +2796,9 @@
     "tabAudio": "Sonido",
     "tabLive": "En vivo",
     "tabPinned": "Fijado",
-    "lockedPost": "Publicación bloqueada"
+    "lockedPost": "Publicación bloqueada",
+    "viewGrid": "Vista de cuadrícula",
+    "viewList": "Vista de lista"
   },
   "tv": {
     "title": "TV",

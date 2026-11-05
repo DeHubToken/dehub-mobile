@@ -4905,7 +4905,9 @@
     "tabAudio": "ଧ୍ୱନି",
     "tabLive": "ଲାଇଭ",
     "tabPinned": "ପିନ୍ ‌ ହୋଇଥିବା",
-    "lockedPost": "ଅପହଞ୍ଚ ପୋଷ୍ଟ"
+    "lockedPost": "ଅପହଞ୍ଚ ପୋଷ୍ଟ",
+    "viewGrid": "ନାଲି ଦ୍ରୁଶ୍ଯ",
+    "viewList": "ତାଲିକା ଦ୍ରୁଶ୍ଯ"
   },
   "tv": {
     "title": "TV",

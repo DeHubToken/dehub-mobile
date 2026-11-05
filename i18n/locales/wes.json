@@ -4896,7 +4896,9 @@
     "tabAudio": "Odio",
     "tabLive": "Live",
     "tabPinned": "Dem don pin am",
-    "lockedPost": "Locked post"
+    "lockedPost": "Locked post",
+    "viewGrid": "Grid view",
+    "viewList": "Lis view"
   },
   "tv": {
     "title": "TV",

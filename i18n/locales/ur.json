@@ -4915,7 +4915,9 @@
     "tabAudio": "آڈیو",
     "tabLive": "لائیو",
     "tabPinned": "پینڈ",
-    "lockedPost": "مقفل پوسٹ"
+    "lockedPost": "مقفل پوسٹ",
+    "viewGrid": "گرڈ کا منظر",
+    "viewList": "فہرست کا منظر"
   },
   "tv": {
     "title": "ٹی وی",

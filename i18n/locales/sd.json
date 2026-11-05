@@ -4896,7 +4896,9 @@
     "tabAudio": "آڊيو",
     "tabLive": "آف لائو",
     "tabPinned": "پنڊل",
-    "lockedPost": "بند ٿيل پوسٽ"
+    "lockedPost": "بند ٿيل پوسٽ",
+    "viewGrid": "گرڊ ڏيک",
+    "viewList": "لسٽ ڏيک"
   },
   "tv": {
     "title": "ٽي وي",

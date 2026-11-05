@@ -4945,7 +4945,9 @@
     "tabAudio": "Âm thanh",
     "tabLive": "Trực tiếp",
     "tabPinned": "Đã ghim",
-    "lockedPost": "Bài đăng bị khóa"
+    "lockedPost": "Bài đăng bị khóa",
+    "viewGrid": "Chế độ xem lưới",
+    "viewList": "Chế độ xem danh sách"
   },
   "tv": {
     "title": "TV",

@@ -4931,7 +4931,9 @@
     "tabAudio": "साउन्ड",
     "tabLive": "लाईभ",
     "tabPinned": "पिन",
-    "lockedPost": "लक गरिएको पोस्ट"
+    "lockedPost": "लक गरिएको पोस्ट",
+    "viewGrid": "ग्रिड दृश्य",
+    "viewList": "सूची दृश्य"
   },
   "tv": {
     "title": "टिभी",

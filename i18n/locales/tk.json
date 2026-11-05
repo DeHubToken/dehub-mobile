@@ -4908,7 +4908,9 @@
     "tabAudio": "Audiolar",
     "tabLive": "Göni ýaýlym",
     "tabPinned": "Goýlan",
-    "lockedPost": "Garawul diňi"
+    "lockedPost": "Garawul diňi",
+    "viewGrid": "Şekil Görnüşi",
+    "viewList": "Sarygyň görünüşi"
   },
   "tv": {
     "title": "TV",

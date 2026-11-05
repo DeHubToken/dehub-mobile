@@ -4921,7 +4921,9 @@
     "tabAudio": "Zëri",
     "tabLive": "Drejtpërdrejt",
     "tabPinned": "Përcaktuar",
-    "lockedPost": "Postim i bllokuar"
+    "lockedPost": "Postim i bllokuar",
+    "viewGrid": "Pamja e rrjetit",
+    "viewList": "Pamja e listës"
   },
   "tv": {
     "title": "Televizor",

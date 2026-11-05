@@ -4918,7 +4918,9 @@
     "tabAudio": "Zvuk",
     "tabLive": "Živo",
     "tabPinned": "Přilnavé",
-    "lockedPost": "Zamčený příspěvek"
+    "lockedPost": "Zamčený příspěvek",
+    "viewGrid": "Zobrazení mřížky",
+    "viewList": "Zobrazení seznamu"
   },
   "tv": {
     "title": "TV",

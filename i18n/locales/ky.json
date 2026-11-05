@@ -4898,7 +4898,9 @@
     "tabAudio": "Аудио",
     "tabLive": "Түз эфир",
     "tabPinned": "Пиннингделешилди",
-    "lockedPost": "Жабык пост"
+    "lockedPost": "Жабык пост",
+    "viewGrid": "Тордун көрүнүшү",
+    "viewList": "Тизме көрүнүшү"
   },
   "tv": {
     "title": "ТВ",

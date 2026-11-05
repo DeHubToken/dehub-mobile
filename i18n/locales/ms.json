@@ -5174,7 +5174,9 @@
     "tabAudio": "Audio",
     "tabLive": "Secara Langsung",
     "tabPinned": "Tersepit",
-    "lockedPost": "Hantaran terkunci"
+    "lockedPost": "Hantaran terkunci",
+    "viewGrid": "Paparan grid",
+    "viewList": "Paparan senarai"
   },
   "tv": {
     "title": "TV",

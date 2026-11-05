@@ -4934,7 +4934,9 @@
     "tabAudio": "Dźwięk",
     "tabLive": "Na żywo",
     "tabPinned": "Przypięte",
-    "lockedPost": "Zablokowany post"
+    "lockedPost": "Zablokowany post",
+    "viewGrid": "Widok siatki",
+    "viewList": "Widok listy"
   },
   "tv": {
     "title": "TV",

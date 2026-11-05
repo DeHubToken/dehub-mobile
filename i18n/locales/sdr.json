@@ -4918,7 +4918,9 @@
     "tabAudio": "Sesler",
     "tabLive": "Canlı",
     "tabPinned": "Pinli",
-    "lockedPost": "बंद पोस्ट"
+    "lockedPost": "बंद पोस्ट",
+    "viewGrid": "ग्रिड व्यू",
+    "viewList": "सूची दृश्य"
   },
   "tv": {
     "title": "ٹی وی",

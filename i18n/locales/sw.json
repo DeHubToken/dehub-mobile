@@ -4927,7 +4927,9 @@
     "tabAudio": "Sauti",
     "tabLive": "Moja kwa moja",
     "tabPinned": "Imepachikwa",
-    "lockedPost": "Chapisho lililofungwa"
+    "lockedPost": "Chapisho lililofungwa",
+    "viewGrid": "Mwonekano wa gridi",
+    "viewList": "Mwonekano wa tangazo"
   },
   "tv": {
     "title": "Runinga",

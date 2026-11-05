@@ -165,6 +165,7 @@ import LifeBuoyIcon from "lucide-react-native/dist/esm/icons/life-buoy";
 import LightbulbIcon from "lucide-react-native/dist/esm/icons/lightbulb";
 import LinkIcon from "lucide-react-native/dist/esm/icons/link";
 import Link2Icon from "lucide-react-native/dist/esm/icons/link-2";
+import ListIcon from "lucide-react-native/dist/esm/icons/list";
 import ListFilterIcon from "lucide-react-native/dist/esm/icons/list-filter";
 import ListVideoIcon from "lucide-react-native/dist/esm/icons/list-video";
 import LoaderIcon from "lucide-react-native/dist/esm/icons/loader";
@@ -494,6 +495,7 @@ export const iconRegistry = {
   Lightbulb: LightbulbIcon,
   Link: LinkIcon,
   Link2: Link2Icon,
+  List: ListIcon,
   ListFilter: ListFilterIcon,
   ListVideo: ListVideoIcon,
   Loader: LoaderIcon,

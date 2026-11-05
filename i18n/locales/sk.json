@@ -4994,7 +4994,9 @@
     "tabAudio": "Zvuk",
     "tabLive": "Živé",
     "tabPinned": "Pripnútené",
-    "lockedPost": "Zamknutý príspevok"
+    "lockedPost": "Zamknutý príspevok",
+    "viewGrid": "Zobrazenie mriežky",
+    "viewList": "Zobrazenie zoznamu"
   },
   "tv": {
     "title": "TV",

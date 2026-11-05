@@ -4915,7 +4915,9 @@
     "tabAudio": "音頻",
     "tabLive": "生活",
     "tabPinned": "固定咗",
-    "lockedPost": "鎖定咗嘅帖子"
+    "lockedPost": "鎖定咗嘅帖子",
+    "viewGrid": "網格視圖",
+    "viewList": "清單檢視"
   },
   "tv": {
     "title": "電視",

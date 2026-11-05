@@ -4917,7 +4917,9 @@
     "tabAudio": "الصوت",
     "tabLive": "الحية",
     "tabPinned": "المرفق",
-    "lockedPost": "منشور مغلق"
+    "lockedPost": "منشور مغلق",
+    "viewGrid": "طريقة عرض الشبكة",
+    "viewList": "عرض القائمة"
   },
   "tv": {
     "title": "TV",

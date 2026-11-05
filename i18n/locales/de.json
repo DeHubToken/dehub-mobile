@@ -4849,7 +4849,9 @@
     "tabAudio": "Audio",
     "tabLive": "Leben",
     "tabPinned": "Angeheftet",
-    "lockedPost": "Gesperrter Pfosten"
+    "lockedPost": "Gesperrter Pfosten",
+    "viewGrid": "Rasteransicht",
+    "viewList": "Listenansicht"
   },
   "tv": {
     "title": "TV",
