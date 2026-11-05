@@ -67,11 +67,21 @@ interface Props {
   compact?: boolean;
   /** On-screen width of the tile in points, for the CDN size. */
   artWidth?: number;
+  /** In the cart (bulk buy): undefined outside cart mode. */
+  selected?: boolean;
+  /** Cannot join the cart (other chain or coin, or your own). */
+  dimmed?: boolean;
   onPress: () => void;
 }
 
-const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, compact, artWidth, onPress }) => (
-  <Pressable onPress={onPress} style={({ pressed }) => [styles.tile, pressed && { opacity: 0.85 }]} accessibilityRole="button" accessibilityLabel={name}>
+const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, priceLabel, badge, compact, artWidth, selected, dimmed, onPress }) => (
+  <Pressable
+    onPress={onPress}
+    style={({ pressed }) => [styles.tile, selected && styles.tileSelected, dimmed && { opacity: 0.4 }, pressed && { opacity: 0.85 }]}
+    accessibilityRole="button"
+    accessibilityLabel={name}
+    accessibilityState={selected === undefined ? undefined : { selected }}
+  >
     {/* Badges and the name strip sit on the art, so System Light leaves them dark. */}
     <KeepDarkScope>
     <View style={styles.artWrap}>
@@ -79,7 +89,11 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
       {compact ? (
         <View style={[styles.dot, { backgroundColor: CHAIN_DOT[chainId] ?? "#FFFFFF" }]} accessibilityLabel={CHAIN_LABEL[chainId] ?? String(chainId)} />
       ) : <Text style={[styles.badge, styles.badgeLeft]}>{CHAIN_LABEL[chainId] ?? chainId}</Text>}
-      {badge ? <Text style={[styles.badge, styles.badgeRight, compact && styles.badgeSmall]}>{badge}</Text> : null}
+      {selected !== undefined ? (
+        <View style={[styles.check, selected ? styles.checkOn : styles.checkOff]}>
+          {selected ? <Text style={styles.checkMark}>✓</Text> : null}
+        </View>
+      ) : badge ? <Text style={[styles.badge, styles.badgeRight, compact && styles.badgeSmall]}>{badge}</Text> : null}
       {compact ? (
         <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.82)"]} style={styles.overlay} pointerEvents="none">
           <Text numberOfLines={1} style={styles.overlayName}>{name.trim() || "—"}</Text>
@@ -107,6 +121,11 @@ const NftTile: React.FC<Props> = ({ name, collection, image, chainId, price, pri
 
 const styles = StyleSheet.create({
   tile: { flex: 1, borderRadius: 12, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)" },
+  tileSelected: { borderWidth: 2, borderColor: "#FFFFFF" },
+  check: { position: "absolute", top: 6, right: 6, width: 20, height: 20, borderRadius: 10, alignItems: "center", justifyContent: "center" },
+  checkOn: { backgroundColor: "#FFFFFF" },
+  checkOff: { backgroundColor: "rgba(0,0,0,0.55)", borderWidth: 1.5, borderColor: "rgba(255,255,255,0.85)" },
+  checkMark: { color: "#000000", fontSize: 11, fontWeight: "800" },
   artWrap: { width: "100%", aspectRatio: 1 },
   art: { width: "100%", height: "100%" },
   fallback: { alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.05)" },
