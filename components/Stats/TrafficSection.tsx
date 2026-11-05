@@ -1,7 +1,7 @@
 /**
  * Site traffic, the app's half of web's Stats page traffic section.
  *
- * Reads the same public endpoint web does (dehub.io/api/stats, the Cloudflare
+ * Reads the same public endpoint web does (riftn.com/api/stats, the Cloudflare
  * Worker that queries Cloudflare's analytics for the zone), so both show the
  * same edge-measured numbers. `ok: false` is a real answer (analytics not
  * configured) and renders as its own state; a failed request hides the
@@ -14,12 +14,12 @@ import { useTranslation } from "react-i18next";
 import Svg, { Line, Polyline } from "react-native-svg";
 import { PageSection } from "../page/PageKit";
 import { getCountryFlag } from "../../libs/radio-browser";
-import { summarizeTraffic, type SiteStatsBreakdownDay, type SiteStatsDay } from "../../libs/site-traffic";
+import { correctVisitors, summarizeTraffic, type SiteStatsBreakdownDay, type SiteStatsDay, type SiteStatsZone } from "../../libs/site-traffic";
 
-const ENDPOINT = "https://dehub.io/api/stats";
+const ENDPOINT = "https://riftn.com/api/stats";
 
 type SiteStats =
-  | { ok: true; daily: SiteStatsDay[]; breakdown: SiteStatsBreakdownDay[] }
+  | { ok: true; daily: SiteStatsDay[]; breakdown: SiteStatsBreakdownDay[]; zones?: SiteStatsZone[] }
   | { ok: false; reason: string; message?: string };
 
 async function fetchSiteStats(): Promise<SiteStats> {
@@ -81,7 +81,7 @@ export default function TrafficSection({ days }: { days: number | null }) {
   const { t } = useTranslation();
   const query = useQuery({ queryKey: ["site-stats"], queryFn: fetchSiteStats, staleTime: 45_000, refetchInterval: 60_000, retry: 1 });
   const data = query.data;
-  const view = useMemo(() => (data?.ok ? summarizeTraffic(data.daily, data.breakdown, days) : null), [data, days]);
+  const view = useMemo(() => (data?.ok ? summarizeTraffic(correctVisitors(data.daily, data.zones), data.breakdown, days) : null), [data, days]);
 
   if (query.isError || !data) return null;
   if (!data.ok || !view) {
