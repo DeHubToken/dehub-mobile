@@ -1052,6 +1052,22 @@ const NotificationScreen = () => {
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId, postType, overDrawer: true });
   }, [navigation]);
 
+  // iOS presents this drawer as a native modal, and anything opened from it
+  // that is not itself a modal lands underneath: the profile overlay and every
+  // pushed page (followers list, chat, community...) opened out of sight, so a
+  // tap only marked the row read. On iOS the drawer closes first; posts keep
+  // opening over it (overDrawer) so Back still returns to the list.
+  const leftDrawerRef = useRef(false);
+  const leaveDrawerOnIOS = useCallback(() => {
+    if (Platform.OS !== 'ios' || leftDrawerRef.current || !navigation.canGoBack()) return;
+    leftDrawerRef.current = true;
+    navigation.goBack();
+  }, [navigation]);
+  const leaveTo = useCallback(((...args: unknown[]) => {
+    leaveDrawerOnIOS();
+    (navigation.navigate as (...a: unknown[]) => void)(...args);
+  }) as typeof navigation.navigate, [navigation, leaveDrawerOnIOS]);
+
   const openUserProfile = useCallback((
     actorAddress?: string,
     actorUsername?: string,
@@ -1067,18 +1083,19 @@ const NotificationScreen = () => {
         avatarImageUrl: actor.avatarImageUrl || undefined,
       }, actorAddress, actorUsername);
     }
+    leaveDrawerOnIOS();
     showUserProfile(identifier);
-  }, [showUserProfile]);
+  }, [showUserProfile, leaveDrawerOnIOS]);
 
   const navigateToLivestream = useCallback((tokenId?: number, streamId?: string) => {
     // A tokenId is the post, not the stream; the viewer looks the stream up.
-    if (streamId) navigation.navigate(ScreenNames.LiveViewer, { streamId, ...(tokenId ? { tokenId } : {}) });
-    else if (tokenId) navigation.navigate(ScreenNames.LiveViewer, { tokenId });
-  }, [navigation]);
+    if (streamId) leaveTo(ScreenNames.LiveViewer, { streamId, ...(tokenId ? { tokenId } : {}) });
+    else if (tokenId) leaveTo(ScreenNames.LiveViewer, { tokenId });
+  }, [leaveTo]);
 
   const navigateToDM = useCallback((conversationId: string) => {
-    navigation.navigate(ScreenNames.Chat, { conversationId });
-  }, [navigation]);
+    leaveTo(ScreenNames.Chat, { conversationId });
+  }, [leaveTo]);
 
   /**
    * Fire-and-forget mark as read
@@ -1112,14 +1129,14 @@ const NotificationScreen = () => {
         .maybeSingle();
       const jobId = (data as { id?: string } | null)?.id;
       if (jobId) {
-        navigation.navigate(ScreenNames.WorkJobDetail, { jobId });
+        leaveTo(ScreenNames.WorkJobDetail, { jobId });
         return;
       }
     } catch (e) {
       log.error("bounty lookup failed", e);
     }
-    navigation.navigate(ScreenNames.Work);
-  }, [navigation]);
+    leaveTo(ScreenNames.Work);
+  }, [leaveTo]);
 
   /**
    * Handle notification press - navigate immediately, mark read in background
@@ -1151,7 +1168,7 @@ const NotificationScreen = () => {
     // Navigate based on notification type
     switch (type as string) {
       case 'trench_price_alert':
-        navigation.navigate(ScreenNames.ArcadeGame as never, {slug:'trenchstar',symbol:(notification as CustomNotificationItem).customReferenceTitle || 'BTC'} as never);
+        leaveTo(ScreenNames.ArcadeGame as never, {slug:'trenchstar',symbol:(notification as CustomNotificationItem).customReferenceTitle || 'BTC'} as never);
         break;
       // The row stores job_number (what web's canonical /bounty/<n> URL is
       // keyed on); this screen's route wants the uuid, so it is resolved on tap
@@ -1166,7 +1183,7 @@ const NotificationScreen = () => {
       // came from; the row stores its slug, which is what the screen is keyed on.
       case 'community_chat': {
         const communitySlug = (notification as any).metadata?.communitySlug;
-        if (communitySlug) navigation.navigate(ScreenNames.CommunityDetail as never, { slug: communitySlug, tab: 'chat' } as never);
+        if (communitySlug) leaveTo(ScreenNames.CommunityDetail as never, { slug: communitySlug, tab: 'chat' } as never);
         break;
       }
 
@@ -1174,7 +1191,7 @@ const NotificationScreen = () => {
       case 'community_mention':
       case 'community_here': {
         const communitySlug = (notification as CustomNotificationItem).customReferenceId;
-        if (communitySlug) navigation.navigate(ScreenNames.CommunityDetail as never, { slug: communitySlug } as never);
+        if (communitySlug) leaveTo(ScreenNames.CommunityDetail as never, { slug: communitySlug } as never);
         break;
       }
 
@@ -1191,7 +1208,7 @@ const NotificationScreen = () => {
       case 'feature_request_status': {
         const custom = notification as CustomNotificationItem;
         if (!custom.customReferenceId) break;
-        navigation.navigate(ScreenNames.FeatureRequests as never, {
+        leaveTo(ScreenNames.FeatureRequests as never, {
           requestId: custom.customReferenceId,
           commentId: custom.customCommentId,
         } as never);
@@ -1208,7 +1225,7 @@ const NotificationScreen = () => {
       case 'governance_result': {
         const custom = notification as CustomNotificationItem;
         if (!custom.customReferenceId) break;
-        navigation.navigate(ScreenNames.GovernanceProposal as never, {
+        leaveTo(ScreenNames.GovernanceProposal as never, {
           proposalId: custom.customReferenceId,
           commentId: custom.customCommentId,
         } as never);
@@ -1230,7 +1247,7 @@ const NotificationScreen = () => {
       case 'miniapp': {
         const item = notification as CustomNotificationItem;
         if (!item.customReferenceId) break;
-        navigation.navigate(ScreenNames.MiniApp as never, {
+        leaveTo(ScreenNames.MiniApp as never, {
           slug: item.customReferenceId,
           from: 'notification',
           ...(item.customReferenceTitle ? { url: item.customReferenceTitle } : {}),
@@ -1248,7 +1265,7 @@ const NotificationScreen = () => {
       // ones marked, rather than one profile after another.
       case NotificationType.FOLLOWING:
         if (isGroupedFollow(notification) && (user?.address || notification.address)) {
-          navigation.navigate(ScreenNames.FollowList, {
+          leaveTo(ScreenNames.FollowList, {
             address: user?.address || notification.address,
             username: user?.username,
             initialTab: 'followers',
@@ -1325,7 +1342,7 @@ const NotificationScreen = () => {
         break;
 
       case NotificationType.FIAT_PAYMENT_COMPLETED:
-        navigation.navigate(ScreenNames.Dpay as never);
+        leaveTo(ScreenNames.Dpay as never);
         break;
 
       // The delegation panel is the only surface a loan can be seen or ended
@@ -1333,7 +1350,7 @@ const NotificationScreen = () => {
       case NotificationType.BADGE_DELEGATED:
       case NotificationType.BADGE_DELEGATION_ENDED:
       case NotificationType.BADGE_DELEGATION_CHANGED:
-        navigation.navigate(ScreenNames.AccountSettings, { initialTab: 'assets' });
+        leaveTo(ScreenNames.AccountSettings, { initialTab: 'assets' });
         break;
 
       // The ladder lives on the staking tab, with the next rung and its price
@@ -1343,12 +1360,12 @@ const NotificationScreen = () => {
       case NotificationType.USERNAME_OFFER:
       case NotificationType.USERNAME_OFFER_ACCEPTED:
       case NotificationType.USERNAME_OFFER_DECLINED:
-        navigation.navigate(ScreenNames.Usernames, { tab: 'offers' });
+        leaveTo(ScreenNames.Usernames, { tab: 'offers' });
         break;
 
       case NotificationType.BADGE_TIER_UP:
       case NotificationType.BADGE_TIER_DOWN:
-        navigation.navigate(
+        leaveTo(
           ScreenNames.Dpay as never,
           { initialTab: "stake" } as never,
         );
@@ -1370,7 +1387,7 @@ const NotificationScreen = () => {
         // A case label cannot match a prefix, so every dao_* type lands here.
         if (String(type).startsWith('dao_')) {
           const proposalId = (notification as CustomNotificationItem).customReferenceId;
-          navigation.navigate(ScreenNames.Dao as never, (proposalId ? { proposalId } : undefined) as never);
+          leaveTo(ScreenNames.Dao as never, (proposalId ? { proposalId } : undefined) as never);
           break;
         }
         if (tokenId) navigateToFeed(tokenId, commentId, postType);

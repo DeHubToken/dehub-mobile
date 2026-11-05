@@ -15,7 +15,7 @@ describe("notification tap targets", () => {
     const push = readSource("services/push/PushNotificationsProvider.tsx");
 
     expect(screen).toContain(
-      "navigation.navigate(ScreenNames.AccountSettings, { initialTab: 'assets' });",
+      "leaveTo(ScreenNames.AccountSettings, { initialTab: 'assets' });",
     );
     expect(push).toContain(
       "navigation.navigate(ScreenNames.AccountSettings, { initialTab: 'assets' });",
@@ -37,7 +37,7 @@ describe("notification tap targets", () => {
     const usernames = readSource("screens/UsernamesScreen.tsx");
     const types = readSource("navigation/types.ts");
 
-    expect(screen).toContain("navigation.navigate(ScreenNames.Usernames, { tab: 'offers' });");
+    expect(screen).toContain("leaveTo(ScreenNames.Usernames, { tab: 'offers' });");
     expect(types).toContain(
       '[ScreenNames.Usernames]: { handle?: string; tab?: "browse" | "mine" | "sell" | "offers" } | undefined;',
     );
@@ -56,7 +56,7 @@ describe("notification tap targets", () => {
 
     expect(screen).toContain("if (String(typeStr).startsWith('dao_')) return true;");
     expect(screen).toMatch(
-      /default:[\s\S]*?if \(String\(type\)\.startsWith\('dao_'\)\) \{\s*const proposalId = \(notification as CustomNotificationItem\)\.customReferenceId;\s*navigation\.navigate\(ScreenNames\.Dao as never, \(proposalId \? \{ proposalId \} : undefined\) as never\);\s*break;\s*\}/,
+      /default:[\s\S]*?if \(String\(type\)\.startsWith\('dao_'\)\) \{\s*const proposalId = \(notification as CustomNotificationItem\)\.customReferenceId;\s*leaveTo\(ScreenNames\.Dao as never, \(proposalId \? \{ proposalId \} : undefined\) as never\);\s*break;\s*\}/,
     );
   });
 
@@ -131,5 +131,20 @@ describe("notification tap targets", () => {
     expect(push).toMatch(/case NotificationType\.CREATOR_COMMENT_REPLY:\s*case NotificationType\.COMMENT_LIKE:/);
     // An unknown type with a post still opens that post, not the list.
     expect(push).toContain("if (tokenId) navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });\n          else navigation.navigate(ScreenNames.Notifications);");
+  });
+});
+
+describe("leaving the notifications drawer on iOS", () => {
+  // iOS presents the drawer as a native modal, so pages pushed from it and the
+  // profile overlay opened underneath it and a tap only marked the row read.
+  it("closes the drawer before opening a profile or a pushed page", () => {
+    const screen = readSource("screens/NotificationScreen.tsx");
+
+    expect(screen).toMatch(/const leaveDrawerOnIOS = useCallback\(\(\) => \{\s*if \(Platform\.OS !== 'ios'/);
+    expect(screen).toMatch(/leaveDrawerOnIOS\(\);\s*showUserProfile\(identifier\);/);
+    expect(screen).toContain("leaveTo(ScreenNames.FollowList, {");
+    expect(screen).toContain("leaveTo(ScreenNames.Chat, { conversationId });");
+    // Posts still open over the drawer, so Back returns to the list.
+    expect(screen).toContain("navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId, postType, overDrawer: true });");
   });
 });
