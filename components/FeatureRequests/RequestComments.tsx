@@ -312,7 +312,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
               scrollEnabled={growing.scrollEnabled}
               placeholder={editing ? t("comments.editPlaceholder") : replyTo ? t("comments.replyPlaceholder") : t("features.addComment")}
               placeholderTextColor="#6F7174"
-              style={[styles.input, { height: growing.height }]}
+              style={[styles.input, growing.sizeStyle()]}
               maxLength={500}
               multiline
             />

@@ -2071,16 +2071,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 }
                 placeholderTextColor="#6F7174"
                 style={{
-                  flex: 1,
+                  // No flex: 1 here: in this column a zero flex basis pinned
+                  // the iPhone field to its minimum height.
+                  alignSelf: "stretch",
                   color: "#F9FBFF",
                   fontSize: 14,
                   // Seven lines of 14px text before it starts scrolling. The
                   // Post control is a sibling, not an overlay, so the box is
                   // free to grow into the row.
-                  maxHeight: 140,
                   // Two lines tall once open, so the text sits above the tool
                   // row instead of beside a stack of buttons.
-                  height: Math.max(growingInput.height, composerOpen ? 40 : 0),
+                  ...growingInput.sizeStyle(composerOpen ? 40 : 0),
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.

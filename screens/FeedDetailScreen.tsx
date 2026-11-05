@@ -1919,8 +1919,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                     // Seven lines of 14px text before it starts scrolling. The
                     // send control is a sibling, not an overlay, so the box is
                     // free to grow into the row.
-                    maxHeight: 140,
-                    height: growingInput.height,
+                    ...growingInput.sizeStyle(),
                     paddingVertical: 0,
                     // Android multiline inputs top-align regardless of the parent.
                     textAlignVertical: inputText.length ? "top" : "center",
