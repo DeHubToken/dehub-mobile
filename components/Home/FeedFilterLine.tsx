@@ -184,12 +184,21 @@ export function FeedPresetsRow({
   activeName?: string | null;
   onApply: (name: string) => void;
   onDelete: (name: string) => void;
-  onSaveCurrent: () => void;
+  onSaveCurrent: (name: string) => void;
   canSaveCurrent: boolean;
 }) {
   const { t } = useTranslation();
   const c = useLineColors();
   const [editing, setEditing] = useState(false);
+  const [naming, setNaming] = useState(false);
+  const [name, setName] = useState("");
+  const commit = () => {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    onSaveCurrent(trimmed);
+    setNaming(false);
+    setName("");
+  };
   if (presets.length === 0 && !canSaveCurrent) return null;
 
   return (
@@ -219,8 +228,25 @@ export function FeedPresetsRow({
             </TouchableOpacity>
           );
         })}
-        {canSaveCurrent && !editing ? (
-          <TouchableOpacity onPress={onSaveCurrent} accessibilityRole="button" style={{ height: 34, paddingHorizontal: 12, borderRadius: 12, borderWidth: 1, borderStyle: "dashed", borderColor: c.openBorder, justifyContent: "center" }}>
+        {canSaveCurrent && !editing && naming ? (
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+            <TextInput
+              autoFocus
+              value={name}
+              onChangeText={(v) => setName(v.slice(0, MAX_PRESET_NAME))}
+              onSubmitEditing={commit}
+              returnKeyType="done"
+              placeholder={t("feedFilters.presetName", "Preset name")}
+              placeholderTextColor={c.muted}
+              accessibilityLabel={t("feedFilters.presetName", "Preset name")}
+              style={{ width: 140, height: 34, borderRadius: 12, borderWidth: 1, borderColor: c.openBorder, paddingHorizontal: 10, color: c.text, fontSize: 14 }}
+            />
+            <TouchableOpacity onPress={commit} disabled={!name.trim()} accessibilityRole="button" style={{ height: 34, paddingHorizontal: 12, borderRadius: 12, backgroundColor: c.btnBg, justifyContent: "center", opacity: name.trim() ? 1 : 0.5 }}>
+              <Text style={{ fontSize: 14, fontWeight: "600", color: c.text }}>{t("feedFilters.save", "Save")}</Text>
+            </TouchableOpacity>
+          </View>
+        ) : canSaveCurrent && !editing ? (
+          <TouchableOpacity onPress={() => setNaming(true)} accessibilityRole="button" style={{ height: 34, paddingHorizontal: 12, borderRadius: 12, borderWidth: 1, borderStyle: "dashed", borderColor: c.openBorder, justifyContent: "center" }}>
             <Text style={{ fontSize: 14, color: c.text }}>{t("feedFilters.saveCurrent", "+ Save current")}</Text>
           </TouchableOpacity>
         ) : null}

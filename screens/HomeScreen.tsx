@@ -32,7 +32,7 @@ import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } from "../components/Home/IslandTopBar";
-import NewPostsBead, { CHIP_GAP, CHIP_HEIGHT } from "../components/Home/NewPostsBead";
+import NewPostsBead, { CHIP_GAP, CHIP_HEIGHT, type FeedDrawerFilters } from "../components/Home/NewPostsBead";
 import { useNewPostsBead } from "../libs/new-posts-bead";
 import FeedSearchResults from "../components/Home/FeedSearchResults";
 import FeedSearchLens, { LENS_DOCK_SPACE } from "../components/Home/FeedSearchLens";
@@ -80,8 +80,8 @@ import { useAppTheme } from "../context/ThemeContext";
 import { FrostedBackground, FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
-import FollowTagBar from "../components/Home/FollowTagBar";
-import FeedFilterLine, { FeedPresetsRow, type FeedFilterLineItem } from "../components/Home/FeedFilterLine";
+import { useFollowTag } from "../components/Home/FollowTagBar";
+import { FeedPresetsRow, type FeedFilterLineItem } from "../components/Home/FeedFilterLine";
 import { deleteFeedPreset, feedPresetsEvents, presetMatches, readFeedPresets, saveFeedPreset, type AppFeedPreset } from "../libs/feed-presets";
 import { setFeedPostHost } from "../libs/feedPostHost";
 
@@ -914,11 +914,10 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [beginFilterTransition]);
 
-  // Every active filter in one line above the feed (FeedFilterLine), with
-  // saved presets. One hashtag on its own keeps the Follow bar.
+  // Every active filter shows as words in the drawer under the nav pill
+  // (NewPostsBead), with saved presets in the filter panel.
   const [feedPresets, setFeedPresets] = useState<AppFeedPreset[]>(readFeedPresets);
   useEffect(() => feedPresetsEvents.subscribe(() => setFeedPresets(readFeedPresets())), []);
-  const [presetSaveRequest, setPresetSaveRequest] = useState(0);
   const homeFilterPostType = filters.postType === "article" || filters.postType === "video" ? filters.postType : undefined;
   const currentPreset = useMemo<Omit<AppFeedPreset, "name">>(() => ({
     sortBy: filters.sortBy !== DEFAULT_FILTERS.sortBy ? filters.sortBy : undefined,
@@ -993,29 +992,34 @@ export default function HomeScreen() {
     }));
     return items;
   }, [t, filters, homeFilterPostType, selectedCategory, applyFilters, handleCategorySelect]);
-  const onlyTag = !!selectedCategory && filterLineItems.length === 1;
+  const onlyTag = selectedCategory && filterLineItems.length === 1 ? selectedCategory : "";
+  const tagFollow = useFollowTag(onlyTag);
+  const showFilterDrawer = filterLineItems.length > 0;
+  // The filters drawer belongs to the lists that carry the room for it.
+  const tabKey = TAB_ORDER[activeIndex];
+  const drawerOnTab = tabKey === "all" || tabKey === "feed-simple";
+  const drawerFilters = useMemo<FeedDrawerFilters | null>(() => (showFilterDrawer && drawerOnTab ? {
+    labels: filterLineItems.map((item) => item.label),
+    presetName: activePresetName,
+    onOpen: handleFilterPress,
+    onClearAll: clearAllFilters,
+    follow: onlyTag && tagFollow.isSignedIn
+      ? { following: tagFollow.following, pending: tagFollow.pending, onToggle: tagFollow.toggle }
+      : null,
+  } : null), [showFilterDrawer, drawerOnTab, filterLineItems, activePresetName, handleFilterPress, clearAllFilters, onlyTag, tagFollow.isSignedIn, tagFollow.following, tagFollow.pending, tagFollow.toggle]);
+  // The drawer floats over the top of the feed; the feed leaves it room so the
+  // first post sits the usual 12pt under it.
   const feedHeader = useMemo(
     () =>
-      onlyTag && selectedCategory ? (
+      showFilterDrawer ? (
         <>
-          <FollowTagBar tag={selectedCategory} onClear={() => handleCategorySelect("All")} />
-          {LIVE_STAGES_HEADER}
-        </>
-      ) : filterLineItems.length > 0 ? (
-        <>
-          <FeedFilterLine
-            items={filterLineItems}
-            presetName={activePresetName}
-            onClearAll={clearAllFilters}
-            onSavePreset={(name) => saveFeedPreset({ name, ...currentPreset })}
-            saveRequest={presetSaveRequest}
-          />
+          <View testID="feed-drawer-room" style={{ height: CHIP_HEIGHT }} />
           {LIVE_STAGES_HEADER}
         </>
       ) : (
         LIVE_STAGES_HEADER
       ),
-    [onlyTag, selectedCategory, handleCategorySelect, filterLineItems, activePresetName, clearAllFilters, currentPreset, presetSaveRequest],
+    [showFilterDrawer],
   );
 
   const handleRefresh = useCallback(() => {
@@ -1306,7 +1310,7 @@ export default function HomeScreen() {
           onApply={applyPreset}
           onDelete={deleteFeedPreset}
           canSaveCurrent={filterLineItems.length > 0 && !activePresetName}
-          onSaveCurrent={() => { setFilterPanelVisible(false); setPresetSaveRequest((n) => n + 1); }}
+          onSaveCurrent={(name) => saveFeedPreset({ name, ...currentPreset })}
         />
       }
       navOverlap={theme === 'system' ? navOverlap : undefined}
@@ -1485,15 +1489,16 @@ export default function HomeScreen() {
           pointerEvents="box-none"
           style={[styles.beadHost, { top: beadTop, height: CHIP_GAP + CHIP_HEIGHT + 28, paddingTop: CHIP_GAP }, headerAnimatedStyle]}
         >
-          {showBead && newPostsBead ? (
+          {showBead && (newPostsBead || drawerFilters) ? (
             <Animated.View entering={beadEnter} exiting={beadExit}>
               <Animated.View style={chipTuckStyle}>
               <NewPostsBead
-                count={newPostsBead.count}
-                authors={newPostsBead.authors}
+                count={newPostsBead?.count ?? 0}
+                authors={newPostsBead?.authors ?? []}
                 islandChrome={island}
-                onPress={newPostsBead.onPress}
-                label={newPostsBead.label}
+                onPress={newPostsBead?.onPress ?? clearAllFilters}
+                label={newPostsBead?.label ?? ""}
+                filters={drawerFilters}
               />
             </Animated.View>
             </Animated.View>

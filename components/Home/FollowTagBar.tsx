@@ -15,7 +15,8 @@ export const FOLLOWED_TAGS_QUERY_KEY = ["followed-tags"] as const;
  * feed beside the people you follow (Mastodon's tag follows); the server does
  * the mixing, this only keeps the list. Same as web's FollowTagBar.
  */
-export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: () => void }) {
+/** Follow state for one hashtag: whether the viewer follows it and a toggle. */
+export function useFollowTag(tag: string) {
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const queryClient = useQueryClient();
@@ -24,7 +25,7 @@ export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: (
   const { data: followed = [] } = useQuery({
     queryKey: FOLLOWED_TAGS_QUERY_KEY,
     queryFn: getFollowedTags,
-    enabled: isSignedIn,
+    enabled: isSignedIn && !!name,
     staleTime: 5 * 60 * 1000,
   });
   const following = followed.includes(name);
@@ -52,6 +53,12 @@ export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: (
     },
   });
 
+  return { name, following, isSignedIn, pending: mutation.isPending, toggle: () => mutation.mutate(!following) };
+}
+
+export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: () => void }) {
+  const { t } = useTranslation();
+  const { name, following, isSignedIn, pending, toggle } = useFollowTag(tag);
   return (
     // Same width as the pill and cards (the list pads the sides), with a card's
     // 6pt above and below so the gaps either side are an even 12pt.
@@ -60,10 +67,10 @@ export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: (
       <Text className="ml-2 flex-1 text-sm font-semibold text-white" numberOfLines={1}>{name}</Text>
       {isSignedIn && (
         <TouchableOpacity
-          onPress={() => mutation.mutate(!following)}
-          disabled={mutation.isPending}
+          onPress={toggle}
+          disabled={pending}
           accessibilityRole="button"
-          accessibilityState={{ selected: following, disabled: mutation.isPending }}
+          accessibilityState={{ selected: following, disabled: pending }}
           accessibilityLabel={following ? t("followedTags.unfollow", { tag: name }) : t("followedTags.follow", { tag: name })}
           className={`ml-2 rounded-full px-3 py-1 ${following ? "border border-white/20" : "bg-white"}`}
         >
