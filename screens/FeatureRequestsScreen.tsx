@@ -23,7 +23,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  * sized against measured text widths rather than guessed at — three tabs with
  * icons and count badges fit from 360pt up, and the icons drop below that.
  *
- * Not ported from web: the per-card translate control, and the Bookmark / Tips /
+ * Not ported from web: the Bookmark / Tips /
  * Post-info actions in the shared post ActionBar — none of them have a
  * feature-request row behind them, so they would ship as dead buttons.
  */
@@ -80,6 +80,8 @@ import {
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useCanGoBack } from "../hooks/useCanGoBack";
 import { useTranslation } from "react-i18next";
+import { useTranslation as useAutoTranslate } from "../hooks/useTranslation";
+import TranslateButton from "../components/ui/TranslateButton";
 import type { TFunction } from "i18next";
 import {
   useFeatureRequests,
@@ -325,6 +327,16 @@ const FeatureCard: React.FC<{
   const [editDescription, setEditDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:editDescription", feature.description, feature.id);
   const [editCategory, setEditCategory] = useState<FeatureCategory>(feature.category);
 
+  // Same auto-translate as posts: a request in another language reads in the
+  // reader's own, with the usual "Translated from ... / Show original" line.
+  const translationTexts = useMemo(() => ({ title: feature.title || "", description: feature.description || "" }),
+    [feature.title, feature.description]);
+  const translation = useAutoTranslate(translationTexts, undefined, true, true, feature.id);
+  const shownTitle = translation.isTranslated ? (translation.translatedTexts.title || feature.title) : feature.title;
+  const shownDescription = translation.isTranslated
+    ? (translation.translatedTexts.description || feature.description)
+    : feature.description;
+
   const badge = STATUS_BADGE[feature.status];
   const isNotFeasible = feature.status === "declined";
   const notFeasibleReason = isNotFeasible ? feature.status_note?.trim() || "" : "";
@@ -551,8 +563,17 @@ const FeatureCard: React.FC<{
         </View>
       ) : (
         <View style={{ paddingTop: 4, gap: 8 }}>
-          <Text style={styles.cardTitle}>{feature.title}</Text>
-          {!!feature.description && feature.description !== feature.title && <Text style={styles.cardDesc}>{feature.description}</Text>}
+          <Text style={styles.cardTitle}>{shownTitle}</Text>
+          {!!feature.description && feature.description !== feature.title && <Text style={styles.cardDesc}>{shownDescription}</Text>}
+          {translation.shouldShow && (
+            <TranslateButton
+              isTranslated={translation.isTranslated}
+              isLoading={translation.isLoading}
+              detectedLanguage={translation.sourceLang}
+              onTranslate={translation.handleTranslate}
+              onShowOriginal={translation.handleShowOriginal}
+            />
+          )}
 
           <Attachments feature={feature} />
 
