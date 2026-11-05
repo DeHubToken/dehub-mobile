@@ -13,7 +13,7 @@
  * working; it hands straight over to Fractions with the same params.
  */
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, Alert, useWindowDimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -36,7 +36,7 @@ import { shareWithRef } from "../libs/shareRef";
 import { theme } from "../theme";
 import { useWeb3Provider } from "../hooks/use-web3";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import { CHAIN_LABEL, MARKET_CHAINS, WrongChainError, fillListings, nftMarket, type MarketCollection, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
+import { CHAIN_LABEL, MARKET_CHAINS, OPENSEA_CHAINS, WrongChainError, buyOpenSea, fillListings, formatVolume, nftMarket, type MarketCollection, type OpenSeaListing, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
 
 type Tab = "browse" | "mine" | "activity";
 type ActivityKind = "all" | "sale" | "listing" | "offer";
@@ -61,7 +61,7 @@ const compactNumber = (n: number) => n.toLocaleString(undefined, { notation: "co
 const TABS: { key: Tab; icon: string; labelKey: string; fallback: string }[] = [
   { key: "browse", icon: "search", labelKey: "nftMarket.tabBrowse", fallback: "Browse" },
   { key: "mine", icon: "nfts", labelKey: "nftMarket.tabMine", fallback: "Yours" },
-  { key: "activity", icon: "stats", labelKey: "nftMarket.tabActivity", fallback: "Activity" },
+  { key: "activity", icon: "stats", labelKey: "nftMarket.tabRecent", fallback: "Recent" },
 ];
 
 /** iOS outside the US gets no link out at all. */
@@ -328,6 +328,54 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
     queryFn: () => nftMarket.wallet(signer!.account, walletChain),
     enabled: tab === "mine" && !!signer,
   });
+  // Best open offer on each NFT you hold.
+  const bestOffers = useQuery({
+    queryKey: ["nft-market", "best-offers", walletChain, (wallet.data?.items ?? []).map((n) => `${n.contract}:${n.tokenId}`).join(",")],
+    queryFn: () => nftMarket.bestOffers(walletChain, (wallet.data?.items ?? []).map((n) => ({ contract: n.contract, tokenId: n.tokenId }))),
+    enabled: tab === "mine" && !!wallet.data?.items.length,
+    staleTime: 30_000,
+  });
+  const offerOn = useMemo(() => {
+    const m = new Map<string, { amount: string; decimals: number; symbol: string }>();
+    for (const o of bestOffers.data?.items ?? []) m.set(`${o.contract}:${o.tokenId}`, { amount: o.price, decimals: o.currencyDecimals, symbol: o.currencySymbol });
+    return m;
+  }, [bestOffers.data]);
+
+  // OpenSea's best listings on their top collections, buyable here.
+  const osChains: number[] = chain === "all" ? [...OPENSEA_CHAINS] : (OPENSEA_CHAINS as readonly number[]).includes(chain as number) ? [chain as number] : [];
+  const openSea = useQuery({
+    queryKey: ["nft-market", "opensea", osChains.join(",")],
+    queryFn: async () => (await Promise.all(osChains.map((c) => nftMarket.openSea(c).then((r) => r.items, () => [] as OpenSeaListing[])))).flat(),
+    enabled: tab === "browse" && canTrade && osChains.length > 0,
+    staleTime: 5 * 60_000,
+  });
+  const buyFromOpenSea = (l: OpenSeaListing) => {
+    if (!signer) return signIn();
+    const name = l.nftName || `${l.collectionName ?? ""} #${l.tokenId}`;
+    Alert.alert(
+      t("nftMarket.buyConfirm", { name, defaultValue: "Buy {{name}}?" }),
+      `${formatPrice(l.price, l.currencyDecimals)} ${l.currencySymbol} · ${CHAIN_LABEL[l.chainId]}\n${t("nftMarket.openSeaNote", { defaultValue: "Listed on OpenSea. You pay the seller directly on Seaport; Riftn adds no fee." })}`,
+      [
+        { text: t("nftMarket.cancel", { defaultValue: "Cancel" }), style: "cancel" },
+        {
+          text: t("nftMarket.buyNow", { defaultValue: "Buy now" }),
+          onPress: async () => {
+            try {
+              await buyOpenSea(signer, l);
+              toastSuccess(t("nftMarket.bought", { defaultValue: "Bought. It is in your wallet now." }));
+              void queryClient.invalidateQueries({ queryKey: ["nft-market"] });
+            } catch (e) {
+              const msg = e instanceof WrongChainError
+                ? t("nftMarket.wrongChain", { chain: e.message, defaultValue: "Switch your wallet to {{chain}} to trade this" })
+                : (e as Error)?.message || t("nftMarket.failed", { defaultValue: "That didn't go through. Try again." });
+              toastError(/user rejected|denied|cancel/i.test(msg) ? t("nftMarket.cancelled", { defaultValue: "Cancelled" }) : msg);
+            }
+          },
+        },
+      ],
+    );
+  };
+
   const myOrders = useQuery({
     queryKey: ["nft-market", "orders", "mine", signer?.account],
     queryFn: () => nftMarket.orders({ maker: signer!.account, status: "active", limit: 60 }),
@@ -391,6 +439,9 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
           <Text numberOfLines={1} style={styles.collTitle}>
             {coll.name || t("nftMarket.thisCollection", { defaultValue: "This collection" })}
             <Text style={styles.collCount}>
+              {coll.floor ? ` · ${t("nftMarket.floor", { defaultValue: "Floor" })} ${formatPrice(coll.floor.amount, coll.floor.decimals)} ${coll.floor.symbol}` : ""}
+              {coll.volume && coll.sales ? ` · ${t("nftMarket.volShort", { defaultValue: "Vol" })} ${formatVolume(coll.volume)}` : ""}
+              {coll.sales ? ` · ${t("nftMarket.salesCount", { n: coll.sales, defaultValue: "{{n}} sold" })}` : ""}
               {" · "}
               {coll.listed
                 ? t("nftMarket.listedCount", { n: coll.listed, defaultValue: "{{n}} for sale" })
@@ -460,6 +511,36 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
       </View>
     ) : null;
 
+  const osItems = !coll && !cartMode ? (openSea.data ?? []).slice(0, 24) : [];
+  const openSeaFooter = osItems.length ? (
+    <View style={styles.showcase}>
+      <View style={styles.sectionRow}>
+        <Text style={styles.sectionTitle}>{t("nftMarket.fromOpenSea", { defaultValue: "Top collections on OpenSea" })}</Text>
+        <Text style={styles.sectionHint}>{t("nftMarket.buyHere", { defaultValue: "Buy them here" })}</Text>
+      </View>
+      {Array.from({ length: Math.ceil(osItems.length / 3) }, (_, r) => (
+        <View key={r} style={[styles.gridRowTight, { flexDirection: "row" }]}>
+          {pad(osItems.slice(r * 3, r * 3 + 3), 3).map((l, i) =>
+            l ? (
+              <NftTile
+                key={l.orderHash}
+                compact
+                artWidth={tile3}
+                name={l.nftName || `${l.collectionName ?? ""} #${l.tokenId}`}
+                image={l.nftImage}
+                chainId={l.chainId}
+                price={{ amount: l.price, decimals: l.currencyDecimals, symbol: l.currencySymbol }}
+                onPress={() => buyFromOpenSea(l)}
+              />
+            ) : (
+              <View key={`o-${i}`} style={styles.spacer} />
+            ),
+          )}
+        </View>
+      ))}
+    </View>
+  ) : null;
+
   const orderGrid = (q: typeof listings, emptyTitle: string, emptyBody?: string, sold?: boolean) => {
     const compact = !sold;
     const cols = compact ? 3 : 2;
@@ -471,7 +552,7 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
       numColumns={cols}
       columnWrapperStyle={compact ? styles.gridRowTight : styles.gridRow}
       ListHeaderComponent={sold ? chips : browseHeader}
-      ListFooterComponent={sold ? null : showcaseFooter}
+      ListFooterComponent={sold ? null : <>{showcaseFooter}{openSeaFooter}</>}
       contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 96 }]}
       showsVerticalScrollIndicator={false}
       refreshControl={<DeHubRefreshControl refreshing={q.isRefetching} onRefresh={q.refetch} tintColor="#fff" />}
@@ -595,8 +676,8 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
             collection={item.collectionName}
             image={item.image}
             chainId={walletChain}
-            price={listed ? { amount: listed.price, decimals: listed.currencyDecimals, symbol: listed.currencySymbol } : null}
-            priceLabel={listed ? t("nftMarket.listedAt", { defaultValue: "Listed" }) : undefined}
+            price={listed ? { amount: listed.price, decimals: listed.currencyDecimals, symbol: listed.currencySymbol } : offerOn.get(`${item.contract.toLowerCase()}:${item.tokenId}`) ?? null}
+            priceLabel={listed ? t("nftMarket.listedAt", { defaultValue: "Listed" }) : offerOn.has(`${item.contract.toLowerCase()}:${item.tokenId}`) ? t("nftMarket.bestOffer", { defaultValue: "Best offer" }) : undefined}
             badge={item.standard === "erc1155" && item.balance !== "1" ? `×${item.balance}` : null}
             onPress={() => setOpen({ chainId: walletChain, contract: item.contract, tokenId: item.tokenId, standard: item.standard, name: item.name, image: item.image, collectionName: item.collectionName })}
           />

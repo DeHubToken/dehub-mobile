@@ -7,7 +7,7 @@ import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { NftArt, formatPrice } from "./NftTile";
 import { KeepDarkScope } from "../../libs/jsx/tone";
-import { CHAIN_LABEL, type MarketCollection } from "../../services/nft-market.service";
+import { CHAIN_LABEL, formatVolume, type MarketCollection } from "../../services/nft-market.service";
 
 interface Props {
   items: MarketCollection[];
@@ -50,6 +50,7 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
                   {c.listed
                     ? t("nftMarket.listedCount", { n: c.listed, defaultValue: "{{n}} for sale" })
                     : t("nftMarket.mintedCount", { n: c.minted ?? 0, defaultValue: "{{n}} minted" })}
+                  {c.volume && c.sales ? ` · ${t("nftMarket.volShort", { defaultValue: "Vol" })} ${formatVolume(c.volume)}` : ""}
                 </Text>
               </View>
             </Pressable>
