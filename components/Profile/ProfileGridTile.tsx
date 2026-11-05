@@ -13,6 +13,7 @@ import { secondsToHMMSS } from "../../libs/date.util";
 import { isStreamLive } from "../../libs/live-status";
 import { useEngagement } from "../../libs/engagementCache";
 import { POST_BG_INK, PostBgLayer, useProfilePostBg } from "./PostBackground";
+import { usePostBgHoldProps } from "./PostBgPicker";
 
 /**
  * One cell of the profile All grid: every post type side by side, each with
@@ -72,9 +73,11 @@ interface ProfileGridTileProps {
   item: UnifiedFeedItem;
   pinned?: boolean;
   onPress: (item: UnifiedFeedItem, kind: GridTileKind, images: string[]) => void;
+  /** Your own profile: holding one of your text posts opens the background picker. */
+  ownerHold?: boolean;
 }
 
-const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress }) => {
+const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress, ownerHold }) => {
   const { t } = useTranslation();
   // Written dark, like the rest of the app: System Light's tone pass turns
   // the poster tiles to ink on white, and media tiles stay dark-surface.
@@ -114,6 +117,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const postBg = kind === "text" && !(item as any).isRepost ? profileBg : null;
   const ink = postBg ? POST_BG_INK[postBg.tone].ink : "#FFFFFF";
   const sub = postBg ? POST_BG_INK[postBg.tone].sub : "rgba(255,255,255,0.6)";
+  const holdProps = usePostBgHoldProps(!!ownerHold && kind === "text" && !(item as any).isRepost);
 
   const pinChip = pinned ? (
     <View style={[styles.chip, { backgroundColor: solid }]}>
@@ -206,6 +210,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   return (
     <Pressable
       onPress={() => onPress(item, kind, images)}
+      {...holdProps}
       accessibilityRole="button"
       accessibilityLabel={label}
       style={({ pressed }) => [styles.cell, pressed && styles.pressed]}

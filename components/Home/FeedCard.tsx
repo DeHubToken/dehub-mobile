@@ -280,6 +280,8 @@ interface FeedCardProps {
   onCategorySelect?: (category: string) => void;
   fullContent?: boolean;
   disablePress?: boolean;
+  /** Held press on the card (450 ms): own profile text posts open the background picker. */
+  onHold?: () => void;
   onCommentPress?: () => void;
   isVisible?: boolean;
   /** True on the one card the list has handed autoplay to. A card that is
@@ -410,6 +412,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   onCategorySelect,
   fullContent = false,
   disablePress = false,
+  onHold,
   onCommentPress: onCommentPressProp,
   isVisible = true,
   isAutoplayActive = true,
@@ -2400,6 +2403,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           testID="tablet-portrait-feed-card"
           onLayout={e => { if (e.nativeEvent.layout.width > 0) setTabletColumnWidth(e.nativeEvent.layout.width); }}
           onPress={disablePress ? undefined : handleCardPress}
+          onLongPress={onHold}
+          delayLongPress={onHold ? 450 : undefined}
           disabled={disablePress}
           style={isMinimal || cinematicFeed ? {
             padding: 12, marginVertical: 6,
@@ -2422,7 +2427,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
                 isHidden={isHidden}
               />
-              <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
+              <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress} onHold={onHold}>
                 <FeedCaption resetKey={postKey} statsTokenId={tokenId} title={overlayTitle || undefined} description={displayCaption || undefined}
                   variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
                   onCategoryPress={onCategorySelect} onCashtagPress={setActiveCashtag} />
@@ -2716,6 +2721,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       <Pressable
         collapsable={false}
         onPress={disablePress ? undefined : handleCardPress}
+        onLongPress={onHold}
+        delayLongPress={onHold ? 450 : undefined}
         disabled={disablePress}
         // No bento: the post steps out over the list's side padding so its
         // media spans the screen, and posts are split by a hairline across
@@ -2823,6 +2830,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                   immediatePress
                   onReaction={handleVideoTapReaction}
                   onPress={disablePress ? undefined : handleCardPress}
+                  onHold={onHold}
                 >
                   {!!localArticleBody && (
                     <View className="mb-3">
@@ -2882,6 +2890,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 immediatePress
                 onReaction={handleVideoTapReaction}
                 onPress={disablePress ? undefined : handleCardPress}
+                onHold={onHold}
               >
                 <View style={[{ paddingTop: 10 }, chipOverMedia && !firstVideoHeaderBelow && [styles.captionBesideOptions, (contentType === "video" || contentType === "short") && isOwnerPost && isSignedIn && tokenId != null && { paddingRight: 64 }]]}>
                   <FeedCaption
@@ -2930,6 +2939,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <Pressable
       collapsable={false}
       onPress={disablePress ? undefined : handleCardPress}
+      onLongPress={onHold}
+      delayLongPress={onHold ? 450 : undefined}
       disabled={disablePress}
       // Matches the web feed tile (dehubweb HomeFeed.tsx:1066 + index.css:1264):
       // a hairline over the page, with no fill in System on either platform,
@@ -3072,6 +3083,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onPressIntent={warmPost}
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}
+        onHold={onHold}
       >
       {!!localArticleBody && (
         <View className="mx-4 mb-3">
