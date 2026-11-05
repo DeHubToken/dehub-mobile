@@ -208,15 +208,22 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   }
 
   return (
-    <Pressable
-      onPress={() => onPress(item, kind, images)}
-      {...holdProps}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      style={({ pressed }) => [styles.cell, pressed && styles.pressed]}
-    >
-      {body}
-    </Pressable>
+    // The size lives on a plain View and the Pressable gets a plain style
+    // object. System Light's tone pass re-creates a style *function*, and
+    // NativeWind drops a style function on a native Pressable, so the 3:4
+    // size went with it: picture tiles (all absolute layers) came out 0 tall
+    // and only text tiles showed on a light-theme profile.
+    <View style={styles.cell}>
+      <Pressable
+        onPress={() => onPress(item, kind, images)}
+        {...holdProps}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        style={styles.press}
+      >
+        {({ pressed }) => <View style={[styles.press, pressed && styles.pressed]}>{body}</View>}
+      </Pressable>
+    </View>
   );
 };
 
@@ -225,6 +232,7 @@ const styles = StyleSheet.create({
   // so flex:1 sized it by its content and a picture tile (all absolute
   // children) came out 0 tall on phones.
   cell: { width: "100%", aspectRatio: 3 / 4, padding: 1 },
+  press: { flex: 1 },
   pressed: { transform: [{ scale: 0.97 }] },
   fill: { flex: 1, borderRadius: 3, overflow: "hidden" },
   center: { alignItems: "center", justifyContent: "center" },
