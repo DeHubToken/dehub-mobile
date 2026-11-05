@@ -4,7 +4,10 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { View, Text, ScrollView, type TextStyle } from "react-native";
+import { View, Text, StyleSheet, type TextStyle } from "react-native";
+import { GestureDetector, ScrollView } from "react-native-gesture-handler";
+import Animated from "react-native-reanimated";
+import { useComposerSheet } from "../../hooks/useComposerSheet";
 import { toastError, toastInfo } from "../../libs";
 import { Trans, useTranslation } from "react-i18next";
 import { AuthErrorNotice, authColors, authText } from "../../components/auth/AuthControls";
@@ -130,6 +133,29 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const { provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
   const { signInWithWallet, signInWithSupabaseSession } = useAuthActions();
   const { isWalletLoading, isSignupBlocked, handleWalletConnect } = useWalletAuth();
+  // Android, opened over the app from "Log in": a sheet that follows a pull
+  // down, closes past half way (or on a flick) and springs back otherwise.
+  // As the first screen of the signed-out flow there is nothing under it, so
+  // it stays a plain page. Only the app stack opens it as that overlay; the
+  // signed-out stack is the one that also holds SetProfile.
+  const [asSheet] = useState(() => {
+    const names: string[] = navigation.getState?.()?.routeNames ?? [];
+    return !names.includes(ScreenNames.SetProfile) && !!navigation.canGoBack?.();
+  });
+  const sheet = useComposerSheet({
+    navigation,
+    active: asSheet,
+    enabled: asSheet && !(authLoading || isLocalLoading || isWalletLoading) && !needsUsername,
+    onDismiss: useCallback(() => { if (navigation.canGoBack()) navigation.goBack(); }, [navigation]),
+    willPrompt: useCallback(() => false, []),
+    onDragStart: useCallback(() => {
+      const up = Keyboard.isVisible();
+      if (up) Keyboard.dismiss();
+      return up;
+    }, []),
+    onSettleOpen: useCallback(() => {}, []),
+    grabZone: 1,
+  });
 
   // Track if we've already handled navigation for this sign-in attempt
   const hasNavigatedRef = useRef(false);
@@ -780,8 +806,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   }, [pendingPhone, handlePhoneSubmit]);
 
   const isLoading = authLoading || isLocalLoading || isWalletLoading;
-  const showLoader = isLoading && !needsUsername;;
-  return (
+  const showLoader = isLoading && !needsUsername;
+  const content = (
     <SafeAreaView className="flex-1 bg-theme-background">
       {showLoader && (
         <FullScreenLoader message={t("copy.afc99407f777", { defaultValue: "Signing you in…" })} />
@@ -804,8 +830,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         keyboardVerticalOffset={keyboardOffset}
         style={{ flex: 1 }}
       >
+        <GestureDetector gesture={sheet.scroll}>
         <ScrollView
           {...scrollViewProps}
+          onScroll={(event) => {
+            scrollViewProps.onScroll(event);
+            sheet.onScroll(event);
+          }}
           onLayout={(event) => {
             scrollViewProps.onLayout(event);
             setLoginViewportHeight(event.nativeEvent.layout.height);
@@ -934,8 +965,19 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           </View>
 
         </ScrollView>
+        </GestureDetector>
       </KeyboardAvoidingView>
     </SafeAreaView>
+  );
+
+  if (!asSheet) return content;
+  return (
+    <View style={{ flex: 1 }}>
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }, sheet.dimStyle]} />
+      <GestureDetector gesture={sheet.sheetPan}>
+        <Animated.View style={[{ flex: 1, borderTopLeftRadius: 16, borderTopRightRadius: 16, overflow: "hidden" }, sheet.sheetStyle]}>{content}</Animated.View>
+      </GestureDetector>
+    </View>
   );
 };
 
