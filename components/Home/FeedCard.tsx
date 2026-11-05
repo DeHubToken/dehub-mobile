@@ -544,7 +544,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // sent in a message — each would hand it to people it was not written for.
   const isPublicPost = !item.visibility || item.visibility === "public";
 
-  const { isMinimal, skin, theme } = useAppTheme();
+  const { isMinimal, skin, theme, isLight } = useAppTheme();
   const articleUi = useMemo(() => articleLook(theme), [theme]);
   // How far this card has to step out to span the screen. Worked out from the
   // width the list actually gives it, so a list with other padding still
@@ -2410,7 +2410,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             padding: 12, marginVertical: 6,
             borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: MINIMAL_HAIRLINE,
           } : skin ? [skin.card, { padding: 12, marginVertical: 6 }] : {
-            borderWidth: theme === 'system' ? 0 : 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
+            borderWidth: theme === 'system' && isLight ? 0 : 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
             backgroundColor: theme === 'system' ? 'transparent' : 'rgba(255,255,255,0.03)',
             padding: 12, marginVertical: 6,
           }}
@@ -2977,8 +2977,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         skin.card,
         { paddingTop: 12, paddingHorizontal: 12, paddingBottom: 12, marginVertical: 6 },
       ] : {
-        // System has no bento (no frame, no fill), same as web.
-        borderWidth: theme === 'system' ? 0 : 1,
+        // System keeps only the thin outline; System Light drops it too (it
+        // read as a grey box on white).
+        borderWidth: theme === 'system' && isLight ? 0 : 1,
         borderColor: 'rgba(255,255,255,0.12)',
         // Transparent also keeps the
         // control-material pass from repainting this card as a grey button.

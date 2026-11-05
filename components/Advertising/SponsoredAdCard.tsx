@@ -54,7 +54,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
   const impressionSentRef = useRef(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { height: viewportHeight } = useWindowDimensions();
-  const { isMinimal, theme } = useAppTheme();
+  const { isMinimal, theme, isLight } = useAppTheme();
 
   // Whether the impression for this creative is still owed. State rather than
   // a bare ref so the measuring loop below can stop the moment it is sent.
@@ -117,8 +117,8 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
       // Minimal: laid out like a minimal FeedCard — no box, text at the 16pt
       // inset, the creative edge to edge and one hairline under the whole ad.
       // The parent drops its side padding in minimal so this spans the screen.
-      // System: no bento either, same as its posts.
-      className={isMinimal ? undefined : theme === "system" ? "py-3" : "rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"}
+      // System: the same thin outline as its posts, no fill; none in System Light.
+      className={isMinimal ? undefined : theme === "system" ? (isLight ? "py-3" : "rounded-2xl border border-white/10 p-3") : "rounded-2xl border border-theme-neutrals-700 bg-theme-neutrals-800/50 p-3"}
       style={({ pressed }) => (isMinimal ? {
         opacity: pressed ? 0.82 : 1,
         paddingTop: 14,
