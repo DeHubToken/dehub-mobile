@@ -15,6 +15,7 @@ import { blockQuickActions } from "./libs/quickActions";
 import { bugScreenLabel } from "./libs/pageBugReport";
 import { Toaster } from "sonner-native";
 import { createToastTheme } from "./theme/toastTheme";
+import { LIGHT_PAGE_FILL } from "./theme/colors";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import {
@@ -238,6 +239,7 @@ export default function App() {
         >
         <ThemedRootView>
           <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
+            <ThemeVarsLayer>
             <MaintenanceGate>
             <AuthProvider>
               <FeedSuperpowersProvider>
@@ -312,6 +314,7 @@ export default function App() {
               </View>
             )}
             </MaintenanceGate>
+            </ThemeVarsLayer>
           </SafeAreaProvider>
         </ThemedRootView>
         </PersistQueryClientProvider>
@@ -333,6 +336,20 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
       </FrostedBackdropProvider>
     </GestureHandlerRootView>
   );
+};
+
+/**
+ * The theme's colour variables once more, inside the safe-area provider, for
+ * everything drawn outside a screen: profile and other sheets, overlays, the
+ * strips above and below the navigator. On iPhone the root view's variables
+ * did not reach them, so System Light showed those parts with the dark
+ * colours (black bars, white text on black). System Light also paints its
+ * white here: the root's own `bg-theme-background` came out black on iPhone.
+ */
+const ThemeVarsLayer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const style = useThemeRootStyle();
+  const { isLight } = useAppTheme();
+  return <View style={[{ flex: 1 }, isLight ? { backgroundColor: LIGHT_PAGE_FILL } : null, style]}>{children}</View>;
 };
 
 const ThemedToaster: React.FC = () => {

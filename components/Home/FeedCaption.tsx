@@ -14,7 +14,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
 import { openCategoryFeed } from "../../libs/openCategoryFeed";
 import { expandEmojiTokens } from "../common/EmojiText";
-import { getActiveTheme } from "../../theme/colors";
+import { getActiveTheme, LIGHT_INK } from "../../theme/colors";
+import { useAppTheme } from "../../context/ThemeContext";
 import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useRecyclingState } from "../../hooks/useCellState";
 import { tabletPortraitTitleSize } from "../../libs/tablet-portrait-feed";
@@ -279,6 +280,10 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const hasCategories = showCategories && categories && categories.length > 0;
   // War sets captions as readouts: monospace, tracked out (web war-theme.css).
   const mono = getThemeSkin(getActiveTheme())?.mono ? MONO_TEXT : null;
+  // iPhone in System Light drew the title's class colour near-white on white
+  // while the description beside it was ink; an explicit ink holds on both.
+  const { isLight } = useAppTheme();
+  const lightInk = isLight ? LIGHT_INK_TEXT : null;
 
   if (!hasTitle && !hasDescription && !hasCategories) {
     return null;
@@ -307,7 +312,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={[portraitSize ? { fontSize: portraitSize, lineHeight: portraitSize * 1.35, fontWeight: portraitSize > 16.8 ? "600" : "400", marginBottom: 8 } : large ? LARGE_TEXT : variant === "chart" ? { fontSize: 14, lineHeight: 21 } : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
+          style={[portraitSize ? { fontSize: portraitSize, lineHeight: portraitSize * 1.35, fontWeight: portraitSize > 16.8 ? "600" : "400", marginBottom: 8 } : large ? LARGE_TEXT : variant === "chart" ? { fontSize: 14, lineHeight: 21 } : { fontSize: 16.8, lineHeight: 23.1 }, mono, lightInk]}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -380,6 +385,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 };
 
 const MEDIA_TEXT = { color: "#FFFFFF", fontSize: 15, lineHeight: 21 } as const;
+const LIGHT_INK_TEXT = { color: LIGHT_INK } as const;
 const LARGE_TEXT = { fontSize: 19, lineHeight: 26, fontWeight: "500" } as const;
 
 export const FeedCaption = memo(FeedCaptionComponent);

@@ -66,12 +66,11 @@ export default function FrostedPill({ tint, borderRadius, bordered = true, live 
     return (
       <KeepDarkScope>
         <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
-          {/* iPhone blurs whatever is behind the pill, as its dark glass does.
-              Android: solid underneath either way, so the blur fades over it. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={60} tint="systemUltraThinMaterialLight" style={StyleSheet.absoluteFill} />
-          ) : <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} />}
-          {Platform.OS !== "ios" && blur ? (
+          {/* Solid underneath either way, so the blur fades over it. No
+              system blur on iPhone: in the app's dark window it came out a
+              mid-grey slab instead of web's pale frost. */}
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} />
+          {blur ? (
             <FadingBlur>
               <BlurView
                 blurTarget={target}
