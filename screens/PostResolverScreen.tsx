@@ -33,11 +33,12 @@ const PostResolverScreen: React.FC = () => {
   const commentId: string | undefined =
     route.params?.commentId ?? route.params?.c ?? route.params?.comment;
 
-  // Root already sits at the bottom of this stack. Replacing the resolver with
-  // a second Root mounted the whole tab tree twice — two home feeds fetching
-  // and scrolling under one another. Pop back to the one that exists.
+  // A link that cannot be opened returns to the screen it was tapped on (a
+  // chat, a profile), not all the way to Home. Replacing the resolver with a
+  // second Root mounted the whole tab tree twice, so a cold-start link with
+  // nothing behind it still lands on the one Root.
   const goHome = useCallback(() => {
-    if (navigation.canGoBack()) navigation.popToTop();
+    if (navigation.canGoBack()) navigation.goBack();
     else navigation.replace(ScreenNames.Root);
   }, [navigation]);
 
