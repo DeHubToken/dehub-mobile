@@ -27,6 +27,7 @@ import {
 import Animated from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
+import BlurSafeImage from "../common/BlurSafeImage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -185,7 +186,7 @@ const StreamTile: React.FC<{ stream: Stream; width: number; onPress: () => void 
         ) : (
           <>
             {stream.avatar && stream.avatar !== "default-avatar" ? (
-              <Image
+              <BlurSafeImage
                 source={{ uri: stream.avatar }}
                 style={[StyleSheet.absoluteFill, styles.tileBlur]}
                 contentFit="cover"

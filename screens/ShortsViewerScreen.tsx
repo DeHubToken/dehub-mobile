@@ -98,6 +98,7 @@ import { getVolume, setVolume as persistVolume, getIsLooping, useMediaLooping, g
 import { getCachedMuted, setMutedState, useMediaMuted } from "../libs/videoMutedState";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
+import BlurSafeImage from "../components/common/BlurSafeImage";
 import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
 import {
@@ -2042,7 +2043,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             hard line across the caption and action row. */}
         {!photoMedia && backdropSource ? (
           <View style={StyleSheet.absoluteFill} pointerEvents="none">
-            <Image source={backdropSource} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={30} transition={0} />
+            <BlurSafeImage source={backdropSource} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={30} transition={0} />
             <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.35)" }]} />
           </View>
         ) : null}
