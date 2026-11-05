@@ -215,7 +215,10 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
 };
 
 const styles = StyleSheet.create({
-  cell: { flex: 1, aspectRatio: 3 / 4, padding: 1 },
+  // Width, not flex: inside a FlashList column the cell has no set height,
+  // so flex:1 sized it by its content and a picture tile (all absolute
+  // children) came out 0 tall on phones.
+  cell: { width: "100%", aspectRatio: 3 / 4, padding: 1 },
   pressed: { transform: [{ scale: 0.97 }] },
   fill: { flex: 1, borderRadius: 3, overflow: "hidden" },
   center: { alignItems: "center", justifyContent: "center" },
