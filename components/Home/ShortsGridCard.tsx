@@ -239,7 +239,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   return (
     // Minimal: the cell behind a loading poster is black, not a grey box.
-    <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, isMinimal && styles.minimalCard]}>
+    <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, !frame && styles.tall, isMinimal && styles.minimalCard]}>
       {/* Thumbnail base layer — always rendered */}
       <Image
         source={thumbnailUri}
@@ -350,11 +350,14 @@ export { useShortsCardSize, GRID_GAP };
 
 const styles = StyleSheet.create({
   card: {
-    aspectRatio: 9 / 16,
     borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "#1A1A1A",
   },
+  // Only a plain grid card is held to 9:16. A brick-row frame sets both sides,
+  // and the ratio used to win over its width: full-width wide videos drew as a
+  // narrow tile with blank space beside it.
+  tall: { aspectRatio: 9 / 16 },
   minimalCard: { backgroundColor: "#000" },
   minimalAvatar: { backgroundColor: "rgba(255,255,255,0.04)" },
   overlay: {
