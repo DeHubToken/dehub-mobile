@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { AppState, View } from 'react-native';
+import { AppState, Text, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import Animated, {
   cancelAnimation, Easing, Extrapolation, interpolate, ReduceMotion,
@@ -11,6 +11,7 @@ import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
 import { BELL_GLYPH_PATHS, BELL_SIDE_RIPPLE_PATHS, notificationBellMotion } from '../../libs/notification-bell-motion';
 import { useAmbientMotion } from '../../hooks/useAmbientMotion';
+import { formatNotificationCount, useShowNotificationCount } from '../../libs/notification-count-setting';
 
 // Phase of the cycle after which the swing, the red glow and both side ripples
 // (latest echo starts at 0.13 and lasts 0.4) are all back at rest.
@@ -62,6 +63,7 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
   active?: boolean;
 }) {
   const profile = notificationBellMotion(unread);
+  const showCount = useShowNotificationCount();
   const { isLight } = useAppTheme();
   const focused = useIsFocused();
   const reduced = useReducedMotion();
@@ -143,6 +145,18 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
             profile={profile} color={red} reduced={reduced} />
         )))}
       </Animated.View>
+      {/* Opt-in: Notification settings → "Show the number on the bell". */}
+      {showCount && profile.unread > 0 && (
+        <View style={{
+          position: 'absolute', top: -size * 0.22, right: -size * 0.38,
+          minWidth: 16, height: 16, paddingHorizontal: 4, borderRadius: 8,
+          backgroundColor: red, alignItems: 'center', justifyContent: 'center',
+        }}>
+          <Text allowFontScaling={false} style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '700', lineHeight: 14, fontVariant: ['tabular-nums'] }}>
+            {formatNotificationCount(profile.unread)}
+          </Text>
+        </View>
+      )}
     </View>
   );
 });
