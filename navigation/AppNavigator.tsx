@@ -118,7 +118,7 @@ function useWarmScreens(enabled: boolean) {
 const DRAWER_ROUTES = new Set<string>([
   ScreenNames.Notifications, ScreenNames.ImageFeed, ScreenNames.ShortsViewer,
   // The Android composer sheet: the page shows under it while it is dragged.
-  ...(Platform.OS === 'android' ? [ScreenNames.Upload] : []),
+  ...(Platform.OS === 'android' ? [ScreenNames.Upload, ScreenNames.SignIn] : []),
 ]);
 function opensDrawerOverRoot(state: { routes: { name: string }[] }): boolean {
   const above = state.routes[1];
@@ -587,13 +587,15 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.SignIn}
-          getComponent={() => deferredScreen(SIGN_IN_KEY, loadSignIn, SignInShell)}
-          options={{
+          getComponent={Platform.OS === 'android' ? loadSignIn : () => deferredScreen(SIGN_IN_KEY, loadSignIn, SignInShell)}
+          options={Platform.OS === 'android'
+            // Android: a sheet over the page, like the composer. Its native
+            // modal has no drag-down, so the screen slides, follows a pull
+            // and springs back by itself (hooks/useComposerSheet).
+            ? { presentation: 'transparentModal', contentStyle: { backgroundColor: 'transparent' }, animation: 'none' }
             // Was a hand-drawn rgba(0,0,0,0.35) overlay fade under a slide-up
             // interpolator. A native modal presentation dims for itself.
-            presentation: 'modal',
-            animation: 'slide_from_bottom',
-          }}
+            : { presentation: 'modal', animation: 'slide_from_bottom' }}
         />
       </Stack.Group>
 

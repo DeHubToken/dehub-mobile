@@ -47,11 +47,17 @@ type Options = {
   onDragStart: () => boolean;
   /** The sheet sprang back after a drag that began with the keyboard up. */
   onSettleOpen: () => void;
+  /** False keeps this screen a plain page (no slide, no drag). Read once at
+   *  mount. Defaults to the Android sheet. */
+  active?: boolean;
+  /** Share of the screen, from the top, where a pull can start the drag. */
+  grabZone?: number;
 };
 
-export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, onDragStart, onSettleOpen }: Options) {
+export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, onDragStart, onSettleOpen, active: activeOpt, grabZone = GRAB_ZONE }: Options) {
   const { height } = useWindowDimensions();
-  const y = useSharedValue(COMPOSER_SHEET ? height : 0);
+  const [active] = useState(COMPOSER_SHEET && (activeOpt ?? true));
+  const y = useSharedValue(active ? height : 0);
   const scrollY = useSharedValue(0);
   const holdDrag = useSharedValue(false);
   const startX = useSharedValue(0);
@@ -62,11 +68,11 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
   // Everything the first frame does not need (the closed sheets and drawers
   // the composer can open) mounts once the sheet is up, so the slide starts
   // as soon as possible after the tap.
-  const [extrasReady, setExtrasReady] = useState(!COMPOSER_SHEET);
+  const [extrasReady, setExtrasReady] = useState(!active);
 
   // Layout effect: starts the slide before the screen's other effects run.
   useLayoutEffect(() => {
-    if (!COMPOSER_SHEET) return;
+    if (!active) return;
     y.value = withTiming(0, OPEN);
     const timer = setTimeout(() => startTransition(() => setExtrasReady(true)), OPEN.duration + 60);
     return () => clearTimeout(timer);
@@ -76,7 +82,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
 
   // Every way out slides the sheet down first, from wherever it is.
   useEffect(() => {
-    if (!COMPOSER_SHEET) return;
+    if (!active) return;
     return navigation.addListener("beforeRemove", (e: any) => {
       if (leaving.current) return;
       leaving.current = true;
@@ -87,7 +93,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
       const finish = () => navigation.dispatch(action);
       y.value = withTiming(height, SHUT, () => runOnJS(finish)());
     });
-  }, [navigation, height, y]);
+  }, [active, navigation, height, y]);
 
   /** Leave without the slide (the morph landing carries on from the sheet). */
   const leaveWithoutSlide = useCallback(() => {
@@ -107,7 +113,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
   }, [onSettleOpen]);
 
   const pan = useMemo(() => Gesture.Pan()
-    .enabled(COMPOSER_SHEET && enabled)
+    .enabled(active && enabled)
     .manualActivation(true)
     .onTouchesDown((e) => {
       const touch = e.allTouches[0];
@@ -120,7 +126,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
       if (!touch) return;
       const dx = touch.absoluteX - startX.value;
       const dy = touch.absoluteY - startY.value;
-      if (holdDrag.value || scrollY.value > 1 || startY.value > height * GRAB_ZONE || e.allTouches.length > 1) {
+      if (holdDrag.value || scrollY.value > 1 || startY.value > height * grabZone || e.allTouches.length > 1) {
         state.fail();
         return;
       }
@@ -147,7 +153,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
     })
     .onFinalize((_e, success) => {
       if (!success && y.value > 0 && y.value < height) y.value = withSpring(0, SPRING);
-    }), [enabled, height, release, dragStarted, settledOpen, y, scrollY, holdDrag, startX, startY]);
+    }), [active, enabled, grabZone, height, release, dragStarted, settledOpen, y, scrollY, holdDrag, startX, startY]);
 
   /** Lets the scroll view inside the sheet run alongside the drag. */
   const scroll = useMemo(() => Gesture.Native(), []);
