@@ -27,6 +27,7 @@ import {
   ActivityIndicator,
   useWindowDimensions,
   StyleSheet,
+  Platform,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Animated, {
@@ -111,7 +112,10 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  const backdrop = useSheetBackdrop();
+  // Android blurs the page behind live and re-samples it on every window
+  // draw, so a sheet that scrolls (or plays GIFs) paid for it each frame.
+  // A plain scrim there, as the comments sheet and page drawers already use.
+  const backdrop = useSheetBackdrop(Platform.OS !== "android");
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [people, setPeople] = useState<CommentLiker[]>([]);
