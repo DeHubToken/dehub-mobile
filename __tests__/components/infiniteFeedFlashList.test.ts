@@ -79,7 +79,7 @@ describe('InfiniteFeed on FlashList', () => {
     expect(feed).toContain('keyExtractor={rowKeyOf}');
     expect(feed).toContain('rowKey={rowKeyOf(info.item, info.index)}');
     expect(feed).toContain('rowKeyOfRef.current(v.item, v.index ?? 0)');
-    expect(feed).toContain('getItemType={numColumns && numColumns > 1 ? gridItemType : feedPostType}');
+    expect(feed).toContain('getItemType={numColumns && numColumns > 1 ? gridItemTypeProp ?? gridItemType : feedPostType}');
   });
 
   it('rebuilds visibility from the full visible set, never from `changed`', () => {
