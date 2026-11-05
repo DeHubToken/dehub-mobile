@@ -24,6 +24,8 @@ import {
 } from "../../libs/top-builders";
 
 const SHOWN = 8;
+/** Extra rows added per "Show more" tap once the full list is open. */
+const PAGE = 20;
 const VOTES_COLOR = "rgb(245,200,75)";
 const COMMENTS_COLOR = "rgb(125,211,252)";
 
@@ -133,10 +135,11 @@ function Row({ b, rank, max, open, onToggle }: { b: TopBuilder; rank: number; ma
   );
 }
 
-/** compact: the Prompts tab version, top 3 with a "Show top 8" toggle. */
+/** compact: the Prompts tab version, top 3 with a "Show all N builders" button (20 more per tap). */
 export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation();
-  const [expanded, setExpanded] = useState(false);
+  const base = compact ? 3 : SHOWN;
+  const [visible, setVisible] = useState(base);
   const { skin, isMinimal } = useAppTheme();
   const shippedColor = useShippedColor();
   const [period, setPeriod] = React.useContext(PeriodContext);
@@ -144,7 +147,7 @@ export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
   const { builders, isLoading } = useTopBuilders(period);
   if (!isLoading && builders.length === 0) return null;
   const max = builders[0]?.points ?? 1;
-  const limit = compact && !expanded ? 3 : SHOWN;
+  const limit = Math.max(base, visible);
 
   return (
     <ThemePanel style={[styles.card, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
@@ -155,7 +158,7 @@ export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
         </View>
         <View style={styles.seg}>
           {(["month", "all"] as const).map((p) => (
-            <Pressable key={p} onPress={() => { setPeriod(p); setOpenKey(null); }} style={[styles.segBtn, period === p && styles.segOn]} accessibilityState={{ selected: period === p }}>
+            <Pressable key={p} onPress={() => { setPeriod(p); setOpenKey(null); setVisible(base); }} style={[styles.segBtn, period === p && styles.segOn]} accessibilityState={{ selected: period === p }}>
               <Text style={[styles.segText, period === p && styles.segTextOn]}>
                 {p === "month" ? t("features.topBuilders.month", "This month") : t("features.topBuilders.allTime", "All time")}
               </Text>
@@ -173,14 +176,23 @@ export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
         : builders.slice(0, limit).map((b, i) => (
           <Row key={b.wallet} b={b} rank={i + 1} max={max} open={openKey === b.wallet} onToggle={() => setOpenKey((k) => (k === b.wallet ? null : b.wallet))} />
         ))}
-      {compact && !isLoading && builders.length > 3 && (
-        <Pressable onPress={() => setExpanded((v) => !v)} style={styles.moreBtn} hitSlop={6} accessibilityRole="button">
-          <Text style={styles.moreText}>
-            {expanded
-              ? t("features.topBuilders.showLess", "Show less")
-              : t("features.topBuilders.showAll", "Show top {{n}}", { n: Math.min(SHOWN, builders.length) })}
-          </Text>
-        </Pressable>
+      {!isLoading && builders.length > base && (
+        <View style={styles.moreRow}>
+          {limit < builders.length && (
+            <Pressable onPress={() => setVisible(limit + PAGE)} style={styles.moreBtn} hitSlop={6} accessibilityRole="button">
+              <Text style={styles.moreText}>
+                {limit === base
+                  ? t("features.topBuilders.showEveryone", "Show all {{n}} builders", { n: builders.length })
+                  : t("features.topBuilders.showMore", "Show {{n}} more", { n: Math.min(PAGE, builders.length - limit) })}
+              </Text>
+            </Pressable>
+          )}
+          {limit > base && (
+            <Pressable onPress={() => { setVisible(base); setOpenKey(null); }} style={styles.moreBtn} hitSlop={6} accessibilityRole="button">
+              <Text style={styles.moreText}>{t("features.topBuilders.showLess", "Show less")}</Text>
+            </Pressable>
+          )}
+        </View>
       )}
       <Text style={styles.rule}>{t("features.topBuilders.rule", "10 pts per shipped request, 1 per upvote, 2 per comment on someone else's request.")}</Text>
     </ThemePanel>
@@ -229,7 +241,8 @@ export function usePinVisible() {
 }
 
 const styles = StyleSheet.create({
-  moreBtn: { alignSelf: "center", marginTop: 6, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.07)" },
+  moreRow: { flexDirection: "row", justifyContent: "center", gap: 8, marginTop: 6 },
+  moreBtn: { paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.07)" },
   moreText: { color: "#D4D4D8", fontSize: 12 },
   card: { backgroundColor: "#18181B", borderRadius: 16, padding: 12, marginBottom: 12, borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" },
   head: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },

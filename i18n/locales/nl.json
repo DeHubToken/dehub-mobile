@@ -2675,6 +2675,8 @@
       "comments": "Reacties",
       "breakdown": "{{shipped}} uitgebracht ({{sp}}) · {{votes}} stemmen ({{vp}}) · {{comments}} reacties ({{cp}})",
       "showAll": "Top {{n}} tonen",
+      "showEveryone": "Toon alle {{n}} bouwers",
+      "showMore": "Toon nog {{n}}",
       "showLess": "Minder tonen",
       "viewProfile": "Profiel bekijken",
       "rule": "10 pt per uitgebracht verzoek, 1 per stem, 2 per reactie op andermans verzoek.",

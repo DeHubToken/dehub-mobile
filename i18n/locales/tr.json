@@ -2487,6 +2487,8 @@
       "comments": "Yorumlar",
       "breakdown": "{{shipped}} yayınlanan ({{sp}}) · {{votes}} oy ({{vp}}) · {{comments}} yorum ({{cp}})",
       "showAll": "İlk {{n}} göster",
+      "showEveryone": "{{n}} geliştiricinin tümünü göster",
+      "showMore": "{{n}} tane daha göster",
       "showLess": "Daha az göster",
       "viewProfile": "Profili gör",
       "rule": "Yayınlanan her istek 10 puan, her oy 1, başkasının isteğine her yorum 2 puan.",

@@ -2487,6 +2487,8 @@
       "comments": "Comentarios",
       "breakdown": "{{shipped}} lanzadas ({{sp}}) · {{votes}} votos ({{vp}}) · {{comments}} comentarios ({{cp}})",
       "showAll": "Ver top {{n}}",
+      "showEveryone": "Ver los {{n}} creadores",
+      "showMore": "Ver {{n}} más",
       "showLess": "Ver menos",
       "viewProfile": "Ver perfil",
       "rule": "10 pts por solicitud lanzada, 1 por voto, 2 por comentario en la solicitud de otra persona.",

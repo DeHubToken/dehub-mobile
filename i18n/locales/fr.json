@@ -2487,6 +2487,8 @@
       "comments": "Commentaires",
       "breakdown": "{{shipped}} livrées ({{sp}}) · {{votes}} votes ({{vp}}) · {{comments}} commentaires ({{cp}})",
       "showAll": "Voir le top {{n}}",
+      "showEveryone": "Voir les {{n}} créateurs",
+      "showMore": "Voir {{n}} de plus",
       "showLess": "Voir moins",
       "viewProfile": "Voir le profil",
       "rule": "10 pts par demande livrée, 1 par vote, 2 par commentaire sur la demande d'une autre personne.",
