@@ -913,6 +913,8 @@
     "privatePostsDesc": "Las nuevas publicaciones solo son visibles para tus seguidores",
     "buyBotAlerts": "Alertas de bot de compra",
     "buyBotAlertsDesc": "Mostrar alertas de transacciones del bot de compra en el chat",
+    "notificationShowCount": "Mostrar el número en la campana",
+    "notificationShowCountDesc": "Ver cuántas notificaciones no has leído en lugar de solo el brillo",
     "chatSection": "Chat",
     "doNotDisturb": "No molestar",
     "doNotDisturbDesc": "Silenciar todas las notificaciones de mensajes",
