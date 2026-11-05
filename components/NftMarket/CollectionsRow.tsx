@@ -6,6 +6,7 @@ import React from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { NftArt, formatPrice } from "./NftTile";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 import { CHAIN_LABEL, type MarketCollection } from "../../services/nft-market.service";
 
 interface Props {
@@ -20,7 +21,7 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
   return (
     <View style={styles.wrap}>
       <Text style={styles.heading}>{t("nftMarket.collections", { defaultValue: "Collections" })}</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.row}>
+      <ScrollView horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.row}>
         {items.map((c) => {
           const on = selected?.chainId === c.chainId && selected.contract === c.contract;
           return (
@@ -32,10 +33,12 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
               accessibilityState={{ selected: on }}
               accessibilityLabel={c.name ?? c.contract}
             >
-              <View style={styles.artWrap}>
-                <NftArt uri={c.image} style={styles.art} />
-                <Text style={styles.badge}>{c.chainId ? CHAIN_LABEL[c.chainId] ?? c.chainId : t("nftMarket.allChains", { defaultValue: "All chains" })}</Text>
-              </View>
+              <KeepDarkScope>
+                <View style={styles.artWrap}>
+                  <NftArt uri={c.image} style={styles.art} width={CARD_W} />
+                  <Text style={styles.badge}>{c.chainId ? CHAIN_LABEL[c.chainId] ?? c.chainId : t("nftMarket.allChains", { defaultValue: "All chains" })}</Text>
+                </View>
+              </KeepDarkScope>
               <View style={styles.meta}>
                 <Text numberOfLines={1} style={styles.name}>{c.name || `${c.contract.slice(0, 6)}…${c.contract.slice(-4)}`}</Text>
                 <Text numberOfLines={1} style={styles.floor}>
@@ -57,12 +60,14 @@ const CollectionsRow: React.FC<Props> = ({ items, selected, onSelect }) => {
   );
 };
 
+const CARD_W = 148;
+
 const styles = StyleSheet.create({
   wrap: { gap: 8, paddingBottom: 4 },
   heading: { color: "#FFFFFF", fontSize: 13, fontWeight: "700" },
   scroll: { flexGrow: 0, marginHorizontal: -16 },
   row: { gap: 10, paddingHorizontal: 16 },
-  card: { width: 148, borderRadius: 12, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)", borderWidth: 1.5, borderColor: "transparent" },
+  card: { width: CARD_W, borderRadius: 12, overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)", borderWidth: 1.5, borderColor: "transparent" },
   cardOn: { borderColor: "rgba(255,255,255,0.8)" },
   artWrap: { width: "100%", aspectRatio: 4 / 3 },
   art: { width: "100%", height: "100%" },
