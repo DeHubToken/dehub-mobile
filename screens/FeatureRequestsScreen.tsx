@@ -85,6 +85,7 @@ import {
   useFeatureRequest,
   useShippedFeatures,
   useInProgressFeatures,
+  useNotFeasibleFeatures,
   useFeatureCounts,
   useUserVotes,
   useVoteFeatureRequest,
@@ -114,6 +115,14 @@ const DESC_MAX = 1000;
 const DEVICE_MAX = 300;
 
 type PageTab = "requests" | "shipping" | "shipped";
+
+/**
+ * The last chip on the Requests tab, after "Other": requests the board owners
+ * ruled out. A status view, not a category, so it swaps the open list for the
+ * Not feasible one and disappears on the other tabs. Mirrors web.
+ */
+const NOT_FEASIBLE = "not_feasible" as const;
+type CategoryChip = FeatureCategory | "all" | typeof NOT_FEASIBLE;
 
 const DEHUB_GITHUB_URL = "https://github.com/DeHubToken";
 
@@ -150,7 +159,7 @@ const STATUS_I18N: Record<string, string> = {
   in_progress: "features.statusInProgress",
   completed: "features.statusCompleted",
   shipped: "features.shipped",
-  declined: "features.statusDeclined",
+  declined: "copy.2ab63e6ced90",
 };
 
 /**
@@ -315,6 +324,15 @@ const FeatureCard: React.FC<{
   const [editCategory, setEditCategory] = useState<FeatureCategory>(feature.category);
 
   const badge = STATUS_BADGE[feature.status];
+  const isNotFeasible = feature.status === "declined";
+  const notFeasibleReason = isNotFeasible ? feature.status_note?.trim() || "" : "";
+  // Owner typing the optional Not feasible reason; null when closed.
+  const [reasonDraft, setReasonDraft] = useState<string | null>(null);
+  const saveNotFeasible = () =>
+    statusMutation.mutate(
+      { id: feature.id, status: "declined" as const, note: reasonDraft ?? "" },
+      { onSuccess: () => setReasonDraft(null) },
+    );
 
   const openMenu = useCallback(() => {
     const isQueued = feature.status === "in_progress";
@@ -333,7 +351,13 @@ const FeatureCard: React.FC<{
                 onPress: () => statusMutation.mutate({ id: feature.id, status: "shipped" as const }),
               }]
             : []),
-          ...(isQueued || isShipped
+          {
+            text: feature.status === "declined"
+              ? t("copy.0d24977e6943", { defaultValue: "Edit reason" })
+              : t("copy.465fe84f18fc", { defaultValue: "Mark Not feasible" }),
+            onPress: () => setReasonDraft(feature.status === "declined" ? feature.status_note?.trim() || "" : ""),
+          },
+          ...(isQueued || isShipped || feature.status === "declined"
             ? [{
                 text: t("copy.3ee050a08bfa", { defaultValue: "Back to Requests" }),
                 onPress: () => statusMutation.mutate({ id: feature.id, status: "open" as const }),
@@ -420,6 +444,34 @@ const FeatureCard: React.FC<{
           </Pressable>
         )}
       </View>
+
+      {reasonDraft !== null && (
+        <View style={styles.reasonBox}>
+          <Text style={styles.editLabel}>{t("copy.0a54f1d10336", { defaultValue: "Why is this not feasible? (optional)" })}</Text>
+          <TextInput
+            value={reasonDraft}
+            onChangeText={(v) => setReasonDraft(v.slice(0, 280))}
+            placeholder={t("copy.3d024b567634", { defaultValue: "Short reason people will see" })}
+            placeholderTextColor="#52525B"
+            style={styles.input}
+            autoFocus
+            returnKeyType="done"
+            onSubmitEditing={saveNotFeasible}
+          />
+          <View style={{ flexDirection: "row", gap: 8 }}>
+            <Pressable onPress={saveNotFeasible} disabled={statusMutation.isPending} style={styles.glassBtnSm}>
+              {statusMutation.isPending ? (
+                <ActivityIndicator size="small" color="#FFFFFF" />
+              ) : (
+                <Text style={styles.glassBtnText}>{t("copy.465fe84f18fc", { defaultValue: "Mark Not feasible" })}</Text>
+              )}
+            </Pressable>
+            <Pressable onPress={() => setReasonDraft(null)} style={styles.ghostBtnSm}>
+              <Text style={styles.ghostBtnText}>{t("common.cancel", "Cancel")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      )}
 
       {editing ? (
         <View style={{ gap: 10, paddingTop: 4 }}>
@@ -522,6 +574,13 @@ const FeatureCard: React.FC<{
               </View>
             )}
           </View>
+
+          {/* The owners' reason for ruling it out. */}
+          {!!notFeasibleReason && (
+            <Text style={styles.reasonText}>
+              <Text style={styles.reasonLabel}>{t("copy.ad389aa4c08e", { defaultValue: "Why:" })}</Text> {notFeasibleReason}
+            </Text>
+          )}
 
           {/* Board owners only: where it was sent from, to reproduce bugs. */}
           {hasDeviceInfo && <DeviceInfoPanel featureId={feature.id} />}
@@ -727,7 +786,15 @@ function FeatureRequestsBoard() {
 
   const [tab, setTab] = useState<PageTab>("requests");
   const [sort, setSort] = useState<FeatureSort>("newest");
-  const [category, setCategory] = useState<FeatureCategory | "all">("all");
+  const [category, setCategory] = useState<CategoryChip>("all");
+  const showNotFeasible = tab === "requests" && category === NOT_FEASIBLE;
+  // A real category for the queries: the Not feasible chip filters by status.
+  const listCategory: FeatureCategory | "all" = category === NOT_FEASIBLE ? "all" : category;
+  // Not feasible only lives on the Requests tab; leaving it falls back to All.
+  const changeTab = useCallback((next: PageTab) => {
+    setTab(next);
+    if (next !== "requests") setCategory((current) => (current === NOT_FEASIBLE ? "all" : current));
+  }, []);
   const [search, setSearch] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:search", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [composerFocus, setComposerFocus] = useState(0);
@@ -749,12 +816,13 @@ function FeatureRequestsBoard() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useFeatureRequests(sort, category, debouncedSearch);
+  } = useFeatureRequests(sort, listCategory, debouncedSearch);
 
   const shipped = useShippedFeatures();
   const builderPinVisible = usePinVisible();
   const showBuilderPin = builderPinVisible && tab === "shipped" && !debouncedSearch && category === "all";
   const inProgress = useInProgressFeatures();
+  const notFeasible = useNotFeasibleFeatures();
   const { data: counts } = useFeatureCounts();
   const { data: votes } = useUserVotes();
   const voteMutation = useVoteFeatureRequest();
@@ -771,8 +839,8 @@ function FeatureRequestsBoard() {
   // "View shipped requests" on the shipped-feedback notice opens on that tab.
   const initialTab: PageTab | undefined = route.params?.tab;
   React.useEffect(() => {
-    if (initialTab) setTab(initialTab);
-  }, [initialTab]);
+    if (initialTab) changeTab(initialTab);
+  }, [initialTab, changeTab]);
 
   const requestItems = useMemo(() => data?.pages.flat() ?? [], [data]);
   // Shipped and Shipping arrive as whole arrays rather than a paged query, so
@@ -782,22 +850,24 @@ function FeatureRequestsBoard() {
   // what this screen's own list query does.
   const matchesFilters = useCallback(
     (row: FeatureRequest) => {
-      if (category !== "all" && row.category !== category) return false;
+      if (listCategory !== "all" && row.category !== listCategory) return false;
       const q = debouncedSearch.trim().toLowerCase();
       if (!q) return true;
       return row.title.toLowerCase().includes(q) || row.description.toLowerCase().includes(q);
     },
-    [category, debouncedSearch],
+    [listCategory, debouncedSearch],
   );
-  const isFiltering = debouncedSearch.trim().length > 0 || category !== "all";
+  const isFiltering = debouncedSearch.trim().length > 0 || listCategory !== "all";
   const rawItems = useMemo(
     () =>
-      tab === "shipped"
-        ? (shipped.data ?? []).filter(matchesFilters)
-        : tab === "shipping"
-          ? (inProgress.data ?? []).filter(matchesFilters)
-          : requestItems,
-    [tab, shipped.data, inProgress.data, requestItems, matchesFilters],
+      showNotFeasible
+        ? (notFeasible.data ?? []).filter(matchesFilters)
+        : tab === "shipped"
+          ? (shipped.data ?? []).filter(matchesFilters)
+          : tab === "shipping"
+            ? (inProgress.data ?? []).filter(matchesFilters)
+            : requestItems,
+    [showNotFeasible, notFeasible.data, tab, shipped.data, inProgress.data, requestItems, matchesFilters],
   );
   const items = useMemo(
     () => (focusedRequest ? rawItems.filter((f) => f.id !== focusedRequest.id) : rawItems),
@@ -808,6 +878,7 @@ function FeatureRequestsBoard() {
   const openCount = counts?.open ?? requestItems.length;
   const shippedCount = shipped.data?.length ?? 0;
   const inProgressCount = inProgress.data?.length ?? 0;
+  const notFeasibleCount = notFeasible.data?.length ?? 0;
 
   const handleVote = useCallback(
     (feature: FeatureRequest, voteType: 1 | -1) => {
@@ -838,19 +909,24 @@ function FeatureRequestsBoard() {
 
   const keyExtractor = useCallback((f: FeatureRequest) => f.id, []);
 
-  const loading =
-    tab === "shipped" ? shipped.isLoading : tab === "shipping" ? inProgress.isLoading : isLoading;
-  const refreshing =
-    tab === "shipped"
+  const loading = showNotFeasible
+    ? notFeasible.isLoading
+    : tab === "shipped" ? shipped.isLoading : tab === "shipping" ? inProgress.isLoading : isLoading;
+  const refreshing = showNotFeasible
+    ? notFeasible.isRefetching
+    : tab === "shipped"
       ? shipped.isRefetching
       : tab === "shipping"
         ? inProgress.isRefetching
         : isRefetching;
-  const onRefresh =
-    tab === "shipped" ? shipped.refetch : tab === "shipping" ? inProgress.refetch : refetch;
+  const onRefresh = showNotFeasible
+    ? notFeasible.refetch
+    : tab === "shipped" ? shipped.refetch : tab === "shipping" ? inProgress.refetch : refetch;
+  const showListError = isError && tab === "requests" && !showNotFeasible;
 
   const openSheet = () => {
-    setTab("requests");
+    changeTab("requests");
+    setCategory((current) => (current === NOT_FEASIBLE ? "all" : current));
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
     setComposerFocus(value => value + 1);
   };
@@ -875,8 +951,14 @@ function FeatureRequestsBoard() {
   const noMatchCopy = debouncedSearch.trim()
     ? { title: t("features.noSearchResults"), body: "" }
     : { title: t("filters.noMatches"), body: "" };
-  const emptyCopy =
-    tab === "shipped"
+  const emptyCopy = showNotFeasible
+    ? debouncedSearch.trim()
+      ? noMatchCopy
+      : {
+          title: t("copy.78b3ae9561ee", { defaultValue: "Nothing ruled out" }),
+          body: t("copy.89b4d1850766", { defaultValue: "Requests we can't build right now show here, with the reason." }),
+        }
+    : tab === "shipped"
       ? isFiltering
         ? noMatchCopy
         : { title: t("features.noShippedYet"), body: t("features.shippedAppearHere") }
@@ -973,7 +1055,7 @@ function FeatureRequestsBoard() {
             return (
               <Pressable
                 key={tabDef.key}
-                onPress={() => setTab(tabDef.key)}
+                onPress={() => changeTab(tabDef.key)}
                 style={[
                   styles.tab,
                   active && styles.tabActive,
@@ -1058,6 +1140,23 @@ function FeatureRequestsBoard() {
               </Text>
             </Pressable>
           ))}
+          {tab === "requests" && (
+            <Pressable
+              onPress={() => setCategory(NOT_FEASIBLE)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: category === NOT_FEASIBLE }}
+              style={[styles.chip, category === NOT_FEASIBLE && styles.chipActive, styles.chipRow]}
+            >
+              <Text style={[styles.chipText, category === NOT_FEASIBLE && styles.chipTextActive]}>
+                {t("copy.2ab63e6ced90", { defaultValue: "Not feasible" })}
+              </Text>
+              {notFeasibleCount > 0 && (
+                <View style={styles.tabBadge}>
+                  <Text style={styles.tabBadgeText}>{formatCompactNumber(notFeasibleCount)}</Text>
+                </View>
+              )}
+            </Pressable>
+          )}
         </ScrollView>
           <Pressable
             onPress={() => { void Linking.openURL(DEHUB_GITHUB_URL); }}
@@ -1080,7 +1179,7 @@ function FeatureRequestsBoard() {
           ref={listRef}
           automaticallyAdjustKeyboardInsets
           keyboardDismissMode="on-drag"
-          data={loading || (isError && tab === "requests") ? [] : items}
+          data={loading || showListError ? [] : items}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           // Minimal: rows run edge to edge and butt up — the hairline is the gap.
@@ -1092,7 +1191,7 @@ function FeatureRequestsBoard() {
           }}
           ListHeaderComponent={<>
             {tab === "shipped" && !debouncedSearch && category === "all" && <TopBuildersCard />}
-            <View style={tab !== "requests" ? { display: "none" } : undefined}>
+            <View style={tab !== "requests" || showNotFeasible ? { display: "none" } : undefined}>
               <PromptComposer focusRequest={composerFocus} submitting={submitMutation.isPending} onSubmit={async v => {
                 const result = await submitMutation.mutateAsync(v);
                 setCategory("all"); setSearch.complete(search, ""); setSort("newest");
@@ -1114,14 +1213,14 @@ function FeatureRequestsBoard() {
           }
           onEndReachedThreshold={0.6}
           onEndReached={() => {
-            if (tab === "requests" && hasNextPage && !isFetchingNextPage) void fetchNextPage();
+            if (tab === "requests" && !showNotFeasible && hasNextPage && !isFetchingNextPage) void fetchNextPage();
           }}
           ListFooterComponent={
             isFetchingNextPage ? (
               <ActivityIndicator color="#808089" style={{ marginVertical: 16 }} />
             ) : null
           }
-          ListEmptyComponent={loading ? <View style={styles.center}><DeHubLoader size={56} /></View> : isError && tab === "requests" ? (
+          ListEmptyComponent={loading ? <View style={styles.center}><DeHubLoader size={56} /></View> : showListError ? (
             <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
               <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
               <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
@@ -1445,6 +1544,18 @@ const styles = StyleSheet.create({
   fieldLabel: { color: "#A1A1AA", fontSize: 12, fontWeight: "500", marginBottom: 4, marginTop: 12 },
   fieldLabelMuted: { color: "#52525B", fontWeight: "400" },
   editLabel: { color: "#808089", fontSize: 12, marginBottom: 4 },
+  reasonBox: {
+    gap: 8,
+    marginBottom: 10,
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(255,255,255,0.04)",
+  },
+  reasonText: { color: "#A1A1AA", fontSize: 12, lineHeight: 18 },
+  reasonLabel: { color: "#D4D4D8", fontWeight: "600" },
+  chipRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   input: {
     backgroundColor: "#18181B",
     borderWidth: 1,

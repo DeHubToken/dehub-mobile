@@ -96,7 +96,7 @@ export const STATUS_LABELS: Record<FeatureStatus, string> = {
   in_progress: "In Progress",
   completed: "Shipped",
   shipped: "Shipped",
-  declined: "Declined",
+  declined: "Not feasible",
 };
 
 /** Accent per status — mirrors the web badge colours. */
@@ -122,6 +122,7 @@ const FEATURE_ROW_KEYS = [
   ["feature-requests"],
   ["feature-requests-shipped"],
   ["feature-requests-in-progress"],
+  ["feature-requests-not-feasible"],
   ["feature-request"],
 ] as const;
 
@@ -315,6 +316,24 @@ export function useInProgressFeatures() {
         .from("feature_requests")
         .select("*")
         .eq("status", "in_progress")
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return (data || []) as FeatureRequest[];
+    },
+    staleTime: 60_000,
+    gcTime: 5 * 60_000,
+  });
+}
+
+/** Requests the board owners ruled out (status `declined`), newest first. */
+export function useNotFeasibleFeatures() {
+  return useQuery({
+    queryKey: ["feature-requests-not-feasible"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("feature_requests")
+        .select("*")
+        .eq("status", "declined")
         .order("updated_at", { ascending: false });
       if (error) throw error;
       return (data || []) as FeatureRequest[];
@@ -865,8 +884,8 @@ export function isFeatureStatusEditor(wallet: string | null | undefined): boolea
   return !!wallet && FEATURE_STATUS_EDITOR_WALLETS.includes(wallet.toLowerCase());
 }
 
-/** Statuses the owners set from the board: Requests, Queued, Shipped. */
-export type EditableFeatureStatus = "open" | "in_progress" | "shipped";
+/** Statuses the owners set from the board: Requests, Queued, Shipped, Not feasible. */
+export type EditableFeatureStatus = "open" | "in_progress" | "shipped" | "declined";
 
 /** Owner-only status change. Mirrors web's useSetFeatureStatus. */
 export function useSetFeatureStatus() {
@@ -875,10 +894,13 @@ export function useSetFeatureStatus() {
   const wallet = useWallet();
 
   return useMutation({
-    mutationFn: async ({ id, status }: { id: string; status: EditableFeatureStatus }) => {
+    mutationFn: async ({ id, status, note }: { id: string; status: EditableFeatureStatus; note?: string }) => {
       if (!wallet) throw new Error("Not authenticated");
+      const args = status === "declined"
+        ? { p_id: id, p_status: status, p_note: note?.trim() || null }
+        : { p_id: id, p_status: status };
       const { error } = await withWalletHeader(
-        (supabase as any).rpc("set_feature_request_status", { p_id: id, p_status: status }),
+        (supabase as any).rpc("set_feature_request_status", args),
         wallet.toLowerCase(),
       );
       if (error) throw error;
@@ -891,7 +913,9 @@ export function useSetFeatureStatus() {
           ? _copy("copy.366cb56b38ce", { defaultValue: "Marked Shipped" })
           : status === "in_progress"
             ? _copy("copy.ae6a0ffbe609", { defaultValue: "Marked Queued" })
-            : _copy("copy.9db7b5ba03bb", { defaultValue: "Moved back to Requests" }),
+            : status === "declined"
+              ? _copy("copy.79688f176607", { defaultValue: "Marked Not feasible" })
+              : _copy("copy.9db7b5ba03bb", { defaultValue: "Moved back to Requests" }),
       );
     },
     onError: (error) => {

@@ -15175,7 +15175,16 @@
     "ae6a0ffbe609": "Sıraya alındı olarak işaretlendi",
     "366cb56b38ce": "Yayınlandı olarak işaretlendi",
     "9db7b5ba03bb": "İsteklere geri taşındı",
-    "bb2be752e079": "Durum değiştirilemedi"
+    "bb2be752e079": "Durum değiştirilemedi",
+    "2ab63e6ced90": "Uygulanamaz",
+    "79688f176607": "Uygulanamaz olarak işaretlendi",
+    "465fe84f18fc": "Uygulanamaz olarak işaretle",
+    "0d24977e6943": "Nedeni düzenle",
+    "0a54f1d10336": "Bu neden uygulanamaz? (isteğe bağlı)",
+    "3d024b567634": "Herkesin göreceği kısa neden",
+    "ad389aa4c08e": "Neden:",
+    "78b3ae9561ee": "Reddedilen bir şey yok",
+    "89b4d1850766": "Şu an yapamadığımız istekler nedeniyle birlikte burada görünür."
   },
   "creatorSupport": {
     "sponsoredBy": "{{advertiser}} sponsorluğunda",

@@ -15195,7 +15195,16 @@
     "ae6a0ffbe609": "Marqué en file",
     "366cb56b38ce": "Marqué comme livré",
     "9db7b5ba03bb": "Renvoyé aux demandes",
-    "bb2be752e079": "Impossible de modifier le statut"
+    "bb2be752e079": "Impossible de modifier le statut",
+    "2ab63e6ced90": "Pas faisable",
+    "79688f176607": "Marqué comme pas faisable",
+    "465fe84f18fc": "Marquer comme pas faisable",
+    "0d24977e6943": "Modifier la raison",
+    "0a54f1d10336": "Pourquoi ce n'est pas faisable ? (facultatif)",
+    "3d024b567634": "Courte raison visible par tous",
+    "ad389aa4c08e": "Pourquoi :",
+    "78b3ae9561ee": "Rien d'écarté",
+    "89b4d1850766": "Les demandes que nous ne pouvons pas réaliser pour l'instant s'affichent ici, avec la raison."
   },
   "liveOverlay": {
     "eyebrow": {
