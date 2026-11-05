@@ -146,5 +146,17 @@ export function tokenizeChatText(text?: string | null): ChatTextToken[] {
     }
   }
 
-  return tokens.length > 0 ? tokens : [{ type: 'text', value: source }];
+  // `<riftn.com>` is the author asking for the address as text rather than a
+  // card (web lib/link-display): the link stays, the brackets go.
+  for (let i = 1; i < tokens.length - 1; i++) {
+    const before = tokens[i - 1];
+    const after = tokens[i + 1];
+    if (tokens[i].type !== 'link' || before.type !== 'text' || after.type !== 'text') continue;
+    if (!before.value.endsWith('<') || !after.value.startsWith('>')) continue;
+    before.value = before.value.slice(0, -1);
+    after.value = after.value.slice(1);
+  }
+  const kept = tokens.filter((token) => token.type === 'link' || token.value);
+
+  return kept.length > 0 ? kept : [{ type: 'text', value: source }];
 }

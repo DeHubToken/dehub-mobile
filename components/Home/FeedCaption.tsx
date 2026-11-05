@@ -34,12 +34,23 @@ const ensureUrl = (raw: string): string => {
   return `https://${trimmed}`;
 };
 
-const parseTextToSegments = (input: string): Segment[] => {
+/** Web's abbreviateUrl: no protocol or www, long ones cut in the middle. */
+const abbreviateUrl = (url: string, max = 36): string => {
+  const bare = url.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/$/, "");
+  if (bare.length <= max) return bare;
+  const head = Math.ceil((max - 1) * 0.6);
+  return `${bare.slice(0, head)}…${bare.slice(bare.length - (max - 1 - head))}`;
+};
+
+export const parseTextToSegments = (input: string): Segment[] => {
   if (!input) return [];
   // Group 1: @mention, Group 2: URL, Group 3: $cashtag, Group 4: #hashtag.
   // The hashtag pattern matches web's (TranslatableText) exactly, so the same
   // caption produces the same set of tags on both platforms.
-  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)|(\$[a-zA-Z]{1,20})|(#[a-zA-Z][a-zA-Z0-9_]*)/g;
+  // Group 5: a link written `<riftn.com>` — the author asked for the address
+  // as text instead of a card or 🔗 (web lib/link-display): tappable, shown
+  // without the brackets.
+  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)|(\$[a-zA-Z]{1,20})|(#[a-zA-Z][a-zA-Z0-9_]*)|<((?:https?:\/\/)?[^\s<>@]+\.[a-zA-Z]{2,}[^\s<>]*)>/g;
   const matches = Array.from(input.matchAll(combinedRegex));
   if (matches.length === 0) return [{ type: "text", value: input }];
 
@@ -52,7 +63,10 @@ const parseTextToSegments = (input: string): Segment[] => {
       segments.push({ type: "text", value: input.slice(cursor, index) });
     }
 
-    if (m[1]) {
+    if (m[5]) {
+      segments.push({ type: "link", value: abbreviateUrl(m[5]), url: ensureUrl(m[5]) });
+      cursor = index + m[0].length;
+    } else if (m[1]) {
       // @mention
       segments.push({ type: "mention", value: m[1], username: m[1].slice(1) });
       cursor = index + m[0].length;
