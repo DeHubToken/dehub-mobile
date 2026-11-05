@@ -16,7 +16,7 @@ import { useDraftState } from '../../hooks/useDraftState';
  * icons, no hue. The like fills white when it is on, exactly as the shorts
  * action row does.
  */
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -64,6 +64,9 @@ interface Props {
   draftScope: string | null;
   onSendMessage: (content: string) => Promise<boolean>;
   onSendGif: (url: string) => void;
+  /** The chat line a held Reply answers, shown over the box until sent or cleared. */
+  replyingTo?: { id: string; name: string; content: string } | null;
+  onCancelReply?: () => void;
   /** Actions */
   onReact: (type: ReactionType) => void;
   onLike: () => void;
@@ -84,6 +87,8 @@ const LiveViewerActionBar: React.FC<Props> = ({
   draftScope,
   onSendMessage,
   onSendGif,
+  replyingTo,
+  onCancelReply,
   onReact,
   onLike,
   onShare,
@@ -100,6 +105,14 @@ const LiveViewerActionBar: React.FC<Props> = ({
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const lastTapRef = useRef(0);
   const composerKeyboard = useComposerKeyboard(viewportHeight);
+  const inputRef = useRef<TextInput>(null);
+  // Reply puts the caret straight in the box, keyboard up.
+  const replyId = replyingTo?.id;
+  useEffect(() => {
+    if (!replyId) return;
+    const id = setTimeout(() => inputRef.current?.focus(), 250);
+    return () => clearTimeout(id);
+  }, [replyId]);
 
   const inputDisabled = !canSend || !chatEnabled || isScheduled;
 
@@ -170,10 +183,25 @@ const LiveViewerActionBar: React.FC<Props> = ({
         </Pressable>
       ) : null}
 
+      {replyingTo && !inputDisabled ? (
+        <View style={styles.replyStrip}>
+          <ChromeFill glass />
+          <Icon name="Reply" size={14} color="rgba(255,255,255,0.8)" strokeWidth={1.8} />
+          <Text numberOfLines={1} style={styles.replyText}>
+            <Text style={{ fontWeight: "700" }}>{t("dm.replyingTo")} {replyingTo.name}</Text>
+            {replyingTo.content ? `  ${replyingTo.content}` : ""}
+          </Text>
+          <Pressable onPress={onCancelReply} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.close")}>
+            <Icon name="X" size={16} color="rgba(255,255,255,0.8)" />
+          </Pressable>
+        </View>
+      ) : null}
+
       <View style={styles.row} pointerEvents="box-none">
         <View style={styles.inputWrap}>
           <ChromeFill glass />
           <TextInput
+            ref={inputRef}
             value={message}
             onChangeText={setMessage}
             placeholder={placeholderText}
@@ -343,6 +371,20 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     ...TEXT_SHADOW,
   },
+  replyStrip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginHorizontal: EDGE,
+    marginBottom: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: CHROME_HAIRLINE,
+    borderRadius: CHROME_RADIUS,
+    overflow: "hidden",
+  },
+  replyText: { flex: 1, color: "rgba(255,255,255,0.85)", fontSize: 12, ...TEXT_SHADOW },
   reactionStrip: {
     alignSelf: "flex-end",
     flexDirection: "row",

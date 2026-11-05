@@ -57,7 +57,9 @@ import { getAvatarUrl, shareProfile } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import type { TranslateToggle } from "../ui/TranslateButton";
-import LiveViewerChat from "../LiveViewer/LiveViewerChat";
+import LiveViewerChat, { type ChatActivity, type ChatHoldLayout } from "../LiveViewer/LiveViewerChat";
+import HoldSheet, { type HoldTile } from "../ui/HoldSheet";
+import { copyToClipboard } from "../../libs/clipboard.utils";
 import LiveViewerActionBar from "../LiveViewer/LiveViewerActionBar";
 import LiveViewerPills from "../LiveViewer/LiveViewerPills";
 import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
@@ -115,6 +117,9 @@ const buildHlsFromPlayback = (
   playbackId?: string | null,
   provider?: string | null,
 ) => hlsUrlFor({ playbackId, provider });
+
+/** Quick reactions on a held chat line, the same six the main live chat offers. */
+const LIVE_HOLD_REACTIONS = ["\u{1F525}", "\u2764\uFE0F", "\u{1F602}", "\u{1F440}", "\u{1F4AF}", "\u{1F64C}"];
 
 /** Strip reactions that have a post reaction of the same meaning. */
 const STRIP_TO_POST_REACTION: Partial<Record<ReactionType, PostReaction>> = {
@@ -1620,6 +1625,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         gifUrl: m.messageType === "gif" ? (m.media?.[0]?.url || m.gif?.url || m.content) : undefined,
         avatarImageUrl: m.sender?.avatarUrl,
       },
+      replyTo: m.replyTo || m.replyToContent
+        ? {
+            name: m.replyTo?.sender?.displayName || m.replyTo?.sender?.username || m.replyTo?.senderUsername
+              || (m.replyTo?.senderAddress || m.replyToSenderAddress || "").slice(0, 8),
+            content: m.replyTo?.content || m.replyToContent || "",
+          }
+        : undefined,
+      reactions: m.reactions,
     }));
     return [...moments, ...messages].sort((a, b) => {
       if (a.status === StreamActivityType.START) return b.status === StreamActivityType.START ? 0 : -1;
@@ -1628,15 +1641,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
   }, [activities, liveChat.messages, isLiveEffective, isEndedEffective]);
 
+  // The line a held "Reply" answers; shown over the composer until sent or cleared.
+  const [replyingTo, setReplyingTo] = useState<{ id: string; name: string; content: string } | null>(null);
+  useEffect(() => { setReplyingTo(null); }, [chatRoomId]);
   const handleSendMessage = useCallback(
     async (content: string): Promise<boolean> => {
       if (!content.trim() || !chatRoomId || !isSignedIn) return false;
       // No optimistic row: the gateway re-broadcasts the message to the room,
       // sender included, within the round trip, and a refused send comes back
       // on its error channel instead of vanishing.
-      return liveChat.sendMessage({ content: content.trim(), messageType: "text" });
+      const target = replyingTo;
+      const ok = await liveChat.sendMessage({ content: content.trim(), messageType: "text", ...(target ? { replyTo: target.id } : {}) });
+      if (ok && target) setReplyingTo((current) => (current?.id === target.id ? null : current));
+      return ok;
     },
-    [chatRoomId, isSignedIn, liveChat]
+    [chatRoomId, isSignedIn, liveChat, replyingTo]
   );
   const handleSendGif = useCallback((url: string) => {
     if (!chatRoomId || !isSignedIn || !url) return;
@@ -1648,22 +1667,87 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // time out, ban from these streams, make moderator on other people's lines.
   const isStreamOwner = ownerStatus === "owner" || (streamEntity as any)?.isOwner === true;
   const canModerate = !!postTokenId && (isStreamOwner || liveChat.isModerator);
-  const [lineMenu, setLineMenu] = useState<{ address: string; name: string; canModerate: boolean; translate?: TranslateToggle } | null>(null);
-  const openLineMenu = useCallback((activity: any, translate?: TranslateToggle) => {
-    const address = String(activity?.user?.address || activity?.address || "").toLowerCase();
-    const me = String(user?.walletAddress || user?.address || "").toLowerCase();
-    const canModerateLine = canModerate && !!address && address !== me;
-    if (!canModerateLine && !translate) return;
-    setLineMenu({ address, name: activity?.user?.displayName || activity?.user?.username || activity?.meta?.username || "", canModerate: canModerateLine, translate });
-  }, [canModerate, user?.walletAddress, user?.address]);
+  // A stream timeout quiets this viewer until it runs out, then lets go.
+  const [muted, setMuted] = useState(false);
+  useEffect(() => {
+    const left = liveChat.mutedUntil ? liveChat.mutedUntil - Date.now() : 0;
+    setMuted(left > 0);
+    if (left <= 0) return;
+    const id = setTimeout(() => setMuted(false), left);
+    return () => clearTimeout(id);
+  }, [liveChat.mutedUntil]);
+  // Holding any chat line opens the hold sheet: reactions, Reply, Copy,
+  // Translate, and Moderate for the creator and their moderators. It used to
+  // open only for moderators or a foreign-language line, so for everyone else
+  // a hold did nothing and there was no way to reply or react.
+  const [held, setHeld] = useState<{ activity: ChatActivity; translate?: TranslateToggle; layout: ChatHoldLayout | null } | null>(null);
+  const [lineMenu, setLineMenu] = useState<{ address: string; name: string; canModerate: boolean } | null>(null);
+  const modTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (modTimer.current) clearTimeout(modTimer.current); }, []);
+  const openLineMenu = useCallback((activity: ChatActivity, translate?: TranslateToggle, layout?: ChatHoldLayout) => {
+    if (!activity?.id && !translate && !canModerate) return;
+    setHeld({ activity, translate, layout: layout ?? null });
+  }, [canModerate]);
+  const closeHeld = useCallback(() => setHeld(null), []);
+  const me = String(user?.walletAddress || user?.address || "").toLowerCase();
+  const heldId = held?.activity.id;
+  const heldMessage = heldId ? liveChat.messages.find((m) => m._id === heldId) : undefined;
+  const heldAddress = String(held?.activity.user?.address || held?.activity.address || "").toLowerCase();
+  const heldName = held?.activity.user?.displayName || held?.activity.user?.username || held?.activity.meta?.username || "";
+  const heldText = String(held?.activity.meta?.content || "");
+  const heldCanModerate = canModerate && !!heldAddress && heldAddress !== me;
+  const canInteract = !!isSignedIn && !!heldId && !!liveChat.connected;
+  const holdTiles: HoldTile[] = [];
+  if (held) {
+    if (canInteract && !!canChat && !liveChat.isBanned && !muted) holdTiles.push({
+      key: "reply", icon: "Reply", prime: true, label: t("liveChat.reply"),
+      onPress: () => {
+        setReplyingTo({ id: heldId!, name: heldName, content: held.activity.meta?.gifUrl ? "GIF" : heldText });
+        setHeld(null);
+      },
+    });
+    if (heldText && !held.activity.meta?.gifUrl) holdTiles.push({
+      key: "copy", icon: "Copy", label: t("common.copy"),
+      onPress: () => { copyToClipboard(heldText); setHeld(null); },
+    });
+    if (held.translate) {
+      const tr = held.translate;
+      holdTiles.push({
+        key: "translate", icon: tr.isTranslated ? "RotateCcw" : "Languages",
+        label: tr.isTranslated ? t("common.showOriginal") : t("common.translate"),
+        onPress: () => { setHeld(null); tr.toggle(); },
+      });
+    }
+    if (heldCanModerate) holdTiles.push({
+      key: "moderate", icon: "ShieldCheck", label: t("liveChatModeration.title"),
+      onPress: () => {
+        const target = { address: heldAddress, name: heldName, canModerate: true };
+        setHeld(null);
+        // The hold sheet is a modal too; iOS will not present a second one
+        // while the first is still closing.
+        if (modTimer.current) clearTimeout(modTimer.current);
+        modTimer.current = setTimeout(() => setLineMenu(target), 350);
+      },
+    });
+  }
+  const heldReactions = held && canInteract
+    ? LIVE_HOLD_REACTIONS.map((emoji) => ({
+        key: emoji,
+        emoji,
+        selected: !!me && (heldMessage?.reactions?.[emoji] ?? []).some((a) => a?.toLowerCase() === me),
+      }))
+    : null;
+  const handleHeldReaction = useCallback((emoji: string) => {
+    if (!heldId) return;
+    const mine = !!me && (heldMessage?.reactions?.[emoji] ?? []).some((a) => a?.toLowerCase() === me);
+    if (mine) liveChat.removeReaction(heldId, emoji);
+    else liveChat.addReaction(heldId, emoji);
+    setHeld(null);
+  }, [heldId, heldMessage, me, liveChat]);
   const moderate = useCallback(async (choice: string) => {
     const target = lineMenu;
     setLineMenu(null);
     if (!target) return;
-    if (choice === "translate") {
-      target.translate?.toggle();
-      return;
-    }
     if (!target.canModerate || postTokenId == null) return;
     try {
       if (choice === "ban") {
@@ -1680,15 +1764,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       toastError(t("liveChatModeration.failed"));
     }
   }, [lineMenu, postTokenId, t]);
-  // A stream timeout quiets this viewer until it runs out, then lets go.
-  const [muted, setMuted] = useState(false);
-  useEffect(() => {
-    const left = liveChat.mutedUntil ? liveChat.mutedUntil - Date.now() : 0;
-    setMuted(left > 0);
-    if (left <= 0) return;
-    const id = setTimeout(() => setMuted(false), left);
-    return () => clearTimeout(id);
-  }, [liveChat.mutedUntil]);
 
 
   // Determine status overlay type
@@ -1889,9 +1964,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   title={lineMenu?.name || t("liveChatModeration.title")}
                   value=""
                   options={[
-                    ...(lineMenu?.translate
-                      ? [{ value: "translate", label: lineMenu.translate.isTranslated ? t("common.showOriginal") : t("common.translate") }]
-                      : []),
                     ...(lineMenu?.canModerate
                       ? [
                           { value: "60", label: t("liveChatModeration.timeout1m") },
@@ -1903,6 +1975,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                       : []),
                   ]}
                   onSelect={(choice) => void moderate(choice)}
+                />
+                <HoldSheet
+                  visible={!!held}
+                  layout={held?.layout ?? null}
+                  onClose={closeHeld}
+                  reactions={heldReactions}
+                  onReaction={handleHeldReaction}
+                  tiles={holdTiles}
                 />
 
                 {/* Say something, or do something: one row of it. */}
@@ -1916,6 +1996,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   isScheduled={isScheduledEffective}
                   onSendMessage={handleSendMessage}
                   onSendGif={handleSendGif}
+                  replyingTo={replyingTo}
+                  onCancelReply={() => setReplyingTo(null)}
                   onReact={handleStripReaction}
                   onLike={handleLiveLike}
                   onShare={handleShare}
