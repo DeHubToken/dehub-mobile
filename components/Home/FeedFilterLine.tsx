@@ -72,7 +72,10 @@ export default function FeedFilterLine({
   return (
     <View
       testID="feed-filter-line"
-      style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 12, borderWidth: 1, borderColor: open ? c.openBorder : c.border, backgroundColor: c.bg }}
+      // The list already pads 8pt each side, so no side margin: the line spans
+      // the same width as the tab pill and the cards. 6pt above and below, like
+      // a card, keeps an even 12pt gap to the pill and to the post under it.
+      style={{ marginVertical: 6, borderRadius: 12, borderWidth: 1, borderColor: open ? c.openBorder : c.border, backgroundColor: c.bg }}
     >
       <View style={{ flexDirection: "row", alignItems: "center", paddingLeft: 12, paddingRight: 6, paddingVertical: 6, gap: 8 }}>
         <Icon name="SlidersHorizontal" size={16} color={c.muted} />

@@ -53,7 +53,9 @@ export default function FollowTagBar({ tag, onClear }: { tag: string; onClear: (
   });
 
   return (
-    <View testID="follow-tag-bar" className="mx-4 mb-3 flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+    // Same width as the pill and cards (the list pads the sides), with a card's
+    // 6pt above and below so the gaps either side are an even 12pt.
+    <View testID="follow-tag-bar" style={{ marginVertical: 6 }} className="flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 py-2">
       <Icon name="Hash" size={16} color="#8B8D90" />
       <Text className="ml-2 flex-1 text-sm font-semibold text-white" numberOfLines={1}>{name}</Text>
       {isSignedIn && (
