@@ -131,7 +131,7 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
   useEffect(() => {
     if (open) markReactionTipSeen(walletAddress);
   }, [open, walletAddress]);
-  const { colors } = useAppTheme();
+  const { colors, isLight } = useAppTheme();
   const drawerGlass = useDrawerGlass();
   const drawerSource = useDrawerBlurSource();
   const insets = useSafeAreaInsets();
@@ -211,7 +211,9 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
   );
   // iOS gets the shared glass; Android has no safe backdrop blur and keeps a
   // solid theme surface so nothing behind the tray reads through the counts.
-  const glass = Platform.OS === "ios";
+  // System Light keeps the solid (turned-around) surface there too: the dark
+  // glass left its ink labels unreadable.
+  const glass = Platform.OS === "ios" && !isLight;
   // Android blurs the feed behind it, as the comment drawer does, whenever a
   // feed is there to sample; elsewhere it keeps the solid surface.
   const androidGlass = !glass && drawerGlass && !!drawerSource;

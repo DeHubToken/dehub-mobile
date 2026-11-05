@@ -6,7 +6,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import ErrorBoundary from "../ErrorBoundary";
 import { restartApp } from "../../libs/crashRecovery";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useAppTheme } from "../../context/ThemeContext";
+import { useAppTheme, useThemeRootStyle } from "../../context/ThemeContext";
 import SwipeBackBoundary from './SwipeBackBoundary';
 
 /**
@@ -97,6 +97,11 @@ interface ScreenErrorBoundaryProps {
 /** One boundary per screen, named so the log row says which screen fell over. */
 export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, children }) => {
   const { theme, isLight } = useAppTheme();
+  // The theme's colour variables again, on every screen. The root view carries
+  // them too, but on iPhone the screens did not pick them up: System Light
+  // showed a black page with white text under light icons. Same keys in every
+  // theme, so a switch only changes values and never remounts the screen.
+  const themeVars = useThemeRootStyle();
   return (
     <ErrorBoundary
       // Repaint screen content without replacing native navigation route keys.
@@ -107,7 +112,7 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
       scope={`screen:${name}`}
       renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
     >
-      {children}
+      <View style={[{ flex: 1 }, themeVars]}>{children}</View>
     </ErrorBoundary>
   );
 };
