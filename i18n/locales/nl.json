@@ -2956,7 +2956,8 @@
     "tabVideos": "Video's",
     "tabAudio": "Geluid",
     "tabLive": "Leven",
-    "tabPinned": "Vastgepind"
+    "tabPinned": "Vastgepind",
+    "lockedPost": "Vergrendelde paal"
   },
   "tv": {
     "title": "TV",
@@ -16518,5 +16519,11 @@
     "title": "DeHub heet nu Riftn",
     "body": "Dezelfde app, hetzelfde account, dezelfde vrienden. Alleen een nieuwe naam.",
     "continue": "Tik om verder te gaan"
+  },
+  "reel": {
+    "readAll": "Alles lezen",
+    "openPost": "Bericht openen",
+    "readArticle": "Lees artikel",
+    "openToUnlock": "Openen om te ontgrendelen"
   }
 }

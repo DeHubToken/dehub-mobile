@@ -4911,7 +4911,8 @@
     "tabVideos": "فيديوهات",
     "tabAudio": "الصوت",
     "tabLive": "حَيّ",
-    "tabPinned": "المرفق"
+    "tabPinned": "المرفق",
+    "lockedPost": "بوست مقفل"
   },
   "tv": {
     "title": "التلفزيون",
@@ -14694,5 +14695,11 @@
     "days": "{{count}} أيام",
     "spotlightNew": "تم سكّه للتو",
     "buyFor": "اشتري لـ {{price}}"
+  },
+  "reel": {
+    "readAll": "قرا الكل",
+    "openPost": "افتح البوست",
+    "readArticle": "قرا المقال",
+    "openToUnlock": "إفتح عشان تفتح"
   }
 }

@@ -4894,7 +4894,8 @@
     "tabVideos": "ویڈیوز",
     "tabAudio": "آڈیو",
     "tabLive": "لائیو",
-    "tabPinned": "پنڈ"
+    "tabPinned": "پنڈ",
+    "lockedPost": "لاکڈ پوسٹ"
   },
   "tv": {
     "title": "ٹی وی",
@@ -14661,5 +14662,11 @@
     "spotlightForSale": "ہن ویلے کے لئے فروخت",
     "spotlightNew": "جسٹ میٹڈ",
     "buyFor": "کُپْری {{price}} لُو"
+  },
+  "reel": {
+    "readAll": "سارے پڑھو",
+    "openPost": "اوپن پوسٹ",
+    "readArticle": "مضمون پڑھو",
+    "openToUnlock": "کھول کے ان لاک"
   }
 }

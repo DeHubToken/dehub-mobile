@@ -4915,7 +4915,8 @@
     "tabVideos": "ਵੀਡੀਓ",
     "tabAudio": "ਆਡੀਓ",
     "tabLive": "ਲਾਈਵ",
-    "tabPinned": "ਪਿੰਨ ਕੀਤੇ"
+    "tabPinned": "ਪਿੰਨ ਕੀਤੇ",
+    "lockedPost": "ਤਾਲਾਬੰਦ ਪੋਸਟ"
   },
   "tv": {
     "title": "ਟੀਵੀ",
@@ -14704,5 +14705,11 @@
     "days": "{{count}} ਦਿਨ",
     "spotlightNew": "ਹੁਣੇ ਹੀ ਬਣਾਇਆ",
     "buyFor": "ਖਰੀਦ ਕਰੋ ਲਈ {{price}}"
+  },
+  "reel": {
+    "readAll": "ਸਾਰੇ ਪੜ੍ਹੋ",
+    "openPost": "ਪੋਸਟ ਖੋਲ੍ਹੋ",
+    "readArticle": "ਲੇਖ ਪੜ੍ਹੋ",
+    "openToUnlock": "ਤਾਲਾ ਖੋਲ੍ਹਣ ਲਈ ਖੁੱਲ੍ਹਾ"
   }
 }

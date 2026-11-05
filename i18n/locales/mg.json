@@ -4929,7 +4929,8 @@
     "tabVideos": "Video",
     "tabAudio": "Feo",
     "tabLive": "Mivantana",
-    "tabPinned": "Voapetraka"
+    "tabPinned": "Voapetraka",
+    "lockedPost": "Voageja lahatsoratra"
   },
   "tv": {
     "title": "Fahitalavitra",
@@ -14779,5 +14780,11 @@
     "days": "{{count}} days",
     "spotlightNew": "Just minted",
     "buyFor": "Olaona ny {{price}}"
+  },
+  "reel": {
+    "readAll": "Mamaky rehetra",
+    "openPost": "Sokafy ny lahatsoratra",
+    "readArticle": "Vakio ny lahatsoratra",
+    "openToUnlock": "Sokafy io toerana io"
   }
 }

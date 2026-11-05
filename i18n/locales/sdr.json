@@ -4917,7 +4917,8 @@
     "tabVideos": "Videolar",
     "tabAudio": "Sesler",
     "tabLive": "Canlı",
-    "tabPinned": "Pinli"
+    "tabPinned": "Pinli",
+    "lockedPost": "बंद पोस्ट"
   },
   "tv": {
     "title": "ٹی وی",
@@ -14746,5 +14747,11 @@
     "spotlightForSale": "فروشگاه",
     "spotlightNew": "अभी मिंट किया गया",
     "buyFor": "{{price}} के लिए खरीदें"
+  },
+  "reel": {
+    "readAll": "सब पढ़ू",
+    "openPost": "पोस्ट खोलू",
+    "readArticle": "लेख पढ़ू",
+    "openToUnlock": "खोलै बर अनलॉक"
   }
 }

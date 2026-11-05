@@ -2768,7 +2768,8 @@
     "tabVideos": "Vidéos",
     "tabAudio": "L'audio",
     "tabLive": "En direct",
-    "tabPinned": "Épinglé"
+    "tabPinned": "Épinglé",
+    "lockedPost": "Poste verrouillé"
   },
   "tv": {
     "title": "Télévision",
@@ -16271,5 +16272,11 @@
     "title": "DeHub devient Riftn",
     "body": "Même appli, même compte, mêmes amis. Juste un nouveau nom.",
     "continue": "Touchez pour continuer"
+  },
+  "reel": {
+    "readAll": "Tout lire",
+    "openPost": "Ouvrir l'article",
+    "readArticle": "Lire l'article",
+    "openToUnlock": "Ouvrir pour déverrouiller"
   }
 }

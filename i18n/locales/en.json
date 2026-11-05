@@ -2628,6 +2628,7 @@
   },
   "profile": {
     "articleShort": "Article",
+    "lockedPost": "Locked post",
     "pinnedShort": "Pinned",
     "post": "Post",
     "sortBy": "Sort by",
@@ -13019,6 +13020,12 @@
     "loading": "Finding a sponsor…",
     "campaignDescription": "Let viewers support creators by watching 30 seconds. Requires an approved video of at least 30 seconds, uploaded in the web advertising portal.",
     "watch": "Watch an ad to support this creator"
+  },
+  "reel": {
+    "readAll": "Read all",
+    "openPost": "Open post",
+    "readArticle": "Read article",
+    "openToUnlock": "Open to unlock"
   },
   "copy": {
     "2ab63e6ced90": "Not feasible",

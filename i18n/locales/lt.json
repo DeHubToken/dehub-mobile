@@ -4920,7 +4920,8 @@
     "tabVideos": "Vaizdo įrašai",
     "tabAudio": "Garsas",
     "tabLive": "Tiesiogiai",
-    "tabPinned": "Prisegta"
+    "tabPinned": "Prisegta",
+    "lockedPost": "Užrakintas įrašas"
   },
   "tv": {
     "title": "TV",
@@ -14687,5 +14688,11 @@
     "spotlightForSale": "Pardavimas dabar",
     "spotlightNew": "Mintos tik pradėtos",
     "buyFor": "Kupi už {{price}}"
+  },
+  "reel": {
+    "readAll": "Skaityti viską",
+    "openPost": "Atidaryti įrašą",
+    "readArticle": "Skaityti straipsnį",
+    "openToUnlock": "Atidarykite, kad atrakintumėte"
   }
 }

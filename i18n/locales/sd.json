@@ -4895,7 +4895,8 @@
     "tabVideos": "فيڊيو",
     "tabAudio": "آڊيو",
     "tabLive": "آف لائو",
-    "tabPinned": "پنڊل"
+    "tabPinned": "پنڊل",
+    "lockedPost": "بند ٿيل پوسٽ"
   },
   "tv": {
     "title": "ٽي وي",
@@ -14663,5 +14664,11 @@
     "spotlightForSale": "ابھي ڪري واپس ڪرڻ لاءِ",
     "spotlightNew": "جڏھن",
     "buyFor": "ڪرائے لاءِ {{price}}"
+  },
+  "reel": {
+    "readAll": "سڀ پڙهو",
+    "openPost": "اوپن پوسٽ",
+    "readArticle": "آرٽيڪل پڙهو",
+    "openToUnlock": "انلاڪ ڪرڻ لاءِ کليل"
   }
 }

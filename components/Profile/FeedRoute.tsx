@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { seedPostDetail, warmRequest } from '../../libs/navPrefetch';
 import { noteProfileFeedOpen, useProvidedProfileFeed } from '../../libs/profileFeedOrigin';
+import { useProfilePostBg } from './PostBackground';
 
 interface FeedRouteProps {
   /** Channel toolbar state, threaded to the API rather than applied on screen. */
@@ -96,17 +97,28 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     minter: address, postType, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked,
   } : null);
 
-  // Every post type in one grid, and every tile opens its own post page, so
-  // a photo comes with its likes, comments, save and share like any post.
-  const openTile = useCallback((item: UnifiedFeedItem) => {
+  // A tile opens the profile reel: this creator's posts one by one, full
+  // screen, from the tapped one (libs/profileReel). Likes, comments and share
+  // ride along on every slide; a still slide links on to its post page.
+  const postBg = useProfilePostBg();
+  const openTile = useCallback((item: UnifiedFeedItem, _kind?: unknown, images?: string[]) => {
     const tokenId = item.tokenId ?? item.id;
     if (tokenId == null) return;
     onBeforeNavigate?.();
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId as any));
-    noteProfileFeedOpen(feedSource, tokenId);
-    navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
-  }, [navigation, onBeforeNavigate, feedSource]);
+    const origin = noteProfileFeedOpen(feedSource, tokenId);
+    if (!origin) {
+      navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
+      return;
+    }
+    navigation.navigate(ScreenNames.ShortsViewer, {
+      initialIndex: 0,
+      initialItems: [item],
+      initialThumbnail: images?.[0],
+      feedParams: { profileFeed: origin, fromId: String(tokenId), reel: true, reelBgId: postBg?.id ?? null },
+    });
+  }, [navigation, onBeforeNavigate, feedSource, postBg]);
 
   // Pinned posts lead the grid as their own row of tiles, wearing a Pinned chip.
   const header = pinnedPosts.length ? (

@@ -4932,7 +4932,8 @@
     "tabVideos": "Videolar",
     "tabAudio": "Audio",
     "tabLive": "Jonli",
-    "tabPinned": "Mahkamlangan"
+    "tabPinned": "Mahkamlangan",
+    "lockedPost": "Qulflangan post"
   },
   "tv": {
     "title": "Televizor",
@@ -14736,5 +14737,11 @@
     "spotlightForSale": "Sotilmoqda",
     "spotlightNew": "Faqat mint qilingan",
     "buyFor": "{{price}} uchun sotib oling"
+  },
+  "reel": {
+    "readAll": "Hammasini o'qing",
+    "openPost": "Ochiq post",
+    "readArticle": "Maqolani o'qing",
+    "openToUnlock": "Qulfni ochish uchun oching"
   }
 }

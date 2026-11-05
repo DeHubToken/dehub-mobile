@@ -4988,7 +4988,8 @@
     "tabPinned": "পিন্ড করা হয়েছে",
     "tabPosts": "পোস্ট",
     "tabAudio": "অডিও",
-    "tabLive": "লাইভ"
+    "tabLive": "লাইভ",
+    "lockedPost": "লকড পোস্ট"
   },
   "tv": {
     "title": "টিভি",
@@ -14831,5 +14832,11 @@
     "spotlightForSale": "এখন বিক্রির জন্য",
     "spotlightNew": "শুধু মুদ্রিত",
     "buyFor": "কিন জন্য {{price}}"
+  },
+  "reel": {
+    "readAll": "সব পড়ো",
+    "openPost": "পোস্ট খুলো",
+    "readArticle": "লেখা পড়ো",
+    "openToUnlock": "আনলক করতে খুলো"
   }
 }

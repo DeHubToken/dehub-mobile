@@ -4897,7 +4897,8 @@
     "tabVideos": "Видеолар",
     "tabAudio": "Аудио",
     "tabLive": "Түз эфир",
-    "tabPinned": "Пиннингделешилди"
+    "tabPinned": "Пиннингделешилди",
+    "lockedPost": "Жабык пост"
   },
   "tv": {
     "title": "ТВ",
@@ -14676,5 +14677,11 @@
     "spotlightForSale": "Азыр сатылууда",
     "spotlightNew": "Жеңилдик менен калтырдым.",
     "buyFor": "Сатып алуу үчүн {{price}}га баруу"
+  },
+  "reel": {
+    "readAll": "Баарын окуу",
+    "openPost": "Постту ачуу",
+    "readArticle": "Макаланы окуу",
+    "openToUnlock": "Кулпуну ачуу үчүн ачуу"
   }
 }

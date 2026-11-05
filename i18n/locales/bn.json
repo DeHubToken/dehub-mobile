@@ -4916,7 +4916,8 @@
     "tabVideos": "ভিডিও",
     "tabAudio": "অডিও",
     "tabLive": "লাইভ",
-    "tabPinned": "পিন্ড"
+    "tabPinned": "পিন্ড",
+    "lockedPost": "লক করা পোস্ট"
   },
   "tv": {
     "title": "টিভি",
@@ -14711,5 +14712,11 @@
     "title": "DeHub এখন Riftn",
     "body": "একই অ্যাপ, একই অ্যাকাউন্ট, একই বন্ধুরা। শুধু নতুন নাম।",
     "continue": "চালিয়ে যেতে ট্যাপ করুন"
+  },
+  "reel": {
+    "readAll": "সব পড়ুন",
+    "openPost": "পোস্ট খুলুন",
+    "readArticle": "নিবন্ধটি পড়ুন",
+    "openToUnlock": "আনলক করার জন্য খুলুন"
   }
 }

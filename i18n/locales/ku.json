@@ -4916,7 +4916,8 @@
     "tabVideos": "Vîdyo",
     "tabAudio": "Deng",
     "tabLive": "Zindî",
-    "tabPinned": "Pînkirî"
+    "tabPinned": "Pînkirî",
+    "lockedPost": "Postê girtî"
   },
   "tv": {
     "title": "TV",
@@ -14981,5 +14982,11 @@
     "days": "{{count}} days",
     "spotlightNew": "Just minted",
     "buyFor": "Xwarin bikin li ser {{price}}"
+  },
+  "reel": {
+    "readAll": "Hemî bixwîne",
+    "openPost": "Postê veke",
+    "readArticle": "Gotarê bixwîne",
+    "openToUnlock": "Vekirî da ku vekirê"
   }
 }

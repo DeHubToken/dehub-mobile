@@ -4946,7 +4946,8 @@
     "tabVideos": "Video's",
     "tabAudio": "Klank",
     "tabLive": "Leef",
-    "tabPinned": "Geheg"
+    "tabPinned": "Geheg",
+    "lockedPost": "Geslote plasing"
   },
   "tv": {
     "title": "TV",
@@ -14830,5 +14831,11 @@
     "spotlightForSale": "Nou vir verkoop",
     "spotlightNew": "Net gemint",
     "buyFor": "Koop vir {{price}}"
+  },
+  "reel": {
+    "readAll": "Lees alles",
+    "openPost": "Open plasing",
+    "readArticle": "Lees artikel",
+    "openToUnlock": "Open om te ontsluit"
   }
 }

@@ -4917,7 +4917,8 @@
     "tabVideos": "Videolar",
     "tabAudio": "Səs",
     "tabLive": "Yaşayış",
-    "tabPinned": "Pinlənmiş"
+    "tabPinned": "Pinlənmiş",
+    "lockedPost": "Kilidlənmiş yazı"
   },
   "tv": {
     "title": "TV",
@@ -14697,5 +14698,11 @@
     "spotlightForSale": "Satqılı halda",
     "spotlightNew": "Sonuncu məhsul",
     "buyFor": "{{price}}-qədər üçün al"
+  },
+  "reel": {
+    "readAll": "Hamısını oxu",
+    "openPost": "Yazını aç",
+    "readArticle": "Məqaləni oxu",
+    "openToUnlock": "Kilidini açmaq üçün aç"
   }
 }

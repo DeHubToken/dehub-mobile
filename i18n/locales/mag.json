@@ -4904,7 +4904,8 @@
     "tabVideos": "इ औ सेकसी वीडियो",
     "tabAudio": "ऑडियो कैलक्यूलेटर",
     "tabLive": "जी उठी गेलय",
-    "tabPinned": "गले लगाना, गले लगाना"
+    "tabPinned": "गले लगाना, गले लगाना",
+    "lockedPost": "तालाबंदी हई पोस्टवा"
   },
   "tv": {
     "title": "TV",
@@ -14668,5 +14669,11 @@
     "days": "{{count}} दिन",
     "spotlightForSale": "अब बिक्री पर",
     "spotlightNew": "जस्ट मिन्टेड"
+  },
+  "reel": {
+    "readAll": "Read: Complete चांद के पार चलो",
+    "openPost": "कलई खोलना पोस्ट",
+    "readArticle": "पढ़ई लिखई",
+    "openToUnlock": "कलई खोलना"
   }
 }

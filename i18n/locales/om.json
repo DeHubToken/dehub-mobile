@@ -4920,7 +4920,8 @@
     "tabVideos": "Viidiyoo",
     "tabAudio": "Sagalee",
     "tabLive": "Aduu",
-    "tabPinned": "Qabame"
+    "tabPinned": "Qabame",
+    "lockedPost": "Post cufame"
   },
   "tv": {
     "title": "TV",
@@ -14736,5 +14737,11 @@
     "spotlightForSale": "Amma gurgurtaa jira",
     "spotlightNew": "Amma mint godhame",
     "buyFor": "{{price}} bitaadhaaf kadi"
+  },
+  "reel": {
+    "readAll": "Hundaa dubbisi",
+    "openPost": "Barreeffama banaa",
+    "readArticle": "Barreeffama dubbisaa",
+    "openToUnlock": "Qulfii banuuf banaa"
   }
 }

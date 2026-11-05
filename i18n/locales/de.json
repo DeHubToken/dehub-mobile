@@ -4848,7 +4848,8 @@
     "tabVideos": "Videos",
     "tabAudio": "Audio",
     "tabLive": "Leben",
-    "tabPinned": "Angeheftet"
+    "tabPinned": "Angeheftet",
+    "lockedPost": "Gesperrter Pfosten"
   },
   "tv": {
     "title": "TV",
@@ -14711,5 +14712,11 @@
     "title": "DeHub heißt jetzt Riftn",
     "body": "Gleiche App, gleiches Konto, gleiche Freunde. Nur ein neuer Name.",
     "continue": "Tippe, um fortzufahren"
+  },
+  "reel": {
+    "readAll": "Alle lesen",
+    "openPost": "Offener Beitrag",
+    "readArticle": "Artikel lesen",
+    "openToUnlock": "Zum Freischalten öffnen"
   }
 }

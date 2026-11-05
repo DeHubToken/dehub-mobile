@@ -4907,7 +4907,8 @@
     "tabVideos": "Videos",
     "tabAudio": "Töön",
     "tabLive": "Lebe",
-    "tabPinned": "Gepinnt"
+    "tabPinned": "Gepinnt",
+    "lockedPost": "Gschlosse Beitrag"
   },
   "tv": {
     "title": "TV",
@@ -14723,5 +14724,11 @@
     "spotlightForSale": "Jetzt z’verkufe",
     "spotlightNew": "Gössi just gemacht",
     "buyFor": "Kauf für {{price}}"
+  },
+  "reel": {
+    "readAll": "Alles läse",
+    "openPost": "Beitrag öffne",
+    "readArticle": "Artikel läse",
+    "openToUnlock": "Zum entsperre öppne"
   }
 }

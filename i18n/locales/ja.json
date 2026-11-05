@@ -4803,7 +4803,8 @@
     "tabVideos": "ビデオ",
     "tabAudio": "オーディオ",
     "tabLive": "ライブ",
-    "tabPinned": "ピン留め"
+    "tabPinned": "ピン留め",
+    "lockedPost": "ロックされた投稿"
   },
   "tv": {
     "title": "テレビ",
@@ -14710,5 +14711,11 @@
     "title": "DeHubはRiftnになりました",
     "body": "アプリもアカウントも友だちもそのまま。名前が変わっただけです。",
     "continue": "タップして続ける"
+  },
+  "reel": {
+    "readAll": "すべて読む",
+    "openPost": "投稿を開く",
+    "readArticle": "記事を読む",
+    "openToUnlock": "開いてロックを解除する"
   }
 }

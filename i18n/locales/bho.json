@@ -4900,7 +4900,8 @@
     "tabVideos": "वीडियो",
     "tabAudio": "ऑडियो",
     "tabLive": "लाइव",
-    "tabPinned": "पिन्ड"
+    "tabPinned": "पिन्ड",
+    "lockedPost": "पोस्ट बांधे जा रहे"
   },
   "tv": {
     "title": "टीवी",
@@ -14668,5 +14669,11 @@
     "collections": "संग्रह",
     "spotlightForSale": "अब बिक्री पर",
     "spotlightNew": "अभी मिंट भइल"
+  },
+  "reel": {
+    "readAll": "सब पढ़े सब बढे",
+    "openPost": "खुल गइल पोस्टर",
+    "readArticle": "अउरी लेख पढ़ीं",
+    "openToUnlock": "खुली रहे खुली रहे"
   }
 }

@@ -5037,7 +5037,8 @@
     "tabVideos": "ভিডিও",
     "tabAudio": "অডিও",
     "tabLive": "লাইভ",
-    "tabPinned": "পিন্ড"
+    "tabPinned": "পিন্ড",
+    "lockedPost": "লকড পোস্ট"
   },
   "tv": {
     "title": "টিভি",
@@ -14896,5 +14897,11 @@
     "latestMints": "শেষ মিন্টস",
     "tapToOffer": "একটি কল করুন একটি প্রস্তাব দিন",
     "collections": "সংগ্রহ"
+  },
+  "reel": {
+    "readAll": "সব পড়ো",
+    "openPost": "পোস্ট খুলো",
+    "readArticle": "লেখা পড়ো",
+    "openToUnlock": "আনলক করতে খুলো"
   }
 }

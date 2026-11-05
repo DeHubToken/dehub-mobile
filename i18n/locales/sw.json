@@ -4926,7 +4926,8 @@
     "tabVideos": "Video",
     "tabAudio": "Sauti",
     "tabLive": "Moja kwa moja",
-    "tabPinned": "Imepachikwa"
+    "tabPinned": "Imepachikwa",
+    "lockedPost": "Chapisho lililofungwa"
   },
   "tv": {
     "title": "Runinga",
@@ -14697,5 +14698,11 @@
     "title": "DeHub sasa ni Riftn",
     "body": "Programu ile ile, akaunti ile ile, marafiki wale wale. Jina jipya tu.",
     "continue": "Gusa ili kuendelea"
+  },
+  "reel": {
+    "readAll": "Soma yote",
+    "openPost": "Fungua chapisho",
+    "readArticle": "Soma makala",
+    "openToUnlock": "Fungua ili ufungue"
   }
 }

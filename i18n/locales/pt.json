@@ -4863,7 +4863,8 @@
     "tabLive": "Ao vivo",
     "tabPinned": "Fixado",
     "mutualsOne": "{{count}} Mútuo:",
-    "mutualsMany": "{{count}} Mútuos:"
+    "mutualsMany": "{{count}} Mútuos:",
+    "lockedPost": "Post bloqueado"
   },
   "tv": {
     "title": "TV",
@@ -15794,5 +15795,11 @@
     "title": "DeHub agora é Riftn",
     "body": "Mesmo app, mesma conta, mesmos amigos. Só um nome novo.",
     "continue": "Toque para continuar"
+  },
+  "reel": {
+    "readAll": "Ler tudo",
+    "openPost": "Abrir publicação",
+    "readArticle": "Ler artigo",
+    "openToUnlock": "Abrir para desbloquear"
   }
 }

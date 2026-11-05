@@ -4906,7 +4906,8 @@
     "tabVideos": "Ngā ataata",
     "tabAudio": "Oro",
     "tabLive": "Ora",
-    "tabPinned": "Kua piri"
+    "tabPinned": "Kua piri",
+    "lockedPost": "Tuhinga ka whai mai"
   },
   "tv": {
     "title": "Pouaka whakaata",
@@ -14689,5 +14690,11 @@
     "spotlightForSale": "Hei whakapau i tātou",
     "spotlightNew": "Kua whakapauhia tērā",
     "buyFor": "Whakapau hei {{price}}"
+  },
+  "reel": {
+    "readAll": "Pānuihia nga mea katoa",
+    "openPost": "He pou tuwhera",
+    "readArticle": "Pānuihia te tuhinga",
+    "openToUnlock": "Whakatuwhera ki te whakatuwhera"
   }
 }

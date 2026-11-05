@@ -4894,7 +4894,8 @@
     "tabLive": "Dei",
     "tabPinned": "Dem pin am",
     "offerWorthNow": "Wia di current rate, {{amount}} tokens dey be.",
-    "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am."
+    "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am.",
+    "lockedPost": "Locked post"
   },
   "tv": {
     "title": "TV",
@@ -14647,5 +14648,11 @@
     "collections": "Collections",
     "days": "{{count}} days",
     "spotlightNew": "Just minted"
+  },
+  "reel": {
+    "readAll": "Read all",
+    "openPost": "Open post",
+    "readArticle": "Read article",
+    "openToUnlock": "Open to unlock"
   }
 }

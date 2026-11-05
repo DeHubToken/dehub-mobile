@@ -4903,7 +4903,8 @@
     "tabLive": "A be to niin na",
     "tabPinned": "A tugura",
     "emptyUnlocked": "O tɛ se ka kɛ halibi.",
-    "emptyWatched": "O tɛ se ka kɛ halibi."
+    "emptyWatched": "O tɛ se ka kɛ halibi.",
+    "lockedPost": "Barokun min be sɔrɔ o yɔrɔ la"
   },
   "tv": {
     "title": "TV",
@@ -14662,5 +14663,11 @@
     "days": "{{count}} days",
     "spotlightForSale": "Bé kɔ̀ tɔ̀",
     "spotlightNew": "Kàŋ kàŋ"
+  },
+  "reel": {
+    "readAll": "Kalan bɛɛ",
+    "openPost": "Barokun dayɛlɛnin",
+    "readArticle": "Barokun nin kalan",
+    "openToUnlock": "Aw kana a to a ka yɛlɛ"
   }
 }

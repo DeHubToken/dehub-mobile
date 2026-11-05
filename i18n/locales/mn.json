@@ -4912,7 +4912,8 @@
     "tabVideos": "Видео",
     "tabAudio": "Аудио",
     "tabLive": "Онлайн",
-    "tabPinned": "Хуудасуудын тавьсан"
+    "tabPinned": "Хуудасуудын тавьсан",
+    "lockedPost": "Түгжигдсэн нийтлэл"
   },
   "tv": {
     "title": "ТВ",
@@ -14693,5 +14694,11 @@
     "spotlightForSale": "Хүүхэд",
     "spotlightNew": "Өөрчлөгдсөн байна.",
     "buyFor": "Бэхэлэхдээ {{price}}-г худалдаж авна уу."
+  },
+  "reel": {
+    "readAll": "Бүгдийг нь унших",
+    "openPost": "Нийтлэл нээх",
+    "readArticle": "Нийтлэл унших",
+    "openToUnlock": "Нээх"
   }
 }

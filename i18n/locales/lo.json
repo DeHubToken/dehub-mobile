@@ -4904,7 +4904,8 @@
     "tabVideos": "ວິດີໂອ",
     "tabAudio": "ສຽງ",
     "tabLive": "ສົດ",
-    "tabPinned": "ຖືກປັກໝຸດ"
+    "tabPinned": "ຖືກປັກໝຸດ",
+    "lockedPost": "Post ລັອກ"
   },
   "tv": {
     "title": "ໂທລະພາບ",
@@ -14682,5 +14683,11 @@
     "tapToOffer": "ແຕະອັນໜຶ່ງເພື່ອສະເໜີລາຄາ",
     "collections": "ສຳລັບສະກຸນສະກຸນສະກຸນ",
     "spotlightNew": "ການກະທົບ"
+  },
+  "reel": {
+    "readAll": "ອ່ານທັງ ຫມົດ",
+    "openPost": "ເປີດໂພສ",
+    "readArticle": "ອ່ານບົດຄວາມ",
+    "openToUnlock": "ເປີດເພື່ອປົດລັອກ"
   }
 }

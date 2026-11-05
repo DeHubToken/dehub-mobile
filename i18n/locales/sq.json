@@ -4920,7 +4920,8 @@
     "tabVideos": "Video",
     "tabAudio": "Zëri",
     "tabLive": "Drejtpërdrejt",
-    "tabPinned": "Përcaktuar"
+    "tabPinned": "Përcaktuar",
+    "lockedPost": "Postim i bllokuar"
   },
   "tv": {
     "title": "Televizor",
@@ -14686,5 +14687,11 @@
     "days": "{{count}} ditë",
     "spotlightForSale": "Në shitje tani",
     "buyFor": "Blëni për {{price}}"
+  },
+  "reel": {
+    "readAll": "Lexo të gjitha",
+    "openPost": "Hap postimin",
+    "readArticle": "Lexo artikullin",
+    "openToUnlock": "Hap për të zhbllokuar"
   }
 }

@@ -4803,7 +4803,8 @@
     "tabVideos": "视频",
     "tabAudio": "音频",
     "tabLive": "直播",
-    "tabPinned": "固定"
+    "tabPinned": "固定",
+    "lockedPost": "已锁定帖子"
   },
   "tv": {
     "title": "电视",
@@ -14711,5 +14712,11 @@
     "title": "DeHub 现已更名为 Riftn",
     "body": "同一个应用、同一个账户、同一群朋友。只是换了个名字。",
     "continue": "轻触继续"
+  },
+  "reel": {
+    "readAll": "阅读全部",
+    "openPost": "打开帖子",
+    "readArticle": "阅读文章",
+    "openToUnlock": "打开即可解锁"
   }
 }

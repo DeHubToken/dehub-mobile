@@ -4924,7 +4924,8 @@
     "tabVideos": "סרטונים",
     "tabAudio": "שמע",
     "tabLive": "שידור חי",
-    "tabPinned": "מוצמדת"
+    "tabPinned": "מוצמדת",
+    "lockedPost": "עמדה נעולה"
   },
   "tv": {
     "title": "טלוויזיה",
@@ -14699,5 +14700,11 @@
     "title": "DeHub הוא עכשיו Riftn",
     "body": "אותה אפליקציה, אותו חשבון, אותם חברים. רק שם חדש.",
     "continue": "הקש כדי להמשיך"
+  },
+  "reel": {
+    "readAll": "לקרוא הכול",
+    "openPost": "פתיחת פוסט",
+    "readArticle": "לקריאת המאמר",
+    "openToUnlock": "פתח כדי לשחרר את הנעילה"
   }
 }

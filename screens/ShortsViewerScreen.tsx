@@ -178,6 +178,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getLiveVideos } from "../services/live.service";
 import { interleaveLive, isLiveSlide, isVerticalFeedLive, LIVE_SLIDE_EVERY, LIVE_SLIDE_MAX, toLiveSlide } from "../libs/live-shorts";
 import LiveShortSlide from "../components/Shorts/LiveShortSlide";
+import ReelStillSlide from "../components/Shorts/ReelStillSlide";
+import { isReelSlide, reelStillOf } from "../libs/profileReel";
 import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
@@ -459,9 +461,11 @@ interface ShortItemProps {
    * Android window focus, which would otherwise pause the video underneath.
    */
   optionsMenuOpen?: boolean;
+  /** Profile reel: the creator's post background, behind text posts. */
+  reelBgId?: string | null;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, isFirst, onHoldActiveChange, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onChromeLiveChange, chromeRevealTick, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, isFirst, onHoldActiveChange, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onChromeLiveChange, chromeRevealTick, onCommentsVisibilityChange, optionsMenuOpen = false, reelBgId }) => {
   const { t: _copy } = _useCopy();
   const feedPlaybackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
@@ -475,18 +479,22 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const playbackAllowed = feedPlaybackAllowed || ((optionsMenuOpen || menuHold) && surfaceActive);
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
   const tokenId = item.tokenId ?? item.id;
-  const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
+  // Profile reel: a post that is not a video or a photo (text, comic, article,
+  // a paid post) is a still slide; nothing plays under it.
+  const reelStill = useMemo(() => reelStillOf(item as any), [item]);
+  const photoMedia = useMemo(() => (reelStill ? undefined : shortsPhotoMedia(item, true)), [item, reelStill]);
+  const noVideo = !!photoMedia || !!reelStill;
   // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
   const photoBackdrop = useAppTheme().isLight ? LIGHT_PAGE_FILL : "#000";
   // A gated short's file is private: an entitled viewer plays a signed URL,
   // anyone else is refused one and keeps the poster.
   const viewer = useUser();
-  const signedShort = !photoMedia && videoNeedsAccess(item);
+  const signedShort = !noVideo && videoNeedsAccess(item);
   const shortAccess = useVideoAccess(tokenId, signedShort, viewer?.walletAddress || viewer?.address);
   // Otherwise the same string FeedCard plays, so a card opened into the
   // viewer keeps its player: the HLS ladder when the post has one, else the MP4.
   const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
+  const videoUrl = reelStill ? undefined : photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
   const miniEntry = React.useSyncExternalStore(subscribeInAppVideoMini, getInAppVideoMini, getInAppVideoMini);
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
@@ -548,7 +556,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const isLooping = useMediaLooping();
   useEffect(() => { try { player.loop = !!photoMedia || isLooping; } catch {} }, [player, photoMedia, isLooping]);
   // Watch time for the creator's stats. A photo short's soundtrack is not a watch.
-  useEffect(() => trackPlayerWatchTime(player, photoMedia ? null : tokenId), [player, photoMedia, tokenId]);
+  useEffect(() => trackPlayerWatchTime(player, noVideo ? null : tokenId), [player, noVideo, tokenId]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
   // Android draws a TextureView video inside the app's own frame, so every
@@ -607,12 +615,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // whitespace-only name passes a bare truthiness check and draws a blank line
   // above the caption.
   const title = (() => {
+    // A text post's words are the slide itself; no caption repeats them.
+    if (reelStill && reelStill.kind !== "comic") return "";
     const raw = (item.name || item.title || "").trim();
     return raw.toLowerCase() === "untitled" ? "" : raw;
   })();
   // A description that only repeats the title is a second copy of the same
   // line — and a second translation request for text already going out.
-  const rawDescription = (photoMedia?.description ?? item.description ?? "").trim();
+  const rawDescription = reelStill && reelStill.kind !== "comic" ? "" : (photoMedia?.description ?? item.description ?? "").trim();
   const description = rawDescription !== title ? rawDescription : "";
 
   // Auto-translate the caption, the same way the feed card does.
@@ -1820,7 +1830,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     return () => clearTimeout(timer);
   }, [isActive, myReaction]);
 
-  const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
+  const canMinimize = isActive && ownsVideo && !pipPlayer && !noVideo && !showComments && !screenshotMode && !captionExpanded
     && !directSurface && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
   const minimizePan = useMemo(() => Gesture.Pan()
     .enabled(canMinimize)
@@ -2041,7 +2051,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         {/* A clip that doesn't fill the screen sits on a blurred, dimmed copy
             of its own poster, so its edges blend out rather than cutting a
             hard line across the caption and action row. */}
-        {!photoMedia && backdropSource ? (
+        {!noVideo && backdropSource ? (
           <View style={StyleSheet.absoluteFill} pointerEvents="none">
             <BlurSafeImage source={backdropSource} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={30} transition={0} />
             <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.35)" }]} />
@@ -2051,13 +2061,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
-        {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
+        {noVideo ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
           directSurface ? null : <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : pictureKnown && backdropSource ? null : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
         {/* Leaving the app from Shorts never starts PiP; the PiP button still does. */}
-        {player && isActive && ownsVideo && !photoMedia ? (
+        {player && isActive && ownsVideo && !noVideo ? (
           <Reanimated.View style={videoBoxStyle} pointerEvents="none">
             <PersistentVideoView
               ref={activeVideoRef}
@@ -2076,11 +2086,21 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         ) : null}
         {/* A SurfaceView shows through everything drawn under it, so its
             poster has to sit on top until the first frame is up. */}
-        {directSurface && !photoMedia && thumbnail && (!firstFrameRendered || !isActive) ? (
+        {directSurface && !noVideo && thumbnail && (!firstFrameRendered || !isActive) ? (
           <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : null}
         </Reanimated.View>
         </Reanimated.View>
+        {reelStill && (
+          <ReelStillSlide
+            still={reelStill}
+            width={SCREEN_WIDTH}
+            height={itemHeight}
+            isActive={isActive}
+            bgId={reelBgId}
+            onOpenPost={() => navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) })}
+          />
+        )}
         {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} galleryKey={String(tokenId)} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
         {playbackPhase === 'failed' && isActive && <Pressable accessibilityRole="button"
           accessibilityLabel={t('common.retry')} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
@@ -2366,7 +2386,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 </View>
               ) : null}
               {/* "Duet with @x", "3 reactions" and the rest, as web's Shorts viewer. */}
-              <RemixCredits tokenId={tokenId} overlay enabled={!photoMedia && isActive} />
+              <RemixCredits tokenId={tokenId} overlay enabled={!noVideo && isActive} />
             </View>
 
             {/* Action row — bare icons over the scrim, no slab. Web draws this
@@ -2827,7 +2847,8 @@ const ShortsViewerScreen = () => {
             batch = at >= 0 ? batch.slice(at + 1) : [];
           }
           const known = new Set(itemsRef.current.map((i) => String(i.tokenId ?? i.id)));
-          const unique = batch.filter((i) => i.postType === "video" && canOpenPostVideoViewer(i as any) && !known.has(String(i.tokenId ?? i.id)));
+          // The reel takes every kind of post; the Shorts continuation only videos.
+          const unique = batch.filter((i) => (feedParams.reel ? isReelSlide(i as any) : i.postType === "video" && canOpenPostVideoViewer(i as any)) && !known.has(String(i.tokenId ?? i.id)));
           if (unique.length) {
             itemsRef.current = [...itemsRef.current, ...unique];
             setItems((prev) => {
@@ -3109,9 +3130,10 @@ const ShortsViewerScreen = () => {
         chromeRevealTick={index === activeIndex ? chromeRevealTick : 0}
         onCommentsVisibilityChange={setCommentsVisible}
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
+        reelBgId={feedParams.reelBgId}
       />
     ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, chromeRevealTick, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, chromeRevealTick, initialIndex, initialThumbnail, feedParams.reelBgId],
   );
 
   const keyExtractor = useCallback(

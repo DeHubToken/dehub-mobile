@@ -4920,7 +4920,8 @@
     "tabVideos": "Videozapisi",
     "tabAudio": "Zvuk",
     "tabLive": "Uživo",
-    "tabPinned": "Pine"
+    "tabPinned": "Pine",
+    "lockedPost": "Zaključana objava"
   },
   "tv": {
     "title": "TV",
@@ -14687,5 +14688,11 @@
     "spotlightForSale": "Trenutno za prodaju",
     "spotlightNew": "Samo mintirano",
     "buyFor": "Kupi za {{price}}"
+  },
+  "reel": {
+    "readAll": "Pročitaj sve",
+    "openPost": "Otvori objavu",
+    "readArticle": "Pročitajte članak",
+    "openToUnlock": "Otvori za otključavanje"
   }
 }

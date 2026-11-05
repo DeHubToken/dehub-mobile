@@ -4917,7 +4917,8 @@
     "tabVideos": "Video",
     "tabAudio": "Audio",
     "tabLive": "Tiešraide",
-    "tabPinned": "Piesprausts"
+    "tabPinned": "Piesprausts",
+    "lockedPost": "Slēgts ieraksts"
   },
   "tv": {
     "title": "TV",
@@ -14704,5 +14705,11 @@
     "spotlightForSale": "Pārdošanai tagad",
     "spotlightNew": "Tikko izlaists",
     "buyFor": "Nopirkt par {{price}}"
+  },
+  "reel": {
+    "readAll": "Lasīt visu",
+    "openPost": "Atvērt ziņu",
+    "readArticle": "Lasīt rakstu",
+    "openToUnlock": "Atvērt, lai atbloķētu"
   }
 }

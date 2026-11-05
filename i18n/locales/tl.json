@@ -4963,7 +4963,8 @@
     "tabVideos": "Mga Video",
     "tabAudio": "ay maaaring maging sa anyo ng",
     "tabLive": "Bibisita",
-    "tabPinned": "Pin"
+    "tabPinned": "Pin",
+    "lockedPost": "Naka - lock na post"
   },
   "tv": {
     "title": "TV",
@@ -14893,5 +14894,11 @@
     "title": "Riftn na ang DeHub",
     "body": "Parehong app, parehong account, parehong mga kaibigan. Bagong pangalan lang.",
     "continue": "I-tap para magpatuloy"
+  },
+  "reel": {
+    "readAll": "Basahin lahat",
+    "openPost": "Buksan ang post",
+    "readArticle": "Basahin ang artikulo",
+    "openToUnlock": "Buksan para i - unlock"
   }
 }
