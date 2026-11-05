@@ -55,13 +55,14 @@ export function useProfileContentCounts(address?: string): ProfileContentCounts 
   const pinned = pins?.length;
   // Fractions are on-chain, not in /profile_counts: the same portfolio read
   // the tab lists (shared cache). Left out until it answers, so the badge is
-  // blank while loading instead of a false 0. Starts a beat after the profile
-  // so the first content page wins the network.
+  // blank while loading instead of a false 0. The read is heavy (their last 50
+  // posts, three market tables, chain balances, a check per position), so it
+  // waits until the first rows and their pictures are in.
   const [fractionsEnabled, setFractionsEnabled] = useState(false);
   useEffect(() => {
     setFractionsEnabled(false);
     if (!address) return;
-    const timer = setTimeout(() => setFractionsEnabled(true), 800);
+    const timer = setTimeout(() => setFractionsEnabled(true), 4000);
     return () => clearTimeout(timer);
   }, [address]);
   const { data: fractionPositions } = useFractionPortfolio(address, { enabled: fractionsEnabled });
