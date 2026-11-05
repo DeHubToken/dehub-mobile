@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
 import ProfileSurface, { PROFILE_OPEN_MS } from './ProfileSurface';
+import { Platform, StyleSheet, View } from 'react-native';
 import RouteLoadingShell from '../../navigation/RouteLoadingShell';
+import StandaloneTabBar from '../../navigation/StandaloneTabBar';
 
 export interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -47,7 +49,22 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   const ready = !!usernameOrAddress && (embedded || readyIdentifier === usernameOrAddress);
   const Content = ready ? content() : null;
   if (embedded) return Content ? <Content {...props} /> : null;
-  return <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete}>
-    {Content ? <Content {...props} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
-  </ProfileSurface>;
+  // The profile brings its own bottom bar, but only once it has built. Until
+  // then the opening page covered the bar underneath, so the bar blinked out
+  // for ~0.4s on every profile open. Hold one in place until the page's own
+  // takes over. On Android it sits over the fading page so it never moves;
+  // the iPhone sheet slides it in with the page.
+  const holdBar = visible && !Content;
+  const bar = holdBar ? (
+    <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+      <StandaloneTabBar onBeforeNavigate={onClose} />
+    </View>
+  ) : null;
+  return <>
+    <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete}>
+      {Content ? <Content {...props} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
+      {Platform.OS === 'android' ? null : bar}
+    </ProfileSurface>
+    {Platform.OS === 'android' ? bar : null}
+  </>;
 }
