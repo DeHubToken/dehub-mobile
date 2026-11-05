@@ -5,6 +5,7 @@ import UserProfileBottomSheet from '../../components/UserProfile/UserProfileBott
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('../../navigation/RouteLoadingShell', () => 'LoadingShell');
 jest.mock('../../navigation/StandaloneTabBar', () => 'StandaloneTabBar');
+jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'ios' }, StyleSheet: { absoluteFill: {} } }));
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({
   __esModule: true, PROFILE_OPEN_MS: 220,
   default: (props: any) => require('react').createElement('ProfileSurface', props, props.children),
