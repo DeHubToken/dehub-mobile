@@ -4,6 +4,7 @@ import UserProfileBottomSheet from '../../components/UserProfile/UserProfileBott
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('../../navigation/RouteLoadingShell', () => 'LoadingShell');
+jest.mock('../../navigation/StandaloneTabBar', () => 'StandaloneTabBar');
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({
   __esModule: true, PROFILE_OPEN_MS: 220,
   default: (props: any) => require('react').createElement('ProfileSurface', props, props.children),
@@ -23,8 +24,12 @@ it('opens a light Back-capable shell and mounts the real profile only after UI-t
   act(() => { tree = create(<UserProfileBottomSheet visible usernameOrAddress="member" onClose={close} onOpenComplete={complete} />); });
   expect(tree.root.findAllByType('ProfileBody' as any)).toHaveLength(0);
   expect(tree.root.findByType('LoadingShell' as any).props.onBack).toBe(close);
+  // The bottom bar stays on screen while the shell stands in for the page.
+  expect(tree.root.findAllByType('StandaloneTabBar' as any)).toHaveLength(1);
   act(() => tree.root.findByType('ProfileSurface' as any).props.onOpenComplete());
   expect(tree.root.findAllByType('ProfileBody' as any)).toHaveLength(1);
+  // The built page brings its own bar, so the held one steps aside.
+  expect(tree.root.findAllByType('StandaloneTabBar' as any)).toHaveLength(0);
   expect(complete).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
 });
