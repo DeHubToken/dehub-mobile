@@ -24,6 +24,9 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess, toastWarning } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 import { dehubAuthHeaders } from "../services/ai.service";
+import { collectAppDeviceInfo } from "../libs/deviceInfo";
+import { useOptionalThemeName } from "../context/ThemeContext";
+import i18n from "../i18n";
 import {
   contentTypeForExtension,
   fileExtension,
@@ -697,11 +700,37 @@ function isMissingColumn(error: any, column: string): boolean {
   return error?.code === "PGRST204" || (message.includes(column) && /column/i.test(message));
 }
 
+/**
+ * Sends the device snapshot for a just-posted request. Fire and forget: a
+ * failure here must never cost the user their post. Board owners read it back
+ * with useFeatureDeviceInfo.
+ */
+function attachDeviceInfo(
+  id: string | undefined,
+  addr: string,
+  input: { username?: string | null; theme?: string | null; screen?: string | null },
+) {
+  if (!id) return;
+  void (async () => {
+    try {
+      const info = await collectAppDeviceInfo({ ...input, wallet: addr, language: i18n.language });
+      const { error } = await withWalletHeader(
+        (supabase as any).rpc("attach_feature_request_device_info", { p_id: id, p_info: info }),
+        addr,
+      );
+      if (error) log.warn("Device info not attached", error);
+    } catch (err) {
+      log.warn("Device info not attached", err);
+    }
+  })();
+}
+
 export function useSubmitFeatureRequest() {
   const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
   const user = useUser() as any;
+  const themeName = useOptionalThemeName();
 
   return useMutation({
     mutationFn: async ({
@@ -709,12 +738,15 @@ export function useSubmitFeatureRequest() {
       description,
       category,
       attachments,
+      screen,
     }: {
       title: string;
       description: string;
       category: FeatureCategory;
       /** Picked local files, oldest-first. Capped at MAX_FEATURE_ATTACHMENTS. */
       attachments?: FeatureAttachment[] | null;
+      /** Where it was sent from, for the owners' device info. */
+      screen?: string;
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
@@ -736,6 +768,7 @@ export function useSubmitFeatureRequest() {
         author_avatar: user?.avatarImageUrl || null,
       };
 
+      const deviceInput = { username: user?.username || null, theme: themeName, screen: screen || "FeatureRequests" };
       const insert = (payload: Record<string, unknown>) =>
         withWalletHeader(
           supabase.from("feature_requests").insert(payload as any).select().single(),
@@ -758,10 +791,12 @@ export function useSubmitFeatureRequest() {
             "Only the first attachment was saved — attachments are still rolling out",
           );
         }
+        attachDeviceInfo((retry.data as any)?.id, addr, deviceInput);
         return retry.data;
       }
 
       if (error) throw error;
+      attachDeviceInfo((data as any)?.id, addr, deviceInput);
       return data;
     },
     onSuccess: () => {
@@ -969,5 +1004,45 @@ export function useMarkShippedNotified() {
       );
     },
     onError: (err) => log.error("mark shipped notified failed", err),
+  });
+}
+
+/** Requests that carry a device snapshot. Board owners only; empty for everyone else. */
+export function useFeatureDeviceInfoIds() {
+  const wallet = useWallet();
+  return useQuery({
+    queryKey: ["feature-device-info-ids", wallet],
+    enabled: isFeatureStatusEditor(wallet),
+    staleTime: 60_000,
+    queryFn: async () => {
+      const { data, error } = await withWalletHeader(
+        (supabase as any).rpc("feature_request_device_info_ids"),
+        wallet,
+      );
+      if (error) throw error;
+      return new Set<string>(
+        ((data ?? []) as (string | { feature_request_device_info_ids: string })[]).map((row) =>
+          typeof row === "string" ? row : row.feature_request_device_info_ids,
+        ),
+      );
+    },
+  });
+}
+
+/** One request's device snapshot, fetched when the owner opens the row. */
+export function useFeatureDeviceInfo(id: string, open: boolean) {
+  const wallet = useWallet();
+  return useQuery({
+    queryKey: ["feature-device-info", id, wallet],
+    enabled: open && isFeatureStatusEditor(wallet),
+    staleTime: Infinity,
+    queryFn: async () => {
+      const { data, error } = await withWalletHeader(
+        (supabase as any).rpc("get_feature_request_device_info", { p_id: id }),
+        wallet,
+      );
+      if (error) throw error;
+      return (data ?? null) as Record<string, unknown> | null;
+    },
   });
 }

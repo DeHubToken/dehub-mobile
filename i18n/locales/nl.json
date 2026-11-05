@@ -2684,7 +2684,14 @@
       "pts": "{{n}} pt",
       "gap": "{{n}} pt om {{name}} in te halen",
       "join": "Plaats een idee dat wordt uitgebracht om op het bord te komen"
-    }
+    },
+    "deviceInfoNote": "Apparaatinfo wordt meegestuurd om ons te helpen bugs op te lossen.",
+    "deviceInfo": "Apparaatinfo",
+    "deviceInfoOwners": "Alleen bordeigenaren zien dit",
+    "deviceInfoError": "Apparaatinfo kon niet worden geladen",
+    "deviceInfoNone": "Geen apparaatinfo voor dit verzoek",
+    "deviceInfoErrors": "Recente fouten",
+    "deviceInfoNoErrors": "Geen"
   },
   "auth": {
     "loginRequired": "Inloggen vereist",

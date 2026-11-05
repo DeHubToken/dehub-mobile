@@ -2496,7 +2496,14 @@
       "pts": "{{n}} puan",
       "gap": "{{name}} kişisini geçmek için {{n}} puan",
       "join": "Listeye girmek için yayınlanacak bir fikir paylaş"
-    }
+    },
+    "deviceInfoNote": "Hataları düzeltmemize yardımcı olmak için cihaz bilgisi eklenir.",
+    "deviceInfo": "Cihaz bilgisi",
+    "deviceInfoOwners": "Bunu yalnızca pano sahipleri görür",
+    "deviceInfoError": "Cihaz bilgisi yüklenemedi",
+    "deviceInfoNone": "Bu istek için cihaz bilgisi yok",
+    "deviceInfoErrors": "Son hatalar",
+    "deviceInfoNoErrors": "Yok"
   },
   "auth": {
     "loginRequired": "Giriş yapılması gerekiyor",
