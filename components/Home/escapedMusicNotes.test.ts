@@ -1,7 +1,7 @@
 import { MAX_ESCAPED_NOTES } from './bubbleLift';
-import { canEscapeMusicNote, escapeMusicNote, getEscapedMusicNotes, subscribeEscapedMusicNotes } from './escapedMusicNotes';
+import { canEscapeMusicNote, escapeMusicNote, getEscapedMusicNotes, popMusicNotes, subscribeEscapedMusicNotes } from './escapedMusicNotes';
 
-it('keeps escaped notes after the source unsubscribes and bounds growth without evicting them', () => {
+it('keeps escaped notes after the source unsubscribes, bounds growth, and frees room once they pop', () => {
   let now = 10000;
   const time = jest.spyOn(Date, 'now').mockImplementation(() => now);
   try {
@@ -20,5 +20,9 @@ it('keeps escaped notes after the source unsubscribes and bounds growth without 
     expect(getEscapedMusicNotes()).toHaveLength(MAX_ESCAPED_NOTES);
     expect(getEscapedMusicNotes()[0]).toBe(first);
     expect(canEscapeMusicNote()).toBe(false);
+    popMusicNotes([first.id]);
+    expect(getEscapedMusicNotes()).toHaveLength(MAX_ESCAPED_NOTES - 1);
+    expect(getEscapedMusicNotes()).not.toContain(first);
+    expect(canEscapeMusicNote()).toBe(true);
   } finally { time.mockRestore(); }
 });
