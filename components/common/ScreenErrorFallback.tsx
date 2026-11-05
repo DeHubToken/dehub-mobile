@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useCallback, useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Platform } from "react-native";
 import { useNavigation, type ScreenLayoutArgs } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -112,7 +112,10 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
       scope={`screen:${name}`}
       renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
     >
-      <View style={[{ flex: 1 }, themeVars]}>{children}</View>
+      {/* iPhone only. On Android the System Light colour pass already turns
+          the dark class colours light, so light variables here were turned
+          around a second time: black pages, white titles on light bars. */}
+      <View style={[{ flex: 1 }, Platform.OS === "ios" ? themeVars : null]}>{children}</View>
     </ErrorBoundary>
   );
 };
