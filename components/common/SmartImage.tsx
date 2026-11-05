@@ -45,7 +45,7 @@ type SmartImageProps = {
    * recycling lists this component feeds that is pure jank.
    */
   cachePolicy?: "none" | "disk" | "memory" | "memory-disk";
-  transition?: number;
+  transition?: ImageProps["transition"];
   /** Pass the item id in recycling lists so a reused view can't show the previous image. */
   recyclingKey?: string | null;
   priority?: "low" | "normal" | "high";

@@ -146,6 +146,10 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
+          // A photo that comes off the network fades in instead of snapping
+          // in. expo-image skips the transition for memory-cache hits, so
+          // scrolling back up never re-fades.
+          transition={FEED_PHOTO_FADE}
           priority={priority}
           autoplay={animate}
           onLoad={event => { onLoad(event); setResult({ uri, status: 'loaded' }); }}
@@ -154,7 +158,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           onError={() => setResult({ uri, status: 'failed' })}
         />}
         {drawBitmap && <AltTextBadge text={description} />}
-        {drawBitmap && status === 'loading' && <View pointerEvents="none" style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color="#888" /></View>}
+        {drawBitmap && status === 'loading' && <LateSpinner />}
         {drawBitmap && status === 'failed' && <View style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}>
           <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')}
             style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 20, backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 22 }}
@@ -166,5 +170,22 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
     </View>
   );
 };
+
+const FEED_PHOTO_FADE = { duration: 180, effect: 'cross-dissolve' as const, timing: 'ease-out' as const };
+
+/**
+ * The sized grey box already says "a photo goes here". A spinner on top of
+ * every photo while it loads was a second loading state flickering through the
+ * feed; it now only appears if the photo is genuinely slow.
+ */
+const LateSpinner = memo(function LateSpinner() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setShow(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+  if (!show) return null;
+  return <View pointerEvents="none" style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color="#888" /></View>;
+});
 
 export default memo(ContainedFeedImage);
