@@ -7,7 +7,7 @@ const make = (pattern: string): Item[] =>
 const pack = (pattern: string, complete = true) =>
   packBricks(make(pattern), (i) => i.shape, (i) => i.id, complete);
 const used = (rows: ReturnType<typeof pack>) => rows.flatMap((r) =>
-  r.kind === 'pair' ? r.items : r.kind === 'stack' ? [r.tall, ...r.wides] : [r.item]);
+  r.kind === 'pair' || r.kind === 'trio' ? r.items : r.kind === 'stack' ? [r.tall, ...r.wides] : [r.item]);
 
 describe('brickShape', () => {
   it('treats unknown sizes and portrait as tall, square and landscape as wide', () => {
@@ -42,6 +42,19 @@ describe('packBricks', () => {
 
   it('holds a short tail back until the list is complete', () => {
     expect(pack('TWW', false)).toEqual([]);
-    expect(pack('TWW', true).map((r) => r.kind)).toEqual(['hero', 'hero', 'single']);
+    expect(pack('TWW', true).map((r) => r.kind)).toEqual(['stack']);
+  });
+
+  it('never leaves half a row empty at the end', () => {
+    for (const pattern of ['TTT', 'TTTTT', 'TWWWWTTT', 'TWW', 'WT', 'WWWWWT', 'TWWWWTTWWWTWTWWWT', 'TWTWTWTWTWT']) {
+      const rows = pack(pattern);
+      expect(rows.some((r) => r.kind === 'single')).toBe(false);
+      expect(used(rows).length).toBe(pattern.length);
+    }
+    expect(pack('TTT').map((r) => r.kind)).toEqual(['trio']);
+  });
+
+  it('a list of one short is the only single row', () => {
+    expect(pack('T').map((r) => r.kind)).toEqual(['single']);
   });
 });

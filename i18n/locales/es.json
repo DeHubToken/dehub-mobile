@@ -2497,7 +2497,15 @@
       "you": "Tú",
       "pts": "{{n}} pts",
       "gap": "{{n}} pts para superar a {{name}}",
-      "join": "Publica una idea que se lance para entrar en la lista"
+      "join": "Publica una idea que se lance para entrar en la lista",
+      "points": "Puntos",
+      "infoLabel": "Cómo funcionan los puntos",
+      "infoShipped": "por solicitud lanzada",
+      "infoVote": "por voto a tus solicitudes",
+      "infoComment": "por comentario en la solicitud de otra persona",
+      "infoCap": "Los comentarios cuentan hasta {{n}} por periodo.",
+      "pt": "1 pt",
+      "infoTitle": "Cómo funcionan los puntos"
     },
     "deviceInfoNote": "Se adjunta información del dispositivo para ayudarnos a corregir errores.",
     "deviceInfo": "Información del dispositivo",

@@ -2497,7 +2497,15 @@
       "you": "Sen",
       "pts": "{{n}} puan",
       "gap": "{{name}} kişisini geçmek için {{n}} puan",
-      "join": "Listeye girmek için yayınlanacak bir fikir paylaş"
+      "join": "Listeye girmek için yayınlanacak bir fikir paylaş",
+      "points": "Puan",
+      "infoLabel": "Puanlar nasıl çalışır",
+      "infoShipped": "yayınlanan istek başına",
+      "infoVote": "isteklerine gelen her oy için",
+      "infoComment": "başkasının isteğine yapılan yorum başına",
+      "infoCap": "Yorumlar dönem başına en fazla {{n}} sayılır.",
+      "pt": "1 puan",
+      "infoTitle": "Puanlar nasıl çalışır"
     },
     "deviceInfoNote": "Hataları düzeltmemize yardımcı olmak için cihaz bilgisi eklenir.",
     "deviceInfo": "Cihaz bilgisi",

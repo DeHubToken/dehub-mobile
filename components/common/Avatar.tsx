@@ -123,12 +123,18 @@ const Avatar: React.FC<AvatarProps> = ({
         style,
       ]}
     >
-      <Text
-        style={{ fontSize, fontWeight: "700", color: INITIAL_COLOR }}
-        numberOfLines={1}
-      >
-        {initial}
-      </Text>
+      {/* The letter is only for a user with no picture (or every source
+          failed). While a picture downloads the tile stays plain, so feed
+          authors no longer flash "J" before their face. No extra render:
+          `current` is already what decides this. */}
+      {!showImage && (
+        <Text
+          style={{ fontSize, fontWeight: "700", color: INITIAL_COLOR }}
+          numberOfLines={1}
+        >
+          {initial}
+        </Text>
+      )}
       {lightTile && (
         <View
           pointerEvents="none"

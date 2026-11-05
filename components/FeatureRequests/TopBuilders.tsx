@@ -5,7 +5,9 @@
  * outside the top rows get "You" pinned above the bottom bar (TopBuildersPin).
  */
 import React, { useMemo, useState } from "react";
-import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
+import { View, Text, Pressable, StyleSheet, Platform, Modal } from "react-native";
+import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../services/supabase";
@@ -18,8 +20,11 @@ import AccountBadge from "../common/AccountBadge";
 import { ThemeIcon } from "../page/PageKit";
 import { getAvatarUrl } from "../../libs/misc";
 import { minimalFlat } from "../../theme/minimal";
+import Icon from "../ui/Icon";
+import SheetDismissHandle from "../ui/SheetDismissHandle";
+import { SHEET_GLASS_BORDER, SHEET_GLASS_FILL_UNBLURRED } from "../../theme/sheetGlass";
 import {
-  rankBuilders, periodStart,
+  rankBuilders, periodStart, SHIPPED_POINTS, VOTE_POINTS, COMMENT_POINTS, COMMENT_CAP,
   type BuilderPeriod, type BuilderRequestRow, type BuilderCommentRow, type TopBuilder,
 } from "../../libs/top-builders";
 
@@ -28,6 +33,53 @@ const SHOWN = 8;
 const PAGE = 20;
 const VOTES_COLOR = "rgb(245,200,75)";
 const COMMENTS_COLOR = "rgb(125,211,252)";
+
+/** "How points work": the info button opens a small drawer with the rule. */
+function PointsInfo({ shippedColor }: { shippedColor: string }) {
+  const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  const pts = (n: number) => (n === 1 ? t("features.topBuilders.pt", "1 pt") : t("features.topBuilders.pts", "{{n}} pts", { n }));
+  const rows: [string, number, string][] = [
+    [shippedColor, SHIPPED_POINTS, t("features.topBuilders.infoShipped", "per shipped request")],
+    [VOTES_COLOR, VOTE_POINTS, t("features.topBuilders.infoVote", "per upvote on your requests")],
+    [COMMENTS_COLOR, COMMENT_POINTS, t("features.topBuilders.infoComment", "per comment on someone else's request")],
+  ];
+  return (
+    <>
+      <Pressable
+        onPress={() => setOpen(true)}
+        hitSlop={8}
+        accessibilityRole="button"
+        accessibilityLabel={t("features.topBuilders.infoLabel", "How points work")}
+        style={({ pressed }) => [styles.infoBtn, pressed && { opacity: 0.6 }]}
+      >
+        <Text style={styles.legendText}>{t("features.topBuilders.points", "Points")}</Text>
+        <Icon name="Info" size={14} color="#A1A1AA" />
+      </Pressable>
+      <Modal visible={open} transparent animationType="none" statusBarTranslucent onRequestClose={close}>
+        <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)} style={StyleSheet.absoluteFill}>
+          <Pressable style={styles.infoScrim} onPress={close} accessibilityRole="button" accessibilityLabel={t("common.close", "Close")} />
+        </Animated.View>
+        <Animated.View entering={SlideInDown.duration(220)} exiting={SlideOutDown.duration(180)} style={[styles.infoSheet, { paddingBottom: insets.bottom + 18 }]}>
+          <SheetDismissHandle onClose={close} style={styles.infoHandleZone}>
+            <View style={styles.infoHandle} />
+            <Text style={styles.infoTitle}>{t("features.topBuilders.infoTitle", "How points work")}</Text>
+          </SheetDismissHandle>
+          {rows.map(([c, n, label]) => (
+            <View key={label} style={styles.infoRow}>
+              <View style={[styles.dot, { backgroundColor: c }]} />
+              <Text style={styles.infoPts}>{pts(n)}</Text>
+              <Text style={styles.infoText}>{label}</Text>
+            </View>
+          ))}
+          <Text style={styles.infoCap}>{t("features.topBuilders.infoCap", "Comments count up to {{n}} per period.", { n: COMMENT_CAP })}</Text>
+        </Animated.View>
+      </Modal>
+    </>
+  );
+}
 
 function useTopBuilderRows() {
   return useQuery({
@@ -166,10 +218,13 @@ export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
           ))}
         </View>
       </View>
-      <View style={styles.legend}>
-        {[[shippedColor, t("features.topBuilders.shipped", "Shipped")], [VOTES_COLOR, t("features.topBuilders.votes", "Votes")], [COMMENTS_COLOR, t("features.topBuilders.comments", "Comments")]].map(([c, l]) => (
-          <View key={l} style={styles.legendItem}><View style={[styles.dot, { backgroundColor: c }]} /><Text style={styles.legendText}>{l}</Text></View>
-        ))}
+      <View style={styles.legendRow}>
+        <View style={styles.legend}>
+          {[[shippedColor, t("features.topBuilders.shipped", "Shipped")], [VOTES_COLOR, t("features.topBuilders.votes", "Votes")], [COMMENTS_COLOR, t("features.topBuilders.comments", "Comments")]].map(([c, l]) => (
+            <View key={l} style={styles.legendItem}><View style={[styles.dot, { backgroundColor: c }]} /><Text style={styles.legendText}>{l}</Text></View>
+          ))}
+        </View>
+        <PointsInfo shippedColor={shippedColor} />
       </View>
       {isLoading
         ? [0, 1, 2, 3].map((i) => <View key={i} style={styles.skeleton} />)
@@ -194,7 +249,6 @@ export function TopBuildersCard({ compact = false }: { compact?: boolean }) {
           )}
         </View>
       )}
-      <Text style={styles.rule}>{t("features.topBuilders.rule", "10 pts per shipped request, 1 per upvote, 2 per comment on someone else's request.")}</Text>
     </ThemePanel>
   );
 }
@@ -253,7 +307,18 @@ const styles = StyleSheet.create({
   segOn: { backgroundColor: "#FFFFFF" },
   segText: { color: "#A1A1AA", fontSize: 12 },
   segTextOn: { color: "#0B0B0C" },
-  legend: { flexDirection: "row", gap: 12, marginTop: 8, marginBottom: 4 },
+  legendRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 8, marginBottom: 4 },
+  legend: { flexDirection: "row", gap: 12, flexShrink: 1 },
+  infoBtn: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 4, paddingVertical: 2 },
+  infoScrim: { flex: 1, backgroundColor: "rgba(0,0,0,0.55)" },
+  infoSheet: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 18, borderTopLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: SHEET_GLASS_FILL_UNBLURRED, borderTopWidth: 1, borderColor: SHEET_GLASS_BORDER },
+  infoHandleZone: { alignItems: "center", paddingTop: 10, paddingBottom: 6 },
+  infoHandle: { width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.4)", marginBottom: 12 },
+  infoTitle: { color: "#FAFAFA", fontSize: 15, fontWeight: "600", alignSelf: "flex-start" },
+  infoRow: { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 7 },
+  infoPts: { color: "#FAFAFA", fontSize: 13, fontWeight: "700", width: 52, fontVariant: ["tabular-nums"] },
+  infoText: { color: "#D4D4D8", fontSize: 13, flex: 1 },
+  infoCap: { color: "#71717A", fontSize: 11.5, marginTop: 6 },
   legendItem: { flexDirection: "row", alignItems: "center", gap: 4 },
   dot: { width: 8, height: 8, borderRadius: 2 },
   legendText: { color: "#A1A1AA", fontSize: 11 },
@@ -270,7 +335,6 @@ const styles = StyleSheet.create({
   breakdown: { color: "#A1A1AA", fontSize: 11.5 },
   profileBtn: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.08)" },
   profileBtnText: { color: "#E4E4E7", fontSize: 12 },
-  rule: { color: "#71717A", fontSize: 11, marginTop: 6 },
   skeleton: { height: 36, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.05)", marginVertical: 4 },
   pinWrap: { position: "absolute", left: 12, right: 12 },
   pin: { flexDirection: "row", alignItems: "center", gap: 10, padding: 10, borderRadius: 16, overflow: "hidden", borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", backgroundColor: "rgba(24,24,27,0.96)" },
