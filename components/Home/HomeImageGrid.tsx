@@ -229,7 +229,18 @@ const GridRow = memo<GridRowProps>(({ row, data, onItemPress, m, store }) => {
       {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} animate={isVisible} />}
     </View>
   );
-});
+}, (prev, next) =>
+  // A new page hands every row a new `data` array. Only this row's three tiles
+  // matter, so rows already on screen skip the re-render a page arrival caused.
+  prev.row.key === next.row.key &&
+  prev.row.startIndex === next.row.startIndex &&
+  prev.onItemPress === next.onItemPress &&
+  prev.m === next.m &&
+  prev.store === next.store &&
+  prev.data[prev.row.startIndex] === next.data[next.row.startIndex] &&
+  prev.data[prev.row.startIndex + 1] === next.data[next.row.startIndex + 1] &&
+  prev.data[prev.row.startIndex + 2] === next.data[next.row.startIndex + 2]
+);
 
 const GridSkeleton: React.FC = () => {
   const { isMinimal } = useAppTheme();
