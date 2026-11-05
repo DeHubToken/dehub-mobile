@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { withPistolEmoji } from "./pistolEmoji";
 
 /**
@@ -123,6 +123,62 @@ function fontStyleFor(style: unknown, className: unknown) {
 }
 
 /**
+ * Manrope's tallest ascent plus its deepest descender (g, 0.255em), as a share
+ * of the font size. Android keeps the full ascent when a lineHeight is tighter
+ * than the font and cuts the descent, and the Text view clips to that line
+ * box, so a 14pt @handle on a 16pt line lost the tails of g, j, p and y.
+ */
+const MANROPE_INK_HEIGHT = (2132 + 510) / 2000;
+
+type ClipStyleish = {
+  fontSize?: number;
+  lineHeight?: number;
+  height?: unknown;
+  maxHeight?: unknown;
+  padding?: unknown;
+  paddingVertical?: unknown;
+  paddingBottom?: unknown;
+  marginBottom?: unknown;
+  margin?: unknown;
+  marginVertical?: unknown;
+  backgroundColor?: unknown;
+  borderWidth?: unknown;
+  borderBottomWidth?: unknown;
+};
+
+/**
+ * Room for descenders below a tight line: extra bottom padding that the same
+ * negative bottom margin takes back, so the row lays out exactly as before
+ * but the view's box (its clip) reaches the bottom of the g. Only for plain
+ * text: a node with its own box (background, border, fixed height, padding
+ * or bottom margin) is left as it is.
+ */
+const OWN_BOX_CLASS_RE = /(?:^|[\s:])(?:-?(?:p|py|pb|m|my|mb)-|h-|max-h-|bg-|border)/;
+
+function descenderRoomFor(style: unknown, className: unknown) {
+  if (Platform.OS === "web" || style == null) return null;
+  if (typeof className === "string" && OWN_BOX_CLASS_RE.test(className)) return null;
+  let flat: ClipStyleish;
+  try {
+    flat = (StyleSheet.flatten(style as never) || {}) as ClipStyleish;
+  } catch {
+    return null;
+  }
+  const { fontSize, lineHeight } = flat;
+  if (typeof fontSize !== "number" || typeof lineHeight !== "number") return null;
+  const room = Math.ceil(fontSize * MANROPE_INK_HEIGHT - lineHeight);
+  if (room <= 0) return null;
+  if (
+    flat.height != null || flat.maxHeight != null || flat.padding != null || flat.paddingVertical != null ||
+    flat.paddingBottom != null || flat.marginBottom != null || flat.margin != null || flat.marginVertical != null ||
+    flat.backgroundColor != null || flat.borderWidth != null || flat.borderBottomWidth != null
+  ) {
+    return null;
+  }
+  return { paddingBottom: room, marginBottom: -room };
+}
+
+/**
  * The element types worth patching. Resolved on the first JSX call rather than
  * at install time so that requiring this module from `index.ts` — which runs
  * before most of the app's dependency graph — cannot reorder anyone's imports.
@@ -184,6 +240,10 @@ function wrap(jsx: any) {
       // Appended, not prepended: it has to outrank whatever NativeWind derives
       // from `className`, which is the only other thing setting a weight here.
       if (injected) props = { ...props, style: [props.style, injected] };
+      if (injected && !inputTypes.has(type)) {
+        const room = descenderRoomFor(props.style, props.className);
+        if (room) props = { ...props, style: [props.style, room] };
+      }
       // Cap how far the system font size can blow text up. Past ~1.4x the
       // fixed-height pills, badges and buttons clip their labels; below it the
       // setting still does its job. A node that sets its own cap keeps it.
