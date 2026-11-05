@@ -20,7 +20,9 @@ import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import { takePendingFeedComments } from "../libs/feedPostHost";
 import type { TranslateToggle } from "../components/ui/TranslateButton";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
-import type { CommentLayout } from "../components/Comments/CommentContextMenu";
+import type { CommentHoldExtra, CommentLayout } from "../components/Comments/CommentContextMenu";
+import { useHoldLift } from "../components/ui/HoldSheet";
+import Reanimated from "react-native-reanimated";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
 import CommentTabRow, { type CommentSort } from "../components/Comments/CommentTabRow";
 import { COMPOSER, composerStyles } from "../components/Comments/composerLayout";
@@ -284,7 +286,9 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle } | null>(null);
+  const [contextMeta, setContextMeta] = useState<CommentHoldExtra | null>(null);
+  // The held comment slides up clear of the hold sheet.
+  const holdLift = useHoldLift();
   // The comment whose Report row was picked; the sheet is aimed at it.
   const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
@@ -730,12 +734,13 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   );
 
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => {
+    (comment: Comment, layout: CommentLayout, extra: CommentHoldExtra) => {
+      holdLift.measure();
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
     },
-    []
+    [holdLift.measure]
   );
 
   const closeContextMenu = useCallback(() => {
@@ -1671,6 +1676,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       {embedded ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
       <View style={{ flex: 1 }}>
       <FrostedContent>
+      <Reanimated.View ref={holdLift.ref} collapsable={false} style={[{ flex: 1 }, holdLift.style]}>
       <FlatList
         ref={listRef}
         showsVerticalScrollIndicator={false}
@@ -1737,6 +1743,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         onLayout={handleListLayout}
         onContentSizeChange={handleContentSize}
       />
+      </Reanimated.View>
       </FrostedContent>
       {/* The tab row, pinned to the top once the one in the list scrolls
           under it. Solid in the page colour so comments never read through.
@@ -2055,6 +2062,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         }
         tokenId={tokenId}
         translate={contextMeta?.translate}
+        myReaction={contextMeta?.myReaction}
+        react={contextMeta?.react}
+        onLift={holdLift.onLift}
+        liftTop={holdLift.top}
       />
 
       {/* Report somebody else's comment. One sheet for the whole screen,

@@ -18,7 +18,7 @@ import Icon from "../ui/Icon";
 import CommentItem from "../Comments/CommentItem";
 import CommentMediaPreview, { type MediaAttachment } from "../Comments/CommentMediaPreview";
 import CommentContextMenu from "../Comments/CommentContextMenu";
-import type { CommentLayout } from "../Comments/CommentContextMenu";
+import type { CommentHoldExtra, CommentLayout } from "../Comments/CommentContextMenu";
 import CommentLikersSheet from "../Comments/CommentLikersSheet";
 import { CommentLoadError } from "../Comments/CommentLoadError";
 import { useCommentAttachPicker } from "../Comments/useCommentAttachPicker";
@@ -74,7 +74,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
   const [context, setContext] = useState<{
     comment: Comment;
     layout: CommentLayout;
-    extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle };
+    extra: CommentHoldExtra;
   } | null>(null);
 
   const rows = data?.rows;
@@ -381,6 +381,8 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
         onShowLikers={context ? () => { setLikersFor(Number(context.comment.id)); setContext(null); } : undefined}
         tokenId={`request:${featureId}`}
         translate={context?.extra.translate}
+        myReaction={context?.extra.myReaction}
+        react={context?.extra.react}
       />
       <CommentLikersSheet
         visible={likersFor != null}

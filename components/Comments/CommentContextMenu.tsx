@@ -1,48 +1,37 @@
 /**
- * CommentContextMenu - WhatsApp/Instagram-style context menu
+ * CommentContextMenu - the hold menu for a comment or a reply.
  *
- * When a user long-presses a comment the rest of the UI blurs out,
- * the pressed comment is rendered "floating" at its original position,
- * and a clean action card appears below it.
+ * The held row stays where it is (no copy of it is drawn), the rest of the
+ * thread dims, the list slides up so the row clears a glass sheet, and the
+ * sheet carries the reactions and the actions. Same sheet as live chat
+ * (HoldSheet); mirrors dehubweb ChatHoldSheet on comments.
  */
-import React, { memo, useCallback, useMemo } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  Pressable,
-  Platform,
-  useWindowDimensions,
-} from "react-native";
+import React, { memo, useCallback } from "react";
 import { shareWithRef } from "../../libs/shareRef";
-import SmartImage from "../common/SmartImage";
-import Animated, {
-  FadeIn,
-  FadeOut,
-} from "react-native-reanimated";
-import { BlurView } from "expo-blur";
-import Icon from "../ui/Icon";
-import type { IconName } from "../ui/Icon";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
-import type { TFunction } from "i18next";
-import Avatar from "../common/Avatar";
-import VoiceNotePlayer from "./VoiceNotePlayer";
-import { getAvatarUrl } from "../../libs";
-import { buildCdnPath } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import type { Comment } from "../../services/nft.service";
-import { theme } from "../../theme";
 import { WEBSITE_LINK } from "../../config";
 import type { TranslateToggle } from "../ui/TranslateButton";
-
+import HoldSheet, { type HoldReactionChip, type HoldTile } from "../ui/HoldSheet";
+import { reactionMeta, type PostReaction } from "../../libs/reactions";
 
 export interface CommentLayout {
   x: number;
   y: number;
   width: number;
   height: number;
+}
+
+/** What a held CommentItem hands its host along with the comment and its layout. */
+export interface CommentHoldExtra {
+  liked: boolean;
+  disliked: boolean;
+  isOwnComment: boolean;
+  isReply: boolean;
+  translate?: TranslateToggle;
+  myReaction?: PostReaction | null;
+  react?: (reaction: PostReaction) => void;
 }
 
 interface CommentContextMenuProps {
@@ -89,202 +78,35 @@ interface CommentContextMenuProps {
   canDelete?: boolean;
   /** Translate / Show original — set only when the comment is in another language. */
   translate?: TranslateToggle;
+  /** The viewer's reaction on this comment, drawn as the selected chip. */
+  myReaction?: PostReaction | null;
+  /**
+   * Cast a reaction through the held row's own path (so the row updates in
+   * place). Set by CommentItem; without it the sheet falls back to the
+   * plain Like / Dislike tiles.
+   */
+  react?: (reaction: PostReaction) => void;
+  /** How far the host should slide its list up so the row clears the sheet. */
+  onLift?: (px: number) => void;
+  /** Window y the lifted row must stay below (top of the comments sheet). */
+  liftTop?: number;
 }
 
-
-/** Resolve a media path: local file URIs / full URLs pass through, relative paths go through CDN. */
-const resolveMediaUrl = (path: string): string => {
-  if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-  return buildCdnPath(path) ?? path;
-};
 
 /** Returns true if the comment has any media attachment */
 const isMediaComment = (c: Comment | null): boolean =>
   !!(c?.imageUrl || c?.gifUrl || c?.audioUrl);
 
-/**
- * Short-form timestamp (duplicated lite version to keep module self-contained).
- * Same locale units as the row it floats over, or the copy would say "3h"
- * above a row that says it in the reader's language.
- */
-const formatShortTime = (date: Date | string | undefined, t: TFunction): string => {
-  if (!date) return "";
-  const diff = Date.now() - new Date(date).getTime();
-  const s = Math.floor(diff / 1000);
-  const m = Math.floor(s / 60);
-  const h = Math.floor(m / 60);
-  const d = Math.floor(h / 24);
-  if (d >= 365) return t("communities.time.years", { count: Math.floor(d / 365) });
-  if (d >= 30) return t("communities.time.months", { count: Math.floor(d / 30) });
-  if (d >= 7) return t("communities.time.weeks", { count: Math.floor(d / 7) });
-  if (d > 0) return t("communities.time.days", { count: d });
-  if (h > 0) return t("comments.timeHours", { count: h });
-  if (m > 0) return t("comments.timeMinutes", { count: m });
-  return t("comments.timeSeconds", { count: Math.max(1, s) });
-};
-
-
-interface ActionRowProps {
-  icon: IconName;
-  label: string;
-  onPress: () => void;
-  destructive?: boolean;
-}
-
-const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive }) => (
-  <TouchableOpacity
-    onPress={onPress}
-    activeOpacity={0.6}
-    accessibilityRole="button"
-    className="flex-row items-center px-4 py-3"
-  >
-    <View className="w-8 items-center">
-      <Icon
-        name={icon}
-        size={20}
-        color={destructive ? "#F4F4F5" : "#E5E7EB"}
-      />
-    </View>
-    <Text
-      className={`ml-3 text-[15px] ${destructive ? "text-white/80" : "text-theme-neutrals-100"}`}
-    >
-      {label}
-    </Text>
-  </TouchableOpacity>
-);
-
-
-const FloatingComment: React.FC<{
-  comment: Comment;
-  isReply?: boolean;
-  liked?: boolean;
-}> = ({ comment, isReply, liked }) => {
-  const { t } = useTranslation();
-  const user = comment.user;
-  const displayName = user?.displayName || user?.username || t("settings.unknown");
-  const avatarUrl = getAvatarUrl(user?.avatarImageUrl || "");
-  const timeAgo = formatShortTime(comment.createdAt, t);
-
-  const parsedContent = useMemo(() => {
-    const content = comment.content || "";
-    const parts: { text: string; isMention: boolean }[] = [];
-    const regex = /@(\w+)/g;
-    let lastIndex = 0;
-    let match;
-    while ((match = regex.exec(content)) !== null) {
-      if (match.index > lastIndex)
-        parts.push({ text: content.slice(lastIndex, match.index), isMention: false });
-      parts.push({ text: match[0], isMention: true });
-      lastIndex = regex.lastIndex;
-    }
-    if (lastIndex < content.length)
-      parts.push({ text: content.slice(lastIndex), isMention: false });
-    return parts.length > 0 ? parts : [{ text: content, isMention: false }];
-  }, [comment.content]);
-
-  return (
-    <View className="flex-row py-3 px-4">
-      <Avatar
-        uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
-        size={isReply ? 28 : 32}
-        name={displayName}
-      />
-      <View className="flex-1 ml-3">
-        <View className="flex-row items-center">
-          <Text
-            className="text-sm font-semibold text-theme-neutrals-100"
-            numberOfLines={1}
-            style={{ flexShrink: 1 }}
-          >
-            {displayName}
-          </Text>
-          <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>
-        </View>
-
-        {comment.content ? (
-          <Text className="text-sm text-theme-neutrals-100 mt-1">
-            {parsedContent.map((part, idx) => (
-              <Text
-                key={idx}
-                className={
-                  part.isMention
-                    ? "font-bold"
-                    : "font-normal text-theme-neutrals-300"
-                }
-                style={part.isMention ? { color: "#D4D4D8" } : undefined}
-              >
-                {part.text}
-              </Text>
-            ))}
-          </Text>
-        ) : null}
-
-        {comment.imageUrl ? (
-          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
-            <SmartImage
-              source={{ uri: resolveMediaUrl(comment.imageUrl) }}
-              recyclingKey={resolveMediaUrl(comment.imageUrl)}
-              style={{ width: 220, height: 165 }}
-              contentFit="cover"
-            />
-          </View>
-        ) : null}
-
-        {comment.gifUrl ? (
-          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
-            <SmartImage
-              source={{ uri: comment.gifUrl }}
-              recyclingKey={comment.gifUrl}
-              style={{ width: 220, height: 165 }}
-              contentFit="cover"
-            />
-          </View>
-        ) : null}
-
-        {comment.audioUrl ? (
-          <View className="mt-1.5 rounded-lg bg-theme-neutrals-700/60 px-2" style={{ maxWidth: 260 }}>
-            <VoiceNotePlayer
-              audioUrl={resolveMediaUrl(comment.audioUrl)}
-              duration={comment.audioDuration}
-              compact
-            />
-          </View>
-        ) : null}
-      </View>
-
-      <View className="px-2 items-center justify-center">
-        <Icon
-          name="ThumbsUp"
-          size={isReply ? 14 : 16}
-          color={liked ? "#F9FBFF" : "#6F7174"}
-          fill={liked ? "#F9FBFF" : undefined}
-          strokeWidth={1.8}
-        />
-        {(comment.likeCount ?? 0) > 0 && (
-          <Text style={{ fontSize: 12, color: "#8B8D90", marginTop: 2 }}>
-            {comment.likeCount}
-          </Text>
-        )}
-      </View>
-    </View>
-  );
-};
-
-
-const ACTIONS_CARD_HEIGHT_ESTIMATE = 240; // rough max
-const COMMENT_PADDING = 16;
+/** The quick row, as on web: the faces people use most, 👎 last. */
+const QUICK_REACTIONS: PostReaction[] = ["like", "love", "hot", "lol", "hundred", "sad", "dislike"];
 
 const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   visible,
   comment,
   layout,
-  isReply,
   isOwnComment,
   onClose,
   onReply,
-  onShare,
   onEdit,
   onDelete,
   onReport,
@@ -298,24 +120,18 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   tokenId,
   canDelete,
   translate,
+  myReaction,
+  react,
+  onLift,
+  liftTop,
 }) => {
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
-  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
-
-  const handleReply = useCallback(() => {
+  /** Close first, then act, so a keyboard or a second sheet opens on a settled screen. */
+  const run = useCallback((fn?: () => void, delay = 150) => {
     onClose();
-    // Small delay so the menu dismisses before the keyboard opens
-    setTimeout(() => onReply?.(), 150);
-  }, [onClose, onReply]);
-
-  const handleCopy = useCallback(() => {
-    if (comment?.content) {
-      copyToClipboard(comment.content);
-    }
-    onClose();
-  }, [comment, onClose]);
+    if (fn) setTimeout(fn, delay);
+  }, [onClose]);
 
   const handleShare = useCallback(async () => {
     onClose();
@@ -330,223 +146,58 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
     }
   }, [onClose, tokenId, comment, t]);
 
-  const handleEdit = useCallback(() => {
-    onClose();
-    setTimeout(() => onEdit?.(), 150);
-  }, [onClose, onEdit]);
+  if (!comment) return <HoldSheet visible={false} layout={null} onClose={onClose} reactions={null} tiles={[]} onLift={onLift} />;
 
-  const handleLike = useCallback(() => {
-    onClose();
-    // Fire after modal dismisses so the async call isn't interrupted
-    setTimeout(() => onLike?.(), 100);
-  }, [onLike, onClose]);
+  // Reactions: somebody else's comment only (the server refuses a self-like).
+  const current = myReaction ?? (liked ? "like" : disliked ? "dislike" : null);
+  const reactions: HoldReactionChip[] | null = react && !isOwnComment
+    ? QUICK_REACTIONS.map((key) => ({ key, emoji: reactionMeta(key).emoji, selected: current === key }))
+    : null;
 
-  const handleShowLikers = useCallback(() => {
-    onClose();
-    setTimeout(() => onShowLikers?.(), 100);
-  }, [onShowLikers, onClose]);
-
-  const handleDislike = useCallback(() => {
-    onClose();
-    setTimeout(() => onDislike?.(), 100);
-  }, [onDislike, onClose]);
-
-  const handleDelete = useCallback(() => {
-    onClose();
-    setTimeout(() => onDelete?.(), 100);
-  }, [onClose, onDelete]);
-
-
-  const { commentTop, actionsTop } = useMemo(() => {
-    if (!layout) return { commentTop: SCREEN_HEIGHT * 0.3, actionsTop: SCREEN_HEIGHT * 0.5 };
-
-    const safeTop = insets.top + 16;
-    const safeBottom = SCREEN_HEIGHT - insets.bottom - 16;
-    const commentH = layout.height;
-    const actionsH = ACTIONS_CARD_HEIGHT_ESTIMATE;
-    const gap = 8;
-    const totalH = commentH + gap + actionsH;
-
-    let cTop = layout.y;
-
-    // Clamp so the comment + actions stay within safe area
-    if (cTop + totalH > safeBottom) {
-      cTop = safeBottom - totalH;
-    }
-    if (cTop < safeTop) {
-      cTop = safeTop;
-    }
-
-    return { commentTop: cTop, actionsTop: cTop + commentH + gap };
-  }, [layout, insets, SCREEN_HEIGHT]);
-
-  if (!visible || !comment) return null;
+  const tiles: HoldTile[] = [];
+  if (onReply) tiles.push({ key: "reply", icon: "Reply", label: t("communities.reply"), prime: true, onPress: () => run(onReply) });
+  if (comment.content) tiles.push({ key: "copy", icon: "Copy", label: t("common.copy"), onPress: () => { copyToClipboard(comment.content); onClose(); } });
+  tiles.push({ key: "share", icon: "Share2", label: t("postOptions.share"), onPress: () => { void handleShare(); } });
+  if (translate) tiles.push({
+    key: "translate",
+    icon: translate.isTranslated ? "RotateCcw" : "Languages",
+    label: translate.isTranslated ? t("common.showOriginal") : t("common.translate"),
+    onPress: () => { onClose(); translate.toggle(); },
+  });
+  // No reaction row (no react path): keep the plain pair.
+  if (!reactions && !isOwnComment) {
+    if (onLike) tiles.push({ key: "like", icon: "ThumbsUp", label: liked ? t("comments.unlike") : t("reactionInfo.labels.like"), onPress: () => run(onLike, 100) });
+    if (onDislike) tiles.push({ key: "dislike", icon: "ThumbsDown", label: disliked ? t("comments.removeDislike") : t("comments.dislike"), onPress: () => run(onDislike, 100) });
+  }
+  // Own comment: liking would 400 server-side, so the author gets the
+  // who-liked list. Un-liking a historical self-like stays possible.
+  if (isOwnComment && liked && onLike) tiles.push({ key: "unlike", icon: "ThumbsUp", label: t("comments.unlike"), onPress: () => run(onLike, 100) });
+  if (isOwnComment && onShowLikers) tiles.push({ key: "likers", icon: "Users", label: t("comments.whoLiked"), onPress: () => run(onShowLikers, 100) });
+  // Comment Anchor: the author's paid hold at the top of somebody else's thread.
+  if (isOwnComment && onAnchor) tiles.push({ key: "anchor", icon: "Anchor", label: t("comments.anchorToTop"), onPress: () => run(onAnchor) });
+  // The thread owner's free pin, whoever wrote the comment.
+  if (onPin) tiles.push({
+    key: "pin",
+    icon: comment.isPinned ? "PinOff" : "Pin",
+    label: comment.isPinned ? t("communities.unpin") : t("communities.pin"),
+    onPress: () => run(onPin),
+  });
+  // Report: somebody else's comment only, the server refuses a self-report.
+  if (!isOwnComment && onReport) tiles.push({ key: "report", icon: "Flag", label: t("postOptions.report"), onPress: () => run(onReport) });
+  if (isOwnComment && onEdit && !isMediaComment(comment)) tiles.push({ key: "edit", icon: "Pencil", label: t("common.edit"), onPress: () => run(onEdit) });
+  if (canDelete && onDelete) tiles.push({ key: "delete", icon: "Trash2", label: t("common.delete"), destructive: true, onPress: () => run(onDelete, 100) });
 
   return (
-    <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
-      <Pressable style={{ flex: 1 }} onPress={onClose}>
-        <Animated.View
-          entering={FadeIn.duration(200)}
-          exiting={FadeOut.duration(150)}
-          style={{ flex: 1 }}
-        >
-          <BlurView
-            intensity={Platform.OS === "ios" ? 40 : 30}
-            tint="dark"
-            style={{ flex: 1 }}
-          />
-          {/* Extra dim layer for better contrast */}
-          <View
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.45)",
-            }}
-          />
-        </Animated.View>
-      </Pressable>
-
-      <Animated.View
-        entering={FadeIn.duration(200)}
-        exiting={FadeOut.duration(120)}
-        pointerEvents="box-none"
-        style={{
-          position: "absolute",
-          top: commentTop,
-          left: COMMENT_PADDING,
-          right: COMMENT_PADDING,
-        }}
-      >
-        <Pressable onPress={onClose}>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
-            <FloatingComment comment={comment} isReply={isReply} liked={liked} />
-          </View>
-        </Pressable>
-      </Animated.View>
-
-      <Animated.View
-        entering={FadeIn.duration(180).delay(60)}
-        exiting={FadeOut.duration(120)}
-        pointerEvents="box-none"
-        style={{
-          position: "absolute",
-          top: actionsTop,
-          left: COMMENT_PADDING,
-          right: COMMENT_PADDING,
-        }}
-      >
-        <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
-            {onReply && (
-              <ActionRow icon="MessageSquare" label={t("communities.reply")} onPress={handleReply} />
-            )}
-
-            {comment.content ? (
-              <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
-            ) : null}
-
-            <ActionRow icon="Share2" label={t("postOptions.share")} onPress={handleShare} />
-
-            {translate && (
-              <ActionRow
-                icon={translate.isTranslated ? "RotateCcw" : "Languages"}
-                label={translate.isTranslated ? t("common.showOriginal") : t("common.translate")}
-                onPress={() => {
-                  onClose();
-                  translate.toggle();
-                }}
-              />
-            )}
-
-            {onLike && !isOwnComment && (
-              <ActionRow
-                icon="ThumbsUp"
-                label={liked ? t("comments.unlike") : t("reactionInfo.labels.like")}
-                onPress={handleLike}
-              />
-            )}
-
-            {/* Own comment: liking would 400 server-side, so the row becomes
-                the author-only who-liked list. Un-liking a historical
-                self-like stays possible. */}
-            {isOwnComment && liked && onLike && (
-              <ActionRow icon="ThumbsUp" label={t("comments.unlike")} onPress={handleLike} />
-            )}
-            {isOwnComment && onShowLikers && (
-              <ActionRow icon="Users" label={t("comments.whoLiked")} onPress={handleShowLikers} />
-            )}
-
-            {onDislike && (
-              <ActionRow
-                icon="ThumbsDown"
-                label={disliked ? t("comments.removeDislike") : t("comments.dislike")}
-                onPress={handleDislike}
-              />
-            )}
-
-            {/*
-              Comment Anchor — holding your own comment at the top of somebody
-              else's thread. Beside Edit and Delete because it is the same kind
-              of thing: something only the comment's author can do to it.
-            */}
-            {isOwnComment && onAnchor && (
-              <ActionRow
-                icon="Anchor"
-                label={t("comments.anchorToTop")}
-                onPress={() => {
-                  onClose();
-                  setTimeout(() => onAnchor(), 150);
-                }}
-              />
-            )}
-
-            {/*
-              The creator's pin — the other half of the anchor above. That one
-              is paid, fifteen minutes and the comment author's; this one is
-              free, permanent and the THREAD owner's, so it sits here whether
-              or not the comment is theirs.
-            */}
-            {onPin && (
-              <ActionRow
-                icon={comment?.isPinned ? "PinOff" : "Pin"}
-                label={comment?.isPinned ? t("comments.unpinAction") : t("comments.pinAction")}
-                onPress={() => {
-                  onClose();
-                  setTimeout(() => onPin(), 150);
-                }}
-              />
-            )}
-
-            {/*
-              Report — somebody else's comment only. Sits with Edit and Delete
-              because it is the other thing you do TO a comment rather than
-              with it, and never on your own: the server refuses a self-report.
-            */}
-            {!isOwnComment && onReport && (
-              <ActionRow
-                icon="Flag"
-                label={t("comments.reportComment")}
-                onPress={() => {
-                  onClose();
-                  setTimeout(() => onReport(), 150);
-                }}
-              />
-            )}
-
-            {isOwnComment && onEdit && !isMediaComment(comment) && (
-              <ActionRow icon="Pencil" label={t("common.edit")} onPress={handleEdit} />
-            )}
-
-            {canDelete && onDelete && (
-              <ActionRow icon="Trash2" label={t("common.delete")} onPress={handleDelete} destructive />
-            )}
-          </View>
-        </Pressable>
-      </Animated.View>
-    </Modal>
+    <HoldSheet
+      visible={visible}
+      layout={layout}
+      onClose={onClose}
+      reactions={reactions}
+      onReaction={(key) => run(() => react?.(key as PostReaction), 100)}
+      tiles={tiles}
+      onLift={onLift}
+      liftTop={liftTop}
+    />
   );
 };
 

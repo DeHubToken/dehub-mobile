@@ -43,11 +43,11 @@ describe("long names shrink instead of spilling", () => {
     );
   });
 
-  it("comment long-press preview: the name is one line and leaves room for the time", () => {
-    const src = read("components", "Comments", "CommentContextMenu.tsx");
-    expect(src).toMatch(
-      /className="text-sm font-semibold text-theme-neutrals-100"\s+numberOfLines=\{1\}\s+style=\{\{ flexShrink: 1 \}\}\s*>\s*\{displayName\}/,
-    );
+  it("comment hold menu: draws no copy of the comment, and tile labels stay one line", () => {
+    const menu = read("components", "Comments", "CommentContextMenu.tsx");
+    expect(menu).not.toMatch(/FloatingComment|displayName/);
+    const sheet = read("components", "ui", "HoldSheet.tsx");
+    expect(sheet).toMatch(/<Text numberOfLines=\{1\}[^>]*>\{tile\.label\}<\/Text>/);
   });
 
   it("DM fee banner: the 'set by' name truncates so the fee stays on screen", () => {

@@ -6,7 +6,6 @@ const SEARCH_DIRS = ["components", "screens", "navigation", "hooks", "libs", "co
 
 /** Scrims and navigation frost own blur; ordinary card surfaces remain opaque. */
 const ALLOWED = [
-  "components/Comments/CommentContextMenu.tsx",
   "components/DM/ConversationContextMenu.tsx",
   "components/DM/MessageContextMenu.tsx",
   // The feed search lens blurs the feed behind it while it waits for words.

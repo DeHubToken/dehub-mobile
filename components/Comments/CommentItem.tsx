@@ -63,7 +63,7 @@ import {
 const PLAIN_PAIR: readonly PostReaction[] = ["like", "dislike"];
 import { ReactionEmoji } from "../Home/ReactionEmoji";
 import { ThumbNod } from "../Home/ThumbNod";
-import type { CommentLayout } from "./CommentContextMenu";
+import type { CommentHoldExtra, CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import LinkPreviewCard from "../common/LinkPreviewCard";
@@ -139,7 +139,7 @@ interface CommentItemProps {
   onPin?: (comment: Comment) => void;
   onReport?: (comment: Comment) => void;
   onDelete?: (comment: Comment) => void;
-  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => void;
+  onLongPress?: (comment: Comment, layout: CommentLayout, extra: CommentHoldExtra) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
@@ -548,9 +548,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         translate: showTranslate
           ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
           : undefined,
+        // The sheet's reaction row goes through this row's own path, so the
+        // thumb and counts update in place, optimistic like a tap.
+        myReaction,
+        react: onReact || onLike ? (reaction) => { void handleReact(reaction); } : undefined,
       });
     });
-  }, [onLongPress, comment, liked, disliked, isOwnComment, isReply, isPending, showTranslate, isTranslated, handleTranslate, handleShowOriginal]);
+  }, [onLongPress, comment, liked, disliked, isOwnComment, isReply, isPending, showTranslate, isTranslated, handleTranslate, handleShowOriginal, myReaction, onReact, onLike, handleReact]);
 
   const handleSharePress = useCallback(async () => {
     try {
