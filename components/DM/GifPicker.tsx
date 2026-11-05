@@ -1,7 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Platform, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -55,7 +55,10 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const searchMaterial = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
-  const backdrop = useSheetBackdrop(visible);
+  // Android blurs the page behind live and re-samples it on every window
+  // draw, so a sheet that scrolls (or plays GIFs) paid for it each frame.
+  // A plain scrim there, as the comments sheet and page drawers already use.
+  const backdrop = useSheetBackdrop(visible && Platform.OS !== "android");
   const { t } = useTranslation();
   const [query, setQuery] = useSurfaceDraft("components/DM/GifPicker.tsx:query", '');
   const [loading, setLoading] = useState(false);

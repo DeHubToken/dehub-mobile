@@ -60,7 +60,10 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const glassPanel = useDrawerGlass();
-  const backdrop = useSheetBackdrop(visible);
+  // Android blurs the page behind live and re-samples it on every window
+  // draw, so a sheet that scrolls (or plays GIFs) paid for it each frame.
+  // A plain scrim there, as the comments sheet and page drawers already use.
+  const backdrop = useSheetBackdrop(visible && Platform.OS !== "android");
   const { height: SCREEN_H } = useWindowDimensions();
   const [searchText, setSearchText] = useSurfaceDraft("components/Post/SoundPickerSheet.tsx:searchText", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
