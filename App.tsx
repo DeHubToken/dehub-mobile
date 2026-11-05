@@ -349,7 +349,10 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
 const ThemeVarsLayer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const style = useThemeRootStyle();
   const { isLight } = useAppTheme();
-  return <View style={[{ flex: 1 }, isLight ? { backgroundColor: LIGHT_PAGE_FILL } : null, style]}>{children}</View>;
+  // iPhone only: on Android a second set of root variables left Settings and
+  // the post page header on the dark colours in System Light (black page,
+  // white title). Android's screens carry their own (ScreenErrorBoundary).
+  return <View style={[{ flex: 1 }, isLight ? { backgroundColor: LIGHT_PAGE_FILL } : null, Platform.OS === "ios" ? style : null]}>{children}</View>;
 };
 
 const ThemedToaster: React.FC = () => {
