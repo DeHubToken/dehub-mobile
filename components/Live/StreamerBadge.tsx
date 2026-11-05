@@ -6,6 +6,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useStreamerProgress } from "../../hooks/useStreamerProgress";
 import { openStreamerShowcase } from "../../libs/badgeShowcase";
 import { streamerBadgeBounds, streamerBadgeSvg } from "../../libs/streamer-badge-art";
+import { BADGE_CAP_SCALE } from "../../libs/misc";
 
 interface Props {
   address?: string | null;
@@ -25,7 +26,7 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size, font
 
   if (!address || !data || !(data.totalStreams > 0) || !equipped) return null;
   const bounds = streamerBadgeBounds(equipped.id, theme);
-  const capHeight = fontSize * 0.72 * 1.1;
+  const capHeight = fontSize * 0.72 * BADGE_CAP_SCALE;
   const scale = capHeight / (bounds.bottom - bounds.top);
 
   return (

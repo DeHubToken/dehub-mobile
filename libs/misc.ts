@@ -651,11 +651,24 @@ const BADGE_OPTICS: Record<string, { left: number; top: number; right: number; b
   "Megalodon": { left: 8, top: 15, right: 120, bottom: 117 },
 };
 
+// Optical resting line of each still: the lowest row still carrying a quarter
+// of the artwork's widest opaque span (alpha > 128). Thin tips below it (claw
+// points, tails, the shield's lower corner) overshoot the baseline the way
+// round and pointed letters do, so the body reads as resting on the text.
+const BADGE_SIT: Record<string, number> = {
+  "Crab": 114, "Ghost Lobster": 108, "Piranha": 112, "Giant Tortoise": 112, "King Cobra": 117, "Octopus": 118,
+  "Crocodile": 115, "Dolphin": 117, "Tiger Shark": 113, "Killer Whale": 118, "Great White Shark": 114,
+  "Blue Whale": 115, "Megalodon": 114,
+};
+
 // At compact sizes the source artwork's narrowest transparent edge is less
 // than one rendered point. Keep a full point of protected internal space so
 // anti-aliased details cannot be sampled against the image boundary. Padding
 // expands the outer box while preserving the artwork's rendered size.
 const BADGE_ARTWORK_GUTTER = 1;
+
+/** Name badge artwork height as a multiple of the name's cap height. */
+export const BADGE_CAP_SCALE = 1.27;
 
 /** Twitter-style size, spacing, and artwork-baseline alignment. */
 export function getBadgeOpticalStyle(
@@ -664,14 +677,17 @@ export function getBadgeOpticalStyle(
   verticalOffset = 0,
   textLineHeight = size * 1.4,
   artworkBounds?: { left: number; top: number; right: number; bottom: number },
+  artworkSit?: number,
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
-  // Manrope uses a 0.72em cap height; inline artwork is 1.21x it (+10%, then
-  // +10% again on 2026-11-04). The baseline maths below uses the same bounds,
-  // so every tier still lands its artwork on the name's baseline.
-  const renderedSize = size * 0.72 * 1.21 * 128 / (bounds.bottom - bounds.top);
+  // The row that rests on the baseline: the tier's body, not a dangling tip.
+  const sit = artworkSit ?? (!artworkBounds && tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
+  // Manrope uses a 0.72em cap height; inline artwork is 1.27x it (+10%, +10%
+  // on 2026-11-04, +5% on 2026-11-05). The baseline maths below uses the same
+  // bounds, so every tier lands its resting line on the name's baseline.
+  const renderedSize = size * 0.72 * BADGE_CAP_SCALE * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
@@ -684,7 +700,7 @@ export function getBadgeOpticalStyle(
   const artworkBottomBelowCentre =
     -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +
-    renderedSize * bounds.bottom / 128;
+    renderedSize * sit / 128;
   const translateY = baselineBelowCentre - artworkBottomBelowCentre;
   const verticalMargin = Math.min(0, (textLineHeight - outerSize) / 2);
   return {
@@ -700,6 +716,28 @@ export function getBadgeOpticalStyle(
   };
 }
 
+/**
+ * A badge placed inline inside a <Text> run. Native text lays an inline view's
+ * bottom edge on the baseline, so move the artwork until the tier's resting
+ * line meets that edge, instead of centring it on the line box.
+ */
+export function getInlineBadgeOpticalStyle(source: number, size: number, drawsPoster = true) {
+  const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
+  // BadgeArtwork draws the hover poster; a plain image draws the original still.
+  const art = !drawsPoster || tier === "Killer Whale" ? undefined : badgeHoverArt(tier);
+  const bounds = art?.posterBounds ?? (tier ? BADGE_OPTICS[tier] : undefined) ?? { left: 0, top: 0, right: 128, bottom: 128 };
+  const sit = art?.posterSit ?? (tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
+  const style = getBadgeOpticalStyle(source, size, 0, size, art?.posterBounds, art?.posterSit);
+  const rendered = style.height - 2 * style.padding;
+  return {
+    ...style,
+    marginTop: 0,
+    marginBottom: 0,
+    alignSelf: undefined,
+    transform: [{ translateY: style.height - style.padding - rendered * sit / 128 }],
+  };
+}
+
 export function getBadgeHoverOpticalStyle(
   source: number,
   size: number,
@@ -707,8 +745,8 @@ export function getBadgeHoverOpticalStyle(
   textLineHeight = size * 1.4,
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  const bounds = tier === "Killer Whale" ? undefined : badgeHoverArt(tier)?.posterBounds;
-  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, bounds);
+  const art = tier === "Killer Whale" ? undefined : badgeHoverArt(tier);
+  return getBadgeOpticalStyle(source, size, verticalOffset, textLineHeight, art?.posterBounds, art?.posterSit);
 }
 
 // JPEG, not PNG. These are the placeholder cover strips behind a profile: they
