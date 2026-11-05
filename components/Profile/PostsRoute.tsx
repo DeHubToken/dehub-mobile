@@ -25,6 +25,8 @@ import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
+import { gridTileKind } from "./ProfileGridTile";
+import { openPostBgPicker } from "./PostBgPicker";
 import Icon from "../ui/Icon";
 import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
 import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
@@ -33,6 +35,8 @@ import { ProfileFeedOriginContext, useProvidedProfileFeed } from "../../libs/pro
 const noopScroll = () => {};
 
 const PAGE_SIZE = 20;
+// Stable, and drops the press event a Pressable hands its onLongPress.
+const holdForBackground = () => openPostBgPicker();
 const MAX_REPLY_PAGES = 10;
 
 type ProfilePostRow =
@@ -273,11 +277,13 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
             isVisible={isItemVisible(item.key)}
             isAutoplayActive={isItemAutoplayActive(item.key)}
             onBeforeNavigate={onBeforeNavigate}
+            // Hold one of your own text posts to pick its profile background.
+            onHold={isOwnProfile && !(item.item as any).isRepost && gridTileKind(item.item) === "text" ? holdForBackground : undefined}
           />
         </View>
       );
     },
-    [cinematic, isItemVisible, isItemAutoplayActive, navigation, onBeforeNavigate],
+    [cinematic, isItemVisible, isItemAutoplayActive, navigation, onBeforeNavigate, isOwnProfile],
   );
 
   if (loading) {

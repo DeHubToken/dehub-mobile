@@ -115,7 +115,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 1 }}>
         {pinnedPosts.map((item) => (
           <View key={`pinned-${item.tokenId}`} style={{ width: '33.333%' }}>
-            <ProfileGridTile item={item as UnifiedFeedItem} pinned onPress={openTile} />
+            <ProfileGridTile item={item as UnifiedFeedItem} pinned onPress={openTile} ownerHold={isOwnProfile} />
           </View>
         ))}
       </View>
@@ -166,9 +166,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
     ({ item }: InfiniteFeedRenderItemInfo) => (
-      <ProfileGridTile item={item as UnifiedFeedItem} onPress={openTile} />
+      <ProfileGridTile item={item as UnifiedFeedItem} onPress={openTile} ownerHold={isOwnProfile} />
     ),
-    [openTile],
+    [openTile, isOwnProfile],
   );
 
   return (

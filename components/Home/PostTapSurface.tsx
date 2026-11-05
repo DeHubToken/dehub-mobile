@@ -4,9 +4,11 @@ import { showTapBurst } from "../../libs/tap-reaction-layer";
 import { isInTapReactionCenter, TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Only central taps wait for a reaction; the rest of the post opens immediately. */
-function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPressIntent, accessibilityLabel, immediatePress = false }: {
+function PostTapSurface({ children, onPress, onHold, onReaction, style, resetKey, onPressIntent, accessibilityLabel, immediatePress = false }: {
   children: React.ReactNode;
   onPress?: () => void;
+  /** A held press (450 ms), e.g. the owner picking a text-post background. */
+  onHold?: () => void;
   onPressIntent?: () => void;
   accessibilityLabel?: string;
   /** Navigating captions open on the first tap; media retain multi-tap reactions. */
@@ -70,7 +72,13 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPres
       }}
       onTouchMove={checkTravel}
       onTouchCancel={() => { generation.current += 1; moved.current = true; reset(); }}
-      onLongPress={() => { moved.current = true; reset(); }}
+      delayLongPress={onHold ? 450 : undefined}
+      onLongPress={() => {
+        const held = !moved.current;
+        moved.current = true;
+        reset();
+        if (held) onHold?.();
+      }}
       onPress={(event) => {
         event.stopPropagation();
         checkTravel(event);
