@@ -95,7 +95,10 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         insideNavigatorScreen={false}
         cacheKey={["profile-feed-type", address ?? "", postType]}
         fetchPage={fetchPage}
-        pageSize={20}
+        // 10 fill the first screen; the next page waits until the visitor
+        // scrolls within about half a screen of the end.
+        pageSize={10}
+        endReachedThreshold={0.6}
         isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: listHeader ? 0 : 8 }}
         enableBackToTop={false}
