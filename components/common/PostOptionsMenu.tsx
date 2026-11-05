@@ -36,7 +36,15 @@ import {
 } from "../../services/nft.service";
 import { followUser, unfollowUser } from "../../services/user.service";
 import { blockUser, unblockUser } from "../../services/block.service";
-import { muteUser } from "../../services/mute.service";
+import { muteUser, unmuteUser } from "../../services/mute.service";
+
+/**
+ * Who this phone muted or blocked from a post menu since the app opened.
+ * Cards don't fetch mute state (a request per post), so without this the
+ * menu offered "Mute" again right after muting, with no way back.
+ */
+const mutedFromMenu = new Set<string>();
+const blockedFromMenu = new Map<string, boolean>();
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError, toastInfo } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
@@ -288,6 +296,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showRemix, setShowRemix] = useState(false);
   const { mint: mintExisting, isMinting } = useMintExistingPost();
   const { on: dubOn } = useDubSettings();
+  const creatorKey = (creatorIdentifier || "").toLowerCase();
+  const [isMuted, setIsMuted] = useState(() => mutedFromMenu.has(creatorKey));
+  const [blockedLocal, setBlockedLocal] = useState(() => blockedFromMenu.get(creatorKey));
+  useEffect(() => {
+    setIsMuted(mutedFromMenu.has(creatorKey));
+    setBlockedLocal(blockedFromMenu.get(creatorKey));
+  }, [creatorKey, visible]);
+  const isBlocked = blockedLocal ?? isBlockedProp;
 
   // Dub in the app's language. Switching on checks first, because the menu is
   // gone by the time anything would play: a video with no transcript or a
@@ -505,39 +521,49 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     requireAuth?.(async () => {
       if (!creatorIdentifier) return;
       onClose();
+      const unmute = isMuted;
       try {
-        await muteUser(creatorIdentifier);
-        onMuteChange?.(true);
-        toastSuccess(t("postOptions.mutedUser", { name: creatorDisplayName }));
+        if (unmute) await unmuteUser(creatorIdentifier);
+        else await muteUser(creatorIdentifier);
+        if (unmute) mutedFromMenu.delete(creatorKey); else mutedFromMenu.add(creatorKey);
+        setIsMuted(!unmute);
+        onMuteChange?.(!unmute);
+        toastSuccess(unmute
+          ? t("postOptions.unmutedUser", { name: creatorDisplayName, defaultValue: "Unmuted {{name}}" })
+          : t("postOptions.mutedUser", { name: creatorDisplayName }));
       } catch (e) {
         console.error("[PostOptionsMenu] mute error", e);
         toastError(t("postOptions.muteFailed"));
       }
     });
-  }, [requireAuth, onClose, creatorIdentifier, creatorDisplayName, onMuteChange, t]);
+  }, [requireAuth, onClose, creatorIdentifier, creatorKey, isMuted, creatorDisplayName, onMuteChange, t]);
 
   const handleConfirmBlock = useCallback(async () => {
     if (!creatorIdentifier) return;
     setBlockLoading(true);
     try {
-      if (isBlockedProp) {
+      if (isBlocked) {
         await unblockUser(creatorIdentifier);
+        blockedFromMenu.set(creatorKey, false);
+        setBlockedLocal(false);
         onBlockChange?.(false);
         toastSuccess(t("postOptions.unblockedUser", { name: creatorDisplayName }));
       } else {
         await blockUser(creatorIdentifier);
+        blockedFromMenu.set(creatorKey, true);
+        setBlockedLocal(true);
         onBlockChange?.(true);
         toastSuccess(t("postOptions.blockedUser", { name: creatorDisplayName }));
       }
     } catch (e) {
       console.error("[PostOptionsMenu] block toggle error", e);
-      toastError(isBlockedProp ? t("postOptions.unblockFailed") : t("postOptions.blockFailed"));
+      toastError(isBlocked ? t("postOptions.unblockFailed") : t("postOptions.blockFailed"));
     } finally {
       setBlockLoading(false);
       setShowBlockConfirm(false);
       closeAll();
     }
-  }, [creatorIdentifier, creatorDisplayName, isBlockedProp, onBlockChange, closeAll]);
+  }, [creatorIdentifier, creatorKey, creatorDisplayName, isBlocked, onBlockChange, closeAll]);
 
   const handleOpenDelete = useCallback(() => {
     openSubModal(() => setShowDeleteConfirm(true));
@@ -843,19 +869,23 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   destructive red: it is the one most people actually want, and
                   it severs nothing. Only shown when not already blocked —
                   muting someone you have blocked would change nothing. */}
-              {!isBlockedProp && (
+              {!isBlocked && (
                 <OptionRow
-                  icon="VolumeX"
-                  label={t("postOptions.muteUser", { name: creatorDisplayName })}
-                  sublabel={t("postOptions.muteDesc")}
+                  icon={isMuted ? "Volume2" : "VolumeX"}
+                  label={isMuted
+                    ? t("postOptions.unmuteUser", { name: creatorDisplayName, defaultValue: "Unmute {{name}}" })
+                    : t("postOptions.muteUser", { name: creatorDisplayName })}
+                  sublabel={isMuted
+                    ? t("postOptions.unmuteDesc", { defaultValue: "See their posts again" })
+                    : t("postOptions.muteDesc")}
                   onPress={handleMute}
                 />
               )}
 
               <OptionRow
-                icon={isBlockedProp ? "LockOpen" : "Ban"}
-                label={isBlockedProp ? t("postOptions.unblockUser", { name: creatorDisplayName }) : t("postOptions.blockUser", { name: creatorDisplayName })}
-                sublabel={isBlockedProp ? t("postOptions.unblockDesc") : t("postOptions.blockDesc")}
+                icon={isBlocked ? "LockOpen" : "Ban"}
+                label={isBlocked ? t("postOptions.unblockUser", { name: creatorDisplayName }) : t("postOptions.blockUser", { name: creatorDisplayName })}
+                sublabel={isBlocked ? t("postOptions.unblockDesc") : t("postOptions.blockDesc")}
                 color="#F4F4F5"
                 onPress={handleOpenBlock}
               />
@@ -960,7 +990,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       {/* Block/Unblock confirmation */}
       <ConfirmBlockModal
         visible={showBlockConfirm}
-        mode={isBlockedProp ? "unblock" : "block"}
+        mode={isBlocked ? "unblock" : "block"}
         targetLabel={creatorDisplayName}
         onConfirm={handleConfirmBlock}
         onCancel={() => { setShowBlockConfirm(false); closeAll(); }}

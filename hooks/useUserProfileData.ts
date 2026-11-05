@@ -629,7 +629,7 @@ export const useUserProfileData = (
     const profileSlug = profileData?.username || profileData?.address;
     if (!profileSlug) return;
     const url = `${WEBSITE_LINK}/@${profileSlug}`;
-    const message = _copy("copy.24ccaa3af430", { defaultValue: "Check out this dehub profile {{value1}}", value1: url });
+    const message = _copy("copy.24ccaa3af430", { defaultValue: "Check out this Riftn profile {{value1}}", value1: url });
     await shareProfile(url, message);
   }, [profileData?.username, profileData?.address, _copy]);
 

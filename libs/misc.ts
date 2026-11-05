@@ -930,7 +930,8 @@ export async function shareProfile(url: string, message: string, kind = "profile
   try {
     await shareWithRef(
       Platform.select({
-        ios: { message, url },
+        // iOS adds the link itself, so keep it out of the text or it shows twice.
+        ios: { message: message.split(url).join("").replace(/\s+/g, " ").trim(), url },
         default: { message },
       }) as any,
       undefined,

@@ -163,7 +163,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
     const profileSlug = username || address;
     if (!profileSlug) return;
     const url = ShareLinks.profile(profileSlug);
-    const message = t("copy.d70477ce3733", { defaultValue: "Check out my dehub profile {{value1}}", value1: url });
+    const message = t("copy.d70477ce3733", { defaultValue: "Check out my Riftn profile {{value1}}", value1: url });
     await shareProfile(url, message);
   }, [username, address, t]);
 
