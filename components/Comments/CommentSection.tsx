@@ -25,7 +25,9 @@ import CommentItem from "./CommentItem";
 import type { TranslateToggle } from "../ui/TranslateButton";
 import CommentContextMenu from "./CommentContextMenu";
 import CommentLikersSheet from "./CommentLikersSheet";
-import type { CommentLayout } from "./CommentContextMenu";
+import type { CommentHoldExtra, CommentLayout } from "./CommentContextMenu";
+import { useHoldLift } from "../ui/HoldSheet";
+import Animated from "react-native-reanimated";
 import CommentMediaPreview from "./CommentMediaPreview";
 import type { MediaAttachment } from "./CommentMediaPreview";
 import {
@@ -263,7 +265,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Context menu state (WhatsApp/IG-style long-press)
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle } | null>(null);
+  const [contextMeta, setContextMeta] = useState<CommentHoldExtra | null>(null);
+  // The held comment slides up clear of the hold sheet.
+  const holdLift = useHoldLift();
   // The comment whose Report row was picked; the sheet is aimed at it.
   const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
@@ -1302,12 +1306,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Long-press → open context menu
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => {
+    (comment: Comment, layout: CommentLayout, extra: CommentHoldExtra) => {
+      holdLift.measure();
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
     },
-    []
+    [holdLift.measure]
   );
 
   /**
@@ -1769,6 +1774,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           <DeHubLoader size={56} />
         </View>
       ) : (
+        <Animated.View ref={holdLift.ref} collapsable={false} style={[{ flex: 1 }, holdLift.style]}>
         <FlatList
           nestedScrollEnabled
           disallowInterruption
@@ -1839,6 +1845,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
           showsVerticalScrollIndicator={false}
         />
+        </Animated.View>
       )}
 
       <DeHubRefreshMark refreshing={refreshing} />
@@ -2248,6 +2255,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         }
         tokenId={tokenId}
         translate={contextMeta?.translate}
+        myReaction={contextMeta?.myReaction}
+        react={contextMeta?.react}
+        onLift={holdLift.onLift}
+        liftTop={holdLift.top}
       />
 
       {/* Report somebody else's comment. One sheet for the whole section,
