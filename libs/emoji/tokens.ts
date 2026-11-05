@@ -76,15 +76,20 @@ function emoticonFor(face: string): string | null {
   return null;
 }
 
-/** "<3" -> "❤️" etc. in plain text; `code spans` are left alone. */
-export function replaceEmoticons(text: string): string {
+/**
+ * "<3" -> "❤️" etc. in plain text; `code spans` are left alone. `glued` means
+ * the text sits straight after a link or mention, so a face at its very start
+ * belongs to that link ("riftn.com/:)") and is kept as typed.
+ */
+export function replaceEmoticons(text: string, glued = false): string {
   if (!EMOTICON_HINT.test(text)) return text;
   return text
     .split(/(`[^`\n]*`)/)
-    .map((chunk) =>
+    .map((chunk, ci) =>
       chunk.startsWith('`') && chunk.endsWith('`') && chunk.length > 1
         ? chunk
-        : chunk.replace(EMOTICON_RE, (m, lead: string, face: string) => {
+        : chunk.replace(EMOTICON_RE, (m, lead: string, face: string, offset: number) => {
+            if (glued && ci === 0 && offset === 0 && lead === '') return m;
             const emoji = emoticonFor(face);
             return emoji ? lead + emoji : m;
           }),
@@ -97,10 +102,12 @@ export function mayContainEmojiTokens(text: string): boolean {
   return text.indexOf(':') !== -1 || EMOTICON_HINT.test(text);
 }
 
-export function tokenizeEmoji(text: string): EmojiToken[] {
+export function tokenizeEmoji(text: string, opts: { glued?: boolean } = {}): EmojiToken[] {
   if (!mayContainEmojiTokens(text)) return [{ kind: 'text', text }];
   const out = tokenizeCodes(text);
-  for (const t of out) if (t.kind === 'text') t.text = replaceEmoticons(t.text);
+  out.forEach((t, i) => {
+    if (t.kind === 'text') t.text = replaceEmoticons(t.text, i === 0 && !!opts.glued);
+  });
   return out;
 }
 

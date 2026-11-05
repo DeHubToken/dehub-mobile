@@ -287,7 +287,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         }
         return (
           <Text key={`${keyPrefix}-${idx}`}>
-            {expandEmojiTokens(seg.value, { fontSize, keyPrefix: `${keyPrefix}-e${idx}` })}
+            {expandEmojiTokens(seg.value, { fontSize, keyPrefix: `${keyPrefix}-e${idx}`, glued: idx > 0 })}
           </Text>
         );
       }),

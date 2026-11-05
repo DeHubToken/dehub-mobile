@@ -96,7 +96,16 @@ export function InlineEmoji({ value, size = 16 }: { value: string; size?: number
  */
 export function expandEmojiTokens(
   parts: ReactNode[] | ReactNode,
-  { fontSize = DEFAULT_FONT_SIZE, keyPrefix = "em" }: { fontSize?: number; keyPrefix?: string } = {},
+  {
+    fontSize = DEFAULT_FONT_SIZE,
+    keyPrefix = "em",
+    glued = false,
+  }: {
+    fontSize?: number;
+    keyPrefix?: string;
+    /** The text follows a link or mention with no space, so a leading face (":)") is part of it. */
+    glued?: boolean;
+  } = {},
 ): ReactNode[] {
   const list = Array.isArray(parts) ? parts : [parts];
   const size = Math.round(fontSize * 1.25);
@@ -106,7 +115,7 @@ export function expandEmojiTokens(
       out.push(part);
       return;
     }
-    const tokens = tokenizeEmoji(part);
+    const tokens = tokenizeEmoji(part, { glued: pi === 0 ? glued : typeof list[pi - 1] !== "string" });
     if (tokens.length === 1 && tokens[0].kind === "text") {
       out.push(tokens[0].text);
       return;

@@ -80,6 +80,11 @@ describe('typed faces', () => {
     expect(txt('https://x.com/:)')).toBe('https://x.com/:)');
     expect(txt('type `<3` here <3')).toBe('type `<3` here \u2764\uFE0F');
   });
+  it('keeps a face glued to the end of a link', () => {
+    expect(txt(':) ok')).toBe('\u{1F642} ok');
+    expect(tokenizeEmoji(':) ok', { glued: true }).map((t) => (t.kind === 'text' ? t.text : '')).join('')).toBe(':) ok');
+    expect(tokenizeEmoji(' :) ok', { glued: true }).map((t) => (t.kind === 'text' ? t.text : '')).join('')).toBe(' \u{1F642} ok');
+  });
   it('still finds shortcodes next to faces', () => {
     expect(tokenizeEmoji(':fire: <3').map((t) => t.kind)).toEqual(['shortcode', 'text']);
   });

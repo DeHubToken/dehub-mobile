@@ -50,7 +50,7 @@ const LinkedText: React.FC<LinkedTextProps> = ({ text, className, onLongPress, f
         ) : (
           // Plain runs only, so a colon inside a URL is never read as an emoji.
           <React.Fragment key={`text-${index}`}>
-            {expandEmojiTokens([token.value], { fontSize, keyPrefix: `em-${index}` })}
+            {expandEmojiTokens([token.value], { fontSize, keyPrefix: `em-${index}`, glued: index > 0 })}
           </React.Fragment>
         ),
       )}
