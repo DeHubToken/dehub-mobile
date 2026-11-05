@@ -124,7 +124,7 @@ const DEFAULT_FILTERS: FeedFilters = {
 // which is also web's FEED_TABS order.
 // Settings > Content can turn Shorts off, which drops its tab (web hides it the
 // same way); the component then works from TAB_ORDER_NO_SHORTS.
-const ALL_TAB_ORDER = ["all", "short", "feed-images", "video", "feed-audio", "live"] as const;
+const ALL_TAB_ORDER = ["all", "short", "feed-images", "feed-simple", "feed-audio", "live"] as const;
 type TabKey = (typeof ALL_TAB_ORDER)[number];
 const TAB_ORDER_NO_SHORTS: readonly TabKey[] = ALL_TAB_ORDER.filter((key) => key !== "short");
 
@@ -146,7 +146,7 @@ function PagerPage({ index, progress, children }: {
 // The four tabs served by InfiniteVideoFeed (images and shorts have their own
 // grid components). Each gets its own kept-mounted list so switching never
 // re-creates a FlatList.
-const FEED_LIST_TYPES = ["all", "video", "live"] as const;
+const FEED_LIST_TYPES = ["all", "feed-simple", "live"] as const;
 
 // Everyone live (Stages and streams) sits at the top of every list feed. One element for
 // the life of the app so InfiniteVideoFeed's memoised list header never churns.
@@ -188,7 +188,7 @@ const savedFilters = (): FeedFilters => {
 };
 
 /**
- * Pager slot for a post type. Filter-panel-only types ("feed-simple") have no
+ * Pager slot for a post type. Filter-panel-only types ("video", "article") have no
  * tab of their own, so they render in the Home slot — previously they matched
  * no list at all and left the screen blank.
  */
@@ -290,7 +290,7 @@ export default function HomeScreen() {
   // feedRef effect never re-fires from a new ref identity.
   const feedRefs = useRef<Record<FeedListType, { current: InfiniteVideoFeedHandle | null }>>({
     all: { current: null },
-    video: { current: null },
+    "feed-simple": { current: null },
     live: { current: null },
   });
   const imageGridRef = useRef<HomeImageGridHandle | null>(null);
@@ -424,7 +424,7 @@ export default function HomeScreen() {
   const feedListParamsByType = useMemo(() => {
     return {
       all: homeSlotPostType ? { ...feedParams, postType: homeSlotPostType } : feedParams,
-      video: { ...feedParams, postType: "video" as const },
+      "feed-simple": { ...feedParams, postType: "feed-simple" as const },
       live: { ...feedParams, postType: "live" as const },
     } satisfies Record<FeedListType, Record<string, any>>;
   }, [feedParams, homeSlotPostType]);
@@ -510,7 +510,7 @@ export default function HomeScreen() {
   );
   const pickSearchFeed = useCallback(
     (tab: FeedSearchTab) => {
-      const key = ({ home: "all", shorts: "short", images: "feed-images", videos: "video", music: "feed-audio" } as const)[tab];
+      const key = ({ home: "all", shorts: "short", images: "feed-images", videos: "short", music: "feed-audio" } as const)[tab];
       handleNavPostTypeChange(key as PostTypeOption);
     },
     [handleNavPostTypeChange],
@@ -919,7 +919,7 @@ export default function HomeScreen() {
   const [feedPresets, setFeedPresets] = useState<AppFeedPreset[]>(readFeedPresets);
   useEffect(() => feedPresetsEvents.subscribe(() => setFeedPresets(readFeedPresets())), []);
   const [presetSaveRequest, setPresetSaveRequest] = useState(0);
-  const homeFilterPostType = filters.postType === "article" || filters.postType === "feed-simple" ? filters.postType : undefined;
+  const homeFilterPostType = filters.postType === "article" || filters.postType === "video" ? filters.postType : undefined;
   const currentPreset = useMemo<Omit<AppFeedPreset, "name">>(() => ({
     sortBy: filters.sortBy !== DEFAULT_FILTERS.sortBy ? filters.sortBy : undefined,
     dateRange: filters.dateRange || undefined,
@@ -937,7 +937,7 @@ export default function HomeScreen() {
     clearPersistedCategory();
     setFilters((prev) => ({
       ...DEFAULT_FILTERS,
-      postType: prev.postType === "article" || prev.postType === "feed-simple" ? "all" : prev.postType,
+      postType: prev.postType === "article" || prev.postType === "video" ? "all" : prev.postType,
     }));
   }, [beginFilterTransition]);
   const applyPreset = useCallback((name: string) => {
@@ -949,7 +949,7 @@ export default function HomeScreen() {
     setFilters((prev) => ({
       sortBy: (preset.sortBy ?? DEFAULT_FILTERS.sortBy) as FeedFilters["sortBy"],
       dateRange: (preset.dateRange ?? "") as FeedFilters["dateRange"],
-      postType: (preset.postType ?? (prev.postType === "article" || prev.postType === "feed-simple" ? "all" : prev.postType)) as FeedFilters["postType"],
+      postType: (preset.postType ?? (prev.postType === "article" || prev.postType === "video" ? "all" : prev.postType)) as FeedFilters["postType"],
       contentAccess: (preset.contentAccess ?? []) as FeedFilters["contentAccess"],
     }));
   }, [feedPresets, beginFilterTransition]);
@@ -958,7 +958,7 @@ export default function HomeScreen() {
     if (homeFilterPostType) items.push({
       key: "type",
       group: t("feedFilters.groupType", "Type"),
-      label: homeFilterPostType === "article" ? t("articles.label") : t("filters.text"),
+      label: homeFilterPostType === "article" ? t("articles.label") : t("filters.videos", "Videos"),
       onRemove: () => applyFilters({ ...filters, postType: "all" }),
     });
     if (selectedCategory) items.push({

@@ -70,6 +70,11 @@ interface ShortsGridCardProps {
   onUnavailable?: (key: string) => void;
   /** Fixed card width (a carousel tile); defaults to the two-column grid size. */
   width?: number;
+  /**
+   * Brick-row tiles (Shorts tab): the tile's exact size. A wide video gets a
+   * duration chip, a wide badge and, across the full width, its title.
+   */
+  frame?: { width: number; height: number; wide?: boolean; hero?: boolean; still?: boolean };
 }
 
 /**
@@ -164,13 +169,22 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
   );
 };
 
-const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable, width }) => {
+function formatDuration(totalSeconds: number): string {
+  const sec = Math.max(0, Math.round(totalSeconds));
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const rest = String(sec % 60).padStart(2, "0");
+  return h ? `${h}:${String(m).padStart(2, "0")}:${rest}` : `${m}:${rest}`;
+}
+
+const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable, width, frame }) => {
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
   const { isMinimal } = useAppTheme();
   const gridSize = useShortsCardSize();
-  const CARD_WIDTH = width ?? gridSize.width;
-  const CARD_HEIGHT = width ? width * (16 / 9) : gridSize.height;
+  const CARD_WIDTH = frame?.width ?? width ?? gridSize.width;
+  const CARD_HEIGHT = frame?.height ?? (width ? width * (16 / 9) : gridSize.height);
+  const wide = !!frame?.wide;
 
   // Sized to the card rather than fetched at full resolution: this is a
   // poster behind an autoplaying video, and the video is worth the bytes.
@@ -241,7 +255,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           expo-video builds a native ExoPlayer in the constructor whether or not
           a source is attached, so a player per mounted cell (20+ in this grid)
           was a player object graph per cell regardless of the null source. */}
-      {previewSettled && previewUrl && !LOW_END && <CellPreview previewUrl={previewUrl} />}
+      {previewSettled && previewUrl && !LOW_END && !frame?.still && <CellPreview previewUrl={previewUrl} />}
 
 
       {/* Bottom gradient + info overlay */}
@@ -257,6 +271,29 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
         </View>
       )}
 
+      {wide ? (
+        <>
+          <View style={styles.wideBadge} pointerEvents="none">
+            <View style={styles.wideBadgeGlyph} />
+          </View>
+          <View style={[styles.bottomInfo, { right: 48 }]} pointerEvents="none">
+            {frame?.hero && !!item.name && (
+              <Text style={styles.wideTitle} numberOfLines={1}>{item.name}</Text>
+            )}
+            <View style={styles.stat}>
+              <Icon name="Eye" size={9} strokeWidth={1.6} color="#EDEDED" />
+              <Text style={styles.statText} numberOfLines={1}>
+                {frame?.hero && username ? `@${username} · ` : ""}{formatCompactNumber(views)}
+              </Text>
+            </View>
+          </View>
+          {(item.videoDuration ?? 0) > 0 && (
+            <View style={styles.durationChip} pointerEvents="none">
+              <Text style={styles.durationText}>{formatDuration(item.videoDuration ?? 0)}</Text>
+            </View>
+          )}
+        </>
+      ) : (
       <View style={styles.bottomInfo} pointerEvents="none">
         <View style={styles.metadataRow}>
           {width == null && (
@@ -283,6 +320,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
           </View>
         </View>
       </View>
+      )}
     </Pressable>
   );
 };
@@ -299,6 +337,11 @@ const ShortsGridCard = memo(ShortsGridCardComponent, (prev, next) =>
   resolveViewCount(prev.item) === resolveViewCount(next.item) &&
   prev.index === next.index &&
   prev.width === next.width &&
+  prev.frame?.width === next.frame?.width &&
+  prev.frame?.height === next.frame?.height &&
+  prev.frame?.wide === next.frame?.wide &&
+  prev.frame?.hero === next.frame?.hero &&
+  prev.frame?.still === next.frame?.still &&
   prev.isVisible === next.isVisible,
 );
 
@@ -374,6 +417,50 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     columnGap: 2,
+  },
+  wideTitle: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    lineHeight: 15,
+    fontWeight: "600",
+    marginBottom: 2,
+    includeFontPadding: false,
+  },
+  wideBadge: {
+    position: "absolute",
+    top: 6,
+    right: 6,
+    width: 20,
+    height: 20,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.25)",
+    backgroundColor: "rgba(0,0,0,0.35)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  wideBadgeGlyph: {
+    width: 11,
+    height: 7,
+    borderRadius: 1.5,
+    borderWidth: 1.6,
+    borderColor: "#FFFFFF",
+  },
+  durationChip: {
+    position: "absolute",
+    right: 6,
+    bottom: 6,
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    backgroundColor: "rgba(0,0,0,0.6)",
+  },
+  durationText: {
+    color: "#FFFFFF",
+    fontSize: 10,
+    fontWeight: "600",
+    fontVariant: ["tabular-nums"],
+    includeFontPadding: false,
   },
   statText: {
     color: "#EDEDED",

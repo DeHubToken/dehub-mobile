@@ -13002,6 +13002,8 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "71988c4d8e08": "Text",
+    "147170e793c6": "Wide",
     "3f9b2c71d0a4": "{{n}} results",
     "8c4e1a6b2f57": "for “{{query}}”",
     "chatSlowDown": "Slow down! Too many messages in a row. Try again in {{wait}}, or wait for someone else to reply.",
