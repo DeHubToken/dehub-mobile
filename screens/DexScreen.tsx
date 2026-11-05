@@ -1,4 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
+import { DHB_SALES_PAUSED } from '../libs/dhb-sales';
+import TokenComingSoonScreen from '../components/TokenLaunch/TokenComingSoonScreen';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 import { appLocale } from '../libs/date.util';
@@ -62,7 +64,13 @@ function formatWhen(item: VerifiedPosition) {
 }
 const explorer = (id: number) => id === ChainId.BASE_MAINNET ? 'https://basescan.org' : 'https://bscscan.com';
 
+/** Not trading yet: the DEX is replaced by the launch card until DHB_SALES_PAUSED is off. */
 export default function DexScreen() {
+  if (DHB_SALES_PAUSED) return <TokenComingSoonScreen />;
+  return <DexScreenMarket />;
+}
+
+function DexScreenMarket() {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const navigation = useNavigation();

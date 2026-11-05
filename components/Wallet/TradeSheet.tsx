@@ -7,6 +7,8 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ethers } from "ethers";
 import GlassModal from "../ui/GlassModal";
+import TokenLaunchNotify from "../TokenLaunch/TokenLaunchNotify";
+import { DHB_SALES_PAUSED } from "../../libs/dhb-sales";
 import Icon from "../ui/Icon";
 import { ChainId } from "../../config/constants";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -50,7 +52,23 @@ const units18 = (value: bigint) => ethers.utils.formatUnits(value.toString(), 18
 /** Wallet "Trade": pick Easy trade or the full Exchange, or just tell the AI what to do. Easy trade sells DHB on Base in three
  *  steps. A market or at/below-market price sells instantly; a price above market is listed as a
  *  single-sided position on the exchange's own book. */
-export default function TradeSheet({ visible, onClose, address }: { visible: boolean; onClose: () => void; address: string }) {
+type TradeSheetProps = { visible: boolean; onClose: () => void; address: string };
+
+/** Not trading yet: Trade opens the launch card instead of a swap. */
+export default function TradeSheet(props: TradeSheetProps) {
+  if (DHB_SALES_PAUSED) {
+    return (
+      <GlassModal visible={props.visible} onClose={props.onClose} presentation="bottom" maxHeight="90%" scrollable>
+        <View className="pb-6">
+          <TokenLaunchNotify />
+        </View>
+      </GlassModal>
+    );
+  }
+  return <TradeSheetMarket {...props} />;
+}
+
+function TradeSheetMarket({ visible, onClose, address }: TradeSheetProps) {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const signer = useDexSigner();

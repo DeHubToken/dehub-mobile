@@ -1,4 +1,6 @@
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { DHB_SALES_PAUSED } from '../libs/dhb-sales';
+import TokenComingSoonScreen from '../components/TokenLaunch/TokenComingSoonScreen';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
@@ -50,7 +52,13 @@ function formatWhen(iso: string) {
   return date.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
+/** Not trading yet: the DEX is replaced by the launch card until DHB_SALES_PAUSED is off. */
 export default function DexPoolScreen() {
+  if (DHB_SALES_PAUSED) return <TokenComingSoonScreen />;
+  return <DexPoolScreenMarket />;
+}
+
+function DexPoolScreenMarket() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();

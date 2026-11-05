@@ -5,6 +5,8 @@ import { Text, TouchableOpacity, View } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import DpayTopUpForm from "./DpayTopUpForm";
 import NearIntentBuy from "./NearIntentBuy";
+import TokenLaunchNotify from "../TokenLaunch/TokenLaunchNotify";
+import { DHB_SALES_PAUSED } from "../../libs/dhb-sales";
 
 export default function BuyDhbSheet({ visible, onClose, onDelivered, initialMethod = "card" }: {
   visible: boolean;
@@ -16,6 +18,15 @@ export default function BuyDhbSheet({ visible, onClose, onDelivered, initialMeth
   const [method, setMethod] = useState<"card" | "crypto">(initialMethod);
   const { t } = useTranslation();
   const delivered = () => { onDelivered?.(); onClose(); };
+  if (DHB_SALES_PAUSED) {
+    return (
+      <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%" scrollable>
+        <View className="pb-6">
+          <TokenLaunchNotify />
+        </View>
+      </GlassModal>
+    );
+  }
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%" scrollable>
       <View className="p-5">
