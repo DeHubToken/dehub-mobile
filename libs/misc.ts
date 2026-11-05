@@ -1,7 +1,8 @@
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
 import { badgeHoverArt } from "./badgeHoverArt";
-import { Platform } from "react-native";
+import { Image, Platform } from "react-native";
+import { ASSISTANT_ADDRESS, isAssistantAddress } from "./assistant";
 import { shareWithRef } from "./shareRef";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
@@ -101,6 +102,10 @@ export function getAvatarUrl(
 ): string {
   if (!url) return "default-avatar"; // handled by Image source resolver with local asset mapping
   if (isDeadPreview(url)) return "default-avatar";
+  const avatarFile = url.split(/[?#]/)[0].split("/").pop() || "";
+  if (new RegExp(`^${ASSISTANT_ADDRESS}(?:-[a-f0-9]+)?\\.(?:jpe?g|png|webp)$`, "i").test(avatarFile)) {
+    return Image.resolveAssetSource(require("../assets/web-icons/ai-assistant-avatar.png")).uri;
+  }
   // Already a URL: hand it to cdnImage as-is. cdnImage only rewrites our own
   // CDN prefixes, so a third-party host passes through untouched and one of
   // ours still gets sized. An avatar addressed on the API host is the one
@@ -130,6 +135,9 @@ export function getWalletAvatarUrl(
   storedPath?: string | null,
 ): string | null {
   if (!address || !/^0x[0-9a-f]{40}$/i.test(address)) return null;
+  if (isAssistantAddress(address)) {
+    return Image.resolveAssetSource(require("../assets/web-icons/ai-assistant-avatar.png")).uri;
+  }
   const ext = /\.webp(?:[?#]|$)/i.test(storedPath || "") ? "webp" : "jpg";
   return cdnImage(`${env.CDN_BASE_URL}/avatars/${address.toLowerCase()}.${ext}`, { width: sizePt });
 }
