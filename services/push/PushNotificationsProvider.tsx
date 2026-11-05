@@ -9,6 +9,7 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 import {
   registerForPushNotifications,
   registerPushTokenWithBackend,
+  clearPushTokenCache,
   isValidExpoPushToken,
   clearBadge,
   getNotificationPermissionStatus,
@@ -216,6 +217,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const tokenRefreshListener = useRef<Notifications.Subscription | null>(null);
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const hasRegisteredRef = useRef(false);
+  const registeredForRef = useRef<string | null>(null);
   const isRegisteringRef = useRef(false);
   const pushTokenRef = useRef<string | null>(null);
   // Store pending navigation to execute after auth completes
@@ -566,9 +568,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
       // Service layer handles backend deduplication
       logger.info('Registering push token with backend', { userAddress: userAddress.slice(0, 10) + '...' });
-      await registerPushTokenWithBackend(token);
-      
-      hasRegisteredRef.current = true;
+      // Only a confirmed save counts. A failed call (offline, server busy)
+      // used to mark this phone done for the whole run, so it got no pushes
+      // until the app was restarted.
+      hasRegisteredRef.current = await registerPushTokenWithBackend(token);
     } catch (error) {
       logger.error('Push registration failed', error);
     } finally {
@@ -615,6 +618,9 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     setSoftAskVisible(true);
   }, [registerPushToken, wantsPush]);
 
+  const registerPushTokenRef = useRef(registerPushToken);
+  registerPushTokenRef.current = registerPushToken;
+
   const handleSoftAskAllow = useCallback(() => {
     setSoftAskVisible(false);
     storage.delete(SOFT_ASK_DECLINED_AT_KEY);
@@ -641,6 +647,15 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         handleNotificationNavigation(pendingData);
       }, 500);
     }
+
+    // Switching to another saved account keeps the app signed in, so the
+    // phone has to be registered again under the new owner.
+    if (userAddress && registeredForRef.current && registeredForRef.current !== userAddress) {
+      hasRegisteredRef.current = false;
+      softAskHandledRef.current = false;
+      clearPushTokenCache();
+    }
+    registeredForRef.current = userAddress ?? null;
 
     // Ask once the user is settled in the app, not the instant auth resolves.
     if (isFullySignedIn && userAddress && !onboardingOfferPending && !hasRegisteredRef.current) {
@@ -740,7 +755,9 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
     // Handle token refresh - service layer handles deduplication
     tokenRefreshListener.current = Notifications.addPushTokenListener(async () => {
-      // Service layer caches token and handles deduplication
+      // The phone's own token changed: drop the cached one so Expo is asked
+      // again and the server learns the new route.
+      clearPushTokenCache();
       const expoToken = await registerForPushNotifications();
       if (expoToken && isValidExpoPushToken(expoToken)) {
         pushTokenRef.current = expoToken;
@@ -808,10 +825,19 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         // OS-level app icon badge. The two indicators have separate lifecycles.
         void refreshUnreadCount();
         clearBadge();
+        // A registration that failed earlier (offline at launch) tries again
+        // here. Only when permission is already granted: no prompt on resume.
+        if (!hasRegisteredRef.current && softAskHandledRef.current) {
+          void getNotificationPermissionStatus()
+            .then(({ granted }) => { if (granted) void registerPushTokenRef.current(); })
+            .catch(() => {});
+        }
       }
       appStateRef.current = nextState;
     };
 
+    // A cold start never fires the change above, so the icon kept its number.
+    clearBadge();
     const subscription = AppState.addEventListener('change', handleAppStateChange);
     return () => subscription.remove();
   }, [refreshUnreadCount]);
