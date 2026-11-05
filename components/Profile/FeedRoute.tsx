@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
+import { View, Text, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import { useProfilePins } from '../../hooks/usePinnedPosts';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import { getUnifiedFeed, type FeedPostType, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
@@ -15,6 +15,11 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 import { seedPostDetail, warmRequest } from '../../libs/navPrefetch';
 import { noteProfileFeedOpen, useProvidedProfileFeed } from '../../libs/profileFeedOrigin';
 import { useProfilePostBg } from './PostBackground';
+import FeedCard from '../Home/FeedCard';
+import FeedCardSkeleton from '../Feed/FeedCardSkeleton';
+import Icon from '../ui/Icon';
+import { isReelSlide } from '../../libs/profileReel';
+import { useProfileViewMode } from '../../libs/profileViewMode';
 
 // One recycle pool per tile kind: photo, video, text and song tiles draw different trees.
 const gridItemTypeOf = (item: any) => gridTileKind(item as UnifiedFeedItem);
@@ -111,7 +116,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId as any));
     const origin = noteProfileFeedOpen(feedSource, tokenId);
-    if (!origin) {
+    // A live stream, or a post with nothing the reel can draw, opens its own
+    // page: the reel would show a black slide that looks like a dead tap.
+    if (!origin || !isReelSlide(item as any)) {
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
       return;
     }
@@ -123,8 +130,30 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     });
   }, [navigation, onBeforeNavigate, feedSource, postBg]);
 
+  const viewMode = useProfileViewMode();
+  const isList = viewMode === 'list';
+
   // Pinned posts lead the grid as their own row of tiles, wearing a Pinned chip.
-  const header = pinnedPosts.length ? (
+  // In the list they lead as full cards under a small Pinned line.
+  const header = pinnedPosts.length && isList ? (
+    <>
+      {listHeader}
+      {pinnedPosts.map((item) => (
+        <View key={`pinned-${item.tokenId}`} className="px-2">
+          <View className="flex-row items-center gap-1.5 px-2 pt-2 pb-1">
+            <Icon name="Pin" size={14} color="#9CA3AF" />
+            <Text className="text-xs text-theme-neutrals-400">{t("profile.tabPinned", "Pinned")}</Text>
+          </View>
+          <FeedCard
+            item={item as UnifiedFeedItem}
+            isVisible
+            isAutoplayActive={false}
+            onBeforeNavigate={onBeforeNavigate}
+          />
+        </View>
+      ))}
+    </>
+  ) : pinnedPosts.length ? (
     <>
       {listHeader}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 1 }}>
@@ -185,10 +214,28 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     ),
     [openTile, isOwnProfile],
   );
+  // isVisible must be forwarded or FeedCard falls back to its own `true`
+  // default and every windowed row attaches a video player.
+  const renderListItem = useCallback(
+    ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
+      <View className="px-2">
+        <FeedCard
+          item={item as UnifiedFeedItem}
+          isVisible={isVisible}
+          isAutoplayActive={isAutoplayActive}
+          onBeforeNavigate={onBeforeNavigate}
+        />
+      </View>
+    ),
+    [onBeforeNavigate],
+  );
 
   return (
     <View className="flex-1">
       <InfiniteFeed
+        // Grid and list lay rows out differently (3 columns vs 1): a fresh
+        // list for each, reading the same cached pages.
+        key={viewMode}
         listRef={listRef}
         insideNavigatorScreen={false}
         // Everything fetchPage closes over has to be in here: InfiniteFeed
@@ -214,12 +261,12 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         pageSize={10}
         endReachedThreshold={0.6}
         isSignedIn={isSignedIn}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: 0, paddingHorizontal: 1 }}
-        numColumns={3}
-        gridItemType={gridItemTypeOf}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: 0, paddingHorizontal: isList ? 0 : 1 }}
+        numColumns={isList ? undefined : 3}
+        gridItemType={isList ? undefined : gridItemTypeOf}
         enableBackToTop={false}
         headerComponent={header}
-        loadingComponent={<GridSkeleton />}
+        loadingComponent={isList ? <View className="px-2"><FeedCardSkeleton count={3} /></View> : <GridSkeleton />}
         onScroll={onScroll}
         scrollEnabled={scrollEnabled}
         emptyComponent={(
@@ -229,7 +276,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
             subtitle={t("profile.noPostsYetSub")}
           />
         )}
-        renderItem={renderItem}
+        renderItem={isList ? renderListItem : renderItem}
       />
     </View>
   );

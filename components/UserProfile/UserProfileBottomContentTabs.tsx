@@ -587,7 +587,7 @@ const UserProfileBottomContentTabs: React.FC<
     if (!isFullScreen || !CONTENT_BACKED_TABS.includes(activeTab)) return null;
     return (
       <>
-        <ProfileContentToolbar {...toolbar} />
+        <ProfileContentToolbar {...toolbar} showViewToggle={activeTab === "home"} />
         <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
       </>
     );
