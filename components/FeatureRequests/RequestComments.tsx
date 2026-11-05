@@ -10,6 +10,7 @@
  *
  * Data lives in Supabase (hooks/useFeatureRequestThread), shared with web.
  */
+import FocusAnchor from "../common/FocusAnchor";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Alert, Keyboard, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -51,9 +52,11 @@ interface Props {
   isAuthed: boolean;
   /** A comment a notification pointed at — ringed and its thread opened. */
   highlightCommentId?: string | null;
+  /** Where that comment landed on screen, so the list can scroll it into view. */
+  onHighlightMeasured?: (windowY: number, height: number) => void;
 }
 
-const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddress, isAuthed, highlightCommentId }) => {
+const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddress, isAuthed, highlightCommentId, onHighlightMeasured }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -182,7 +185,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
   // ── Render ────────────────────────────────────────────────────────────────
 
   const renderRow = (comment: Comment, opts: { isReply?: boolean; lineAbove?: boolean; lineBelow?: boolean; toggleRoot?: number; hidden?: number }) => (
-    <View key={comment.id} style={styles.rowWrap}>
+    <FocusAnchor key={comment.id} style={styles.rowWrap} active={highlightNumber === comment.id} onMeasured={onHighlightMeasured}>
       {opts.lineAbove && <View style={styles.lineAbove} pointerEvents="none" />}
       {opts.lineBelow && <View style={styles.lineBelow} pointerEvents="none" />}
       <CommentItem
@@ -210,7 +213,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
         } : undefined}
         hiddenReplyCount={opts.hidden ?? 0}
       />
-    </View>
+    </FocusAnchor>
   );
 
   const threads = data?.threads ?? [];

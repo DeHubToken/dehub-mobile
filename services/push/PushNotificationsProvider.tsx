@@ -25,6 +25,7 @@ import { getNotifications } from '../user.service';
 import { prefetchNotifications } from '../../libs/notifications-cache';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 import { emitProfileDeepLink } from '../../libs/deeplink.events';
+import { openCustomPush } from '../../libs/custom-notification-route';
 import { noteNotificationMoment } from '../../libs/review-prompt';
 import { useOnboarding } from '../../context/OnboardingChecklistContext';
 
@@ -328,6 +329,13 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       // ringing session on foreground and raises the incoming-call screen over
       // whatever is showing. Navigating anywhere would only move it.
       if ((type as string) === 'incoming_call') {
+        return;
+      }
+
+      // Requests board, governance, DAO, bounties, stages, communities, mini
+      // apps: rows that live in Supabase, relayed as pushes by the API. They
+      // open the same place their row in the list does, and mark it read.
+      if (openCustomPush(navigation.navigate as any, data as any, userAddress)) {
         return;
       }
 

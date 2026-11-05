@@ -24,6 +24,7 @@ import {
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
+import { useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
 import Icon from "../components/ui/Icon";
@@ -118,6 +119,17 @@ const RecentRow: React.FC<{ item: DaoContribution }> = ({ item }) => {
 
 export default function DaoScreen() {
   const insets = useSafeAreaInsets();
+  // A DAO notification names its proposal: that card leads the list and the
+  // page scrolls down to it, instead of opening at the treasury header.
+  const route = useRoute<any>();
+  const focusedProposalId: string | undefined = typeof route.params?.proposalId === "string" ? route.params.proposalId : undefined;
+  const scrollRef = useRef<ScrollView>(null);
+  const scrolledForRef = useRef<string | null>(null);
+  const onProposalsLayout = useCallback((y: number) => {
+    if (!focusedProposalId || scrolledForRef.current === focusedProposalId) return;
+    scrolledForRef.current = focusedProposalId;
+    requestAnimationFrame(() => scrollRef.current?.scrollTo({ y: Math.max(0, y - 8), animated: true }));
+  }, [focusedProposalId]);
   const { t } = useTranslation();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -263,12 +275,15 @@ export default function DaoScreen() {
       />
 
       <ScrollView
+        ref={scrollRef}
         contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
         showsVerticalScrollIndicator={false}
         refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
       >
         {header}
-        <DaoProposals />
+        <View onLayout={(e) => onProposalsLayout(e.nativeEvent.layout.y)}>
+          <DaoProposals focusedId={focusedProposalId} />
+        </View>
         <PageSection
           title={t("dao.contributors")}
           action={data ? <Text style={styles.hint}>{t("dao.pooledTotal", { amount: formatDhb(data.totalContributed) })}</Text> : undefined}

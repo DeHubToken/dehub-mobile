@@ -214,7 +214,41 @@ const composeReferenceContent = (row: CustomNotificationRow, actor: string): str
       return `${actor}: ${row.content}`;
     case "store_order":
       return sentence('storeOrderNamed', 'storeOrder');
+    case "feature_request_comment_like":
+      return String(i18n.t(title ? 'notifications.custom.featureCommentLikeNamed' : 'notifications.custom.featureCommentLike', {
+        name: actor, title,
+        defaultValue: title ? '{{name}} liked your comment on “{{title}}”' : '{{name}} liked your comment on a request',
+      }));
+    case "governance_comment_like":
+      return String(i18n.t(title ? 'notifications.custom.governanceCommentLikeNamed' : 'notifications.custom.governanceCommentLike', {
+        name: actor, title,
+        defaultValue: title ? '{{name}} liked your comment on “{{title}}”' : '{{name}} liked your comment on a proposal',
+      }));
+    case "feature_request_status": {
+      const state = row.content?.trim();
+      if (state === 'shipped') return String(i18n.t('notifications.custom.featureShipped', { title: title ?? '', defaultValue: 'Your request “{{title}}” shipped 🎉' }));
+      if (state === 'shipped_liked') return String(i18n.t('notifications.custom.featureShippedLiked', { title: title ?? '', defaultValue: 'A request you liked shipped: “{{title}}” 🎉' }));
+      return String(i18n.t('notifications.custom.featureQueued', { title: title ?? '', defaultValue: 'Your request “{{title}}” is queued to be built' }));
+    }
+    case "governance_result": {
+      const state = row.content?.trim() ?? '';
+      const passed = state.startsWith('passed');
+      if (state.endsWith('_voted')) {
+        return passed
+          ? String(i18n.t('notifications.custom.governanceVotedPassed', { title: title ?? '', defaultValue: 'A proposal you voted on passed: “{{title}}”' }))
+          : String(i18n.t('notifications.custom.governanceVotedRejected', { title: title ?? '', defaultValue: 'A proposal you voted on did not pass: “{{title}}”' }));
+      }
+      return passed
+        ? String(i18n.t('notifications.custom.governancePassed', { title: title ?? '', defaultValue: 'Your proposal “{{title}}” passed 🎉' }))
+        : String(i18n.t('notifications.custom.governanceRejected', { title: title ?? '', defaultValue: 'Your proposal “{{title}}” did not pass' }));
+    }
     default:
+      // DAO rows store a whole sentence ("Your DAO proposal was not
+      // accepted."), so a name in front of it read as nonsense. The proposal's
+      // title goes after it, as web shows it.
+      if (row.type.startsWith('dao_') && row.content?.trim()) {
+        return title ? `${row.content.trim()}\n“${title}”` : row.content.trim();
+      }
       return null;
   }
 };

@@ -913,6 +913,8 @@
     "privatePostsDesc": "المنشورات الجديدة مرئية لمتابعيك فقط",
     "buyBotAlerts": "تنبيهات بوت الشراء",
     "buyBotAlertsDesc": "إظهار تنبيهات معاملات بوت الشراء في الدردشة",
+    "notificationShowCount": "إظهار العدد على الجرس",
+    "notificationShowCountDesc": "اعرض عدد الإشعارات غير المقروءة بدلاً من التوهج فقط",
     "chatSection": "الدردشة",
     "doNotDisturb": "عدم الإزعاج",
     "doNotDisturbDesc": "كتم جميع إشعارات الرسائل",

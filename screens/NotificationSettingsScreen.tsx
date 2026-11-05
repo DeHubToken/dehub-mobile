@@ -20,6 +20,7 @@ import {
 } from '../components/Settings/SettingsAnchor';
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
+import { setShowNotificationCount, useShowNotificationCount } from '../libs/notification-count-setting';
 import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
 import { syncEmailLinkStatus } from '../services/email-link.service';
 import {
@@ -201,6 +202,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
 
   const { buyBotHidden, coach: coachEnabled } = useAppPrefs();
   const buyBotAlerts = !buyBotHidden;
+  const showBellCount = useShowNotificationCount();
   const onToggleBuyBot = useCallback((val: boolean) => {
     setAppPref('buyBotHidden', !val);
   }, []);
@@ -588,6 +590,19 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   </View>
                 </View>
                 <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
+              </View>
+              <Divider />
+              <View className="px-4 py-2 flex-row items-center justify-between" testID="bell-count-row">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Bell" size={16} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-base leading-5 font-medium">{t('settings.notificationShowCount', { defaultValue: 'Show the number on the bell' })}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs">{t('settings.notificationShowCountDesc', { defaultValue: 'See how many notifications are unread instead of just the glow' })}</Text>
+                  </View>
+                </View>
+                <CustomSwitch value={showBellCount} onValueChange={setShowNotificationCount} />
               </View>
               <Divider />
               <View className="px-4 py-2 flex-row items-center justify-between" testID="coach-suggestions-row">

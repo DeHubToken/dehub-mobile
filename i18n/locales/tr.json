@@ -913,6 +913,8 @@
     "privatePostsDesc": "Yeni gönderiler sadece takipçilerinize görünür",
     "buyBotAlerts": "Alım Botu Uyarıları",
     "buyBotAlertsDesc": "Sohbette alım botu işlem uyarılarını göster",
+    "notificationShowCount": "Zilde sayıyı göster",
+    "notificationShowCountDesc": "Yalnızca parıltı yerine kaç okunmamış bildirim olduğunu gör",
     "chatSection": "Sohbet",
     "doNotDisturb": "Rahatsız Etme",
     "doNotDisturbDesc": "Tüm mesaj bildirimlerini sessize al",

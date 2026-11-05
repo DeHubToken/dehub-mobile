@@ -139,7 +139,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   likes: [
     NotificationType.LIKE,
     NotificationType.COMMENT_LIKE,
-    ...(['feature_request_like', 'governance_vote'] as unknown as NotificationType[]),
+    ...(['feature_request_like', 'governance_vote', 'feature_request_comment_like', 'governance_comment_like'] as unknown as NotificationType[]),
   ],
   follows: [NotificationType.FOLLOWING, NotificationType.FOLLOW_REQUEST, NotificationType.FOLLOW_REQUEST_ACCEPTED],
   comments: [
@@ -161,7 +161,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   // Same split as web's filterTypeMap: feature request and store/trade rows
   // get their own tabs instead of only showing under All.
   features: [
-    ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention', 'feature_request_activity', 'feature_request_new'] as unknown as NotificationType[]),
+    ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention', 'feature_request_activity', 'feature_request_new', 'feature_request_comment_like', 'feature_request_status'] as unknown as NotificationType[]),
   ],
   communities: [
     ...(['community_chat', 'community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
@@ -219,6 +219,10 @@ const CLIENT_ONLY_TYPES = new Set<string>([
   'governance_vote',
   'governance_comment',
   'governance_reply',
+  'feature_request_comment_like',
+  'feature_request_status',
+  'governance_comment_like',
+  'governance_result',
   'store_order',
   'fraction_sold',
   'fraction_delivered',
@@ -343,6 +347,10 @@ const SUPABASE_ROUTED_TYPES = new Set([
   'governance_vote',
   'governance_comment',
   'governance_reply',
+  'feature_request_comment_like',
+  'feature_request_status',
+  'governance_comment_like',
+  'governance_result',
   'stage_live',
   'stage_reminder',
   'fraction_settled',
@@ -368,8 +376,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   // Grouped chat rows come from the API and carry the community in metadata.
   if (typeStr === 'community_chat') return !!(notification as any).metadata?.communitySlug;
 
-  // DAO rows open the DAO screen, as web's /dao does for a row with no id.
-  // Mobile has no proposal view to take the id to yet.
+  // DAO rows open the DAO screen with their proposal leading the list.
   if (String(typeStr).startsWith('dao_')) return true;
 
   // Every other Supabase-backed row. They carry no tokenId, so the default at
@@ -1179,7 +1186,9 @@ const NotificationScreen = () => {
       case 'feature_request_reply':
       case 'feature_request_mention':
       case 'feature_request_activity':
-      case 'feature_request_new': {
+      case 'feature_request_new':
+      case 'feature_request_comment_like':
+      case 'feature_request_status': {
         const custom = notification as CustomNotificationItem;
         if (!custom.customReferenceId) break;
         navigation.navigate(ScreenNames.FeatureRequests as never, {
@@ -1194,7 +1203,9 @@ const NotificationScreen = () => {
       // which the proposal screen opens and lights.
       case 'governance_vote':
       case 'governance_comment':
-      case 'governance_reply': {
+      case 'governance_reply':
+      case 'governance_comment_like':
+      case 'governance_result': {
         const custom = notification as CustomNotificationItem;
         if (!custom.customReferenceId) break;
         navigation.navigate(ScreenNames.GovernanceProposal as never, {
@@ -1358,7 +1369,8 @@ const NotificationScreen = () => {
       default:
         // A case label cannot match a prefix, so every dao_* type lands here.
         if (String(type).startsWith('dao_')) {
-          navigation.navigate(ScreenNames.Dao);
+          const proposalId = (notification as CustomNotificationItem).customReferenceId;
+          navigation.navigate(ScreenNames.Dao as never, (proposalId ? { proposalId } : undefined) as never);
           break;
         }
         if (tokenId) navigateToFeed(tokenId, commentId, postType);
