@@ -12,6 +12,9 @@ export class LruCache<K, V> {
     this.entries.set(key, value);
     return value;
   }
+  delete(key: K): void {
+    this.entries.delete(key);
+  }
   set(key: K, value: V): void {
     this.entries.delete(key);
     this.entries.set(key, value);

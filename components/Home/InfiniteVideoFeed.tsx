@@ -27,6 +27,8 @@ import { feedRenderBudget } from "../../libs/feed-render-budget";
 import Animated from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard, { resolveContentType } from "./FeedCard";
+import { firstExternalUrl } from "../common/LinkPreviewCard";
+import { prefetchLinkPreviews } from "../../libs/link-preview";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { FeedSplitCommentsContext, type FeedSplitComments } from "./feedSplitComments";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
@@ -669,6 +671,23 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, tombstonesReady, deletedVersion, dislikedVersion],
   );
+
+  // Read every link preview a page will show as soon as the page arrives, a
+  // few at a time, so the card draws at its final height when it mounts
+  // instead of growing under the reader once the scroll settles.
+  const linkPrefetchSeenRef = useRef(new Set<string>());
+  useEffect(() => {
+    const seen = linkPrefetchSeenRef.current;
+    const urls: string[] = [];
+    for (const item of rawItems as any[]) {
+      const key = String(item?.tokenId ?? item?.id ?? item?.__listKey ?? "");
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      const url = firstExternalUrl(item?.description || item?.stream?.description);
+      if (url) urls.push(url);
+    }
+    if (urls.length) prefetchLinkPreviews(urls);
+  }, [rawItems]);
 
   // Videos already played, dropped only when the reader asked for that in
   // Settings. Kept as its own memo so the expensive flatMap above does not
