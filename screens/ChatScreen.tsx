@@ -147,6 +147,8 @@ export type ChatScreenProps = {
       sharedText?: string;
       /** Sent on open, once — the Builder lander's request to @assistant. */
       autoSendText?: string;
+      /** Opened from the New message drawer: the message box takes the caret at once. */
+      focusComposer?: boolean;
     };
   };
 };
@@ -1985,6 +1987,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 dhbBalance={dhbBalance}
                 onPollPress={currentConvId ? () => setPollSheetVisible(true) : undefined}
                 initialText={route?.params?.sharedText}
+                autoFocus={!!route?.params?.focusComposer}
                 thread={smartReplyThread}
                 peerName={peerLabel}
                 draftKey={draftKey}

@@ -7242,6 +7242,7 @@
     "viewReposts": "Afficher les reposts"
   },
   "dm": {
+    "newDrawer": {"to": "À", "placeholder": "Nom ou @utilisateur", "recent": "RÉCENTS", "suggested": "SUGGESTIONS", "youFollow": "PERSONNES QUE VOUS SUIVEZ", "chattedBefore": "Vous discutez", "mutual": "Mutuel", "dmsOff": "MP désactivés", "keepTyping": "Continuez à taper pour chercher tout le monde", "sayHi": "Dites bonjour à quelqu'un", "typeAny": "Tapez un nom ou un @utilisateur"},
     "reportMessage": "Signaler le message",
     "download": "Télécharger",
     "fileSaved": "Fichier enregistré",

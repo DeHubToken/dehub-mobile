@@ -7193,6 +7193,7 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "newDrawer": {"to": "To", "placeholder": "Name or @username", "recent": "RECENT", "suggested": "SUGGESTED", "youFollow": "PEOPLE YOU FOLLOW", "chattedBefore": "You talk", "mutual": "Mutual", "dmsOff": "DMs off", "keepTyping": "Keep typing to search everyone", "sayHi": "Say hi to someone", "typeAny": "Type any name or @username"},
     "reportMessage": "Report message",
     "download": "Download",
     "fileSaved": "File saved",

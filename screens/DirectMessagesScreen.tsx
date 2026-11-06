@@ -19,7 +19,6 @@ import LoadErrorState from "../components/ui/LoadErrorState";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import NewDMModal from "../components/DM/NewDMModal";
-import NewChatChooser from "../components/DM/NewChatChooser";
 import GroupChatRow from "../components/DM/GroupChatRow";
 import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
 import { getUserCommunities } from "../services/communities.service";
@@ -80,7 +79,6 @@ const DirectMessagesInner: React.FC = () => {
 
   const [query, setQuery] = useSurfaceDraft("screens/DirectMessagesScreen.tsx:query", "");
   const [menuVisible, setMenuVisible] = useState(false);
-  const [chooserVisible, setChooserVisible] = useState(false);
   const [newChatKind, setNewChatKind] = useState<"group" | "channel" | null>(null);
   const { data: memberships } = useQuery({
     queryKey: ["communities", "user", myAddress],
@@ -328,15 +326,16 @@ const DirectMessagesInner: React.FC = () => {
         navigation.navigate(ScreenNames.Chat as any, {
           conversationId: existing._id,
           title,
+          focusComposer: true,
         });
       } else {
         navigation.navigate(ScreenNames.Chat as any, {
           targetAddress: addr,
           title,
           targetUser: u,
+          focusComposer: true,
         });
       }
-      setNewDmVisible(false);
     },
     [navigation, conversations, myAddress],
   );
@@ -460,7 +459,7 @@ const DirectMessagesInner: React.FC = () => {
                 accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
                 <Icon name="RefreshCw" size={16} color="#71717A" />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setChooserVisible(true)} style={SEARCH_ACTION} hitSlop={4}
+              <TouchableOpacity onPress={openNewDM} style={SEARCH_ACTION} hitSlop={4}
                 accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
                 <Icon name="Plus" size={16} color="#71717A" />
               </TouchableOpacity>
@@ -520,13 +519,6 @@ const DirectMessagesInner: React.FC = () => {
           onToggleDnd={toggleDnd}
         />
 
-        <NewChatChooser
-          visible={chooserVisible}
-          onClose={() => setChooserVisible(false)}
-          onMessage={openNewDM}
-          onGroup={() => setNewChatKind("group")}
-          onChannel={() => setNewChatKind("channel")}
-        />
 
         <CreateCommunitySheet
           kind={newChatKind ?? "group"}
@@ -540,6 +532,8 @@ const DirectMessagesInner: React.FC = () => {
           open={newDmVisible}
           onOpenChange={setNewDmVisible}
           onSelect={startDMWith}
+          onGroup={() => setNewChatKind("group")}
+          onChannel={() => setNewChatKind("channel")}
         />
 
         <DMSettingsModal
