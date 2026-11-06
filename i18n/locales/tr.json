@@ -638,7 +638,9 @@
     "removeInlineImage": "{{n}}. görseli kaldır"
   },
   "storefront": {
-    "unavailable": "Uygulamanın bu sürümünde kullanılamaz"
+    "unavailable": "Uygulamanın bu sürümünde kullanılamaz",
+    "continueOnWeb": "riftn.com'da devam et",
+    "webOnlyHint": "Bunu riftn.com'da tamamla. Safari'de açılır."
   },
   "nav": {
     "nfts": "NFT'ler",
@@ -790,6 +792,7 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "contactSupport": "Destekle iletişime geç",
     "glass": "Camsı",
     "shortsSaveFailed": "Kısa devre tercihi kaydedilemedi",
     "showDislikesDesc": "Herkes profilindeki Beğenilmeyenler sekmesini açabilir. Bu kapalıyken yalnızca sen görebilirsin.",
@@ -1126,6 +1129,7 @@
     "tapEnableSystemSettings": "Sistem ayarlarından etkinleştirmek için dokunun",
     "pushNotRegistered": "Bu cihaz anlık ileti için kayıtlı değil",
     "pushNotRegisteredDesc": "Uygulama kapalıyken bildirimler size ulaşamaz: Bu yükleme hiçbir zaman bir anlık ileti cihazı kaydetmedi. Bu genellikle yapının, riftn.com/apk adresinden en son yapıyı yüklemenin yerini aldığı bildirim yapılandırmasının eksik olduğu anlamına gelir.",
+    "pushNotRegisteredDescIos": "Uygulama kapalıyken bildirimler sana ulaşamaz: bu iPhone hiç push bildirimlerine kaydolmadı. Ayarlar'da Riftn için bildirimlere izin verildiğini kontrol et, sonra uygulamayı yeniden aç.",
     "categoryEngagement": "Etkileşim",
     "categorySocial": "Sosyal",
     "categoryEarnings": "Kazançlar",
@@ -7231,6 +7235,7 @@
     "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
+    "reportMessage": "Mesajı bildir",
     "download": "İndir",
     "fileSaved": "Dosya kaydedildi",
     "fileSaveFailed": "Dosya kaydedilemedi",

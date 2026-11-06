@@ -17,6 +17,8 @@ export type ChatMenuProps = {
   onClearChat?: () => void;
   /** Toggle free access for the peer (creator only). */
   onToggleFreeAccess?: () => void;
+  /** Report the person in this chat (App Review 1.2). */
+  onReportUser?: () => void;
   /** Whether the peer currently has free access. */
   peerHasFreeAccess?: boolean;
   isCreator?: boolean;
@@ -53,6 +55,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
   onToggleFreeAccess,
   peerHasFreeAccess,
   isCreator,
+  onReportUser,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -111,6 +114,17 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
                   icon="Coins"
                   label={t('dm.feeSettings')}
                   onPress={() => { onClose(); onManageDmFee(); }}
+                />
+                <View className="h-[1px] bg-theme-neutrals-700/60" />
+              </>
+            )}
+
+            {onReportUser && (
+              <>
+                <MenuRow
+                  icon="Flag"
+                  label={t('postOptions.reportUser')}
+                  onPress={() => { onClose(); onReportUser(); }}
                 />
                 <View className="h-[1px] bg-theme-neutrals-700/60" />
               </>

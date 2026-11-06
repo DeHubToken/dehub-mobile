@@ -7,6 +7,16 @@ import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events'
 import { couldBeProfileSegment, isEnsHandle } from '../libs/ens-handle';
 import { RESERVED_LINK_SEGMENTS } from '../libs/reserved-usernames';
 import { hasHeldCallback, holdLaunchCallback, withoutFragment } from '../libs/oauth-cold-start';
+import { Linking as RNLinking } from 'react-native';
+import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from '../config/storefront';
+
+/** /app/<page> links that are checkout or trading pages on the web. */
+const STOREFRONT_WEB_ONLY_PAGES = new Set([
+  'wallet', 'buy', 'stake', 'bridge', 'dex', 'ads', 'command-centre', 'affiliate',
+  'work', 'bounty', 'dao', 'premium', 'pricing', 'stores', 'usernames', 'accounts',
+  'nfts', 'fractions', 'launchpad', 'superpowers', 'planned', 'apps', 'builder',
+  'migrate-youtube', 'raffle', 'depin',
+]);
 
 const logger = createLogger('DeepLink');
 
@@ -628,6 +638,13 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       if (state || segments[0] !== 'app') return state;
       if (segments.length === 1) return homeState();
       const url = `https://${UNIVERSAL_LINK_DOMAINS[0]}/${pathOnly}${queryString ? `?${queryString}` : ''}`;
+      // The App Store build never opens a checkout page in the in-app
+      // browser (3.1.1). US storefront: Safari, which Apple allows.
+      // Elsewhere: Home.
+      if (!DIGITAL_PURCHASES_ENABLED && STOREFRONT_WEB_ONLY_PAGES.has(segments[1])) {
+        if (iosWebPurchaseLinkAllowed()) void RNLinking.openURL(url);
+        return homeState();
+      }
       logger.info('Unrouted /app link opened on the web', { path, url });
       openOnWeb(url);
       return undefined;

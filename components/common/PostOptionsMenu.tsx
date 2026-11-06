@@ -51,7 +51,8 @@ import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import MintChainSheet from "./MintChainSheet";
-import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
+import { openWebPurchase } from "./WebPurchaseLink";
 import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
 import { useDubSettings, setDubSettings, checkDubbable } from "../../hooks/useVideoDub";
 import { baseLang } from "../../hooks/useVoiceDub";
@@ -809,13 +810,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               )}
               {/* Only for posts published off-chain — 'signed' is the status
                   the backend keeps them at for life. */}
-              {postStatus === "signed" && tokenId != null && DIGITAL_PURCHASES_ENABLED && (
+              {postStatus === "signed" && tokenId != null && purchaseOfferVisible() && (
                 <OptionRow
                   icon="Gem"
                   label={t("upload.mintPost")}
                   sublabel={t("postOptions.mintPostDesc")}
                   loading={isMinting}
-                  onPress={() => openSubModal(() => setShowMintSheet(true))}
+                  onPress={() => (DIGITAL_PURCHASES_ENABLED ? openSubModal(() => setShowMintSheet(true)) : (onClose(), openWebPurchase(`/app/post/${tokenId}/info`)))}
                 />
               )}
               <OptionRow

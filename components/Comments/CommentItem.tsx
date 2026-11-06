@@ -1,3 +1,4 @@
+import { purchaseOfferVisible } from "../../config/storefront";
 import { COMMENT_ICON_SIZE } from '../Home/feed-icon-size';
 import { useReplyDelivery } from '../../libs/reply-delivery';
 import BadgeArtwork from "../common/BadgeArtwork";
@@ -568,7 +569,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }, [tokenId, comment.id, t]);
 
   const hasMedia = !!(comment.imageUrl || comment.gifUrl || comment.audioUrl || comment.videoUrl);
-  const canTip = !!onTip && !!(comment.user?.address || comment.address);
+  const canTip = !!onTip && purchaseOfferVisible() && !!(comment.user?.address || comment.address);
   const showRepliesToggle = !!onToggleReplies && (hiddenReplyCount > 0 || repliesExpanded);
   const repliesToggleLabel = repliesExpanded
     ? t("comments.hideReplies")

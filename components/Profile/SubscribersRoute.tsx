@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import PlanCard from "../Subscription/PlanCard";
@@ -123,6 +124,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
                 title={t("subscriptions.subscriberContent")}
                 subtitle={t("subscriptions.subscriberContentSub")}
               />
+              {DIGITAL_PURCHASES_ENABLED && (
               <View>
                 <AccentButtonGradient>
                   <TouchableOpacity
@@ -134,6 +136,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
                   </TouchableOpacity>
                 </AccentButtonGradient>
               </View>
+              )}
             </View>
           ) : (
             <ProfileEmptyState
@@ -146,7 +149,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
         ListHeaderComponent={
           <>
             {listHeader}
-            {isOwnProfile && plans.length > 0 ? (
+            {isOwnProfile && plans.length > 0 && DIGITAL_PURCHASES_ENABLED ? (
               <TouchableOpacity
                 onPress={handleCreatePress}
                 activeOpacity={0.7}

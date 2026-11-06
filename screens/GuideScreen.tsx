@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GuideScreen
@@ -75,8 +76,11 @@ const SECTION_DEFS: GuideSectionDef[] = [
 
 const numbered = (n = 0) => Array.from({ length: n }, (_, i) => i + 1);
 
+/** Guide sections about buying, trading or minting, which the App Store build does not offer. */
+const STOREFRONT_HIDDEN_SECTIONS = new Set(["staking", "command-centre", "bounties-stores", "buying-dhb", "bridge", "trading-fractions", "minting-posts"]);
+
 function buildSections(t: TFunction): GuideSection[] {
-  return SECTION_DEFS.map((d) => {
+  return SECTION_DEFS.filter((d) => DIGITAL_PURCHASES_ENABLED || !STOREFRONT_HIDDEN_SECTIONS.has(d.id)).map((d) => {
     const base = `guide.sections.${d.id}`;
     return {
       id: d.id,

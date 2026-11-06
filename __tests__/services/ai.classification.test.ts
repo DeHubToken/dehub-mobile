@@ -249,7 +249,7 @@ describe('generation session refresh', () => {
   it('waits for refresh before reading the token sent to the generation endpoint', async () => {
     await setAuthToken('old-token');
     (tokenRefreshManager.ensureFreshToken as jest.Mock).mockImplementationOnce(async () => { await setAuthToken('fresh-token'); });
-    expect(await dehubAuthHeaders()).toEqual({ 'x-dehub-token': 'fresh-token' });
+    expect(await dehubAuthHeaders()).toEqual({ 'x-dehub-token': 'fresh-token', 'x-dehub-client': 'app' });
   });
   it('does not send a generation when session refresh fails', async () => {
     (tokenRefreshManager.ensureFreshToken as jest.Mock).mockRejectedValueOnce(new Error('Session expired'));

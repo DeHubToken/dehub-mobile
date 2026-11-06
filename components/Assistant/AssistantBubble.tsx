@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import SwapActionCard from '../SwapActionCard';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useMemo } from 'react';
@@ -296,7 +297,8 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
           </View>
         ))}
 
-        {!!message.swapAction && <SwapActionCard action={message.swapAction} />}
+        {/* Swapping tokens is exchange functionality the App Store build leaves out (3.1.5). */}
+        {!!message.swapAction && DIGITAL_PURCHASES_ENABLED && <SwapActionCard action={message.swapAction} />}
 
         {message.isError && onRetry && (
           <TouchableOpacity onPress={onRetry} activeOpacity={0.7} style={s.retry}>

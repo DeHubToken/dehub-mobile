@@ -4,6 +4,7 @@
  * place and details. A new event can also be private (guests ask to attend)
  * or charge an entry fee in DHB; like web, those two are fixed once created.
  */
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useState } from "react";
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Image } from "expo-image";
@@ -303,11 +304,13 @@ export default function EventFormSheet({ visible, onClose, event, communityId, o
                 </View>
                 <CustomSwitch value={isPrivate} onValueChange={setIsPrivate} accessibilityLabel={t("events.privateEvent")} />
               </View>
-              <View style={styles.toggleRow}>
-                <DhbCoin size={16} />
-                <Text style={[styles.toggleTitle, { flex: 1 }]}>{t("events.chargeEntryFee")}</Text>
-                <CustomSwitch value={hasFee} onValueChange={setHasFee} accessibilityLabel={t("events.chargeEntryFee")} />
-              </View>
+              {DIGITAL_PURCHASES_ENABLED && (
+                <View style={styles.toggleRow}>
+                  <DhbCoin size={16} />
+                  <Text style={[styles.toggleTitle, { flex: 1 }]}>{t("events.chargeEntryFee")}</Text>
+                  <CustomSwitch value={hasFee} onValueChange={setHasFee} accessibilityLabel={t("events.chargeEntryFee")} />
+                </View>
+              )}
               {hasFee && (
                 <View>
                   {label(t("events.amount"))}

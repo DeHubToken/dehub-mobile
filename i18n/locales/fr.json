@@ -638,7 +638,9 @@
     "removeInlineImage": "Retirer l'image {{n}}"
   },
   "storefront": {
-    "unavailable": "Indisponible dans cette version de l'application"
+    "unavailable": "Indisponible dans cette version de l'application",
+    "continueOnWeb": "Continuer sur riftn.com",
+    "webOnlyHint": "Terminez ceci sur riftn.com. Le site s'ouvre dans Safari."
   },
   "nav": {
     "nfts": "NFT",
@@ -790,6 +792,7 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "contactSupport": "Contacter l'assistance",
     "glass": "Glassy",
     "shortsSaveFailed": "Échec de l'enregistrement des préférences Shorts",
     "showDislikesDesc": "Tout le monde peut ouvrir l'onglet « Je n'aime pas » de votre profil. Désactivé, vous seul pouvez le voir.",
@@ -1126,6 +1129,7 @@
     "tapEnableSystemSettings": "Touchez pour activer dans les réglages du système",
     "pushNotRegistered": "Cet appareil n'est pas enregistré pour le push",
     "pushNotRegisteredDesc": "Les notifications ne peuvent pas vous atteindre tant que l'application est fermée : cette installation n'a jamais enregistré d'appareil push. Cela signifie généralement que la version manque sa configuration de notification, que l'installation de la dernière version de riftn.com/apk remplace.",
+    "pushNotRegisteredDescIos": "Les notifications ne peuvent pas vous atteindre quand l'app est fermée : cet iPhone ne s'est jamais inscrit aux notifications push. Vérifiez que les notifications sont autorisées pour Riftn dans Réglages, puis rouvrez l'app.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Revenus",
@@ -7236,6 +7240,7 @@
     "viewReposts": "Afficher les reposts"
   },
   "dm": {
+    "reportMessage": "Signaler le message",
     "download": "Télécharger",
     "fileSaved": "Fichier enregistré",
     "fileSaveFailed": "Impossible d’enregistrer le fichier",

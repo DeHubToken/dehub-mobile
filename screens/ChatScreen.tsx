@@ -69,6 +69,8 @@ import {
 import { writeContractAA } from "../libs/aa.write";
 import * as ethersImport from "ethers";
 import { supportedTokens } from "../config/constants";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import { openMessageReport } from "../components/common/MessageReportHost";
 import { STREAM_CONTROLLER_CONTRACT_ADDRESSES } from "../config/web3.constants";
 
 import { DMSocketEvent } from "../services/enums/dm-socket-events.enum";
@@ -260,6 +262,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [planRules, planMinTip, t],
   );
   const [dmFee, setDmFee] = useState<DmFee | null>(null);
+  const storefrontFeeBlocked = !DIGITAL_PURCHASES_ENABLED && !!dmFee?.required && !dmFee?.hasFreeAccess && dmFee.fee > 0;
   const [creating, setCreating] = useState(false);
   const createdConvIdRef = useRef<ID | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -1793,10 +1796,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             ))
           }
           isCreator={!!(myDmStatus?.perMessageFee && myDmStatus.perMessageFee > 0)}
+          onReportUser={peer.address || peer.username ? () => openMessageReport({
+            userId: String(peer.address || peer.username),
+            userName: peer.displayName || peer.username,
+            where: "Direct message conversation",
+            messageId: currentConvId ? `conversation ${currentConvId}` : undefined,
+          }) : undefined}
         />
 
         {/* Per-message fee banner — always visible when fee info exists */}
-        <DmFeeBanner dmFee={dmFee} peerDisplayName={peer.displayName} />
+        {DIGITAL_PURCHASES_ENABLED && <DmFeeBanner dmFee={dmFee} peerDisplayName={peer.displayName} />}
 
         {/* Says so when this device has no key, instead of silently sending
             in the clear and showing the peer's lines as unopenable. */}
@@ -1947,20 +1956,22 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               <ChatInputBar
                 onSendText={onSendText}
                 onSendMedia={onSendMedia}
-                allowLock
+                allowLock={DIGITAL_PURCHASES_ENABLED}
                 onSendGif={onSendGif}
                 onStartVoice={onStartVoice}
                 onTypingChange={onTypingChange}
-                disabled={creating || accountBanned}
-                disabledMessage={accountBanned ? t("banned.line") : undefined}
+                // A paid DM (the recipient charges per message) is a purchase the
+                // App Store build cannot take (3.1.1), so the bar says so instead.
+                disabled={creating || accountBanned || storefrontFeeBlocked}
+                disabledMessage={accountBanned ? t("banned.line") : storefrontFeeBlocked ? t("storefront.unavailable") : undefined}
                 sending={sending}
                 replyTo={replyTo}
                 onCancelReply={() => setReplyTo.complete(replyTo, null)}
                 editingMessage={editingMessage}
                 onCancelEdit={() => setEditingMessage(null)}
-                dmFee={dmFee}
+                dmFee={DIGITAL_PURCHASES_ENABLED ? dmFee : null}
                 tipAmount={tipAmount}
-                onTipPress={handleTipPress}
+                onTipPress={DIGITAL_PURCHASES_ENABLED ? handleTipPress : undefined}
                 onClearTip={handleClearTip}
                 dhbBalance={dhbBalance}
                 onPollPress={currentConvId ? () => setPollSheetVisible(true) : undefined}

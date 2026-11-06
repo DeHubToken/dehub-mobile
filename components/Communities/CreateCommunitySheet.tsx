@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import {
@@ -207,7 +208,8 @@ const CreateCommunitySheet: React.FC<Props> = ({ kind, visible, walletAddress, o
                   detail={t("communities.newChat.privateDetail", { defaultValue: "People join with your invite or your approval" })}
                 />
               </View>
-              {isChannel && (
+              {/* Selling channel access is a paid feature the App Store build leaves out. */}
+              {isChannel && DIGITAL_PURCHASES_ENABLED && (
                 <>
                   <Text style={styles.fieldLabel}>{t("communities.newChat.entry", { defaultValue: "Entry" })}</Text>
                   <View style={styles.choiceRow}>

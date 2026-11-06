@@ -24,7 +24,7 @@ import { useTranslation } from "react-i18next";
 import GlassModal from "./ui/GlassModal";
 import { theme } from "../theme";
 import { supabase } from "../services/supabase";
-import { GOOGLE_PLAY_LINK } from "../config/links";
+import { APP_STORE_LINK, GOOGLE_PLAY_LINK } from "../config/links";
 import { updateMode, type UpdateMode } from "../libs/app-version";
 
 const PUT_OFF_KEY = "update_gate_put_off_at";
@@ -33,7 +33,7 @@ const PUT_OFF_MS = 24 * 60 * 60 * 1000;
 export default function UpdateGate() {
   const { t } = useTranslation();
   const [mode, setMode] = useState<UpdateMode | null>(null);
-  const [storeUrl, setStoreUrl] = useState(GOOGLE_PLAY_LINK);
+  const [storeUrl, setStoreUrl] = useState(Platform.OS === "ios" ? APP_STORE_LINK : GOOGLE_PLAY_LINK);
 
   useEffect(() => {
     const current = Application.nativeApplicationVersion;

@@ -1,3 +1,4 @@
+import { purchaseOfferVisible } from "../../config/storefront";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 /**
@@ -246,7 +247,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
               <Text style={styles.gifLabel}>GIF</Text>
             </Pressable>
           ) : null}
-          {isLive ? (
+          {isLive && purchaseOfferVisible() ? (
             <Pressable
               onPress={onGiftPress}
               hitSlop={CHROME_HIT_SLOP}

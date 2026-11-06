@@ -8,6 +8,8 @@
  * creator approves or denies here. The creator, or a community admin with the
  * manage events right, can edit or delete.
  */
+import { openWebPurchase } from "../common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
 import React, { useMemo, useState } from "react";
 import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, Share, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
@@ -254,11 +256,16 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
                       <Icon name="CircleCheck" size={14} color="#4ADE80" />
                       <Text style={styles.okText}>{t("copy.93cb6b12aa06", { defaultValue: " Paid" }).trim()}</Text>
                     </View>
+                  ) : !purchaseOfferVisible() ? (
+                    <Text style={styles.faint}>{t("storefront.unavailable")}</Text>
                   ) : (
                     <Pressable
                       style={[styles.primaryBtn, checkingPaid && { opacity: 0.5 }]}
                       disabled={checkingPaid}
-                      onPress={() => !needAuth() && setShowPay(true)}
+                      onPress={() => {
+                        if (!DIGITAL_PURCHASES_ENABLED) { openWebPurchase(`/app/events/${event.event_number}`); return; }
+                        if (!needAuth()) setShowPay(true);
+                      }}
                     >
                       <Icon name="Lock" size={13} color="#000" />
                       <Text style={styles.primaryText}>{t("events.payToJoin")}</Text>

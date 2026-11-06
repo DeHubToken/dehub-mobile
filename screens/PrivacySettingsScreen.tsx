@@ -1,3 +1,4 @@
+import { IS_APP_STORE_BUILD } from '../config/storefront';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -703,32 +704,38 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* Profile discoverability — both switches are `comingSoon` on web too
             (`PrivacySettings` → Profile Visibility). */}
+        {(!IS_APP_STORE_BUILD || isNewMember) && (
         <SettingsSection
           label={t('settings.profileVisibility')}
           icon="Globe"
           anchor="profile-visibility"
         >
-          <SettingsToggleRow
-            icon="Globe"
-            label={t('settings.publicProfile')}
-            description={t('settings.publicProfileDesc')}
-            value
-            comingSoon
-          />
-          <Divider />
-          <SettingsToggleRow
-            icon="Search"
-            label={t('settings.searchEngineIndexing')}
-            description={t('settings.searchEngineIndexingDesc')}
-            value
-            comingSoon
-          />
+          {/* Placeholder switches stay off the App Store build (2.1). */}
+          {!IS_APP_STORE_BUILD && (
+            <>
+              <SettingsToggleRow
+                icon="Globe"
+                label={t('settings.publicProfile')}
+                description={t('settings.publicProfileDesc')}
+                value
+                comingSoon
+              />
+              <Divider />
+              <SettingsToggleRow
+                icon="Search"
+                label={t('settings.searchEngineIndexing')}
+                description={t('settings.searchEngineIndexingDesc')}
+                value
+                comingSoon
+              />
+            </>
+          )}
           {/* Only rendered while it still does something: outside the 30-day
               window there is no row to update and no chip to hide, and a
               toggle that silently changes nothing is worse than no toggle. */}
           {isNewMember && (
             <>
-              <Divider />
+              {!IS_APP_STORE_BUILD && <Divider />}
               <SettingsToggleRow
                 icon="Sparkles"
                 label={t('settings.showAsNewMember', 'Show me as a new member')}
@@ -743,6 +750,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             </>
           )}
         </SettingsSection>
+        )}
 
         {/* Account security — web's `Account Security` block plus its
             Active Sessions section. */}
@@ -751,14 +759,18 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           icon="ShieldCheck"
           anchor="account-security"
         >
-          <SettingsLinkRow
-            icon="Shield"
-            label={t('settings.twoFactorAuth')}
-            description={t('settings.twoFactorAuthDesc')}
-            value={t('settings.comingSoon')}
-            onPress={() => toastInfo(t('settings.comingSoon'))}
-          />
-          <Divider />
+          {!IS_APP_STORE_BUILD && (
+            <>
+              <SettingsLinkRow
+                icon="Shield"
+                label={t('settings.twoFactorAuth')}
+                description={t('settings.twoFactorAuthDesc')}
+                value={t('settings.comingSoon')}
+                onPress={() => toastInfo(t('settings.comingSoon'))}
+              />
+              <Divider />
+            </>
+          )}
           <AndroidBiometricUnlockRow />
           <Divider />
           <SettingsLinkRow

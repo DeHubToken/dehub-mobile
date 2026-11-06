@@ -1,3 +1,5 @@
+import WebPurchaseLink from "../common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, {
   useCallback,
   useEffect,
@@ -534,4 +536,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
   );
 };
 
-export default PPVModal;
+/** The App Store build unlocks on the web: a riftn.com link on the US App Store, nothing elsewhere. */
+function PPVWebOnly(props: PPVModalProps) {
+  return <WebPurchaseLink path={`/app/post/${props.tokenId}`} style={{ marginTop: 16 }} />;
+}
+
+export default DIGITAL_PURCHASES_ENABLED ? PPVModal : PPVWebOnly;

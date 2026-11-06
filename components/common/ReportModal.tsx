@@ -79,6 +79,8 @@ interface ReportModalProps {
   userName?: string;
   /** Comment id — required when type === "comment" */
   commentId?: number | string;
+  /** What was reported (a chat message, say), sent to moderators with the report. */
+  context?: string;
 }
 
 const ReportModalComponent: React.FC<ReportModalProps> = ({
@@ -89,6 +91,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
   userId,
   userName,
   commentId,
+  context,
 }) => {
   const { t } = useTranslation();
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
@@ -173,10 +176,11 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
         });
       } else {
         if (!userId) throw new Error("Missing userId");
+        const note = [context?.trim(), additionalInfo.trim()].filter(Boolean).join("\n\n");
         await reportUser({
           userId,
           reason: selectedReason,
-          additionalInfo: additionalInfo.trim() || undefined,
+          additionalInfo: note || undefined,
         });
       }
       setAdditionalInfo.complete(additionalInfo, "");
@@ -197,7 +201,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     } finally {
       setSubmitting(false);
     }
-  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t, setAdditionalInfo]);
+  }, [type, tokenId, userId, commentId, context, selectedReason, additionalInfo, t, setAdditionalInfo]);
 
   if (submitted) {
     return (

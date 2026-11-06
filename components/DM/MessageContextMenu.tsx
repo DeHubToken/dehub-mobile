@@ -1,3 +1,4 @@
+import { openMessageReport } from "../common/MessageReportHost";
 import MessageSurface from "../DM/MessageSurface";
 import React, { memo, useCallback, useMemo } from "react";
 import {
@@ -551,6 +552,30 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
       rows.push({ icon: "Pin", label: t("dm.unpinMessage"), onPress: handleUnpin });
     if (isMine && onDelete && !unsent)
       rows.push({ icon: "Trash2", label: t("common.delete"), onPress: handleDelete, destructive: true });
+    // Anyone can report a message they were sent (App Review 1.2).
+    if (!isMine && !unsent && message._id) {
+      const sender = message.sender as unknown;
+      const senderId = sender && typeof sender === "object"
+        ? String((sender as { address?: string; username?: string }).address || (sender as { username?: string }).username || "")
+        : String(sender || "");
+      if (senderId) {
+        rows.push({
+          icon: "Flag",
+          label: t("dm.reportMessage", { defaultValue: "Report message" }),
+          destructive: true,
+          onPress: () => {
+            onClose();
+            openMessageReport({
+              userId: senderId,
+              userName: peerUser?.displayName || peerUser?.username,
+              where: "Direct message",
+              messageId: String(message._id),
+              text: message.content,
+            });
+          },
+        });
+      }
+    }
 
     return rows;
   }, [
@@ -573,6 +598,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     downloadable,
     handleDownload,
     onClose,
+    peerUser,
     t,
   ]);
 

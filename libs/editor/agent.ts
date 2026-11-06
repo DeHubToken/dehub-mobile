@@ -146,7 +146,7 @@ export async function askSceneAgent(messages: AgentMessage[], scene: unknown, si
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` },
+    headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}`, "x-dehub-client": "app" },
     body: JSON.stringify({ messages, scene }),
     signal,
   });

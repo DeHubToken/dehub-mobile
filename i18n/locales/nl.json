@@ -638,7 +638,9 @@
     "removeInlineImage": "Afbeelding {{n}} verwijderen"
   },
   "storefront": {
-    "unavailable": "Niet beschikbaar in deze versie van de app"
+    "unavailable": "Niet beschikbaar in deze versie van de app",
+    "continueOnWeb": "Doorgaan op riftn.com",
+    "webOnlyHint": "Rond dit af op riftn.com. Het opent in Safari."
   },
   "nav": {
     "nfts": "NFT's",
@@ -790,6 +792,7 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "contactSupport": "Contact met support",
     "glass": "Glasachtig",
     "shortsSaveFailed": "Kan Shorts-voorkeur niet opslaan",
     "showDislikesDesc": "Iedereen kan het tabblad Dislikes op je profiel openen. Staat dit uit, dan zie alleen jij het.",
@@ -1126,6 +1129,7 @@
     "tapEnableSystemSettings": "Tik om dit in de systeeminstellingen aan te zetten",
     "pushNotRegistered": "Dit apparaat is niet geregistreerd voor push",
     "pushNotRegisteredDesc": "Meldingen kunnen u niet bereiken terwijl de app is gesloten: deze installatie heeft nooit een push-apparaat geregistreerd. Dat betekent meestal dat de build zijn meldingsconfiguratie mist, die door het installeren van de nieuwste build van riftn.com/apk wordt vervangen.",
+    "pushNotRegisteredDescIos": "Meldingen kunnen je niet bereiken terwijl de app gesloten is: deze iPhone heeft zich nooit aangemeld voor pushmeldingen. Controleer in Instellingen of meldingen voor Riftn zijn toegestaan en open de app daarna opnieuw.",
     "categoryEngagement": "Interactie",
     "categorySocial": "Sociaal",
     "categoryEarnings": "Inkomsten",
@@ -7370,6 +7374,7 @@
     "viewReposts": "Reposts bekijken"
   },
   "dm": {
+    "reportMessage": "Bericht melden",
     "download": "Downloaden",
     "fileSaved": "Bestand opgeslagen",
     "fileSaveFailed": "Kan het bestand niet opslaan",

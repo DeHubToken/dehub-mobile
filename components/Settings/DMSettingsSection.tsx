@@ -12,6 +12,7 @@ import {
 } from "../../services/enums/dm-preferences.enum";
 import { updateDmUserStatus } from "../../services/dm/dm.api";
 import { toastError, toastInfo } from "../../libs";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 
 const DND_KEY = "dehub_dm_dnd";
 
@@ -271,6 +272,8 @@ const DMSettingsSection: React.FC = () => {
           />
         </View>
         <View className="px-4 py-2">
+          {/* Charging per message is a paid feature the App Store build leaves out. */}
+          {DIGITAL_PURCHASES_ENABLED && <>
           <View className="flex-row items-center mb-2">
             <View className="mr-3 w-5 h-5 items-center justify-center">
               <Icon name="Coins" size={20} color="#8B8D90" />
@@ -303,6 +306,7 @@ const DMSettingsSection: React.FC = () => {
               </View>
             ) : null}
           </View>
+          </>}
           {!dmsEnabled && (
             <View className="bg-white/10 border border-white/20 rounded-xl p-2.5 mt-3 ml-12">
               <Text className="text-white/80 text-[11px]">

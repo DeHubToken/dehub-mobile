@@ -10,6 +10,7 @@ import { DHB_ADDRESSESS } from '../../config/constants';
 import { PAYMENT_CHAIN_IDS } from '../../hooks/useAiPayment';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { fetchVoiceCloneStatus, releaseStageVoice, submitVoiceClone, VoiceCloneError, type VoiceCloneStatus } from '../../services/voiceClone.service';
+import { storefrontSheet } from "../common/StorefrontGate";
 
 type Sample = { uri: string; name: string; mimeType: string };
 
@@ -17,7 +18,7 @@ type Sample = { uri: string; name: string; mimeType: string };
  * Clone the creator's own voice for voiceovers. Paid once per account through
  * the Stage voice route, same as web, so one purchase covers both.
  */
-export function VoiceCloneSheet({ visible, wallet, onClose, onCloned }: {
+function VoiceCloneSheetInner({ visible, wallet, onClose, onCloned }: {
   visible: boolean; wallet?: string; onClose: () => void; onCloned: (voiceId: string) => void;
 }) {
   const { t } = useTranslation();
@@ -127,3 +128,5 @@ export function VoiceCloneSheet({ visible, wallet, onClose, onCloned }: {
     </Pressable>
   </Modal>;
 }
+
+export const VoiceCloneSheet = storefrontSheet(VoiceCloneSheetInner, (p) => ({ visible: p.visible, onClose: p.onClose, path: "/creator" }));

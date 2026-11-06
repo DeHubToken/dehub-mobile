@@ -1,3 +1,5 @@
+import { openWebPurchase } from "../components/common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../config/storefront";
 import { useDraftState } from "../hooks/useDraftState";
 import { CommentLoadError } from '../components/Comments/CommentLoadError';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
@@ -391,10 +393,10 @@ export default function GovernanceProposalScreen() {
           if (!needsOwnBadge(error)) return;
           // The server's reason says whether the badge is lent; the button
           // takes them to buying DHB, which is how they get a vote.
-          Alert.alert(t("governance.holdTokensToVote"), (error as Error).message, [
+          Alert.alert(t("governance.holdTokensToVote"), (error as Error).message, purchaseOfferVisible() ? [
             { text: t("common.cancel"), style: "cancel" },
-            { text: t("paywall.buyDhb"), onPress: () => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" }) },
-          ]);
+            { text: t("paywall.buyDhb"), onPress: () => (DIGITAL_PURCHASES_ENABLED ? navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" }) : openWebPurchase("/app/buy")) },
+          ] : [{ text: t("common.ok", { defaultValue: "OK" }) }]);
         },
       },
     );

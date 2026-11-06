@@ -388,7 +388,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
             </View>
             <View className="flex-1">
               <Text className="text-white/80 text-sm font-semibold">{t('settings.pushNotRegistered')}</Text>
-              <Text className="text-white/80 text-xs mt-0.5">{t('settings.pushNotRegisteredDesc')}</Text>
+              <Text className="text-white/80 text-xs mt-0.5">{t(Platform.OS === 'ios' ? 'settings.pushNotRegisteredDescIos' : 'settings.pushNotRegisteredDesc')}</Text>
             </View>
           </View>
         )}

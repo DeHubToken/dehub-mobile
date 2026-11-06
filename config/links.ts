@@ -5,7 +5,6 @@ export const TERMS_OF_SERVICE_LINK="https://riftn.com/docs/terms-of-service"
 export const PRIVACY_POLICY_LINK="https://riftn.com/docs/privacy"
 export const DELETE_DATA_OR_ACCOUNT_LINK="https://riftn.com/delete-account"
 export const SUPPORT_MAIL="dev@dehub.io"
-export const DEV_MAIL="alhaji4megahit@gmail.com"
 export const LIVEPEER_RMTP_URL="rtmp://rtmp.livepeer.com/live"
 export const WEBSITE_LINK="https://riftn.com"
 /** A creator's OBS browser-source overlay is this plus their overlay token. */

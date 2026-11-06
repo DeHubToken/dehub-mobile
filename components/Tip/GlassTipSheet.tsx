@@ -92,6 +92,7 @@ import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -1329,4 +1330,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(GlassTipSheetComponent);
+export default storefrontSheet(memo(GlassTipSheetComponent), (p) => ({ visible: p.visible, onClose: p.onClose, path: p.tokenId != null ? `/app/post/${p.tokenId}` : "/app" }));

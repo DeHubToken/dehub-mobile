@@ -601,7 +601,9 @@
     "removeInlineImage": "Remove image {{n}}"
   },
   "storefront": {
-    "unavailable": "Not available in this version of the app"
+    "unavailable": "Not available in this version of the app",
+    "continueOnWeb": "Continue on riftn.com",
+    "webOnlyHint": "Finish this on riftn.com. It opens in Safari."
   },
   "nav": {
     "nfts": "NFTs",
@@ -753,6 +755,7 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "contactSupport": "Contact support",
     "shortsSaveFailed": "Failed to save Shorts preference",
     "shortsEnabledDesc": "Show the Shorts feed tab and Shorts carousels on Home.",
     "shortsEnabled": "Shorts",
@@ -1091,6 +1094,7 @@
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "This device is not registered for push",
     "pushNotRegisteredDesc": "Notifications cannot reach you while the app is closed: this install never registered a push device. That usually means the build is missing its notification configuration, which installing the latest build from riftn.com/apk replaces.",
+    "pushNotRegisteredDescIos": "Notifications cannot reach you while the app is closed: this iPhone never registered for push. Check that notifications are allowed for Riftn in Settings, then open the app again.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
@@ -2541,7 +2545,7 @@
     "signInToContinue": "Sign in to continue",
     "signInToContinueBody": "You need to sign in to perform this action.",
     "closeAuthModal": "Close authentication modal",
-    "legalLine": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "legalLine": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>. There is no tolerance for objectionable content or abusive users.",
     "chooseUsernameBody": "Choose a username and display name to continue. You can change them later.",
     "checkingAvailability": "Checking availability…",
     "usernameTakenHint": "Username taken — try adding numbers or an underscore",
@@ -7187,6 +7191,7 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "reportMessage": "Report message",
     "download": "Download",
     "fileSaved": "File saved",
     "fileSaveFailed": "Couldn't save the file",

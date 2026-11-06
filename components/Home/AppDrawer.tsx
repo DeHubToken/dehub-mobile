@@ -159,7 +159,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   // The third-party mini app store has its own storefront review pending.
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
-  { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
+  { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate, storefrontHidden: true },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Scroll", labelKey: "Compare Riftn", screen: ScreenNames.Compare },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },

@@ -30,7 +30,9 @@ export async function dehubAuthHeaders(
   await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
   if (!token) return {};
-  const headers: Record<string, string> = { 'x-dehub-token': token };
+  // x-dehub-client tells the server this is a store app, which never gets
+  // the web-only (adult-capable) models.
+  const headers: Record<string, string> = { 'x-dehub-token': token, 'x-dehub-client': 'app' };
   if (walletAddress) headers['x-wallet-address'] = walletAddress.toLowerCase();
   return headers;
 }
@@ -41,7 +43,7 @@ export async function dehubAuthHeaders(
  */
 export async function ownKeyHeaders(): Promise<Record<string, string>> {
   const token = await getAuthToken();
-  return token ? { 'x-dehub-token': token } : {};
+  return token ? { 'x-dehub-token': token, 'x-dehub-client': 'app' } : {};
 }
 
 export interface AIChatMessage {
@@ -899,6 +901,7 @@ export function streamAIChat(
   xhr.open('POST', `${EDGE_BASE}/general-ai-chat`);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.setRequestHeader('Accept', 'text/event-stream');
+  xhr.setRequestHeader('x-dehub-client', 'app');
 
   xhr.onprogress = () => {
     // A non-200 streams its JSON error body through the same channel; leave it

@@ -638,7 +638,9 @@
     "removeInlineImage": "إزالة الصورة {{n}}"
   },
   "storefront": {
-    "unavailable": "غير متاح في هذا الإصدار من التطبيق"
+    "unavailable": "غير متاح في هذا الإصدار من التطبيق",
+    "continueOnWeb": "المتابعة على riftn.com",
+    "webOnlyHint": "أكمل هذا على riftn.com. سيفتح في Safari."
   },
   "nav": {
     "nfts": "NFT",
@@ -790,6 +792,7 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "contactSupport": "التواصل مع الدعم",
     "glass": "زجاجي",
     "shortsSaveFailed": "تعذر حفظ تفضيلات السراويل القصيرة",
     "showDislikesDesc": "يمكن لأي شخص فتح تبويب «عدم الإعجاب» في ملفك الشخصي. عند إيقاف هذا الخيار، تراه أنت فقط.",
@@ -1126,6 +1129,7 @@
     "tapEnableSystemSettings": "اضغط للتفعيل من إعدادات النظام",
     "pushNotRegistered": "هذا الجهاز غير مسجل للدفع",
     "pushNotRegisteredDesc": "لا يمكن أن تصل الإشعارات إليك أثناء إغلاق التطبيق: لم يسجل هذا التثبيت مطلقًا جهاز دفع. وهذا يعني عادة أن الإصدار يفتقد إلى تكوين الإشعارات الخاص به، والذي يقوم بتثبيت أحدث إصدار من riftn.com/apk ليحل محله.",
+    "pushNotRegisteredDescIos": "لا يمكن أن تصل الإشعارات إليك أثناء إغلاق التطبيق: لم يسجّل هذا الـ iPhone للإشعارات مطلقًا. تأكد من السماح بالإشعارات لتطبيق Riftn في الإعدادات، ثم افتح التطبيق مرة أخرى.",
     "categoryEngagement": "التفاعل",
     "categorySocial": "اجتماعي",
     "categoryEarnings": "الأرباح",
@@ -7240,6 +7244,7 @@
     "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
+    "reportMessage": "الإبلاغ عن الرسالة",
     "download": "تنزيل",
     "fileSaved": "تم حفظ الملف",
     "fileSaveFailed": "تعذّر حفظ الملف",

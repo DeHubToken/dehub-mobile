@@ -7,6 +7,8 @@
  * (libs/validators.util), so verifying means refreshing that data and
  * reading the gate again. Falling short offers the DHB top-up.
  */
+import { openWebPurchase } from "./WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
 import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -139,10 +141,11 @@ export default function HoldGateSheet({ visible, onClose, post }: Props) {
                   })
                 : t("postGate.holdShortUnknown", { needed: formatCompactNumber(needed), symbol })}
             </Text>
-            {isDhb && (
+            {isDhb && purchaseOfferVisible() && (
               <Pressable
                 onPress={() => {
                   onClose();
+                  if (!DIGITAL_PURCHASES_ENABLED) { openWebPurchase("/app/buy"); return; }
                   navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
                 }}
                 style={{ alignSelf: "center", paddingHorizontal: 18, paddingVertical: 9, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.1)" }}

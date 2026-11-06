@@ -1,3 +1,4 @@
+import { purchaseOfferVisible } from "../config/storefront";
 import { useCommentCount } from '../libs/comment-count-store';
 import RemixCredits from "../components/Post/RemixCredits";
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -2409,6 +2410,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 </Text>
               </View>
 
+              {purchaseOfferVisible() && (
               <ActionButton
                 icon="Gem"
                 label={formatCompactNumber(tipCount)}
@@ -2416,6 +2418,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 pagerGesture={pagerGesture}
                 accessibilityLabel={t("comments.tip")}
               />
+              )}
 
               {/* Share — carries the repost count, and opens the share sheet. */}
               <ActionButton

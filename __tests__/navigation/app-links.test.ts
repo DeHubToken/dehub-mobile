@@ -24,6 +24,12 @@ jest.mock('@react-navigation/native', () => {
   return { getStateFromPath: jest.fn(core.getStateFromPath) };
 });
 
+const mockStorefront = { digital: true, us: false };
+jest.mock('../../config/storefront', () => ({
+  get DIGITAL_PURCHASES_ENABLED() { return mockStorefront.digital; },
+  iosWebPurchaseLinkAllowed: () => mockStorefront.us,
+}));
+
 jest.mock('../../libs/deeplink.events', () => ({
   emitProfileDeepLink: jest.fn(),
   emitStageDeepLink: jest.fn(),
@@ -150,6 +156,34 @@ describe('an /app link with no screen', () => {
     expect(resolve('/app/work')).toBeUndefined();
     await flush();
     expect(openBrowser).toHaveBeenCalledWith('https://riftn.com/app/work', expect.anything());
+  });
+
+  it('never opens a checkout page in the App Store build: Safari on the US store, Home elsewhere', async () => {
+    mockStorefront.digital = false;
+    try {
+      openBrowser.mockClear();
+      openURL.mockClear();
+      mockStorefront.us = false;
+      expect(resolve('/app/ads')).toBeDefined();
+      await flush();
+      expect(openBrowser).not.toHaveBeenCalled();
+      expect(openURL).not.toHaveBeenCalled();
+
+      mockStorefront.us = true;
+      expect(resolve('/app/ads')).toBeDefined();
+      await flush();
+      expect(openBrowser).not.toHaveBeenCalled();
+      expect(openURL).toHaveBeenCalledWith('https://riftn.com/app/ads');
+
+      // A page that sells nothing still opens on the web as before.
+      openURL.mockClear();
+      expect(resolve('/app/unmapped-page')).toBeUndefined();
+      await flush();
+      expect(openBrowser).toHaveBeenCalled();
+    } finally {
+      mockStorefront.digital = true;
+      mockStorefront.us = false;
+    }
   });
 
   it('does not reopen a link that comes straight back', async () => {
