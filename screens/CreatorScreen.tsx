@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
-import { Alert, FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { Alert, Animated, FlatList, Pressable, StyleSheet, Text, View, ActivityIndicator, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
@@ -83,6 +83,33 @@ export default function CreatorScreen() {
   const previewJobs = useMemo(() => jobs.map(item => ({ ...item, posterUrl: item.posterUrl ?? previews[item.id] })), [jobs, previews]);
   const openStudio = useCallback((mode: CreatorMode = 'image', workflow?: 'swap' | 'motion') => nav.navigate(ScreenNames.CreatorStudio, { mode, workflow, marketingHandoff: undefined }), [nav]);
 
+  // Concept C: once the Start button scrolls away, a dark floating island
+  // holds a menu of every medium and tool, a prompt line and Create.
+  const heroBottom = useRef(260);
+  const [parked, setParked] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const islandFade = useRef(new Animated.Value(0)).current;
+  const onScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const next = e.nativeEvent.contentOffset.y > heroBottom.current - 24;
+    setParked((previous) => {
+      if (previous === next) return previous;
+      Animated.timing(islandFade, { toValue: next ? 1 : 0, duration: 180, useNativeDriver: true }).start();
+      if (!next) setMenuOpen(false);
+      return next;
+    });
+  }, [islandFade]);
+  const menuRows = useMemo(() => [
+    { key: 'image', label: t('creator.navImage'), open: () => openStudio('image') },
+    { key: 'video', label: t('creator.navVideo'), open: () => openStudio('video') },
+    { key: 'audio', label: t('creator.navAudio'), open: () => openStudio('audio') },
+    { key: '3d', label: t('creator.door3d'), open: () => openStudio('3d') },
+    { key: 'remake', label: t('creator.toolRemake'), open: () => nav.navigate(ScreenNames.CreatorRemake), divider: true },
+    { key: 'agents', label: t('creator.navAgents'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
+    { key: 'editor', label: t('creator.editor'), open: () => nav.navigate(ScreenNames.MediaEditor) },
+    { key: 'flow', label: t('creator.flow'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
+    { key: 'builder', label: t('creator.toolBuilder'), open: () => nav.navigate(ScreenNames.Builder) },
+  ], [t, openStudio, nav]);
+
   const header = useMemo(() => {
   const mediums = [
     { key: 'image', icon: 'images', label: t('creator.navImage'), note: t('creator.doorImageNote'), open: () => openStudio('image') },
@@ -122,7 +149,7 @@ export default function CreatorScreen() {
 
   return (
     <View>
-      <View className="items-center px-4 pb-6 pt-8">
+      <View className="items-center px-4 pb-6 pt-8" onLayout={(e) => { heroBottom.current = e.nativeEvent.layout.y + e.nativeEvent.layout.height; }}>
         <Text className="text-center text-[32px] font-black leading-[34px] text-theme-neutrals-100">{t('creator.heroTitle')}</Text>
         <Text className="mt-3 text-center text-[14px] text-theme-neutrals-400">{t('creator.heroSubtitle')}</Text>
         <Pressable accessibilityRole="button" onPress={() => openStudio()} className="mt-6 w-full">
@@ -179,8 +206,11 @@ export default function CreatorScreen() {
         title={t('commandCentre.creator')}
         rightContent={DIGITAL_PURCHASES_ENABLED && wallet ? <SubscriptionCreditsPill /> : undefined}
       />
+      <View style={{ flex: 1 }}>
       <FlatList
         data={jobs}
+        onScroll={onScroll}
+        scrollEventThrottle={32}
         keyExtractor={(item) => item.id}
         numColumns={2}
         ListHeaderComponent={header}
@@ -195,9 +225,63 @@ export default function CreatorScreen() {
         maxToRenderPerBatch={6}
         windowSize={7}
       />
+      <Animated.View pointerEvents={parked ? 'box-none' : 'none'} style={[island.wrap, { opacity: islandFade, transform: [{ translateY: islandFade.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) }] }]}>
+        <View style={island.bar}>
+          <Pressable accessibilityRole="button" accessibilityLabel={t('creator.moreTools')} accessibilityState={{ expanded: menuOpen }} onPress={() => setMenuOpen((v) => !v)} style={island.logo}>
+            <SmartImage source={require('../assets/web-icons/dehub-mark.png')} style={{ width: 16, height: 20 }} contentFit="contain" tintColor="#ffffff" />
+            <Ionicons name={menuOpen ? 'chevron-up' : 'chevron-down'} size={14} color="rgba(255,255,255,0.6)" />
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={() => openStudio()} style={{ flex: 1, paddingHorizontal: 4 }}>
+            <Text numberOfLines={1} style={island.prompt}>{t('creator.studioPrompt')}</Text>
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={() => openStudio()}>
+            <LinearGradient colors={stage.colors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={island.create}>
+              <SmartImage source={require('../assets/web-icons/dehub-coin.png')} style={{ width: 22, height: 22 }} contentFit="contain" />
+              <Text style={[island.createText, { color: accentInk }]}>{t('creator.studioCreate')}</Text>
+            </LinearGradient>
+          </Pressable>
+        </View>
+        {menuOpen && (
+          <View style={island.menu}>
+            {menuRows.map((row) => (
+              <View key={row.key}>
+                {row.divider && <View style={island.divider} />}
+                <Pressable accessibilityRole="menuitem" onPress={() => { setMenuOpen(false); row.open(); }} style={({ pressed }) => [island.row, pressed && { backgroundColor: 'rgba(255,255,255,0.06)' }]}>
+                  <Text style={island.rowText}>{row.label}</Text>
+                </Pressable>
+              </View>
+            ))}
+          </View>
+        )}
+      </Animated.View>
+      </View>
     </View>
   );
 }
+
+const island = StyleSheet.create({
+  wrap: { position: 'absolute', top: 8, left: 8, right: 8 },
+  bar: {
+    flexDirection: 'row', alignItems: 'center', gap: 8, padding: 6, borderRadius: 20,
+    backgroundColor: 'rgba(10,11,12,0.96)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)',
+    shadowColor: '#000', shadowOpacity: 0.6, shadowRadius: 24, shadowOffset: { width: 0, height: 12 }, elevation: 12,
+  },
+  logo: {
+    flexDirection: 'row', alignItems: 'center', gap: 6, height: 40, paddingHorizontal: 10, borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.07)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)',
+  },
+  prompt: { color: 'rgba(255,255,255,0.6)', fontSize: 14 },
+  create: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 40, paddingLeft: 6, paddingRight: 14, borderRadius: 14 },
+  createText: { fontSize: 14, fontWeight: '800' },
+  menu: {
+    marginTop: 8, width: 240, padding: 8, borderRadius: 18, backgroundColor: '#0e0f11',
+    borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', elevation: 14,
+    shadowColor: '#000', shadowOpacity: 0.6, shadowRadius: 30, shadowOffset: { width: 0, height: 20 },
+  },
+  divider: { height: 1, marginVertical: 6, marginHorizontal: 4, backgroundColor: 'rgba(255,255,255,0.08)' },
+  row: { paddingHorizontal: 10, paddingVertical: 10, borderRadius: 10 },
+  rowText: { color: 'rgba(255,255,255,0.85)', fontSize: 14, fontWeight: '600' },
+});
 
 const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, width }: { item: CreatorAsset; posterUrl?: string; width: number }) {
   const { t } = useTranslation();
