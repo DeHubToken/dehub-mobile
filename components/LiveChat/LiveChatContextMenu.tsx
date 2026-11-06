@@ -190,6 +190,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
         tiles={tiles}
         onLift={onLift}
         frame
+        inline
       />
       {moreSheet}
     </>
