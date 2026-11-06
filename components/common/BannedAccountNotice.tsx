@@ -13,6 +13,7 @@
  */
 import React, { memo } from "react";
 import { View, Text, Linking, TouchableOpacity } from "react-native";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -65,6 +66,7 @@ const BannedAccountNoticeComponent: React.FC<BannedAccountNoticeProps> = ({
           {t("banned.reason", { reason: bannedReason })}
         </Text>
       ) : null}
+      {DIGITAL_PURCHASES_ENABLED && (
       <TouchableOpacity
         onPress={() => navigation.navigate(ScreenNames.Dex as never)}
         className="mt-3 rounded-lg bg-amber-300 px-3 py-2"
@@ -73,6 +75,7 @@ const BannedAccountNoticeComponent: React.FC<BannedAccountNoticeProps> = ({
           {t("dex.title")}
         </Text>
       </TouchableOpacity>
+      )}
       <TouchableOpacity
         onPress={() => Linking.openURL(DELETE_ACCOUNT_URL)}
         className="mt-3 py-1"

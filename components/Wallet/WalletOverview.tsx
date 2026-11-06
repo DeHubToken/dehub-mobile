@@ -198,7 +198,7 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
         <View style={s.actions}>
           <Action label={t('wallet.send')} icon="Send" onPress={() => openSend(group.tokens)} />
           <Action label={t('wallet.receive')} icon="ArrowDownToLine" onPress={() => { setReceiveNetwork(group.tokens.every(token => token.chainId === 101) ? 'solana' : 'evm'); setGroup(null); setReceive(true); }} />
-          <Action label={t('wallet.trade')} icon="ArrowLeftRight" onPress={() => { const dhb = group.symbol === 'DHB'; setGroup(null); if (dhb) setTrade(true); else navigation.navigate(ScreenNames.Dex); }} />
+          {DIGITAL_PURCHASES_ENABLED && <Action label={t('wallet.trade')} icon="ArrowLeftRight" onPress={() => { const dhb = group.symbol === 'DHB'; setGroup(null); if (dhb) setTrade(true); else navigation.navigate(ScreenNames.Dex); }} />}
         </View>
       </View>}
     </GlassModal>

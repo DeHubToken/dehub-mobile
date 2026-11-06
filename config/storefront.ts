@@ -19,6 +19,7 @@
  * reaches both stores from one bundle, so the split has to be decided on the
  * device, not at build time.
  */
+import * as Localization from "expo-localization";
 import { Platform } from "react-native";
 
 /** True in the build that goes through Apple review. */
@@ -41,3 +42,18 @@ export const MATURE_CONTENT_ENABLED = !IS_APP_STORE_BUILD;
  * server-granted badge allowances must not be gated by this purchase flag.
  */
 export const DIGITAL_PURCHASES_ENABLED = !IS_APP_STORE_BUILD;
+
+/**
+ * Whether the App Store build may point at the website to pay. Apple allows
+ * that link-out on the United States storefront only; everywhere else an iOS
+ * screen must not offer an outside purchase at all, not even as a button.
+ * Android and web never ask.
+ */
+export function iosWebPurchaseLinkAllowed(): boolean {
+  if (!IS_APP_STORE_BUILD) return false;
+  try {
+    return Localization.getLocales()?.[0]?.regionCode === "US";
+  } catch {
+    return false;
+  }
+}

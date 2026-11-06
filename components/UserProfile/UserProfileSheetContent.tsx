@@ -2,6 +2,7 @@ import type { useProfileCollapse } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
@@ -297,9 +298,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           socials={data}
           mutuals={mutuals}
           mutualsTotal={mutualsTotal}
-          hasPlans={hasPlans}
-          plansLoading={plansLoading}
-          onSubscribe={handleSubscribePress}
+          hasPlans={DIGITAL_PURCHASES_ENABLED && hasPlans}
+          plansLoading={DIGITAL_PURCHASES_ENABLED && plansLoading}
+          onSubscribe={DIGITAL_PURCHASES_ENABLED ? handleSubscribePress : undefined}
         />}
         />
         <View className="px-5 mt-2">

@@ -51,6 +51,7 @@ import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import MintChainSheet from "./MintChainSheet";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
 import { useDubSettings, setDubSettings, checkDubbable } from "../../hooks/useVideoDub";
 import { baseLang } from "../../hooks/useVoiceDub";
@@ -808,7 +809,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               )}
               {/* Only for posts published off-chain — 'signed' is the status
                   the backend keeps them at for life. */}
-              {postStatus === "signed" && tokenId != null && (
+              {postStatus === "signed" && tokenId != null && DIGITAL_PURCHASES_ENABLED && (
                 <OptionRow
                   icon="Gem"
                   label={t("upload.mintPost")}
