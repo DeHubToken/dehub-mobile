@@ -4762,6 +4762,15 @@
       "notFound": "Deze uitnodigingslink is niet geldig.",
       "requestToJoin": "Aanvraag om lid te worden",
       "approvalNote": "Een beheerder moet je aanvraag goedkeuren voordat je lid kunt worden."
+    },
+    "buyAlert": {
+      "title": "{{amount}} GEKOCHT",
+      "spent": "Uitgegeven:",
+      "buyer": "Koper:",
+      "txn": "Tx",
+      "balance": "Saldo:",
+      "price": "Prijs:",
+      "marketCap": "Marktkapitalisatie:"
     }
   },
   "work": {

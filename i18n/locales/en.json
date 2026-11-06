@@ -4133,6 +4133,15 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "buyAlert": {
+      "title": "{{amount}} BUY",
+      "spent": "Spent:",
+      "buyer": "Buyer:",
+      "txn": "Txn",
+      "balance": "Balance:",
+      "price": "Price:",
+      "marketCap": "Market cap:"
+    },
     "newChat": {
       "description": "What is it about? (optional)",
       "groupCreated": "Group created",

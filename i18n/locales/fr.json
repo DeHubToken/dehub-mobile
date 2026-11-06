@@ -4578,6 +4578,15 @@
       "notFound": "Ce lien d'invitation n'est pas valide.",
       "requestToJoin": "Demande d'adhésion",
       "approvalNote": "Un administrateur doit approuver votre demande avant que vous puissiez vous inscrire."
+    },
+    "buyAlert": {
+      "title": "ACHAT de {{amount}}",
+      "spent": "Dépensé :",
+      "buyer": "Acheteur :",
+      "txn": "Tx",
+      "balance": "Solde :",
+      "price": "Prix :",
+      "marketCap": "Capitalisation :"
     }
   },
   "work": {
