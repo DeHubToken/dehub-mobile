@@ -26,6 +26,7 @@ import { getNFT, getPpvSalesCount, togglePostVisibility } from "../services/nft.
 import { supabase } from "../services/supabase";
 import { useMintExistingPost } from "../hooks/useMintExistingPost";
 import MintChainSheet from "../components/common/MintChainSheet";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useFractionBalance } from "../hooks/useFractionPortfolio";
 import {
   DEFAULT_FRACTION_CHAIN,
@@ -292,7 +293,7 @@ export default function PostInfoScreen() {
               <Icon name="Package" size={28} color="rgba(255,255,255,0.4)" />
               <Text style={[styles.muted, styles.centerText]}>{t("postInfo.mintToGenerate")}</Text>
               <Text style={[styles.faint, styles.centerText]}>{t("postInfo.mintDetailsLater")}</Text>
-              {isOwner && (
+              {isOwner && DIGITAL_PURCHASES_ENABLED && (
                 <Pressable onPress={() => setMintSheet(true)} disabled={isMinting} style={[styles.button, isMinting && { opacity: 0.5 }]}>
                   {isMinting && <ActivityIndicator color="#FFFFFF" size="small" />}
                   <Text style={styles.buttonText}>{t("postInfo.mintPost")}</Text>
@@ -386,7 +387,7 @@ export default function PostInfoScreen() {
           </Section>
         )}
 
-        {isMinted && (
+        {isMinted && DIGITAL_PURCHASES_ENABLED && (
           <Section
             title={t("postInfo.fractionOwnership")}
             right={<Text style={styles.faint}>{t("postInfo.total", { count: TOTAL_FRACTIONS })}</Text>}

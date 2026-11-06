@@ -680,7 +680,8 @@ export default function UploadScreen() {
   // Bounty locks tokens through the mint transaction, so it cannot ride on a
   // post that never goes on-chain.
   const mintRequired = monetization.bountyEnabled;
-  const effectiveShouldMint = shouldMint || mintRequired;
+  // Minting is a paid NFT action, so the App Store build never mints (3.1.1).
+  const effectiveShouldMint = DIGITAL_PURCHASES_ENABLED && (shouldMint || mintRequired);
   const needsPostingWallet = !isQuoteMode && !isStageMode && effectiveShouldMint;
   useFocusEffect(useCallback(() => {
     let cancelled = false;
@@ -3349,7 +3350,7 @@ export default function UploadScreen() {
             {/* Mint sits in the list rather than in a card of its own, as
                 web's first PostAccessToggles row. Off by default, so a first
                 post needs no wallet at all. */}
-            {!isQuoteMode && (
+            {!isQuoteMode && DIGITAL_PURCHASES_ENABLED && (
               <View className="flex-row items-center justify-between py-3">
                 <View className="flex-row items-center flex-1 mr-3">
                   <Icon name="Coins" size={18} color="#fff" />
@@ -3488,7 +3489,7 @@ export default function UploadScreen() {
               />
             </TouchableOpacity>
 
-            {!isQuoteMode && !articleMode && (
+            {!isQuoteMode && !articleMode && DIGITAL_PURCHASES_ENABLED && (
               <MonetizationPanel
                 draftScope={draftScope}
                 state={monetization}

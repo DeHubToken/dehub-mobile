@@ -23,6 +23,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modal, Pressable } from "react-native";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import Svg, { Path, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -279,7 +280,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 {/* Network badge */}
                 <Text style={styles.network}>{pair.chainId.toUpperCase()} · {pair.dexId}</Text>
 
-                {!!tradeToken && (wallet && buyOpen ? (
+                {!!tradeToken && DIGITAL_PURCHASES_ENABLED && (wallet && buyOpen ? (
                   <DexInstantDhbTrade address={wallet} token={tradeToken} onDone={() => {}} />
                 ) : (
                   <TouchableOpacity

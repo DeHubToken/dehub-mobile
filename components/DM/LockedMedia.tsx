@@ -12,6 +12,7 @@
  */
 import React, { memo, useEffect, useState } from "react";
 import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native";
+import { iosWebPurchaseLinkAllowed } from "../../config/storefront";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import SmartImage from "../common/SmartImage";
@@ -62,6 +63,8 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
   const isTemp = String(message._id).startsWith("temp-");
   const [paying, setPaying] = useState(false);
   const isIos = Platform.OS === "ios";
+  // Outside the US the App Store build may not point at web checkout at all.
+  const iosCanLinkOut = iosWebPurchaseLinkAllowed();
   // Android: confirm in a sheet, then the photo opens with a reveal.
   const [sheetOpen, setSheetOpen] = useState(false);
   const [phase, setPhase] = useState<UnlockPhase>("idle");
@@ -104,7 +107,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
   const handleUnlock = () => {
     if (paying) return;
     if (isIos) {
-      void Linking.openURL(LOCKED_MEDIA_WEB_URL);
+      if (iosCanLinkOut) void Linking.openURL(LOCKED_MEDIA_WEB_URL);
       return;
     }
     if (!status) return;
@@ -218,6 +221,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
         <Text className="text-[12px] font-medium text-white/80 mt-2">
           {lock.kind === "video" ? t("dmPaidLock.lockedVideo", "Locked video") : t("dmPaidLock.lockedPhoto", "Locked photo")}
         </Text>
+        {!isIos || iosCanLinkOut ? (<>
         <Pressable
           onPress={handleUnlock}
           disabled={pending || (!isIos && !status)}
@@ -239,6 +243,7 @@ function LockedMediaInner({ message, isMine, width, onImagePress, onVideoPress, 
             {t("dmPaidLock.dhbNow", { defaultValue: "{{dhb}} at today’s price", dhb: formatLockDhb(dhbNow) })}
           </Text>
         ) : null}
+        </>) : null}
       </View>
       {!isIos ? (
         <UnlockConfirmSheet

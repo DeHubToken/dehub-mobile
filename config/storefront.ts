@@ -41,3 +41,20 @@ export const MATURE_CONTENT_ENABLED = !IS_APP_STORE_BUILD;
  * server-granted badge allowances must not be gated by this purchase flag.
  */
 export const DIGITAL_PURCHASES_ENABLED = !IS_APP_STORE_BUILD;
+
+/**
+ * Whether the App Store build may point at the website to pay. Apple allows
+ * that link-out on the United States storefront only; everywhere else an iOS
+ * screen must not offer an outside purchase at all, not even as a button.
+ * Android and web never ask.
+ */
+export function iosWebPurchaseLinkAllowed(): boolean {
+  if (!IS_APP_STORE_BUILD) return false;
+  try {
+    // Required lazily so this flags-only module stays free of native imports.
+    const Localization = require("expo-localization") as typeof import("expo-localization");
+    return Localization.getLocales()?.[0]?.regionCode === "US";
+  } catch {
+    return false;
+  }
+}

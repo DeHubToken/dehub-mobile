@@ -13,12 +13,11 @@
  * working; it hands straight over to Fractions with the same params.
  */
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Platform, Alert, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, ScrollView, Alert, useWindowDimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
-import * as Localization from "expo-localization";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { PageEmpty, PageTabs } from "../components/page/PageKit";
@@ -35,7 +34,7 @@ import { ShareLinks } from "../navigation/linking.config";
 import { shareWithRef } from "../libs/shareRef";
 import { theme } from "../theme";
 import { useWeb3Provider } from "../hooks/use-web3";
-import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from "../config/storefront";
 import { CHAIN_LABEL, MARKET_CHAINS, OPENSEA_CHAINS, WrongChainError, buyOpenSea, fillListings, formatVolume, nftMarket, type MarketCollection, type OpenSeaListing, type MarketOrder, type ShowcaseNft, type NftTarget, type Signer } from "../services/nft-market.service";
 
 type Tab = "browse" | "mine" | "activity";
@@ -63,15 +62,6 @@ const TABS: { key: Tab; icon: string; labelKey: string; fallback: string }[] = [
   { key: "mine", icon: "nfts", labelKey: "nftMarket.tabMine", fallback: "Yours" },
   { key: "activity", icon: "stats", labelKey: "nftMarket.tabRecent", fallback: "Recent" },
 ];
-
-/** iOS outside the US gets no link out at all. */
-function inUnitedStates(): boolean {
-  try {
-    return Localization.getLocales()?.[0]?.regionCode === "US";
-  } catch {
-    return false;
-  }
-}
 
 const pad = <T,>(items: T[], cols = 2): (T | null)[] => {
   const extra = (cols - (items.length % cols)) % cols;
@@ -116,7 +106,7 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
   const tile2 = Math.ceil((screenW - 32 - 12) / 2);
   const { provider, account, chainId } = useWeb3Provider();
   const canTrade = DIGITAL_PURCHASES_ENABLED;
-  const linkOut = Platform.OS === "ios" && inUnitedStates();
+  const linkOut = iosWebPurchaseLinkAllowed();
 
   const [tab, setTab] = useState<Tab>(() => {
     const v = route.params?.view;
