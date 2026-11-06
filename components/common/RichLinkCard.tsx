@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, View, Text, StyleSheet, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
@@ -31,13 +32,13 @@ export default function RichLinkCard({ preview, style }: { preview: RichPreview;
         <Icon name="ExternalLink" size={12} color="#a1a1aa" />
       </View>
       <View style={[styles.row, styles.content]}>
-        {preview.image && data.provider !== 'ipfs' && <Image source={{ uri: preview.image }} style={styles.artwork} contentFit="cover" />}
+        {preview.image && data.provider !== 'ipfs' && <Image source={{ uri: outsideImage(preview.image) }} style={styles.artwork} contentFit="cover" />}
         <View style={styles.flex}>
           <Text style={styles.title}>{preview.title}</Text>
           {!!preview.description && <Text style={styles.description} numberOfLines={2}>{preview.description}</Text>}
         </View>
       </View>
-      {data.provider === 'ipfs' && preview.image && <Image source={{ uri: preview.image }} style={styles.image} contentFit="contain" />}
+      {data.provider === 'ipfs' && preview.image && <Image source={{ uri: outsideImage(preview.image) }} style={styles.image} contentFit="contain" />}
       {!!data.identifier && <Text style={styles.identifier}>{data.identifier}</Text>}
       {!!data.metrics.length && <View style={styles.metrics}>
         {data.metrics.map(item => <View key={item.kind} style={styles.row}>

@@ -94,8 +94,14 @@ export async function prepareMediaDescriptor(input: {
 
   if (input.kind === "image") {
     let size = await imageSize(input.uri);
-    if (size && !isGif(mime, input.uri) && Math.max(size.w, size.h) > MAX_IMAGE_SIDE) {
-      const scale = MAX_IMAGE_SIDE / Math.max(size.w, size.h);
+    // Every photo except a GIF (animation) or PNG (transparency) is redrawn
+    // even when small: that drops its EXIF block (GPS location, phone make and
+    // model, capture time). The file is sealed for the other person, so this
+    // is the only chance to remove it.
+    const isPng = mime.toLowerCase() === "image/png";
+    const redraw = !!size && !isGif(mime, input.uri) && (!isPng || Math.max(size.w, size.h) > MAX_IMAGE_SIDE);
+    if (size && redraw) {
+      const scale = Math.min(1, MAX_IMAGE_SIDE / Math.max(size.w, size.h));
       try {
         const res = await ImageManipulator.manipulateAsync(
           input.uri,

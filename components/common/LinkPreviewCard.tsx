@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * Outside Link Preview
@@ -159,7 +160,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
       }}
     >
       {showImage && (
-        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage, skin?.material === 'glass' && { width: 112, height: 112, aspectRatio: 1 }]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
+        <Image source={{ uri: outsideImage(preview.image!) }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage, skin?.material === 'glass' && { width: 112, height: 112, aspectRatio: 1 }]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
       )}
       <View style={[styles.body, isMinimal && styles.minimalBody, skin?.material === 'glass' && showImage && { flex: 1, minWidth: 0 }]}>
         <View style={styles.sourceRow}>

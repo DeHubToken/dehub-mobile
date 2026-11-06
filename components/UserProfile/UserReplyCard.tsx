@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import SkeletonBlock from '../Feed/SkeletonBlock';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -522,7 +523,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           {item.gifUrl ? (
             <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
               <SmartImage
-                source={{ uri: item.gifUrl }}
+                source={{ uri: outsideImage(item.gifUrl) }}
                 recyclingKey={item.gifUrl}
                 style={{ width: 240, height: 160, borderRadius: 8 }}
                 contentFit="cover"
