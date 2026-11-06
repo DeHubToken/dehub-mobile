@@ -67,6 +67,7 @@ import { useWeb3Provider, useERC20Contract } from "../hooks/use-web3";
 import { writeContractAA } from "../libs/aa.write";
 import { supportedTokens } from "../config/constants";
 import * as ethersImport from "ethers";
+import { useRegisterOwnTabBar } from "../libs/tab-bar-presence";
 
 const DEHUB_COIN = require("../assets/web-icons/dehub-coin.png");
 
@@ -95,6 +96,9 @@ const CommunityDetailScreen: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
   const [tab, setTab] = useState<Tab>(route.params?.tab === "chat" ? "chat" : "posts");
+  // The chat tab has its own message box at the bottom: the app-wide bar
+  // would sit on top of it (and its Send button), so it stands down there.
+  useRegisterOwnTabBar(tab === "chat");
   // A chat notification tapped while this community is already open.
   useEffect(() => {
     if (route.params?.tab === "chat") setTab("chat");
