@@ -439,7 +439,8 @@ async function edgeFetch<T>(
 
   const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...(extraHeaders || {}) },
+    // Tells the server this is the store app, so web-only models (Venice) are refused.
+    headers: { 'Content-Type': 'application/json', 'x-dehub-client': 'app', ...(extraHeaders || {}) },
     body: JSON.stringify(body),
   });
 
