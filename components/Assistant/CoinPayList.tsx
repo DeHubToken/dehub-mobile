@@ -38,6 +38,8 @@ const CoinPayList: React.FC<{
   priceDhb: number;
   walletDhb: number;
   disabled?: boolean;
+  /** Opens "Any other coin": BTC, SOL and 200+ more, paid to a one-time address. */
+  onAnyCoin?: () => void;
 }> = ({
   coins,
   balances,
@@ -47,6 +49,7 @@ const CoinPayList: React.FC<{
   priceDhb,
   walletDhb,
   disabled,
+  onAnyCoin,
 }) => {
   const { t: _copy } = _useCopy();
   const enough = (c: TopUpCoin) => {
@@ -128,6 +131,30 @@ const CoinPayList: React.FC<{
           );
         })
       )}
+      {!!onAnyCoin && (
+        <TouchableOpacity
+          activeOpacity={0.8}
+          disabled={disabled}
+          onPress={onAnyCoin}
+          style={[s.coinRow, s.anyRow]}
+        >
+          <View style={s.anyLogos}>
+            <Image source={require("../../assets/tokens/BTC.png")} style={[s.anyLogo, { left: 0, top: 0 }]} />
+            <Image source={require("../../assets/tokens/SOL.png")} style={[s.anyLogo, { right: 0, bottom: 0 }]} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={s.coinName}>
+              {_copy("coinPay.anyCoin", { defaultValue: "Any other coin" })}
+            </Text>
+            <Text style={s.coinHeld}>
+              {_copy("coinPay.anyCoinHint", {
+                defaultValue: "BTC, SOL, DOGE, XRP and 200+ more, from any wallet or exchange",
+              })}
+            </Text>
+          </View>
+          <Text style={s.anyChevron}>›</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -173,6 +200,14 @@ const s = StyleSheet.create({
   coinName: { color: "#F9FBFF", fontSize: 15, fontWeight: "800" },
   coinChain: { color: "#A6A9AC", fontSize: 12, fontWeight: "600" },
   coinHeld: { color: "#A6A9AC", fontSize: 12, marginTop: 1 },
+  anyRow: {
+    borderStyle: "dashed",
+    borderColor: "rgba(255,255,255,0.15)",
+    backgroundColor: "rgba(255,255,255,0.03)",
+  },
+  anyLogos: { width: 30, height: 30 },
+  anyLogo: { position: "absolute", width: 20, height: 20, borderRadius: 10 },
+  anyChevron: { color: "#A6A9AC", fontSize: 22, fontWeight: "600" },
   coinAmount: { color: "#F9FBFF", fontSize: 14, fontWeight: "800" },
   coinTickShort: { position: "absolute", left: 5, top: 11, width: 6, height: 2.5, borderRadius: 1.5, backgroundColor: "#09090B", transform: [{ rotate: "45deg" }] },
   coinTickLong: { position: "absolute", left: 8, top: 9, width: 11, height: 2.5, borderRadius: 1.5, backgroundColor: "#09090B", transform: [{ rotate: "-50deg" }] },
