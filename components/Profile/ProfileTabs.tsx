@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 
 import ProfileHeader from "./ProfileHeader";
 import { ProfilePostBgContext, useResolvedPostBg } from "./PostBackground";
+import { ProfileArticleTileContext, useResolvedArticleTile } from "./ArticleTile";
 import type { IconName } from "../ui/Icon";
 import PinnedCommunities from "../Communities/PinnedCommunities";
 import FeedRoute from "./FeedRoute";
@@ -57,6 +58,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   );
   // Your text-post backdrop on your own tiles (customs.postBg).
   const postBg = useResolvedPostBg(address, user?.customs);
+  const articleTile = useResolvedArticleTile(address, user?.customs);
   const counts = useProfileContentCounts(address);
   const dislikesCount = useProfileDislikesCount(address, true);
   const collapse = useProfileCollapse(address);
@@ -271,7 +273,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     }
   };
 
-  return <ProfilePostBgContext.Provider value={postBg}><View className="flex-1 bg-theme-neutrals-900">
+  return <ProfilePostBgContext.Provider value={postBg}><ProfileArticleTileContext.Provider value={articleTile}><View className="flex-1 bg-theme-neutrals-900">
     <ProfilePullFrame pull={pull} cover={pullCover}>
     <ProfileScrollViewport {...collapse}>
       {paneKeys.map((key) => (
@@ -289,7 +291,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
       cover={user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl) } : getDefaultBanner(address || '')}
       canGoBack={canGoBack} onBackPress={onBackPress} />
-  </View></ProfilePostBgContext.Provider>;
+  </View></ProfileArticleTileContext.Provider></ProfilePostBgContext.Provider>;
 };
 
 export default ProfileTabs;

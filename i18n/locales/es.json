@@ -2802,7 +2802,9 @@
     "tabPinned": "Fijado",
     "lockedPost": "Publicación bloqueada",
     "viewGrid": "Vista de cuadrícula",
-    "viewList": "Vista de lista"
+    "viewList": "Vista de lista",
+    "articleMinRead": "{{count}} min de lectura",
+    "articleViews": "{{views}} vistas"
   },
   "tv": {
     "title": "TV",
@@ -16329,5 +16331,12 @@
     "openPost": "Abrir publicación",
     "readArticle": "Leer artículo",
     "openToUnlock": "Abrir para desbloquear"
+  },
+  "articleTile": {
+    "title": "Mosaicos de artículos",
+    "cover": "Portada",
+    "dropcap": "Letra capital",
+    "hint": "Así se ven tus artículos en la cuadrícula de tu perfil. Solo tú puedes cambiarlo.",
+    "saveFailed": "No se pudo guardar. Inténtalo de nuevo."
   }
 }

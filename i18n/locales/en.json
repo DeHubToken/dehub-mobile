@@ -2661,6 +2661,8 @@
     "viewGrid": "Grid view",
     "viewList": "List view",
     "articleShort": "Article",
+    "articleMinRead": "{{count}} min read",
+    "articleViews": "{{views}} views",
     "lockedPost": "Locked post",
     "pinnedShort": "Pinned",
     "post": "Post",
@@ -16188,5 +16190,12 @@
     "title": "DeHub is now Riftn",
     "body": "Same app, same account, same friends. Just a new name.",
     "continue": "Tap to continue"
+  },
+  "articleTile": {
+    "title": "Article tiles",
+    "cover": "Cover",
+    "dropcap": "Drop cap",
+    "hint": "How your articles look on your profile grid. Only you can change this.",
+    "saveFailed": "Couldn't save. Try again."
   }
 }
