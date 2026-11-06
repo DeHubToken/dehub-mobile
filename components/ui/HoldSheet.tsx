@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Modal, Pressable, useWindowDimensions } from "react-native";
+import { View, Text, TouchableOpacity, Modal, Pressable, useWindowDimensions, StyleSheet, BackHandler, Keyboard } from "react-native";
 import Animated, {
   FadeIn,
   FadeOut,
@@ -66,6 +66,12 @@ interface HoldSheetProps {
   liftTop?: number;
   /** Draw the held row in a glowing card (live chat). Comments keep it bare. */
   frame?: boolean;
+  /**
+   * Draw over the host screen instead of in an Android dialog window, as web
+   * does. The dialog opened a frame late, dropped the keyboard and resized the
+   * screen under the lift. The host renders the sheet as its last child.
+   */
+  inline?: boolean;
 }
 
 const GAP = 12;
@@ -97,7 +103,7 @@ export function useHoldLift() {
   return { style, onLift, ref, top, measure };
 }
 
-export default function HoldSheet({ visible, layout, onClose, reactions, onReaction, onMore, tiles, onLift, liftTop, frame }: HoldSheetProps) {
+export default function HoldSheet({ visible, layout, onClose, reactions, onReaction, onMore, tiles, onLift, liftTop, frame, inline }: HoldSheetProps) {
   // A row that could not be measured comes in as an empty box: treat it as unknown.
   if (layout && !(layout.height > 0)) layout = null;
   const { t } = useTranslation();
@@ -122,16 +128,29 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   // leave out the gesture bar on edge-to-edge Android, which put the sheet's
   // top lower than the maths thought and let it cover the held line.
   const [sheetY, setSheetY] = useState(0);
+  // Inline: where this layer starts in the window, so window-measured rows line up.
+  const rootRef = useRef<View>(null);
+  const [originY, setOriginY] = useState<number | null>(inline ? null : 0);
+  const measureOrigin = useCallback(() => {
+    rootRef.current?.measureInWindow((_x, y) => setOriginY(Number.isFinite(y) ? y : 0));
+  }, []);
+  useEffect(() => {
+    if (!inline || !visible) return;
+    // The sheet sits at the foot of the screen, where an open keyboard would cover it.
+    Keyboard.dismiss();
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => { onClose(); return true; });
+    return () => sub.remove();
+  }, [inline, visible, onClose]);
 
   // How far the list slides up so the held row clears the sheet, never past the top bar.
   const lift = useMemo(() => {
-    if (!visible || !layout || !sheetH || !onLift) return 0;
-    const sheetTop = sheetY > 0 ? sheetY : SCREEN_HEIGHT - insets.bottom - SIDE - sheetH;
+    if (!visible || !layout || !sheetH || !onLift || originY === null) return 0;
+    const sheetTop = sheetY > 0 ? originY + sheetY : SCREEN_HEIGHT - insets.bottom - SIDE - sheetH;
     const overlap = layout.y + layout.height - (sheetTop - GAP);
     if (overlap <= 0) return 0;
     const headroom = layout.y - Math.max(insets.top + 56, (liftTop ?? 0) + GAP);
     return Math.max(0, Math.min(overlap, headroom));
-  }, [visible, layout, sheetH, sheetY, onLift, liftTop, SCREEN_HEIGHT, insets.bottom, insets.top]);
+  }, [visible, layout, sheetH, sheetY, originY, onLift, liftTop, SCREEN_HEIGHT, insets.bottom, insets.top]);
 
   // The dim and the frame ride the same slide as the host's list.
   const overlayLift = useSharedValue(0);
@@ -156,11 +175,11 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   const cols = Math.min(Math.max(mainTiles.length, 1), 4);
   const dim = "rgba(0,0,0,0.55)";
   // Drawn at the row's resting place; overlayStyle slides it with the list.
-  const rowTop = layout ? layout.y : 0;
+  const rowTop = layout ? layout.y - (originY ?? 0) : 0;
   const rowH = layout?.height ?? 0;
 
   return (
-    <Modal transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
+    <Layer inline={!!inline} ready={originY !== null} rootRef={rootRef} onRootLayout={measureOrigin} onClose={onClose}>
       {/* Dim everything but the held row: one wash above it, one below. */}
       <Pressable style={{ flex: 1 }} onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")}>
         {layout ? (
@@ -287,6 +306,34 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
           </View>
         </Pressable>
       </Animated.View>
-    </Modal>
+    </Layer>
+  );
+}
+
+function Layer({ inline, ready, rootRef, onRootLayout, onClose, children }: {
+  inline: boolean;
+  ready: boolean;
+  rootRef: React.RefObject<View | null>;
+  onRootLayout: () => void;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  if (!inline) {
+    return (
+      <Modal transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
+        {children}
+      </Modal>
+    );
+  }
+  return (
+    <View
+      ref={rootRef}
+      collapsable={false}
+      onLayout={onRootLayout}
+      // Hidden for the one frame before its window position is known.
+      style={[StyleSheet.absoluteFill, { zIndex: 1000, elevation: 1000, opacity: ready ? 1 : 0 }]}
+    >
+      {children}
+    </View>
   );
 }
