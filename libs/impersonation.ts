@@ -149,3 +149,66 @@ export interface PostCreator {
   displayName?: string | null;
   username?: string | null;
 }
+
+/**
+ * Team names
+ * ==========
+ * Scammers copy the founder's name and photo onto a new account, DM members a
+ * story ("your profile is missing, it's a node issue") and send a
+ * "rectification" link that drains whatever wallet connects to it. These are
+ * the names only the team wears, with the wallet that owns each one. The API
+ * refuses new claims of them (backend common/util/staff-names; same list as dehubweb src/lib/impersonation.ts);
+ * this side warns about accounts that slipped in before that.
+ */
+const STAFF_NAMES: Array<{ names: string[]; owners: string[]; label: string }> = [
+  { label: 'Mal', names: ['mal', 'maldoteth', 'maldot', 'maleth'], owners: ['0x9324840523a5d17dd12a2f11a9472e5a199c1937'] },
+  { label: 'Riftn', names: ['dehub', 'riftn'], owners: ['0x06da979225262715ed57449d0573329a1e685140'] },
+];
+
+const ROLE_WORDS = [
+  'cofounder', 'founder', 'official', 'support', 'helpdesk', 'moderator', 'security',
+  'admin', 'team', 'staff', 'real', 'the', 'ceo', 'dev', 'mod', 'help', 'iam', 'its',
+  'eth', 'dot', 'dehub', 'riftn', 'app', 'hq',
+].map((w) => foldName(w)).sort((a, b) => b.length - a.length);
+
+/** Capital I and lowercase l look alike in most fonts: "MaI" is "Mal". */
+const foldIl = (value: string) => value.replace(/i/g, 'l');
+
+function nameCores(folded: string): string[] {
+  const out = new Set<string>([folded]);
+  let frontier = [folded];
+  for (let round = 0; round < 4 && frontier.length; round++) {
+    const next: string[] = [];
+    for (const value of frontier) {
+      for (const word of ROLE_WORDS) {
+        if (value.length > word.length && value.startsWith(word)) next.push(value.slice(word.length));
+        if (value.length > word.length && value.endsWith(word)) next.push(value.slice(0, -word.length));
+      }
+    }
+    frontier = next.filter((v) => !out.has(v));
+    frontier.forEach((v) => out.add(v));
+  }
+  return [...out];
+}
+
+/**
+ * Who this account is dressed up as, or null. Address is the identity: the
+ * owning wallet never gets flagged, whatever it calls itself.
+ */
+export function staffImpersonated(
+  user: { address?: string | null; displayName?: string | null; username?: string | null } | null | undefined,
+): string | null {
+  if (!user) return null;
+  const address = (user.address ?? '').toLowerCase();
+  for (const raw of [user.displayName, user.username]) {
+    if (!raw) continue;
+    const folded = foldName(raw);
+    if (!folded) continue;
+    const candidates = nameCores(folded).map(foldIl);
+    for (const entry of STAFF_NAMES) {
+      if (entry.owners.includes(address)) continue;
+      if (entry.names.some((n) => candidates.includes(foldIl(foldName(n))))) return entry.label;
+    }
+  }
+  return null;
+}

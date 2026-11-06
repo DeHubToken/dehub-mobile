@@ -16589,5 +16589,10 @@
     "dropcap": "Initiaal",
     "hint": "Zo zien je artikelen eruit in het raster op je profiel. Alleen jij kunt dit wijzigen.",
     "saveFailed": "Opslaan mislukt. Probeer het opnieuw."
+  },
+  "dmSafety": {
+    "notReal": "Dit is niet de echte {{name}}.",
+    "neverLink": "Het Riftn-team stuurt je nooit een link via DM om je profiel of wallet te repareren. Open geen links, koppel je wallet niet en onderteken niets. Blokkeer en meld dit account.",
+    "linkCaution": "Pas op met links. Riftn vraagt je nooit om je wallet te koppelen, iets te ondertekenen of je herstelzin te delen om je account te repareren."
   }
 }

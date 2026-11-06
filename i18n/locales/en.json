@@ -16198,4 +16198,10 @@
     "hint": "How your articles look on your profile grid. Only you can change this.",
     "saveFailed": "Couldn't save. Try again."
   }
+,
+  "dmSafety": {
+    "notReal": "This is not the real {{name}}.",
+    "neverLink": "The Riftn team will never DM you a link to fix your profile or wallet. Do not open links, connect your wallet or sign anything. Block and report this account.",
+    "linkCaution": "Careful with links. Riftn will never ask you to connect your wallet, sign, or share your seed phrase to fix your account."
+  }
 }
