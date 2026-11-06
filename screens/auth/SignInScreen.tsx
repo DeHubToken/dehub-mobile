@@ -954,7 +954,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
-              {t("loginStack.codeNote", "We email you a code, no password needed.")}{" "}
               <Trans
                 i18nKey="auth.legalLine"
                 components={{
