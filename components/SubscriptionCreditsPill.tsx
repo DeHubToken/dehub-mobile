@@ -8,6 +8,7 @@ import { SCREEN_HEADER_HEIGHT } from "./ScreenHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useSubscriptionCredits } from "../hooks/useSubscriptionCredits";
+import { useUsableWalletUsd } from "../hooks/useUsableUsd";
 import SubscriptionCreditsTopUpSheet from "./SubscriptionCreditsTopUpSheet";
 
 const usd = (value: number) =>
@@ -28,6 +29,7 @@ const SubscriptionCreditsPill: React.FC = () => {
   const [cardTop, setCardTop] = useState<number | null>(null);
   const [topUpOpen, setTopUpOpen] = useState(false);
   const { data } = useSubscriptionCredits(DIGITAL_PURCHASES_ENABLED);
+  const { data: walletUsd } = useUsableWalletUsd(DIGITAL_PURCHASES_ENABLED);
 
   if (!DIGITAL_PURCHASES_ENABLED || !data) return null;
   const total = Math.max(0, data.totalAddedUsd ?? 0);
@@ -49,14 +51,13 @@ const SubscriptionCreditsPill: React.FC = () => {
           onPress={openCard}
           activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel={`${t("credits.subscriptionTokens")}: ${data.tokens.toLocaleString()}, ≈ ${usd(data.usd)} USD`}
-          className="flex-row items-center rounded-full bg-white/10 border border-white/10 pl-1 pr-2.5 py-1"
+          accessibilityLabel={`${t("credits.subscriptionTokens")}: ≈ ${usd(data.usd + (walletUsd ?? 0))}`}
+          className="flex-row items-center rounded-full bg-white/10 border border-white/10 pl-1 pr-2.5 h-7"
         >
           <DhbCoin size={18} />
-          <View className="ml-1.5 items-end">
-            <Text className="text-xs font-semibold text-white">{data.tokens.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
-            <Text className="text-[9px] text-zinc-400">≈ {usd(data.usd)} USD</Text>
-          </View>
+          {/* One line: what can be spent here, in dollars — Studio balance,
+              DHB, USDT and USDC. */}
+          <Text className="ml-1.5 text-xs font-semibold text-white">≈ {usd(data.usd + (walletUsd ?? 0))}</Text>
         </TouchableOpacity>
       </View>
 

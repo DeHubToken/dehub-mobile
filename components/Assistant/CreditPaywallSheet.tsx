@@ -53,6 +53,23 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
 import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
+import { ethers } from 'ethers';
+import ERC20_ABI from '../../config/abis/erc20.json';
+import { buildContract, useWeb3Provider } from '../../hooks/use-web3';
+import { writeContractAA } from '../../libs/aa.write';
+import { useAuthActions } from '../../context/AuthContext';
+import {
+  claimCoinTopUp,
+  coinAmountFor,
+  coinKey,
+  fetchTopUpCoins,
+  readCoinBalances,
+  type TopUpCoin,
+} from '../../libs/coinTopUp';
+import CoinPayList from './CoinPayList';
+
+/** Prices are DHB at the peg: one DHB is $0.001. */
+const USD_PER_DHB = 0.001;
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
@@ -179,6 +196,43 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const needsTokens =
     !isWalletLoading && !unsupportedChain && !paidByCredits && priceDhb > 0 && walletDhb < priceDhb;
 
+  /* ── Not enough DHB: pay the same amount in USDT or USDC ─────────────── */
+  const { account, chainId: walletChainId, provider } = useWeb3Provider();
+  const { switchChain } = useAuthActions();
+  const coinPay = needsTokens && DIGITAL_PURCHASES_ENABLED;
+  const [coins, setCoins] = useState<TopUpCoin[]>([]);
+  const [coinBalances, setCoinBalances] = useState<Record<string, number | null>>({});
+  const [coinPick, setCoinPick] = useState<string | null>(null);
+  const [coinStage, setCoinStage] = useState('');
+  const coinUsd = Math.max(0.01, priceDhb * USD_PER_DHB - (creditsUsd || 0));
+  useEffect(() => {
+    if (!coinPay || !account) return;
+    let alive = true;
+    fetchTopUpCoins()
+      .then(async (list) => {
+        if (!alive) return;
+        setCoins(list);
+        const balances = await readCoinBalances(list, account);
+        if (!alive) return;
+        setCoinBalances(balances);
+        const need = Number(coinAmountFor(coinUsd));
+        const best = list.find((c) => (balances[coinKey(c)] ?? 0) >= need) || list[0];
+        if (best) setCoinPick((prev) => prev ?? coinKey(best));
+      })
+      .catch(() => undefined);
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coinPay, account]);
+  const pickedCoin = coins.find((c) => coinKey(c) === coinPick) || null;
+  // Switched as soon as a coin is picked: the provider only reflects the new
+  // chain after a render, so switching mid-payment would sign on the old one.
+  useEffect(() => {
+    if (pickedCoin && walletChainId && walletChainId !== pickedCoin.chainId) {
+      switchChain(pickedCoin.chainId).catch(() => undefined);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pickedCoin?.chainId]);
+
   /* ── Sheet animation ─────────────────────────────────────────────────── */
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
@@ -232,7 +286,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
   /* ── Confirm ─────────────────────────────────────────────────────────── */
 
-  const handleConfirm = useCallback(async () => {
+  const handleConfirm = useCallback(async (funded = false) => {
     if (priceDhb <= 0 || !model || !quoteRequest || isQuoting || quoteError) return;
 
     if (model.unavailableReason) {
@@ -244,10 +298,40 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
       return;
     }
 
-    if (needsTokens) {
-      onClose();
-      navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
-      return;
+    if (needsTokens && !funded) {
+      if (!coinPay || !pickedCoin) {
+        onClose();
+        navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
+        return;
+      }
+      if (!provider || !account) return;
+      if (walletChainId !== pickedCoin.chainId) {
+        switchChain(pickedCoin.chainId).catch((e: unknown) => toastError(e));
+        return;
+      }
+      setIsPaying(true);
+      try {
+        setCoinStage(_copy('coinPay.confirmInWallet', { defaultValue: 'Confirm in your wallet…' }));
+        const token = await buildContract(provider, ERC20_ABI, pickedCoin.address, true);
+        const tx = await writeContractAA(
+          token,
+          'transfer',
+          [pickedCoin.treasuryAddress, ethers.utils.parseUnits(coinAmountFor(coinUsd), pickedCoin.decimals)],
+          { context: 'send' },
+        );
+        if (!tx?.hash) throw new Error(t('subscriptions.noTxHash'));
+        setCoinStage(_copy('coinPay.arriving', { defaultValue: 'Payment on its way…' }));
+        await claimCoinTopUp(tx.hash, pickedCoin, account);
+      } catch (err) {
+        log.error('coin top-up failed:', err);
+        const message = err instanceof Error ? err.message : '';
+        if (!/reject|denied|cancel/i.test(message)) toastError(message || t('paywall.paymentFailed'));
+        setIsPaying(false);
+        setCoinStage('');
+        return;
+      }
+      setCoinStage('');
+      setIsPaying(false);
     }
 
     setIsPaying(true);
@@ -272,6 +356,13 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     model,
     unsupportedChain,
     needsTokens,
+    coinPay,
+    pickedCoin,
+    provider,
+    account,
+    walletChainId,
+    coinUsd,
+    switchChain,
     onConfirm,
     onClose,
     navigation,
@@ -284,12 +375,16 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     ? isBusy || !model
     : isQuoting || isWalletLoading || isBusy || isPaying || priceDhb <= 0 || !model;
 
-  const buttonLabel = isPaying
+  const buttonLabel = coinStage
+    ? coinStage
+    : isPaying
     ? t('paywall.paying')
     : isBusy
       ? t('paywall.generating')
       : freeAvailable
         ? t('paywall.generateFree', { count: freeImages.remaining })
+      : needsTokens && coinPay && pickedCoin
+        ? _copy('coinPay.payWith', { defaultValue: 'Pay with {{symbol}} and create', symbol: pickedCoin.symbol })
       : needsTokens
         ? t('paywall.buyDhb')
         : t('paywall.payAmount', { amount: formatDhb(priceDhb), action: confirmLabel });
@@ -452,7 +547,20 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               </View>
             )}
 
-            {needsTokens && !unsupportedChain && !isQuoting && (
+            {coinPay && !unsupportedChain && !isQuoting && (
+              <CoinPayList
+                coins={coins}
+                balances={coinBalances}
+                picked={coinPick}
+                onPick={setCoinPick}
+                usd={coinUsd}
+                priceDhb={priceDhb}
+                walletDhb={walletDhb}
+                disabled={isPaying}
+              />
+            )}
+
+            {needsTokens && !coinPay && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>{_copy("copy.27c7325ba6f7", { defaultValue: "This costs " })}{formatDhb(priceDhb)} <DhbCoin label={t('tip.tokensUnit')} />{_copy("copy.3d717322f7c9", { defaultValue: " and you hold " })}{formatDhb(walletDhb)}.
                 </Text>
@@ -478,7 +586,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             ) : (
             <TouchableOpacity
               style={[s.confirmBtn, confirmDisabled && s.confirmBtnDisabled]}
-              onPress={freeAvailable ? onConfirmFree : handleConfirm}
+              onPress={freeAvailable ? onConfirmFree : () => handleConfirm()}
               disabled={confirmDisabled}
               activeOpacity={0.8}
             >
