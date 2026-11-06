@@ -1668,7 +1668,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          className={edgeMedia ? "overflow-hidden" : "rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
@@ -1709,7 +1709,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       const revealW = edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH;
       const revealH = revealW * 0.75;
       return (
-        <View className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"} style={{ height: revealH }}>
+        <View className={edgeMedia ? "overflow-hidden" : "rounded-xl overflow-hidden"} style={{ height: revealH }}>
           <SmartImage source={{ uri: galleryImages[0] }} recyclingKey={galleryImages[0]} style={{ width: "100%", height: "100%" }} contentFit="cover" priority="high" />
           <UnlockReveal
             kind={revealKind}
@@ -1725,7 +1725,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handlePPVPress}
-          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          className={edgeMedia ? "overflow-hidden" : "rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
@@ -1754,7 +1754,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={handleSubscribePress}
-          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          className={edgeMedia ? "overflow-hidden" : "rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
@@ -1774,7 +1774,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return (
         <Pressable
           onPress={openHoldGate}
-          className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
+          className={edgeMedia ? "overflow-hidden" : "rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
           <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
@@ -1799,7 +1799,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
     if (postLayout === "comic" && galleryImages.length > 0) {
       return (
-        <View className={edgeMedia ? undefined : "mt-2"}>
+        <View>
           <ComicDeck
             images={galleryImages}
             captions={item.mediaCaptions}
@@ -1823,7 +1823,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           resetKey={postKey}
           onPress={() => handleImagePress(0)}
           onReaction={handleVideoTapReaction}
-          style={{ alignSelf: "stretch", marginTop: edgeMedia ? 0 : 8 }}
+          style={{ alignSelf: "stretch" }}
         >
           <ContainedFeedImage
             active={isVisible}
@@ -1856,7 +1856,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     );
 
     return (
-      <View className={edgeMedia ? undefined : "mt-2"}>
+      <View>
         {/* Inside Home's swipe pager the gallery wraps its own ScrollView in
             the scroll guard, so paging through photos wins over the page turn.
             Elsewhere (profile, search) the hook returns null. */}
@@ -1942,7 +1942,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // The grey backing is a plain view inside: as the pressable's own fill,
       // the theme pass that styles neutral pressables as buttons gave the
       // whole screen the theme's control frame, a border around the picture.
-      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 rounded-xl overflow-hidden mt-2"}
+      className={cinematicMedia ? "relative w-full overflow-hidden" : "relative w-full h-48 rounded-xl overflow-hidden"}
       style={cinematicMedia ? { height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
     >
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />
@@ -2100,7 +2100,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 firstFeedPost={cinematicFeed && topChromeInset > 0}
                 edgeToEdge={cinematicFeed}
                 postPage={stage}
-                flushTop={desk}
+                // No cover above it: the player is the media, so it starts at the
+                // same gap under the name row as photos and videos.
+                flushTop={desk || !hasImages}
               />
             )}
           </FeedAudioContent>
