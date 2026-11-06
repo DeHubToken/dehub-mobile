@@ -683,6 +683,7 @@ const LiveChatScreen: React.FC = () => {
     [highlightAndScroll],
   );
 
+  const replyingId = replyingTo?._id;
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<ListItem>) => {
       if (item.type === "date") {
@@ -706,6 +707,7 @@ const LiveChatScreen: React.FC = () => {
           onLongPress={handleLongPress}
           onReplyPress={handleReplyPress}
           highlighted={highlightedId === msg._id}
+          replying={replyingId === msg._id}
         />
       );
     },
@@ -717,6 +719,7 @@ const LiveChatScreen: React.FC = () => {
       handleLongPress,
       handleReplyPress,
       highlightedId,
+      replyingId,
     ]
   );
 

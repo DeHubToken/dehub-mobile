@@ -143,6 +143,14 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     recorder.startRecording();
   }, [recorder]);
 
+  // Reply puts the caret in the box with the keyboard up, straight away.
+  const replyId = replyingTo?._id;
+  useEffect(() => {
+    if (!replyId) return;
+    const id = setTimeout(() => inputRef.current?.focus(), 120);
+    return () => clearTimeout(id);
+  }, [replyId]);
+
   useEffect(() => {
     if (editingMessage) {
       setText.initialize(editingMessage.content || "");
@@ -245,6 +253,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     ? t("liveChat.banned")
     : cooldown
     ? t("liveChat.slowMode", { seconds: slowModeSeconds })
+    : replyingTo && !editingMessage
+    ? t("governance.discussion.writeReply")
     : t("communities.typeMessage");
 
   const canSubmit = (!!text.trim() || !!attachmentUri) && !attachmentBusy;
@@ -279,16 +289,24 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         </View>
       )}
 
+      {/* One slim line on the composer: an accent bar, Replying to <name>,
+          the quoted text, and X. The line itself stays outlined in the chat. */}
       {replyingTo && !editingMessage && !recorder.isRecording && !uploadingVoice && (
-        <View className="flex-row items-center px-4 py-2 bg-white/5 mx-3 mt-2 rounded-lg">
-          <View className="flex-1 mr-2">
-            <Text className="text-blue-400 text-[11px] font-medium">{_copy("copy.3d393bf19a86", { defaultValue: "Replying to " })}{replyingTo.sender?.displayName || replyingTo.sender?.username || _copy("copy.04f8996da763", { defaultValue: "user" })}
+        <View
+          className="flex-row items-center mx-3 mt-2.5 rounded-2xl"
+          style={{ paddingVertical: 8, paddingLeft: 10, paddingRight: 10, borderWidth: 1, borderColor: "rgba(244,244,245,0.14)", backgroundColor: "rgba(244,244,245,0.06)" }}
+        >
+          <View style={{ width: 3, alignSelf: "stretch", borderRadius: 2, backgroundColor: "rgba(244,244,245,0.75)", marginRight: 10 }} />
+          <Icon name="Reply" size={16} color={composerActiveColor} />
+          <View className="flex-1 mx-2.5">
+            <Text className="text-white text-[13px] font-semibold" numberOfLines={1}>
+              {_copy("copy.3d393bf19a86", { defaultValue: "Replying to " })}{replyingTo.sender?.displayName || replyingTo.sender?.username || _copy("copy.04f8996da763", { defaultValue: "user" })}
             </Text>
-            <Text className="text-white/40 text-xs" numberOfLines={1}>
+            <Text className="text-white/55 text-xs" numberOfLines={1}>
               {replyPreview}
             </Text>
           </View>
-          <TouchableOpacity onPress={onCancelReply} hitSlop={8}>
+          <TouchableOpacity onPress={onCancelReply} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.close")}>
             <Icon name="X" size={18} color="#A6A9AC" />
           </TouchableOpacity>
         </View>

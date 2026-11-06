@@ -39,6 +39,8 @@ export interface HoldTile {
   /** The one filled tile (Reply). */
   prime?: boolean;
   destructive?: boolean;
+  /** A wide pill on the row under the tiles (Pin, Ban, Delete), not a tile. */
+  secondary?: boolean;
 }
 
 export interface HoldReactionChip {
@@ -61,6 +63,8 @@ interface HoldSheetProps {
   onLift?: (px: number) => void;
   /** Window y the lifted row must stay below (top of a half-height sheet). Defaults to under the top bar. */
   liftTop?: number;
+  /** Draw the held row in a glowing card (live chat). Comments keep it bare. */
+  frame?: boolean;
 }
 
 const GAP = 12;
@@ -86,7 +90,9 @@ export function useHoldLift() {
   return { style, onLift, ref, top, measure };
 }
 
-export default function HoldSheet({ visible, layout, onClose, reactions, onReaction, onMore, tiles, onLift, liftTop }: HoldSheetProps) {
+export default function HoldSheet({ visible, layout, onClose, reactions, onReaction, onMore, tiles, onLift, liftTop, frame }: HoldSheetProps) {
+  // A row that could not be measured comes in as an empty box: treat it as unknown.
+  if (layout && !(layout.height > 0)) layout = null;
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -105,16 +111,20 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
     : isLight ? "#ffffff" : "#000000";
 
   const [sheetH, setSheetH] = useState(0);
+  // Where the sheet really sits, from its own layout: the window height can
+  // leave out the gesture bar on edge-to-edge Android, which put the sheet's
+  // top lower than the maths thought and let it cover the held line.
+  const [sheetY, setSheetY] = useState(0);
 
   // How far the list slides up so the held row clears the sheet, never past the top bar.
   const lift = useMemo(() => {
     if (!visible || !layout || !sheetH || !onLift) return 0;
-    const sheetTop = SCREEN_HEIGHT - insets.bottom - SIDE - sheetH;
+    const sheetTop = sheetY > 0 ? sheetY : SCREEN_HEIGHT - insets.bottom - SIDE - sheetH;
     const overlap = layout.y + layout.height - (sheetTop - GAP);
     if (overlap <= 0) return 0;
     const headroom = layout.y - Math.max(insets.top + 56, (liftTop ?? 0) + GAP);
     return Math.max(0, Math.min(overlap, headroom));
-  }, [visible, layout, sheetH, onLift, liftTop, SCREEN_HEIGHT, insets.bottom, insets.top]);
+  }, [visible, layout, sheetH, sheetY, onLift, liftTop, SCREEN_HEIGHT, insets.bottom, insets.top]);
 
   useEffect(() => {
     onLift?.(visible ? lift : 0);
@@ -124,12 +134,14 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   liftRef.current = onLift;
   useEffect(() => () => liftRef.current?.(0), []);
   useEffect(() => {
-    if (!visible) setSheetH(0);
+    if (!visible) { setSheetH(0); setSheetY(0); }
   }, [visible]);
 
   if (!visible) return null;
 
-  const cols = Math.min(Math.max(tiles.length, 1), 4);
+  const mainTiles = tiles.filter((tile) => !tile.secondary);
+  const sideTiles = tiles.filter((tile) => tile.secondary);
+  const cols = Math.min(Math.max(mainTiles.length, 1), 4);
   const dim = "rgba(0,0,0,0.55)";
   const rowTop = layout ? layout.y - lift : 0;
   const rowH = layout?.height ?? 0;
@@ -148,12 +160,26 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
         ) : (
           <Animated.View entering={FadeIn.duration(180)} exiting={FadeOut.duration(120)} style={{ flex: 1, backgroundColor: dim }} />
         )}
+        {/* The held line glows in place: a soft card around the real row. */}
+        {frame && layout ? (
+          <Animated.View
+            pointerEvents="none"
+            entering={FadeIn.duration(180)}
+            exiting={FadeOut.duration(120)}
+            style={{
+              position: "absolute", left: SIDE, right: SIDE, top: rowTop - 2, height: rowH + 4,
+              borderRadius: 18, borderWidth: 1, borderColor: rgba(ink, 0.16),
+              backgroundColor: rgba(ink, 0.06),
+              shadowColor: "#ffffff", shadowOpacity: 0.18, shadowRadius: 14, shadowOffset: { width: 0, height: 0 },
+            }}
+          />
+        ) : null}
       </Pressable>
 
       <Animated.View
         entering={SlideInDown.duration(240)}
         exiting={SlideOutDown.duration(180)}
-        onLayout={(e) => setSheetH(e.nativeEvent.layout.height)}
+        onLayout={(e) => { setSheetH(e.nativeEvent.layout.height); setSheetY(e.nativeEvent.layout.y); }}
         style={{ position: "absolute", left: SIDE, right: SIDE, bottom: insets.bottom + SIDE }}
       >
         <Pressable>
@@ -193,9 +219,9 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
               </View>
             )}
 
-            {tiles.length > 0 && (
+            {mainTiles.length > 0 && (
               <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -4, paddingTop: reactions && onReaction ? 10 : 0 }}>
-                {tiles.map((tile) => {
+                {mainTiles.map((tile) => {
                   const fg = tile.prime ? primeInk : tile.destructive ? "#f87171" : inkColor;
                   return (
                     <View key={tile.key} style={{ width: `${100 / cols}%`, padding: 4 }}>
@@ -216,6 +242,29 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
                       >
                         <Icon name={tile.icon} size={20} color={fg} />
                         <Text numberOfLines={1} style={{ color: fg, fontSize: 12, fontWeight: "700" }}>{tile.label}</Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
+              </View>
+            )}
+
+            {/* Pin, Ban, Delete: wide pills under the tiles, as in the picked design. */}
+            {sideTiles.length > 0 && (
+              <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -4, paddingTop: 4 }}>
+                {sideTiles.map((tile) => {
+                  const fg = tile.destructive ? "#f87171" : inkColor;
+                  return (
+                    <View key={tile.key} style={{ width: sideTiles.length === 1 ? "100%" : "50%", padding: 4 }}>
+                      <TouchableOpacity
+                        onPress={tile.onPress}
+                        activeOpacity={0.7}
+                        accessibilityRole="button"
+                        accessibilityLabel={tile.label}
+                        style={{ height: 44, borderRadius: 14, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: chipFill }}
+                      >
+                        <Icon name={tile.icon} size={17} color={fg} />
+                        <Text numberOfLines={1} style={{ color: fg, fontSize: 13, fontWeight: "600" }}>{tile.label}</Text>
                       </TouchableOpacity>
                     </View>
                   );

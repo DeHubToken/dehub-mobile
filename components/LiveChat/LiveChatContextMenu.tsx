@@ -133,6 +133,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     key: "pin",
     icon: message.isPinned ? "PinOff" : "Pin",
     label: message.isPinned ? t("liveChat.unpinMessage") : t("liveChat.pinMessage"),
+    secondary: true,
     onPress: () => run(() => onPin(message), 100),
   });
   if (isModerator && !isMe && (isSenderBanned ? onUnban : onBan)) tiles.push({
@@ -140,9 +141,10 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     icon: isSenderBanned ? "ShieldCheck" : "Ban",
     label: isSenderBanned ? t("publicChat.unbanUser") : t("publicChat.banUser"),
     destructive: !isSenderBanned,
+    secondary: true,
     onPress: () => run(() => (isSenderBanned ? onUnban : onBan)?.(message), 100),
   });
-  if (canDelete && onDelete) tiles.push({ key: "delete", icon: "Trash2", label: t("common.delete"), destructive: true, onPress: () => run(() => onDelete(message), 100) });
+  if (canDelete && onDelete) tiles.push({ key: "delete", icon: "Trash2", label: t("common.delete"), destructive: true, secondary: true, onPress: () => run(() => onDelete(message), 100) });
 
   const reactions: HoldReactionChip[] | null = onReact
     ? REACTION_EMOJIS.map((emoji) => ({
@@ -168,6 +170,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
         }}
         tiles={tiles}
         onLift={onLift}
+        frame
       />
       {moreSheet}
     </>
