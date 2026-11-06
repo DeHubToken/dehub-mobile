@@ -1,9 +1,10 @@
 /**
- * Post video edits: mirror, quarter turns, and the photo studio's look +
+ * Post video edits: mirror, quarter turns, a crop, and the photo studio's look +
  * adjust dials. The app previews them; the server bakes them into the video
  * (user_mint `videoEdits`). Same as dehubweb `features/post/lib/video-edits.ts`.
  */
 import { DEFAULT_ADJUST, studioColorMatrix, type StudioAdjust } from "./imageFilters";
+import { cropPayload, type CropRatioId, type VideoCropRect } from "./video-crop";
 
 export interface PostVideoEdits {
   mirror?: boolean;
@@ -12,6 +13,10 @@ export interface PostVideoEdits {
   /** Look strength, 0..100. */
   strength?: number;
   adjust?: StudioAdjust;
+  /** The part of the turned, mirrored frame to keep. */
+  crop?: VideoCropRect;
+  /** The shape picked for the crop box. */
+  cropRatio?: CropRatioId;
 }
 
 export interface VideoEditsPayload {
@@ -19,6 +24,7 @@ export interface VideoEditsPayload {
   rotate?: 90 | 180 | 270;
   matrix?: number[];
   vignette?: number;
+  crop?: VideoCropRect;
 }
 
 export function videoEditsMatrix(e?: PostVideoEdits | null): number[] | null {
@@ -36,6 +42,8 @@ export function videoEditsPayload(e?: PostVideoEdits | null): VideoEditsPayload 
   if (matrix) out.matrix = matrix.map((v) => Math.round(v * 10000) / 10000);
   const vignette = e.adjust?.vignette ?? 0;
   if (vignette > 0) out.vignette = vignette;
+  const crop = cropPayload(e.crop);
+  if (crop) out.crop = crop;
   return Object.keys(out).length ? out : null;
 }
 

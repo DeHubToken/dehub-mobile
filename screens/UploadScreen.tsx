@@ -111,7 +111,7 @@ import GlassModal from "../components/ui/GlassModal";
 import FeedCard from "../components/Home/FeedCard";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import { type VideoTrim } from "../components/Upload/VideoTrimSheet";
-import DmVideoStudio, { type StudioColour } from "../components/DM/DmVideoStudio";
+import DmVideoStudio, { type StudioColour, type VideoCrop } from "../components/DM/DmVideoStudio";
 import { videoEditsPayload, postDestructShort, type PostVideoEdits } from "../libs/post-video-edits";
 import type { DmVideoOptions } from "../libs/dm-video-options";
 import { useVideoPreviewBox } from "../components/Upload/VideoCoverBox";
@@ -494,6 +494,7 @@ export default function UploadScreen() {
   const [videoDestruct, setVideoDestruct] = useState<number | null>(null);
   // While the edit screen is open.
   const [videoColourDraft, setVideoColourDraft] = useState<StudioColour>({});
+  const [videoCropDraft, setVideoCropDraft] = useState<VideoCrop>({});
   const [videoDestructDraft, setVideoDestructDraft] = useState<number | null>(null);
   const [videoAltDraft, setVideoAltDraft] = useState("");
   const [coverPictureDraft, setCoverPictureDraft] = useState<string | null>(null);
@@ -505,6 +506,7 @@ export default function UploadScreen() {
     setVideoEdits(null);
     setVideoDestruct(null);
     setVideoColourDraft({});
+    setVideoCropDraft({});
     setVideoDestructDraft(null);
     setVideoAltDraft("");
     setCoverPictureDraft(null);
@@ -1895,7 +1897,7 @@ export default function UploadScreen() {
   }, []);
 
   // Sized from the plain frame: a turned cover must not turn the preview box.
-  const videoBox = useVideoPreviewBox(rawThumbRef.current ?? thumbnailUri);
+  const videoBox = useVideoPreviewBox(rawThumbRef.current ?? thumbnailUri, videoEdits);
   useEffect(() => {
     if (thumbnailUri && !bakedThumbs.current.has(thumbnailUri)) rawThumbRef.current = thumbnailUri;
   }, [thumbnailUri]);
@@ -3022,8 +3024,8 @@ export default function UploadScreen() {
               <View className="mt-3 rounded-xl overflow-hidden border border-theme-neutrals-700 relative self-start" style={videoBox.style}>
                 <VideoView
                   player={player}
-                  style={{ width: "100%", height: "100%", backgroundColor: "#111" }}
-                  contentFit="contain"
+                  style={videoBox.video ?? { width: "100%", height: "100%", backgroundColor: "#111" }}
+                  contentFit={videoBox.video ? "cover" : "contain"}
                   nativeControls={false}
                 />
                 {attachedSound && (
@@ -3093,6 +3095,7 @@ export default function UploadScreen() {
                     player.pause();
                     setVideoEditOpts({ trimStart: videoTrim?.start, trimEnd: videoTrim?.end, coverAt: videoCoverAt, mirror: videoEdits?.mirror, rotate: videoEdits?.rotate || undefined });
                     setVideoColourDraft({ look: videoEdits?.look, strength: videoEdits?.strength, adjust: videoEdits?.adjust });
+                    setVideoCropDraft({ rect: videoEdits?.crop, ratio: videoEdits?.cropRatio });
                     setVideoDestructDraft(videoDestruct);
                     setVideoAltDraft(pickedVideo.description ?? "");
                     setCoverPictureDraft(null);
@@ -4343,7 +4346,9 @@ export default function UploadScreen() {
             destruct={null}
             onDestructChange={() => undefined}
             allowTimer={false}
-            onlyTabs={["cover", "trim", "mirror", "rotate", "looks", "adjust", "expire", "alt"]}
+            onlyTabs={["cover", "trim", "crop", "looks", "adjust", "expire", "alt"]}
+            crop={videoCropDraft}
+            onCropChange={setVideoCropDraft}
             initialTab="cover"
             colour={videoColourDraft}
             onColourChange={setVideoColourDraft}
@@ -4378,6 +4383,8 @@ export default function UploadScreen() {
                 look: videoColourDraft.look && videoColourDraft.look !== "normal" ? videoColourDraft.look : undefined,
                 strength: videoColourDraft.strength,
                 adjust: videoColourDraft.adjust,
+                crop: videoCropDraft.rect,
+                cropRatio: videoCropDraft.rect ? videoCropDraft.ratio : undefined,
               };
               const keep = videoEditsPayload(edits) ? edits : null;
               setVideoEdits(keep);
@@ -4394,7 +4401,7 @@ export default function UploadScreen() {
                 const e = keep ?? {};
                 void studioPaintLib.bakeStudio(raw, {
                   ...base,
-                  crop: { ...base.crop, quarter: (e.rotate ?? 0) / 90, flipX: !!e.mirror },
+                  crop: { ...base.crop, quarter: (e.rotate ?? 0) / 90, flipX: !!e.mirror, ...(e.crop ? { ratio: "free" as const, rect: e.crop } : null) },
                   lookId: e.look ?? "normal",
                   strength: e.strength ?? 100,
                   adjust: e.adjust ?? base.adjust,
