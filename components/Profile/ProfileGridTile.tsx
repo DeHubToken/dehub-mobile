@@ -14,6 +14,8 @@ import { isStreamLive } from "../../libs/live-status";
 import { useEngagement } from "../../libs/engagementCache";
 import { POST_BG_INK, PostBgLayer, useProfilePostBg } from "./PostBackground";
 import { usePostBgHoldProps } from "./PostBgPicker";
+import { ArticleTileFace, openArticleTilePicker, useProfileArticleTile } from "./ArticleTile";
+import { articleReadMinutes } from "../../libs/articleTile";
 
 /**
  * One cell of the profile All grid: every post type side by side, each with
@@ -121,7 +123,26 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const postBg = kind === "text" && !(item as any).isRepost ? profileBg : null;
   const ink = postBg ? POST_BG_INK[postBg.tone].ink : lightPoster ? "#17161B" : "#FFFFFF";
   const sub = postBg ? POST_BG_INK[postBg.tone].sub : lightPoster ? "rgba(23,22,27,0.62)" : "rgba(255,255,255,0.6)";
-  const holdProps = usePostBgHoldProps(!!ownerHold && kind === "text" && !(item as any).isRepost);
+  const postBgHold = usePostBgHoldProps(!!ownerHold && kind === "text" && !(item as any).isRepost);
+  // Articles: the owner's chosen look (customs.articleTile); holding one of
+  // your own opens the picker, like holding a text post opens backdrops.
+  const articleLook = useProfileArticleTile();
+  const articleSample = useMemo(() => ({
+    cover: cover || undefined,
+    title: plainText(item.title || item.name || item.description),
+    minutes: articleReadMinutes(item.articleBody),
+    views: views ? formatCompactNumber(views) : undefined,
+  }), [cover, item.title, item.name, item.description, item.articleBody, views]);
+  const ownArticle = !!ownerHold && kind === "article" && !(item as any).isRepost;
+  const holdProps = ownArticle
+    ? {
+        onLongPress: () => openArticleTilePicker({
+          ...articleSample,
+          cover: item.articleImageUrl ? buildFeedImageUrls([item.articleImageUrl], 640)[0] : articleSample.cover,
+        }),
+        delayLongPress: 450,
+      }
+    : postBgHold;
 
   const pinChip = pinned ? (
     <View style={[styles.chip, { backgroundColor: solid }]}>
@@ -140,16 +161,8 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
         {postBg && <PostBgLayer bg={postBg} />}
         {kind === "article" ? (
           <>
-            {cover ? (
-              <Image source={{ uri: cover }} style={styles.articleImg} contentFit="cover" recyclingKey={id} transition={0} />
-            ) : (
-              <View style={[styles.articleImg, styles.center]}><Icon name="Blog" size={22} color={sub} /></View>
-            )}
-            <View style={styles.articleBody}>
-              <Text numberOfLines={3} style={[styles.articleTitle, { color: ink }]}>{words}</Text>
-              <Text style={[styles.meta, { color: sub }]}>{t("profile.articleShort", "Article")}</Text>
-            </View>
-            <Badge icon="Blog" poster light={lightPoster && !postBg} />
+            <ArticleTileFace look={articleLook} {...articleSample} />
+            {articleLook === "cover" && <Badge icon="Blog" />}
           </>
         ) : (
           <View style={styles.textInner}>
@@ -280,9 +293,6 @@ const styles = StyleSheet.create({
   stats: { marginTop: "auto", flexDirection: "row", gap: 8 },
   stat: { flexDirection: "row", alignItems: "center", gap: 3 },
   meta: { fontSize: 10, fontWeight: "600" },
-  articleImg: { width: "100%", height: "52%" },
-  articleBody: { flex: 1, paddingHorizontal: 7, paddingTop: 5, paddingBottom: 6, gap: 2 },
-  articleTitle: { fontSize: 11.5, lineHeight: 14, fontWeight: "700" },
   audioBg: { backgroundColor: "#111111" },
   audioDim: { backgroundColor: "rgba(0,0,0,0.42)" },
   audioCoverWrap: { position: "absolute", top: "18%", left: 0, right: 0, alignItems: "center" },

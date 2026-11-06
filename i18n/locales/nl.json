@@ -2990,7 +2990,9 @@
     "tabPinned": "Vastgepind",
     "lockedPost": "Vergrendelde paal",
     "viewGrid": "Rasterweergave",
-    "viewList": "Lijstweergave"
+    "viewList": "Lijstweergave",
+    "articleMinRead": "{{count}} min lezen",
+    "articleViews": "{{views}} weergaven"
   },
   "tv": {
     "title": "TV",
@@ -16580,5 +16582,12 @@
     "openPost": "Bericht openen",
     "readArticle": "Lees artikel",
     "openToUnlock": "Openen om te ontgrendelen"
+  },
+  "articleTile": {
+    "title": "Artikeltegels",
+    "cover": "Omslag",
+    "dropcap": "Initiaal",
+    "hint": "Zo zien je artikelen eruit in het raster op je profiel. Alleen jij kunt dit wijzigen.",
+    "saveFailed": "Opslaan mislukt. Probeer het opnieuw."
   }
 }

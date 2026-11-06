@@ -2802,7 +2802,9 @@
     "tabPinned": "Sabitlendi",
     "lockedPost": "Kilitli gönderi",
     "viewGrid": "Izgara görünümü",
-    "viewList": "Liste görünümü"
+    "viewList": "Liste görünümü",
+    "articleMinRead": "{{count}} dk okuma",
+    "articleViews": "{{views}} görüntülenme"
   },
   "tv": {
     "title": "TV",
@@ -16328,5 +16330,12 @@
     "openPost": "Gönderiyi aç",
     "readArticle": "Makaleyi okuyun",
     "openToUnlock": "Kilidi açmak için aç"
+  },
+  "articleTile": {
+    "title": "Makale kutucukları",
+    "cover": "Kapak",
+    "dropcap": "Büyük ilk harf",
+    "hint": "Makalelerinin profil ızgarasında nasıl göründüğü. Bunu yalnızca sen değiştirebilirsin.",
+    "saveFailed": "Kaydedilemedi. Tekrar dene."
   }
 }

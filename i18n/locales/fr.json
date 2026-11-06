@@ -2802,7 +2802,9 @@
     "tabPinned": "Épinglé",
     "lockedPost": "Poste verrouillé",
     "viewGrid": "Vue grille",
-    "viewList": "Vue en liste"
+    "viewList": "Vue en liste",
+    "articleMinRead": "{{count}} min de lecture",
+    "articleViews": "{{views}} vues"
   },
   "tv": {
     "title": "Télévision",
@@ -16333,5 +16335,12 @@
     "openPost": "Ouvrir l'article",
     "readArticle": "Lire l'article",
     "openToUnlock": "Ouvrir pour déverrouiller"
+  },
+  "articleTile": {
+    "title": "Vignettes d’articles",
+    "cover": "Couverture",
+    "dropcap": "Lettrine",
+    "hint": "L’apparence de tes articles dans la grille de ton profil. Toi seul peux la changer.",
+    "saveFailed": "Échec de l’enregistrement. Réessaie."
   }
 }
