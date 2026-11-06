@@ -2,8 +2,9 @@
    semantic colours and disabled opacity independent of the text colour. */
 const WHITE = Object.freeze({ color: "#FFFFFF" });
 const cache = new WeakMap();
-// Matches libs/iconFont.ts ICON_FONT_FAMILY (this file loads before TS modules).
-const ICON_FONT_FAMILY = "LucideIcons";
+// Matches libs/iconFont.ts ICON_FONT_FAMILY and CUT_ICON_FONT_FAMILY (this
+// file loads before TS modules).
+const ICON_FONT_FAMILIES = new Set(["LucideIcons", "CutIcons"]);
 const COOL_NEUTRALS = new Set(["#919ca9", "#6b7280", "#9ca3af", "#94a3b8", "#64748b", "#cbd5e1"]);
 let native;
 // System Light turns greys around (./tone.js); muted grey reads fine on white.
@@ -45,7 +46,7 @@ function readableStyle(style) {
   const lightFill = /^(?:#fff(?:fff)?|#f[\da-f]{5}|white)$/i.test(found.backgroundColor || "");
   // An icon drawn from the icon font (Android) is an icon, not copy: it keeps
   // the grey it was given, like the same icon drawn as an SVG does.
-  const iconGlyph = found.fontFamily === ICON_FONT_FAMILY;
+  const iconGlyph = ICON_FONT_FAMILIES.has(found.fontFamily);
   const out = !lightFill && !iconGlyph && isMutedNeutral(found.color) ? [style, WHITE] : style;
   cache.set(style, out);
   return out;

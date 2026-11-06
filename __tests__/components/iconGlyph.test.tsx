@@ -27,7 +27,14 @@ jest.mock("react-native-reanimated", () => ({
 jest.mock("@react-native-masked-view/masked-view", () => "MaskedView");
 jest.mock("expo-linear-gradient", () => ({ LinearGradient: "LinearGradient" }));
 jest.mock("../../components/ui/GlassIndicator", () => ({ __esModule: true, default: "GlassIndicator", GLASS_SHADOW: {} }));
-jest.mock("../../libs/iconFont", () => ({ ICON_FONT_FAMILY: "LucideIcons", isIconFontReady: () => true }));
+// The cut font is off unless a test turns it on.
+let mockCutFontReady = false;
+jest.mock("../../libs/iconFont", () => ({
+  ICON_FONT_FAMILY: "LucideIcons",
+  CUT_ICON_FONT_FAMILY: "CutIcons",
+  isIconFontReady: () => true,
+  isCutIconFontReady: () => mockCutFontReady,
+}));
 
 /** Every Text node's string children, and every node type, in a rendered tree. */
 function walk(node: any, out = { texts: [] as string[], types: [] as string[] }) {
@@ -105,5 +112,43 @@ describe("Icon glyphs on Android", () => {
       expect(tree.props.viewBox).toBe("0 0 32 32");
       view.unmount();
     }
+  });
+
+  describe("with the cut icon font loaded", () => {
+    const { cutIconGlyphs } = require("../../components/ui/cutIconGlyphs");
+    beforeEach(() => { mockCutFontReady = true; });
+    afterEach(() => { mockCutFontReady = false; });
+
+    it("draws a feed card's cut icons as one CutIcons glyph each", () => {
+      for (const name of ["ThumbsUp", "ThumbsDown", "MessageSquare", "Share2", "Gem", "Bookmark", "Info", "Zap", "EllipsisVertical", "TimeAgo", "ChartColumn", "Lock"]) {
+        const tree = render(<Icon name={name} size={20} color="#a1a1aa" />).toJSON() as any;
+        expect(tree.type).toBe("Text");
+        expect(tree.children).toEqual([cutIconGlyphs[name].o]);
+        expect(tree.props.style).toMatchObject({ fontFamily: "CutIcons", width: 20, height: 20, color: "#a1a1aa" });
+      }
+    });
+
+    it("draws an icon filled with its own colour as the filled glyph", () => {
+      const tree = render(<Icon name="ThumbsUp" size={20} color="#F2F2F2" fill="#f2f2f2" />).toJSON() as any;
+      expect(tree.type).toBe("Text");
+      expect(tree.children).toEqual([cutIconGlyphs.ThumbsUp.f]);
+    });
+
+    it("keeps two-tone, other-stroke, masked and gradient cut icons off the font", () => {
+      for (const props of [{ name: "Gem", fill: "#123456", color: "#fff" }, { name: "Gem", strokeWidth: 1.8 }, { name: "EyeOff" }]) {
+        const { types } = walk(render(<Icon size={20} {...(props as any)} />).toJSON());
+        expect(types).toContain("Svg");
+        expect(types).not.toContain("Text");
+      }
+      const { types } = walk(render(<Icon name="ThumbsUp" size={20} gradient={["#000", "#fff"]} />).toJSON());
+      expect(types).toContain("MaskedView");
+      expect(types).not.toContain("Text");
+    });
+
+    it("keeps a pressable cut icon's button and draws the glyph inside it", () => {
+      const { texts, types } = walk(render(<Icon name="Bookmark" size={20} onPress={jest.fn()} accessibilityLabel="Save" />).toJSON());
+      expect(texts).toEqual([cutIconGlyphs.Bookmark.o]);
+      expect(types).not.toContain("Svg");
+    });
   });
 });

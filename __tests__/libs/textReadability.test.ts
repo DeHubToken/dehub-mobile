@@ -38,3 +38,8 @@ it('leaves icon-font glyphs at the grey they were given', () => {
   const props = { style: { fontFamily: 'LucideIcons', color: '#71717A', fontSize: 20 } };
   expect(readableTextProps(Text, props)).toBe(props);
 });
+
+it('leaves cut icon glyphs at the grey they were given', () => {
+  const props = { style: { fontFamily: 'CutIcons', color: '#71717A', fontSize: 20 } };
+  expect(readableTextProps(Text, props)).toBe(props);
+});

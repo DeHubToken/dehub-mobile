@@ -27,7 +27,8 @@ import { iconRegistry, type IconName as RegistryIconName } from "./iconRegistry"
 import { getCutIcon, type CutIconName } from "./cut-icons";
 import { iconPaths } from "./iconPaths";
 import { iconGlyphs } from "./iconGlyphs";
-import { ICON_FONT_FAMILY, isIconFontReady } from "../../libs/iconFont";
+import { cutIconGlyphs } from "./cutIconGlyphs";
+import { CUT_ICON_FONT_FAMILY, ICON_FONT_FAMILY, isCutIconFontReady, isIconFontReady } from "../../libs/iconFont";
 import Svg, { Path } from "react-native-svg";
 
 export type IconName = RegistryIconName | CutIconName;
@@ -56,23 +57,38 @@ const LONG_PRESS_DELAY = 400;
 // cuff line), so a fill over the merged path paints what per-shape fills do.
 const FILL_SAFE_MERGED = new Set<string>(["ThumbsUp", "ThumbsDown"]);
 
+type Glyph = { char: string; family: string };
+
 /**
- * The icon's glyph in lucide's font, when the font can draw it exactly: its
- * own stroke (2), unfilled, no gradient. Android only — there every SvgView is
- * rasterised in software into its own bitmap; iOS draws paths on the GPU.
+ * The icon's glyph in an icon font, when the font can draw it exactly. Android
+ * only — there every SvgView is rasterised in software into its own bitmap;
+ * iOS draws paths on the GPU.
+ *
+ * Lucide icons: their own stroke (2), unfilled, no gradient. Cut icons (most
+ * of a feed card): their default stroke, either unfilled or filled with their
+ * own colour, which is how the action bar draws a liked thumb or a saved
+ * bookmark. Any other stroke or fill keeps the SVG.
  */
-function glyphFor(name: IconName, strokeWidth: number, fill?: string, gradient?: string[]) {
-  if (getCutIcon(name)) return undefined;
+function glyphFor(name: IconName, strokeWidth: number, color: string, fill?: string, gradient?: string[]): Glyph | undefined {
   if (Platform.OS !== "android" || strokeWidth !== 2) return undefined;
-  if ((fill && fill !== "none") || (gradient && gradient.length >= 2)) return undefined;
-  return isIconFontReady() ? iconGlyphs[name as RegistryIconName] : undefined;
+  if (gradient && gradient.length >= 2) return undefined;
+  const unfilled = !fill || fill === "none";
+  if (getCutIcon(name)) {
+    if (!isCutIconFontReady()) return undefined;
+    const cut = cutIconGlyphs[name];
+    const char = !cut ? undefined : unfilled ? cut.o : fill.toLowerCase() === color.toLowerCase() ? cut.f : undefined;
+    return char ? { char, family: CUT_ICON_FONT_FAMILY } : undefined;
+  }
+  if (!unfilled || !isIconFontReady()) return undefined;
+  const char = iconGlyphs[name as RegistryIconName];
+  return char ? { char, family: ICON_FONT_FAMILY } : undefined;
 }
 
-/** One style per size and colour, so a glyph's props stay referentially stable. */
+/** One style per font, size and colour, so a glyph's props stay referentially stable. */
 const glyphStyles = new Map<string, TextStyle>();
 
-function glyphStyle(size: number, color: string): TextStyle {
-  const key = `${size}|${color}`;
+function glyphStyle(family: string, size: number, color: string): TextStyle {
+  const key = `${family}|${size}|${color}`;
   let style = glyphStyles.get(key);
   if (!style) {
     // Android rounds a font size up to whole pixels. Aiming just under the
@@ -80,14 +96,14 @@ function glyphStyle(size: number, color: string): TextStyle {
     const ratio = PixelRatio.get();
     const fontSize = (Math.round(size * ratio) - 0.01) / ratio;
     style = {
-      fontFamily: ICON_FONT_FAMILY,
+      fontFamily: family,
       // Registered for the normal face only; any other weight falls back to a
       // system font with no such glyph.
       fontWeight: "normal",
       fontStyle: "normal",
       fontSize,
-      // The font's em is its whole line (ascent 1000, descent 0), so a line
-      // height equal to the size puts lucide's 24-unit grid on the box 1:1.
+      // Each font's em is its whole line (ascent 1000, descent 0), so a line
+      // height equal to the size puts the artwork's grid on the box 1:1.
       lineHeight: fontSize,
       includeFontPadding: false,
       textAlign: "center",
@@ -101,22 +117,22 @@ function glyphStyle(size: number, color: string): TextStyle {
   return style;
 }
 
-function renderGlyph(glyph: string, size: number, color: string) {
+function renderGlyph(glyph: Glyph, size: number, color: string) {
   return (
     <Text
       cssInterop={false}
       allowFontScaling={false}
       accessible={false}
       importantForAccessibility="no"
-      style={glyphStyle(size, color)}
+      style={glyphStyle(glyph.family, size, color)}
     >
-      {glyph}
+      {glyph.char}
     </Text>
   );
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-  const glyph = glyphFor(props.name, props.strokeWidth ?? 2, props.fill, props.gradient);
+  const glyph = glyphFor(props.name, props.strokeWidth ?? 2, props.color ?? colors.foreground, props.fill, props.gradient);
   // A bare icon, which is most of a feed card, is one Text and runs no hooks.
   if (glyph && !props.glass && !props.tooltip && !props.onPress && !props.onLongPress) {
     return renderGlyph(glyph, props.size ?? 24, props.color ?? colors.foreground);
@@ -124,7 +140,7 @@ const Icon: React.FC<IconProps> = (props) => {
   return <IconWithChrome {...props} glyph={glyph} />;
 };
 
-const IconWithChrome: React.FC<IconProps & { glyph?: string }> = ({
+const IconWithChrome: React.FC<IconProps & { glyph?: Glyph }> = ({
   name,
   size = 24,
   color = colors.foreground,
