@@ -17,6 +17,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId } from "../../config/constants";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
+import LoginFormSkeleton from "../../components/auth/LoginFormSkeleton";
 import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
 import LoginShortsStack from "../../components/auth/LoginShortsStack";
 import WalletSetupScreen, {
@@ -156,6 +157,18 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     onSettleOpen: useCallback(() => {}, []),
     grabZone: 1,
   });
+
+  // Opened as the Android sheet from "Log in": the first frame is the sheet
+  // with the options' skeleton, so the slide (on the UI thread) starts right
+  // away; the real options and the closed wallet/legacy sheets are built a
+  // frame later, while it is already moving. Building them inside the tap is
+  // what made "Log in" feel late.
+  const [built, setBuilt] = useState(!asSheet);
+  useEffect(() => {
+    if (built) return;
+    const id = requestAnimationFrame(() => setBuilt(true));
+    return () => cancelAnimationFrame(id);
+  }, [built]);
 
   // Track if we've already handled navigation for this sign-in attempt
   const hasNavigatedRef = useRef(false);
@@ -858,7 +871,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               are all live. */}
           {authStep === "main" ? (
             <View onLayout={(event) => setLoginFormHeight(event.nativeEvent.layout.height)}>
-            <SocialLoginIcons
+            {!built ? <LoginFormSkeleton /> : <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onTelegram={handleTelegramLogin}
@@ -874,7 +887,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               disabled={isLoading}
               onFieldExpand={scrollIntoView}
               layout="stack"
-            />
+            />}
             </View>
           ) : authStep === "email-code" ? (
             <EmailCodeEntry
@@ -897,7 +910,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           )}
 
 
-          <WalletSetupScreen
+          {built && <WalletSetupScreen
             visible={!!walletSetupRequest}
             request={walletSetupRequest}
             onClose={() => setWalletSetupRequest(null)}
@@ -907,9 +920,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             onCreateConfirmed={handleWalletCreateConfirmed}
             onSwitchAccount={handleWalletSwitchAccount}
             onResetWallet={handleResetWallet}
-          />
+          />}
 
-          <LegacyAccountWarningModal
+          {built && <LegacyAccountWarningModal
             visible={!!legacyAccounts}
             accounts={legacyAccounts ?? []}
             email={legacyEmail}
@@ -932,7 +945,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               setLegacyAccounts(null);
               setPendingCreateUserId(null);
             }}
-          />
+          />}
 
 
           {/* Terms and Privacy: snug at the bottom on the main step so the

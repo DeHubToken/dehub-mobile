@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Keyboard } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SvgXml } from "react-native-svg";
@@ -131,6 +131,8 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
     setOpenFlow((f) => (f === flow ? null : flow));
   };
   const [importVisible, setImportVisible] = useState(false);
+  const [importUsed, setImportUsed] = useState(false);
+  useEffect(() => { if (importVisible) setImportUsed(true); }, [importVisible]);
 
   if (layout === "stack") {
     // The open method's disc turns into Email, so the row keeps the same
@@ -232,7 +234,9 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           )}
         </View>
 
-        <ImportWalletModal visible={importVisible} onClose={() => setImportVisible(false)} />
+        {/* Built on first use: a closed native Modal still costs a mount in
+            the frame the sign-in sheet opens on. */}
+        {(importVisible || importUsed) && <ImportWalletModal visible={importVisible} onClose={() => setImportVisible(false)} />}
       </View>
     );
   }
