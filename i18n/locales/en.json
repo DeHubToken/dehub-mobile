@@ -755,6 +755,7 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "contactSupport": "Contact support",
     "shortsSaveFailed": "Failed to save Shorts preference",
     "shortsEnabledDesc": "Show the Shorts feed tab and Shorts carousels on Home.",
     "shortsEnabled": "Shorts",
@@ -7190,6 +7191,7 @@
     "originalText": "Original Text"
   },
   "dm": {
+    "reportMessage": "Report message",
     "download": "Download",
     "fileSaved": "File saved",
     "fileSaveFailed": "Couldn't save the file",

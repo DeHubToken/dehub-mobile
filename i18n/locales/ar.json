@@ -792,6 +792,7 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "contactSupport": "التواصل مع الدعم",
     "glass": "زجاجي",
     "shortsSaveFailed": "تعذر حفظ تفضيلات السراويل القصيرة",
     "showDislikesDesc": "يمكن لأي شخص فتح تبويب «عدم الإعجاب» في ملفك الشخصي. عند إيقاف هذا الخيار، تراه أنت فقط.",
@@ -7243,6 +7244,7 @@
     "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
+    "reportMessage": "الإبلاغ عن الرسالة",
     "download": "تنزيل",
     "fileSaved": "تم حفظ الملف",
     "fileSaveFailed": "تعذّر حفظ الملف",

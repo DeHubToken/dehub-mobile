@@ -792,6 +792,7 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "contactSupport": "Destekle iletişime geç",
     "glass": "Camsı",
     "shortsSaveFailed": "Kısa devre tercihi kaydedilemedi",
     "showDislikesDesc": "Herkes profilindeki Beğenilmeyenler sekmesini açabilir. Bu kapalıyken yalnızca sen görebilirsin.",
@@ -7234,6 +7235,7 @@
     "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
+    "reportMessage": "Mesajı bildir",
     "download": "İndir",
     "fileSaved": "Dosya kaydedildi",
     "fileSaveFailed": "Dosya kaydedilemedi",

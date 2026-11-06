@@ -792,6 +792,7 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "contactSupport": "Contact met support",
     "glass": "Glasachtig",
     "shortsSaveFailed": "Kan Shorts-voorkeur niet opslaan",
     "showDislikesDesc": "Iedereen kan het tabblad Dislikes op je profiel openen. Staat dit uit, dan zie alleen jij het.",
@@ -7373,6 +7374,7 @@
     "viewReposts": "Reposts bekijken"
   },
   "dm": {
+    "reportMessage": "Bericht melden",
     "download": "Downloaden",
     "fileSaved": "Bestand opgeslagen",
     "fileSaveFailed": "Kan het bestand niet opslaan",

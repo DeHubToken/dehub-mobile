@@ -792,6 +792,7 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "contactSupport": "Contacter l'assistance",
     "glass": "Glassy",
     "shortsSaveFailed": "Échec de l'enregistrement des préférences Shorts",
     "showDislikesDesc": "Tout le monde peut ouvrir l'onglet « Je n'aime pas » de votre profil. Désactivé, vous seul pouvez le voir.",
@@ -7239,6 +7240,7 @@
     "viewReposts": "Afficher les reposts"
   },
   "dm": {
+    "reportMessage": "Signaler le message",
     "download": "Télécharger",
     "fileSaved": "Fichier enregistré",
     "fileSaveFailed": "Impossible d’enregistrer le fichier",

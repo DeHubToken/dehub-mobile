@@ -792,6 +792,7 @@
     "postCount_other": "{{count}} publicaciones"
   },
   "settings": {
+    "contactSupport": "Contactar con soporte",
     "glass": "Glassy",
     "shortsSaveFailed": "Error al guardar la preferencia de pantalones cortos",
     "showDislikesDesc": "Cualquiera puede abrir la pestaña «No me gusta» de tu perfil. Si está desactivado, solo tú puedes verla.",
@@ -7235,6 +7236,7 @@
     "viewReposts": "Ver reposiciones"
   },
   "dm": {
+    "reportMessage": "Denunciar mensaje",
     "download": "Descargar",
     "fileSaved": "Archivo guardado",
     "fileSaveFailed": "No se pudo guardar el archivo",
