@@ -42,7 +42,7 @@ describe('home feed scroll settle timing', () => {
     // the moment feedItems changes and from nothing scroll-related.
     expect(feed).toMatch(/const listData = useMemo<FeedRow\[\]>\([\s\S]*?\}, \[feedItems, showShortsCarousel, shortsBatches, shortsRotation\.generation\]\);/);
     expect(feed).not.toMatch(/holdPendingRef|releaseAppendRef/);
-    expect(feed).toMatch(/onEndReachedThreshold=\{3\}/);
+    expect(feed).toMatch(/onEndReachedThreshold=\{2\}/);
   });
 });
 

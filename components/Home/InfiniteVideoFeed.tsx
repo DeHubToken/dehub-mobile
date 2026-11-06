@@ -1519,9 +1519,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         maxItemsInRecyclePool={MAX_POOLED_CELLS}
         contentContainerStyle={listContentStyle}
         onEndReached={endReached ? undefined : loadMore}
-        // Three viewports of runway, about web's 2400px prefetch margin: a
-        // fling covers 1.5 viewports before a page can come back.
-        onEndReachedThreshold={3}
+        // Two viewports of runway, about web's 1500px prefetch margin: a fling
+        // covers 1.5 viewports before a page can come back, and a 10-post page
+        // returns faster than the 20-post one this was sized for.
+        onEndReachedThreshold={2}
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}

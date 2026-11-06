@@ -1336,7 +1336,9 @@ export default function HomeScreen() {
         showShortsCarousel={feedType === "all"}
         showPendingPost={feedType === "all"}
         answersTabPress={feedType === "all"}
-        pageSize={20}
+        // Ten posts a page: half the first-load work, and later pages arrive
+        // in small steps while the reader is still a couple of screens away.
+        pageSize={10}
         headerInset={postFeedInset}
         firstRowInset={postFeedFirstRowInset}
         hideNewPosts={islandMenuOpen}
