@@ -44,13 +44,15 @@ interface LiveChatMessageProps {
   onLongPress?: (msg: LiveChatMessageData, layout: MessageLayout, translate?: TranslateToggle) => void;
   onReplyPress?: (messageId: string) => void;
   highlighted?: boolean;
+  /** This is the line being replied to: it stays outlined until the reply is sent or cleared. */
+  replying?: boolean;
 }
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 
 const URL_RE = /(?:https?:\/\/|www\.)[^\s<>)"']+/gi;
 
-const renderLinkedText = (text: string) => {
+const renderLinkedText = (text: string, onHold?: () => void) => {
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -65,6 +67,7 @@ const renderLinkedText = (text: string) => {
         key={match.index}
         style={{ color: "#D4D4D8" }}
         onPress={() => openInApp(url)}
+        onLongPress={onHold}
       >
         {url}
       </Text>
@@ -84,6 +87,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   onLongPress,
   onReplyPress,
   highlighted = false,
+  replying = false,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useI18n();
@@ -152,14 +156,24 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
   // Translate lives in the long-press menu, not on the line.
   const handleLongPress = useCallback(() => {
-    containerRef.current?.measureInWindow((x, y, width, height) => {
-      onLongPress?.(
-        message,
-        { x, y, width, height },
-        showTranslate && !!bodyText
-          ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
-          : undefined,
-      );
+    const translate = showTranslate && !!bodyText
+      ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
+      : undefined;
+    // measureInWindow can stay silent on a row Android flattened away; the
+    // sheet must open regardless, so fall back to no layout after a beat.
+    let done = false;
+    const fallback = setTimeout(() => {
+      if (done) return;
+      done = true;
+      onLongPress?.(message, { x: 0, y: 0, width: 0, height: 0 }, translate);
+    }, 150);
+    const row = containerRef.current;
+    if (!row) return;
+    row.measureInWindow((x, y, width, height) => {
+      if (done) return;
+      done = true;
+      clearTimeout(fallback);
+      onLongPress?.(message, { x, y, width, height }, translate);
     });
   }, [onLongPress, message, showTranslate, bodyText, isTranslated, handleTranslate, handleShowOriginal]);
 
@@ -183,10 +197,22 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   return (
     <Pressable
       ref={containerRef}
+      collapsable={false}
       onLongPress={handleLongPress}
+      delayLongPress={350}
       className="flex-row px-4 py-2"
       style={{ opacity: message.isDeleted ? 0.4 : 1 }}
     >
+      {/* The line being replied to keeps the glowing card it had in the hold sheet. */}
+      {replying ? (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute", top: 0, bottom: 0, left: 8, right: 8, borderRadius: 18,
+            borderWidth: 1, borderColor: "rgba(244,244,245,0.16)", backgroundColor: "rgba(244,244,245,0.06)",
+          }}
+        />
+      ) : null}
       <Animated.View
         style={[
           {
@@ -203,7 +229,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         pointerEvents="none"
       />
 
-      <TouchableOpacity onPress={handleAvatar} activeOpacity={0.7}>
+      <TouchableOpacity onPress={handleAvatar} onLongPress={handleLongPress} delayLongPress={350} activeOpacity={0.7}>
         <Avatar uri={avatarUrl} size={36} name={displayName} />
       </TouchableOpacity>
 
@@ -250,6 +276,8 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               const replyId = message.replyTo?._id || message.replyTo?.id;
               if (replyId && onReplyPress) onReplyPress(replyId);
             }}
+            onLongPress={handleLongPress}
+            delayLongPress={350}
             className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1"
           >
             <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
@@ -271,7 +299,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           <>
             {!!bodyText && (
               <Text className="text-white/70 text-[13px] leading-5">
-                {renderLinkedText(isTranslated ? (translatedTexts.content || bodyText) : bodyText)}
+                {renderLinkedText(isTranslated ? (translatedTexts.content || bodyText) : bodyText, handleLongPress)}
               </Text>
             )}
 
