@@ -199,9 +199,14 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
 
   // Grows past its resting width as the row is dragged further, so the last
   // action fills everything the finger has uncovered.
+  //
+  // Hidden until the row is measured and actually pulled open. Before the first
+  // layout rowWidth is 0, so `left` was 0 and the red Delete panel sat on top of
+  // every row for a frame as the Messages tab opened.
   const actionsStyle = useAnimatedStyle(() => ({
     left: rowWidth.value,
     width: Math.max(total, -translateX.value),
+    opacity: rowWidth.value > 0 && translateX.value < -0.5 ? 1 : 0,
   }));
 
   const onLayout = useCallback(

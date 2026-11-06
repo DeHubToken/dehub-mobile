@@ -53,6 +53,47 @@ const GlassToast: React.FC<GlassToastProps> = ({
   const { t } = useTranslation();
   if (!title) return null;
 
+  // A one-line message with one action ("Conversation deleted · Undo") sits on
+  // a single row: text, action, close, all on one centre line. Stacked, the
+  // short line floated over a full-width pill with the X hanging off the
+  // corner, which read as three unrelated pieces.
+  const inline =
+    !!actionLabel && !!onActionPress && !description && !children && type !== "loading";
+  if (inline) {
+    return (
+      <View
+        className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
+        style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.2)", backgroundColor: "#101014" }}
+      >
+        <View className="flex-row items-center pl-4 pr-2 py-2 gap-2" style={{ minHeight: 52 }}>
+          <Text className="flex-1 text-white text-[15px] font-semibold" numberOfLines={2}>
+            {title}
+          </Text>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={onActionPress}
+            accessibilityRole="button"
+            className="h-9 px-4 items-center justify-center rounded-xl bg-white/10"
+            style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
+          >
+            <Text className="text-sm font-semibold text-white">{actionLabel}</Text>
+          </TouchableOpacity>
+          {onClose && (
+            <TouchableOpacity
+              className="h-9 w-9 items-center justify-center"
+              accessibilityLabel={t("common.close")}
+              accessibilityRole="button"
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              onPress={onClose}
+            >
+              <Ionicons name="close" size={20} color="rgba(255,255,255,0.6)" />
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View
       className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
