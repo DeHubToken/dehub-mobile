@@ -17,8 +17,13 @@ import { MOTION, SNAP_SPRING } from "../theme/motion";
  * The route is a transparentModal with no native animation, so the page it
  * opened from stays drawn underneath and this sheet does all the moving:
  * slides up on open, follows a downward drag from anywhere in its top part,
- * springs back when let go before half way, and slides away on every exit
- * (X, back, swipe, after Post) through one beforeRemove hook.
+ * and slides away on every exit (X, back, swipe, after Post) through one
+ * beforeRemove hook.
+ *
+ * Letting go decides from the finger, not from where the sheet happens to be:
+ * still moving down closes it, in one motion that carries on at the finger's
+ * speed. It only springs back when the finger stopped (or turned up) short of
+ * half way.
  *
  * iOS keeps its native modal sheet, which already does all of this.
  */
@@ -30,6 +35,14 @@ const GRAB_ZONE = 0.62;
 const OPEN = { duration: MOTION.open - 40, easing: Easing.out(Easing.cubic) };
 const SHUT = { duration: MOTION.close, easing: Easing.in(Easing.cubic) };
 const SPRING = { ...SNAP_SPRING, overshootClamping: true };
+/** px/s downward at release that still counts as moving. */
+const MOVING = 250;
+/** How far ahead the release speed is carried when judging distance (s). */
+const PROJECT_S = 0.18;
+/** Fastest the slide-out starts, so a lazy release still leaves briskly (px/s). */
+const MIN_EXIT_SPEED = 1800;
+/** If nothing navigates after a drag-close (a failed draft save), come back. */
+const EXIT_SAFETY_MS = 2500;
 
 type Options = {
   navigation: any;
@@ -65,6 +78,18 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
   const leaving = useRef(false);
   const skipSlide = useRef(false);
   const hadKeyboard = useRef(false);
+  /** A drag-close slid the sheet away on the UI thread; beforeRemove waits for it. */
+  const dragExit = useRef<"none" | "running" | "done">("none");
+  const pendingExit = useRef<(() => void) | null>(null);
+  const exitSafety = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Mirrors willPrompt() for the UI thread: a discard prompt keeps the sheet up. */
+  const prompts = useSharedValue(false);
+  useEffect(() => {
+    prompts.value = willPrompt();
+  });
+  useEffect(() => () => {
+    if (exitSafety.current) clearTimeout(exitSafety.current);
+  }, []);
   // Everything the first frame does not need (the closed sheets and drawers
   // the composer can open) mounts once the sheet is up, so the slide starts
   // as soon as possible after the tap.
@@ -87,10 +112,17 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
       if (leaving.current) return;
       leaving.current = true;
       if (skipSlide.current) return;
+      // A drag-close already took the sheet off screen (or is doing so):
+      // leave once it is gone instead of starting a second slide.
+      if (dragExit.current === "done") return;
       e.preventDefault();
       Keyboard.dismiss();
       const action = e.data.action;
       const finish = () => navigation.dispatch(action);
+      if (dragExit.current === "running") {
+        pendingExit.current = finish;
+        return;
+      }
       y.value = withTiming(height, SHUT, () => runOnJS(finish)());
     });
   }, [active, navigation, height, y]);
@@ -104,6 +136,26 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
     if (willPrompt()) y.value = withSpring(0, SPRING);
     onDismiss();
   }, [onDismiss, willPrompt, y]);
+  /** Drag-close: the slide is already running on the UI thread. */
+  const releaseSliding = useCallback(() => {
+    dragExit.current = "running";
+    onDismiss();
+  }, [onDismiss]);
+  const slideDone = useCallback(() => {
+    if (dragExit.current !== "running") return;
+    dragExit.current = "done";
+    const go = pendingExit.current;
+    pendingExit.current = null;
+    if (go) {
+      go();
+      return;
+    }
+    exitSafety.current = setTimeout(() => {
+      if (leaving.current) return;
+      dragExit.current = "none";
+      y.value = withSpring(0, SPRING);
+    }, EXIT_SAFETY_MS);
+  }, [y]);
   const dragStarted = useCallback(() => {
     hadKeyboard.current = onDragStart();
   }, [onDragStart]);
@@ -111,6 +163,23 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
     if (hadKeyboard.current) onSettleOpen();
     hadKeyboard.current = false;
   }, [onSettleOpen]);
+
+  // The gesture must not be rebuilt while a finger is on it: RNGH cancels a
+  // running drag when its gesture object changes, and the sheet sprang back
+  // half way. Drag start puts the keyboard away, which resizes the window
+  // (adjustResize) and re-renders the screen, so the gesture reads the height
+  // and every callback through stable handles.
+  const H = useSharedValue(height);
+  useEffect(() => {
+    H.value = height;
+  }, [height, H]);
+  const latest = useRef({ release, releaseSliding, slideDone, dragStarted, settledOpen });
+  latest.current = { release, releaseSliding, slideDone, dragStarted, settledOpen };
+  const releaseJS = useCallback(() => latest.current.release(), []);
+  const releaseSlidingJS = useCallback(() => latest.current.releaseSliding(), []);
+  const slideDoneJS = useCallback(() => latest.current.slideDone(), []);
+  const dragStartedJS = useCallback(() => latest.current.dragStarted(), []);
+  const settledOpenJS = useCallback(() => latest.current.settledOpen(), []);
 
   const pan = useMemo(() => Gesture.Pan()
     .enabled(active && enabled)
@@ -126,7 +195,7 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
       if (!touch) return;
       const dx = touch.absoluteX - startX.value;
       const dy = touch.absoluteY - startY.value;
-      if (holdDrag.value || scrollY.value > 1 || startY.value > height * grabZone || e.allTouches.length > 1) {
+      if (holdDrag.value || scrollY.value > 1 || startY.value > H.value * grabZone || e.allTouches.length > 1) {
         state.fail();
         return;
       }
@@ -137,23 +206,35 @@ export function useComposerSheet({ navigation, enabled, onDismiss, willPrompt, o
       if (dy > 12 && dy > Math.abs(dx) * 1.3) state.activate();
     })
     .onStart(() => {
-      runOnJS(dragStarted)();
+      runOnJS(dragStartedJS)();
     })
     .onUpdate((e) => {
       y.value = Math.max(0, e.translationY);
     })
     .onEnd((e) => {
-      const far = y.value > height * 0.5;
-      const flick = e.velocityY > 1600 && y.value > 60;
-      if (far || flick) runOnJS(release)();
+      const v = e.velocityY;
+      const at = y.value;
+      const moving = v > MOVING && at > 24;
+      const far = at + Math.max(0, v) * PROJECT_S > H.value * 0.5 && v > -MOVING;
+      if ((moving || far) && !prompts.value) {
+        // Carry on at the finger's speed: an ease-out starts at twice its
+        // average speed, so this duration makes the first frame match.
+        const left = Math.max(1, H.value - at);
+        const speed = Math.max(v, MIN_EXIT_SPEED);
+        const duration = Math.min(320, Math.max(140, (2 * left / speed) * 1000));
+        y.value = withTiming(H.value, { duration, easing: Easing.out(Easing.quad) }, (done) => {
+          if (done) runOnJS(slideDoneJS)();
+        });
+        runOnJS(releaseSlidingJS)();
+      } else if (moving || far) runOnJS(releaseJS)();
       else {
         y.value = withSpring(0, { ...SPRING, velocity: e.velocityY });
-        runOnJS(settledOpen)();
+        runOnJS(settledOpenJS)();
       }
     })
     .onFinalize((_e, success) => {
-      if (!success && y.value > 0 && y.value < height) y.value = withSpring(0, SPRING);
-    }), [active, enabled, grabZone, height, release, dragStarted, settledOpen, y, scrollY, holdDrag, startX, startY]);
+      if (!success && y.value > 0 && y.value < H.value) y.value = withSpring(0, SPRING);
+    }), [active, enabled, grabZone, H, y, scrollY, holdDrag, startX, startY, prompts, releaseJS, releaseSlidingJS, slideDoneJS, dragStartedJS, settledOpenJS]);
 
   /** Lets the scroll view inside the sheet run alongside the drag. */
   const scroll = useMemo(() => Gesture.Native(), []);
