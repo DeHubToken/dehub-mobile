@@ -19,7 +19,6 @@
  * reaches both stores from one bundle, so the split has to be decided on the
  * device, not at build time.
  */
-import * as Localization from "expo-localization";
 import { Platform } from "react-native";
 
 /** True in the build that goes through Apple review. */
@@ -52,6 +51,8 @@ export const DIGITAL_PURCHASES_ENABLED = !IS_APP_STORE_BUILD;
 export function iosWebPurchaseLinkAllowed(): boolean {
   if (!IS_APP_STORE_BUILD) return false;
   try {
+    // Required lazily so this flags-only module stays free of native imports.
+    const Localization = require("expo-localization") as typeof import("expo-localization");
     return Localization.getLocales()?.[0]?.regionCode === "US";
   } catch {
     return false;
