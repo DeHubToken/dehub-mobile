@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { Platform, Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { useBackPress } from "../hooks/useBackPress";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import Animated, {
   cancelAnimation,
   runOnJS,
   useAnimatedReaction,
+  useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -132,15 +133,64 @@ const TAB_ORDER_NO_SHORTS: readonly TabKey[] = ALL_TAB_ORDER.filter((key) => key
 // pager viewport. Idle neighbours otherwise retain hundreds of GPU textures
 // throughout vertical scrolling. Progress also reveals both sides of a swipe
 // and every intermediate page of a tab animation on the UI thread.
-function PagerPage({ index, progress, children }: {
+type PagerPageProps = {
   index: number;
   progress: SharedValue<number>;
   children: React.ReactNode;
-}) {
+};
+
+function HidingPagerPage({ index, progress, children }: PagerPageProps) {
   const style = useAnimatedStyle(() => ({
     display: pagerPageIntersectsViewport(index, progress.value) ? 'flex' : 'none',
   }));
   return <Animated.View style={[{ flex: 1 }, style]}>{children}</Animated.View>;
+}
+
+function KeptPagerPage({ children }: PagerPageProps) {
+  return <View style={{ flex: 1 }}>{children}</View>;
+}
+
+// Android keeps a `display: none` subtree's native views (they only stop
+// drawing), which is what frees the off-screen pages' textures. iOS does not:
+// React Native skips producing views for a hidden subtree, so every page turn
+// destroyed the page being left and rebuilt the one arriving — its scroll
+// view, video players, blurs and images — from nothing. That was the Audio
+// tab "loading again" on an iPhone every time it came back, and the rebuilt
+// scroll view starting over. Core Animation already skips drawing layers that
+// are off screen, so on iOS a visited page simply stays.
+const PagerPage = Platform.OS === "ios" ? KeptPagerPage : HidingPagerPage;
+
+/**
+ * One scroll handler per page. All pages share Home's header, and a page that
+ * is not the one on screen (still coasting after a page turn, or its content
+ * resizing) used to slide the header away under a page that never scrolled,
+ * leaving no pill to get back with. Only the page under the viewport drives it,
+ * and its first event after taking over only sets the starting point.
+ */
+function usePageScrollHandler(
+  key: TabKey,
+  progress: SharedValue<number>,
+  tabOrder: SharedValue<readonly TabKey[]>,
+  driverKey: SharedValue<string>,
+  drive: (scrollY: number) => void,
+  rebase: (scrollY: number) => void,
+) {
+  return useAnimatedScrollHandler(
+    {
+      onScroll: (event) => {
+        'worklet';
+        if (tabOrder.value[Math.round(progress.value)] !== key) return;
+        const y = event.contentOffset.y;
+        if (driverKey.value !== key) {
+          driverKey.value = key;
+          rebase(y);
+          return;
+        }
+        drive(y);
+      },
+    },
+    [],
+  );
 }
 
 // The four tabs served by InfiniteVideoFeed (images and shorts have their own
@@ -348,6 +398,8 @@ export default function HomeScreen() {
     scrollHandler,
     handleScrollEnd,
     showHeader,
+    driveWorklet: driveHeader,
+    rebaseWorklet: rebaseHeader,
   } = useCollapsibleHeader();
   // Every theme pulls the feed down itself (not the native spinner), so the
   // pill can glow with the pull as the immersive capsule does.
@@ -436,6 +488,17 @@ export default function HomeScreen() {
   // the old build animated the indicator on one clock and swapped the list on
   // another, which is why the highlight moved while the feed below sat still.
   const progress = useSharedValue(activeIndex);
+  const tabOrderSV = useSharedValue<readonly TabKey[]>(TAB_ORDER);
+  useEffect(() => { tabOrderSV.value = TAB_ORDER; }, [TAB_ORDER, tabOrderSV]);
+  const headerDriverKey = useSharedValue<string>("");
+  const pageScroll: Record<TabKey, ReturnType<typeof useAnimatedScrollHandler>> = {
+    all: usePageScrollHandler("all", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+    short: usePageScrollHandler("short", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+    "feed-images": usePageScrollHandler("feed-images", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+    "feed-simple": usePageScrollHandler("feed-simple", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+    "feed-audio": usePageScrollHandler("feed-audio", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+    live: usePageScrollHandler("live", progress, tabOrderSV, headerDriverKey, driveHeader, rebaseHeader),
+  };
   const dragStart = useSharedValue(activeIndex);
   const pagerTouch = useSharedValue({ x: 0, y: 0, decided: false });
   // Index the gesture has already animated to, so the sync effect below doesn't
@@ -1196,7 +1259,7 @@ export default function HomeScreen() {
           headerInset={mediaGridInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
-          scrollHandler={scrollHandler}
+          scrollHandler={pageScroll[key]}
           onScrollEnd={handleScrollEnd}
           onOpenImageFeed={handleOpenImageFeed}
         />
@@ -1214,7 +1277,7 @@ export default function HomeScreen() {
           <CinematicMusic
             active={isPlaybackActive}
             feedRef={musicFeedRef}
-            scrollHandler={scrollHandler}
+            scrollHandler={pageScroll[key]}
             onScrollBegin={handleScrollBegin}
             onScrollEnd={handleScrollEnd}
             onRefresh={handleRefresh}
@@ -1226,7 +1289,7 @@ export default function HomeScreen() {
           active={isPlaybackActive}
           feedRef={musicFeedRef}
           headerInset={feedInset}
-          scrollHandler={scrollHandler}
+          scrollHandler={pageScroll[key]}
           onScrollBegin={handleScrollBegin}
           onScrollEnd={handleScrollEnd}
           onRefresh={handleRefresh}
@@ -1244,7 +1307,7 @@ export default function HomeScreen() {
           headerInset={mediaGridInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
-          scrollHandler={scrollHandler}
+          scrollHandler={pageScroll[key]}
           onScrollEnd={handleScrollEnd}
         />
       );
@@ -1258,7 +1321,7 @@ export default function HomeScreen() {
         <CinematicLive
           feedRef={feedRefs.current.live}
           active={isPlaybackActive}
-          scrollHandler={scrollHandler}
+          scrollHandler={pageScroll[key]}
           onScrollBegin={handleScrollBegin}
           onScrollEnd={handleScrollEnd}
           onRefresh={handleRefresh}
@@ -1279,7 +1342,7 @@ export default function HomeScreen() {
         hideNewPosts={islandMenuOpen}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
-        scrollHandler={scrollHandler}
+        scrollHandler={pageScroll[key]}
         onScrollEnd={handleScrollEnd}
         onCategorySelect={handleCategorySelect}
         onRetry={handleRetry}
