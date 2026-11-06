@@ -13,6 +13,7 @@ import AppDrawer from "../components/Home/AppDrawer";
 import { useAppTheme } from "../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../theme/colors";
 import { deferredScreen, preloadDeferredScreen } from "./deferredScreen";
+import { storefrontRoute } from "../components/common/StorefrontGate";
 import AppWideTabBar from "./AppWideTabBar";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 
@@ -222,7 +223,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Migrate}
-          getComponent={() => deferredScreen('../screens/MigrateScreen#default', () => require("../screens/MigrateScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/MigrateScreen#default', () => require("../screens/MigrateScreen").default), "/migrate-youtube")}
         />
         <Stack.Screen
           name={ScreenNames.Glossary}
@@ -268,11 +269,11 @@ function AppNavigatorContent() {
             the same screen in developer mode. */}
         <Stack.Screen
           name={ScreenNames.Apps}
-          getComponent={() => deferredScreen('../screens/AppsScreen#default', () => require("../screens/AppsScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/AppsScreen#default', () => require("../screens/AppsScreen").default), "/apps")}
         />
         <Stack.Screen
           name={ScreenNames.MiniApp}
-          getComponent={() => deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default), (p) => `/apps/${encodeURIComponent(String(p?.slug ?? ""))}`)}
         />
         <Stack.Screen
           name={ScreenNames.MiniAppDev}
@@ -299,7 +300,7 @@ function AppNavigatorContent() {
         {/* Public: explains prize draws; reads no live draw state. */}
         <Stack.Screen
           name={ScreenNames.Raffle}
-          getComponent={() => deferredScreen('../screens/RaffleScreen#default', () => require("../screens/RaffleScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/RaffleScreen#default', () => require("../screens/RaffleScreen").default), "/raffle")}
         />
         {/* Public: browsing is open, reviewing signs in. */}
         <Stack.Screen
@@ -320,7 +321,7 @@ function AppNavigatorContent() {
         {/* Public: the transfer list is open to everyone; bridging signs in. */}
         <Stack.Screen
           name={ScreenNames.Bridge}
-          getComponent={() => deferredScreen('../screens/BridgeScreen#default', () => require("../screens/BridgeScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/BridgeScreen#default', () => require("../screens/BridgeScreen").default), "/bridge")}
         />
         {/* Launchpad: browsing is public; creating and trading sign in, and are
             left out of the App Store build (config/storefront). */}
@@ -355,7 +356,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Dao}
-          getComponent={() => deferredScreen('../screens/DaoScreen#default', () => require("../screens/DaoScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/DaoScreen#default', () => require("../screens/DaoScreen").default), "/dao")}
         />
         {/* Public: the ladder is worth reading before you hold a badge, which
             is the whole point of the screen. */}
@@ -371,12 +372,12 @@ function AppNavigatorContent() {
         {/* Marketplace is browsable signed-out; buying prompts sign-in. */}
         <Stack.Screen
           name={ScreenNames.Stores}
-          getComponent={() => deferredScreen('../screens/StoresScreen#default', () => require("../screens/StoresScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/StoresScreen#default', () => require("../screens/StoresScreen").default), "/stores")}
         />
         {/* Handle marketplace — same posture: browse signed-out, buy signs in. */}
         <Stack.Screen
           name={ScreenNames.Usernames}
-          getComponent={() => deferredScreen('../screens/UsernamesScreen#default', () => require("../screens/UsernamesScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/UsernamesScreen#default', () => require("../screens/UsernamesScreen").default), (p) => (p?.handle ? `/usernames?handle=${encodeURIComponent(String(p?.handle ?? ""))}` : "/usernames"))}
         />
         {/* Fraction marketplace — same posture: browse signed-out, trading signs in. */}
         <Stack.Screen
@@ -391,7 +392,7 @@ function AppNavigatorContent() {
         {/* Account marketplace — whole accounts, same posture. */}
         <Stack.Screen
           name={ScreenNames.Accounts}
-          getComponent={() => deferredScreen('../screens/AccountsScreen#default', () => require("../screens/AccountsScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/AccountsScreen#default', () => require("../screens/AccountsScreen").default), (p) => (p?.handle ? `/accounts?handle=${encodeURIComponent(String(p?.handle ?? ""))}` : "/accounts"))}
         />
         {/* Creator packs: browsing and a shared pack link are open signed-out;
             adding to your picker or creating prompts sign-in. */}
@@ -408,19 +409,19 @@ function AppNavigatorContent() {
             /builder/preview/:id. */}
         <Stack.Screen
           name={ScreenNames.Builder}
-          getComponent={() => deferredScreen('../screens/BuilderScreen#default', () => require("../screens/BuilderScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/BuilderScreen#default', () => require("../screens/BuilderScreen").default), "/app/builder")}
         />
         <Stack.Screen
           name={ScreenNames.BuilderPreview}
-          getComponent={() => deferredScreen('../screens/BuilderPreviewScreen#default', () => require("../screens/BuilderPreviewScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/BuilderPreviewScreen#default', () => require("../screens/BuilderPreviewScreen").default), "/app/builder")}
         />
         <Stack.Screen
           name={ScreenNames.StoreDetail}
-          getComponent={() => deferredScreen('../screens/StoreDetailScreen#default', () => require("../screens/StoreDetailScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/StoreDetailScreen#default', () => require("../screens/StoreDetailScreen").default), (p) => `/stores/${encodeURIComponent(String(p?.storeId ?? ""))}${p?.listing ? `?listing=${encodeURIComponent(String(p.listing))}` : ""}`)}
         />
         <Stack.Screen
           name={ScreenNames.ListingDetail}
-          getComponent={() => deferredScreen('../screens/ListingDetailScreen#default', () => require("../screens/ListingDetailScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/ListingDetailScreen#default', () => require("../screens/ListingDetailScreen").default), "/stores")}
         />
         {/* Bounties: browsing is open, posting/applying prompts sign-in
             (same as web, which lets you fill the form then gates on submit). */}
@@ -443,27 +444,27 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Work}
-          getComponent={() => deferredScreen('../screens/WorkScreen#default', () => require("../screens/WorkScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkScreen#default', () => require("../screens/WorkScreen").default), "/work")}
         />
         <Stack.Screen
           name={ScreenNames.WorkJobDetail}
-          getComponent={() => deferredScreen('../screens/WorkJobDetailScreen#default', () => require("../screens/WorkJobDetailScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkJobDetailScreen#default', () => require("../screens/WorkJobDetailScreen").default), (p) => `/work/${encodeURIComponent(String(p?.jobId ?? ""))}`)}
         />
         <Stack.Screen
           name={ScreenNames.WorkPost}
-          getComponent={() => deferredScreen('../screens/WorkPostScreen#default', () => require("../screens/WorkPostScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkPostScreen#default', () => require("../screens/WorkPostScreen").default), "/work/post")}
         />
         <Stack.Screen
           name={ScreenNames.WorkEdit}
-          getComponent={() => deferredScreen('../screens/WorkEditScreen#default', () => require("../screens/WorkEditScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkEditScreen#default', () => require("../screens/WorkEditScreen").default), "/work")}
         />
         <Stack.Screen
           name={ScreenNames.WorkHistory}
-          getComponent={() => deferredScreen('../screens/WorkHistoryScreen#default', () => require("../screens/WorkHistoryScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkHistoryScreen#default', () => require("../screens/WorkHistoryScreen").default), "/work/history")}
         />
         <Stack.Screen
           name={ScreenNames.WorkDisputes}
-          getComponent={() => deferredScreen('../screens/WorkDisputesScreen#default', () => require("../screens/WorkDisputesScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/WorkDisputesScreen#default', () => require("../screens/WorkDisputesScreen").default), "/work/disputes")}
         />
         <Stack.Screen
           name={ScreenNames.CommunityDetail}
@@ -614,19 +615,19 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Dex}
-              getComponent={() => deferredScreen('../screens/DexScreen#default', () => require("../screens/DexScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/DexScreen#default', () => require("../screens/DexScreen").default), "/dex")}
             />
             <Stack.Screen
               name={ScreenNames.DexPool}
-              getComponent={() => deferredScreen('../screens/DexPoolScreen#default', () => require("../screens/DexPoolScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/DexPoolScreen#default', () => require("../screens/DexPoolScreen").default), (p) => `/dex/${encodeURIComponent(String(p?.chain ?? ""))}/${encodeURIComponent(String(p?.address ?? ""))}`)}
             />
             <Stack.Screen
               name={ScreenNames.CommandCentre}
-              getComponent={() => deferredScreen('../screens/CommandCentreScreen#default', () => require("../screens/CommandCentreScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/CommandCentreScreen#default', () => require("../screens/CommandCentreScreen").default), "/app/command-centre")}
             />
             <Stack.Screen
               name={ScreenNames.Ads}
-              getComponent={() => deferredScreen('../screens/AdsScreen#default', () => require("../screens/AdsScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/AdsScreen#default', () => require("../screens/AdsScreen").default), "/app/ads")}
             />
             {/* A drawer like the image feed's: the screen it opens from stays
                 visible above the sheet, and the sheet does all the moving. */}
@@ -700,7 +701,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Affiliate}
-              getComponent={() => deferredScreen('../screens/AffiliateScreen#default', () => require("../screens/AffiliateScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/AffiliateScreen#default', () => require("../screens/AffiliateScreen").default), "/app/affiliate")}
             />
             <Stack.Screen
               name={ScreenNames.MyLibrary}

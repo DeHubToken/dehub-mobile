@@ -1,3 +1,4 @@
+import { IS_APP_STORE_BUILD } from '../../config/storefront';
 import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * Asset Reference Card
@@ -341,7 +342,8 @@ const AssetRefCardComponent: React.FC<{ assetRef: AssetRef }> = ({
     retry: 1,
   });
 
-  if (ownToken) return <OwnTokenComingSoonCard />;
+  // A token launch teaser is a trading promotion the App Store build leaves out.
+  if (ownToken) return IS_APP_STORE_BUILD ? null : <OwnTokenComingSoonCard />;
 
   if (isLoading) return <SkeletonBlock style={styles.skeleton} />;
   if (!asset) {

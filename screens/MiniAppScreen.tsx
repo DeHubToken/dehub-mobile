@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { tokenLabel } from '../libs/token-label';
 /**
  * MiniAppScreen
@@ -367,6 +368,7 @@ export default function MiniAppScreen() {
           }
         }
         case "actions.pay": {
+          if (!DIGITAL_PURCHASES_ENABLED) return fail("unsupported", "Payments are not available in this app.");
           if (!app.slug || !app.ownerWallet) return fail("unsupported", "This app cannot take payments.");
           if (!context.user) return fail("signin", "The user is not signed in to Riftn.");
           const request = cleanPayment(req.params);

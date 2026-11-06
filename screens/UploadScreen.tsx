@@ -995,7 +995,8 @@ export default function UploadScreen() {
       setPollDurationHours.initialize(incomingDraft.poll.duration ?? 24);
       setPollIsMultiple.initialize(Boolean(incomingDraft.poll.isMultipleChoice));
     }
-    if (incomingDraft.isMature) setIsMature(true);
+    // The App Store build never posts mature content, even from a draft made on the web.
+    if (incomingDraft.isMature && MATURE_CONTENT_ENABLED) setIsMature(true);
     if (incomingDraft.isForKids) setIsForKids(true);
     if (incomingDraft.scheduledDate) {
       const when = new Date(incomingDraft.scheduledDate);

@@ -1,3 +1,4 @@
+import { openMessageReport } from "../common/MessageReportHost";
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useDraftState } from '../../hooks/useDraftState';
@@ -1044,6 +1045,29 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                     <Icon name="Trash2" size={16} color="#F4F4F5" />
                     <Text style={[styles.sheetRowText, { color: "#F4F4F5" }]}>
                       {t("common.delete", { defaultValue: "Delete" })}
+                    </Text>
+                  </Pressable>
+                )}
+
+                {/* Anyone can report someone else's message (App Review 1.2). */}
+                {!sheetIsMine && !!sheetFor.wallet_address && (
+                  <Pressable
+                    style={styles.sheetRow}
+                    onPress={() => {
+                      const msg = sheetFor;
+                      setSheetFor(null);
+                      openMessageReport({
+                        userId: msg.wallet_address,
+                        userName: msg.display_name || msg.username || undefined,
+                        where: `Community chat ${community?.slug ?? ""}`.trim(),
+                        messageId: String(msg.id),
+                        text: chatBodyText(msg),
+                      });
+                    }}
+                  >
+                    <Icon name="Flag" size={16} color="#F4F4F5" />
+                    <Text style={[styles.sheetRowText, { color: "#F4F4F5" }]}>
+                      {t("postOptions.report", { defaultValue: "Report" })}
                     </Text>
                   </Pressable>
                 )}

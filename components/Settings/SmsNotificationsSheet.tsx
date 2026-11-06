@@ -40,6 +40,7 @@ import {
   type SmsNotificationStatus,
   type SmsQuote,
 } from '../../services/sms-notifications.service';
+import { storefrontSheet } from "../common/StorefrontGate";
 
 interface SmsNotificationsSheetProps {
   visible: boolean;
@@ -58,7 +59,7 @@ const CLAIM_GAP_MS = 5_000;
 
 const nf = (value: number) => value.toLocaleString(appLocale());
 
-export default function SmsNotificationsSheet({
+function SmsNotificationsSheet({
   visible,
   onClose,
   status,
@@ -423,3 +424,5 @@ function PriceList({ status }: { status: SmsNotificationStatus }) {
     </View>
   );
 }
+
+export default storefrontSheet(SmsNotificationsSheet, (p) => ({ visible: p.visible, onClose: p.onClose, path: "/app/settings?highlight=sms-notifications" }));

@@ -27,6 +27,7 @@ import {
   rememberPendingGift,
   type GiftResult,
 } from "../../services/live-hype.service";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 const COUNTS = [1, 5, 10, 20, 50, 100] as const;
 type Stage = "idle" | "preparing" | "wallet" | "confirming" | "recording";
@@ -42,7 +43,7 @@ interface Props {
 
 const planKey = (p: SubscriptionPlan) => String((p as any).id || (p as any)._id);
 
-export default function GiftSubsSheet({ visible, onClose, creatorAddress, creatorName, streamId }: Props) {
+function GiftSubsSheet({ visible, onClose, creatorAddress, creatorName, streamId }: Props) {
   const { t } = useTranslation();
   const { publishedPlans, isLoading } = useCreatorPlans(visible ? creatorAddress : null);
   const buyable = useMemo(() => publishedPlans.filter((p: any) => p.isActive !== false), [publishedPlans]);
@@ -223,3 +224,5 @@ export default function GiftSubsSheet({ visible, onClose, creatorAddress, creato
 const styles = StyleSheet.create({
   ring: { ...StyleSheet.absoluteFillObject, borderRadius: 12, borderWidth: 2, borderColor: "#F4F4F5" },
 });
+
+export default storefrontSheet(GiftSubsSheet, (p: Props) => ({ visible: p.visible, onClose: p.onClose, path: "/app/stages" }));

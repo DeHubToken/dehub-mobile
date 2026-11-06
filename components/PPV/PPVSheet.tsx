@@ -58,6 +58,7 @@ import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 
@@ -654,4 +655,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(PPVSheetComponent);
+export default storefrontSheet(memo(PPVSheetComponent), (p) => ({ visible: p.visible, onClose: p.onClose, path: `/app/post/${p.tokenId}` }));

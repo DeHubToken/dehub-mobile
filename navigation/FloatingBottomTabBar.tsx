@@ -183,6 +183,12 @@ const STOREFRONT_HIDDEN_SCREENS = new Set([
   ScreenNames.Affiliate,
   ScreenNames.Dao,
   ScreenNames.Earnings,
+  ScreenNames.Migrate,
+  ScreenNames.Apps,
+  ScreenNames.Builder,
+  ScreenNames.Raffle,
+  ScreenNames.Dex,
+  ScreenNames.Bridge,
 ]);
 
 const AUTHED_ONLY_SCREENS = new Set([

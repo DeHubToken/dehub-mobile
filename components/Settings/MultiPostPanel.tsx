@@ -1,3 +1,5 @@
+import WebPurchaseLink from "../common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, Linking } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -123,6 +125,8 @@ const MultiPostPanel: React.FC = () => {
         note={`${t("multiPost.creditRules", { x: creditsFor("twitter"), farcaster: creditsFor("farcaster"), other: DEFAULT_PLATFORM_CREDITS })} ${t("multiPost.payAsYouGoCredits", { price: CREDIT_PRICE_USD.toFixed(2) })}`}
       >
         <SettingsInfoRow icon="Coins" label={t("multiPost.credits", { count: status.data?.credits ?? 0 })} />
+        {/* Buying credits is a purchase the App Store build leaves out (3.1.1). */}
+        {DIGITAL_PURCHASES_ENABLED ? <>
         <Divider />
         <View className="px-4 py-4">
           <View className="flex-row justify-between items-baseline mb-2">
@@ -165,6 +169,7 @@ const MultiPostPanel: React.FC = () => {
             </TouchableOpacity>
           </View>
         </View>
+        </> : <WebPurchaseLink path="/app/settings?tab=multipost" style={{ margin: 16 }} />}
       </SettingsSection>
 
       <SettingsSection label={t("multiPost.connectedHeading")} icon="Link2">

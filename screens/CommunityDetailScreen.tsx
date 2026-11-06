@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from "../config/storefront";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -10,7 +11,7 @@ import {
   KeyboardAvoidingView,
   useWindowDimensions,
 } from "react-native";
-import { Platform, Linking } from "react-native";
+import { Linking } from "react-native";
 
 import { shareWithRef } from "../libs/shareRef";
 
@@ -40,7 +41,7 @@ import type { Community, CommunityMember } from "../types/community";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
 import { formatCompactNumber } from "../libs/numbers.util";
-import { toastError, toastSuccess } from "../libs/toast";
+import { toastError, toastInfo, toastSuccess } from "../libs/toast";
 import {
   getCommunityAbilities,
   communityErrorMessage,
@@ -132,9 +133,11 @@ const CommunityDetailScreen: React.FC = () => {
     if (!community) return false;
     const before = await entryStatus(community.id, wallet).catch(() => null);
     if (before?.status === "paid" || before?.status === "free") return true;
-    if (Platform.OS === "ios") {
-      // Paid digital access is bought on the web on iPhone.
-      void Linking.openURL(`https://riftn.com/app/communities/${community.slug}`);
+    if (!DIGITAL_PURCHASES_ENABLED) {
+      // Paid digital access is bought on the web, and Apple allows pointing
+      // there only on the US App Store (3.1.1).
+      if (iosWebPurchaseLinkAllowed()) void Linking.openURL(`https://riftn.com/app/communities/${community.slug}`);
+      else toastInfo(t("storefront.unavailable"));
       return false;
     }
     if (!dhbContract || !chainId || !dhbMeta) {

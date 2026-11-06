@@ -1,8 +1,9 @@
+import { openWebPurchase } from "../common/WebPurchaseLink";
 import type { useProfileCollapse } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
-import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
@@ -298,9 +299,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           socials={data}
           mutuals={mutuals}
           mutualsTotal={mutualsTotal}
-          hasPlans={DIGITAL_PURCHASES_ENABLED && hasPlans}
-          plansLoading={DIGITAL_PURCHASES_ENABLED && plansLoading}
-          onSubscribe={DIGITAL_PURCHASES_ENABLED ? handleSubscribePress : undefined}
+          hasPlans={purchaseOfferVisible() && hasPlans}
+          plansLoading={purchaseOfferVisible() && plansLoading}
+          onSubscribe={DIGITAL_PURCHASES_ENABLED
+            ? handleSubscribePress
+            : () => { openWebPurchase(`/${profileData?.username || profileData?.address || ""}`); }}
         />}
         />
         <View className="px-5 mt-2">
@@ -503,6 +506,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
+          {purchaseOfferVisible() && (
           <TouchableOpacity
             onPress={handleMenuTip}
             disabled={paymentsHidden}
@@ -519,6 +523,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               </Text>
             </View>
           </TouchableOpacity>
+          )}
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 

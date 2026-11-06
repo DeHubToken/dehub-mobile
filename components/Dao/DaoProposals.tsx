@@ -4,6 +4,8 @@
  * Port of web's dao/DaoProposals. Paying an accepted buy offer opens the web
  * page for that proposal, where the multi-chain payment flow lives.
  */
+import { openWebPurchase } from "../common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
 import React, { useMemo, useState } from "react";
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -212,10 +214,12 @@ function ProposalCard({ proposal, ownVote, ownWeight, focused }: { proposal: Dao
         </Text>
       )}
 
-      {proposal.status === "accepted" && proposal.kind === "buy" && isBuyer && (
+      {proposal.status === "accepted" && proposal.kind === "buy" && isBuyer && purchaseOfferVisible() && (
         <KitButton
           label={t("copy.a4f6b2e41037", { defaultValue: " Transfer payment" }).trim()}
-          onPress={() => openInApp(`https://riftn.com/app/dao?proposal=${proposal.id}`)}
+          onPress={() => (DIGITAL_PURCHASES_ENABLED
+            ? openInApp(`https://riftn.com/app/dao?proposal=${proposal.id}`)
+            : openWebPurchase(`/dao?proposal=${proposal.id}`))}
           style={{ marginTop: 12 }}
         />
       )}

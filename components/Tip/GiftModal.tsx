@@ -45,6 +45,7 @@ import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { MIN_DIRECT_TIP, directTipToken, giftCostInDollars } from "../../libs/direct-tip-tokens";
 import { fundingErrorText } from "../../libs/tip-funding-error";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 export interface GiftModalProps {
   open: boolean;
@@ -651,4 +652,4 @@ const GiftModal: React.FC<GiftModalProps> = ({
   );
 };
 
-export default GiftModal;
+export default storefrontSheet(GiftModal, (p) => ({ visible: p.open, onClose: () => p.onOpenChange(false), path: `/app/post/${p.tokenId}` }));

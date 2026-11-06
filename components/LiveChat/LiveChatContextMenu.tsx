@@ -1,3 +1,4 @@
+import { openMessageReport } from "../common/MessageReportHost";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import HoldSheet, { type HoldReactionChip, type HoldTile } from "../ui/HoldSheet";
 import { useTranslation } from "react-i18next";
@@ -145,6 +146,24 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     onPress: () => run(() => (isSenderBanned ? onUnban : onBan)?.(message), 100),
   });
   if (canDelete && onDelete) tiles.push({ key: "delete", icon: "Trash2", label: t("common.delete"), destructive: true, secondary: true, onPress: () => run(() => onDelete(message), 100) });
+  // Every viewer can report a message (App Review 1.2), not only moderators.
+  if (!isMe && message.senderAddress) tiles.push({
+    key: "report",
+    icon: "Flag",
+    label: t("postOptions.report"),
+    destructive: true,
+    secondary: true,
+    onPress: () => {
+      onClose();
+      openMessageReport({
+        userId: message.senderAddress,
+        userName: message.sender?.displayName || message.sender?.username,
+        where: "Live chat",
+        messageId: message._id,
+        text: message.content,
+      });
+    },
+  });
 
   const reactions: HoldReactionChip[] | null = onReact
     ? REACTION_EMOJIS.map((emoji) => ({

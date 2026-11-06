@@ -58,3 +58,11 @@ export function iosWebPurchaseLinkAllowed(): boolean {
     return false;
   }
 }
+
+/**
+ * Whether a buy button may be drawn at all: the real flow everywhere but
+ * iOS, a link to the website on the US App Store, nothing elsewhere.
+ */
+export function purchaseOfferVisible(): boolean {
+  return DIGITAL_PURCHASES_ENABLED || iosWebPurchaseLinkAllowed();
+}

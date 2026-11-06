@@ -7,6 +7,8 @@
  * dehubweb `src/components/app/badge-showcase/BadgeShowcase.tsx`, and every
  * size, colour and gap here is its Tailwind class.
  */
+import { openWebPurchase } from "../common/WebPurchaseLink";
+import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -391,11 +393,12 @@ function HolderActions({ api }: { api: ShowcaseApi }) {
   const { t } = useTranslation();
   const buy = () =>
     api.close(() => {
+      if (!DIGITAL_PURCHASES_ENABLED) { openWebPurchase("/app/buy"); return; }
       if (navigationRef.isReady()) (navigationRef.navigate as (s: string, p?: object) => void)(ScreenNames.Dpay, { initialTab: "buy" });
     });
   return (
     <View style={ui.footerActions}>
-      <GlassButton active label={t("badgeShowcase.buyTokens")} onPress={buy} />
+      {purchaseOfferVisible() && <GlassButton active label={t("badgeShowcase.buyTokens")} onPress={buy} />}
       <GlassButton label={t("badgeShowcase.details")} onPress={() => api.close(() => void openInApp(BADGE_DOCS_URL))} />
     </View>
   );

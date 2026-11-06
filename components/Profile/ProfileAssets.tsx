@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import SkeletonBlock from '../Feed/SkeletonBlock';
 import { DhbCoin } from "../common/DhbCoin";
@@ -164,12 +165,15 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
         { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
         { key: "history", label: t("appTokens.history"), disabled: false },
       ]
-    : [
+    : DIGITAL_PURCHASES_ENABLED
+    ? [
         { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
         { key: "sell", label: t("wallet.trade"), subtitle: undefined, disabled: false },
         { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
         { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
-      ];
+      ]
+    // The App Store build offers no buying or trading (3.1.1, 3.1.5).
+    : [{ key: "transfer", label: t("commandCentre.transfer"), disabled: false }];
 
   const handleTopUp = React.useCallback(() => {
     navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });

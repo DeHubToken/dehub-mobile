@@ -39,6 +39,7 @@ import {
   subscriptionPaymentToken,
 } from "../../libs/subscription-pricing";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 interface PlanFormSheetProps {
   visible: boolean;
@@ -464,4 +465,4 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   );
 };
 
-export default PlanFormSheet;
+export default storefrontSheet(PlanFormSheet, (p) => ({ visible: p.visible, onClose: p.onClose, path: "/app/command-centre" }));

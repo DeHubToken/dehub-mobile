@@ -27,6 +27,7 @@ import {
   FlatList,
   Alert,
   KeyboardAvoidingView,
+  Linking,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -49,6 +50,7 @@ import { openInApp } from "../libs/links.utils";
 import {
   TERMS_OF_SERVICE_LINK,
   PRIVACY_POLICY_LINK,
+  SUPPORT_MAIL,
 } from "../config/links";
 import GlassModal from "../components/ui/GlassModal";
 import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
@@ -423,6 +425,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           label={t("settings.reportBug")}
           description={t("settings.reportBugDesc")}
           onPress={() => setBugModalVisible(true)}
+        />
+        <Divider />
+        <SettingsLinkRow
+          icon="Mail"
+          label={t("settings.contactSupport", { defaultValue: "Contact support" })}
+          description={SUPPORT_MAIL}
+          external
+          onPress={() => { void Linking.openURL(`mailto:${SUPPORT_MAIL}`); }}
         />
         <Divider />
         <SettingsLinkRow

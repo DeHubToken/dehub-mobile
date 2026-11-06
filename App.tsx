@@ -81,6 +81,7 @@ import { installJsStallMonitor } from "./libs/jsStallMonitor";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
+import MessageReportHost from "./components/common/MessageReportHost";
 import MaintenanceGate from './components/MaintenanceGate';
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
 import TapReactionLayer from "./components/Home/TapReactionLayer";
@@ -290,6 +291,8 @@ export default function App() {
             {/* Asks builds that no longer receive updates to get one from the
                 store; the policy is a database row, see UpdateGate. */}
             <UpdateGate />
+            {/* Report sheet for chat messages, opened from any message menu. */}
+            <MessageReportHost />
             {/* Only when createAppKit actually succeeded — see reown.config.
                 Rendering AppKit against a configuration that never initialised
                 is what a missing REOWN_PROJECT_ID now degrades to, instead of

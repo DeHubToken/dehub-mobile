@@ -52,6 +52,7 @@ import useKeyboard from "../../hooks/useKeyboard";
 import { writeContractAA } from "../../libs/aa.write";
 import { DHB_ADDRESSESS, ChainId } from "../../config/constants";
 import { useUser } from "../../context/AuthContext";
+import { storefrontSheet } from "../common/StorefrontGate";
 
 /** Below this, say how many are left — urgency is only fair when it's true. */
 const LOW_STOCK_THRESHOLD = 10;
@@ -125,7 +126,7 @@ function PriceText({ product, className }: { product: StreamProduct; className?:
  * transfer and the confirm are all one path, and a second copy of it is how
  * two surfaces end up disagreeing about what somebody was charged.
  */
-export function CheckoutSheet({
+function CheckoutSheetInner({
   tokenId,
   product,
   visible,
@@ -519,3 +520,6 @@ export default function StreamShopOverlay({ tokenId }: Props) {
     </View>
   );
 }
+
+/** Checkout for a stream or post shop item. The App Store build finishes on the web. */
+export const CheckoutSheet = storefrontSheet(CheckoutSheetInner, (p) => ({ visible: p.visible, onClose: p.onClose, path: p.tokenId != null ? `/app/post/${p.tokenId}` : "/stores" }));

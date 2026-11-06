@@ -1,3 +1,4 @@
+import WebPurchaseLink from "../common/WebPurchaseLink";
 import { appLocale } from "../../libs/date.util";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import DexInstantDhbTrade from "../DexInstantDhbTrade";
@@ -245,7 +246,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
             {isDhb ? (
               <ScrollView style={styles.content} bounces={false} keyboardShouldPersistTaps="handled">
-                <DhbListingSoon />
+                {DIGITAL_PURCHASES_ENABLED ? <DhbListingSoon /> : null}
               </ScrollView>
             ) : loading ? (
               <View style={styles.center}>
@@ -280,6 +281,9 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 {/* Network badge */}
                 <Text style={styles.network}>{pair.chainId.toUpperCase()} · {pair.dexId}</Text>
 
+                {!!tradeToken && !DIGITAL_PURCHASES_ENABLED && (
+                  <WebPurchaseLink path={`/dex/${pair.chainId}/${pair.pairAddress}`} />
+                )}
                 {!!tradeToken && DIGITAL_PURCHASES_ENABLED && (wallet && buyOpen ? (
                   <DexInstantDhbTrade address={wallet} token={tradeToken} onDone={() => {}} />
                 ) : (

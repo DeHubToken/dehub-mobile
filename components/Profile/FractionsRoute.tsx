@@ -7,6 +7,7 @@
  * after it had moved on-chain. On your own profile every tile is a shortcut
  * into selling it, and the empty state points at the market.
  */
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import Animated from "react-native-reanimated";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
@@ -121,7 +122,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
         data={padGrid(positions)}
         keyExtractor={(p, i) => (p ? `${p.chainId}-${p.tokenId}` : `spacer-${i}`)}
         renderItem={({ item }) => (
-          <PositionTile position={item} onOpen={openPost} onSell={isOwnProfile ? sell : undefined} />
+          <PositionTile position={item} onOpen={openPost} onSell={isOwnProfile && DIGITAL_PURCHASES_ENABLED ? sell : undefined} />
         )}
         numColumns={2}
         columnWrapperStyle={styles.row}

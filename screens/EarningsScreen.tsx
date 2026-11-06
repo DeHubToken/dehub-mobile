@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -276,8 +277,8 @@ const EarningsScreen: React.FC = () => {
             style={{ paddingBottom: 10 }}
           />
 
-          {/* Invite & earn */}
-          <InviteFriendsCard address={address} shareName={user?.username} />
+          {/* Invite & earn. Token rewards for referrals stay off the App Store build (3.1.5, 3.2.2). */}
+          {DIGITAL_PURCHASES_ENABLED && <InviteFriendsCard address={address} shareName={user?.username} />}
 
           {showLoadError ? (
             <PageSection flush>

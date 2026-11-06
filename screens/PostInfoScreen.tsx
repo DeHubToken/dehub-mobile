@@ -8,6 +8,7 @@
  * open the explorer directly, which left unminted posts with nothing but a
  * "mint to unlock" toast.
  */
+import WebPurchaseLink from "../components/common/WebPurchaseLink";
 import React, { useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet, ActivityIndicator } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -387,6 +388,9 @@ export default function PostInfoScreen() {
           </Section>
         )}
 
+        {!DIGITAL_PURCHASES_ENABLED && (isMinted || (isUnminted && isOwner)) && (
+          <WebPurchaseLink path={`/app/post/${tokenId}/info`} style={{ marginHorizontal: 16, marginTop: 12 }} />
+        )}
         {isMinted && DIGITAL_PURCHASES_ENABLED && (
           <Section
             title={t("postInfo.fractionOwnership")}

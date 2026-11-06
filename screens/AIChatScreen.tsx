@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
@@ -2215,7 +2216,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             allowEmpty={!!activeTemplate || !!(studio && ((studioSettings.mode === 'audio' && studioSettings.audioSettings?.media) || (studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint && attachedImage)))}
             placeholder={studio ? t(studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint ? 'creator.expandPromptHint' : 'creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
-          onVoicePress={studio || showStage ? undefined : toggleVoice}
+          onVoicePress={studio || showStage || !DIGITAL_PURCHASES_ENABLED ? undefined : toggleVoice}
           voiceActive={voice.isVoiceMode}
         />}
       </View>
