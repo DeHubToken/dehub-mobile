@@ -48,6 +48,7 @@ import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../s
 import { ScreenNames } from "../navigation/ScreenNames";
 import { isPublicChatOpen, setPublicChatOpen } from "../libs/public-chat-alerts";
 import { publicChatUnread } from "../hooks/usePublicChatUnread";
+import { HOLD_LIFT_TIMING, HOLD_SETTLE_TIMING } from "../components/ui/HoldSheet";
 
 /** How a message author is named in the ban and unban prompts. */
 const senderName = (msg: LiveChatMessageData) =>
@@ -516,7 +517,7 @@ const LiveChatScreen: React.FC = () => {
   const holdLift = useSharedValue(0);
   const holdLiftStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -holdLift.value }] }));
   const handleHoldLift = useCallback((px: number) => {
-    holdLift.value = withTiming(px, { duration: px ? 260 : 200 });
+    holdLift.value = withTiming(px, px ? HOLD_LIFT_TIMING : HOLD_SETTLE_TIMING);
   }, [holdLift]);
 
   const handleContextMenuClose = useCallback(() => {

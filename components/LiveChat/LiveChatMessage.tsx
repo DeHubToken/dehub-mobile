@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
@@ -156,6 +157,8 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
   // Translate lives in the long-press menu, not on the line.
   const handleLongPress = useCallback(() => {
+    // A light tick the moment the hold lands, so it reads as caught before the sheet arrives.
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => undefined);
     const translate = showTranslate && !!bodyText
       ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
       : undefined;
