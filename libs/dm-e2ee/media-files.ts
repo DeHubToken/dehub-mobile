@@ -14,6 +14,7 @@
  * makeDirectoryAsync), and the StorageAccessFramework save mirrors
  * saveEditorDownload.
  */
+import { blankPiece, mp4MetadataRanges } from "../mp4-metadata-scrub";
 import { Platform, Share } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 import { Buffer } from "buffer";
@@ -111,6 +112,7 @@ export async function deleteQuietly(uri: string | null | undefined): Promise<voi
 export async function encryptFileToCache(
   srcUri: string,
   fileKey: Uint8Array,
+  opts: { scrubMp4?: boolean } = {},
 ): Promise<{ uri: string; size: number; plainSize: number }> {
   let src = srcUri;
   let copied: string | null = null;
@@ -127,10 +129,16 @@ export async function encryptFileToCache(
     const { header, prefix } = newMediaHeader();
     await appendBytes(out, header, false);
     const chunks = mediaChunkCount(plainSize);
+    // Videos carry GPS and the phone model in their header; the file is
+    // sealed for the other person, so this is the only chance to blank them.
+    const blank = opts.scrubMp4
+      ? await mp4MetadataRanges((p, l) => readRange(src, p, l), plainSize).catch(() => [])
+      : [];
     try {
       for (let i = 0; i < chunks; i += PIECE_CHUNKS) {
         const start = i * CHUNK_BYTES;
         const plain = await readRange(src, start, Math.min(PIECE_CHUNKS * CHUNK_BYTES, plainSize - start));
+        if (blank.length) blankPiece(plain, start, blank);
         const sealed: Uint8Array[] = [];
         for (let j = 0; j < PIECE_CHUNKS && i + j < chunks; j++) {
           const part = plain.subarray(j * CHUNK_BYTES, Math.min(plain.length, (j + 1) * CHUNK_BYTES));

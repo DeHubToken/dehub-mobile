@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import { purchaseOfferVisible } from "../../config/storefront";
 import { COMMENT_ICON_SIZE } from '../Home/feed-icon-size';
 import { useReplyDelivery } from '../../libs/reply-delivery';
@@ -865,7 +866,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           {comment.gifUrl ? (
             <View style={[{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }, isMinimal && MINIMAL_UNFILLED]}>
               <SmartImage
-                source={{ uri: comment.gifUrl }}
+                source={{ uri: outsideImage(comment.gifUrl) }}
                 recyclingKey={comment.gifUrl}
                 style={{ width: 220, height: 165 }}
                 contentFit="cover"

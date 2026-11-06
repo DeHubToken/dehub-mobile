@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import { ReactionChips } from "./MessageReactions";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -424,7 +425,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         ? (typeof gifMedia === "string" ? gifMedia : gifMedia.url)
         : (message.content?.startsWith("http") ? message.content : null);
       if (!gifRaw) return [];
-      const gifUrl = resolveUrl(gifRaw);
+      const gifUrl = outsideImage(resolveUrl(gifRaw));
       return [{ url: gifUrl, kind: "gif" as const }];
     }
     // Encrypted entries render through EncryptedMedia (or not at all, when

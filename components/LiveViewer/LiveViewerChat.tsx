@@ -1,3 +1,4 @@
+import { outsideImage } from "../../libs/outside-image";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
@@ -214,7 +215,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) 
             </Text>
             {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{translation.isTranslated ? translation.translatedTexts.content : a.meta?.content}</Text> : null}
           </Text>
-          {a.meta?.gifUrl ? <Image source={{ uri: a.meta.gifUrl }} style={{ width: 160, height: 120, borderRadius: 8, marginTop: 4 }} contentFit="cover" /> : null}
+          {a.meta?.gifUrl ? <Image source={{ uri: outsideImage(a.meta.gifUrl) }} style={{ width: 160, height: 120, borderRadius: 8, marginTop: 4 }} contentFit="cover" /> : null}
           {translation.shouldShow && (
             <TranslateButton
               isTranslated={translation.isTranslated}

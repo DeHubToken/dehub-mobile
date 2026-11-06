@@ -828,7 +828,7 @@ class DmSendQueue {
         thumbnailUri: job.thumbnailUri,
       });
       plainUri = prepared.plainUri;
-      cipher = await encryptFileToCache(prepared.plainUri, prepared.fileKey);
+      cipher = await encryptFileToCache(prepared.plainUri, prepared.fileKey, { scrubMp4: kind === "video" || kind === "audio" });
       descriptor = {
         ...prepared.descriptor,
         size: cipher.plainSize,
