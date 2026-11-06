@@ -43,11 +43,17 @@ const format = (value: number) => value > 0 && value < 0.01 ? '<0.01' : value.to
 const networkName = (chainId: number) => WALLET_CHAINS.find(chain => chain.id === chainId)?.name || String(chainId);
 
 function Action({ label, icon, onPress }: { label: string; icon: IconName; onPress: () => void }) {
-  return <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={({ pressed }) => [s.action, { opacity: pressed ? 0.65 : 1 }]}>
-    <ChromeSurface radius={12} />
-    <Icon name={icon} size={20} color="#fff" />
-    <Text numberOfLines={1} adjustsFontSizeToFit style={s.actionLabel}>{label}</Text>
-  </Pressable>;
+  // Size lives on a plain View: in light themes the tone pass re-wraps
+  // Pressable style functions and drops them, which shrank these tiles to
+  // their text.
+  const [pressed, setPressed] = useState(false);
+  return <View style={[s.action, pressed && { opacity: 0.65 }]}>
+    <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} onPressIn={() => setPressed(true)} onPressOut={() => setPressed(false)} style={s.actionPress}>
+      <ChromeSurface radius={12} />
+      <Icon name={icon} size={20} color="#fff" />
+      <Text numberOfLines={1} adjustsFontSizeToFit style={s.actionLabel}>{label}</Text>
+    </Pressable>
+  </View>;
 }
 function TokenIcon({ symbol }: { symbol: string }) {
   return ICONS[symbol] ? <Image source={ICONS[symbol]} style={s.tokenIcon} /> : <View style={[s.tokenIcon, s.unknownIcon]}><Text style={s.muted}>{symbol.slice(0, 3)}</Text></View>;
@@ -293,7 +299,7 @@ const s = StyleSheet.create({
   screen: { flex: 1 }, content: { paddingBottom: 40 }, inset: { paddingHorizontal: 16, gap: 16 },
   eyebrow: { color: '#aaa', fontSize: 13, marginBottom: 12 }, balanceRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 },
   total: { flex: 1, color: '#fff', fontSize: 30, fontWeight: '700' }, title: { color: '#fff', fontSize: 20, fontWeight: '600' },
-  actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 }, action: { flexGrow: 1, flexBasis: '30%', minHeight: 72, borderRadius: 12, overflow: 'hidden', justifyContent: 'center', alignItems: 'center', gap: 8, paddingHorizontal: 8 },
+  actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 }, action: { flexGrow: 1, flexBasis: '30%', minHeight: 72, borderRadius: 12, overflow: 'hidden' }, actionPress: { flex: 1, minHeight: 72, justifyContent: 'center', alignItems: 'center', gap: 8, paddingHorizontal: 8 },
   actionLabel: { color: '#fff', fontSize: 12, fontWeight: '500' }, label: { color: '#fff', fontSize: 15, fontWeight: '500' }, muted: { color: '#9b9ba3', fontSize: 12, lineHeight: 18 },
   search: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44, paddingHorizontal: 12, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.06)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' },
   searchInput: { flex: 1, color: '#fff', minHeight: 44, fontSize: 14, paddingVertical: 8 },
