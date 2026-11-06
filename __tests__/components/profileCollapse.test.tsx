@@ -5,6 +5,7 @@ import CollapsingProfileHeader from '../../components/Profile/CollapsingProfileH
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', StyleSheet: { create: (x: unknown) => x } }));
 jest.mock('../../components/ScreenHeader', () => 'Back');
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ skin: null }) }));
 let mockReaction: (() => void) | undefined;
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
