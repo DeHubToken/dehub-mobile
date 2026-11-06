@@ -18,7 +18,7 @@ export const THEME_ICON_KEYS = [
   'notifications', 'paint', 'pinned', 'posts', 'precision-strike', 'profile', 'search',
   'second-wind', 'settings', 'signal-flare', 'stages', 'staking', 'stats', 'stores',
   'subscriptions', 'superpowers', 'team-up', 'timeline-bomber', 'trend-jacker',
-  'trophy', 'tv', 'usernames', 'videos', 'wand',
+  'trophy', 'tv', 'usernames', 'videos', 'wallet', 'wand',
 ] as const;
 export type ThemeIconKey = (typeof THEME_ICON_KEYS)[number];
 const PUBLISHED_KEYS = new Set<string>(THEME_ICON_KEYS);

@@ -40,7 +40,7 @@ const ICONS: Record<string, any> = {
   USDC: require('../../assets/tokens/USDC.png'),
   USDT: require('../../assets/tokens/USDT.png'),
 };
-const format = (value: number) => value > 0 && value < 0.01 ? '<0.01' : value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+const format = (value: number) => value > 0 && value < 0.01 ? '<0.01' : value.toLocaleString('en-US', { maximumFractionDigits: 2 });
 const networkName = (chainId: number) => WALLET_CHAINS.find(chain => chain.id === chainId)?.name || String(chainId);
 
 function Action({ label, icon, onPress }: { label: string; icon: IconName; onPress: () => void }) {
@@ -126,14 +126,13 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
     <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}
       refreshControl={<DeHubRefreshControl refreshing={wallet.refreshing} onRefresh={() => { void wallet.refresh(); }} />}>
       <PageSection>
-        <Text style={s.eyebrow}>{t('wallet.title')}</Text>
         <View style={s.balanceRow}>
           <TokenIcon symbol="DHB" />
           <Text numberOfLines={1} adjustsFontSizeToFit style={s.total}>{format(position)}</Text>
           <Pressable accessibilityRole="button" accessibilityLabel={t('common.moreInfo')} onPress={() => setBreakdown(!breakdown)} hitSlop={10}><Icon name="Info" size={18} color="#aaa" /></Pressable>
           <Pressable accessibilityRole="button" accessibilityLabel={t('wallet.copyAddress')} onPress={() => setReceive(true)} hitSlop={10}><Icon name="Copy" size={18} color="#aaa" /></Pressable>
         </View>
-        <Text style={s.muted}>{t('wallet.totalWalletValue')}: {!wallet.loading && wallet.tokens.length && Object.keys(wallet.prices).length && !(wallet.failedChains.length && usd === 0) ? `${wallet.failedChains.length ? '≈ ' : ''}$${usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</Text>
+        <Text style={s.muted}>{t('wallet.totalWalletValue')}: {!wallet.loading && wallet.tokens.length && Object.keys(wallet.prices).length && !(wallet.failedChains.length && usd === 0) ? `${wallet.failedChains.length ? '≈ ' : ''}$${usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</Text>
         {breakdown && appTokensOn && <View style={s.sectionGap}><Text style={s.muted}>{t('appTokens.explainer')}</Text></View>}
         {breakdown && !appTokensOn && <View style={s.sectionGap}>
           <Text style={s.muted}>{t('assets.dhbPositionNote')}</Text>
@@ -168,13 +167,13 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
         {appTokensOn && (!query || 'dhb dehub'.includes(query)) && <Pressable accessibilityRole="button" accessibilityLabel={`DHB, ${format(appDhb)}`} onPress={() => setAppHistory(true)} style={s.tokenRow}>
           <TokenIcon symbol="DHB" />
           <View style={s.tokenName}><Text style={s.label}>DHB</Text><Text numberOfLines={1} style={s.muted}>{t('appTokens.rowHint')}</Text></View>
-          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{format(appDhb)}</Text><Text style={s.muted}>{wallet.prices.DHB ? `$${(appDhb * wallet.prices.DHB).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
+          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{format(appDhb)}</Text><Text style={s.muted}>{wallet.prices.DHB ? `$${(appDhb * wallet.prices.DHB).toLocaleString('en-US', { maximumFractionDigits: 2 })}` : '—'}</Text></View>
           <Icon name="ChevronRight" size={16} color="#999" />
         </Pressable>}
         {visible.map(item => <Pressable key={item.symbol} accessibilityRole="button" accessibilityLabel={`${item.symbol}, ${item.unknown ? t('common.failedToLoad') : format(item.amount)}`} onPress={() => setGroup(item)} style={s.tokenRow}>
           <TokenIcon symbol={item.symbol} />
           <View style={s.tokenName}><Text style={s.label}>{item.symbol}</Text><Text numberOfLines={1} style={s.muted}>{[...new Set(item.tokens.filter(token => Number(token.balance) > 0 || token.isCustom).map(token => networkName(token.chainId)))].join(' · ') || item.name}</Text></View>
-          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{item.unknown ? (item.amount > 0 ? `≈ ${format(item.amount)}` : '—') : format(item.amount)}</Text><Text style={s.muted}>{!item.unknown && wallet.prices[item.symbol] ? `$${(item.amount * wallet.prices[item.symbol]).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
+          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{item.unknown ? (item.amount > 0 ? `≈ ${format(item.amount)}` : '—') : format(item.amount)}</Text><Text style={s.muted}>{!item.unknown && wallet.prices[item.symbol] ? `$${(item.amount * wallet.prices[item.symbol]).toLocaleString('en-US', { maximumFractionDigits: 2 })}` : '—'}</Text></View>
           <Icon name="ChevronRight" size={16} color="#999" />
         </Pressable>)}
         {!wallet.loading && !visible.length && !wallet.failedChains.length && !appTokensOn && <Text style={s.empty}>{t(query ? 'common.noResults' : 'wallet.zeroBalance')}</Text>}
