@@ -4574,6 +4574,15 @@
       "notFound": "Este enlace de invitación no es válido.",
       "requestToJoin": "Solicita unirte",
       "approvalNote": "Un administrador tiene que aprobar tu solicitud antes de que puedas unirte."
+    },
+    "buyAlert": {
+      "title": "COMPRA de {{amount}}",
+      "spent": "Gastado:",
+      "buyer": "Comprador:",
+      "txn": "Tx",
+      "balance": "Saldo:",
+      "price": "Precio:",
+      "marketCap": "Cap. de mercado:"
     }
   },
   "work": {

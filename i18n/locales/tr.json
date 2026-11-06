@@ -4574,6 +4574,15 @@
       "notFound": "Bu davet bağlantısı geçerli değil.",
       "requestToJoin": "Katılma isteği gönderin",
       "approvalNote": "Katılabilmeniz için bir yöneticinin isteğinizi onaylaması gerekir."
+    },
+    "buyAlert": {
+      "title": "{{amount}} ALIM",
+      "spent": "Harcanan:",
+      "buyer": "Alıcı:",
+      "txn": "İşlem",
+      "balance": "Bakiye:",
+      "price": "Fiyat:",
+      "marketCap": "Piyasa değeri:"
     }
   },
   "work": {

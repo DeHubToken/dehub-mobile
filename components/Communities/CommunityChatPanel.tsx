@@ -46,6 +46,7 @@ import { Image } from "expo-image";
 import { storageImageSource } from "../../libs/cdnImage";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BuyAlertCard, parseBuyAlert } from "./BuyAlertCard";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -591,7 +592,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   );
 
   const renderItem = useCallback(
-    ({ item }: { item: CommunityChatMessage }) => (
+    ({ item }: { item: CommunityChatMessage }) => {
+      // Buy bot posts carry the trade as JSON: draw the card web draws.
+      const buy = item.message_type === "buy_alert" ? parseBuyAlert(item.content) : null;
+      if (buy) return <BuyAlertCard data={buy} time={formatClock(new Date(item.created_at))} />;
+      return (
       <ChatRow
         message={item}
         myAddress={myAddress}
@@ -602,7 +607,8 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         onOpenProfile={handleOpenProfile}
         onJumpToMessage={jumpToMessage}
       />
-    ),
+      );
+    },
     [myAddress, flashId, canSend, handleToggleReaction, handleOpenProfile, jumpToMessage],
   );
 
