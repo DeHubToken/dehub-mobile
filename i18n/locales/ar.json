@@ -7246,6 +7246,7 @@
     "viewReposts": "عرض عمليات إعادة النشر"
   },
   "dm": {
+    "newDrawer": {"to": "إلى", "placeholder": "الاسم أو @اسم_المستخدم", "recent": "الأخيرة", "suggested": "مقترحون", "youFollow": "أشخاص تتابعهم", "chattedBefore": "تتحدثان", "mutual": "متبادل", "dmsOff": "الرسائل مغلقة", "keepTyping": "واصل الكتابة للبحث عن الجميع", "sayHi": "ألقِ التحية على أحدهم", "typeAny": "اكتب أي اسم أو @اسم_مستخدم"},
     "reportMessage": "الإبلاغ عن الرسالة",
     "download": "تنزيل",
     "fileSaved": "تم حفظ الملف",

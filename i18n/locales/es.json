@@ -7238,6 +7238,7 @@
     "viewReposts": "Ver reposiciones"
   },
   "dm": {
+    "newDrawer": {"to": "Para", "placeholder": "Nombre o @usuario", "recent": "RECIENTES", "suggested": "SUGERIDOS", "youFollow": "PERSONAS QUE SIGUES", "chattedBefore": "Ya hablan", "mutual": "Mutuo", "dmsOff": "MD desactivados", "keepTyping": "Sigue escribiendo para buscar a todos", "sayHi": "Saluda a alguien", "typeAny": "Escribe cualquier nombre o @usuario"},
     "reportMessage": "Denunciar mensaje",
     "download": "Descargar",
     "fileSaved": "Archivo guardado",

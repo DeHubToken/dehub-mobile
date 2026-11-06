@@ -107,6 +107,8 @@ interface ChatInputBarProps {
   onPollPress?: () => void;
   /** Pre-fill the text input on mount (e.g. shared post URL). */
   initialText?: string;
+  /** Take the caret as soon as the box can be typed in (chat opened from New message). */
+  autoFocus?: boolean;
   /**
    * Recent turns, oldest first. Supplying this turns on the reply orb; leave it
    * off and the composer is exactly what it was.
@@ -167,6 +169,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   dhbBalance,
   onPollPress,
   initialText,
+  autoFocus = false,
   thread,
   peerName,
   draftKey,
@@ -175,6 +178,14 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
   const keyboardSwap = useKeyboardSwap(inputRef);
+  // Once, the first time the box is typeable: a new chat starts disabled
+  // while it is being created, so focusing on mount alone can miss it.
+  const autoFocused = useRef(false);
+  useEffect(() => {
+    if (!autoFocus || disabled || autoFocused.current) return;
+    autoFocused.current = true;
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, [autoFocus, disabled]);
   const [ordinaryText, setOrdinaryText] = useDraft(draftKey);
   const [editText, setEditText] = useDraftState(editingMessage && draftKey ? `${draftKey}:edit:${editingMessage._id}` : null, editingMessage?.content || "");
   const text = editingMessage ? editText : ordinaryText;

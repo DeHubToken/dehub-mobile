@@ -7237,6 +7237,7 @@
     "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
+    "newDrawer": {"to": "Kime", "placeholder": "Ad veya @kullanıcıadı", "recent": "SON KİŞİLER", "suggested": "ÖNERİLER", "youFollow": "TAKİP ETTİKLERİN", "chattedBefore": "Konuşuyorsunuz", "mutual": "Karşılıklı", "dmsOff": "DM kapalı", "keepTyping": "Herkesi aramak için yazmaya devam et", "sayHi": "Birine merhaba de", "typeAny": "Herhangi bir ad veya @kullanıcıadı yaz"},
     "reportMessage": "Mesajı bildir",
     "download": "İndir",
     "fileSaved": "Dosya kaydedildi",

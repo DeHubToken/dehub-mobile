@@ -7376,6 +7376,7 @@
     "viewReposts": "Reposts bekijken"
   },
   "dm": {
+    "newDrawer": {"to": "Aan", "placeholder": "Naam of @gebruikersnaam", "recent": "RECENT", "suggested": "VOORGESTELD", "youFollow": "MENSEN DIE JE VOLGT", "chattedBefore": "Jullie praten", "mutual": "Wederzijds", "dmsOff": "DM's uit", "keepTyping": "Typ verder om iedereen te zoeken", "sayHi": "Zeg hallo tegen iemand", "typeAny": "Typ een naam of @gebruikersnaam"},
     "reportMessage": "Bericht melden",
     "download": "Downloaden",
     "fileSaved": "Bestand opgeslagen",
