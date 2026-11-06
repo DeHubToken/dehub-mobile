@@ -51,8 +51,13 @@ export async function getSubscriptionCreditTopUpTarget(
 export async function claimSubscriptionCreditTopUp(
   hash: string,
   chainId: number,
+  /** The coin sent, when it was not DHB (USDT or USDC). */
+  asset?: string,
 ): Promise<{ credited: boolean; pending?: boolean }> {
-  return apiClient.post<{ credited: boolean; pending?: boolean }>("/subscription-credits/topup", { hash, chainId });
+  return apiClient.post<{ credited: boolean; pending?: boolean }>(
+    "/subscription-credits/topup",
+    asset ? { hash, chainId, asset } : { hash, chainId },
+  );
 }
 
 // A top-up is a transfer and then a claim. If the claim is interrupted the
@@ -65,6 +70,8 @@ interface PendingCreditTopUp {
   chainId: number;
   /** The account that sent it. Another profile on this device must never claim it. */
   address: string;
+  /** Set when the top-up was paid in a coin other than DHB. */
+  asset?: string;
   /** When it was sent. A hash still unresolved after a week is given up on. */
   at: number;
 }
@@ -116,7 +123,7 @@ async function reconcilePendingCreditTopUps(address: string): Promise<void> {
     }
     if ((item.address || "").toLowerCase() !== owner) continue;
     try {
-      const result = await claimSubscriptionCreditTopUp(item.hash, item.chainId);
+      const result = await claimSubscriptionCreditTopUp(item.hash, item.chainId, item.asset);
       if (!result?.pending) await clearPendingCreditTopUp(item.hash);
     } catch (err) {
       const status = (err as { status?: number })?.status;
