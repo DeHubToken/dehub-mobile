@@ -23,6 +23,16 @@ export interface ReelStill {
 
 type Row = Record<string, any>;
 
+/**
+ * A video post. The first videos (2024) were minted before posts had a
+ * postType, so theirs is empty: a video file on the row is what marks them.
+ */
+export function isReelVideo(row: Row): boolean {
+  const type = row.postType;
+  if (type === "video" || type === "short") return true;
+  return !type && !!(row.videoUrl || row.videoExt);
+}
+
 function listOf(value: unknown): string[] {
   if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string" && !!v.trim());
   return typeof value === "string" && value.trim() ? [value] : [];
@@ -50,7 +60,7 @@ function isLockedFor(row: Row): boolean {
 export function reelStillOf(row: Row | null | undefined): ReelStill | null {
   if (!row) return null;
   const type = row.postType;
-  if (type === "video" || type === "short") {
+  if (isReelVideo(row)) {
     return canOpenPostVideoViewer(row as any) ? null : { kind: "locked", cover: row.thumbnail || row.imageUrl || undefined };
   }
   if (type === "live") return null;
@@ -80,6 +90,6 @@ export function reelStillOf(row: Row | null | undefined): ReelStill | null {
 /** Whether a row can be a slide in the reel at all. */
 export function isReelSlide(row: Row): boolean {
   if (row.postType === "live" || row.streamKey) return false;
-  if (row.postType === "video" || row.postType === "short" || row.postType === "feed-images") return true;
+  if (isReelVideo(row) || row.postType === "feed-images") return true;
   return !!reelStillOf(row);
 }
