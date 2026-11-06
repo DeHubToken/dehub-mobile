@@ -17,7 +17,6 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId } from "../../config/constants";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
-import LoginFormSkeleton from "../../components/auth/LoginFormSkeleton";
 import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
 import LoginShortsStack from "../../components/auth/LoginShortsStack";
 import WalletSetupScreen, {
@@ -159,7 +158,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   });
 
   // Opened as the Android sheet from "Log in": the first frame is the sheet
-  // with the options' skeleton, so the slide (on the UI thread) starts right
+  // with the options' space held empty (no sketch: it never matched what
+  // landed), so the slide (on the UI thread) starts right
   // away; the real options and the closed wallet/legacy sheets are built a
   // frame later, while it is already moving. Building them inside the tap is
   // what made "Log in" feel late.
@@ -871,7 +871,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               are all live. */}
           {authStep === "main" ? (
             <View onLayout={(event) => setLoginFormHeight(event.nativeEvent.layout.height)}>
-            {!built ? <LoginFormSkeleton /> : <SocialLoginIcons
+            {!built ? <View style={{ height: loginFormHeight }} /> : <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onTelegram={handleTelegramLogin}
