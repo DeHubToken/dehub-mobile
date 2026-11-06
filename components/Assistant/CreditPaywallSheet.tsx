@@ -67,6 +67,7 @@ import {
   type TopUpCoin,
 } from '../../libs/coinTopUp';
 import CoinPayList from './CoinPayList';
+import AnyCoinPay from './AnyCoinPay';
 
 /** Prices are DHB at the peg: one DHB is $0.001. */
 const USD_PER_DHB = 0.001;
@@ -204,6 +205,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const [coinBalances, setCoinBalances] = useState<Record<string, number | null>>({});
   const [coinPick, setCoinPick] = useState<string | null>(null);
   const [coinStage, setCoinStage] = useState('');
+  const [anyCoin, setAnyCoin] = useState(false);
+  useEffect(() => { if (!visible) setAnyCoin(false); }, [visible]);
   const coinUsd = Math.max(0.01, priceDhb * USD_PER_DHB - (creditsUsd || 0));
   useEffect(() => {
     if (!coinPay || !account) return;
@@ -547,7 +550,16 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               </View>
             )}
 
-            {coinPay && !unsupportedChain && !isQuoting && (
+            {coinPay && !unsupportedChain && !isQuoting && anyCoin && (
+              <AnyCoinPay
+                usdNeeded={coinUsd}
+                account={account}
+                onBack={() => setAnyCoin(false)}
+                onFunded={() => { setAnyCoin(false); handleConfirm(true); }}
+              />
+            )}
+
+            {coinPay && !unsupportedChain && !isQuoting && !anyCoin && (
               <CoinPayList
                 coins={coins}
                 balances={coinBalances}
@@ -557,6 +569,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 priceDhb={priceDhb}
                 walletDhb={walletDhb}
                 disabled={isPaying}
+                onAnyCoin={() => setAnyCoin(true)}
               />
             )}
 
@@ -579,7 +592,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             </TouchableOpacity>
             {/* The App Store build can price a run but not sell it (3.1.1). */}
             {/* A free image is not a purchase, so it stays available where selling is off. */}
-            {!DIGITAL_PURCHASES_ENABLED && !freeAvailable ? (
+            {anyCoin ? null : !DIGITAL_PURCHASES_ENABLED && !freeAvailable ? (
               <View style={[s.confirmBtn, s.confirmBtnDisabled]}>
                 <Text style={s.confirmBtnText}>{t('storefront.unavailable')}</Text>
               </View>
