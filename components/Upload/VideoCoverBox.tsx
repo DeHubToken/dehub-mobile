@@ -18,7 +18,7 @@ export const VIDEO_PREVIEW_MAX_HEIGHT = 220;
  * The shape is read from a frame of the video (frames come out already turned
  * upright, unlike the native track size).
  */
-export function useVideoPreviewBox(frameUri: string | null) {
+export function useVideoPreviewBox(frameUri: string | null, edits?: { rotate?: number; mirror?: boolean; crop?: { x: number; y: number; w: number; h: number } } | null) {
   const [aspect, setAspect] = useState<number | null>(null);
   const [columnWidth, setColumnWidth] = useState(0);
 
@@ -35,14 +35,40 @@ export function useVideoPreviewBox(frameUri: string | null) {
 
   const onLayout = useCallback((e: LayoutChangeEvent) => setColumnWidth(e.nativeEvent.layout.width), []);
 
-  const style = useMemo<ViewStyle>(() => {
-    const ratio = aspect ?? 16 / 9;
-    if (!columnWidth) return { width: "100%", height: VIDEO_PREVIEW_MAX_HEIGHT };
-    const width = Math.min(columnWidth, VIDEO_PREVIEW_MAX_HEIGHT * ratio);
-    return { width, height: width / ratio };
-  }, [aspect, columnWidth]);
+  const rotate = edits?.rotate ?? 0;
+  const mirror = !!edits?.mirror;
+  const c = edits?.crop && (edits.crop.w < 0.998 || edits.crop.h < 0.998) ? edits.crop : null;
+  const { style, video } = useMemo(() => {
+    const raw = aspect ?? 16 / 9;
+    const side = rotate === 90 || rotate === 270;
+    const shown = side ? 1 / raw : raw;
+    const r = c ?? { x: 0, y: 0, w: 1, h: 1 };
+    // Turned or cropped: the box takes the kept picture's shape and the
+    // video sits behind it, turned, flipped and shifted into place.
+    const placed = side || !!c || mirror || rotate === 180;
+    const ratio = placed ? shown * (r.w / r.h) : raw;
+    const width = columnWidth ? Math.min(columnWidth, VIDEO_PREVIEW_MAX_HEIGHT * ratio) : VIDEO_PREVIEW_MAX_HEIGHT * ratio;
+    const height = width / ratio;
+    const box: ViewStyle = columnWidth ? { width, height } : { width: "100%", height: VIDEO_PREVIEW_MAX_HEIGHT };
+    if (!placed || !columnWidth) return { style: box, video: undefined };
+    const fw = width / r.w;
+    const fh = height / r.h;
+    const vw = side ? fh : fw;
+    const vh = side ? fw : fh;
+    const transform = [{ rotate: `${rotate}deg` }, { scaleX: mirror ? -1 : 1 }];
+    const v: ViewStyle = {
+      position: "absolute",
+      width: vw,
+      height: vh,
+      left: -r.x * fw + fw / 2 - vw / 2,
+      top: -r.y * fh + fh / 2 - vh / 2,
+      transform,
+    };
+    return { style: box, video: v };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [aspect, columnWidth, rotate, mirror, c?.x, c?.y, c?.w, c?.h]);
 
-  return { style, onLayout };
+  return { style, onLayout, video };
 }
 
 interface Props {

@@ -66,7 +66,7 @@ export type UploadPayload = {
   /** Trim on the picked video, seconds. */
   videoTrim?: { start: number; end: number } | null;
   /** Mirror, turn, colour and vignette the server bakes into the video. */
-  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number } | null;
+  videoEdits?: { mirror?: boolean; rotate?: number; matrix?: number[]; vignette?: number; crop?: { x: number; y: number; w: number; h: number } } | null;
   /** Seconds until the post deletes itself. */
   destruct?: number | null;
   pickedAudio: PickedAudio | null;

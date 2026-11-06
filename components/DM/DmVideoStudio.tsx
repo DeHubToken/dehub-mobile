@@ -43,11 +43,12 @@ import { LOCK_DEFAULT_USD, formatLockUsd } from "../../libs/dmLocked";
 import { ADJUST_RANGES, DEFAULT_ADJUST, STUDIO_LOOKS, studioColorMatrix, type StudioAdjust, type StudioAdjustKey } from "../../libs/imageFilters";
 import { POST_DESTRUCT_CHOICES, postDestructLabel } from "../../libs/post-video-edits";
 import { optionalSkia } from "../../libs/skia";
+import { VIDEO_CROP_RATIOS, cropRatioValue, dragCropRect, fitCropRect, isFullCrop, type CropHandle, type CropRatioId, type VideoCropRect } from "../../libs/video-crop";
 
 // The player cannot be colour filtered, so Looks and Adjust paint a still with Skia.
 const VideoLookFrame = optionalSkia(() => require("./VideoLookFrame").default as typeof import("./VideoLookFrame").default);
 
-export type Tab = "cover" | "trim" | "mirror" | "rotate" | "looks" | "adjust" | "hide" | "timer" | "expire" | "alt";
+export type Tab = "cover" | "trim" | "crop" | "mirror" | "rotate" | "looks" | "adjust" | "hide" | "timer" | "expire" | "alt";
 const ADJUST_ORDER: StudioAdjustKey[] = ["light", "contrast", "warmth", "tint", "colour", "fade", "vignette"];
 
 /** Post videos: look, strength and adjust dials. */
@@ -120,6 +121,14 @@ interface Props {
   onUploadCover?: () => void;
   /** The uploaded cover picture, shown on the button. */
   coverPictureUri?: string | null;
+  /** Posts: the crop box (part of the turned, mirrored frame) and its shape. */
+  crop?: VideoCrop;
+  onCropChange?: (c: VideoCrop) => void;
+}
+
+export interface VideoCrop {
+  rect?: VideoCropRect;
+  ratio?: CropRatioId;
 }
 
 function useFilmstrip(uri: string, duration: number, enabled: boolean) {
@@ -157,6 +166,7 @@ export default function DmVideoStudio({
   lockPrice = null, onLockPriceChange,
   kind = "video", strip, active = 0, onSelect, onAddMore, onRemove, allowTimer = true,
   colour, onColourChange, postTimer, alt, onUploadCover, coverPictureUri,
+  crop, onCropChange,
 }: Props) {
   const isVideo = kind === "video";
   const { t: _copy } = _useCopy();
@@ -295,11 +305,47 @@ export default function DmVideoStudio({
   };
 
   const previewMaxH = Math.round(winH * 0.42);
-  const { boxW, boxH, innerW, innerH } = fitVideoBox(width, height, isVideo ? options : {}, winW - 32, previewMaxH);
+  const full = fitVideoBox(width, height, isVideo ? options : {}, winW - 32, previewMaxH);
+  // The shown frame's shape (after the turn), which the crop box works in.
+  const frameAspect = full.boxW / Math.max(1, full.boxH);
+  const cropRatio: CropRatioId = crop?.ratio ?? "original";
+  const cropRect = crop?.rect;
+  // Outside the Crop tab the preview shows only the kept part: the box takes
+  // its shape and the whole frame sits behind it, shifted into place.
+  let { boxW, boxH, innerW, innerH } = full;
+  let vidLeft = (boxW - innerW) / 2;
+  let vidTop = (boxH - innerH) / 2;
+  if (isVideo && tab !== "crop" && cropRect && !isFullCrop(cropRect)) {
+    const aspect = frameAspect * (cropRect.w / cropRect.h);
+    boxW = Math.min(winW - 32, previewMaxH * aspect);
+    boxH = boxW / aspect;
+    const fw = boxW / cropRect.w;
+    const fh = boxH / cropRect.h;
+    const side = options.rotate === 90 || options.rotate === 270;
+    innerW = side ? fh : fw;
+    innerH = side ? fw : fh;
+    vidLeft = -cropRect.x * fw + fw / 2 - innerW / 2;
+    vidTop = -cropRect.y * fh + fh / 2 - innerH / 2;
+  }
+  const pickCropRatio = (id: CropRatioId) =>
+    onCropChange?.({ ratio: id, rect: id === "free" ? cropRect : fitCropRect(cropRatioValue(id, frameAspect), frameAspect) });
+  const rotateCrop = () => {
+    const rotate = nextQuarterTurn(options.rotate) || undefined;
+    set({ rotate });
+    // The frame changes shape: the box starts again in the new one.
+    const fa = 1 / frameAspect;
+    onCropChange?.({ ratio: cropRatio, rect: cropRatio === "free" ? undefined : fitCropRect(cropRatioValue(cropRatio, fa), fa) });
+  };
+  const flipCrop = () => {
+    set({ mirror: options.mirror ? undefined : true });
+    // Keep the same part of the picture inside the box.
+    if (cropRect) onCropChange?.({ ratio: cropRatio, rect: { ...cropRect, x: 1 - cropRect.x - cropRect.w } });
+  };
 
   const allTabs: { key: Tab; label: string; icon: IconName }[] = [
     { key: "cover", label: _copy("dmVideo.cover", { defaultValue: "Cover" }), icon: "Image" },
     { key: "trim", label: _copy("dmVideo.trim", { defaultValue: "Trim" }), icon: "Scissors" },
+    { key: "crop", label: _copy("upload.studio.crop", { defaultValue: "Crop" }), icon: "Crop" },
     { key: "mirror", label: _copy("dmVideo.mirror", { defaultValue: "Mirror" }), icon: "FlipHorizontal2" },
     { key: "rotate", label: _copy("dmVideo.rotate", { defaultValue: "Rotate" }), icon: "RotateCw" },
     { key: "looks", label: _copy("upload.studio.looks", { defaultValue: "Looks" }), icon: "Palette" },
@@ -311,7 +357,7 @@ export default function DmVideoStudio({
   ];
   // Photos keep Hide (price) and Timer; the rest only means something for a video.
   const tabs = allTabs.filter((t) => (!onlyTabs || onlyTabs.includes(t.key)) &&
-    (t.key !== "timer" || allowTimer)
+    (t.key !== "timer" || allowTimer) && (t.key !== "crop" || !!onCropChange)
     && ((t.key !== "looks" && t.key !== "adjust") || (!!onColourChange && !!VideoLookFrame))
     && (t.key !== "expire" || !!postTimer) && (t.key !== "alt" || !!alt)
     && (isVideo || (t.key === "hide" && !!onLockPriceChange) || t.key === "timer"));
@@ -368,15 +414,25 @@ export default function DmVideoStudio({
                   player={player}
                   nativeControls={false}
                   contentFit="cover"
-                  style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}
+                  style={{ position: "absolute", width: innerW, height: innerH, left: vidLeft, top: vidTop, transform: videoTransform(options) }}
                 />
               )}
               {isVideo && colourTab && still && VideoLookFrame && (
-                <View pointerEvents="none" style={{ position: "absolute", width: innerW, height: innerH, left: (boxW - innerW) / 2, top: (boxH - innerH) / 2, transform: videoTransform(options) }}>
+                <View pointerEvents="none" style={{ position: "absolute", width: innerW, height: innerH, left: vidLeft, top: vidTop, transform: videoTransform(options) }}>
                   <VideoLookFrame uri={still} width={innerW} height={innerH} matrix={colourMatrix} vignette={adjust.vignette} />
                 </View>
               )}
-              {isVideo && !colourTab && (
+              {isVideo && tab === "crop" && (
+                <VideoCropOverlay
+                  width={boxW}
+                  height={boxH}
+                  rect={cropRect ?? { x: 0, y: 0, w: 1, h: 1 }}
+                  ratio={cropRatioValue(cropRatio, frameAspect)}
+                  frameAspect={frameAspect}
+                  onChange={(r) => onCropChange?.({ ratio: cropRatio, rect: isFullCrop(r) ? undefined : r })}
+                />
+              )}
+              {isVideo && !colourTab && tab !== "crop" && (
                 <Pressable onPress={togglePlay} accessibilityRole="button"
                   accessibilityLabel={playing ? _copy("dmVideo.pause", { defaultValue: "Pause" }) : _copy("dmVideo.play", { defaultValue: "Play video" })}
                   style={{ position: "absolute", inset: 0, alignItems: "center", justifyContent: "center" }}>
@@ -530,6 +586,30 @@ export default function DmVideoStudio({
                     <Text style={{ color: WHITE, fontSize: 12, fontWeight: "600" }}>{_copy("dmVideo.uploadCover", { defaultValue: "Upload a cover picture" })}</Text>
                   </Pressable>
                 )}
+              </View>
+            )}
+            {tab === "crop" && (
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flex: 1 }} contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
+                  {VIDEO_CROP_RATIOS.map((r) => {
+                    const on = cropRatio === r.id;
+                    return (
+                      <Pressable key={r.id} onPress={() => pickCropRatio(r.id)} accessibilityRole="button" accessibilityState={{ selected: on }} style={pill(on)}>
+                        <Text style={pillText(on)}>
+                          {r.id === "original" ? _copy("upload.studio.ratioOriginal", { defaultValue: "Original" }) : r.id === "free" ? _copy("upload.studio.ratioFree", { defaultValue: "Free" }) : r.label}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+                <Pressable onPress={rotateCrop} accessibilityRole="button" accessibilityLabel={_copy("upload.studio.rotate", { defaultValue: "Rotate" })}
+                  style={{ width: 38, height: 38, borderRadius: 12, borderWidth: 1, borderColor: LINE, backgroundColor: "rgba(255,255,255,0.05)", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name="RotateCw" size={17} color={WHITE} />
+                </Pressable>
+                <Pressable onPress={flipCrop} accessibilityRole="button" accessibilityState={{ selected: !!options.mirror }} accessibilityLabel={_copy("upload.studio.flip", { defaultValue: "Flip" })}
+                  style={{ width: 38, height: 38, borderRadius: 12, borderWidth: 1, borderColor: options.mirror ? "rgba(255,255,255,0.5)" : LINE, backgroundColor: options.mirror ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.05)", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name="FlipHorizontal2" size={17} color={WHITE} />
+                </Pressable>
               </View>
             )}
             {tab === "mirror" && (
@@ -714,5 +794,62 @@ export default function DmVideoStudio({
         </View>
       </KeyboardAvoidingView>
     </Modal>
+  );
+}
+
+/** The photo editor's crop box over the playing video: shade outside, thirds, corner dots. */
+function VideoCropOverlay({ width, height, rect, ratio, frameAspect, onChange }: {
+  width: number;
+  height: number;
+  rect: VideoCropRect;
+  ratio: number | null;
+  frameAspect: number;
+  onChange: (r: VideoCropRect) => void;
+}) {
+  const live = useRef({ rect, ratio, frameAspect, width, height, onChange });
+  live.current = { rect, ratio, frameAspect, width, height, onChange };
+  const start = useRef<VideoCropRect>(rect);
+  const make = (handle: CropHandle) =>
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onPanResponderGrant: () => { start.current = { ...live.current.rect }; },
+      onPanResponderMove: (_, g) => {
+        const L = live.current;
+        const next = dragCropRect(start.current, handle, g.dx / Math.max(1, L.width), g.dy / Math.max(1, L.height), L.ratio, L.frameAspect);
+        if (next) L.onChange(next);
+      },
+    });
+  // Built once: the handlers read the latest box from `live`.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const pans = useMemo(() => ({ move: make("move"), tl: make("tl"), tr: make("tr"), bl: make("bl"), br: make("br") }), []);
+  const x = rect.x * width;
+  const y = rect.y * height;
+  const w = rect.w * width;
+  const h = rect.h * height;
+  const shade = "rgba(0,0,0,0.6)";
+  const corner = (c: "tl" | "tr" | "bl" | "br") => (
+    <View key={c} {...pans[c].panHandlers}
+      style={{ position: "absolute", width: 32, height: 32, alignItems: "center", justifyContent: "center",
+        left: c === "tl" || c === "bl" ? -16 : undefined, right: c === "tr" || c === "br" ? -16 : undefined,
+        top: c === "tl" || c === "tr" ? -16 : undefined, bottom: c === "bl" || c === "br" ? -16 : undefined }}>
+      <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: WHITE }} />
+    </View>
+  );
+  return (
+    <View style={{ position: "absolute", left: 0, top: 0, width, height }}>
+      <View pointerEvents="none" style={{ position: "absolute", left: 0, right: 0, top: 0, height: y, backgroundColor: shade }} />
+      <View pointerEvents="none" style={{ position: "absolute", left: 0, right: 0, top: y + h, bottom: 0, backgroundColor: shade }} />
+      <View pointerEvents="none" style={{ position: "absolute", left: 0, top: y, height: h, width: x, backgroundColor: shade }} />
+      <View pointerEvents="none" style={{ position: "absolute", left: x + w, right: 0, top: y, height: h, backgroundColor: shade }} />
+      <View {...pans.move.panHandlers} style={{ position: "absolute", left: x, top: y, width: w, height: h, borderWidth: 2, borderColor: WHITE }}>
+        <View pointerEvents="none" style={{ position: "absolute", top: 0, bottom: 0, left: "33.33%", width: 1, backgroundColor: "rgba(255,255,255,0.35)" }} />
+        <View pointerEvents="none" style={{ position: "absolute", top: 0, bottom: 0, left: "66.66%", width: 1, backgroundColor: "rgba(255,255,255,0.35)" }} />
+        <View pointerEvents="none" style={{ position: "absolute", left: 0, right: 0, top: "33.33%", height: 1, backgroundColor: "rgba(255,255,255,0.35)" }} />
+        <View pointerEvents="none" style={{ position: "absolute", left: 0, right: 0, top: "66.66%", height: 1, backgroundColor: "rgba(255,255,255,0.35)" }} />
+        {(["tl", "tr", "bl", "br"] as const).map(corner)}
+      </View>
+    </View>
   );
 }
