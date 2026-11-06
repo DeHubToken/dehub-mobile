@@ -12,6 +12,7 @@ import { View, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import { staffImpersonated } from "../../libs/impersonation";
+import { useAppTheme } from "../../context/ThemeContext";
 
 const LINK = /(https?:\/\/|www\.)|\b[a-z0-9-]+\.(com|io|net|org|xyz|app|site|online|link|live|top|info|cc|me|co|dev|pro|gg|vip|club|fun)\b/i;
 
@@ -26,12 +27,18 @@ interface Props {
 
 const DmSafetyBannerComponent: React.FC<Props> = ({ peer, peerSentLink }) => {
   const { t } = useTranslation();
+  const { isLight } = useAppTheme();
   const impersonated = staffImpersonated(peer);
   if (!impersonated && !peerSentLink) return null;
   const danger = !!impersonated;
-  const tone = danger
-    ? { bg: "rgba(239,68,68,0.16)", border: "rgba(239,68,68,0.45)", text: "#FCA5A5", icon: "#F87171" }
-    : { bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.45)", text: "#FCD34D", icon: "#FBBF24" };
+  const tone = isLight
+    ? danger
+      ? { bg: "#FEE2E2", border: "#FCA5A5", text: "#991B1B", icon: "#DC2626" }
+      : { bg: "#FEF3C7", border: "#FCD34D", text: "#92400E", icon: "#D97706" }
+    : danger
+      ? { bg: "rgba(239,68,68,0.16)", border: "rgba(239,68,68,0.45)", text: "#FCA5A5", icon: "#F87171" }
+      : { bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.45)", text: "#FCD34D", icon: "#FBBF24" };
+  const base = isLight ? "#FFFFFF" : "rgba(9,9,11,0.82)";
 
   return (
     <View
@@ -46,7 +53,7 @@ const DmSafetyBannerComponent: React.FC<Props> = ({ peer, peerSentLink }) => {
         paddingVertical: 10,
         borderRadius: 12,
         borderWidth: 1,
-        backgroundColor: "rgba(9,9,11,0.82)",
+        backgroundColor: base,
         borderColor: tone.border,
       }}
     >
