@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
@@ -68,6 +69,12 @@ interface HoldSheetProps {
 }
 
 const GAP = 12;
+/**
+ * One timing for the list slide and the dim/frame over it, so the frame never
+ * snaps to the lifted row while the list is still sliding underneath.
+ */
+export const HOLD_LIFT_TIMING = { duration: 260, easing: Easing.out(Easing.cubic) };
+export const HOLD_SETTLE_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
 const SIDE = 8;
 const rgba = (c: readonly number[], a: number) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
 
@@ -82,7 +89,7 @@ export function useHoldLift() {
   const [top, setTop] = useState<number | undefined>(undefined);
   const style = useAnimatedStyle(() => ({ transform: [{ translateY: -lift.value }] }));
   const onLift = useCallback((px: number) => {
-    lift.value = withTiming(px, { duration: px ? 260 : 200 });
+    lift.value = withTiming(px, px ? HOLD_LIFT_TIMING : HOLD_SETTLE_TIMING);
   }, [lift]);
   const measure = useCallback(() => {
     ref.current?.measureInWindow((_x, y) => setTop(y));
@@ -126,9 +133,14 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
     return Math.max(0, Math.min(overlap, headroom));
   }, [visible, layout, sheetH, sheetY, onLift, liftTop, SCREEN_HEIGHT, insets.bottom, insets.top]);
 
+  // The dim and the frame ride the same slide as the host's list.
+  const overlayLift = useSharedValue(0);
+  const overlayStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -overlayLift.value }] }));
   useEffect(() => {
-    onLift?.(visible ? lift : 0);
-  }, [visible, lift, onLift]);
+    const px = visible ? lift : 0;
+    onLift?.(px);
+    overlayLift.value = withTiming(px, px ? HOLD_LIFT_TIMING : HOLD_SETTLE_TIMING);
+  }, [visible, lift, onLift, overlayLift]);
   // A host that unmounts the sheet instead of hiding it still settles back.
   const liftRef = useRef(onLift);
   liftRef.current = onLift;
@@ -143,7 +155,8 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   const sideTiles = tiles.filter((tile) => tile.secondary);
   const cols = Math.min(Math.max(mainTiles.length, 1), 4);
   const dim = "rgba(0,0,0,0.55)";
-  const rowTop = layout ? layout.y - lift : 0;
+  // Drawn at the row's resting place; overlayStyle slides it with the list.
+  const rowTop = layout ? layout.y : 0;
   const rowH = layout?.height ?? 0;
 
   return (
@@ -151,34 +164,34 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
       {/* Dim everything but the held row: one wash above it, one below. */}
       <Pressable style={{ flex: 1 }} onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")}>
         {layout ? (
-          <>
-            <Animated.View entering={FadeIn.duration(180)} exiting={FadeOut.duration(120)}
-              style={{ position: "absolute", left: 0, right: 0, top: 0, height: Math.max(0, rowTop), backgroundColor: dim }} />
-            <Animated.View entering={FadeIn.duration(180)} exiting={FadeOut.duration(120)}
-              style={{ position: "absolute", left: 0, right: 0, top: rowTop + rowH, bottom: 0, backgroundColor: dim }} />
-          </>
+          <Animated.View pointerEvents="none" style={[{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }, overlayStyle]}>
+            {/* The washes run past the screen edges so the slide never opens a gap. */}
+            <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)}
+              style={{ position: "absolute", left: 0, right: 0, top: -SCREEN_HEIGHT, height: Math.max(0, rowTop) + SCREEN_HEIGHT, backgroundColor: dim }} />
+            <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)}
+              style={{ position: "absolute", left: 0, right: 0, top: rowTop + rowH, height: SCREEN_HEIGHT * 2, backgroundColor: dim }} />
+            {/* The held line glows in place: a soft card around the real row. */}
+            {frame ? (
+              <Animated.View
+                entering={FadeIn.duration(160)}
+                exiting={FadeOut.duration(140)}
+                style={{
+                  position: "absolute", left: SIDE, right: SIDE, top: rowTop - 2, height: rowH + 4,
+                  borderRadius: 18, borderWidth: 1, borderColor: rgba(ink, 0.16),
+                  backgroundColor: rgba(ink, 0.06),
+                  shadowColor: "#ffffff", shadowOpacity: 0.18, shadowRadius: 14, shadowOffset: { width: 0, height: 0 },
+                }}
+              />
+            ) : null}
+          </Animated.View>
         ) : (
-          <Animated.View entering={FadeIn.duration(180)} exiting={FadeOut.duration(120)} style={{ flex: 1, backgroundColor: dim }} />
+          <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)} style={{ flex: 1, backgroundColor: dim }} />
         )}
-        {/* The held line glows in place: a soft card around the real row. */}
-        {frame && layout ? (
-          <Animated.View
-            pointerEvents="none"
-            entering={FadeIn.duration(180)}
-            exiting={FadeOut.duration(120)}
-            style={{
-              position: "absolute", left: SIDE, right: SIDE, top: rowTop - 2, height: rowH + 4,
-              borderRadius: 18, borderWidth: 1, borderColor: rgba(ink, 0.16),
-              backgroundColor: rgba(ink, 0.06),
-              shadowColor: "#ffffff", shadowOpacity: 0.18, shadowRadius: 14, shadowOffset: { width: 0, height: 0 },
-            }}
-          />
-        ) : null}
       </Pressable>
 
       <Animated.View
-        entering={SlideInDown.duration(240)}
-        exiting={SlideOutDown.duration(180)}
+        entering={SlideInDown.duration(260).easing(Easing.out(Easing.cubic))}
+        exiting={SlideOutDown.duration(200).easing(Easing.in(Easing.cubic))}
         onLayout={(e) => { setSheetH(e.nativeEvent.layout.height); setSheetY(e.nativeEvent.layout.y); }}
         style={{ position: "absolute", left: SIDE, right: SIDE, bottom: insets.bottom + SIDE }}
       >
