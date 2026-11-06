@@ -638,7 +638,9 @@
     "removeInlineImage": "Quitar la imagen {{n}}"
   },
   "storefront": {
-    "unavailable": "No disponible en esta versión de la aplicación"
+    "unavailable": "No disponible en esta versión de la aplicación",
+    "continueOnWeb": "Continuar en riftn.com",
+    "webOnlyHint": "Termina esto en riftn.com. Se abre en Safari."
   },
   "nav": {
     "nfts": "NFTs",
@@ -1126,6 +1128,7 @@
     "tapEnableSystemSettings": "Toca para activarlo en los ajustes del sistema",
     "pushNotRegistered": "Este dispositivo no está registrado para push",
     "pushNotRegisteredDesc": "Las notificaciones no pueden llegarle mientras la aplicación está cerrada: esta instalación nunca registró un dispositivo push. Eso generalmente significa que a la compilación le falta su configuración de notificación, que reemplaza la instalación de la última compilación de riftn.com/apk.",
+    "pushNotRegisteredDescIos": "Las notificaciones no pueden llegarte mientras la app está cerrada: este iPhone nunca se registró para notificaciones push. Comprueba que las notificaciones de Riftn estén permitidas en Ajustes y vuelve a abrir la app.",
     "categoryEngagement": "Interacción",
     "categorySocial": "Social",
     "categoryEarnings": "Ingresos",
