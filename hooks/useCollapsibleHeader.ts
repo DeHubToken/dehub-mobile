@@ -123,6 +123,19 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
     }
   };
 
+  /**
+   * Start measuring scroll travel from `scrollY` without moving the header.
+   * Home shares one header between several lists; the first event from a list
+   * that was not the one driving it must not be read as travel from the other
+   * list's offset (a 200pt "scroll" that was really a page turn).
+   */
+  const rebaseWorklet = (scrollY: number) => {
+    'worklet';
+    wPrevY.value = scrollY;
+    wAccum.value = 0;
+    scrollOffset.value = Math.max(0, scrollY);
+  };
+
   // Empty deps: the worklet reads only shared values and constants. Without
   // them Reanimated rebuilds the handler on every render (its closure is new
   // each time), which hands every list a new onScroll, defeats
@@ -223,5 +236,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
     handleScrollEnd,
     onHeaderLayout,
     showHeader,
+    driveWorklet,
+    rebaseWorklet,
   };
 };
