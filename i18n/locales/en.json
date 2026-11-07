@@ -1,4 +1,12 @@
 {
+  "chatTextSize": {
+    "title": "Text size",
+    "small": "Small",
+    "default": "Default",
+    "large": "Large",
+    "larger": "Larger",
+    "largest": "Largest"
+  },
   "comicBorder": {
     "title": "Border",
     "theme": "Theme",
@@ -755,6 +763,8 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "chatTextSize": "Chat text size",
+    "chatTextSizeDesc": "Bigger or smaller messages in every chat. Adds to your phone text size.",
     "contactSupport": "Contact support",
     "shortsSaveFailed": "Failed to save Shorts preference",
     "shortsEnabledDesc": "Show the Shorts feed tab and Shorts carousels on Home.",
@@ -1811,6 +1821,7 @@
     "dehubPoster": "Riftn poster"
   },
   "publicChat": {
+    "onlineHint": "{{count}} people are in this chat right now",
     "title": "Public Chat",
     "subtitle": "Join the community conversation",
     "searchMessages": "Search messages",

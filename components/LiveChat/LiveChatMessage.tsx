@@ -1,3 +1,4 @@
+import { useChatTextScale } from "../../hooks/useAppPrefs";
 import * as Haptics from "expo-haptics";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -53,7 +54,7 @@ const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 
 const URL_RE = /(?:https?:\/\/|www\.)[^\s<>)"']+/gi;
 
-const renderLinkedText = (text: string, onHold?: () => void) => {
+const renderLinkedText = (text: string, onHold?: () => void, fontSize = 15) => {
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -76,7 +77,7 @@ const renderLinkedText = (text: string, onHold?: () => void) => {
     lastIndex = re.lastIndex;
   }
   if (lastIndex < text.length) parts.push(text.slice(lastIndex));
-  return expandEmojiTokens(parts, { fontSize: 13 });
+  return expandEmojiTokens(parts, { fontSize });
 };
 
 const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
@@ -92,6 +93,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useI18n();
+  // Reader's chat text size (Settings → Appearance), on top of the phone's own font size.
+  const textScale = useChatTextScale();
+  const nameSize = 14 * textScale, nameLine = Math.round(20 * textScale), bodySize = 15 * textScale;
   const sender = message.sender;
   // Both sides can be empty — a signed-out reader has no address, and a
   // message can arrive with no author — and empty must not match empty.
@@ -239,16 +243,16 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
           {/* Name and badge share one 20pt row so the badge's resting line lands on the name's baseline. */}
-          <View style={{ flexDirection: "row", alignItems: "center", height: 20, flexShrink: 1, minWidth: 0 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", minHeight: nameLine, flexShrink: 1, minWidth: 0 }}>
             <Text
-              className={`font-bold text-[14px] text-white`}
-              style={{ lineHeight: 20, includeFontPadding: false, flexShrink: 1 }}
+              className={`font-bold text-white`}
+              style={{ fontSize: nameSize, lineHeight: nameLine, includeFontPadding: false, flexShrink: 1 }}
               numberOfLines={1}
             >
               {displayName}
             </Text>
             {!!badgeImg && (
-              <BadgeArtwork source={badgeImg} style={getBadgeOpticalStyle(badgeImg, 14, 0, 20)} contentFit="contain" />
+              <BadgeArtwork source={badgeImg} style={getBadgeOpticalStyle(badgeImg, nameSize, 0, nameLine)} contentFit="contain" />
             )}
           </View>
           {message.isPinned && (
@@ -267,7 +271,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               <Text className="text-theme-neutrals-200 text-[10px] font-bold">{_copy("copy.a4d1abed0b2b", { defaultValue: "MOD" })}</Text>
             </View>
           )}
-          <Text className="text-white/50 text-[11px] ml-auto">
+          <Text className="text-white/50 ml-auto" style={{ fontSize: 11 * textScale }}>
             {formatTime(message.createdAt)}
           </Text>
         </View>
@@ -290,7 +294,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
                 message.replyToSenderAddress?.slice(0, 8) ||
                 _copy("copy.04f8996da763", { defaultValue: "user" })}…
             </Text>
-            <Text className="text-white/50 text-xs" numberOfLines={1}>
+            <Text className="text-white/50" style={{ fontSize: 12 * textScale }} numberOfLines={1}>
               {replyQuoteText(message, t)}
             </Text>
           </TouchableOpacity>
@@ -301,8 +305,8 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         ) : (
           <>
             {!!bodyText && (
-              <Text className="text-white/70 text-[13px] leading-5">
-                {renderLinkedText(isTranslated ? (translatedTexts.content || bodyText) : bodyText, handleLongPress)}
+              <Text className="text-white/80" style={{ fontSize: bodySize, lineHeight: Math.round(bodySize * 1.42) }}>
+                {renderLinkedText(isTranslated ? (translatedTexts.content || bodyText) : bodyText, handleLongPress, bodySize)}
               </Text>
             )}
 

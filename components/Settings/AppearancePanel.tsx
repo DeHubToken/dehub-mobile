@@ -35,6 +35,7 @@ import {
   type AppFeedTab,
 } from '../../libs/feed-defaults';
 import ThemePicker from './ThemePicker';
+import { ChatTextSizePicker, useChatTextSizeLabels } from '../LiveChat/ChatTextSizeButton';
 import ThemeColorPicker from './ThemeColorPicker';
 import { hasThemeColor } from '../../theme/themeColor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
@@ -90,6 +91,8 @@ const AppearancePanel: React.FC = () => {
   const [defaultFeed, setDefaultFeed] = useState<AppFeedTab>(() => getDefaultFeedTab());
   const [feedModalVisible, setFeedModalVisible] = useState(false);
   const [landingModalVisible, setLandingModalVisible] = useState(false);
+  const [chatTextModalVisible, setChatTextModalVisible] = useState(false);
+  const chatTextLabels = useChatTextSizeLabels();
   const landingLabel = (style: PostLandingStyle) => ({
     ghost: t('settings.postLandingGhost', 'Ghost slot'),
     morph: t('settings.postLandingMorph', 'Morph'),
@@ -220,6 +223,17 @@ const AppearancePanel: React.FC = () => {
             onPress={() => setLandingModalVisible(true)}
           />
         </SettingsAnchor>
+        <Divider />
+        {/* Chat text size, also the Aa button in chats (libs/chatTextSize). */}
+        <SettingsAnchor id="chat-text-size">
+          <SettingsLinkRow
+            icon="MessageCircle"
+            label={t('settings.chatTextSize', 'Chat text size')}
+            description={t('settings.chatTextSizeDesc', 'Bigger or smaller messages in every chat. Adds to your phone text size.')}
+            value={chatTextLabels[prefs.chatTextSize]}
+            onPress={() => setChatTextModalVisible(true)}
+          />
+        </SettingsAnchor>
       </SettingsSection>
 
       <SettingsSection label={t('settings.media')} icon="Play" anchor="media">
@@ -307,6 +321,8 @@ const AppearancePanel: React.FC = () => {
           onPress={resetChannelSpeeds}
         />
       </SettingsSection>
+
+      <ChatTextSizePicker visible={chatTextModalVisible} onClose={() => setChatTextModalVisible(false)} />
 
       <SettingsOptionModal
         visible={landingModalVisible}

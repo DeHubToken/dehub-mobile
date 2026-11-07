@@ -3666,7 +3666,9 @@
     "themeColorBrand": "Merek",
     "themeColorBrandDesc": "Gunakan warna foto profil Anda",
     "themeColorBrandNoAvatar": "Tambahkan foto profil untuk memakai warna Merek",
-    "themeColorBrandFailed": "Tidak bisa membaca warna dari foto profil Anda"
+    "themeColorBrandFailed": "Tidak bisa membaca warna dari foto profil Anda",
+    "chatTextSize": "Ukuran teks chat",
+    "chatTextSizeDesc": "Pesan lebih besar atau lebih kecil di semua chat. Ditambahkan ke ukuran teks ponsel Anda."
   },
   "common": {
     "refresh": "Segarkan",
@@ -4077,7 +4079,8 @@
     "failedToClosePoll": "Gagal menutup polling",
     "endsIn": "Berakhir {{time}}",
     "multipleChoice": "Izinkan beberapa jawaban",
-    "online": "{{count}} online"
+    "online": "{{count}} online",
+    "onlineHint": "{{count}} orang ada di chat ini sekarang"
   },
   "aiChat": {
     "title": "Asisten",
@@ -14716,5 +14719,13 @@
     "openPost": "Buka postingan",
     "readArticle": "Baca artikel",
     "openToUnlock": "Buka untuk membuka kunci"
+  },
+  "chatTextSize": {
+    "title": "Ukuran teks",
+    "small": "Kecil",
+    "default": "Default",
+    "large": "Besar",
+    "larger": "Lebih besar",
+    "largest": "Terbesar"
   }
 }

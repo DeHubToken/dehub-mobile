@@ -3665,7 +3665,9 @@
     "themeColorBrand": "Бренд",
     "themeColorBrandDesc": "Использовать цвета вашего аватара",
     "themeColorBrandNoAvatar": "Добавьте фото профиля, чтобы использовать цвета бренда",
-    "themeColorBrandFailed": "Не удалось считать цвета с вашего аватара"
+    "themeColorBrandFailed": "Не удалось считать цвета с вашего аватара",
+    "chatTextSize": "Размер текста в чате",
+    "chatTextSizeDesc": "Сообщения крупнее или мельче во всех чатах. Добавляется к размеру текста на телефоне."
   },
   "common": {
     "refresh": "Обновить",
@@ -4076,7 +4078,8 @@
     "failedToClosePoll": "Не удалось закрыть опрос",
     "endsIn": "Завершится {{time}}",
     "multipleChoice": "Разрешить несколько ответов",
-    "online": "{{count}} онлайн"
+    "online": "{{count}} онлайн",
+    "onlineHint": "Сейчас в этом чате: {{count}}"
   },
   "aiChat": {
     "title": "Ассистент",
@@ -14722,5 +14725,13 @@
     "openPost": "Открыть публикацию",
     "readArticle": "Читать статью",
     "openToUnlock": "Откройте, чтобы разблокировать"
+  },
+  "chatTextSize": {
+    "title": "Размер текста",
+    "small": "Мелкий",
+    "default": "По умолчанию",
+    "large": "Крупный",
+    "larger": "Крупнее",
+    "largest": "Самый крупный"
   }
 }

@@ -1,3 +1,4 @@
+import { useChatTextScale } from "../../hooks/useAppPrefs";
 import { openMessageReport } from "../common/MessageReportHost";
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
@@ -158,6 +159,7 @@ const ChatRow: React.FC<{
   // Web sends a GIF with its URL as the message body and the same URL in
   // image_url. The picture is already on screen, so printing the body as well
   // just puts a stray link under it — drop it, and the link card with it.
+  const textScale = useChatTextScale();
   const bodyText = useMemo(() => chatBodyText(message), [message]);
 
   // A shop item, an event or another community dropped into a channel arrived
@@ -194,7 +196,8 @@ const ChatRow: React.FC<{
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
           <Text
-            className="font-bold text-[13px] text-white"
+            className="font-bold text-white"
+            style={{ fontSize: 13.5 * textScale }}
             numberOfLines={1}
             onPress={() => profileId && onOpenProfile(profileId)}
           >
@@ -257,7 +260,7 @@ const ChatRow: React.FC<{
         )}
 
         {!!displayContent && (
-          <Text className="text-white/70 text-sm leading-5">{expandEmojiTokens(displayContent, { fontSize: 14 })}</Text>
+          <Text className="text-white/80" style={{ fontSize: 15 * textScale, lineHeight: Math.round(21 * textScale) }}>{expandEmojiTokens(displayContent, { fontSize: 15 * textScale })}</Text>
         )}
 
         <LinkPreviewCard text={bodyText} />

@@ -3574,7 +3574,9 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Usar as cores da sua foto de perfil",
     "themeColorBrandNoAvatar": "Adicione uma foto de perfil para usar as cores da Marca",
-    "themeColorBrandFailed": "Não foi possível ler as cores da sua foto de perfil"
+    "themeColorBrandFailed": "Não foi possível ler as cores da sua foto de perfil",
+    "chatTextSize": "Tamanho do texto do chat",
+    "chatTextSizeDesc": "Mensagens maiores ou menores em todos os chats. Soma-se ao tamanho de texto do seu telefone."
   },
   "common": {
     "refresh": "Atualizar",
@@ -4000,7 +4002,8 @@
     "failedToClosePoll": "Falha ao encerrar a enquete",
     "endsIn": "Termina {{time}}",
     "multipleChoice": "Permitir várias respostas",
-    "online": "{{count}} online"
+    "online": "{{count}} online",
+    "onlineHint": "{{count}} pessoas estão neste chat agora"
   },
   "aiChat": {
     "title": "Assistente",
@@ -15803,5 +15806,13 @@
     "openPost": "Abrir publicação",
     "readArticle": "Ler artigo",
     "openToUnlock": "Abrir para desbloquear"
+  },
+  "chatTextSize": {
+    "title": "Tamanho do texto",
+    "small": "Pequeno",
+    "default": "Padrão",
+    "large": "Grande",
+    "larger": "Maior",
+    "largest": "Máximo"
   }
 }

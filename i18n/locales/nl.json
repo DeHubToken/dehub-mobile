@@ -1457,7 +1457,9 @@
     "themeColorBrand": "Merk",
     "themeColorBrandDesc": "Kleuren van je profielfoto gebruiken",
     "themeColorBrandNoAvatar": "Voeg een profielfoto toe om Merkkleuren te gebruiken",
-    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
+    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen",
+    "chatTextSize": "Tekstgrootte in chat",
+    "chatTextSizeDesc": "Grotere of kleinere berichten in elke chat. Bovenop de tekstgrootte van je telefoon."
   },
   "common": {
     "refresh": "Vernieuwen",
@@ -2074,7 +2076,8 @@
     "failedToClosePoll": "Poll sluiten mislukt",
     "endsIn": "Eindigt {{time}}",
     "multipleChoice": "Meerdere antwoorden toestaan",
-    "online": "{{count}} online"
+    "online": "{{count}} online",
+    "onlineHint": "{{count}} mensen zijn nu in deze chat"
   },
   "aiChat": {
     "title": "AI Assistent",
@@ -7376,7 +7379,19 @@
     "viewReposts": "Reposts bekijken"
   },
   "dm": {
-    "newDrawer": {"to": "Aan", "placeholder": "Naam of @gebruikersnaam", "recent": "RECENT", "suggested": "VOORGESTELD", "youFollow": "MENSEN DIE JE VOLGT", "chattedBefore": "Jullie praten", "mutual": "Wederzijds", "dmsOff": "DM's uit", "keepTyping": "Typ verder om iedereen te zoeken", "sayHi": "Zeg hallo tegen iemand", "typeAny": "Typ een naam of @gebruikersnaam"},
+    "newDrawer": {
+      "to": "Aan",
+      "placeholder": "Naam of @gebruikersnaam",
+      "recent": "RECENT",
+      "suggested": "VOORGESTELD",
+      "youFollow": "MENSEN DIE JE VOLGT",
+      "chattedBefore": "Jullie praten",
+      "mutual": "Wederzijds",
+      "dmsOff": "DM's uit",
+      "keepTyping": "Typ verder om iedereen te zoeken",
+      "sayHi": "Zeg hallo tegen iemand",
+      "typeAny": "Typ een naam of @gebruikersnaam"
+    },
     "reportMessage": "Bericht melden",
     "download": "Downloaden",
     "fileSaved": "Bestand opgeslagen",
@@ -16595,5 +16610,13 @@
     "notReal": "Dit is niet de echte {{name}}.",
     "neverLink": "Het Riftn-team stuurt je nooit een link via DM om je profiel of wallet te repareren. Open geen links, koppel je wallet niet en onderteken niets. Blokkeer en meld dit account.",
     "linkCaution": "Pas op met links. Riftn vraagt je nooit om je wallet te koppelen, iets te ondertekenen of je herstelzin te delen om je account te repareren."
+  },
+  "chatTextSize": {
+    "title": "Tekstgrootte",
+    "small": "Klein",
+    "default": "Standaard",
+    "large": "Groot",
+    "larger": "Groter",
+    "largest": "Grootst"
   }
 }
