@@ -278,6 +278,13 @@ interface MessageBubbleProps {
   message: DmMessage;
   isMine: boolean;
   showAvatar?: boolean;
+  /**
+   * Where this line sits in a run from one sender (back-to-back, within 5
+   * minutes, same day). Inner corners tighten and only the last line carries
+   * the time, so a run reads as one block. Both default to true: a lone line.
+   */
+  groupFirst?: boolean;
+  groupLast?: boolean;
   onLongPress?: (
     message: DmMessage,
     layout: MessageLayout,
@@ -304,6 +311,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   message,
   isMine,
   showAvatar = false,
+  groupFirst = true,
+  groupLast = true,
   onLongPress,
   onImagePress,
   onVideoPress,
@@ -647,16 +656,23 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   ), [timeStr, isMine, message.isRead, message.encrypted, message, isUploadFailed, t]);
 
 
+  // Tail corner: the last line of a run keeps the small 2px tail corner, lines
+  // inside the run get 6px on that side, and every line after the first gets
+  // 6px on the top of that side too.
+  const tailCorner = isMine
+    ? (groupLast ? "rounded-br-sm" : "rounded-br-md")
+    : (groupLast ? "rounded-bl-sm" : "rounded-bl-md");
+  const topCorner = groupFirst ? "" : isMine ? " rounded-tr-md" : " rounded-tl-md";
   const bubbleBg = isMine
-    ? "bg-white/[0.11] rounded-xl rounded-br-sm"
-    : "border border-white/[0.16] rounded-xl rounded-bl-sm";
+    ? `bg-white/[0.11] rounded-xl ${tailCorner}${topCorner}`
+    : `border border-white/[0.16] rounded-xl ${tailCorner}${topCorner}`;
 
   const isMediaOnly = (mediaItems.length > 0 || encVisual) && !hasText && !isVoice;
   // Media-only paid msgs need a background for PaymentBadge; plain media-only don't
   const activeBubbleBg = isMediaOnly
     ? (isPaidMsg
         ? bubbleBg + " overflow-hidden"  // full bubble bg for payment badge area
-        : (isMine ? "rounded-xl rounded-br-sm overflow-hidden" : "rounded-xl rounded-bl-sm overflow-hidden"))
+        : `rounded-xl ${tailCorner}${topCorner} overflow-hidden`)
     : bubbleBg;
 
   // These two returns sit below every hook above deliberately.
@@ -743,7 +759,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           >
         <View
           ref={containerRef}
-          className={`flex-row items-end gap-2 px-3 py-0.5 ${
+          className={`flex-row items-end gap-2 px-3 ${groupFirst ? "pt-0.5" : "pt-[1px]"} ${groupLast ? "pb-1.5" : "pb-[1px]"} ${
             isMine ? "justify-end" : "justify-start"
           }`}
         >
@@ -1196,9 +1212,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 </View>
               </>
             ) : (
-              <View className="px-3 pb-1.5">
-                <StatusRow />
-              </View>
+              // Inside a run only the last line carries the time; a line that
+              // is still sending, failed, or paid keeps its row.
+              groupLast || isPaidMsg || isUploadFailed || (message as OptimisticMessage)._optimistic ? (
+                <View className="px-3 pb-1.5">
+                  <StatusRow />
+                </View>
+              ) : (
+                <View className="pb-2" />
+              )
             )}
           </View>
         </View>
