@@ -9,5 +9,6 @@ export function isPostHiddenByStorefront(
 ): boolean {
   if (purchasesEnabled) return false;
   return hasBounty || !!access.streamStatus?.isLockedWithSubscription ||
+    !!access.streamStatus?.isLockedWithLockContent ||
     (!!access.streamStatus?.isLockedWithPPV && !locallyUnlocked);
 }

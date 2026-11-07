@@ -26,6 +26,7 @@ import GlassModal from "./ui/GlassModal";
 import AccentButtonGradient from "./ui/AccentButtonGradient";
 import { theme } from "../theme";
 import { APP_STORE_LINK, GOOGLE_PLAY_LINK } from "../config";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 import { openExternalLink } from "../libs/links.utils";
 import { toastSuccess, toastError } from "../libs/toast";
 import env from "../config/env";
@@ -96,6 +97,16 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       starRotate.value = 0;
     }
   }, [step]);
+
+  // App Review 5.6.1: the App Store build may not ask how the app is going
+  // before deciding whether to send someone to review it. There the row goes
+  // straight to the App Store's own write-a-review page, whatever they think.
+  useEffect(() => {
+    if (!IS_APP_STORE_BUILD || !visible) return;
+    onClose();
+    openExternalLink(`${APP_STORE_LINK}?action=write-review`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   // Content opacity for step transitions
   useEffect(() => {
@@ -472,6 +483,8 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         return renderInitialStep();
     }
   };
+
+  if (IS_APP_STORE_BUILD) return null;
 
   return (
     <GlassModal

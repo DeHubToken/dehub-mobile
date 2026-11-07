@@ -8,7 +8,7 @@
  * size, colour and gap here is its Tailwind class.
  */
 import { openWebPurchase } from "../common/WebPurchaseLink";
-import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD, purchaseOfferVisible } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -158,7 +158,7 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: BADGE_ORDER[i] })}
       dockLabel={t("badgeShowcase.badges")}
       owned={owned}
-      footer={(api) => <HolderActions api={api} />}
+      footer={IS_APP_STORE_BUILD ? undefined : (api) => <HolderActions api={api} />}
     >
       {(api) => (
         <HolderDetails
@@ -285,6 +285,24 @@ function HolderDetails({
       coin: !perks.freeVoiceCloning && !!clonePrice,
     },
   ];
+
+  // The App Store build shows the tier and nothing about what it takes to
+  // unlock it or what it grants: no threshold, slider, perks or docs link.
+  if (IS_APP_STORE_BUILD) {
+    return (
+      <View style={{ alignItems: "center", gap: 6 }}>
+        {lineKey ? <Text style={styles.cheer}>{t(lineKey)}</Text> : null}
+        <View style={ui.titleRow}>
+          <SwapText text={SHORT_NAMES[name] ?? name} distance={10} duration={280} align="center" style={ui.title} />
+        </View>
+        {celebrating || owned(index) ? (
+          <Text style={ui.muted}>
+            {celebrating ? t("badgeAscension.reached", { tier: name }) : t("badgeShowcase.youHaveThis")}
+          </Text>
+        ) : null}
+      </View>
+    );
+  }
 
   return (
     <>

@@ -186,6 +186,32 @@ describe('an /app link with no screen', () => {
     }
   });
 
+  it('lands App Store wallet, buy, stake and plan links on a screen the navigator gates', async () => {
+    mockStorefront.digital = false;
+    try {
+      openBrowser.mockClear();
+      openURL.mockClear();
+      // DpayScreen opens these on the wallet overview; the rest are wrapped
+      // in storefrontRoute (navigation/AppNavigator).
+      expect(target(resolve('/app/wallet')).name).toBe('Dpay');
+      expect(target(resolve('/buy')).params).toEqual({ initialTab: 'buy' });
+      expect(target(resolve('/stake')).params).toEqual({ initialTab: 'stake' });
+      expect(target(resolve('/app/superpowers')).name).toBe('SuperPowers');
+      expect(target(resolve('/premium')).name).toBe('Premium');
+      expect(target(resolve('/pricing')).name).toBe('Pricing');
+      expect(target(resolve('/launchpad')).name).toBe('Launchpad');
+      expect(target(resolve('/depin')).name).toBe('DePin');
+      // No screen for these, and the web pages sell: Home, never the in-app browser.
+      expect(appStack(resolve('/app/earnings'))).toEqual(['Root']);
+      expect(appStack(resolve('/app/assistant'))).toEqual(['Root']);
+      await flush();
+      expect(openBrowser).not.toHaveBeenCalled();
+      expect(openURL).not.toHaveBeenCalled();
+    } finally {
+      mockStorefront.digital = true;
+    }
+  });
+
   it('does not reopen a link that comes straight back', async () => {
     resolve('/app/settings');
     resolve('/app/settings');

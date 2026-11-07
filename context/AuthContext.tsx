@@ -51,6 +51,7 @@ import {
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
 import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 import { setViewAccount } from "../services/view.service";
+import { seedBlockedAuthors } from "../libs/blocked-authors";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence";
 import { markOnboardingOfferPending } from "../hooks/useOnboardingChecklist";
@@ -374,6 +375,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Scope view-dedup storage to the signed-in account — without this the
     // previous account's 24h cooldowns suppress the next account's views.
     setViewAccount(user?.address ?? null);
+    // The account's own block list rides on it; seed the session's
+    // blocked-authors list so their posts stay off screen from the start.
+    seedBlockedAuthors(user?.blocklist?.blocked?.map((b) => b.address));
   }, [user]);
   // Refs for stable callback access (avoid re-creating requireAuth/switchChain on state changes)
   const isSignedInRef = useRef(isSignedIn);

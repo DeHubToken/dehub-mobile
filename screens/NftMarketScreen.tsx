@@ -417,10 +417,12 @@ export function NftMarketView({ embedded = false }: { embedded?: boolean }) {
             <Text style={styles.statValue}>{compactNumber(forSaleTotal)}</Text>
             <Text style={styles.statLabel}>{t("nftMarket.statForSale", { defaultValue: "For sale" })}</Text>
           </View>
-          <Pressable onPress={() => setTab("mine")} style={({ pressed }) => [styles.stat, pressed && { opacity: 0.85 }]} accessibilityRole="button">
-            <Text style={styles.statCta}>{t("nftMarket.sellYours", { defaultValue: "Sell yours" })} →</Text>
-            <Text style={styles.statLabel}>{t("nftMarket.sellYoursHint", { defaultValue: "List from your wallet" })}</Text>
-          </Pressable>
+          {canTrade ? (
+            <Pressable onPress={() => setTab("mine")} style={({ pressed }) => [styles.stat, pressed && { opacity: 0.85 }]} accessibilityRole="button">
+              <Text style={styles.statCta}>{t("nftMarket.sellYours", { defaultValue: "Sell yours" })} →</Text>
+              <Text style={styles.statLabel}>{t("nftMarket.sellYoursHint", { defaultValue: "List from your wallet" })}</Text>
+            </Pressable>
+          ) : null}
         </View>
       ) : null}
       {allCollections.length > 1 ? <CollectionsRow items={allCollections} selected={pickedCollection} onSelect={pickCollection} /> : null}

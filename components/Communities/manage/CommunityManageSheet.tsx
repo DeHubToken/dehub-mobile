@@ -25,6 +25,7 @@ import { RulesTab } from "./RulesTab";
 import { RecentActionsTab } from "./RecentActionsTab";
 import { DangerZone } from "./DangerZone";
 import { HoldersTab } from "./HoldersTab";
+import { IS_APP_STORE_BUILD } from "../../../config/storefront";
 
 type ManageTabKey =
   | "members"
@@ -107,11 +108,14 @@ export function CommunityManageSheet({
       });
     }
     if (abilities.isOwner) {
-      list.push({
-        key: "holders",
-        label: t("communities.holderGate.tab", { defaultValue: "Holders" }),
-        icon: "Coins",
-      });
+      // Gating a chat on token holdings is not offered in the App Store build.
+      if (!IS_APP_STORE_BUILD) {
+        list.push({
+          key: "holders",
+          label: t("communities.holderGate.tab", { defaultValue: "Holders" }),
+          icon: "Coins",
+        });
+      }
       list.push({
         key: "danger",
         label: t("communities.manage.tabs.danger", { defaultValue: "Danger zone" }),

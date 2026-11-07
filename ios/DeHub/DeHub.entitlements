@@ -16,6 +16,8 @@
     <array>
       <string>applinks:dehub.io</string>
       <string>webcredentials:dehub.io</string>
+      <string>applinks:riftn.com</string>
+      <string>webcredentials:riftn.com</string>
     </array>
   </dict>
 </plist>

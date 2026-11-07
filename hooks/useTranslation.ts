@@ -3,6 +3,7 @@ import { useCallback, useRef, useMemo, useEffect, useSyncExternalStore } from 'r
 import { useTranslation as useI18n } from 'react-i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
 import { autoTranslateEnabled, subscribeAutoTranslate } from '../libs/auto-translate-setting';
+import { ensureAiConsent, hasAiConsent } from '../libs/ai-consent';
 import { queueAutoTranslate } from '../libs/auto-translate-queue';
 import { chatLineIsForeign } from '../libs/chat-language-hint';
 import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
@@ -154,6 +155,12 @@ export function useTranslation(
   const runTranslate = useCallback(
     async (silent: boolean) => {
       if (inFlightRef.current || isTranslatedRef.current) return;
+      // A tap asks for permission to use third-party AI (App Store build);
+      // auto-translate never asks and only runs once it has been given.
+      if (!hasAiConsent()) {
+        if (silent || !(await ensureAiConsent())) return;
+        if (inFlightRef.current || isTranslatedRef.current) return;
+      }
       const gen = genRef.current;
       const current = () => gen === genRef.current;
       inFlightRef.current = true;

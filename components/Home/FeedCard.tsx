@@ -172,6 +172,7 @@ import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
 import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
 import KeywordFilterGate from "./KeywordFilterGate";
+import { useIsAuthorBlocked } from "../../libs/blocked-authors";
 import { storedVideoAspect } from "../../libs/video-aspect";
 import { reportPostEvent } from "../../services/post-stats.service";
 import { maxImageDensity } from "../../libs/deviceTier";
@@ -951,7 +952,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // A paid boost slot marks itself: lit corner bolt and "Boosted" by the time.
   // It must say so in words, or a paid post reads as organic reach.
   const isBoosted = !!(item as any).__boosted;
-  const openSuperPowers = useCallback(() => navigation.navigate(ScreenNames.SuperPowers), [navigation]);
+  const goToSuperPowers = useCallback(() => navigation.navigate(ScreenNames.SuperPowers), [navigation]);
+  // The App Store build has no SuperPowers page (config/storefront): the
+  // label stays, the link goes.
+  const openSuperPowers = DIGITAL_PURCHASES_ENABLED ? goToSuperPowers : undefined;
   const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), [setShowReactionInfo]);
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.
@@ -2298,7 +2302,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentLayout={postLayout === "comic" ? "comic" : null}
           photoCount={galleryImages.length}
           onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
-          hideReportContent={isLive}
+          // A live post keeps "Report content" whenever it carries its post
+          // id, which is all the content report needs.
+          hideReportContent={isLive && !/^\d+$/.test(String(tokenId))}
           hideEdit={isLive}
           isAudio={isAudioPost}
           onFollowChange={handleFollowChange}
@@ -3262,6 +3268,9 @@ const hideCard = () => null;
  */
 const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
   const item = props.item as any;
+  // Someone the viewer blocked: gone at once, and back if they unblock.
+  const authorBlocked = useIsAuthorBlocked(item?.minterUser?.address || item?.minter || item?.owner);
+  if (authorBlocked) return null;
   return (
     <ErrorBoundary scope="feed-card" renderFallback={hideCard}>
       {/* The viewer's muted words — see KeywordFilterGate. */}

@@ -36,6 +36,25 @@ function contextFor(report: MessageReport): string {
   ].filter(Boolean).join("\n");
 }
 
+/**
+ * The same sheet, for a chat that lives inside its own native Modal (a stage,
+ * an event sheet). iOS will not present the root host's sheet over another
+ * Modal, so those surfaces mount this one inside theirs.
+ */
+export function MessageReportModal({ report, onClose }: { report: MessageReport | null; onClose: () => void }) {
+  if (!report) return null;
+  return (
+    <ReportModal
+      visible
+      onClose={onClose}
+      type="user"
+      userId={report.userId}
+      userName={report.userName}
+      context={contextFor(report)}
+    />
+  );
+}
+
 export default function MessageReportHost() {
   const [report, setReport] = useState<MessageReport | null>(null);
   useEffect(() => {
@@ -43,15 +62,5 @@ export default function MessageReportHost() {
     listeners.add(listener);
     return () => { listeners.delete(listener); };
   }, []);
-  if (!report) return null;
-  return (
-    <ReportModal
-      visible
-      onClose={() => setReport(null)}
-      type="user"
-      userId={report.userId}
-      userName={report.userName}
-      context={contextFor(report)}
-    />
-  );
+  return <MessageReportModal report={report} onClose={() => setReport(null)} />;
 }

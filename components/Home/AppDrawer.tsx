@@ -127,8 +127,9 @@ const NAV_ITEMS: DrawerItem[] = [
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true, storefrontHidden: true },
-  // Badge grants and existing allowances are available on every platform.
-  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers },
+  // Powers unlocked by holding DHB: hidden in the App Store build, where
+  // crypto may not unlock features (guideline 3.1.1).
+  { icon: "Zap", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
   // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
   // the other things staking buys. Browsing and adding packs is open to all.
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },

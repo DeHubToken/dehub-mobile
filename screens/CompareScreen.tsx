@@ -11,6 +11,10 @@ import { useAppTheme } from '../context/ThemeContext';
 import { openExternalLink } from '../libs/links.utils';
 import { CATEGORIES, FEATURES, PLATFORMS, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, entryFor, featureTotals, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
 import { inComparisonView, type ComparisonView } from '../libs/platform-comparison-views';
+import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
+
+/** The launchpad is not in the App Store build (config/storefront), so its source link is left off there. */
+const linkedSource = (source?: string): source is string => !!source && !!SOURCES[source] && (DIGITAL_PURCHASES_ENABLED || source !== 'dehubLaunchpad');
 
 export default function CompareScreen() {
   const { t } = useTranslation();
@@ -37,10 +41,10 @@ export default function CompareScreen() {
     <View style={styles.entryHeading}><Text style={[styles.name, { color: colors.foreground }]}>{name}</Text><Text style={{ color: colors.mutedForeground }}>{copy(`status.${value.status}`, STATUS_LABELS[value.status])}</Text></View>
     <Text style={[styles.body, { color: colors.mutedForeground }]}>{value.note}</Text>
     {restricted && <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('ios', 'Purchase and reward actions are unavailable in the iOS app.')}</Text>}
-    {value.source && SOURCES[value.source] && <Pressable accessibilityRole="link" onPress={() => { void openExternalLink(SOURCES[value.source!].url); }} style={styles.link}>
+    {linkedSource(value.source) && <Pressable accessibilityRole="link" onPress={() => { void openExternalLink(SOURCES[value.source!].url); }} style={styles.link}>
       <Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{SOURCES[value.source].title}</Text>
     </Pressable>}
-    {value.relatedSources?.map(source => SOURCES[source] && <Pressable key={source} accessibilityRole="link" onPress={() => { void openExternalLink(SOURCES[source].url); }} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{SOURCES[source].title}</Text></Pressable>)}
+    {value.relatedSources?.map(source => linkedSource(source) && <Pressable key={source} accessibilityRole="link" onPress={() => { void openExternalLink(SOURCES[source].url); }} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{SOURCES[source].title}</Text></Pressable>)}
   </View>;
   return <View style={styles.root}>
     <ScreenHeader title={copy('title', 'Compare Riftn')} icon="glossary" tabs={<PageTabs<PlatformId | 'all'> tabs={[...PLATFORMS.map(p => ({ id: p.id, label: p.name })), { id: 'all', label: copy('allPlatforms', 'All platforms') }]} value={platform} onChange={setPlatform} />}>

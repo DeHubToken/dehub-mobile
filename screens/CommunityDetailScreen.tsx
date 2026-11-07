@@ -475,7 +475,8 @@ const CommunityDetailScreen: React.FC = () => {
             <Text className="text-zinc-400 text-sm mt-1">
               {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
             </Text>
-            {holderGate && (
+            {/* The token a chat is gated on: not advertised in the App Store build. */}
+            {holderGate && DIGITAL_PURCHASES_ENABLED && (
               <View style={styles.holderChip}>
                 {isDehubToken(holderGate)
                   ? <Image source={DEHUB_COIN} style={{ width: 14, height: 14 }} contentFit="contain" />

@@ -18,7 +18,8 @@ describe("badge showcase layout", () => {
   });
 
   it("puts both showcases' buttons in the footer, not the details column", () => {
-    expect(holder).toMatch(/footer=\{\(api\) => <HolderActions api=\{api\} \/>\}/);
+    // The App Store build drops the holder footer (buy and docs) altogether.
+    expect(holder).toMatch(/footer=\{IS_APP_STORE_BUILD \? undefined : \(api\) => <HolderActions api=\{api\} \/>\}/);
     expect(streamer).toMatch(/footer=\{\(api\) => <StreamerActions /);
     expect(holder).not.toMatch(/ui\.actions/);
     expect(streamer).not.toMatch(/ui\.actions/);

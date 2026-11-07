@@ -33,6 +33,7 @@ import { useMentions } from "../../hooks/useMentions";
 import { useGrowingTextInput } from "../../hooks/useGrowingTextInput";
 import { useSurfaceDraft } from "../../hooks/useSurfaceDraft";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { openMessageReport } from "../common/MessageReportHost";
 import {
   featureLikersLoader,
   useFeatureRequestThread,
@@ -134,6 +135,21 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
 
   const handleUserPress = useCallback((userId: string) => showUserProfile?.(userId), [showUserProfile]);
 
+  // These comments live in Supabase, not the post comment table, so a report
+  // goes to moderators as one on the author with the comment attached — the
+  // same path a chat message takes (App Review 1.2).
+  const handleReport = useCallback((comment: Comment) => {
+    const userId = comment.address || comment.user?.username;
+    if (!userId) return;
+    openMessageReport({
+      userId,
+      userName: comment.user?.displayName || comment.user?.username,
+      where: `Feature request comment ${featureId}`,
+      messageId: String(comment.id),
+      text: comment.content,
+    });
+  }, [featureId]);
+
   const cancelReplyOrEdit = useCallback(() => {
     if (editing) { setText.clear(); setText(""); }
     setEditing(null);
@@ -198,6 +214,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
         onUserPress={handleUserPress}
         onEdit={handleStartEdit}
         onDelete={handleDelete}
+        onReport={isAuthed ? handleReport : undefined}
         onLongPress={(target, layout, extra) => setContext({ comment: target, layout, extra })}
         tokenId={`request:${featureId}`}
         contentType="feed"
@@ -378,6 +395,7 @@ const RequestComments: React.FC<Props> = ({ featureId, featureTitle, authorAddre
         onReply={() => { if (context) handleReply(context.comment); setContext(null); }}
         onEdit={context?.extra.isOwnComment ? () => { if (context) handleStartEdit(context.comment); setContext(null); } : undefined}
         onDelete={context?.extra.isOwnComment ? () => { if (context) handleDelete(context.comment); setContext(null); } : undefined}
+        onReport={isAuthed && context ? () => handleReport(context.comment) : undefined}
         onLike={() => {
           if (context) void handleReact(Number(context.comment.id), "like").catch(() => {});
           setContext(null);

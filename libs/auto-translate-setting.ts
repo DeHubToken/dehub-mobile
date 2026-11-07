@@ -16,13 +16,16 @@
  */
 
 import { storage } from './storage';
+import { hasAiConsent, subscribeAiConsent } from './ai-consent';
 
 const AUTO_TRANSLATE_KEY = 'dehub-auto-translate';
 const listeners = new Set<() => void>();
 
 export function subscribeAutoTranslate(listener: () => void): () => void {
   listeners.add(listener);
-  return () => { listeners.delete(listener); };
+  // Giving or withdrawing AI permission turns auto-translate on or off too.
+  const unsubscribeConsent = subscribeAiConsent(listener);
+  return () => { listeners.delete(listener); unsubscribeConsent(); };
 }
 
 /**
@@ -30,6 +33,9 @@ export function subscribeAutoTranslate(listener: () => void): () => void {
  * applies to the next card without an app restart.
  */
 export function autoTranslateEnabled(): boolean {
+  // Translation goes to third-party AI, which the App Store build only uses
+  // with the user's permission (libs/ai-consent).
+  if (!hasAiConsent()) return false;
   try {
     return storage.getString(AUTO_TRANSLATE_KEY) !== 'off';
   } catch {

@@ -107,7 +107,8 @@ export default function CreatorScreen() {
     { key: 'agents', label: t('creator.navAgents'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', label: t('creator.editor'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', label: t('creator.flow'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
-    { key: 'builder', label: t('creator.toolBuilder'), open: () => nav.navigate(ScreenNames.Builder) },
+    // Builder is not in the App Store build (config/storefront): no row there.
+    ...(DIGITAL_PURCHASES_ENABLED ? [{ key: 'builder', label: t('creator.toolBuilder'), open: () => nav.navigate(ScreenNames.Builder) }] : []),
   ], [t, openStudio, nav]);
 
   const header = useMemo(() => {
@@ -122,7 +123,7 @@ export default function CreatorScreen() {
     { key: 'agents', icon: 'assistant', label: t('creator.navAgents'), note: t('creator.doorAgentsNote'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', icon: 'tv', label: t('creator.editor'), note: t('creator.editorNote'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', icon: 'command', label: t('creator.flow'), note: t('creator.flowNote'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
-    { key: 'builder', icon: 'stores', label: t('creator.toolBuilder'), note: t('creator.builderNote'), open: () => nav.navigate(ScreenNames.Builder) },
+    ...(DIGITAL_PURCHASES_ENABLED ? [{ key: 'builder', icon: 'stores', label: t('creator.toolBuilder'), note: t('creator.builderNote'), open: () => nav.navigate(ScreenNames.Builder) }] : []),
   ];
 
   const tile = (item: { key: string; icon: string; label: string; note: string; open: () => void }) => {

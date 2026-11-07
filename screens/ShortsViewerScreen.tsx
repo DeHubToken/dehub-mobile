@@ -178,6 +178,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { useQuery } from "@tanstack/react-query";
 import { getLiveVideos } from "../services/live.service";
 import { interleaveLive, isLiveSlide, isVerticalFeedLive, LIVE_SLIDE_EVERY, LIVE_SLIDE_MAX, toLiveSlide } from "../libs/live-shorts";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import LiveShortSlide from "../components/Shorts/LiveShortSlide";
 import ReelStillSlide from "../components/Shorts/ReelStillSlide";
 import { isReelSlide, reelStillOf } from "../libs/profileReel";
@@ -3008,6 +3009,20 @@ const ShortsViewerScreen = () => {
     });
     setActiveIndex((i) => Math.max(0, i - 1));
   }, [activeTokenId, navigation]);
+
+  // Blocking someone — from the options menu or from their profile — takes
+  // every short of theirs out of the pager at once, the way a delete does.
+  const blockedVersion = useBlockedAuthorsVersion();
+  useEffect(() => {
+    if (!blockedVersion) return;
+    const prev = itemsRef.current;
+    const next = prev.filter((it) => isLiveSlide(it) || !isAuthorBlocked(it.minterUser?.address || it.minter || it.owner));
+    if (next.length === prev.length) return;
+    setShowOptionsMenu(false);
+    if (next.length === 0) { navigation.goBack(); return; }
+    setItems(next);
+    setActiveIndex((i) => Math.min(i, next.length - 1));
+  }, [blockedVersion, navigation]);
 
   const { begin: beginPaging, momentum: momentumPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate, observe: observePaging } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {

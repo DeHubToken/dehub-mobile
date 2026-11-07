@@ -19,6 +19,7 @@ import {
   Divider,
 } from './SettingsPrimitives';
 import { setAppPref, useAppPrefs } from '../../hooks/useAppPrefs';
+import { ensureAiConsent } from '../../libs/ai-consent';
 
 const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
   onOpenFreeAccessList,
@@ -59,7 +60,12 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
             'Draft two replies you can tap in a chat. The × on the suggestions turns this off.',
           )}
           value={smartReplies}
-          onValueChange={(v) => setAppPref('smartReplies', v)}
+          onValueChange={async (v) => {
+            // Suggestions send the chat to third-party AI, so turning them on
+            // asks for that permission first (App Store build).
+            if (v && !(await ensureAiConsent())) return;
+            setAppPref('smartReplies', v);
+          }}
         />
         <Divider />
         <SettingsInfoRow

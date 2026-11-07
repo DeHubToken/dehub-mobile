@@ -31,10 +31,12 @@
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
         "applinks:dehub.io",
-        "webcredentials:dehub.io"
+        "webcredentials:dehub.io",
+        "applinks:riftn.com",
+        "webcredentials:riftn.com"
       ],
       "infoPlist": {
-        "UIBackgroundModes": ["audio", "screen-capture"],
+        "UIBackgroundModes": ["audio"],
         "LSApplicationQueriesSchemes": [
           "metamask",
           "trust",

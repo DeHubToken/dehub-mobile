@@ -6,6 +6,7 @@ import { apiClient } from '../../libs/api.client';
 import { getDeviceId, getDeviceName } from '../../libs/device';
 import { createLogger } from '../../libs/logger';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { IS_APP_STORE_BUILD } from '../../config/storefront';
 
 const logger = createLogger('PushService');
 
@@ -495,6 +496,11 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
   // enabled — so any type that starts `false` here describes something the
   // backend is not doing, and only becomes true once an unrelated toggle saves
   // the whole object. Keep the two lists in agreement.
+  //
+  // One exception: on iOS, Announcements ("Platform news & feature updates")
+  // is marketing, and App Review 4.5.4 wants that pushed only after an explicit
+  // opt-in, so its push switch starts off there. A saved choice still wins
+  // (mergePreferences), and the next save writes the off.
   return {
     inAppEnabled: true,
     pushEnabled: true,
@@ -502,7 +508,7 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     smsEnabled: false,
     smsScope: 'all',
     inApp: { ...defaultTypePrefs },
-    push: { ...defaultTypePrefs },
+    push: { ...defaultTypePrefs, announcements: !IS_APP_STORE_BUILD },
     quietHours: {
       enabled: false,
       start: 22, // 10 PM

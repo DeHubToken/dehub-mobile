@@ -1,4 +1,5 @@
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { IS_APP_STORE_BUILD } from './storefront';
 /**
  * The Arcade registry (native).
  * =============================
@@ -148,7 +149,7 @@ export interface ArcadeGame {
  * deliberately registers no listener for a message that cannot arrive.
  */
 
-export const ARCADE_GAMES: ArcadeGame[] = [
+const ALL_ARCADE_GAMES: ArcadeGame[] = [
   {
     slug: 'gods-eye',
     get title() { return _translateCopy("copy.925917aad5b0", { defaultValue: "God's Eye" }); },
@@ -338,6 +339,20 @@ export const ARCADE_GAMES: ArcadeGame[] = [
     exitPlacement: 'center',
   },
 ];
+
+/**
+ * Left out of the App Store build, on the grid and by slug alike, so a deep
+ * link or a notification lands on the "no such game" panel instead:
+ *  - Chartopia (`trenchstar`) is a live trading floor — exchange keys, real
+ *    orders and swaps — which is not a game Apple will list as one.
+ *  - Claude of Duty's name borrows a trademark.
+ * Android and the web keep both.
+ */
+const APP_STORE_EXCLUDED = new Set(['trenchstar', 'claude-of-duty']);
+
+export const ARCADE_GAMES: ArcadeGame[] = IS_APP_STORE_BUILD
+  ? ALL_ARCADE_GAMES.filter((game) => !APP_STORE_EXCLUDED.has(game.slug))
+  : ALL_ARCADE_GAMES;
 
 export function getArcadeGame(slug: string | undefined): ArcadeGame | undefined {
   return ARCADE_GAMES.find((game) => game.slug === slug);

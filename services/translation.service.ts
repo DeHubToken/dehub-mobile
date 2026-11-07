@@ -5,6 +5,7 @@ import { storage } from '../libs/storage';
 import { TranslationCooldown } from '../libs/translation-cooldown';
 import { supabase } from './supabase';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { aiConsentDeclinedMessage, hasAiConsent } from '../libs/ai-consent';
 
 const log = createLogger('translation.service');
 
@@ -278,6 +279,9 @@ export async function translateText(
   if (!text || text.trim().length < 1) {
     return { translatedText: text, sourceLang: null, sameLanguage: true };
   }
+  // Callers the user tapped ask first (ensureAiConsent); this only stops
+  // anything that didn't from sending.
+  if (!hasAiConsent()) throw new TranslationServiceError(aiConsentDeclinedMessage(), 403);
 
   const cached = getCached(text, targetLang);
   if (cached) {
@@ -323,6 +327,7 @@ export async function translateImage(
   imageUrl: string,
   targetLang: string,
 ): Promise<ImageTranslateResponse> {
+  if (!hasAiConsent()) throw new TranslationServiceError(aiConsentDeclinedMessage(), 403);
   const { data, error } = await supabase.functions.invoke('translate-image', {
     body: { imageUrl, targetLang },
   });

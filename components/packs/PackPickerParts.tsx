@@ -13,6 +13,7 @@ import SmartImage from "../common/SmartImage";
 import Icon from "../ui/Icon";
 import { usePickerPacks, type CreatorPack, type PackItem, type PackKind } from "../../libs/creator-packs/api";
 import { usePackWallet, usePacksNavigation } from "./PackGate";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 
 export function PackCover({ pack, size }: { pack: Pick<CreatorPack, "cover_url" | "name">; size: number }) {
   return pack.cover_url ? (
@@ -127,14 +128,17 @@ function EmptyPacks({ kind, beforeLeave }: { kind: PackKind; beforeLeave?: () =>
   return (
     <View className="items-center px-4 py-8" style={{ gap: 10 }}>
       <Text className="text-xs text-theme-neutrals-400 text-center">
-        {t(kind === "gif" ? "creatorPacks.emptyGifs" : "creatorPacks.emptyStickers")}
+        {/* The sticker hint says a badge creates packs; the App Store build doesn't. */}
+        {t(kind === "gif" ? "creatorPacks.emptyGifs" : IS_APP_STORE_BUILD ? "creatorPacks.noneYet" : "creatorPacks.emptyStickers")}
       </Text>
       <Pressable
         onPress={openPacks}
         accessibilityRole="button"
         className="h-8 px-3 rounded-lg bg-white items-center justify-center"
       >
-        <Text className="text-black text-xs font-semibold">{t("creatorPacks.browseCreate")}</Text>
+        <Text className="text-black text-xs font-semibold">
+          {t(IS_APP_STORE_BUILD ? "creatorPacks.browse" : "creatorPacks.browseCreate")}
+        </Text>
       </Pressable>
     </View>
   );

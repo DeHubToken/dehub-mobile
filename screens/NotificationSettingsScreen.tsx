@@ -28,6 +28,7 @@ import {
   type SmsNotificationStatus,
 } from '../services/sms-notifications.service';
 import SmsNotificationsSheet from '../components/Settings/SmsNotificationsSheet';
+import { IS_APP_STORE_BUILD } from '../config/storefront';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { toastError } from '../libs';
 import { createLogger } from '../libs/logger';
@@ -447,6 +448,9 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   disabled={!notifyEmail}
                 />
               </View>
+              {/* Text alerts run on token credit, so the App Store build leaves them out. */}
+              {!IS_APP_STORE_BUILD && (
+              <>
               <Divider />
               {/*
                 The only switch on this screen that spends money. It stays
@@ -503,6 +507,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                     </Text>
                   </TouchableOpacity>
                 </>
+              )}
+              </>
               )}
             </View>
           </View>
@@ -578,6 +584,9 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   </TouchableOpacity>
                 </>
               )}
+              {/* Token buy alerts: not in the App Store build. */}
+              {!IS_APP_STORE_BUILD && (
+              <>
               <Divider />
               <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
@@ -591,6 +600,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 </View>
                 <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
               </View>
+              </>
+              )}
               <Divider />
               <View className="px-4 py-2 flex-row items-center justify-between" testID="bell-count-row">
                 <View className="flex-row items-center flex-1 pr-3">

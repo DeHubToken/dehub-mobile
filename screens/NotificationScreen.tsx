@@ -83,6 +83,7 @@ import {
 } from "../services/enums/notification.enums";
 import { useAppTheme } from "../context/ThemeContext";
 import { DhbCoin } from "../components/common/DhbCoin";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import {
   MINIMAL_HAIRLINE,
 } from "../theme/minimal";
@@ -816,8 +817,10 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           )}
 
 
-          {/* Tip/Bounty amount badge */}
-          {(item.type === NotificationType.TIP ||
+          {/* Tip/Bounty amount badge. This and the bounty badge below are left
+              out of the App Store build, which offers no tips, bounties or PPV
+              (config/storefront); the row itself stays. */}
+          {DIGITAL_PURCHASES_ENABLED && (item.type === NotificationType.TIP ||
             item.type === NotificationType.BOUNTY_CLAIMED ||
             item.type === NotificationType.PPV_PURCHASE) && item.amount && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
@@ -830,7 +833,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           )}
 
           {/* Bounty available badge */}
-          {item.type === NotificationType.BOUNTY_AVAILABLE && (
+          {DIGITAL_PURCHASES_ENABLED && item.type === NotificationType.BOUNTY_AVAILABLE && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
               <View style={[{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }, isMinimal && MINIMAL_OUTLINE]}>
                 <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>

@@ -14,11 +14,14 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { PageEmpty, PageSection } from "../components/page/PageKit";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 
 /** Plain text, or an i18n key for a line that has already been translated. */
 type Copy = string | { key: string };
 
 interface GlossaryEntry {
+  /** About paying, earning or unlocking with tokens: left out of the App Store build. */
+  appStoreHidden?: true;
   icon: IconName;
   title: string;
   description: Copy;
@@ -69,7 +72,7 @@ const SECTIONS: GlossarySection[] = [
     entries: [
       { icon: "LockOpen", get title() { return _translateCopy("copy.591935b15b1c", { defaultValue: "Public" }); }, get description() { return _translateCopy("copy.51f926834f07", { defaultValue: "Content visible to everyone. Anyone can view, like, and comment on public posts." }); } },
       { icon: "Lock", get title() { return _translateCopy("copy.c63eb6720c6e", { defaultValue: "Private" }); }, get description() { return _translateCopy("copy.04d02a85c7b9", { defaultValue: "Content only visible to you. Private posts are hidden from other users and the public feed." }); } },
-      { icon: "Ticket", get title() { return _translateCopy("copy.1c1f651829b5", { defaultValue: "Pay-Per-View (PPV)" }); }, description: { key: "screens.glossaryPpvDesc" } },
+      { appStoreHidden: true, icon: "Ticket", get title() { return _translateCopy("copy.1c1f651829b5", { defaultValue: "Pay-Per-View (PPV)" }); }, description: { key: "screens.glossaryPpvDesc" } },
       { icon: "Crown", get title() { return _translateCopy("copy.ad2cbb28a08f", { defaultValue: "Subscriber Only" }); }, get description() { return _translateCopy("copy.877e1e86bf2a", { defaultValue: "Content restricted to users who have subscribed to the creator's channel." }); } },
     ],
   },
@@ -81,7 +84,7 @@ const SECTIONS: GlossarySection[] = [
       { icon: "ExternalLink", get title() { return _translateCopy("copy.0cce4de1bf95", { defaultValue: "Transaction Hash" }); }, get description() { return _translateCopy("copy.3b76196efd42", { defaultValue: "The blockchain transaction hash from when the post was minted. Open it in the block explorer to verify the on-chain record." }); } },
       { icon: "EyeOff", get title() { return _translateCopy("copy.b42d2c19a678", { defaultValue: "Hidden Post" }); }, get description() { return _translateCopy("copy.ba9cdea7f89a", { defaultValue: "Post owners can hide a post from public feeds (and show it again) from the post's options menu. A hidden post stays visible to its owner, marked with a Hidden chip." }); } },
       { icon: "Pencil", get title() { return _translateCopy("copy.cc54b50c5162", { defaultValue: "Edit Post" }); }, get description() { return _translateCopy("copy.14623206ad2e", { defaultValue: "Post owners can edit the title, description, and categories from the post's options menu." }); } },
-      { icon: "Ticket", get title() { return _translateCopy("copy.dbc6e9280cb5", { defaultValue: "PPV Purchases" }); }, get description() { return _translateCopy("copy.65f9597a741f", { defaultValue: "For pay-per-view posts you own, the live ribbon shows how many viewers have purchased access." }); } },
+      { appStoreHidden: true, icon: "Ticket", get title() { return _translateCopy("copy.dbc6e9280cb5", { defaultValue: "PPV Purchases" }); }, get description() { return _translateCopy("copy.65f9597a741f", { defaultValue: "For pay-per-view posts you own, the live ribbon shows how many viewers have purchased access." }); } },
     ],
   },
   {
@@ -95,10 +98,10 @@ const SECTIONS: GlossarySection[] = [
   {
     get title() { return _translateCopy("copy.0dbd9ab3c07a", { defaultValue: "Wallet & Tokens" }); },
     entries: [
-      { icon: "Coins", get title() { return _translateCopy("copy.7cd63b610e6d", { defaultValue: "Riftn tokens" }); }, description: { key: "screens.glossaryDhbTokenDesc" } },
-      { icon: "Wallet", get title() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, description: { key: "screens.glossaryWalletDesc" } },
-      { icon: "ArrowUpDown", get title() { return _translateCopy("copy.6ec282d40a8a", { defaultValue: "Swap" }); }, get description() { return _translateCopy("copy.13e8618e9f6a", { defaultValue: "Exchange one token for another directly within the app. Swaps happen on-chain using decentralized exchanges." }); } },
-      { icon: "TrendingUp", get title() { return _translateCopy("copy.5190ff487713", { defaultValue: "Staking" }); }, description: { key: "screens.glossaryStakingDesc" } },
+      { appStoreHidden: true, icon: "Coins", get title() { return _translateCopy("copy.7cd63b610e6d", { defaultValue: "Riftn tokens" }); }, description: { key: "screens.glossaryDhbTokenDesc" } },
+      { appStoreHidden: true, icon: "Wallet", get title() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, description: { key: "screens.glossaryWalletDesc" } },
+      { appStoreHidden: true, icon: "ArrowUpDown", get title() { return _translateCopy("copy.6ec282d40a8a", { defaultValue: "Swap" }); }, get description() { return _translateCopy("copy.13e8618e9f6a", { defaultValue: "Exchange one token for another directly within the app. Swaps happen on-chain using decentralized exchanges." }); } },
+      { appStoreHidden: true, icon: "TrendingUp", get title() { return _translateCopy("copy.5190ff487713", { defaultValue: "Staking" }); }, description: { key: "screens.glossaryStakingDesc" } },
       { icon: "Copy", get title() { return _translateCopy("copy.0cce4de1bf95", { defaultValue: "Transaction Hash" }); }, get description() { return _translateCopy("copy.520cf6869b44", { defaultValue: "A unique identifier for any on-chain transaction. Open it to view the full transaction details on a blockchain explorer." }); } },
     ],
   },
@@ -133,7 +136,7 @@ const SECTIONS: GlossarySection[] = [
   {
     get title() { return _translateCopy("copy.44d1b649568c", { defaultValue: "Badges & Ranking" }); },
     entries: [
-      { icon: "CircleCheckBig", get title() { return _translateCopy("copy.5f29db2f7ae5", { defaultValue: "Staking Badges" }); }, description: { key: "screens.glossaryStakingBadgesDesc" } },
+      { appStoreHidden: true, icon: "CircleCheckBig", get title() { return _translateCopy("copy.5f29db2f7ae5", { defaultValue: "Staking Badges" }); }, description: { key: "screens.glossaryStakingBadgesDesc" } },
       { icon: "Trophy", get title() { return _translateCopy("copy.23ad0f440f48", { defaultValue: "Leaderboard Ranking" }); }, description: { key: "screens.glossaryLeaderboardDesc" } },
       { icon: "TrendingUp", get title() { return _translateCopy("copy.5d788f95f78a", { defaultValue: "Ranking Delta (▲▼)" }); }, get description() { return _translateCopy("copy.9e9fa15a8dfa", { defaultValue: "The green or red arrow next to a leaderboard entry shows how much a user's balance changed over the selected time period (1 day, 1 week, etc.)." }); } },
       { icon: "Zap", get title() { return _translateCopy("copy.15ef844f362f", { defaultValue: "Token ID" }); }, description: { key: "screens.glossaryTokenIdDesc" } },
@@ -173,10 +176,12 @@ export default function GlossaryScreen() {
     () =>
       SECTIONS.map((s) => ({
         ...s,
-        entries: s.entries.map((e): ResolvedEntry => ({
-          ...e,
-          description: typeof e.description === "string" ? e.description : t(e.description.key),
-        })),
+        entries: s.entries
+          .filter((e) => !(IS_APP_STORE_BUILD && e.appStoreHidden))
+          .map((e): ResolvedEntry => ({
+            ...e,
+            description: typeof e.description === "string" ? e.description : t(e.description.key),
+          })),
       })),
     [t],
   );

@@ -23,6 +23,15 @@ jest.mock('react-native', () => ({
   Image: { getSize: jest.fn(), prefetch: jest.fn() },
 }));
 
+// The suite runs as iOS (Platform.OS above), where AI features wait for the
+// user's permission to use third-party AI (libs/ai-consent). Tests that are not
+// about that permission run as a user who has given it;
+// __tests__/libs/ai-consent.test.ts unmocks it to test the real thing.
+jest.mock('../libs/ai-consent', () => {
+  const actual = jest.requireActual('../libs/ai-consent');
+  return { ...actual, hasAiConsent: jest.fn(() => true), ensureAiConsent: jest.fn(() => Promise.resolve(true)) };
+});
+
 jest.mock('expo-secure-store', () => {
   const store: Record<string, string> = {};
   return {

@@ -53,6 +53,7 @@ import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
 import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
 import RemixPermissionsSection from '../components/Settings/RemixPermissionsSection';
+import AiConsentSection from '../components/Settings/AiConsentSection';
 import { DEFAULT_PROFILE_TAB, PROFILE_DEFAULT_TAB_OPTIONS, parseDefaultProfileTab, type ProfileDefaultTab } from '../libs/profile-default-tab';
 import { DISLIKES_VISIBILITY_KEY, dislikesArePublic } from '../libs/disliked-posts-store';
 
@@ -751,6 +752,10 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           )}
         </SettingsSection>
         )}
+
+        {/* App Store 5.1.2(i): permission to send the user's data to
+            third-party AI, asked once and changeable here. */}
+        {IS_APP_STORE_BUILD && <AiConsentSection />}
 
         {/* Account security — web's `Account Security` block plus its
             Active Sessions section. */}

@@ -16618,5 +16618,6 @@
     "large": "Groot",
     "larger": "Groter",
     "largest": "Grootst"
-  }
+  },
+  "aiConsent": {"title":"AI-functies gebruiken?","body":"Om te werken sturen AI-functies wat je ze geeft (je tekst, foto's of audio, en het bericht of de chat waar het over gaat) naar externe AI-aanbieders zoals Google, OpenAI, Groq, OpenRouter, fal en ElevenLabs. Je kunt dit altijd wijzigen via Instellingen → Privacy.","allow":"Toestaan","declined":"AI-functies staan uit. Je kunt ze aanzetten via Instellingen → Privacy.","settingLabel":"AI-functies","settingDesc":"Laat de assistent, vertaling, voorgestelde antwoorden en schrijfhulp wat je ze geeft naar externe AI-aanbieders sturen."}
 }

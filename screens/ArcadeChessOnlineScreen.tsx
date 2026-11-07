@@ -59,7 +59,7 @@ import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs";
 // The chess build is served from dehub.io (see config/arcade-games.ts).
 const WEBSITE_LINK = "https://dehub.io";
-import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from "../config/storefront";
 import { colors } from "../theme/colors";
 import {
   useWorkProfile,
@@ -74,6 +74,12 @@ const GAME_SOURCE = "chess-game";
 const HOST_SOURCE = "dehub-host";
 
 const OPEN_QUERY_KEY = "chess-open-challenges";
+
+/**
+ * Whether the App Store build may show or join a match. Web can put tokens on
+ * a game; the App Store build plays only the ones with nothing at stake.
+ */
+const playableHere = (m: ChessMatch) => !IS_APP_STORE_BUILD || !(Number(m.stake_dhb) > 0);
 const MINE_QUERY_KEY = "chess-my-match";
 const RECORDS_QUERY_KEY = "chess-records";
 /** Same key web's ArcadeLeaderboard caches the King's Gambit ladder under. */
@@ -380,7 +386,7 @@ const ArcadeChessOnlineScreen = () => {
         .order("created_at", { ascending: false })
         .limit(50);
       if (error) throw error;
-      return (data || []) as ChessMatch[];
+      return ((data || []) as ChessMatch[]).filter(playableHere);
     },
     enabled: !inMatch,
     staleTime: 10_000,
@@ -400,7 +406,8 @@ const ArcadeChessOnlineScreen = () => {
         .limit(1)
         .maybeSingle();
       if (error) throw error;
-      return (data as ChessMatch | null) ?? null;
+      const live = (data as ChessMatch | null) ?? null;
+      return live && playableHere(live) ? live : null;
     },
     enabled: !!wallet && !inMatch,
     staleTime: 10_000,
@@ -680,6 +687,7 @@ const ArcadeChessOnlineScreen = () => {
 
   const joinChallenge = useCallback(
     async (target: ChessMatch) => {
+      if (!playableHere(target)) return;
       setBusy(true);
       const result = await invokeChess({ action: "join", matchId: target.id }, wallet);
       setBusy(false);

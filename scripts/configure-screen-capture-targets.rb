@@ -24,7 +24,7 @@ def configure_screen_capture_targets(ios_directory)
       settings['PRODUCT_NAME'] = name
       settings['SWIFT_VERSION'] = '5.0'
       settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
-      settings['TARGETED_DEVICE_FAMILY'] = '1,2'
+      settings['TARGETED_DEVICE_FAMILY'] = '1'
       settings['APPLICATION_EXTENSION_API_ONLY'] = 'YES'
       settings['SKIP_INSTALL'] = 'YES'
       settings['CODE_SIGN_STYLE'] = 'Automatic'

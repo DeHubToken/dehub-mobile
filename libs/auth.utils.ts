@@ -2,6 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { clearAllEngagement } from './engagementCache';
 import { clearLinkCopyFloors } from './link-copy-floors';
 import { clearUnlockedTokens } from './unlocked-tokens';
+import { clearBlockedAuthors } from './blocked-authors';
 import { queryClient } from '../config/queryClient';
 
 // Storage keys
@@ -220,6 +221,8 @@ export async function clearAuthData(): Promise<void> {
   try { clearLinkCopyFloors(); } catch {}
   // Session PPV unlocks are per-account too.
   try { clearUnlockedTokens(); } catch {}
+  // And the session's blocked authors: they are this account's blocks.
+  try { clearBlockedAuthors(); } catch {}
   // The feed query caches are viewer-shaped (isLiked/isSaved ride in the
   // items), keyed without a viewer, and MMKV-persisted for 24h — clearing here
   // is what stops one account's engagement state painting for the next.

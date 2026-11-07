@@ -100,6 +100,7 @@ import { AI_STYLE_OPTIONS } from "../../config/ai-styles.constants";
 import { enhanceText } from "../../services/ai.service";
 import CommonGroundSheet from "./CommonGroundSheet";
 import KeywordFilterGate from "../Home/KeywordFilterGate";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../../libs/blocked-authors";
 
 // Extended comment type for flat list with reply info
 const EMPTY_TIP_WALL: Comment[] = [];
@@ -1503,6 +1504,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
    * Expanding is per root thread and sticks until the reader collapses it.
    */
   const threadCreator = threadAuthor || postCreator?.address;
+  // Comments by someone the viewer blocked leave the thread at once.
+  const blockedVersion = useBlockedAuthorsVersion();
   const { visibleComments, threadMeta } = useMemo(() => {
     const totalPerRoot = new Map<number, number>();
 
@@ -1523,6 +1526,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
     const onWall = (root: number) => tipWallIds.has(root) && root !== openTipId;
     let visible = flatComments.filter((c) => {
+      if (isAuthorBlocked(c.address)) return false;
       if (!c.isReply) return !onWall(Number(c.id));
       const root = Number(c.rootParentId);
       if (onWall(root)) return false;
@@ -1601,7 +1605,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     });
 
     return { visibleComments: visible, threadMeta: meta };
-  }, [flatComments, expandedCommentIds, highlightedId, threadCreator, tipWallIds, tipWallRows, openTipId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flatComments, expandedCommentIds, highlightedId, threadCreator, tipWallIds, tipWallRows, openTipId, blockedVersion]);
 
   // Bring a just-sent comment in front of the reader, wherever it landed in
   // the list. The scroll waits for the keyboard to finish closing (the list

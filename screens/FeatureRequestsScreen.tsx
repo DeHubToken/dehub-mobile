@@ -1,5 +1,6 @@
 import ThemePanel from '../components/ui/ThemePanel';
 import RequestComments from '../components/FeatureRequests/RequestComments';
+import { openMessageReport } from '../components/common/MessageReportHost';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
@@ -382,6 +383,23 @@ const FeatureCard: React.FC<{
     if (!isAuthor) {
       Alert.alert(feature.title, undefined, [
         ...statusButtons,
+        // Anyone signed in can report somebody else's request (App Review
+        // 1.2). It reaches moderators as a report on the author with the
+        // request attached, like a reported chat message. The board's owners
+        // moderate it directly, so their menu stays as it was.
+        ...(isAuthed && !canSetStatus
+          ? [{
+              text: t("postOptions.report"),
+              style: "destructive" as const,
+              onPress: () => openMessageReport({
+                userId: feature.author_wallet_address,
+                userName: feature.author_username || undefined,
+                where: "Feature request",
+                messageId: feature.id,
+                text: `${feature.title}\n\n${feature.description || ""}`,
+              }),
+            }]
+          : []),
         { text: t("common.cancel", "Cancel"), style: "cancel" },
       ]);
       return;
@@ -416,7 +434,7 @@ const FeatureCard: React.FC<{
       },
       { text: t("common.cancel", "Cancel"), style: "cancel" },
     ]);
-  }, [feature, t, deleteMutation, statusMutation, canSetStatus, isAuthor, setEditDescription, setEditTitle]);
+  }, [feature, t, deleteMutation, statusMutation, canSetStatus, isAuthor, isAuthed, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
     void shareWithRef({
@@ -446,7 +464,7 @@ const FeatureCard: React.FC<{
             <Text style={styles.time}>{timeAgo(feature.created_at, t)}</Text>
           </View>
         </View>
-        {(isAuthor || canSetStatus) && !editing && (
+        {(isAuthor || canSetStatus || isAuthed) && !editing && (
           <Pressable
             onPress={openMenu}
             hitSlop={10}

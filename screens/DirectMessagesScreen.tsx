@@ -36,6 +36,7 @@ import { toastInfo, toastSuccess, toastError } from "../libs/toast";
 import { toast } from "sonner-native";
 import { scheduleDelete, undoDelete, usePendingDeletes, UNDO_WINDOW_MS } from "../libs/undoable-delete";
 import { blockUser } from "../services/block.service";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import { deleteConversation, getDmUserStatus, addFreeAccess, removeFreeAccess, type DmUserStatus } from "../services/dm/dm.api";
 import SignInGate from "../components/auth/SignInGate";
 import type {
@@ -112,6 +113,9 @@ const DirectMessagesInner: React.FC = () => {
       .catch(() => {});
   }, [myAddress]);
 
+  // A conversation with someone the viewer blocked leaves the list at once.
+  const blockedVersion = useBlockedAuthorsVersion();
+
   // Filtered & sorted conversations
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -131,12 +135,14 @@ const DirectMessagesInner: React.FC = () => {
       : conversations;
     return list
       .filter((c) => !pendingDeletes.has(c._id))
+      .filter((c) => !isAuthorBlocked(getOtherParticipant(c, myUserId, myAddress)?.address))
       .sort(
         (a, b) =>
           +new Date(b.updatedAt || b.lastMessageAt || 0) -
           +new Date(a.updatedAt || a.lastMessageAt || 0),
       );
-  }, [conversations, query, myUserId, myAddress, pendingDeletes]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversations, query, myUserId, myAddress, pendingDeletes, blockedVersion]);
 
   // Rows waiting out their undo window count as gone, so swiping away the last
   // one lands on the real empty state rather than "no matches".

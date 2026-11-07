@@ -24,7 +24,9 @@ import { SettingsSection, SettingsLinkRow, SettingsInfoRow, Divider } from './Se
 import { useUser, useProvider, useAuthActions } from '../../context/AuthContext';
 import { toastSuccess, toastError, truncateAddress } from '../../libs';
 import { ChainId } from '../../config/constants';
+import { IS_APP_STORE_BUILD } from '../../config/storefront';
 import { ScreenNames } from '../../navigation/ScreenNames';
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { formatCompactNumber } from '../../libs/numbers.util';
 import { dhbPosition } from '../../libs/dhb-position';
 import { isChainAASupported } from '../../libs/wallet-core/smart-account';
@@ -246,18 +248,24 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
             />
           </>
         )}
-        <Divider />
-        <SettingsLinkRow
-          icon="TrendingUp"
-          label={t('settings.earnings')}
-          description={t('settings.earningsDesc')}
-          onPress={() => navigation.navigate(ScreenNames.Earnings)}
-        />
+        {/* Tip and PPV earnings: not in the App Store build (config/storefront). */}
+        {DIGITAL_PURCHASES_ENABLED && (
+          <>
+            <Divider />
+            <SettingsLinkRow
+              icon="TrendingUp"
+              label={t('settings.earnings')}
+              description={t('settings.earningsDesc')}
+              onPress={() => navigation.navigate(ScreenNames.Earnings)}
+            />
+          </>
+        )}
       </SettingsSection>
 
       {/* A badge is bought with tokens, so lending one belongs with the rest of
           what DHB buys rather than off in Profile. */}
-      <BadgeDelegationSection />
+      {/* Not in the App Store build: its slots and copy are about staking. */}
+      {!IS_APP_STORE_BUILD && <BadgeDelegationSection />}
 
       <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie" anchor="fractions">
         <EmptyOwnership icon="ChartPie" label={t('settings.noFractions')} />

@@ -2091,14 +2091,18 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           currentTitle={resolvedTitle || ""}
           currentDescription={(streamEntity?.description as string) || ""}
           // A stream's title and description are edited from the producer
-          // screen, and the report-content flow is for uploaded media — the
-          // same two the feed card hides on a live post.
+          // screen. Its content can be reported while live as long as the
+          // stream carries its post id, which is all that report needs.
           hideEdit
-          hideReportContent={isLiveEffective}
+          hideReportContent={isLiveEffective && !/^\d+$/.test(String(streamEntity?.tokenId || tokenId))}
           onClip={isLiveEffective && !isEndedEffective ? startClip : undefined}
           onFollowChange={(following) => setIsFollowing(following)}
           onDeleteSuccess={() => {
             if (navigation.canGoBack()) navigation.goBack();
+          }}
+          // Blocking the streamer leaves the stream, as deleting it does.
+          onBlockChange={(blocked) => {
+            if (blocked && navigation.canGoBack()) navigation.goBack();
           }}
         />
       )}

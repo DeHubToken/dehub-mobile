@@ -24,4 +24,14 @@ describe('iOS feed access', () => {
     access.streamStatus!.isLockedWithSubscription = true;
     expect(isPostHiddenByStorefront(false, access, false, true)).toBe(true);
   });
+
+  it('hides a holdings gate the viewer has not met, and keeps one they have', () => {
+    const gated = { tokenId: 7, streamInfo: { isLockContent: true, lockContentAmount: 100 } };
+    const locked = computeStreamAccessInfo(gated, null, 56);
+    expect(locked.streamStatus?.isLockedWithLockContent).toBe(true);
+    expect(isPostHiddenByStorefront(false, locked, false)).toBe(true);
+    expect(isPostHiddenByStorefront(true, locked, false)).toBe(false);
+    const held = computeStreamAccessInfo({ ...gated, isOwner: true }, null, 56);
+    expect(isPostHiddenByStorefront(false, held, false)).toBe(false);
+  });
 });

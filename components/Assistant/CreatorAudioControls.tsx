@@ -7,6 +7,7 @@ import { toastError } from '../../libs/toast';
 import { useUser } from '../../context/AuthContext';
 import { listCustomVoices, type CustomVoice } from '../../services/voiceClone.service';
 import { VoiceCloneSheet } from './VoiceCloneSheet';
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 
 interface Props { value?: CreatorAudioSettings; onChange: (value: CreatorAudioSettings | undefined) => void; text: string; disabled: boolean; scopeKey?: string }
 export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey }: Props) {
@@ -51,7 +52,8 @@ export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey
       {spec?.usesVoice && <ScrollView horizontal contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
         {mine.map(voice => chip(voice.name, () => onChange({ ...value, voiceId: voice.elevenlabs_voice_id }), value.voiceId === voice.elevenlabs_voice_id))}
         {CREATOR_AUDIO_VOICES.map(voice => chip(voice.name, () => onChange({ ...value, voiceId: voice.id }), (value.voiceId || CREATOR_AUDIO_VOICES[0].id) === voice.id))}
-        {!!owner && chip(`+ ${t('editor.voiceClone.pickerLabel')}`, () => setCloneOpen(true))}
+        {/* Voice cloning is paid and not in the App Store build (config/storefront). */}
+        {!!owner && DIGITAL_PURCHASES_ENABLED && chip(`+ ${t('editor.voiceClone.pickerLabel')}`, () => setCloneOpen(true))}
       </ScrollView>}
       <VoiceCloneSheet visible={cloneOpen} wallet={owner} onClose={() => setCloneOpen(false)} onCloned={(voiceId) => {
         const original = active.current;

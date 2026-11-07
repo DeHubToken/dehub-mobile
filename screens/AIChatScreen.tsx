@@ -1,4 +1,4 @@
-import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from '../config/storefront';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
@@ -556,7 +556,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           return _copy("copy.6bcb0cd5c1ee", { defaultValue: "Too many requests — try again shortly." });
         case 'CREDITS_EXHAUSTED':
         case 'INSUFFICIENT_CREDITS':
-          return t('aiChat.outOfCredit');
+          // The App Store build never points at a top-up.
+          return t(IS_APP_STORE_BUILD ? 'assistant.errorCreditsExhausted' : 'aiChat.outOfCredit');
         case 'TIMEOUT':
           return _copy("copy.84df5adcc903", { defaultValue: "That request timed out. Try again." });
         case 'UNAUTHENTICATED':

@@ -79,7 +79,7 @@ final class CaptureSampleHandler: RPBroadcastSampleHandler {
       completion?()
       if notifySystem {
         self.finishBroadcastWithError(NSError(domain: "io.dehub.screen-capture", code: discard ? 1 : 0,
-          userInfo: [NSLocalizedDescriptionKey: (discard ? ticket.cancelLabel : ticket.saveLabel) ?? "DeHub"]))
+          userInfo: [NSLocalizedDescriptionKey: (discard ? ticket.cancelLabel : ticket.saveLabel) ?? "Riftn"]))
       }
     }
   }

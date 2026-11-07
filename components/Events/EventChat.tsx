@@ -14,6 +14,7 @@ import { useAuthActions, useAuthState, useUser } from "../../context/AuthContext
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useEventChat, type EventChatMessage } from "../../hooks/useEventChat";
 import { formatRelativeFromNow } from "../../libs/date.util";
+import { MessageReportModal, type MessageReport } from "../common/MessageReportHost";
 
 const QUICK_REACTIONS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -33,6 +34,9 @@ export default function EventChat({ eventId }: { eventId: string }) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
+  // The sheet mounts here rather than at the app root: this chat sits inside
+  // the event's own Modal, and iOS will not present the root's sheet over it.
+  const [reportFor, setReportFor] = useState<MessageReport | null>(null);
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
@@ -192,6 +196,26 @@ export default function EventChat({ eventId }: { eventId: string }) {
                         <Icon name="Pencil" size={15} color="#fff" />
                       </Pressable>
                     )}
+                    {/* Anyone signed in can report someone else's message (App Review 1.2). */}
+                    {!mine && isSignedIn && (
+                      <Pressable
+                        hitSlop={6}
+                        accessibilityRole="button"
+                        accessibilityLabel={t("dm.reportMessage")}
+                        onPress={() => {
+                          setSelected(null);
+                          setReportFor({
+                            userId: m.wallet_address,
+                            userName: m.display_name || m.username || undefined,
+                            where: `Event chat ${eventId}`,
+                            messageId: m.id,
+                            text: m.content,
+                          });
+                        }}
+                      >
+                        <Icon name="Flag" size={15} color="#fff" />
+                      </Pressable>
+                    )}
                   </View>
                 )}
               </View>
@@ -247,6 +271,7 @@ export default function EventChat({ eventId }: { eventId: string }) {
           {sending ? <ActivityIndicator size="small" color="#000" /> : <Icon name={editingId ? "Check" : "Send"} size={16} color="#000" />}
         </Pressable>
       </View>
+      <MessageReportModal report={reportFor} onClose={() => setReportFor(null)} />
     </View>
   );
 }

@@ -38,6 +38,7 @@ import {
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { useMyListings } from "../../hooks/useStores";
@@ -146,10 +147,11 @@ export default function ShopSheet({
         <View className="flex-row p-3 rounded-xl bg-white/[0.04] border border-white/10 mb-3">
           <Icon name="Info" size={14} color="#808089" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1 leading-4">
-            {t("upload.shopIntro")}{" "}
-            {tier
-              ? t("upload.shopAllowanceTier", { tier, allowance })
-              : t("upload.shopAllowanceBase", { allowance })}
+            {t("upload.shopIntro")}
+            {/* How badge tiers raise the allowance: not in the App Store build. */}
+            {IS_APP_STORE_BUILD
+              ? null
+              : ` ${tier ? t("upload.shopAllowanceTier", { tier, allowance }) : t("upload.shopAllowanceBase", { allowance })}`}
           </Text>
         </View>
 
@@ -263,7 +265,7 @@ export default function ShopSheet({
             <Icon name="Plus" size={15} color="#A1A1AA" />
             <Text className="text-theme-neutrals-400 text-sm ml-2">{t("upload.shopAddLink")}</Text>
           </TouchableOpacity>
-        ) : (
+        ) : IS_APP_STORE_BUILD ? null : (
           <Text className="text-theme-neutrals-500 text-xs text-center py-2">
             {t("upload.shopAllowanceUsed", { allowance })}
           </Text>

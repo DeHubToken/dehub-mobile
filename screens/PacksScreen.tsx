@@ -31,6 +31,7 @@ import { PACK_KINDS, PACK_TIER_ORDER, packLimitsFor } from "../libs/creator-pack
 import { PackCover } from "../components/packs/PackPickerParts";
 import { KitButton, PageSection, PageTabs } from "../components/page/PageKit";
 import { PackLocked, packErrorMessage, usePackWallet, usePacksNavigation } from "../components/packs/PackGate";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 
 const KIND_TAB: Record<PackKind, string> = {
   emoji: "creatorPacks.tab.emoji",
@@ -127,7 +128,9 @@ export default function PacksScreen() {
   const mine = (owned.data ?? []).filter((p) => p.kind === kind);
   const added = (saved.data ?? []).filter((p) => p.kind === kind);
   const limits = status.data?.limits;
-  const canCreate = !!limits && mine.length < limits.packs;
+  // The App Store build browses and adds packs but never creates one: creating
+  // is a badge perk, and that build says nothing about badge tiers.
+  const canCreate = !IS_APP_STORE_BUILD && !!limits && mine.length < limits.packs;
 
   const create = async () => {
     if (!name.trim() || !wallet) return;
@@ -160,9 +163,9 @@ export default function PacksScreen() {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.subtitle}>{t("creatorPacks.subtitle")}</Text>
+        {!IS_APP_STORE_BUILD && <Text style={styles.subtitle}>{t("creatorPacks.subtitle")}</Text>}
 
-        {signedIn && status.data && (
+        {!IS_APP_STORE_BUILD && signedIn && status.data && (
           status.data.limits.packs === 0 ? (
             <PageSection flush><PackLocked /></PageSection>
           ) : (
@@ -179,18 +182,20 @@ export default function PacksScreen() {
             </PageSection>
           )
         )}
-        <TierTable />
+        {!IS_APP_STORE_BUILD && <TierTable />}
 
         {!signedIn ? (
-          <PageSection>
-            <KitButton label={t("creatorPacks.signInToCreate")} onPress={() => requireAuth(() => {})} />
-          </PageSection>
+          IS_APP_STORE_BUILD ? null : (
+            <PageSection>
+              <KitButton label={t("creatorPacks.signInToCreate")} onPress={() => requireAuth(() => {})} />
+            </PageSection>
+          )
         ) : (
           <>
-            <PageSection
+            {(!IS_APP_STORE_BUILD || mine.length > 0) && <PageSection
               title={t("creatorPacks.yourPacks")}
               action={
-                limits && limits.packs > 0 ? (
+                !IS_APP_STORE_BUILD && limits && limits.packs > 0 ? (
                   <Text style={styles.sectionMuted}>{mine.length}/{limits.packs}</Text>
                 ) : undefined
               }
@@ -223,13 +228,13 @@ export default function PacksScreen() {
                         </Pressable>
                       </View>
                     )}
-                    {!mine.length && !canCreate && limits && limits.packs > 0 && (
+                    {!IS_APP_STORE_BUILD && !mine.length && !canCreate && limits && limits.packs > 0 && (
                       <Text style={styles.muted}>{t("creatorPacks.errors.packLimit")}</Text>
                     )}
                   </>
                 )}
               </View>
-            </PageSection>
+            </PageSection>}
 
             {added.length > 0 && (
               <PageSection title={t("creatorPacks.addedPacks")}>

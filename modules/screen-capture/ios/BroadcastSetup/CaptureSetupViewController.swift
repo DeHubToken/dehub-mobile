@@ -37,6 +37,6 @@ final class CaptureSetupViewController: UIViewController {
   }
   @objc private func decline() {
     guard !finished else { return }; finished = true
-    extensionContext?.cancelRequest(withError: NSError(domain: "io.dehub.screen-capture", code: 1, userInfo: [NSLocalizedDescriptionKey: original?.cancelLabel ?? "DeHub"]))
+    extensionContext?.cancelRequest(withError: NSError(domain: "io.dehub.screen-capture", code: 1, userInfo: [NSLocalizedDescriptionKey: original?.cancelLabel ?? "Riftn"]))
   }
 }

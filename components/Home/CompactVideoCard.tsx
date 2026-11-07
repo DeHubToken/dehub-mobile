@@ -2,6 +2,7 @@ import { useCommentCount } from '../../libs/comment-count-store';
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
@@ -302,27 +303,28 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               {relativeTime}
             </Text>
           </View>
-          {(isLive || isPayPerView || isLocked || isBounty || isSubGated) && (
+          {/* The App Store build shows no price, reward or holding chip (config/storefront). */}
+          {(isLive || isSubGated || (DIGITAL_PURCHASES_ENABLED && (isPayPerView || isLocked || isBounty))) && (
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
               {isLive && (
                 <View className={chipClass}>
                   <Text className={chipTextClass}>{_copy("copy.35e0d0360a0a", { defaultValue: "LIVE" })}</Text>
                 </View>
               )}
-              {isPayPerView && (
+              {DIGITAL_PURCHASES_ENABLED && isPayPerView && (
                 <View className={chipClass}>
                   <Text className={chipTextClass}>{_copy("copy.1226cd46b31a", { defaultValue: "PPV " })}{payPerViewAmount} {payPerViewTokenSymbol}
                   </Text>
                 </View>
               )}
-              {isBounty && (
+              {DIGITAL_PURCHASES_ENABLED && isBounty && (
                 <View className={chipClass}>
                   <Text className={chipTextClass}>
                     W2E {bountyAmount} {bountyTokenSymbol}
                   </Text>
                 </View>
               )}
-              {isLocked && (
+              {DIGITAL_PURCHASES_ENABLED && isLocked && (
                 <View className={chipClass}>
                   <Text className={chipTextClass}>{_copy("copy.92452ecd3d29", { defaultValue: "LOCK " })}{lockContentAmount} {lockContentTokenSymbol}
                   </Text>

@@ -1872,7 +1872,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (!project || !canvasRef.current) return;
     if (!project.clips.length || duration <= 0) { toastError(t("editor.export.empty")); return; }
     if (target === "photos") {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const { status } = await MediaLibrary.requestPermissionsAsync(true);
       if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
     }
     setPlaying(false);
@@ -1929,7 +1929,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     setPlaying(false); setBusy(true);
     try {
       if (target === "photos") {
-        const { status } = await MediaLibrary.requestPermissionsAsync();
+        const { status } = await MediaLibrary.requestPermissionsAsync(true);
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
       const frame = frames[0];

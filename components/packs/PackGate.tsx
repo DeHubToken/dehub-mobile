@@ -16,7 +16,7 @@ import type { TFunction } from "i18next";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from "../../config/storefront";
 import {
   MAX_PACK_UPLOAD_BYTES,
   PackError,
@@ -61,7 +61,8 @@ export function packErrorMessage(err: unknown, t: TFunction, kind: PackKind = "e
   const code = err instanceof PackError ? err.code : undefined;
   switch (code) {
     case "NO_BADGE":
-      return t("creatorPacks.errors.noBadge");
+      // The App Store build never says what unlocks pack creation.
+      return t(IS_APP_STORE_BUILD ? "creatorPacks.errors.generic" : "creatorPacks.errors.noBadge");
     case "PACK_LIMIT":
       return t("creatorPacks.errors.packLimit");
     case "ITEM_LIMIT":
@@ -80,11 +81,16 @@ export function PackLocked({ compact, beforeLeave }: { compact?: boolean; before
   const { openPacks, openStaking } = usePacksNavigation(beforeLeave);
   return (
     <View className={`items-center ${compact ? "px-3 py-5" : "px-6 py-8"}`} style={{ gap: 8 }}>
-      <Icon name="Lock" size={20} color="#A1A1AA" />
-      <Text className="text-sm font-medium text-white text-center">{t("creatorPacks.lockedTitle")}</Text>
-      <Text className="text-xs leading-4 text-theme-neutrals-400 text-center" style={{ maxWidth: 300 }}>
-        {t("creatorPacks.lockedBody")}
-      </Text>
+      {/* The App Store build never says what unlocks pack creation: browsing only. */}
+      {!IS_APP_STORE_BUILD && (
+        <>
+          <Icon name="Lock" size={20} color="#A1A1AA" />
+          <Text className="text-sm font-medium text-white text-center">{t("creatorPacks.lockedTitle")}</Text>
+          <Text className="text-xs leading-4 text-theme-neutrals-400 text-center" style={{ maxWidth: 300 }}>
+            {t("creatorPacks.lockedBody")}
+          </Text>
+        </>
+      )}
       <View className="flex-row mt-1" style={{ gap: 8 }}>
         {DIGITAL_PURCHASES_ENABLED && (
           <Pressable
