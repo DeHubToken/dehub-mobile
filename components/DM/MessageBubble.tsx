@@ -40,6 +40,7 @@ import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
 import DehubLinkCard from "../common/DehubLinkCard";
 import LinkedText from "../common/LinkedText";
+import { useChatTextScale } from "../../hooks/useAppPrefs";
 import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
 import {
@@ -316,6 +317,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  // Reader's chat text size (Settings → Appearance), on top of the phone's own font size.
+  const textScale = useChatTextScale();
+  const chatTextStyle = useMemo(() => ({ fontSize: 15 * textScale, lineHeight: Math.round(21 * textScale) }), [textScale]);
   const { width: windowWidth } = useWindowDimensions();
   const MAX_IMAGE_WIDTH = maxImageWidth(windowWidth);
   const BUBBLE_ASSET_CARD_WIDTH = bubbleAssetCardWidth(windowWidth);
@@ -1085,6 +1089,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       isMine ? "text-white" : "text-theme-neutrals-100"
                     }`}
                     onLongPress={handleLongPress}
+                    style={chatTextStyle}
+                    fontSize={15 * textScale}
                   />
                 )}
                 {sharedLink.link.kind !== "post" && translationStatus}
@@ -1101,6 +1107,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                         isMine ? "text-white" : "text-theme-neutrals-100"
                       }`}
                       onLongPress={handleLongPress}
+                    style={chatTextStyle}
+                    fontSize={15 * textScale}
                     />
                   )}
                   {translationStatus}

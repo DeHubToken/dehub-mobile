@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Text } from "react-native";
+import { Text, type StyleProp, type TextStyle } from "react-native";
 import { tokenizeChatText } from "../../libs/chat-links";
 import { openExternalLink } from "../../libs/links.utils";
 import { expandEmojiTokens } from "./EmojiText";
@@ -17,6 +17,8 @@ interface LinkedTextProps {
   onLongPress?: () => void;
   /** Point size of the paragraph, so image emoji match the text around them. */
   fontSize?: number;
+  /** Inline overrides, e.g. the reader's chat text size. */
+  style?: StyleProp<TextStyle>;
 }
 
 /**
@@ -27,7 +29,7 @@ interface LinkedTextProps {
  * reader nothing to judge before opening it and nothing to copy. There is no
  * hover on a phone, so a tooltip is not a substitute.
  */
-const LinkedText: React.FC<LinkedTextProps> = ({ text, className, onLongPress, fontSize }) => {
+const LinkedText: React.FC<LinkedTextProps> = ({ text, className, onLongPress, fontSize, style }) => {
   const handlePress = useCallback((url: string) => {
     void openExternalLink(url);
   }, []);
@@ -35,7 +37,7 @@ const LinkedText: React.FC<LinkedTextProps> = ({ text, className, onLongPress, f
   const tokens = tokenizeChatText(text);
 
   return (
-    <Text className={className}>
+    <Text className={className} style={style}>
       {tokens.map((token, index) =>
         token.type === "link" ? (
           <Text

@@ -17,6 +17,7 @@ import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isAppThemeName, type AppThemeName } from '../theme/colors';
 import { isPostLandingStyle, type PostLandingStyle } from '../libs/postLandingStyle';
+import { CHAT_TEXT_SCALE, isChatTextSize, type ChatTextSize } from '../libs/chatTextSize';
 import { claimMinimalLaunch } from '../libs/minimalBootGuard';
 import { bootRevealed } from '../libs/bootReveal';
 import { getDefaultChainId, loadDefaultChains, subscribeDefaultChain } from '../libs/defaultChain';
@@ -57,6 +58,8 @@ const KEYS = {
   // Web's key name.
   leftHanded: 'left-handed-mode',
   postLanding: 'dehub.postLanding',
+  // Chat text size, web's key (lib/chat-text-size).
+  chatTextSize: 'riftn.chat.textSize',
   // Theme Color per customisable theme, and the Brand palette. Web's keys and
   // value shapes (see theme/themeColor.ts).
   themeHues: 'dehub.themeHues',
@@ -88,6 +91,8 @@ export interface AppPrefs {
   leftHanded: boolean;
   /** How a new post of your own lands in the Home feed (libs/postLanding). */
   postLanding: PostLandingStyle;
+  /** Size of text in every chat (libs/chatTextSize). */
+  chatTextSize: ChatTextSize;
   themeHues: Record<string, number>;
   brandColors: string[];
   /** Picked a theme on Halloween 2026, so skip the Horror override (libs/halloweenOverride). */
@@ -125,6 +130,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   geoBlockedCountries: [],
   leftHanded: false,
   postLanding: 'ghost',
+  chatTextSize: 'default',
   themeHues: {},
   brandColors: [],
   halloweenOptOut: false,
@@ -212,6 +218,10 @@ function init() {
           const stored = get('postLanding');
           return isPostLandingStyle(stored) ? stored : DEFAULT_APP_PREFS.postLanding;
         })(),
+        chatTextSize: (() => {
+          const stored = get('chatTextSize');
+          return isChatTextSize(stored) ? stored : DEFAULT_APP_PREFS.chatTextSize;
+        })(),
         themeHues: (() => {
           try {
             const parsed = JSON.parse(get('themeHues') || '{}');
@@ -271,4 +281,9 @@ export function useAppPrefs(): AppPrefs {
   }, [onChange]);
 
   return cache;
+}
+
+/** Multiplier for chat text (1 = default). Re-renders when the reader changes it. */
+export function useChatTextScale(): number {
+  return CHAT_TEXT_SCALE[useAppPrefs().chatTextSize] ?? 1;
 }

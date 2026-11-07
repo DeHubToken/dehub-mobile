@@ -24,6 +24,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
 import { LiveChatLens } from "../components/LiveChat/LiveChatLens";
+import ChatTextSizeButton from "../components/LiveChat/ChatTextSizeButton";
 import LiveChatInput from "../components/LiveChat/LiveChatInput";
 import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
 import type { TranslateToggle } from "../components/ui/TranslateButton";
@@ -769,10 +770,11 @@ const LiveChatScreen: React.FC = () => {
   const RightHeader = useMemo(
     () => (
       <View className="flex-row items-center gap-3">
-        <View accessible accessibilityLabel={t("publicChat.online", { count: onlineCount })} className="flex-row items-center gap-1.5">
+        <View accessible accessibilityLabel={t("publicChat.onlineHint", { count: onlineCount, defaultValue: "{{count}} people are in this chat right now" })} className="flex-row items-center gap-1.5">
           <LiveChatLens />
-          <Text className="text-white/50 text-xs" style={{ fontVariant: ["tabular-nums"] }}>{onlineCount.toLocaleString()}</Text>
+          <Text className="text-white/60 text-xs" style={{ fontVariant: ["tabular-nums"] }}>{t("publicChat.online", { count: onlineCount, defaultValue: "{{count}} online" })}</Text>
         </View>
+        <ChatTextSizeButton />
         <TouchableOpacity onPress={() => setSearchVisible(value => !value)} accessibilityRole="button" accessibilityLabel={t("publicChat.searchMessages")} style={{ width: 32, height: 36, alignItems: "center", justifyContent: "center" }}><Icon name="Search" size={20} color="#A1A1AA" /></TouchableOpacity>
         <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
           <Icon name="Info" size={22} color="rgba(255,255,255,0.5)" />
