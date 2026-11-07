@@ -14,7 +14,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import "@walletconnect/react-native-compat";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";
-import { isWalletSignupBlocked } from "../libs/walletSignupGate";
+import { isWalletSignupBlocked, reportProfileMoved } from "../libs/walletSignupGate";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
 import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
@@ -119,6 +119,9 @@ export const useWalletAuth = () => {
           // the picker for another wallet instead of signing with this one.
           reconnectRequiredRef.current = true;
           setIsSignupBlocked(true);
+        } else if (reportProfileMoved(error)) {
+          // Signing with this wallet again lands in the same refusal.
+          reconnectRequiredRef.current = true;
         } else {
           toastError(error, _copy("copy.0ac2773360a1", { defaultValue: "Wallet authentication failed. Please try again." }));
         }
