@@ -33,6 +33,7 @@ import {
 import { clearAllEngagement } from './engagementCache';
 import { clearLinkCopyFloors } from './link-copy-floors';
 import { clearUnlockedTokens } from './unlocked-tokens';
+import { clearBlockedAuthors } from './blocked-authors';
 import { queryClient } from '../config/queryClient';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import {
@@ -455,6 +456,9 @@ export async function stageIncomingIdentity(preserveSupabaseUserId?: string): Pr
       clearUnlockedTokens();
     } catch {}
     try {
+      clearBlockedAuthors();
+    } catch {}
+    try {
       queryClient.clear();
     } catch {}
   } finally {
@@ -556,6 +560,9 @@ async function applyStash(session: StoredProfileSession | null): Promise<void> {
   } catch {}
   try {
     clearUnlockedTokens();
+  } catch {}
+  try {
+    clearBlockedAuthors();
   } catch {}
   try {
     queryClient.clear();

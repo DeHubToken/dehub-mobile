@@ -373,7 +373,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
 
     try {
       setIsSaving(true);
-      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const { status } = await MediaLibrary.requestPermissionsAsync(true);
       if (status !== "granted") {
         toastError(t("player.photoAccessToSaveImages"));
         return;

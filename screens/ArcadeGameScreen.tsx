@@ -49,6 +49,9 @@ import { getArcadeGame } from "../config/arcade-games";
 import { openInApp } from "../libs/links.utils";
 // Games are served from dehub.io (see config/arcade-games.ts), not riftn.com.
 const WEBSITE_LINK = "https://dehub.io";
+// dehub.io answers some game pages with a 301 to riftn.com, so the document
+// that actually loads (and posts to this screen) can be on either host.
+const GAME_ORIGINS = [WEBSITE_LINK, "https://riftn.com", "https://www.riftn.com"];
 import { colors } from "../theme/colors";
 import { useAuth } from "../context/AuthContext";
 import { getAuthToken } from "../libs/auth.utils";
@@ -357,7 +360,7 @@ const ArcadeGameScreen = () => {
         }
         if (game?.socialPresence && d.source === 'gods-eye-view') {
           const origin = new URL(e.nativeEvent.url);
-          if (origin.origin !== new URL(WEBSITE_LINK).origin || !['/gods-eye-game/', '/gods-eye-game/index.html'].includes(origin.pathname)) return;
+          if (!GAME_ORIGINS.includes(origin.origin) || !['/gods-eye-game/', '/gods-eye-game/index.html'].includes(origin.pathname)) return;
           const target = webRef.current;
           const lifetime = presenceLifetime.current;
           const reply = (result: { error?: string; removed?: boolean }) => {
@@ -418,7 +421,7 @@ const ArcadeGameScreen = () => {
    * (the ~44 MB of armies from upstream's bucket) do not pass through here.
    */
   const onShouldStartLoadWithRequest = useCallback((req: WebViewNavigation) => {
-    if (req.url.startsWith(`${WEBSITE_LINK}/`) || req.url === WEBSITE_LINK) return true;
+    if (GAME_ORIGINS.some((origin) => req.url.startsWith(`${origin}/`) || req.url === origin)) return true;
     // about:blank and the initial load are allowed through; anything else that
     // is a real http(s) destination goes out to the system browser.
     if (/^https?:\/\//i.test(req.url)) {

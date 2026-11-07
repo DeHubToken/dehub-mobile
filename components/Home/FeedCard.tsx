@@ -172,6 +172,7 @@ import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
 import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
 import KeywordFilterGate from "./KeywordFilterGate";
+import { useIsAuthorBlocked } from "../../libs/blocked-authors";
 import { storedVideoAspect } from "../../libs/video-aspect";
 import { reportPostEvent } from "../../services/post-stats.service";
 import { maxImageDensity } from "../../libs/deviceTier";
@@ -2301,7 +2302,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentLayout={postLayout === "comic" ? "comic" : null}
           photoCount={galleryImages.length}
           onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
-          hideReportContent={isLive}
+          // A live post keeps "Report content" whenever it carries its post
+          // id, which is all the content report needs.
+          hideReportContent={isLive && !/^\d+$/.test(String(tokenId))}
           hideEdit={isLive}
           isAudio={isAudioPost}
           onFollowChange={handleFollowChange}
@@ -3265,6 +3268,9 @@ const hideCard = () => null;
  */
 const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
   const item = props.item as any;
+  // Someone the viewer blocked: gone at once, and back if they unblock.
+  const authorBlocked = useIsAuthorBlocked(item?.minterUser?.address || item?.minter || item?.owner);
+  if (authorBlocked) return null;
   return (
     <ErrorBoundary scope="feed-card" renderFallback={hideCard}>
       {/* The viewer's muted words — see KeywordFilterGate. */}

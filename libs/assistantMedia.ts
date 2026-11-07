@@ -126,7 +126,7 @@ export async function bundledLogoDataUrl(variant: 'primary' | 'icon' | 'both'): 
 /** Save generated media to the camera roll. Web's Download button. */
 export async function saveToLibrary(uri: string, kind: 'image' | 'video'): Promise<void> {
   try {
-    const { status } = await MediaLibrary.requestPermissionsAsync();
+    const { status } = await MediaLibrary.requestPermissionsAsync(true);
     if (status !== 'granted') {
       toastError(_translateCopy('copy.89cff0ebd55b', { defaultValue: 'Allow photo library access to save this' }));
       return;

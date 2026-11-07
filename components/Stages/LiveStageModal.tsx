@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Modal,
+  Platform,
   TouchableOpacity,
   ScrollView,
   Animated,
@@ -26,6 +27,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { storedAvatarSources } from "../../libs/misc";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
 import { VOICE_EFFECTS, sameWallet } from "../../hooks/useStages";
@@ -128,9 +130,11 @@ interface SpeakerCardProps {
   isSpeaking: boolean;
   onRemove?: (addr: string) => void;
   reaction?: string;
+  /** Opens their profile, which carries Report and Block. */
+  onOpenProfile?: (identifier: string) => void;
 }
 
-const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove, reaction }) => {
+const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove, reaction, onOpenProfile }) => {
   const { t } = useTranslation();
   const { width: SW } = useWindowDimensions();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
@@ -152,7 +156,14 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
   }, [isSpeaking, participant.is_muted]);
 
   return (
-    <View style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 20 }}>
+    <TouchableOpacity
+      onPress={() => onOpenProfile?.(participant.username || participant.wallet_address)}
+      disabled={!onOpenProfile}
+      activeOpacity={0.7}
+      accessibilityRole="button"
+      accessibilityLabel={t("liveViewer.openProfileOf", { name })}
+      style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 20 }}
+    >
       <Animated.View style={{ transform: [{ scale: speakingAnim }] }}>
       <View
         style={{
@@ -217,7 +228,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
           <Text style={{ color: "#F4F4F5", fontSize: 10 }}>{t("stages.removeSpeaker")}</Text>
         </TouchableOpacity>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -284,14 +295,23 @@ interface ListenerCardProps {
   /** Host only: bring this listener up on stage. */
   onInvite?: (addr: string) => void;
   reaction?: string;
+  /** Opens their profile, which carries Report and Block. */
+  onOpenProfile?: (identifier: string) => void;
 }
 
-const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite, reaction }) => {
+const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite, reaction, onOpenProfile }) => {
   const { t } = useTranslation();
   const { width: SW } = useWindowDimensions();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
   return (
-    <View style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 16 }}>
+    <TouchableOpacity
+      onPress={() => onOpenProfile?.(participant.username || participant.wallet_address)}
+      disabled={!onOpenProfile}
+      activeOpacity={0.7}
+      accessibilityRole="button"
+      accessibilityLabel={t("liveViewer.openProfileOf", { name })}
+      style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 16 }}
+    >
       <View>
         <Avatar
           {...storedAvatarSources(participant.avatar, participant.wallet_address, 48)}
@@ -318,7 +338,7 @@ const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite, reac
           <Text style={{ color: "#F4F4F5", fontSize: 10 }} numberOfLines={1}>{t("stages.inviteToSpeak")}</Text>
         </TouchableOpacity>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -368,6 +388,20 @@ const LiveStageModal: React.FC = () => {
   const { requireAuth } = useAuthActions();
   const { user } = useAuth();
   const myWallet = user?.walletAddress || user?.address || "";
+  // A tile opens that person's profile, which is where Report and Block live.
+  // The profile sheet is a native Modal from the app root and iOS will not
+  // present it over this one, so there the room minimises first (it keeps
+  // playing) — the same hand-off the room's chat makes.
+  const { showUserProfile } = useUserProfileSheet();
+  const openProfile = useCallback((identifier: string) => {
+    if (!identifier) return;
+    if (Platform.OS === "ios") {
+      closeModal();
+      setTimeout(() => showUserProfile(identifier, { source: "stage" }), 300);
+      return;
+    }
+    showUserProfile(identifier, { source: "stage" });
+  }, [closeModal, showUserProfile]);
 
   const [ttsText, setTtsText] = useSurfaceDraft("components/Stages/LiveStageModal.tsx:ttsText", "");
   const [selectedVoiceId, setSelectedVoiceId] = useState("");
@@ -701,6 +735,7 @@ const LiveStageModal: React.FC = () => {
                 isSpeaking={isSpeaking(p)}
                 onRemove={isHostRole ? removeSpeaker : undefined}
                 reaction={avatarReactions[p.wallet_address.toLowerCase()]}
+                onOpenProfile={openProfile}
               />
             ))}
             {speakers.length === 0 && (
@@ -736,6 +771,7 @@ const LiveStageModal: React.FC = () => {
                     participant={p}
                     onInvite={isHostRole ? inviteSpeaker : undefined}
                     reaction={avatarReactions[p.wallet_address.toLowerCase()]}
+                    onOpenProfile={openProfile}
                   />
                 ))}
               </View>

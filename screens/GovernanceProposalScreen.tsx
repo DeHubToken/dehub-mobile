@@ -62,6 +62,7 @@ import { getProposalRepostState, toggleProposalRepost } from "../services/repost
 import { SHARE_ORIGIN } from "../libs/dehub-links";
 import { copyToClipboard } from "../libs/clipboard.utils";
 import { toastError, toastSuccess } from "../libs/toast";
+import { openMessageReport } from "../components/common/MessageReportHost";
 
 const COMMENT_MAX = 500;
 /** Replies shown before a thread collapses behind "Show N more replies". */
@@ -92,8 +93,10 @@ const CommentRow: React.FC<{
   threadLineBelow?: boolean;
   onReply: (comment: ProposalComment) => void;
   onDelete: (comment: ProposalComment) => void;
+  /** Signed-in viewers, on somebody else's comment. */
+  onReport?: (comment: ProposalComment) => void;
   onHighlightMeasured?: (windowY: number, height: number) => void;
-}> = ({ comment, isOwn, isProposalAuthor, highlighted, threadLineAbove, threadLineBelow, onReply, onDelete, onHighlightMeasured }) => {
+}> = ({ comment, isOwn, isProposalAuthor, highlighted, threadLineAbove, threadLineBelow, onReply, onDelete, onReport, onHighlightMeasured }) => {
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
   const name = comment.username ? `@${comment.username}` : shortAddr(comment.wallet_address);
@@ -167,6 +170,17 @@ const CommentRow: React.FC<{
               accessibilityLabel={t("common.delete")}
             >
               <Icon name="Trash2" size={14} color="#808089" />
+            </Pressable>
+          )}
+          {!isOwn && !!onReport && (
+            <Pressable
+              onPress={() => onReport(comment)}
+              hitSlop={8}
+              style={styles.commentAction}
+              accessibilityRole="button"
+              accessibilityLabel={t("comments.reportComment")}
+            >
+              <Icon name="Flag" size={14} color="#808089" />
             </Pressable>
           )}
         </View>
@@ -266,6 +280,20 @@ export default function GovernanceProposalScreen() {
     [deleteComment, proposalId, t],
   );
 
+  // Discussion comments live in Supabase, so a report reaches moderators as
+  // one on the author with the comment attached (App Review 1.2).
+  const reportComment = useCallback(
+    (comment: ProposalComment) =>
+      openMessageReport({
+        userId: comment.wallet_address,
+        userName: comment.username || undefined,
+        where: `Governance proposal comment ${proposalId ?? ""}`.trim(),
+        messageId: comment.id,
+        text: comment.content,
+      }),
+    [proposalId],
+  );
+
   const send = useCallback(() => {
     const content = draft.trim();
     if (!content || submitComment.isPending || !proposalId) return;
@@ -307,6 +335,7 @@ export default function GovernanceProposalScreen() {
         threadLineBelow={lines.below}
         onReply={handleReply}
         onDelete={confirmDelete}
+        onReport={isAuthed ? reportComment : undefined}
         onHighlightMeasured={scrollToFocusedComment}
       />
     );

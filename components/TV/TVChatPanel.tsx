@@ -40,6 +40,7 @@ import EmojiSheet from "../Upload/EmojiSheet";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 import { useTranslation as useTextTranslation } from "../../hooks/useTranslation";
 import TranslateButton from "../ui/TranslateButton";
+import { MessageReportModal, type MessageReport } from "../common/MessageReportHost";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -62,7 +63,9 @@ const ChatRow: React.FC<{
   onToggleReaction: (id: string, emoji: string) => void;
   onMoreReactions: (m: TvChatMessage) => void;
   onOpenProfile: (identifier: string) => void;
-}> = ({ message, myAddress, onReply, onDelete, canModerate, onToggleReaction, onMoreReactions, onOpenProfile }) => {
+  /** Signed-in viewers only; never offered on your own message. */
+  onReport?: (m: TvChatMessage) => void;
+}> = ({ message, myAddress, onReply, onDelete, canModerate, onToggleReaction, onMoreReactions, onOpenProfile, onReport }) => {
   const { t } = useTranslation();
   const [showPicker, setShowPicker] = useState(false);
   const translation = useTextTranslation({ content: message.content || "" }, null, "chat", true, message.id);
@@ -206,6 +209,21 @@ const ChatRow: React.FC<{
                 <Icon name="Trash2" size={14} color="#F4F4F5" />
               </Pressable>
             )}
+            {/* Anyone can report someone else's message (App Review 1.2). */}
+            {!isMe && !!onReport && !!message.wallet_address && (
+              <Pressable
+                onPress={() => {
+                  setShowPicker(false);
+                  onReport(message);
+                }}
+                style={styles.pickerBtn}
+                hitSlop={4}
+                accessibilityRole="button"
+                accessibilityLabel={t("dm.reportMessage")}
+              >
+                <Icon name="Flag" size={14} color="#F4F4F5" />
+              </Pressable>
+            )}
           </View>
         )}
       </View>
@@ -255,6 +273,10 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   const [sending, setSending] = useState(false);
   // Message whose full emoji picker is open.
   const [moreFor, setMoreFor] = useState<TvChatMessage | null>(null);
+  // Message being reported. The sheet mounts inside this panel rather than at
+  // the app root: in a stage the panel is inside the room's own Modal, and iOS
+  // will not present the root's sheet over it.
+  const [reportFor, setReportFor] = useState<MessageReport | null>(null);
 
   const myAddress = (user?.walletAddress || user?.address || "").toLowerCase();
   const isSignedIn = !!myAddress;
@@ -309,6 +331,21 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
     [showUserProfile, onClosePlayer]
   );
 
+  const reportWhere = room?.table === "stage_chat_messages"
+    ? `${labels ? "Stage recording comments" : "Stage chat"} ${room.id}`
+    : `TV chat ${channelId}`;
+  const handleReport = useCallback(
+    (m: TvChatMessage) =>
+      setReportFor({
+        userId: m.wallet_address,
+        userName: m.display_name || m.username || undefined,
+        where: reportWhere,
+        messageId: m.id,
+        text: m.content,
+      }),
+    [reportWhere]
+  );
+
   const renderItem = useCallback(
     ({ item }: { item: TvChatMessage }) => (
       <ChatRow
@@ -320,9 +357,10 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         onToggleReaction={handleToggleReaction}
         onMoreReactions={setMoreFor}
         onOpenProfile={handleOpenProfile}
+        onReport={isSignedIn ? handleReport : undefined}
       />
     ),
-    [myAddress, deleteMessage, isHost, handleToggleReaction, handleOpenProfile, setReplyTo]
+    [myAddress, deleteMessage, isHost, handleToggleReaction, handleOpenProfile, setReplyTo, isSignedIn, handleReport]
   );
 
   return (
@@ -441,6 +479,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           if (moreFor) handleToggleReaction(moreFor.id, emoji);
         }}
       />
+      <MessageReportModal report={reportFor} onClose={() => setReportFor(null)} />
     </View>
   );
 };

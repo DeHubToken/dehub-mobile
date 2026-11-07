@@ -15,7 +15,6 @@ import {
   SettingsSection,
   SettingsToggleRow,
   SettingsLinkRow,
-  SettingsNote,
   Divider,
 } from './SettingsPrimitives';
 import { SettingsScrollView } from './SettingsAnchor';
@@ -144,8 +143,6 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
           onValueChange={(v) => setAppPref('skipSegments', v)}
         />
       </SettingsSection>
-
-      <SettingsNote>{t('settings.contentFilteringNote')}</SettingsNote>
 
       <KidsModePad
         visible={kidsPadOpen}

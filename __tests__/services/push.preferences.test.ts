@@ -24,6 +24,7 @@ jest.mock('../../libs/device', () => ({
 }));
 
 import { apiClient } from '../../libs/api.client';
+import { IS_APP_STORE_BUILD } from '../../config/storefront';
 
 const ALL_KEYS: NotificationPreferenceKey[] = [
   'likes',
@@ -49,8 +50,14 @@ describe('services/push.service notification preferences', () => {
       expect(prefs.pushEnabled).toBe(true);
       for (const key of ALL_KEYS) {
         expect(prefs.inApp[key]).toBe(true);
-        expect(prefs.push[key]).toBe(true);
+        if (key !== 'announcements') expect(prefs.push[key]).toBe(true);
       }
+    });
+
+    // Marketing pushes wait for an explicit opt-in in the App Store build
+    // (App Review 4.5.4); everywhere else they start on like the rest.
+    it('starts push announcements off on iOS only', () => {
+      expect(getDefaultNotificationPreferences().push.announcements).toBe(!IS_APP_STORE_BUILD);
     });
 
     // The defaults are never written at load, and the backend treats a missing
@@ -58,9 +65,9 @@ describe('services/push.service notification preferences', () => {
     // server is not doing, until an unrelated toggle saves the whole object and
     // makes it true. Push and in-app have to agree for that to stay harmless.
     it('agrees with the server rule that an absent key means enabled', () => {
-      const prefs = getDefaultNotificationPreferences();
-      expect(Object.values(prefs.push).every(Boolean)).toBe(true);
-      expect(Object.values(prefs.inApp).every(Boolean)).toBe(true);
+      const { announcements: _announcements, ...push } = getDefaultNotificationPreferences().push;
+      expect(Object.values(push).every(Boolean)).toBe(true);
+      expect(Object.values(getDefaultNotificationPreferences().inApp).every(Boolean)).toBe(true);
     });
 
     it('leaves quiet hours off so nothing is suppressed by default', () => {
