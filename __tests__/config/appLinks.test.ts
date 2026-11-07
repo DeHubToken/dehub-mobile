@@ -20,7 +20,10 @@ const read = (...p: string[]) => readFileSync(join(root, ...p), 'utf8');
 
 type LinkData = { scheme?: string; host?: string; path?: string; pathPrefix?: string };
 const appJson = JSON.parse(read('app.json')) as {
-  expo: { android: { intentFilters: { autoVerify?: boolean; data: LinkData[] }[] } };
+  expo: {
+    android: { intentFilters: { autoVerify?: boolean; data: LinkData[] }[] };
+    ios: { associatedDomains: string[] };
+  };
 };
 const manifest = read('android', 'app', 'src', 'main', 'AndroidManifest.xml');
 
@@ -72,8 +75,12 @@ describe('App Links agree across app.json and the committed Android manifest', (
     expect(fromManifest).toContain('pathPrefix /apps/');
   });
 
-  it('keeps iOS associated with dehub.io', () => {
-    expect(read('ios', 'DeHub', 'DeHub.entitlements')).toContain('<string>applinks:dehub.io</string>');
+  it('keeps iOS associated with dehub.io and riftn.com', () => {
+    const entitlements = read('ios', 'DeHub', 'DeHub.entitlements');
+    for (const domain of ['applinks:dehub.io', 'webcredentials:dehub.io', 'applinks:riftn.com', 'webcredentials:riftn.com']) {
+      expect(entitlements).toContain(`<string>${domain}</string>`);
+      expect(appJson.expo.ios.associatedDomains).toContain(domain);
+    }
   });
 
   it('carries no placeholder verification files that could pass for the real ones', () => {

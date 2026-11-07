@@ -7,6 +7,7 @@ import { captionTranslationKey, planCaptionTranslation, translateCaptionPlan, ty
 import { subtitleClips } from "../../libs/editor/subtitles";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
+import { ensureAiConsent, hasAiConsent } from "../../libs/ai-consent";
 
 export interface CaptionTranslationActions {
   current: () => ProjectSnapshot | null;
@@ -47,6 +48,7 @@ export default function CaptionTranslationPanel({ project, disabled, onBusyChang
   const start = async () => {
     const source = actions.current.current();
     if (disabled || active.current || !count || !source || source.id !== project.id) return;
+    if (!hasAiConsent() && !(await ensureAiConsent())) return;
     let plan: CaptionTranslationPlan;
     try { plan = planCaptionTranslation(source); }
     catch { setStatus(t("editor.captions.translationFailed", { defaultValue: "Caption translation failed. Your captions are unchanged." })); return; }

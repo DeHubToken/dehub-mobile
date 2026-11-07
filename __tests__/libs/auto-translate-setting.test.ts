@@ -1,5 +1,6 @@
 import { autoTranslateEnabled, setAutoTranslateEnabled } from '../../libs/auto-translate-setting';
 import { storage } from '../../libs/storage';
+import { hasAiConsent } from '../../libs/ai-consent';
 
 describe('libs/auto-translate-setting', () => {
   beforeEach(() => storage.clearAll());
@@ -26,5 +27,11 @@ describe('libs/auto-translate-setting', () => {
     expect(storage.getString('dehub-auto-translate')).toBe('off');
     setAutoTranslateEnabled(true);
     expect(storage.getString('dehub-auto-translate')).toBe('on');
+  });
+
+  it('stays off on the App Store build until AI permission is given', () => {
+    jest.mocked(hasAiConsent).mockReturnValueOnce(false);
+    expect(autoTranslateEnabled()).toBe(false);
+    expect(autoTranslateEnabled()).toBe(true);
   });
 });

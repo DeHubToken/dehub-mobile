@@ -67,6 +67,8 @@
     <string>Riftn uses your camera when you choose to take a profile photo, record a video for a post, or start a live stream.</string>
     <key>NSFaceIDUsageDescription</key>
     <string>Riftn uses Face ID to unlock your wallet and confirm sensitive actions, such as sending tokens.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Share an approximate location on the Riftn community globe only when you choose Place Me.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Riftn uses your microphone when you record a voice message or video, or speak in a live stream or audio stage.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
@@ -78,7 +80,6 @@
     <key>UIBackgroundModes</key>
     <array>
       <string>audio</string>
-      <string>screen-capture</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>

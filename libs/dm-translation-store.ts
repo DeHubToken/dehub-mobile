@@ -2,6 +2,7 @@ import { useCallback, useSyncExternalStore } from 'react';
 import i18n from 'i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
 import { toastError, toastSuccess } from './toast';
+import { ensureAiConsent, hasAiConsent } from './ai-consent';
 
 /**
  * Translate for direct messages. The menu (held message) starts it and the
@@ -58,6 +59,7 @@ export async function toggleDmTranslation(id: string, content?: string | null): 
 
   const text = dmTranslatableText(content);
   if (!text) return;
+  if (!hasAiConsent() && !(await ensureAiConsent())) return;
   set(id, { status: 'loading' });
   try {
     const result = await translateText(text, getUserLanguage(), 'auto', { isPublic: false });

@@ -5,6 +5,7 @@ import {
   type ImageTranslateResponse,
   getUserLanguage,
 } from '../services/translation.service';
+import { ensureAiConsent, hasAiConsent } from '../libs/ai-consent';
 
 const cache = new Map<string, ImageTranslateResponse>();
 
@@ -38,6 +39,8 @@ export function useImageTranslation() {
       setIsLoading(false);
       return cached;
     }
+
+    if (!hasAiConsent() && !(await ensureAiConsent())) return null;
 
     setIsLoading(true);
     setError(null);

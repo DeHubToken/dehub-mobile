@@ -7,10 +7,25 @@ import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
 import type { CreatorStudioSettings } from '../libs/creatorStudio';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { isImageProviderUnavailable } from '../libs/image-provider-error';
+import { AI_CONSENT_DECLINED, aiConsentDeclinedMessage, ensureAiConsent, hasAiConsent } from '../libs/ai-consent';
 
 const log = createLogger('ai.service');
 
 const EDGE_BASE = env.SUPABASE_EDGE_BASE_URL;
+
+/**
+ * Asks for permission to use third-party AI (App Store build only) before a
+ * request the user started. Throws when the answer is no, so the caller's
+ * normal error path shows a short note instead of sending anything.
+ */
+async function requireAiConsent(): Promise<void> {
+  if (hasAiConsent() || (await ensureAiConsent())) return;
+  throw new AIServiceError(aiConsentDeclinedMessage(), 0, AI_CONSENT_DECLINED);
+}
+
+export function isAiConsentDeclined(error: unknown): boolean {
+  return error instanceof AIServiceError && error.errorCode === AI_CONSENT_DECLINED;
+}
 
 /**
  * Headers the paid AI functions authenticate against.
@@ -192,6 +207,7 @@ export async function enhanceText(
   mode: EnhanceMode = 'spellcheck',
   style?: string,
 ): Promise<string> {
+  await requireAiConsent();
   const res = await fetch(`${EDGE_BASE}/enhance-text`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...(await ownKeyHeaders()) },
@@ -249,6 +265,9 @@ const COACH_MAX_CHARS = 2000;
 export async function checkConversationTone(text: string, mode: CoachMode = 'coach'): Promise<CoachFlag[] | null> {
   const draft = text.trim().slice(0, COACH_MAX_CHARS);
   if (!draft) return [];
+  // Runs on its own beside the composer, so it never asks; without permission
+  // it just stays quiet, like any other time the coach can't answer.
+  if (!hasAiConsent()) return null;
   try {
     const res = await fetch(`${EDGE_BASE}/conversation-coach`, {
       method: 'POST',
@@ -568,6 +587,7 @@ export function toChatTurns(messages: AIChatMessage[]): AIChatMessage[] {
 }
 
 export async function sendAIChat(request: AIChatRequest): Promise<AIChatResponse> {
+  await requireAiConsent();
   // The server gives the full model and higher limit only to a verified
   // Riftn token, so every signed-in caller sends it, not just the assistant.
   return edgeFetch<AIChatResponse>('general-ai-chat', {
@@ -581,6 +601,7 @@ export async function generateImage(
   request: AIImageRequest,
   walletAddress?: string | null,
 ): Promise<AIImageResponse> {
+  await requireAiConsent();
   return paidEdgeFetch<AIImageResponse>(
     'generate-image',
     {
@@ -607,6 +628,7 @@ export async function startVideoGeneration(
   request: AIVideoRequest,
   walletAddress?: string | null,
 ): Promise<AIVideoResponse> {
+  await requireAiConsent();
   return paidEdgeFetch<AIVideoResponse>(
     'generate-video',
     { ...request, prompt: request.avatar?.prompt ?? request.prompt, clientJobId: request.avatar?.clientJobId ?? request.clientJobId } as unknown as Record<string, unknown>,
@@ -682,6 +704,7 @@ export async function startAiTool(
   request: AiToolRequest,
   walletAddress?: string | null,
 ): Promise<AiToolResponse> {
+  await requireAiConsent();
   return paidEdgeFetch<AiToolResponse>(
     'fal-ai-tools',
     request as unknown as Record<string, unknown>,
@@ -716,6 +739,7 @@ export async function runModel3d(
   args: { model?: string; prompt?: string; sourceImage?: string; textureQuality?: CreatorStudioSettings['textureQuality']; txHash?: string; predictionId?: string; falAppId?: string },
   walletAddress?: string | null,
 ): Promise<AiToolResponse> {
+  if (!args.predictionId) await requireAiConsent();
   const result = await paidEdgeFetch<Model3dResponse>('generate-3d', args, walletAddress);
   return {
     ...result, requestId: result.predictionId, appId: result.falAppId,
@@ -994,9 +1018,19 @@ export function streamAIChat(
     finish(() => onError(new AIServiceError(_translateCopy("copy.264b16cff6be", { defaultValue: "The assistant took too long to answer" }), 0, 'TIMEOUT')));
   };
 
-  xhr.send(
-    JSON.stringify({ ...request, messages: toChatTurns(request.messages), stream: true }),
-  );
+  const send = () =>
+    xhr.send(
+      JSON.stringify({ ...request, messages: toChatTurns(request.messages), stream: true }),
+    );
+  if (hasAiConsent()) {
+    send();
+  } else {
+    ensureAiConsent().then((allowed) => {
+      if (finished) return;
+      if (allowed) send();
+      else finish(() => onError(new AIServiceError(aiConsentDeclinedMessage(), 0, AI_CONSENT_DECLINED)));
+    });
+  }
 
   return {
     abort: () => {
@@ -1043,6 +1077,9 @@ export async function suggestReplies(
   thread: SmartReplyTurn[],
   peerName?: string,
 ): Promise<SmartReplyResponse> {
+  // Fires on its own as messages arrive, so it never asks. Turning smart
+  // replies on is where permission is asked for.
+  if (!hasAiConsent()) return { suggestions: [] };
   return edgeFetch<SmartReplyResponse>('suggest-replies', { thread, peerName }, await ownKeyHeaders());
 }
 
