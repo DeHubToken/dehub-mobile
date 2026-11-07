@@ -1,5 +1,5 @@
 import { openWebPurchase } from "../components/common/WebPurchaseLink";
-import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD, purchaseOfferVisible } from "../config/storefront";
 import { useDraftState } from "../hooks/useDraftState";
 import { CommentLoadError } from '../components/Comments/CommentLoadError';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
@@ -391,6 +391,11 @@ export default function GovernanceProposalScreen() {
       {
         onError: (error) => {
           if (!needsOwnBadge(error)) return;
+          // The App Store build never says tokens unlock a vote, nor where to get them.
+          if (IS_APP_STORE_BUILD) {
+            Alert.alert(t("storefront.unavailable"));
+            return;
+          }
           // The server's reason says whether the badge is lent; the button
           // takes them to buying DHB, which is how they get a vote.
           Alert.alert(t("governance.holdTokensToVote"), (error as Error).message, purchaseOfferVisible() ? [

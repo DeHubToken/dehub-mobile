@@ -50,9 +50,10 @@ import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.con
 import type { AiJobKind, AiQuoteRequest } from '../../services/ai.service';
 import { confirmQuotedJob } from '../../libs/confirmJobQuote';
 import { ScreenNames } from '../../navigation/ScreenNames';
-import { toastError, toastSuccess } from '../../libs/toast';
+import { toastError, toastInfo, toastSuccess } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
-import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from '../../config/storefront';
+import { getFreeImages } from '../../services/ai.service';
 import { ethers } from 'ethers';
 import ERC20_ABI from '../../config/abis/erc20.json';
 import { buildContract, useWeb3Provider } from '../../hooks/use-web3';
@@ -172,7 +173,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const requestKey = JSON.stringify(quoteRequest);
   const latestRequest = useRef({ requestKey, visible });
   latestRequest.current = { requestKey, visible };
-  const { priceDhb, priceUsd, isLoading: isQuoting, error: quoteError } = useJobQuote(quoteRequest, visible);
+  // The App Store build only ever opens this for a free image (see the gate
+  // below), so it never asks for a price or reads a wallet.
+  const { priceDhb, priceUsd, isLoading: isQuoting, error: quoteError } = useJobQuote(quoteRequest, visible && !IS_APP_STORE_BUILD);
   // Gated on `visible`: all three paywall sheets stay mounted in the assistant
   // tree, so ungated these would each read a wallet balance the moment the
   // screen opened.
@@ -183,7 +186,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     isLoading: isWalletLoading,
     unsupportedChain: chainProblem,
     payForJob,
-  } = useJobPayment(visible);
+  } = useJobPayment(visible && !IS_APP_STORE_BUILD);
   // Subscription tokens pay without a transfer, so the connected chain only
   // matters when they fall short.
   const paidByCredits = creditsCoverPrice(creditsUsd, priceDhb);
@@ -427,12 +430,14 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 <Icon name="X" size={20} color="#6F7174" />
               </TouchableOpacity>
             </View>
-            <Text style={s.subtitle}>{subtitle}</Text>
+            {!IS_APP_STORE_BUILD && <Text style={s.subtitle}>{subtitle}</Text>}
 
-            {/* Model selector */}
+            {/* Model selector. Fixed in the App Store build, where the run is a
+                free image on the model that was chosen before this opened. */}
             <TouchableOpacity
               style={s.selector}
               activeOpacity={0.8}
+              disabled={IS_APP_STORE_BUILD}
               onPress={() => setModelListOpen((open) => !open)}
             >
               <View style={s.selectorLeft}>
@@ -442,7 +447,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                   <Text style={s.selectorDesc}>{model?.description}</Text>
                 </View>
               </View>
-              <Icon name={modelListOpen ? 'ChevronUp' : 'ChevronDown'} size={18} color="#6F7174" />
+              {!IS_APP_STORE_BUILD && (
+                <Icon name={modelListOpen ? 'ChevronUp' : 'ChevronDown'} size={18} color="#6F7174" />
+              )}
             </TouchableOpacity>
 
             {modelListOpen && (
@@ -482,7 +489,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               </View>
             )}
 
-            {/* Cost breakdown */}
+            {/* Cost breakdown, quoted price and wallet balance. */}
+            {!IS_APP_STORE_BUILD && (<>
             <View style={s.card}>
               <View style={s.line}>
                 <Text style={s.lineLabel}>
@@ -536,6 +544,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 )}
               </View>
             </View>
+            </>)}
 
             {!!footnote && <Text style={s.footnote}>{footnote}</Text>}
             {quoteKind === 'image' && quantity > 1 && <Text style={s.footnote}>{t('creator.batchPaymentHelp')}</Text>}
@@ -573,7 +582,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               />
             )}
 
-            {needsTokens && !coinPay && !unsupportedChain && !isQuoting && (
+            {!IS_APP_STORE_BUILD && needsTokens && !coinPay && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>{_copy("copy.27c7325ba6f7", { defaultValue: "This costs " })}{formatDhb(priceDhb)} <DhbCoin label={t('tip.tokensUnit')} />{_copy("copy.3d717322f7c9", { defaultValue: " and you hold " })}{formatDhb(walletDhb)}.
                 </Text>
@@ -590,11 +599,11 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             >
               <Text style={s.cancelBtnText}>{t('common.cancel')}</Text>
             </TouchableOpacity>
-            {/* The App Store build can price a run but not sell it (3.1.1). */}
-            {/* A free image is not a purchase, so it stays available where selling is off. */}
+            {/* The App Store build sells no run (3.1.1); it opens this only for
+                a free image, so until the free count arrives it just waits. */}
             {anyCoin ? null : !DIGITAL_PURCHASES_ENABLED && !freeAvailable ? (
               <View style={[s.confirmBtn, s.confirmBtnDisabled]}>
-                <Text style={s.confirmBtnText}>{t('storefront.unavailable')}</Text>
+                <ActivityIndicator size="small" color="#09090B" />
               </View>
             ) : (
             <TouchableOpacity
@@ -772,5 +781,46 @@ const s = StyleSheet.create({
   confirmBtnText: { color: '#09090B', fontSize: 15, fontWeight: '700', textAlign: 'center' },
 });
 
-const CreditPaywallSheet = (props: CreditPaywallSheetProps) => props.quoteKind === 'video' && props.selectedModelId === 'kling-avatar-v2' ? <AvatarCreditPaywallSheet {...props} /> : <CreditPaywallSheetComponent {...props} />;
+/**
+ * The App Store build sells no generation (3.1.1), so a paid run never opens
+ * a sheet: it gets a short notice instead. Only a free starter image goes
+ * through, and the sheet opens once the server confirms one is left for the
+ * chosen model.
+ */
+function AppStorePaywallGate(props: CreditPaywallSheetProps) {
+  const { t } = useTranslation();
+  const { visible, onClose, onConfirmFree, quoteKind, quoteExtras, models, selectedModelId } = props;
+  const [freeReady, setFreeReady] = useState(false);
+  const modelId = (models.find((m) => m.id === selectedModelId) || models[0])?.id;
+  const mayBeFree = !!onConfirmFree && quoteKind === 'image' && (quoteExtras?.quantity ?? 1) === 1;
+  useEffect(() => {
+    setFreeReady(false);
+    if (!visible) return;
+    let live = true;
+    const refuse = () => {
+      if (!live) return;
+      toastInfo(t('storefront.unavailable'));
+      onClose();
+    };
+    if (!mayBeFree || !modelId) {
+      refuse();
+      return;
+    }
+    getFreeImages()
+      .then((res) => {
+        if (!live) return;
+        if ((res.remaining ?? 0) > 0 && (res.models ?? []).includes(modelId)) setFreeReady(true);
+        else refuse();
+      })
+      .catch(refuse);
+    return () => { live = false; };
+    // Decided once per opening.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+  return <CreditPaywallSheetComponent {...props} visible={visible && freeReady} />;
+}
+
+const CreditPaywallSheet = (props: CreditPaywallSheetProps) =>
+  IS_APP_STORE_BUILD ? <AppStorePaywallGate {...props} /> :
+  props.quoteKind === 'video' && props.selectedModelId === 'kling-avatar-v2' ? <AvatarCreditPaywallSheet {...props} /> : <CreditPaywallSheetComponent {...props} />;
 export default memo(CreditPaywallSheet);

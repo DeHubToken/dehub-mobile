@@ -66,6 +66,7 @@ import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 import { DEFAULT_PROFILE_TAB, type ProfileDefaultTab } from "../../libs/profile-default-tab";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 
 interface UserProfileBottomContentTabsProps {
   pinnedIdentity?: ProfilePinnedIdentity;
@@ -172,6 +173,10 @@ const UserProfileBottomContentTabs: React.FC<
   backToTopBottom,
   showDislikesTab = false,
 }) => {
+  // The App Store build lists nobody else's paid plans (3.1.1), so another
+  // creator's Subs tab, and a profile that opens on it, are left out.
+  const subsHidden = IS_APP_STORE_BUILD && !isOwnProfile;
+  const startTab = subsHidden && defaultTab === "subscribers" ? DEFAULT_PROFILE_TAB : defaultTab;
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
@@ -191,7 +196,7 @@ const UserProfileBottomContentTabs: React.FC<
   const dislikesCount = useProfileDislikesCount(address, isOwnProfile || showDislikesTab);
 
   // Active content tab
-  const [activeTab, setActiveTab] = useState<ContentTab>(defaultTab);
+  const [activeTab, setActiveTab] = useState<ContentTab>(startTab);
 
   // Tabs already opened on this profile stay mounted but hidden, so going
   // back to one is instant and lands where it was left, instead of rebuilding
@@ -215,8 +220,8 @@ const UserProfileBottomContentTabs: React.FC<
   useEffect(() => {
     if (!address || appliedDefaultFor.current === address) return;
     appliedDefaultFor.current = address;
-    setActiveTab(defaultTab);
-  }, [address, defaultTab]);
+    setActiveTab(startTab);
+  }, [address, startTab]);
 
   // The header's Subscribe CTA lives one level up, so it asks for a tab rather
   // than owning one. Cleared immediately so a second press still works.
@@ -240,7 +245,8 @@ const UserProfileBottomContentTabs: React.FC<
       count: (counts as Record<string, number | undefined>)[item.key] ?? (item.key === "fractions" || !counts.loaded ? undefined : 0),
     }))
       // Public playlists only earn a tab once there is one to show.
-      .filter((item) => (item.key !== "playlists" && item.key !== "articles") || (item.count ?? 0) > 0);
+      .filter((item) => (item.key !== "playlists" && item.key !== "articles") || (item.count ?? 0) > 0)
+      .filter((item) => !(subsHidden && item.key === "subscribers"));
     const home = withCounts.find((item) => item.key === "home")!;
     const rest = withCounts
       .filter((item) => item.key !== "home")
@@ -250,7 +256,7 @@ const UserProfileBottomContentTabs: React.FC<
       ? [{ key: "dislikes", label: t("profile.tabDislikes"), icon: "ThumbsDown", count: dislikesCount }]
       : [];
     return [home, ...rest, ...dislikes];
-  }, [counts, t, isOwnProfile, showDislikesTab, dislikesCount]);
+  }, [counts, t, isOwnProfile, showDislikesTab, dislikesCount, subsHidden]);
 
   // Once the profile has settled, build its busiest other tabs in the
   // background (hidden, like a kept tab), so the first tap on one shows a

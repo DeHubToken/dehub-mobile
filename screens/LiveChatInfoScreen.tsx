@@ -28,6 +28,7 @@ import type { LiveChatRoom, LiveChatUser } from "../services/livechat.service";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 import { getAccountSummaries } from "../services/user.service";
 import { DhbCoin } from "../components/common/DhbCoin";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -324,7 +325,8 @@ const LiveChatInfoScreen: React.FC = () => {
             label={t("liveChat.slowMode")}
             value={room?.slowMode ? t("liveChat.cooldownSeconds", { seconds: room.slowModeSeconds }) : t("subtitles.off")}
           />
-          {!!room?.minStakeRequired && room.minStakeRequired > 0 && (
+          {/* A token stake that unlocks the room: not shown in the App Store build. */}
+          {!IS_APP_STORE_BUILD && !!room?.minStakeRequired && room.minStakeRequired > 0 && (
             <>
               <View className="h-px bg-white/5 mx-4" />
               <InfoRow

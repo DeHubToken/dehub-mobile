@@ -76,8 +76,14 @@ const SECTION_DEFS: GuideSectionDef[] = [
 
 const numbered = (n = 0) => Array.from({ length: n }, (_, i) => i + 1);
 
-/** Guide sections about buying, trading or minting, which the App Store build does not offer. */
-const STOREFRONT_HIDDEN_SECTIONS = new Set(["staking", "command-centre", "bounties-stores", "buying-dhb", "bridge", "trading-fractions", "minting-posts"]);
+/**
+ * Guide sections about buying, trading, minting or earning with tokens, or
+ * about what tokens and badges unlock, which the App Store build does not offer.
+ */
+const STOREFRONT_HIDDEN_SECTIONS = new Set([
+  "staking", "command-centre", "bounties-stores", "buying-dhb", "bridge", "trading-fractions", "minting-posts",
+  "wallet", "creator-studio", "posting-allowance", "post-info",
+]);
 
 function buildSections(t: TFunction): GuideSection[] {
   return SECTION_DEFS.filter((d) => DIGITAL_PURCHASES_ENABLED || !STOREFRONT_HIDDEN_SECTIONS.has(d.id)).map((d) => {

@@ -83,14 +83,21 @@ export default function FractionsScreen() {
   const share = () => {
     const url = tab === "nfts" ? ShareLinks.nfts() : ShareLinks.fractions();
     const message = tab === "nfts" ? t("nftMarket.shareMessage", { defaultValue: "Buy and sell NFTs on Riftn" }) : t("fractions.shareMessage");
-    void shareWithRef({ message: `${message}\n${url}`, url });
+    // The App Store build shares the bare link, without the buy-and-sell line.
+    void shareWithRef({ message: DIGITAL_PURCHASES_ENABLED ? `${message}\n${url}` : url, url });
   };
 
   return (
     <View style={styles.root}>
       <ScreenHeader
         title={nftsOnly ? t("nftMarket.shortTitle", { defaultValue: "NFTs" }) : t("fractions.title")}
-        subtitle={tab === "nfts" ? t("fractions.nftsSubtitle", { defaultValue: "Any NFT, one-step swaps" }) : t("fractions.perUpload")}
+        subtitle={
+          tab !== "nfts"
+            ? t("fractions.perUpload")
+            : DIGITAL_PURCHASES_ENABLED
+              ? t("fractions.nftsSubtitle", { defaultValue: "Any NFT, one-step swaps" })
+              : undefined
+        }
         icon={nftsOnly ? "nfts" : "fractions"}
         rightContent={
           <Pressable onPress={share} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("fractions.share")}>

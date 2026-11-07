@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Svg, { Polyline } from "react-native-svg";
 import { PageSection } from "../page/PageKit";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 interface FinanceAccountingDay {
   date: string;
   revenue: Record<string, number>;
@@ -84,17 +85,19 @@ export default function FinanceSection({ days }: { days: number | null }) {
           <View style={styles.tile}><Text style={styles.label}>{t("stats.money.revenue")}</Text><Text style={styles.amount}>{usd(revenue)}</Text></View>
           <View style={styles.tile}><Text style={styles.label}>{t("stats.money.costs")}</Text><Text style={styles.amount}>{usd(costs)}</Text></View>
         </View>
-        <Pressable accessibilityRole="link" onPress={() => openLedger("bsc_holder_share", true)} style={styles.shared}>
+        {/* What holders and stakers were paid reads as a reward for holding:
+            not in the App Store build. */}
+        {!IS_APP_STORE_BUILD && <Pressable accessibilityRole="link" onPress={() => openLedger("bsc_holder_share", true)} style={styles.shared}>
           <Text style={styles.label}>{t("stats.money.profitShared")}</Text>
           <Text style={styles.amount}>{query.data.taxSplit ? usd(query.data.taxSplit.shared.usd) : "—"}</Text>
           <Text style={styles.hint}>{t("stats.taxSplit.see")}</Text>
-        </Pressable>
+        </Pressable>}
         {view.chart.length > 1 && <Svg width={chartWidth} height={height} accessibilityLabel={t("stats.money.chartMonthly")}>
           <Polyline points={points("revenue")} fill="none" stroke="#F4F4F5" strokeWidth={2} />
           <Polyline points={points("costs")} fill="none" stroke="#71717A" strokeWidth={2} strokeDasharray="4 4" />
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
-        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by Riftn." })}</Text>
+        {!IS_APP_STORE_BUILD && <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by Riftn." })}</Text>}
         {query.data.notes?.map((note, index) => <Text key={index} style={styles.hint}>{note}</Text>)}
         {query.data.provenance?.expenseAllocation && <Text style={styles.hint}>{query.data.provenance.expenseAllocation}</Text>}
       </PageSection>

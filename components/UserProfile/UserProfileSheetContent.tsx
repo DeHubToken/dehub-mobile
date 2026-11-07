@@ -3,7 +3,7 @@ import type { useProfileCollapse } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
-import { DIGITAL_PURCHASES_ENABLED, purchaseOfferVisible } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD, purchaseOfferVisible } from "../../config/storefront";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
@@ -528,8 +528,12 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           </TouchableOpacity>
           )}
 
-          <View className="mx-5 my-1 h-px bg-white/10" />
+          {/* Lending a badge is not offered in the App Store build: its slots
+              come from staking. Its divider goes with it unless a tip row sits above. */}
+          {(!IS_APP_STORE_BUILD || purchaseOfferVisible()) && <View className="mx-5 my-1 h-px bg-white/10" />}
 
+          {!IS_APP_STORE_BUILD && (
+          <>
           <TouchableOpacity
             onPress={handleMenuLendBadge}
             activeOpacity={0.7}
@@ -547,6 +551,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           </TouchableOpacity>
 
           <View className="mx-5 my-1 h-px bg-white/10" />
+          </>
+          )}
 
           <TouchableOpacity
             onPress={handleMenuShare}
@@ -728,12 +734,14 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         userName={profileData?.displayName}
       />
 
-      <LendBadgeSheet
-        visible={showLendBadge}
-        onClose={() => setShowLendBadge(false)}
-        address={profileData?.address}
-        displayName={profileData?.displayName || profileData?.username}
-      />
+      {!IS_APP_STORE_BUILD && (
+        <LendBadgeSheet
+          visible={showLendBadge}
+          onClose={() => setShowLendBadge(false)}
+          address={profileData?.address}
+          displayName={profileData?.displayName || profileData?.username}
+        />
+      )}
 
       <GlassTipSheet
         visible={showTip && !paymentsHidden}

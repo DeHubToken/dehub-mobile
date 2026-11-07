@@ -1,4 +1,5 @@
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { IS_APP_STORE_BUILD } from './storefront';
 /** Exact effect names from fal's PixVerse v5.5 schema, checked 2026-10-13.
  * Matching previews are supplied by PixVerse's public template catalog.
  * No popularity ranking is inferred. Missing previews are never substituted.
@@ -16,7 +17,7 @@ export interface ViralEffect {
   providerTemplateId?: string;
 }
 export const VIRAL_EFFECT_MODEL = 'pixverse-effects';
-export const VIRAL_EFFECTS: ViralEffect[] = [
+const ALL_VIRAL_EFFECTS: ViralEffect[] = [
     {
         "id":  "kiss-me-ai",
         "name":  "Kiss Me AI",
@@ -1170,5 +1171,17 @@ export const VIRAL_EFFECTS: ViralEffect[] = [
         "providerTemplateId":  "328545151283968"
     }
 ];
+/**
+ * Effects that dress someone from an uploaded photo in swimwear, pose them
+ * sexually or pair them romantically with strangers. The App Store listing
+ * declares no sexual content, so that build leaves them out of every picker
+ * and lookup that reads this list.
+ */
+const APP_STORE_HIDDEN_EFFECTS = new Set([
+    'bikini-up', 'my-girlfriends', 'my-boyfriends', 'pole-dance', 'summoning-succubus', 'come-feel-my-abs',
+]);
+export const VIRAL_EFFECTS: ViralEffect[] = IS_APP_STORE_BUILD
+    ? ALL_VIRAL_EFFECTS.filter(effect => !APP_STORE_HIDDEN_EFFECTS.has(effect.id))
+    : ALL_VIRAL_EFFECTS;
 export const VIRAL_FEATURED_IDS = ['earth-zoom', 'fin-tastic-mermaid', 'eye-zoom-challenge', 'apex-dance', 'omnihero-forge', 'ghostface-terror', 'mini-me-makeover', 'holy-wings'];
 export const viralEffect = (id?: string | null) => VIRAL_EFFECTS.find(effect => effect.id === id);
