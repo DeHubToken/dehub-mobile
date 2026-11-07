@@ -695,6 +695,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       'stores', 'events', 'fractions', 'agents', 'bridge', 'launchpad',
       'governance',
     ]);
+    // riftn.com/chat is web's full-screen Messages. The app's Messages is
+    // already full screen, so the link lands there.
+    if (segments[0] === 'chat' || (segments[0] === 'app' && segments[1] === 'chat')) {
+      return getStateFromPath(`/app/messages${queryString ? `?${queryString}` : ''}`, options);
+    }
+
     // Builder lived at /app/builder before it took the top-level URL; web
     // redirects the old links, so do the same here.
     if (segments[0] === 'app' && segments[1] === 'builder') {
@@ -1035,8 +1041,8 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return { type: 'leaderboard', params: qp };
     }
 
-    // /app/messages
-    if (appParts[0] === 'messages') {
+    // /app/messages (and web's full-screen /chat)
+    if (appParts[0] === 'messages' || appParts[0] === 'chat') {
       return { type: 'messages', params: qp };
     }
 

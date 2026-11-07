@@ -32,6 +32,8 @@ import ChatInputBar, {
   type ChatMediaAttachment,
 } from "../components/DM/ChatInputBar";
 import type { SmartReplyTurn } from "../services/ai.service";
+import ChatWallpaper from "../components/DM/ChatWallpaper";
+import ChatDayPill, { chatDayKey } from "../components/DM/ChatDayPill";
 import MessageContextMenu, {
   type MessageLayout,
 } from "../components/DM/MessageContextMenu";
@@ -1676,12 +1678,27 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   );
 
   const renderMessage = useCallback(
-    ({ item }: { item: DmMessage }) => {
+    ({ item, index }: { item: DmMessage; index: number }) => {
       const mine = isMine(item);
+      // The list is newest first (inverted): the line above on screen is
+      // index + 1, the one below is index - 1. A run is back-to-back plain
+      // lines from one side within 5 minutes on the same day.
+      const older = messageList[index + 1];
+      const newer = messageList[index - 1];
+      const joins = (a?: DmMessage, b?: DmMessage) =>
+        !!a && !!b && !a.undecryptable && !b.undecryptable &&
+        ["msg", "media", "gif"].includes(a.msgType ?? "msg") && ["msg", "media", "gif"].includes(b.msgType ?? "msg") &&
+        isMine(a) === isMine(b) &&
+        chatDayKey(a.createdAt) === chatDayKey(b.createdAt) &&
+        Math.abs(new Date(b.createdAt ?? 0).getTime() - new Date(a.createdAt ?? 0).getTime()) < 5 * 60_000;
+      const dayPill = item.createdAt && (!older || chatDayKey(older.createdAt) !== chatDayKey(item.createdAt))
+        ? <ChatDayPill iso={item.createdAt} />
+        : null;
       // Poll messages use a dedicated card
       if (item.msgType === "poll" && item.poll?.tokenId) {
         return (
           <View>
+            {dayPill}
             <PollCard
               tokenId={item.poll.tokenId}
               pollOwnerAddress={
@@ -1694,15 +1711,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         );
       }
       const run = undecryptableRuns.get(item._id);
-      if (run !== undefined) return run > 0 ? <DmUndecryptableRun count={run} /> : null;
+      if (run !== undefined) return run > 0 ? <>{dayPill}<DmUndecryptableRun count={run} /></> : null;
       // The long-press menu floats its own copy of this bubble over the list.
       // The copy is see-through, so the original underneath showed its text
       // and time a second time; hide it while the menu is open.
       return (
         <View style={liftedId === item._id ? { opacity: 0 } : undefined}>
+          {dayPill}
           <MessageBubble
             message={item}
             isMine={mine}
+            groupFirst={!joins(older, item)}
+            groupLast={!joins(item, newer)}
             onLongPress={onLongPressMessage}
             onVideoPress={openVideo}
             localMediaUri={(item as OptimisticMessage)?._localMediaUri}
@@ -1715,7 +1735,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction, liftedId],
+    [isMine, messageList, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns, address, toggleReaction, liftedId],
   );
 
   // The temp id a line was drawn under stays its key after the send lands.
@@ -1838,6 +1858,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         )}
 
         <View className="flex-1">
+          <ChatWallpaper />
           {/* New chat intro — shown before first message */}
           {/* A brand-new chat has no message list yet, so nothing on the
               screen took a tap away from the composer: the keyboard stayed
