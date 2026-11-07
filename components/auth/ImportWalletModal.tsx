@@ -15,7 +15,7 @@ import {
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import { importSecretKind, privateKeyFromImportSecret } from "../../libs/wallet-core/derive";
 import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAddress, upsertLocalAccount } from "../../libs/wallets.local";
-import { isWalletSignupBlocked, reportWalletSignupBlocked } from "../../libs/walletSignupGate";
+import { isWalletSignupBlocked, reportProfileMoved, reportWalletSignupBlocked } from "../../libs/walletSignupGate";
 import { miniAddress } from "../../libs/strings.util";
 import * as Clipboard from "expo-clipboard";
 import { openInApp } from "../../libs/links.utils";
@@ -150,7 +150,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         if (address && isWalletSignupBlocked(e)) {
           await removeLocalAccount(address).catch(() => {});
         }
-        if (!reportWalletSignupBlocked(e)) {
+        if (!reportWalletSignupBlocked(e) && !reportProfileMoved(e)) {
           setError((e as any)?.message || t("auth.couldNotImportWallet"));
         }
       } finally {

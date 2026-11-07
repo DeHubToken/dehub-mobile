@@ -44,3 +44,27 @@ export function reportWalletSignupBlocked(error: unknown): boolean {
   });
   return true;
 }
+
+/** The API's code for a wallet whose profile moved to a Google/email/phone login. */
+export const PROFILE_MOVED_CODE = 'PROFILE_MOVED';
+
+export function isProfileMoved(error: unknown): boolean {
+  const candidate = error as { code?: unknown } | null;
+  return !!candidate && (candidate.code === PROFILE_MOVED_CODE || candidate.code === 'PROFILE_ON_WALLET');
+}
+
+/**
+ * This wallet's profile followed the person's Google/email/phone login, and the
+ * API says which one. Before this the app showed the sentence as a toast title
+ * under "Wallet authentication failed", or signed into the blank account the
+ * old wallet was left with (@martvader, 2026-11-07). Mirrors web's
+ * PROFILE_MOVED toast in AuthProvider.
+ */
+export function reportProfileMoved(error: unknown): boolean {
+  if (!isProfileMoved(error)) return false;
+  toastError(null, _translateCopy('copy.94cee2c8c1c1', { defaultValue: 'Your profile moved' }), {
+    description: (error as { message?: string })?.message,
+    duration: 15000,
+  });
+  return true;
+}
