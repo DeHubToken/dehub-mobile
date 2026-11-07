@@ -16371,5 +16371,6 @@
     "large": "Grand",
     "larger": "Plus grand",
     "largest": "Très grand"
-  }
+  },
+  "aiConsent": {"title":"Utiliser les fonctions d'IA ?","body":"Pour fonctionner, les fonctions d'IA envoient ce que vous leur donnez (votre texte, vos photos ou votre audio, et la publication ou la conversation concernée) à des fournisseurs d'IA tiers comme Google, OpenAI, Groq, OpenRouter, fal et ElevenLabs. Vous pouvez modifier ce choix à tout moment dans Réglages → Confidentialité.","allow":"Autoriser","declined":"Les fonctions d'IA sont désactivées. Vous pouvez les activer dans Réglages → Confidentialité.","settingLabel":"Fonctions d'IA","settingDesc":"Autorise l'assistant, la traduction, les réponses suggérées et l'aide à l'écriture à envoyer ce que vous leur donnez à des fournisseurs d'IA tiers."}
 }
