@@ -1457,7 +1457,9 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Usar los colores de tu foto de perfil",
     "themeColorBrandNoAvatar": "Añade una foto de perfil para usar los colores de Marca",
-    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil"
+    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil",
+    "chatTextSize": "Tamaño del texto del chat",
+    "chatTextSizeDesc": "Mensajes más grandes o más pequeños en todos los chats. Se suma al tamaño de texto de tu teléfono."
   },
   "common": {
     "refresh": "Actualizar",
@@ -1886,7 +1888,8 @@
     "failedToClosePoll": "No se pudo cerrar la encuesta",
     "endsIn": "Termina {{time}}",
     "multipleChoice": "Permitir varias respuestas",
-    "online": "{{count}} en línea"
+    "online": "{{count}} en línea",
+    "onlineHint": "{{count}} personas están en este chat ahora mismo"
   },
   "aiChat": {
     "title": "Asistente IA",
@@ -7238,7 +7241,19 @@
     "viewReposts": "Ver reposiciones"
   },
   "dm": {
-    "newDrawer": {"to": "Para", "placeholder": "Nombre o @usuario", "recent": "RECIENTES", "suggested": "SUGERIDOS", "youFollow": "PERSONAS QUE SIGUES", "chattedBefore": "Ya hablan", "mutual": "Mutuo", "dmsOff": "MD desactivados", "keepTyping": "Sigue escribiendo para buscar a todos", "sayHi": "Saluda a alguien", "typeAny": "Escribe cualquier nombre o @usuario"},
+    "newDrawer": {
+      "to": "Para",
+      "placeholder": "Nombre o @usuario",
+      "recent": "RECIENTES",
+      "suggested": "SUGERIDOS",
+      "youFollow": "PERSONAS QUE SIGUES",
+      "chattedBefore": "Ya hablan",
+      "mutual": "Mutuo",
+      "dmsOff": "MD desactivados",
+      "keepTyping": "Sigue escribiendo para buscar a todos",
+      "sayHi": "Saluda a alguien",
+      "typeAny": "Escribe cualquier nombre o @usuario"
+    },
     "reportMessage": "Denunciar mensaje",
     "download": "Descargar",
     "fileSaved": "Archivo guardado",
@@ -16344,5 +16359,13 @@
     "notReal": "Este no es el verdadero {{name}}.",
     "neverLink": "El equipo de Riftn nunca te enviará por mensaje un enlace para arreglar tu perfil o tu billetera. No abras enlaces, no conectes tu billetera ni firmes nada. Bloquea y denuncia esta cuenta.",
     "linkCaution": "Cuidado con los enlaces. Riftn nunca te pedirá conectar tu billetera, firmar ni compartir tu frase semilla para arreglar tu cuenta."
+  },
+  "chatTextSize": {
+    "title": "Tamaño del texto",
+    "small": "Pequeño",
+    "default": "Predeterminado",
+    "large": "Grande",
+    "larger": "Más grande",
+    "largest": "Enorme"
   }
 }

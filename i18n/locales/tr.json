@@ -1457,7 +1457,9 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Profil fotoğrafınızın renklerini kullan",
     "themeColorBrandNoAvatar": "Marka renklerini kullanmak için bir profil fotoğrafı ekleyin",
-    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
+    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı",
+    "chatTextSize": "Sohbet metin boyutu",
+    "chatTextSizeDesc": "Tüm sohbetlerde daha büyük veya küçük mesajlar. Telefonunuzun metin boyutuna eklenir."
   },
   "common": {
     "refresh": "Yenile",
@@ -1886,7 +1888,8 @@
     "failedToClosePoll": "Anket kapatılamadı",
     "endsIn": "Bitiş {{time}}",
     "multipleChoice": "Birden fazla seçime izin ver",
-    "online": "{{count}} çevrimiçi"
+    "online": "{{count}} çevrimiçi",
+    "onlineHint": "Şu anda bu sohbette {{count}} kişi var"
   },
   "aiChat": {
     "title": "Asistan",
@@ -7237,7 +7240,19 @@
     "viewReposts": "Yeniden yayınları görüntüle"
   },
   "dm": {
-    "newDrawer": {"to": "Kime", "placeholder": "Ad veya @kullanıcıadı", "recent": "SON KİŞİLER", "suggested": "ÖNERİLER", "youFollow": "TAKİP ETTİKLERİN", "chattedBefore": "Konuşuyorsunuz", "mutual": "Karşılıklı", "dmsOff": "DM kapalı", "keepTyping": "Herkesi aramak için yazmaya devam et", "sayHi": "Birine merhaba de", "typeAny": "Herhangi bir ad veya @kullanıcıadı yaz"},
+    "newDrawer": {
+      "to": "Kime",
+      "placeholder": "Ad veya @kullanıcıadı",
+      "recent": "SON KİŞİLER",
+      "suggested": "ÖNERİLER",
+      "youFollow": "TAKİP ETTİKLERİN",
+      "chattedBefore": "Konuşuyorsunuz",
+      "mutual": "Karşılıklı",
+      "dmsOff": "DM kapalı",
+      "keepTyping": "Herkesi aramak için yazmaya devam et",
+      "sayHi": "Birine merhaba de",
+      "typeAny": "Herhangi bir ad veya @kullanıcıadı yaz"
+    },
     "reportMessage": "Mesajı bildir",
     "download": "İndir",
     "fileSaved": "Dosya kaydedildi",
@@ -16343,5 +16358,13 @@
     "notReal": "Bu gerçek {{name}} değil.",
     "neverLink": "Riftn ekibi profilini veya cüzdanını düzeltmek için sana asla DM ile bağlantı göndermez. Bağlantıları açma, cüzdanını bağlama ve hiçbir şey imzalama. Bu hesabı engelle ve şikayet et.",
     "linkCaution": "Bağlantılara dikkat et. Riftn, hesabını düzeltmek için asla cüzdanını bağlamanı, imza atmanı veya kurtarma ifadeni paylaşmanı istemez."
+  },
+  "chatTextSize": {
+    "title": "Metin boyutu",
+    "small": "Küçük",
+    "default": "Varsayılan",
+    "large": "Büyük",
+    "larger": "Daha büyük",
+    "largest": "En büyük"
   }
 }

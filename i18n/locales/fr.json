@@ -1457,7 +1457,9 @@
     "themeColorBrand": "Marque",
     "themeColorBrandDesc": "Utiliser les couleurs de votre photo de profil",
     "themeColorBrandNoAvatar": "Ajoutez une photo de profil pour utiliser les couleurs de Marque",
-    "themeColorBrandFailed": "Impossible de lire les couleurs de votre photo de profil"
+    "themeColorBrandFailed": "Impossible de lire les couleurs de votre photo de profil",
+    "chatTextSize": "Taille du texte du chat",
+    "chatTextSizeDesc": "Messages plus grands ou plus petits dans tous les chats. S'ajoute à la taille du texte de votre téléphone."
   },
   "common": {
     "refresh": "Actualiser",
@@ -1886,7 +1888,8 @@
     "failedToClosePoll": "Impossible de clore le sondage",
     "endsIn": "Se termine {{time}}",
     "multipleChoice": "Autoriser plusieurs réponses",
-    "online": "{{count}} en ligne"
+    "online": "{{count}} en ligne",
+    "onlineHint": "{{count}} personnes sont dans ce chat en ce moment"
   },
   "aiChat": {
     "title": "Assistante",
@@ -7242,7 +7245,19 @@
     "viewReposts": "Afficher les reposts"
   },
   "dm": {
-    "newDrawer": {"to": "À", "placeholder": "Nom ou @utilisateur", "recent": "RÉCENTS", "suggested": "SUGGESTIONS", "youFollow": "PERSONNES QUE VOUS SUIVEZ", "chattedBefore": "Vous discutez", "mutual": "Mutuel", "dmsOff": "MP désactivés", "keepTyping": "Continuez à taper pour chercher tout le monde", "sayHi": "Dites bonjour à quelqu'un", "typeAny": "Tapez un nom ou un @utilisateur"},
+    "newDrawer": {
+      "to": "À",
+      "placeholder": "Nom ou @utilisateur",
+      "recent": "RÉCENTS",
+      "suggested": "SUGGESTIONS",
+      "youFollow": "PERSONNES QUE VOUS SUIVEZ",
+      "chattedBefore": "Vous discutez",
+      "mutual": "Mutuel",
+      "dmsOff": "MP désactivés",
+      "keepTyping": "Continuez à taper pour chercher tout le monde",
+      "sayHi": "Dites bonjour à quelqu'un",
+      "typeAny": "Tapez un nom ou un @utilisateur"
+    },
     "reportMessage": "Signaler le message",
     "download": "Télécharger",
     "fileSaved": "Fichier enregistré",
@@ -16348,5 +16363,13 @@
     "notReal": "Ce n'est pas le vrai {{name}}.",
     "neverLink": "L'équipe Riftn ne vous enverra jamais de lien en message privé pour réparer votre profil ou votre portefeuille. N'ouvrez aucun lien, ne connectez pas votre portefeuille et ne signez rien. Bloquez et signalez ce compte.",
     "linkCaution": "Attention aux liens. Riftn ne vous demandera jamais de connecter votre portefeuille, de signer ou de partager votre phrase de récupération pour réparer votre compte."
+  },
+  "chatTextSize": {
+    "title": "Taille du texte",
+    "small": "Petit",
+    "default": "Par défaut",
+    "large": "Grand",
+    "larger": "Plus grand",
+    "largest": "Très grand"
   }
 }

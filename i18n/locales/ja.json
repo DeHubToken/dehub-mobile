@@ -3536,7 +3536,9 @@
     "themeColorBrand": "ブランド",
     "themeColorBrandDesc": "プロフィール画像の色を使う",
     "themeColorBrandNoAvatar": "ブランドカラーを使うにはプロフィール画像を追加してください",
-    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
+    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした",
+    "chatTextSize": "チャットの文字サイズ",
+    "chatTextSizeDesc": "すべてのチャットでメッセージを大きく、または小さく表示します。端末の文字サイズに上乗せされます。"
   },
   "common": {
     "remove": "削除",
@@ -3947,7 +3949,8 @@
     "failedToClosePoll": "アンケートを終了できませんでした",
     "endsIn": "{{time}} に終了",
     "multipleChoice": "複数回答を許可",
-    "online": "{{count}}人オンライン"
+    "online": "{{count}}人オンライン",
+    "onlineHint": "今このチャットに{{count}}人います"
   },
   "aiChat": {
     "title": "アシスタント",
@@ -14719,5 +14722,13 @@
     "openPost": "投稿を開く",
     "readArticle": "記事を読む",
     "openToUnlock": "開いてロックを解除する"
+  },
+  "chatTextSize": {
+    "title": "文字サイズ",
+    "small": "小",
+    "default": "標準",
+    "large": "大",
+    "larger": "特大",
+    "largest": "最大"
   }
 }

@@ -3581,7 +3581,9 @@
     "themeColorBrand": "Marke",
     "themeColorBrandDesc": "Farben deines Profilbilds verwenden",
     "themeColorBrandNoAvatar": "Füge ein Profilbild hinzu, um Markenfarben zu nutzen",
-    "themeColorBrandFailed": "Farben deines Profilbilds konnten nicht gelesen werden"
+    "themeColorBrandFailed": "Farben deines Profilbilds konnten nicht gelesen werden",
+    "chatTextSize": "Chat-Textgröße",
+    "chatTextSizeDesc": "Größere oder kleinere Nachrichten in allen Chats. Kommt zur Textgröße deines Telefons hinzu."
   },
   "common": {
     "refresh": "Aktualisieren",
@@ -3992,7 +3994,8 @@
     "failedToClosePoll": "Umfrage konnte nicht geschlossen werden",
     "endsIn": "Endet {{time}}",
     "multipleChoice": "Mehrfachantworten zulassen",
-    "online": "{{count}} online"
+    "online": "{{count}} online",
+    "onlineHint": "{{count}} Personen sind gerade in diesem Chat"
   },
   "aiChat": {
     "title": "KI-Assistent",
@@ -14720,5 +14723,13 @@
     "openPost": "Offener Beitrag",
     "readArticle": "Artikel lesen",
     "openToUnlock": "Zum Freischalten öffnen"
+  },
+  "chatTextSize": {
+    "title": "Textgröße",
+    "small": "Klein",
+    "default": "Standard",
+    "large": "Groß",
+    "larger": "Größer",
+    "largest": "Am größten"
   }
 }

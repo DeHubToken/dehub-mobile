@@ -3666,7 +3666,9 @@
     "themeColorBrand": "Thương hiệu",
     "themeColorBrandDesc": "Dùng màu từ ảnh đại diện của bạn",
     "themeColorBrandNoAvatar": "Thêm ảnh đại diện để dùng màu Thương hiệu",
-    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
+    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn",
+    "chatTextSize": "Cỡ chữ trò chuyện",
+    "chatTextSizeDesc": "Tin nhắn lớn hơn hoặc nhỏ hơn trong mọi cuộc trò chuyện. Cộng thêm vào cỡ chữ của điện thoại."
   },
   "common": {
     "refresh": "Làm mới",
@@ -4088,7 +4090,8 @@
     "failedToClosePoll": "Không đóng được cuộc bình chọn",
     "endsIn": "Kết thúc {{time}}",
     "multipleChoice": "Cho phép chọn nhiều đáp án",
-    "online": "{{count}} đang trực tuyến"
+    "online": "{{count}} đang trực tuyến",
+    "onlineHint": "{{count}} người đang ở trong cuộc trò chuyện này"
   },
   "aiChat": {
     "title": "Trợ lý",
@@ -14803,5 +14806,13 @@
     "openPost": "Mở bài đăng",
     "readArticle": "Đọc bài viết",
     "openToUnlock": "Mở để mở khóa"
+  },
+  "chatTextSize": {
+    "title": "Cỡ chữ",
+    "small": "Nhỏ",
+    "default": "Mặc định",
+    "large": "Lớn",
+    "larger": "Lớn hơn",
+    "largest": "Lớn nhất"
   }
 }

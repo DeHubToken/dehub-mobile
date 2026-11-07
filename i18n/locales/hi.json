@@ -3666,7 +3666,9 @@
     "themeColorBrand": "ब्रांड",
     "themeColorBrandDesc": "अपनी प्रोफ़ाइल तस्वीर के रंग इस्तेमाल करें",
     "themeColorBrandNoAvatar": "ब्रांड रंग इस्तेमाल करने के लिए प्रोफ़ाइल तस्वीर जोड़ें",
-    "themeColorBrandFailed": "आपकी प्रोफ़ाइल तस्वीर से रंग नहीं पढ़े जा सके"
+    "themeColorBrandFailed": "आपकी प्रोफ़ाइल तस्वीर से रंग नहीं पढ़े जा सके",
+    "chatTextSize": "चैट टेक्स्ट का आकार",
+    "chatTextSizeDesc": "हर चैट में संदेश बड़े या छोटे करें। आपके फ़ोन के टेक्स्ट आकार के ऊपर लागू होता है।"
   },
   "common": {
     "refresh": "रिफ्रेश करें",
@@ -4077,7 +4079,8 @@
     "failedToClosePoll": "पोल बंद नहीं हो सका",
     "endsIn": "{{time}} समाप्त होगा",
     "multipleChoice": "एक से ज़्यादा जवाब की अनुमति दें",
-    "online": "{{count}} ऑनलाइन"
+    "online": "{{count}} ऑनलाइन",
+    "onlineHint": "अभी इस चैट में {{count}} लोग हैं"
   },
   "aiChat": {
     "title": "सहायक",
@@ -14723,5 +14726,13 @@
     "openPost": "पोस्ट खोलें",
     "readArticle": "लेख पढ़ें",
     "openToUnlock": "अनलॉक करने के लिए खोलें"
+  },
+  "chatTextSize": {
+    "title": "टेक्स्ट का आकार",
+    "small": "छोटा",
+    "default": "डिफ़ॉल्ट",
+    "large": "बड़ा",
+    "larger": "और बड़ा",
+    "largest": "सबसे बड़ा"
   }
 }

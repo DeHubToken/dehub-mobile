@@ -3536,7 +3536,9 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "使用你头像的颜色",
     "themeColorBrandNoAvatar": "添加头像后才能使用品牌配色",
-    "themeColorBrandFailed": "无法从你的头像读取颜色"
+    "themeColorBrandFailed": "无法从你的头像读取颜色",
+    "chatTextSize": "聊天文字大小",
+    "chatTextSizeDesc": "在所有聊天中放大或缩小消息。在手机文字大小的基础上叠加。"
   },
   "common": {
     "refresh": "刷新",
@@ -3947,7 +3949,8 @@
     "failedToClosePoll": "关闭投票失败",
     "endsIn": "{{time}} 结束",
     "multipleChoice": "允许多选",
-    "online": "{{count}}人在线"
+    "online": "{{count}}人在线",
+    "onlineHint": "现在有 {{count}} 人在这个聊天中"
   },
   "aiChat": {
     "title": "助手",
@@ -14720,5 +14723,13 @@
     "openPost": "打开帖子",
     "readArticle": "阅读文章",
     "openToUnlock": "打开即可解锁"
+  },
+  "chatTextSize": {
+    "title": "文字大小",
+    "small": "小",
+    "default": "默认",
+    "large": "大",
+    "larger": "更大",
+    "largest": "最大"
   }
 }

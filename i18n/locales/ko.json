@@ -3665,7 +3665,9 @@
     "themeColorBrand": "브랜드",
     "themeColorBrandDesc": "프로필 사진의 색상 사용",
     "themeColorBrandNoAvatar": "브랜드 색상을 쓰려면 프로필 사진을 추가하세요",
-    "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다"
+    "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다",
+    "chatTextSize": "채팅 글자 크기",
+    "chatTextSizeDesc": "모든 채팅의 메시지를 더 크거나 작게 표시합니다. 휴대폰 글자 크기에 더해집니다."
   },
   "common": {
     "refresh": "새로고침",
@@ -4076,7 +4078,8 @@
     "failedToClosePoll": "투표를 종료하지 못했습니다",
     "endsIn": "{{time}}에 종료",
     "multipleChoice": "복수 응답 허용",
-    "online": "{{count}}명 온라인"
+    "online": "{{count}}명 온라인",
+    "onlineHint": "지금 이 채팅에 {{count}}명이 있어요"
   },
   "aiChat": {
     "title": "어시스턴트",
@@ -14717,5 +14720,13 @@
     "openPost": "포스트 열기",
     "readArticle": "게시글 읽기",
     "openToUnlock": "열어서 잠금 해제하기"
+  },
+  "chatTextSize": {
+    "title": "글자 크기",
+    "small": "작게",
+    "default": "기본",
+    "large": "크게",
+    "larger": "더 크게",
+    "largest": "가장 크게"
   }
 }
