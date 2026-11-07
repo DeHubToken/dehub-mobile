@@ -24,7 +24,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modal, Pressable } from "react-native";
-import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from "../../config/storefront";
 import Svg, { Path, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -314,15 +314,18 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                   )}
                 </View>
 
-                {/* DexScreener link */}
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(pair.url)}
-                  style={styles.dexLink}
-                  activeOpacity={0.8}
-                >
-                  <Icon name="ExternalLink" size={14} color="#D4D4D8" />
-                  <Text style={styles.dexLinkText}>{t("cashtag.viewOnDexScreener")}</Text>
-                </TouchableOpacity>
+                {/* DexScreener link: a trading page, so on the App Store
+                    build only where an outside purchase link is allowed. */}
+                {(DIGITAL_PURCHASES_ENABLED || iosWebPurchaseLinkAllowed()) && (
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL(pair.url)}
+                    style={styles.dexLink}
+                    activeOpacity={0.8}
+                  >
+                    <Icon name="ExternalLink" size={14} color="#D4D4D8" />
+                    <Text style={styles.dexLinkText}>{t("cashtag.viewOnDexScreener")}</Text>
+                  </TouchableOpacity>
+                )}
               </ScrollView>
             ) : null}
           </Animated.View>

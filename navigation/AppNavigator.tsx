@@ -49,6 +49,11 @@ const getLiveProducerScreen = () => deferredScreen('LiveProducer', () => require
 
 const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("../screens/LiveViewerScreen").default);
 
+// The mini app player and its developer mode are one deferred screen, so
+// storefrontRoute hands both routes the same wrapper: one web path for both.
+const miniAppWebPath = (p: Record<string, any> | undefined) =>
+  p?.slug ? `/apps/${encodeURIComponent(String(p.slug))}` : "/apps/dev";
+
 // The pages a tap from a notification or a feed card opens. Their modules load
 // once the app has settled (see useWarmScreens), so the first open draws the
 // real page on the slide's first frame instead of a grey sketch that then
@@ -273,11 +278,11 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.MiniApp}
-          getComponent={() => storefrontRoute(deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default), (p) => `/apps/${encodeURIComponent(String(p?.slug ?? ""))}`)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default), miniAppWebPath)}
         />
         <Stack.Screen
           name={ScreenNames.MiniAppDev}
-          getComponent={() => deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/MiniAppScreen#default', () => require("../screens/MiniAppScreen").default), miniAppWebPath)}
         />
         <Stack.Screen
           name={ScreenNames.Events}
@@ -316,34 +321,34 @@ function AppNavigatorContent() {
             ledger panel asks for sign-in. */}
         <Stack.Screen
           name={ScreenNames.DePin}
-          getComponent={() => deferredScreen('../screens/DePinScreen#default', () => require("../screens/DePinScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/DePinScreen#default', () => require("../screens/DePinScreen").default), "/depin")}
         />
         {/* Public: the transfer list is open to everyone; bridging signs in. */}
         <Stack.Screen
           name={ScreenNames.Bridge}
           getComponent={() => storefrontRoute(deferredScreen('../screens/BridgeScreen#default', () => require("../screens/BridgeScreen").default), "/bridge")}
         />
-        {/* Launchpad: browsing is public; creating and trading sign in, and are
-            left out of the App Store build (config/storefront). */}
+        {/* Launchpad: browsing is public; creating and trading sign in. The
+            App Store build leaves all of it out (config/storefront). */}
         <Stack.Screen
           name={ScreenNames.Launchpad}
-          getComponent={() => deferredScreen('../screens/LaunchpadScreen#default', () => require("../screens/LaunchpadScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/LaunchpadScreen#default', () => require("../screens/LaunchpadScreen").default), "/app/launchpad")}
         />
         <Stack.Screen
           name={ScreenNames.LaunchpadCoin}
-          getComponent={() => deferredScreen('../screens/LaunchpadCoinScreen#default', () => require("../screens/LaunchpadCoinScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/LaunchpadCoinScreen#default', () => require("../screens/LaunchpadCoinScreen").default), (p) => `/app/launchpad/${encodeURIComponent(String(p?.mintId ?? ""))}`)}
         />
         <Stack.Screen
           name={ScreenNames.LaunchpadCreate}
-          getComponent={() => deferredScreen('../screens/LaunchpadCreateScreen#default', () => require("../screens/LaunchpadCreateScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/LaunchpadCreateScreen#default', () => require("../screens/LaunchpadCreateScreen").default), "/app/launchpad/create")}
         />
         <Stack.Screen
           name={ScreenNames.Premium}
-          getComponent={() => deferredScreen('../screens/PremiumScreen#default', () => require("../screens/PremiumScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/PremiumScreen#default', () => require("../screens/PremiumScreen").default), "/premium")}
         />
         <Stack.Screen
           name={ScreenNames.Pricing}
-          getComponent={() => deferredScreen('../screens/PricingScreen#default', () => require("../screens/PricingScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/PricingScreen#default', () => require("../screens/PricingScreen").default), "/pricing")}
         />
         <Stack.Screen
           name={ScreenNames.Governance}
@@ -359,10 +364,11 @@ function AppNavigatorContent() {
           getComponent={() => storefrontRoute(deferredScreen('../screens/DaoScreen#default', () => require("../screens/DaoScreen").default), "/dao")}
         />
         {/* Public: the ladder is worth reading before you hold a badge, which
-            is the whole point of the screen. */}
+            is the whole point of the screen. Not in the App Store build, where
+            holding crypto may not unlock features (config/storefront). */}
         <Stack.Screen
           name={ScreenNames.SuperPowers}
-          getComponent={() => deferredScreen('../screens/SuperPowersScreen#default', () => require("../screens/SuperPowersScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/SuperPowersScreen#default', () => require("../screens/SuperPowersScreen").default), "/app/superpowers")}
         />
         {/* Public: browsing is open, voting/submitting prompts sign-in. */}
         <Stack.Screen
@@ -697,7 +703,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Earnings}
-              getComponent={() => deferredScreen('../screens/EarningsScreen#default', () => require("../screens/EarningsScreen").default)}
+              getComponent={() => storefrontRoute(deferredScreen('../screens/EarningsScreen#default', () => require("../screens/EarningsScreen").default), "/app/command-centre")}
             />
             <Stack.Screen
               name={ScreenNames.Affiliate}

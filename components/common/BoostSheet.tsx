@@ -183,8 +183,10 @@ export default function BoostSheet({
           // they can do about it.
           <View className="items-center gap-4 py-4">
             <Icon name="Lock" size={28} color="#808089" />
+            {/* The App Store build does not pitch holding or pooling tokens
+                for a badge (config/storefront, guideline 3.1.1). */}
             <Text className="text-center text-sm text-white">
-              {t("superpowers.intro")}
+              {DIGITAL_PURCHASES_ENABLED ? t("superpowers.intro") : t("storefront.unavailable")}
             </Text>
             {DIGITAL_PURCHASES_ENABLED && <Pressable
               onPress={() => setBuyOpen(true)}

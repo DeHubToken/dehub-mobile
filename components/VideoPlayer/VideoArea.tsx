@@ -230,6 +230,18 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   const missingPlayable = isLockedOrPPV && !normalizedUrl;
 
   if (missingPlayable) {
+    // The App Store build offers no way through a holdings or PPV gate
+    // (config/storefront, guideline 3.1.1), so it only says the post is locked.
+    if (!DIGITAL_PURCHASES_ENABLED && (isLockedWithLockContent || isLockedWithPPV)) {
+      return (
+        <View className={gateClass}>
+          <Ionicons name="lock-closed" size={46} color="#8B8D90" />
+          <Text className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5" numberOfLines={3}>
+            {t("storefront.unavailable")}
+          </Text>
+        </View>
+      );
+    }
     if (isLockedWithLockContent) {
       const neededAmt = streamInfo?.lockContentAmount ?? "—";
       const neededSymbol = streamInfo?.lockContentTokenSymbol || "";

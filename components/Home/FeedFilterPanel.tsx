@@ -25,6 +25,7 @@ import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
 import { useAppTheme } from "../../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../../theme/colors";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { menuEnter, menuExit } from './feedDrawerMotion';
 import {
   resolveEdgeFadeMask,
@@ -477,7 +478,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           </GlassFilterRow>
         )}
 
-        {!hideContentAccess && (
+        {/* PPV, bounty and holdings filters: none of those posts show in the
+            App Store build (config/storefront). */}
+        {!hideContentAccess && DIGITAL_PURCHASES_ENABLED && (
           <View style={[sectionStyles.section, { marginBottom: 0 }]}>
             <Text style={sectionStyles.label}>{t("filters.contentAccess").toUpperCase()}</Text>
             <FadeEdgeRow>

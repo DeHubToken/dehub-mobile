@@ -35,14 +35,19 @@ import TokenLaunchNotify from "../components/TokenLaunch/TokenLaunchNotify";
 
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
+/** The tabs the App Store build keeps: the wallet views, nothing to buy. */
+const STOREFRONT_TABS: readonly WalletTab[] = ["wallet", "solana"];
+
 /**
  * The App Store build offers no buying, staking or bridging (config/storefront,
  * guideline 3.1.1). Its menus hide the wallet, but Settings → Assets,
- * notifications and Command Centre still open it, so whatever tab they ask
- * for, it opens on the overview there.
+ * notifications, deep links and Command Centre still open it, so whatever tab
+ * they ask for, it opens on the overview there. Every tab change goes through
+ * here too, not only the first.
  */
 function storefrontTab(tab: WalletTab | undefined): WalletTab {
-  return DIGITAL_PURCHASES_ENABLED ? (tab ?? "wallet") : "wallet";
+  const wanted = tab ?? "wallet";
+  return DIGITAL_PURCHASES_ENABLED || STOREFRONT_TABS.includes(wanted) ? wanted : "wallet";
 }
 
 const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
@@ -52,6 +57,9 @@ const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }
   { key: "bridge", get label() { return _translateCopy("copy.3892e10346fd", { defaultValue: "Bridge" }); }, icon: "ArrowLeftRight" },
   { key: "solana", label: "Solana", icon: "Coins" },
 ];
+
+/** The tabs the bar offers: all of them, or in the App Store build the wallet views. */
+const VISIBLE_TABS = TABS.filter((tab) => storefrontTab(tab.key) === tab.key);
 
 const DpayScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -64,9 +72,10 @@ const DpayScreen: React.FC = () => {
 
   // Wallet opens its overview; purchase and staking shortcuts remain explicit.
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Dpay>>();
-  const [activeTab, setActiveTab] = useState<WalletTab>(
+  const [activeTab, setActiveTabState] = useState<WalletTab>(
     storefrontTab(route.params?.initialTab),
   );
+  const setActiveTab = useCallback((tab: WalletTab) => setActiveTabState(storefrontTab(tab)), []);
 
   // Re-select the tab when the drawer navigates to Dpay while it is already
   // mounted — React Navigation reuses the screen, so the initial state above
@@ -76,7 +85,7 @@ const DpayScreen: React.FC = () => {
   // drawer entry again.
   const routeParams = route.params;
   useEffect(() => {
-    setActiveTab(storefrontTab(routeParams?.initialTab));
+    setActiveTabState(storefrontTab(routeParams?.initialTab));
   }, [routeParams]);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
@@ -208,12 +217,14 @@ const DpayScreen: React.FC = () => {
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
         {/* Tab switcher */}
-        <PageTabs<WalletTab>
-          value={activeTab}
-          onChange={setActiveTab}
-          tabs={TABS.map((tab) => ({ id: tab.key, label: tab.labelKey ? t(tab.labelKey) : tab.label }))}
-          style={{ paddingHorizontal: 16, paddingBottom: 16 }}
-        />
+        {VISIBLE_TABS.length > 1 && (
+          <PageTabs<WalletTab>
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={VISIBLE_TABS.map((tab) => ({ id: tab.key, label: tab.labelKey ? t(tab.labelKey) : tab.label }))}
+            style={{ paddingHorizontal: 16, paddingBottom: 16 }}
+          />
+        )}
 
         {/* Tab content */}
         {/* While sales are closed, Buy Tokens is the launch list. */}

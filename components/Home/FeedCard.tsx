@@ -951,7 +951,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // A paid boost slot marks itself: lit corner bolt and "Boosted" by the time.
   // It must say so in words, or a paid post reads as organic reach.
   const isBoosted = !!(item as any).__boosted;
-  const openSuperPowers = useCallback(() => navigation.navigate(ScreenNames.SuperPowers), [navigation]);
+  const goToSuperPowers = useCallback(() => navigation.navigate(ScreenNames.SuperPowers), [navigation]);
+  // The App Store build has no SuperPowers page (config/storefront): the
+  // label stays, the link goes.
+  const openSuperPowers = DIGITAL_PURCHASES_ENABLED ? goToSuperPowers : undefined;
   const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), [setShowReactionInfo]);
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.

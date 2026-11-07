@@ -10,12 +10,16 @@ import { hasHeldCallback, holdLaunchCallback, withoutFragment } from '../libs/oa
 import { Linking as RNLinking } from 'react-native';
 import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from '../config/storefront';
 
-/** /app/<page> links that are checkout or trading pages on the web. */
+/**
+ * /app/<page> links that are checkout or trading pages on the web. The App
+ * Store build sends these to Safari (US) or Home, never the in-app browser.
+ * 'assistant' sells AI credits there; 'earnings' is tip and PPV income.
+ */
 const STOREFRONT_WEB_ONLY_PAGES = new Set([
   'wallet', 'buy', 'stake', 'bridge', 'dex', 'ads', 'command-centre', 'affiliate',
   'work', 'bounty', 'dao', 'premium', 'pricing', 'stores', 'usernames', 'accounts',
   'nfts', 'fractions', 'launchpad', 'superpowers', 'planned', 'apps', 'builder',
-  'migrate-youtube', 'raffle', 'depin',
+  'migrate-youtube', 'raffle', 'depin', 'assistant', 'earnings',
 ]);
 
 const logger = createLogger('DeepLink');

@@ -997,10 +997,10 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             {/* Tip the comment's author. Shown for own comments too so the
                 author sees what the comment earned; the sheet refuses
                 self-tips. Hidden when the API gave us no author address to
-                pay. */}
-            {onTip && !!(comment.user?.address || comment.address) && (
+                pay, and where the storefront offers no tipping. */}
+            {canTip && (
               <Pressable
-                onPress={() => onTip(comment)}
+                onPress={() => onTip?.(comment)}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
                 accessibilityLabel={t("comments.tip")}

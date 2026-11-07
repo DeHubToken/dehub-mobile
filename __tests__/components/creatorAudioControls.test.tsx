@@ -14,11 +14,13 @@ jest.mock('expo-document-picker', () => ({ getDocumentAsync: (...args: unknown[]
 jest.mock('../../libs/toast', () => ({ toastError: jest.fn() }));
 jest.mock('../../services/voiceClone.service', () => ({ listCustomVoices: jest.fn().mockResolvedValue([]) }));
 jest.mock('../../components/Assistant/VoiceCloneSheet', () => ({ VoiceCloneSheet: () => null }));
+let mockPurchases = true;
+jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockPurchases; } }));
 
 import { CreatorAudioControls } from '../../components/Assistant/CreatorAudioControls';
 
 const recording = { canceled: false, assets: [{ uri: 'file:///recording.mp3', name: 'recording.mp3', mimeType: 'audio/mpeg', size: 100 }] };
-beforeEach(() => { mockOwner = 'alice'; mockPick.mockReset(); });
+beforeEach(() => { mockOwner = 'alice'; mockPurchases = true; mockPick.mockReset(); });
 
 it('does not apply a picker result to a different task, conversation or account', async () => {
   for (const change of ['task', 'conversation', 'account']) {
@@ -43,4 +45,13 @@ it('attaches a valid recording to the unchanged draft', async () => {
   const view = render(<CreatorAudioControls value={{ task: 'transcribe' }} onChange={onChange} text="" disabled={false} scopeKey="one" />);
   await act(async () => { fireEvent.press(view.getByText('creator.audioAttach')); });
   expect(onChange).toHaveBeenCalledWith({ task: 'transcribe', media: recording.assets[0] });
+});
+
+it('offers voice cloning only where it can be bought', () => {
+  const clone = '+ editor.voiceClone.pickerLabel';
+  const view = render(<CreatorAudioControls value={{ task: 'speech' }} onChange={jest.fn()} text="" disabled={false} />);
+  expect(view.getByText(clone)).toBeTruthy();
+  view.unmount();
+  mockPurchases = false;
+  expect(render(<CreatorAudioControls value={{ task: 'speech' }} onChange={jest.fn()} text="" disabled={false} />).queryByText(clone)).toBeNull();
 });

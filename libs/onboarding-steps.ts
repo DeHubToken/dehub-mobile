@@ -10,6 +10,7 @@
  * entry here.
  */
 import { ScreenNames } from "../navigation/ScreenNames";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 
 /** A step's outcome as stored in `onboarding_progress.steps`. */
 export interface OnboardingStepState {
@@ -49,7 +50,14 @@ export interface OnboardingStepDef {
   icon: "UserRound" | "Wallet" | "Sparkles" | "PenLine" | "Users" | "MessageCircle" | "Trophy";
 }
 
-export const ONBOARDING_STEPS: readonly OnboardingStepDef[] = [
+/**
+ * Left out of the App Store build, whose checklist is five steps: the wallet
+ * tour and the earning page are about tokens (config/storefront, guideline
+ * 3.1.1). Everything below counts the list as filtered.
+ */
+const STOREFRONT_HIDDEN_STEPS: readonly OnboardingStepId[] = ["wallet", "rewards"];
+
+export const ONBOARDING_STEPS: readonly OnboardingStepDef[] = ([
   { id: "profile", screen: ScreenNames.EditProfile, icon: "UserRound" },
   { id: "wallet", screen: ScreenNames.CommandCentre, icon: "Wallet" },
   { id: "feed", screen: ScreenNames.Prompt, icon: "Sparkles" },
@@ -59,7 +67,7 @@ export const ONBOARDING_STEPS: readonly OnboardingStepDef[] = [
   // destination is the feed itself rather than a screen that does not exist.
   { id: "comment", screen: ScreenNames.Home, icon: "MessageCircle" },
   { id: "rewards", screen: ScreenNames.SuperPowers, icon: "Trophy" },
-] as const;
+] as const).filter((step) => !IS_APP_STORE_BUILD || !STOREFRONT_HIDDEN_STEPS.includes(step.id));
 
 export const ONBOARDING_TOTAL_STEPS = ONBOARDING_STEPS.length;
 
