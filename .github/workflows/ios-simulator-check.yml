@@ -65,6 +65,8 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
           echo "Simulator: $TYPE on $RUNTIME"
+      # Signed to run locally, as Xcode does for a simulator: an unsigned app
+      # gets no keychain there, so sign-in state never loads.
       - name: Build Release for the simulator
         run: |
           set -o pipefail
@@ -72,28 +74,8 @@ jobs:
             -configuration Release -sdk iphonesimulator \
             -destination "id=${{ steps.sim.outputs.udid }}" \
             -derivedDataPath "$RUNNER_TEMP/sim" \
-            ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
-      # The build above is unsigned, and an unsigned app has no keychain on the
-      # simulator: every SecureStore read fails and sign-in state never loads.
-      # An ad-hoc signature with the app's identifiers gives it one, as a
-      # device build has.
-      - name: Sign the build for the simulator
-        run: |
-          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
-          BUNDLE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
-          TEAM="$(grep -m1 -oE 'DEVELOPMENT_TEAM = [A-Z0-9]+' ios/DeHub.xcodeproj/project.pbxproj | awk '{print $3}')"
-          cat > "$RUNNER_TEMP/sim.entitlements" <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0"><dict>
-            <key>application-identifier</key><string>$TEAM.$BUNDLE</string>
-            <key>com.apple.developer.team-identifier</key><string>$TEAM</string>
-            <key>keychain-access-groups</key><array><string>$TEAM.$BUNDLE</string></array>
-            <key>com.apple.security.application-groups</key><array><string>group.io.dehub.mobile.screen-capture</string></array>
-          </dict></plist>
-          EOF
-          codesign --force --deep --sign - --timestamp=none --entitlements "$RUNNER_TEMP/sim.entitlements" "$APP"
-          codesign -d --entitlements - "$APP" 2>/dev/null | head -20
+            ONLY_ACTIVE_ARCH=YES CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual CODE_SIGNING_REQUIRED=NO \
+            PROVISIONING_PROFILE_SPECIFIER= build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
       # iOS 26 asks "Open in …?" before a simulator opens a deep link; idb taps Open.
       - uses: actions/setup-python@v5
         with:
