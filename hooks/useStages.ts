@@ -31,6 +31,7 @@ import { openStagesHub } from "../libs/openStagesHub";
 import { watchStages, type StageChange } from "../libs/stage-broadcast";
 import { useFrontRow } from './useSuperpowers';
 import { askToEndStage } from "../components/Stages/confirmEndStage";
+import { ensureAiConsent, hasAiConsent } from "../libs/ai-consent";
 
 const log = createLogger("useStages");
 
@@ -844,6 +845,7 @@ export function useStages(): UseStagesReturn {
 
   const generateTts = useCallback(async (text: string, voiceId: string) => {
     if (!text.trim() || !voiceId || isTtsGenerating) return;
+    if (!hasAiConsent() && !(await ensureAiConsent())) return;
     setIsTtsGenerating(true);
     try {
       const response = await fetch(

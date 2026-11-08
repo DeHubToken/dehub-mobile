@@ -272,7 +272,9 @@ export default function PostInfoScreen() {
     <View style={styles.root}>
       <ScreenHeader title={t("postInfo.title")} />
       <ScrollView contentContainerStyle={styles.body}>
-        {/* On-chain block — the only part that needs a mint. */}
+        {/* On-chain block — the only part that needs a mint. The iPhone app
+            can't mint (App Store 3.1.1), so an unminted post leaves it out. */}
+        {!(isUnminted && !DIGITAL_PURCHASES_ENABLED) && (
         <Section>
           <View style={styles.rowBetween}>
             <View>
@@ -332,6 +334,7 @@ export default function PostInfoScreen() {
             </>
           )}
         </Section>
+        )}
 
         {/* The creator's own stats: reach, badges, watch time, signed in vs out */}
         {isOwner && !!tokenId && !isLive && <PostStatsSection tokenId={tokenId} />}
@@ -497,15 +500,19 @@ export default function PostInfoScreen() {
             <Stat icon="ThumbsDown" value={dislikes.toLocaleString()} label={t("postInfo.dislikes")} />
             <Stat icon="Eye" value={views.toLocaleString()} label={t("postInfo.views")} />
             <Stat icon="MessageSquare" value={Number(comments).toLocaleString()} label={t("postInfo.comments")} />
-            <Stat icon="Coins" value={postTips.toLocaleString()} label={t("postInfo.tipsOnPost")} wide />
-            <Stat icon="Wallet" value={creatorTips.toLocaleString()} label={t("postInfo.totalTipsCreator")} wide />
+            {DIGITAL_PURCHASES_ENABLED && (
+              <>
+                <Stat icon="Coins" value={postTips.toLocaleString()} label={t("postInfo.tipsOnPost")} wide />
+                <Stat icon="Wallet" value={creatorTips.toLocaleString()} label={t("postInfo.totalTipsCreator")} wide />
+              </>
+            )}
           </View>
         </Section>
 
         {/* Who reacted - only the author gets person rows */}
         {isOwner && tokenId != null && <PostReactorsSection tokenId={tokenId} />}
 
-        {isPPV && (
+        {isPPV && DIGITAL_PURCHASES_ENABLED && (
           <Section title={t("postInfo.payPerView")}>
             <View style={styles.grid}>
               <Stat icon="Ticket" value={String(ppvSales ?? 0)} label={t("postInfo.ppvSales")} />

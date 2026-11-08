@@ -82,8 +82,21 @@ const numbered = (n = 0) => Array.from({ length: n }, (_, i) => i + 1);
  */
 const STOREFRONT_HIDDEN_SECTIONS = new Set([
   "staking", "command-centre", "bounties-stores", "buying-dhb", "bridge", "trading-fractions", "minting-posts",
-  "wallet", "creator-studio", "posting-allowance", "post-info",
+  "wallet", "creator-studio", "posting-allowance", "post-info", "leaderboard",
 ]);
+
+/** Single steps and tips about tipping, token billing or badge weight, left out of the App Store build. */
+const STOREFRONT_HIDDEN_LINES = new Set([
+  "interacting-with-posts.steps.3", "interacting-with-posts.tips.1", "interacting-with-posts.tips.2",
+  "messages.tips.2", "notifications.tips.2", "reactions-and-safety.steps.3", "stages.tips.2",
+  "communities.steps.3",
+]);
+
+function lines(t: TFunction, id: string, kind: "steps" | "tips", count = 0): string[] {
+  return numbered(count)
+    .filter((i) => DIGITAL_PURCHASES_ENABLED || !STOREFRONT_HIDDEN_LINES.has(`${id}.${kind}.${i}`))
+    .map((i) => t(`guide.sections.${id}.${kind}.${i}`));
+}
 
 function buildSections(t: TFunction): GuideSection[] {
   return SECTION_DEFS.filter((d) => DIGITAL_PURCHASES_ENABLED || !STOREFRONT_HIDDEN_SECTIONS.has(d.id)).map((d) => {
@@ -93,8 +106,8 @@ function buildSections(t: TFunction): GuideSection[] {
       icon: d.icon,
       title: t(`${base}.title`),
       intro: t(`${base}.intro`),
-      steps: numbered(d.steps).map((i) => t(`${base}.steps.${i}`)),
-      tips: d.tips ? numbered(d.tips).map((i) => t(`${base}.tips.${i}`)) : undefined,
+      steps: lines(t, d.id, "steps", d.steps),
+      tips: d.tips ? lines(t, d.id, "tips", d.tips) : undefined,
     };
   });
 }

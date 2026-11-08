@@ -7,6 +7,7 @@
  * the same tables and the same translation cache.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { ensureAiConsent, hasAiConsent } from "../libs/ai-consent";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { createLogger } from "../libs/logger";
@@ -137,6 +138,7 @@ export function useTranscript(
   const start = useCallback(
     async (force = false) => {
       if (!ref) return;
+      if (!hasAiConsent() && !(await ensureAiConsent())) return;
       try {
         await supabase.functions.invoke("transcribe", {
           body: { kind, ref, action: "start", force },
@@ -219,6 +221,8 @@ export function useTranscriptTranslation(
   // Ask once per language, and only for one nobody has cached.
   useEffect(() => {
     if (!wanted || !transcriptId) return;
+    // Runs by itself, so it never asks: without AI permission it just doesn't.
+    if (!hasAiConsent()) return;
     if (query.isLoading || query.isError) return;
     const s = query.data?.status;
     if (s === "ready" || s === "processing" || s === "failed") return;

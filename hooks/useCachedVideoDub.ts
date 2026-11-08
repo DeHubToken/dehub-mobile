@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { hasAiConsent } from '../libs/ai-consent';
 import { supabase } from '../services/supabase';
 import { dubLanguage, hasCachedDubLanguage } from '../libs/cached-dub-languages';
 
@@ -30,6 +31,7 @@ export function useCachedVideoDub(transcriptId: string | null, language: string 
       };
       const cached = await read();
       if (cached?.status === 'ready') return settle(cached);
+      if (!hasAiConsent()) return settle({ status: 'unavailable' });
       const { data, error } = await supabase.functions.invoke('auto-dub', { body: { action: 'request', transcriptId, lang } });
       if (error) return settle({ status: 'unavailable' });
       return settle({ status: data?.status ?? 'unavailable', audioUrl: data?.status === 'ready' ? data.audioUrl : undefined });

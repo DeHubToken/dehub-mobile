@@ -45,7 +45,7 @@ const SECTIONS: GlossarySection[] = [
       { icon: "MessageSquare", get title() { return _translateCopy("copy.44f5e3fbec57", { defaultValue: "Comment" }); }, get description() { return _translateCopy("copy.da90edc91f4a", { defaultValue: "Opens the comment section where you can reply to a post, join discussions, and interact with other users." }); } },
       { icon: "Share2", get title() { return _translateCopy("copy.29887a5ff984", { defaultValue: "Share" }); }, get description() { return _translateCopy("copy.dfc22c6b07ab", { defaultValue: "Share a post externally via a link, or copy the post URL to your clipboard to send to others." }); } },
       { icon: "Bookmark", get title() { return _translateCopy("copy.1bac4007880b", { defaultValue: "Bookmark" }); }, get description() { return _translateCopy("copy.f8d6b01ecf54", { defaultValue: "Save a post to your bookmarks for later. Access all saved posts from the Bookmarks page in the sidebar." }); } },
-      { icon: "Gem", get title() { return _translateCopy("copy.a4245a3c4f56", { defaultValue: "Tip" }); }, description: { key: "screens.glossaryTipDesc" } },
+      { appStoreHidden: true, icon: "Gem", get title() { return _translateCopy("copy.a4245a3c4f56", { defaultValue: "Tip" }); }, description: { key: "screens.glossaryTipDesc" } },
       { icon: "Flag", get title() { return _translateCopy("copy.b6ce788d9786", { defaultValue: "Report" }); }, get description() { return _translateCopy("copy.773e51beddb6", { defaultValue: "Flag inappropriate or harmful content for review. Reports help keep the community safe." }); } },
       { icon: "Ellipsis", get title() { return _translateCopy("copy.762add13d2dd", { defaultValue: "More Options (⋯)" }); }, get description() { return _translateCopy("copy.88cbd2bd6f68", { defaultValue: "Opens additional actions like editing, deleting, or reporting a post." }); } },
     ],
@@ -73,13 +73,13 @@ const SECTIONS: GlossarySection[] = [
       { icon: "LockOpen", get title() { return _translateCopy("copy.591935b15b1c", { defaultValue: "Public" }); }, get description() { return _translateCopy("copy.51f926834f07", { defaultValue: "Content visible to everyone. Anyone can view, like, and comment on public posts." }); } },
       { icon: "Lock", get title() { return _translateCopy("copy.c63eb6720c6e", { defaultValue: "Private" }); }, get description() { return _translateCopy("copy.04d02a85c7b9", { defaultValue: "Content only visible to you. Private posts are hidden from other users and the public feed." }); } },
       { appStoreHidden: true, icon: "Ticket", get title() { return _translateCopy("copy.1c1f651829b5", { defaultValue: "Pay-Per-View (PPV)" }); }, description: { key: "screens.glossaryPpvDesc" } },
-      { icon: "Crown", get title() { return _translateCopy("copy.ad2cbb28a08f", { defaultValue: "Subscriber Only" }); }, get description() { return _translateCopy("copy.877e1e86bf2a", { defaultValue: "Content restricted to users who have subscribed to the creator's channel." }); } },
+      { appStoreHidden: true, icon: "Crown", get title() { return _translateCopy("copy.ad2cbb28a08f", { defaultValue: "Subscriber Only" }); }, get description() { return _translateCopy("copy.877e1e86bf2a", { defaultValue: "Content restricted to users who have subscribed to the creator's channel." }); } },
     ],
   },
   {
     get title() { return _translateCopy("copy.8eb58739cb35", { defaultValue: "On-Chain Post Details" }); },
     entries: [
-      { icon: "Info", get title() { return _translateCopy("copy.3c1c1229f7a3", { defaultValue: "Mint Transaction" }); }, description: { key: "screens.glossaryMintTxDesc" } },
+      { appStoreHidden: true, icon: "Info", get title() { return _translateCopy("copy.3c1c1229f7a3", { defaultValue: "Mint Transaction" }); }, description: { key: "screens.glossaryMintTxDesc" } },
       { icon: "Hash", get title() { return _translateCopy("copy.15ef844f362f", { defaultValue: "Token ID" }); }, get description() { return _translateCopy("copy.29e67c672ae2", { defaultValue: "The unique on-chain identifier assigned when a post is minted as an NFT." }); } },
       { icon: "ExternalLink", get title() { return _translateCopy("copy.0cce4de1bf95", { defaultValue: "Transaction Hash" }); }, get description() { return _translateCopy("copy.3b76196efd42", { defaultValue: "The blockchain transaction hash from when the post was minted. Open it in the block explorer to verify the on-chain record." }); } },
       { icon: "EyeOff", get title() { return _translateCopy("copy.b42d2c19a678", { defaultValue: "Hidden Post" }); }, get description() { return _translateCopy("copy.ba9cdea7f89a", { defaultValue: "Post owners can hide a post from public feeds (and show it again) from the post's options menu. A hidden post stays visible to its owner, marked with a Hidden chip." }); } },
@@ -90,9 +90,9 @@ const SECTIONS: GlossarySection[] = [
   {
     get title() { return _translateCopy("copy.c1448858f4d7", { defaultValue: "Fractions & Ownership" }); },
     entries: [
-      { icon: "ChartPie", get title() { return _translateCopy("copy.487aaa977933", { defaultValue: "Fractions" }); }, get description() { return _translateCopy("copy.2f7f38f2e370", { defaultValue: "Every minted post is an NFT split into fractions. The creator starts with all of them, representing 100% ownership of the content." }); } },
-      { icon: "Users", get title() { return _translateCopy("copy.8a22ea8e4d1a", { defaultValue: "Your Holdings" }); }, get description() { return _translateCopy("copy.a6a88965826a", { defaultValue: "A profile's Fractions tab lists the posts that account co-owns and how many fractions of each. Your own tab is the same view of everything you hold." }); } },
-      { icon: "Coins", get title() { return _translateCopy("copy.380d64545671", { defaultValue: "Fraction Marketplace" }); }, get description() { return _translateCopy("copy.e36c6ed4c9a7", { defaultValue: "Trading — listings, offers, sales — happens on the web app at dehub.io, on each post's Post Info page. Completed trades show up in the Fractions tab here." }); } },
+      { appStoreHidden: true, icon: "ChartPie", get title() { return _translateCopy("copy.487aaa977933", { defaultValue: "Fractions" }); }, get description() { return _translateCopy("copy.2f7f38f2e370", { defaultValue: "Every minted post is an NFT split into fractions. The creator starts with all of them, representing 100% ownership of the content." }); } },
+      { appStoreHidden: true, icon: "Users", get title() { return _translateCopy("copy.8a22ea8e4d1a", { defaultValue: "Your Holdings" }); }, get description() { return _translateCopy("copy.a6a88965826a", { defaultValue: "A profile's Fractions tab lists the posts that account co-owns and how many fractions of each. Your own tab is the same view of everything you hold." }); } },
+      { appStoreHidden: true, icon: "Coins", get title() { return _translateCopy("copy.380d64545671", { defaultValue: "Fraction Marketplace" }); }, get description() { return _translateCopy("copy.e36c6ed4c9a7", { defaultValue: "Trading — listings, offers, sales — happens on the web app at dehub.io, on each post's Post Info page. Completed trades show up in the Fractions tab here." }); } },
     ],
   },
   {
@@ -182,7 +182,7 @@ export default function GlossaryScreen() {
             ...e,
             description: typeof e.description === "string" ? e.description : t(e.description.key),
           })),
-      })),
+      })).filter((s) => s.entries.length > 0),
     [t],
   );
 

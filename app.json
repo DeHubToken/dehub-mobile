@@ -44,7 +44,7 @@
           "rainbow",
           "uniswap"
         ],
-        "NSCameraUsageDescription": "Riftn uses your camera when you choose to take a profile photo, record a video for a post, or start a live stream.",
+        "NSCameraUsageDescription": "Riftn uses your camera when you choose to take a profile photo, record a video for a post, start a live stream, or scan a wallet QR code.",
         "NSMicrophoneUsageDescription": "Riftn uses your microphone when you record a voice message or video, or speak in a live stream or audio stage.",
         "NSPhotoLibraryUsageDescription": "Riftn lets you choose photos and videos from your library to share in posts and messages or use as your profile picture. For example, you can select a photo to attach to a new post.",
         "NSPhotoLibraryAddUsageDescription": "Riftn saves a photo or video to your library only when you choose Save or Download, such as saving a photo from a post.",

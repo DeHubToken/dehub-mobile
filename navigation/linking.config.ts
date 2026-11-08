@@ -10,18 +10,6 @@ import { hasHeldCallback, holdLaunchCallback, withoutFragment } from '../libs/oa
 import { Linking as RNLinking } from 'react-native';
 import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from '../config/storefront';
 
-/**
- * /app/<page> links that are checkout or trading pages on the web. The App
- * Store build sends these to Safari (US) or Home, never the in-app browser.
- * 'assistant' sells AI credits there; 'earnings' is tip and PPV income.
- */
-const STOREFRONT_WEB_ONLY_PAGES = new Set([
-  'wallet', 'buy', 'stake', 'bridge', 'dex', 'ads', 'command-centre', 'affiliate',
-  'work', 'bounty', 'dao', 'premium', 'pricing', 'stores', 'usernames', 'accounts',
-  'nfts', 'fractions', 'launchpad', 'superpowers', 'planned', 'apps', 'builder',
-  'migrate-youtube', 'raffle', 'depin', 'assistant', 'earnings',
-]);
-
 const logger = createLogger('DeepLink');
 
 /**
@@ -642,10 +630,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       if (state || segments[0] !== 'app') return state;
       if (segments.length === 1) return homeState();
       const url = `https://${UNIVERSAL_LINK_DOMAINS[0]}/${pathOnly}${queryString ? `?${queryString}` : ''}`;
-      // The App Store build never opens a checkout page in the in-app
-      // browser (3.1.1). US storefront: Safari, which Apple allows.
-      // Elsewhere: Home.
-      if (!DIGITAL_PURCHASES_ENABLED && STOREFRONT_WEB_ONLY_PAGES.has(segments[1])) {
+      // The App Store build never opens a web page it has no screen for in
+      // the in-app browser: any of them can lead to a checkout (3.1.1). US
+      // storefront: Safari, which Apple allows. Elsewhere: Home.
+      if (!DIGITAL_PURCHASES_ENABLED) {
         if (iosWebPurchaseLinkAllowed()) void RNLinking.openURL(url);
         return homeState();
       }

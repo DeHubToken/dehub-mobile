@@ -31,6 +31,7 @@ import ReplayOverlayLayer from "../LiveOverlay/ReplayOverlayLayer";
 import { useStreamOverlay } from "../../hooks/useStreamOverlay";
 import { REPLACES_BUILT_IN_CELEBRATION } from "../../libs/live-overlay/registry";
 import GiftModal from "../Tip/GiftModal";
+import { openMessageReport } from "../common/MessageReportHost";
 import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
 import ShopBoard from "../common/ShopBoard";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
@@ -1718,6 +1719,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         onPress: () => { setHeld(null); tr.toggle(); },
       });
     }
+    // Anyone signed in can report a line (App Review 1.2). The hold sheet is a
+    // modal, so the report sheet opens once it has closed.
+    if (isSignedIn && heldAddress && heldAddress !== me) holdTiles.push({
+      key: "report", icon: "Flag", label: t("postOptions.report"), destructive: true, secondary: true,
+      onPress: () => {
+        const report = { userId: heldAddress, userName: heldName || undefined, where: "Live stream chat", messageId: heldId, text: heldText };
+        setHeld(null);
+        if (modTimer.current) clearTimeout(modTimer.current);
+        modTimer.current = setTimeout(() => openMessageReport(report), 350);
+      },
+    });
     if (heldCanModerate) holdTiles.push({
       key: "moderate", icon: "ShieldCheck", label: t("liveChatModeration.title"),
       onPress: () => {

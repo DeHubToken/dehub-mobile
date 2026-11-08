@@ -1,0 +1,127 @@
+name: iOS simulator check
+
+# Builds the iPhone app in Release with the same Xcode as the store build,
+# runs it on an iPhone simulator, opens every main page in light and dark,
+# and keeps the screenshots, the app log and any crash reports. Run it from
+# Actions before an App Store submission.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/ios-simulator-check.yml
+      - scripts/ios-simulator-walk.sh
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-simulator-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  simulator:
+    name: Build and walk the app on an iPhone simulator
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Use the store build's Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+          xcodebuild -version
+      - run: npm ci --legacy-peer-deps
+      - run: npx patch-package --error-on-fail
+      - name: Prepare recording extension targets
+        run: |
+          gem install xcodeproj --version 1.27.0 --no-document
+          ruby scripts/configure-screen-capture-targets.rb
+      # Plain install, as the store build does: the committed Podfile.lock
+      # trails autolinking, so --deployment refuses it.
+      - name: Install pods
+        working-directory: ios
+        run: pod install
+      - name: Run the code in this commit, not the latest published update
+        run: plutil -replace EXUpdatesEnabled -bool NO ios/DeHub/Supporting/Expo.plist
+      - name: Boot an iPhone simulator
+        id: sim
+        run: |
+          RUNTIME="$(xcrun simctl list runtimes -j | python3 -c '
+          import json, sys
+          rs = [r for r in json.load(sys.stdin)["runtimes"] if r["platform"] == "iOS" and r["isAvailable"]]
+          rs.sort(key=lambda r: [int(p) for p in r["version"].split(".")])
+          print(rs[-1]["identifier"])')"
+          TYPE="$(xcrun simctl list devicetypes -j | python3 -c '
+          import json, sys
+          names = [d["name"] for d in json.load(sys.stdin)["devicetypes"]]
+          for want in ["iPhone 17 Pro", "iPhone 16 Pro", "iPhone 16", "iPhone 15 Pro"]:
+              if want in names:
+                  print(want); break')"
+          UDID="$(xcrun simctl create riftn-check "$TYPE" "$RUNTIME")"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          echo "Simulator: $TYPE on $RUNTIME"
+      - name: Build Release for the simulator
+        run: |
+          set -o pipefail
+          xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
+            -configuration Release -sdk iphonesimulator \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath "$RUNNER_TEMP/sim" \
+            ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
+      # The build above is unsigned, and an unsigned app has no keychain on the
+      # simulator: every SecureStore read fails and sign-in state never loads.
+      # An ad-hoc signature with the app's identifiers gives it one, as a
+      # device build has.
+      - name: Sign the build for the simulator
+        run: |
+          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
+          BUNDLE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
+          TEAM="$(grep -m1 -oE 'DEVELOPMENT_TEAM = [A-Z0-9]+' ios/DeHub.xcodeproj/project.pbxproj | awk '{print $3}')"
+          cat > "$RUNNER_TEMP/sim.entitlements" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>application-identifier</key><string>$TEAM.$BUNDLE</string>
+            <key>com.apple.developer.team-identifier</key><string>$TEAM</string>
+            <key>keychain-access-groups</key><array><string>$TEAM.$BUNDLE</string></array>
+            <key>com.apple.security.application-groups</key><array><string>group.io.dehub.mobile.screen-capture</string></array>
+          </dict></plist>
+          EOF
+          codesign --force --deep --sign - --timestamp=none --entitlements "$RUNNER_TEMP/sim.entitlements" "$APP"
+          codesign -d --entitlements - "$APP" 2>/dev/null | head -20
+      # iOS 26 asks "Open in …?" before a simulator opens a deep link; idb taps Open.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install idb for taps
+        continue-on-error: true
+        run: |
+          brew tap facebook/fb
+          brew install facebook/fb/idb-companion
+          python -m venv "$RUNNER_TEMP/idb"
+          "$RUNNER_TEMP/idb/bin/pip" install --quiet fb-idb pillow
+          echo "$RUNNER_TEMP/idb/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/idb/bin/idb" list-targets || true
+      - name: Summarise build warnings
+        if: always()
+        run: |
+          mkdir -p sim-check
+          touch xcodebuild.log
+          grep -E "(warning|error):" xcodebuild.log | grep -v "/Pods/" | sort | uniq -c | sort -rn > sim-check/app-warnings.txt || true
+          grep -cE "warning:" xcodebuild.log > sim-check/warning-count.txt || true
+          gzip -c xcodebuild.log > sim-check/xcodebuild.log.gz
+      - name: Walk every page in light and dark
+        run: |
+          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
+          scripts/ios-simulator-walk.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-simulator-check
+          path: sim-check/
+          if-no-files-found: ignore

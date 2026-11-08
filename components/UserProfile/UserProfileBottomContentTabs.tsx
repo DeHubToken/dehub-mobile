@@ -246,7 +246,9 @@ const UserProfileBottomContentTabs: React.FC<
     }))
       // Public playlists only earn a tab once there is one to show.
       .filter((item) => (item.key !== "playlists" && item.key !== "articles") || (item.count ?? 0) > 0)
-      .filter((item) => !(subsHidden && item.key === "subscribers"));
+      .filter((item) => !(subsHidden && item.key === "subscribers"))
+      // Fractions are shares of minted posts, bought and sold: not in the iPhone app (App Store 3.1.1).
+      .filter((item) => !(IS_APP_STORE_BUILD && item.key === "fractions"));
     const home = withCounts.find((item) => item.key === "home")!;
     const rest = withCounts
       .filter((item) => item.key !== "home")

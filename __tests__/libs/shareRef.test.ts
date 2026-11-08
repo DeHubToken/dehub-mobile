@@ -1,4 +1,9 @@
 jest.mock('../../libs/analytics', () => ({ track: jest.fn() }));
+// Runs as the Android and web build; the App Store build never tags shares.
+let mockAppStoreBuild = false;
+jest.mock('../../config/storefront', () => ({
+  get IS_APP_STORE_BUILD() { return mockAppStoreBuild; },
+}));
 import { Share } from 'react-native';
 import { track } from '../../libs/analytics';
 import {
@@ -65,4 +70,14 @@ it('does not record a dismissed share', async () => {
   share.mockResolvedValueOnce({ action: Share.dismissedAction });
   await shareWithRef({ message: 'https://dehub.io/app' });
   expect(track).not.toHaveBeenCalled();
+});
+
+it('never tags shares in the App Store build', () => {
+  mockAppStoreBuild = true;
+  try {
+    setShareRefCode('maldoteth');
+    expect(getShareRefCode()).toBeNull();
+  } finally {
+    mockAppStoreBuild = false;
+  }
 });

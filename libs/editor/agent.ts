@@ -13,6 +13,7 @@ import { generationChatRequest, generationDraft, type GenerationDraft } from "./
  * one undo step.
  */
 import env from "../../config/env";
+import { requireAiConsent } from "../ai-consent";
 import {
   addShape,
   addText,
@@ -143,6 +144,7 @@ export async function askAgent(messages: AgentMessage[], scene: unknown, signal?
 }
 
 export async function askSceneAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
+  await requireAiConsent();
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",

@@ -1,4 +1,4 @@
-import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed } from "../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, iosWebPurchaseLinkAllowed, purchaseOfferVisible } from "../config/storefront";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -308,7 +308,9 @@ const CommunityDetailScreen: React.FC = () => {
           if (gate) {
             const check = await runHolderCheck(community.id, wallet);
             if (check.status !== "open" && !check.eligible) {
-              toastError(holderGateMessage(check, gate));
+              // The iPhone app names no token amounts (App Store 3.1.1).
+              if (DIGITAL_PURCHASES_ENABLED) toastError(holderGateMessage(check, gate));
+              else toastInfo(t("storefront.unavailable"));
               return;
             }
           }
@@ -497,7 +499,7 @@ const CommunityDetailScreen: React.FC = () => {
                     ? t("communities.newChat.channel", { defaultValue: "Channel" })
                     : t("communities.newChat.group", { defaultValue: "Group" })}
                 </Text>
-                {entryPrice > 0 && (
+                {entryPrice > 0 && purchaseOfferVisible() && (
                   <>
                     <Text className="text-zinc-300 text-xs">·</Text>
                     <Image source={DEHUB_COIN} style={{ width: 14, height: 14 }} contentFit="contain" />

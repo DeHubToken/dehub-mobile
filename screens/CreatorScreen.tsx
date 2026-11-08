@@ -103,8 +103,9 @@ export default function CreatorScreen() {
     { key: 'video', label: t('creator.navVideo'), open: () => openStudio('video') },
     { key: 'audio', label: t('creator.navAudio'), open: () => openStudio('audio') },
     { key: '3d', label: t('creator.door3d'), open: () => openStudio('3d') },
-    { key: 'remake', label: t('creator.toolRemake'), open: () => nav.navigate(ScreenNames.CreatorRemake), divider: true },
-    { key: 'agents', label: t('creator.navAgents'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
+    // Remake runs a web studio with paid renders: not in the App Store build.
+    ...(DIGITAL_PURCHASES_ENABLED ? [{ key: 'remake', label: t('creator.toolRemake'), open: () => nav.navigate(ScreenNames.CreatorRemake), divider: true }] : []),
+    { key: 'agents', label: t('creator.navAgents'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }), divider: !DIGITAL_PURCHASES_ENABLED },
     { key: 'editor', label: t('creator.editor'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', label: t('creator.flow'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
     // Builder is not in the App Store build (config/storefront): no row there.
@@ -119,7 +120,7 @@ export default function CreatorScreen() {
     { key: '3d', icon: 'fractions', label: t('creator.door3d'), note: t('creator.door3dNote'), open: () => openStudio('3d') },
   ];
   const tools = [
-    { key: 'remake', icon: 'videos', label: t('creator.toolRemake'), note: t('creator.toolMaboroshiDesc'), open: () => nav.navigate(ScreenNames.CreatorRemake) },
+    ...(DIGITAL_PURCHASES_ENABLED ? [{ key: 'remake', icon: 'videos', label: t('creator.toolRemake'), note: t('creator.toolMaboroshiDesc'), open: () => nav.navigate(ScreenNames.CreatorRemake) }] : []),
     { key: 'agents', icon: 'assistant', label: t('creator.navAgents'), note: t('creator.doorAgentsNote'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', icon: 'tv', label: t('creator.editor'), note: t('creator.editorNote'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', icon: 'command', label: t('creator.flow'), note: t('creator.flowNote'), open: () => nav.navigate(ScreenNames.CreatorFlow) },

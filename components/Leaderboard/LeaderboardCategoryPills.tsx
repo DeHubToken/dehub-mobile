@@ -3,6 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { PageTabs, useFlatPage } from "../page/PageKit";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 
 // The canvas themes whose accent chip carries white ink (PageKit's rule).
 const BRIGHT_INK_THEMES = new Set<string>(["hazy", "swarms", "lavalamp", "island"]);
@@ -42,6 +43,15 @@ const CATEGORIES: CategoryDef[] = [
   { key: "assets", label: "leaderboard.assets", icon: "stats-chart-outline" },
 ];
 
+// The iPhone app ranks people by follows, likes and subscribers only: token
+// holdings and tip totals stay on the web.
+const APP_STORE_HIDDEN: ReadonlySet<PillKey> = new Set<PillKey>(["holdings", "sentTips", "receivedTips", "affiliates"]);
+const VISIBLE_CATEGORIES = IS_APP_STORE_BUILD
+  ? CATEGORIES.filter((c) => !APP_STORE_HIDDEN.has(c.key))
+  : CATEGORIES;
+
+export const DEFAULT_SORT_CATEGORY: SortCategory = IS_APP_STORE_BUILD ? "followers" : "holdings";
+
 interface Props {
   active: SortCategory;
   onSelect: (cat: PillKey) => void;
@@ -56,9 +66,9 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
   // Reorder so the active category is always first. "assets" never becomes
   // active (it navigates away), so it stays where it is in the list.
   const ordered = useMemo(() => {
-    const idx = CATEGORIES.findIndex((c) => c.key === active);
-    if (idx <= 0) return CATEGORIES;
-    return [CATEGORIES[idx], ...CATEGORIES.filter((_, i) => i !== idx)];
+    const idx = VISIBLE_CATEGORIES.findIndex((c) => c.key === active);
+    if (idx <= 0) return VISIBLE_CATEGORIES;
+    return [VISIBLE_CATEGORIES[idx], ...VISIBLE_CATEGORIES.filter((_, i) => i !== idx)];
   }, [active]);
 
   const handleChange = useCallback((key: PillKey) => onSelect(key), [onSelect]);

@@ -2,7 +2,7 @@ import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
 import { accountDraftKey, useDraftState } from '../hooks/useDraftState';
-import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD, MATURE_CONTENT_ENABLED } from "../config/storefront";
 import { normalizeCategoryName } from "../libs/strings.util";
 import { t } from "i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -2029,7 +2029,7 @@ export default function UploadScreen() {
         const info = await FileSystem.getInfoAsync(asset.uri);
         const size = ((info as any)?.size ?? asset.fileSize) as number | undefined;
         if (size && size > imageLimitBytes) {
-          toastError(postQuota?.tier
+          toastError(postQuota?.tier && !IS_APP_STORE_BUILD
             ? t("toasts.image_too_large_tier", { tier: postQuota.tier, limit: imageLimitMb })
             : t("toasts.image_too_large_untiered", { limit: imageLimitMb }));
           continue;
@@ -2240,7 +2240,7 @@ export default function UploadScreen() {
           const info = await FileSystem.getInfoAsync(asset.uri);
           const size = (info as any)?.size as number | undefined;
           if (size && size > imageLimitBytes) {
-            toastError(postQuota?.tier
+            toastError(postQuota?.tier && !IS_APP_STORE_BUILD
               ? t("toasts.image_too_large_tier", { tier: postQuota.tier, limit: imageLimitMb })
               : t("toasts.image_too_large_untiered", { limit: imageLimitMb }));
             return;

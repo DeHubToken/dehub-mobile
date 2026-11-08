@@ -24,7 +24,8 @@ import { ASSISTANT_USERNAME, mentionsAssistant } from "../../libs/assistant";
 import { resolveChatGif, gifCaption } from "../../libs/chat-gif";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { uploadLiveChatVoice } from "../../services/livechat.service";
-import { toastError } from "../../libs/toast";
+import { toastError, toastInfo } from "../../libs/toast";
+import { aiConsentDeclinedMessage, ensureAiConsent, hasAiConsent } from "../../libs/ai-consent";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 
@@ -167,6 +168,11 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     const trimmed = text.trim();
     // A picture on its own is a message; only a wholly empty composer is not.
     if (sendInFlight.current || (!trimmed && !attachmentUri) || isBanned || !canSend || cooldown || isOverLimit) return;
+    // Tagging @assistant sends the chat to an AI provider.
+    if (mentionsAssistant(trimmed) && !hasAiConsent() && !(await ensureAiConsent())) {
+      toastInfo(aiConsentDeclinedMessage());
+      return;
+    }
 
     sendInFlight.current = true;
     // A new message leaves the box at once; waiting for the server's echo left

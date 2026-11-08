@@ -12,6 +12,7 @@ import { dehubAuthHeaders } from './ai.service';
 import { downloadFlowAudio } from './creator-flow-download';
 import { loadFlowAssets, flowAssetId, assetNodePatch } from './creator-flow-assets';
 import type { FlowNode, FlowEdge } from './creator-flows.service';
+import { requireAiConsent } from '../libs/ai-consent';
 
 export interface NativeFlowGraph { id: string; nodes: FlowNode[]; edges: FlowEdge[] }
 export interface NativeFlowPlan { graph: NativeFlowGraph; signature: string; order: string[]; priceDhb: number; priceUsd: number; resume: boolean }
@@ -273,6 +274,7 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
       let url: string | undefined, assetId: string | undefined;
       if (node.type === 'assistantNode') {
         assertCurrent();
+        await requireAiConsent(); assertCurrent();
         const headers = await dehubAuthHeaders(wallet); assertCurrent();
         saved.freeSubmitted = true; await persist(); assertCurrent();
         const result = await supabase.functions.invoke('creator-prompt-assistant', { headers, body: { prompt, persona: 'rewrite', model: String(node.data.assistantModel || 'gemini-flash'), stream: false } });

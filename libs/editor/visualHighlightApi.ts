@@ -1,9 +1,11 @@
 import env from "../../config/env";
 import type { HighlightRange } from "./highlights";
 import { validVisualBatch, type VisualBatch } from "./visualHighlightContract";
+import { hasAiConsent } from "../ai-consent";
 
 export async function analyseVisualHighlights(batch: VisualBatch, signal: AbortSignal): Promise<HighlightRange[]> {
   if (signal.aborted) throw new Error("cancelled");
+  if (!hasAiConsent()) throw new Error("unavailable");
   if (!validVisualBatch(batch)) throw new Error("visual_frames_invalid");
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const response = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-visual-highlights`, {

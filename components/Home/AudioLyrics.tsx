@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { hasAiConsent } from "../../libs/ai-consent";
 import { useTranslation } from "react-i18next";
 import { useTranscript } from "../../hooks/useTranscript";
 import { lyricAt, lyricLines } from "../../libs/lyrics-lines";
@@ -19,6 +20,8 @@ export function AudioLyrics({ tokenId, currentTime, top = 48, bottom = 56 }: { t
   useEffect(() => {
     if (asked.current || inFlight || !canRetry) return;
     if (status !== "absent" && status !== "failed") return;
+    // Starts by itself, so it never asks: without AI permission it just doesn't.
+    if (!hasAiConsent()) return;
     asked.current = true;
     start();
   }, [status, inFlight, canRetry, start]);

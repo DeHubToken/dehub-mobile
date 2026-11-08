@@ -175,11 +175,13 @@ describe('an /app link with no screen', () => {
       expect(openBrowser).not.toHaveBeenCalled();
       expect(openURL).toHaveBeenCalledWith('https://riftn.com/app/ads');
 
-      // A page that sells nothing still opens on the web as before.
+      // Any other web-only page follows the same rule: the in-app browser
+      // never opens, since a page there can lead to a checkout.
       openURL.mockClear();
-      expect(resolve('/app/unmapped-page')).toBeUndefined();
+      expect(resolve('/app/unmapped-page')).toBeDefined();
       await flush();
-      expect(openBrowser).toHaveBeenCalled();
+      expect(openBrowser).not.toHaveBeenCalled();
+      expect(openURL).toHaveBeenCalledWith('https://riftn.com/app/unmapped-page');
     } finally {
       mockStorefront.digital = true;
       mockStorefront.us = false;

@@ -95,13 +95,13 @@ const destinations = [
 
 beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockWallet = '0xmember'; mockBalance = 500; mockDigitalPurchasesEnabled = true; mockActiveScreen = 'DM'; });
 
-it('leaves SuperPowers out of the App Store build', () => {
+it.each(['nav.superpowers', 'nav.governance', 'nav.tv', 'nav.converter'])('leaves %s out of the App Store build', (label) => {
   mockDigitalPurchasesEnabled = false;
   const view = render(<AppDrawer visible onClose={jest.fn()} />);
-  expect(view.queryByLabelText('nav.superpowers')).toBeNull();
+  expect(view.queryByLabelText(label)).toBeNull();
 });
 
-it.each([['nav.arcade', 'Arcade'], ['nav.governance', 'Governance']])(
+it.each([['nav.arcade', 'Arcade'], ['nav.guide', 'Guide']])(
   'keeps %s accessible with no token balance and iOS purchases disabled', (label, screen) => {
     mockDigitalPurchasesEnabled = false;
     mockBalance = 0;

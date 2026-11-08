@@ -1,5 +1,6 @@
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { ensureAiConsent, hasAiConsent } from "../../libs/ai-consent";
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -257,6 +258,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const triggerTranslation = useCallback(async () => {
     if (!transcriptId || language === "original" || transcript?.status !== "ready") return;
     if (translation?.status === "ready" || translation?.status === "processing") return;
+    if (!hasAiConsent()) return;
 
     const requestKey = `${transcriptId}:${language}`;
     if (requestedRef.current.has(requestKey)) return;
@@ -278,6 +280,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   // Request transcription trigger
   const handleTranscribe = useCallback(async (silent = false, force = false) => {
     if (!stageId) return;
+    // Sends the recording to an AI provider: a tap asks, the automatic start never does.
+    if (!hasAiConsent() && (silent || !(await ensureAiConsent()))) return;
     setIsRequestingTranscribe(true);
     try {
       const { error } = await supabase.functions.invoke("transcribe", {

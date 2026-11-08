@@ -64,7 +64,7 @@
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string>Riftn uses your camera when you choose to take a profile photo, record a video for a post, or start a live stream.</string>
+    <string>Riftn uses your camera when you choose to take a profile photo, record a video for a post, start a live stream, or scan a wallet QR code.</string>
     <key>NSFaceIDUsageDescription</key>
     <string>Riftn uses Face ID to unlock your wallet and confirm sensitive actions, such as sending tokens.</string>
     <key>NSLocationWhenInUseUsageDescription</key>

@@ -10,6 +10,7 @@
  * Rows carry uuids; the post row speaks numbers. Each uuid gets a stable
  * number taken from its first 48 bits, and the map back lives next to the list.
  */
+import { ensureAiConsent, hasAiConsent } from "../libs/ai-consent";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../services/supabase";
@@ -318,6 +319,8 @@ export function useFeatureThreadActions(featureRequestId: string, feature: { tit
       patchFeatureRow(queryClient, featureRequestId, (fr) => ({ ...fr, comment_count: (fr.comment_count || 0) + 1 }));
       if (row?.id && wallet && ASSISTANT_MENTION_RE.test(input.content)) {
         void (async () => {
+          // The assistant's reply sends this thread to an AI provider.
+          if (!hasAiConsent() && !(await ensureAiConsent())) return;
           const headers = await dehubAuthHeaders(wallet);
           if (!headers["x-dehub-token"]) return;
           const { error } = await supabase.functions.invoke("feature-request-assistant", {

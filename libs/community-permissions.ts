@@ -16,6 +16,7 @@ import type {
   CommunityRight,
   MemberRight,
 } from "../types/community";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export const ADMIN_RIGHTS: { key: AdminRight; labelKey: string; hintKey: string }[] = [
@@ -266,6 +267,7 @@ export function communityErrorMessage(error: unknown, fallback: string): string 
   }
 
   if (raw.includes("holder_gate_required")) {
+    if (IS_APP_STORE_BUILD) return _translateCopy("storefront.unavailable", { defaultValue: "Not available in this version of the app" });
     return _translateCopy("communities.holderGate.required", { defaultValue: "Holders only: your wallet doesn't hold enough of this community's token to chat." });
   }
 

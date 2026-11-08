@@ -25,7 +25,7 @@ import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
 import { useAppTheme } from "../../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../../theme/colors";
-import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from "../../config/storefront";
 import { menuEnter, menuExit } from './feedDrawerMotion';
 import {
   resolveEdgeFadeMask,
@@ -301,7 +301,8 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
       ? [{ id: "following" as SortOption, label: t("filters.following") }]
       : []),
     { id: "likes" as SortOption, label: t("filters.mostLiked") },
-    { id: "tips" as SortOption, label: t("filters.mostTips") },
+    // No tipping in the iPhone app (App Store 3.1.1).
+    ...(IS_APP_STORE_BUILD ? [] : [{ id: "tips" as SortOption, label: t("filters.mostTips") }]),
     { id: "views" as SortOption, label: t("filters.mostViewed") },
     { id: "comments" as SortOption, label: t("filters.mostComments") },
     { id: "random" as SortOption, label: t("filters.random") },

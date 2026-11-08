@@ -29,7 +29,12 @@ jest.mock('react-native', () => ({
 // __tests__/libs/ai-consent.test.ts unmocks it to test the real thing.
 jest.mock('../libs/ai-consent', () => {
   const actual = jest.requireActual('../libs/ai-consent');
-  return { ...actual, hasAiConsent: jest.fn(() => true), ensureAiConsent: jest.fn(() => Promise.resolve(true)) };
+  return {
+    ...actual,
+    hasAiConsent: jest.fn(() => true),
+    ensureAiConsent: jest.fn(() => Promise.resolve(true)),
+    requireAiConsent: jest.fn(() => Promise.resolve()),
+  };
 });
 
 jest.mock('expo-secure-store', () => {

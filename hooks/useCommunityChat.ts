@@ -17,6 +17,7 @@
  *   so a private community receives no live events at all.
  */
 import { useCallback, useEffect, useMemo } from "react";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
@@ -334,9 +335,18 @@ export function useCommunityChat(
     void queryClient.invalidateQueries({ queryKey: ["community-chat-messages", communityId] });
   }, [queryClient, communityId]);
 
+  // Someone the user blocked disappears from the chat at once (App Store 1.2).
+  const blockedVersion = useBlockedAuthorsVersion();
+  const visibleMessages = useMemo(
+    () => messages.filter((m) => !isAuthorBlocked(m.wallet_address)),
+    // blockedVersion re-runs the filter when the block list changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages, blockedVersion],
+  );
+
   return {
     ...history,
-    messages,
+    messages: visibleMessages,
     pinnedMessage,
     isLoading,
     sendMessage,
