@@ -37,6 +37,34 @@ launch() {
   xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
 }
 
+# iOS 26 asks "Open in …?" before the simulator hands a deep link to the app.
+# When the prompt's blue Open button is on screen, tap it (needs idb).
+confirm_open() {
+  command -v idb >/dev/null 2>&1 || return 0
+  local i
+  for i in 1 2 3 4; do
+    xcrun simctl io "$UDID" screenshot "$OUT/.prompt.png" >/dev/null 2>&1 || return 0
+    if python3 - "$OUT/.prompt.png" <<'PY'
+import sys
+from PIL import Image
+im = Image.open(sys.argv[1]).convert("RGB")
+scale = im.size[0] / 402
+blue = 0
+for dx in range(-60, 61, 20):
+    for dy in (-10, 0, 10):
+        r, g, b = im.getpixel((int((275 + dx) * scale), int((474 + dy) * scale)))
+        if b > 200 and r < 60:
+            blue += 1
+sys.exit(0 if blue >= 10 else 1)
+PY
+    then
+      idb ui tap --udid "$UDID" 275 474 >/dev/null 2>&1 || true
+      return 0
+    fi
+    sleep 1
+  done
+}
+
 PAGES=(
   "app/post/742"
   "app/post/5799"
@@ -93,7 +121,8 @@ walk() {
     local name
     name="$(printf '%s-%02d-%s' "$theme" "$i" "$(echo "$page" | tr '/:?' '---')")"
     xcrun simctl openurl "$UDID" "dehub://$page" >/dev/null 2>&1 || echo "openurl failed: $page" >> "$OUT/crashes.txt"
-    sleep 7
+    confirm_open
+    sleep 6
     shot "$name"
     if ! running; then
       echo "$theme: app not running after opening $page" >> "$OUT/crashes.txt"
@@ -118,3 +147,6 @@ echo "Pages walked: ${#PAGES[@]} x 2 themes"
 echo "Problems:"
 cat "$OUT/crashes.txt"
 echo "Error lines in app log: $(wc -l < "$OUT/logs/errors.txt")"
+echo "JS restarts: $(grep -c 'state = restarting' "$OUT/logs/app.log")"
+echo "Keychain failures: $(grep -c 'ERR_KEY_CHAIN' "$OUT/logs/app.log")"
+rm -f "$OUT/.prompt.png"
