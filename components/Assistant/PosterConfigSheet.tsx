@@ -293,7 +293,7 @@ function buildFinalPrompt(cfg: Omit<PosterConfig, 'finalPrompt'>, userPrompt: st
 
   const linkBits: string[] = [];
   if (cfg.includeWebsite) linkBits.push('dehub.io');
-  if (cfg.includeSocials) linkBits.push('x.com/dehub_official', 't.me/dehub_dhb', 'discord.gg/dehub');
+  if (cfg.includeSocials) linkBits.push('x.com/riftn_com', 't.me/riftn_com', 'discord.gg/dehub');
   if (linkBits.length) {
     parts.push(
       `Include these links at the bottom in small Exo Light, pure white, generous letter-spacing: ${linkBits.join(' · ')}.`,
