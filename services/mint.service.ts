@@ -120,13 +120,24 @@ export async function isShortOfMintFee(fee: MintFeeQuote, chainId: number): Prom
   try {
     const { address } = await getAuthMethod();
     if (!address) return false;
-    const balance = await ethersService.getErc20Balance(fee.tokenAddress, address, chainId);
+    // The quote's own coin: BNB / ETH by default, DHB when the server is
+    // switched back (MINT_FEE_CURRENCY=dhb).
+    const balance = fee.isNative
+      ? await ethersService.getNativeBalance(address, chainId)
+      : await ethersService.getErc20Balance(fee.tokenAddress, address, chainId);
     const needed = ethers.utils.parseUnits(fee.amount.toFixed(fee.decimals), fee.decimals);
     return balance.lt(needed);
   } catch (e) {
-    console.warn("[mint.service] could not read DHB balance", e);
+    console.warn("[mint.service] could not read the mint fee balance", e);
     return false;
   }
+}
+
+/** A fee as a price: trailing zeros trimmed, never "2.5e-5". */
+export function formatMintFee(amount: number): string {
+  if (!Number.isFinite(amount)) return "";
+  if (amount >= 1) return amount.toFixed(2).replace(/\.?0+$/, "");
+  return amount.toFixed(8).replace(/\.?0+$/, "");
 }
 
 /**

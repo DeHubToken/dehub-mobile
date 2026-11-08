@@ -54,7 +54,7 @@ import { openCroppedImagePicker, getFileName, guessMime, prepareImageForUpload }
 import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
-import { isShortOfMintFee } from "../services/mint.service";
+import { isShortOfMintFee, formatMintFee } from "../services/mint.service";
 import { getPostQuota, quotePostCharge } from "../services/post-quota.service";
 import type { PostQuotaStatus } from "../services/post-quota.service";
 import { defaultChainId } from "../config/constants";
@@ -744,7 +744,7 @@ export default function UploadScreen() {
 
   const mintFeeLabel =
     mintFee?.chargeable && mintFee.amount > 0
-      ? `${mintFee.amount} ${mintFee.symbol}`
+      ? `${formatMintFee(mintFee.amount)} ${mintFee.symbol}`
       : null;
 
   /**
@@ -1556,12 +1556,12 @@ export default function UploadScreen() {
      * the creator the post rather than just the mint.
      */
     if (payload.shouldMint && !isSolanaChain(payload.postChainId) && mintFee?.chargeable
-        && mintFee.amount > 0 && !mintFee.isNative) {
+        && mintFee.amount > 0) {
       const short = await isShortOfMintFee(mintFee, mintChainId).catch(() => false);
       if (short) {
         payload = { ...payload, shouldMint: false };
         toastSuccess(
-          t("upload.postingWithoutMint", { amount: mintFee.amount, symbol: mintFee.symbol }),
+          t("upload.postingWithoutMint", { amount: formatMintFee(mintFee.amount), symbol: mintFee.symbol }),
         );
       }
     }

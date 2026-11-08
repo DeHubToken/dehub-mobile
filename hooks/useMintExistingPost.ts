@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
 import { getMintFee, mintExistingPost, getNFT } from "../services/nft.service";
-import { mintNftOnChainWithFee, mintWithBounty, isShortOfMintFee } from "../services/mint.service";
+import { mintNftOnChainWithFee, mintWithBounty, isShortOfMintFee, formatMintFee } from "../services/mint.service";
 import { supportedTokens } from "../config/constants";
 import { getAuthMethod } from "../libs/auth.utils";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -42,11 +42,12 @@ export function useMintExistingPost() {
         const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
         const fee = !hasBounty && method === "local" ? await getMintFee(chainId) : null;
 
-        // Checked before the signature is issued, so being short of DHB is a
-        // clear message rather than a reverted transaction.
-        if (fee?.chargeable && fee.amount > 0 && !fee.isNative) {
+        // Checked before the signature is issued, so being short of the fee's
+        // coin (BNB / ETH, or DHB if switched back) is a clear message rather
+        // than a reverted transaction.
+        if (fee?.chargeable && fee.amount > 0) {
           if (await isShortOfMintFee(fee, chainId)) {
-            toastError(_copy("copy.d30dc251d1dc", { defaultValue: "Minting costs {{value1}} {{value2}} — top up and try again.", value1: fee.amount, value2: fee.symbol }));
+            toastError(_copy("copy.d30dc251d1dc", { defaultValue: "Minting costs {{value1}} {{value2}} — top up and try again.", value1: formatMintFee(fee.amount), value2: fee.symbol }));
             return false;
           }
         }
