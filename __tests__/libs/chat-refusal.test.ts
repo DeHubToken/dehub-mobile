@@ -18,3 +18,13 @@ describe("chat refusal text", () => {
     expect(formatChatWait(61)).toBe("2 min");
   });
 });
+
+describe("isAuthRefusal", () => {
+  it("knows a signed-out refusal by code, or by the older servers' message", () => {
+    const { isAuthRefusal } = require("../../libs/chat-refusal");
+    expect(isAuthRefusal({ code: "AUTH_REQUIRED", message: "Authentication required" })).toBe(true);
+    expect(isAuthRefusal({ message: "Authentication required" })).toBe(true);
+    expect(isAuthRefusal({ code: "SLOW_DOWN", message: "Slow down" })).toBe(false);
+    expect(isAuthRefusal({ message: "You are banned from chat" })).toBe(false);
+  });
+});

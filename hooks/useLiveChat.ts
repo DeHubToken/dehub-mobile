@@ -8,7 +8,9 @@ import { getAuthToken } from "../libs/auth.utils";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import { toastError } from "../libs/toast";
-import { chatRefusalText, type ChatRefusalPayload } from "../libs/chat-refusal";
+import { chatRefusalText, isAuthRefusal, type ChatRefusalPayload } from "../libs/chat-refusal";
+import { tokenRefreshManager } from "../libs/token-refresh";
+import { t } from "i18next";
 import type {
   LiveChatMessageData,
   LiveChatRoom,
@@ -23,6 +25,17 @@ import { readRecentChat, writeRecentChat } from "../libs/livechat-cache";
 const log = createLogger("LiveChat");
 
 const MAX_CHAT_MESSAGES = 200;
+
+/**
+ * The access token, refreshed first when it is about to run out. Read for
+ * every handshake and every send: a connection that came back from the
+ * background with an expired token was taken as a guest by the server, and
+ * every message failed with "Authentication required" until a restart.
+ */
+async function freshToken(): Promise<string | null> {
+  await tokenRefreshManager.ensureFreshToken().catch(() => undefined);
+  return getAuthToken();
+}
 
 const EVENTS = {
   // Client → Server
@@ -52,6 +65,8 @@ const EVENTS = {
   USER_UNBANNED: "livechat:userUnbanned",
   ERROR: "livechat:error",
   PONG: "livechat:pong",
+  /** Sign an open connection in again with a fresh token. */
+  AUTHENTICATE: "livechat:authenticate",
 } as const;
 
 export interface UseLiveChatReturn {
@@ -123,6 +138,9 @@ export const useLiveChat = (
   const [hasMore, setHasMore] = useState(true);
 
   const socketRef = useRef<Socket | null>(null);
+  /** Latest access token, sent with each action so the server can sign a guest connection in. */
+  const tokenRef = useRef<string | null>(null);
+  const signInTriedRef = useRef<string | null>(null);
   const joinedRef = useRef(false);
   const pingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -174,8 +192,8 @@ export const useLiveChat = (
         // fifteen minutes, so a reconnect later in a stream used to sign in
         // with a dead one and come back as a guest who could not send.
         auth: (cb) => {
-          getAuthToken()
-            .then((fresh) => cb({ token: fresh || token }))
+          freshToken()
+            .then((fresh) => { tokenRef.current = fresh || token; cb({ token: fresh || token }); })
             .catch(() => cb({ token }));
         },
         transports: ["polling", "websocket"],
@@ -218,6 +236,18 @@ export const useLiveChat = (
       socket.on(EVENTS.PONG, (data: any) => {
         if (data?.isBanned) setIsBanned(true);
         if (data?.user?.isModerator) setIsModerator(true);
+        // Signed in here, a guest to the server: sign this connection back
+        // in with a fresh token. Once per connection, so it cannot loop.
+        if (data?.isAuthenticated === false && socket.id && signInTriedRef.current !== socket.id) {
+          signInTriedRef.current = socket.id;
+          freshToken()
+            .then((fresh) => {
+              if (!fresh || cancelled || !socket.connected) return;
+              tokenRef.current = fresh;
+              socket.emit(EVENTS.AUTHENTICATE, { token: fresh });
+            })
+            .catch(() => undefined);
+        }
       });
 
       socket.on(EVENTS.ROOM_JOINED, (data: LiveChatRoomJoinedPayload) => {
@@ -372,6 +402,9 @@ export const useLiveChat = (
       socket.on(EVENTS.ERROR, (data: ChatRefusalPayload = {}) => {
         const { message, code, isBanned: banned } = data;
         log.debug("Error:", message);
+        // The send that got this signs in again and retries; only a session
+        // that is really over is shown, by the send.
+        if (isAuthRefusal(data)) return;
         if (code === "BANNED" || banned) {
           setIsBanned(true);
           setCanSend(false);
@@ -437,16 +470,46 @@ export const useLiveChat = (
     return () => sub.remove();
   }, []);
 
+  const withToken = <T extends object>(body: T): T & { token?: string } =>
+    tokenRef.current ? { ...body, token: tokenRef.current } : body;
+
   const sendMessage = useCallback(async (payload: SendMessagePayload): Promise<boolean> => {
     const socket = socketRef.current;
     const account = user?.walletAddress || user?.address;
     if (!socket?.connected || !account) return false;
-    return confirmChatDelivery({
-      listen: (event, handler) => { socket.on(event, handler); return () => { socket.off(event, handler); }; },
-      emit: () => { socket.emit(EVENTS.SEND, roomIdRef.current ? { ...payload, roomId: roomIdRef.current } : payload); },
+    let signedOut = false;
+    // The token rides with the message: a connection the server took as a
+    // guest is signed in again by the send itself.
+    const deliver = (token: string | null) => confirmChatDelivery({
+      listen: (event, handler) => {
+        if (event === EVENTS.ERROR) {
+          const onError = (data: ChatRefusalPayload) => { if (isAuthRefusal(data)) signedOut = true; handler(data); };
+          socket.on(event, onError); return () => { socket.off(event, onError); };
+        }
+        socket.on(event, handler); return () => { socket.off(event, handler); };
+      },
+      emit: () => {
+        const line = roomIdRef.current ? { ...payload, roomId: roomIdRef.current } : { ...payload };
+        socket.emit(EVENTS.SEND, token ? { ...line, token } : line);
+      },
       messageEvent: EVENTS.NEW_MESSAGE, errorEvent: EVENTS.ERROR,
       matches: message => roomMessageMatches(message, { account, content: payload.content ?? '', room: roomIdRef.current, attachment: payload.audioUrl || payload.gif?.url || payload.media?.[0]?.url }),
     });
+    const token = await freshToken().catch(() => null);
+    if (token) tokenRef.current = token;
+    if (await deliver(token)) return true;
+    if (!signedOut) return false;
+    // Still refused as signed out: one real refresh, then once more, quietly.
+    const renewed = await tokenRefreshManager.attemptRefresh().catch(() => null);
+    if (renewed) {
+      tokenRef.current = renewed;
+      signedOut = false;
+      if (await deliver(renewed)) return true;
+    }
+    if (signedOut || !renewed) {
+      toastError(t("copy.de1ad7135e96", { defaultValue: "Your sign-in session expired. Please sign in again." }));
+    }
+    return false;
   }, [user?.walletAddress, user?.address]);
 
   const editMessage = useCallback(async (messageId: string, content: string): Promise<boolean> => {
@@ -455,22 +518,22 @@ export const useLiveChat = (
     if (!socket?.connected || !account) return false;
     return confirmChatDelivery({
       listen: (event, handler) => { socket.on(event, handler); return () => { socket.off(event, handler); }; },
-      emit: () => { socket.emit(EVENTS.EDIT, { messageId, content }); },
+      emit: () => { socket.emit(EVENTS.EDIT, withToken({ messageId, content })); },
       messageEvent: EVENTS.MESSAGE_EDITED, errorEvent: EVENTS.ERROR,
       matches: message => roomMessageMatches(message, { account, content, room: roomIdRef.current, messageId }),
     });
   }, [user?.walletAddress, user?.address]);
 
   const deleteMessageFn = useCallback((messageId: string) => {
-    socketRef.current?.emit(EVENTS.DELETE, { messageId });
+    socketRef.current?.emit(EVENTS.DELETE, withToken({ messageId }));
   }, []);
 
   const addReaction = useCallback((messageId: string, emoji: string) => {
-    socketRef.current?.emit(EVENTS.ADD_REACTION, { messageId, emoji });
+    socketRef.current?.emit(EVENTS.ADD_REACTION, withToken({ messageId, emoji }));
   }, []);
 
   const removeReaction = useCallback((messageId: string, emoji: string) => {
-    socketRef.current?.emit(EVENTS.REMOVE_REACTION, { messageId, emoji });
+    socketRef.current?.emit(EVENTS.REMOVE_REACTION, withToken({ messageId, emoji }));
   }, []);
 
   const setTyping = useCallback((isTyping: boolean) => {
