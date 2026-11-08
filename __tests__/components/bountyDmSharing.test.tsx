@@ -38,6 +38,10 @@ jest.mock('../../config', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ id: 'me', address: '0xme' }) }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: false }) }));
 jest.mock('../../store/dm.store', () => ({ useDmContacts: () => [{ _id: 'conversation' }] }));
+const mockUsersSearch = jest.fn(async (_term: string) => ({ data: { result: [] as unknown[] } }));
+jest.mock('../../services/user.service', () => ({ usersSearch: (term: string) => mockUsersSearch(term) }));
+jest.mock('../../hooks/useDebounceCallback', () => ({ useDebounceCallback: (fn: unknown) => fn }));
+jest.mock('../../libs/strings.util', () => ({ truncateAddress: (a: string) => a }));
 jest.mock('../../services/dm/dm.types', () => ({ getOtherParticipant: () => ({ displayName: 'Pat', address: '0xpat' }) }));
 
 afterEach(() => jest.clearAllMocks());
@@ -89,6 +93,26 @@ it('shows failure instead of success when delivery is not confirmed', async () =
   fireEvent.press(view.getByText('Pat'));
   await waitFor(() => expect(mockToastError).toHaveBeenCalledWith('dm.failedToSend'));
   expect(mockToastSuccess).not.toHaveBeenCalled();
+});
+
+it('finds people outside the inbox and opens a new chat with the post ready to send', async () => {
+  mockUsersSearch.mockResolvedValue({ data: { result: [
+    { username: 'pat', displayName: 'Pat', address: '0xpat' },
+    { username: 'zed', displayName: 'Zed', address: '0xZED' },
+  ] } });
+  const close = jest.fn();
+  const view = render(<ShareToDmSheet visible onClose={close} tokenId={42} />);
+  // Pat already has a chat; Zed has never been messaged.
+  fireEvent.changeText(view.getByPlaceholderText('dm.newDrawer.placeholder'), 'pat');
+  await waitFor(() => expect(view.getByText('Zed')).toBeTruthy());
+  expect(mockUsersSearch).toHaveBeenCalledWith('pat');
+  expect(view.getAllByText('Pat')).toHaveLength(1);
+  fireEvent.press(view.getByText('Zed'));
+  expect(close).toHaveBeenCalled();
+  expect(mockNavigate).toHaveBeenCalledWith(ScreenNames.Chat, expect.objectContaining({
+    targetAddress: '0xzed', sharedText: 'https://dehub.io/app/post/42',
+  }));
+  expect(mockSendText).not.toHaveBeenCalled();
 });
 
 beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });
