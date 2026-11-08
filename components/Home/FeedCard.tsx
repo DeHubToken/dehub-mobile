@@ -2315,12 +2315,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           // The sheet is mounted below rather than inside the menu: the menu is
           // conditionally rendered, so onClose unmounts it and any state set in
           // the same handler goes with it.
-          // Server-granted boost allowances also apply in the App Store build.
+          // Boosts spend badge allowances, which come from holding tokens, so
+          // the iPhone app leaves them out (App Store 3.1.1).
           onBoostPress={
-            isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
+            DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
           }
           onGiftBoostPress={
-            !isOwnerPost && isSignedIn && canGiftBoost
+            DIGITAL_PURCHASES_ENABLED && !isOwnerPost && isSignedIn && canGiftBoost
               ? () => setShowBoost(true)
               : undefined
           }
@@ -2432,7 +2433,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onBoostedPress={openSuperPowers}
                 avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
                 badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
-                onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
+                onBoostPress={DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
                 isHidden={isHidden}
               />
               <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress} onHold={onHold}>
@@ -2698,7 +2699,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 onUserPress={handleUserPress}
                 onMenuPress={handleOpenOptions}
                 onBoostPress={
-                  isOwnerPost && isSignedIn && tokenId != null
+                  DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
                     ? handleBoostPress
                     : undefined
                 }
@@ -2816,7 +2817,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               onUserPress={handleUserPress}
               onMenuPress={handleOpenOptions}
               onBoostPress={
-                isOwnerPost && isSignedIn && tokenId != null
+                DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
                   ? handleBoostPress
                   : undefined
               }
@@ -3036,7 +3037,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onUserPress={handleUserPress}
         onMenuPress={postVideo ? undefined : handleOpenOptions}
         onBoostPress={
-          !postVideo && isOwnerPost && isSignedIn && tokenId != null
+          DIGITAL_PURCHASES_ENABLED && !postVideo && isOwnerPost && isSignedIn && tokenId != null
             ? handleBoostPress
             : undefined
         }

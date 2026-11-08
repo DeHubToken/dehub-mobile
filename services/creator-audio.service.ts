@@ -7,9 +7,11 @@ import * as FileSystem from 'expo-file-system/legacy';
 import * as Crypto from 'expo-crypto';
 import { Buffer } from 'buffer';
 import { audioContainer, pcmSpeechSamples } from '../libs/speechAudio';
+import { requireAiConsent } from '../libs/ai-consent';
 
 /** Authenticated existing free/rate-limited endpoints; never falls back to a paid provider. */
 export async function runCreatorAudio(text: string, settings: CreatorAudioSettings, walletAddress?: string | null): Promise<{ audioUrl?: string; transcript?: string }> {
+  await requireAiConsent();
   const request = creatorAudioRequest(text, settings);
   const headers = await dehubAuthHeaders(walletAddress);
   if (!headers['x-dehub-token']) throw new Error(translateCopy('creator.signInToGenerate', { defaultValue: 'Sign in to generate.' }));

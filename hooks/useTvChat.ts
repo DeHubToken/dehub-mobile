@@ -15,7 +15,8 @@ import { useTranslation as _useCopy } from 'react-i18next';
  * RLS headers go through libs/supabase-wallet-client's `withWalletHeader`
  * rather than calling .setHeader() inline.
  */
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
@@ -255,5 +256,14 @@ export function useRoomChat(room: ChatRoom, enabled = true) {
     [walletAddress, channelId, queryClient, _copy, table, column, isHost, QUERY_KEY]
   );
 
-  return { messages, isLoading, isHost, sendMessage, deleteMessage, addReaction, removeReaction };
+  // Someone the user blocked disappears from the chat at once (App Store 1.2).
+  const blockedVersion = useBlockedAuthorsVersion();
+  const visibleMessages = useMemo(
+    () => messages.filter((m) => !isAuthorBlocked(m.wallet_address)),
+    // blockedVersion re-runs the filter when the block list changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages, blockedVersion],
+  );
+
+  return { messages: visibleMessages, isLoading, isHost, sendMessage, deleteMessage, addReaction, removeReaction };
 }

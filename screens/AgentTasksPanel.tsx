@@ -10,6 +10,7 @@ import { openInApp } from '../libs/links.utils';
 import { useTranslation } from 'react-i18next';
 import LiquidGlass from '../components/ui/LiquidGlass';
 import { WINDOW_ACTIONS, WINDOW_PRESETS, toggleWindowAction, windowPrompt, windowRange, type WindowAction, type WindowPreset } from '../libs/agent-task-window';
+import { requireAiConsent } from '../libs/ai-consent';
 
 const actionNames: Record<string, string> = { dehub_follow: 'agents.tasks.follow', dehub_vote: 'agents.tasks.reaction', dehub_post_create: 'agents.tasks.post', dehub_comment: 'agents.tasks.comment', dehub_update_profile: 'agents.tasks.profile', dehub_view: 'agents.tasks.window.view' };
 
@@ -50,9 +51,9 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const history = useQuery({ queryKey: ['agent-task-history', wallet, historyId], enabled: !!historyId,
     queryFn: () => agentTaskRequest<{ actions: AgentTaskAction[] }>(wallet, { operation: 'history', task_id: historyId }) });
   const refresh = () => { client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); client.invalidateQueries({ queryKey: ['agent-task-history', wallet] }); };
-  const create = useMutation({ mutationFn: (text: string) => agentTaskRequest(wallet, { operation: swarm ? 'create_swarm' : 'create',
+  const create = useMutation({ mutationFn: async (text: string) => { await requireAiConsent(); return agentTaskRequest(wallet, { operation: swarm ? 'create_swarm' : 'create',
     ...(swarm ? { agent_ids: swarmIds, swarm_mode: distribution, spread_minutes: distribution === 'each' ? spreadMinutes : 0 } : { agent_id: agentId }),
-    prompt: text, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+    prompt: text, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); },
     onSuccess: (_data, text) => { if (text === prompt) setPrompt.complete(prompt, ''); setRequestId(randomUUID()); refresh(); },
   });
   const changed = () => { setRequestId(randomUUID()); create.reset(); };

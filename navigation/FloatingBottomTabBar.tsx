@@ -165,6 +165,14 @@ const DEFAULT_BAR_IDS = BAR_ENTRIES.map((entry) => entry.id);
 
 // DHB-unlock surfaces the App Store build leaves out — see config/storefront.
 const STOREFRONT_HIDDEN_SCREENS = new Set([
+  // Third-party broadcasts and downloads from other platforms (App Store 5.2).
+  ScreenNames.TV,
+  ScreenNames.Converter,
+  // Voting weighted by tokens held, and NFT trading (App Store 3.1.1).
+  ScreenNames.Governance,
+  ScreenNames.NftMarket,
+  // Names other platforms and what the iPhone app leaves out (App Store 2.3.10).
+  ScreenNames.Compare,
   ScreenNames.Ads,
   ScreenNames.Dpay,
   ScreenNames.CommandCentre,
@@ -505,6 +513,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
       if (entry.item) {
         if (!isAuthed && screen && AUTHED_ONLY_SCREENS.has(screen as any)) return false;
         if (!DIGITAL_PURCHASES_ENABLED && screen && STOREFRONT_HIDDEN_SCREENS.has(screen as any)) return false;
+        // Docs and Blog open the website, whose pages cover buying, staking
+        // and minting (App Store 3.1.1).
+        if (!DIGITAL_PURCHASES_ENABLED && entry.item.url) return false;
       }
       return true;
     });

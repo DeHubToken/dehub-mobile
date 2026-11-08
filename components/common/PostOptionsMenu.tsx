@@ -800,7 +800,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   holders: the sheet explains what a badge buys and links to
                   staking, which is worth more than hiding the row from the
                   people who have not staked yet. */}
-              {!!onBoostPress && tokenId != null && (
+              {DIGITAL_PURCHASES_ENABLED && !!onBoostPress && tokenId != null && (
                 <OptionRow
                   icon="Zap"
                   label={t("feedCard.boostPost")}
@@ -839,7 +839,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Report — for non-owners */}
           {!isOwner && (
             <>
-              {!!onGiftBoostPress && tokenId != null && (
+              {DIGITAL_PURCHASES_ENABLED && !!onGiftBoostPress && tokenId != null && (
                 <OptionRow
                   icon="Gift"
                   label={t("postOptions.giftBoost")}

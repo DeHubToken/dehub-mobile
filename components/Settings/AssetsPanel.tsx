@@ -267,17 +267,23 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
       {/* Not in the App Store build: its slots and copy are about staking. */}
       {!IS_APP_STORE_BUILD && <BadgeDelegationSection />}
 
-      <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie" anchor="fractions">
-        <EmptyOwnership icon="ChartPie" label={t('settings.noFractions')} />
-      </SettingsSection>
+      {/* Fractions, usernames and offers are bought and sold on the web,
+          not in the App Store build (3.1.1). */}
+      {!IS_APP_STORE_BUILD && (
+        <>
+          <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie" anchor="fractions">
+            <EmptyOwnership icon="ChartPie" label={t('settings.noFractions')} />
+          </SettingsSection>
 
-      <SettingsSection label={t('settings.usernamesOwn')} icon="AtSign" anchor="owned-usernames">
-        <EmptyOwnership icon="AtSign" label={t('settings.noUsernames')} />
-      </SettingsSection>
+          <SettingsSection label={t('settings.usernamesOwn')} icon="AtSign" anchor="owned-usernames">
+            <EmptyOwnership icon="AtSign" label={t('settings.noUsernames')} />
+          </SettingsSection>
 
-      <SettingsSection label={t('settings.offersMade')} icon="Handshake" anchor="offers-made">
-        <EmptyOwnership icon="Handshake" label={t('settings.noOffers')} />
-      </SettingsSection>
+          <SettingsSection label={t('settings.offersMade')} icon="Handshake" anchor="offers-made">
+            <EmptyOwnership icon="Handshake" label={t('settings.noOffers')} />
+          </SettingsSection>
+        </>
+      )}
 
       <ChainSwitchModal
         visible={chainModalVisible}

@@ -41,6 +41,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
+import { IS_APP_STORE_BUILD } from '../../config/storefront';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
@@ -189,6 +190,20 @@ const FEATURE_GROUPS: { group: string; displayGroup: string; items: { value: str
 ];
 
 const FEATURES = FEATURE_GROUPS.flatMap((g) => g.items);
+
+// Token, payment and marketplace features the iPhone app does not offer, so
+// it does not advertise them on a poster either.
+const APP_STORE_HIDDEN_FEATURES = new Set([
+  'communities', 'radio', 'tv-console', 'dm-tipped',
+  'dhb-staking', 'lp-farming', 'token-bridge', 'governance', 'token-utility',
+  'fiat-onramp', 'fiat-offramp', 'uniswap-swap', 'wallet',
+  'stores', 'fractions', 'work', 'tipping', 'premium',
+  'ai-video', 'ai-toolkits', 'affiliate', 'lcs-tge', 'games-hub', 'depin', 'ad-stack',
+]);
+
+function visibleFeatures<T extends { value: string }>(items: T[]): T[] {
+  return IS_APP_STORE_BUILD ? items.filter((i) => !APP_STORE_HIDDEN_FEATURES.has(i.value)) : items;
+}
 
 /* ── Auto-detection from the user's prompt (web's, verbatim) ─────────────── */
 
@@ -545,8 +560,10 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               {t("poster.spotlightFeatures")}{features.length > 0 ? ` (${features.length})` : ''}
             </Text>
             {FEATURE_GROUPS.map((group) => {
+              const items = visibleFeatures(group.items);
+              if (items.length === 0) return null;
               const isOpen = expandedGroup === group.group;
-              const selectedCount = group.items.filter((i) => features.includes(i.value)).length;
+              const selectedCount = items.filter((i) => features.includes(i.value)).length;
               return (
                 <View key={group.group} style={s.group}>
                   <TouchableOpacity
@@ -561,7 +578,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
                     <Icon name={isOpen ? 'ChevronUp' : 'ChevronDown'} size={16} color="#6F7174" />
                   </TouchableOpacity>
                   {isOpen &&
-                    group.items.map((item) => {
+                    items.map((item) => {
                       const selected = features.includes(item.value);
                       return (
                         <TouchableOpacity

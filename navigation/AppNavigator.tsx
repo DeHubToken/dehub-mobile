@@ -192,8 +192,8 @@ function AppNavigatorContent() {
 
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => deferredScreen('../screens/CreatorScreen#default', () => require('../screens/CreatorScreen').default)} />
-        <Stack.Screen name={ScreenNames.Maboroshi} getComponent={() => deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default)} />
-        <Stack.Screen name={ScreenNames.CreatorRemake} getComponent={() => deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default)} />
+        <Stack.Screen name={ScreenNames.Maboroshi} getComponent={() => storefrontRoute(deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default), "/creator/maboroshi")} />
+        <Stack.Screen name={ScreenNames.CreatorRemake} getComponent={() => storefrontRoute(deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default), "/creator/remake")} />
         <Stack.Screen name={ScreenNames.CreatorLearning} getComponent={() => deferredScreen('../screens/CreatorLearningScreen#default', () => require('../screens/CreatorLearningScreen').default)} />
         <Stack.Screen name={ScreenNames.CreatorStudio} getComponent={() => deferredScreen('../screens/AIChatScreen#CreatorStudioScreen', () => require('../screens/AIChatScreen').CreatorStudioScreen)} />
         {/* A shared flow is readable signed-out; your flows and copying sign in. */}
@@ -224,7 +224,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Converter}
-          getComponent={() => deferredScreen('../screens/ConverterScreen#default', () => require("../screens/ConverterScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/ConverterScreen#default', () => require("../screens/ConverterScreen").default), "/converter")}
         />
         <Stack.Screen
           name={ScreenNames.Migrate}
@@ -234,7 +234,7 @@ function AppNavigatorContent() {
           name={ScreenNames.Glossary}
           getComponent={() => deferredScreen('../screens/GlossaryScreen#default', () => require("../screens/GlossaryScreen").default)}
         />
-        <Stack.Screen name={ScreenNames.Compare} getComponent={() => deferredScreen('../screens/CompareScreen#default', () => require('../screens/CompareScreen').default)} />
+        <Stack.Screen name={ScreenNames.Compare} getComponent={() => storefrontRoute(deferredScreen('../screens/CompareScreen#default', () => require('../screens/CompareScreen').default), "/compare")} />
         <Stack.Screen
           name={ScreenNames.Guide}
           getComponent={() => deferredScreen('../screens/GuideScreen#default', () => require("../screens/GuideScreen").default)}
@@ -352,12 +352,12 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Governance}
-          getComponent={() => deferredScreen('../screens/GovernanceScreen#default', () => require("../screens/GovernanceScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/GovernanceScreen#default', () => require("../screens/GovernanceScreen").default), "/app/governance")}
         />
         {/* Public: reading a proposal's discussion is open, replying signs in. */}
         <Stack.Screen
           name={ScreenNames.GovernanceProposal}
-          getComponent={() => deferredScreen('../screens/GovernanceProposalScreen#default', () => require("../screens/GovernanceProposalScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/GovernanceProposalScreen#default', () => require("../screens/GovernanceProposalScreen").default), (p) => `/app/governance/${encodeURIComponent(String(p?.proposalId ?? ""))}`)}
         />
         <Stack.Screen
           name={ScreenNames.Dao}
@@ -388,12 +388,12 @@ function AppNavigatorContent() {
         {/* Fraction marketplace — same posture: browse signed-out, trading signs in. */}
         <Stack.Screen
           name={ScreenNames.Fractions}
-          getComponent={() => deferredScreen('../screens/FractionsScreen#default', () => require("../screens/FractionsScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/FractionsScreen#default', () => require("../screens/FractionsScreen").default), "/app/fractions")}
         />
         {/* NFT market (dehub.io/nfts) — browse signed-out; Android trades, iOS views. */}
         <Stack.Screen
           name={ScreenNames.NftMarket}
-          getComponent={() => deferredScreen('../screens/NftMarketScreen#default', () => require("../screens/NftMarketScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/NftMarketScreen#default', () => require("../screens/NftMarketScreen").default), "/nfts")}
         />
         {/* Account marketplace — whole accounts, same posture. */}
         <Stack.Screen
@@ -446,7 +446,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.TV}
-          getComponent={() => deferredScreen('../screens/TVScreen#default', () => require("../screens/TVScreen").default)}
+          getComponent={() => storefrontRoute(deferredScreen('../screens/TVScreen#default', () => require("../screens/TVScreen").default), "/tv")}
         />
         <Stack.Screen
           name={ScreenNames.Work}

@@ -133,7 +133,7 @@ const NAV_ITEMS: DrawerItem[] = [
   // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
   // the other things staking buys. Browsing and adding packs is open to all.
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
-  { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Hammer", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
@@ -145,29 +145,28 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
   // The NFT market is the Fractions screen's NFTs tab. Android reaches it
   // from the Fractions row (this one only shows for a menu search like
-  // "nft"); iOS hides Fractions, so this row is its way in (view only there,
-  // US gets a link to the website).
-  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.Fractions, params: { tab: "nfts" }, searchOnly: DIGITAL_PURCHASES_ENABLED },
+  // "nft"). The iPhone app leaves NFTs out entirely (App Store 3.1.1).
+  { icon: "Gem", labelKey: "nav.nfts", screen: ScreenNames.Fractions, params: { tab: "nfts" }, searchOnly: true, storefrontHidden: true },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames, storefrontHidden: true },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts, storefrontHidden: true },
   // Web sidebar: AI Agents sits just above Advertising.
   { icon: "Bot", labelKey: "nav.agents", screen: ScreenNames.Agents },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
-  { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
+  { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV, storefrontHidden: true },
   { icon: "LayoutGrid", labelKey: "miniApps.store.title", screen: ScreenNames.Apps, storefrontHidden: true },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   // The third-party mini app store has its own storefront review pending.
-  { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
+  { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true, storefrontHidden: true },
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate, storefrontHidden: true },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
-  { icon: "Scroll", labelKey: "Compare Riftn", screen: ScreenNames.Compare },
+  { icon: "Scroll", labelKey: "Compare Riftn", screen: ScreenNames.Compare, storefrontHidden: true },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
-  { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs`, storefrontHidden: true },
+  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog`, storefrontHidden: true },
   // Search-only on web too. Hidden on iOS: both pages exist to sell a plan.
   { icon: "Crown", labelKey: "nav.premium", screen: ScreenNames.Premium, storefrontHidden: true, searchOnly: true },
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },

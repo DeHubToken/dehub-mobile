@@ -71,7 +71,7 @@ import {
   recordCommentViews,
   Comment,
 } from "../../services/nft.service";
-import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
+import { getAvatarUrl, toastError, toastInfo, toastSuccess } from "../../libs";
 import { selfBadgeFields } from "../../libs/misc";
 import { getFileName, guessMime } from "../../libs/assets.util";
 import { useCommentAttachPicker } from "./useCommentAttachPicker";
@@ -79,6 +79,7 @@ import { useComposerKeyboard, useSelfLiftingComposer } from "../../hooks/useComp
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
+import { aiConsentDeclinedMessage, ensureAiConsent, hasAiConsent } from "../../libs/ai-consent";
 import { collapsedReplyIds } from "../../libs/comment-preview";
 import { authorThreadFirst, isAuthorThreadRoot } from "../../libs/author-thread";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
@@ -1073,6 +1074,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const submitComment = useCallback(async () => {
     if (!inputText.trim() || posting) return;
     if (!requireAuth) return;
+    // Tagging @assistant sends the thread to an AI provider.
+    if (mentionsAssistant(inputText) && !hasAiConsent() && !(await ensureAiConsent())) {
+      toastInfo(aiConsentDeclinedMessage());
+      return;
+    }
 
     await requireAuth(async () => {
       setPosting(true);

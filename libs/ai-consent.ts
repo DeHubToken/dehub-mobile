@@ -96,6 +96,20 @@ export function ensureAiConsent(): Promise<boolean> {
 /** Thrown by the AI service when the user said no. Callers can stay quiet. */
 export const AI_CONSENT_DECLINED = "AI_CONSENT_DECLINED";
 
+/** Error for features outside the AI service; `code` lets callers stay quiet. */
+export class AiConsentDeclinedError extends Error {
+  readonly code = AI_CONSENT_DECLINED;
+}
+
+/**
+ * For a request the user just started outside the AI service: asks if needed
+ * and throws AiConsentDeclinedError when the answer is no.
+ */
+export async function requireAiConsent(): Promise<void> {
+  if (hasAiConsent() || (await ensureAiConsent())) return;
+  throw new AiConsentDeclinedError(aiConsentDeclinedMessage());
+}
+
 export function aiConsentDeclinedMessage(): string {
   return translateCopy("aiConsent.declined", {
     defaultValue: "AI features are off. You can turn them on in Settings → Privacy.",

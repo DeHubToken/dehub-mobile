@@ -1,5 +1,6 @@
 import { outsideImage } from "../../libs/outside-image";
 import SkeletonBlock from '../Feed/SkeletonBlock';
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 /**
  * Outside Link Preview
  * ====================
@@ -192,7 +193,8 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
                 {preview.description}
               </Text>
             )}
-            <PredictionDetails preview={preview} />
+            {/* Live betting odds stay off the iPhone app (App Store 5.3). */}
+            {!IS_APP_STORE_BUILD && <PredictionDetails preview={preview} />}
           </View>
         </View>
       </View>

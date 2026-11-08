@@ -1179,6 +1179,7 @@ const ALL_VIRAL_EFFECTS: ViralEffect[] = [
  */
 const APP_STORE_HIDDEN_EFFECTS = new Set([
     'bikini-up', 'my-girlfriends', 'my-boyfriends', 'pole-dance', 'summoning-succubus', 'come-feel-my-abs',
+    'kiss-me-ai', 'kiss', 'kiss-me', 'leggy-run',
 ]);
 export const VIRAL_EFFECTS: ViralEffect[] = IS_APP_STORE_BUILD
     ? ALL_VIRAL_EFFECTS.filter(effect => !APP_STORE_HIDDEN_EFFECTS.has(effect.id))

@@ -1,5 +1,6 @@
 import { useChatTextScale } from "../../hooks/useAppPrefs";
 import { openMessageReport } from "../common/MessageReportHost";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useDraftState } from '../../hooks/useDraftState';
@@ -597,7 +598,9 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
 
   const renderItem = useCallback(
     ({ item }: { item: CommunityChatMessage }) => {
-      // Buy bot posts carry the trade as JSON: draw the card web draws.
+      // Buy bot posts carry the trade as JSON: draw the card web draws. The
+      // iPhone app shows no token trades (App Store 3.1.1).
+      if (item.message_type === "buy_alert" && IS_APP_STORE_BUILD) return null;
       const buy = item.message_type === "buy_alert" ? parseBuyAlert(item.content) : null;
       if (buy) return <BuyAlertCard data={buy} time={formatClock(new Date(item.created_at))} />;
       return (

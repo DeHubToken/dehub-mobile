@@ -1,5 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 import { getAccount, followUser, unfollowUser, removeFollower } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
 import {
@@ -436,6 +437,8 @@ export const useUserProfileData = (
     const viewerAddress = authUser?.walletAddress || authUser?.address;
     const viewingSelf = !!viewerAddress && viewerAddress.toLowerCase() === data.address?.toLowerCase();
     if (data.hideBadgeAndBalance && !viewingSelf) return socialStats;
+    // No tipping in the iPhone app (App Store 3.1.1), so no tip totals either.
+    if (IS_APP_STORE_BUILD) return socialStats;
     return [
       ...socialStats,
       {

@@ -13,6 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 import { bootRevealed } from "../../libs/bootReveal";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 
 /**
  * The jump from DeHub to Riftn, the same starfield the web plays while it
@@ -171,7 +172,9 @@ export default function RiftnMoveIntro() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (shownThisOpen) return;
+    // The App Store app launches as Riftn, so a first-time iPhone user has no
+    // DeHub to move from.
+    if (shownThisOpen || IS_APP_STORE_BUILD) return;
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | null = null;
     const attempt = async () => {

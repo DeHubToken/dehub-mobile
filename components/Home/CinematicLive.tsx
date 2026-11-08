@@ -14,6 +14,7 @@ import SkeletonBlock from '../Feed/SkeletonBlock';
  */
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { IS_APP_STORE_BUILD } from "../../config/storefront";
 import {
   FlatList,
   Pressable,
@@ -280,10 +281,12 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
     gcTime: 10 * 60_000,
     retry: 1,
   });
+  // TV plays third-party broadcasts, which the iPhone app leaves out (App Store 5.2).
   const { data: tvChannels = [] } = useQuery({
     queryKey: ["tv-channels-preview"],
     queryFn: () => getTVChannelsByCountry("all", 5),
     staleTime: 5 * 60_000,
+    enabled: !IS_APP_STORE_BUILD,
   });
 
   const fallbackGame = t("live.justChatting");

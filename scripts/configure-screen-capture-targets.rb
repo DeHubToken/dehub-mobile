@@ -42,6 +42,11 @@ def configure_screen_capture_targets(ios_directory)
       reference = source_group.files.find { |file| file.path == path } || source_group.new_file(path, :project)
       target.source_build_phase.add_file_reference(reference, true)
     end
+    # Each extension ships its own privacy manifest (it reads the uptime clock
+    # to time a recording), or App Store Connect flags the build.
+    privacy_path = '../modules/screen-capture/ios/Shared/PrivacyInfo.xcprivacy'
+    privacy = source_group.files.find { |file| file.path == privacy_path } || source_group.new_file(privacy_path, :project)
+    target.resources_build_phase.add_file_reference(privacy, true)
     unless app.dependencies.any? { |dependency| dependency.target == target }
       app.add_dependency(target)
     end

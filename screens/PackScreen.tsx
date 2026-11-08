@@ -21,6 +21,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import SmartImage from "../components/common/SmartImage";
 import Icon from "../components/ui/Icon";
+import ReportModal from "../components/common/ReportModal";
 import { useAuthActions } from "../context/AuthContext";
 import type { AppStackParamList } from "../navigation/types";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -89,6 +90,7 @@ export default function PackScreen() {
   const [editingName, setEditingName] = useSurfaceDraft<string | null>("screens/PackScreen.tsx:editingName", null, slug);
   const [link, setLink] = useSurfaceDraft("screens/PackScreen.tsx:link", "");
   const [label, setLabel] = useSurfaceDraft("screens/PackScreen.tsx:label", "");
+  const [reporting, setReporting] = useState(false);
 
   if (isLoading) {
     return (
@@ -346,6 +348,16 @@ export default function PackScreen() {
             <Icon name="Share2" size={16} color="#FFFFFF" />
             <Text style={styles.outlineText}>{t("postOptions.share")}</Text>
           </Pressable>
+          {!isOwner && (
+            <Pressable
+              onPress={() => requireAuth(() => setReporting(true))}
+              accessibilityRole="button"
+              style={styles.outlineBtn}
+            >
+              <Icon name="Flag" size={16} color="#FFFFFF" />
+              <Text style={styles.outlineText}>{t("postOptions.report")}</Text>
+            </Pressable>
+          )}
           {isOwner && (
             <Pressable disabled={busy} onPress={confirmDelete} accessibilityRole="button" style={styles.dangerBtn}>
               <Icon name="Trash2" size={16} color="#F87171" />
@@ -454,6 +466,13 @@ export default function PackScreen() {
         )}
         </PageSection>
       </ScrollView>
+      <ReportModal
+        visible={reporting}
+        onClose={() => setReporting(false)}
+        type="user"
+        userId={pack.owner}
+        context={`Creator pack "${pack.name}" ${shareUrl}`}
+      />
     </KeyboardAvoidingView>
   );
 }

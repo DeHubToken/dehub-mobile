@@ -1,6 +1,7 @@
 /** A group or channel in the Messages list. Tapping it opens its chat. */
 
 import React from "react";
+import { purchaseOfferVisible } from "../../config/storefront";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
@@ -38,7 +39,7 @@ export default function GroupChatRow({ community, onPress }: { community: Commun
         </View>
         <View className="flex-row items-center gap-1 mt-0.5">
           <Text className="text-theme-neutrals-400 text-[14px]" numberOfLines={1}>{subtitle}</Text>
-          {price > 0 && (
+          {price > 0 && purchaseOfferVisible() && (
             <>
               <Text className="text-theme-neutrals-400 text-[14px]">·</Text>
               <Image source={DEHUB_COIN} style={{ width: 12, height: 12 }} contentFit="contain" />

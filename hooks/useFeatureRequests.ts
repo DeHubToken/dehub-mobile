@@ -1,3 +1,4 @@
+import { ensureAiConsent, hasAiConsent } from "../libs/ai-consent";
 import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Feature Requests data layer
@@ -578,6 +579,8 @@ async function requestAssistantReply(
   commentId: string,
   walletAddress: string,
 ): Promise<void> {
+  // The assistant's reply sends this thread to an AI provider.
+  if (!hasAiConsent() && !(await ensureAiConsent())) return;
   const headers = await dehubAuthHeaders(walletAddress);
   if (!headers["x-dehub-token"]) return;
   const { error } = await supabase.functions.invoke("feature-request-assistant", {

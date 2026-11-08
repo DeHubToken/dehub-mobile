@@ -1,5 +1,6 @@
 import { Platform, Share, type ShareContent, type ShareOptions } from "react-native";
 import { track } from "./analytics";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 
 // Matches web's affiliateRef VALID rule after upper-casing.
 const CODE = /^[A-Z0-9_-]{3,40}$/;
@@ -10,6 +11,8 @@ let ownCode: string | null = null;
 
 /** The signed-in wallet's invite code, or null to stop tagging shares. */
 export function setShareRefCode(code: string | null | undefined): void {
+  // The paid referral programme stays out of the App Store build (3.1.5).
+  if (IS_APP_STORE_BUILD) { ownCode = null; return; }
   const upper = code?.trim().toUpperCase() ?? "";
   ownCode = CODE.test(upper) ? upper : null;
 }

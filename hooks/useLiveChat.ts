@@ -1,5 +1,6 @@
 import { confirmChatDelivery, roomMessageMatches } from '../libs/chat-delivery';
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import { io, Socket } from "socket.io-client";
 import { AppState, AppStateStatus } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
@@ -546,10 +547,19 @@ export const useLiveChat = (
     });
   }, []);
 
+  // Someone the user blocked disappears from the chat at once (App Store 1.2).
+  const blockedVersion = useBlockedAuthorsVersion();
+  const visibleMessages = useMemo(
+    () => messages.filter((m) => !isAuthorBlocked(m.senderAddress)),
+    // blockedVersion re-runs the filter when the block list changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages, blockedVersion],
+  );
+
   return {
     connected,
     joining,
-    messages,
+    messages: visibleMessages,
     room,
     myUser,
     isBanned,

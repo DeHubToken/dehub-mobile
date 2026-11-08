@@ -59,6 +59,8 @@ import { parsePresenceRequest } from "../libs/map-presence";
 import env from "../config/env";
 
 const MAP_PRESENCE_ENDPOINT = `${env.SUPABASE_URL}/functions/v1/map-presence`;
+/** One decimal place of a degree, about 10 km. */
+const roundCoord = (value: unknown) => Math.round(Number(value) * 10) / 10;
 
 /** Nothing below this is reported: an opening 0% reads as "did not start". */
 const FLOOR = 2;
@@ -387,7 +389,8 @@ const ArcadeGameScreen = () => {
               signal: requestAbort.signal,
               headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
               body: removing ? undefined : JSON.stringify({
-                latitude: request.latitude, longitude: request.longitude, precisionKm: 25,
+                // Only an approximate spot (about 10 km) ever leaves the phone.
+                latitude: roundCoord(request.latitude), longitude: roundCoord(request.longitude), precisionKm: 25,
                 username: user?.username, avatarUrl: user?.avatarImageUrl || user?.avatarUrl,
               }),
             });

@@ -4,6 +4,7 @@
  * and emoji reactions. Writes carry the wallet header RLS checks.
  */
 import { useCallback, useEffect, useMemo } from "react";
+import { isAuthorBlocked, useBlockedAuthorsVersion } from "../libs/blocked-authors";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../services/supabase";
@@ -197,5 +198,14 @@ export function useEventChat(eventId: string | undefined, walletAddress: string 
     [walletAddress, eventId, key, queryClient, t],
   );
 
-  return { messages, isLoading, sendMessage, editMessage, addReaction, removeReaction };
+  // Someone the user blocked disappears from the chat at once (App Store 1.2).
+  const blockedVersion = useBlockedAuthorsVersion();
+  const visibleMessages = useMemo(
+    () => messages.filter((m) => !isAuthorBlocked(m.wallet_address)),
+    // blockedVersion re-runs the filter when the block list changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [messages, blockedVersion],
+  );
+
+  return { messages: visibleMessages, isLoading, sendMessage, editMessage, addReaction, removeReaction };
 }

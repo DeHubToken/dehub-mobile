@@ -51,7 +51,9 @@ import {
   TERMS_OF_SERVICE_LINK,
   PRIVACY_POLICY_LINK,
   SUPPORT_MAIL,
+  WEBSITE_LINK,
 } from "../config/links";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 import GlassModal from "../components/ui/GlassModal";
 import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
 import { truncateAddress } from "../libs/strings.util";
@@ -412,14 +414,20 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         className="mt-4"
         anchor="support"
       >
-        {/* Native-only: no web equivalent, so web deliberately omits it. */}
-        <SettingsLinkRow
-          icon="Star"
-          label={t("settings.rateReview")}
-          description={t("settings.rateReviewDesc")}
-          onPress={() => setReviewModalVisible(true)}
-        />
-        <Divider />
+        {/* Native-only: no web equivalent, so web deliberately omits it. The
+            iPhone app has no App Store page to review yet, so it leaves the
+            row out; iOS asks for ratings itself through the system prompt. */}
+        {!IS_APP_STORE_BUILD && (
+          <>
+            <SettingsLinkRow
+              icon="Star"
+              label={t("settings.rateReview")}
+              description={t("settings.rateReviewDesc")}
+              onPress={() => setReviewModalVisible(true)}
+            />
+            <Divider />
+          </>
+        )}
         <SettingsLinkRow
           icon="Bug"
           label={t("settings.reportBug")}
@@ -432,7 +440,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           label={t("settings.contactSupport", { defaultValue: "Contact support" })}
           description={SUPPORT_MAIL}
           external
-          onPress={() => { void Linking.openURL(`mailto:${SUPPORT_MAIL}`); }}
+          onPress={() => { Linking.openURL(`mailto:${SUPPORT_MAIL}`).catch(() => { void Linking.openURL(`${WEBSITE_LINK}/docs/contact`); }); }}
         />
         <Divider />
         <SettingsLinkRow

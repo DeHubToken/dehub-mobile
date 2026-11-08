@@ -45,6 +45,7 @@ import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 import { ownKeyHeaders } from "../../services/ai.service";
+import { ensureAiConsent, hasAiConsent } from "../../libs/ai-consent";
 
 const log = createLogger('MusicConfirmSheet');
 
@@ -162,6 +163,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 
   /** Same `generate-lyrics` edge function web uses — free, no credit charge. */
   const handleGenerateLyrics = useCallback(async () => {
+    if (!hasAiConsent() && !(await ensureAiConsent())) return;
     setIsGeneratingLyrics(true);
     try {
       const { data, error } = await supabase.functions.invoke('generate-lyrics', {

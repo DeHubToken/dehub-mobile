@@ -17,6 +17,7 @@ import { KitButton, PageEmpty } from "../components/page/PageKit";
 import { CollapsibleHeader } from "../components/common/CollapsibleHeader";
 import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import LeaderboardCategoryPills, {
+  DEFAULT_SORT_CATEGORY,
   SortCategory,
   PillKey,
 } from "../components/Leaderboard/LeaderboardCategoryPills";
@@ -167,8 +168,8 @@ const LeaderboardScreen = () => {
   const [loading, setLoading] = useState(true); // only for initial load
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(false);
-  const [sortCategory, setSortCategory] = useState<SortCategory>("holdings");
-  const [selectedPill, setSelectedPill] = useState<SortCategory>("holdings");
+  const [sortCategory, setSortCategory] = useState<SortCategory>(DEFAULT_SORT_CATEGORY);
+  const [selectedPill, setSelectedPill] = useState<SortCategory>(DEFAULT_SORT_CATEGORY);
   const [period, setPeriod] = useState<TimePeriod>("all");
   const [selectedPeriod, setSelectedPeriod] = useState<TimePeriod>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -177,7 +178,7 @@ const LeaderboardScreen = () => {
   const [refreshMeBusy, setRefreshMeBusy] = useState(false);
   const [refreshMeCooldown, setRefreshMeCooldown] = useState(false);
   const hasLoadedOnce = useRef(false);
-  const pendingCategoryRef = useRef<SortCategory>("holdings");
+  const pendingCategoryRef = useRef<SortCategory>(DEFAULT_SORT_CATEGORY);
   const pendingPeriodRef = useRef<TimePeriod>("all");
   // Only the newest request may commit; a slow earlier one must not overwrite it.
   const requestSeq = useRef(0);
@@ -234,7 +235,7 @@ const LeaderboardScreen = () => {
 
   // Initial load
   useEffect(() => {
-    loadData("holdings", "all");
+    loadData(DEFAULT_SORT_CATEGORY, "all");
   }, [loadData]);
 
   // Coming back to the tab re-reads the board; the two-minute memory cache in

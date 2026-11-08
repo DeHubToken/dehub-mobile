@@ -19,6 +19,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
  */
 
 import { useEffect, useMemo, useRef } from "react";
+import { IS_APP_STORE_BUILD } from "../config/storefront";
 import i18n from "i18next";
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -198,7 +199,12 @@ export function useStreamProducts(
   const sellable = useMemo(
     () =>
       products.filter(
-        (p) => p.store_listings?.status === "active" && p.store_listings?.stock_quantity !== 0,
+        (p) =>
+          p.store_listings?.status === "active" &&
+          p.store_listings?.stock_quantity !== 0 &&
+          // Digital goods are bought outside Apple's payments, so the iPhone
+          // app lists physical ones only (App Store 3.1.1 / 3.1.3(e)).
+          !(IS_APP_STORE_BUILD && p.store_listings?.is_digital),
       ),
     [products],
   );
