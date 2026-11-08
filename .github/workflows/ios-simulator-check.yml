@@ -39,9 +39,11 @@ jobs:
         run: |
           gem install xcodeproj --version 1.27.0 --no-document
           ruby scripts/configure-screen-capture-targets.rb
+      # Plain install, as the store build does: the committed Podfile.lock
+      # trails autolinking, so --deployment refuses it.
       - name: Install pods
         working-directory: ios
-        run: pod install --deployment
+        run: pod install
       - name: Run the code in this commit, not the latest published update
         run: plutil -replace EXUpdatesEnabled -bool NO ios/DeHub/Supporting/Expo.plist
       - name: Boot an iPhone simulator
@@ -75,6 +77,7 @@ jobs:
         if: always()
         run: |
           mkdir -p sim-check
+          touch xcodebuild.log
           grep -E "(warning|error):" xcodebuild.log | grep -v "/Pods/" | sort | uniq -c | sort -rn > sim-check/app-warnings.txt || true
           grep -cE "warning:" xcodebuild.log > sim-check/warning-count.txt || true
           gzip -c xcodebuild.log > sim-check/xcodebuild.log.gz
