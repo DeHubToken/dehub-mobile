@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { View, Text, Pressable, StyleSheet, useWindowDimensions, PixelRatio } from "react-native";
 import { Image } from "expo-image";
+import SmartImage from "../common/SmartImage";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
 import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
@@ -243,8 +244,11 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
     // turned the dark grey pale, and it showed as a thin light rim round
     // every video.
     <Pressable onPress={handlePress} style={[styles.card, { width: CARD_WIDTH, height: CARD_HEIGHT }, !frame && styles.tall, isMinimal && styles.minimalCard, frame && styles.brickCard]}>
-      {/* Thumbnail base layer — always rendered */}
-      <Image
+      {/* Thumbnail base layer — always rendered. SmartImage so a resize that
+          stalls or times out falls back to the original poster; with a bare
+          Image that timeout counted as broken media and dropped the video
+          from the grid. onError now means the original failed too. */}
+      <SmartImage
         source={thumbnailUri}
         style={StyleSheet.absoluteFill}
         contentFit="cover"
