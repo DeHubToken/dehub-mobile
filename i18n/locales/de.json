@@ -14038,6 +14038,18 @@
     "subscriptionTokensValueNote": "Abonnement-Token behalten ihren Dollar-Wert. Wenn sich der Token-Preis bewegt, bevor Sie sie verwenden, werden Sie mehr oder weniger Token sehen, aber sie kaufen immer die gleiche Menge an KI-Generierung. Sie können nicht abgehoben, gesendet oder gehandelt werden.",
     "topUpEmptyHint": "Tokens zum Generieren mit KI hinzufügen"
   },
+  "accountDeactivation": {
+    "title": "Konto deaktivieren",
+    "short": "Profil vorerst ausblenden. Erneut anmelden, um es wiederherzustellen",
+    "description": "Mach eine Pause. Dein Profil, deine Beiträge und Kommentare werden ausgeblendet und du wirst überall abgemeldet. Nichts wird gelöscht; mit der nächsten Anmeldung ist alles wieder da.",
+    "button": "Deaktivieren",
+    "confirmTitle": "Konto deaktivieren?",
+    "confirmBody": "Dein Profil, deine Beiträge und Kommentare werden ausgeblendet und du wirst auf allen Geräten abgemeldet. Melde dich jederzeit wieder an, um das rückgängig zu machen.",
+    "busy": "Wird deaktiviert…",
+    "done": "Konto deaktiviert",
+    "receipt": "Dein Profil, deine Beiträge und Kommentare sind ausgeblendet. Melde dich jederzeit wieder an, um alles zurückzuholen.",
+    "error": "Dein Konto konnte nicht deaktiviert werden. Bitte versuche es erneut."
+  },
   "accountDeletion": {
     "title": "Konto löschen",
     "description": "Lösche dein Konto und deine persönlichen Daten dauerhaft",

@@ -12899,6 +12899,18 @@
     "subscriptionTokensValueNote": "Abonnementstokens hebben hun dollarwaarde. Als de tokenprijs beweegt voordat je ze gebruikt, zie je meer of minder tokens, maar ze kopen altijd dezelfde hoeveelheid AI-generatie. Ze kunnen niet worden ingetrokken, verzonden of verhandeld.",
     "topUpEmptyHint": "Voeg tokens toe om te genereren met AI"
   },
+  "accountDeactivation": {
+    "title": "Account deactiveren",
+    "short": "Verberg je profiel voorlopig. Log opnieuw in om het te herstellen",
+    "description": "Neem even pauze. Je profiel, berichten en reacties worden verborgen en je wordt overal uitgelogd. Er wordt niets verwijderd; opnieuw inloggen brengt alles terug.",
+    "button": "Deactiveren",
+    "confirmTitle": "Je account deactiveren?",
+    "confirmBody": "Je profiel, berichten en reacties worden verborgen en je wordt op elk apparaat uitgelogd. Log op elk moment opnieuw in om dit ongedaan te maken.",
+    "busy": "Deactiveren…",
+    "done": "Account gedeactiveerd",
+    "receipt": "Je profiel, berichten en reacties zijn verborgen. Log op elk moment opnieuw in om alles terug te krijgen.",
+    "error": "Je account kon niet worden gedeactiveerd. Probeer het opnieuw."
+  },
   "accountDeletion": {
     "title": "Account verwijderen",
     "description": "Je account en persoonlijke gegevens permanent verwijderen",

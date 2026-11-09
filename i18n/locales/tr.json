@@ -12647,6 +12647,18 @@
     "subscriptionTokensValueNote": "Abonelik tokenleri dolar değerlerini korur. Token fiyatı kullanmadan önce hareket ederse, daha fazla veya daha az token görürsünüz, ancak her zaman aynı miktarda AI üretimi satın alırlar. Geri çekilemez, gönderilemez veya takas edilemezler.",
     "topUpEmptyHint": "Yapay zeka ile oluşturmak için token ekleyin"
   },
+  "accountDeactivation": {
+    "title": "Hesabı devre dışı bırak",
+    "short": "Profilini şimdilik gizle. Geri getirmek için tekrar giriş yap",
+    "description": "Bir ara ver. Profilin, gönderilerin ve yorumların gizlenir ve her yerde oturumun kapatılır. Hiçbir şey silinmez; tekrar giriş yaptığında her şey geri gelir.",
+    "button": "Devre dışı bırak",
+    "confirmTitle": "Hesabın devre dışı bırakılsın mı?",
+    "confirmBody": "Profilin, gönderilerin ve yorumların gizlenecek ve tüm cihazlarda oturumun kapatılacak. Geri almak için istediğin zaman tekrar giriş yap.",
+    "busy": "Devre dışı bırakılıyor…",
+    "done": "Hesap devre dışı bırakıldı",
+    "receipt": "Profilin, gönderilerin ve yorumların gizli. Her şeyi geri getirmek için istediğin zaman tekrar giriş yap.",
+    "error": "Hesabın devre dışı bırakılamadı. Lütfen tekrar dene."
+  },
   "accountDeletion": {
     "title": "Hesabı sil",
     "description": "Hesabınızı ve kişisel verilerinizi kalıcı olarak silin",

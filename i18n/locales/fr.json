@@ -12652,6 +12652,18 @@
     "subscriptionTokensValueNote": "Les jetons d'abonnement conservent leur valeur en dollars. Si le prix du jeton évolue avant que vous ne l'utilisiez, vous verrez plus ou moins de jetons, mais ils achètent toujours la même quantité de génération d'IA. Ils ne peuvent pas être retirés, envoyés ou échangés.",
     "topUpEmptyHint": "Ajouter des jetons à générer avec l'IA"
   },
+  "accountDeactivation": {
+    "title": "Désactiver le compte",
+    "short": "Masquez votre profil pour l'instant. Reconnectez-vous pour le restaurer",
+    "description": "Faites une pause. Votre profil, vos publications et vos commentaires sont masqués et vous êtes déconnecté partout. Rien n'est supprimé : en vous reconnectant, tout revient.",
+    "button": "Désactiver",
+    "confirmTitle": "Désactiver votre compte ?",
+    "confirmBody": "Votre profil, vos publications et vos commentaires seront masqués et vous serez déconnecté de tous vos appareils. Reconnectez-vous à tout moment pour annuler.",
+    "busy": "Désactivation…",
+    "done": "Compte désactivé",
+    "receipt": "Votre profil, vos publications et vos commentaires sont masqués. Reconnectez-vous à tout moment pour tout récupérer.",
+    "error": "Impossible de désactiver votre compte. Veuillez réessayer."
+  },
   "accountDeletion": {
     "title": "Supprimer votre compte",
     "description": "Supprimer définitivement votre compte et vos données personnelles",
