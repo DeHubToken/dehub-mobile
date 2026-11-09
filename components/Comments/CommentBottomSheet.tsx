@@ -403,8 +403,12 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
       <ListContextResetter>{content}</ListContextResetter>
     </View>;
   }
+  // navigationBarTranslucent: without it the Modal's window first opened short
+  // of the navigation bar, painted that bar light grey and then grew to the
+  // full screen, so for two frames on Android the sheet showed a bar's height
+  // higher with a white strip under it, then dropped back before sliding up.
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={requestClose}>
+    <Modal visible={visible} transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={requestClose}>
       <ScreenSpaceWindowContext.Provider value>{content}</ScreenSpaceWindowContext.Provider>
     </Modal>
   );
