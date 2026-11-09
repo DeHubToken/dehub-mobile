@@ -3,7 +3,7 @@ import { LinkingOptions, getStateFromPath } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
 import type { RootStackParamList } from './types';
 import { createLogger } from '../libs/logger';
-import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
+import { closeProfileSheetForLink, emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
 import { couldBeProfileSegment, isEnsHandle } from '../libs/ens-handle';
 import { RESERVED_LINK_SEGMENTS } from '../libs/reserved-usernames';
 import { hasHeldCallback, holdLaunchCallback, withoutFragment } from '../libs/oauth-cold-start';
@@ -835,6 +835,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
   subscribe: (listener) => {
     const subscription = Linking.addEventListener('url', ({ url }) => {
       logger.info('Received deep link while app open', { url: withoutFragment(url) });
+      closeProfileSheetForLink();
       // Rewrite username.dehub.io → dehub.io/:username so getStateFromPath handles it
       const subdomain = extractSubdomainUsername(url);
       if (subdomain) {

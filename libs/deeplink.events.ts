@@ -39,6 +39,26 @@ export function emitProfileDeepLink(username: string) {
   }
 }
 
+type CloseHandler = () => void;
+
+let _closeProfileHandler: CloseHandler | null = null;
+
+/** Called from UserProfileSheetProvider so a link can close an open profile. */
+export function setProfileSheetCloser(handler: CloseHandler | null) {
+  _closeProfileHandler = handler;
+}
+
+/**
+ * A link that arrives while the app is open closes an open profile first. The
+ * profile sheet sits above the whole navigator, so the page a link opened used
+ * to land underneath it and nothing seemed to happen: on the iOS simulator
+ * every link after a profile link stayed on that profile. A profile link
+ * reopens the sheet with its own person 350ms later.
+ */
+export function closeProfileSheetForLink() {
+  _closeProfileHandler?.();
+}
+
 /**
  * A stage invite link, in either shape the web app hands out: `/stage/<uuid>`
  * (the original) or `/stages/<n>` (the short share form backed by

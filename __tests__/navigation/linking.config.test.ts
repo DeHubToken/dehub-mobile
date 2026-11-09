@@ -32,12 +32,13 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 jest.mock('../../libs/deeplink.events', () => ({
+  closeProfileSheetForLink: jest.fn(),
   emitProfileDeepLink: jest.fn(),
   emitStageDeepLink: jest.fn(),
 }));
 
 import { getStateFromPath as defaultGetStateFromPath } from '@react-navigation/native';
-import { emitProfileDeepLink } from '../../libs/deeplink.events';
+import { closeProfileSheetForLink, emitProfileDeepLink } from '../../libs/deeplink.events';
 import linkingConfig, { ShareLinks, parseDeepLink } from '../../navigation/linking.config';
 import * as Linking from 'expo-linking';
 import { takeHeldCallback } from '../../libs/oauth-cold-start';
@@ -271,5 +272,20 @@ describe('ShareLinks', () => {
     expect(ShareLinks.profile('mal')).toBe('https://riftn.com/@mal');
     expect(ShareLinks.profile('@mal')).toBe('https://riftn.com/@mal');
     expect(ShareLinks.ensProfile('mal.eth')).toBe('https://riftn.com/mal.eth');
+  });
+});
+
+describe('links that arrive while the app is open', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  it('close an open profile before the linked page opens', () => {
+    const listener = jest.fn();
+    const unsubscribe = (linkingConfig.subscribe as any)(listener);
+    const calls = (Linking.addEventListener as jest.Mock).mock.calls;
+    const onUrl = calls[calls.length - 1][1];
+    onUrl({ url: 'dehub://app/messages' });
+    expect(closeProfileSheetForLink).toHaveBeenCalledTimes(1);
+    expect(listener).toHaveBeenCalledWith('dehub://app/messages');
+    unsubscribe();
   });
 });
