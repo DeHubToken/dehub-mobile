@@ -347,6 +347,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showPoll, setShowPoll] = useState(false);
   const [showMintSheet, setShowMintSheet] = useState(false);
 
+  // The menu's own sheets are built the first time they open rather than with
+  // the menu: six hidden sheets, the whole edit form among them, were built
+  // every time the menu came up. Once built, each stays for its exit animation.
+  const segmentsOpened = useOpenedOnce(showSegments);
+  const deleteOpened = useOpenedOnce(showDeleteConfirm);
+  const editOpened = useOpenedOnce(showEdit);
+  const reportContentOpened = useOpenedOnce(showReportContent);
+  const reportUserOpened = useOpenedOnce(showReportUser);
+  const blockOpened = useOpenedOnce(showBlockConfirm);
+
   /**
    * The sheet hides itself for a sub-modal instead of calling onClose().
    *
@@ -909,7 +919,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         </View>
       </GlassModal>
 
-      {canMarkSegments && tokenId != null && (
+      {canMarkSegments && tokenId != null && segmentsOpened && (
         <SegmentMarkerSheet
           visible={showSegments}
           tokenId={tokenId}
@@ -941,7 +951,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       )}
 
       {/* Delete confirmation */}
-      <ConfirmModal
+      {deleteOpened && <ConfirmModal
         visible={showDeleteConfirm}
         title={t("postOptions.deleteConfirmTitle")}
         description={t("postOptions.deleteConfirmDesc")}
@@ -951,10 +961,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         loading={deleteLoading}
         onConfirm={handleDeleteConfirm}
         onCancel={() => { setShowDeleteConfirm(false); closeAll(); }}
-      />
+      />}
 
       {/* Edit modal */}
-      <EditPostModal
+      {editOpened && <EditPostModal
         visible={showEdit}
         onClose={() => { setShowEdit(false); closeAll(); }}
         tokenId={tokenId}
@@ -972,38 +982,45 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         canReplaceVideo={canReplaceVideo}
         alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}
-      />
+      />}
 
       {/* Report content modal */}
-      <ReportModal
+      {reportContentOpened && <ReportModal
         visible={showReportContent}
         onClose={() => { setShowReportContent(false); closeAll(); }}
         type="content"
         tokenId={tokenId}
-      />
+      />}
 
       {/* Report user modal */}
-      <ReportModal
+      {reportUserOpened && <ReportModal
         visible={showReportUser}
         onClose={() => { setShowReportUser(false); closeAll(); }}
         type="user"
         userId={creatorIdentifier}
         userName={creatorDisplayName}
-      />
+      />}
 
       {/* Block/Unblock confirmation */}
-      <ConfirmBlockModal
+      {blockOpened && <ConfirmBlockModal
         visible={showBlockConfirm}
         mode={isBlocked ? "unblock" : "block"}
         targetLabel={creatorDisplayName}
         onConfirm={handleConfirmBlock}
         onCancel={() => { setShowBlockConfirm(false); closeAll(); }}
         loading={blockLoading}
-      />
+      />}
 
     </>
   );
 };
+
+/** True from the first time `open` is set: a sheet is built when it is first used, then kept. */
+function useOpenedOnce(open: boolean): boolean {
+  const [opened, setOpened] = useState(open);
+  if (open && !opened) setOpened(true);
+  return opened;
+}
 
 const PostOptionsMenu = memo(PostOptionsMenuComponent);
 export default PostOptionsMenu;
