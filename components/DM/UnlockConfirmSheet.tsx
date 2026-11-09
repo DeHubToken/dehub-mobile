@@ -63,7 +63,7 @@ export default function UnlockConfirmSheet({ visible, onClose, title, who, sub, 
   if (!visible && isFullyClosed) return null;
 
   return (
-    <Modal visible={visible || !isFullyClosed} transparent animationType="none" statusBarTranslucent onRequestClose={close}>
+    <Modal visible={visible || !isFullyClosed} transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={close}>
       <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
         <SheetBackdrop backdrop={backdrop} />
         <Pressable style={{ flex: 1 }} onPress={close} />
