@@ -160,27 +160,44 @@ export interface PostCreator {
  * refuses new claims of them (backend common/util/staff-names; same list as dehubweb src/lib/impersonation.ts);
  * this side warns about accounts that slipped in before that.
  */
-const STAFF_NAMES: Array<{ names: string[]; owners: string[]; label: string }> = [
-  { label: 'Mal', names: ['mal', 'maldoteth', 'maldot', 'maleth'], owners: ['0x9324840523a5d17dd12a2f11a9472e5a199c1937'] },
-  { label: 'Riftn', names: ['dehub', 'riftn'], owners: ['0x06da979225262715ed57449d0573329a1e685140'] },
+type StaffName = {
+  label: string;
+  /** Always flagged on anyone else. */
+  names: string[];
+  /** The plain first name: only flagged with a team word around it ("Real Mal", "Mal | Founder"). */
+  firstName?: string;
+  owners: string[];
+  /** Usernames are unique and these are reserved, so whoever holds one is the owner. */
+  ownerUsernames: string[];
+};
+
+const STAFF_NAMES: StaffName[] = [
+  { label: 'Mal', names: ['maldoteth', 'maldot', 'maleth'], firstName: 'mal', owners: ['0x9324840523a5d17dd12a2f11a9472e5a199c1937'], ownerUsernames: ['maldoteth'] },
+  { label: 'Riftn', names: ['dehub', 'riftn'], owners: ['0x06da979225262715ed57449d0573329a1e685140'], ownerUsernames: ['d'] },
 ];
 
-const ROLE_WORDS = [
+/** Words that claim a team role. */
+const CLAIM_WORDS = [
   'cofounder', 'founder', 'official', 'support', 'helpdesk', 'moderator', 'security',
-  'admin', 'team', 'staff', 'real', 'the', 'ceo', 'dev', 'mod', 'help', 'iam', 'its',
-  'eth', 'dot', 'dehub', 'riftn', 'app', 'hq',
-].map((w) => foldName(w)).sort((a, b) => b.length - a.length);
+  'admin', 'team', 'staff', 'real', 'ceo', 'mod', 'help', 'dehub', 'riftn',
+];
+/** Harmless padding: "Its Mal" or "Mal Dev" is still just someone called Mal. */
+const FILLER_WORDS = ['the', 'iam', 'its', 'eth', 'dot', 'dev', 'app', 'hq'];
+
+const prepWords = (words: string[]) => words.map((w) => foldName(w)).sort((a, b) => b.length - a.length);
+const ROLE_WORDS = prepWords([...CLAIM_WORDS, ...FILLER_WORDS]);
+const FILLER_ONLY = prepWords(FILLER_WORDS);
 
 /** Capital I and lowercase l look alike in most fonts: "MaI" is "Mal". */
 const foldIl = (value: string) => value.replace(/i/g, 'l');
 
-function nameCores(folded: string): string[] {
+function nameCores(folded: string, words: string[] = ROLE_WORDS): string[] {
   const out = new Set<string>([folded]);
   let frontier = [folded];
   for (let round = 0; round < 4 && frontier.length; round++) {
     const next: string[] = [];
     for (const value of frontier) {
-      for (const word of ROLE_WORDS) {
+      for (const word of words) {
         if (value.length > word.length && value.startsWith(word)) next.push(value.slice(word.length));
         if (value.length > word.length && value.endsWith(word)) next.push(value.slice(0, -word.length));
       }
@@ -192,22 +209,29 @@ function nameCores(folded: string): string[] {
 }
 
 /**
- * Who this account is dressed up as, or null. Address is the identity: the
- * owning wallet never gets flagged, whatever it calls itself.
+ * Who this account is dressed up as, or null. The owning wallet, or whoever
+ * holds the owner username, never gets flagged. Plenty of people are called
+ * Mal, so the plain first name is not flagged here; the API refuses it only
+ * together with Mal's own photo.
  */
 export function staffImpersonated(
   user: { address?: string | null; displayName?: string | null; username?: string | null } | null | undefined,
 ): string | null {
   if (!user) return null;
   const address = (user.address ?? '').toLowerCase();
+  const handle = (user.username ?? '').trim().replace(/^@+/, '').toLowerCase();
   for (const raw of [user.displayName, user.username]) {
     if (!raw) continue;
     const folded = foldName(raw);
     if (!folded) continue;
     const candidates = nameCores(folded).map(foldIl);
     for (const entry of STAFF_NAMES) {
-      if (entry.owners.includes(address)) continue;
+      if (entry.owners.includes(address) || (handle && entry.ownerUsernames.includes(handle))) continue;
       if (entry.names.some((n) => candidates.includes(foldIl(foldName(n))))) return entry.label;
+      if (entry.firstName) {
+        const target = foldIl(foldName(entry.firstName));
+        if (candidates.includes(target) && !nameCores(folded, FILLER_ONLY).map(foldIl).includes(target)) return entry.label;
+      }
     }
   }
   return null;
