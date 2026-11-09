@@ -132,8 +132,11 @@ function SpotifyMiniPlayerPanel({ uri }: { uri: string }) {
             containerStyle={styles.webview}
           />
         </View>
+        {/* dark-surface: keeps the theme's control material off this X,
+            which sits on the dark player, not on the page. */}
         <TouchableOpacity
           onPress={closeSpotify}
+          className="dark-surface"
           style={styles.closeBtn}
           hitSlop={8}
           accessibilityRole="button"
@@ -177,9 +180,11 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: 'rgba(0,0,0,0.85)',
+    // Pure black: System Light leaves it alone (a grey scrim would flip to
+    // white and hide the white X).
+    backgroundColor: '#000000',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.25)',
+    borderColor: 'rgba(255,255,255,0.3)',
     alignItems: 'center',
     justifyContent: 'center',
   },
