@@ -39,7 +39,7 @@ import FeedSearchResults from "../components/Home/FeedSearchResults";
 import FeedSearchLens, { LENS_DOCK_SPACE } from "../components/Home/FeedSearchLens";
 import { feedSearchParams, feedSearchTabFor, type FeedSearchTab } from "../libs/feed-search";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
-import { useDrawer } from "../context/DrawerContext";
+import { useDrawerActions } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
@@ -335,7 +335,7 @@ export default function HomeScreen() {
   }, []);
   const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
-  const { openDrawer } = useDrawer();
+  const { openDrawer } = useDrawerActions();
   // One handle per feed-list tab; stable ref objects so InfiniteVideoFeed's
   // feedRef effect never re-fires from a new ref identity.
   const feedRefs = useRef<Record<FeedListType, { current: InfiniteVideoFeedHandle | null }>>({
