@@ -14897,5 +14897,21 @@
     "openPost": "পোস্ট খুলুন",
     "readArticle": "প্রবন্ধ পড়ুন",
     "openToUnlock": "আনলক করতে খুলুন"
+  },
+  "spotify": {
+    "play": "চালাও",
+    "pause": "বিরতি",
+    "playingNow": "এখন বাজছে",
+    "inPlayer": "আপনার প্লেয়ারে",
+    "openInSpotify": "স্পটিফাইতে খুলুন",
+    "stopAndClose": "বন্ধ করো আর বন্ধ করো",
+    "kind": {
+      "track": "গান",
+      "album": "অ্যালবাম",
+      "playlist": "প্লেলিস্ট",
+      "episode": "পডকাস্ট এপিসোড",
+      "show": "পডকাস্ট",
+      "artist": "শিল্পী"
+    }
   }
 }

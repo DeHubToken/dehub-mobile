@@ -14876,5 +14876,21 @@
     "openPost": "Otvoriť príspevok",
     "readArticle": "Prečítajte si článok",
     "openToUnlock": "Otvoriť a odomknúť"
+  },
+  "spotify": {
+    "play": "Prehrať",
+    "pause": "Pozastaviť",
+    "playingNow": "Prehráva sa teraz",
+    "inPlayer": "Vo vašom prehrávači",
+    "openInSpotify": "Otvoriť v službe Spotify",
+    "stopAndClose": "Zastaviť a zavrieť",
+    "kind": {
+      "track": "Pieseň",
+      "album": "Album",
+      "playlist": "Zoznam skladieb",
+      "episode": "Epizóda podcastu",
+      "show": "Podcast",
+      "artist": "Umelec"
+    }
   }
 }

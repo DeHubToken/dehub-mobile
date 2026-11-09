@@ -14670,5 +14670,18 @@
     "openPost": "اوپن پوسٹ",
     "readArticle": "مضمون پڑھو",
     "openToUnlock": "کھول کے ان لاک"
+  },
+  "spotify": {
+    "play": "کھیڈ",
+    "pause": "وقفہ",
+    "playingNow": "اکھڑہ ہن",
+    "inPlayer": "تُہاڈے پلیئر وچ",
+    "stopAndClose": "رُک جاؤ تے بند کرو",
+    "kind": {
+      "track": "گانا",
+      "episode": "پودکاسٹ قسط",
+      "show": "پوڈکاسٹ",
+      "artist": "فنکار"
+    }
   }
 }

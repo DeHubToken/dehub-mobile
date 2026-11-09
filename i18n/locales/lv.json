@@ -14713,5 +14713,21 @@
     "openPost": "Atvērt ziņu",
     "readArticle": "Lasīt rakstu",
     "openToUnlock": "Atvērt, lai atbloķētu"
+  },
+  "spotify": {
+    "play": "Atskaņot",
+    "pause": "Apturēt",
+    "playingNow": "Atskaņo tagad",
+    "inPlayer": "Savā atskaņotājā",
+    "openInSpotify": "Atvērt Spotify",
+    "stopAndClose": "Apstāties un aizvērt",
+    "kind": {
+      "track": "Dziesma",
+      "album": "Albums",
+      "playlist": "Atskaņošanas saraksts",
+      "episode": "Aplādes sērija",
+      "show": "Aplāde",
+      "artist": "Mākslinieks"
+    }
   }
 }

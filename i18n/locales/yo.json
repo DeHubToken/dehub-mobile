@@ -14688,5 +14688,21 @@
     "openPost": "Ṣii ifiweranṣẹ",
     "readArticle": "Ka àpilẹ̀kọ",
     "openToUnlock": "Ṣii lati ṣii"
+  },
+  "spotify": {
+    "play": "Play",
+    "pause": "Duro",
+    "playingNow": "Ṣíṣe eré báyìí",
+    "inPlayer": "Ninu ẹrọ orin rẹ",
+    "openInSpotify": "Ṣii ni Spotify",
+    "stopAndClose": "Dúró kí o sì pa",
+    "kind": {
+      "track": "Orin",
+      "album": "Àwo orin",
+      "playlist": "Akojọ orin",
+      "episode": "Oríṣun àwòrán, Adarọ ese",
+      "show": "Adarọ ese",
+      "artist": "Oníṣègùn"
+    }
   }
 }

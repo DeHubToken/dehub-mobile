@@ -14752,5 +14752,21 @@
     "openPost": "पोस्ट खोल्नुहोस्",
     "readArticle": "लेख पढ्नुहोस्",
     "openToUnlock": "अनलक गर्न खोल्नुहोस्"
+  },
+  "spotify": {
+    "play": "खेल्नुहोस्",
+    "pause": "पज गर्नुहोस्",
+    "playingNow": "अहिले खेल्दै",
+    "inPlayer": "तपाईंको खेलाडीमा",
+    "openInSpotify": "Spotify मा खोल्नुहोस्",
+    "stopAndClose": "रोक्नुहोस् र बन्द गर्नुहोस्",
+    "kind": {
+      "track": "गीत",
+      "album": "एल्बम",
+      "playlist": "प्लेसूची",
+      "episode": "पोडकास्ट एपिसोड",
+      "show": "पोडकास्ट",
+      "artist": "कलाकार"
+    }
   }
 }

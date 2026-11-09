@@ -14682,5 +14682,21 @@
     "openPost": "Mepee post",
     "readArticle": "Gụọ isiokwu",
     "openToUnlock": "Mepee ka ị kpọghee"
+  },
+  "spotify": {
+    "play": "Gwuo",
+    "pause": "Kwụsị",
+    "playingNow": "Na-egwu ugbu a",
+    "inPlayer": "Na gị player",
+    "openInSpotify": "Mepee na Spotify",
+    "stopAndClose": "Kwụsị ma mechie",
+    "kind": {
+      "track": "Abụ",
+      "album": "Album",
+      "playlist": "Ndesịta egwu",
+      "episode": "Podcast ihe omume",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

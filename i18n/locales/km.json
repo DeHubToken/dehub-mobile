@@ -14736,5 +14736,21 @@
     "openPost": "ការបង្ហោះបើកចំហ",
     "readArticle": "អានអត្ថបទ",
     "openToUnlock": "បើកដើម្បីដោះសោ"
+  },
+  "spotify": {
+    "play": "ចាក់",
+    "pause": "ផ្អាក",
+    "playingNow": "កំពុងលេងឥឡូវនេះ",
+    "inPlayer": "នៅក្នុងកម្មវិធីចាក់របស់អ្នក",
+    "openInSpotify": "បើក ក្នុង Spotify",
+    "stopAndClose": "បញ្ឈប់និងបិទ",
+    "kind": {
+      "track": "បទចម្រៀង",
+      "album": "អាល់ប៊ុម",
+      "playlist": "បញ្ជីចាក់",
+      "episode": "វគ្គផតខាស់",
+      "show": "ផតខាស់",
+      "artist": "សិល្បករ"
+    }
   }
 }

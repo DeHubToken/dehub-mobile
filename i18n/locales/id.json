@@ -14742,5 +14742,21 @@
     "large": "Besar",
     "larger": "Lebih besar",
     "largest": "Terbesar"
+  },
+  "spotify": {
+    "play": "Mainkan",
+    "pause": "Jeda",
+    "playingNow": "Bermain sekarang",
+    "inPlayer": "Di pemain Anda",
+    "openInSpotify": "Buka di Spotify",
+    "stopAndClose": "Berhenti dan tutup",
+    "kind": {
+      "track": "Lagu",
+      "album": "Album",
+      "playlist": "Daftar putar",
+      "episode": "Episode podcast",
+      "show": "Podcast",
+      "artist": "Seniman"
+    }
   }
 }

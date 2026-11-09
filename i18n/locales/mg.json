@@ -14788,5 +14788,21 @@
     "openPost": "Sokafy ny lahatsoratra",
     "readArticle": "Vakio ny lahatsoratra",
     "openToUnlock": "Sokafy io toerana io"
+  },
+  "spotify": {
+    "play": "Mamaky",
+    "pause": "Miato",
+    "playingNow": "Milalao izao",
+    "inPlayer": "Ao amin'ny mpilalao",
+    "openInSpotify": "Sokafy ao amin'ny Spotify",
+    "stopAndClose": "Ajanony sy Akaiky",
+    "kind": {
+      "track": "Hira",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Ny Podcast andiany",
+      "show": "Rakipeo",
+      "artist": "Mpanakanto"
+    }
   }
 }

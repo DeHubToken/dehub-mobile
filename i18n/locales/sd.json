@@ -14672,5 +14672,21 @@
     "openPost": "اوپن پوسٽ",
     "readArticle": "آرٽيڪل پڙهو",
     "openToUnlock": "انلاڪ ڪرڻ لاءِ کليل"
+  },
+  "spotify": {
+    "play": "کيڏيو",
+    "pause": "پوئتي هٽايو",
+    "playingNow": "هاڻي کيڏڻ",
+    "inPlayer": "تُنهنجي اداڪارَ ۾",
+    "openInSpotify": "Spotify ۾ کوليو",
+    "stopAndClose": "اسٽاپ ۽ بند ڪريو",
+    "kind": {
+      "track": "گيت",
+      "album": "البم",
+      "playlist": "پلي لسٽ",
+      "episode": "پوڊ ڪاسٽ قسط",
+      "show": "پوڊ ڪاسٽ",
+      "artist": "فنڪار"
+    }
   }
 }

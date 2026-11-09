@@ -14699,5 +14699,21 @@
     "openPost": "ಪೋಸ್ಟ್ ತೆರೆಯಿರಿ",
     "readArticle": "ಲೇಖನವನ್ನು ಓದಿ",
     "openToUnlock": "ಅನ್‌ಲಾಕ್ ಮಾಡಲು ತೆರೆಯಿರಿ"
+  },
+  "spotify": {
+    "play": "ಪ್ಲೇ ಮಾಡಿ",
+    "pause": "ವಿರಾಮ",
+    "playingNow": "ಈಗ ಪ್ಲೇ ಆಗುತ್ತಿದೆ",
+    "inPlayer": "ನಿಮ್ಮ ಪ್ಲೇಯರ್‌ನಲ್ಲಿ",
+    "openInSpotify": "Spotify ನಲ್ಲಿ ತೆರೆಯಿರಿ",
+    "stopAndClose": "ನಿಲ್ಲಿಸಿ ಮತ್ತು ಮುಚ್ಚಿ",
+    "kind": {
+      "track": "ಹಾಡು",
+      "album": "ಆಲ್ಬಮ್",
+      "playlist": "ಪ್ಲೇಪಟ್ಟಿ",
+      "episode": "ಪಾಡ್‌ಕಾಸ್ಟ್ ಸಂಚಿಕೆ",
+      "show": "ಪಾಡ್‌ಕಾಸ್ಟ್",
+      "artist": "ಕಲಾವಿದ"
+    }
   }
 }

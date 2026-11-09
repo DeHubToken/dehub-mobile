@@ -14902,5 +14902,21 @@
     "openPost": "Buksan ang post",
     "readArticle": "Basahin ang artikulo",
     "openToUnlock": "Buksan para i - unlock"
+  },
+  "spotify": {
+    "play": "Maglaro",
+    "pause": "I - pause",
+    "playingNow": "Maglaro ngayon",
+    "inPlayer": "Sa iyong manlalaro",
+    "openInSpotify": "Buksan sa Spotify",
+    "stopAndClose": "Ihinto at isara",
+    "kind": {
+      "track": "Awitin",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Episode ng Podcast",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

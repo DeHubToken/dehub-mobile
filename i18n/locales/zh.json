@@ -14746,5 +14746,21 @@
     "large": "大",
     "larger": "更大",
     "largest": "最大"
+  },
+  "spotify": {
+    "play": "播放",
+    "pause": "暂停",
+    "playingNow": "正在播放",
+    "inPlayer": "在您的玩家中",
+    "openInSpotify": "在Spotify中打开",
+    "stopAndClose": "停止并关闭",
+    "kind": {
+      "track": "歌曲",
+      "album": "相册",
+      "playlist": "播放列表",
+      "episode": "播客节目",
+      "show": "播客",
+      "artist": "艺术家"
+    }
   }
 }

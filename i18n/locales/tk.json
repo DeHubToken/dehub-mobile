@@ -14670,5 +14670,21 @@
     "openPost": "Posty Aç",
     "readArticle": "Makala okamak",
     "openToUnlock": "Açylmak üçin açyl"
+  },
+  "spotify": {
+    "play": "Oynat",
+    "pause": "Galanlar",
+    "playingNow": "Häzir oýnaň",
+    "inPlayer": "Seniň oýunçylygyňda",
+    "openInSpotify": "Spotify-da açyl",
+    "stopAndClose": "Durmak",
+    "kind": {
+      "track": "Aýdym",
+      "album": "Albüm",
+      "playlist": "Oynatma listasy",
+      "episode": "Podcast sahypasy",
+      "show": "Podkastlar",
+      "artist": "Sanatçy"
+    }
   }
 }

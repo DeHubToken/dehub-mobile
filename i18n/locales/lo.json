@@ -14691,5 +14691,21 @@
     "openPost": "ເປີດໂພສ",
     "readArticle": "ອ່ານບົດຄວາມ",
     "openToUnlock": "ເປີດເພື່ອປົດລັອກ"
+  },
+  "spotify": {
+    "play": "ຫຼິ້ນ",
+    "pause": "ພັກຜ່ອນ",
+    "playingNow": "ຫຼິ້ນໃນປັດຈຸບັນ",
+    "inPlayer": "ໃນ Player ຂອງທ່ານ",
+    "openInSpotify": "ເປີດໃນ Spotify",
+    "stopAndClose": "ຢຸດແລະປິດ",
+    "kind": {
+      "track": "ເພງ",
+      "album": "ອັລບັ້ມ",
+      "playlist": "ລາຍການຫຼິ້ນ",
+      "episode": "Podcast ຕອນທີ",
+      "show": "ປະເທດປະໂດກສາດ",
+      "artist": "ສິລະປິນ"
+    }
   }
 }

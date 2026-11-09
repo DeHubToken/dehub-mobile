@@ -14721,5 +14721,21 @@
     "openPost": "Vula iphosti",
     "readArticle": "Funda isihloko",
     "openToUnlock": "Vula ukuze uvule"
+  },
+  "spotify": {
+    "play": "Dlala",
+    "pause": "Misa okwesikhashana",
+    "playingNow": "Iyadlala manje",
+    "inPlayer": "Kusidlali sakho",
+    "openInSpotify": "Vula ku-Spotify",
+    "stopAndClose": "Yima bese uyavala",
+    "kind": {
+      "track": "Ingoma",
+      "album": "I-albhamu",
+      "playlist": "Uhlu lokudlalwayo",
+      "episode": "Isiqephu sephodikhast",
+      "show": "Iphodikhasti",
+      "artist": "Umculi"
+    }
   }
 }

@@ -16391,5 +16391,28 @@
     "larger": "Más grande",
     "largest": "Enorme"
   },
-  "aiConsent": {"title":"¿Usar las funciones de IA?","body":"Para funcionar, las funciones de IA envían lo que les das (tu texto, fotos o audio, y la publicación o el chat del que se trata) a proveedores de IA externos como Google, OpenAI, Groq, OpenRouter, fal y ElevenLabs. Puedes cambiarlo cuando quieras en Ajustes → Privacidad.","allow":"Permitir","declined":"Las funciones de IA están desactivadas. Puedes activarlas en Ajustes → Privacidad.","settingLabel":"Funciones de IA","settingDesc":"Permite que el asistente, la traducción, las respuestas sugeridas y la ayuda para escribir envíen lo que les das a proveedores de IA externos."}
+  "aiConsent": {
+    "title": "¿Usar las funciones de IA?",
+    "body": "Para funcionar, las funciones de IA envían lo que les das (tu texto, fotos o audio, y la publicación o el chat del que se trata) a proveedores de IA externos como Google, OpenAI, Groq, OpenRouter, fal y ElevenLabs. Puedes cambiarlo cuando quieras en Ajustes → Privacidad.",
+    "allow": "Permitir",
+    "declined": "Las funciones de IA están desactivadas. Puedes activarlas en Ajustes → Privacidad.",
+    "settingLabel": "Funciones de IA",
+    "settingDesc": "Permite que el asistente, la traducción, las respuestas sugeridas y la ayuda para escribir envíen lo que les das a proveedores de IA externos."
+  },
+  "spotify": {
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "playingNow": "Sonando ahora",
+    "inPlayer": "En tu reproductor",
+    "openInSpotify": "Abrir en Spotify",
+    "stopAndClose": "Detener y cerrar",
+    "kind": {
+      "track": "Canción",
+      "album": "Álbum",
+      "playlist": "Lista de reproducción",
+      "episode": "Episodio del podcast",
+      "show": "Podcast",
+      "artist": "Artista"
+    }
+  }
 }

@@ -14685,5 +14685,21 @@
     "openPost": "Постту ачуу",
     "readArticle": "Макаланы окуу",
     "openToUnlock": "Кулпуну ачуу үчүн ачуу"
+  },
+  "spotify": {
+    "play": "Ойнотуу",
+    "pause": "Пауза",
+    "playingNow": "Азыр ойнотулууда",
+    "inPlayer": "Ойноткучуңузда",
+    "openInSpotify": "Spotify 'да ачуу",
+    "stopAndClose": "Токтотуу жана жабуу",
+    "kind": {
+      "track": "Ыр",
+      "album": "Альбом",
+      "playlist": "Ойнотуу тизмеси",
+      "episode": "Подкасттын эпизоду",
+      "show": "Подкаст",
+      "artist": "Артист"
+    }
   }
 }

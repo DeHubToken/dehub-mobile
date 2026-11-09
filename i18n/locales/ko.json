@@ -14743,5 +14743,21 @@
     "large": "크게",
     "larger": "더 크게",
     "largest": "가장 크게"
+  },
+  "spotify": {
+    "play": "재생",
+    "pause": "일시 중지",
+    "playingNow": "지금 플레이 중",
+    "inPlayer": "플레이어에서",
+    "openInSpotify": "Spotify에서 열기",
+    "stopAndClose": "중지 및 닫기",
+    "kind": {
+      "track": "노래",
+      "album": "앨범",
+      "playlist": "재생 목록",
+      "episode": "팟캐스트 에피소드",
+      "show": "팟캐스트",
+      "artist": "아티스트"
+    }
   }
 }

@@ -14696,5 +14696,20 @@
     "openPost": "افتح البوست",
     "readArticle": "قارئ",
     "openToUnlock": "افتح عشان يفتح"
+  },
+  "spotify": {
+    "play": "شغل",
+    "playingNow": "اللعب الآن",
+    "inPlayer": "في مشغلك",
+    "openInSpotify": "افتح في Spotify",
+    "stopAndClose": "وقف وأغلق",
+    "kind": {
+      "track": "غنية",
+      "album": "ألبوم",
+      "playlist": "قائمة التشغيل",
+      "episode": "حلقة بودكاست",
+      "show": "بودكاست",
+      "artist": "فنان"
+    }
   }
 }

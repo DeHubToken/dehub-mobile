@@ -14714,5 +14714,21 @@
     "openPost": "Ava postitus",
     "readArticle": "Loe artiklit",
     "openToUnlock": "Ava avamiseks"
+  },
+  "spotify": {
+    "play": "Esita",
+    "pause": "Peata",
+    "playingNow": "Praegu mängitakse",
+    "inPlayer": "Sinu mängijas",
+    "openInSpotify": "Ava Spotifys",
+    "stopAndClose": "Peata ja sulge",
+    "kind": {
+      "track": "Laul",
+      "album": "Album",
+      "playlist": "Esitusloend",
+      "episode": "Podcasti episood",
+      "show": "Podcast",
+      "artist": "Esitaja"
+    }
   }
 }

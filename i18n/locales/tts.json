@@ -14663,5 +14663,21 @@
     "openPost": "เปิดโพสต์",
     "readArticle": "อ่านบทความ",
     "openToUnlock": "เปิดเพื่อปลดล็อก"
+  },
+  "spotify": {
+    "play": "เล่น",
+    "pause": "หยุดชั่วคราว",
+    "playingNow": "กำลังเล่นตอนนี้",
+    "inPlayer": "ในเครื่องเล่นของคุณ",
+    "openInSpotify": "เปิดใน Spotify",
+    "stopAndClose": "หยุดและปิด",
+    "kind": {
+      "track": "เพลง",
+      "album": "อัลบั้ม",
+      "playlist": "เพลย์ลิสต์",
+      "episode": "ตอนพอดแคสต์",
+      "show": "พอดแคสต์",
+      "artist": "ศิลปิน"
+    }
   }
 }

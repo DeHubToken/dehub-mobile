@@ -14745,5 +14745,20 @@
     "openPost": "Barreeffama banaa",
     "readArticle": "Barreeffama dubbisaa",
     "openToUnlock": "Qulfii banuuf banaa"
+  },
+  "spotify": {
+    "play": "Taphachuu",
+    "pause": "Gidduutti dhaabuu",
+    "playingNow": "Amma taphachaa jira",
+    "inPlayer": "Taphataan keessan keessatti",
+    "openInSpotify": "Spotify keessatti banaa",
+    "stopAndClose": "Dhaabbadhaa cufaa",
+    "kind": {
+      "track": "Faarfannaa",
+      "album": "Albamii",
+      "playlist": "Tarree taphachuu",
+      "episode": "Kutaa podcast",
+      "artist": "Aartistii"
+    }
   }
 }

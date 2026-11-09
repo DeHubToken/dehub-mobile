@@ -14745,5 +14745,21 @@
     "large": "大",
     "larger": "特大",
     "largest": "最大"
+  },
+  "spotify": {
+    "play": "再生",
+    "pause": "一時停止",
+    "playingNow": "現在プレイ中",
+    "inPlayer": "プレイヤー内",
+    "openInSpotify": "Spotifyで開く",
+    "stopAndClose": "停止して閉じる",
+    "kind": {
+      "track": "歌",
+      "album": "アルバム",
+      "playlist": "プレイリスト",
+      "episode": "ポッドキャストエピソード",
+      "show": "ポッドキャスト",
+      "artist": "アーティスト"
+    }
   }
 }

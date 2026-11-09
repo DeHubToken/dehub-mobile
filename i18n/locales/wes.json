@@ -14654,5 +14654,20 @@
     "openPost": "Open post",
     "readArticle": "Read article",
     "openToUnlock": "Open to unlock"
+  },
+  "spotify": {
+    "play": "Play",
+    "pause": "Pause",
+    "playingNow": "Playing now",
+    "inPlayer": "In your player",
+    "openInSpotify": "Open in Spotify",
+    "kind": {
+      "track": "Song",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Podcast episode",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

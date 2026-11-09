@@ -15211,5 +15211,21 @@
     "openPost": "Відкрити допис",
     "readArticle": "Читати статтю",
     "openToUnlock": "Відкрийте, щоб розблокувати"
+  },
+  "spotify": {
+    "play": "Грати",
+    "pause": "Призупинити",
+    "playingNow": "Відтворюється зараз",
+    "inPlayer": "У плеєрі",
+    "openInSpotify": "Відкрити в Spotify",
+    "stopAndClose": "Зупинити й закрити",
+    "kind": {
+      "track": "Пісня",
+      "album": "Альбом",
+      "playlist": "Список відтворення",
+      "episode": "Епізод подкасту",
+      "show": "Подкаст",
+      "artist": "Виконавець"
+    }
   }
 }

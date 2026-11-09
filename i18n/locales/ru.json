@@ -14748,5 +14748,21 @@
     "large": "Крупный",
     "larger": "Крупнее",
     "largest": "Самый крупный"
+  },
+  "spotify": {
+    "play": "Играть",
+    "pause": "Пауза",
+    "playingNow": "Играть сейчас",
+    "inPlayer": "В плеере",
+    "openInSpotify": "Открыть в Spotify",
+    "stopAndClose": "Остановка и закрытие",
+    "kind": {
+      "track": "Песня",
+      "album": "Альбом",
+      "playlist": "Плейлист",
+      "episode": "Эпизод подкаста",
+      "show": "Подкаст",
+      "artist": "Исполнитель"
+    }
   }
 }

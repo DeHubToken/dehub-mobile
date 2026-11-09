@@ -14727,5 +14727,21 @@
     "openPost": "Öppna inlägg",
     "readArticle": "Läs artikel",
     "openToUnlock": "Öppna för att låsa upp"
+  },
+  "spotify": {
+    "play": "Spela",
+    "pause": "Pausa",
+    "playingNow": "Spelar nu",
+    "inPlayer": "I din spelare",
+    "openInSpotify": "Öppna i Spotify",
+    "stopAndClose": "Stanna och stäng",
+    "kind": {
+      "track": "Låt",
+      "album": "Album",
+      "playlist": "Spellista",
+      "episode": "Podcast-avsnitt",
+      "show": "Podcast",
+      "artist": "Konstnär"
+    }
   }
 }

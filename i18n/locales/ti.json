@@ -14693,5 +14693,21 @@
     "openPost": "ክፉት ልኡኽ",
     "readArticle": "ጽሑፍ ኣንብብ",
     "openToUnlock": "ክፉት"
+  },
+  "spotify": {
+    "play": "ተጻወት",
+    "pause": "ዕረፍቲ",
+    "playingNow": "ሕጂ ተጻወት",
+    "inPlayer": "ኣብ መጻወቲኻ",
+    "openInSpotify": "ኣብ Spotify ክፉት",
+    "stopAndClose": "ደው ምባልን ምዕጻውን",
+    "kind": {
+      "track": "መዝሙር",
+      "album": "ኣልበም",
+      "playlist": "ዝርዝር መጻወቲ",
+      "episode": "ፖድካስት",
+      "show": "ፖድካስት",
+      "artist": "ስነጥበባዊ"
+    }
   }
 }

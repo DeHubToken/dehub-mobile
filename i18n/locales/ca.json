@@ -14714,5 +14714,21 @@
     "openPost": "Obre la publicació",
     "readArticle": "Llegeix l'article",
     "openToUnlock": "Obre per desbloquejar"
+  },
+  "spotify": {
+    "play": "Jugar",
+    "pause": "Pausa",
+    "playingNow": "S'està jugant ara",
+    "inPlayer": "Al teu reproductor",
+    "openInSpotify": "Obre a Spotify",
+    "stopAndClose": "Atura i tanca",
+    "kind": {
+      "track": "Cançó",
+      "album": "Àlbum",
+      "playlist": "Llista de reproducció",
+      "episode": "Episodi del podcast",
+      "show": "Podcast",
+      "artist": "Artista"
+    }
   }
 }

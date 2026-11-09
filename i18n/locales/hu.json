@@ -14709,5 +14709,21 @@
     "openPost": "Bejegyzés megnyitása",
     "readArticle": "Cikk elolvasása",
     "openToUnlock": "Megnyitás a zárolás feloldásához"
+  },
+  "spotify": {
+    "play": "Játék",
+    "pause": "Szüneteltetés",
+    "playingNow": "Lejátszás most",
+    "inPlayer": "A lejátszójában",
+    "openInSpotify": "Megnyitás Spotify-ban",
+    "stopAndClose": "Leállítás és bezárás",
+    "kind": {
+      "track": "Dal",
+      "album": "Album",
+      "playlist": "Lejátszási lista",
+      "episode": "Podcast-epizód",
+      "show": "Podcasting",
+      "artist": "Művész"
+    }
   }
 }

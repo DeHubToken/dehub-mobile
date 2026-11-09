@@ -14696,5 +14696,21 @@
     "openPost": "Otvori objavu",
     "readArticle": "Pročitajte članak",
     "openToUnlock": "Otvori za otključavanje"
+  },
+  "spotify": {
+    "play": "Pokreni",
+    "pause": "Pauziraj",
+    "playingNow": "Reproducira se odmah",
+    "inPlayer": "U vašem uređaju za reprodukciju",
+    "openInSpotify": "Otvori u Spotifyu",
+    "stopAndClose": "Zaustavi i zatvori",
+    "kind": {
+      "track": "Pjesma",
+      "album": "Album",
+      "playlist": "Popis za reprodukciju",
+      "episode": "Epizoda podcasta",
+      "show": "Podcast",
+      "artist": "Umjetnik"
+    }
   }
 }

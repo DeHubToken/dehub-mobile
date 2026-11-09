@@ -14728,5 +14728,21 @@
     "openPost": "Åbn indlæg",
     "readArticle": "Læs artikel",
     "openToUnlock": "Åbn for at låse op"
+  },
+  "spotify": {
+    "play": "Spil",
+    "pause": "Sæt på pause",
+    "playingNow": "Spiller nu",
+    "inPlayer": "I din afspiller",
+    "openInSpotify": "Åbn i Spotify",
+    "stopAndClose": "Stop og luk",
+    "kind": {
+      "track": "Sang",
+      "album": "Album",
+      "playlist": "Afspilningsliste",
+      "episode": "Podcast-episode",
+      "show": "Podcast",
+      "artist": "Kunstner"
+    }
   }
 }

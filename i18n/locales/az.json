@@ -14706,5 +14706,21 @@
     "openPost": "Yazını aç",
     "readArticle": "Məqaləni oxu",
     "openToUnlock": "Kilidini açmaq üçün aç"
+  },
+  "spotify": {
+    "play": "Oxut",
+    "pause": "Fasilə ver",
+    "playingNow": "İndi oynayır",
+    "inPlayer": "Oyunçunuzda",
+    "openInSpotify": "Spotify-da aç",
+    "stopAndClose": "Dayan və bağla",
+    "kind": {
+      "track": "Mahnı",
+      "album": "Albom",
+      "playlist": "Səsləndirmə siyahısı",
+      "episode": "Podkast epizodu",
+      "show": "Podkast",
+      "artist": "Rəssam"
+    }
   }
 }

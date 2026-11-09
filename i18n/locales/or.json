@@ -14688,5 +14688,21 @@
     "openPost": "ପୋଷ୍ଟ ଖୋଲନ୍ତୁ",
     "readArticle": "ଲେଖା ପଢ଼ନ୍ତୁ",
     "openToUnlock": "ଖୋଲିବା ପାଇଁ ଖୋଲନ୍ତୁ"
+  },
+  "spotify": {
+    "play": "ଚଲାନ୍ତୁ",
+    "pause": "ବିରତି",
+    "playingNow": "ବର୍ତ୍ତମାନ ଚାଲୁଅଛି",
+    "inPlayer": "ଆପଣଙ୍କ ପ୍ଲେୟାର୍ ‌ ରେ",
+    "openInSpotify": "Spotify ରେ ଖୋଲନ୍ତୁ",
+    "stopAndClose": "ଅଟକାନ୍ତୁ ଏବଂ ବନ୍ଦ କରନ୍ତୁ",
+    "kind": {
+      "track": "ଗୀତ",
+      "album": "ଆଲବମ",
+      "playlist": "ପ୍ଲେଲିଷ୍ଟ",
+      "episode": "Podcast ଧାରାବାହିକ",
+      "show": "PodcastName",
+      "artist": "କଳାକାର"
+    }
   }
 }

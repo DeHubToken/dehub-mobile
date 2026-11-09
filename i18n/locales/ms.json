@@ -14975,5 +14975,21 @@
     "openPost": "Buka hantaran",
     "readArticle": "Baca artikel",
     "openToUnlock": "Buka untuk membuka kunci"
+  },
+  "spotify": {
+    "play": "Main",
+    "pause": "Jeda",
+    "playingNow": "Bermain sekarang",
+    "inPlayer": "Dalam pemain anda",
+    "openInSpotify": "Buka dalam Spotify",
+    "stopAndClose": "Berhenti dan tutup",
+    "kind": {
+      "track": "Lagu",
+      "album": "Album",
+      "playlist": "Senarai main",
+      "episode": "Episod audio siar",
+      "show": "Podcast",
+      "artist": "Artis"
+    }
   }
 }

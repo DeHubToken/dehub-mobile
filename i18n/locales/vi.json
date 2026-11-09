@@ -14829,5 +14829,21 @@
     "large": "Lớn",
     "larger": "Lớn hơn",
     "largest": "Lớn nhất"
+  },
+  "spotify": {
+    "play": "Phát",
+    "pause": "Tạm dừng",
+    "playingNow": "Đang phát",
+    "inPlayer": "Trong trình phát của bạn",
+    "openInSpotify": "Mở trong Spotify",
+    "stopAndClose": "Dừng và đóng",
+    "kind": {
+      "track": "Bài hát",
+      "album": "Album",
+      "playlist": "Danh sách phát",
+      "episode": "Tập podcast",
+      "show": "Podcast",
+      "artist": "Nghệ sĩ"
+    }
   }
 }

@@ -14702,5 +14702,20 @@
     "openPost": "Нийтлэл нээх",
     "readArticle": "Нийтлэл унших",
     "openToUnlock": "Нээх"
+  },
+  "spotify": {
+    "play": "Тоглуулах",
+    "pause": "Түр зогсоох",
+    "playingNow": "Одоо тоглож байна",
+    "inPlayer": "Таны тоглогчод",
+    "openInSpotify": "Spotify дээр нээх",
+    "stopAndClose": "Зогс, хаа",
+    "kind": {
+      "track": "ДУУ",
+      "playlist": "Тоглуулах жагсаалт",
+      "episode": "Подкастийн анги",
+      "show": "Подкаст",
+      "artist": "Жүжигчин"
+    }
   }
 }

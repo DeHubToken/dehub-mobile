@@ -14905,5 +14905,20 @@
     "openPost": "পোস্ট খুলো",
     "readArticle": "লেখা পড়ো",
     "openToUnlock": "আনলক করতে খুলো"
+  },
+  "spotify": {
+    "play": "খেলা",
+    "pause": "বিরতি",
+    "playingNow": "এখন খেলতেছি",
+    "inPlayer": "আপনার প্লেয়ারে",
+    "openInSpotify": "স্পটিফাই তে খুলুন",
+    "stopAndClose": "বন্ধ কর",
+    "kind": {
+      "track": "গান",
+      "playlist": "প্লেলিস্ট",
+      "episode": "পডকাস্ট এপিসোড",
+      "show": "পডকাস্ট",
+      "artist": "শিল্পী"
+    }
   }
 }

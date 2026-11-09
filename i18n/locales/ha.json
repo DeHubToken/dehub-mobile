@@ -14705,5 +14705,21 @@
     "openPost": "Buɗe post",
     "readArticle": "Karanta labarin",
     "openToUnlock": "Bude don buɗewa"
+  },
+  "spotify": {
+    "play": "Yi wasa",
+    "pause": "Dakatar da",
+    "playingNow": "Playing yanzu",
+    "inPlayer": "A cikin dan wasan ku",
+    "openInSpotify": "Bude a Spotify",
+    "stopAndClose": "Dakatar da rufewa",
+    "kind": {
+      "track": "Waƙa",
+      "album": "Album",
+      "playlist": "Jerin waža",
+      "episode": "Podcast episode",
+      "show": "Podcast",
+      "artist": "Mai zane"
+    }
   }
 }

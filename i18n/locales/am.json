@@ -14738,5 +14738,21 @@
     "openPost": "ክፈት ልጥፍ",
     "readArticle": "ርዕስ አንብብ",
     "openToUnlock": "ለመክፈት ክፈት"
+  },
+  "spotify": {
+    "play": "አጫውት",
+    "pause": "እረፍት",
+    "playingNow": "አሁን በመጫወት ላይ",
+    "inPlayer": "በተጫዋችዎ ውስጥ",
+    "openInSpotify": "በ Spotify ውስጥ ይክፈቱ",
+    "stopAndClose": "ይቁሙ እና ይዝጉ",
+    "kind": {
+      "track": "መዝሙር",
+      "album": "አልበም",
+      "playlist": "አጫዋች ዝርዝር",
+      "episode": "ፖድካስት ክፍል",
+      "show": "ፖድካስት",
+      "artist": "አርቲስት"
+    }
   }
 }
