@@ -69,6 +69,7 @@ import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 import { usePerfProbe } from '../libs/perfTrace';
+import DeferredTextInput from "../components/ui/DeferredTextInput";
 import { storage } from "../libs/storage";
 import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -1132,7 +1133,7 @@ const SearchScreen: React.FC = () => {
               style={[styles.searchField, searchField.surface]}
             >
               <Icon name="Search" size={18} color="#9CA3AF" />
-              <TextInput
+              <DeferredTextInput
                 ref={inputRef}
                 className="flex-1 text-white px-2 py-1"
                 style={SEARCH_INPUT_CLEAR}
