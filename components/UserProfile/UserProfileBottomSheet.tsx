@@ -55,14 +55,18 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   // the animation starts at once and the page catches up while it runs.
   const contentVisible = useDeferredValue(visible);
   const Content = ready ? content() : null;
-  if (embedded) return Content ? <Content {...props} /> : null;
   // The profile brings its own bottom bar, but only once it has built. Until
   // then the opening page covered the bar underneath, so the bar blinked out
   // for ~0.4s on every profile open. Hold one in place until the page's own
   // takes over. On Android it sits over the fading page so it never moves;
   // the iPhone sheet slides it in with the page.
   const holdBar = visible && !Content;
-  const bar = holdBar ? (
+  // On Android the held bar joins one render after the page's first frame:
+  // building it (~50ms on a Galaxy S24+) in the same render held the fade
+  // back, and the real bar still shows through the page while it fades in.
+  const holdBarLater = useDeferredValue(holdBar);
+  if (embedded) return Content ? <Content {...props} /> : null;
+  const bar = holdBar && (Platform.OS !== 'android' || holdBarLater) ? (
     <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
       <StandaloneTabBar onBeforeNavigate={onClose} />
     </View>
