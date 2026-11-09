@@ -2995,7 +2995,8 @@
     "viewGrid": "Rasterweergave",
     "viewList": "Lijstweergave",
     "articleMinRead": "{{count}} min lezen",
-    "articleViews": "{{views}} weergaven"
+    "articleViews": "{{views}} weergaven",
+    "unavailable": "Profiel niet beschikbaar"
   },
   "tv": {
     "title": "TV",
@@ -12909,7 +12910,9 @@
     "busy": "Deactiveren…",
     "done": "Account gedeactiveerd",
     "receipt": "Je profiel, berichten en reacties zijn verborgen. Log op elk moment opnieuw in om alles terug te krijgen.",
-    "error": "Je account kon niet worden gedeactiveerd. Probeer het opnieuw."
+    "error": "Je account kon niet worden gedeactiveerd. Probeer het opnieuw.",
+    "acknowledge": "Ik begrijp dat mijn profiel wordt verborgen en dat ik overal word uitgelogd.",
+    "understand": "Ik begrijp het"
   },
   "accountDeletion": {
     "title": "Account verwijderen",

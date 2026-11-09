@@ -4939,7 +4939,8 @@
     "tabPinned": "Disematkan",
     "lockedPost": "Postingan terkunci",
     "viewGrid": "Tampilan kisi",
-    "viewList": "Tampilan daftar"
+    "viewList": "Tampilan daftar",
+    "unavailable": "Profil tidak tersedia"
   },
   "tv": {
     "title": "TV",
@@ -14130,7 +14131,9 @@
     "busy": "Menonaktifkan…",
     "done": "Akun dinonaktifkan",
     "receipt": "Profil, postingan, dan komentarmu disembunyikan. Masuk lagi kapan saja untuk mengembalikan semuanya.",
-    "error": "Tidak bisa menonaktifkan akunmu. Coba lagi."
+    "error": "Tidak bisa menonaktifkan akunmu. Coba lagi.",
+    "acknowledge": "Saya mengerti profil saya akan disembunyikan dan saya akan keluar dari semua perangkat.",
+    "understand": "Saya mengerti"
   },
   "accountDeletion": {
     "title": "Hapus akun",

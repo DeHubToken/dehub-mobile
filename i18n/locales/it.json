@@ -4939,7 +4939,8 @@
     "tabPinned": "Bloccato",
     "lockedPost": "Post bloccato",
     "viewGrid": "Vista griglia",
-    "viewList": "Visualizzazione elenco"
+    "viewList": "Visualizzazione elenco",
+    "unavailable": "Profilo non disponibile"
   },
   "tv": {
     "title": "TV",
@@ -14130,7 +14131,9 @@
     "busy": "Disattivazione…",
     "done": "Account disattivato",
     "receipt": "Profilo, post e commenti sono nascosti. Accedi di nuovo quando vuoi per riavere tutto.",
-    "error": "Impossibile disattivare l'account. Riprova."
+    "error": "Impossibile disattivare l'account. Riprova.",
+    "acknowledge": "Capisco che il mio profilo verrà nascosto e verrò disconnesso ovunque.",
+    "understand": "Ho capito"
   },
   "accountDeletion": {
     "title": "Elimina account",

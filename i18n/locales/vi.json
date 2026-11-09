@@ -4950,7 +4950,8 @@
     "tabPinned": "Đã ghim",
     "lockedPost": "Bài đăng bị khóa",
     "viewGrid": "Chế độ xem lưới",
-    "viewList": "Chế độ xem danh sách"
+    "viewList": "Chế độ xem danh sách",
+    "unavailable": "Hồ sơ không khả dụng"
   },
   "tv": {
     "title": "TV",
@@ -14216,7 +14217,9 @@
     "busy": "Đang vô hiệu hóa…",
     "done": "Đã vô hiệu hóa tài khoản",
     "receipt": "Hồ sơ, bài đăng và bình luận của bạn đang bị ẩn. Đăng nhập lại bất cứ lúc nào để lấy lại mọi thứ.",
-    "error": "Không thể vô hiệu hóa tài khoản. Vui lòng thử lại."
+    "error": "Không thể vô hiệu hóa tài khoản. Vui lòng thử lại.",
+    "acknowledge": "Tôi hiểu hồ sơ của tôi sẽ bị ẩn và tôi sẽ bị đăng xuất ở mọi nơi.",
+    "understand": "Tôi hiểu"
   },
   "accountDeletion": {
     "title": "Xoá tài khoản",

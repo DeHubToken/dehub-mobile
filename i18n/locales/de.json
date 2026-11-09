@@ -4854,7 +4854,8 @@
     "tabPinned": "Angeheftet",
     "lockedPost": "Gesperrter Pfosten",
     "viewGrid": "Rasteransicht",
-    "viewList": "Listenansicht"
+    "viewList": "Listenansicht",
+    "unavailable": "Profil nicht verfügbar"
   },
   "tv": {
     "title": "TV",
@@ -14048,7 +14049,9 @@
     "busy": "Wird deaktiviert…",
     "done": "Konto deaktiviert",
     "receipt": "Dein Profil, deine Beiträge und Kommentare sind ausgeblendet. Melde dich jederzeit wieder an, um alles zurückzuholen.",
-    "error": "Dein Konto konnte nicht deaktiviert werden. Bitte versuche es erneut."
+    "error": "Dein Konto konnte nicht deaktiviert werden. Bitte versuche es erneut.",
+    "acknowledge": "Ich verstehe, dass mein Profil ausgeblendet und ich überall abgemeldet werde.",
+    "understand": "Verstanden"
   },
   "accountDeletion": {
     "title": "Konto löschen",

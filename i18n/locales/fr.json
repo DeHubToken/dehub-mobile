@@ -2807,7 +2807,8 @@
     "viewGrid": "Vue grille",
     "viewList": "Vue en liste",
     "articleMinRead": "{{count}} min de lecture",
-    "articleViews": "{{views}} vues"
+    "articleViews": "{{views}} vues",
+    "unavailable": "Profil indisponible"
   },
   "tv": {
     "title": "Télévision",
@@ -12662,7 +12663,9 @@
     "busy": "Désactivation…",
     "done": "Compte désactivé",
     "receipt": "Votre profil, vos publications et vos commentaires sont masqués. Reconnectez-vous à tout moment pour tout récupérer.",
-    "error": "Impossible de désactiver votre compte. Veuillez réessayer."
+    "error": "Impossible de désactiver votre compte. Veuillez réessayer.",
+    "acknowledge": "Je comprends que mon profil sera masqué et que je serai déconnecté partout.",
+    "understand": "Je comprends"
   },
   "accountDeletion": {
     "title": "Supprimer votre compte",

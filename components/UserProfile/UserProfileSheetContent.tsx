@@ -29,6 +29,7 @@ import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 import UsernameReserve from "./UsernameReserve";
+import { apiClient } from "../../libs/api.client";
 import { useAuthActions, useUser } from "../../context/AuthContext";
 import { isReservedUsername } from "../../libs/reserved-usernames";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
@@ -386,12 +387,16 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     !/^0x[a-f0-9]{40}$/i.test(reserveName) &&
     !isReservedUsername(reserveName)
   ) {
-    return <UsernameReserve username={reserveName} onSignUp={() => requireAuth(() => {})} signedIn={!!viewer} onTaken={onRetry} />;
+    return (
+      <MissingProfileGate username={reserveName}>
+        <UsernameReserve username={reserveName} onSignUp={() => requireAuth(() => {})} signedIn={!!viewer} onTaken={onRetry} />
+      </MissingProfileGate>
+    );
   }
 
   if (!data && error) {
     const failed = error === "failed";
-    return (
+    const missing = (
       <View className="flex-1 items-center justify-center py-20 px-8">
         <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
           <Icon name={failed ? "WifiOff" : "UserRound"} size={32} color="#A1A1AA" />
@@ -414,6 +419,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         ) : null}
       </View>
     );
+    // A deactivated account keeps its name: say "Profile not available".
+    return !failed && /^[a-z0-9_]{3,30}$/i.test(reserveName)
+      ? <MissingProfileGate username={reserveName}>{missing}</MissingProfileGate>
+      : missing;
   }
 
   if (loading || !data) {
@@ -755,5 +764,36 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     </ProfilePostBgContext.Provider>
   );
 };
+
+/**
+ * No profile came back for this name. If the server still counts the name
+ * as taken (a deactivated account keeps its username) show "Profile not
+ * available" instead of offering it; otherwise render the usual view.
+ */
+function MissingProfileGate({ username, children }: { username: string; children: React.ReactNode }) {
+  const { t } = useTranslation();
+  const [taken, setTaken] = useState<boolean | null>(null);
+  useEffect(() => {
+    let live = true;
+    setTaken(null);
+    apiClient
+      .get<any>(`/username/check?username=${encodeURIComponent(username)}`, { isAuthRequired: false })
+      .then((res) => { if (live) setTaken(res?.status === true && res.available === false); })
+      .catch(() => { if (live) setTaken(false); });
+    return () => { live = false; };
+  }, [username]);
+  if (taken === null) return <UserProfileSkeleton />;
+  if (!taken) return <>{children}</>;
+  return (
+    <View className="flex-1 items-center justify-center py-20 px-8">
+      <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
+        <Icon name="UserRound" size={32} color="#A1A1AA" />
+      </View>
+      <Text className="text-white text-lg font-semibold text-center">
+        {t("profile.unavailable")}
+      </Text>
+    </View>
+  );
+}
 
 export default memo(UserProfileSheetContent);
