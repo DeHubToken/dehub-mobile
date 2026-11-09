@@ -86,7 +86,7 @@ const source = fs.existsSync(sourcePath) ? JSON.parse(fs.readFileSync(sourcePath
 if (source) {
   const { execFileSync } = require("child_process");
   const revision = execFileSync("git", ["rev-parse", "HEAD"], { cwd: web, encoding: "utf8" }).trim();
-  if (source.repository !== "DeHubToken/dehubweb" || revision !== source.revision) {
+  if (source.repository !== "Riftn/riftn-web" || revision !== source.revision) {
     throw new Error("Backdrop source differs from scripts/theme-backdrop/source.json");
   }
 }

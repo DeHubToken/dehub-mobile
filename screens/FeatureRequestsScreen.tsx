@@ -128,7 +128,7 @@ type PageTab = "requests" | "shipping" | "shipped";
 const NOT_FEASIBLE = "not_feasible" as const;
 type CategoryChip = FeatureCategory | "all" | typeof NOT_FEASIBLE;
 
-const DEHUB_GITHUB_URL = "https://github.com/DeHubToken";
+const DEHUB_GITHUB_URL = "https://github.com/Riftn";
 
 const SORTS: { key: FeatureSort; labelKey: string }[] = [
   { key: "most_voted", labelKey: "features.mostVoted" },

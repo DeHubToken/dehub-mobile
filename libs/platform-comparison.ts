@@ -24,7 +24,7 @@ export const SOURCES: Record<string, { title: string; url: string }> = {
   ...RESEARCH_SOURCES,
   dehub: { title: 'Riftn product guide', url: 'https://riftn.com/docs/dapps' },
   dehubLaunchpad: { title: 'Riftn Launchpad', url: 'https://riftn.com/launchpad' },
-  dehubEncryption: { title: 'Riftn encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
+  dehubEncryption: { title: 'Riftn encrypted messaging implementation', url: `https://github.com/Riftn/riftn-web/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
   kickModeration: { title: 'KICK chat moderation and polls', url: 'https://help.kick.com/en/articles/7109164-how-to-moderate-your-kick-chat' },
   twitchPolls: { title: 'Twitch polls and chat voting', url: 'https://help.twitch.tv/s/article/how-to-use-polls' },
   twitchRoles: { title: 'Twitch channel roles', url: 'https://help.twitch.tv/s/article/Managing-Roles-for-your-Channel' },
@@ -354,8 +354,8 @@ function productReviewed(feature: ComparisonFeature, platform: PlatformId, entry
 const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => detail.rows.map(([id, name, note, file = '', mobileOverride]) => {
   const web = detail.web + file, mobile = mobileOverride ?? detail.mobile + file;
   const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
-  SOURCES[webSource] = { title: 'Riftn web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
-  SOURCES[mobileSource] = { title: 'Riftn mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
+  SOURCES[webSource] = { title: 'Riftn web implementation', url: `https://github.com/Riftn/riftn-web/blob/${AUDIT_REVISIONS.web}/${web}` };
+  SOURCES[mobileSource] = { title: 'Riftn mobile implementation', url: `https://github.com/Riftn/riftn-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
   return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'code'), relatedSources: [mobileSource, 'dehub'] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
 }));
 /** Popular rival features Riftn does not offer yet, filed under the topic they belong to. */

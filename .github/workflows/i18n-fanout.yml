@@ -92,7 +92,7 @@ jobs:
 
       - name: Use the publishable key the web bundle ships
         run: |
-          KEY=$(curl -fsSL https://raw.githubusercontent.com/DeHubToken/dehubweb/main/src/integrations/supabase/client.ts | grep -o '"ey[A-Za-z0-9._-]\{40,\}"' | head -1 | tr -d '"')
+          KEY=$(curl -fsSL https://raw.githubusercontent.com/Riftn/riftn-web/main/src/integrations/supabase/client.ts | grep -o '"ey[A-Za-z0-9._-]\{40,\}"' | head -1 | tr -d '"')
           test -n "$KEY"
           echo "SUPABASE_PUBLISHABLE_KEY=$KEY" >> "$GITHUB_ENV"
 

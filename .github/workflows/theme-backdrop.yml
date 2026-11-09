@@ -21,12 +21,12 @@ jobs:
         id: source
         run: |
           REVISION="$(jq -er '.revision' scripts/theme-backdrop/source.json)"
-          test "$(jq -r '.repository' scripts/theme-backdrop/source.json)" = DeHubToken/dehubweb
+          test "$(jq -r '.repository' scripts/theme-backdrop/source.json)" = Riftn/riftn-web
           [[ "$REVISION" =~ ^[0-9a-f]{40}$ ]]
           echo "revision=$REVISION" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
         with:
-          repository: DeHubToken/dehubweb
+          repository: Riftn/riftn-web
           ref: ${{ steps.source.outputs.revision }}
           path: web-source
       - uses: pnpm/action-setup@v4

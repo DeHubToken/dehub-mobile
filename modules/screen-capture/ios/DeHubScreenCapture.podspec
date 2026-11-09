@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://dehub.io'
   s.license = { type: 'MIT' }
   s.platform = :ios, '15.1'
-  s.source = { git: 'https://github.com/DeHubToken/dehub-mobile.git' }
+  s.source = { git: 'https://github.com/Riftn/riftn-mobile.git' }
   s.static_framework = true
   s.dependency 'ExpoModulesCore'
   s.swift_version = '5.0'

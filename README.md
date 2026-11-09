@@ -1,6 +1,6 @@
 # DeHub Mobile
 
-[![CI](https://github.com/An0nym0usAng3l/dehub-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/An0nym0usAng3l/dehub-mobile/actions/workflows/ci.yml)
+[![CI](https://github.com/Riftn/riftn-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/Riftn/riftn-mobile/actions/workflows/ci.yml)
 
 > Decentralized social media app — stream, post, tip, and trade on-chain.
 
