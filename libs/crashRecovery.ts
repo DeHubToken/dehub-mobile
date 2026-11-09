@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storage } from "./storage";
 
 /**
@@ -20,6 +21,7 @@ import { storage } from "./storage";
 export const QUERY_CACHE_KEY = "dehub-query-cache";
 
 const RESTART_LOG_KEY = "crash-recovery-restarts-v1";
+const DURABLE_RESTART_LOG_KEY = "crash-recovery-restarts-durable-v1";
 const LAST_CRASH_KEY = "crash-recovery-last-v1";
 
 /** More than this many restarts inside the window and the fault is not one a restart fixes. */
@@ -78,6 +80,29 @@ export function claimRestart(now: number = Date.now()): boolean {
   return true;
 }
 
+/**
+ * The same budget, kept in AsyncStorage too. A fault thrown while the app was
+ * still loading restarted it 23,000 times in an hour on the iOS simulator:
+ * after every reload the MMKV copy read back empty, so each restart counted as
+ * the first and the budget never ran out. AsyncStorage is written to disk
+ * before the promise resolves, so the next runtime sees it.
+ */
+async function claimDurableRestart(now: number): Promise<boolean> {
+  try {
+    const raw = await AsyncStorage.getItem(DURABLE_RESTART_LOG_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : [];
+    const recent = Array.isArray(parsed)
+      ? parsed.filter((t): t is number => typeof t === "number" && now - t < RESTART_WINDOW_MS)
+      : [];
+    if (recent.length >= MAX_RESTARTS_IN_WINDOW) return false;
+    recent.push(now);
+    await AsyncStorage.setItem(DURABLE_RESTART_LOG_KEY, JSON.stringify(recent));
+    return true;
+  } catch {
+    return true;
+  }
+}
+
 /** Leave a note for the next launch saying why this one ended. */
 export function writeCrashMarker(marker: CrashMarker): void {
   try {
@@ -121,7 +146,8 @@ export async function restartApp(
   const dev = typeof __DEV__ !== "undefined" && __DEV__;
   if (!options.userInitiated) {
     if (dev) return false;
-    if (!claimRestart()) {
+    const now = Date.now();
+    if (!claimRestart(now) || !(await claimDurableRestart(now))) {
       // eslint-disable-next-line no-console
       console.warn("[restartApp] budget spent, not restarting", reason, message.slice(0, 200));
       return false;

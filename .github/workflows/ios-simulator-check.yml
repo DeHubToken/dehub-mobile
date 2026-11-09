@@ -22,7 +22,7 @@ jobs:
   simulator:
     name: Build and walk the app on an iPhone simulator
     runs-on: macos-15
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -67,8 +67,16 @@ jobs:
           echo "Simulator: $TYPE on $RUNTIME"
       # Signed to run locally, as Xcode does for a simulator: an unsigned app
       # gets no keychain there, so sign-in state never loads.
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      # The app's config (Supabase key and the rest) is inlined into the bundle
+      # at build time from the EAS production environment, as the store build
+      # does. Without it the app throws "supabaseKey is required" on launch.
       - name: Build Release for the simulator
         run: |
+          cat > "$RUNNER_TEMP/build-sim.sh" <<'SH'
           set -o pipefail
           xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
             -configuration Release -sdk iphonesimulator \
@@ -76,6 +84,9 @@ jobs:
             -derivedDataPath "$RUNNER_TEMP/sim" \
             ONLY_ACTIVE_ARCH=YES CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual CODE_SIGNING_REQUIRED=NO \
             PROVISIONING_PROFILE_SPECIFIER= build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
+          SH
+          eas env:list production | sed -E 's/=.*/= <set>/'
+          eas env:exec production "bash $RUNNER_TEMP/build-sim.sh"
       # iOS 26 asks "Open in …?" before a simulator opens a deep link; idb taps Open.
       - uses: actions/setup-python@v5
         with:
