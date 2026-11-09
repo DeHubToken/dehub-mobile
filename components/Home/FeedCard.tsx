@@ -9,7 +9,7 @@ import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
 import { isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../../libs/video-access";
-import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
+import React, { memo, useCallback, useRef, useState, useMemo, useEffect, useLayoutEffect } from "react";
 import {
   View,
   DeviceEventEmitter,
@@ -408,6 +408,40 @@ function PostMetaItems({ timeAgo, icon, count, visibility, boosted, onStatsPress
   );
 }
 
+/** The sheets whose open state lives in CardSheets rather than in the card. */
+type CardSheet = "comments" | "stats" | "reactionInfo" | "tip" | "ai" | "addToFolder" | "options" | "shareToDm" | "boost" | "share";
+type CardSheetsOpen = Readonly<Partial<Record<CardSheet, boolean>>>;
+/** Opens or closes one sheet, for the post it was asked for only. */
+type CardSheetControl = (postKey: string, sheet: CardSheet, open: boolean) => void;
+const NO_SHEETS_OPEN: CardSheetsOpen = {};
+
+/**
+ * Holds which of the card's sheets are open and draws them with the card's
+ * own `render`. Opening a sheet re-renders this, not the card around it, so
+ * the sheet's first frame does not wait for the whole card to render again.
+ * The card still re-renders this on its own renders, so every sheet sees the
+ * card's latest values. Keyed to the post like the rest of the card's state.
+ */
+const CardSheets = memo(function CardSheets({
+  postKey,
+  control,
+  render,
+}: {
+  postKey: string;
+  control: React.MutableRefObject<CardSheetControl | null>;
+  render: (open: CardSheetsOpen) => React.ReactNode;
+}) {
+  const [open, setOpen] = useKeyedState<CardSheetsOpen>(postKey, NO_SHEETS_OPEN);
+  useLayoutEffect(() => {
+    control.current = (key, sheet, next) => {
+      // A late open (after sign-in, after a save) meant for a post this card
+      // no longer shows is dropped, as useKeyedState drops its writes.
+      if (key !== postKey) return;
+      setOpen((prev) => (!!prev[sheet] === next ? prev : { ...prev, [sheet]: next }));
+    };
+  }, [control, postKey, setOpen]);
+  return <>{render(open)}</>;
+});
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
   item,
@@ -813,25 +847,34 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Which sheet is open, held against the post it was opened for. Several of
   // these open late (after a save resolves, after sign-in), and a card handed
   // another post in the meantime must not open them there.
-  const [showShareSheet, setShowShareSheet] = useKeyedState(postKey, false);
-  const [showComments, setShowComments] = useKeyedState(postKey, false);
-  const [showReactionInfo, setShowReactionInfo] = useKeyedState(postKey, false);
+  //
+  // The common sheets keep their open state in CardSheets, not here: opening
+  // one as card state re-rendered this whole card (~40ms on a Galaxy S24+)
+  // before the sheet could start to slide in.
+  const sheetControl = useRef<CardSheetControl | null>(null);
+  const setSheet = useCallback(
+    (sheet: CardSheet, open: boolean) => sheetControl.current?.(postKey, sheet, open),
+    [postKey],
+  );
+  const setShowShareSheet = useCallback((open: boolean) => setSheet("share", open), [setSheet]);
+  const setShowComments = useCallback((open: boolean) => setSheet("comments", open), [setSheet]);
+  const setShowReactionInfo = useCallback((open: boolean) => setSheet("reactionInfo", open), [setSheet]);
   // Your own post's stats, from the pill on its view count. Not for lives.
-  const [showStats, setShowStats] = useKeyedState(postKey, false);
+  const setShowStats = useCallback((open: boolean) => setSheet("stats", open), [setSheet]);
   const openStats = useMemo(
     () => (isOwnerPost && !isLive && tokenId != null ? () => setShowStats(true) : undefined),
     [isOwnerPost, isLive, tokenId, setShowStats],
   );
-  const [showOptionsMenu, setShowOptionsMenu] = useKeyedState(postKey, false);
-  const [showTipModal, setShowTipModal] = useKeyedState(postKey, false);
+  const setShowOptionsMenu = useCallback((open: boolean) => setSheet("options", open), [setSheet]);
+  const setShowTipModal = useCallback((open: boolean) => setSheet("tip", open), [setSheet]);
   const [showPPVModal, setShowPPVModal] = useKeyedState(postKey, false);
   // A paid photo post plays its reveal over the gate before the card opens.
   const [revealKind, setRevealKind] = useKeyedState<UnlockRevealKind | null>(postKey, null);
   const [showBountyModal, setShowBountyModal] = useKeyedState(postKey, false);
-  const [showAISheet, setShowAISheet] = useKeyedState(postKey, false);
-  const [showAddToFolder, setShowAddToFolder] = useKeyedState(postKey, false);
-  const [showShareToDm, setShowShareToDm] = useKeyedState(postKey, false);
-  const [showBoost, setShowBoost] = useKeyedState(postKey, false);
+  const setShowAISheet = useCallback((open: boolean) => setSheet("ai", open), [setSheet]);
+  const setShowAddToFolder = useCallback((open: boolean) => setSheet("addToFolder", open), [setSheet]);
+  const setShowShareToDm = useCallback((open: boolean) => setSheet("shareToDm", open), [setSheet]);
+  const setShowBoost = useCallback((open: boolean) => setSheet("boost", open), [setSheet]);
   const [activeCashtag, setActiveCashtag] = useKeyedState<string | null>(postKey, null);
   // Read from the session store, never kept here: a card recycled out of the
   // FlatList window does not re-lock a post the viewer just paid for, and a
@@ -2197,7 +2240,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // Every sheet a card can open. They float over the screen, so where they
   // sit in the card's tree does not matter; both layouts mount the same set.
-  const sheets = (
+  // Drawn by CardSheets, which re-renders on its own when one opens or closes.
+  const renderSheets = (open: CardSheetsOpen) => {
+    const showComments = !!open.comments;
+    const showStats = !!open.stats;
+    const showReactionInfo = !!open.reactionInfo;
+    const showTipModal = !!open.tip;
+    const showAISheet = !!open.ai;
+    const showAddToFolder = !!open.addToFolder;
+    const showOptionsMenu = !!open.options;
+    const showShareToDm = !!open.shareToDm;
+    const showBoost = !!open.boost;
+    const showShareSheet = !!open.share;
+    return (
     <>
       {showComments && tokenId != null && (
         <CommentBottomSheet
@@ -2417,7 +2472,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
     </>
-  );
+    );
+  };
+  const sheets = <CardSheets postKey={postKey} control={sheetControl} render={renderSheets} />;
 
   if (tabletPortrait) {
     return (
