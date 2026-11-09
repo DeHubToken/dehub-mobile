@@ -14750,5 +14750,21 @@
     "openPost": "პოსტის გახსნა",
     "readArticle": "სტატიის წაკითხვა",
     "openToUnlock": "გახსნა განბლოკვისთვის"
+  },
+  "spotify": {
+    "play": "დაკვრა",
+    "pause": "შეჩერება",
+    "playingNow": "ახლა დაკვრა",
+    "inPlayer": "თქვენს მოთამაშეში",
+    "openInSpotify": "Spotify-ში გახსნა",
+    "stopAndClose": "შეჩერება და დახურვა",
+    "kind": {
+      "track": "სიმღერა",
+      "album": "ალბომი",
+      "playlist": "დასაკრავი სია",
+      "episode": "პოდკასტის ეპიზოდი",
+      "show": "პოდკასტი",
+      "artist": "შემსრულებელი"
+    }
   }
 }

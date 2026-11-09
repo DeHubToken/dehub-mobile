@@ -14749,5 +14749,21 @@
     "large": "बड़ा",
     "larger": "और बड़ा",
     "largest": "सबसे बड़ा"
+  },
+  "spotify": {
+    "play": "खेलें",
+    "pause": "रोकें",
+    "playingNow": "अभी खेल रहे हैं",
+    "inPlayer": "आपके खिलाड़ी में",
+    "openInSpotify": "Spotify में खोलें",
+    "stopAndClose": "रुकें और बंद करें",
+    "kind": {
+      "track": "गीत",
+      "album": "एल्बम",
+      "playlist": "प्लेलिस्ट",
+      "episode": "पॉडकास्ट एपिसोड",
+      "show": "पॉडकास्ट",
+      "artist": "कलाकार"
+    }
   }
 }

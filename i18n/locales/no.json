@@ -14721,5 +14721,21 @@
     "openPost": "Åpne innlegg",
     "readArticle": "Les artikkelen",
     "openToUnlock": "Åpne for å låse opp"
+  },
+  "spotify": {
+    "play": "Spille",
+    "pause": "Pause",
+    "playingNow": "Spiller nå",
+    "inPlayer": "I spilleren din",
+    "openInSpotify": "Åpne i Spotify",
+    "stopAndClose": "Stopp og lukk",
+    "kind": {
+      "track": "Sang",
+      "album": "Album",
+      "playlist": "Spilleliste",
+      "episode": "Podcast-episode",
+      "show": "Podkast",
+      "artist": "Artist"
+    }
   }
 }

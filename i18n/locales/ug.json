@@ -14667,5 +14667,21 @@
     "openPost": "يازمىنى ئېچىش",
     "readArticle": "ماقالىنى ئوقۇش",
     "openToUnlock": "قۇلۇپنى ئېچىشقا ئېچىش"
+  },
+  "spotify": {
+    "play": "قويۇش",
+    "pause": "توختىتىش",
+    "playingNow": "ھازىر ئويناۋاتىدۇ",
+    "inPlayer": "ئوينىغۇچتا",
+    "openInSpotify": "Spotify دا ئېچىش",
+    "stopAndClose": "توختىتىش ۋە تاقاش پروگراممىسى",
+    "kind": {
+      "track": "Song",
+      "album": "ئالبوم",
+      "playlist": "قويۇش تىزىملىكى",
+      "episode": "Podcast ئېكرانى",
+      "show": "Podcast",
+      "artist": "ئارتىس"
+    }
   }
 }

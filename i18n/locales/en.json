@@ -1,4 +1,20 @@
 {
+  "spotify": {
+    "play": "Play",
+    "pause": "Pause",
+    "playingNow": "Playing now",
+    "inPlayer": "In your player",
+    "openInSpotify": "Open in Spotify",
+    "stopAndClose": "Stop and close",
+    "kind": {
+      "track": "Song",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Podcast episode",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
+  },
   "chatTextSize": {
     "title": "Text size",
     "small": "Small",

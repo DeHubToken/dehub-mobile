@@ -14723,5 +14723,21 @@
     "openPost": "තනතුර විවෘත කරන්න",
     "readArticle": "ලිපිය කියවන්න",
     "openToUnlock": "අගුළු හැරීමට විවෘතයි"
+  },
+  "spotify": {
+    "play": "වාදනය කරන්න",
+    "pause": "විරාමය",
+    "playingNow": "දැන් වාදනය කරන්න",
+    "inPlayer": "ඔබේ ක් රීඩකයා තුළ",
+    "openInSpotify": "Spotify හි විවෘත කරන්න",
+    "stopAndClose": "නවතින්න සහ වසා දමන්න",
+    "kind": {
+      "track": "සින්දුව",
+      "album": "ඇල්බමය",
+      "playlist": "වාදන ලැයිස්තුව",
+      "episode": "පොඩ්කාස්ට් කථාංගය",
+      "show": "පොඩ්කාස්ට්",
+      "artist": "කලාකරුවා"
+    }
   }
 }

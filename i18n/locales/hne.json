@@ -14736,5 +14736,21 @@
     "openPost": "जगह खोलव",
     "readArticle": "आलेख पढ़व",
     "openToUnlock": "अनलॉक करे बर खोलव"
+  },
+  "spotify": {
+    "play": "बजाव",
+    "pause": "ठहरव",
+    "playingNow": "मैं खुद ही खेलना चाहता हु,",
+    "inPlayer": "अपन खिलाड़ी म",
+    "openInSpotify": "Spotify मं खोलव",
+    "stopAndClose": "बन्द करे/बन्द करे",
+    "kind": {
+      "track": "गीत",
+      "album": "एलबम",
+      "playlist": "गीत- सूची",
+      "episode": "पॉडकास्ट के पाछू",
+      "show": "पॉडकास्ट",
+      "artist": "कलाकार"
+    }
   }
 }

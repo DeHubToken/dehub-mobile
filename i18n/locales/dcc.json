@@ -14680,5 +14680,21 @@
     "openPost": "اوپن پوسٹ",
     "readArticle": "ریڈ آرٹیکل",
     "openToUnlock": "اوپن ٹو انلاک"
+  },
+  "spotify": {
+    "play": "پلے",
+    "pause": "پاز",
+    "playingNow": "اب چل رہا ہے",
+    "inPlayer": "آپ کے پلیئر میں",
+    "openInSpotify": "اسپوٹفائی میں کھولیں",
+    "stopAndClose": "رکیں اور بند کریں",
+    "kind": {
+      "track": "گانا",
+      "album": "البم",
+      "playlist": "پلے لسٹ",
+      "episode": "پوڈکاسٹ ایپی سوڈ",
+      "show": "پوڈکاسٹ",
+      "artist": "آرٹسٹ"
+    }
   }
 }

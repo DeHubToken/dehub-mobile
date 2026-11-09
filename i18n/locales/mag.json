@@ -14677,5 +14677,21 @@
     "openPost": "कलई खोलना पोस्ट",
     "readArticle": "पढ़ई लिखई",
     "openToUnlock": "कलई खोलना"
+  },
+  "spotify": {
+    "play": "ई कुर्सी खेलऽ हइ",
+    "pause": "रुकावट",
+    "playingNow": "अभी दिखावा करो",
+    "inPlayer": "रोल करे वाला",
+    "openInSpotify": "कलई खुलना - Spotify",
+    "stopAndClose": "Hold off होल्ड ऑफ/होल्ड",
+    "kind": {
+      "track": "ऊ वाला गाना",
+      "album": "एल्बम हई",
+      "playlist": "एल्बम, एल्बम",
+      "episode": "कैलक्यूलेटर एपिसोड",
+      "show": "पॉडकास्ट कैलक्यूलेटर",
+      "artist": "कलाकार, कारीगर, कलाकार"
+    }
   }
 }

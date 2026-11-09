@@ -14696,5 +14696,21 @@
     "openPost": "Atidaryti įrašą",
     "readArticle": "Skaityti straipsnį",
     "openToUnlock": "Atidarykite, kad atrakintumėte"
+  },
+  "spotify": {
+    "play": "Paleisti",
+    "pause": "Pristabdyti",
+    "playingNow": "Grojama dabar",
+    "inPlayer": "Jūsų grotuve",
+    "openInSpotify": "Atidaryti per „Spotify“",
+    "stopAndClose": "Sustokite ir uždarykite",
+    "kind": {
+      "track": "Daina",
+      "album": "Albumas",
+      "playlist": "Grojaraštis",
+      "episode": "Tinklalaidės serija",
+      "show": "Tinklalaidė",
+      "artist": "Atlikėjas"
+    }
   }
 }

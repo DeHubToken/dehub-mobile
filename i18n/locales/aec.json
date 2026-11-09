@@ -14742,5 +14742,21 @@
     "openPost": "افتح البوست",
     "readArticle": "اقرا المقال",
     "openToUnlock": "افتح عشان تفتح"
+  },
+  "spotify": {
+    "play": "شغّل",
+    "pause": "وقف مؤقتًا",
+    "playingNow": "شغّال دلوقتي",
+    "inPlayer": "في المشغّل بتاعك",
+    "openInSpotify": "افتح في سبوتيفاي",
+    "stopAndClose": "وقف وقفل",
+    "kind": {
+      "track": "أغنية",
+      "album": "ألبوم",
+      "playlist": "قائمة تشغيل",
+      "episode": "حلقة بودكاست",
+      "show": "بودكاست",
+      "artist": "فنان"
+    }
   }
 }

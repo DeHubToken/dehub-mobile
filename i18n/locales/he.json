@@ -14708,5 +14708,21 @@
     "openPost": "פתיחת פוסט",
     "readArticle": "לקריאת המאמר",
     "openToUnlock": "פתח כדי לשחרר את הנעילה"
+  },
+  "spotify": {
+    "play": "הפעלה",
+    "pause": "השהיה",
+    "playingNow": "מנגן עכשיו",
+    "inPlayer": "בנגן שלך",
+    "openInSpotify": "פתיחה בספוטיפיי",
+    "stopAndClose": "עצור וסגור",
+    "kind": {
+      "track": "שיר",
+      "album": "אלבום",
+      "playlist": "רשימת השמעה",
+      "episode": "פרק פודקאסט",
+      "show": "פודקאסט",
+      "artist": "אמן"
+    }
   }
 }

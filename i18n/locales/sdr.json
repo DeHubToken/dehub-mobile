@@ -14755,5 +14755,21 @@
     "openPost": "पोस्ट खोलू",
     "readArticle": "लेख पढ़ू",
     "openToUnlock": "खोलै बर अनलॉक"
+  },
+  "spotify": {
+    "play": "Play",
+    "pause": "Pause",
+    "playingNow": "Playing now",
+    "inPlayer": "In your player",
+    "openInSpotify": "Open in Spotify",
+    "stopAndClose": "रोक और बंद",
+    "kind": {
+      "track": "Song",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Podcast episode",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

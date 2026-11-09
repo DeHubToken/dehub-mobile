@@ -14745,5 +14745,21 @@
     "openPost": "Ochiq post",
     "readArticle": "Maqolani o'qing",
     "openToUnlock": "Qulfni ochish uchun oching"
+  },
+  "spotify": {
+    "play": "O'yin",
+    "pause": "To'xtatib turish",
+    "playingNow": "Hozir ijro etilmoqda",
+    "inPlayer": "Pleyeringizda",
+    "openInSpotify": "Spotify’da ochish",
+    "stopAndClose": "To'xtating va yoping",
+    "kind": {
+      "track": "Qo'shiq",
+      "album": "Albom",
+      "playlist": "Pleylist",
+      "episode": "Podkast epizodi",
+      "show": "Podkast",
+      "artist": "Rassom"
+    }
   }
 }

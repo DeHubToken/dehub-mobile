@@ -14730,5 +14730,21 @@
     "readAll": "全部阅读",
     "openPost": "打开帖子",
     "openToUnlock": "打开解锁"
+  },
+  "spotify": {
+    "play": "播放",
+    "pause": "暂停",
+    "playingNow": "正在播放",
+    "inPlayer": "在你的播放器中",
+    "openInSpotify": "在 Spotify 打开",
+    "stopAndClose": "停止并关闭",
+    "kind": {
+      "track": "歌曲",
+      "album": "专辑",
+      "playlist": "播放列表",
+      "episode": "播客剧集",
+      "show": "播客",
+      "artist": "艺术家"
+    }
   }
 }

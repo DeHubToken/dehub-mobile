@@ -14732,5 +14732,21 @@
     "openPost": "ပို့စ်ဖွင့်ရန်",
     "readArticle": "ဆောင်းပါးကိုဖတ်ပါ",
     "openToUnlock": "သော့ဖွင့်ရန် ဖွင့်ပါ"
+  },
+  "spotify": {
+    "play": "ကစားပါ",
+    "pause": "ခေတ္တရပ်နားပါ",
+    "playingNow": "အခုတော့ Play",
+    "inPlayer": "မင်းရဲ့ကစားသမားထဲမှာ",
+    "openInSpotify": "Spotify တွင်ဖွင့်ပါ",
+    "stopAndClose": "ရပ်ပြီးပိတ်ပါ",
+    "kind": {
+      "track": "သီချင်း",
+      "album": "အယ်လ်ဘမ်",
+      "playlist": "ဖွင့်ရန်စာရင်း",
+      "episode": "Podcast အပိုင်း",
+      "show": "ပိုဒ်ကက်စ်",
+      "artist": "အနုပညာရှင်"
+    }
   }
 }

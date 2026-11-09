@@ -14672,5 +14672,19 @@
     "openPost": "Кушодани пост",
     "readArticle": "Мақоларо хонед",
     "openToUnlock": "Кушодан барои кушодан"
+  },
+  "spotify": {
+    "play": "Бозикунӣ",
+    "pause": "Таваққуф",
+    "openInSpotify": "Кушодан дар Spotify",
+    "stopAndClose": "Истодан ва пӯшидан",
+    "kind": {
+      "track": "Суруд",
+      "album": "Албом",
+      "playlist": "Рӯйхати мусиқӣ",
+      "episode": "Эпизоди пакаст",
+      "show": "Покаст",
+      "artist": "Ҳунарманд"
+    }
   }
 }

@@ -55,14 +55,18 @@ function PlayGlyph({ paused }: { paused: boolean }) {
   );
 }
 
+// Lower case on purpose: scripts/icons-registry.js reads every quoted
+// capitalised word in a file that uses <Icon> as an icon name, and the album and
+// podcast labels share lucide icon names. Capitalised where shown.
 const KIND_LABEL: Record<SpotifyKind, string> = {
-  track: 'Song',
-  album: 'Album',
-  playlist: 'Playlist',
-  episode: 'Podcast episode',
-  show: 'Podcast',
-  artist: 'Artist',
+  track: 'song',
+  album: 'album',
+  playlist: 'playlist',
+  episode: 'podcast episode',
+  show: 'podcast',
+  artist: 'artist',
 };
+const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /** Spotify's own share text, "Artist · Song · 1987", minus the noise around it. */
 function subtitleFor(preview: LinkPreviewData, fallback: string): string {
@@ -82,7 +86,7 @@ const SpotifyCardComponent: React.FC<SpotifyCardProps> = ({ preview, link, style
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
   const { current, isPaused } = useSpotifyPlayer();
-  const kindLabel = t(`spotify.kind.${link.kind}`, { defaultValue: KIND_LABEL[link.kind] });
+  const kindLabel = t(`spotify.kind.${link.kind}`, { defaultValue: capitalise(KIND_LABEL[link.kind]) });
   const cleaned = cleanSpotifyTitle(preview.title || '');
   const title = cleaned && cleaned !== 'open.spotify.com' ? cleaned : kindLabel;
   const subtitle = subtitleFor(preview, kindLabel);

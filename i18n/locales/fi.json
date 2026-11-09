@@ -14720,5 +14720,21 @@
     "openPost": "Avaa julkaisu",
     "readArticle": "Lue artikkeli",
     "openToUnlock": "Avaa avataksesi"
+  },
+  "spotify": {
+    "play": "Toista",
+    "pause": "Keskeytä",
+    "playingNow": "Pelataan nyt",
+    "inPlayer": "Soittimessasi",
+    "openInSpotify": "Avaa Spotifyssa",
+    "stopAndClose": "Pysäytä ja sulje",
+    "kind": {
+      "track": "Kappale",
+      "album": "Albumi",
+      "playlist": "Soittolista",
+      "episode": "Podcast-jakso",
+      "show": "Podcast",
+      "artist": "Taiteilija"
+    }
   }
 }

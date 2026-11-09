@@ -15829,5 +15829,21 @@
     "large": "Grande",
     "larger": "Maior",
     "largest": "Máximo"
+  },
+  "spotify": {
+    "play": "Reproduzir",
+    "pause": "Pausa",
+    "playingNow": "A tocar agora",
+    "inPlayer": "No seu player",
+    "openInSpotify": "Abrir no Spotify",
+    "stopAndClose": "Parar e fechar",
+    "kind": {
+      "track": "Música",
+      "album": "Álbum",
+      "playlist": "Lista de reprodução",
+      "episode": "Episódio de podcast",
+      "show": "Podcast",
+      "artist": "Artista"
+    }
   }
 }

@@ -14694,5 +14694,21 @@
     "openPost": "પોસ્ટ ખોલો",
     "readArticle": "લેખ વાંચો",
     "openToUnlock": "અનલૉક કરવા માટે ખોલો"
+  },
+  "spotify": {
+    "play": "રમો",
+    "pause": "થોભો",
+    "playingNow": "હવે રમી રહ્યા છે",
+    "inPlayer": "તમારા પ્લેયરમાં",
+    "openInSpotify": "Spotify માં ખોલો",
+    "stopAndClose": "સ્ટોપ એન્ડ ક્લોઝ",
+    "kind": {
+      "track": "ગીત",
+      "album": "આલ્બમ",
+      "playlist": "પ્લેલિસ્ટ",
+      "episode": "પોડકાસ્ટ એપિસોડ",
+      "show": "પોડકાસ્ટ",
+      "artist": "કલાકાર"
+    }
   }
 }

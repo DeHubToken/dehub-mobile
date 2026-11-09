@@ -14722,5 +14722,21 @@
     "openPost": "Kichasqa qillqasqa",
     "readArticle": "Qillqasqata ñawinchay",
     "openToUnlock": "Kichay kicharinapaq"
+  },
+  "spotify": {
+    "play": "Pukllay",
+    "pause": "Suyay",
+    "playingNow": "Kunan pukllachkan",
+    "inPlayer": "Pukllaqniykipi",
+    "openInSpotify": "Spotify nisqapi kichay",
+    "stopAndClose": "Sayay hinaspa wichqay",
+    "kind": {
+      "track": "Taki",
+      "album": "Álbum",
+      "playlist": "Lista de reproducción",
+      "episode": "Podcast nisqa t'aqa",
+      "show": "Podcast",
+      "artist": "Takiq"
+    }
   }
 }

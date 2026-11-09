@@ -14761,5 +14761,21 @@
     "openPost": "Постты ашу",
     "readArticle": "Мақаланы оқу",
     "openToUnlock": "Құлыптан босату үшін ашыңыз"
+  },
+  "spotify": {
+    "play": "Ойнату",
+    "pause": "Пауза",
+    "playingNow": "Қазір ойнау",
+    "inPlayer": "Ойнатқышыңызда",
+    "openInSpotify": "Spotify-де ашу",
+    "stopAndClose": "Тоқтату және жабу",
+    "kind": {
+      "track": "Ән",
+      "album": "Альбом",
+      "playlist": "Ойнату тізімі",
+      "episode": "Подкаст эпизоды",
+      "show": "Подкаст",
+      "artist": "Суретші"
+    }
   }
 }

@@ -14710,5 +14710,21 @@
     "openPost": "Отваряне на публикация",
     "readArticle": "Прочетете статията",
     "openToUnlock": "Отваряне за отключване"
+  },
+  "spotify": {
+    "play": "Възпроизвеждане",
+    "pause": "Пауза",
+    "playingNow": "Играе се сега",
+    "inPlayer": "Във вашия плейър",
+    "openInSpotify": "Отваряне в Spotify",
+    "stopAndClose": "Спиране и затваряне",
+    "kind": {
+      "track": "Песен",
+      "album": "Албум",
+      "playlist": "Плейлист",
+      "episode": "Епизод на подкаст",
+      "show": "Подкаст",
+      "artist": "Изпълнител"
+    }
   }
 }

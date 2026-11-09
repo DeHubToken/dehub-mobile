@@ -16390,5 +16390,28 @@
     "larger": "Daha büyük",
     "largest": "En büyük"
   },
-  "aiConsent": {"title":"Yapay zekâ özellikleri kullanılsın mı?","body":"Yapay zekâ özellikleri çalışmak için onlara verdiğin içeriği (metnin, fotoğrafların veya sesin ve ilgili gönderi ya da sohbet) Google, OpenAI, Groq, OpenRouter, fal ve ElevenLabs gibi üçüncü taraf yapay zekâ sağlayıcılarına gönderir. Bunu istediğin zaman Ayarlar → Gizlilik bölümünden değiştirebilirsin.","allow":"İzin ver","declined":"Yapay zekâ özellikleri kapalı. Ayarlar → Gizlilik bölümünden açabilirsin.","settingLabel":"Yapay zekâ özellikleri","settingDesc":"Asistan, çeviri, önerilen yanıtlar ve yazma yardımı, onlara verdiğin içeriği üçüncü taraf yapay zekâ sağlayıcılarına gönderebilsin."}
+  "aiConsent": {
+    "title": "Yapay zekâ özellikleri kullanılsın mı?",
+    "body": "Yapay zekâ özellikleri çalışmak için onlara verdiğin içeriği (metnin, fotoğrafların veya sesin ve ilgili gönderi ya da sohbet) Google, OpenAI, Groq, OpenRouter, fal ve ElevenLabs gibi üçüncü taraf yapay zekâ sağlayıcılarına gönderir. Bunu istediğin zaman Ayarlar → Gizlilik bölümünden değiştirebilirsin.",
+    "allow": "İzin ver",
+    "declined": "Yapay zekâ özellikleri kapalı. Ayarlar → Gizlilik bölümünden açabilirsin.",
+    "settingLabel": "Yapay zekâ özellikleri",
+    "settingDesc": "Asistan, çeviri, önerilen yanıtlar ve yazma yardımı, onlara verdiğin içeriği üçüncü taraf yapay zekâ sağlayıcılarına gönderebilsin."
+  },
+  "spotify": {
+    "play": "Oynat",
+    "pause": "Duraklat",
+    "playingNow": "Şu anda çalıyor",
+    "inPlayer": "Oynatıcınızda",
+    "openInSpotify": "Spotify'da aç",
+    "stopAndClose": "Durdur ve kapat",
+    "kind": {
+      "track": "Şarkı",
+      "album": "Albüm",
+      "playlist": "Çalma Listesi",
+      "episode": "Podcast bölümü",
+      "show": "Podcast",
+      "artist": "Sanatçı"
+    }
+  }
 }

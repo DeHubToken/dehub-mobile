@@ -14695,5 +14695,21 @@
     "openPost": "Bukak kiriman",
     "readArticle": "Waca artikel",
     "openToUnlock": "Bukak kanggo mbukak kunci"
+  },
+  "spotify": {
+    "play": "Main",
+    "pause": "Tenggelam",
+    "playingNow": "Sedang diputer",
+    "inPlayer": "Ing pemutar sampeyan",
+    "openInSpotify": "Bukak ing Spotify",
+    "stopAndClose": "Mandheg lan tutup",
+    "kind": {
+      "track": "Lagu",
+      "album": "Album",
+      "playlist": "Daftar putar",
+      "episode": "Episode podcast",
+      "show": "Podcast",
+      "artist": "Artis"
+    }
   }
 }

@@ -14696,5 +14696,21 @@
     "openPost": "Բացել գրառումը",
     "readArticle": "Կարդալ հոդվածը",
     "openToUnlock": "Բացել բացելու համար"
+  },
+  "spotify": {
+    "play": "Նվագարկել",
+    "pause": "Դադարեցնել",
+    "playingNow": "Խաղում ենք հիմա",
+    "inPlayer": "Ձեր խաղացողի մեջ",
+    "openInSpotify": "Բացել Spotify - ում",
+    "stopAndClose": "Կանգ առնել և փակել",
+    "kind": {
+      "track": "Երգ",
+      "album": "Ալբոմ",
+      "playlist": "Երգացանկ",
+      "episode": "Փոդքասթի դրվագ",
+      "show": "Փոդքասթ",
+      "artist": "Նկարիչ"
+    }
   }
 }

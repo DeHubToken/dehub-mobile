@@ -14737,5 +14737,21 @@
     "openPost": "Postare deschisă",
     "readArticle": "Citește articolul",
     "openToUnlock": "Deschide pentru a debloca"
+  },
+  "spotify": {
+    "play": "Redare",
+    "pause": "Pauză",
+    "playingNow": "Se joacă acum",
+    "inPlayer": "În player-ul dvs.",
+    "openInSpotify": "Deschide în Spotify",
+    "stopAndClose": "Oprește și închide",
+    "kind": {
+      "track": "Cântec",
+      "album": "Album",
+      "playlist": "Listă de redare",
+      "episode": "Episod podcast",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

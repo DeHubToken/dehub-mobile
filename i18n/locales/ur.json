@@ -14689,5 +14689,21 @@
     "openPost": "پوسٹ کھولیں",
     "readArticle": "مضمون پڑھیں",
     "openToUnlock": "ان لاک کرنے کے لیے کھولیں"
+  },
+  "spotify": {
+    "play": "کھیلیں",
+    "pause": "موقوف کریں",
+    "playingNow": "ابھی کھیل رہا ہے",
+    "inPlayer": "آپ کے کھلاڑی میں",
+    "openInSpotify": "Spotify میں کھولیں",
+    "stopAndClose": "رکیں اور بند کریں",
+    "kind": {
+      "track": "گانا",
+      "album": "البم",
+      "playlist": "پلے لسٹ",
+      "episode": "پوڈ کاسٹ کی قسط",
+      "show": "پوڈ کاسٹ",
+      "artist": "فنکار"
+    }
   }
 }

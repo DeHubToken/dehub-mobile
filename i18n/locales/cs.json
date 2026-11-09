@@ -14728,5 +14728,21 @@
     "openPost": "Otevřít příspěvek",
     "readArticle": "Přečíst článek",
     "openToUnlock": "Otevřít pro odemknutí"
+  },
+  "spotify": {
+    "play": "Hrát",
+    "pause": "Pozastavit",
+    "playingNow": "Přehrává se nyní",
+    "inPlayer": "Ve vašem přehrávači",
+    "openInSpotify": "Otevřít ve Spotify",
+    "stopAndClose": "Zastavit a zavřít",
+    "kind": {
+      "track": "Skladba",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Epizoda podcastu",
+      "show": "Podcast",
+      "artist": "Umělec"
+    }
   }
 }

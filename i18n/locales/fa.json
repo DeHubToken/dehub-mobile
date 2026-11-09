@@ -14754,5 +14754,21 @@
     "openPost": "پست را باز کنید",
     "readArticle": "مقاله را بخوانید",
     "openToUnlock": "برای باز کردن قفل، باز کنید"
+  },
+  "spotify": {
+    "play": "بازی",
+    "pause": "مکث",
+    "playingNow": "الان در حال پخش است",
+    "inPlayer": "در پخش کننده شما",
+    "openInSpotify": "باز کردن در اسپاتیفای",
+    "stopAndClose": "توقف و بستن",
+    "kind": {
+      "track": "آهنگ",
+      "album": "آلبوم",
+      "playlist": "لیست پخش",
+      "episode": "قسمت پادکست",
+      "show": "پادکست",
+      "artist": "هنرمند"
+    }
   }
 }

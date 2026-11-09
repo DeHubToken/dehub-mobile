@@ -14738,5 +14738,21 @@
     "openPost": "منشور مفتوح",
     "readArticle": "قراءة المقالة",
     "openToUnlock": "افتح لإلغاء القفل"
+  },
+  "spotify": {
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "playingNow": "جارٍ اللعب الآن",
+    "inPlayer": "في لاعبك",
+    "openInSpotify": "فتح في Spotify",
+    "stopAndClose": "إيقاف وإغلاق",
+    "kind": {
+      "track": "الأغنية",
+      "album": "الألبوم",
+      "playlist": "قائمة التشغيل",
+      "episode": "حلقة بودكاست",
+      "show": "بودكاست",
+      "artist": "فنان"
+    }
   }
 }

@@ -14839,5 +14839,21 @@
     "openPost": "Open plasing",
     "readArticle": "Lees artikel",
     "openToUnlock": "Open om te ontsluit"
+  },
+  "spotify": {
+    "play": "Speel",
+    "pause": "Pouseer",
+    "playingNow": "Speel nou",
+    "inPlayer": "In jou speler",
+    "openInSpotify": "Open in Spotify",
+    "stopAndClose": "Stop en sluit",
+    "kind": {
+      "track": "Liedjie",
+      "album": "Album",
+      "playlist": "Speellys",
+      "episode": "Podcast-episode",
+      "show": "Podsending",
+      "artist": "Kunstenaar"
+    }
   }
 }

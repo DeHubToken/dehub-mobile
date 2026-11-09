@@ -14667,5 +14667,21 @@
     "openPost": "Boostada Furan",
     "readArticle": "Akhri maqaalka",
     "openToUnlock": "Fur si aad u furto"
+  },
+  "spotify": {
+    "play": "Ciyaar",
+    "pause": "Jooji",
+    "playingNow": "Ciyaarta hadda",
+    "inPlayer": "Ciyaaryahankaaga dhexdiisa",
+    "openInSpotify": "Ka fur Spotify",
+    "stopAndClose": "Jooji oo xir",
+    "kind": {
+      "track": "Hees",
+      "album": "Album",
+      "playlist": "Liiska Ciyaarta",
+      "episode": "Qeybta Podcast",
+      "show": "Podcast",
+      "artist": "Farshaxan"
+    }
   }
 }

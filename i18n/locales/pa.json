@@ -14713,5 +14713,21 @@
     "openPost": "ਪੋਸਟ ਖੋਲ੍ਹੋ",
     "readArticle": "ਲੇਖ ਪੜ੍ਹੋ",
     "openToUnlock": "ਤਾਲਾ ਖੋਲ੍ਹਣ ਲਈ ਖੁੱਲ੍ਹਾ"
+  },
+  "spotify": {
+    "play": "ਚਲਾਓ",
+    "pause": "ਵਿਰਾਮ",
+    "playingNow": "ਹੁਣ ਖੇਡਣ",
+    "inPlayer": "ਤੁਹਾਡੇ ਖਿਡਾਰੀ ਵਿੱਚ",
+    "openInSpotify": "Spotify ਵਿੱਚ ਖੋਲ੍ਹੋ",
+    "stopAndClose": "ਬੰਦ ਕਰੋ ਅਤੇ ਬੰਦ ਕਰੋ",
+    "kind": {
+      "track": "ਗੀਤ",
+      "album": "ਐਲਬਮ",
+      "playlist": "ਪਲੇਅ- ਲਿਸਟ",
+      "episode": "ਪੋਡਕਾਸਟ ਐਪੀਸੋਡ",
+      "show": "ਪੋਡਕਾਸਟ",
+      "artist": "ਕਲਾਕਾਰ"
+    }
   }
 }

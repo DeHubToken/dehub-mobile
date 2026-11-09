@@ -14703,5 +14703,21 @@
     "openPost": "開帖子",
     "readArticle": "睇文章",
     "openToUnlock": "打開嚟解鎖"
+  },
+  "spotify": {
+    "play": "玩",
+    "pause": "暫停",
+    "playingNow": "而家玩緊",
+    "inPlayer": "喺你個播放器入面",
+    "openInSpotify": "喺 Spotify 打開",
+    "stopAndClose": "停低同閂門",
+    "kind": {
+      "track": "歌曲",
+      "album": "專輯",
+      "playlist": "播放清單",
+      "episode": "播客劇集",
+      "show": "網路廣播",
+      "artist": "藝術家，歌手"
+    }
   }
 }

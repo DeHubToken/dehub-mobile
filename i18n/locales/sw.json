@@ -14706,5 +14706,21 @@
     "openPost": "Fungua chapisho",
     "readArticle": "Soma makala",
     "openToUnlock": "Fungua ili ufungue"
+  },
+  "spotify": {
+    "play": "Cheza",
+    "pause": "Sitisha",
+    "playingNow": "Inacheza sasa",
+    "inPlayer": "Katika mchezaji wako",
+    "openInSpotify": "Fungua katika Spotify",
+    "stopAndClose": "Simama na ufunge",
+    "kind": {
+      "track": "Wimbo",
+      "album": "Albamu",
+      "playlist": "Orodhachezwa",
+      "episode": "Kipindi cha podikasti",
+      "show": "Podikasti",
+      "artist": "Msanii"
+    }
   }
 }

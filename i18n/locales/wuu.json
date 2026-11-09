@@ -14650,5 +14650,20 @@
     "openPost": "打开帖子",
     "readArticle": "阅读文章",
     "openToUnlock": "打开来解锁"
+  },
+  "spotify": {
+    "pause": "暂停",
+    "playingNow": "正玩",
+    "inPlayer": "在你个播放器",
+    "openInSpotify": "在 Spotify 打开",
+    "stopAndClose": "停落，关掉",
+    "kind": {
+      "track": "宋",
+      "album": "相册",
+      "playlist": "歌单",
+      "episode": "播客集",
+      "show": "播客",
+      "artist": "艺术家"
+    }
   }
 }

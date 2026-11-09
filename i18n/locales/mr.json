@@ -14708,5 +14708,21 @@
     "openPost": "पोस्ट उघडा",
     "readArticle": "लेख वाचा",
     "openToUnlock": "अनलॉक करण्यासाठी उघडा"
+  },
+  "spotify": {
+    "play": "खेळ",
+    "pause": "विराम द्या",
+    "playingNow": "आता प्ले करत आहे",
+    "inPlayer": "आपल्या प्लेलिस्टमध्ये",
+    "openInSpotify": "स्पॉटिफायमध्ये उघडा",
+    "stopAndClose": "थांबा आणि बंद करा",
+    "kind": {
+      "track": "गाणे",
+      "album": "अल्बम",
+      "playlist": "प्लेलिस्ट",
+      "episode": "पॉडकास्ट एपिसोड",
+      "show": "पॉडकास्ट",
+      "artist": "कलाकार"
+    }
   }
 }

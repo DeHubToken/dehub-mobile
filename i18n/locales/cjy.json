@@ -14742,5 +14742,21 @@
     "openPost": "打开帖子",
     "readArticle": "没有找到需要翻译的文本。",
     "openToUnlock": "打开以解锁"
+  },
+  "spotify": {
+    "play": "播放",
+    "pause": "暂停",
+    "playingNow": "正在播放",
+    "inPlayer": "在你的播放器",
+    "openInSpotify": "在 Spotify 打开",
+    "stopAndClose": "停止并关闭",
+    "kind": {
+      "track": "歌曲",
+      "album": "专辑",
+      "playlist": "播放列表",
+      "episode": "播客集",
+      "show": "播客",
+      "artist": "艺术家"
+    }
   }
 }

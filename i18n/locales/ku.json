@@ -15001,5 +15001,21 @@
     "openPost": "Postê veke",
     "readArticle": "Gotarê bixwîne",
     "openToUnlock": "Vekirî da ku vekirê"
+  },
+  "spotify": {
+    "play": "Play",
+    "pause": "Pause",
+    "playingNow": "Playing now",
+    "inPlayer": "In your player",
+    "openInSpotify": "Open in Spotify",
+    "stopAndClose": "Stop û girtin",
+    "kind": {
+      "track": "Song",
+      "album": "Album",
+      "playlist": "Playlist",
+      "episode": "Podcast episode",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }

@@ -14671,5 +14671,21 @@
     "openPost": "Barokun dayɛlɛnin",
     "readArticle": "Barokun nin kalan",
     "openToUnlock": "Aw kana a to a ka yɛlɛ"
+  },
+  "spotify": {
+    "play": "A be to ka to ka to",
+    "pause": "N' ye n' ka baara dabila",
+    "playingNow": "I wanna be a fan",
+    "inPlayer": "I ka ɲɔgɔndan na",
+    "openInSpotify": "O kɔ, a ye sira di a ma.",
+    "stopAndClose": "Aw ye taga, aw ye taga",
+    "kind": {
+      "track": "Dɔnkili",
+      "album": "AlbumL'enchantée",
+      "playlist": "Dɔnkilidagaw",
+      "episode": "A be se ka kɛ podcast ye tugun",
+      "show": "A be se ka kɛ podcast ye",
+      "artist": "Fanga be mɔgɔ minw na, olu"
+    }
   }
 }

@@ -14695,5 +14695,21 @@
     "openPost": "Hap postimin",
     "readArticle": "Lexo artikullin",
     "openToUnlock": "Hap për të zhbllokuar"
+  },
+  "spotify": {
+    "play": "Luaj",
+    "pause": "Ndalo",
+    "playingNow": "Duke luajtur tani",
+    "inPlayer": "Në lojtarin tënd",
+    "openInSpotify": "Hap në Spotify",
+    "stopAndClose": "Ndalo dhe mbyll",
+    "kind": {
+      "track": "Kënga",
+      "album": "Albumi",
+      "playlist": "Lista e luajtjes",
+      "episode": "Episodi i podkastit",
+      "show": "Podcast",
+      "artist": "Artist"
+    }
   }
 }
