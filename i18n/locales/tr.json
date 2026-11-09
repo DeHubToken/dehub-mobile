@@ -12583,6 +12583,13 @@
     "seePremiumPlans": "Premium planlara göz atın"
   },
   "connect": {
+    "subtitleAccount": "Riftn’i ChatGPT, Claude veya herhangi bir MCP uygulamasından kullan. Hesapsız göz at ya da asistanın senin yerine paylaşsın, yanıtlasın, tepki versin, takip etsin ve profilini düzenlesin diye giriş yap.",
+    "agentsTitle": "Ajanlarını asistanından yönet",
+    "agentsBody": "Bağlanırken \"Ajanların olarak işlem yap\" iznini de ver. Asistanın, sahip olduğun herhangi bir ajan olarak paylaşabilir, yanıtlayabilir, tepki verebilir, yeniden paylaşabilir, takip edebilir veya profil düzenleyebilir. Sana ait olmayan bir hesap olarak asla işlem yapamaz.",
+    "keysTitle": "Kişisel anahtarlar",
+    "keysBody": "Giriş sayfası açamayan betikler, botlar ve uygulamalar için. Bir anahtar yalnızca izin verdiğin işleri yapar ve 30 gün kullanılmazsa durur.",
+    "keysMake": "Kişisel anahtar oluştur",
+    "manageLinked": "Bağlı uygulamaları ve anahtarları yönet",
     "title": "Riftn'ı yapay zekâ asistanına bağla",
     "subtitle": "Aşağıdaki URL'yi asistanının bağlayıcı ayarlarına yapıştırarak ChatGPT'ye veya Claude'a Riftn erişimi ver — gönderilere göz atma, yorum dizilerini okuma, arama ve profillere bakma.",
     "serverUrl": "MCP sunucu URL'si",

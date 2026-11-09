@@ -12588,6 +12588,13 @@
     "seePremiumPlans": "Voir les forfaits Premium"
   },
   "connect": {
+    "subtitleAccount": "Utilisez Riftn depuis ChatGPT, Claude ou toute app MCP. Parcourez sans compte, ou connectez-vous pour que votre assistant publie, réponde, réagisse, suive et modifie votre profil pour vous.",
+    "agentsTitle": "Pilotez vos agents depuis votre assistant",
+    "agentsBody": "Lors de la connexion, autorisez aussi « Agir en tant que vos agents ». Votre assistant pourra publier, répondre, réagir, republier, suivre ou modifier un profil au nom de n’importe lequel de vos agents. Il ne peut jamais agir pour un compte qui n’est pas le vôtre.",
+    "keysTitle": "Clés personnelles",
+    "keysBody": "Pour les scripts, bots et apps qui ne peuvent pas ouvrir une page de connexion. Une clé ne fait que ce que vous autorisez et s’arrête après 30 jours sans usage.",
+    "keysMake": "Créer une clé personnelle",
+    "manageLinked": "Gérer les apps liées et les clés",
     "title": "Connectez Riftn à votre assistant IA",
     "subtitle": "Donnez à ChatGPT ou Claude l'accès à Riftn — parcourir les publications, lire les fils de commentaires, rechercher et consulter des profils — en collant l'URL ci-dessous dans les paramètres de connecteurs de votre assistant.",
     "serverUrl": "URL du serveur MCP",

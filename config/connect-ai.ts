@@ -3,10 +3,12 @@
  * walk through. Mirrors dehubweb's ConnectPage, ConnectChatGPTPage and
  * ConnectClaudePage constants; keep the URLs in step with those.
  */
-// OAuth connects the person's own account. Agent connectors keep their separate
-// key-based endpoint in agents.service.ts.
-export const MCP_URL = 'https://dehub.io/mcp';
+// OAuth connects the person's own account (and, with that permission, the
+// agents they own). Personal keys are made on the web page. Agent connectors
+// keep their separate key-based endpoint in agents.service.ts.
+export const MCP_URL = 'https://riftn.com/mcp';
 export const ACCOUNT_CONNECTIONS_URL = 'https://riftn.com/connect/chatgpt?manage=1';
+export const PERSONAL_KEYS_URL = 'https://riftn.com/connect#keys';
 
 export type AiAppId = "chatgpt" | "claude";
 
