@@ -41,7 +41,7 @@ import { getStateFromPath as defaultGetStateFromPath } from '@react-navigation/n
 import { closeProfileSheetForLink, emitProfileDeepLink } from '../../libs/deeplink.events';
 import linkingConfig, { ShareLinks, parseDeepLink } from '../../navigation/linking.config';
 import * as Linking from 'expo-linking';
-import { takeHeldCallback } from '../../libs/oauth-cold-start';
+import { clearSignInPageOpened, markSignInPageOpened, takeHeldCallback } from '../../libs/oauth-cold-start';
 
 const emitProfile = emitProfileDeepLink as jest.Mock;
 const fallback = defaultGetStateFromPath as jest.Mock;
@@ -100,6 +100,7 @@ describe('getStateFromPath — one-segment paths', () => {
 
   it('opens sign-in for a sign-in page that came back to a fresh launch', async () => {
     const url = 'dehub://auth-callback#access_token=abc&refresh_token=cold';
+    await markSignInPageOpened();
     (Linking.getInitialURL as jest.Mock).mockResolvedValueOnce(url);
     await expect((linkingConfig as any).getInitialURL()).resolves.toBe(url);
     const state = resolve('auth-callback#access_token=abc&refresh_token=cold');
@@ -107,6 +108,15 @@ describe('getStateFromPath — one-segment paths', () => {
     expect(takeHeldCallback()).toBe(url);
     // Taken: the same link arriving again is the in-flight case.
     expect(resolve('auth-callback#access_token=abc&refresh_token=cold')).toBeUndefined();
+  });
+
+  it('does not open sign-in for a callback link no sign-in here asked for', async () => {
+    const url = 'dehub://auth-callback#access_token=abc&refresh_token=planted';
+    await clearSignInPageOpened();
+    (Linking.getInitialURL as jest.Mock).mockResolvedValueOnce(url);
+    await (linkingConfig as any).getInitialURL();
+    expect(resolve('auth-callback#access_token=abc&refresh_token=planted')).toBeUndefined();
+    expect(takeHeldCallback()).toBeNull();
   });
 
   it('rewrites the bare /fractions onto the /app route', () => {

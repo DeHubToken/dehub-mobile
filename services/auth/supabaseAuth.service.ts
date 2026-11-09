@@ -11,6 +11,7 @@ import { createLogger } from "../../libs/logger";
 import { advanceAuthTrace, beginAuthTrace } from '../../libs/auth-trace';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { serverAuthText } from "../../libs/auth-error-text";
+import { clearSignInPageOpened, markSignInPageOpened } from "../../libs/oauth-cold-start";
 
 const log = createLogger("supabaseAuth");
 
@@ -52,6 +53,17 @@ async function preferredBrowserPackage(): Promise<string | undefined> {
  * did nothing.
  */
 async function openSignInPage(url: string, redirectTo: string, label: string): Promise<WebBrowser.WebBrowserAuthSessionResult> {
+  // Lets a fresh launch finish this page if Android closes the app while it
+  // is open, and nothing else (libs/oauth-cold-start).
+  await markSignInPageOpened();
+  try {
+    return await openSignInPageOnce(url, redirectTo, label);
+  } finally {
+    await clearSignInPageOpened();
+  }
+}
+
+async function openSignInPageOnce(url: string, redirectTo: string, label: string): Promise<WebBrowser.WebBrowserAuthSessionResult> {
   const started = Date.now();
   const result = await WebBrowser.openAuthSessionAsync(url, redirectTo);
   if (Platform.OS !== "android" || result.type === "success" || Date.now() - started > INSTANT_CLOSE_MS) {
