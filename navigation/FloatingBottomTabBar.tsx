@@ -54,7 +54,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import { useKidsMode } from "../hooks/useKidsMode";
 import StageMiniPlayer from "../components/Stages/StageMiniPlayer";
 import { useStages } from "../context/StageContext";
-import { ReorderItem, justDropped, useReorder } from "../components/common/Reorder";
+import { ReorderItem, justDropped, useReorder, type ReorderCtx } from "../components/common/Reorder";
 import { applyNavOrder, navOrderId, saveNavOrder, useNavOrder } from "../libs/navOrder";
 import {
   MINIMAL_TAB_LINE,
@@ -470,6 +470,75 @@ const ScrollNavButton = memo<{
 );
 
 /**
+ * One slot of the bar with its drag handle. Memoised as a whole: a tab switch
+ * re-rendered every one of the forty-odd slots (each a gesture detector and an
+ * animated style) to move the highlight between two of them, ~40ms on a
+ * Galaxy S24+ per switch. Now only the slots whose props changed render.
+ */
+const BarSlot = memo(function BarSlot({
+  id,
+  ctx,
+  lifted,
+  entry,
+  label,
+  isActive,
+  index,
+  tabW,
+  animProgress,
+  badgeCount,
+  onTabPress,
+  onItemPress,
+}: {
+  id: string;
+  ctx: ReorderCtx;
+  lifted: boolean;
+  entry: BarEntry;
+  label: string;
+  isActive: boolean;
+  index: number;
+  tabW: number;
+  animProgress: NativeAnimated.Value;
+  badgeCount: number;
+  onTabPress: (routeName: string) => void;
+  onItemPress: (item: ScrollNavItem) => void;
+}) {
+  return (
+    <ReorderItem id={id} ctx={ctx}>
+      {lifted && (
+        <Reanimated.View
+          pointerEvents="none"
+          entering={FadeIn.duration(250)}
+          exiting={FadeOut.duration(250)}
+          style={styles.liftedFill}
+        />
+      )}
+      {entry.tab ? (
+        <NavButton
+          icon={entry.tab.icon}
+          label={label}
+          isActive={isActive}
+          routeName={entry.tab.name}
+          onPress={onTabPress}
+          index={index}
+          tabW={tabW}
+          animProgress={animProgress}
+          badgeCount={badgeCount}
+        />
+      ) : entry.item ? (
+        <ScrollNavButton
+          icon={entry.item.icon}
+          label={label}
+          item={entry.item}
+          onPress={onItemPress}
+          tabW={tabW}
+          badgeCount={badgeCount}
+        />
+      ) : null}
+    </ReorderItem>
+  );
+});
+
+/**
  * `noEntrance`: a copy of the bar drawn over a pushed page or sheet (see
  * StandaloneTabBar). The bar is already on screen when that copy mounts, so
  * replaying the slide-up and icon stagger there read as the bar flashing and
@@ -844,42 +913,27 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
             const entry = barById.get(id);
             if (!entry) return null;
             return (
-              <ReorderItem key={id} id={id} ctx={barReorder.ctx}>
-                {barReorder.draggingId === id && (
-                  <Reanimated.View
-                    pointerEvents="none"
-                    entering={FadeIn.duration(250)}
-                    exiting={FadeOut.duration(250)}
-                    style={styles.liftedFill}
-                  />
-                )}
-                {entry.tab ? (
-                  <NavButton
-                    icon={entry.tab.icon}
-                    label={t(entry.tab.labelKey)}
-                    isActive={state.routes[state.index]?.name === entry.tab.name}
-                    routeName={entry.tab.name}
-                    onPress={handlePress}
-                    index={index}
-                    tabW={tabW}
-                    animProgress={animProgress}
-                    badgeCount={entry.tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0}
-                  />
-                ) : entry.item ? (
-                  <ScrollNavButton
-                    icon={entry.item.icon}
-                    label={t(entry.item.labelKey)}
-                    item={entry.item}
-                    onPress={handleScrollItemPress}
-                    tabW={tabW}
-                    badgeCount={
-                      entry.item.screen === ScreenNames.Notifications && isAuthed
-                        ? user?.notificationCount ?? 0
-                        : 0
-                    }
-                  />
-                ) : null}
-              </ReorderItem>
+              <BarSlot
+                key={id}
+                id={id}
+                ctx={barReorder.ctx}
+                lifted={barReorder.draggingId === id}
+                entry={entry}
+                label={t(entry.tab ? entry.tab.labelKey : entry.item?.labelKey ?? "")}
+                isActive={!!entry.tab && state.routes[state.index]?.name === entry.tab.name}
+                index={index}
+                tabW={tabW}
+                animProgress={animProgress}
+                badgeCount={
+                  entry.tab
+                    ? entry.tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0
+                    : entry.item?.screen === ScreenNames.Notifications && isAuthed
+                      ? user?.notificationCount ?? 0
+                      : 0
+                }
+                onTabPress={handlePress}
+                onItemPress={handleScrollItemPress}
+              />
             );
           })}
         </Reanimated.ScrollView>
