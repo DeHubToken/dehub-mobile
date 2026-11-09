@@ -1,6 +1,7 @@
 import { updateCommentCount } from '../../libs/comment-count-store';
 import { deliverReply, replyIdOf } from '../../libs/reply-delivery';
 import { useDraftState } from '../../hooks/useDraftState';
+import { usePerfProbe } from '../../libs/perfTrace';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
@@ -2310,6 +2311,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 };
 
 export const CommentSection = memo(function CommentSection(props: CommentSectionProps) {
+  usePerfProbe("CommentSection");
   const user = useUser();
   const account = user?.walletAddress || user?.address || 'signed-out';
   return <CommentSectionComponent key={`${account.toLowerCase()}:${props.tokenId}`} {...props} />;

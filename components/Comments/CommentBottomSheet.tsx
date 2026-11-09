@@ -1,5 +1,5 @@
 import { useSheetClosed } from '../../hooks/useSheetClosed';
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useDeferredValue, useEffect, useRef, useState } from "react";
 import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, Platform } from "react-native";
 import { useBackPress } from "../../hooks/useBackPress";
 import { useTranslation } from "react-i18next";
@@ -126,6 +126,14 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const translateY = slideOffset ?? ownTranslateY;
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
+  // The comment list mounts one render after the sheet itself. The handle and
+  // the tab row are what slide into view first, and building the list in the
+  // same render held the slide back until the whole list existed. Once in, it
+  // stays while the sheet is up or closing, so a reopen mid-close keeps it.
+  const bodyNow = useDeferredValue(visible, false);
+  const [bodyMounted, setBodyMounted] = useState(false);
+  if (bodyNow && visible && !bodyMounted) setBodyMounted(true);
+  if (isFullyClosed && bodyMounted) setBodyMounted(false);
   // The inline Shorts sheet has no backdrop: it sits inside the feed.
   // Android gets a plain scrim, not the live blur: the blur re-samples the
   // whole page on every frame the comment list scrolls (same cost PageDrawer
@@ -336,7 +344,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             </Animated.View>
           </GestureDetector>
 
-          {activeTab === "comments" && (
+          {activeTab === "comments" && bodyMounted && (
             <CommentSection
               tokenId={tokenId}
               onClose={requestClose}
