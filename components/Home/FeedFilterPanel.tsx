@@ -344,6 +344,13 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     isVisible.value = visible ? 1 : 0;
   }, [visible, isVisible]);
 
+  // Until it is first opened, the panel draws nothing inside its zero-height
+  // wrapper. Every chip (sorts, dates and every category) used to be built on
+  // each render of the screen around it: ~340ms of Explore's first open on a
+  // Galaxy S24+. Once opened it stays built, for its close and the next open.
+  const [built, setBuilt] = useState(visible);
+  if (visible && !built) setBuilt(true);
+
   const animatedStyle = useAnimatedStyle(() => {
     const targetHeight = isVisible.value ? maxHeight : 0;
     const targetOpacity = isVisible.value ? 1 : 0;
@@ -384,7 +391,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     setCategorySearch.complete(categorySearch, "");
   }, [onCategoryPress, setCategorySearch, categorySearch]);
 
-  const content = (
+  // A function, so a closed, never-opened panel does not even create the
+  // chips' elements.
+  const renderContent = () => (
     <>
       {/* System Light: the pale frost alone let dark feed tiles show through
           behind the labels. Paper under it, the frost on top. */}
@@ -524,7 +533,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     return visible ? (
       <Animated.View entering={menuEnter} exiting={menuExit} style={panelStyles.drawerWrap}>
         <View style={[panelStyles.drawer, { height: maxHeight + navOverlap, paddingTop: navOverlap }]}>
-          {content}
+          {renderContent()}
         </View>
       </Animated.View>
     ) : null;
@@ -532,7 +541,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 
   return (
     <Animated.View style={[animatedStyle, embedded ? panelStyles.embeddedOuterWrap : panelStyles.outerWrap]}>
-      {content}
+      {built ? renderContent() : null}
     </Animated.View>
   );
 };
