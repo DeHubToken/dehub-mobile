@@ -142,6 +142,14 @@ cp ~/Library/Logs/DiagnosticReports/"$EXE"*.ips "$OUT/logs/" 2>/dev/null || true
 ls ~/Library/Logs/DiagnosticReports/ > "$OUT/logs/diagnostic-reports.txt" 2>/dev/null || true
 grep -iE "fatal|exception|crash|unhandled|TypeError|ReferenceError|Invariant Violation|RCTFatal" "$OUT/logs/app.log" \
   | grep -v "libsystem" | head -400 > "$OUT/logs/errors.txt" || true
+# Uncaught JS errors and app self-restarts, with the stack, first few in full
+# then every distinct first line with a count.
+{
+  grep -n -A20 -m3 -E '\[FatalJS\]|\[UncaughtJS\]|\[restartApp\]' "$OUT/logs/app.log" || true
+  echo "----"
+  grep -E '\[FatalJS\]|\[UncaughtJS\]|\[restartApp\]' "$OUT/logs/app.log" \
+    | sed -E 's/^[^]]*\] //; s/restarts in window: [0-9]+//' | cut -c1-300 | sort | uniq -c | sort -rn | head -40 || true
+} > "$OUT/logs/js-faults.txt"
 
 echo "Pages walked: ${#PAGES[@]} x 2 themes"
 echo "Problems:"
@@ -149,4 +157,6 @@ cat "$OUT/crashes.txt"
 echo "Error lines in app log: $(wc -l < "$OUT/logs/errors.txt")"
 echo "JS restarts: $(grep -c 'state = restarting' "$OUT/logs/app.log")"
 echo "Keychain failures: $(grep -c 'ERR_KEY_CHAIN' "$OUT/logs/app.log")"
+echo "JS faults (first lines):"
+sed -n '/^----$/,$p' "$OUT/logs/js-faults.txt" | head -15
 rm -f "$OUT/.prompt.png"

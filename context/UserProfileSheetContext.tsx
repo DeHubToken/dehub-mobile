@@ -3,7 +3,7 @@ import { Platform, View } from 'react-native';
 import { FeedPlaybackActiveContext } from '../libs/visualActivity';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 import { PROFILE_CLOSE_MS } from '../components/UserProfile/ProfileSurface';
-import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
+import { setProfileDeepLinkHandler, setProfileSheetCloser } from '../libs/deeplink.events';
 import { useAppTheme } from './ThemeContext';
 import { prefetchUserProfile } from '../hooks/useUserProfileData';
 import {
@@ -112,6 +112,16 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     });
     return () => setProfileDeepLinkHandler(null);
   }, [showUserProfile]);
+
+  // A link opened while a profile is showing would otherwise land beneath it.
+  const visibleRef = useRef(visible);
+  visibleRef.current = visible;
+  useEffect(() => {
+    setProfileSheetCloser(() => {
+      if (visibleRef.current) hideUserProfile();
+    });
+    return () => setProfileSheetCloser(null);
+  }, [hideUserProfile]);
 
   // Keep the previous page behind both animations. Removing it before the
   // incoming page fills the window exposed the theme canvas as a flash; Back

@@ -63,6 +63,16 @@ describe("crash recovery", () => {
     expect(reloadAsync).toHaveBeenCalledTimes(recovery.MAX_RESTARTS_IN_WINDOW);
   });
 
+  it("keeps counting when the fast store forgets between reloads", async () => {
+    for (let i = 0; i < recovery.MAX_RESTARTS_IN_WINDOW; i++) {
+      storage.clearAll();
+      expect(await recovery.restartApp("fatal", "supabaseKey is required.")).toBe(true);
+    }
+    storage.clearAll();
+    expect(await recovery.restartApp("fatal", "supabaseKey is required.")).toBe(false);
+    expect(reloadAsync).toHaveBeenCalledTimes(recovery.MAX_RESTARTS_IN_WINDOW);
+  });
+
   it("lets a person restart as often as they like", async () => {
     for (let i = 0; i < recovery.MAX_RESTARTS_IN_WINDOW + 2; i++) {
       expect(await recovery.restartApp("user", "", { userInitiated: true })).toBe(true);
@@ -78,7 +88,7 @@ describe("crash recovery", () => {
     jest.useFakeTimers();
     reloadAsync.mockImplementation(() => new Promise(() => {}));
     const result = recovery.restartApp("fatal", "render failed");
-    jest.advanceTimersByTime(recovery.RESTART_TIMEOUT_MS);
+    await jest.advanceTimersByTimeAsync(recovery.RESTART_TIMEOUT_MS);
     expect(await result).toBe(false);
     expect(jest.getTimerCount()).toBe(0);
   });

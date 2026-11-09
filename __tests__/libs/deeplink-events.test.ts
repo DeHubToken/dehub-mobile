@@ -37,3 +37,22 @@ describe('profile deep links', () => {
     expect(handler).toHaveBeenCalledWith('mal');
   });
 });
+
+describe('links that arrive while a profile is open', () => {
+  beforeEach(() => jest.resetModules());
+
+  it('close the profile so the linked page is not hidden beneath it', () => {
+    const events = require('../../libs/deeplink.events');
+    const close = jest.fn();
+    events.setProfileSheetCloser(close);
+    events.closeProfileSheetForLink();
+    expect(close).toHaveBeenCalledTimes(1);
+  });
+
+  it('do nothing before the profile provider has mounted', () => {
+    const events = require('../../libs/deeplink.events');
+    expect(() => events.closeProfileSheetForLink()).not.toThrow();
+    events.setProfileSheetCloser(null);
+    expect(() => events.closeProfileSheetForLink()).not.toThrow();
+  });
+});

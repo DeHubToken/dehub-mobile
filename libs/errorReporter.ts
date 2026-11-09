@@ -363,6 +363,14 @@ export function installGlobalErrorHandler(): void {
   g.ErrorUtils?.setGlobalHandler?.((error: any, isFatal?: boolean) => {
     let rows: Row[] = [];
     try {
+      // The device log is the only place a fault that restarts the app before
+      // anything renders can be read (Xcode console, simulator runs).
+      // eslint-disable-next-line no-console
+      console.error(isFatal ? "[FatalJS]" : "[UncaughtJS]", error instanceof Error ? `${error.message}\n${error.stack ?? ""}` : String(error));
+    } catch {
+      /* logging must not add a second crash */
+    }
+    try {
       reportError(isFatal ? "FatalJS" : "UncaughtJS", [
         error instanceof Error ? error : new Error(String(error)),
         { isFatal: !!isFatal },

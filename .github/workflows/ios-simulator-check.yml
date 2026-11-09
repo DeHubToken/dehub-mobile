@@ -22,7 +22,7 @@ jobs:
   simulator:
     name: Build and walk the app on an iPhone simulator
     runs-on: macos-15
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -65,44 +65,42 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
           echo "Simulator: $TYPE on $RUNTIME"
+      # Signed to run locally, as Xcode does for a simulator: an unsigned app
+      # gets no keychain there, so sign-in state never loads.
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      # The app's config (Supabase key and the rest) is inlined into the bundle
+      # at build time from the EAS production environment, as the store build
+      # does. Without it the app throws "supabaseKey is required" on launch.
       - name: Build Release for the simulator
         run: |
+          cat > "$RUNNER_TEMP/build-sim.sh" <<'SH'
           set -o pipefail
           xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
             -configuration Release -sdk iphonesimulator \
             -destination "id=${{ steps.sim.outputs.udid }}" \
             -derivedDataPath "$RUNNER_TEMP/sim" \
-            ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
-      # The build above is unsigned, and an unsigned app has no keychain on the
-      # simulator: every SecureStore read fails and sign-in state never loads.
-      # An ad-hoc signature with the app's identifiers gives it one, as a
-      # device build has.
-      - name: Sign the build for the simulator
-        run: |
-          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
-          BUNDLE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
-          TEAM="$(grep -m1 -oE 'DEVELOPMENT_TEAM = [A-Z0-9]+' ios/DeHub.xcodeproj/project.pbxproj | awk '{print $3}')"
-          cat > "$RUNNER_TEMP/sim.entitlements" <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0"><dict>
-            <key>application-identifier</key><string>$TEAM.$BUNDLE</string>
-            <key>com.apple.developer.team-identifier</key><string>$TEAM</string>
-            <key>keychain-access-groups</key><array><string>$TEAM.$BUNDLE</string></array>
-            <key>com.apple.security.application-groups</key><array><string>group.io.dehub.mobile.screen-capture</string></array>
-          </dict></plist>
-          EOF
-          codesign --force --deep --sign - --timestamp=none --entitlements "$RUNNER_TEMP/sim.entitlements" "$APP"
-          codesign -d --entitlements - "$APP" 2>/dev/null | head -20
+            ONLY_ACTIVE_ARCH=YES CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual CODE_SIGNING_REQUIRED=NO \
+            PROVISIONING_PROFILE_SPECIFIER= build 2>&1 | tee xcodebuild.log | xcbeautify --quiet
+          SH
+          eas env:list production | sed -E 's/=.*/= <set>/'
+          eas env:exec production "bash $RUNNER_TEMP/build-sim.sh"
       # iOS 26 asks "Open in …?" before a simulator opens a deep link; idb taps Open.
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      # Without it no deep link opens and the whole walk is wasted, so this
+      # retries the download (GitHub release downloads flake) and then fails.
       - name: Install idb for taps
-        continue-on-error: true
         run: |
           brew tap facebook/fb
-          brew install facebook/fb/idb-companion
+          for attempt in 1 2 3 4; do
+            brew install facebook/fb/idb-companion && break
+            [ "$attempt" = 4 ] && exit 1
+            sleep $((attempt * 20))
+          done
           python -m venv "$RUNNER_TEMP/idb"
           "$RUNNER_TEMP/idb/bin/pip" install --quiet fb-idb pillow
           echo "$RUNNER_TEMP/idb/bin" >> "$GITHUB_PATH"

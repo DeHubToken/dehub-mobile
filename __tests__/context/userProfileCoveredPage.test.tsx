@@ -22,7 +22,7 @@ jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
   };
 });
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({ PROFILE_CLOSE_MS: 180 }));
-jest.mock('../../libs/deeplink.events', () => ({ setProfileDeepLinkHandler: jest.fn() }));
+jest.mock('../../libs/deeplink.events', () => ({ setProfileDeepLinkHandler: jest.fn(), setProfileSheetCloser: jest.fn() }));
 jest.mock('../../libs/visualActivity', () => ({ FeedPlaybackActiveContext: require('react').createContext(true) }));
 
 it('keeps the previous page behind profile transitions without unmounting it', () => {
