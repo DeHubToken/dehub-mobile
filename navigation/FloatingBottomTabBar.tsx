@@ -1,7 +1,7 @@
 import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, startTransition, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated as NativeAnimated,
   Easing as NativeEasing,
@@ -537,6 +537,19 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
     return out;
   }, [barReorder.order, isKidsMode]);
 
+  // Forty-odd slots, each a drag handle, a natively animated button and a layout
+  // listener: building them all took ~130ms on a Galaxy S24+, and every copy of
+  // the bar paid it again (a profile builds two while it opens). The pill shows
+  // TABS.length at a time, so the rest start as same-width place-holders and are
+  // built a moment after the bar is up, or as soon as the pill is scrolled.
+  const [allSlots, setAllSlots] = useState(false);
+  useEffect(() => {
+    if (allSlots) return;
+    const timer = setTimeout(() => startTransition(() => setAllSlots(true)), 400);
+    return () => clearTimeout(timer);
+  }, [allSlots]);
+  const buildAllSlots = useCallback(() => setAllSlots(true), []);
+
   // UIKit refuses to render a visual-effect view correctly when it or any
   // superview has an alpha below 1 — Apple documents this explicitly. The
   // entrance fade therefore rides its own withTiming value, which lands exactly
@@ -808,6 +821,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
           showsHorizontalScrollIndicator={false}
           bounces={false}
           contentContainerStyle={styles.navRow}
+          onScrollBeginDrag={allSlots ? undefined : buildAllSlots}
         >
           {barSlots.map((id, index) => {
             if (id === CREATE_ID && CENTER_TAB) {
@@ -826,6 +840,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
                 />
               );
             }
+            if (!allSlots && index > TABS.length) return <View key={id} style={{ width: tabW }} />;
             const entry = barById.get(id);
             if (!entry) return null;
             return (
