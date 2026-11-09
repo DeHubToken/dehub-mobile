@@ -49,7 +49,8 @@ import {
   type UnifiedFeedResponse,
   type FeedPostType,
 } from "../services/feed.unified.service";
-import { useIsFocused, useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
+import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../hooks/useIsFocusedLazy";
 import { useQueryClient } from '@tanstack/react-query';
 import ScreenHeader from "../components/ScreenHeader";
 import { PageTabs } from "../components/page/PageKit";
@@ -698,7 +699,9 @@ const SearchScreen: React.FC = () => {
     [],
   );
 
-  const focused = useIsFocused();
+  // Lazy: the plain hook re-rendered this whole screen inside every tab
+  // switch to or from Explore (~80ms on a Galaxy S24+) for an effect.
+  const focused = useIsFocusedLazy();
   const contentVisibility = useMemo(() => createFeedVisibilityStore(false), []);
   const trendingVisibility = useMemo(() => createFeedVisibilityStore(false), []);
   useEffect(() => {
