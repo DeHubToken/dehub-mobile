@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { galleryIndex, rememberGalleryIndex, subscribeGallery } from '../../libs/media-presentation';
 import { measureImageAspect, warmFeedImage } from '../common/SmartImage';
@@ -66,6 +67,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   /** Post page: square corners and the taller 80%-of-screen cap. */
   postPage?: boolean;
 }) {
+  usePerfProbe("CardGallery");
   const frames = useRef(new Map<number, Frame>());
   const galleryKey = postId ?? images.join('|');
   const scrollRef = useRef<ScrollView>(null);
