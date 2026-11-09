@@ -214,7 +214,7 @@ async function loadSourceLanguage(lang: string): Promise<Record<string, unknown>
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
     try {
-      const response = await fetch(`https://raw.githubusercontent.com/DeHubToken/dehub-mobile/${manifest.sourceRef}/i18n/locales/${lang}.json`, { signal: controller.signal });
+      const response = await fetch(`https://raw.githubusercontent.com/Riftn/riftn-mobile/${manifest.sourceRef}/i18n/locales/${lang}.json`, { signal: controller.signal });
       if (!response.ok) throw new Error('Language source unavailable');
       const data = await response.json();
       if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid language source');

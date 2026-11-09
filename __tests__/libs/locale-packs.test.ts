@@ -44,7 +44,7 @@ it('loads a committed language source when the CDN has not published its version
   expect(i18n.getResource('fr', 'translation', 'common.sourceProbe')).toBe('Bonjour');
   const requests = fetchSource.mock.calls.map(([url]) => url);
   expect(requests.filter(url => url.includes('/locale-packs/'))).toHaveLength(6);
-  expect(requests.filter(url => /raw\.githubusercontent\.com\/DeHubToken\/dehub-mobile\/[a-f0-9]{40}\/i18n\/locales\/fr.json$/.test(url))).toHaveLength(1);
+  expect(requests.filter(url => /raw\.githubusercontent\.com\/Riftn\/riftn-mobile\/[a-f0-9]{40}\/i18n\/locales\/fr.json$/.test(url))).toHaveLength(1);
 });
 
 it('uses a cached source language on the next launch without a network request', async () => {
