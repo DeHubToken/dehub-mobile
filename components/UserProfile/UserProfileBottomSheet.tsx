@@ -1,5 +1,5 @@
 import { usePerfProbe } from "../../libs/perfTrace";
-import React, { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
+import React, { memo, useCallback, useDeferredValue, useEffect, useRef, useState, type ComponentType } from 'react';
 import ProfileSurface, { PROFILE_OPEN_MS } from './ProfileSurface';
 import { Platform, StyleSheet, View } from 'react-native';
 import RouteLoadingShell from '../../navigation/RouteLoadingShell';
@@ -16,7 +16,8 @@ export interface UserProfileBottomSheetProps {
 
 let ProfileContent: ComponentType<UserProfileBottomSheetProps> | undefined;
 function content() {
-  return ProfileContent ??= require('./UserProfilePageContent').default;
+  // Memoised so a render that changes nothing the page reads skips it (see contentVisible).
+  return ProfileContent ??= memo(require('./UserProfilePageContent').default);
 }
 
 /** Paint and move the light page before evaluating the profile's feed and hooks. */
@@ -49,6 +50,10 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   }, [visible, embedded, usernameOrAddress, complete]);
 
   const ready = !!usernameOrAddress && (embedded || readyIdentifier === usernameOrAddress);
+  // The page follows `visible` one render later. Closing re-rendered the whole
+  // page (~80ms on a Galaxy S24+) before the close animation could start; now
+  // the animation starts at once and the page catches up while it runs.
+  const contentVisible = useDeferredValue(visible);
   const Content = ready ? content() : null;
   if (embedded) return Content ? <Content {...props} /> : null;
   // The profile brings its own bottom bar, but only once it has built. Until
@@ -64,7 +69,7 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   ) : null;
   return <>
     <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete}>
-      {Content ? <Content {...props} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
+      {Content ? <Content {...props} visible={contentVisible} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
       {Platform.OS === 'android' ? null : bar}
     </ProfileSurface>
     {Platform.OS === 'android' ? bar : null}
