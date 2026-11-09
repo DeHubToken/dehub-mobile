@@ -91,11 +91,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      # Without it no deep link opens and the whole walk is wasted, so this
+      # retries the download (GitHub release downloads flake) and then fails.
       - name: Install idb for taps
-        continue-on-error: true
         run: |
           brew tap facebook/fb
-          brew install facebook/fb/idb-companion
+          for attempt in 1 2 3 4; do
+            brew install facebook/fb/idb-companion && break
+            [ "$attempt" = 4 ] && exit 1
+            sleep $((attempt * 20))
+          done
           python -m venv "$RUNNER_TEMP/idb"
           "$RUNNER_TEMP/idb/bin/pip" install --quiet fb-idb pillow
           echo "$RUNNER_TEMP/idb/bin" >> "$GITHUB_PATH"
