@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, {
   memo,
@@ -375,6 +376,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   showShortsCarousel = false,
   showBoostSlot = false,
 }) => {
+  usePerfProbe("InfiniteVideoFeed");
   const { t: _copy } = _useCopy();
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;

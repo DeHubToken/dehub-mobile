@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../libs/perfTrace";
 import MessageSearch from "../components/DM/MessageSearch";
 import { setLockedMediaPayer } from "../libs/dmLocked";
 import MessageSurface from "../components/DM/MessageSurface";
@@ -163,6 +164,7 @@ const log = createLogger("ChatScreen");
 
 
 const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
+  usePerfProbe("ChatScreen");
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const user = useUser();

@@ -1,3 +1,4 @@
+import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -57,6 +58,7 @@ const SEPARATOR = { height: 1, backgroundColor: "rgba(255,255,255,0.07)" } as co
 const SEARCH_ACTION = { width: 28, height: 28, borderRadius: 6, alignItems: "center", justifyContent: "center" } as const;
 
 const DirectMessagesInner: React.FC = () => {
+  usePerfProbe("DirectMessages");
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const searchField = useSearchFieldMaterial();
@@ -297,6 +299,7 @@ const DirectMessagesInner: React.FC = () => {
 
   const handleOpenConversation = useCallback(
     (conv: DmConversation, otherUser: DmUser | undefined) => {
+      perfMark("chat:open");
       const title =
         otherUser?.displayName ||
         otherUser?.username ||

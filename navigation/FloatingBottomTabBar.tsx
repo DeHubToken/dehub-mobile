@@ -1,3 +1,4 @@
+import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -475,6 +476,7 @@ const ScrollNavButton = memo<{
  * redrawing every time a profile or post opened.
  */
 const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean }> = ({ state, navigation, noEntrance = false }) => {
+  usePerfProbe("TabBar");
   const { t } = useTranslation();
   const { t: _copyNav } = _useCopy();
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
@@ -614,6 +616,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
     (routeName: string) => {
       // The release of a drag is not a tap.
       if (justDropped()) return;
+      perfMark(`tab:${routeName}`);
       const current = stateRef.current;
       const route = current.routes.find((r) => r.name === routeName);
       const isFocused = current.routes[current.index]?.name === routeName;

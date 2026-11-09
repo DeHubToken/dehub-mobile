@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
@@ -174,6 +175,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   peerName,
   draftKey,
 }) => {
+  usePerfProbe("ChatInputBar");
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);

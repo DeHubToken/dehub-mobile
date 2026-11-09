@@ -13,6 +13,7 @@ import { useAuthState } from "../context/AuthContext";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import { homeTabEvents } from "../libs/eventBus";
 import { useEdgeToEdgeMedia } from "../libs/edgeToEdgeMedia";
+import { perfMark } from "../libs/perfTrace";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -63,6 +64,7 @@ function BottomTabNavigator() {
           getComponent={() => require("../screens/UploadScreen").default}
           listeners={({ navigation: tabNav }) => ({
             tabPress: (e) => {
+              perfMark("composer:open");
               e.preventDefault();
               if (!isAuthed) {
                 navigation.navigate(ScreenNames.SignIn);

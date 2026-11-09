@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../libs/perfTrace";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
@@ -295,6 +296,7 @@ const DIALOG_MUTED = { color: "#A6A9AC" };
 const fmtTrim = (sec: number) => `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
 
 export default function UploadScreen() {
+  usePerfProbe("UploadScreen");
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.

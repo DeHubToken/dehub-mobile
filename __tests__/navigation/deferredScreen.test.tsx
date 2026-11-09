@@ -119,3 +119,28 @@ it('opens a new instance of a warm screen without waiting for another transition
   expect(load).toHaveBeenCalledTimes(1);
   act(() => next.unmount());
 });
+
+it('draws a loaded page on its first frame unless it asks for its shell first', () => {
+  const { preloadDeferredScreen } = require('../../navigation/deferredScreen');
+  function Content() {
+    return require('react').createElement('Page');
+  }
+  const direct = `loaded-${key++}`;
+  preloadDeferredScreen(direct, () => Content);
+  const Direct = deferredScreen(direct, () => Content);
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(<Direct route={mockRoute} />); });
+  expect(tree.root.findAllByType('Page' as any)).toHaveLength(1);
+  act(() => tree.unmount());
+
+  const shellFirst = `shell-first-${key++}`;
+  preloadDeferredScreen(shellFirst, () => Content);
+  const Shelled = deferredScreen(shellFirst, () => Content, undefined, { shellFirst: true });
+  act(() => { tree = create(<Shelled route={mockRoute} />); });
+  expect(tree.root.findAllByType('LoadingShell' as any)).toHaveLength(1);
+  expect(tree.root.findAllByType('LoadingShell' as any)[0].props.route).toBe(mockRoute);
+  act(() => jest.advanceTimersByTime(16));
+  expect(tree.root.findAllByType('Page' as any)).toHaveLength(1);
+  expect(tree.root.findAllByType('LoadingShell' as any)).toHaveLength(0);
+  act(() => tree.unmount());
+});

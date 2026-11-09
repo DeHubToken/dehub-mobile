@@ -16,6 +16,7 @@ import { deferredScreen, preloadDeferredScreen } from "./deferredScreen";
 import { storefrontRoute } from "../components/common/StorefrontGate";
 import AppWideTabBar from "./AppWideTabBar";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
+import ChatRouteShell from "../components/DM/ChatRouteShell";
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -659,7 +660,9 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Chat}
-              getComponent={() => deferredScreen(...CHAT)}
+              // The chat's own first render is ~0.3s: its header comes first
+              // so the slide starts at the tap.
+              getComponent={() => deferredScreen(...CHAT, ChatRouteShell, { shellFirst: true })}
             />
             <Stack.Screen
               name={ScreenNames.LiveChat}

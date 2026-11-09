@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
 import ProfileSurface, { PROFILE_OPEN_MS } from './ProfileSurface';
 import { Platform, StyleSheet, View } from 'react-native';
@@ -20,6 +21,7 @@ function content() {
 
 /** Paint and move the light page before evaluating the profile's feed and hooks. */
 export default function UserProfileBottomSheet(props: UserProfileBottomSheetProps) {
+  usePerfProbe("ProfileSheet");
   const { visible, usernameOrAddress, embedded, onClose, onOpenComplete } = props;
   const [readyIdentifier, setReadyIdentifier] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

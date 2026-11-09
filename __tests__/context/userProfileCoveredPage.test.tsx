@@ -81,3 +81,27 @@ it('keeps profile presentation available when a profile post opens comments', ()
   expect(tree.root.findByType('Profile' as any).props.visible).toBe(true);
   act(() => tree.unmount());
 });
+
+it('opens a profile over the page without re-rendering a page that only watches in-feed profiles', () => {
+  const { useFeedProfilePresentation } = require('../../context/UserProfileSheetContext');
+  let profile!: ReturnType<typeof useUserProfileSheet>;
+  const renders = jest.fn();
+  const seen: boolean[] = [];
+  function Page() {
+    profile = useUserProfileSheet();
+    useFeedProfilePresentation();
+    renders();
+    React.useEffect(() => profile.subscribeProfileVisible((visible) => { seen.push(visible); }), []);
+    return null;
+  }
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
+  renders.mockClear();
+  act(() => profile.showUserProfile('member'));
+  expect(renders).not.toHaveBeenCalled();
+  expect(profile.isProfileVisible()).toBe(true);
+  act(() => profile.hideUserProfile());
+  expect(profile.isProfileVisible()).toBe(false);
+  expect(seen).toEqual([true, false]);
+  act(() => tree.unmount());
+});

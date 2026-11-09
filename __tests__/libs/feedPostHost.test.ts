@@ -36,5 +36,5 @@ it("leaves a comment tap to the card when Home turns it down under a profile", (
   expect(openPostInFeedHost(12, { comments: true })).toBe(false);
   expect(openPostInFeedHost(12)).toBe(true);
   const home = read("screens/HomeScreen.tsx");
-  expect(home).toContain("if (options?.comments && profileVisibleRef.current) return false;");
+  expect(home).toContain("if (options?.comments && isProfileVisible()) return false;");
 });
