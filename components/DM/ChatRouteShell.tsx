@@ -8,6 +8,7 @@ import { dmState } from "../../store/dm.store";
 import { getOtherParticipant, type DmConversation } from "../../services/dm/dm.types";
 import { getAvatarUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
+import { usePerfProbe } from "../../libs/perfTrace";
 
 type ShellPeer = { displayName?: string; username?: string; avatarImageUrl?: string; address?: string };
 
@@ -32,6 +33,7 @@ type ChatRouteShellProps = {
  * is gone a moment later.
  */
 export default function ChatRouteShell({ route }: ChatRouteShellProps) {
+  usePerfProbe("ChatShell");
   const { t } = useTranslation();
   const user = useUser() as { id?: string; walletAddress?: string; address?: string } | null;
   const params = route?.params;

@@ -34,6 +34,8 @@ interface ConversationItemProps {
   /** Revealed by swiping the row left. Omit either one to hide that action. */
   onDelete?: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
   onBlock?: (conversation: DmConversation, otherUser: DmUser | undefined) => void;
+  /** Fade in on mount: for a conversation that arrives while the list is up. */
+  animateIn?: boolean;
 }
 
 const ConversationItemComponent: React.FC<ConversationItemProps> = ({
@@ -45,6 +47,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   onAvatarPress,
   onDelete,
   onBlock,
+  animateIn = false,
 }) => {
   usePerfProbe("ConversationRow");
   const { t } = useTranslation();
@@ -207,7 +210,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   }, [onBlock, onDelete, conversation, other, t]);
 
   return (
-    <Animated.View entering={FadeIn.duration(250)}>
+    <Animated.View entering={animateIn ? FadeIn.duration(250) : undefined}>
       <SwipeableRow actions={swipeActions}>
       <TouchableOpacity
         onPress={handlePress}

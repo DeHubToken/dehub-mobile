@@ -1,6 +1,6 @@
 import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
@@ -69,6 +69,13 @@ const DirectMessagesInner: React.FC = () => {
 
   const { contactsLoading, contactsError, refreshContacts } = useDMContext();
   const conversations = useDmContacts();
+  // The conversations the inbox first has are drawn as they are; only one that
+  // arrives after that fades in. Fading every row on the first open made the
+  // whole list read as still loading.
+  const firstIdsRef = useRef<Set<string> | null>(null);
+  if (firstIdsRef.current === null && conversations.length > 0) {
+    firstIdsRef.current = new Set(conversations.map((c) => c._id));
+  }
   const pendingDeletes = usePendingDeletes();
   const { showUserProfile } = useUserProfileSheet();
   // The KeyboardAvoidingView below is this screen's outermost element, so the
@@ -369,6 +376,7 @@ const DirectMessagesInner: React.FC = () => {
         onAvatarPress={handleAvatarPress}
         onDelete={handleSwipeDelete}
         onBlock={handleSwipeBlock}
+        animateIn={!!firstIdsRef.current && !firstIdsRef.current.has(item._id)}
       />
     ),
     [

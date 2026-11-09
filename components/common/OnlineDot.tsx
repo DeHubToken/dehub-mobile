@@ -20,29 +20,35 @@ const GREEN = "#34d399";
  * libs/online-presence. Twin of web's components/app/chat/OnlineDot.
  */
 export default function OnlineDot({ address }: { address?: string | null }) {
-  const { t } = useTranslation();
   // Messages is preloaded behind Home. An endless pulse there kept Android's
   // UI thread committing a frame for a dot nobody could see, through every
   // frame of a feed scroll; it runs only while its screen is in front.
   const focused = useIsFocusedLazy();
   const isOnline = useIsOnline(address, focused);
+  // Most rows are offline: they build no animation at all.
+  if (!isOnline) return null;
+  return <LitDot pulsing={focused} />;
+}
+
+function LitDot({ pulsing }: { pulsing: boolean }) {
+  const { t } = useTranslation();
   const pulse = useSharedValue(0);
 
   useEffect(() => {
-    if (!isOnline || !focused) {
+    if (!pulsing) {
       cancelAnimation(pulse);
       pulse.value = 0;
       return;
     }
     pulse.value = withRepeat(withTiming(1, { duration: 1400, easing: Easing.out(Easing.ease) }), -1, false);
-  }, [isOnline, focused, pulse]);
+    return () => cancelAnimation(pulse);
+  }, [pulsing, pulse]);
 
   const halo = useAnimatedStyle(() => ({
     opacity: 0.6 * (1 - pulse.value),
     transform: [{ scale: 1 + pulse.value * 1.2 }],
   }));
 
-  if (!isOnline) return null;
   return (
     <View
       accessible
