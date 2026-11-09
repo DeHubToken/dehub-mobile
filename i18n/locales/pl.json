@@ -4939,7 +4939,8 @@
     "tabPinned": "Przypięte",
     "lockedPost": "Zablokowany post",
     "viewGrid": "Widok siatki",
-    "viewList": "Widok listy"
+    "viewList": "Widok listy",
+    "unavailable": "Profil niedostępny"
   },
   "tv": {
     "title": "TV",
@@ -14198,7 +14199,9 @@
     "busy": "Dezaktywowanie…",
     "done": "Konto dezaktywowane",
     "receipt": "Twój profil, posty i komentarze są ukryte. Zaloguj się ponownie w dowolnej chwili, aby wszystko odzyskać.",
-    "error": "Nie udało się dezaktywować konta. Spróbuj ponownie."
+    "error": "Nie udało się dezaktywować konta. Spróbuj ponownie.",
+    "acknowledge": "Rozumiem, że mój profil zostanie ukryty i zostanę wylogowany wszędzie.",
+    "understand": "Rozumiem"
   },
   "accountDeletion": {
     "title": "Usuwanie konta",

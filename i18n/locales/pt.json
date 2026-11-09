@@ -4869,7 +4869,8 @@
     "mutualsMany": "{{count}} Mútuos:",
     "lockedPost": "Post bloqueado",
     "viewGrid": "Vista de grelha",
-    "viewList": "Visualização de lista"
+    "viewList": "Visualização de lista",
+    "unavailable": "Perfil indisponível"
   },
   "tv": {
     "title": "TV",
@@ -14632,7 +14633,9 @@
     "busy": "Desativando…",
     "done": "Conta desativada",
     "receipt": "Seu perfil, posts e comentários estão ocultos. Entre novamente quando quiser para recuperar tudo.",
-    "error": "Não foi possível desativar sua conta. Tente novamente."
+    "error": "Não foi possível desativar sua conta. Tente novamente.",
+    "acknowledge": "Entendo que meu perfil ficará oculto e serei desconectado em todos os lugares.",
+    "understand": "Entendo"
   },
   "accountDeletion": {
     "title": "Apagar a sua conta",

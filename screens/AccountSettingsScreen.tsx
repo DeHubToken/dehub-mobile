@@ -179,19 +179,26 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   // Reversible: hides everything and signs out; signing back in restores it.
   const handleDeactivateAccount = () => {
     if (deactivatingAccount || deletingAccount) return;
+    const run = async () => {
+      setDeactivatingAccount(true);
+      try {
+        await requestAccountDeactivation();
+        Alert.alert(t("accountDeactivation.done"), t("accountDeactivation.receipt"), [
+          { text: t("accountDeletion.done"), onPress: () => { void signOut(); } },
+        ], { cancelable: false });
+      } catch {
+        toastError(t("accountDeactivation.error"));
+        setDeactivatingAccount(false);
+      }
+    };
+    // Two steps so a stray tap cannot hide the account.
     Alert.alert(t("accountDeactivation.confirmTitle"), t("accountDeactivation.confirmBody"), [
       { text: t("accountDeletion.cancel"), style: "cancel" },
-      { text: t("accountDeactivation.button"), onPress: async () => {
-        setDeactivatingAccount(true);
-        try {
-          await requestAccountDeactivation();
-          Alert.alert(t("accountDeactivation.done"), t("accountDeactivation.receipt"), [
-            { text: t("accountDeletion.done"), onPress: () => { void signOut(); } },
-          ], { cancelable: false });
-        } catch {
-          toastError(t("accountDeactivation.error"));
-          setDeactivatingAccount(false);
-        }
+      { text: t("accountDeactivation.button"), onPress: () => {
+        Alert.alert(t("accountDeactivation.confirmTitle"), t("accountDeactivation.acknowledge"), [
+          { text: t("accountDeletion.cancel"), style: "cancel" },
+          { text: t("accountDeactivation.understand"), style: "destructive", onPress: () => { void run(); } },
+        ]);
       } },
     ]);
   };

@@ -2779,7 +2779,8 @@
     "dislikesEmptyOwn": "Posts you dislike leave your feeds and show up here. Undo a dislike to bring the post back.",
     "dislikesEmptyOther": "Nothing disliked yet.",
     "dislikesPrivateTitle": "Dislikes are private",
-    "dislikesPrivateDesc": "This account keeps its dislikes to itself."
+    "dislikesPrivateDesc": "This account keeps its dislikes to itself.",
+    "unavailable": "Profile not available"
   },
   "tv": {
     "title": "TV",
@@ -12965,7 +12966,9 @@
     "busy": "Deactivating…",
     "done": "Account deactivated",
     "receipt": "Your profile, posts and comments are hidden. Sign in again any time to bring everything back.",
-    "error": "Could not deactivate your account. Please try again."
+    "error": "Could not deactivate your account. Please try again.",
+    "acknowledge": "I understand my profile will be hidden and I will be signed out everywhere.",
+    "understand": "I understand"
   },
   "accountDeletion": {
     "title": "Delete account",

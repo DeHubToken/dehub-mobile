@@ -2807,7 +2807,8 @@
     "viewGrid": "Vista de cuadrícula",
     "viewList": "Vista de lista",
     "articleMinRead": "{{count}} min de lectura",
-    "articleViews": "{{views}} vistas"
+    "articleViews": "{{views}} vistas",
+    "unavailable": "Perfil no disponible"
   },
   "tv": {
     "title": "TV",
@@ -12658,7 +12659,9 @@
     "busy": "Desactivando…",
     "done": "Cuenta desactivada",
     "receipt": "Tu perfil, publicaciones y comentarios están ocultos. Inicia sesión de nuevo cuando quieras para recuperarlo todo.",
-    "error": "No se pudo desactivar tu cuenta. Inténtalo de nuevo."
+    "error": "No se pudo desactivar tu cuenta. Inténtalo de nuevo.",
+    "acknowledge": "Entiendo que mi perfil se ocultará y se cerrará mi sesión en todas partes.",
+    "understand": "Entiendo"
   },
   "accountDeletion": {
     "title": "Eliminar cuenta",

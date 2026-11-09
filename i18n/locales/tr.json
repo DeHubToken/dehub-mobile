@@ -2807,7 +2807,8 @@
     "viewGrid": "Izgara görünümü",
     "viewList": "Liste görünümü",
     "articleMinRead": "{{count}} dk okuma",
-    "articleViews": "{{views}} görüntülenme"
+    "articleViews": "{{views}} görüntülenme",
+    "unavailable": "Profil kullanılamıyor"
   },
   "tv": {
     "title": "TV",
@@ -12657,7 +12658,9 @@
     "busy": "Devre dışı bırakılıyor…",
     "done": "Hesap devre dışı bırakıldı",
     "receipt": "Profilin, gönderilerin ve yorumların gizli. Her şeyi geri getirmek için istediğin zaman tekrar giriş yap.",
-    "error": "Hesabın devre dışı bırakılamadı. Lütfen tekrar dene."
+    "error": "Hesabın devre dışı bırakılamadı. Lütfen tekrar dene.",
+    "acknowledge": "Profilimin gizleneceğini ve her yerde oturumumun kapatılacağını anlıyorum.",
+    "understand": "Anlıyorum"
   },
   "accountDeletion": {
     "title": "Hesabı sil",
