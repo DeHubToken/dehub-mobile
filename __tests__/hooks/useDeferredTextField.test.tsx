@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { act, create } from "react-test-renderer";
 import { useDeferredTextField } from "../../hooks/useDeferredTextField";
 
+jest.mock("dehub-jsx/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
+
 type Field = ReturnType<typeof useDeferredTextField>;
 
 function setup() {
@@ -14,14 +16,16 @@ function setup() {
   function Owner() {
     const [value, setValue] = useState("");
     state.setValue = setValue;
-    return React.createElement(Box, {
-      value,
-      onChangeText: (t: string) => { if (state.accept) setValue(t); },
-      onSubmit: () => sent.push(value),
-    });
+    return (
+      <Box
+        value={value}
+        onChangeText={(t: string) => { if (state.accept) setValue(t); }}
+        onSubmit={() => sent.push(value)}
+      />
+    );
   }
   let tree!: ReturnType<typeof create>;
-  act(() => { tree = create(React.createElement(Owner)); });
+  act(() => { tree = create(<Owner />); });
   return { sent, state, tree };
 }
 
