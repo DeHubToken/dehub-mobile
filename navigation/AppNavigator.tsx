@@ -141,7 +141,6 @@ const SignInShell = () => <View className="flex-1 bg-theme-background" />;
 function AppNavigatorContent() {
   const reducedMotion = useReducedMotion();
   const { isSignedIn, needsUsername } = useAuthState();
-  const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
   useWarmScreens(isAuthed);
 
@@ -754,9 +753,18 @@ function AppNavigatorContent() {
       </Stack.Group>
       </Stack.Navigator>
       <AppWideTabBar />
-      <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
+      <AppDrawerHost />
     </TabBarHideProvider>
   );
+}
+
+/**
+ * The drawer reads its open state here, not in AppNavigatorContent: opening it
+ * there re-rendered the whole stack navigator before the drawer could move.
+ */
+function AppDrawerHost() {
+  const { drawerOpen, closeDrawer } = useDrawer();
+  return <AppDrawer visible={drawerOpen} onClose={closeDrawer} />;
 }
 
 export default function AppNavigator() {
