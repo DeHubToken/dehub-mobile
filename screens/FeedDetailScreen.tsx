@@ -10,7 +10,7 @@ import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityI
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import PostFeedNav from "../components/Home/PostFeedNav";
-import { FEED_SIDE } from "../components/Home/feedLayout";
+import { FEED_SIDE, FEED_TOP } from "../components/Home/feedLayout";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, postMediaComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
@@ -1522,11 +1522,12 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const renderHeader = useCallback(() => (
     <View>
-      {item && stage && !videoPost ? (
-        // Text, image and audio posts open as the same bento they are on the
-        // feed, inside the feed's gutter, as on phone web. The photo itself
-        // still opens the full screen viewer.
-        <View style={{ paddingHorizontal: FEED_SIDE }}>
+      {item && stage ? (
+        // Every post opens as the same bento it is on the feed, video too,
+        // inside the feed's gutter and as far under the pill as the feed's
+        // first card (InfiniteVideoFeed's 4pt), as on phone web. The photo
+        // still opens the full screen viewer, the video the shorts viewer.
+        <View style={{ paddingHorizontal: FEED_SIDE, paddingTop: FEED_TOP }}>
           <FeedCard
             item={item}
             fullContent
@@ -1535,20 +1536,6 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
             onCommentPress={handleStageComment}
           />
         </View>
-      ) : item && stage ? (
-        <FeedCard
-          item={item}
-          onBack={handlePostBack}
-          retainFeedNav
-          fullContent
-          disablePress
-          prioritizeMedia
-          immersive={immersive}
-          flat={!immersive}
-          stage
-          onStageAnchor={handleStageAnchor}
-          onCommentPress={handleStageComment}
-        />
       ) : item && immersive ? (
         <FeedCard
           item={item}

@@ -5,3 +5,6 @@
  * @module components/Home/feedLayout
  */
 export const FEED_SIDE = 8;
+
+/** Space between the tab pill and the first card of a post page: the same 4pt the feeds leave (InfiniteVideoFeed). */
+export const FEED_TOP = 4;
