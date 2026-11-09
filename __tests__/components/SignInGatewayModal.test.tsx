@@ -5,7 +5,7 @@ import { useAuthActions, useAuthState } from '../../context/AuthContext';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', ScrollView: 'ScrollView', Keyboard: { dismiss: jest.fn() },
+  View: 'View', Text: 'Text', ScrollView: 'ScrollView',
   StyleSheet: { create: (styles: unknown) => styles },
 }));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: jest.fn(), useAuthState: jest.fn() }));
@@ -17,7 +17,6 @@ jest.mock('../../components/auth/EmailCodeEntry', () => 'EmailCode');
 jest.mock('../../components/auth/ImportWallet', () => 'ImportWallet');
 jest.mock('../../components/auth/SignInSavedProfiles', () => 'SavedProfiles');
 jest.mock('../../components/auth/WalletSetupScreen', () => 'WalletSetup');
-jest.mock('../../components/auth/LegacyAccountWarningModal', () => 'LegacyWarning');
 jest.mock('../../components/FullScreenLoader', () => 'Loader');
 jest.mock('../../hooks/useWalletAuth', () => ({ useWalletAuth: () => ({ isWalletLoading: false, isWalletSheetOpen: false }) }));
 jest.mock('../../hooks/useScrollFieldIntoView', () => ({ useScrollFieldIntoView: () => ({ scrollViewProps: {} }) }));
@@ -28,7 +27,6 @@ jest.mock('../../libs/auth.utils', () => ({}));
 jest.mock('../../services/auth/supabaseAuth.service', () => ({}));
 jest.mock('../../libs/identity-wallet', () => ({}));
 jest.mock('../../libs/provision-and-sign-in', () => ({}));
-jest.mock('../../libs/wallet-setup-intent', () => ({}));
 jest.mock('../../libs/wallet-core/crypto', () => ({}));
 jest.mock('../../libs/wallet-core/store', () => ({}));
 jest.mock('../../libs/wallet-core/replacement', () => ({}));

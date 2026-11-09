@@ -153,11 +153,10 @@ export const APP_SCHEME = 'dehub';
  * profile NAMES is libs/reserved-usernames.ts, which lists these and more.
  *
  * - 'auth-callback' is expo-web-browser's OAuth redirect target, already
- *   consumed by signInWithGoogle(). 'auth' is the same situation for
- *   @web3auth/react-native-sdk's connectTo() redirect (see
- *   libs/legacy-web3auth.ts, reusing the pre-migration app's already
- *   dashboard-whitelisted redirect path), already consumed by that promise
- *   resolving. Both get their own branch below, which resolves nothing.
+ *   consumed by signInWithGoogle(). 'auth' was the redirect of the old
+ *   Web3Auth account migration, which no longer exists in the app; a stray
+ *   link to it is still not a profile. Both get their own branch below,
+ *   which resolves nothing.
  * - 'arcade' is a one-segment product URL (dehub.io/arcade); without it the
  *   grid link reads as the username @arcade and opens an empty profile sheet.
  * - 'stage' and 'stages' are handled above whenever they carry an id, but a

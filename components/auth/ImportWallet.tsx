@@ -2,7 +2,6 @@ import React, { memo, useCallback, useState } from "react";
 import { View } from "react-native";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import ImportWalletModal from "./ImportWalletModal";
-import MigrateAccountModal from "./MigrateAccountModal";
 import { AuthButton, AuthDivider, AuthTextButton } from "./AuthControls";
 import { useTranslation } from "react-i18next";
 
@@ -12,9 +11,9 @@ export type ImportWalletProps = {
   busy?: boolean;
   className?: string;
   /**
-   * `links` is the email-first sign-in's quiet row: Connect wallet, Import
-   * wallet and Migrate account as text links (Connect wallet only when
-   * `onConnectWallet` is given and WalletConnect is configured).
+   * `links` is the email-first sign-in's quiet row: Connect wallet and Import
+   * wallet as text links (Connect wallet only when `onConnectWallet` is given
+   * and WalletConnect is configured).
    */
   variant?: "buttons" | "links";
   onConnectWallet?: () => void;
@@ -25,8 +24,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
     const { t } = useTranslation();
     const isDisabled = !!disabled || !!busy;
     const [modalVisible, setModalVisible] = useState(false);
-    const [migrateVisible, setMigrateVisible] = useState(false);
-    
+
     const handlePress = useCallback(() => {
       if (onImport) {
         onImport();
@@ -48,10 +46,8 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
               <AuthTextButton tone="default" label={t("loginModal.connectWallet", "Connect Wallet")} onPress={onConnectWallet} disabled={isDisabled} />
             )}
             <AuthTextButton tone="default" label={t("auth.importWallet")} onPress={handlePress} disabled={isDisabled} />
-            <AuthTextButton tone="default" label={t("auth.migrateAccount")} onPress={() => setMigrateVisible(true)} disabled={isDisabled} />
           </View>
           <ImportWalletModal visible={modalVisible} onClose={handleCloseModal} />
-          <MigrateAccountModal visible={migrateVisible} onClose={() => setMigrateVisible(false)} />
         </View>
       );
     }
@@ -60,27 +56,15 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
       <View className={className}>
         <AuthDivider label={t("loginModal.or")} />
 
-        {/* Account migration and direct key/seed import are separate flows. */}
-        {/* Same 12pt rhythm as the sign-in stack above (SocialLoginIcons). */}
-        <View style={{ gap: 12 }}>
-          <AuthButton
-            icon="download-outline"
-            label={t("auth.migrateAccount")}
-            onPress={() => setMigrateVisible(true)}
-            disabled={isDisabled}
-          />
-
-          <AuthButton
-            icon="key"
-            label={t("auth.importWallet")}
-            onPress={handlePress}
-            disabled={isDisabled}
-          />
-        </View>
+        <AuthButton
+          icon="key"
+          label={t("auth.importWallet")}
+          onPress={handlePress}
+          disabled={isDisabled}
+        />
 
         {/* Import Wallet Modal - shown when used outside navigation context */}
         <ImportWalletModal visible={modalVisible} onClose={handleCloseModal} />
-        <MigrateAccountModal visible={migrateVisible} onClose={() => setMigrateVisible(false)} />
       </View>
     );
   }

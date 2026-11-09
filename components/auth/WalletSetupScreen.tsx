@@ -52,14 +52,6 @@ export type WalletSetupRequest =
    */
   | { mode: "restore"; supabaseUserId: string | null; address: string }
   | {
-      mode: "legacy-recovered";
-      supabaseUserId: string;
-      privateKey: string;
-      label?: string;
-      /** Profile wallet recorded by the legacy-account detector. */
-      expectedAddress: string;
-    }
-  | {
       mode: "create";
       supabaseUserId: string;
       /**
@@ -108,9 +100,9 @@ export interface WalletSetupScreenProps {
   /** create mode: finish sign-in after the optional backup step. */
   onCreateConfirmed?: () => Promise<void>;
   /**
-   * legacy-recovered and biometric-unlock modes: adopt `secret` (a BIP-39
-   * recovery phrase or a raw private key) as this identity's wallet, protected
-   * by `password`.
+   * restore and biometric-unlock modes: adopt `secret` (a BIP-39 recovery
+   * phrase or a raw private key) as this identity's wallet, protected by
+   * `password`.
    */
   onSwitchAccount?: (secret: string, password: string) => Promise<void>;
   /** Confirm replacement of an existing identity wallet, then enter create.
@@ -600,45 +592,6 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       return true;
     }, [password, confirm, mode]);
 
-    const legacyRecoveredAddress =
-      request?.mode === "legacy-recovered" ? request.expectedAddress : null;
-
-    const canSubmitLegacyRecovered = useMemo(
-      () => password.length >= MIN_PASSWORD_LENGTH && password === confirm,
-      [password, confirm]
-    );
-
-    const handleLegacyRecoveredSubmit = useCallback(async () => {
-      if (
-        !canSubmitLegacyRecovered ||
-        busy ||
-        !onSwitchAccount ||
-        !request ||
-        request.mode !== "legacy-recovered"
-      ) {
-        return;
-      }
-      setBusy(true);
-      setError(null);
-      try {
-        const full = await assessPassword(password);
-        if (!full.acceptable) {
-          setError(
-            full.breached === true
-              ? t("walletSetup.passwordBreached")
-              : full.warnings[0] ? t(full.warnings[0], { n: MIN_PASSWORD_LENGTH }) : t("walletSetup.chooseStronger")
-          );
-          return;
-        }
-        await onSwitchAccount(request.privateKey, password);
-        reset();
-      } catch (e: any) {
-        setError(e?.message || t("walletSetup.couldNotFinishSetup"));
-      } finally {
-        setBusy(false);
-      }
-    }, [canSubmitLegacyRecovered, busy, onSwitchAccount, request, password, reset]);
-
     const handleUnlockSubmit = useCallback(async () => {
       if (!canSubmitPassword || busy) return;
       setBusy(true);
@@ -844,8 +797,6 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         ? t("walletSetup.secureWalletTitle")
         : mode === "web-passkey-sync"
         ? t("walletSetup.unlockOnMobileTitle")
-        : mode === "legacy-recovered"
-        ? t("walletSetup.oldAccountFoundTitle")
         : mode === "restore"
         ? t("walletSetup.restoreTitle")
         : t("walletSetup.unlockWalletTitle");
@@ -1127,61 +1078,6 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   style={{ marginTop: 8 }}
                 />
               )}
-            </View>
-          )}
-
-          {mode === "legacy-recovered" && request?.mode === "legacy-recovered" && (
-            <View>
-              <Text style={[authText.body, { marginBottom: 16 }]}>
-                {t("walletSetup.legacyRecovered", {
-                  suffix: request.label ? ` (${request.label})` : "",
-                })}
-              </Text>
-              {legacyRecoveredAddress && (
-                <View style={styles.summaryCard}>
-                  <Text style={[authText.caption, { marginBottom: 4 }]}>{t("walletSetup.profileWalletLabel")}</Text>
-                  <Text style={styles.summaryValue}>
-                    {legacyRecoveredAddress.slice(0, 6)}…{legacyRecoveredAddress.slice(-4)}
-                  </Text>
-                </View>
-              )}
-
-              <AuthField
-                label={t("walletSetup.newPasswordMin", { min: MIN_PASSWORD_LENGTH })}
-                value={password}
-                onChangeText={setPassword}
-                placeholder={t("walletSetup.password")}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={!showPw}
-                textContentType="newPassword"
-                autoComplete="new-password"
-                autoFocus
-                trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
-              />
-              <AuthField
-                value={confirm}
-                onChangeText={setConfirm}
-                placeholder={t("walletSetup.confirmPassword")}
-                accessibilityLabel={t("walletSetup.confirmPassword")}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={!showPw}
-                textContentType="newPassword"
-                autoComplete="new-password"
-                containerStyle={{ marginTop: 12 }}
-              />
-
-              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
-
-              <AuthButton
-                variant="primary"
-                label={t("walletSetup.finishSettingUp")}
-                onPress={handleLegacyRecoveredSubmit}
-                disabled={!canSubmitLegacyRecovered}
-                loading={busy}
-                style={{ marginTop: 20 }}
-              />
             </View>
           )}
 
