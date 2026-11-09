@@ -3,7 +3,7 @@
 The shared staking ledger could copy deposits already recorded as individual
 transfers into a synthetic opening balance after a server restart. The next
 deposit then recomputed the position using both representations. The correction
-is in DeHubToken/dehub-stream-backend#498.
+is in Riftn/riftn-backend#498.
 
 For the reported account, three Base receipts prove deposits of 1,000,000,
 5,933,266.051118805, and 200,000 DHB. The correct stake is 7,133,266.051118805 DHB.
@@ -27,7 +27,7 @@ restored monbijou75's already withdrawn 2,000,000 DHB and mrbeast's withdrawn
 stake. Mrbeast's separate 630,000 DHB legacy contract position remains valid.
 No other position differed from verified deposits minus settled payouts.
 
-DeHubToken/dehub-stream-backend#500 removes synthetic opening creation,
+Riftn/riftn-backend#500 removes synthetic opening creation,
 imports the original receipts and preserves the two verified treasury payouts.
 It guards the migration, deduplicates restart and history replay, retries
 overlapping aggregate writes and reconciles against confirmed pool balances.
