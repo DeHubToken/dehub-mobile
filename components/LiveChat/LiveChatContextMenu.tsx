@@ -110,7 +110,15 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     />
   );
 
-  if (!visible || !message) return moreSheet;
+  // Stays mounted while closed so the sheet can play its way out.
+  if (!visible || !message) {
+    return (
+      <>
+        <HoldSheet visible={false} layout={null} onClose={onClose} reactions={null} tiles={[]} onLift={onLift} frame inline />
+        {moreSheet}
+      </>
+    );
+  }
 
   const hasContent = !!message.content?.trim();
   // The API only rewrites a text body — a caption on a photo, GIF or voice
@@ -121,7 +129,9 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   const myAddress = viewer;
 
   const tiles: HoldTile[] = [];
-  if (onReply) tiles.push({ key: "reply", icon: "Reply", label: t("liveChat.reply"), prime: true, onPress: () => run(() => onReply(message)) });
+  // Reply lands at once: the reply strip and the keyboard rise while the
+  // sheet slides away, instead of the list dropping back and then jumping up.
+  if (onReply) tiles.push({ key: "reply", icon: "Reply", label: t("liveChat.reply"), prime: true, onPress: () => { onReply(message); onClose(); } });
   if (hasContent) tiles.push({ key: "copy", icon: "Copy", label: t("common.copy"), onPress: () => { copyToClipboard(message.content); onClose(); } });
   if (translate) tiles.push({
     key: "translate",

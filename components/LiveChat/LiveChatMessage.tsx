@@ -25,6 +25,7 @@ import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
 import { replyQuoteText } from "../../libs/livechat-cache";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
+import { FRAME_INSET } from "../ui/HoldSheet";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import ImageViewerModal from "../common/ImageViewerModal";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
@@ -110,6 +111,13 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     : sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || t("liveChat.anon");
   const badgeImg = isAssistant ? null : getBadgeUrlFor(sender);
   const isMod = sender?.isModerator && !isAssistant;
+  // A touch more air between the name and the badge than the app-wide 3pt:
+  // at chat size the art read as stuck to the last letter.
+  const badgeStyle = useMemo(() => {
+    if (!badgeImg) return undefined;
+    const optical = getBadgeOpticalStyle(badgeImg, nameSize, 0, nameLine);
+    return { ...optical, marginLeft: (optical.marginLeft ?? 0) + 2 };
+  }, [badgeImg, nameSize, nameLine]);
 
   const containerRef = useRef<View>(null);
 
@@ -215,7 +223,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         <View
           pointerEvents="none"
           style={{
-            position: "absolute", top: 0, bottom: 0, left: 8, right: 8, borderRadius: 18,
+            position: "absolute", top: 0, bottom: 0, left: FRAME_INSET, right: FRAME_INSET, borderRadius: 18,
             borderWidth: 1, borderColor: "rgba(244,244,245,0.16)", backgroundColor: "rgba(244,244,245,0.06)",
           }}
         />
@@ -252,7 +260,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               {displayName}
             </Text>
             {!!badgeImg && (
-              <BadgeArtwork source={badgeImg} style={getBadgeOpticalStyle(badgeImg, nameSize, 0, nameLine)} contentFit="contain" />
+              <BadgeArtwork source={badgeImg} style={badgeStyle} contentFit="contain" />
             )}
           </View>
           {message.isPinned && (
@@ -277,6 +285,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         </View>
 
         {(message.replyToContent || message.replyTo) && (
+          // The quote hugs its text (a one-word reply no longer gets a
+          // full-width box) and wraps to two lines instead of cutting the
+          // first one off half way.
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={() => {
@@ -285,18 +296,25 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             }}
             onLongPress={handleLongPress}
             delayLongPress={350}
-            className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1"
+            style={{
+              alignSelf: "flex-start", maxWidth: "100%", flexDirection: "row",
+              borderRadius: 12, paddingVertical: 6, paddingLeft: 8, paddingRight: 12,
+              marginTop: 2, marginBottom: 6, backgroundColor: "rgba(244,244,245,0.06)",
+            }}
           >
-            <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
-              {message.replyTo?.senderUsername ||
-                message.replyTo?.sender?.displayName ||
-                message.replyTo?.sender?.username ||
-                message.replyToSenderAddress?.slice(0, 8) ||
-                _copy("copy.04f8996da763", { defaultValue: "user" })}…
-            </Text>
-            <Text className="text-white/50" style={{ fontSize: 12 * textScale }} numberOfLines={1}>
-              {replyQuoteText(message, t)}
-            </Text>
+            <View style={{ width: 3, borderRadius: 2, backgroundColor: "rgba(244,244,245,0.4)", marginRight: 8 }} />
+            <View style={{ flexShrink: 1 }}>
+              <Text className="text-white/70 font-semibold" style={{ fontSize: 12 * textScale, lineHeight: Math.round(16 * textScale) }} numberOfLines={1}>
+                {message.replyTo?.senderUsername ||
+                  message.replyTo?.sender?.displayName ||
+                  message.replyTo?.sender?.username ||
+                  message.replyToSenderAddress?.slice(0, 8) ||
+                  _copy("copy.04f8996da763", { defaultValue: "user" })}
+              </Text>
+              <Text className="text-white/50" style={{ fontSize: 12.5 * textScale, lineHeight: Math.round(17 * textScale) }} numberOfLines={2}>
+                {replyQuoteText(message, t)}
+              </Text>
+            </View>
           </TouchableOpacity>
         )}
 

@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Modal, Pressable, useWindowDimensions, StyleSheet, BackHandler, Keyboard } from "react-native";
 import Animated, {
-  FadeIn,
-  FadeOut,
-  SlideInDown,
-  SlideOutDown,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -82,6 +79,8 @@ const GAP = 12;
 export const HOLD_LIFT_TIMING = { duration: 260, easing: Easing.out(Easing.cubic) };
 export const HOLD_SETTLE_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
 const SIDE = 8;
+/** The glow card sits this far in from the screen edge: half the row's own 16pt side padding, so the avatar has room inside it. */
+export const FRAME_INSET = 6;
 const rgba = (c: readonly number[], a: number) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
 
 /**
@@ -103,7 +102,16 @@ export function useHoldLift() {
   return { style, onLift, ref, top, measure };
 }
 
-export default function HoldSheet({ visible, layout, onClose, reactions, onReaction, onMore, tiles, onLift, liftTop, frame, inline }: HoldSheetProps) {
+export default function HoldSheet(props: HoldSheetProps) {
+  const { visible, onClose, onLift, liftTop, frame, inline } = props;
+  // While the sheet plays its way out, hosts have usually cleared the row,
+  // the reactions and the tiles already. Draw the last open state until the
+  // exit finishes, so closing slides down instead of vanishing in one frame.
+  const snap = useRef(props);
+  if (visible) snap.current = props;
+  const shown = visible ? props : snap.current;
+  const { onReaction, onMore, tiles, reactions } = shown;
+  let layout = shown.layout;
   // A row that could not be measured comes in as an empty box: treat it as unknown.
   if (layout && !(layout.height > 0)) layout = null;
   const { t } = useTranslation();
@@ -164,11 +172,35 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   const liftRef = useRef(onLift);
   liftRef.current = onLift;
   useEffect(() => () => liftRef.current?.(0), []);
+  // One progress value drives the dim, the frame and the sheet, open and
+  // close, on the same curve as the list's lift. It only starts once the layer
+  // knows where it sits and how tall the sheet is, so nothing moves while the
+  // layer is still invisible and then pops in half way through.
+  const [mounted, setMounted] = useState(visible);
+  const progress = useSharedValue(0);
+  const ready = originY !== null && sheetH > 0;
   useEffect(() => {
-    if (!visible) { setSheetH(0); setSheetY(0); }
-  }, [visible]);
+    if (visible) {
+      setMounted(true);
+      return;
+    }
+    if (!mounted) return;
+    progress.value = withTiming(0, HOLD_SETTLE_TIMING, (finished) => {
+      if (finished) runOnJS(setMounted)(false);
+    });
+  }, [visible, mounted, progress]);
+  useEffect(() => {
+    if (visible && ready) progress.value = withTiming(1, HOLD_LIFT_TIMING);
+  }, [visible, ready, progress]);
+  useEffect(() => {
+    if (!mounted) { setSheetH(0); setSheetY(0); }
+  }, [mounted]);
+  const fadeStyle = useAnimatedStyle(() => ({ opacity: progress.value }));
+  const sheetStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (1 - progress.value) * (sheetH > 0 ? sheetH + insets.bottom + SIDE + 24 : SCREEN_HEIGHT) }],
+  }));
 
-  if (!visible) return null;
+  if (!visible && !mounted) return null;
 
   const mainTiles = tiles.filter((tile) => !tile.secondary);
   const sideTiles = tiles.filter((tile) => tile.secondary);
@@ -179,40 +211,37 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   const rowH = layout?.height ?? 0;
 
   return (
-    <Layer inline={!!inline} ready={originY !== null} rootRef={rootRef} onRootLayout={measureOrigin} onClose={onClose}>
+    <Layer inline={!!inline} closing={!visible} rootRef={rootRef} onRootLayout={measureOrigin} onClose={onClose}>
       {/* Dim everything but the held row: one wash above it, one below. */}
-      <Pressable style={{ flex: 1 }} onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")}>
+      <Pressable style={{ flex: 1 }} onPress={visible ? onClose : undefined} accessibilityRole="button" accessibilityLabel={t("common.close")}>
         {layout ? (
           <Animated.View pointerEvents="none" style={[{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }, overlayStyle]}>
             {/* The washes run past the screen edges so the slide never opens a gap. */}
-            <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)}
-              style={{ position: "absolute", left: 0, right: 0, top: -SCREEN_HEIGHT, height: Math.max(0, rowTop) + SCREEN_HEIGHT, backgroundColor: dim }} />
-            <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)}
-              style={{ position: "absolute", left: 0, right: 0, top: rowTop + rowH, height: SCREEN_HEIGHT * 2, backgroundColor: dim }} />
+            <Animated.View
+              style={[{ position: "absolute", left: 0, right: 0, top: -SCREEN_HEIGHT, height: Math.max(0, rowTop) + SCREEN_HEIGHT, backgroundColor: dim }, fadeStyle]} />
+            <Animated.View
+              style={[{ position: "absolute", left: 0, right: 0, top: rowTop + rowH, height: SCREEN_HEIGHT * 2, backgroundColor: dim }, fadeStyle]} />
             {/* The held line glows in place: a soft card around the real row. */}
             {frame ? (
               <Animated.View
-                entering={FadeIn.duration(160)}
-                exiting={FadeOut.duration(140)}
-                style={{
-                  position: "absolute", left: SIDE, right: SIDE, top: rowTop - 2, height: rowH + 4,
+                style={[{
+                  position: "absolute", left: FRAME_INSET, right: FRAME_INSET, top: rowTop, height: rowH,
                   borderRadius: 18, borderWidth: 1, borderColor: rgba(ink, 0.16),
                   backgroundColor: rgba(ink, 0.06),
                   shadowColor: "#ffffff", shadowOpacity: 0.18, shadowRadius: 14, shadowOffset: { width: 0, height: 0 },
-                }}
+                }, fadeStyle]}
               />
             ) : null}
           </Animated.View>
         ) : (
-          <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)} style={{ flex: 1, backgroundColor: dim }} />
+          <Animated.View style={[{ flex: 1, backgroundColor: dim }, fadeStyle]} />
         )}
       </Pressable>
 
       <Animated.View
-        entering={SlideInDown.duration(260).easing(Easing.out(Easing.cubic))}
-        exiting={SlideOutDown.duration(200).easing(Easing.in(Easing.cubic))}
         onLayout={(e) => { setSheetH(e.nativeEvent.layout.height); setSheetY(e.nativeEvent.layout.y); }}
-        style={{ position: "absolute", left: SIDE, right: SIDE, bottom: insets.bottom + SIDE }}
+        pointerEvents={visible ? "auto" : "none"}
+        style={[{ position: "absolute", left: SIDE, right: SIDE, bottom: insets.bottom + SIDE }, sheetStyle]}
       >
         <Pressable>
           <View style={{ borderRadius: 28, overflow: "hidden", borderWidth: 1, borderColor: rgba(ink, 0.12), paddingHorizontal: 14, paddingTop: 10, paddingBottom: 16 }}>
@@ -310,9 +339,9 @@ export default function HoldSheet({ visible, layout, onClose, reactions, onReact
   );
 }
 
-function Layer({ inline, ready, rootRef, onRootLayout, onClose, children }: {
+function Layer({ inline, closing, rootRef, onRootLayout, onClose, children }: {
   inline: boolean;
-  ready: boolean;
+  closing: boolean;
   rootRef: React.RefObject<View | null>;
   onRootLayout: () => void;
   onClose: () => void;
@@ -330,8 +359,9 @@ function Layer({ inline, ready, rootRef, onRootLayout, onClose, children }: {
       ref={rootRef}
       collapsable={false}
       onLayout={onRootLayout}
-      // Hidden for the one frame before its window position is known.
-      style={[StyleSheet.absoluteFill, { zIndex: 1000, elevation: 1000, opacity: ready ? 1 : 0 }]}
+      // While it plays out, taps already go to the chat underneath.
+      pointerEvents={closing ? "none" : "auto"}
+      style={[StyleSheet.absoluteFill, { zIndex: 1000, elevation: 1000 }]}
     >
       {children}
     </View>
