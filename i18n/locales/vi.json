@@ -14206,6 +14206,18 @@
     "subscriptionTokensValueNote": "Mã thông báo đăng ký giữ giá trị bằng đô la của chúng. Nếu giá mã thông báo di chuyển trước khi bạn sử dụng chúng, bạn sẽ thấy nhiều hoặc ít mã thông báo hơn, nhưng chúng luôn mua cùng một lượng thế hệ AI. Chúng không thể được rút, gửi hoặc giao dịch.",
     "topUpEmptyHint": "Thêm mã thông báo để tạo bằng AI"
   },
+  "accountDeactivation": {
+    "title": "Vô hiệu hóa tài khoản",
+    "short": "Tạm ẩn hồ sơ của bạn. Đăng nhập lại để khôi phục",
+    "description": "Nghỉ ngơi một chút. Hồ sơ, bài đăng và bình luận của bạn sẽ bị ẩn và bạn bị đăng xuất khỏi mọi nơi. Không có gì bị xóa, đăng nhập lại là mọi thứ trở lại.",
+    "button": "Vô hiệu hóa",
+    "confirmTitle": "Vô hiệu hóa tài khoản của bạn?",
+    "confirmBody": "Hồ sơ, bài đăng và bình luận của bạn sẽ bị ẩn và bạn sẽ bị đăng xuất trên mọi thiết bị. Đăng nhập lại bất cứ lúc nào để hoàn tác.",
+    "busy": "Đang vô hiệu hóa…",
+    "done": "Đã vô hiệu hóa tài khoản",
+    "receipt": "Hồ sơ, bài đăng và bình luận của bạn đang bị ẩn. Đăng nhập lại bất cứ lúc nào để lấy lại mọi thứ.",
+    "error": "Không thể vô hiệu hóa tài khoản. Vui lòng thử lại."
+  },
   "accountDeletion": {
     "title": "Xoá tài khoản",
     "description": "Xóa vĩnh viễn tài khoản và dữ liệu cá nhân của bạn",

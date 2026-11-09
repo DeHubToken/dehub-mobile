@@ -14120,6 +14120,18 @@
     "subscriptionTokensValueNote": "I token di abbonamento mantengono il loro valore in dollari. Se il prezzo dei token si sposta prima di utilizzarli, vedrai più o meno token, ma acquistano sempre la stessa quantità di generazione di IA. Non possono essere ritirati, inviati o scambiati.",
     "topUpEmptyHint": "Aggiungi token da generare con AI"
   },
+  "accountDeactivation": {
+    "title": "Disattiva account",
+    "short": "Nascondi il profilo per ora. Accedi di nuovo per ripristinarlo",
+    "description": "Prenditi una pausa. Profilo, post e commenti vengono nascosti e vieni disconnesso ovunque. Non viene eliminato nulla e accedendo di nuovo torna tutto.",
+    "button": "Disattiva",
+    "confirmTitle": "Disattivare il tuo account?",
+    "confirmBody": "Profilo, post e commenti verranno nascosti e verrai disconnesso da tutti i dispositivi. Accedi di nuovo quando vuoi per annullare.",
+    "busy": "Disattivazione…",
+    "done": "Account disattivato",
+    "receipt": "Profilo, post e commenti sono nascosti. Accedi di nuovo quando vuoi per riavere tutto.",
+    "error": "Impossibile disattivare l'account. Riprova."
+  },
   "accountDeletion": {
     "title": "Elimina account",
     "description": "Elimina definitivamente il tuo account e i tuoi dati personali",

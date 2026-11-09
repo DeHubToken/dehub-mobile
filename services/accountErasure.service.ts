@@ -23,3 +23,15 @@ export async function requestAccountErasure() {
   if (!response.status || !response.result) throw new Error('Deletion was not accepted');
   return response.result;
 }
+
+/**
+ * Deactivate: the reversible one. Hides the profile, posts and comments and
+ * signs out every device. Nothing is erased; signing in again restores it all
+ * (backend account-deletion.service.ts, restoreDeletedAccount).
+ */
+export async function requestAccountDeactivation() {
+  const response = await apiClient.post<{ status: boolean }>(
+    '/account/delete', { reason: 'self-deactivated' }, { timeoutMs: 30000 },
+  );
+  if (!response.status) throw new Error('Deactivation was not accepted');
+}

@@ -12648,6 +12648,18 @@
     "subscriptionTokensValueNote": "Los tokens de suscripción mantienen su valor en dólares. Si el precio del token se mueve antes de que los uses, verás más o menos tokens, pero siempre compran la misma cantidad de generación de IA. No se pueden retirar, enviar ni negociar.",
     "topUpEmptyHint": "Añadir tokens para generar con IA"
   },
+  "accountDeactivation": {
+    "title": "Desactivar cuenta",
+    "short": "Oculta tu perfil por ahora. Vuelve a iniciar sesión para restaurarlo",
+    "description": "Tómate un descanso. Tu perfil, publicaciones y comentarios se ocultan y se cierra tu sesión en todas partes. No se elimina nada y al volver a iniciar sesión todo regresa.",
+    "button": "Desactivar",
+    "confirmTitle": "¿Desactivar tu cuenta?",
+    "confirmBody": "Tu perfil, publicaciones y comentarios se ocultarán y se cerrará tu sesión en todos los dispositivos. Vuelve a iniciar sesión cuando quieras para deshacerlo.",
+    "busy": "Desactivando…",
+    "done": "Cuenta desactivada",
+    "receipt": "Tu perfil, publicaciones y comentarios están ocultos. Inicia sesión de nuevo cuando quieras para recuperarlo todo.",
+    "error": "No se pudo desactivar tu cuenta. Inténtalo de nuevo."
+  },
   "accountDeletion": {
     "title": "Eliminar cuenta",
     "description": "Elimina permanentemente tu cuenta y tus datos personales",

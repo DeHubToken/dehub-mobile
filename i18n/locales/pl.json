@@ -14188,6 +14188,18 @@
     "subscriptionTokensValueNote": "Tokeny abonamentowe utrzymują swoją wartość w dolarach. Jeśli cena tokena zmieni się przed ich użyciem, zobaczysz więcej lub mniej tokenów, ale zawsze kupują tę samą ilość generowania sztucznej inteligencji. Nie można ich wycofywać, wysyłać ani handlować nimi.",
     "topUpEmptyHint": "Dodaj tokeny do wygenerowania za pomocą sztucznej inteligencji"
   },
+  "accountDeactivation": {
+    "title": "Dezaktywuj konto",
+    "short": "Ukryj profil na jakiś czas. Zaloguj się ponownie, aby go przywrócić",
+    "description": "Zrób sobie przerwę. Twój profil, posty i komentarze zostaną ukryte, a Ty wylogujesz się wszędzie. Nic nie zostanie usunięte, a po ponownym zalogowaniu wszystko wróci.",
+    "button": "Dezaktywuj",
+    "confirmTitle": "Dezaktywować konto?",
+    "confirmBody": "Twój profil, posty i komentarze zostaną ukryte, a Ty zostaniesz wylogowany na wszystkich urządzeniach. Zaloguj się ponownie w dowolnej chwili, aby to cofnąć.",
+    "busy": "Dezaktywowanie…",
+    "done": "Konto dezaktywowane",
+    "receipt": "Twój profil, posty i komentarze są ukryte. Zaloguj się ponownie w dowolnej chwili, aby wszystko odzyskać.",
+    "error": "Nie udało się dezaktywować konta. Spróbuj ponownie."
+  },
   "accountDeletion": {
     "title": "Usuwanie konta",
     "description": "Trwale usuń swoje konto i dane osobowe",

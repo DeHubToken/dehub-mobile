@@ -36,7 +36,7 @@ import { useCanGoBack } from "../hooks/useCanGoBack";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
-import { requestAccountErasure } from "../services/accountErasure.service";
+import { requestAccountDeactivation, requestAccountErasure } from "../services/accountErasure.service";
 import { Image } from "expo-image";
 import { useAppTheme } from "../context/ThemeContext";
 import ScreenHeader from '../components/ScreenHeader';
@@ -113,6 +113,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const { signOut } = useAuthActions();
   const [activeTab, setActiveTab] = useState<TabKey>((route?.params?.initialTab as TabKey) ?? "profile");
   const [deletingAccount, setDeletingAccount] = useState(false);
+  const [deactivatingAccount, setDeactivatingAccount] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [freeDmModalVisible, setFreeDmModalVisible] = useState(false);
@@ -170,6 +171,26 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         } catch {
           toastError(t("accountDeletion.error"));
           setDeletingAccount(false);
+        }
+      } },
+    ]);
+  };
+
+  // Reversible: hides everything and signs out; signing back in restores it.
+  const handleDeactivateAccount = () => {
+    if (deactivatingAccount || deletingAccount) return;
+    Alert.alert(t("accountDeactivation.confirmTitle"), t("accountDeactivation.confirmBody"), [
+      { text: t("accountDeletion.cancel"), style: "cancel" },
+      { text: t("accountDeactivation.button"), onPress: async () => {
+        setDeactivatingAccount(true);
+        try {
+          await requestAccountDeactivation();
+          Alert.alert(t("accountDeactivation.done"), t("accountDeactivation.receipt"), [
+            { text: t("accountDeletion.done"), onPress: () => { void signOut(); } },
+          ], { cancelable: false });
+        } catch {
+          toastError(t("accountDeactivation.error"));
+          setDeactivatingAccount(false);
         }
       } },
     ]);
@@ -382,6 +403,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           having no account deletion (Guideline 5.1.1(v)). */}
       <SettingsSection label={t("settings.account")} icon="UserMinus" anchor="delete-account">
         <SettingsLinkRow
+          icon="Pause"
+          label={t("accountDeactivation.title")}
+          description={t(deactivatingAccount ? "accountDeactivation.busy" : "accountDeactivation.short")}
+          onPress={handleDeactivateAccount}
+        />
+        <Divider />
+        <SettingsLinkRow
           icon="Trash2"
           destructive
           label={t("accountDeletion.title")}
@@ -459,6 +487,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         <Divider />
         {/* Also on the Profile tab. Kept here because the deletion recording
             attached to the App Review notes walks this path. */}
+        <SettingsLinkRow
+          icon="Pause"
+          label={t("accountDeactivation.title")}
+          description={t(deactivatingAccount ? "accountDeactivation.busy" : "accountDeactivation.short")}
+          onPress={handleDeactivateAccount}
+        />
+        <Divider />
         <SettingsLinkRow
           icon="Trash2"
           destructive

@@ -14120,6 +14120,18 @@
     "subscriptionTokensValueNote": "Token langganan mempertahankan nilai dolarnya. Jika harga token bergerak sebelum Anda menggunakannya, Anda akan melihat lebih banyak atau lebih sedikit token, tetapi mereka selalu membeli jumlah generasi AI yang sama. Mereka tidak dapat ditarik, dikirim, atau diperdagangkan.",
     "topUpEmptyHint": "Tambahkan token untuk dibuat dengan AI"
   },
+  "accountDeactivation": {
+    "title": "Nonaktifkan akun",
+    "short": "Sembunyikan profilmu untuk sementara. Masuk lagi untuk memulihkannya",
+    "description": "Istirahat dulu. Profil, postingan, dan komentarmu disembunyikan dan kamu keluar dari semua perangkat. Tidak ada yang dihapus, dan masuk lagi akan mengembalikan semuanya.",
+    "button": "Nonaktifkan",
+    "confirmTitle": "Nonaktifkan akunmu?",
+    "confirmBody": "Profil, postingan, dan komentarmu akan disembunyikan dan kamu akan keluar dari semua perangkat. Masuk lagi kapan saja untuk membatalkannya.",
+    "busy": "Menonaktifkan…",
+    "done": "Akun dinonaktifkan",
+    "receipt": "Profil, postingan, dan komentarmu disembunyikan. Masuk lagi kapan saja untuk mengembalikan semuanya.",
+    "error": "Tidak bisa menonaktifkan akunmu. Coba lagi."
+  },
   "accountDeletion": {
     "title": "Hapus akun",
     "description": "Hapus akun dan data pribadi Anda secara permanen",
