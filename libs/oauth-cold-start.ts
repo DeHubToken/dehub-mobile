@@ -10,10 +10,17 @@
  *
  * The launch link is held here, linking.config opens the sign-in screen for
  * it, and the sign-in screen finishes it once.
+ *
+ * Only when this app opened a sign-in page in the last ten minutes. Any app or
+ * web page can open dehub://auth-callback with tokens in it; without that
+ * check a link carrying someone else's tokens would sign this phone into
+ * their account.
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RESUMED_KEY = "dehub_oauth_resumed";
+/** Set while a sign-in page this app opened is out; see markSignInPageOpened. */
+const OPENED_KEY = "dehub_oauth_opened_at";
 /** Only straight after the launch the page came back on. */
 const MAX_AGE_MS = 10 * 60 * 1000;
 
@@ -37,15 +44,36 @@ function identityKey(url: string): string | null {
 }
 
 /**
+ * Called right before the app opens a Google, Apple or Telegram page. Stays
+ * set if Android closes the app while the page is open, which is the one case
+ * a launch link may finish.
+ */
+export async function markSignInPageOpened(): Promise<void> {
+  await AsyncStorage.setItem(OPENED_KEY, String(Date.now())).catch(() => undefined);
+}
+
+/** The page came back to the app that opened it, or was closed. */
+export async function clearSignInPageOpened(): Promise<void> {
+  await AsyncStorage.removeItem(OPENED_KEY).catch(() => undefined);
+}
+
+async function openedRecently(): Promise<boolean> {
+  const at = Number(await AsyncStorage.getItem(OPENED_KEY).catch(() => null));
+  return Number.isFinite(at) && at > 0 && Date.now() - at < MAX_AGE_MS;
+}
+
+/**
  * Holds the link the app was launched with when it is a sign-in page coming
- * back. False for any other link, and for one already finished: a reload
- * (an update applying) hands the launch link over again.
+ * back to a sign-in this app started. False for any other link, for one no
+ * sign-in here asked for, and for one already finished: a reload (an update
+ * applying) hands the launch link over again.
  */
 export async function holdLaunchCallback(url: string): Promise<boolean> {
   const key = identityKey(url);
   if (!key) return false;
   const done = await AsyncStorage.getItem(RESUMED_KEY).catch(() => null);
   if (done === key) return false;
+  if (!(await openedRecently())) return false;
   held = { url, at: Date.now() };
   return true;
 }
@@ -61,6 +89,7 @@ export function takeHeldCallback(): string | null {
   if (!taken || Date.now() - taken.at >= MAX_AGE_MS) return null;
   const key = identityKey(taken.url);
   if (key) AsyncStorage.setItem(RESUMED_KEY, key).catch(() => undefined);
+  clearSignInPageOpened();
   return taken.url;
 }
 
