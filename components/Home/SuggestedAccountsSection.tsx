@@ -22,6 +22,7 @@
  *
  * Placed as a ListHeaderComponent inside InfiniteVideoFeed on the HomeScreen.
  */
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, LayoutAnimation, Platform, UIManager, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
@@ -73,6 +74,7 @@ interface SuggestedAccountsSectionProps {
 }
 
 const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ surface = "feed" }) => {
+  usePerfProbe("SuggestedAccounts");
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const { isMinimal, theme, skin } = useAppTheme();
