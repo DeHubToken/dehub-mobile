@@ -8,6 +8,8 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 jest.mock('react-native', () => ({
   View: 'View', Pressable: 'Pressable', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch',
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
+  // The shared player's stall watch is Android's; live-settle-behind-edge tests it.
+  Platform: { OS: 'ios' },
 }));
 
 let mockStatus = 'loading';

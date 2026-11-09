@@ -9,6 +9,7 @@ import {
   reactionColumn, reactionPose,
   type LiveReactionType, type ReactionParticle,
 } from '../../libs/live-reaction-flow';
+import { useReactionParticles, type ReactionFlow } from '../../hooks/useReactions';
 
 export type ReactionType = LiveReactionType;
 export type FloatingReaction = ReactionParticle;
@@ -44,15 +45,16 @@ const FloatingBubble = memo(({ item, laneHeight }: { item: FloatingReaction; lan
   </Animated.View>;
 });
 
-const ReactionOverlay = ({ reactions, bottom = 100, maxHeight, clip = true }: {
-  reactions: FloatingReaction[];
-  onRemove?: (id: string) => void;
+const ReactionOverlay = ({ flow, bottom = 100, maxHeight, clip = true }: {
+  /** From useReactions. This overlay is the only thing that redraws as it moves. */
+  flow: ReactionFlow;
   bottom?: number;
   /** Cap for the lane; defaults to about half the screen. */
   maxHeight?: number;
   /** False lets the emoji spill past the lane instead of being cut at its edge. */
   clip?: boolean;
 }) => {
+  const reactions = useReactionParticles(flow);
   const { height } = useWindowDimensions();
   const laneHeight = clip ? Math.min(maxHeight ?? 400, Math.round(height * 0.5)) : (maxHeight ?? Math.round(height * 0.5));
   return (

@@ -25,3 +25,10 @@ describe("lives in Shorts", () => {
     expect(interleaveLive(shorts, [], 0)).toBe(shorts);
   });
 });
+
+describe('live slide viewers', () => {
+  it('shows how many are watching now, or nothing', () => {
+    expect(toLiveSlide({ _id: 'a', status: 'LIVE', viewerCount: 8, totalViews: 32 }).viewers).toBe(8);
+    expect(toLiveSlide({ _id: 'b', status: 'LIVE', totalViews: 32 }).viewers).toBeNull();
+  });
+});

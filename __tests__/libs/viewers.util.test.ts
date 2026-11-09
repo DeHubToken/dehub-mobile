@@ -14,7 +14,7 @@
  * back — the socket overwrites the live number within seconds and the bug
  * only shows in the first moments of a broadcast.
  */
-import { seedViewerStats, createViewCountUpdater } from '../../libs/viewers.util';
+import { seedViewerStats, createViewCountUpdater, watchingNow } from '../../libs/viewers.util';
 
 describe('seedViewerStats', () => {
   it('takes the live figure from viewerCount, not from the peak or the join tally', () => {
@@ -67,5 +67,20 @@ describe('createViewCountUpdater', () => {
     expect(peak).toBe(3);
 
     updater.dispose?.();
+  });
+});
+
+describe('watchingNow', () => {
+  // The Live now row showed 32 beside LIVE for a room of 8: it read totalViews.
+  it('is the room right now, never the join tally or the peak', () => {
+    expect(watchingNow({ viewerCount: 8, totalViews: 32, peakViewers: 12 } as any)).toBe(8);
+    expect(watchingNow({ viewerCount: 0, totalViews: 32 } as any)).toBe(0);
+  });
+
+  it('says nothing rather than guess when the row has no count', () => {
+    expect(watchingNow({ totalViews: 32, peakViewers: 12 } as any)).toBeNull();
+    expect(watchingNow(null)).toBeNull();
+    expect(watchingNow({ viewerCount: 'lots' })).toBeNull();
+    expect(watchingNow({ viewerCount: -1 })).toBeNull();
   });
 });

@@ -44,7 +44,7 @@ export default function LiveFeedReactionFlow({
   // Reactions are a core-namespace room, and every core connection is a fresh
   // room to join — the epoch below is what makes the re-join happen.
   const { on, emit, coreConnected: connected, connectionEpoch } = useWebSocket();
-  const { reactions, addReaction, clearReactions } = useReactions();
+  const { flow, addReaction, clearReactions } = useReactions();
   const { isSignedIn } = useAuthState();
   useEffect(() => {
     clearReactions();
@@ -78,5 +78,5 @@ export default function LiveFeedReactionFlow({
     addReaction(self.type, undefined, self.weight ?? 1);
   }, [self, addReaction]);
 
-  return <ReactionOverlay reactions={reactions} bottom={12} maxHeight={laneHeight} clip={laneHeight == null} />;
+  return <ReactionOverlay flow={flow} bottom={12} maxHeight={laneHeight} clip={laneHeight == null} />;
 }

@@ -26,6 +26,7 @@ import { getFollowList } from "../../services/user.service";
 import { isStreamLive } from "../../libs/live-status";
 import { getAvatarUrl, storedAvatarSources } from "../../libs/misc";
 import { compactCount } from "../Music/CinematicMusic";
+import { watchingNow } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
 export interface LiveNowItem {
@@ -37,6 +38,11 @@ export interface LiveNowItem {
   username: string | null;
   /** Stored avatar path (Stage host) or ready URL (streamer). */
   avatar: string | null;
+  /**
+   * How many are in it right now, ready to show ("8"), or empty when the
+   * list did not say. This used to be a stream's total joins, so a live with
+   * 8 people in it read 32 next to LIVE and nobody could tell what it meant.
+   */
   count: string;
   followed: boolean;
   size: number;
@@ -77,7 +83,7 @@ const LiveNowBar: React.FC = () => {
         wallet: space.host_wallet_address,
         username: space.host_username ?? null,
         avatar: space.host_avatar ?? null,
-        count: String(size),
+        count: compactCount(size),
         followed: isFollowed(space.host_wallet_address),
         size,
       };
@@ -91,7 +97,7 @@ const LiveNowBar: React.FC = () => {
       seen.add(id);
       const account = row.account || row.streamer;
       const avatarPath = account?.avatarImageUrl || account?.avatarUrl;
-      const views = Number(row.totalViews ?? row.peakViewers ?? row.viewerCount ?? 0) || 0;
+      const watching = watchingNow(row);
       const wallet = String(row.address || account?.address || "");
       list.push({
         kind: "stream",
@@ -101,9 +107,9 @@ const LiveNowBar: React.FC = () => {
         wallet,
         username: account?.username ?? null,
         avatar: avatarPath ? getAvatarUrl(avatarPath, 48) : null,
-        count: compactCount(views),
+        count: watching == null ? "" : compactCount(watching),
         followed: isFollowed(wallet),
-        size: views,
+        size: watching ?? 0,
       });
     });
 
@@ -150,13 +156,17 @@ function LiveFace({ item, size }: { item: LiveNowItem; size: number }) {
   return <Avatar {...sources} size={size} name={item.username || item.wallet} live />;
 }
 
+/** LIVE, then who is in it in words: "8 watching" on a stream, "5 here" on a Stage. */
 function LiveCount({ item }: { item: LiveNowItem }) {
   const { t } = useTranslation();
   return (
     <View style={styles.live}>
       <Text style={styles.liveText}>{t("stages.live")}</Text>
-      <Icon name="Users" size={12} color="rgba(255,255,255,0.4)" />
-      <Text style={styles.count}>{item.count}</Text>
+      {item.count ? (
+        <Text style={styles.count} numberOfLines={1}>
+          {t(item.kind === "stage" ? "liveViewer.hereCount" : "liveViewer.watchingCount", { formatted: item.count })}
+        </Text>
+      ) : null}
     </View>
   );
 }

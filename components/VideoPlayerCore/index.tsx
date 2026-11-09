@@ -434,8 +434,12 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         ({ currentTime, bufferedPosition: buf }) => {
           if (!isMountedRef.current) return;
           const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
-          setPosition((prev) => (prev !== curMs ? curMs : prev));
           onProgress?.(curMs, duration);
+          // A live shows no time, no scrubber and no captions, so keeping the
+          // playhead in state only re-rendered the whole player four times a
+          // second while someone watched.
+          if (liveMode) return;
+          setPosition((prev) => (prev !== curMs ? curMs : prev));
           maybeSkipSegment(currentTime ?? 0);
 
           if (typeof buf === 'number' && buf >= 0) {
@@ -448,7 +452,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback, recovery]);
+  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback, recovery, liveMode]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
