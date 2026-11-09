@@ -214,7 +214,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
   const changeColor = change24h == null ? "#6F7174" : isPositive ? "#F4F4F5" : "#8B8D90";
 
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
+    <Modal visible={visible} transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={closeSheet}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.55)" }, bdStyle]}>
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />

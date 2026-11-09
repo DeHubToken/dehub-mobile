@@ -267,7 +267,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   if (!visible && isFullyClosed) return null;
 
   return (
-    <Modal visible={visible && !sheetHidden} onDismiss={openPendingProfile} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
+    <Modal visible={visible && !sheetHidden} onDismiss={openPendingProfile} transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={closeSheet}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
           <SheetBackdrop backdrop={backdrop} />
