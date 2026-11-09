@@ -20,16 +20,13 @@ import {
   createAndSaveEvmWalletForIdentity,
 } from "./identity-wallet";
 import { markWalletSecureOffer } from "./wallet-core/secure-offer";
-import { getWalletSetupIntent } from "./wallet-setup-intent";
 import { stageIncomingIdentity } from "./profiles";
 import { fetchWalletReliably } from "./wallet-core/store";
-import { checkLegacyAccount } from "./wallet-core/legacy-detect";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { getPendingWalletReplacement, completeWalletReplacement } from './wallet-core/replacement';
 import { AuthService } from '../services';
 import type { SupabaseSessionExchangeResult } from "../hooks/useAuthSession";
 import type { WalletSetupRequest } from "../components/auth/WalletSetupScreen";
-import type { LegacyAccountMatch } from "./wallet-core/legacy-detect";
 
 const log = createLogger("provision-and-sign-in");
 
@@ -38,7 +35,6 @@ const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 export type ProvisionOutcome =
   | { kind: "signed-in" }
   | { kind: "wallet-setup"; request: WalletSetupRequest }
-  | { kind: "legacy-warning"; supabaseUserId: string; accounts: LegacyAccountMatch[]; email?: string }
   | { kind: "error"; message: string };
 
 export type ProvisionDeps = {
@@ -226,8 +222,7 @@ async function provisionAndSignInInner(
   // this identity's wallet address, so no profile exists at it either. A wallet
   // here therefore belongs to a sign-up that stopped between saving the wallet
   // and registering the profile (app closed on the backup screen, or the
-  // register call failed). Its signature is what finishes that sign-up — and
-  // the backend adopts any account the email or phone already owns on the way.
+  // register call failed). Its signature is what finishes that sign-up.
   // Answering with an error instead sent these people back to the sign-in
   // screen on every attempt.
   const resolution = await resolveEvmWalletForIdentity(supabaseUserId);
@@ -274,22 +269,12 @@ async function provisionAndSignInInner(
     default:
       return { kind: "error", message: _translateCopy("copy.0cc561cff5de", { defaultValue: "Could not check your wallet. Please try again." }) };
   }
+  // Read the row once more before minting: one that appeared since the
+  // resolution above, or one that could not be read, must never be
+  // overwritten by a new wallet.
   const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
   if (failed || wallet) {
     return { kind: "error", message: _translateCopy("copy.62dafb71c505", { defaultValue: "Could not finish signing in to your profile. Please try again." }) };
-  }
-  const legacyHint = await checkLegacyAccount();
-  if (legacyHint.exists === true && legacyHint.accounts?.length) {
-    return { kind: "legacy-warning", supabaseUserId, accounts: legacyHint.accounts, email: legacyHint.email };
-  }
-  if (legacyHint.exists !== false) {
-    return { kind: "error", message: _translateCopy("copy.d871a1830da9", { defaultValue: "Could not check your existing profile. Please try again." }) };
-  }
-  // "Migrate account" with no earlier account behind it keeps the sheet: the
-  // sign-in screen says no old account was found, and a silent new account
-  // would read as the migration having quietly done nothing.
-  if (getWalletSetupIntent() === "migrate") {
-    return { kind: "wallet-setup", request: { mode: "create", supabaseUserId } };
   }
   // A brand-new account. The backend only creates an account from a wallet
   // signature, so the wallet is made here under this device's key and the
@@ -297,6 +282,11 @@ async function provisionAndSignInInner(
   // is what App Review hit: Continue with Apple, then a wallet panel before
   // the app had even opened. "Secure your wallet" now waits for the first
   // action that uses the wallet (see wallet-core/secure-offer).
+  //
+  // Nothing is looked up by email or phone on the way. The server has not
+  // linked this login and it has no wallet of its own, so it is a new account,
+  // whichever older account its email may once have belonged to. Moving an
+  // account from the old sign-in is a support request now, not a sign-in step.
   const created = await createAndSaveEvmWalletForIdentity(supabaseUserId, { kind: "biometric" });
   await markWalletSecureOffer(supabaseUserId, created.address);
   try {

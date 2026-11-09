@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, ScrollView, StyleSheet, Keyboard } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
@@ -15,8 +15,6 @@ import WalletSetupScreen, {
   type CreateProtection,
   type CreateResult,
 } from "./WalletSetupScreen";
-import LegacyAccountWarningModal from "./LegacyAccountWarningModal";
-import { type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
@@ -41,7 +39,6 @@ import {
   switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
 import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provision-and-sign-in";
-import { takeWalletSetupIntent } from "../../libs/wallet-setup-intent";
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
 import { getPendingWalletReplacement, completeWalletReplacement } from '../../libs/wallet-core/replacement';
@@ -98,12 +95,6 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // sign-in step failed (reused on retry so the saved row isn't overwritten by
   // a fresh mnemonic). See handleWalletCreate / handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
-  // Set when checkLegacyAccount finds a pre-migration Web3Auth account for
-  // this identity's email — gates the create-wallet screen behind a warning
-  // instead of silently minting a duplicate. See LegacyAccountWarningModal.
-  const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
-  const [legacyEmail, setLegacyEmail] = useState<string | undefined>(undefined);
-  const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
   const isBusy = (authLoading || isLocalLoading || isWalletLoading) && !needsUsername;
   useEffect(() => {
     if (!visible) return;
@@ -205,20 +196,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         case "signed-in":
           return;
         case "wallet-setup":
-          // "Migrate account" was pressed, but this login has no earlier
-          // account behind it: say so, rather than opening a new-account sheet
-          // that reads as the migration having silently done nothing.
-          if (takeWalletSetupIntent() === "migrate" && outcome.request.mode === "create") {
-            setInlineError(t("legacy.noOldAccountFound"));
-          }
           setWalletSetupRequest(outcome.request);
-          return;
-        case "legacy-warning":
-          Keyboard.dismiss();
-          takeWalletSetupIntent();
-          setPendingCreateUserId(outcome.supabaseUserId);
-          setLegacyEmail(outcome.email);
-          setLegacyAccounts(outcome.accounts);
           return;
         case "error":
           setInlineError(outcome.message);
@@ -344,33 +322,18 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     pendingCreateRef.current = null;
   }, [walletSetupRequest, finishWalletSetupSignIn]);
 
-  // Two callers, both handing over a secret to become this identity's wallet:
-  //  - legacy-recovered: native Web3Auth migration retrieved a pre-migration
-  //    account's key, mirroring dehubweb's "Switch to a different old account"
-  //    (AuthProvider.switchActiveWallet / WalletRecoveryTools.tsx). Which
-  //    account's profile address comes from the authenticated legacy detector,
-  //    and enforcing it prevents a different old login from replacing the row.
-  //  - biometric-unlock: the user is restoring the wallet this row already
-  //    names, from its recovery phrase, because the device that held its wrap
-  //    key is gone. Here the address IS known, and enforcing it stops a
-  //    mistyped-but-valid phrase from overwriting the row and stranding the
-  //    account it pointed at.
+  // biometric-unlock: the user is restoring the wallet this row already names,
+  // from its recovery phrase, because the device that held its wrap key is
+  // gone. The address is known, and enforcing it stops a mistyped-but-valid
+  // phrase from overwriting the row and stranding the account it pointed at.
   const handleWalletSwitchAccount = useCallback(
     async (secret: string, password: string) => {
-      if (
-        !walletSetupRequest ||
-        (walletSetupRequest.mode !== "legacy-recovered" &&
-          walletSetupRequest.mode !== "biometric-unlock")
-      ) {
-        return;
-      }
+      if (!walletSetupRequest || walletSetupRequest.mode !== "biometric-unlock") return;
       const { address, privateKey: derivedPk } = await switchActiveWalletForIdentity(
         walletSetupRequest.supabaseUserId,
         secret,
         password,
-        walletSetupRequest.mode === "biometric-unlock"
-          ? walletSetupRequest.address
-          : walletSetupRequest.expectedAddress
+        walletSetupRequest.address
       );
       await finishWalletSetupSignIn(address, derivedPk);
     },
@@ -421,33 +384,6 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       replacing: { address: wallet.ethAddress, clearOtherSeedCopies: true },
     });
   }, [walletSetupRequest, t]);
-
-  // Native legacy-account recovery succeeded (see LegacyAccountWarningModal /
-  // libs/legacy-web3auth.ts) — hand the recovered key to the same
-  // "legacy-recovered" WalletSetupScreen mode used for the cloud/backend-link
-  // mismatch case, so the user just sets a password to finish.
-  const handleLegacyRecovered = useCallback(
-    (privateKey: string, account: LegacyAccountMatch) => {
-      const userId = pendingCreateUserId;
-      if (!userId) return;
-      // Close the warning first; present the wallet sheet once it has dismissed
-      // (see onCreateAnyway below for why).
-      setLegacyAccounts(null);
-      setPendingCreateUserId(null);
-      setTimeout(
-        () =>
-          setWalletSetupRequest({
-            mode: "legacy-recovered",
-            supabaseUserId: userId,
-            privateKey,
-            label: account.username ? `@${account.username}` : undefined,
-            expectedAddress: account.ethAddress,
-          }),
-        250,
-      );
-    },
-    [pendingCreateUserId]
-  );
 
   const handleGoogleLogin = useCallback(async () => {
     setIsLocalLoading(true);
@@ -733,30 +669,6 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             onCreateConfirmed={handleWalletCreateConfirmed}
             onSwitchAccount={handleWalletSwitchAccount}
             onResetWallet={handleResetWallet}
-          />
-          <LegacyAccountWarningModal
-            visible={!!legacyAccounts}
-            accounts={legacyAccounts ?? []}
-            email={legacyEmail}
-            onRecovered={handleLegacyRecovered}
-            onCreateAnyway={() => {
-              // Close the warning first and present the wallet sheet once it has
-              // dismissed: two native Modals crossing in one commit leaves iOS
-              // refusing the second, and the sheet never appears.
-              const userId = pendingCreateUserId;
-              setLegacyAccounts(null);
-              setPendingCreateUserId(null);
-              if (userId) {
-                setTimeout(
-                  () => setWalletSetupRequest({ mode: "create", supabaseUserId: userId }),
-                  250,
-                );
-              }
-            }}
-            onClose={() => {
-              setLegacyAccounts(null);
-              setPendingCreateUserId(null);
-            }}
           />
           <View style={{ marginTop: 24, marginBottom: 16 }}>
             <Text style={[authText.caption, { textAlign: "center" }]}>

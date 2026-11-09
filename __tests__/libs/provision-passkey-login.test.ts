@@ -6,10 +6,12 @@ import { stageIncomingIdentity } from '../../libs/profiles';
 import { getPendingWalletReplacement, completeWalletReplacement } from '../../libs/wallet-core/replacement';
 import { AuthService } from '../../services';
 import { createAndSaveEvmWalletForIdentity } from '../../libs/identity-wallet';
-import { checkLegacyAccount } from '../../libs/wallet-core/legacy-detect';
 import { markWalletSecureOffer } from '../../libs/wallet-core/secure-offer';
-import { setWalletSetupIntent } from '../../libs/wallet-setup-intent';
 
+const mockInvokeFunction = jest.fn();
+jest.mock('../../services/supabase', () => ({
+  supabase: { functions: { invoke: (...args: unknown[]) => mockInvokeFunction(...args) } },
+}));
 jest.mock('../../libs/wallet-core/replacement', () => ({
   getPendingWalletReplacement: jest.fn().mockResolvedValue(null),
   completeWalletReplacement: jest.fn().mockResolvedValue(undefined),
@@ -31,7 +33,6 @@ jest.mock('../../libs/identity-wallet', () => ({
 jest.mock('../../libs/wallet-core/secure-offer', () => ({ markWalletSecureOffer: jest.fn() }));
 jest.mock('../../libs/profiles', () => ({ stageIncomingIdentity: jest.fn() }));
 jest.mock('../../libs/wallet-core/store', () => ({ fetchWallet: jest.fn(), fetchWalletReliably: jest.fn() }));
-jest.mock('../../libs/wallet-core/legacy-detect', () => ({ checkLegacyAccount: jest.fn() }));
 jest.mock('../../services/auth/supabaseAuth.service', () => ({ getSupabaseUserId: jest.fn().mockResolvedValue('uid') }));
 
 const address = '0x1111111111111111111111111111111111111111';
@@ -156,7 +157,6 @@ it('keeps the replacement pending when profile rotation fails', async () => {
 it('signs a brand-new account straight in with a wallet kept on this device', async () => {
   jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-create-password' } as any);
   jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
-  jest.mocked(checkLegacyAccount).mockResolvedValue({ exists: false } as any);
   jest.mocked(createAndSaveEvmWalletForIdentity).mockResolvedValue({ address, privateKey: '0xnew', secret: 'words' });
   jest.mocked(deps.getSupabaseAuthMeta).mockResolvedValue({ verifier: 'supabase' });
   await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
@@ -165,17 +165,32 @@ it('signs a brand-new account straight in with a wallet kept on this device', as
   expect(deps.completeLocalSignIn).toHaveBeenCalledWith(address, '0xnew', { verifier: 'supabase' });
 });
 
-it('keeps the wallet sheet when Migrate account finds no earlier account', async () => {
+// An email that an old account was once registered under used to stop here on
+// a recovery sheet for that account. A login the server has not linked, with
+// no wallet row of its own, is a new account: nothing is looked up by email,
+// and no sheet stands between the code and the app.
+it('never asks about an older account before making the new one', async () => {
   jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-create-password' } as any);
   jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
-  jest.mocked(checkLegacyAccount).mockResolvedValue({ exists: false } as any);
-  setWalletSetupIntent('migrate');
-  try {
-    await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({
-      kind: 'wallet-setup', request: { mode: 'create', supabaseUserId: 'uid' },
-    });
-  } finally {
-    setWalletSetupIntent(null);
+  jest.mocked(createAndSaveEvmWalletForIdentity).mockResolvedValue({ address, privateKey: '0xnew', secret: 'words' });
+  const outcome = await provisionAndSignIn('uid', deps);
+  expect(outcome).toEqual({ kind: 'signed-in' });
+  expect(mockInvokeFunction).not.toHaveBeenCalled();
+  expect(fetchWalletReliably).toHaveBeenCalledWith('uid');
+  expect(createAndSaveEvmWalletForIdentity).toHaveBeenCalledTimes(1);
+  expect(deps.completeLocalSignIn).toHaveBeenCalledTimes(1);
+  expect(jest.mocked(deps.completeLocalSignIn).mock.calls[0][0]).toBe(address);
+});
+
+it('does not make a new wallet over a row that appeared or could not be read', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-create-password' } as any);
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  for (const lookup of [
+    { wallet: { ethAddress: address, payload: null }, failed: false },
+    { wallet: null, failed: true },
+  ]) {
+    jest.mocked(fetchWalletReliably).mockResolvedValueOnce(lookup as any);
+    expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   }
   expect(createAndSaveEvmWalletForIdentity).not.toHaveBeenCalled();
   expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
