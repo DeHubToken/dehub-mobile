@@ -4,6 +4,7 @@ import { navigationRef } from "../App";
 import { ScreenNames } from "./ScreenNames";
 import StandaloneTabBar from "./StandaloneTabBar";
 import { useOwnTabBarCount } from "../libs/tab-bar-presence";
+import { usePerfProbe } from "../libs/perfTrace";
 
 /**
  * Pages where the bottom bar has no place: the tabs (they draw the real one),
@@ -63,6 +64,7 @@ function currentRouteName(): string | undefined {
  * on the pages above, and while the keyboard is up.
  */
 export default function AppWideTabBar() {
+  usePerfProbe("AppWideTabBar");
   const [route, setRoute] = useState(currentRouteName);
   const [keyboardUp, setKeyboardUp] = useState(false);
   const ownBars = useOwnTabBarCount();
