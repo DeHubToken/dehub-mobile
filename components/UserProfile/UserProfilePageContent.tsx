@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { useCallback, useEffect, useState } from "react";
 import { View, useWindowDimensions } from "react-native";
 import { storageImage } from "../../libs/cdnImage";
@@ -25,6 +26,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   embedded = false,
 }) => {
+  usePerfProbe("ProfilePage");
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
   const openUnfollowSheet = useCallback(() => setShowUnfollowSheet(true), []);
 

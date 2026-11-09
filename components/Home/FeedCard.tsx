@@ -1,3 +1,4 @@
+import { usePerfProbe, perfMark } from "../../libs/perfTrace";
 import { useCommentCount } from '../../libs/comment-count-store';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../../context/VideoDownloadContext";
@@ -432,6 +433,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   onStageAnchor,
   desk = false,
 }) => {
+  usePerfProbe("FeedCard");
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const profileFeed = useProfileFeedSource();
@@ -1435,6 +1437,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [navigation, tokenId, item]);
 
   const handleOpenOptions = useCallback(() => {
+    perfMark("post:menu");
     setShowOptionsMenu(true);
   }, [setShowOptionsMenu]);
 

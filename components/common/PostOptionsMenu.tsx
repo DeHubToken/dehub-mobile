@@ -7,6 +7,7 @@
  *
  * Uses GlassModal for the blurred glass aesthetic.
  */
+import { usePerfProbe } from "../../libs/perfTrace";
 import SegmentMarkerSheet from "./SegmentMarkerSheet";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -291,6 +292,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onAskAi,
   linkText,
   hideReportContent = false,  hideEdit = false,  isAudio = false,  canMarkSegments = false,}) => {
+  usePerfProbe("PostOptionsMenu");
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t, i18n } = useTranslation();

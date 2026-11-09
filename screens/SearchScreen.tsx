@@ -67,7 +67,8 @@ import NewMembersRail from "../components/common/NewMembersRail";
 import SuggestedAccountsSection from "../components/Home/SuggestedAccountsSection";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
-import { useUserProfilePresentation } from '../context/UserProfileSheetContext';
+import { useUserProfileSheet } from '../context/UserProfileSheetContext';
+import { usePerfProbe } from '../libs/perfTrace';
 import { storage } from "../libs/storage";
 import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -207,6 +208,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 });
 
 const SearchScreen: React.FC = () => {
+  usePerfProbe("SearchScreen");
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const searchField = useSearchFieldMaterial();
@@ -235,15 +237,17 @@ const SearchScreen: React.FC = () => {
   const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
   const queryClient = useQueryClient();
-  const { profileVisible } = useUserProfilePresentation();
+  const { subscribeProfileVisible } = useUserProfileSheet();
   const wasProfileVisible = useRef(false);
-  // A profile sheet can change a follow while Explore stays mounted.
-  useEffect(() => {
+  // A profile sheet can change a follow while Explore stays mounted. Told
+  // without a render: Explore stays mounted behind every other tab, and
+  // re-rendering it put this page in the way of every profile's first frame.
+  useEffect(() => subscribeProfileVisible((profileVisible) => {
     if (wasProfileVisible.current && !profileVisible && userAddress) {
       void queryClient.invalidateQueries({ queryKey: ['user-follow-status', userAddress.toLowerCase()] });
     }
     wasProfileVisible.current = profileVisible;
-  }, [profileVisible, queryClient, userAddress]);
+  }), [subscribeProfileVisible, queryClient, userAddress]);
   useFocusEffect(useCallback(() => {
     if (userAddress) void queryClient.invalidateQueries({ queryKey: ['user-follow-status', userAddress.toLowerCase()] });
   }, [queryClient, userAddress]));

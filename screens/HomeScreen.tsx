@@ -71,9 +71,11 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { BottomTabParamList } from "../navigation/types";
 import { isKidsModeLocked } from "../libs/kids-mode-lock";
 import {
-  useUserProfilePresentation,
+  useFeedProfilePresentation,
   useUserProfileSheet,
 } from "../context/UserProfileSheetContext";
+import { FeedPlaybackActiveContext } from "../libs/visualActivity";
+import { usePerfProbe } from "../libs/perfTrace";
 import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
@@ -278,6 +280,7 @@ const beadExit = () => {
 };
 
 export default function HomeScreen() {
+  usePerfProbe("HomeScreen");
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [imageFeed, setImageFeed] = useState<ImageFeedRequest | null>(null);
   // A text, image or audio post opened in place: Home's logo bar and pill stay
@@ -304,15 +307,12 @@ export default function HomeScreen() {
   // Phones only (web's useCinematicPhone): the Music and Live tabs' own layouts.
   const cinematicPhone = useCinematicPhone();
   const [islandMenuOpen, setIslandMenuOpen] = useState(false);
-  const { hideUserProfile } = useUserProfileSheet();
-  const {
-    profileVisible,
-    profileIdentifier,
-    profilePresentation,
-    setFeedProfileHostActive,
-  } = useUserProfilePresentation();
-  const feedProfileVisible =
-    profileVisible && profilePresentation === "feed" && !!profileIdentifier;
+  const { hideUserProfile, isProfileVisible, setFeedProfileHostActive } = useUserProfileSheet();
+  // Only a profile drawn inside the feed re-renders Home. One opened over it
+  // pauses the pages through FeedPlaybackActiveContext once its entrance is
+  // done (see UserProfileSheetProvider), never in the render the tap starts.
+  const { feedProfileVisible, feedProfileIdentifier: profileIdentifier } = useFeedProfilePresentation();
+  const pageUncovered = React.useContext(FeedPlaybackActiveContext);
 
   // Only the focused Home tab may claim profile opens for the persistent feed
   // surface. Other screens keep the standalone profile presentation.
@@ -598,12 +598,10 @@ export default function HomeScreen() {
   // buttons must keep their own sheet: a post opened in place here would sit
   // under the profile, and its comments sheet came up as an invisible window
   // that took every touch, so the app looked frozen.
-  const profileVisibleRef = useRef(profileVisible);
-  profileVisibleRef.current = profileVisible;
   useEffect(() => {
     if (!isFocused || pageWidth >= FEED_POST_MAX_WIDTH) return;
     setFeedPostHost((tokenId, options) => {
-      if (options?.comments && profileVisibleRef.current) return false;
+      if (options?.comments && isProfileVisible()) return false;
       showHeader();
       setFilterPanelVisible(false);
       setImageFeed(null);
@@ -611,7 +609,7 @@ export default function HomeScreen() {
       return true;
     });
     return () => setFeedPostHost(null);
-  }, [isFocused, pageWidth, showHeader]);
+  }, [isFocused, pageWidth, showHeader, isProfileVisible]);
   // The edge swipe is the same Back as the pill's arrow and the system back.
   useSwipeBackAction(closeFeedPost, !!feedPost && !feedProfileVisible);
   useBackPress(closeFeedPost, !!feedPost && !feedProfileVisible);
@@ -1247,7 +1245,7 @@ export default function HomeScreen() {
     if (!visibleTabs.has(key)) return null;
     // `active` gates video playback, not visibility, so it rides the deferred
     // index — see deferredIndex above.
-    const isPlaybackActive = index === deferredIndex && !profileVisible && !feedPost;
+    const isPlaybackActive = index === deferredIndex && pageUncovered && !feedProfileVisible && !feedPost;
 
     if (key === "feed-images") {
       return (

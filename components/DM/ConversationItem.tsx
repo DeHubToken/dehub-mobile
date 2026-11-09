@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo } from "react";
@@ -45,6 +46,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   onDelete,
   onBlock,
 }) => {
+  usePerfProbe("ConversationRow");
   const { t } = useTranslation();
   const { colors } = useAppTheme();
   const other = useMemo(

@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import { outsideImage } from "../../libs/outside-image";
 import { ReactionChips } from "./MessageReactions";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
@@ -323,6 +324,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   myAddress = "",
   onToggleReaction,
 }) => {
+  usePerfProbe("MessageBubble");
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();

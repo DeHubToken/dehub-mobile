@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useRef, useState, useMemo, useEffect } from 'react';
+import React, { createContext, useCallback, useContext, useDeferredValue, useRef, useState, useMemo, useEffect } from 'react';
 import { Platform, View } from 'react-native';
 import { FeedPlaybackActiveContext } from '../libs/visualActivity';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
@@ -6,6 +6,7 @@ import { PROFILE_CLOSE_MS } from '../components/UserProfile/ProfileSurface';
 import { setProfileDeepLinkHandler, setProfileSheetCloser } from '../libs/deeplink.events';
 import { useAppTheme } from './ThemeContext';
 import { prefetchUserProfile } from '../hooks/useUserProfileData';
+import { perfMark } from '../libs/perfTrace';
 import {
   resolveProfilePresentation,
   type ProfilePresentation,
@@ -14,6 +15,11 @@ import {
 interface CtxValue {
   showUserProfile: (identifier: string, options?: { initialHeightPct?: number; source?: string }) => void;
   hideUserProfile: () => void;
+  /** Read when it is needed (a press handler), so the caller never re-renders for it. */
+  isProfileVisible: () => boolean;
+  /** Told each time a profile opens or closes, without a render. Returns the unsubscribe. */
+  subscribeProfileVisible: (listener: (visible: boolean) => void) => () => void;
+  setFeedProfileHostActive: (active: boolean) => void;
 }
 
 interface PresentationCtxValue {
@@ -23,8 +29,16 @@ interface PresentationCtxValue {
   setFeedProfileHostActive: (active: boolean) => void;
 }
 
+/** A profile drawn inside Home's feed (iPhone themes). Never changes on Android. */
+interface FeedProfileCtxValue {
+  feedProfileVisible: boolean;
+  feedProfileIdentifier: string | null;
+}
+
 const UserProfileSheetContext = createContext<CtxValue | undefined>(undefined);
 const UserProfilePresentationContext = createContext<PresentationCtxValue | undefined>(undefined);
+const NO_FEED_PROFILE: FeedProfileCtxValue = { feedProfileVisible: false, feedProfileIdentifier: null };
+const FeedProfileContext = createContext<FeedProfileCtxValue>(NO_FEED_PROFILE);
 
 export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { theme } = useAppTheme();
@@ -41,6 +55,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const CLOSE_CLEAR_DELAY_MS = PROFILE_CLOSE_MS;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
+    perfMark('profile:open');
     prefetchUserProfile(id);
     if (clearTimerRef.current) {
       clearTimeout(clearTimerRef.current);
@@ -75,10 +90,25 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     }, CLOSE_CLEAR_DELAY_MS);
   }, []);
 
+  const visibleRef = useRef(visible);
+  visibleRef.current = visible;
+  const isProfileVisible = useCallback(() => visibleRef.current, []);
+  const visibleListeners = useRef(new Set<(visible: boolean) => void>());
+  const subscribeProfileVisible = useCallback((listener: (visible: boolean) => void) => {
+    visibleListeners.current.add(listener);
+    return () => { visibleListeners.current.delete(listener); };
+  }, []);
+  const notifiedVisible = useRef(visible);
+  useEffect(() => {
+    if (notifiedVisible.current === visible) return;
+    notifiedVisible.current = visible;
+    visibleListeners.current.forEach((listener) => listener(visible));
+  }, [visible]);
+
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = useMemo(
-    () => ({ showUserProfile, hideUserProfile }),
-    [showUserProfile, hideUserProfile],
+    () => ({ showUserProfile, hideUserProfile, isProfileVisible, subscribeProfileVisible, setFeedProfileHostActive }),
+    [showUserProfile, hideUserProfile, isProfileVisible, subscribeProfileVisible, setFeedProfileHostActive],
   );
   const presentationContextValue = useMemo(
     () => ({
@@ -114,8 +144,6 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   }, [showUserProfile]);
 
   // A link opened while a profile is showing would otherwise land beneath it.
-  const visibleRef = useRef(visible);
-  visibleRef.current = visible;
   useEffect(() => {
     setProfileSheetCloser(() => {
       if (visibleRef.current) hideUserProfile();
@@ -123,20 +151,40 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     return () => setProfileSheetCloser(null);
   }, [hideUserProfile]);
 
+  const feedProfileVisible = visible && presentation === 'feed' && identifier !== null;
+  const feedProfileIdentifier = presentation === 'feed' ? identifier : null;
+  const feedProfileValue = useMemo(
+    () => (feedProfileVisible || feedProfileIdentifier !== null
+      ? { feedProfileVisible, feedProfileIdentifier }
+      : NO_FEED_PROFILE),
+    [feedProfileVisible, feedProfileIdentifier],
+  );
+
   // Keep the previous page behind both animations. Removing it before the
   // incoming page fills the window exposed the theme canvas as a flash; Back
   // also needs its native layout restored before the outgoing page moves.
-  const covered = Platform.OS === 'android' && visible && openComplete && presentation === 'modal';
+  //
+  // Covering and pausing the page wait one render more than the profile:
+  // the profile's content mounts when the entrance ends, and tearing down the
+  // page's native views and pausing every feed card in that same render held
+  // the content back by ~0.4s on a Galaxy S24+. Uncovering never waits.
+  const coverNow = Platform.OS === 'android' && visible && openComplete && presentation === 'modal';
+  const coverLater = useDeferredValue(coverNow);
+  const covered = coverNow && coverLater;
+  const pageActiveNow = identifier === null || presentation !== 'modal' || (visible && !openComplete);
+  const pageActiveLater = useDeferredValue(pageActiveNow);
+  const pageActive = pageActiveNow || pageActiveLater;
   const blocked = identifier !== null && presentation === 'modal';
 
   return (
     <UserProfileSheetContext.Provider value={contextValue}>
       <View style={{ flex: 1 }}>
+        <FeedProfileContext.Provider value={feedProfileValue}>
         <UserProfilePresentationContext.Provider value={presentationContextValue}>
           {/* Pause expensive feed consumers after the entrance, rather than
               re-rendering every player before the shell's first frame. Keep
               them paused through closing so Back can start immediately too. */}
-          <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal' || (visible && !openComplete)}>
+          <FeedPlaybackActiveContext.Provider value={pageActive}>
             {/* Remove the covered native render tree: opacity alone still
                 prepares its image textures on every profile scroll frame. */}
             <View style={{ flex: 1, display: covered ? 'none' : 'flex' }}
@@ -154,6 +202,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
           initialHeightPct={options?.initialHeightPct}
         />
         </UserProfilePresentationContext.Provider>
+        </FeedProfileContext.Provider>
       </View>
     </UserProfileSheetContext.Provider>
   );
@@ -166,9 +215,21 @@ export function useUserProfileSheet() {
 }
 
 /**
+ * A profile shown inside Home's feed rather than over it. Changes only for
+ * that presentation, so on Android, where profiles always open over the page,
+ * Home never re-renders when one opens: that render (every feed page and its
+ * cards) ran before the profile's first frame and the tap sat still ~0.3s.
+ */
+export function useFeedProfilePresentation() {
+  return useContext(FeedProfileContext);
+}
+
+/**
  * Feed-shell state is deliberately separate from the action context. Opening a
  * profile must not re-render every visible card that only calls
- * showUserProfile; Home is the sole consumer of this changing state.
+ * showUserProfile. Everything that reads this re-renders on every open and
+ * close: a page that stays mounted should use useFeedProfilePresentation or the
+ * action context's isProfileVisible / subscribeProfileVisible instead.
  */
 export function useUserProfilePresentation() {
   const ctx = useContext(UserProfilePresentationContext);
