@@ -1,6 +1,6 @@
 # Mobile feature-board release check: 9 October 2026
 
-The complete inventory and fix plan is maintained in [dehubweb](https://github.com/DeHubToken/dehubweb/blob/main/docs/feature-board-20261009.md). The production board has five Requests and two Shipping items.
+The complete inventory and fix plan is maintained in [dehubweb](https://github.com/Riftn/riftn-web/blob/main/docs/feature-board-20261009.md). The production board has five Requests and two Shipping items.
 
 - **Bridge:** preserve the API's grouped token amounts in the wallet history and public queue. `38,009` must not become zero. Match web formatting for valid amounts and use a dash for unavailable data. This display fix does not verify the outstanding destination payout or release the planned automated bridge.
 - **Creator support:** PR 1567 implemented advertiser-funded video support. Confirm publication includes it and verify the native empty-inventory experience. Production has no eligible sponsor campaigns. USD revenue accrual is implemented; token settlement remains pending.

@@ -1,7 +1,7 @@
 # Shared feed performance audit — 14 October 2026
 
-Companion web work: https://github.com/DeHubToken/dehubweb/pull/2659 .
-Baseline measurements: https://github.com/DeHubToken/dehubweb/actions/runs/38505948000 .
+Companion web work: https://github.com/Riftn/riftn-web/pull/2659 .
+Baseline measurements: https://github.com/Riftn/riftn-web/actions/runs/38505948000 .
 
 The web audit found that an inline badge warmed a 3D showcase and hidden renderer
 on page mount, and that desktop Chat rendered its whole history into a short
