@@ -2,6 +2,8 @@ import React from "react";
 import { act, create } from "react-test-renderer";
 import { DrawerProvider, useDrawer, useDrawerActions } from "../../context/DrawerContext";
 
+jest.mock("dehub-jsx/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
+
 it("opens the drawer without re-rendering a page that only opens it", () => {
   const pageRenders = jest.fn();
   const drawerStates: boolean[] = [];
@@ -17,7 +19,7 @@ it("opens the drawer without re-rendering a page that only opens it", () => {
   }
   let tree!: ReturnType<typeof create>;
   act(() => {
-    tree = create(React.createElement(DrawerProvider, null, React.createElement(Page), React.createElement(Drawer)));
+    tree = create(<DrawerProvider><Page /><Drawer /></DrawerProvider>);
   });
   pageRenders.mockClear();
   act(() => open());
