@@ -11,6 +11,7 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
+import Animated, { FadeIn } from "react-native-reanimated";
 import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -148,7 +149,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const replyId = replyingTo?._id;
   useEffect(() => {
     if (!replyId) return;
-    const id = setTimeout(() => inputRef.current?.focus(), 120);
+    const id = setTimeout(() => inputRef.current?.focus(), 16);
     return () => clearTimeout(id);
   }, [replyId]);
 
@@ -298,9 +299,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       {/* One slim line on the composer: an accent bar, Replying to <name>,
           the quoted text, and X. The line itself stays outlined in the chat. */}
       {replyingTo && !editingMessage && !recorder.isRecording && !uploadingVoice && (
-        <View
-          className="flex-row items-center mx-3 mt-2.5 rounded-2xl"
-          style={{ paddingVertical: 8, paddingLeft: 10, paddingRight: 10, borderWidth: 1, borderColor: "rgba(244,244,245,0.14)", backgroundColor: "rgba(244,244,245,0.06)" }}
+        <Animated.View
+          entering={FadeIn.duration(180)}
+          style={{ flexDirection: "row", alignItems: "center", marginHorizontal: 12, marginTop: 10, borderRadius: 16, paddingVertical: 8, paddingLeft: 10, paddingRight: 10, borderWidth: 1, borderColor: "rgba(244,244,245,0.14)", backgroundColor: "rgba(244,244,245,0.06)" }}
         >
           <View style={{ width: 3, alignSelf: "stretch", borderRadius: 2, backgroundColor: "rgba(244,244,245,0.75)", marginRight: 10 }} />
           <Icon name="Reply" size={16} color={composerActiveColor} />
@@ -308,14 +309,16 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             <Text className="text-white text-[13px] font-semibold" numberOfLines={1}>
               {_copy("copy.3d393bf19a86", { defaultValue: "Replying to " })}{replyingTo.sender?.displayName || replyingTo.sender?.username || _copy("copy.04f8996da763", { defaultValue: "user" })}
             </Text>
-            <Text className="text-white/55 text-xs" numberOfLines={1}>
-              {replyPreview}
-            </Text>
+            {!!replyPreview && (
+              <Text className="text-white/55 text-xs" style={{ lineHeight: 16 }} numberOfLines={2}>
+                {replyPreview}
+              </Text>
+            )}
           </View>
           <TouchableOpacity onPress={onCancelReply} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.close")}>
             <Icon name="X" size={18} color="#A6A9AC" />
           </TouchableOpacity>
-        </View>
+        </Animated.View>
       )}
 
       <MentionSuggestions

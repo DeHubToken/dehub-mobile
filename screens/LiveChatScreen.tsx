@@ -30,7 +30,7 @@ import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
 import type { TranslateToggle } from "../components/ui/TranslateButton";
 import type { MessageLayout } from "../components/LiveChat/LiveChatContextMenu";
 import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
-import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
+import { useKeyboardRide } from "../hooks/useKeyboardRide";
 import GifPicker from "../components/DM/GifPicker";
 import { useLiveChat } from "../hooks/useLiveChat";
 import { useUser } from "../context/AuthContext";
@@ -110,14 +110,15 @@ const LiveChatScreen: React.FC = () => {
   const account = user?.walletAddress || user?.address || "";
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
-  // Lift until the measured composer sits on the keys (hooks/useComposerKeyboard).
-  const composerKeyboard = useComposerKeyboard(0, { gap: 0 });
-  const inputLift = composerKeyboard.lift;
+  // The composer rides the keys frame by frame (hooks/useKeyboardRide) and
+  // the list rides with it, so the newest lines go up with the keyboard
+  // instead of disappearing under it.
+  const keyboard = useKeyboardRide();
   // The composer grows with a reply strip, an attachment preview or multiline
   // text, so the list pads by its measured height rather than a fixed guess
   // that let the newest messages slide under it.
   const [composerHeight, setComposerHeight] = useState(80);
-  const listBottomPadding = composerHeight + 8 + inputLift;
+  const listBottomPadding = composerHeight + 8;
 
   // Tell the alert engine the room is on screen. It drops its own connection
   // while this is true: there is nothing to announce to someone already
@@ -196,6 +197,9 @@ const LiveChatScreen: React.FC = () => {
     onConfirm: () => void;
   }>({ visible: false, title: "", confirmText: "", confirmKind: "primary", onConfirm: () => {} });
   const flatListRef = useRef<FlatList>(null);
+  // Empty space under the last line (a short chat): that much keyboard can
+  // rise before the list has to move.
+  const listSlack = useSharedValue(0);
   const isAtBottomRef = useRef(true);
   // Mirrors isAtBottomRef for the jump-to-latest button: a ref alone never
   // re-renders, so scrolling up did not show the button until something else did.
@@ -234,6 +238,7 @@ const LiveChatScreen: React.FC = () => {
   const handleContentSizeChange = useCallback((_w: number, h: number) => {
     const prevH = contentHeightRef.current;
     contentHeightRef.current = h;
+    listSlack.value = Math.max(0, layoutHeightRef.current - h);
     const firstId = messagesRef.current[0]?._id;
     const prepended = measuredFirstMessage.current !== undefined &&
       measuredFirstMessage.current !== firstId;
@@ -267,6 +272,10 @@ const LiveChatScreen: React.FC = () => {
     }
 
     // ── Phase 2: normal operation ──
+    if (composerGrowth.current) {
+      applyComposerGrowth();
+      return;
+    }
     const delta = h - prevH;
     if (!isAtBottomRef.current && prepended && delta !== 0 && prevH > layoutHeightRef.current) {
       // Content changed while user is scrolled up — adjust offset to maintain visual position
@@ -280,7 +289,34 @@ const LiveChatScreen: React.FC = () => {
 
   const handleLayout = useCallback((e: { nativeEvent: { layout: { height: number } } }) => {
     layoutHeightRef.current = e.nativeEvent.layout.height;
+    listSlack.value = Math.max(0, layoutHeightRef.current - contentHeightRef.current);
+  }, [listSlack]);
+
+  // The reply strip (or an attachment, or a second line of text) makes the
+  // composer taller. Scroll by the same amount so the lines that were just
+  // above it stay just above it, rather than the newest one going under it.
+  const prevComposerHeight = useRef(composerHeight);
+  const composerGrowth = useRef(0);
+  const applyComposerGrowth = useCallback(() => {
+    const delta = composerGrowth.current;
+    if (!delta) return;
+    composerGrowth.current = 0;
+    // Not clamped to the measured content: the list may not have reported its
+    // new padding yet, and the scroll view clamps to the real end itself.
+    const next = Math.max(0, scrollOffsetRef.current + delta);
+    flatListRef.current?.scrollToOffset({ offset: next, animated: false });
+    scrollOffsetRef.current = next;
   }, []);
+  useEffect(() => {
+    const delta = composerHeight - prevComposerHeight.current;
+    prevComposerHeight.current = composerHeight;
+    if (!delta || !hasInitialScrolledRef.current) return;
+    // Applied once the list has measured its new padding (the content-size
+    // callback below), with a fallback for a size change it never reports.
+    composerGrowth.current += delta;
+    const timer = setTimeout(applyComposerGrowth, 80);
+    return () => clearTimeout(timer);
+  }, [composerHeight, applyComposerGrowth]);
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -506,17 +542,24 @@ const LiveChatScreen: React.FC = () => {
   const handleLongPress = useCallback(
     (msg: LiveChatMessageData, layout: MessageLayout, translate?: TranslateToggle) => {
       if (msg.isDeleted) return;
+      // The hold puts the keyboard away, and the list rides back down with
+      // it: lift the line from where it will be, not where it is now.
+      const riding = Math.max(0, keyboard.lift.value - listSlack.value);
       setContextMenuMessage(msg);
-      setContextMenuLayout(layout);
+      setContextMenuLayout(riding > 0 && layout.height > 0 ? { ...layout, y: layout.y + riding } : layout);
       setContextMenuTranslate(translate);
       setContextMenuVisible(true);
     },
-    []
+    [keyboard.lift, listSlack]
   );
 
   // Held line: the list slides up so it clears the hold sheet, and back after.
+  // It also rides the keyboard, past any empty space under the last line.
   const holdLift = useSharedValue(0);
-  const holdLiftStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -holdLift.value }] }));
+  const holdLiftStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: -(holdLift.value + Math.max(0, keyboard.lift.value - listSlack.value)) }],
+  }));
+  const composerRideStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -keyboard.lift.value }] }));
   const handleHoldLift = useCallback((px: number) => {
     holdLift.value = withTiming(px, px ? HOLD_LIFT_TIMING : HOLD_SETTLE_TIMING);
   }, [holdLift]);
@@ -861,7 +904,8 @@ const LiveChatScreen: React.FC = () => {
         </View>
       )}
 
-      <View className="flex-1">
+      {/* Clips the list where it rides up under the header. */}
+      <View className="flex-1" style={{ overflow: "hidden" }}>
         <Animated.View style={[{ flex: 1 }, holdLiftStyle]}>
         <FlatList
           ref={flatListRef}
@@ -904,29 +948,25 @@ const LiveChatScreen: React.FC = () => {
         </Animated.View>
 
         {!atBottom && messages.length > 10 && (
-          <TouchableOpacity
-            onPress={() => scrollToBottom()}
-            accessibilityRole="button"
-            accessibilityLabel={t("liveChat.jumpToLatest")}
-            className="absolute right-4"
-            style={{ bottom: composerHeight + inputLift + 12 }}
-            activeOpacity={0.7}
-          >
-            <View className="bg-white/10 rounded-xl w-10 h-10 items-center justify-center">
-              <Icon name="ChevronDown" size={22} color="rgba(255,255,255,0.6)" />
-            </View>
-          </TouchableOpacity>
+          <Animated.View style={[{ position: "absolute", right: 16, bottom: composerHeight + 12 }, composerRideStyle]}>
+            <TouchableOpacity
+              onPress={() => scrollToBottom()}
+              accessibilityRole="button"
+              accessibilityLabel={t("liveChat.jumpToLatest")}
+              activeOpacity={0.7}
+            >
+              <View className="bg-white/10 rounded-xl w-10 h-10 items-center justify-center">
+                <Icon name="ChevronDown" size={22} color="rgba(255,255,255,0.6)" />
+              </View>
+            </TouchableOpacity>
+          </Animated.View>
         )}
 
-        <View
-          className="absolute left-0 right-0 bottom-0"
-          style={{ marginBottom: inputLift }}
-          ref={composerKeyboard.ref}
+        <Animated.View
+          style={[{ position: "absolute", left: 0, right: 0, bottom: 0 }, composerRideStyle]}
+          ref={keyboard.ref}
           collapsable={false}
-          onLayout={(e) => {
-            setComposerHeight(e.nativeEvent.layout.height);
-            composerKeyboard.onLayout();
-          }}
+          onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
           {/* Same as the DM composer and web: plain page colour with the
               hairline on top, no rounded frosted box. */}
@@ -954,7 +994,7 @@ const LiveChatScreen: React.FC = () => {
             onRemoveAttachment={handleRemoveAttachment}
             attachmentBusy={attachmentBusy}
           />
-        </View>
+        </Animated.View>
       </View>
 
       <GifPicker
