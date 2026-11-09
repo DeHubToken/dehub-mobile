@@ -5,6 +5,7 @@
 import { isStreamLive } from "./live-status";
 import { hlsUrlFor, liveThumbnailFor } from "./live-ingest";
 import { buildCdnPath, getAvatarUrl } from "./misc";
+import { watchingNow } from "./viewers.util";
 
 /** One live slide after this many minus one shorts. */
 export const LIVE_SLIDE_EVERY = 6;
@@ -23,7 +24,8 @@ export interface LiveSlide {
   username: string;
   displayName: string;
   avatar?: string;
-  viewers: number;
+  /** Watching now, or null when the live list did not say. */
+  viewers: number | null;
 }
 
 /** Open to anyone and safe, like the shorts around it. Gated streams stay on the Live tab. */
@@ -54,7 +56,7 @@ export function toLiveSlide(row: any): LiveSlide {
     username: account.username || "",
     displayName: account.displayName || account.username || "",
     avatar: avatarPath ? getAvatarUrl(avatarPath, 62) : undefined,
-    viewers: Number(row.totalViews ?? row.peakViewers ?? 0) || 0,
+    viewers: watchingNow(row),
   };
 }
 

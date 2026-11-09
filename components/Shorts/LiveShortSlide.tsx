@@ -42,10 +42,12 @@ function LiveShortSlide({ slide, isActive, height }: Props) {
         <View style={styles.liveBadge}>
           <Text style={styles.liveText}>{t("liveShorts.live", { defaultValue: "LIVE" })}</Text>
         </View>
-        <View style={styles.viewers}>
-          <Icon name="Eye" size={12} color="#fff" />
-          <Text style={styles.viewersText}>{compact(slide.viewers)}</Text>
-        </View>
+        {slide.viewers != null ? (
+          <View style={styles.viewers}>
+            <Icon name="Eye" size={12} color="#fff" />
+            <Text style={styles.viewersText}>{compact(slide.viewers)}</Text>
+          </View>
+        ) : null}
       </View>
 
       <View style={styles.bottom} pointerEvents="box-none">

@@ -345,7 +345,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Tip animations (viewer sees same tiered effects as producer)
   const { items: tipEffects, enqueueFromGift, clearAll: clearTipEffects } = useTipAnimations({ maxConcurrent: 2 });
   // Floating reaction bubbles
-  const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
+  const { flow: reactionFlow, addReaction, clearReactions } = useReactions();
   /** Tx hashes of the gifts this viewer sent, so their echo off the room
    *  broadcast is recognised as theirs whatever address form it carries. */
   const ownGiftHashesRef = useRef<Set<string>>(new Set());
@@ -2035,7 +2035,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         )}
 
         {/* Floating Reaction Bubbles - right side */}
-        <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
+        <ReactionOverlay flow={reactionFlow} />
 
         {/* The creator's widgets, placed against the picture. Mounted only for
             a creator who has saved an overlay at least once (version > 0), so a

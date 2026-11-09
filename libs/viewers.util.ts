@@ -3,6 +3,18 @@ export type ViewerStats = {
   peakViewers: number;
 };
 
+/**
+ * How many are watching a live right now, from a /live list row, or null when
+ * the row does not say. Never `totalViews` (every join, so a room of 8 read 32
+ * next to LIVE) or `peakViewers` (only ever climbs).
+ */
+export function watchingNow(row: { viewerCount?: unknown } | null | undefined): number | null {
+  const raw = row?.viewerCount;
+  if (raw == null || raw === '') return null;
+  const n = Number(raw);
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : null;
+}
+
 // Extract initial viewer stats from a stream entity with safe fallbacks.
 //
 // The field names mean the opposite of what this used to assume. On the

@@ -49,6 +49,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { ISLAND_BAR_HEIGHT } from "./IslandTopBar";
 import { compactCount } from "../Music/CinematicMusic";
+import { watchingNow } from "../../libs/viewers.util";
 import type { InfiniteVideoFeedHandle } from "./InfiniteVideoFeed";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
@@ -71,6 +72,7 @@ interface Stream {
   avatar?: string;
   title: string;
   game: string;
+  /** Watching now, ready to show; empty when the live list did not say. */
   viewers: string;
   thumbnail: string;
   isLive: boolean;
@@ -85,7 +87,7 @@ function toStream(row: LiveStreamEntity, index: number, fallbackGame: string): S
   const avatarPath = account?.avatarImageUrl || account?.avatarUrl;
   const categories = (row as any).categories;
   const category = Array.isArray(categories) ? categories[0] : (row as any).category;
-  const viewers = row.totalViews ?? row.peakViewers ?? (row as any).viewerCount ?? 0;
+  const watching = watchingNow(row as { viewerCount?: unknown });
   return {
     id: String(row._id || (row as any).streamId || index),
     tokenId: row.tokenId,
@@ -93,7 +95,7 @@ function toStream(row: LiveStreamEntity, index: number, fallbackGame: string): S
     avatar: avatarPath ? getAvatarUrl(avatarPath, 62) : undefined,
     title: row.title,
     game: category || fallbackGame,
-    viewers: compactCount(Number(viewers) || 0),
+    viewers: watching == null ? "" : compactCount(watching),
     thumbnail,
     isLive: isStreamLive(row),
   };
@@ -200,10 +202,12 @@ const StreamTile: React.FC<{ stream: Stream; width: number; onPress: () => void 
           </>
         )}
         {stream.isLive ? <LiveBadge style={styles.tileLive} /> : null}
-        <View style={styles.viewers}>
-          <Icon name="Eye" size={10} color="#FFFFFF" />
-          <Text style={styles.viewersText}>{stream.viewers}</Text>
-        </View>
+        {stream.viewers ? (
+          <View style={styles.viewers}>
+            <Icon name="Eye" size={10} color="#FFFFFF" />
+            <Text style={styles.viewersText}>{stream.viewers}</Text>
+          </View>
+        ) : null}
       </View>
       <View style={styles.tileInfo}>
         <Avatar src={stream.avatar} name={stream.streamer} style={styles.tileSmallAvatar} />

@@ -11,7 +11,7 @@
  * Monochrome, like the rest of the chrome: state is carried by the dot's
  * opacity and the word, never by a hue.
  */
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Avatar from "../common/Avatar";
@@ -49,6 +49,20 @@ const formatElapsed = (ms: number) => {
   return h > 0 ? `${h}:${two(m)}:${two(s)}` : `${m}:${two(s)}`;
 };
 
+/**
+ * The running clock. On its own so each tick redraws this one line of text
+ * rather than the whole strip, faces and all, every second of a live.
+ */
+const ElapsedClock = memo(({ startedAt }: { startedAt: Date }) => {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    setNow(Date.now());
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return <Text style={styles.value}>{formatElapsed(now - startedAt.getTime())}</Text>;
+});
+
 /** A fact on the picture: text and a shadow, no chip behind it. */
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <View style={styles.pill}>{children}</View>
@@ -70,21 +84,9 @@ const LiveViewerPills: React.FC<Props> = ({
   /* Reused keys, not new ones: these five words are already translated
      into all 110 locales elsewhere in the bundle, and a fresh set would
      have shipped as English everywhere but here. */
-  // One interval, and only while the stream is actually running — an ended
+  // The clock only runs while the stream is actually running — an ended
   // stream's clock would otherwise keep counting past the end of it.
   const running = isLive && !isPaused && !!startedAt;
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    if (!running) return;
-    setNow(Date.now());
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, [running]);
-
-  const elapsed = useMemo(() => {
-    if (!running || !startedAt) return null;
-    return formatElapsed(now - startedAt.getTime());
-  }, [running, startedAt, now]);
 
   return (
     <ScrollView
@@ -100,7 +102,7 @@ const LiveViewerPills: React.FC<Props> = ({
           <View style={styles.liveTag}>
             <Text style={styles.liveText}>{isPaused ? t("ads.statuses.paused") : t("live.statusLive")}</Text>
           </View>
-          {elapsed ? <Text style={styles.value}>{elapsed}</Text> : null}
+          {running && startedAt ? <ElapsedClock startedAt={startedAt} /> : null}
         </Pill>
       ) : null}
 

@@ -167,7 +167,7 @@ const LiveProducerScreen: React.FC = () => {
     enqueueFromGift,
     clearAll,
   } = useTipAnimations({ maxConcurrent: 2 });
-  const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
+  const { flow: reactionFlow, addReaction, clearReactions } = useReactions();
   // Stream paused/resumed state
   const [streamPaused, setStreamPaused] = useState(false);
   // Grace period countdown for PAUSED state
@@ -1542,7 +1542,7 @@ const LiveProducerScreen: React.FC = () => {
           </View>
 
           {/* Floating Reaction Bubbles */}
-          <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
+          <ReactionOverlay flow={reactionFlow} />
 
           {/* Tip Animations Overlay */}
           <TipAnimationsOverlay items={tipEffects} />
