@@ -1,4 +1,4 @@
-import { usePerfProbe } from "../libs/perfTrace";
+import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
@@ -297,6 +297,7 @@ const fmtTrim = (sec: number) => `${Math.floor(sec / 60)}:${String(Math.floor(se
 
 export default function UploadScreen() {
   usePerfProbe("UploadScreen");
+  perfMark("upload:render");
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.
@@ -2560,6 +2561,7 @@ export default function UploadScreen() {
   }, [setMonetization]);
 
 
+  perfMark("upload:hooks-done");
   // A banned account reads every post on Riftn and writes none of them. The
   // API refuses the mint either way; showing the composer first would only
   // mean losing whatever was typed into it.
@@ -4456,6 +4458,7 @@ export default function UploadScreen() {
     </View>
   );
 
+  perfMark("upload:jsx-done");
   if (!COMPOSER_SHEET) return composer;
   return (
     <View style={{ flex: 1 }}>

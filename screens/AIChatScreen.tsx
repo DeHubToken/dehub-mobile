@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../libs/perfTrace";
 import { DIGITAL_PURCHASES_ENABLED, IS_APP_STORE_BUILD } from '../config/storefront';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -241,6 +242,7 @@ export interface EmbeddedCreatorProps {
 }
 
 function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requestedDraft, onGenerated, onUseGenerated, onGeneratedModel }: EmbeddedCreatorProps & { studio?: boolean }) {
+  usePerfProbe("AIChatScreen");
   const editorRequests = useRef(new Set<string>());
   const deliveredEditorResults = useRef(new Set<string>());
   const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);

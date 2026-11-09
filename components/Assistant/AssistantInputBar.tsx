@@ -15,6 +15,7 @@ import {
 import SmartImage from '../common/SmartImage';
 import Icon from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
+import { useDeferredTextField } from '../../hooks/useDeferredTextField';
 
 interface AssistantInputBarProps {
   readOnly?: boolean;
@@ -61,11 +62,15 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   // input made every multi-paragraph prompt — which is most image prompts —
   // impossible to read back before sending.
   const [height, setHeight] = useState(21);
-  const canSend = (value.trim().length > 0 || !!attachedImage || allowEmpty) && !disabled && !loading;
+  // The Assistant screen owns the text and re-renders whole on every key; the
+  // box paints each key at once and lets the screen follow (see the hook).
+  const field = useDeferredTextField(value, onChangeText, onSend);
+  const canSend = (field.text.trim().length > 0 || !!attachedImage || allowEmpty) && !disabled && !loading;
 
+  const { submit } = field;
   const handleSubmit = useCallback(() => {
-    if (canSend) onSend();
-  }, [canSend, onSend]);
+    if (canSend) submit();
+  }, [canSend, submit]);
 
   return (
     <View style={s.container}>
@@ -90,8 +95,8 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           style={[s.input, { height: Math.min(Math.max(21, height), maxInputHeight) }]}
           placeholder={placeholder ?? (attachedImage ? _copy("copy.413880aa438d", { defaultValue: "Describe your edits…" }) : _copy("copy.ff918d248470", { defaultValue: "Ask me anything..." }))}
           placeholderTextColor="#8B8D90"
-          value={value}
-          onChangeText={onChangeText}
+          value={field.text}
+          onChangeText={field.onChangeText}
           onSelectionChange={onSelectionChange}
           onContentSizeChange={(e) => setHeight(e.nativeEvent.contentSize.height)}
           multiline

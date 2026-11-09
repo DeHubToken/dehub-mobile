@@ -12,7 +12,7 @@ import { useLayoutEffect } from "react";
  * It switches itself off after half an hour, or with dehub://perf-trace/off.
  *
  * What it prints, one line per JavaScript task:
- *   [perf] task 182ms | HomeScreen 1x 170ms | FeedCard 6x 41ms ...
+ *   [perf] task 182ms from 5120ms | HomeScreen 1x 170ms | FeedCard 6x 41ms ...
  * where each probe shows how many times it rendered and its longest
  * render-to-commit time. A probe's time includes everything rendered under it,
  * so the outermost probe is the cost of the whole commit. `[perf] js blocked`
@@ -49,7 +49,7 @@ function flush(): void {
   const parts = [...pending.entries()]
     .sort((a, b) => b[1].maxMs - a[1].maxMs)
     .map(([label, e]) => `${label} ${e.count}x ${Math.round(e.maxMs)}ms`);
-  log(`task ${Math.round(now() - firstStart)}ms | ${parts.join(" | ")}`);
+  log(`task ${Math.round(now() - firstStart)}ms from ${Math.round(firstStart)}ms | ${parts.join(" | ")}`);
   pending.clear();
   firstStart = 0;
 }
@@ -96,7 +96,7 @@ export function handlePerfTraceLink(url: string | null | undefined): boolean {
 export function perfMark(label: string): void {
   if (!on) return;
   lastMark = label;
-  log(`mark ${label}`);
+  log(`mark ${label} at ${Math.round(now())}ms`);
 }
 
 /**

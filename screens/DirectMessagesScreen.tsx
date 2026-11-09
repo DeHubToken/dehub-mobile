@@ -9,13 +9,13 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  TextInput,
   Alert,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
+import DeferredTextInput from "../components/ui/DeferredTextInput";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -457,7 +457,7 @@ const DirectMessagesInner: React.FC = () => {
         >
           <View className="flex-row items-center" style={[{ height: 36, borderRadius: 8 }, searchField.surface]}>
             <View className="pl-3 pr-2"><Icon name="Search" size={16} color="#71717A" /></View>
-            <TextInput value={query} onChangeText={setQuery}
+            <DeferredTextInput value={query} onChangeText={setQuery}
               placeholder={t("messages.searchConversations")} placeholderTextColor="#71717A"
               className="flex-1 text-white text-sm" returnKeyType="search" style={[FIELD_TEXT, SEARCH_INPUT_CLEAR]} onFocus={searchField.onFocus} onBlur={searchField.onBlur} />
             {/* Refresh, new message and settings sit quietly inside the search
