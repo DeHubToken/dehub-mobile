@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { AppState, Text, View } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import Animated, {
   cancelAnimation, Easing, Extrapolation, interpolate, ReduceMotion,
   useAnimatedStyle, useReducedMotion, useSharedValue, withTiming,
@@ -65,7 +65,7 @@ export default memo(function NotificationBell({ unread = 0, size = 26, color, ac
   const profile = notificationBellMotion(unread);
   const showCount = useShowNotificationCount();
   const { isLight } = useAppTheme();
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
   const reduced = useReducedMotion();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
   const phase = useSharedValue(0);

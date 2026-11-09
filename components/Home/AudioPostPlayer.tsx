@@ -43,7 +43,7 @@ import { postMediaIsTransferring } from "../../libs/post-media-session";
 import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Path, Rect } from "react-native-svg";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import Icon from "../ui/Icon";
 import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
@@ -664,7 +664,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSeekingRef = useRef(false);
   const lastSeekTimeRef = useRef(0);
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocusedLazy();
   const preloadedRef = useRef(false);
   // A seek asked for before the track finished loading. Applied once it does,
   // instead of being dropped on the floor as it used to be.

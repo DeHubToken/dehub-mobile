@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, View, Text, StyleSheet, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import type { RichPreview, RichDetails } from '../../libs/rich-links';
@@ -66,7 +66,7 @@ function ShareAudio({ url }: { url: string }) {
   // Attach the source only after the listener taps play.
   const player = useAudioPlayer(null);
   const status = useAudioPlayerStatus(player);
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
   const focusedRef = useRef(focused);
   focusedRef.current = focused;
   const { t } = useTranslation();

@@ -3,7 +3,8 @@ import { Platform, Pressable, View, StyleSheet, InteractionManager, useWindowDim
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { useBackPress } from "../hooks/useBackPress";
 import { useTranslation } from "react-i18next";
-import { useIsFocused, useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../hooks/useIsFocusedLazy";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
   cancelAnimation,
@@ -290,7 +291,7 @@ export default function HomeScreen() {
   const [filters, setFilters] = useState<FeedFilters>(savedFilters);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth, height: pageHeight } = useWindowDimensions();
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocusedLazy();
   const { skin, theme, colors, accent } = useAppTheme();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
