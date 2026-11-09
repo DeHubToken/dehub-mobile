@@ -57,7 +57,7 @@ import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
 import { useHoldLaunchForFeed } from "../hooks/useHoldLaunchForFeed";
 import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
-import { useIsFetching } from "@tanstack/react-query";
+import { useQueryClient, type Query } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import type {
@@ -105,6 +105,26 @@ const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
 const SEED_CHECK_INTERVAL_MS = 60_000;
 
 const generateShuffleSeed = () => String(Date.now());
+
+const isHomeFeedQuery = (query: Query) => {
+  const family = query.queryKey?.[0];
+  return family === "home-feed" || family === "home-images" || family === "home-shorts";
+};
+const ignoreQueries = () => () => {};
+
+/** Whether any of Home's feeds is fetching; only follows the cache while `enabled`. */
+function useFeedQueriesBusy(enabled: boolean): boolean {
+  const queryClient = useQueryClient();
+  const subscribe = useCallback(
+    (onChange: () => void) => (enabled ? queryClient.getQueryCache().subscribe(onChange) : ignoreQueries()),
+    [enabled, queryClient],
+  );
+  const busy = useCallback(
+    () => enabled && queryClient.isFetching({ predicate: isHomeFeedQuery }) > 0,
+    [enabled, queryClient],
+  );
+  return React.useSyncExternalStore(subscribe, busy, busy);
+}
 
 const CATEGORY_STORAGE_KEY = "dehub:defaultCategory";
 
@@ -876,24 +896,26 @@ export default function HomeScreen() {
   // the image and shorts grids), so "is the feed still working" is a property
   // of the whole screen, not of one list. Counting in-flight queries across the
   // three feed families is the only place that view exists.
-  const feedQueriesInFlight = useIsFetching({
-    predicate: (query) => {
-      const family = query.queryKey?.[0];
-      return (
-        family === "home-feed" ||
-        family === "home-images" ||
-        family === "home-shorts"
-      );
-    },
-  });
-  // Destructured, never held as an object: useIsFetching re-renders this screen
-  // on every fetch transition, and `begin` is the only stable half. The six
-  // pager pages are memo()'d precisely so they do not re-render with the shell,
-  // so any handler passed down to them must depend on `begin` alone — depending
-  // on the whole object gave every one of them a fresh identity per render and
-  // re-rendered all six video lists on every tick.
-  const { active: filterLoaderActive, begin: beginFilterTransition } =
-    useFeedFilterTransition(feedQueriesInFlight > 0);
+  //
+  // Only watched while the loader is up: every page the feed loads while you
+  // scroll starts and ends a fetch, and following those re-rendered Home and
+  // its feed list twice per page (~0.2s of work on a Galaxy S24+, mid-fling).
+  const [watchFeedFetches, setWatchFeedFetches] = useState(false);
+  const feedQueriesBusy = useFeedQueriesBusy(watchFeedFetches);
+  // Destructured, never held as an object: `begin` is the only stable half.
+  // The six pager pages are memo()'d precisely so they do not re-render with
+  // the shell, so any handler passed down to them must depend on `begin` alone
+  // — depending on the whole object gave every one of them a fresh identity per
+  // render and re-rendered all six video lists on every tick.
+  const { active: filterLoaderActive, begin: beginFilterLoader } =
+    useFeedFilterTransition(feedQueriesBusy);
+  const beginFilterTransition = useCallback(() => {
+    setWatchFeedFetches(true);
+    beginFilterLoader();
+  }, [beginFilterLoader]);
+  useEffect(() => {
+    if (!filterLoaderActive) setWatchFeedFetches(false);
+  }, [filterLoaderActive]);
 
   // ── Navigation ───────────────────────────────────────────────────────────
   const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
