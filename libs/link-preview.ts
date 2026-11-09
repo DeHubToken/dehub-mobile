@@ -17,6 +17,7 @@ import { supabase } from '../services/supabase';
 import { createLogger } from './logger';
 import { fetchPredictionPreview, forgetPredictionPreview, parsePredictionLink, type PredictionPreview } from './predictions';
 import { fetchRichPreview, forgetRichPreview, parseRichLink, extractShareUrls, type RichDetails } from './rich-links';
+import { fetchSpotifyOembed, parseSpotifyLink, type SpotifyLink } from './spotify';
 
 const log = createLogger('LinkPreview');
 
@@ -131,7 +132,30 @@ async function loadLinkPreview(url: string): Promise<LinkPreviewData | null> {
   if (rich) return fetchRichPreview(rich);
   const cached = previewCache.get(url);
   if (cached) return cached;
+  const spotify = parseSpotifyLink(url);
+  if (spotify) return loadSpotifyPreview(url, spotify);
   return crawlLinkPreview(url, false);
+}
+
+/**
+ * Spotify links: our crawler first (it reads "Artist · Song · 1987"), then
+ * Spotify's own oEmbed for the cover and name when the crawl comes back bare,
+ * so a music card never shows up without its art. Same as web.
+ */
+async function loadSpotifyPreview(url: string, spotify: SpotifyLink): Promise<LinkPreviewData | null> {
+  const crawled = await crawlLinkPreview(url, false);
+  if (crawled?.image) return crawled;
+  const oembed = await fetchSpotifyOembed(spotify);
+  if (!oembed) return crawled;
+  const preview: LinkPreviewData = {
+    url,
+    title: oembed.title || crawled?.title || 'Spotify',
+    description: crawled?.description || '',
+    image: oembed.image,
+    siteName: 'Spotify',
+  };
+  previewCache.set(url, preview);
+  return preview;
 }
 
 /**

@@ -34,6 +34,8 @@ import { parsePredictionLink } from '../../libs/predictions';
 import PredictionDetails from './PredictionDetails';
 import { parseRichLink } from '../../libs/rich-links';
 import RichLinkCard from './RichLinkCard';
+import SpotifyCard from './SpotifyCard';
+import { parseSpotifyLink } from '../../libs/spotify';
 
 /** The first URL in the text that isn't one of our own entity links. */
 /** The link whose card a post shows, if it shows one. */
@@ -140,6 +142,8 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style,
   }
   if (!preview) return null;
   if (preview.rich) return <RichLinkCard preview={{ ...preview, rich: preview.rich }} style={style} />;
+  const spotify = parseSpotifyLink(preview.url);
+  if (spotify) return <SpotifyCard preview={preview} link={spotify} style={style} statsTokenId={statsTokenId} />;
 
   const showImage = !!preview.image && preview.image !== failedImage;
   const favicon = getLinkPreviewFavicon(preview.url);
