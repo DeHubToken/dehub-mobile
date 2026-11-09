@@ -21,8 +21,14 @@ it.each([
   { ...video, postType: 'live' }, { ...video, postType: 'feed-audio' },
   { ...video, is_ppv: true }, { ...photo, streamInfo: { isLockContent: true, lockContentAmount: 1 } },
   { ...video, plansDetails: [{}] }, { ...video, contentRating: 'mature' },
-  { ...photo, spoilerText: 'Reveal first' }, { ...video, visibility: 'followers' },
+  { ...video, visibility: 'followers' },
   { ...video, transcodingStatus: 'pending' }, { ...video, blockedYou: true },
 ])('keeps ineligible quotes on the resolver: %j', post => {
   expect(quotedPostViewerParams(post, post.tokenId)).toBeNull();
+});
+
+it('opens a warned quote in the viewer, which shows the warning on the slide', () => {
+  expect(quotedPostViewerParams({ ...photo, spoilerText: 'Reveal first' }, 43)).toMatchObject({
+    initialItems: [{ postType: 'feed-images', spoilerText: 'Reveal first' }],
+  });
 });

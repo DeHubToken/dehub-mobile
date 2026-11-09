@@ -47,6 +47,8 @@ import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { noteProfileFeedOpen, useProfileFeedSource } from '../../libs/profileFeedOrigin';
 import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
+import { warmShortsFeed } from '../../navigation/warmShortsFeed';
+import { markContentWarningSeen } from '../../libs/contentWarningSeen';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import { useFeedSplitComments } from "./feedSplitComments";
 import PostStatsSheet from "../Post/stats/PostStatsSheet";
@@ -974,15 +976,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [scrubBoundary]);
   const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
 
-  const videoViewerReady = canOpenPostVideoViewer(item as any, isActuallyGated || matureGate.isGated || contentWarning.hidden);
+  // A warned video opens in the shorts viewer too, which keeps the warning on
+  // the clip until it is opened (WarningShortSlide); opened here, it is not
+  // asked again there.
+  const videoViewerReady = canOpenPostVideoViewer(item as any, isActuallyGated || matureGate.isGated);
+  const { reveal: revealContentWarning } = contentWarning;
+  const openContentWarning = useCallback(() => {
+    markContentWarningSeen(tokenId);
+    revealContentWarning();
+  }, [tokenId, revealContentWarning]);
   useWarmVideoViewer(isVisible && isVideo && videoViewerReady);
   const handleVideoViewerPress = useCallback(() => {
     if (!videoViewerReady || tokenId == null || scrubBoundary.claimed.value) return;
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
+    if (!profileFeed) warmShortsFeed(isSignedIn);
     onBeforeNavigate?.();
     hideUserProfile();
     navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
-  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed]);
+  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed, isSignedIn]);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
@@ -2498,7 +2509,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onMore={handleOpenOptions}
         />
         {contentWarning.hidden ? (
-          <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+          <ContentWarningGate text={contentWarning.text} onReveal={openContentWarning} />
         ) : matureGate.isGated ? (
           <MatureContentGate onReveal={matureGate.reveal} />
         ) : (
@@ -2824,7 +2835,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               isHidden={isHidden}
             />
             {contentWarning.hidden ? (
-              <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+              <ContentWarningGate text={contentWarning.text} onReveal={openContentWarning} />
             ) : matureGate.isGated ? (
               // In place of the media, so edge to edge like the media.
               <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>
@@ -3050,7 +3061,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           the timestamp/action bar below stay live, so a post can be reported
           or opened without being read first. */}
       {contentWarning.hidden ? (
-        <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+        <ContentWarningGate text={contentWarning.text} onReveal={openContentWarning} />
       ) : matureGate.isGated ? (
         <MatureContentGate onReveal={matureGate.reveal} />
       ) : (

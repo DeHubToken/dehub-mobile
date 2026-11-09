@@ -7,6 +7,7 @@ import {
   isBrainrotSwipe,
   mixBrainrotFeed,
   windowShuffle,
+  WATCHED_WAIT_MS,
   type BrainrotBucket,
   type BrainrotListInput,
   type BrainrotPost,
@@ -262,5 +263,59 @@ describe('createBrainrotSource', () => {
     });
     const { items } = await source.next();
     expect(new Set(items.slice(-2).map((p) => p.tokenId))).toEqual(new Set(['1000', '2000']));
+  });
+});
+
+describe('createBrainrotSource opening', () => {
+  function slowFeed() {
+    const resolvers: Record<string, (value: any) => void> = {};
+    const fetchPage = jest.fn((params: UnifiedFeedParams) => new Promise<any>((resolve) => {
+      resolvers[`${params.sortBy}|${params.range ?? ''}`] = resolve;
+    }));
+    const answer = (key: string, base: number) => resolvers[key]({
+      result: Array.from({ length: BRAINROT_PAGE_SIZE }, (_, i) => ({ tokenId: String(base + i), minter: `c-${base + i}`, postType: 'video' })),
+      pagination: { page: 1, limit: BRAINROT_PAGE_SIZE, totalCount: 99, totalPages: 3, hasMore: true },
+    });
+    return { fetchPage, answer };
+  }
+
+  it('hands over the first clip once the opening list answers, not after the slowest list', async () => {
+    const { fetchPage, answer } = slowFeed();
+    const source = createBrainrotSource({ seed: 7, fetchPage });
+    const first = source.next();
+    await Promise.resolve();
+    expect(fetchPage).toHaveBeenCalledTimes(5);
+    answer('views|week', 1000);
+    const { items, done } = await first;
+    expect(done).toBe(false);
+    expect(items.length).toBeGreaterThan(0);
+    expect(items.every((p) => Math.floor(Number(p.tokenId) / 1000) === 1)).toBe(true);
+
+    // The next ask joins the list still loading instead of fetching it again.
+    const second = source.next();
+    answer('views|', 3000);
+    answer('createdAt|', 2000);
+    answer('likes|', 4000);
+    answer('comments|', 5000);
+    const more = await second;
+    expect(fetchPage).toHaveBeenCalledTimes(5);
+    expect(more.items.length).toBeGreaterThan(0);
+  });
+
+  it('does not let a slow watch history hold the feed up', async () => {
+    jest.useFakeTimers();
+    try {
+      const fetchPage = jest.fn(async (params: UnifiedFeedParams) => ({
+        result: [{ tokenId: `${params.sortBy}-${params.range ?? ''}-1`, minter: 'x', postType: 'video' as const }],
+        pagination: { page: 1, limit: BRAINROT_PAGE_SIZE, totalCount: 1, totalPages: 1, hasMore: false },
+      }));
+      const source = createBrainrotSource({ seed: 8, fetchPage, loadWatchedIds: () => new Promise(() => {}) });
+      const next = source.next();
+      await jest.advanceTimersByTimeAsync(WATCHED_WAIT_MS);
+      const { items } = await next;
+      expect(items.length).toBe(5);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });

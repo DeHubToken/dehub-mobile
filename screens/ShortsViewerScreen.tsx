@@ -169,8 +169,10 @@ import {
 import { savePost } from "../services/feed.service";
 import { toggleRepost } from "../services/repost.service";
 import { getShortsFeed, getUnifiedFeed } from "../services/feed.unified.service";
-import { getWatchHistory } from "../services/user.service";
 import { createBrainrotSource } from "../libs/brainrotFeed";
+import { shortsFeedFetchers } from "../navigation/warmShortsFeed";
+import { isContentWarningSeen, markContentWarningSeen } from "../libs/contentWarningSeen";
+import WarningShortSlide from "../components/Shorts/WarningShortSlide";
 import { profileFeedParams } from "../libs/profileFeedOrigin";
 import { canOpenPostVideoViewer } from "../navigation/postVideoViewerParams";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
@@ -2666,16 +2668,12 @@ const ShortsViewerScreen = () => {
   const { isSignedIn } = useAuthState();
   const brainrotRef = useRef<ReturnType<typeof createBrainrotSource<UnifiedFeedItem>> | null>(null);
   if (feedParams.brainrot && !brainrotRef.current) {
+    // Joins the lists a video card already started loading (warmShortsFeed),
+    // so the next clips are usually here before the first swipe.
     brainrotRef.current = createBrainrotSource<UnifiedFeedItem>({
       seed: Date.now() % 2147483647,
       fromId: feedParams.fromId,
-      fetchPage: getUnifiedFeed,
-      loadWatchedIds: isSignedIn
-        ? async () => {
-            const res = await getWatchHistory({ page: 0, unit: 100, postType: "video" });
-            return new Set((res?.result ?? []).map((item: any) => String(item?.tokenId)));
-          }
-        : undefined,
+      ...shortsFeedFetchers(isSignedIn),
     });
   }
 
@@ -3119,10 +3117,31 @@ const ShortsViewerScreen = () => {
 
   const activeVideoRef = useRef<VideoView>(null);
 
+  // Warned clips wait behind their warning until the person opens it; one
+  // already opened on a card plays straight away.
+  const [revealedWarnings, setRevealedWarnings] = useState<ReadonlySet<string>>(() => new Set());
+  const revealWarning = useCallback((id: string) => {
+    markContentWarningSeen(id);
+    setRevealedWarnings((prev) => new Set(prev).add(id));
+  }, []);
+
   const renderItem = useCallback(
-    ({ item, index }: { item: UnifiedFeedItem; index: number }) => isLiveSlide(item) ? (
-      <LiveShortSlide slide={item} isActive={index === activeIndex} height={containerHeight} />
-    ) : (
+    ({ item, index }: { item: UnifiedFeedItem; index: number }) => {
+      if (isLiveSlide(item)) return <LiveShortSlide slide={item} isActive={index === activeIndex} height={containerHeight} />;
+      const warning = String((item as any).spoilerText ?? "").trim();
+      const id = String(item.tokenId ?? item.id ?? "");
+      if (warning && !revealedWarnings.has(id) && !isContentWarningSeen(id)) {
+        const still = (item as any).postType === "short" ? getShortsThumbnailUrl(item.tokenId) : resolveThumbnail(item);
+        return (
+          <WarningShortSlide
+            text={warning}
+            thumbnail={still && still !== DEFAULT_BANNER_SENTINEL ? still : undefined}
+            height={containerHeight}
+            onReveal={() => revealWarning(id)}
+          />
+        );
+      }
+      return (
       <ShortItem
         item={item}
         thumbnailOverride={index === initialIndex ? initialThumbnail : undefined}
@@ -3150,8 +3169,9 @@ const ShortsViewerScreen = () => {
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
         reelBgId={feedParams.reelBgId}
       />
-    ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, chromeRevealTick, initialIndex, initialThumbnail, feedParams.reelBgId],
+      );
+    },
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, chromeRevealTick, initialIndex, initialThumbnail, feedParams.reelBgId, revealedWarnings, revealWarning],
   );
 
   const keyExtractor = useCallback(

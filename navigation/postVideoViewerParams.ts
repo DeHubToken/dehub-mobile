@@ -28,7 +28,9 @@ export function canOpenPostVideoViewer(post: {
   const info = post.streamInfo ?? post.stream?.streamInfo ?? {};
   if (gated || post.postType === 'live' || info.isLive || post.streamKey) return false;
   if (post.postType && post.postType !== 'video' && post.postType !== 'short') return false;
-  if (post.isBlocked || post.blockedYou || post.contentRating === 'mature' || post.spoilerText) return false;
+  // A content warning no longer sends the video to the post page: the shorts
+  // viewer shows the warning on the clip itself (WarningShortSlide).
+  if (post.isBlocked || post.blockedYou || post.contentRating === 'mature') return false;
   if (post.visibility && post.visibility !== 'public') return false;
   if (post.plansDetails?.length || info.isPayPerView || isHoldGated(info.isLockContent, info.lockAmount ?? info.lockContentAmount)) return false;
   return !['pending', 'on', 'failed'].includes(post.transcodingStatus ?? '');

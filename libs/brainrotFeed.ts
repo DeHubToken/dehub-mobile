@@ -273,6 +273,8 @@ export function isBrainrotSwipe(translationY: number, velocityY: number): boolea
 
 /** At most this many list pages per `next()`, so a run of unplayable pages can't spin. */
 const MAX_FETCHES_PER_CALL = 6;
+/** How long the first deal waits for the watch history before going without it. */
+export const WATCHED_WAIT_MS = 1200;
 
 export interface BrainrotSourceOptions<T extends BrainrotPost> {
   seed: number;
@@ -299,22 +301,32 @@ export function createBrainrotSource<T extends BrainrotPost>({
   let watchedIds: ReadonlySet<string> | undefined;
   let dealt: T[] = [];
   let started = false;
+  /** A list's request in flight, so a second ask joins it instead of repeating it. */
+  const pending: Partial<Record<BrainrotBucket, Promise<void>>> = {};
 
-  const fetchList = async (bucket: BrainrotBucket) => {
-    const list = lists[bucket];
-    const page = list.page + 1;
-    try {
-      const res = await fetchPage({ ...BRAINROT_QUERIES[bucket], page, limit: BRAINROT_PAGE_SIZE });
-      const result = res?.result ?? [];
-      lists[bucket] = {
-        items: [...list.items, ...result],
-        page,
-        done: !res?.pagination?.hasMore || result.length === 0,
-      };
-    } catch {
-      // A list that will not load drops out of the rotation; the rest carry on.
-      lists[bucket] = { ...list, done: true };
-    }
+  const fetchList = (bucket: BrainrotBucket): Promise<void> => {
+    const inFlight = pending[bucket];
+    if (inFlight) return inFlight;
+    const run = (async () => {
+      const list = lists[bucket];
+      const page = list.page + 1;
+      try {
+        const res = await fetchPage({ ...BRAINROT_QUERIES[bucket], page, limit: BRAINROT_PAGE_SIZE });
+        const result = res?.result ?? [];
+        lists[bucket] = {
+          items: [...list.items, ...result],
+          page,
+          done: !res?.pagination?.hasMore || result.length === 0,
+        };
+      } catch {
+        // A list that will not load drops out of the rotation; the rest carry on.
+        lists[bucket] = { ...list, done: true };
+      } finally {
+        delete pending[bucket];
+      }
+    })();
+    pending[bucket] = run;
+    return run;
   };
 
   const deal = () => {
@@ -329,10 +341,20 @@ export function createBrainrotSource<T extends BrainrotPost>({
     async next(): Promise<{ items: T[]; done: boolean }> {
       if (!started) {
         started = true;
-        const watched = loadWatchedIds
-          ? loadWatchedIds().then((ids) => { watchedIds = ids; }, () => {})
-          : Promise.resolve();
-        await Promise.all([...BRAINROT_BUCKETS.map(fetchList), watched]);
+        // Every list starts at once, but the first clips go out as soon as the
+        // rotation's opening lists have answered rather than after the slowest
+        // of all five: until then the viewer holds only the tapped clip and a
+        // swipe has nowhere to go. The rotation pauses on a list still loading
+        // (mixBrainrotFeed's waitingOn), so the order is the same either way.
+        BRAINROT_BUCKETS.forEach((bucket) => { void fetchList(bucket); });
+        // Watched clips are held back, so wait for the history, but only so
+        // long: a slow history must not hold the feed up.
+        if (loadWatchedIds) {
+          let timer: ReturnType<typeof setTimeout> | undefined;
+          const watched = loadWatchedIds().then((ids) => { watchedIds = ids; }, () => {});
+          await Promise.race([watched, new Promise<void>((resolve) => { timer = setTimeout(resolve, WATCHED_WAIT_MS); })]);
+          clearTimeout(timer);
+        }
       }
       for (let attempt = 0; attempt < MAX_FETCHES_PER_CALL; attempt++) {
         const { added, waitingOn } = deal();

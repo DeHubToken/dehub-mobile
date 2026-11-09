@@ -2,6 +2,8 @@ import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/
 
 it.each([
   { postType: 'video' }, { postType: 'short' }, {},
+  // The viewer keeps the warning on the clip itself.
+  { postType: 'video', spoilerText: 'Reveal first' },
 ])('opens an ordinary ready video directly: %j', post => {
   expect(canOpenPostVideoViewer(post)).toBe(true);
 });
@@ -13,7 +15,7 @@ it.each([
   { streamInfo: { isLockContent: true, lockContentAmount: 1 } },
   { stream: { streamInfo: { isPayPerView: true } } },
   { plansDetails: [{}] }, { visibility: 'followers' }, { visibility: 'direct' },
-  { contentRating: 'mature' }, { spoilerText: 'Reveal first' },
+  { contentRating: 'mature' },
   { isBlocked: true }, { blockedYou: true },
   { transcodingStatus: 'pending' }, { transcodingStatus: 'on' }, { transcodingStatus: 'failed' },
 ])('retains the existing gate/detail path: %j', post => {

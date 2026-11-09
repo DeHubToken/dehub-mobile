@@ -5,6 +5,8 @@ import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { runWhenSettled } from "../libs/run-when-settled";
+import { warmShortsFeed } from "../navigation/warmShortsFeed";
 import {
   View,
   Text,
@@ -320,6 +322,11 @@ const FullscreenVideoScreen = () => {
   // (libs/brainrotFeed). Replaced rather than pushed, so Back from the shorts
   // lands where the video was opened from. Off for anyone who hid Shorts.
   const shortsEnabled = useAppPrefs().shorts;
+  // One swipe away: have the next clips loading before it.
+  useEffect(() => {
+    if (!shortsEnabled) return;
+    return runWhenSettled(() => warmShortsFeed(isSignedIn), 1500);
+  }, [shortsEnabled, isSignedIn]);
   const openShorts = useCallback(() => {
     try { player?.pause(); } catch {}
     navigation.replace(ScreenNames.ShortsViewer, {
