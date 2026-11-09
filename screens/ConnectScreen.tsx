@@ -18,7 +18,7 @@ import { SettingsSection, SettingsLinkRow, Divider } from "../components/Setting
 import { toastError, toastSuccess } from "../libs";
 import { openExternalLink } from "../libs/links.utils";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { AI_APPS, MCP_URL } from "../config/connect-ai";
+import { ACCOUNT_CONNECTIONS_URL, AI_APPS, MCP_URL, PERSONAL_KEYS_URL } from "../config/connect-ai";
 
 function Steps({ items }: { items: string[] }) {
   return (
@@ -58,7 +58,7 @@ export default function ConnectScreen() {
       >
         <View style={styles.intro}>
           <Text style={styles.title}>{t("connect.title")}</Text>
-          <Text style={styles.subtitle}>{t("connect.subtitle")}</Text>
+          <Text style={styles.subtitle}>{t("connect.subtitleAccount")}</Text>
         </View>
 
         <LiquidGlass className="rounded-2xl" style={styles.urlCard}>
@@ -78,8 +78,8 @@ export default function ConnectScreen() {
         </LiquidGlass>
 
         <View style={styles.agentCard}>
-          <Text style={styles.agentTitle}>{t("connect.agentTitle")}</Text>
-          <Text style={styles.agentBody}>{t("connect.agentBody")}</Text>
+          <Text style={styles.agentTitle}>{t("connect.agentsTitle")}</Text>
+          <Text style={styles.agentBody}>{t("connect.agentsBody")}</Text>
           <Pressable
             onPress={() => navigation.navigate(ScreenNames.Agents)}
             accessibilityRole="link"
@@ -138,6 +138,24 @@ export default function ConnectScreen() {
           />
         </SettingsSection>
 
+        <SettingsSection label={t("connect.keysTitle")}>
+          <Text style={styles.sectionBody}>{t("connect.keysBody")}</Text>
+          <Divider />
+          <SettingsLinkRow
+            icon="KeyRound"
+            label={t("connect.keysMake")}
+            onPress={() => openExternalLink(PERSONAL_KEYS_URL)}
+            external
+          />
+          <Divider />
+          <SettingsLinkRow
+            icon="Link"
+            label={t("connect.manageLinked")}
+            onPress={() => openExternalLink(ACCOUNT_CONNECTIONS_URL)}
+            external
+          />
+        </SettingsSection>
+
         <Text style={styles.footer}>{t("connect.otherClients")}</Text>
       </ScrollView>
     </View>
@@ -183,4 +201,5 @@ const styles = StyleSheet.create({
   stepNum: { color: "#71717A", fontSize: 14, fontWeight: "700", minWidth: 18 },
   stepText: { flex: 1, color: "#D4D4D8", fontSize: 14, lineHeight: 20 },
   footer: { color: "#71717A", fontSize: 13, lineHeight: 19, marginHorizontal: 20, marginTop: 20 },
+  sectionBody: { color: "#D4D4D8", fontSize: 14, lineHeight: 20, paddingHorizontal: 16, paddingVertical: 12 },
 });
