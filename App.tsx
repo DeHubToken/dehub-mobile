@@ -97,6 +97,7 @@ import { StageProvider } from "./context/StageContext";
 import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlayer";
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
+import SpotifyMiniPlayer from "./components/Music/SpotifyMiniPlayer";
 import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
 import WalletRuntimeHost from "./components/auth/WalletRuntimeHost";
 import { bootRevealed, markBootRevealed } from "./libs/bootReveal";
@@ -604,6 +605,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
                         <AudioPostMiniPlayer />
+                        <SpotifyMiniPlayer />
                         </QuickActionsHost>
                         </VideoDownloadProvider>
                       </CallProvider>

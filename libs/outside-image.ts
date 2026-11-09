@@ -21,6 +21,9 @@ const DIRECT_HOSTS = [
   "ytimg.com",
   "ggpht.com",
   "googleusercontent.com",
+  // Spotify cover art (Spotify cards): Spotify's own CDN.
+  "scdn.co",
+  "spotifycdn.com",
 ];
 
 const apiBase = (): string => (env.API_URL || "https://api.dehub.io/api").replace(/\/+$/, "");
