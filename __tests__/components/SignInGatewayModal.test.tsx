@@ -5,7 +5,7 @@ import { useAuthActions, useAuthState } from '../../context/AuthContext';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', ScrollView: 'ScrollView',
+  View: 'View', Text: 'Text', ScrollView: 'ScrollView', useWindowDimensions: () => ({ width: 390, height: 844 }),
   StyleSheet: { create: (styles: unknown) => styles },
 }));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: jest.fn(), useAuthState: jest.fn() }));
@@ -16,6 +16,7 @@ jest.mock('../../components/auth/SocialLoginIcons', () => 'SocialLogin');
 jest.mock('../../components/auth/EmailCodeEntry', () => 'EmailCode');
 jest.mock('../../components/auth/ImportWallet', () => 'ImportWallet');
 jest.mock('../../components/auth/SignInSavedProfiles', () => 'SavedProfiles');
+jest.mock('../../components/auth/LoginShortsStack', () => 'LoginShortsStack');
 jest.mock('../../components/auth/WalletSetupScreen', () => 'WalletSetup');
 jest.mock('../../components/FullScreenLoader', () => 'Loader');
 jest.mock('../../hooks/useWalletAuth', () => ({ useWalletAuth: () => ({ isWalletLoading: false, isWalletSheetOpen: false }) }));
