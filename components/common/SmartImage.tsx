@@ -142,11 +142,17 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   // needs the native animation command when its row leaves the viewport.
   useEffect(syncAnimation, [syncAnimation]);
   // A resize that stalls never errors on its own: one photo's transform hung
-  // for over a minute on a phone while the original loaded instantly.
+  // for over a minute on a phone while the original loaded instantly. A stall
+  // also asks the probe, as an error does: when dehub.io is blocked every
+  // resize hangs, and the probe moves every image to its original at once
+  // instead of each one waiting out its own timer.
   const stallRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => {
     if (!uri || !viaTransform || useOriginal || original === uri) return;
-    stallRef.current = setTimeout(() => setFailedUri(uri), TRANSFORM_STALL_MS);
+    stallRef.current = setTimeout(() => {
+      void probeTransformOrigin();
+      setFailedUri(uri);
+    }, TRANSFORM_STALL_MS);
     return () => clearTimeout(stallRef.current);
   }, [uri, viaTransform, useOriginal, original]);
   const handleLoad = useCallback<NonNullable<ImageProps['onLoad']>>((event) => {
