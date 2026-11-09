@@ -47,7 +47,8 @@ import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { themeIconUrl } from "../../theme/icons";
-import { ReorderItem, justDropped, useReorder } from "../common/Reorder";
+import { ReorderItem, justDropped, useReorder, type ReorderCtx } from "../common/Reorder";
+import { usePerfProbe } from "../../libs/perfTrace";
 import { applyNavOrder, navOrderId, resetNavOrder, saveNavOrder, useNavOrder } from "../../libs/navOrder";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
@@ -294,12 +295,40 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
   );
 });
 
+/**
+ * A tile with its drag handle, memoised as a whole. Opening the menu re-rendered
+ * every tile (a gesture detector, an animated style and a themed icon each) in
+ * the render that starts the slide, because each got a fresh inline onPress:
+ * ~150ms on a Galaxy S24+ before the sheet moved. Now only a tile whose props
+ * changed renders.
+ */
+const MenuSlot = memo(function MenuSlot({
+  id,
+  ctx,
+  item,
+  onItemPress,
+  ...tile
+}: Omit<TileProps, "onPress"> & {
+  id: string;
+  ctx: ReorderCtx;
+  item: DrawerItem;
+  onItemPress: (item: DrawerItem) => void;
+}) {
+  const onPress = useCallback(() => onItemPress(item), [onItemPress, item]);
+  return (
+    <ReorderItem id={id} ctx={ctx}>
+      <Tile {...tile} onPress={onPress} />
+    </ReorderItem>
+  );
+});
+
 interface AppDrawerProps {
   visible: boolean;
   onClose: () => void;
 }
 
 const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
+  usePerfProbe("SideMenu");
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const { signOut } = useAuthActions();
@@ -560,8 +589,12 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     const key = ICON_KEYS[item.labelKey];
     const id = navOrderId(item.labelKey);
     return (
-      <ReorderItem key={item.labelKey} id={id} ctx={menuReorder.ctx}>
-      <Tile
+      <MenuSlot
+        key={item.labelKey}
+        id={id}
+        ctx={menuReorder.ctx}
+        item={item}
+        onItemPress={handleItemPress}
         label={t(item.labelKey)}
         icon={item.icon}
         iconUrl={key ? themeIconUrl(themeName, key) : undefined}
@@ -580,9 +613,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         skin={skin}
         hud={hud}
         square={square}
-        onPress={() => handleItemPress(item)}
       />
-      </ReorderItem>
     );
   };
 
