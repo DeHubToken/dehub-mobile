@@ -19,6 +19,7 @@
  * opened on purpose, where a list that reorders itself under a thumb is a
  * mis-tap waiting to happen.
  */
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, Pressable, ActivityIndicator } from "react-native";
@@ -49,6 +50,7 @@ export default function TrendingTopicsList({
   onTopicPress,
   defaultPeriod = "1w",
 }: TrendingTopicsListProps) {
+  usePerfProbe("TrendingTopics");
   const { t } = useTranslation();
   const [period, setPeriod] = useState<TopicPeriod>(defaultPeriod);
   const { data: categories, isLoading } = useTrendingCategories(period);

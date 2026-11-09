@@ -10,6 +10,7 @@
  * state is fetched when the rail appears so existing follows and private
  * account requests never look actionable again.
  */
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { FC, useCallback, useRef } from "react";
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from "react-i18next";
@@ -35,6 +36,7 @@ const ROSTER_SIZE = 20;
 const VISIBLE_LIMIT = 20;
 
 const NewMembersRail: FC = () => {
+  usePerfProbe("NewMembers");
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal, skin } = useAppTheme();
