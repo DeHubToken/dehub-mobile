@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Image } from "expo-image";
 import { ActivityIndicator, Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
@@ -53,6 +54,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   aspect,
   fillHeight,
 }) => {
+  usePerfProbe("CardImage");
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
   const [attempt, setAttempt] = useState(0);

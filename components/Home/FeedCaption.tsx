@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * FeedCaption - Instagram-style expandable caption with hashtag categories
@@ -157,6 +158,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   variant = "default",
   compactPortrait = false,
 }) => {
+  usePerfProbe("CardCaption");
   const { t: _copy } = _useCopy();
   const verdictKey = `${maxLines}|${description ?? ""}`;
   // Both start over, in the same render, when the card is handed another

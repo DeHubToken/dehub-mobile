@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import { PersistentVideoView } from '../common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import { applyVideoVolume } from '../../libs/dub-mix';
@@ -2246,6 +2247,7 @@ FeedVideoPoster.displayName = "FeedVideoPoster";
  * still get it, since that chrome lives there.
  */
 const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
+  usePerfProbe("CardVideo");
   const playbackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
   const callInProgress = useCallInProgress();

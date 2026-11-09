@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import Animated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
@@ -116,6 +117,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   onBoostedPress,
   isHidden,
 }) => {
+  usePerfProbe("CardHeader");
   const { t } = useTranslation();
   const { isLight } = useAppTheme();
   const litColor = isLight ? LIT_LIGHT : LIT_DARK;
