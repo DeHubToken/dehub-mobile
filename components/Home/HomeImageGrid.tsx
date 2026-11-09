@@ -16,6 +16,8 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
+import SmartImage from "../common/SmartImage";
+import { isTransformReachable } from "../../libs/cdnImage";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
@@ -68,6 +70,8 @@ const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
 const GRID_GAP = 2;
 const GRID_PADDING = 16;
+/** How long the tiles on screen get before the rest of a page is prefetched. */
+const TILE_PREFETCH_DELAY_MS = 1500;
 
 // Tile sizes come from the live window width (useWindowDimensions), so
 // split-screen and unfolding re-flow the grid instead of keeping the width
@@ -120,13 +124,7 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress, animate }) =
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
   const { isMinimal } = useAppTheme();
-  const imageRef = useRef<Image>(null);
   const settled = useSettledAutoplay(animate, imageUri ?? undefined, 400);
-  const syncAnimation = useCallback(() => {
-    const operation = settled ? imageRef.current?.startAnimating() : imageRef.current?.stopAnimating();
-    operation?.catch(() => {});
-  }, [settled]);
-  useEffect(syncAnimation, [syncAnimation]);
 
   if (!imageUri) return <View style={[styles.tile, { width: size, height: size, backgroundColor: isMinimal ? MINIMAL_PLACEHOLDER_BG : "#262626" }]} />;
 
@@ -136,10 +134,13 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress, animate }) =
       onPress={handlePress}
       style={[styles.tile, { width: size, height: size, backgroundColor: isMinimal ? MINIMAL_TILE_BG : "#262626" }]}
     >
-      <Image
-        ref={imageRef}
-        autoplay={false}
-        onLoad={syncAnimation}
+      {/* SmartImage, not a bare Image: when dehub.io's resizer stalls or
+          can't be reached, a tile falls back to the original file instead of
+          staying blank. A bare Image left tiles empty for over a minute (the
+          resized requests timed out) while the same photo opened at once on
+          tap. It also starts and stops GIFs with `autoplay`. */}
+      <SmartImage
+        autoplay={settled}
         source={imageUri}
         style={StyleSheet.absoluteFill}
         contentFit="cover"
@@ -440,19 +441,26 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 
   const gridRows = useMemo(() => buildGridRows(items.length), [items.length]);
 
-  // Fetch each new page's tiles as soon as it arrives, so a tile is not still
-  // downloading when it scrolls in.
+  // Fetch each new page's tiles soon after it arrives, so a tile is not still
+  // downloading when it scrolls in. A moment after, not at once: a whole page
+  // of prefetches queued the tiles on screen behind them on the same host.
+  // And not while dehub.io's resizer is unreachable, when tiles fall back to
+  // the full-size originals: a page of those would hold up the visible ones.
   const prefetched = useRef(new Set<string>());
   useEffect(() => {
-    const urls: string[] = [];
-    items.forEach((it, i) => {
-      const uri = gridTileUri(it, gridTileSize(metrics, i));
-      if (uri && !prefetched.current.has(uri)) {
-        prefetched.current.add(uri);
-        urls.push(uri);
-      }
-    });
-    if (urls.length) Image.prefetch(urls, "disk").catch(() => {});
+    const timer = setTimeout(() => {
+      if (!isTransformReachable()) return;
+      const urls: string[] = [];
+      items.forEach((it, i) => {
+        const uri = gridTileUri(it, gridTileSize(metrics, i));
+        if (uri && !prefetched.current.has(uri)) {
+          prefetched.current.add(uri);
+          urls.push(uri);
+        }
+      });
+      if (urls.length) Image.prefetch(urls, "disk").catch(() => {});
+    }, TILE_PREFETCH_DELAY_MS);
+    return () => clearTimeout(timer);
   }, [items, metrics]);
 
   const renderGridRow = useCallback(
