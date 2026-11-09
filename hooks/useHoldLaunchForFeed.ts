@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocusedLazy } from "./useIsFocusedLazy";
 import { useQueryClient, type Query } from "@tanstack/react-query";
 import { claimFirstScreen } from "../libs/firstScreenReady";
 
@@ -20,7 +20,7 @@ const hasFirstPage = (query: Query) =>
  */
 export function useHoldLaunchForFeed(): void {
   const queryClient = useQueryClient();
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
   useLayoutEffect(() => {
     if (!focused) return;
     const release = claimFirstScreen();

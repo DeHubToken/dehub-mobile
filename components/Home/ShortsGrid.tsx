@@ -13,7 +13,8 @@ import {
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
-import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import ShortsGridCard, { useShortsCardSize, GRID_GAP, shortsPosterUri } from "./ShortsGridCard";
 import { brickShape, packBricks, type BrickRow } from "../../libs/shorts-bricks";
 import { storedVideoAspect } from "../../libs/video-aspect";
@@ -119,7 +120,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   // The Shorts viewer opens as a transparent modal, so Home stays mounted and
   // drawn under it. A grid tile left looping there redrew the window on
   // every one of its frames while the viewer was being swiped.
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
 
   // Fixed height — see the note in InfiniteVideoFeed. Animating this resized the
   // list's content box on every frame of the header animation, which relaid out

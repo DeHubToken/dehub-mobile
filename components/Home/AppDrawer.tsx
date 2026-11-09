@@ -324,8 +324,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   // Current route name, so the matching tile highlights like the web menu.
   // Tab screens live nested under Root — descend into it to find them.
+  // Only while open: the menu stays mounted, and following every navigation
+  // re-rendered its whole grid in the render of each tab switch and push.
   const activeRouteName = useNavigationState((state: any) => {
-    if (!state) return undefined;
+    if (!state || !visible) return undefined;
     const root = state.routes?.[state.index];
     const app = root?.name === ScreenNames.App ? root.state : state;
     const top = app?.routes?.[app.index ?? 0];

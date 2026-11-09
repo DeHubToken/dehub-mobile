@@ -9,7 +9,8 @@ import React, {
   useMemo,
 } from "react";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
-import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import {
   View,
   Text,
@@ -466,7 +467,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const firstCardInset = firstRowInset && !headerFilled ? firstRowInset : undefined;
 
   const navigation = useNavigation<any>();
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocusedLazy();
   const surfaceActive = useFeedSurfaceActive();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();

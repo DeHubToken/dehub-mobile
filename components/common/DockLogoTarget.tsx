@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, type StyleProp, type ViewStyle } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import { registerDockTarget } from '../../libs/magneticDock';
 
 export default function DockLogoTarget({ children, tint, style }: { children: React.ReactNode; tint: string; style?: StyleProp<ViewStyle> }) {
   const view = useRef<View>(null);
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
   const [hidden, setHidden] = useState(false);
   useEffect(() => {
     if (!focused) { setHidden(false); return; }

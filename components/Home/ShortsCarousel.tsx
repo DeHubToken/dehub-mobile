@@ -8,7 +8,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, FlatList, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
-import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/AuthContext';
@@ -42,7 +43,7 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
   const shortsEnabled = useAppPrefs().shorts;
   const user = useUser();
   const viewer = user?.walletAddress || user?.id || 'guest';
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocusedLazy();
   const navigation = useNavigation<any>();
   const onScreen = active && isFocused;
   const [visit, setVisit] = useState(0);

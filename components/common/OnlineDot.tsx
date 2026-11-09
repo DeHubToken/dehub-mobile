@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import Animated, {
   cancelAnimation,
   Easing,
@@ -24,7 +24,7 @@ export default function OnlineDot({ address }: { address?: string | null }) {
   // Messages is preloaded behind Home. An endless pulse there kept Android's
   // UI thread committing a frame for a dot nobody could see, through every
   // frame of a feed scroll; it runs only while its screen is in front.
-  const focused = useIsFocused();
+  const focused = useIsFocusedLazy();
   const isOnline = useIsOnline(address, focused);
   const pulse = useSharedValue(0);
 

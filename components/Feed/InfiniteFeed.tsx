@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
 import { useTranslation } from "react-i18next";
-import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useIsFocusedLazy } from "../../hooks/useIsFocusedLazy";
 import {
   View,
   Text,
@@ -672,7 +673,7 @@ const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps & { isSignedIn?: bo
   const internalRef = useRef<FlashListRef<FeedItem>>(null);
   const listRef = (props.listRef as React.RefObject<FlashListRef<FeedItem> | null> | undefined) ?? internalRef;
   const navigation = useNavigation<any>();
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocusedLazy();
   useScrollToTop(listRef);
   return <InfiniteFeedBase {...props} listRef={listRef} isFocused={isFocused} navigationForTabPress={navigation} isSignedIn={props.isSignedIn} />;
 };
