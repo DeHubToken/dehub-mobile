@@ -1,3 +1,4 @@
+import { usePerfProbe } from "../../libs/perfTrace";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Modal,
@@ -105,6 +106,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   opaque = false,
   dragFromContent = false,
 }) => {
+  usePerfProbe("GlassModal");
   const insets = useSafeAreaInsets();
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
   const { isMinimal, isLight, skin } = useAppTheme();
