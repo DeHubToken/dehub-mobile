@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, useWindowDimensions } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
@@ -9,6 +9,7 @@ import SocialLoginIcons from "./SocialLoginIcons";
 import EmailCodeEntry from "./EmailCodeEntry";
 import ImportWallet from "./ImportWallet";
 import SignInSavedProfiles from "./SignInSavedProfiles";
+import LoginShortsStack from "./LoginShortsStack";
 import { UsernameRequiredForm } from "./UsernameRequiredModal";
 import WalletSetupScreen, {
   type WalletSetupRequest,
@@ -77,6 +78,11 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   const [pendingEmail, setPendingEmail] = useState("");
   const [pendingPhone, setPendingPhone] = useState("");
+  // The sheet is capped at 94% of the window; take off the Cancel footer and
+  // the scroller's padding to get the room the clips and options share.
+  const { height: windowHeight } = useWindowDimensions();
+  const sheetBodyHeight = Math.round(windowHeight * 0.94) - 120;
+  const [formHeight, setFormHeight] = useState(420);
   // Same expanding-field-under-the-keyboard problem as SignInScreen, and worse
   // here: the sheet is only 98% tall to begin with.
   const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
@@ -582,6 +588,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       visible={visible && !isWalletSheetOpen}
       onClose={dismissFlow}
       presentation="bottom"
+      // Taller than the default 88% so the clips get room above the options.
+      maxHeight="94%"
       blurIntensity={50}
       // Block closing while sign-in is in progress
       dismissible={!isBusy && !needsUsername}
@@ -612,12 +620,22 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             paddingVertical: 20,
           }}
         >
-          <View style={{ alignItems: "center", marginTop: 8, marginBottom: 24 }}>
-            <Text style={[authText.title, { marginBottom: 8 }]}>{t("auth.signInToContinue")}</Text>
-            <Text style={[authText.body, { textAlign: "center" }]}>
-              {t("auth.signInToContinueBody")}
-            </Text>
-          </View>
+          {authStep === "main" ? (
+            // The same top half as the sign-in screen (moving clips and the
+            // "You will own everything" headline), sized to what the sheet
+            // has left once the options below are drawn.
+            <View style={{ marginBottom: 24 }}>
+              <LoginShortsStack viewportHeight={sheetBodyHeight} reservedHeight={formHeight + 24} />
+            </View>
+          ) : (
+            <View style={{ alignItems: "center", marginTop: 8, marginBottom: 24 }}>
+              <Text style={[authText.title, { marginBottom: 8 }]}>{t("auth.signInToContinue")}</Text>
+              <Text style={[authText.body, { textAlign: "center" }]}>
+                {t("auth.signInToContinueBody")}
+              </Text>
+            </View>
+          )}
+          <View onLayout={(event) => setFormHeight(event.nativeEvent.layout.height)}>
           <AuthErrorNotice message={inlineError ?? (isSignupBlocked && authStep === "main" ? t("auth.walletSignupBlocked") : null)} style={{ marginBottom: 16 }} />
           {authStep === "main" ? (
             <SignInSavedProfiles disabled={isBusy} />
@@ -638,6 +656,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
               disabled={isBusy}
               onFieldExpand={scrollIntoView}
+              layout="stack"
             />
           ) : authStep === "email-code" ? (
             <EmailCodeEntry
@@ -695,6 +714,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
                 }}
               />
             </Text>
+          </View>
           </View>
         </ScrollView>
         {/* Pinned below the scroller rather than floated in the top-right
