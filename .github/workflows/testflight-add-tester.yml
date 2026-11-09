@@ -1,0 +1,44 @@
+name: Add TestFlight tester
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: Tester email (the one on their Apple ID)
+        required: true
+      first_name:
+        description: First name (optional)
+        required: false
+      last_name:
+        description: Last name (optional)
+        required: false
+      group:
+        description: TestFlight group
+        required: false
+        default: Dev testers
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testflight-add-tester
+  cancel-in-progress: false
+
+jobs:
+  add:
+    name: Add tester
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Add to TestFlight and send invite
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          TESTER_EMAIL: ${{ inputs.email }}
+          TESTER_FIRST_NAME: ${{ inputs.first_name }}
+          TESTER_LAST_NAME: ${{ inputs.last_name }}
+          TESTER_GROUP: ${{ inputs.group }}
+        run: node scripts/testflight-add-tester.mjs
