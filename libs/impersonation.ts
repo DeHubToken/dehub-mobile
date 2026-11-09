@@ -173,7 +173,7 @@ type StaffName = {
 
 const STAFF_NAMES: StaffName[] = [
   { label: 'Mal', names: ['maldoteth', 'maldot', 'maleth'], firstName: 'mal', owners: ['0x9324840523a5d17dd12a2f11a9472e5a199c1937'], ownerUsernames: ['maldoteth'] },
-  { label: 'Riftn', names: ['dehub', 'riftn'], owners: ['0x06da979225262715ed57449d0573329a1e685140'], ownerUsernames: ['d'] },
+  { label: 'Riftn', names: ['dehub', 'riftn'], owners: ['0x06da979225262715ed57449d0573329a1e685140'], ownerUsernames: ['riftn', 'd'] },
 ];
 
 /** Words that claim a team role. */
