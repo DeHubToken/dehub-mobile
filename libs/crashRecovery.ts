@@ -121,8 +121,14 @@ export async function restartApp(
   const dev = typeof __DEV__ !== "undefined" && __DEV__;
   if (!options.userInitiated) {
     if (dev) return false;
-    if (!claimRestart()) return false;
+    if (!claimRestart()) {
+      // eslint-disable-next-line no-console
+      console.warn("[restartApp] budget spent, not restarting", reason, message.slice(0, 200));
+      return false;
+    }
   }
+  // eslint-disable-next-line no-console
+  console.warn("[restartApp]", reason, message.slice(0, 200), `restarts in window: ${restartsInWindow()}`);
   dropPersistedQueryCache();
   writeCrashMarker({ reason, message: message.slice(0, 500), at: Date.now() });
   try {
