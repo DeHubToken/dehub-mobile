@@ -19,7 +19,7 @@
  * two or three on-screen rows to stop or start. Now a switch writes one flag
  * and only those rows hear about it.
  */
-import { useSyncExternalStore } from "react";
+import { startTransition, useEffect, useState } from "react";
 
 export interface FeedVisibilityStore {
   /** Rows at or above the viewability threshold, while the list is live. */
@@ -91,13 +91,52 @@ export function createFeedVisibilityStore(initialLive = true): FeedVisibilitySto
   };
 }
 
-/** This row's visibility, re-rendering only when its own answer changes. */
+interface RowAnswer {
+  store: FeedVisibilityStore;
+  key: string;
+  isVisible: boolean;
+  isAutoplay: boolean;
+}
+
+const readRow = (store: FeedVisibilityStore, key: string): RowAnswer => ({
+  store,
+  key,
+  isVisible: store.isVisible(key),
+  isAutoplay: store.isAutoplay(key),
+});
+
+const sameAnswer = (a: RowAnswer, b: RowAnswer) =>
+  a.store === b.store && a.key === b.key && a.isVisible === b.isVisible && a.isAutoplay === b.isAutoplay;
+
+/**
+ * This row's visibility, re-rendering only when its own answer changes.
+ *
+ * A change arrives as a transition. Each flip re-renders a whole feed card
+ * (15-20ms on a Galaxy S24+), and leaving or coming back to a feed flips every
+ * card on screen at once: read with useSyncExternalStore, those ~140ms ran
+ * inside the tab switch's own render, before the new tab could paint. Now the
+ * switch paints first and the cards pause or resume right after it.
+ *
+ * A recycled row reads its new key's answer during render, so a card never
+ * starts with the visibility of the post that held the row before it.
+ */
 export function useRowVisibility(
   store: FeedVisibilityStore,
   key: string,
 ): { isVisible: boolean; isAutoplay: boolean } {
-  const subscribe = (fn: () => void) => store.subscribe(key, fn);
-  const isVisible = useSyncExternalStore(subscribe, () => store.isVisible(key));
-  const isAutoplay = useSyncExternalStore(subscribe, () => store.isAutoplay(key));
-  return { isVisible, isAutoplay };
+  const [answer, setAnswer] = useState(() => readRow(store, key));
+  const current = answer.store === store && answer.key === key ? answer : readRow(store, key);
+  useEffect(() => {
+    const sync = () => {
+      const next = readRow(store, key);
+      startTransition(() => setAnswer((prev) => (sameAnswer(prev, next) ? prev : next)));
+    };
+    // Anything that moved between this render and the subscription.
+    if (!sameAnswer(current, readRow(store, key))) sync();
+    return store.subscribe(key, sync);
+    // `current` is only the answer this render showed; re-running for it
+    // would resubscribe on every change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store, key]);
+  return { isVisible: current.isVisible, isAutoplay: current.isAutoplay };
 }
