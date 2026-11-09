@@ -1,4 +1,6 @@
-import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useDraftState } from '../../hooks/useDraftState';
+/** The key useSurfaceDraft gave this field on the App screen, so a saved query survives the switch. */
+const MENU_QUERY_DRAFT = `field:${JSON.stringify(["components/Home/AppDrawer.tsx:menuQuery", JSON.stringify(["App", []])])}`;
 import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from "react";
@@ -343,7 +345,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const androidGlass = Platform.OS === "android";
   const hud = themeName === "war";
   const square = !!skin?.square || appTheme.isMinimal;
-  const [menuQuery, setMenuQuery] = useSurfaceDraft("components/Home/AppDrawer.tsx:menuQuery", "");
+  // A fixed draft key, not useSurfaceDraft: that reads the route context, and
+  // this menu sits in the App screen, whose route object changes with every
+  // nested navigation. The menu re-rendered on every tab switch and push.
+  const [menuQuery, setMenuQuery] = useDraftState(MENU_QUERY_DRAFT, "");
   const [isSigningOut, setIsSigningOut] = useState(false);
   // Live size, so split-screen and unfolding resize the sheet and its
   // off-screen position instead of keeping the size from app start.
