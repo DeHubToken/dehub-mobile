@@ -840,7 +840,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
                 />
               );
             }
-            if (!allSlots && index > TABS.length) return <View key={id} style={{ width: tabW }} />;
+            if (!allSlots && TABS.length < index) return <View key={id} style={{ width: tabW }} />;
             const entry = barById.get(id);
             if (!entry) return null;
             return (
