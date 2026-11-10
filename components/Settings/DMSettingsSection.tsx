@@ -1,6 +1,6 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, TextInput, ActivityIndicator } from "react-native";
+import { View, Text, TextInput, ActivityIndicator, Pressable, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -223,9 +223,16 @@ const DMSettingsSection: React.FC = () => {
     setFee(cleaned);
   }, [setFee]);
 
-  const onBlurFee = useCallback(() => {
+  // The typed fee differs from the saved one. Android does not blur the field
+  // when the keyboard is closed with Back, so the fee only ever saved on some
+  // exits; the draft kept the typed value on screen and it looked saved.
+  const feeDirty = Number(fee || 0) !== initial.fee;
+
+  const saveFee = useCallback(() => {
+    if (!feeDirty) return;
+    Keyboard.dismiss();
     submit({ spinner: "fee" }).catch(() => {});
-  }, [submit]);
+  }, [feeDirty, submit]);
 
   return (
     <>
@@ -289,7 +296,9 @@ const DMSettingsSection: React.FC = () => {
             <TextInput
               value={fee}
               onChangeText={onChangeFee}
-              onBlur={onBlurFee}
+              onBlur={saveFee}
+              onSubmitEditing={saveFee}
+              returnKeyType="done"
               keyboardType="numeric"
               placeholder="0"
               placeholderTextColor="#6b7280"
@@ -300,6 +309,15 @@ const DMSettingsSection: React.FC = () => {
               <View className="ml-3 h-11 items-center justify-center">
                 <ActivityIndicator size="small" color="#6b7280" />
               </View>
+            ) : feeDirty ? (
+              <Pressable
+                onPress={saveFee}
+                accessibilityRole="button"
+                hitSlop={6}
+                className="ml-3 h-11 px-4 rounded-xl bg-white items-center justify-center"
+              >
+                <Text className="text-black text-sm font-semibold">{t("common.save")}</Text>
+              </Pressable>
             ) : feeSaved ? (
               <View className="ml-3 h-11 items-center justify-center">
                 <Icon name="CircleCheck" size={18} color="#F4F4F5" />
