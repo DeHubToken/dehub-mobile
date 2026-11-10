@@ -386,7 +386,13 @@ export function useAppTheme(): AppThemeContextValue {
 export function useThemeRootStyle() {
   const { isMinimal, isLight, skin, theme } = useAppTheme();
   if (isMinimal) return MINIMAL_ROOT_VARS;
-  if (isLight) return SYSTEM_LIGHT_ROOT_VARS;
+  // iPhone runs System Light on the dark values: the colour pass
+  // (libs/jsx/tone.js) turns class colours light as React Native draws them,
+  // so light values here came out turned around twice (white page drawn
+  // #0B0B0B, ink text white). Where the light values reached a screen and
+  // where they did not changed page by page, which is why some iPhone pages
+  // were fine and Requests, profiles, settings and notifications were not.
+  if (isLight) return Platform.OS === 'ios' ? SYSTEM_ROOT_VARS : SYSTEM_LIGHT_ROOT_VARS;
   return skin ? skinRootVars(theme, skin) : SYSTEM_ROOT_VARS;
 }
 

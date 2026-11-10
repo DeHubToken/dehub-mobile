@@ -360,6 +360,8 @@ const ThemeVarsLayer: React.FC<{ children: React.ReactNode }> = ({ children }) =
   // iPhone only: on Android a second set of root variables left Settings and
   // the post page header on the dark colours in System Light (black page,
   // white title). Android's screens carry their own (ScreenErrorBoundary).
+  // On iPhone these are the dark values under System Light too (see
+  // useThemeRootStyle), so every screen starts from the same colours.
   return <View style={[{ flex: 1 }, isLight ? { backgroundColor: LIGHT_PAGE_FILL } : null, Platform.OS === "ios" ? style : null]}>{children}</View>;
 };
 
