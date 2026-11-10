@@ -12,6 +12,14 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: any) => Array.isArray(style) ? Object.assign({}, ...style) : style, absoluteFill: {}, hairlineWidth: 1 },
 }));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('react-native-reanimated', () => ({
+  __esModule: true, default: { View: 'AnimatedView' },
+  Easing: { bezier: () => () => 0 },
+  useSharedValue: (value: number) => ({ value }),
+  useAnimatedStyle: (read: () => unknown) => read(),
+  withTiming: (value: number) => value,
+}));
+jest.mock('../../components/ui/FeedPillSurface', () => ({ FEED_PILL_RADIUS: 12, FeedPillIndicator: () => null }));
 jest.mock('../../components/ui/ThemeSurface', () => ({ __esModule: true, default: 'ThemeSurface' }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => {
   const palette = jest.requireActual('../../theme/colors');
@@ -31,15 +39,17 @@ const skinFor = (theme: AppThemeName) => {
   return base && tintSkin(base, themeAccent(theme, {}, []));
 };
 
-it.each(APP_THEMES)('%s header tabs fit the island without a second gutter and keep selection working', theme => {
+it.each(APP_THEMES)('%s header tabs sit in the pill row like the home tabs and keep selection working', theme => {
   mockTheme = theme;
   const change = jest.fn();
   let tree!: ReactTestRenderer;
   const tabs = [{ id: 'browse', label: 'Browse' }, { id: 'sell', label: 'Sell' }];
   act(() => { tree = create(<PageHeaderContext.Provider value><PageTabs<string> value="browse" onChange={change} tabs={tabs} /></PageHeaderContext.Provider>); });
   const strip = tree.root.findByType('ScrollView' as any);
-  expect(flatten(strip.props.style)).toMatchObject({ height: 34, flexGrow: 0 });
-  expect(flatten(strip.props.contentContainerStyle)).toMatchObject({ paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0 });
+  // The home pill's 38pt row, no chip fills: the glass tile marks the lit tab.
+  expect(flatten(strip.props.style)).toMatchObject({ height: 38 });
+  const texts = tree.root.findAllByType('Text' as any).map((node) => node.props.children);
+  expect(texts).toEqual(['Browse', 'Sell']);
   const chips = tree.root.findAllByType('Pressable' as any);
   expect(chips[0].props.accessibilityState.selected).toBe(true);
   act(() => chips[1].props.onPress());

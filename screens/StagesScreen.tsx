@@ -561,7 +561,7 @@ export default function StagesScreen() {
             tabs={tabs.map((tab) => ({
               id: tab.key,
               label: t(tab.labelKey),
-              icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
+              icon: (ink: string) => <Icon name={tab.icon} size={16} color={ink} />,
             }))}
             style={{ paddingBottom: 10 }}
           />

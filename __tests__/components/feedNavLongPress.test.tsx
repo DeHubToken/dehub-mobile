@@ -17,6 +17,7 @@ jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
   useSharedValue: (value: number) => ({ value }), useAnimatedStyle: (fn: () => unknown) => fn(),
   Easing: { bezier: () => null }, withTiming: (v: number) => v, cancelAnimation: jest.fn(), runOnJS: (fn: unknown) => fn,
+  useReducedMotion: () => false, withDelay: (_ms: number, v: number) => v,
 }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Defs: 'Defs', RadialGradient: 'RadialGradient', Stop: 'Stop', Rect: 'Rect', Circle: 'Circle', Ellipse: 'Ellipse' }));
@@ -34,7 +35,8 @@ it.each([false, true])('retains the last measured indicator across a collapsed r
   mockMinimal = minimal;
   let tree!: ReactTestRenderer;
   act(() => { tree = create(<FeedNavBar activeIndex={0} progress={{ value: 0 } as any} isFilterOpen={false} hasActiveFilters={false} onPostTypeChange={jest.fn()} onFilterPress={jest.fn()} onActiveTabLongPress={jest.fn()} />); });
-  const indicator = () => tree.root.findAllByType('AnimatedView' as any);
+  // The pill's own wrapper animates too (it glides between pages); it is the one holding a ref.
+  const indicator = () => tree.root.findAllByType('AnimatedView' as any).filter((n) => n.props.ref === undefined);
   const layout = (width: number, height = 36) => act(() => tree.root.find(n => typeof n.props.onLayout === 'function').props.onLayout({ nativeEvent: { layout: { width, height, x: 0, y: 0 } } }));
   expect(indicator()).toHaveLength(0);
   layout(400);

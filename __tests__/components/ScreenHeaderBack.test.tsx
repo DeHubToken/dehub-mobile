@@ -5,6 +5,8 @@ jest.mock('react-native', () => ({
   View: 'View',
   Text: 'Text',
   TouchableOpacity: 'TouchableOpacity',
+  Pressable: 'Pressable',
+  ScrollView: 'ScrollView',
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android },
   Keyboard: { dismiss: jest.fn() },
   I18nManager: { isRTL: false },
@@ -13,6 +15,25 @@ jest.mock('react-native', () => ({
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/ChromeSurface', () => () => null);
 jest.mock('../../components/ui/NavPillSurface', () => 'NavPillSurface');
+// The page pill draws the home pill's material; count it as the island.
+jest.mock('../../components/ui/FeedPillSurface', () => ({
+  FEED_PILL_RADIUS: 12,
+  FeedPillSurface: 'NavPillSurface',
+  FeedPillBrackets: () => null,
+  FeedPillIndicator: () => null,
+}));
+jest.mock('../../components/ui/FrostedPill', () => ({ __esModule: true, default: 'FrostedPill', LIGHT_PILL_SHADOW: {} }));
+jest.mock('../../components/ui/Icon', () => 'Icon');
+jest.mock('react-native-reanimated', () => ({
+  __esModule: true, default: { View: 'AnimatedView' },
+  Easing: { bezier: () => () => 0 },
+  useReducedMotion: () => false,
+  useSharedValue: (value: number) => ({ value }),
+  useAnimatedStyle: () => ({}),
+  withTiming: (value: number) => value,
+  withDelay: (_ms: number, value: number) => value,
+}));
+jest.mock('@react-navigation/core', () => ({ NavigationContext: require('react').createContext(undefined) }));
 jest.mock('../../theme/icons', () => ({ themeIconUrl: () => undefined }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: jest.fn(() => ({ isMinimal: false, theme: 'system' })) }));
@@ -34,15 +55,18 @@ import ScreenHeader from '../../components/ScreenHeader';
 import { APP_THEMES } from '../../theme/colors';
 import { PageHeaderContext } from '../../components/page/PageHeaderContext';
 
-it.each(APP_THEMES)('groups page tabs and search inside the title island in %s', (theme) => {
+it.each(APP_THEMES)('puts page tabs inside the pill and search right under it in %s', (theme) => {
   jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
   const TabProbe = () => <span data-in-header={React.useContext(PageHeaderContext)} />;
+  const SearchProbe = () => <input data-in-header={React.useContext(PageHeaderContext)} />;
   let tree!: ReactTestRenderer;
-  act(() => { tree = create(<ScreenHeader title="Accounts" tabs={<TabProbe />}><input /></ScreenHeader>); });
+  act(() => { tree = create(<ScreenHeader title="Accounts" tabs={<TabProbe />}><SearchProbe /></ScreenHeader>); });
   expect(tree.root.findByType('span').props['data-in-header']).toBe(true);
-  const island = tree.root.findByType('NavPillSurface' as any).parent!;
-  expect(island.findAllByType('span')).toHaveLength(1);
-  expect(island.findAllByType('input')).toHaveLength(1);
+  expect(tree.root.findByType('input').props['data-in-header']).toBe(true);
+  const pill = tree.root.findByType('NavPillSurface' as any).parent!;
+  expect(pill.findAllByType('span')).toHaveLength(1);
+  expect(pill.findAllByType('input')).toHaveLength(0);
+  expect(tree.root.findAllByType('input')).toHaveLength(1);
   act(() => tree.unmount());
 });
 
