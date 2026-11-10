@@ -93,6 +93,12 @@ export function PageTabs<T extends string>({
   const c = useKitColors();
   const inHeader = React.useContext(PageHeaderContext);
   const height = size === "sm" ? 30 : 34;
+  if (inHeader) {
+    // Inside a header pill the tabs are drawn like the home feed's. Loaded on
+    // first use so the kit's other pieces stay light.
+    const PillTabs = (require("./PillTabs") as typeof import("./PillTabs")).default;
+    return <PillTabs tabs={tabs} value={value} onChange={onChange} beforeTabs={beforeTabs} />;
+  }
   return (
     <ScrollView
       horizontal

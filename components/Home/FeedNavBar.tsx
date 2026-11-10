@@ -25,6 +25,7 @@ import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import FeedSearchBar from "./FeedSearchBar";
+import { usePillGlide } from "../page/pillGlide";
 import type { FeedSearchTab } from "../../libs/feed-search";
 
 interface NavItem {
@@ -190,6 +191,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   lensOpen = false,
 }) => {
   useSwipeBackAction(onBackPress, backMode);
+  // Pages' pills glide to and from this one (components/page/pillGlide).
+  const glide = usePillGlide(false);
   const { t: _copy } = _useCopy();
   const NAV_ITEMS = useFeedNavItems();
   const LAST_INDEX = NAV_ITEMS.length - 1;
@@ -373,7 +376,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {searchBar((activeIndex + 1) * buttonWidth)}
         </View>
       ) : (
-      <View style={styles.outerWrap}>
+      <Reanimated.View ref={glide.ref as any} style={[styles.outerWrap, glide.pillStyle]}>
         <View
           style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : isLight ? LIGHT_PILL_SHADOW : null]}
           onLayout={handleLayout}
@@ -468,7 +471,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {lensRing}
           {searchBar(LEAD_SLOT_WIDTH + activeIndex * buttonWidth)}
         </View>
-      </View>
+      </Reanimated.View>
       )}
     </GestureDetector>
   );

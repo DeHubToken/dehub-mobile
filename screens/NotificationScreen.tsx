@@ -25,7 +25,7 @@ import Animated, {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
-import { PageTabs, useFlatPage } from "../components/page/PageKit";
+import { PageTabs } from "../components/page/PageKit";
 import { 
   getNotifications, 
   markNotificationAsRead, 
@@ -258,14 +258,6 @@ interface TypeTabsProps {
 // notifications strip draws them. The tab name is the chip's accessibility label.
 const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts, actions }) => {
   const { t } = useTranslation();
-  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
-  const flatPage = useFlatPage();
-  // Ink on the active chip, matching the page kit: white on the bright canvas
-  // accents, near-black on white (System) and the rest.
-  const activeInk =
-    !flatPage && !!appTheme.accent && ["hazy", "swarms", "lavalamp", "island"].includes(appTheme.theme)
-      ? "#FFFFFF"
-      : "#0B0B0C";
   const orderedTabKeys = useMemo(
     () => orderNotificationTabKeys(TYPE_TABS.map(({ key }) => key), activityCounts, 'all'),
     [activityCounts],
@@ -285,15 +277,16 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
           return {
             id: tab.key,
             label: '',
-            icon: (
+            // Drawn in the ink the header pill hands it (lit or not).
+            icon: (ink: string) => (
               <View
                 accessible
                 accessibilityLabel={t(tab.label)}
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginRight: -6 }}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}
               >
-                <Icon name={tab.icon as any} size={16} color={isActive ? activeInk : '#a1a1aa'} />
+                <Icon name={tab.icon as any} size={16} color={ink} strokeWidth={isActive ? 2 : 1.8} />
                 {count > 0 ? (
-                  <Text style={{ color: isActive ? activeInk : '#d4d4d8', fontSize: 12, fontWeight: '700' }}>
+                  <Text style={{ color: ink, fontSize: 12, fontWeight: '700' }}>
                     {count > 99 ? '99+' : count}
                   </Text>
                 ) : null}
@@ -1996,11 +1989,6 @@ const NotificationScreen = () => {
           icon="notifications"
           canGoBack={false}
           title={t("notifications.title")}
-          rightContent={tabCounts.all > 0 ? (
-            <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
-              {tabCounts.all}
-            </Text>
-          ) : undefined}
           tabs={
             <TypeTabs
               selected={selectedFilter}
@@ -2016,11 +2004,10 @@ const NotificationScreen = () => {
                   }}
                   accessibilityRole="button"
                   accessibilityLabel={t('notifications.settings')}
-                  className="items-center justify-center bg-theme-neutrals-800"
-                  style={{ width: 34, height: 34, borderRadius: 10 }}
+                  style={{ width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
                   hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
                 >
-                  <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
+                  <Icon name="SlidersHorizontal" size={16} color="#A1A1AA" />
                 </TouchableOpacity>
             <TouchableOpacity
               onPress={handleMarkAllRead}
@@ -2028,11 +2015,10 @@ const NotificationScreen = () => {
               accessibilityRole="button"
               accessibilityLabel={t('notifications.markAllRead')}
               accessibilityState={{ disabled: !hasUnread }}
-              className="items-center justify-center bg-theme-neutrals-800"
-              style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+              style={{ width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center', opacity: hasUnread ? 1 : 0.45 }}
               hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
             >
-              <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
+              <Icon name="CheckCheck" size={16} color="#A1A1AA" />
             </TouchableOpacity>
               </View>
               }
