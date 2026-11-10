@@ -48,6 +48,10 @@ import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_WASH } from "../theme/minimal";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import Icon from "../components/ui/Icon";
+import { FollowBackAllButton, FollowBackAllSheet, type FollowBackAllStage } from "../components/Follow/FollowBackAllSheet";
+import { playFollowBackChime } from "../libs/follow-back-chime";
+import { haptic } from "../libs/haptics";
+import { toastError, toastInfo } from "../libs/toast";
 
 type RouteParams = {
   FollowList: {
@@ -357,6 +361,16 @@ const FollowListScreen: React.FC = () => {
   const [showFollowBackAll, setShowFollowBackAll] = useState(false);
   const [isFollowingBackAll, setIsFollowingBackAll] = useState(false);
   const [bulkFollowProgress, setBulkFollowProgress] = useState({ completed: 0, total: 0 });
+  const [isFindingFollowBacks, setIsFindingFollowBacks] = useState(false);
+  const [followBackSheet, setFollowBackSheet] = useState<{
+    stage: FollowBackAllStage;
+    candidates: FollowListItem[];
+    followed: number;
+    failed: number;
+  } | null>(null);
+  // The shake + chime play once each time the button first shows, not per render.
+  const [followBackNudgeKey, setFollowBackNudgeKey] = useState(0);
+  const followBackAnnouncedRef = useRef(false);
 
   // Viewer's own relationship to each listed account, keyed by lowercased address.
   const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
@@ -785,41 +799,45 @@ const FollowListScreen: React.FC = () => {
     return items;
   }, [viewerAddress]);
 
-  const handleFollowBackAll = useCallback(async () => {
-    if (!isOwnFollowersList || !viewerAddress || isFollowingBackAll) return;
+  /** Everyone who follows you that you don't follow (or haven't asked to) yet. */
+  const findFollowBackCandidates = useCallback(async () => {
+    const [allFollowers, allFollowing] = await Promise.all([
+      getEntireFollowList("followers"),
+      getEntireFollowList("following"),
+    ]);
+    const followingAddresses = new Set(
+      allFollowing.map((entry) => lower(entry.user.address)),
+    );
+    followingSetRef.current?.forEach((entry) => followingAddresses.add(entry));
+    Object.entries(relationshipsRef.current).forEach(([key, relationship]) => {
+      if (relationship.isFollowing || relationship.isPending) followingAddresses.add(key);
+    });
 
+    const candidates = Array.from(
+      new Map(
+        allFollowers
+          .filter((entry) => {
+            const key = lower(entry.user.address);
+            return key && key !== lower(viewerAddress) && !followingAddresses.has(key);
+          })
+          .map((entry) => [lower(entry.user.address), entry]),
+      ).values(),
+    );
+
+    followingSetRef.current ??= followingAddresses;
+    return candidates;
+  }, [getEntireFollowList, viewerAddress]);
+
+  /** Follow every candidate back; resolves with how many worked and failed. */
+  const runFollowBackAll = useCallback(async (candidates: FollowListItem[]) => {
+    if (!viewerAddress || isFollowingBackAll) return null;
     setIsFollowingBackAll(true);
-    setBulkFollowProgress({ completed: 0, total: 0 });
+    setBulkFollowProgress({ completed: 0, total: candidates.length });
 
     try {
-      const [allFollowers, allFollowing] = await Promise.all([
-        getEntireFollowList("followers"),
-        getEntireFollowList("following"),
-      ]);
-      const followingAddresses = new Set(
-        allFollowing.map((entry) => lower(entry.user.address)),
-      );
-      followingSetRef.current?.forEach((entry) => followingAddresses.add(entry));
-      Object.entries(relationshipsRef.current).forEach(([key, relationship]) => {
-        if (relationship.isFollowing || relationship.isPending) followingAddresses.add(key);
-      });
-
-      const candidates = Array.from(
-        new Map(
-          allFollowers
-            .filter((entry) => {
-              const key = lower(entry.user.address);
-              return key && key !== lower(viewerAddress) && !followingAddresses.has(key);
-            })
-            .map((entry) => [lower(entry.user.address), entry]),
-        ).values(),
-      );
-
-      followingSetRef.current ??= followingAddresses;
-      setBulkFollowProgress({ completed: 0, total: candidates.length });
-
       let nextIndex = 0;
       let completed = 0;
+      let failed = 0;
 
       // One request per 50 people. Falls back to one-by-one if the batch route isn't there.
       while (nextIndex < candidates.length) {
@@ -835,6 +853,7 @@ const FollowListScreen: React.FC = () => {
         keys.forEach((key) => bulkFollowRef.current.delete(key));
         if (!results) {
           if (completed === 0) break;
+          failed += chunk.length;
           completed += chunk.length;
           nextIndex += chunk.length;
           setBulkFollowProgress({ completed, total: candidates.length });
@@ -853,7 +872,8 @@ const FollowListScreen: React.FC = () => {
         });
         keys.forEach((key) => {
           const result = byAddress.get(key);
-          if (result?.ok && result.status !== "pending") followingSetRef.current?.add(key);
+          if (!result?.ok) failed += 1;
+          else if (result.status !== "pending") followingSetRef.current?.add(key);
         });
         completed += chunk.length;
         nextIndex += chunk.length;
@@ -880,6 +900,7 @@ const FollowListScreen: React.FC = () => {
             }));
             if (!isPending) followingSetRef.current?.add(key);
           } catch (error) {
+            failed += 1;
             console.error("[FollowListScreen] follow back all error:", error);
           } finally {
             bulkFollowRef.current.delete(key);
@@ -895,12 +916,55 @@ const FollowListScreen: React.FC = () => {
           () => worker(),
         ),
       );
+      return { followed: candidates.length - failed, failed };
     } catch (error) {
-      console.error("[FollowListScreen] follow back all list error:", error);
+      console.error("[FollowListScreen] follow back all error:", error);
+      return null;
     } finally {
       setIsFollowingBackAll(false);
     }
-  }, [getEntireFollowList, isFollowingBackAll, isOwnFollowersList, viewerAddress]);
+  }, [isFollowingBackAll, viewerAddress]);
+
+  /** Tap: count who's left, then ask in a small drawer. Nothing is followed until Follow back. */
+  const handleFollowBackAll = useCallback(async () => {
+    if (!isOwnFollowersList || !viewerAddress || isFollowingBackAll || isFindingFollowBacks) return;
+    haptic.tap();
+    setIsFindingFollowBacks(true);
+    let candidates: FollowListItem[];
+    try {
+      candidates = await findFollowBackCandidates();
+    } catch (error) {
+      console.error("[FollowListScreen] follow back all list error:", error);
+      reportActionError(error, t("follow.followBackAllFailed", "Could not follow anyone back"));
+      return;
+    } finally {
+      setIsFindingFollowBacks(false);
+    }
+    if (candidates.length === 0) {
+      toastInfo(t("follow.everyoneFollowedBack", "You already follow back everyone"));
+      return;
+    }
+    setFollowBackSheet({ stage: "confirm", candidates, followed: 0, failed: 0 });
+  }, [findFollowBackCandidates, isFindingFollowBacks, isFollowingBackAll, isOwnFollowersList, t, viewerAddress]);
+
+  const confirmFollowBackAll = useCallback(async () => {
+    const candidates = followBackSheet?.candidates;
+    if (!candidates) return;
+    setFollowBackSheet({ stage: "working", candidates, followed: 0, failed: 0 });
+    const result = await runFollowBackAll(candidates);
+    if (!result || result.followed === 0) {
+      setFollowBackSheet(null);
+      haptic.error();
+      toastError(null, t("follow.followBackAllFailed", "Could not follow anyone back"));
+      return;
+    }
+    haptic.success();
+    setFollowBackSheet({ stage: "done", candidates, ...result });
+  }, [followBackSheet, runFollowBackAll, t]);
+
+  const closeFollowBackSheet = useCallback(() => {
+    setFollowBackSheet((current) => (current?.stage === "working" ? current : null));
+  }, []);
 
   const handleRemoveFollower = useCallback((followerAddress: string) => {
     const targetItem = data.find(
@@ -972,6 +1036,7 @@ const FollowListScreen: React.FC = () => {
     setDebouncedSearch("");
     setShowSortPicker(false);
     followBackStreakRef.current = 0;
+    followBackAnnouncedRef.current = false;
     setShowFollowBackAll(false);
   }, [setSearchQuery, searchQuery]);
 
@@ -1102,6 +1167,17 @@ const FollowListScreen: React.FC = () => {
     const relationship = relationships[key];
     return !!relationship?.followsYou && !relationship.isFollowing && !relationship.isPending;
   });
+
+  const followBackButtonVisible = isOwnFollowersList && showFollowBackAll
+    && (hasVisibleFollowBacks || hasMore || isFollowingBackAll || isFindingFollowBacks);
+
+  // First time the button shows: a small shake and a soft chime, once.
+  useEffect(() => {
+    if (!followBackButtonVisible || followBackAnnouncedRef.current) return;
+    followBackAnnouncedRef.current = true;
+    setFollowBackNudgeKey((key) => key + 1);
+    playFollowBackChime();
+  }, [followBackButtonVisible]);
 
   return (
     <View
@@ -1240,32 +1316,16 @@ const FollowListScreen: React.FC = () => {
             </TouchableOpacity>
           </View>
 
-          {isOwnFollowersList && showFollowBackAll && (hasVisibleFollowBacks || hasMore || isFollowingBackAll) && (
+          {followBackButtonVisible && (
             <View className="px-4 pb-3">
-              <TouchableOpacity
+              <FollowBackAllButton
                 onPress={handleFollowBackAll}
-                disabled={isFollowingBackAll}
-                activeOpacity={0.8}
-                className={`h-11 rounded-xl flex-row items-center justify-center ${
-                  isFollowingBackAll ? "bg-white/15" : "bg-white"
-                }`}
-              >
-                {isFollowingBackAll ? (
-                  <ActivityIndicator size="small" color="#A1A1AA" />
-                ) : (
-                  <Ionicons name="people-outline" size={18} color="#09090B" />
-                )}
-                <Text
-                  className={`ml-2 font-semibold ${
-                    isFollowingBackAll ? "text-theme-neutrals-400" : "text-zinc-950"
-                  }`}
-                >
-                  {t("follow.followBack")} {t("explore.all").toLocaleLowerCase()}
-                  {isFollowingBackAll && bulkFollowProgress.total > 0
-                    ? ` ${bulkFollowProgress.completed}/${bulkFollowProgress.total}`
-                    : ""}
-                </Text>
-              </TouchableOpacity>
+                finding={isFindingFollowBacks}
+                working={isFollowingBackAll}
+                completed={bulkFollowProgress.completed}
+                total={bulkFollowProgress.total}
+                nudgeKey={followBackNudgeKey}
+              />
             </View>
           )}
 
@@ -1354,6 +1414,16 @@ const FollowListScreen: React.FC = () => {
           )}
         </>
       )}
+
+      <FollowBackAllSheet
+        stage={followBackSheet?.stage ?? null}
+        count={followBackSheet?.candidates.length ?? 0}
+        completed={bulkFollowProgress.completed}
+        followed={followBackSheet?.followed ?? 0}
+        failed={followBackSheet?.failed ?? 0}
+        onConfirm={confirmFollowBackAll}
+        onClose={closeFollowBackSheet}
+      />
 
       {/* Remove Follower confirmation modal */}
       <GlassModal

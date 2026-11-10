@@ -14,6 +14,7 @@ import { themeIconUrl } from '../theme/icons';
 import { pageIdentityIcon } from '../theme/pageIdentity';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { PageHeaderContext } from './page/PageHeaderContext';
+import PillHeader from './page/PillHeader';
 
 /**
  * Height of the title row in points. The dehub mark bar used to sit above it;
@@ -196,6 +197,26 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
         </View>
       ) : null}
       </View>
+    );
+  }
+
+  if (appearance === 'island') {
+    return (
+      <PillHeader
+        title={title}
+        subtitle={subtitle}
+        showBack={!!showBack}
+        onBack={handleBack}
+        iconUrl={iconUrl}
+        leftContent={leftContent}
+        titleAccessory={titleAccessory}
+        titleBadge={titleBadge}
+        rightContent={rightContent}
+        tabs={tabs}
+        backLabel={t("common.goBack")}
+      >
+        {children}
+      </PillHeader>
     );
   }
 

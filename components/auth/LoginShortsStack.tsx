@@ -69,15 +69,13 @@ function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
   );
 }
 
-/** Reduced motion: the still frame only, no player. */
-function Still({ name }: { name: ClipName }) {
-  return <Image source={CLIPS[name].poster} style={StyleSheet.absoluteFill} resizeMode="cover" />;
-}
-
 /**
  * A lane is its four clips plus the first two again, so the jump from the end
  * back to the start lands on the same picture. Only tiles inside the window
  * play, so at most three decode per lane.
+ *
+ * Reduce Motion only stops the drift: the clips in view still play. It used to
+ * swap every clip for its still frame, which read as a broken login.
  */
 function Lane({ clips, down, tileW, height, still, line, armed }: {
   clips: ClipName[];
@@ -136,7 +134,7 @@ function Lane({ clips, down, tileW, height, still, line, armed }: {
     <Animated.View style={{ width: tileW, gap: GAP, transform: [{ translateY }] }}>
       {tiles.map((name, i) => (
         <View key={i} style={[styles.tile, { width: tileW, height: tileH, borderColor: line }]}>
-          {armed && seen[i] ? (still ? <Still name={name} /> : <Clip name={name} playing={visible[i]} />) : null}
+          {armed && seen[i] ? <Clip name={name} playing={visible[i]} /> : null}
         </View>
       ))}
     </Animated.View>
