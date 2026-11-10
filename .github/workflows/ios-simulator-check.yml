@@ -6,6 +6,11 @@ name: iOS simulator check
 # Actions before an App Store submission.
 on:
   workflow_dispatch:
+    inputs:
+      themes:
+        description: 'Walks to run, space separated: dark, light, syslight (System Light)'
+        required: false
+        default: 'dark light syslight'
   pull_request:
     paths:
       - .github/workflows/ios-simulator-check.yml
@@ -113,10 +118,12 @@ jobs:
           grep -E "(warning|error):" xcodebuild.log | grep -v "/Pods/" | sort | uniq -c | sort -rn > sim-check/app-warnings.txt || true
           grep -cE "warning:" xcodebuild.log > sim-check/warning-count.txt || true
           gzip -c xcodebuild.log > sim-check/xcodebuild.log.gz
-      - name: Walk every page in light and dark
+      - name: Walk every page in dark, light and System Light
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           scripts/ios-simulator-walk.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
+        env:
+          THEMES: ${{ inputs.themes || 'dark light syslight' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

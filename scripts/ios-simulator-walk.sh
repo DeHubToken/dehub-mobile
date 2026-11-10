@@ -109,10 +109,33 @@ PAGES=(
   "signin"
 )
 
+# The app's own theme pick (Settings > Appearance), written where the app's
+# storage reads it on launch. The app must not be running.
+set_app_theme() {
+  local data dir
+  data="$(xcrun simctl get_app_container "$UDID" "$BUNDLE" data 2>/dev/null)" || return 0
+  dir="$data/Library/Application Support/$BUNDLE/RCTAsyncLocalStorage_V1"
+  mkdir -p "$dir"
+  python3 - "$dir/manifest.json" "$1" <<'PY'
+import json, os, sys
+path, value = sys.argv[1], sys.argv[2]
+manifest = {}
+if os.path.exists(path):
+    try:
+        manifest = json.load(open(path))
+    except Exception:
+        manifest = {}
+manifest["dehub.theme"] = value
+json.dump(manifest, open(path, "w"))
+PY
+}
+
+# walk <phone appearance> <app theme> <label>
 walk() {
-  local theme="$1"
-  xcrun simctl ui "$UDID" appearance "$theme"
+  local appearance="$1" app_theme="$2" theme="$3"
+  xcrun simctl ui "$UDID" appearance "$appearance"
   xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
+  set_app_theme "$app_theme"
   launch
   sleep 25
   shot "$theme-00-home"
@@ -133,8 +156,16 @@ walk() {
   done
 }
 
-walk dark
-walk light
+# THEMES picks which walks run (default all three): dark and light are the
+# phone's setting under the app's System theme; syslight is the app's own
+# System Light pick.
+for t in ${THEMES:-dark light syslight}; do
+  case "$t" in
+    dark) walk dark system dark ;;
+    light) walk light system light ;;
+    syslight) walk light system-light syslight ;;
+  esac
+done
 
 sleep 3
 kill "$LOG_PID" 2>/dev/null
@@ -151,7 +182,7 @@ grep -iE "fatal|exception|crash|unhandled|TypeError|ReferenceError|Invariant Vio
     | sed -E 's/^[^]]*\] //; s/restarts in window: [0-9]+//' | cut -c1-300 | sort | uniq -c | sort -rn | head -40 || true
 } > "$OUT/logs/js-faults.txt"
 
-echo "Pages walked: ${#PAGES[@]} x 2 themes"
+echo "Pages walked: ${#PAGES[@]} x themes: ${THEMES:-dark light syslight}"
 echo "Problems:"
 cat "$OUT/crashes.txt"
 echo "Error lines in app log: $(wc -l < "$OUT/logs/errors.txt")"
