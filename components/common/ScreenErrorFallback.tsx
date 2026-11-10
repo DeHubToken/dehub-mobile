@@ -115,7 +115,7 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
       {/* iPhone only. On Android the System Light colour pass already turns
           the dark class colours light, so light variables here were turned
           around a second time: black pages, white titles on light bars. */}
-      <View style={[{ flex: 1 }, Platform.OS === "ios" ? themeVars : null]}>{children}</View>
+      <View style={[{ flex: 1 }, Platform.OS === "ios" && !isLight ? themeVars : null]}>{children}</View>
     </ErrorBoundary>
   );
 };
