@@ -142,6 +142,12 @@ const SECTION_GAP = 12;
 const CLOSE_FAILSAFE_MS = 1500;
 /** The X shows this long after opening even if the opening has not finished. */
 const CLOSE_BUTTON_DELAY_MS = 2000;
+/**
+ * A second tap that lands this soon after the one that opened the showcase is
+ * the same gesture (a double tap, or a tap repeated because the first looked
+ * ignored), not a request to close it.
+ */
+const TAP_GRACE_MS = 700;
 /** Still opening after this long: drop the sticker and show the flat art and details. */
 const ENTER_TIMEOUT_MS = 9000;
 
@@ -233,6 +239,11 @@ export default function ShowcaseShell({
   const [items, setItems] = useState<StickerItem[] | null>(null);
   const [metalOpening, setMetalOpening] = useState<{ from: Box | null; fromArt: string | null } | null>(null);
   const metalStarted = useRef(false);
+  // The metal stage takes a moment to draw its first frame. Until it does, a
+  // flat copy holds the badge's place over the darkened page, so the tap is
+  // answered at once instead of leaving the screen as it was.
+  const [standIn, setStandIn] = useState<Box | null>(null);
+  const openedAt = useRef(Date.now());
 
   const stageRef = useRef<StickerStageHandle>(null);
   const heroRef = useRef<Box | null>(null);
@@ -313,7 +324,8 @@ export default function ShowcaseShell({
   const flyerOpacity = useTransition(flyerVisible ? 1 : 0, 200, EASE);
 
   useEffect(() => {
-    if (!metallic) setShown(true);
+    // The page darkens on the tap itself, not when the stage is ready to draw.
+    setShown(true);
     haptic.tap();
   }, []);
 
@@ -326,6 +338,7 @@ export default function ShowcaseShell({
     measureOnScreen(anchor, H).then(async (from) => {
       if (!mounted.current || closing.current) return;
       if (cinematic) {
+        if (metallic && from && !intro) setStandIn(from);
         let fromArt: string | null = null;
         try {
           const previous = intro?.fromArt;
@@ -365,6 +378,7 @@ export default function ShowcaseShell({
 
   useEffect(() => {
     if (!cinematic || !glFailed || !hero || closing.current) return;
+    setStandIn(null);
     setShown(true);
     frame.value = hero.size;
     setFrameSize(hero.size);
@@ -519,6 +533,7 @@ export default function ShowcaseShell({
     failsafe.current = setTimeout(finish, CLOSE_FAILSAFE_MS);
     // Closing mid-promotion cancels it; the new badge still flies home.
     setCeremony(null);
+    setStandIn(null);
     setPhase("exit");
     setPlaying(false);
     const fade = () => {
@@ -546,6 +561,13 @@ export default function ShowcaseShell({
       });
     });
   }, [anchor, H, reduceMotion, index, originIndex, finish, flight, homeward, fromBox, toBox, cinematic, glFailed, stickerReady]);
+
+  // A tap on the empty stage or the backdrop closes, except straight after
+  // the tap that opened it.
+  const tapAway = useCallback(() => {
+    if (phaseRef.current !== "exit" && Date.now() - openedAt.current < TAP_GRACE_MS) return;
+    requestClose();
+  }, [requestClose]);
 
   /* ---------- autoplay ---------- */
 
@@ -666,16 +688,16 @@ export default function ShowcaseShell({
         <Animated.View style={[{ flex: 1 }, rootStyle]} accessibilityViewIsModal accessibilityLabel={dialogLabel(index)}>
           {/* The page falls away behind the badge. */}
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
-          <Pressable style={StyleSheet.absoluteFill} onPress={requestClose} accessible={false} />
+          <Pressable style={StyleSheet.absoluteFill} onPress={tapAway} accessible={false} />
 
           {cinematic && items && hero && !glFailed ? (
             <View style={StyleSheet.absoluteFill}>
               <StickerStage
                 ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} hero={hero} reducedMotion={reduceMotion}
                 onReady={(ok) => { if (closing.current) { if (!ok) finish(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
-                onStarted={() => { if (!closing.current) setShown(true); }}
+                onStarted={() => { if (!closing.current) { setShown(true); setStandIn(null); } }}
                 onLanded={() => { if (!closing.current) setLanded(true); }}
-                onClosed={finish} onTap={() => goTo(index + 1)} onMiss={requestClose} onInteract={pause}
+                onClosed={finish} onTap={() => goTo(index + 1)} onMiss={tapAway} onInteract={pause}
               />
             </View>
           ) : null}
@@ -707,7 +729,7 @@ export default function ShowcaseShell({
                       setStickerOn(false);
                     }}
                     onTap={() => goTo(index + 1)}
-                    onMiss={requestClose}
+                    onMiss={tapAway}
                     onInteract={pause}
                   />
                 </Animated.View>
@@ -799,6 +821,16 @@ export default function ShowcaseShell({
               <Icon name="X" size={18} color="#f3f4f6" />
             </Chrome>
           </Animated.View>
+
+          {standIn ? (
+            <View
+              pointerEvents="none"
+              testID="badge-stand-in"
+              style={{ position: "absolute", left: standIn.x, top: standIn.y, width: standIn.size, height: standIn.size }}
+            >
+              {entries[originIndex].renderArt()}
+            </View>
+          ) : null}
 
           {/* The badge in flight, and the stand-in if WebGL is unavailable. */}
           <Animated.View pointerEvents="none" style={[styles.flyer, { width: frameSize, height: frameSize }, flyerStyle]}>
