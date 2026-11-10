@@ -1,6 +1,6 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator } from 'react-native';
+import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator, Keyboard } from 'react-native';
 import GlassModal from '../ui/GlassModal';
 import ThemePanel from '../ui/ThemePanel';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -173,9 +173,15 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     setFee(cleaned);
   }, [setFee]);
 
-  const onBlurFee = useCallback(() => {
+  // Android does not blur the field when the keyboard is closed with Back,
+  // so saving on blur alone missed changes; Save shows while they differ.
+  const feeDirty = Number(fee || 0) !== Number((user as any)?.dmSettings?.perMessageFee || 0);
+
+  const saveFee = useCallback(() => {
+    if (!feeDirty) return;
+    Keyboard.dismiss();
     submit({ spinner: 'fee' }).catch(() => {});
-  }, [submit]);
+  }, [feeDirty, submit]);
 
   const rightSwitchDms = useMemo(() => (
     <Switch
@@ -233,7 +239,9 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
                 <TextInput
                   value={fee}
                   onChangeText={onChangeFee}
-                  onBlur={onBlurFee}
+                  onBlur={saveFee}
+                  onSubmitEditing={saveFee}
+                  returnKeyType="done"
                   keyboardType="numeric"
                   placeholder="0"
                   placeholderTextColor="#A6A9AC"
@@ -244,6 +252,14 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
                   <View className="ml-3 h-11 items-center justify-center">
                     <ActivityIndicator size="small" color="#F4F4F5" />
                   </View>
+                ) : feeDirty ? (
+                  <TouchableOpacity
+                    onPress={saveFee}
+                    accessibilityRole="button"
+                    className="ml-3 h-11 px-4 rounded-xl bg-white items-center justify-center"
+                  >
+                    <Text className="text-black text-sm font-semibold">{t("common.save")}</Text>
+                  </TouchableOpacity>
                 ) : feeSaved ? (
                   <View className="ml-3 h-11 items-center justify-center">
                     <Ionicons name="checkmark-circle" size={18} color="#F4F4F5" />

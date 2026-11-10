@@ -1040,6 +1040,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail, noteProfileFeedOpen(profileFeed, tokenId)));
   }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed, profileFeed, isSignedIn]);
 
+  const openLive = useCallback(() => {
+    const target = isOwnerPost ? ScreenNames.LiveProducer : ScreenNames.LiveViewer;
+    const streamId = stream?._id || stream?.id || (item as any)._id;
+    navigation.navigate(target as never, {
+      isLive: isCurrentlyLive,
+      nft: item,
+      accessInfo,
+      streamId,
+      tokenId,
+    } as never);
+  }, [isOwnerPost, stream, item, navigation, isCurrentlyLive, accessInfo, tokenId]);
+
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
@@ -1053,15 +1065,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     onBeforeNavigate?.();
     hideUserProfile();
     if (isLive) {
-      const target = isOwnerPost ? ScreenNames.LiveProducer : ScreenNames.LiveViewer;
-      const streamId = stream?._id || stream?.id || (item as any)._id;
-      navigation.navigate(target as never, {
-        isLive: isCurrentlyLive,
-        nft: item,
-        accessInfo,
-        streamId,
-        tokenId,
-      } as never);
+      openLive();
     } else if (tokenId != null) {
       // Hand the detail screen this card's post to paint at once, and start
       // its fetch now rather than after the new screen has rendered.
@@ -1074,9 +1078,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed, profileFeed,
+    disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, openLive, item, tokenId, postVideoUrl,
+    navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed, profileFeed,
   ]);
+
+  // The post page turns the card's tap off, since it would only open the page
+  // it is on. The live viewer is another screen, so the live picture still
+  // opens it: on a live's own post page the playing stream was the one thing
+  // that did nothing when tapped.
+  const handleLivePicturePress = useCallback(() => {
+    if (!disablePress) {
+      handleCardPress();
+      return;
+    }
+    if (scrubBoundary.claimed.value) return;
+    onBeforeNavigate?.();
+    hideUserProfile();
+    openLive();
+  }, [disablePress, handleCardPress, scrubBoundary.claimed, onBeforeNavigate, hideUserProfile, openLive]);
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
@@ -2022,7 +2041,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}
           label={liveFallbackLabel}
-          onPress={handleCardPress}
+          onPress={handleLivePicturePress}
         />
       ) : hasThumb ? (
         <SmartImage
