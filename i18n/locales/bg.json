@@ -7725,6 +7725,7 @@
     "requests": "Заявки",
     "follow": "Следвай",
     "followBack": "Последвай обратно",
+    "followBackAllFailed": "Неуспешно проследяване на някого назад",
     "followBackAll": "Следвай обратно всички",
     "findingFollowers": "Търся последователи...",
     "followingBackProgress": "Следвай обратно {{completed}} от {{total}}",

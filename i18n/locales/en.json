@@ -5690,6 +5690,7 @@
     "requests": "Requests",
     "follow": "Follow",
     "followBack": "Follow back",
+    "followBackAllFailed": "Could not follow anyone back",
     "followBackAll": "Follow back all",
     "findingFollowers": "Finding followers...",
     "followingBackProgress": "Following back {{completed}} of {{total}}",

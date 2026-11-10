@@ -7699,6 +7699,7 @@
     "requests": "درخواستاں",
     "follow": "پیروی کرو",
     "followBack": "فالو بیک",
+    "followBackAllFailed": "کوئی بھی پیغام نہیں پڑھا جا سکا",
     "followBackAll": "ہم آپ کو فال واپس کرنے کے لئے کہیں گے",
     "findingFollowers": "ڈھونڈھا ہے کہ لوگ ہیں",
     "followingBackProgress": "ڈھونڈھن واپس کرنے والا {{completed}} {{total}} کا",

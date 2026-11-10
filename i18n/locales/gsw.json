@@ -7742,6 +7742,7 @@
     "requests": "Uufdrägs",
     "follow": "Folge",
     "followBack": "Folge zrugg",
+    "followBackAllFailed": "Hä nöd zruckfolgä",
     "followBackAll": "Folge mir zurück",
     "findingFollowers": "Folgendi Follower sammle...",
     "followingBackProgress": "Folge nach {{completed}} von {{total}}",

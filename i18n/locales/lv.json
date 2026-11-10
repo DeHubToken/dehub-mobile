@@ -7722,6 +7722,7 @@
     "requests": "Pieprasījumi",
     "follow": "Sekot",
     "followBack": "Atbildēt ar sekošanu",
+    "followBackAllFailed": "Nevarēja sekot nevienam atpakaļ",
     "followBackAll": "Sekot visiem",
     "findingFollowers": "Meklē sekotājus...",
     "followingBackProgress": "Seko {{completed}} no {{total}}",

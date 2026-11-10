@@ -7731,6 +7731,7 @@
     "requests": "Maombi",
     "follow": "Fuata",
     "followBack": "Fuata nyuma",
+    "followBackAllFailed": "Haikuweza kumfuata mtu yeyote nyuma",
     "followBackAll": "Fuatilia yote",
     "findingFollowers": "Inatafuta wafuasi...",
     "followingBackProgress": "Kufuatia nyuma {{completed}} ya {{total}}",

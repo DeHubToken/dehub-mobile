@@ -7743,6 +7743,7 @@
     "requests": "Kuyaykuna",
     "follow": "Qatiy",
     "followBack": "Qatiy kutita",
+    "followBackAllFailed": "Mana ama kutiy atipusqachu",
     "followBackAll": "Ama kutiy hantaq",
     "findingFollowers": "Seguidorta maskhachkani...",
     "followingBackProgress": "Kutiy {{completed}} {{total}} llaqtamanta",

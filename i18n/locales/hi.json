@@ -7797,6 +7797,7 @@
     "requests": "अनुरोध",
     "follow": "फ़ॉलो करें",
     "followBack": "फ़ॉलो बैक करें",
+    "followBackAllFailed": "किसी को वापस फ़ॉलो नहीं किया जा सका",
     "followBackAll": "सभी को फ़ॉलो करें",
     "findingFollowers": "फ़ॉलोअर खोजे जा रहे हैं...",
     "followingBackProgress": "{{total}} में से {{completed}} पर फ़ॉलो करें",

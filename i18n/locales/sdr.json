@@ -7722,6 +7722,7 @@
     "requests": "ڕیکوێستەکان",
     "follow": "فۆڵۆ",
     "followBack": "فۆڵۆ بکە",
+    "followBackAllFailed": "कोई भी वापस अनुसरण नहीं कर सके",
     "followBackAll": "सभी को वापस अनुसरण करें",
     "findingFollowers": "अनुयायियों को खोज रहे हैं...",
     "followingBackProgress": "{{completed}} का {{total}} अनुसरण कर रहे हैं",

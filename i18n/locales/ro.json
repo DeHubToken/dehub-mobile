@@ -7722,6 +7722,7 @@
     "requests": "Solicitări",
     "follow": "Urmărește",
     "followBack": "Urmărește înapoi",
+    "followBackAllFailed": "Nu am putut urmări pe nimeni înapoi",
     "followBackAll": "Urmărește toate",
     "findingFollowers": "Se caută urmăritori...",
     "followingBackProgress": "Revenire {{completed}} din {{total}}",

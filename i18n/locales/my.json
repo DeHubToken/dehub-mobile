@@ -7722,6 +7722,7 @@
     "requests": "တောင်းဆိုမှုများ",
     "follow": "နောက်လိုက်ပါ",
     "followBack": "နောက်ပြန်လိုက်ပါ",
+    "followBackAllFailed": "မည်သူ့ကိုမှ နောက်သို့လိုက် ၍ မရနိုင်ပါ",
     "followBackAll": "အားလုံးကို နောက်သို့ လိုက်ပါ",
     "findingFollowers": "နောက်လိုက်များကိုရှာဖွေခြင်း...",
     "followingBackProgress": "နောက်သို့ {{completed}} ၏ {{total}}",

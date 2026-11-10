@@ -7700,6 +7700,7 @@
     "requests": "درخواستیں",
     "follow": "فالو کریں",
     "followBack": "فالو بیک",
+    "followBackAllFailed": "کوئی پیغام پالنے کی کوشش نہیں کی گئی",
     "followBackAll": "ہم آپ کو فالو کرنے کے لئے خوشی ہوئی!",
     "findingFollowers": "فوللوز کا ٹریک کرنا",
     "followingBackProgress": "ہٹوٹھی بیک اپ {{completed}} کے پیچھے {{total}}",

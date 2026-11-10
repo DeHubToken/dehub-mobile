@@ -7663,6 +7663,7 @@
     "requests": "リクエスト",
     "follow": "フォローする",
     "followBack": "フォローバック",
+    "followBackAllFailed": "誰もフォローバックできませんでした",
     "followBackAll": "すべてフォローバック",
     "findingFollowers": "フォロワーを探しています...",
     "followingBackProgress": "{{total}}の{{completed}}をフォローしています",

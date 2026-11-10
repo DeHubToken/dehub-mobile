@@ -7734,6 +7734,7 @@
     "requests": "Fangatahana",
     "follow": "Manaraka",
     "followBack": "Manaraka indray",
+    "followBackAllFailed": "Tsy afaka nanaraka ny olona niverina",
     "followBackAll": "Araho ny rehetra",
     "findingFollowers": "Mitadiava mpanaraka...",
     "followingBackProgress": "{{completed}} 1 {{total}}",

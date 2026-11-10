@@ -5710,6 +5710,7 @@
     "requests": "Demandes",
     "follow": "Suivre",
     "followBack": "Suivre en retour",
+    "followBackAllFailed": "Impossible de suivre qui que ce soit en retour",
     "followBackAll": "Suivre en retour tout le monde",
     "findingFollowers": "Recherche des abonnés...",
     "followingBackProgress": "Suivi en retour de {{completed}} sur {{total}}",

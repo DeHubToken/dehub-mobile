@@ -7721,6 +7721,7 @@
     "requests": "অনুরোধ",
     "follow": "অনুসরণ করুন",
     "followBack": "ফলো ব্যাক",
+    "followBackAllFailed": "কাউকে পিছনে অনুসরণ করা যায়নি",
     "followBackAll": "সবগুলি অনুসরণ করুন",
     "findingFollowers": "অনুগামীদের খোঁজা হচ্ছে...",
     "followingBackProgress": "{{total}} -এর {{completed}} কে অনুসরণ করে",

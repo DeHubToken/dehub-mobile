@@ -7738,6 +7738,7 @@
     "requests": "Сұраныстар",
     "follow": "Ілесу",
     "followBack": "Ілесіп қайту",
+    "followBackAllFailed": "Ешкімнің соңынан еру мүмкін емес",
     "followBackAll": "Барлығын кері қадағалау",
     "findingFollowers": "Ізбасарларды табу...",
     "followingBackProgress": "Әрі қарай {{completed}} of {{total}}",

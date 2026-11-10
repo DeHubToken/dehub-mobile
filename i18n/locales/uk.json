@@ -8092,6 +8092,7 @@
     "requests": "Запити",
     "follow": "Підписатися",
     "followBack": "Підписатися у відповідь",
+    "followBackAllFailed": "Не вдалося відстежити нікого назад",
     "followBackAll": "Відстежувати все",
     "findingFollowers": "Пошук підписників...",
     "followingBackProgress": "Відстеження {{completed}} з {{total}}",

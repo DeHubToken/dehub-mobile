@@ -7870,6 +7870,7 @@
     "requests": "রিকোয়েস্টস",
     "follow": "ফলো",
     "followBack": "ফলো ব্যাক",
+    "followBackAllFailed": "কোনো লোককে ফলো করতে পারিনি",
     "followBackAll": "সবাইকে অনুসরণ করুন",
     "findingFollowers": "ফলোয়ারস খুঁজে পাচ্ছি...",
     "followingBackProgress": "{{completed}} এর {{total}} অনুসরণ করছি",

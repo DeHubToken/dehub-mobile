@@ -7725,6 +7725,7 @@
     "requests": "Zahtjevi",
     "follow": "Prati",
     "followBack": "Prati natrag",
+    "followBackAllFailed": "Nije mogao slijediti nikoga natrag",
     "followBackAll": "Slijedi sve natrag",
     "findingFollowers": "Traži slijedbenike...",
     "followingBackProgress": "Slijedi natrag {{completed}} od {{total}}",

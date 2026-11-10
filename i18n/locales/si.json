@@ -7722,6 +7722,7 @@
     "requests": "ඉල්ලීම්",
     "follow": "අනුගමනය කරන්න",
     "followBack": "පසුපසින් අනුගමනය කරන්න",
+    "followBackAllFailed": "කිසිවෙකුව ආපසු අනුගමනය කිරීමට නොහැකි විය",
     "followBackAll": "සියල්ලන්ම ආපසු අනුගමනය කරන්න",
     "findingFollowers": "අනුගාමිකයින් සොයමින්...",
     "followingBackProgress": "{{total}} න් {{completed}} දෙනෙකු ආපසු අනුගමනය කරමින්",

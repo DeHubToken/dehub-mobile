@@ -7723,6 +7723,7 @@
     "requests": "សំណើរសុំតាមដាន",
     "follow": "តាមដាន",
     "followBack": "តាមដានវិញ",
+    "followBackAllFailed": "មិនអាចតាមនរណាម្នាក់ថយក្រោយបានទេ",
     "followBackAll": "តាមដានត្រឡប់មកវិញទាំងអស់",
     "findingFollowers": "កំពុងស្វែងរកអ្នកដើរតាម...",
     "followingBackProgress": "ការតាមដានត្រឡប់មកវិញ {{completed}} នៃ {{total}}",

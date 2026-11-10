@@ -7704,6 +7704,7 @@
     "requests": "غوښتنې",
     "follow": "پیروي وکړئ",
     "followBack": "شاته پیروي وکړئ",
+    "followBackAllFailed": "د هیچا پیروي نه شي کولی",
     "followBackAll": "د ټولو سره تعقیب کړئ",
     "findingFollowers": "د پیروانو موندلو لپاره...",
     "everyoneFollowedBack": "تاسو ټولو ته بلنه ورکړئ چې تعقیب یې کړئ",

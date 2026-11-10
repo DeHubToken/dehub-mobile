@@ -7712,6 +7712,7 @@
     "requests": "Sargytlar",
     "follow": "Yzarla",
     "followBack": "Yzarlaýyşyňyzy yzyna alyň",
+    "followBackAllFailed": "Hiç kimi yzyna yzarlap bolmady",
     "followBackAll": "Hemmesini yzyna yzarla",
     "findingFollowers": "Yzarlaýjylar gözlenýär...",
     "followingBackProgress": "{{total}} adamdan {{completed}}-sini yzyna yzarlamak",

@@ -7705,6 +7705,7 @@
     "requests": "अनुरोध",
     "follow": "फ़ॉलो करें",
     "followBack": "फ़ॉलो बैक",
+    "followBackAllFailed": "किसीको पछि ना कर पाया",
     "followBackAll": "सबको पछि कर",
     "findingFollowers": "अनुयायी ढूँढ रहा हु...",
     "everyoneFollowedBack": "पीछे चले सब के सब,",

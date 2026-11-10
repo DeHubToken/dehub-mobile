@@ -7721,6 +7721,7 @@
     "requests": "طلبات",
     "follow": "متابعة",
     "followBack": "متابعة رد",
+    "followBackAllFailed": "لا يمكن متابعة أي شخص مرة أخرى",
     "followBackAll": "متابعة الكل مرة أخرى",
     "findingFollowers": "جارٍ العثور على متابعين...",
     "followingBackProgress": "متابعة {{completed}} من {{total}}",

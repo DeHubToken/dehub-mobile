@@ -7752,6 +7752,7 @@
     "requests": "درخواست‌ها",
     "follow": "دنبال کردن",
     "followBack": "دنبال کردن متقابل",
+    "followBackAllFailed": "امکان بازگشت به کسی وجود ندارد",
     "followBackAll": "پس از بازگشت همه",
     "findingFollowers": "جستجوی پیروان...",
     "followingBackProgress": "پس از بازگشت {{completed}} از {{total}}",

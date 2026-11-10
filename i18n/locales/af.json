@@ -7755,6 +7755,7 @@
     "requests": "Versoeke",
     "follow": "Volg",
     "followBack": "Volg terug",
+    "followBackAllFailed": "Kon niemand terug volg nie",
     "followBackAll": "Volg almal terug",
     "findingFollowers": "Vind navolgers...",
     "followingBackProgress": "Volg terug {{completed}} van {{total}}",

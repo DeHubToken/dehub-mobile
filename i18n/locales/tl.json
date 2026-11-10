@@ -7768,6 +7768,7 @@
     "requests": "Mga Kahilingan",
     "follow": "Sundin",
     "followBack": "Sundang pabalik",
+    "followBackAllFailed": "Hindi masubaybayan ang sinuman pabalik",
     "followBackAll": "Subaybayan ang lahat",
     "findingFollowers": "Paghahanap ng mga tagasunod...",
     "followingBackProgress": "Sumusunod sa {{completed}} ng {{total}}",

@@ -7794,6 +7794,7 @@
     "requests": "Запросы",
     "follow": "Подписаться",
     "followBack": "Взаимная подписка",
+    "followBackAllFailed": "Не удалось подписаться на кого-либо",
     "followBackAll": "Подписаться на всех",
     "findingFollowers": "Ищем подписчиков...",
     "followingBackProgress": "Подписки: {{completed}} из {{total}}",

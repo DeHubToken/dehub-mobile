@@ -7711,6 +7711,7 @@
     "requests": "请求",
     "follow": "关注",
     "followBack": "回关",
+    "followBackAllFailed": "无法跟随任何人",
     "followBackAll": "全回关",
     "findingFollowers": "找寻关注者中...",
     "followingBackProgress": "跟随 {{completed}} 的回复，查看 {{total}}",

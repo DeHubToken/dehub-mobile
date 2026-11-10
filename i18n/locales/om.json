@@ -7725,6 +7725,7 @@
     "requests": "Gaaffiiwwan",
     "follow": "Hordofi",
     "followBack": "Galchii",
+    "followBackAllFailed": "Nama kamiyyuu dura duubatti eeguu hin dandeenye",
     "followBackAll": "Hunda dura duubatti eegaa",
     "findingFollowers": "Eegtoota barbaadaa jira...",
     "followingBackProgress": "Dura duubatti {{completed}} {{total}} keessaa eegda",

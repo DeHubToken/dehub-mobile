@@ -7720,6 +7720,7 @@
     "requests": "Bukatu",
     "follow": "Biyo",
     "followBack": "Biyo baya",
+    "followBackAllFailed": "Ba zai iya bin wani baya ba",
     "followBackAll": "Kada ku tafi, tafi.",
     "findingFollowers": "Gano mabiya...",
     "followingBackProgress": "Bibiyar baya {{completed}} na {{total}}",

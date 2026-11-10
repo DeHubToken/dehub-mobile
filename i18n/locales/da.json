@@ -7726,6 +7726,7 @@
     "requests": "Anmodninger",
     "follow": "Følg",
     "followBack": "Følg tilbage",
+    "followBackAllFailed": "Kunne ikke følge nogen tilbage",
     "followBackAll": "Følg alle tilbage",
     "findingFollowers": "Finder følgere...",
     "followingBackProgress": "Følger tilbage til {{completed}} af {{total}}",

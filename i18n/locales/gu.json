@@ -7723,6 +7723,7 @@
     "requests": "વિનંતીઓ",
     "follow": "અનુસરો",
     "followBack": "પાછા અનુસરો",
+    "followBackAllFailed": "કોઈને પાછા અનુસરી શક્યા નહીં",
     "followBackAll": "બધાને ફોલો કરો",
     "findingFollowers": "અનુયાયીઓ શોધી રહ્યા છે...",
     "followingBackProgress": "{{total}} ના {{completed}} ને અનુસરી રહ્યા છે",

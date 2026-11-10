@@ -7710,6 +7710,7 @@
     "requests": "Panyuwunan",
     "follow": "Tututi",
     "followBack": "Tututi bali",
+    "followBackAllFailed": "Tidak bisa mengikuti seseorang kembali",
     "followBackAll": "Mengikuti kembali semua",
     "findingFollowers": "Ngisor-ngisor pengikut...",
     "followingBackProgress": "Ngeluwungin {{completed}} nganti {{total}}",

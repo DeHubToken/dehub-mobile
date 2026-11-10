@@ -7709,6 +7709,7 @@
     "requests": "ຄຳຮ້ອງຂໍ",
     "follow": "ຕິດຕາມ",
     "followBack": "ຕິດຕາມກັບ",
+    "followBackAllFailed": "ບໍ່ສາມາດຕິດຕາມຄົນໃດກັບຄືນໄດ້",
     "followBackAll": "ຕິດຕາມຄືນທັງໝົດ",
     "findingFollowers": "ກຳລັງຊອກຫາຜູ້ຕິດຕາມ...",
     "followingBackProgress": "ກຳລັງຕິດຕາມຄືນ {{completed}} ຂອງ {{total}}",

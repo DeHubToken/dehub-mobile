@@ -5844,6 +5844,7 @@
     "requests": "Verzoeken",
     "follow": "Volgen",
     "followBack": "Terug volgen",
+    "followBackAllFailed": "Kon niemand terugvolgen",
     "followBackAll": "Volg iedereen terug",
     "findingFollowers": "Zoekt volgers...",
     "followingBackProgress": "Volgt {{completed}} van {{total}} terug",

@@ -7737,6 +7737,7 @@
     "requests": "So'rovlar",
     "follow": "Obuna bo'lish",
     "followBack": "Obunani qaytarish",
+    "followBackAllFailed": "Hech kimni orqasidan ergashtira olmadim",
     "followBackAll": "Barchasini kuzatib boring",
     "findingFollowers": "Obunachilar qidirilmoqda...",
     "followingBackProgress": "{{total}} dan {{completed}} ga ergashish",

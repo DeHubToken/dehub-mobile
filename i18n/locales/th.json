@@ -7757,6 +7757,7 @@
     "requests": "คำขอ",
     "follow": "ติดตาม",
     "followBack": "ติดตามกลับ",
+    "followBackAllFailed": "ไม่สามารถติดตามคนที่กลับได้",
     "followBackAll": "ติดตามกลับทั้งหมด",
     "findingFollowers": "กำลังค้นหาผู้ติดตาม...",
     "followingBackProgress": "ตามหลัง {{completed}} จาก {{total}}",

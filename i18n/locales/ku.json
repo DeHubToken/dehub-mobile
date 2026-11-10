@@ -7715,6 +7715,7 @@
     "requests": "Daxwaz",
     "follow": "Bişopîne",
     "followBack": "Tu jî bişopîne",
+    "followBackAllFailed": "Kes di bersivê de nehat şopandin",
     "followBackAll": "Hemûyan di bersivê de bişopîne",
     "findingFollowers": "Şopîner tên dîtin...",
     "followingBackProgress": "{{completed}} ji {{total}} di bersivê de tên şopandin",

@@ -7717,6 +7717,7 @@
     "requests": "Захтеви",
     "follow": "Прати",
     "followBack": "Узврати праћење",
+    "followBackAllFailed": "Није било могуће пратити никога",
     "followBackAll": "Пратите све",
     "findingFollowers": "Проналажење пратилаца...",
     "followingBackProgress": "Пратимо вас {{completed}} од {{total}}",

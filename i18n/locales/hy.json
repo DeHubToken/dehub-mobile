@@ -7725,6 +7725,7 @@
     "requests": "Հայտեր",
     "follow": "Բաժանորդագրվել",
     "followBack": "Հետադարձ բաժանորդագրություն",
+    "followBackAllFailed": "Չհաջողվեց հետևել որևէ մեկին",
     "followBackAll": "Հետևեք բոլորին",
     "findingFollowers": "Ինչպես գտնել հետևորդներ...",
     "followingBackProgress": "Հետևելով {{completed}}- ին {{total}}",

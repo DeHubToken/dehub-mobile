@@ -7709,6 +7709,7 @@
     "requests": "अनुरोध",
     "follow": "अनुसरण कर",
     "followBack": "वापस अनुसरण कर",
+    "followBackAllFailed": "कोनो ल पीछे नहीं हट सकत",
     "findingFollowers": "अनुयायीमन के खोज करे बर...",
     "everyoneFollowedBack": "तुमन जम्मो झन के पाछू हो लेवव",
     "requested": "अनुरोधित",

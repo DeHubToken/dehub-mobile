@@ -7706,6 +7706,7 @@
     "requests": "Anfragen",
     "follow": "Folgen",
     "followBack": "Zurück folgen",
+    "followBackAllFailed": "Konnte niemandem zurück folgen",
     "followBackAll": "Alles zurückverfolgen",
     "findingFollowers": "Follower werden gesucht...",
     "followingBackProgress": "{{completed}} von {{total}} zurückverfolgen",

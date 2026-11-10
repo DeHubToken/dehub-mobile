@@ -7711,6 +7711,7 @@
     "requests": "ಮನವಿಗಳು",
     "follow": "ಅನುಸರಿಸಿ",
     "followBack": "ಹಿಂಬಾಲಿಸಿ",
+    "followBackAllFailed": "ಯಾರನ್ನೂ ಹಿಂಬಾಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
     "followBackAll": "ಎಲ್ಲವನ್ನೂ ಹಿಂಬಾಲಿಸಿ",
     "findingFollowers": "ಅನುಯಾಯಿಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
     "followingBackProgress": "{{completed}} ರಲ್ಲಿ {{total}} ಅನ್ನು ಹಿಂಬಾಲಿಸಿ",

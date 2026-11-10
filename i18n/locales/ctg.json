@@ -7840,6 +7840,7 @@
     "requests": "অনুরোধ",
     "follow": "অনুসরণ করুন",
     "followBack": "ফলো ব্যাক",
+    "followBackAllFailed": "কোনো কে ফলো ব্যাক করা যায়নি",
     "followBackAll": "সবার ফলো ব্যাক করুন",
     "findingFollowers": "ফলোওয়ার খুঁজে পাচ্ছি...",
     "followingBackProgress": "{{completed}} জনকে ফলো ব্যাক করা হচ্ছে {{total}}",

@@ -7706,6 +7706,7 @@
     "requests": "ሕቶታት",
     "follow": "ተኸተል",
     "followBack": "ንድሕሪት ተመሊስካ",
+    "followBackAllFailed": "ሓደ እኳ ንድሕሪት ኪምለስ ኣይከኣለን ።",
     "followBackAll": "ኩሉ ንድሕሪት ተመሊስካ",
     "findingFollowers": "ተኸታተልቲ ንምርካብ...",
     "followedBackSome": "ተኸታተልቲ {{followed}} people; {{failed}} failed",

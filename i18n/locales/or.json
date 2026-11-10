@@ -7709,6 +7709,7 @@
     "requests": "ଅନୁରୋଧ",
     "follow": "ଅନୁସରଣ କରନ୍ତୁ",
     "followBack": "ଫେରି ଅନୁସରଣ କରନ୍ତୁ",
+    "followBackAllFailed": "ପଛକୁ କାହାକୁ ଅନୁସରଣ କରିପାରିଲା ନାହିଁ",
     "followBackAll": "ସମସ୍ତଙ୍କୁ ଅନୁସରଣ କରନ୍ତୁ",
     "findingFollowers": "ଅନୁସରଣକାରୀମାନଙ୍କୁ ଖୋଜୁଅଛି.",
     "followingBackProgress": "{{completed}} {{total}}",

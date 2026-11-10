@@ -7750,6 +7750,7 @@
     "requests": "Αιτήματα",
     "follow": "Ακολουθήστε",
     "followBack": "Αντι-ακολουθήστε",
+    "followBackAllFailed": "Δεν μπορώ να ακολουθήσω κάποιον.",
     "followBackAll": "ΑΚΟΛΟΥΘΗΣΤΕ πισ",
     "findingFollowers": "Εύρεση ακολούθων...",
     "followingBackProgress": "Ακολουθούμε {{completed}} από {{total}}",

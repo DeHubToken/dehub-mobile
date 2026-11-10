@@ -7708,6 +7708,7 @@
     "requests": "Дархостҳо",
     "follow": "Пайравӣ кунед",
     "followBack": "Ҷавобан пайравӣ кунед",
+    "followBackAllFailed": "Hindi maaaring sumusubaybay ang ta",
     "followBackAll": "Ҳамаро пайгирӣ кунед",
     "findingFollowers": "Мафкури фолловерон.",
     "everyoneFollowedBack": "Ikaw ay sinusubaybayan mo na l",

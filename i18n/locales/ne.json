@@ -7735,6 +7735,7 @@
     "requests": "अनुरोधहरू",
     "follow": "अनुसरण गर्नुहोस्",
     "followBack": "फलो ब्याक",
+    "followBackAllFailed": "कुनै को पनि फॉलो गर्न सकेन",
     "followBackAll": "फॉलो कर सबै",
     "findingFollowers": "फॉलोअर्स खोजिरहेका छौ...",
     "followingBackProgress": "फॉलो गर्थुने छन् {{completed}} of {{total}}",

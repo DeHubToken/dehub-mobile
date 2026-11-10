@@ -7723,6 +7723,7 @@
     "requests": "विनंत्या",
     "follow": "अनुसरण करा",
     "followBack": "परत अनुसरण करा",
+    "followBackAllFailed": "कोणालाही मागे पाठवू शकले नाही",
     "followBackAll": "सर्वांचा पाठपुरावा करा",
     "findingFollowers": "अनुयायी शोधत आहे...",
     "followingBackProgress": "मागे {{completed}} चे {{total}}",

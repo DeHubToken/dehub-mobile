@@ -7725,6 +7725,7 @@
     "requests": "Kërkesa",
     "follow": "Ndiq",
     "followBack": "Të ndjekë mbrapsht",
+    "followBackAllFailed": "Nuk mund të ndiqja askënd prapa",
     "followBackAll": "Ndiqi të gjitha",
     "findingFollowers": "Gjetja e ndjekësve...",
     "followingBackProgress": "Në vijim {{completed}} të {{total}}",

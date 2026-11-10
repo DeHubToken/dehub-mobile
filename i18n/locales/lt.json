@@ -7725,6 +7725,7 @@
     "requests": "Užklausos",
     "follow": "Sekti",
     "followBack": "Sekti atgal",
+    "followBackAllFailed": "Nepavyko nieko atsekti",
     "followBackAll": "Sekti viską",
     "findingFollowers": "Rasti sekėjusius",
     "followingBackProgress": "Atgal {{completed}} iš {{total}}",

@@ -7753,6 +7753,7 @@
     "requests": "Yêu cầu",
     "follow": "Theo dõi",
     "followBack": "Theo dõi lại",
+    "followBackAllFailed": "Không thể theo dõi bất kỳ ai trở lại",
     "followBackAll": "Theo dõi lại tất cả",
     "findingFollowers": "Đang tìm người theo dõi...",
     "followingBackProgress": "Đang theo dõi {{completed}} trên {{total}}",

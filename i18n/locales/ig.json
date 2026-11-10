@@ -7702,6 +7702,7 @@
     "requests": "Ngwa",
     "follow": "Soo",
     "followBack": "Soo azụ",
+    "followBackAllFailed": "Enweghị ike ịsogharị onye ọ bụla",
     "followBackAll": "Sogharịa mmadụ niile",
     "findingFollowers": "Na-achọ ndị na-eso gị...",
     "followingBackProgress": "Na-esogharị {{completed}} n'ime {{total}}",

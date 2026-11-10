@@ -7791,6 +7791,7 @@
     "requests": "Richieste",
     "follow": "Segui",
     "followBack": "Segui indietro",
+    "followBackAllFailed": "Non è stato possibile seguire nessuno",
     "followBackAll": "Segui indietro tutti",
     "findingFollowers": "Ricerca follower in corso...",
     "followingBackProgress": "Segui {{completed}} di {{total}}",

@@ -7719,6 +7719,7 @@
     "requests": "請求",
     "follow": "追蹤",
     "followBack": "互相關注",
+    "followBackAllFailed": "唔能夠跟返任何人",
     "followBackAll": "跟返所有人",
     "findingFollowers": "搵返追蹤者...",
     "followingBackProgress": "跟返{{completed}}個{{total}}",

@@ -7734,6 +7734,7 @@
     "requests": "Запыты",
     "follow": "Падпісацца",
     "followBack": "Узаемная падпіска",
+    "followBackAllFailed": "Ня можа адхадзіць ніхто",
     "followBackAll": "Адхаджыць усіх",
     "findingFollowers": "Шукаем фоллівераў...",
     "followingBackProgress": "Адхаджыць {{completed}} з {{total}}",

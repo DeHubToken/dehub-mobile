@@ -7711,6 +7711,7 @@
     "requests": "अनुरोध",
     "follow": "अनुसरण करें",
     "followBack": "वापस अनुसरण करें",
+    "followBackAllFailed": "निसर्गं कर्तुं न शक्नोमि।",
     "followBackAll": "पुनरपि सर्वं",
     "findingFollowers": "खोजः खोजषब्द अनुयायी",
     "followedBackSome": "अनुसरण कृतवान् {{followed}} जनाः; {{failed}} असफलाः",

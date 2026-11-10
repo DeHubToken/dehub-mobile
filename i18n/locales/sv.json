@@ -7725,6 +7725,7 @@
     "requests": "Begäran",
     "follow": "Följ",
     "followBack": "Följ tillbaka",
+    "followBackAllFailed": "Kunde inte följa tillbaka någon",
     "followBackAll": "Följ tillbaka alla",
     "findingFollowers": "Letar efter följare...",
     "followingBackProgress": "Följer tillbaka {{completed}} av {{total}}",

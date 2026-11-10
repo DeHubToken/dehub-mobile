@@ -7742,6 +7742,7 @@
     "requests": "Prośby",
     "follow": "Obserwuj",
     "followBack": "Obserwuj z powrotem",
+    "followBackAllFailed": "Nie udało się podążać za nikim",
     "followBackAll": "Podążaj za wszystkimi",
     "findingFollowers": "Szukanie obserwujących...",
     "followingBackProgress": "Podążaj za {{completed}} z {{total}}",

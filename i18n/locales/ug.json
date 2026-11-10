@@ -7704,6 +7704,7 @@
     "requests": "تىلەك",
     "follow": "ئىزدىگىن",
     "followBack": "ئىزدىگىن",
+    "followBackAllFailed": "بىر ئادەم يەنە بىر ئادەمنى ئەگەشتۈرەلمىدى",
     "followBackAll": "ھەممىسىگە ئەگىشىش",
     "findingFollowers": "ئەگەشكۈچىلەرنى تېپىش...",
     "followingBackProgress": "ئارقىدىن ئەگىشىش {{completed}} of {{total}}",

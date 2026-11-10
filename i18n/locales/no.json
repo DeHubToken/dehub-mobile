@@ -7722,6 +7722,7 @@
     "requests": "Forespørsler",
     "follow": "Følg",
     "followBack": "Følg tilbake",
+    "followBackAllFailed": "Kunne ikke følge noen tilbake",
     "followBackAll": "Følg tilbake alle",
     "findingFollowers": "Søker etter følgere...",
     "followingBackProgress": "Følger tilbake {{completed}} av {{total}}",

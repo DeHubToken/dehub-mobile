@@ -7722,6 +7722,7 @@
     "requests": "Sol·licituds",
     "follow": "Seguir",
     "followBack": "Seguir de tornada",
+    "followBackAllFailed": "No s'ha pogut seguir a ningú",
     "followBackAll": "Segueix a tothom",
     "findingFollowers": "Cercant seguidors...",
     "followingBackProgress": "Seguint a {{completed}} de {{total}}",

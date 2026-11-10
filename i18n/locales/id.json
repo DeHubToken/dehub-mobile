@@ -7791,6 +7791,7 @@
     "requests": "Permintaan",
     "follow": "Ikuti",
     "followBack": "Ikuti balik",
+    "followBackAllFailed": "Tidak dapat mengikuti siapa pun kembali",
     "followBackAll": "Mengikuti balik semua",
     "findingFollowers": "Mencari pengikut...",
     "followingBackProgress": "Mengikuti balik {{completed}} dari {{total}}",

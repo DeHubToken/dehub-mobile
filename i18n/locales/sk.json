@@ -7827,6 +7827,7 @@
     "requests": "Žiadosti",
     "follow": "Sledovať",
     "followBack": "Opätovať sledovanie",
+    "followBackAllFailed": "Nepodarilo sa nikoho sledovať späť",
     "followBackAll": "Sledujte všetko späť",
     "findingFollowers": "Hľadajú sa sledovatelia...",
     "followingBackProgress": "Sledujem späť {{completed}} z {{total}}",

@@ -7702,6 +7702,7 @@
     "requests": "คำขอ",
     "follow": "ติดตาม",
     "followBack": "ติดตามกลับ",
+    "followBackAllFailed": "ไม่สามารถติดตามผู้ใช้ได้",
     "followBackAll": "ติดตามกลับทุกคน",
     "findingFollowers": "หาแฟนเพื่อน...",
     "followingBackProgress": "ติดตามกลับ {{completed}} คนที่ {{total}} คน",

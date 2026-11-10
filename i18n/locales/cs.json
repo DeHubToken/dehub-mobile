@@ -7726,6 +7726,7 @@
     "requests": "Žádosti",
     "follow": "Sledovat",
     "followBack": "Oplatit sledování",
+    "followBackAllFailed": "Nebylo možné následovat nikoho zpět",
     "followBackAll": "Následovat zpět všechny",
     "findingFollowers": "Hledám následovníky...",
     "followingBackProgress": "Následuji zpět {{completed}} z {{total}}",

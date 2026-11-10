@@ -7722,6 +7722,7 @@
     "requests": "Taotlused",
     "follow": "Jälgi",
     "followBack": "Vastujälgimine",
+    "followBackAllFailed": "Kellelegi ei õnnestunud vastu tulla",
     "followBackAll": "Järgi kõiki",
     "findingFollowers": "Otsin järgijaid...",
     "followingBackProgress": "Tagasi {{completed}}/{{total}} -st",

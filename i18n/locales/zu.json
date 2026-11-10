@@ -7749,6 +7749,7 @@
     "requests": "Izicelo",
     "follow": "Landela",
     "followBack": "Landela emuva",
+    "followBackAllFailed": "Ayikwazanga ukulandela noma ubani emuva",
     "followBackAll": "Landela konke",
     "findingFollowers": "Kuthola abalandeli...",
     "followingBackProgress": "Ukulandela emuva {{completed}} of {{total}}",

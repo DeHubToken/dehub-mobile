@@ -7708,6 +7708,7 @@
     "requests": "Ɲiningali",
     "follow": "O kɔ, a ka tugu a",
     "followBack": "O kɔ, a ka segi ka na",
+    "followBackAllFailed": "Mɔgɔ si tɛ se ka tugu a kɔ",
     "followBackAll": "O kɔ, a ye koo bɛɛ kɛ",
     "findingFollowers": "Ka tugu mɔgɔ kɔ...",
     "followingBackProgress": "{{completed}} ye {{total}} kɔnɔ ka sisan",

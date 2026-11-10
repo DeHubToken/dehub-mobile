@@ -5714,6 +5714,7 @@
     "requests": "طلبات",
     "follow": "متابعة",
     "followBack": "متابعة رد",
+    "followBackAllFailed": "لم يتمكن من متابعة أي شخص",
     "followBackAll": "متابعة الجميع",
     "findingFollowers": "جارٍ العثور على المتابعين...",
     "followingBackProgress": "متابعة {{completed}} من أصل {{total}}",

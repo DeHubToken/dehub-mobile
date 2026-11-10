@@ -7733,6 +7733,7 @@
     "requests": "בקשות",
     "follow": "עקוב",
     "followBack": "עקוב בחזרה",
+    "followBackAllFailed": "לא ניתן היה לעקוב אחר אף אחד בחזרה",
     "followBackAll": "עקוב אחר הכל",
     "findingFollowers": "מחפש עוקבים...",
     "followingBackProgress": "עוקבים אחרי {{completed}} מתוך {{total}}",

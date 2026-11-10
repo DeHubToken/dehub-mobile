@@ -5706,6 +5706,7 @@
     "requests": "Solicitudes",
     "follow": "Seguir",
     "followBack": "Seguir de vuelta",
+    "followBackAllFailed": "No se pudo seguir a nadie de vuelta",
     "followBackAll": "Seguir a todos",
     "findingFollowers": "Buscando seguidores...",
     "followingBackProgress": "Siguiendo a {{completed}} de {{total}}",

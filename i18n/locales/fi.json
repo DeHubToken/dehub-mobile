@@ -7722,6 +7722,7 @@
     "requests": "Pyynnöt",
     "follow": "Seuraa",
     "followBack": "Vastaa seurantaan",
+    "followBackAllFailed": "Ei voitu seurata ketään takaisin",
     "followBackAll": "Seuraa kaikkia takaisin",
     "findingFollowers": "Etsi seuraajia...",
     "followingBackProgress": "Seurasit takaisin {{completed}} {{total}}",

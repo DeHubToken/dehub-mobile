@@ -7700,6 +7700,7 @@
     "requests": "Request",
     "follow": "Follow",
     "followBack": "Follow am bak",
+    "followBackAllFailed": "Wetin no fit follow back a person?",
     "findingFollowers": "Fo findin followa...",
     "requested": "Don aks",
     "followsYou": "I di follow yu",

@@ -7665,6 +7665,7 @@
     "requests": "请求",
     "follow": "关注",
     "followBack": "回关",
+    "followBackAllFailed": "无法跟随任何人",
     "followBackAll": "跟随所有人",
     "findingFollowers": "寻找追随者...",
     "followingBackProgress": "跟随 {{completed}} 个 {{total}}",

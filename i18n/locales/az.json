@@ -7722,6 +7722,7 @@
     "requests": "Xahişlər",
     "follow": "Təqib et",
     "followBack": "Geri təqib et",
+    "followBackAllFailed": "Hər kəsi izləmək mümkünsüz idi",
     "followBackAll": "Hər kəsi izləyin",
     "findingFollowers": "İzleyicilərin tapılması...",
     "followingBackProgress": "Geri qayıtdıqdan sonra {{completed}} {{total}}",

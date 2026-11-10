@@ -5705,6 +5705,7 @@
     "requests": "İstekler",
     "follow": "Takip Et",
     "followBack": "Takip Et",
+    "followBackAllFailed": "Kimseyi geri takip edemedi",
     "followBackAll": "Tümünü geri takip et",
     "findingFollowers": "Takipçiler bulunuyor...",
     "followingBackProgress": "{{completed}}/{{total}} takip ediliyor",

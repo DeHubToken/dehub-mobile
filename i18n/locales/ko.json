@@ -7794,6 +7794,7 @@
     "requests": "요청",
     "follow": "팔로우",
     "followBack": "맞팔로우",
+    "followBackAllFailed": "누구도 팔로우하지 못했습니다",
     "followBackAll": "모두 팔로우",
     "findingFollowers": "팔로워 찾기...",
     "followingBackProgress": "{{completed}} 중 {{total}}을/를 팔로우합니다",

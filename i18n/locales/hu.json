@@ -7733,6 +7733,7 @@
     "requests": "Kérések",
     "follow": "Követés",
     "followBack": "Viszonzás",
+    "followBackAllFailed": "Nem sikerült visszakozni senkire",
     "followBackAll": "Visszafigyelj mindenkit",
     "findingFollowers": "Követők keresése…",
     "followingBackProgress": "Visszafigyel {{completed}}-at {{total}}-ből",

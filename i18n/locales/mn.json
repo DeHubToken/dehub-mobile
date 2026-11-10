@@ -7717,6 +7717,7 @@
     "requests": "Хүсэлтүүд",
     "follow": "Дагах",
     "followBack": "Буцаад дагах",
+    "followBackAllFailed": "Буцаж хэн нэгнийг дагаж чадсангүй",
     "followBackAll": "Бүгдийг нь дагах",
     "findingFollowers": "Дагагчид олдож байна...",
     "followedBackSome": "{{followed}} people-г дагасан; {{failed}} бүтэлгүйтсэн",

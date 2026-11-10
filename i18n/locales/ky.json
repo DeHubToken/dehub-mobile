@@ -7702,6 +7702,7 @@
     "requests": "Суроо-талаптар",
     "follow": "Жазылуу",
     "followBack": "Жазылуу",
+    "followBackAllFailed": "Эч кимди артка кайтарууга болбоду",
     "followBackAll": "Баарын артка кайтаруу",
     "findingFollowers": "Жолдоочуларды табуу...",
     "followingBackProgress": "Кийинки {{completed}} of {{total}}",

@@ -7711,6 +7711,7 @@
     "requests": "Ngā Tono",
     "follow": "Aroha mai",
     "followBack": "Aroha mai anō",
+    "followBackAllFailed": "E kore e taea e ahau te whai i tetahi i muri",
     "followBackAll": "Haere ki muri i nga mea katoa",
     "findingFollowers": "Te kimi i ngā kaiwhaiwhai...",
     "followingBackProgress": "Tō muri mai {{completed}} {{total}}",

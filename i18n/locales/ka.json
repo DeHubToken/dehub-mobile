@@ -7742,6 +7742,7 @@
     "requests": "მოთხოვნები",
     "follow": "გამოწერა",
     "followBack": "ორმხრივი გამოწერა",
+    "followBackAllFailed": "უკან ვერავინ მიჰყვებოდა",
     "followBackAll": "გაიმიჯნე მე",
     "findingFollowers": "მიმდევრების პოვნა...",
     "followedBackSome": "უკან {{followed}}PEOPLE; {{failed}} ვერ მოხერხდა",

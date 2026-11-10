@@ -7793,6 +7793,7 @@
     "requests": "Solicitações",
     "follow": "Seguir",
     "followBack": "Seguir de volta",
+    "followBackAllFailed": "Não foi possível seguir ninguém de volta",
     "followBackAll": "Seguir tudo de volta",
     "findingFollowers": "A encontrar seguidores...",
     "followingBackProgress": "A seguir {{completed}} de {{total}}",
