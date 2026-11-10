@@ -7699,6 +7699,8 @@
     "requests": "Request Dem",
     "follow": "Follow",
     "followBack": "Follow back",
+    "findingFollowers": "Finding followers...",
+    "everyoneFollowedBack": "M chọrọ follow back everybodi.",
     "requested": "Don request",
     "followsYou": "E dey follow you",
     "searchPlaceholder": "Find Am",
