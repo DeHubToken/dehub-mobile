@@ -112,10 +112,10 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
       scope={`screen:${name}`}
       renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
     >
-      {/* iPhone only. On Android the System Light colour pass already turns
-          the dark class colours light, so light variables here were turned
-          around a second time: black pages, white titles on light bars. */}
-      <View style={[{ flex: 1 }, Platform.OS === "ios" && !isLight ? themeVars : null]}>{children}</View>
+      {/* iPhone only, and the dark values there under System Light too
+          (useThemeRootStyle): the colour pass turns them light on both
+          platforms, so light values were turned around a second time. */}
+      <View style={[{ flex: 1 }, Platform.OS === "ios" ? themeVars : null]}>{children}</View>
     </ErrorBoundary>
   );
 };
