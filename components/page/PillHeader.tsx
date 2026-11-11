@@ -235,7 +235,7 @@ export default function PillHeader({
                     style={PILL_ACTION}
                     hitSlop={4}
                     accessibilityRole="button"
-                    accessibilityLabel={drawerOpen ? t("search.close", "Close search") : t("search.open", "Search")}
+                    accessibilityLabel={drawerOpen ? t("copy.55656b5e434f", "Close search") : t("common.search", "Search")}
                     accessibilityState={{ expanded: drawerOpen }}
                   >
                     <Icon name={drawerOpen ? "X" : "Search"} size={16} color={drawerOpen ? ink : softInk} strokeWidth={1.8} />
