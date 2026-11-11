@@ -2,6 +2,11 @@ name: App Store status
 
 on:
   workflow_dispatch:
+    inputs:
+      release_if_approved:
+        description: Release the version if Apple approved it and it waits on us
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -23,4 +28,5 @@ jobs:
       - name: Print App Store and TestFlight status
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          RELEASE_IF_APPROVED: ${{ inputs.release_if_approved }}
         run: node scripts/app-store-status.mjs

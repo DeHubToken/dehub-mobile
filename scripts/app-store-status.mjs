@@ -1,5 +1,8 @@
 // Prints where the iOS app stands with Apple: App Store versions, review
-// submissions and TestFlight beta review for the newest builds. Read only.
+// submissions and TestFlight beta review for the newest builds.
+// With RELEASE_IF_APPROVED=true it also releases a version that Apple has
+// approved and is waiting on us ("Pending Developer Release"); nothing else
+// is ever changed.
 // Uses the App Store Connect team key stored with the Expo project; the key
 // never leaves this process and is never printed.
 import { createSign } from 'node:crypto';
@@ -49,14 +52,16 @@ function token(key) {
 
 const jwt = token(await loadKey());
 
-async function get(path) {
+async function get(path, method = 'GET', body) {
   const res = await fetch(`https://api.appstoreconnect.apple.com${path}`, {
-    headers: { authorization: `Bearer ${jwt}` },
+    method,
+    headers: { authorization: `Bearer ${jwt}`, 'content-type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined,
     signal: AbortSignal.timeout(30_000),
   });
   const text = await res.text();
   const json = text ? JSON.parse(text) : {};
-  if (res.status !== 200) {
+  if (res.status !== 200 && res.status !== 201) {
     const detail = (json.errors ?? []).map(e => `${e.code}: ${e.detail ?? e.title}`).join('; ');
     return { error: `HTTP ${res.status} ${detail}`, data: [], included: [] };
   }
@@ -92,6 +97,23 @@ for (const b of builds.data) {
   const review = inc('betaAppReviewSubmissions', b.relationships?.betaAppReviewSubmission);
   const detail = inc('buildBetaDetails', b.relationships?.buildBetaDetail);
   say(`- ${pre?.attributes?.version ?? '?'} (${b.attributes.version}): processing ${b.attributes.processingState}${b.attributes.expired ? ', EXPIRED' : ''}, beta review ${review?.attributes?.betaReviewState ?? 'not submitted'}, internal ${detail?.attributes?.internalBuildState ?? '?'}, external ${detail?.attributes?.externalBuildState ?? '?'}, uploaded ${b.attributes.uploadedDate?.slice(0, 16) ?? '?'}`);
+}
+
+if (process.env.RELEASE_IF_APPROVED === 'true') {
+  say('');
+  say('## Release');
+  const waiting = versions.data.find(v => v.attributes.appStoreState === 'PENDING_DEVELOPER_RELEASE');
+  if (!waiting) {
+    say('- nothing approved and waiting to be released');
+  } else {
+    const released = await get('/v1/appStoreVersionReleaseRequests', 'POST', {
+      data: { type: 'appStoreVersionReleaseRequests', relationships: { appStoreVersion: { data: { type: 'appStoreVersions', id: waiting.id } } } },
+    });
+    say(released.error
+      ? `- release of ${waiting.attributes.versionString} failed: ${released.error}`
+      : `- ${waiting.attributes.versionString} released to the App Store (it shows up within a few hours)`);
+    if (released.error) process.exitCode = 1;
+  }
 }
 
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${lines.join('\n')}\n`);
