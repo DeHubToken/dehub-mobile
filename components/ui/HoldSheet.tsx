@@ -87,6 +87,12 @@ const rgba = (c: readonly number[], a: number) => `rgba(${c[0]},${c[1]},${c[2]},
  * For a host list: wrap it in an Animated.View with `style` and `ref`, call
  * `measure()` when a row is held, and pass `onLift` and `top` (as liftTop) to
  * the sheet.
+ *
+ * The host must also turn the list's scrolling off while a row is held
+ * (`scrollEnabled={!held}`). The finger is still down when the list slides up
+ * under it, and Android reads that slide as a drag: the list scrolled back by
+ * nearly the whole lift, so a held line near the bottom ended up under the
+ * sheet and the glow sat on an older line.
  */
 export function useHoldLift() {
   const lift = useSharedValue(0);

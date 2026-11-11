@@ -190,8 +190,7 @@ export interface LoginStackHeadline {
 
 export default function LoginShortsStack({ viewportHeight, reservedHeight = 360, headline }: { viewportHeight?: number; reservedHeight?: number; headline?: LoginStackHeadline }) {
   const { t } = useTranslation();
-  const { theme, isLight, colors } = useAppTheme();
-  const plain = theme === "system" || theme === "minimal";
+  const { theme, isLight } = useAppTheme();
   const still = !!useReducedMotion();
   const [lanes] = useState(() => loginClipLanes(Object.keys(CLIPS) as ClipName[]));
   const { width, height: screenH } = useWindowDimensions();
@@ -205,8 +204,17 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
     return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); };
   }, []);
 
-  // Headline accent, written dark (System Light inverts the grey to ink).
-  const accent = theme === "hazy" ? "#C9A7FF" : plain ? "#FFFFFF" : colors.accent;
+  // Neon tint shared by the logo and the headline. The headline is written
+  // dark (white); System Light flips it to ink, where it gets no glow.
+  const tint = theme === "hazy" ? "hazy" : theme === "osaka" ? "osaka" : isLight ? "light" : "white";
+  const sign = isLight
+    ? null
+    : {
+        color: tint === "hazy" ? "#E4D2FF" : tint === "osaka" ? "#FFC2E0" : "#FFFFFF",
+        textShadowColor: tint === "hazy" ? "#C9A7FF" : tint === "osaka" ? "#FF6FB5" : "rgba(255,255,255,0.7)",
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 14,
+      };
   const line = isLight ? "rgba(11,11,13,0.08)" : theme === "osaka" ? "rgba(80,200,255,0.4)" : "rgba(255,255,255,0.10)";
 
   // The screen pads 24 each side; the lanes sit 10 from the edges.
@@ -240,15 +248,14 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
         </MaskedView>
       </KeepDarkScope>
       <View style={styles.headline}>
-        <NeonLogo tint={theme === "hazy" ? "hazy" : theme === "osaka" ? "osaka" : isLight ? "light" : "white"} still={still} />
-        <Text style={styles.headlineText} accessibilityRole="header">
+        <NeonLogo tint={tint} still={still} />
+        {/* Both lines lit like the logo, so logo and headline read as one sign. */}
+        <Text style={[styles.headlineText, sign]} accessibilityRole="header">
           {headline?.top ?? t("loginStack.headlineTop", "You will own everything")}
         </Text>
-        <View style={{ opacity: plain ? 0.6 : 1 }}>
-          <Text style={[styles.headlineText, { color: accent }]}>
-            {headline?.accent ?? t("loginStack.headlineAccent", "and be happy.")}
-          </Text>
-        </View>
+        <Text style={[styles.headlineText, sign]}>
+          {headline?.accent ?? t("loginStack.headlineAccent", "and be happy.")}
+        </Text>
       </View>
     </View>
   );

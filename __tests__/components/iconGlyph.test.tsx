@@ -63,7 +63,9 @@ describe("Icon glyphs on Android", () => {
     const tree = render(<Icon name="Activity" size={20} color="#fff" />).toJSON() as any;
     expect(tree.type).toBe("Text");
     expect(tree.children).toEqual([iconGlyphs.Activity]);
-    expect(tree.props.style).toMatchObject({ fontFamily: "LucideIcons", width: 20, height: 20, color: "#fff" });
+    // The box is wider than the icon, its extra width taken back by the
+    // margins, so ink that runs to the em's edges is not clipped (Radio).
+    expect(tree.props.style).toMatchObject({ fontFamily: "LucideIcons", width: 30, marginHorizontal: -5, height: 20, color: "#fff" });
     // 20dp is 56.25px here; the font size lands just under 56px so Android's
     // round-up to whole pixels gives the box's own height.
     expect(Math.ceil(tree.props.style.fontSize * 2.8125)).toBe(56);
@@ -124,7 +126,7 @@ describe("Icon glyphs on Android", () => {
         const tree = render(<Icon name={name} size={20} color="#a1a1aa" />).toJSON() as any;
         expect(tree.type).toBe("Text");
         expect(tree.children).toEqual([cutIconGlyphs[name].o]);
-        expect(tree.props.style).toMatchObject({ fontFamily: "CutIcons", width: 20, height: 20, color: "#a1a1aa" });
+        expect(tree.props.style).toMatchObject({ fontFamily: "CutIcons", width: 30, marginHorizontal: -5, height: 20, color: "#a1a1aa" });
       }
     });
 

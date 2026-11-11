@@ -31,6 +31,7 @@ jest.mock('react-native-reanimated', () => ({
   useSharedValue: (value: number) => ({ value }),
   useAnimatedStyle: () => ({}),
   withTiming: (value: number) => value,
+  withSpring: (value: number) => value,
   withDelay: (_ms: number, value: number) => value,
 }));
 jest.mock('@react-navigation/core', () => ({ NavigationContext: require('react').createContext(undefined) }));
@@ -55,18 +56,31 @@ import ScreenHeader from '../../components/ScreenHeader';
 import { APP_THEMES } from '../../theme/colors';
 import { PageHeaderContext } from '../../components/page/PageHeaderContext';
 
-it.each(APP_THEMES)('puts page tabs inside the pill and search right under it in %s', (theme) => {
+it.each(APP_THEMES)('puts page tabs inside the pill and search in a drawer under it in %s', (theme) => {
   jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
   const TabProbe = () => <span data-in-header={React.useContext(PageHeaderContext)} />;
   const SearchProbe = () => <input data-in-header={React.useContext(PageHeaderContext)} />;
   let tree!: ReactTestRenderer;
   act(() => { tree = create(<ScreenHeader title="Accounts" tabs={<TabProbe />}><SearchProbe /></ScreenHeader>); });
   expect(tree.root.findByType('span').props['data-in-header']).toBe(true);
-  expect(tree.root.findByType('input').props['data-in-header']).toBe(true);
-  const pill = tree.root.findByType('NavPillSurface' as any).parent!;
+  // The search waits behind the pill's search button until it is pressed.
+  expect(tree.root.findAllByType('input')).toHaveLength(0);
+  const pill = tree.root.findAllByType('NavPillSurface' as any)[0].parent!;
   expect(pill.findAllByType('span')).toHaveLength(1);
+  const button = tree.root.find((node) => node.props.testID === 'pill-search-button' && typeof node.props.onPress === 'function');
+  act(() => { button.props.onPress(); });
+  expect(tree.root.findByType('input').props['data-in-header']).toBe(true);
   expect(pill.findAllByType('input')).toHaveLength(0);
-  expect(tree.root.findAllByType('input')).toHaveLength(1);
+  const drawer = tree.root.findAll((node) => node.props.testID === 'pill-search-drawer')[0];
+  expect(drawer.findAllByType('input')).toHaveLength(1);
+  act(() => tree.unmount());
+});
+
+it('draws the page title on one line, with no subtitle under it', () => {
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader title="Work" subtitle="Find paid tasks" />); });
+  const texts = tree.root.findAll((node) => typeof node.props.children === 'string' && node.props.children === 'Find paid tasks');
+  expect(texts).toHaveLength(0);
   act(() => tree.unmount());
 });
 
@@ -185,8 +199,13 @@ it.each(APP_THEMES)('keeps the inbox title, search, and new-message action toget
   act(() => { tree = create(<ScreenHeader appearance="island" canGoBack={false} title="Messages"
     rightContent={<button onClick={onNew}>New</button>}><input /></ScreenHeader>); });
   expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toContain('Messages');
+  // The search waits in a drawer under the pill, behind the pill's search button.
+  expect(tree.root.findAllByType('input')).toHaveLength(0);
+  const search = tree.root.find((node) => node.props.testID === 'pill-search-button' && typeof node.props.onPress === 'function');
+  act(() => { search.props.onPress(); });
   expect(tree.root.findAllByType('input')).toHaveLength(1);
-  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(1);
+  // The pill and the drawer share the pill's material.
+  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(2);
   act(() => tree.root.findByType('button').props.onClick());
   expect(onNew).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
