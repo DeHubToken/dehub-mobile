@@ -7,6 +7,7 @@ import Animated, {
   interpolateColor,
 } from "react-native-reanimated";
 import { useAppTheme } from "../../context/ThemeContext";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 
 type CustomSwitchProps = {
   value: boolean;
@@ -81,9 +82,22 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
       accessibilityState={{ checked: value, disabled }}
       style={disabled ? { opacity: 0.5 } : undefined}
     >
-      <Animated.View style={[styles.track, trackStyle]}>
-        <Animated.View style={[styles.thumb, thumbStyle]} />
-      </Animated.View>
+      {/* The resting colours and position are drawn plainly too. On iPhone an
+          animated style can miss its first frame on a switch mounted below the
+          fold (Settings > Notifications), and the switch was then drawn with
+          no colour at all: an invisible track and thumb. KeepDarkScope keeps
+          System Light's colour pass off these exact colours. */}
+      <KeepDarkScope>
+        <Animated.View style={[styles.track, { backgroundColor: value ? onTrack : offTrack }, trackStyle]}>
+          <Animated.View
+            style={[
+              styles.thumb,
+              { backgroundColor: value ? onThumb : offThumb, transform: [{ translateX: value ? TRAVEL : 0 }] },
+              thumbStyle,
+            ]}
+          />
+        </Animated.View>
+      </KeepDarkScope>
     </Pressable>
   );
 };

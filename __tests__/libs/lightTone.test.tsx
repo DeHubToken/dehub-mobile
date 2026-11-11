@@ -74,3 +74,29 @@ it('keeps dim labels, icons and placeholders readable on white', () => {
   expect(toneColor('#52525B', true)).toBe('hsla(0,0%,71%,1)');
   expect(toneColor('#18181B', false, true)).toBe('hsla(0,0%,94.5%,1)');
 });
+
+it('keeps a Pressable style function routed past NativeWind after the colour pass', () => {
+  setLightTone(true);
+  const Pressable = 'Pressable';
+  const style = ({ pressed }: { pressed: boolean }) => ({ minWidth: 40, opacity: pressed ? 0.6 : 1 });
+  const [type, props] = tone(Pressable, { style, onPress: () => {}, children: 'tab' });
+  expect(type).toBe(ToneFill);
+  // NativeWind deletes the flag from the element it was set on (the ToneFill),
+  // so the real element has to carry its own.
+  let tree: any;
+  act(() => { tree = create(React.createElement(type, props)); });
+  const inner = tree.root.findByType(Pressable as any);
+  expect(inner.props.cssInterop).toBe(false);
+  expect(inner.props.style({ pressed: false })).toEqual({ minWidth: 40, opacity: 1 });
+});
+
+it('keeps a dark surface its own fill, not just its children', () => {
+  setLightTone(true);
+  // React Native draws a View through its own JSX; that inner element must
+  // also see the dark surface, or the surface's fill is turned around.
+  const Inner = (p: any) => React.createElement(...tone(View, { style: p.style, children: p.children }) as [any, any]);
+  const [type, props] = tone(Inner, { className: 'dark-surface', style: { backgroundColor: '#F2F2F4' }, children: 'x' });
+  let tree: any;
+  act(() => { tree = create(React.createElement(type, props)); });
+  expect(tree.root.findByType(View as any).props.style).toEqual({ backgroundColor: '#F2F2F4' });
+});

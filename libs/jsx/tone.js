@@ -227,6 +227,13 @@ function toneProps(props) {
 
 const DARK_SURFACE = /(?:^|\s)dark-surface(?=\s|$)/;
 
+/** Renders `__keepType` with everything it draws, itself included, on the dark colours. */
+const KeepDarkHost = React.forwardRef(function KeepDarkHost(props, ref) {
+  const { __keepType: type, ...rest } = props;
+  return jsxAny(KeepDark.Provider, { value: true, children: jsxAny(type, ref ? { ...rest, ref } : rest) });
+});
+
+let routeProps;
 const ToneFill = React.forwardRef(function ToneFill(props, ref) {
   const { __toneType: type, __toned: _toned, ...rest } = props;
   const dark = React.useContext(KeepDark);
@@ -234,7 +241,15 @@ const ToneFill = React.forwardRef(function ToneFill(props, ref) {
   // element was made: a parent can clone in more (ScrollView hands its
   // refreshControl a `style`), and the earlier copy would drop them.
   const chosen = dark ? rest : toneProps(rest);
-  return jsxAny(type, ref ? { ...chosen, ref } : chosen);
+  // A Pressable's `style={({ pressed }) => ...}` needs `cssInterop: false` to
+  // get past NativeWind (./shape.js routeProps). That flag was set on this
+  // ToneFill element, and NativeWind deletes it from the props it is handed,
+  // so it never reached the real element: in System Light every such
+  // Pressable lost its whole style (the Notifications pill's tabs shrank to
+  // their bare icons). It is worked out again here for the real element.
+  if (!routeProps) routeProps = require("./shape").routeProps;
+  const routed = routeProps(chosen);
+  return jsxAny(type, ref ? { ...routed, ref } : routed);
 });
 
 // Picture types. Read lazily: the JSX runtime loads before any of them.
@@ -284,7 +299,7 @@ function isMediaFrame(type, props) {
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
     if (!child || typeof child !== "object" || !child.props) continue;
-    const t = child.type === ToneFill ? child.props.__toneType : child.type;
+    const t = child.type === ToneFill ? child.props.__toneType : child.type === KeepDarkHost ? child.props.__keepType : child.type;
     if (isMediaType(t) && fills(child.props.style)) return true;
   }
   return false;
@@ -294,7 +309,12 @@ function isMediaFrame(type, props) {
 function tone(type, props) {
   if (!on || !props || typeof props !== "object" || type === ToneFill) return [type, props];
   if (typeof props.className === "string" && DARK_SURFACE.test(props.className)) {
-    return [type, { ...props, children: jsxAny(KeepDark.Provider, { value: true, children: props.children }) }];
+    // The whole element goes inside the provider, not just its children: a
+    // View draws through React Native's own JSX (View -> its native view),
+    // and that inner element also passes through here. Outside the provider
+    // it had the surface's own fill turned around, so a light profile's pale
+    // text tile (#F2F2F4) came out near-black under its ink words.
+    return [KeepDarkHost, { ...props, __keepType: type }];
   }
   if (isMediaFrame(type, props)) {
     props = { ...props, children: jsxAny(KeepDark.Provider, { value: true, children: props.children }) };
@@ -315,4 +335,4 @@ function KeepDarkScope({ children }) {
   return jsxAny(KeepDark.Provider, { value: true, children });
 }
 
-module.exports = { setLightTone, isLightToneOn, tone, toneColor, KeepDark, KeepDarkScope, ToneFill };
+module.exports = { setLightTone, isLightToneOn, tone, toneColor, KeepDark, KeepDarkScope, KeepDarkHost, ToneFill };
