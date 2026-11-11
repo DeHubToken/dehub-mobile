@@ -657,7 +657,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         {panelOverBlur ? (
           <SheetGlassFill backdropBlurred style={[StyleSheet.absoluteFill, { backgroundColor: SHEET_GLASS_FILL }]} />
         ) : androidGlass ? (
-          <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} live />
+          // Live only while the menu is up. Closed, this fallback used to
+          // keep a blur sampling the feed for a menu nobody can see, and it
+          // re-attached each time the feed came back from under a profile,
+          // blanking the feed for a frame or two.
+          <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} live={backdropLive} />
         ) : null}
         {/* Jungle's plank grain and War's HUD corners, as on the feed chrome. */}
         {!androidGlass && skin?.grain ? (
