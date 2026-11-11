@@ -14728,6 +14728,20 @@
     "offBody": "Kɔdi dɔ don i ka app kɔnɔ walasa ka a tiɲɛ. Donni bɛna kɛ ni i ka donni kɔrɔ dɔrɔn ye tugun.",
     "newCodesTitle": "Backup code kuraw sɔrɔ",
     "newCodesBody": "Kɔdi dɔ don i ka app kɔnɔ. I ka backup code kɔrɔw tɛna baara kɛ tugun.",
-    "codeLabel": "Kɔdi nɔrɔ tan-fila"
+    "codeLabel": "Kɔdi nɔrɔ tan-fila",
+    "wrongCode": "Kɔdi in tɛ kelen ye. Ɛnɛ kura min bɛ i ka app kɔnɔ, i ka o bɔ.",
+    "stackTop": "Sɛbɛ kura kelen",
+    "trustDevice": "Kana ɲininga tugun nin masin in kan kalo 30 kɔnɔ",
+    "rowOn": "A bɛ a la. {{count}} backup kɔdi dɔgɔyara.",
+    "rowOff": "Kɔdi ɲininga i ka authenticator app fɛ i ka doni tuma.",
+    "turnedOff": "Doni-fɛn fila kɔdi bɛ a la",
+    "noApp": "Authenticator app si tɛ yɛrɛ. Kɔpi setup key in ka don i ka app kɔnɔ a nɔ na.",
+    "introTitle": "Kɔfɛ-kɔfɛ-kɔdi dɔ fara a kan",
+    "introBody": "I ka doni tuma, u bɛna 6-digit kɔdi ɲininga i fɛ i ka telefon ka authenticator app kɔnɔ, i n'a fɔ Google Authenticator, Authy walima 1Password. Mɔgɔ min bɛ i ka password, email walima wallet bɛ, o tɛ se ka don n'o tɛ.",
+    "linkTitle": "I ka authenticator app siri",
+    "linkBodyPhone": "Tɛgɛ kɔrɔta butɔn in kan walasa ka Riftn fara i ka authenticator app kan. I bɛ masin wɛrɛ kan wa? Yira QR kɔdi in na ka o scan a kan.",
+    "confirmTitle": "Kɔdi in don i ka app kɔnɔ",
+    "confirmBody": "Kɔdi 6-digit min bɛ Riftn kɔnɔ i ka app kɔnɔ, o don. A bɛ yɛlɛma sekɔndi 30 o 30.",
+    "codesTitle": "I ka backup kɔdi in kɔnɔna"
   }
 }
