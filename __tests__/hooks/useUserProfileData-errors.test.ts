@@ -2,6 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react-native";
 
 const mockGetAccount = jest.fn();
 
+jest.mock("../../libs/haptics", () => ({ haptic: { tap: jest.fn(), press: jest.fn(), select: jest.fn(), success: jest.fn(), error: jest.fn() } }));
 jest.mock("../../services/user.service", () => ({
   getAccount: (...args: unknown[]) => mockGetAccount(...args),
   followUser: jest.fn(),
