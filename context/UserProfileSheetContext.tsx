@@ -43,6 +43,9 @@ const UserProfilePresentationContext = createContext<PresentationCtxValue | unde
 const NO_FEED_PROFILE: FeedProfileCtxValue = { feedProfileVisible: false, feedProfileIdentifier: null };
 const FeedProfileContext = createContext<FeedProfileCtxValue>(NO_FEED_PROFILE);
 
+/** How long a closed profile stays built for an instant return. */
+const KEEP_PROFILE_MS = 45_000;
+
 export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { theme } = useAppTheme();
   const [visible, setVisible] = useState(false);
@@ -52,6 +55,35 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const [options, setOptions] = useState<{ initialHeightPct?: number; source?: string } | null>(null);
   const [presentation, setPresentation] = useState<ProfilePresentation>('modal');
   const feedProfileHostActiveRef = useRef(false);
+  // The profile just closed stays built, out of sight, for a short while:
+  // going back into the same one shows it at once instead of building the
+  // page and its grid again. Android only; the iPhone sheet unmounts with
+  // its Modal. Nothing in it plays while it is parked (see the sheet).
+  const [kept, setKept] = useState<string | null>(null);
+  const keptTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const identifierRef = useRef(identifier);
+  identifierRef.current = identifier;
+  const presentationRef = useRef(presentation);
+  presentationRef.current = presentation;
+  const dropKept = useCallback(() => {
+    if (keptTimerRef.current) clearTimeout(keptTimerRef.current);
+    keptTimerRef.current = null;
+    setKept(null);
+  }, []);
+  /** The close has finished: forget the open profile, park it if it can be. */
+  const clearProfile = useCallback(() => {
+    const closed = identifierRef.current;
+    if (keptTimerRef.current) clearTimeout(keptTimerRef.current);
+    keptTimerRef.current = null;
+    if (Platform.OS === 'android' && closed && presentationRef.current === 'modal') {
+      setKept(closed);
+      keptTimerRef.current = setTimeout(() => { keptTimerRef.current = null; setKept(null); }, KEEP_PROFILE_MS);
+    } else {
+      setKept(null);
+    }
+    setIdentifier(null);
+    setOptions(null);
+  }, []);
   const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // The covered page comes back the moment the profile has slid away: the old
   // 300ms matched a slower JS-driven slide and left Back waiting on nothing.
@@ -72,6 +104,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
       clearTimerRef.current = null;
     }
     // Set all state together to prevent flicker
+    dropKept();
     setIdentifier(id);
     setOptions(opts || null);
     // Android uses the profile's own back control in every theme.
@@ -79,7 +112,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
       resolveProfilePresentation(feedProfileHostActiveRef.current, opts?.source, theme, Platform.OS),
     );
     setVisible(true);
-  }, [theme]);
+  }, [theme, dropKept]);
 
   const setFeedProfileHostActive = useCallback((active: boolean) => {
     feedProfileHostActiveRef.current = active;
@@ -94,11 +127,10 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
       clearTimerRef.current = null;
     }
     clearTimerRef.current = setTimeout(() => {
-      setIdentifier(null);
-      setOptions(null);
+      clearProfile();
       clearTimerRef.current = null;
     }, CLOSE_CLEAR_DELAY_MS);
-  }, []);
+  }, [clearProfile]);
 
   const visibleRef = useRef(visible);
   visibleRef.current = visible;
@@ -109,9 +141,8 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
       clearTimeout(clearTimerRef.current);
       clearTimerRef.current = null;
     }
-    setIdentifier(null);
-    setOptions(null);
-  }, []);
+    clearProfile();
+  }, [clearProfile]);
   const isProfileVisible = useCallback(() => visibleRef.current, []);
   const visibleListeners = useRef(new Set<(visible: boolean) => void>());
   const subscribeProfileVisible = useCallback((listener: (visible: boolean) => void) => {
@@ -220,7 +251,8 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
           </FeedPlaybackActiveContext.Provider>
         <UserProfileBottomSheet
           visible={visible && presentation === 'modal'}
-          usernameOrAddress={identifier}
+          usernameOrAddress={identifier ?? kept}
+          parked={identifier === null && kept !== null}
           onClose={hideUserProfile}
           onOpenComplete={handleOpenComplete}
           onCloseComplete={handleCloseComplete}
