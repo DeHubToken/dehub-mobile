@@ -59,7 +59,7 @@ import { WEBSITE_LINK } from "../../config";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import type { TranslateToggle } from "../ui/TranslateButton";
 import LiveViewerChat, { type ChatActivity, type ChatHoldLayout } from "../LiveViewer/LiveViewerChat";
-import HoldSheet, { type HoldTile } from "../ui/HoldSheet";
+import HoldSheet, { HOLD_LIFT_TIMING, HOLD_SETTLE_TIMING, type HoldTile } from "../ui/HoldSheet";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import LiveViewerActionBar from "../LiveViewer/LiveViewerActionBar";
 import LiveViewerPills from "../LiveViewer/LiveViewerPills";
@@ -1690,6 +1690,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     setHeld({ activity, translate, layout: layout ?? null });
   }, [canModerate]);
   const closeHeld = useCallback(() => setHeld(null), []);
+  // The held line slides up with the chat so it clears the hold sheet; the
+  // newest lines sit at the foot of the screen, right where the sheet opens.
+  const holdLift = useSharedValue(0);
+  const holdLiftStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -holdLift.value }] }));
+  const handleHoldLift = useCallback((px: number) => {
+    holdLift.value = withTiming(px, px ? HOLD_LIFT_TIMING : HOLD_SETTLE_TIMING);
+  }, [holdLift]);
   const me = String(user?.walletAddress || user?.address || "").toLowerCase();
   const heldId = held?.activity.id;
   const heldMessage = heldId ? liveChat.messages.find((m) => m._id === heldId) : undefined;
@@ -1969,7 +1976,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
   
                 {/* The room. Read-only now — saying something is the bar's job. */}
-                <LiveViewerChat activities={chatActivities} onHold={openLineMenu} />
+                <Animated.View style={holdLiftStyle} pointerEvents="box-none">
+                  <LiveViewerChat activities={chatActivities} onHold={openLineMenu} holding={!!held} />
+                </Animated.View>
                 <SettingsOptionModal
                   visible={!!lineMenu}
                   onClose={() => setLineMenu(null)}
@@ -1995,6 +2004,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   reactions={heldReactions}
                   onReaction={handleHeldReaction}
                   tiles={holdTiles}
+                  onLift={handleHoldLift}
                 />
 
                 {/* Say something, or do something: one row of it. */}
