@@ -295,11 +295,16 @@ export function useDrafts(address?: string) {
   }, [address]);
 
   /** Save a new draft and return its id */
+  // Both writes below start from what is in storage, not from `drafts`: the
+  // composer saves the edited copy and then deletes the draft it reopened in
+  // the same tick, through callbacks made before the save re-rendered. Built
+  // from that stale list, the delete wrote the list back without the copy it
+  // had just saved, so an edited draft vanished from Drafts.
   const saveDraft = useCallback(
     async (draft: Omit<Draft, "id" | "createdAt">): Promise<string> => {
       const id = generateId();
       const entry: Draft = { ...draft, id, createdAt: Date.now() };
-      const updated = [entry, ...drafts];
+      const updated = [entry, ...(await readDrafts(address))];
       setDrafts(updated);
       const savedLocally = await writeDrafts(updated, address);
 
@@ -307,21 +312,23 @@ export function useDrafts(address?: string) {
       // is allowed to be slow or to fail without the caller waiting on it.
       const remoteId = await pushRemote(entry, address);
       if (remoteId) {
-        const withRemote = updated.map((d) => (d.id === id ? { ...d, remoteId } : d));
+        const latest = await readDrafts(address);
+        const withRemote = latest.map((d) => (d.id === id ? { ...d, remoteId } : d));
         setDrafts(withRemote);
         await writeDrafts(withRemote, address);
       }
       if (!savedLocally && !remoteId) throw new Error(_copy("copy.028afecc47a4", { defaultValue: "Could not save this draft. Your text is still in the composer." }));
       return id;
     },
-    [drafts, address, _copy],
+    [address, _copy],
   );
 
   /** Delete a draft by id */
   const deleteDraft = useCallback(
     async (id: string): Promise<void> => {
-      const target = drafts.find((d) => d.id === id);
-      const updated = drafts.filter((d) => d.id !== id);
+      const current = await readDrafts(address);
+      const target = current.find((d) => d.id === id) ?? drafts.find((d) => d.id === id);
+      const updated = current.filter((d) => d.id !== id);
       setDrafts(updated);
       await writeDrafts(updated, address);
       await removeRemote(target?.remoteId, address);

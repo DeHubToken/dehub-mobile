@@ -77,7 +77,10 @@ const MultiPostPanel: React.FC = () => {
       }
       refresh();
     } catch (e) {
-      toastError(e, t("multiPost.connectFailed", { platform: PLATFORM_NAMES[platform] }));
+      // The provider's reason comes back in English ("X (Twitter) requires a
+      // payment method..."); show our own words in the reader's language.
+      console.warn("[multipost] connect failed", platform, e);
+      toastError(null, t("multiPost.connectFailed", { platform: PLATFORM_NAMES[platform] }));
     } finally {
       setConnecting(null);
     }

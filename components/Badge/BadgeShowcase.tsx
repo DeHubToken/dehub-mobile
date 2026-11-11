@@ -158,7 +158,7 @@ export default function BadgeShowcase({ tier, promotedFrom, anchor, onClose }: P
       dialogLabel={(i) => t("badgeShowcase.dialogLabel", { tier: BADGE_ORDER[i] })}
       dockLabel={t("badgeShowcase.badges")}
       owned={owned}
-      footer={IS_APP_STORE_BUILD ? undefined : (api) => <HolderActions api={api} />}
+      footer={IS_APP_STORE_BUILD && !purchaseOfferVisible() ? undefined : (api) => <HolderActions api={api} />}
     >
       {(api) => (
         <HolderDetails
@@ -288,7 +288,9 @@ function HolderDetails({
 
   // The App Store build shows the tier and nothing about what it takes to
   // unlock it or what it grants: no threshold, slider, perks or docs link.
-  if (IS_APP_STORE_BUILD) {
+  // The US storefront may point at the website (purchaseOfferVisible), so
+  // there the perks show as on Android and the web.
+  if (IS_APP_STORE_BUILD && !purchaseOfferVisible()) {
     return (
       <View style={{ alignItems: "center", gap: 6 }}>
         {lineKey ? <Text style={styles.cheer}>{t(lineKey)}</Text> : null}

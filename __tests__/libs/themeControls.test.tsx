@@ -62,6 +62,18 @@ it('themes neutral utility fills and labels', () => {
   expect(result.children.props.className).toContain('font-semibold');
 });
 
+it('repaints a white key\'s ink label written as an arbitrary colour', () => {
+  const skin = useSkin('hazy');
+  const result = controlProps({ onPress: jest.fn(), className: 'px-4 bg-white opacity-40',
+    children: createElement('Text', { className: 'text-[#09090B] text-sm' }, 'Send code') });
+  expect(flatten(result.style)).toMatchObject(skin.centre);
+  expect(result.children.props.className).toBe('text-white text-sm');
+  expect(flatten(result.children.props.style).color).toBe(skin.centreIcon);
+  const brand = controlProps({ onPress: jest.fn(), className: 'bg-white',
+    children: createElement('Text', { className: 'text-[#7C3AED]' }, 'Go') });
+  expect(brand.children.props.className).toBe('text-[#7C3AED]');
+});
+
 it('preserves bare actions, progress fills and semantic coloured actions', () => {
   useSkin('hazy');
   for (const props of [
