@@ -2415,6 +2415,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           }
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+          canCast={isVideo && !isLive && !isActuallyGated && !matureGate.isGated}
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
             ? () => { const url = postFileUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}

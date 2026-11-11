@@ -49,6 +49,7 @@ import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
 import CaptionsIcon from "lucide-react-native/dist/esm/icons/captions";
 import CarIcon from "lucide-react-native/dist/esm/icons/car";
 import CaseUpperIcon from "lucide-react-native/dist/esm/icons/case-upper";
+import CastIcon from "lucide-react-native/dist/esm/icons/cast";
 import ChartBarBigIcon from "lucide-react-native/dist/esm/icons/chart-bar-big";
 import ChartColumnIcon from "lucide-react-native/dist/esm/icons/chart-column";
 import ChartNoAxesColumnIcon from "lucide-react-native/dist/esm/icons/chart-no-axes-column";
@@ -379,6 +380,7 @@ export const iconRegistry = {
   Captions: CaptionsIcon,
   Car: CarIcon,
   CaseUpper: CaseUpperIcon,
+  Cast: CastIcon,
   ChartBarBig: ChartBarBigIcon,
   ChartColumn: ChartColumnIcon,
   ChartNoAxesColumn: ChartNoAxesColumnIcon,

@@ -1745,7 +1745,11 @@
     "aiOverview": "Yapay zekaya genel bakış",
     "refreshLinkPreview": "Bağlantı önizlemesini yenile",
     "linkPreviewRefreshed": "Bağlantı önizlemesi yenilendi",
-    "linkPreviewRefreshFailed": "Bu siteye ulaşılamadı. Daha sonra tekrar deneyin."
+    "linkPreviewRefreshFailed": "Bu siteye ulaşılamadı. Daha sonra tekrar deneyin.",
+    "castToTv": "TV'ye yansıt",
+    "castIosDesc": "Apple TV'ye veya akıllı TV'ye AirPlay",
+    "castAndroidDesc": "Ekranını Cast veya Smart View ile yansıt",
+    "castAndroidHelp": "Hızlı ayarları aç, Smart View veya Yayınla'ya dokun, sonra TV'ni seç."
   },
   "filters": {
     "sort": "Sırala",

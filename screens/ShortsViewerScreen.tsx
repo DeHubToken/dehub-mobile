@@ -3367,6 +3367,8 @@ const ShortsViewerScreen = () => {
           currentCategories={activeItem.category || []}
           currentShopLinks={(activeItem as any).shopLinks}
           isSaved={activeEngagement.isSaved}
+          canCast={!activeItem.imageUrls?.length && activeItem.postType !== "live" &&
+            (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount)))}
           onDownloadVideo={activeItem.postType === "short" && !activeItem.imageUrls?.length &&
             (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount))) &&
             !(activeItem as { contentRating?: string }).contentRating?.includes("mature")

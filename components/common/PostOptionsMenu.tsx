@@ -23,6 +23,7 @@ import { reportPostEvent } from "../../services/post-stats.service";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import AssistantNavIcon from "../ui/AssistantNavIcon";
+import CastToTvRow from "./CastToTvRow";
 import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
@@ -183,6 +184,8 @@ export interface PostOptionsMenuProps {
    */
   onToggleSave?: () => void;
   onDownloadVideo?: () => void;
+  /** Video posts: offers "Cast to TV" (AirPlay on iPhone, screen cast on Android). */
+  canCast?: boolean;
   /** Live streams: opens the clip editor on the last minute ("Clip this moment"). */
   onClip?: () => void;
   onRemix?: (mode: 'green-screen' | 'collab' | 'sound' | 'cut') => void;
@@ -286,6 +289,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onDownloadVideo,
+  canCast = false,
   onClip,
   onRemix,
   onInfoPress,
@@ -640,6 +644,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             <OptionRow icon="Download" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />
           )}
+          {canCast && <CastToTvRow onClose={onClose} />}
           {!!onRemix && <OptionRow icon="Film" label={t("remix.title", { defaultValue: "Remix" })} onPress={() => setShowRemix(value => !value)} />}
           {!!onRemix && showRemix && <>
             <OptionRow icon="Camera" label={t("remix.greenScreen", { defaultValue: "Green screen" })} onPress={() => { onClose(); onRemix('green-screen'); }} />
