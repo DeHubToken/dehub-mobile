@@ -145,6 +145,7 @@
     "useNamed": "Naudoti {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Žetonai",
     "chatSlowDown": "Lėčiau! Per daug žinučių iš eilės. Bandyk dar kartą po {{wait}} arba palauk, kol atsakys kas nors kitas.",
     "eabb5c136be4": "Neįmanoma atnaujinti plano",
     "801658c8e591": "Planas nesukurtas — bandykite dar kartą",

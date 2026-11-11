@@ -21,6 +21,7 @@
     "failed": "Não foi possível salvar a borda"
   },
   "copy": {
+    "a039dfb9628b": "Tokens",
     "chatSlowDown": "Calma! Mensagens demais seguidas. Tente de novo em {{wait}} ou espere outra pessoa responder.",
     "eabb5c136be4": "Falha ao atualizar o plano",
     "801658c8e591": "O plano não foi criado — tente novamente",

@@ -34,12 +34,6 @@ const TOKENS_EXPANDED = 10;
 const RECENT_COLLAPSED = 4;
 const LIVE_COLLAPSED = 3;
 
-function compact(n: number) {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, "")}k`;
-  return String(n);
-}
-
 /** Most searched tickers, the same table web's Top tokens reads. */
 function useTopTickers() {
   return useQuery({
@@ -69,7 +63,7 @@ export function ExploreCategoryWords({
 }) {
   const { t } = useTranslation();
   const items: { id: string | null; name: string }[] = [
-    { id: null, name: t("copy.explore.forYou", { defaultValue: "For you" }) },
+    { id: null, name: t("filters.forYou", { defaultValue: "For You" }) },
     ...categories.map((c) => ({ id: c, name: c })),
   ];
   return (
@@ -125,8 +119,8 @@ export default function ExploreCleanList({
   const { data: tickers = [] } = useTopTickers();
   const { items: live, open: openLive } = useLiveNowItems();
 
-  const seeAll = t("copy.explore.seeAll", { defaultValue: "See all" });
-  const showLess = t("copy.explore.showLess", { defaultValue: "Show less" });
+  const seeAll = t("stages.seeAll", { defaultValue: "See all" });
+  const showLess = t("copy.94ea9b1d33a0", { defaultValue: "Show less" });
   let first = true;
   const isFirst = () => {
     const was = first;
@@ -135,6 +129,7 @@ export default function ExploreCleanList({
   };
 
   const shownRecent = recentOpen ? recentSearches : recentSearches.slice(0, RECENT_COLLAPSED);
+  const hiddenRecent = Math.max(0, recentSearches.length - RECENT_COLLAPSED);
   const shownTopics = topics.slice(0, topicsOpen ? TOPICS_EXPANDED : TOPICS_COLLAPSED);
   const shownTokens = tickers.slice(0, tokensOpen ? TOKENS_EXPANDED : TOKENS_COLLAPSED);
   const shownLive = liveOpen ? live : live.slice(0, LIVE_COLLAPSED);
@@ -145,8 +140,8 @@ export default function ExploreCleanList({
         <ExploreSection
           first={isFirst()}
           icon="search"
-          title={t("copy.explore.recent", { defaultValue: "Recent searches" })}
-          action={t("copy.explore.clearAll", { defaultValue: "Clear all" })}
+          title={t("bookmarks.recent", { defaultValue: "Recent" })}
+          action={t("explorePage.clearAll", { defaultValue: "Clear all" })}
           onAction={onClearSearches}
           chevron={false}
         >
@@ -166,10 +161,10 @@ export default function ExploreCleanList({
               </Pressable>
             </View>
           ))}
-          {recentSearches.length > RECENT_COLLAPSED ? (
+          {hiddenRecent ? (
             <Pressable onPress={() => setRecentOpen((v) => !v)} style={styles.more}>
               <Text className="text-theme-neutrals-400" style={styles.moreText}>
-                {recentOpen ? showLess : t("copy.explore.moreRecent", { defaultValue: "Show {{value1}} more", value1: recentSearches.length - RECENT_COLLAPSED })}
+                {recentOpen ? showLess : t("features.topBuilders.showMore", { defaultValue: "Show {{n}} more", n: hiddenRecent })}
               </Text>
             </Pressable>
           ) : null}
@@ -180,7 +175,7 @@ export default function ExploreCleanList({
         <ExploreSection
           first={isFirst()}
           icon="stats"
-          title={t("copy.explore.trending", { defaultValue: "Trending" })}
+          title={t("explorePage.trending", { defaultValue: "Trending" })}
           action={topics.length > TOPICS_COLLAPSED ? (topicsOpen ? showLess : seeAll) : undefined}
           onAction={() => setTopicsOpen((v) => !v)}
           chevron={!topicsOpen}
@@ -194,10 +189,8 @@ export default function ExploreCleanList({
                 </Text>
                 {/* A paid spot says so; the count stays the real one. */}
                 <Text className="text-theme-neutrals-500" style={row.sub} numberOfLines={1}>
-                  {topic.boosted ? `${t("copy.c1f1c8819e33", { defaultValue: "Boosted" })} · ` : ""}
-                  {weekly
-                    ? t("copy.explore.postsThisWeek", { defaultValue: "{{value1}} posts this week", value1: compact(topic.post_count) })
-                    : t("copy.explore.postsCount", { defaultValue: "{{value1}} posts", value1: compact(topic.post_count) })}
+                  {topic.boosted ? `${t("work.boosted", { defaultValue: "Boosted" })} · ` : ""}
+                  {t("explore.postCount", { defaultValue: "{{count}} posts", count: Number(topic.post_count) || 0 })}
                 </Text>
               </View>
               <Icon name="ChevronRight" size={16} color="#52525B" />
@@ -236,7 +229,7 @@ export default function ExploreCleanList({
         <ExploreSection
           first={isFirst()}
           icon="buy"
-          title={t("copy.explore.topTokens", { defaultValue: "Top tokens" })}
+          title={t("copy.a039dfb9628b", { defaultValue: "Tokens" })}
           action={tickers.length > TOKENS_COLLAPSED ? (tokensOpen ? showLess : seeAll) : undefined}
           onAction={() => setTokensOpen((v) => !v)}
           chevron={!tokensOpen}

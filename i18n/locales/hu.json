@@ -150,6 +150,7 @@
     "useNamed": "{{name}} használata"
   },
   "copy": {
+    "a039dfb9628b": "Tokenek",
     "chatSlowDown": "Lassabban! Túl sok üzenet egymás után. Próbáld újra {{wait}} múlva, vagy várd meg, hogy más is válaszoljon.",
     "eabb5c136be4": "Sikertelen a tervek frissítése",
     "801658c8e591": "A terv nem lett megalkotva — próbálja újra",

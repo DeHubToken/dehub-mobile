@@ -142,6 +142,7 @@
     "useNamed": "Use {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Tokens",
     "chatSlowDown": "Slow down small! You don send too many message back to back. Try again for {{wait}}, or wait make another person reply.",
     "eabb5c136be4": "Plan no update.",
     "801658c8e591": "I no get plan.",

@@ -150,6 +150,7 @@
     "useNamed": "Gunakan {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Token",
     "chatSlowDown": "Pelan-pelan! Terlalu banyak pesan berturut-turut. Coba lagi dalam {{wait}}, atau tunggu orang lain membalas.",
     "eabb5c136be4": "Gagal memperbarui rencana",
     "801658c8e591": "Rencana tidak dibuat — silakan coba lagi",

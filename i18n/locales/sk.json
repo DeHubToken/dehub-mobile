@@ -142,6 +142,7 @@
     "useNamed": "Použiť {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Žetóny",
     "chatSlowDown": "Spomaľ! Príliš veľa správ za sebou. Skús to znova o {{wait}} alebo počkaj, kým odpovie niekto iný.",
     "eabb5c136be4": "Neúspech pri aktualizácii plánu",
     "801658c8e591": "Plán sa nebol vytvorený – skús to znova",

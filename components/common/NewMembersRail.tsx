@@ -117,7 +117,7 @@ const NewMembersRail: FC<{ layout?: "rail" | "rows" }> = ({ layout = "rail" }) =
         icon="communities"
         title={t("stats.newMembers")}
         action={visibleMembers.length > ROWS_COLLAPSED
-          ? (expanded ? t("copy.explore.showLess", { defaultValue: "Show less" }) : t("copy.explore.seeAll", { defaultValue: "See all" }))
+          ? (expanded ? t("copy.94ea9b1d33a0", { defaultValue: "Show less" }) : t("stages.seeAll", { defaultValue: "See all" }))
           : undefined}
         onAction={() => setExpanded((v) => !v)}
         chevron={!expanded}

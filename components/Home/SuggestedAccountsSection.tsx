@@ -295,7 +295,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
         icon="subscriptions"
         title={t("copy.a94bfc8a15e8", { defaultValue: "Follow suggestions" })}
         action={visibleAccounts.length > ROWS_COLLAPSED
-          ? (expanded ? t("copy.explore.showLess", { defaultValue: "Show less" }) : t("copy.explore.seeAll", { defaultValue: "See all" }))
+          ? (expanded ? t("copy.94ea9b1d33a0", { defaultValue: "Show less" }) : t("stages.seeAll", { defaultValue: "See all" }))
           : undefined}
         onAction={() => setExpanded((v) => !v)}
         chevron={!expanded}

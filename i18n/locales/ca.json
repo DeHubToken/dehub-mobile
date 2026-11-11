@@ -142,6 +142,7 @@
     "useNamed": "Utilitza {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Tokens",
     "chatSlowDown": "Més a poc a poc! Massa missatges seguits. Torna-ho a provar d'aquí a {{wait}} o espera que algú altre respongui.",
     "eabb5c136be4": "No s'ha pogut actualitzar el pla",
     "801658c8e591": "El pla no s'ha creat — prova-ho de nou",

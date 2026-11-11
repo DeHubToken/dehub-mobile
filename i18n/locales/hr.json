@@ -145,6 +145,7 @@
     "useNamed": "Koristi {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Žetoni",
     "chatSlowDown": "Polako! Previše poruka zaredom. Pokušaj ponovno za {{wait}} ili pričekaj da netko drugi odgovori.",
     "eabb5c136be4": "Nije uspio ažurirati plan",
     "801658c8e591": "Plan nije stvoren — molimo pokušajte ponovno",

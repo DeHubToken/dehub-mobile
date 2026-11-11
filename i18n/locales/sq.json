@@ -145,6 +145,7 @@
     "useNamed": "Përdor {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Tokenet",
     "chatSlowDown": "Më ngadalë! Shumë mesazhe radhazi. Provo përsëri pas {{wait}}, ose prit që dikush tjetër të përgjigjet.",
     "eabb5c136be4": "Nuk u mund të updateua plani",
     "801658c8e591": "Plani nuk u krijua — provo përsëri",
