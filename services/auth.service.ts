@@ -9,6 +9,7 @@ import { createLogger } from '../libs/logger';
 import { submitWalletProof } from '../libs/wallet-challenge';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { forgetHold, holdFieldFor } from "./usernameHold";
+import { TWO_FACTOR_REQUIRED_CODE } from '../libs/two-factor-login';
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -241,6 +242,10 @@ export const AuthService = {
       if (error?.code === "WALLET_NOT_LINKED") {
         throw new WalletNotLinkedError(error?.message);
       }
+      // The move is done; the API only held back the session it would have
+      // handed out because the account uses two-step sign-in. The sign-in
+      // that follows asks for the code.
+      if (error?.code === TWO_FACTOR_REQUIRED_CODE) return;
       throw error;
     }
   },

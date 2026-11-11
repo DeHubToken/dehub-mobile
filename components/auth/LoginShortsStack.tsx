@@ -182,7 +182,13 @@ function Lane({ clips, down, tileW, height, still, line, armed }: {
   );
 }
 
-export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 }: { viewportHeight?: number; reservedHeight?: number }) {
+/** Swaps the "You will own everything / and be happy." lines, e.g. for the sign-in code step. */
+export interface LoginStackHeadline {
+  top: string;
+  accent: string;
+}
+
+export default function LoginShortsStack({ viewportHeight, reservedHeight = 360, headline }: { viewportHeight?: number; reservedHeight?: number; headline?: LoginStackHeadline }) {
   const { t } = useTranslation();
   const { theme, isLight, colors } = useAppTheme();
   const plain = theme === "system" || theme === "minimal";
@@ -236,11 +242,11 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 
       <View style={styles.headline}>
         <NeonLogo tint={theme === "hazy" ? "hazy" : theme === "osaka" ? "osaka" : isLight ? "light" : "white"} still={still} />
         <Text style={styles.headlineText} accessibilityRole="header">
-          {t("loginStack.headlineTop", "You will own everything")}
+          {headline?.top ?? t("loginStack.headlineTop", "You will own everything")}
         </Text>
         <View style={{ opacity: plain ? 0.6 : 1 }}>
           <Text style={[styles.headlineText, { color: accent }]}>
-            {t("loginStack.headlineAccent", "and be happy.")}
+            {headline?.accent ?? t("loginStack.headlineAccent", "and be happy.")}
           </Text>
         </View>
       </View>
