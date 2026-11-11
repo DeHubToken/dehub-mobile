@@ -9,6 +9,8 @@ export interface UserProfileBottomSheetProps {
   visible: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
+  /** Android: the closing page is fully gone, so its content can be dropped. */
+  onCloseComplete?: () => void;
   usernameOrAddress?: string | null;
   initialHeightPct?: number;
   embedded?: boolean;
@@ -23,7 +25,7 @@ function content() {
 /** Paint and move the light page before evaluating the profile's feed and hooks. */
 export default function UserProfileBottomSheet(props: UserProfileBottomSheetProps) {
   usePerfProbe("ProfileSheet");
-  const { visible, usernameOrAddress, embedded, onClose, onOpenComplete } = props;
+  const { visible, usernameOrAddress, embedded, onClose, onOpenComplete, onCloseComplete } = props;
   const [readyIdentifier, setReadyIdentifier] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const visibleRef = useRef(visible);
@@ -72,7 +74,7 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
     </View>
   ) : null;
   return <>
-    <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete}>
+    <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete} onCloseComplete={onCloseComplete}>
       {Content ? <Content {...props} visible={contentVisible} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
       {Platform.OS === 'android' ? null : bar}
     </ProfileSurface>

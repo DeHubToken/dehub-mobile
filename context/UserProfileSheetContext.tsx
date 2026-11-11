@@ -35,6 +35,9 @@ interface FeedProfileCtxValue {
   feedProfileIdentifier: string | null;
 }
 
+const SHOWN_PAGE = { flex: 1 } as const;
+const COVERED_PAGE = { flex: 1, transform: [{ translateX: 100000 }] } as const;
+
 const UserProfileSheetContext = createContext<CtxValue | undefined>(undefined);
 const UserProfilePresentationContext = createContext<PresentationCtxValue | undefined>(undefined);
 const NO_FEED_PROFILE: FeedProfileCtxValue = { feedProfileVisible: false, feedProfileIdentifier: null };
@@ -52,7 +55,14 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // The covered page comes back the moment the profile has slid away: the old
   // 300ms matched a slower JS-driven slide and left Back waiting on nothing.
-  const CLOSE_CLEAR_DELAY_MS = PROFILE_CLOSE_MS;
+  //
+  // On Android the page itself says when its fade has ended (see
+  // handleCloseComplete). A timer started at the press ran out ~0.1s into the
+  // fade, because the fade only starts once the closing render has landed:
+  // the profile was dropped mid-fade in the same render that woke the feed
+  // back up, and the screen blinked empty for a frame or two. The timer stays
+  // as the backstop there, and as the clock for the iPhone sheet.
+  const CLOSE_CLEAR_DELAY_MS = Platform.OS === 'android' ? PROFILE_CLOSE_MS + 400 : PROFILE_CLOSE_MS;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
     perfMark('profile:open');
@@ -92,6 +102,16 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
 
   const visibleRef = useRef(visible);
   visibleRef.current = visible;
+  const handleCloseComplete = useCallback(() => {
+    // Reopened before the fade ended: that profile keeps its identifier.
+    if (visibleRef.current) return;
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
+      clearTimerRef.current = null;
+    }
+    setIdentifier(null);
+    setOptions(null);
+  }, []);
   const isProfileVisible = useCallback(() => visibleRef.current, []);
   const visibleListeners = useRef(new Set<(visible: boolean) => void>());
   const subscribeProfileVisible = useCallback((listener: (visible: boolean) => void) => {
@@ -185,9 +205,13 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
               re-rendering every player before the shell's first frame. Keep
               them paused through closing so Back can start immediately too. */}
           <FeedPlaybackActiveContext.Provider value={pageActive}>
-            {/* Remove the covered native render tree: opacity alone still
-                prepares its image textures on every profile scroll frame. */}
-            <View style={{ flex: 1, display: covered ? 'none' : 'flex' }}
+            {/* Park the covered page off screen: opacity alone still prepares
+                its image textures on every profile scroll frame, and
+                display: none collapsed every layout in it, so on Back the
+                lists and bars measured themselves again from zero and drew
+                nothing for a frame. Moved aside, nothing is drawn and
+                nothing is measured again. */}
+            <View style={covered ? COVERED_PAGE : SHOWN_PAGE}
               pointerEvents={blocked ? 'none' : 'auto'}
               accessibilityElementsHidden={blocked}
               importantForAccessibility={blocked ? 'no-hide-descendants' : 'auto'}>
@@ -199,6 +223,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
           usernameOrAddress={identifier}
           onClose={hideUserProfile}
           onOpenComplete={handleOpenComplete}
+          onCloseComplete={handleCloseComplete}
           initialHeightPct={options?.initialHeightPct}
         />
         </UserProfilePresentationContext.Provider>

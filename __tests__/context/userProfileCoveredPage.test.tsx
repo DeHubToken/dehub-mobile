@@ -40,28 +40,31 @@ it('keeps the previous page behind profile transitions without unmounting it', (
   const coveredPage = () => tree.root.findAllByType('View' as any).find(view => view.props.pointerEvents !== undefined)!;
   act(() => profile.showUserProfile('member'));
   expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(true);
-  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.style.transform).toBeUndefined();
   expect(coveredPage().props.pointerEvents).toBe('none');
   act(() => tree.root.findByType('Profile' as any).props.onOpenComplete());
   expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(false);
-  expect(coveredPage().props.style.display).toBe('none');
+  expect(coveredPage().props.style.transform).toEqual([{ translateX: 100000 }]);
   expect(coveredPage().props.pointerEvents).toBe('none');
   expect(coveredPage().props.importantForAccessibility).toBe('no-hide-descendants');
   act(() => profile.hideUserProfile());
   expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(false);
-  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.style.transform).toBeUndefined();
   expect(coveredPage().props.pointerEvents).toBe('none');
+  // The press-time clock alone no longer drops the profile mid-fade.
   act(() => jest.advanceTimersByTime(180));
+  expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(false);
+  act(() => tree.root.findByType('Profile' as any).props.onCloseComplete());
   expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(true);
-  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.style.transform).toBeUndefined();
   expect(coveredPage().props.pointerEvents).toBe('auto');
   expect(mounted).toHaveBeenCalledTimes(1);
   expect(unmounted).not.toHaveBeenCalled();
   // A second opening must retain the page until the new animation finishes.
   act(() => profile.showUserProfile('another-member'));
-  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.style.transform).toBeUndefined();
   act(() => tree.root.findByType('Profile' as any).props.onOpenComplete());
-  expect(coveredPage().props.style.display).toBe('none');
+  expect(coveredPage().props.style.transform).toEqual([{ translateX: 100000 }]);
   act(() => tree.unmount());
   jest.useRealTimers();
 });
