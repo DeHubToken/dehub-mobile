@@ -598,7 +598,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 10,
+    // 9 + an 18pt glyph box + 9 = 36pt, the same row as phone web's pill.
+    paddingVertical: 9,
     borderRadius: 12,
     position: "relative",
     overflow: "visible",

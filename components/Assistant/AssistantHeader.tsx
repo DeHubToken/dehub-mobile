@@ -4,10 +4,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
 
-import { ThemeIcon } from '../page/PageKit';
-import NavPillSurface from '../ui/NavPillSurface';
+import PillHeader from '../page/PillHeader';
+import { useAppTheme } from '../../context/ThemeContext';
+import { themeIconUrl } from '../../theme/icons';
 
-const BUTTON_STYLE = { width: 36, height: 36 } as const;
+const BUTTON_STYLE = { width: 34, height: 34 } as const;
 
 interface AssistantHeaderProps {
   onNewChat: () => void;
@@ -24,9 +25,9 @@ interface AssistantHeaderProps {
 }
 
 /**
- * Title left; history and a ⋯ menu right, as on web's quiet start. The menu
- * holds what used to be a row of five buttons: new chat, personality,
- * settings and support.
+ * Every page's top pill, at Home's size (36pt row, 18pt icon, 14pt title):
+ * title left; history and a ⋯ menu right, as on web. The menu holds new chat,
+ * personality, settings and support.
  */
 const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   onNewChat,
@@ -40,6 +41,8 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { theme, skin } = useAppTheme();
+  const softInk = skin ? skin.tabIcon : '#A1A1AA';
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Close first, then open the sheet, so two modals never fight on iOS.
@@ -56,53 +59,45 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   ];
 
   return (
-    <View className="px-2 pt-2">
-    <View style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: 15 }}>
-    <NavPillSurface borderRadius={15} />
-    <View className="flex-row items-center justify-between">
-      <TouchableOpacity
-        onPress={onNewChat}
-        className="flex-row items-center"
-        style={{ flexShrink: 1, marginRight: 8 }}
-        activeOpacity={0.7}
-      >
-        <ThemeIcon icon="assistant" size={32} />
-        <Text numberOfLines={1} style={{ flexShrink: 1 }} className="text-theme-neutrals-100 text-[17px] font-bold ml-2.5">
-          {t('assistant.title')}
-        </Text>
-      </TouchableOpacity>
-
-      <View className="flex-row items-center justify-end" style={{ gap: 2, flexShrink: 0 }}>
-        <TouchableOpacity
-          onPress={onHistoryPress}
-          className="rounded-full items-center justify-center"
-          style={BUTTON_STYLE}
-          activeOpacity={0.7}
-          hitSlop={4}
-          accessibilityRole="button"
-          accessibilityLabel={t('assistant.chatHistory')}
-        >
-          <Icon name="History" size={19} color="#E4E4E7" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setMenuOpen(true)}
-          className="rounded-full items-center justify-center"
-          style={BUTTON_STYLE}
-          activeOpacity={0.7}
-          hitSlop={4}
-          accessibilityRole="button"
-          accessibilityLabel={t('feedCard.moreShare')}
-        >
-          <Icon name="Ellipsis" size={20} color="#E4E4E7" />
-          {openTicketCount > 0 && <View style={s.dot} />}
-        </TouchableOpacity>
-      </View>
-    </View>
-    </View>
+    <View>
+    <PillHeader
+      title={t('assistant.title')}
+      showBack={false}
+      onBack={() => {}}
+      backLabel={t('common.goBack')}
+      iconUrl={themeIconUrl(theme, 'assistant')}
+      rightContent={
+        <>
+          <TouchableOpacity
+            onPress={onHistoryPress}
+            className="items-center justify-center"
+            style={BUTTON_STYLE}
+            activeOpacity={0.7}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel={t('assistant.chatHistory')}
+          >
+            <Icon name="History" size={16} color={softInk} strokeWidth={1.8} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setMenuOpen(true)}
+            className="items-center justify-center"
+            style={BUTTON_STYLE}
+            activeOpacity={0.7}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel={t('feedCard.moreShare')}
+          >
+            <Icon name="Ellipsis" size={16} color={softInk} strokeWidth={1.8} />
+            {openTicketCount > 0 && <View style={s.dot} />}
+          </TouchableOpacity>
+        </>
+      }
+    />
 
     <Modal visible={menuOpen} transparent animationType="fade" statusBarTranslucent onRequestClose={() => setMenuOpen(false)}>
       <Pressable style={StyleSheet.absoluteFill} onPress={() => setMenuOpen(false)} accessibilityLabel={t('common.close')} />
-      <View style={[s.menu, { top: insets.top + 58 }]}>
+      <View style={[s.menu, { top: insets.top + 50 }]}>
         {rows.map(row => (
           <TouchableOpacity
             key={row.key}
@@ -128,7 +123,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
 };
 
 const s = StyleSheet.create({
-  dot: { position: 'absolute', top: 7, right: 7, width: 7, height: 7, borderRadius: 4, backgroundColor: '#F9FBFF' },
+  dot: { position: 'absolute', top: 6, right: 6, width: 6, height: 6, borderRadius: 3, backgroundColor: '#F9FBFF' },
   menu: {
     position: 'absolute',
     right: 14,
