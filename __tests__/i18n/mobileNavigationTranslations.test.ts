@@ -16,7 +16,10 @@ const leafKeys = (value: unknown, prefix = ""): string[] => {
 
 describe("mobile navigation translations", () => {
   const en = readLocale("en");
-  const navKeys = Object.keys(en.nav as TranslationTree);
+  // Labels only: nav.findWords holds the menu's translated search words, which may fall back to English.
+  const navKeys = Object.entries(en.nav as TranslationTree)
+    .filter(([, value]) => typeof value === "string")
+    .map(([key]) => key);
 
   it("provides every navigation label in every bundled locale", () => {
     const localeFiles = fs.readdirSync(localesDir).filter((file) => file.endsWith(".json"));
