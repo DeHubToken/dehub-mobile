@@ -77,6 +77,8 @@ interface LiveViewerChatProps {
    */
   onHold?: (activity: ChatActivity, translate?: TranslateToggle, layout?: ChatHoldLayout) => void;
   activities: ChatActivity[];
+  /** A line is held: the list must not scroll while it slides up under the finger. */
+  holding?: boolean;
 }
 
 /** Deterministic color palette for usernames (monochrome neutrals ramp) */
@@ -341,7 +343,7 @@ const LandIn = memo(function LandIn({ glow, children }: { glow: boolean; childre
   return <Animated.View style={style}>{children}</Animated.View>;
 });
 
-const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onHold }) => {
+const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onHold, holding = false }) => {
   const listRef = useRef<FlatList<ChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
 
@@ -422,6 +424,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onHold }) =
         windowSize={5}
         removeClippedSubviews={false}
         inverted
+        scrollEnabled={!holding}
         showsVerticalScrollIndicator={false}
       />
     </View>
