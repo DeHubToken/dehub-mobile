@@ -43,6 +43,8 @@ const MINIMAL_PLACEHOLDER_BG = "rgba(255,255,255,0.04)";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
+  /** Back to the top without a refresh (the lit tab tapped while scrolled down). */
+  scrollToTop: () => void;
 }
 
 interface HomeImageGridProps {
@@ -408,6 +410,9 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     gridRef.current = {
       scrollToTopAndRefresh: () => {
         onRefresh();
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      },
+      scrollToTop: () => {
         listRef.current?.scrollToOffset({ offset: 0, animated: true });
       },
     };

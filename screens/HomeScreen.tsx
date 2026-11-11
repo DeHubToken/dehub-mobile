@@ -103,6 +103,8 @@ const FEED_POST_MAX_WIDTH = 640;
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
 const SEED_CHECK_INTERVAL_MS = 60_000;
+/** Past this, the lit tab tapped again glides to the top before it opens search. */
+const SCROLL_TOP_FIRST_PX = 48;
 
 const generateShuffleSeed = () => String(Date.now());
 
@@ -578,6 +580,12 @@ export default function HomeScreen() {
     },
     [feedProfileVisible, hideUserProfile, setPostType],
   );
+  const scrollActiveFeedToTop = useCallback((key: PostTypeOption) => {
+    if (key === "feed-images") imageGridRef.current?.scrollToTop();
+    else if (key === "short") shortsGridRef.current?.scrollToTop();
+    else if (key === "feed-audio") musicFeedRef.current?.scrollToTop();
+    else feedRefs.current[key as FeedListType]?.current?.scrollToTop();
+  }, []);
   // Only the pill's own buttons open search; other routes here (deep links,
   // the island menu, the bottom bar) just switch feeds.
   const handlePillPostTypeChange = useCallback(
@@ -588,6 +596,13 @@ export default function HomeScreen() {
         return;
       }
       if (postType === activeTabKey && !feedProfileVisible && !feedPost && !imageFeed && feedSearchTabFor(postType)) {
+        // Scrolled down, the first tap only glides the feed back to the top;
+        // the next one (at the top) opens the search.
+        if (headerDriverKey.value === postType && scrollOffset.value > SCROLL_TOP_FIRST_PX) {
+          showHeader();
+          scrollActiveFeedToTop(postType);
+          return;
+        }
         setFilterPanelVisible(false);
         setSearchOpen(true);
         const parked = parkedQueryRef.current;
@@ -597,7 +612,7 @@ export default function HomeScreen() {
       }
       handleNavPostTypeChange(postType);
     },
-    [activeTabKey, searchOpen, closeSearch, feedProfileVisible, feedPost, imageFeed, handleNavPostTypeChange],
+    [activeTabKey, searchOpen, closeSearch, feedProfileVisible, feedPost, imageFeed, handleNavPostTypeChange, headerDriverKey, scrollOffset, showHeader, scrollActiveFeedToTop],
   );
   const pickSearchFeed = useCallback(
     (tab: FeedSearchTab) => {
