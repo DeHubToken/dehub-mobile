@@ -13,7 +13,7 @@ import {
   InteractionManager,
 } from "react-native";
 
-import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
+import { DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { FlashList } from "@shopify/flash-list";
 import Animated, {
   Easing,
@@ -62,7 +62,10 @@ import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
-import PageDrawer from "../components/common/PageDrawer";
+import PageDrawer, { PageDrawerScrollView } from "../components/common/PageDrawer";
+
+// The drawer's scroll view, so a pull down from the top of the list closes it.
+const renderDrawerScroll = (props: React.ComponentProps<typeof PageDrawerScrollView>) => <PageDrawerScrollView {...props} />;
 import { postWarmKey, warmRequest } from "../libs/navPrefetch";
 import { getNFT } from "../services/nft.service";
 import { createLogger } from "../libs/logger";
@@ -1980,7 +1983,7 @@ const NotificationScreen = () => {
   const showLoading = loading;
 
   // A drawer over the screen it was opened from, as phone web's bell drawer:
-  // a handle, pull down to close, no back or close button.
+  // no handle, pull down anywhere to close, no back or close button.
   return (
     <PageDrawer
       onClose={closeDrawer}
@@ -2033,6 +2036,7 @@ const NotificationScreen = () => {
           data={skeletonData}
           keyExtractor={(item) => item.key}
           renderItem={renderSkeleton}
+          renderScrollComponent={renderDrawerScroll}
           showsVerticalScrollIndicator={false}
         />
       ) : (
@@ -2043,13 +2047,9 @@ const NotificationScreen = () => {
           // Rows with a day heading above them are taller; keep them in their own pool.
           getItemType={rowTypeOf}
           contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
-          refreshControl={
-            <DeHubRefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              tintColor="#F4F4F5"
-            />
-          }
+          // No pull to refresh: a pull down from the top closes the drawer,
+          // and the list loads fresh each time the drawer opens.
+          renderScrollComponent={PageDrawerScrollView}
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
           // A FlatList here mounted a fresh batch of rows on most frames of a
