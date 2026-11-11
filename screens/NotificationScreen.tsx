@@ -62,6 +62,7 @@ import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
+import NotificationSearchLine, { notificationMatches } from "../components/Notifications/NotificationSearchLine";
 import PageDrawer, { PageDrawerScrollView } from "../components/common/PageDrawer";
 
 // The drawer's scroll view, so a pull down from the top of the list closes it.
@@ -551,6 +552,8 @@ interface NotificationRowProps {
   onRejectFollowRequest: (item: NotificationItem) => void;
   /** Day heading drawn above this row when it starts a new group. */
   groupLabel?: string | null;
+  /** The list's first row: its heading sits close under the pill. */
+  groupFirst?: boolean;
 }
 
 /** A row that stands for more than one person (likes, comments, follows...). */
@@ -569,6 +572,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   onAcceptFollowRequest,
   onRejectFollowRequest,
   groupLabel,
+  groupFirst,
 }) => {
   const { t, i18n } = useTranslation();
   const { isMinimal, skin, accent, pageColors } = useAppTheme();
@@ -700,7 +704,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     {!!groupLabel && (
       <Text
         className="text-theme-neutrals-500"
-        style={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 4, fontSize: 12, fontWeight: '600', letterSpacing: 0.7, textTransform: 'uppercase' }}
+        style={{ paddingHorizontal: 18, paddingTop: groupFirst ? 6 : 16, paddingBottom: 4, fontSize: 12, fontWeight: '600', letterSpacing: 0.7, textTransform: 'uppercase' }}
       >
         {groupLabel}
       </Text>
@@ -956,7 +960,7 @@ const log = createLogger("NotificationScreen");
 // unfiltered list is kept; the screen always opens on All.
 
 const NotificationScreen = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isMinimal, pageColors } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { patchUser } = useAuthActions();
@@ -1000,6 +1004,9 @@ const NotificationScreen = () => {
   // notifications", which is a lie the person cannot act on.
   const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
+  // The search button turns the pill into a search box over the loaded rows.
+  const [search, setSearch] = useState<string | null>(null);
+  const searchQuery = search?.trim().toLowerCase() ?? '';
   // Unfiltered snapshot kept alongside the (now server-filtered) list purely so
   // the tab badges and the app badge keep seeing every type.
   const [countsSource, setCountsSource] = useState<NotificationItem[]>(() => cached?.countsSource ?? []);
@@ -1425,11 +1432,14 @@ const NotificationScreen = () => {
     const visible = dismissedIds.size
       ? notifications.filter((n) => !dismissedIds.has(n._id))
       : notifications;
-    const unique = hideDuplicateReplyMentions(visible);
+    const deduped = hideDuplicateReplyMentions(visible);
+    const unique = searchQuery
+      ? deduped.filter((n) => notificationMatches(n, searchQuery, localizedNotificationContent(n, t, i18n.language) ?? undefined))
+      : deduped;
     if (selectedFilter === 'all') return byFeedGroup(unique, listedUnread);
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
     return byFeedGroup(unique.filter((n) => allowedTypes.includes(n.type as NotificationType)), listedUnread);
-  }, [notifications, selectedFilter, dismissedIds, listedUnread]);
+  }, [notifications, selectedFilter, dismissedIds, listedUnread, searchQuery, t, i18n.language]);
 
   // Both badge sources — the tabs and the app icon — count what is still on
   // screen, so a cleared row stops being counted the moment it goes.
@@ -1816,8 +1826,8 @@ const NotificationScreen = () => {
     });
   }, [markAsReadAsync, walletAddress]);
 
-  // Day headings, as on web: everything unread under New, the rest by when it
-  // happened.
+  // Day groups, as on web: everything unread first (no heading), the rest by
+  // when it happened.
   const feedGroupOf = useCallback((n: NotificationItem): 'new' | 'today' | 'week' | 'earlier' => {
     if (listedUnread(n)) return 'new';
     const at = new Date(n.updatedAt || n.createdAt).getTime();
@@ -1847,20 +1857,27 @@ const NotificationScreen = () => {
     });
   }, [notifications, handleMarkAllRead, walletAddress]);
 
+  // The heading over a row that starts a group. Unread rows lead with no
+  // heading: anything at the top of the bell is new.
+  const headingAt = useCallback((index: number): string | null => {
+    const item = filteredNotifications[index];
+    if (!item) return null;
+    const group = feedGroupOf(item);
+    if (group === 'new') return null;
+    if (index > 0 && feedGroupOf(filteredNotifications[index - 1]) === group) return null;
+    return feedGroupLabel(group);
+  }, [filteredNotifications, feedGroupOf, feedGroupLabel]);
+
   const rowTypeOf = useCallback(
-    (item: NotificationItem, index: number) =>
-      index === 0 || feedGroupOf(filteredNotifications[index - 1] ?? item) !== feedGroupOf(item) ? "headed" : "row",
-    [filteredNotifications, feedGroupOf],
+    (_item: NotificationItem, index: number) => (headingAt(index) ? "headed" : "row"),
+    [headingAt],
   );
 
   const renderItem = useCallback(
     ({ item, index }: { item: NotificationItem; index: number }) => (
       <NotificationRow
-        groupLabel={
-          index === 0 || (index > 0 && feedGroupOf(filteredNotifications[index - 1] ?? item) !== feedGroupOf(item))
-            ? feedGroupLabel(feedGroupOf(item))
-            : null
-        }
+        groupLabel={headingAt(index)}
+        groupFirst={index === 0}
         item={item}
         onPress={handleNotificationPress}
         onMarkRead={handleMarkRead}
@@ -1877,9 +1894,7 @@ const NotificationScreen = () => {
       handleAcceptFollowRequest,
       handleRejectFollowRequest,
       openUserProfile,
-      filteredNotifications,
-      feedGroupOf,
-      feedGroupLabel,
+      headingAt,
     ]
   );
 
@@ -1951,6 +1966,13 @@ const NotificationScreen = () => {
         </View>
       );
     }
+    if (searchQuery) {
+      return (
+        <Text className="text-theme-neutrals-500 text-sm text-center py-16 px-8">
+          {t("notifications.searchEmpty", "No notifications match")}
+        </Text>
+      );
+    }
     return (
       <View className="flex-1 items-center justify-center py-20">
         <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
@@ -1970,7 +1992,7 @@ const NotificationScreen = () => {
         </Text>
       </View>
     );
-  }, [loadError, selectedFilter, onRefresh, t, emptyIconTile]);
+  }, [loadError, selectedFilter, onRefresh, t, emptyIconTile, searchQuery]);
 
   // Opened cold from a push there may be nothing under the drawer to return to.
   const closeDrawer = useCallback(() => {
@@ -1992,6 +2014,15 @@ const NotificationScreen = () => {
           icon="notifications"
           canGoBack={false}
           title={t("notifications.title")}
+          pillLine={search !== null ? (
+            <NotificationSearchLine
+              value={search}
+              onChange={setSearch}
+              onClose={() => setSearch(null)}
+              placeholder={t("notifications.searchPlaceholder", "Search notifications")}
+              closeLabel={t("notifications.searchClose", "Close search")}
+            />
+          ) : undefined}
           tabs={
             <TypeTabs
               selected={selectedFilter}
@@ -2011,6 +2042,15 @@ const NotificationScreen = () => {
                   hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
                 >
                   <Icon name="SlidersHorizontal" size={16} color="#A1A1AA" />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setSearch('')}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("notifications.searchPlaceholder", "Search notifications")}
+                  style={{ width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+                  hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+                >
+                  <Icon name="Search" size={16} color="#A1A1AA" />
                 </TouchableOpacity>
             <TouchableOpacity
               onPress={handleMarkAllRead}
@@ -2037,6 +2077,20 @@ const NotificationScreen = () => {
           keyExtractor={(item) => item.key}
           renderItem={renderSkeleton}
           renderScrollComponent={renderDrawerScroll}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : search !== null ? (
+        // Searching: a plain list. FlashList kept the rows' old offsets when
+        // the data shrank to a few matches, leaving gaps between them.
+        <FlatList
+          data={filteredNotifications}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
+          renderScrollComponent={renderDrawerScroll}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
+          ListEmptyComponent={ListEmpty}
           showsVerticalScrollIndicator={false}
         />
       ) : (

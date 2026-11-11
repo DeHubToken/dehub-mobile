@@ -106,13 +106,16 @@ const SHEET_GLASS_FILL_TONED = toneColor(SHEET_GLASS_FILL, true);
  * is painted SHEET_GLASS_FILL it becomes liquid glass in the default dark
  * theme and pale frost in System Light; canvas themes and Minimal keep the
  * view exactly as styled (the colour pass repaints the fill for them).
+ * `allThemes` keeps the glass under every theme.
  * `blur={false}` for a sheet drawn inside the feed itself (inline Shorts);
  * `backdropBlurred` when its SheetBackdrop already blurs the page.
  */
-export function SheetGlassFill({ style, blur = true, backdropBlurred = false }: { style: StyleProp<ViewStyle> } & LayerProps) {
+export function SheetGlassFill({ style, blur = true, backdropBlurred = false, allThemes = false }: { style: StyleProp<ViewStyle>; allThemes?: boolean } & LayerProps) {
   const { skin, isMinimal, isLight } = useAppTheme();
   const fill = StyleSheet.flatten(style)?.backgroundColor;
-  const glass = !skin && !isMinimal && (fill === SHEET_GLASS_FILL || fill === SHEET_GLASS_FILL_TONED);
+  // allThemes: glass under the canvas themes and Minimal too (the bell
+  // drawer), dark or pale by the theme's tone.
+  const glass = (allThemes || (!skin && !isMinimal)) && (fill === SHEET_GLASS_FILL || fill === SHEET_GLASS_FILL_TONED || allThemes);
   if (!glass) return <View pointerEvents="none" style={style} />;
   return (
     <View pointerEvents="none" style={[style, styles.clear]}>
