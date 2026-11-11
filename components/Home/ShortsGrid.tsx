@@ -32,6 +32,8 @@ import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 export interface ShortsGridHandle {
   scrollToTopAndRefresh: () => void;
+  /** Back to the top without a refresh (the lit tab tapped while scrolled down). */
+  scrollToTop: () => void;
 }
 
 interface ShortsGridProps {
@@ -272,6 +274,9 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     gridRef.current = {
       scrollToTopAndRefresh: () => {
         onRefresh();
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      },
+      scrollToTop: () => {
         listRef.current?.scrollToOffset({ offset: 0, animated: true });
       },
     };
