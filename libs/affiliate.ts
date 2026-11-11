@@ -150,8 +150,27 @@ export async function findAffiliateCode(ownerAddress: string): Promise<string | 
   return code;
 }
 
-export function buildInviteLink(code: string): string {
-  return `https://riftn.com/r/${code}`;
+/**
+ * Short tag of the inviter's name for invite links (/r/<CODE>?n=<tag>).
+ * X, Telegram and WhatsApp keep a link's preview card for days under the exact
+ * URL shared, so after a rename the bare link kept showing the old name. The
+ * tag changes with the name, so the platforms draw a fresh card. Mirrors
+ * inviteLinkTag in the web app (src/lib/inviteLink.ts); keep both in sync.
+ */
+export function inviteLinkTag(name: string | null | undefined): string {
+  const input = (name ?? "").trim().replace(/^@+/, "").toLowerCase();
+  if (!input) return "";
+  let h = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    h ^= input.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(36).padStart(4, "0").slice(-4);
+}
+
+export function buildInviteLink(code: string, name?: string | null): string {
+  const tag = inviteLinkTag(name);
+  return tag ? `https://riftn.com/r/${code}?n=${tag}` : `https://riftn.com/r/${code}`;
 }
 
 export function buildInviteMessage(code: string, link: string): string {
@@ -364,7 +383,7 @@ export async function saveAffiliateLanding(
 export async function shareInvite(ownerAddress: string, shareName?: string | null): Promise<boolean> {
   const code = await resolveInviteCode(ownerAddress, shareName);
   if (!code) return false;
-  const link = buildInviteLink(code);
+  const link = buildInviteLink(code, shareName);
   await shareProfile(link, buildInviteMessage(code, link), "invite");
   return true;
 }

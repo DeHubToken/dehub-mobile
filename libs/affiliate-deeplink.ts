@@ -28,7 +28,10 @@ export function sanitizeDeepLinkPath(raw: string | null | undefined): string | n
 
 /** The shareable `/r/<code><path>` link for a destination page, from the plain invite link. */
 export function buildReferralDeepLink(inviteLink: string, rawPath: string): string {
-  const base = inviteLink.replace(/\/+$/, "");
+  // The invite link may carry a name tag (?n=...); the path goes before it.
+  const [rawBase, query] = inviteLink.split("?", 2);
+  const base = rawBase.replace(/\/+$/, "");
   const path = sanitizeDeepLinkPath(rawPath);
-  return path ? `${base}${path}` : base;
+  const tail = query ? `${path?.includes("?") ? "&" : "?"}${query}` : "";
+  return path ? `${base}${path}${tail}` : `${base}${tail}`;
 }
