@@ -48,7 +48,7 @@ import {
 } from "../services/agents.service";
 
 const MUTED = "#A1A1AA";
-import { canManageAgents } from '../libs/agent-access';
+import { canManageAgents, isAgentTeam } from '../libs/agent-access';
 import { AgentTasksPanel } from './AgentTasksPanel';
 import { AgentProfilePanel } from './AgentProfilePanel';
 import { AgentLifePanel } from './AgentLifePanel';
@@ -106,6 +106,7 @@ export default function AgentsScreen() {
   const user = useUser();
   const walletAddress = (user?.walletAddress || user?.address || null) as string | null;
   const allowed = canManageAgents(walletAddress);
+  const team = isAgentTeam(walletAddress);
   const queryClient = useQueryClient();
 
   const [isCreating, setIsCreating] = useState(false);
@@ -225,8 +226,8 @@ export default function AgentsScreen() {
         <View style={styles.centered}>
           <PageEmpty
             icon="assistant"
-            title={t('agents.tasks.privateTitle')}
-            body={t('agents.tasks.privateBody')}
+            title={t('agents.connectToManage')}
+            body={t('agents.signInToCreate')}
             action={<KitButton label={t("screens.signIn")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
           />
         </View>
@@ -258,7 +259,7 @@ export default function AgentsScreen() {
           </Pressable>
 
           <AgentProfilePanel wallet={walletAddress} agentId={agent.id} agentName={agent.name} />
-          <AgentLifePanel wallet={walletAddress} agentId={agent.id} />
+          {team && <AgentLifePanel wallet={walletAddress} agentId={agent.id} />}
           <AgentWelcomePanel agentName={agent.name} />
           <Pressable
             accessibilityRole="button"
@@ -374,7 +375,7 @@ export default function AgentsScreen() {
         </View>
 
         <AgentWorkspacePanel wallet={walletAddress} />
-        <AgentTasksPanel wallet={walletAddress} agents={agents ?? []} />
+        <AgentTasksPanel wallet={walletAddress} agents={agents ?? []} team={team} />
         {agentAllowance && <Text style={styles.agentDesc}>{t("agents.capacity", { used: agents?.length ?? 0, limit: agentAllowance.limit, badge: agentAllowance.badge ?? t("agents.noBadge") })}</Text>}
         {isCreating ? (
           <PageSection>
