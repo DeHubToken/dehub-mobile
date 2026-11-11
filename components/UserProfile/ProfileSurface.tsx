@@ -9,10 +9,12 @@ export const PROFILE_OPEN_MS = 220;
 export const PROFILE_CLOSE_MS = 180;
 
 /** Keep Android media in the activity window, where AppState can track focus. */
-export default function ProfileSurface({ visible, onClose, onOpenComplete, children }: {
+export default function ProfileSurface({ visible, onClose, onOpenComplete, onCloseComplete, children }: {
   visible: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
+  /** Android: the page has finished fading away and is no longer drawn. */
+  onCloseComplete?: () => void;
   children: React.ReactNode;
 }) {
   if (Platform.OS !== "android") {
@@ -23,17 +25,18 @@ export default function ProfileSurface({ visible, onClose, onOpenComplete, child
       </Modal>
     );
   }
-  return <AndroidProfileSurface visible={visible} onClose={onClose} onOpenComplete={onOpenComplete}>{children}</AndroidProfileSurface>;
+  return <AndroidProfileSurface visible={visible} onClose={onClose} onOpenComplete={onOpenComplete} onCloseComplete={onCloseComplete}>{children}</AndroidProfileSurface>;
 }
 
 /**
  * Expand from the centre on the UI thread, keeping the source page behind it.
  * The full-height slide made an ordinary profile feel like a modal sheet.
  */
-function AndroidProfileSurface({ visible, onClose, onOpenComplete, children }: {
+function AndroidProfileSurface({ visible, onClose, onOpenComplete, onCloseComplete, children }: {
   visible: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
+  onCloseComplete?: () => void;
   children: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
@@ -49,9 +52,11 @@ function AndroidProfileSurface({ visible, onClose, onOpenComplete, children }: {
       return;
     }
     progress.value = withTiming(0, { duration: PROFILE_CLOSE_MS, easing: Easing.in(Easing.quad) }, (finished) => {
-      if (finished) runOnJS(setMounted)(false);
+      if (!finished) return;
+      runOnJS(setMounted)(false);
+      if (onCloseComplete) runOnJS(onCloseComplete)();
     });
-  }, [visible, progress, onOpenComplete]);
+  }, [visible, progress, onOpenComplete, onCloseComplete]);
 
   useBackPress(onClose, visible);
 
