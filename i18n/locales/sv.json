@@ -142,6 +142,7 @@
     "useNamed": "Använd {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Tokens",
     "chatSlowDown": "Ta det lugnt! För många meddelanden i rad. Försök igen om {{wait}}, eller vänta på att någon annan svarar.",
     "eabb5c136be4": "Misslyckades med att uppdatera plan",
     "801658c8e591": "Planen skapades inte – försök igen",

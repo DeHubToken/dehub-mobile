@@ -142,6 +142,7 @@
     "useNamed": "Gamitin ang {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Mga Token",
     "chatSlowDown": "Dahan-dahan! Sobrang daming sunod-sunod na mensahe. Subukan ulit pagkalipas ng {{wait}}, o hintaying may ibang sumagot.",
     "eabb5c136be4": "Nakaligtaan ang pag-upgrade ng plano",
     "801658c8e591": "Ang plano ay hindi na nilikha — subukan ulit",

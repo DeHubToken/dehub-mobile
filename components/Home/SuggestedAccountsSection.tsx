@@ -32,6 +32,11 @@ import { getRankedSuggestions, getSuggestedAccounts, type SuggestedAccount } fro
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
+import { SuggestedAccountRow } from "../Search/SuggestedAccountRow";
+import { ExploreSection } from "../Search/ExploreSection";
+
+/** Rows shown before See all in Explore's clean list. */
+const ROWS_COLLAPSED = 4;
 import type { FollowState } from "../Search/SearchAccountChip";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
@@ -71,9 +76,11 @@ const FOLD_ANIMATION = LayoutAnimation.create(
 interface SuggestedAccountsSectionProps {
   /** Explore lists it among its sections: its own spacing, no feed hairlines. */
   surface?: "feed" | "explore";
+  /** Rows: Explore's clean list (one line per person, 4 then See all). */
+  layout?: "rail" | "rows";
 }
 
-const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ surface = "feed" }) => {
+const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ surface = "feed", layout = "rail" }) => {
   usePerfProbe("SuggestedAccounts");
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
@@ -92,6 +99,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
   const mountedRef = useRef(true);
   const lingerTimers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   const [loadingMore, setLoadingMore] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -278,6 +286,25 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
   // above left out for this row.
   if (dismissed || visibleAccounts.length === 0) {
     return cinematic ? <View style={styles.lineOnly} /> : null;
+  }
+
+  if (layout === "rows") {
+    const shown = expanded ? visibleAccounts : visibleAccounts.slice(0, ROWS_COLLAPSED);
+    return (
+      <ExploreSection
+        icon="subscriptions"
+        title={t("copy.a94bfc8a15e8", { defaultValue: "Follow suggestions" })}
+        action={visibleAccounts.length > ROWS_COLLAPSED
+          ? (expanded ? t("copy.94ea9b1d33a0", { defaultValue: "Show less" }) : t("stages.seeAll", { defaultValue: "See all" }))
+          : undefined}
+        onAction={() => setExpanded((v) => !v)}
+        chevron={!expanded}
+      >
+        {shown.map((account) => (
+          <SuggestedAccountRow key={account.address} account={account} onFollowChange={handleFollowChange} />
+        ))}
+      </ExploreSection>
+    );
   }
 
   const list = (

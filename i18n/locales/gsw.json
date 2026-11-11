@@ -142,6 +142,7 @@
     "useNamed": "Use {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Token",
     "chatSlowDown": "Langsamer! Z vill Nachrichte hinteränand. Probier s i {{wait}} nomol oder wart, bis öpper anders antwortet.",
     "eabb5c136be4": "Plan konnte nicht aktualisiert werden",
     "801658c8e591": "Der Plan wurde nicht erstellt – bitte versuche es erneut",

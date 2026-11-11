@@ -142,6 +142,7 @@
     "useNamed": "Kasuta {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Žetoonid",
     "chatSlowDown": "Rahulikumalt! Liiga palju sõnumeid järjest. Proovi uuesti {{wait}} pärast või oota, kuni keegi teine vastab.",
     "eabb5c136be4": "Plaani ei õnnestunud uuendada",
     "801658c8e591": "Plaani ei loodud — proovi uuesti",

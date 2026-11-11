@@ -50,12 +50,15 @@ export interface LiveNowItem {
 
 const handleOf = (item: LiveNowItem) => `@${item.username || item.wallet?.slice(0, 6) || "?"}`;
 
-const LiveNowBar: React.FC = () => {
+/**
+ * Everyone live right now (Stages and video streams), people you follow
+ * first, and how to open one. Shared by the Home bar and Explore's list.
+ */
+export function useLiveNowItems(onBeforeOpen?: () => void) {
   const navigation = useNavigation<any>();
   const user = useUser();
   const me = (user?.walletAddress || user?.address || "").toLowerCase();
   const { liveSpaces, openModal, joinSpace, guestListenSpace } = useStages();
-  const [sheetOpen, setSheetOpen] = useState(false);
 
   // Same request and cache entry as the Live tab and useLiveStreams.
   const { data: liveData } = useQuery(liveStreamsQuery);
@@ -118,7 +121,7 @@ const LiveNowBar: React.FC = () => {
 
   const open = useCallback(
     async (item: LiveNowItem) => {
-      setSheetOpen(false);
+      onBeforeOpen?.();
       if (item.kind === "stage") {
         // Same path as a /stages/<id> deep link: join (or listen as a guest
         // when signed out), then open the room that was actually tapped.
@@ -131,8 +134,16 @@ const LiveNowBar: React.FC = () => {
         });
       }
     },
-    [joinSpace, guestListenSpace, openModal, navigation],
+    [joinSpace, guestListenSpace, openModal, navigation, onBeforeOpen],
   );
+
+  return { items, open };
+}
+
+const LiveNowBar: React.FC = () => {
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const closeSheet = useCallback(() => setSheetOpen(false), []);
+  const { items, open } = useLiveNowItems(closeSheet);
 
   if (items.length === 0) return null;
 
@@ -148,7 +159,7 @@ const LiveNowBar: React.FC = () => {
   );
 };
 
-function LiveFace({ item, size }: { item: LiveNowItem; size: number }) {
+export function LiveFace({ item, size }: { item: LiveNowItem; size: number }) {
   const sources =
     item.kind === "stage"
       ? storedAvatarSources(item.avatar, item.wallet, size)
@@ -157,7 +168,7 @@ function LiveFace({ item, size }: { item: LiveNowItem; size: number }) {
 }
 
 /** LIVE, then who is in it in words: "8 watching" on a stream, "5 here" on a Stage. */
-function LiveCount({ item }: { item: LiveNowItem }) {
+export function LiveCount({ item }: { item: LiveNowItem }) {
   const { t } = useTranslation();
   return (
     <View style={styles.live}>

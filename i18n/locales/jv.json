@@ -142,6 +142,7 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Token",
     "chatSlowDown": "Alon-alon! Kakehan pesen terus-terusan. Coba maneh ing {{wait}}, utawa enteni wong liya mbales.",
     "eabb5c136be4": "Gagal update rencana",
     "801658c8e591": "Rencana gak dibuat — coba lagi",

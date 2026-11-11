@@ -142,6 +142,7 @@
     "useNamed": "Brug {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Poletter",
     "chatSlowDown": "Tag den med ro! For mange beskeder i træk. Prøv igen om {{wait}}, eller vent på at en anden svarer.",
     "eabb5c136be4": "Ikke lykkedes at opdatere plan",
     "801658c8e591": "Planen blev ikke oprettet — prøv igen",

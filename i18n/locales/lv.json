@@ -142,6 +142,7 @@
     "useNamed": "Izmantot {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Žetoni",
     "chatSlowDown": "Lēnāk! Pārāk daudz ziņu pēc kārtas. Mēģini vēlreiz pēc {{wait}} vai pagaidi, kamēr atbild kāds cits.",
     "eabb5c136be4": "Neparedzēts plāna atjaunošanas mēģinājums",
     "801658c8e591": "Plāns nav izveidots — mēģiniet vēlreiz",

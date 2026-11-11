@@ -142,6 +142,7 @@
     "useNamed": "Bruk {{name}}"
   },
   "copy": {
+    "a039dfb9628b": "Tokener",
     "chatSlowDown": "Ro ned! For mange meldinger på rad. Prøv igjen om {{wait}}, eller vent til noen andre svarer.",
     "eabb5c136be4": "Feilet å oppdatere plan",
     "801658c8e591": "Planen ble ikke opprettet — vennligst prøv igjen",

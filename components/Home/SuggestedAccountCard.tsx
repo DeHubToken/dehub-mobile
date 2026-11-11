@@ -113,7 +113,7 @@ function isFinalAnswer(error: unknown): boolean {
  * Follow with quiet retries. "Already following" counts as done; anything
  * else that keeps failing after the last retry is thrown to the caller.
  */
-async function followWithRetries(me: string, them: string) {
+export async function followWithRetries(me: string, them: string) {
   for (let attempt = 0; ; attempt++) {
     try {
       return await followUser(me, them);
@@ -353,45 +353,12 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
             {_copy("follow.followerCount", { defaultValue: "{{compact}} followers", compact: formatCompactNumber(followers) })}
           </Text>
           {isOwnAccount ? null : (
-            // Riftn's chrome glass, squared off: the theme accent as a tint
-            // under a banded white sheen, a bright top edge. The fill sits on
-            // an inner view where the control pass leaves it alone.
-            <TouchableOpacity
-              activeOpacity={0.85}
+            <ChromeFollowButton
+              label={followLabel}
+              done={done}
+              pending={isPending}
               onPress={handleFollowToggle}
-              disabled={done}
-              hitSlop={{ top: 6, bottom: 6 }}
-            >
-              <View
-                // System Light: a white tint on a white card read 2:1. A solid
-                // white key, which the light pass turns into solid ink; the
-                // shadowed white label is left as it is.
-                style={[
-                  styles.follow,
-                  done
-                    ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
-                    : isLight
-                      ? { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" }
-                      : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
-                  theme === "minimal" || square ? { borderRadius: 0 } : undefined,
-                  mono ? { paddingHorizontal: 12 } : undefined,
-                ]}
-              >
-              {done ? null : (
-                <>
-                  <LinearGradient colors={CHROME_SHEEN} locations={CHROME_STOPS} style={StyleSheet.absoluteFill} pointerEvents="none" />
-                  <View style={styles.followEdge} pointerEvents="none" />
-                </>
-              )}
-              <View style={styles.followInner}>
-                {/* The tick sits inset in its box: pull it out so both sides of the pill match. */}
-                {done ? <View style={isPending ? undefined : styles.followTick}><Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /></View> : null}
-                <Text style={[styles.followLabel, done ? { color: ink.ink } : styles.followLabelChrome, textMono]}>
-                  {followLabel}
-                </Text>
-              </View>
-              </View>
-            </TouchableOpacity>
+            />
           )}
         </View>
       </View>
@@ -399,6 +366,74 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     </TouchableOpacity>
   );
 };
+
+
+/**
+ * The Follow button the cover cards carry, on its own so Explore's one-line
+ * rows can use the same one: Riftn's chrome glass in the theme's accent,
+ * squared on the square themes, a quiet fill with a tick once done.
+ */
+export function ChromeFollowButton({
+  label,
+  done,
+  pending = false,
+  onPress,
+}: {
+  label: string;
+  done: boolean;
+  pending?: boolean;
+  onPress: () => void;
+}) {
+  const { skin, theme, isLight } = useAppTheme();
+  const ink = (theme && THEME_INK[theme]) || DEFAULT_INK;
+  const square = !!skin?.square;
+  const mono = !!skin?.mono;
+  const textMono = mono ? MONO_TEXT : undefined;
+  const isPending = pending;
+  const followLabel = label;
+  const handleFollowToggle = onPress;
+  return (
+    // Riftn's chrome glass, squared off: the theme accent as a tint
+    // under a banded white sheen, a bright top edge. The fill sits on
+    // an inner view where the control pass leaves it alone.
+    <TouchableOpacity
+      activeOpacity={0.85}
+      onPress={handleFollowToggle}
+      disabled={done}
+      hitSlop={{ top: 6, bottom: 6 }}
+    >
+      <View
+        // System Light: a white tint on a white card read 2:1. A solid
+        // white key, which the light pass turns into solid ink; the
+        // shadowed white label is left as it is.
+        style={[
+          styles.follow,
+          done
+            ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
+            : isLight
+              ? { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" }
+              : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
+          theme === "minimal" || square ? { borderRadius: 0 } : undefined,
+          mono ? { paddingHorizontal: 12 } : undefined,
+        ]}
+      >
+      {done ? null : (
+        <>
+          <LinearGradient colors={CHROME_SHEEN} locations={CHROME_STOPS} style={StyleSheet.absoluteFill} pointerEvents="none" />
+          <View style={styles.followEdge} pointerEvents="none" />
+        </>
+      )}
+      <View style={styles.followInner}>
+        {/* The tick sits inset in its box: pull it out so both sides of the pill match. */}
+        {done ? <View style={isPending ? undefined : styles.followTick}><Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /></View> : null}
+        <Text style={[styles.followLabel, done ? { color: ink.ink } : styles.followLabelChrome, textMono]}>
+          {followLabel}
+        </Text>
+      </View>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   card: {

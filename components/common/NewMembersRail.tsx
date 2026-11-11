@@ -12,7 +12,7 @@
  */
 import { haptic } from "../../libs/haptics";
 import { usePerfProbe } from "../../libs/perfTrace";
-import React, { FC, useCallback, useRef } from "react";
+import React, { FC, useCallback, useRef, useState } from "react";
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View, Text, ScrollView, TouchableOpacity } from "react-native";
@@ -29,6 +29,11 @@ import {
   type NewMember,
 } from "../../hooks/useNewMembers";
 import { useAppTheme } from "../../context/ThemeContext";
+import { ExploreSection } from "../Search/ExploreSection";
+import ExploreFollowRow from "../Search/ExploreFollowRow";
+
+/** Rows shown before See all in Explore's clean list. */
+const ROWS_COLLAPSED = 4;
 
 /** How much of the roster to show. Followed members keep their status label. */
 const ROSTER_SIZE = 20;
@@ -36,7 +41,7 @@ const ROSTER_SIZE = 20;
 /** Maximum number of cards on screen. */
 const VISIBLE_LIMIT = 20;
 
-const NewMembersRail: FC = () => {
+const NewMembersRail: FC<{ layout?: "rail" | "rows" }> = ({ layout = "rail" }) => {
   usePerfProbe("NewMembers");
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
@@ -47,6 +52,7 @@ const NewMembersRail: FC = () => {
   const queryClient = useQueryClient();
   const { data: members = [] } = useNewMembers(ROSTER_SIZE);
   const viewerAddressRef = useRef(viewerAddress);
+  const [expanded, setExpanded] = useState(false);
   const followStates = useSearchFollowStates(viewerAddress || '', members.map(member => member.address));
   const [loadingAddress, setLoadingAddress] = useKeyedState<string | null>(viewerAddress?.toLowerCase() || '', null);
 
@@ -103,6 +109,42 @@ const NewMembersRail: FC = () => {
   const visibleMembers = members.slice(0, VISIBLE_LIMIT);
 
   if (visibleMembers.length === 0) return null;
+
+  if (layout === "rows") {
+    const shown = expanded ? visibleMembers : visibleMembers.slice(0, ROWS_COLLAPSED);
+    return (
+      <ExploreSection
+        icon="communities"
+        title={t("stats.newMembers")}
+        action={visibleMembers.length > ROWS_COLLAPSED
+          ? (expanded ? t("copy.94ea9b1d33a0", { defaultValue: "Show less" }) : t("stages.seeAll", { defaultValue: "See all" }))
+          : undefined}
+        onAction={() => setExpanded((v) => !v)}
+        chevron={!expanded}
+      >
+        {shown.map((member) => {
+          const state = followStates[member.address.toLowerCase()];
+          const isFollowed = state?.isFollowing ?? false;
+          const isPending = state?.isFollowRequestPending ?? false;
+          const handle = member.username ? `@${member.username}` : `${member.address.slice(0, 6)}...`;
+          return (
+            <ExploreFollowRow
+              key={member.address}
+              avatarUri={member.avatarUrl}
+              name={member.displayName}
+              sub={`${handle} · ${joinedAgoLabel(member.joinedAt)}`}
+              followLabel={isPending ? t("follow.requested") : isFollowed ? t("follow.following") : t("follow.follow")}
+              done={isFollowed || isPending}
+              pending={isPending}
+              hideFollow={!!viewerAddress && member.address.toLowerCase() === viewerAddress.toLowerCase()}
+              onOpen={() => openProfile(member)}
+              onFollow={() => handleFollow(member)}
+            />
+          );
+        })}
+      </ExploreSection>
+    );
+  }
 
   return (
     <View className="mb-2" style={skin?.material === 'glass' ? { ...skin.card, paddingVertical: 8 } : undefined}>
