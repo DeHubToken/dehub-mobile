@@ -255,7 +255,7 @@ const RESTORE_ZONE_BOTTOM = 0.85;
 // A tap outside it hides or shows the buttons instead.
 const PAUSE_ZONE_START = 1 / 3;
 const PAUSE_ZONE_END = 2 / 3;
-// Swipe back (Android): a drag right pulls the viewer off to the right,
+// Swipe back: a drag right pulls the viewer off to the right,
 // following the finger, and leaves it on release if it is on its way out
 // (libs/swipe-back).
 // The back drag starts anywhere on the clip, like the page-wide back drag on
@@ -263,7 +263,9 @@ const PAUSE_ZONE_END = 2 / 3;
 // (15pt) still turns photos and a vertical flick (12pt) still pages.
 const EDGE_BACK_CLAIM = 20;
 const EDGE_BACK_FAIL_Y = 12;
-const EDGE_BACK_ENABLED = Platform.OS === "android";
+// iPhone too: the viewer is a transparent modal, which has no sideways pop
+// of its own, so without this a Short could only be left with the Back button.
+const EDGE_BACK_ENABLED = true;
 /** Corner radius of the in-app mini player the drag-down lands in. */
 const MINI_RADIUS = 10;
 /** The settle after letting go of a drag down that did not leave. */
@@ -1741,8 +1743,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [navigation]);
 
   /**
-   * Swipe back by dragging right. iOS already has the stack's own edge swipe;
-   * Android only has the system gesture, which button-navigation phones lack.
+   * Swipe back by dragging right. The viewer is a transparent modal, so iOS
+   * gives it no sideways pop, and Android only has the system gesture, which
+   * button-navigation phones lack.
    * Sideways travel only: a vertical move fails it at once and the pager (or
    * the drag down into the mini player) keeps the flick, and it never claims a
    * tap. One per detector, since a gesture object can only be attached once.
