@@ -211,9 +211,9 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
     ? null
     : {
         color: tint === "hazy" ? "#E4D2FF" : tint === "osaka" ? "#FFC2E0" : "#FFFFFF",
-        textShadowColor: tint === "hazy" ? "#C9A7FF" : tint === "osaka" ? "#FF6FB5" : "rgba(255,255,255,0.7)",
+        textShadowColor: tint === "hazy" ? "rgba(201,167,255,0.5)" : tint === "osaka" ? "rgba(255,111,181,0.5)" : "rgba(255,255,255,0.35)",
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 14,
+        textShadowRadius: 8,
       };
   const line = isLight ? "rgba(11,11,13,0.08)" : theme === "osaka" ? "rgba(80,200,255,0.4)" : "rgba(255,255,255,0.10)";
 
@@ -249,11 +249,13 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
       </KeepDarkScope>
       <View style={styles.headline}>
         <NeonLogo tint={tint} still={still} />
-        {/* Both lines lit like the logo, so logo and headline read as one sign. */}
-        <Text style={[styles.headlineText, sign]} accessibilityRole="header">
+        {/* Both lines lit like the logo, so logo and headline read as one sign.
+            One Text, padded: Android draws a text shadow only inside the Text's
+            own box, so two Texts cut the glow flat under each line. The
+            padding gives the glow room, the negative margin takes it back. */}
+        <Text style={[styles.headlineText, sign, styles.glowRoom]} accessibilityRole="header">
           {headline?.top ?? t("loginStack.headlineTop", "You will own everything")}
-        </Text>
-        <Text style={[styles.headlineText, sign]}>
+          {"\n"}
           {headline?.accent ?? t("loginStack.headlineAccent", "and be happy.")}
         </Text>
       </View>
@@ -286,4 +288,5 @@ const styles = StyleSheet.create({
   // Sits over the faded bottom of the lanes; the letters end NEON_GAP above the headline.
   neon: { position: "absolute", alignSelf: "center", bottom: "100%", marginBottom: NEON_GAP - NEON_PAD, width: NEON_W, height: NEON_H },
   headlineText: { color: "#FFFFFF", textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
+  glowRoom: { paddingVertical: 12, marginVertical: -12 },
 });
