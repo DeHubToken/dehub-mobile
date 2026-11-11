@@ -502,7 +502,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     // The short tail after it covers the list's commit and the
     // header-measurement pass without being perceptible.
     const frame = requestAnimationFrame(() => {
+      markLaunchPhase('firstScreenWait');
       void whenFirstScreenReady().then(() => {
+        markLaunchPhase('firstScreenReady');
         if (cancelled) return;
         paintFrame = requestAnimationFrame(() => {
           settleTimer = setTimeout(() => {

@@ -29,7 +29,7 @@ const finiteOrNull = (value: unknown): number | null =>
 let launchReported = false;
 const launchPhases: Record<string, number> = {};
 
-export function markLaunchPhase(phase: 'appModuleReady' | 'authStarted' | 'authStorageReady' | 'authCacheChecked' | 'authReconcileStarted' | 'authReconcileReady' | 'authRefreshStarted' | 'authReady' | 'fontsReady' | 'navigationReady'): void {
+export function markLaunchPhase(phase: 'appModuleReady' | 'authStarted' | 'authStorageReady' | 'authCacheChecked' | 'authReconcileStarted' | 'authReconcileReady' | 'authRefreshStarted' | 'authReady' | 'fontsReady' | 'navigationReady' | 'firstScreenWait' | 'firstScreenReady'): void {
   if (!launchReported && launchPhases[phase] == null) launchPhases[phase] = ms(clock() - jsStartedAt);
 }
 
