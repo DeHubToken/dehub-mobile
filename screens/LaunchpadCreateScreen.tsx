@@ -78,7 +78,7 @@ function Choice({ label, active, onPress }: { label: string; active: boolean; on
 
 export default function LaunchpadCreateScreen() {
   const { t: _copy } = _useCopy();
-  useGateToHome(DIGITAL_PURCHASES_ENABLED);
+  useGateToHome(DIGITAL_PURCHASES_ENABLED, { signIn: false });
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();

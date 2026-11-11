@@ -43,7 +43,7 @@ import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
-import { useAuthState, useUser } from "../context/AuthContext";
+import { useAuthActions, useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
 import { storage } from "../libs/storage";
@@ -199,6 +199,17 @@ const STOREFRONT_HIDDEN_SCREENS = new Set([
   ScreenNames.Raffle,
   ScreenNames.Dex,
   ScreenNames.Bridge,
+]);
+
+/**
+ * Bar tabs that are only about your own account. Signed out, a tap opens the
+ * sign-in sheet over the screen you are on, and the tab opens once you are in.
+ */
+const ACCOUNT_TABS = new Set<string>([
+  ScreenNames.DM,
+  ScreenNames.AIChat,
+  ScreenNames.ProfileTab,
+  ScreenNames.Profile,
 ]);
 
 const AUTHED_ONLY_SCREENS = new Set([
@@ -562,6 +573,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
   const { width: screenW } = useWindowDimensions();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
+  const { requireAuth } = useAuthActions();
+  const isAuthedRef = useRef(isAuthed);
+  isAuthedRef.current = isAuthed;
   const { isKidsMode } = useKidsMode();
   const { currentSpace, isConnected, isModalOpen } = useStages();
   const hasStageChip = !!currentSpace && isConnected && !isModalOpen && !isKidsMode;
@@ -705,6 +719,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
     (routeName: string) => {
       // The release of a drag is not a tap.
       if (justDropped()) return;
+      if (!isAuthedRef.current && ACCOUNT_TABS.has(routeName)) {
+        requireAuth(() => navigation.navigate(routeName as never));
+        return;
+      }
       perfMark(`tab:${routeName}`);
       const current = stateRef.current;
       const route = current.routes.find((r) => r.name === routeName);
@@ -736,7 +754,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
         navigation.navigate(routeName);
       }
     },
-    [navigation],
+    [navigation, requireAuth],
   );
 
   const handleScrollItemPress = useCallback(
