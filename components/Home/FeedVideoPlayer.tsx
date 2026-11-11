@@ -218,6 +218,7 @@ interface FeedVideoPlayerProps {
 // point where a settled card reads as broken rather than loading. The shorts
 // grid has always used 250ms for the same job.
 const AUTOPLAY_DELAY = 400;
+const STALL_SPINNER_DELAY = 300;
 
 const formatTime = (seconds: number) => {
   const mins = Math.floor(seconds / 60);
@@ -660,6 +661,17 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Set by a tap, cleared by any stop. While it is true this card outranks
   // the scroll position: autoplay moving to another row does not stop it.
   const userStartedRef = useRef(false);
+
+  // A stall shorter than this is over before anyone could read a spinner; all
+  // it did was dim the picture and flash a circle a moment after playback
+  // started, most visibly each time the feed came back from a profile.
+  const stalled = isBuffering && isPlaying && !isStarting;
+  const [stallShown, setStallShown] = useState(false);
+  useEffect(() => {
+    if (!stalled) { setStallShown(false); return; }
+    const timer = setTimeout(() => setStallShown(true), STALL_SPINNER_DELAY);
+    return () => clearTimeout(timer);
+  }, [stalled]);
 
   const endStarting = useCallback(() => {
     isStartingRef.current = false;
@@ -1725,7 +1737,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {isBuffering && isPlaying && !isStarting && (
+      {stalled && stallShown && (
         <View style={styles.bufferingOverlay}>
           <View style={styles.spinnerContainer}>
             <Spinner size={32} />
