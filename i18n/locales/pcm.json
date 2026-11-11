@@ -9424,7 +9424,9 @@
     "removeFromHistory": "Comot \"{{query}}\" from history",
     "trendingThisWeek": "Wetin Dey Trend Dis Week",
     "tryDifferentKeywords": "Try another keywords or check your spelling",
-    "noTrendingThisWeek": "Nothing dey trend dis week"
+    "noTrendingThisWeek": "Nothing dey trend dis week",
+    "open": "Find",
+    "close": "Close search"
   },
   "notifPrompt": {
     "stayInLoop": "Make you dey hear wetin dey happen",
@@ -14674,5 +14676,36 @@
       "show": "Podcast",
       "artist": "Artist"
     }
+  },
+  "twoFactor": {
+    "wrongCode": "Na dem code no dey fit. Try wey new one be in your app.",
+    "stackAccent": "Wetin you dey enter?",
+    "signingInAs": "Signing in as",
+    "backupLabel": "Backup code",
+    "signIn": "Sign in",
+    "trustDevice": "No go ask again for dis device for 30 days.",
+    "useBackupShort": "Backup code.",
+    "useApp": "Use my authenticator app",
+    "useAnotherShort": "Different account",
+    "title": "Two-step sign-in",
+    "copied": "Copied",
+    "getStarted": "Get started",
+    "setupKey": "Setup key",
+    "showQr": "Show QR code",
+    "next": "Next",
+    "confirmBody": "Type di 6-digit code wey your app dey show for Riftn. E dey change every 30 seconds.",
+    "turnOn": "Turn on",
+    "share": "Share",
+    "codesFileTitle": "Riftn backup codes",
+    "savedThem": "I’ve saved these codes",
+    "done": "Done",
+    "manageTitle": "Two-step sign-in is on",
+    "onSince": "On since {{date}}",
+    "onShort": "On",
+    "backupCodes": "Backup codes",
+    "codesLeft": "{{count}} left",
+    "getNew": "Wey your new codes be?",
+    "turnOff": "Turn off",
+    "codeLabel": "Six-digit code"
   }
 }

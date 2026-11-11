@@ -9412,7 +9412,9 @@
     "removeFromHistory": "Comot \"{{query}}\" from history",
     "trendingThisWeek": "Weti Di Trend Dis Week",
     "tryDifferentKeywords": "Try other keywords or check ya spelling",
-    "noTrendingThisWeek": "Notin di trend dis week"
+    "noTrendingThisWeek": "Notin di trend dis week",
+    "open": "Sori, search no dey.",
+    "close": "Kap Ya Search"
   },
   "notifPrompt": {
     "stayInLoop": "Mek you dey hia wetin dey happen",
@@ -14671,5 +14673,40 @@
       "show": "Podcast",
       "artist": "Artist"
     }
+  },
+  "twoFactor": {
+    "wrongCode": "Dat code no match. Try di new one wey de for your app.",
+    "signingInAs": "Signing in as",
+    "backupLabel": "Backup code",
+    "signIn": "Sign in",
+    "useApp": "Use my authenticator app",
+    "useAnotherShort": "Different account",
+    "rowOn": "On. {{count}} backup code dem still remain.",
+    "title": "Two-step sign-in",
+    "copied": "Copied",
+    "introTitle": "Put anoda lock",
+    "getStarted": "Get started",
+    "addToApp": "Wen yu wok wit authenitikaytor app, yu go fit add am for yu phone.",
+    "setupKey": "Setup key",
+    "showQr": "Show QR code",
+    "next": "Next",
+    "confirmTitle": "I no get app.",
+    "confirmBody": "Na 425142.",
+    "turnOn": "Turn on",
+    "codesTitle": "Save backup kodi yé.",
+    "share": "Share",
+    "codesFileTitle": "Riftn backup codes",
+    "savedThem": "I’ve saved these codes",
+    "done": "Done",
+    "manageTitle": "Two-step sign-in is on",
+    "onSince": "On since {{date}}",
+    "onShort": "On",
+    "backupCodes": "Backup codes",
+    "codesLeft": "{{count}} left",
+    "getNew": "Find new code-dem",
+    "turnOff": "Turn off",
+    "offBody": "Put di code weh yi de for your app so you go fit confirm. For sign in, you go just need your normal login again.",
+    "newCodesBody": "Put di code weh i de for your app. Your old backup code-dem go stop for work.",
+    "codeLabel": "Six-digit code"
   }
 }
