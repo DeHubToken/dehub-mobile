@@ -1,3 +1,4 @@
+import { haptic } from "../libs/haptics";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { IS_APP_STORE_BUILD } from "../config/storefront";
@@ -458,6 +459,7 @@ export const useUserProfileData = (
     if (isFollowing || isFollowRequestPending || !profileData) return;
 
     requireAuth(async () => {
+      haptic.tap();
       const acct = (authUser?.address || "").toLowerCase();
       const target = (data?.address || profileData.address).toLowerCase();
 

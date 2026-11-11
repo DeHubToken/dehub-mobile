@@ -19,7 +19,7 @@ function postActionUrl(post?: { token_id?: string | number; url?: string }) {
   return /^\d+$/.test(id) ? `https://riftn.com/app/post/${id}` : post?.url;
 }
 
-export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AIAgent[] }) {
+export function AgentTasksPanel({ wallet, agents, team = false }: { wallet: string; agents: AIAgent[]; team?: boolean }) {
   const focused = useIsFocused();
   const { t } = useTranslation();
   const client = useQueryClient();
@@ -91,7 +91,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
     <Text style={styles.title}>{t('agents.tasks.title')}</Text>
     <Text style={styles.muted}>{t('agents.tasks.description')}</Text>
     {active.length ? <>
-      {active.length > 1 && <View style={styles.row}>
+      {team && active.length > 1 && <View style={styles.row}>
         <KitButton variant={swarm ? 'quiet' : 'primary'} label={t('agents.tasks.oneAgent')} onPress={() => { setSwarm(false); setRequestId(randomUUID()); create.reset(); }} />
         <KitButton variant={swarm ? 'primary' : 'quiet'} label={t('agents.tasks.swarm')} onPress={() => { setSwarm(true); setSelected(active.map(agent => agent.id)); setRequestId(randomUUID()); create.reset(); }} />
       </View>}
@@ -118,10 +118,10 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
           <Text style={styles.muted}>{t('agents.tasks.pacing.help', { defaultValue: 'Starts automatically with Sentient off. Pacing supports one like or dislike action on a fixed post window: each agent reacts to every matching post, one turn at a time. The first turn starts now; service limits can extend the finish time.' })}</Text>
         </>}
       </>}
-      <View style={styles.row} accessibilityLabel={t('agents.tasks.window.mode')}>
+      {team && <View style={styles.row} accessibilityLabel={t('agents.tasks.window.mode')}>
         <KitButton variant={windowMode ? 'quiet' : 'primary'} label={t('agents.tasks.window.write')} onPress={() => { setWindowMode(false); changed(); }} />
         <KitButton variant={windowMode ? 'primary' : 'quiet'} label={t('agents.tasks.window.title')} onPress={() => { setWindowMode(true); changed(); }} />
-      </View>
+      </View>}
       {windowMode ? <View style={styles.card}>
         <Text style={styles.text}>{t('agents.tasks.window.period')}</Text>
         <View style={styles.row}>{WINDOW_PRESETS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: preset === value }} disabled={create.isPending}

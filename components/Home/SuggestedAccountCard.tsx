@@ -1,3 +1,4 @@
+import { haptic } from "../../libs/haptics";
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
@@ -209,6 +210,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     if (!myAddress || !account.address || isOwnAccount) return;
     if (isFollowing || isPending) return;
     const target = account.address;
+    haptic.tap();
     setIsFollowing(true);
     onFollowChange?.(target, { isFollowing: true, isFollowRequestPending: false });
     followWithRetries(myAddress, target).then(

@@ -129,11 +129,10 @@ it.each(destinations)('%s immediately closes and targets its registered nested s
   expect(navigator).toContain(`name={ScreenNames.${screen}}`);
 });
 
-it('hides private agent management from other accounts, including menu search', () => {
+it('shows agent management to any signed-in account, including menu search', () => {
   const view = render(<AppDrawer visible onClose={jest.fn()} />);
-  expect(view.queryByLabelText('nav.agents')).toBeNull();
   fireEvent.changeText(view.getByLabelText('sidebar.searchMenu'), 'nav.agents');
-  expect(view.queryByLabelText('nav.agents')).toBeNull();
+  expect(view.queryByLabelText('nav.agents')).not.toBeNull();
 });
 
 it('routes the profile header, balance chip, and Post through App', () => {

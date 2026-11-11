@@ -12,8 +12,15 @@ import type { VideoPlayer } from "expo-video";
  * `auto` mixes while every playing player is silent and takes the session
  * (no mixing, Now Playing shown) as soon as one plays sound, so unmuted
  * playback and lock-screen controls behave exactly as before.
+ *
+ * It also keeps voices at their normal pitch when the video is sped up.
+ * expo-video's Android player defaults `preservesPitch` to false, so 1.5x,
+ * 2x and hold-to-speed-up played chipmunk audio there (iOS already
+ * corrected pitch). Every app player passes through here before its rate is
+ * set, and the property is plain JS, so this needs no new build.
  */
 export function shareAudioWhenSilent(player: VideoPlayer | null | undefined): void {
   if (!player) return;
   try { player.audioMixingMode = "auto"; } catch {}
+  try { player.preservesPitch = true; } catch {}
 }
