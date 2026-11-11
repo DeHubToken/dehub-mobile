@@ -14766,7 +14766,15 @@
       "episode": "Episodi del podcast",
       "show": "Podcast",
       "artist": "Artista"
-    }
+    },
+    "popOut": "Sortida emergent",
+    "backInPost": "En lloc d'això, juga aquí",
+    "inCorner": "Jugar a la cantonada",
+    "loading": "S'està carregant...",
+    "paused": "En pausa",
+    "preview": "Previsualització",
+    "seek": "Cerca",
+    "tapToStartApp": "Toca Reproduir al reproductor d'Spotify."
   },
   "twoFactor": {
     "wrongCode": "Això codi no coincidia. Prova el més nou a la teva app.",

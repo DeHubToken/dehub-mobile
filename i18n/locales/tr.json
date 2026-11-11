@@ -16522,7 +16522,15 @@
       "episode": "Podcast bölümü",
       "show": "Podcast",
       "artist": "Sanatçı"
-    }
+    },
+    "popOut": "Pop out",
+    "backInPost": "Bunun yerine burada oynayın",
+    "inCorner": "Köşede oynamak",
+    "loading": "Yükleniyor...",
+    "paused": "Duraklatıldı",
+    "preview": "Ön izleme",
+    "seek": "Ara",
+    "tapToStartApp": "Spotify oynatıcısında oynat'a dokun"
   },
   "twoFactor": {
     "wrongCode": "Bu kod eşleşmedi. Uygulamanızdaki en yeni kodu deneyin.",

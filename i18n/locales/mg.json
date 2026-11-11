@@ -14837,7 +14837,15 @@
       "episode": "Ny Podcast andiany",
       "show": "Rakipeo",
       "artist": "Mpanakanto"
-    }
+    },
+    "popOut": "Pop avy",
+    "backInPost": "Milalao eto fa tsy",
+    "inCorner": "Mandeha eo an-jorony",
+    "loading": "Mangala...",
+    "paused": "Tapaka",
+    "preview": "Topimaso",
+    "seek": "Mikaroka",
+    "tapToStartApp": "Tapety milalao ao amin'ny Spotify mpilalao"
   },
   "twoFactor": {
     "wrongCode": "Tsy mifanaraka io kaody io. Andramo ny farany indrindra ao amin'ny app-nao.",

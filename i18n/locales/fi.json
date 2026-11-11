@@ -14772,7 +14772,15 @@
       "episode": "Podcast-jakso",
       "show": "Podcast",
       "artist": "Taiteilija"
-    }
+    },
+    "popOut": "Ponnahda ulos",
+    "backInPost": "Pelaa sen sijaan täällä",
+    "inCorner": "Pelaaminen nurkassa",
+    "loading": "Ladataan…",
+    "paused": "Keskeytetty",
+    "preview": "Esikatselu",
+    "seek": "Etsi",
+    "tapToStartApp": "Napauta pelaa Spotify-soittimessa"
   },
   "twoFactor": {
     "wrongCode": "Se koodi ei vastannut. Kokeile uusinta sovelluksessasi.",

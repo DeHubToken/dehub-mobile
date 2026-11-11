@@ -16774,7 +16774,15 @@
       "episode": "Podcast-aflevering",
       "show": "Podcast",
       "artist": "Artiest"
-    }
+    },
+    "popOut": "Pop out",
+    "backInPost": "Speel hier in plaats daarvan",
+    "inCorner": "Spelen in de hoek",
+    "loading": "Bezig met laden...",
+    "paused": "Gepauzeerd",
+    "preview": "Voorbeeld",
+    "seek": "Seek",
+    "tapToStartApp": "Tik op afspelen in de Spotify-speler"
   },
   "twoFactor": {
     "wrongCode": "Die code paste niet. Probeer de nieuwste in je app.",

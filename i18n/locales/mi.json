@@ -14750,7 +14750,15 @@
       "episode": "Podcast wāhanga",
       "show": "Podcast",
       "artist": "Kaihoahoa"
-    }
+    },
+    "popOut": "Pānuitia atu",
+    "backInPost": "Play konei i te wahi",
+    "inCorner": "Play i roto i te kokonga",
+    "loading": "Ko te utanga...",
+    "paused": "Pouaka",
+    "preview": "Whakaaturanga",
+    "seek": "Rapua",
+    "tapToStartApp": "Tap tākaro i roto i te kaitākaro Spotify"
   },
   "twoFactor": {
     "wrongCode": "Kāore taua waehere i taurite. Me whakamātau te mea hou rawa i tō taupānga.",
