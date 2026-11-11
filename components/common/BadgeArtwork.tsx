@@ -54,9 +54,12 @@ function BadgeArtwork({ source, style }: Props) {
   const stillBounds = tier === "Killer Whale"
     ? { left: 19, top: 17, right: 109, bottom: 121 }
     : art?.posterBounds;
+  // The animation opens on the hover poster, so the poster's artwork is what
+  // has to fill the still's box. Sizing by the whole motion envelope made that
+  // first frame smaller than the still: the badge shrank, then moved.
   let motionStyle = imageStyle;
-  if (canvas !== undefined && stillBounds && art?.bounds) {
-    const motion = art.bounds;
+  if (canvas !== undefined && stillBounds && art) {
+    const motion = art.posterBounds;
     const motionCanvas = canvas * (stillBounds.bottom - stillBounds.top) / (motion.bottom - motion.top);
     motionStyle = {
       position: "absolute", width: motionCanvas, height: motionCanvas,
