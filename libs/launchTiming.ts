@@ -58,8 +58,13 @@ export function reportLaunchRevealed(context: { signedIn: boolean; theme?: strin
     // Older runtimes have no startup timing; the JS figure still stands.
   }
 
+  const jsToRevealMs = ms(revealedAt - jsStartedAt);
+  // One line per cold start for `adb logcat -s ReactNativeJS`, so a phone on
+  // the desk can be read without the logs pipe.
+  // eslint-disable-next-line no-console
+  console.warn(`[launch] reveal ${jsToRevealMs}ms | ${Object.entries(launchPhases).map(([k, v]) => `${k} ${v}`).join(" | ")}`);
   report("LaunchTiming", "cold start", {
-    jsToRevealMs: ms(revealedAt - jsStartedAt),
+    jsToRevealMs,
     // Native startup timestamps and performance.now() have differed by days
     // on real devices. Do not subtract them or call RN initialization app launch.
     nativeInitToBundleMs,
