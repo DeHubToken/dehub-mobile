@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import { useIsFocusedLazy } from "./useIsFocusedLazy";
 import { useQueryClient, type Query } from "@tanstack/react-query";
 import { claimFirstScreen } from "../libs/firstScreenReady";
+import { noteLaunch } from "../libs/launchTiming";
 
 const FEED_FAMILIES = new Set(["home-feed", "home-images", "home-shorts"]);
 // A tab with no feed query (the Audio browse page) has nothing to wait on.
@@ -25,11 +26,25 @@ export function useHoldLaunchForFeed(): void {
     if (!focused) return;
     const release = claimFirstScreen();
     const cache = queryClient.getQueryCache();
+    const claimedAt = Date.now();
+    let first = true;
     const check = () => {
-      if (cache.getAll().some(query => isShownFeed(query) && hasFirstPage(query))) release();
+      const shown = cache.getAll().find(query => isShownFeed(query) && hasFirstPage(query));
+      if (shown) {
+        // Which feed opened the app, and whether it was the saved copy or a
+        // fetch. A saved feed nobody is showing means its key changed.
+        const saved = shown.state.dataUpdatedAt === 0 || shown.state.dataUpdatedAt < claimedAt - 2000;
+        const unused = cache.getAll().filter(query => FEED_FAMILIES.has(String(query.queryKey?.[0])) && query.getObserversCount() === 0 && query.state.data !== undefined);
+        noteLaunch("feed", `${first ? "at once" : `${Date.now() - claimedAt}ms`} ${saved ? "saved" : "fetched"} ${JSON.stringify(shown.queryKey)}${unused.length ? ` unused ${unused.length} ${JSON.stringify(unused[0].queryKey)}` : ""}`);
+        release();
+      }
+      first = false;
     };
     const grace = setTimeout(() => {
-      if (!cache.getAll().some(isShownFeed)) release();
+      if (!cache.getAll().some(isShownFeed)) {
+        noteLaunch("feed", "none shown");
+        release();
+      }
     }, NO_FEED_GRACE_MS);
     const unsubscribe = cache.subscribe(check);
     check();
