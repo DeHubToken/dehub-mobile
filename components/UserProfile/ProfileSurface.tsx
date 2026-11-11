@@ -9,8 +9,10 @@ export const PROFILE_OPEN_MS = 220;
 export const PROFILE_CLOSE_MS = 180;
 
 /** Keep Android media in the activity window, where AppState can track focus. */
-export default function ProfileSurface({ visible, onClose, onOpenComplete, onCloseComplete, children }: {
+export default function ProfileSurface({ visible, keepMounted, onClose, onOpenComplete, onCloseComplete, children }: {
   visible: boolean;
+  /** Android: stay built while hidden, so the same profile can come straight back. */
+  keepMounted?: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
   /** Android: the page has finished fading away and is no longer drawn. */
@@ -25,15 +27,16 @@ export default function ProfileSurface({ visible, onClose, onOpenComplete, onClo
       </Modal>
     );
   }
-  return <AndroidProfileSurface visible={visible} onClose={onClose} onOpenComplete={onOpenComplete} onCloseComplete={onCloseComplete}>{children}</AndroidProfileSurface>;
+  return <AndroidProfileSurface visible={visible} keepMounted={keepMounted} onClose={onClose} onOpenComplete={onOpenComplete} onCloseComplete={onCloseComplete}>{children}</AndroidProfileSurface>;
 }
 
 /**
  * Expand from the centre on the UI thread, keeping the source page behind it.
  * The full-height slide made an ordinary profile feel like a modal sheet.
  */
-function AndroidProfileSurface({ visible, onClose, onOpenComplete, onCloseComplete, children }: {
+function AndroidProfileSurface({ visible, keepMounted, onClose, onOpenComplete, onCloseComplete, children }: {
   visible: boolean;
+  keepMounted?: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
   onCloseComplete?: () => void;
@@ -66,10 +69,12 @@ function AndroidProfileSurface({ visible, onClose, onOpenComplete, onCloseComple
   }));
 
   // Rendered in the same commit as the tap, not an effect later.
-  if (!visible && !mounted) return null;
+  if (!visible && !mounted && !keepMounted) return null;
   return (
     <Animated.View
       pointerEvents={visible ? "auto" : "none"}
+      accessibilityElementsHidden={!visible}
+      importantForAccessibility={visible ? "auto" : "no-hide-descendants"}
       style={[StyleSheet.absoluteFill, {
         top: -insets.top, bottom: -insets.bottom,
         left: -insets.left, right: -insets.right,

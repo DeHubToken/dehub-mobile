@@ -108,3 +108,40 @@ it('opens a profile over the page without re-rendering a page that only watches 
   expect(seen).toEqual([true, false]);
   act(() => tree.unmount());
 });
+
+it('keeps a closed profile built for a quick return, parked and silent', () => {
+  jest.useFakeTimers();
+  let profile!: ReturnType<typeof useUserProfileSheet>;
+  function Page() {
+    profile = useUserProfileSheet();
+    return null;
+  }
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
+  const sheet = () => tree.root.findByType('Profile' as any).props;
+  act(() => profile.showUserProfile('member'));
+  act(() => sheet().onOpenComplete());
+  expect(sheet().parked).toBe(false);
+  act(() => profile.hideUserProfile());
+  act(() => sheet().onCloseComplete());
+  // Closed: still handed the same profile, but parked.
+  expect(sheet().visible).toBe(false);
+  expect(sheet().usernameOrAddress).toBe('member');
+  expect(sheet().parked).toBe(true);
+  // Back into it: same profile, no longer parked.
+  act(() => profile.showUserProfile('member'));
+  expect(sheet().usernameOrAddress).toBe('member');
+  expect(sheet().parked).toBe(false);
+  act(() => profile.hideUserProfile());
+  act(() => sheet().onCloseComplete());
+  // Another profile replaces the parked one at once.
+  act(() => profile.showUserProfile('other'));
+  expect(sheet().usernameOrAddress).toBe('other');
+  act(() => profile.hideUserProfile());
+  act(() => sheet().onCloseComplete());
+  expect(sheet().usernameOrAddress).toBe('other');
+  // Left alone, the parked profile is let go.
+  act(() => jest.advanceTimersByTime(45_000));
+  expect(sheet().usernameOrAddress).toBeNull();
+  expect(sheet().parked).toBe(false);
+});
