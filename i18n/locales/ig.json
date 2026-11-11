@@ -14731,7 +14731,15 @@
       "episode": "Podcast ihe omume",
       "show": "Podcast",
       "artist": "Artist"
-    }
+    },
+    "popOut": "Pop pụta",
+    "backInPost": "Gwuo ebe a kama",
+    "inCorner": "Na-egwu n 'akuku",
+    "loading": "Na-edebata...",
+    "paused": "Akwụsịla",
+    "preview": "Ịhụchalụ",
+    "seek": "Chọọ",
+    "tapToStartApp": "Kpatụ play na Spotify player"
   },
   "twoFactor": {
     "wrongCode": "Koodu ahụ adabaghị. Gbalịa nke kacha ọhụrụ n'ime ngwa gị.",

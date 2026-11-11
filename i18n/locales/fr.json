@@ -16527,7 +16527,15 @@
       "episode": "Épisode de podcast",
       "show": "Podcast",
       "artist": "Artiste"
-    }
+    },
+    "popOut": "Sortir",
+    "backInPost": "Jouez ici à la place",
+    "inCorner": "Jouer dans le coin",
+    "loading": "Chargement…",
+    "paused": "En pause",
+    "preview": "Aperçu",
+    "seek": "Seek",
+    "tapToStartApp": "Appuyez sur jouer dans le lecteur Spotify"
   },
   "twoFactor": {
     "wrongCode": "Ce code ne correspondait pas. Essayez le plus récent dans votre application.",

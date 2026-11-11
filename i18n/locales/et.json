@@ -14766,7 +14766,15 @@
       "episode": "Podcasti episood",
       "show": "Podcast",
       "artist": "Esitaja"
-    }
+    },
+    "popOut": "Hüppa välja",
+    "backInPost": "Mängi selle asemel siin",
+    "inCorner": "Nurga taga mängimine",
+    "loading": "Laadimine…",
+    "paused": "Peatatud",
+    "preview": "Eelvaade",
+    "seek": "Otsi",
+    "tapToStartApp": "Puuduta Spotify mängijas nuppu „Esita“"
   },
   "twoFactor": {
     "wrongCode": "See kood ei sobi. Proovi uusimat oma rakenduses.",
