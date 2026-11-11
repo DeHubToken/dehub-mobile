@@ -230,6 +230,8 @@ const DARK_SURFACE = /(?:^|\s)dark-surface(?=\s|$)/;
 /** Renders `__keepType` with everything it draws, itself included, on the dark colours. */
 const KeepDarkHost = React.forwardRef(function KeepDarkHost(props, ref) {
   const { __keepType: type, ...rest } = props;
+  // Never without something to draw: an empty type here took the screen down.
+  if (!type) return rest.children ?? null;
   return jsxAny(KeepDark.Provider, { value: true, children: jsxAny(type, ref ? { ...rest, ref } : rest) });
 });
 
@@ -307,7 +309,12 @@ function isMediaFrame(type, props) {
 
 /** The type and props an element is created with while System Light is on. */
 function tone(type, props) {
-  if (!on || !props || typeof props !== "object" || type === ToneFill) return [type, props];
+  // An element already wrapped by this pass comes back through it whenever a
+  // parent re-creates it with more props (a gesture detector or a touchable
+  // cloning its child). Wrapping KeepDarkHost a second time replaced its
+  // `__keepType` with itself, the inner one then had no type to draw, and the
+  // whole screen fell to the error page (the side menu's rows in System Light).
+  if (!on || !props || typeof props !== "object" || type === ToneFill || type === KeepDarkHost) return [type, props];
   if (typeof props.className === "string" && DARK_SURFACE.test(props.className)) {
     // The whole element goes inside the provider, not just its children: a
     // View draws through React Native's own JSX (View -> its native view),

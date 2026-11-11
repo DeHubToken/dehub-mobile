@@ -7,7 +7,7 @@ jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('reac
 jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 jest.mock('react-native', () => ({ Text: 'Text', View: 'View', Modal: 'Modal', StyleSheet: { flatten: (s: unknown) => s } }));
 
-const { setLightTone, toneColor, tone, ToneFill } = require('../../libs/jsx/tone');
+const { setLightTone, toneColor, tone, ToneFill, KeepDarkHost } = require('../../libs/jsx/tone');
 
 afterEach(() => setLightTone(false));
 
@@ -99,4 +99,18 @@ it('keeps a dark surface its own fill, not just its children', () => {
   let tree: any;
   act(() => { tree = create(React.createElement(type, props)); });
   expect(tree.root.findByType(View as any).props.style).toEqual({ backgroundColor: '#F2F2F4' });
+});
+
+it('leaves a dark-surface element alone when a parent re-creates it', () => {
+  setLightTone(true);
+  const [type, props] = tone('View', { className: 'dark-surface', children: null });
+  expect(type).toBe(KeepDarkHost);
+  // A touchable or gesture detector cloning its child sends it through again.
+  const [again, againProps] = tone(type, { ...props, onPress: () => {} });
+  expect(again).toBe(KeepDarkHost);
+  expect(againProps.__keepType).toBe('View');
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(React.createElement(again, againProps)); });
+  expect(tree.root.findByType('View' as any)).toBeTruthy();
+  act(() => tree.unmount());
 });
