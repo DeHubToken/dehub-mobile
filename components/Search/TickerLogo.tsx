@@ -60,7 +60,7 @@ export default function TickerLogo({ symbol, size = 22 }: { symbol: string; size
   if (source && typeof source !== "string") {
     return <RNImage source={source as number} style={{ width: size, height: size, borderRadius: size / 2 }} />;
   }
-  if (source) {
+  if (typeof source === "string" && source) {
     return (
       <Image
         source={{ uri: source }}
