@@ -156,17 +156,22 @@ export default function PillHeader({
     }
     drawerProgress.value = drawerOpen ? withSpring(1, DRAWER_SPRING) : withTiming(0, { duration: 200 });
   }, [drawerOpen, reducedMotion, drawerProgress]);
-  const slotStyle = useAnimatedStyle(() => ({
-    height: Math.max(0, drawerProgress.value) * drawerHeight.value,
-  }));
-  const drawerStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: (Math.min(1, drawerProgress.value) - 1) * drawerHeight.value }],
-  }));
   const { ref, pillStyle, contentStyle } = usePillGlide();
   // Titles stay white like web's pill; only the icons take the theme's tint.
   const ink = "#FFFFFF";
   const softInk = skin ? skin.tabIcon : "#A1A1AA";
   const corner = skin ? Number(skin.strip.borderRadius ?? FEED_PILL_RADIUS) : FEED_PILL_RADIUS;
+  // The open drawer reaches up behind the pill past its rounded bottom
+  // corners, so its top corners hide under the pill's curve and the two meet
+  // cleanly instead of leaving a notch at each corner.
+  const behind = Math.max(0, corner) + 2;
+  const slotStyle = useAnimatedStyle(() => {
+    const p = Math.max(0, drawerProgress.value);
+    return { height: p * drawerHeight.value, marginTop: -behind * Math.min(1, p) };
+  });
+  const drawerStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (Math.min(1, drawerProgress.value) - 1) * drawerHeight.value }],
+  }));
 
   return (
     <Reanimated.View ref={ref as any} style={[styles.wrap, pillStyle]}>
@@ -260,13 +265,13 @@ export default function PillHeader({
               <FeedPillSurface />
               <LinearGradient
                 colors={isLight && !skin ? ["rgba(0,0,0,0.10)", "rgba(0,0,0,0)"] : ["rgba(0,0,0,0.45)", "rgba(0,0,0,0)"]}
-                style={styles.drawerShade}
+                style={[styles.drawerShade, { top: DRAWER_TUCK + behind }]}
               />
             </View>
             {built ? (
               <PageHeaderContext.Provider value>
                 <PillDrawerContext.Provider value={drawerOpen}>
-                  <View style={styles.drawerBody}>{children}</View>
+                  <View style={[styles.drawerBody, { paddingTop: 8 + behind }]}>{children}</View>
                 </PillDrawerContext.Provider>
               </PageHeaderContext.Provider>
             ) : null}
@@ -279,7 +284,7 @@ export default function PillHeader({
 
 const styles = StyleSheet.create({
   wrap: { paddingHorizontal: SIDE_INSET, paddingTop: TOP_INSET, paddingBottom: 6, zIndex: 20 },
-  pill: { borderRadius: FEED_PILL_RADIUS, overflow: "hidden" },
+  pill: { borderRadius: FEED_PILL_RADIUS, overflow: "hidden", zIndex: 2 },
   row: { flexDirection: "row", alignItems: "center", minHeight: ROW_HEIGHT },
   lead: { width: LEAD_SLOT_WIDTH, height: ROW_HEIGHT, alignItems: "center", justifyContent: "center" },
   leadGap: { width: 12 },
@@ -291,7 +296,7 @@ const styles = StyleSheet.create({
   title: { flexShrink: 1, fontSize: 15, fontWeight: "600", letterSpacing: 0.1 },
   line: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center" },
   actions: { flexDirection: "row", alignItems: "center", gap: 2, paddingRight: 2, marginLeft: 4 },
-  drawerSlot: { overflow: "hidden" },
+  drawerSlot: { overflow: "hidden", zIndex: 1 },
   drawer: { position: "absolute", left: 0, right: 0, top: 0 },
   drawerMaterial: { position: "absolute", left: 0, right: 0, bottom: 0, top: -DRAWER_TUCK, overflow: "hidden" },
   drawerShade: { position: "absolute", left: 0, right: 0, top: DRAWER_TUCK, height: 14 },
