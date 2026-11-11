@@ -64,17 +64,13 @@ import { resolveViewCount } from "../libs/numbers.util";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
-import NewMembersRail from "../components/common/NewMembersRail";
-import SuggestedAccountsSection from "../components/Home/SuggestedAccountsSection";
+import { ExploreSection } from "../components/Search/ExploreSection";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 import { usePerfProbe } from '../libs/perfTrace';
 import DeferredTextInput from "../components/ui/DeferredTextInput";
-import { storage } from "../libs/storage";
-import { promptFeedEvents } from "../libs/eventBus";
-import { ScreenNames } from "../navigation/ScreenNames";
-import TrendingTopicsList from "../components/common/TrendingTopicsList";
+import ExploreCleanList, { ExploreCategoryWords } from "../components/Search/ExploreCleanList";
 import { useAppTheme } from "../context/ThemeContext";
 import { SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 import {
@@ -284,6 +280,8 @@ const SearchScreen: React.FC = () => {
   // Trending
   const [trendingVideos, setTrendingVideos] = useState<UnifiedFeedItem[]>([]);
   const [trendingLoading, setTrendingLoading] = useState(true);
+  // A category word under the pill: the idle list shows its newest posts.
+  const [browseCategory, setBrowseCategory] = useState<string | null>(null);
 
   // Refs
   const inputRef = useRef<TextInput>(null);
@@ -404,7 +402,14 @@ const SearchScreen: React.FC = () => {
       activeTab === "all" ? "all" : (tabConfig?.postType as FeedPostType) ?? "all";
     (async () => {
       try {
-        const res: UnifiedFeedResponse = await getUnifiedFeed({
+        const res: UnifiedFeedResponse = await getUnifiedFeed(browseCategory ? {
+          postType: feedPostType,
+          category: browseCategory,
+          sortBy: "createdAt",
+          sortOrder: "desc",
+          limit: 20,
+          page: 1,
+        } : {
           postType: feedPostType,
           sortBy: "views",
           sortOrder: "desc",
@@ -420,7 +425,7 @@ const SearchScreen: React.FC = () => {
       }
     })();
     return () => { cancelled = true; };
-  }, [activeTab, hasSearched]);
+  }, [activeTab, hasSearched, browseCategory]);
 
   useEffect(() => {
     let cancelled = false;
@@ -593,25 +598,6 @@ const SearchScreen: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeParams, setSearchQuery]);
 
-  /**
-   * Tapping a trending topic filters the home feed by that category.
-   *
-   * Writes the same key HomeScreen reads on mount rather than passing a param,
-   * because the two have to agree on one source of truth — a route param would
-   * be overwritten by the stored value the next time Home mounted. Home is
-   * already mounted and only reads that key on mount, so the category is also
-   * sent over the prompt channel to filter the open feed straight away.
-   */
-  const handleTopicPress = useCallback(
-    (category: string) => {
-      try {
-        storage.set("dehub:defaultCategory", category);
-      } catch {}
-      promptFeedEvents.chooseCategory(category);
-      navigation.navigate(ScreenNames.Home as never);
-    },
-    [navigation],
-  );
 
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
@@ -629,6 +615,23 @@ const SearchScreen: React.FC = () => {
     },
     [activeTab, executeSearch, showHeader, setSearchQuery],
   );
+
+  // A trending tag opens its category right here when there is one, the
+  // same as web; anything else is searched as a hashtag.
+  const handleExploreTopic = useCallback(
+    (name: string) => {
+      const match = categories.find((c) => c.toLowerCase() === name.toLowerCase());
+      if (match) {
+        setBrowseCategory(match);
+        idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
+      } else {
+        handleSuggestionClick(`#${name}`);
+      }
+    },
+    [categories, handleSuggestionClick],
+  );
+  const cleanListY = useRef(0);
+
 
   const handleTabChange = useCallback(
     (tab: TabKey) => {
@@ -1057,28 +1060,39 @@ const SearchScreen: React.FC = () => {
         scrollIndicatorInsets={{ top: headerHeight }}
         contentContainerStyle={{ paddingTop: headerHeight, paddingBottom: insets.bottom + 80 }}
         ListHeaderComponent={<>
-        {/* Above trending on purpose: this is the screen people already open to
-            find other people, and a welcome is worth less the longer it waits.
-            Renders nothing when nobody joined recently. The wrapper reports
-            where the rail landed for the Live Stats deep link above. */}
-        {/* People to follow, as cover cards: the same row the home feed
-            carries. Renders nothing until suggestions arrive. */}
-        <SuggestedAccountsSection surface="explore" />
-        <View onLayout={(e) => { newMembersLayout.current = e.nativeEvent.layout; }}>
-          <NewMembersRail />
-        </View>
-        {/*
-          Trending topics, above trending posts on purpose: the topics are the
-          shorter, scannable answer to "what is happening", and the posts below
-          are the long one. Only on the "all" tab — the other tabs are somebody
-          asking for one format, and a category list is not an answer to that.
-        */}
-        {activeTab === "all" && (
-          <TrendingTopicsList onTopicPress={handleTopicPress} />
+        {/* The clean list (web's ExplorePhoneHome): category words, then
+            recent searches, trending tags, who is live, top tokens and
+            people, one line each. A category word swaps it for that
+            category's newest posts. */}
+        {categories.length > 0 && (
+          <ExploreCategoryWords
+            categories={categories}
+            value={browseCategory}
+            onChange={(category) => {
+              setBrowseCategory(category);
+              idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
+            }}
+          />
         )}
-        {!trendingLoading && trendingVideos.length > 0 && <View className="px-4 pt-3 pb-2">
-          <Text className="text-white text-base font-bold">{t(TRENDING_LABEL[activeTab] || "search.trendingThisWeek")}</Text>
-        </View>}
+        {!browseCategory && (
+          <View onLayout={(e) => { cleanListY.current = e.nativeEvent.layout.y; }}>
+            <ExploreCleanList
+              recentSearches={searchHistory}
+              onSearch={handleSuggestionClick}
+              onRemoveSearch={handleRemoveHistory}
+              onClearSearches={handleClearHistory}
+              onTopic={handleExploreTopic}
+              onNewMembersLayout={(layout) => {
+                newMembersLayout.current = { y: cleanListY.current + layout.y, height: layout.height };
+              }}
+            />
+          </View>
+        )}
+        {!browseCategory && !trendingLoading && trendingVideos.length > 0 && (
+          <ExploreSection icon="posts" title={t(TRENDING_LABEL[activeTab] || "search.trendingThisWeek")}>
+            <View />
+          </ExploreSection>
+        )}
         </>}
         ListEmptyComponent={trendingLoading ? (
           <View className="px-2 pt-2">
