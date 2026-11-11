@@ -300,6 +300,11 @@ const beadExit = () => {
   };
 };
 
+/** Hands its page whether a profile is covering it. See renderPage. */
+function UncoveredPage({ children }: { children: (uncovered: boolean) => React.ReactNode }) {
+  return <>{children(React.useContext(FeedPlaybackActiveContext))}</>;
+}
+
 export default function HomeScreen() {
   usePerfProbe("HomeScreen");
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
@@ -333,7 +338,6 @@ export default function HomeScreen() {
   // pauses the pages through FeedPlaybackActiveContext once its entrance is
   // done (see UserProfileSheetProvider), never in the render the tap starts.
   const { feedProfileVisible, feedProfileIdentifier: profileIdentifier } = useFeedProfilePresentation();
-  const pageUncovered = React.useContext(FeedPlaybackActiveContext);
 
   // Only the focused Home tab may claim profile opens for the persistent feed
   // surface. Other screens keep the standalone profile presentation.
@@ -1264,8 +1268,14 @@ export default function HomeScreen() {
     return () => { mounted = false; };
   }, []);
 
+  // Whether a profile covers the page is read by each page (UncoveredPage),
+  // not by Home: going to a profile and back then re-renders the one feed
+  // that has to pause and resume, instead of Home and everything under it.
   const renderPage = (key: TabKey, index: number) => {
     if (!visibleTabs.has(key)) return null;
+    return <UncoveredPage>{(uncovered) => renderPageWhen(key, index, uncovered)}</UncoveredPage>;
+  };
+  const renderPageWhen = (key: TabKey, index: number, pageUncovered: boolean) => {
     // `active` gates video playback, not visibility, so it rides the deferred
     // index — see deferredIndex above.
     const isPlaybackActive = index === deferredIndex && pageUncovered && !feedProfileVisible && !feedPost;
