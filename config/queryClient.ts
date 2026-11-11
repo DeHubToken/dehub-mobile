@@ -86,8 +86,49 @@ function trimPersistedClient(client: PersistedClient): PersistedClient {
   };
 }
 
+let saveFailureReported = false;
+
+/**
+ * One value JSON cannot write (a BigInt from a chain read, a circular object)
+ * used to throw away the whole save, silently, every time: nothing was ever on
+ * disk, and every cold start waited on the network for its first feed. Entries
+ * that cannot be written are now left out and the rest is saved.
+ */
+export function serializePersistedClient(client: PersistedClient): string {
+  try {
+    return JSON.stringify(client);
+  } catch (error) {
+    const dropped: string[] = [];
+    const queries = client.clientState.queries.filter((query) => {
+      try {
+        JSON.stringify(query);
+        return true;
+      } catch {
+        dropped.push(String(query.queryKey?.[0]));
+        return false;
+      }
+    });
+    if (!saveFailureReported) {
+      saveFailureReported = true;
+      const names = Array.from(new Set(dropped)).slice(0, 12).join(", ");
+      // eslint-disable-next-line no-console
+      console.warn(`[cache] save skipped ${dropped.length} entries: ${names || "mutations"} (${String((error as Error)?.message).slice(0, 120)})`);
+      try {
+        require("../libs/errorReporter").reportError("QueryCache", ["Saved cache left entries out"], {
+          level: "warn",
+          metadata: { dropped: names, count: dropped.length, message: String((error as Error)?.message).slice(0, 200) },
+        });
+      } catch {
+        /* reporting is best effort */
+      }
+    }
+    return JSON.stringify({ ...client, clientState: { ...client.clientState, mutations: [], queries } });
+  }
+}
+
 // MMKV is synchronous, so the restore completes before the first frame.
 const baseCachePersister = createSyncStoragePersister({
+  serialize: serializePersistedClient,
   storage: {
     getItem: (key) => storage.getString(key) ?? null,
     setItem: (key, value) => storage.set(key, value),
@@ -136,6 +177,12 @@ const SESSION_START = Date.now();
  * compare timestamps against staleTime and never read the flag.
  */
 export function markRestoredCacheStale(): void {
+  try {
+    const restored = queryClient.getQueryCache().getAll().filter((query) => query.state.data !== undefined && query.state.dataUpdatedAt < SESSION_START);
+    require("../libs/launchTiming").noteLaunch("restored", `${restored.length} entries`);
+  } catch {
+    /* a launch note only */
+  }
   for (const query of queryClient.getQueryCache().getAll()) {
     if (query.state.status !== "success") continue;
     // Anything this session already fetched is genuinely fresh — leave it be.
