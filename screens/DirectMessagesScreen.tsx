@@ -10,9 +10,11 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  type TextInput,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
+import { PillDrawerAutoFocus } from "../components/page/PillHeader";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import DeferredTextInput from "../components/ui/DeferredTextInput";
@@ -73,6 +75,7 @@ const DirectMessagesInner: React.FC = () => {
   // arrives after that fades in. Fading every row on the first open made the
   // whole list read as still loading.
   const firstIdsRef = useRef<Set<string> | null>(null);
+  const searchInputRef = useRef<TextInput>(null);
   if (firstIdsRef.current === null && conversations.length > 0) {
     firstIdsRef.current = new Set(conversations.map((c) => c._id));
   }
@@ -462,27 +465,32 @@ const DirectMessagesInner: React.FC = () => {
           icon="messages"
           title={t("messages.title")}
           canGoBack={false}
+          rightContent={
+            <>
+              <TouchableOpacity onPress={openNewDM} style={SEARCH_ACTION} hitSlop={4}
+                accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
+                <Icon name="Plus" size={16} color="#A1A1AA" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={openSettings} style={SEARCH_ACTION} hitSlop={4}
+                accessibilityRole="button" accessibilityLabel={t("settings.title")}>
+                <Icon name="Settings" size={16} color="#A1A1AA" />
+              </TouchableOpacity>
+            </>
+          }
         >
+          <PillDrawerAutoFocus inputRef={searchInputRef} />
           <View className="flex-row items-center" style={[{ height: 36, borderRadius: 8 }, searchField.surface]}>
             <View className="pl-3 pr-2"><Icon name="Search" size={16} color="#71717A" /></View>
-            <DeferredTextInput value={query} onChangeText={setQuery}
+            <DeferredTextInput ref={searchInputRef} value={query} onChangeText={setQuery}
               placeholder={t("messages.searchConversations")} placeholderTextColor="#71717A"
               className="flex-1 text-white text-sm" returnKeyType="search" style={[FIELD_TEXT, SEARCH_INPUT_CLEAR]} onFocus={searchField.onFocus} onBlur={searchField.onBlur} />
-            {/* Refresh, new message and settings sit quietly inside the search
-                field instead of as squares next to the title. */}
+            {/* Refresh sits quietly inside the search field; new message and
+                settings are on the pill. */}
             <View className="flex-row items-center pr-1">
               <TouchableOpacity onPress={refreshContacts} disabled={!!contactsLoading}
                 style={[SEARCH_ACTION, { opacity: contactsLoading ? 0.5 : 1 }]} hitSlop={4}
                 accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
                 <Icon name="RefreshCw" size={16} color="#71717A" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={openNewDM} style={SEARCH_ACTION} hitSlop={4}
-                accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
-                <Icon name="Plus" size={16} color="#71717A" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={openSettings} style={SEARCH_ACTION} hitSlop={4}
-                accessibilityRole="button" accessibilityLabel={t("settings.title")}>
-                <Icon name="Settings" size={16} color="#71717A" />
               </TouchableOpacity>
             </View>
           </View>

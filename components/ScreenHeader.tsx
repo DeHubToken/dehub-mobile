@@ -63,8 +63,13 @@ export interface ScreenHeaderProps {
   appearance?: 'island' | 'flat' | 'controls';
   /** Page navigation stays inside the same island as its title. */
   tabs?: React.ReactNode;
-  /** Search belongs inside the list's title island. */
+  /** Search and filters. On the pill they wait behind a search button and
+   *  slide out as a drawer under it. */
   children?: React.ReactNode;
+  /** The pill's one line, in place of the tabs or title (Explore's search). */
+  pillLine?: React.ReactNode;
+  /** The page opens and shuts the pill's drawer itself (no search button). */
+  drawerOpen?: boolean;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = ({
@@ -82,6 +87,8 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   appearance = 'island',
   tabs,
   children,
+  pillLine,
+  drawerOpen,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -213,6 +220,8 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
         titleBadge={titleBadge}
         rightContent={rightContent}
         tabs={tabs}
+        pillLine={pillLine}
+        drawerOpen={drawerOpen}
         backLabel={t("common.goBack")}
       >
         {children}

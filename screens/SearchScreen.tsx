@@ -76,7 +76,7 @@ import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
 import TrendingTopicsList from "../components/common/TrendingTopicsList";
 import { useAppTheme } from "../context/ThemeContext";
-import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../hooks/useSearchFieldMaterial';
+import { SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 import {
   MINIMAL_HAIRLINE,
   minimalRow,
@@ -213,7 +213,6 @@ const SearchScreen: React.FC = () => {
   usePerfProbe("SearchScreen");
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
-  const searchField = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
   // The header floats over the KeyboardAvoidingView rather than sitting above
   // it, so the view starts at the top of the screen and the only chrome above
@@ -1117,29 +1116,14 @@ const SearchScreen: React.FC = () => {
           icon="search"
           title={t("nav.explore")}
           canGoBack={false}
-          tabs={
-            <PageTabs
-              iconOnly
-              value={activeTab}
-              onChange={handleTabChange}
-              tabs={(hasSearched ? TABS : EXPLORE_TABS).map((tab) => ({
-                id: tab.key,
-                label: t(tab.labelKey),
-                icon: (ink: string) => <Icon name={tab.icon} size={16} color={ink} />,
-              }))}
-            />
-          }
-        >
-          <View style={styles.searchRow}>
-            <View
-              className="flex-1 flex-row items-center rounded-xl pl-3 pr-1"
-              style={[styles.searchField, searchField.surface]}
-            >
-              <Icon name="Search" size={18} color="#9CA3AF" />
+          // The pill is just the search, over everything. The sliders button
+          // pulls the options out under it: what to search and the filters.
+          pillLine={
+            <>
               <DeferredTextInput
                 ref={inputRef}
-                className="flex-1 text-white px-2 py-1"
-                style={SEARCH_INPUT_CLEAR}
+                className="flex-1 text-white"
+                style={[SEARCH_INPUT_CLEAR, styles.pillInput]}
                 placeholder={t("search.searchDehub")}
                 placeholderTextColor="#9CA3AF"
                 value={searchQuery}
@@ -1151,11 +1135,10 @@ const SearchScreen: React.FC = () => {
                 }}
                 onSubmitEditing={handleSearch}
                 onFocus={() => {
-                  searchField.onFocus();
                   setInputFocused(true);
                   showHeader();
                 }}
-                onBlur={() => { searchField.onBlur(); setInputFocused(false); }}
+                onBlur={() => setInputFocused(false)}
                 returnKeyType="search"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -1164,9 +1147,8 @@ const SearchScreen: React.FC = () => {
               {loading ? (
                 <ActivityIndicator size="small" color="#9CA3AF" style={styles.fieldAction} />
               ) : null}
-              {/* The filter toggle is a plain icon inside the field, the same
-                  quiet treatment as the messages search. */}
               <TouchableOpacity
+                testID="explore-options-toggle"
                 accessibilityRole="button"
                 accessibilityLabel={filterPanelVisible ? t("search.closeFilterOptions") : t("search.openFilterOptions")}
                 accessibilityState={{ expanded: filterPanelVisible }}
@@ -1176,14 +1158,26 @@ const SearchScreen: React.FC = () => {
               >
                 <FilterToggleIcon open={filterPanelVisible} />
               </TouchableOpacity>
-            </View>
-          </View>
+            </>
+          }
+          drawerOpen={filterPanelVisible}
+        >
+          <PageTabs
+            iconOnly
+            value={activeTab}
+            onChange={handleTabChange}
+            tabs={(hasSearched ? TABS : EXPLORE_TABS).map((tab) => ({
+              id: tab.key,
+              label: t(tab.labelKey),
+              icon: (ink: string) => <Icon name={tab.icon} size={16} color={ink} />,
+            }))}
+          />
 
           {/* Sort, category and date, applied to the results below. Post type
               and content access stay hidden: the tab row above already is the
               post type, and search results carry no access flags. */}
           <FeedFilterPanel
-            visible={filterPanelVisible}
+            visible
             filters={filters}
             onFiltersChange={setFilters}
             categories={categories}
@@ -1263,9 +1257,8 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
   },
-  searchRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  searchField: { height: 48, borderRadius: 12 },
   fieldAction: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
+  pillInput: { height: 38, paddingHorizontal: 6, fontSize: 15, backgroundColor: "transparent" },
   minimalInput: {
     backgroundColor: "transparent",
     borderWidth: 1,
