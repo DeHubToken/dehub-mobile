@@ -1,3 +1,4 @@
+import { noteImageSizes } from './image-size-hints';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import env from '../config/env';
@@ -296,7 +297,9 @@ export const apiClient = {
                 return undefined;
               }
               if (retryContentType.includes('application/json')) {
-                return await retryResponse.json() as T;
+                const retried = await retryResponse.json() as T;
+                noteImageSizes(retried);
+                return retried;
               }
               const retryText = await retryResponse.text();
               const trimmedRetry = retryText.trim();
@@ -350,6 +353,7 @@ export const apiClient = {
       // survived minification and ran on every successful request in
       // production. Anything that needs this belongs behind `createLogger`,
       // which is gated on DEBUG.
+      noteImageSizes(data);
       return data as T;
     } catch (error) {
       // Not a failure: the login is about to ask for the two-step code.

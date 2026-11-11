@@ -3,10 +3,17 @@ import type { ImageLoadEventData } from "expo-image";
 import { FEED_IMAGE_FALLBACK_ASPECT } from "../libs/feed-image-layout";
 import { storage } from '../libs/storage';
 import { createMediaAspectCache } from '../libs/media-aspect-cache';
+import { hintedImageRatio } from '../libs/image-size-hints';
 
-const aspectRatioCache = createMediaAspectCache(
+const measuredAspectCache = createMediaAspectCache(
   () => storage.getString('media-aspects-v1'), value => storage.set('media-aspects-v1', value),
 );
+// The size the API sent wins: it is there before anything loads and never
+// changes, so the frame is right the first time it is drawn.
+const aspectRatioCache = {
+  get: (uri: string) => hintedImageRatio(uri) ?? measuredAspectCache.get(uri),
+  set: (uri: string, ratio: number) => measuredAspectCache.set(uri, ratio),
+};
 
 /**
  * expo-image reports the size of the bitmap it decoded, and it decodes at the
