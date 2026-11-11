@@ -14,6 +14,46 @@ import { loginClipLanes } from "../../libs/login-clip-lanes";
 import { LOGIN_CLIPS as CLIPS } from "./login-clip-assets";
 
 /**
+ * The Riftn wordmark as a neon sign, pre-lit (tube + glow + shade baked in at
+ * 3x with 20pt of room for the glow), one per tint. Matches the web sheet:
+ * white on most themes, lilac on Hazy, pink on Osaka, a darker shade on light.
+ */
+const NEON = {
+  white: require("../../assets/login-stack/neon-white.png"),
+  light: require("../../assets/login-stack/neon-light.png"),
+  hazy: require("../../assets/login-stack/neon-hazy.png"),
+  osaka: require("../../assets/login-stack/neon-osaka.png"),
+};
+const NEON_W = 250;
+const NEON_H = 102;
+/** Glow room baked into the image under the letters, in points. */
+const NEON_PAD = 20;
+/** Gap between the letters and the headline, as on web. */
+const NEON_GAP = 18;
+
+function NeonLogo({ tint, still }: { tint: keyof typeof NEON; still: boolean }) {
+  const pulse = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    if (still) return;
+    const anim = Animated.loop(Animated.sequence([
+      Animated.timing(pulse, { toValue: 0.82, duration: 1600, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+      Animated.timing(pulse, { toValue: 1, duration: 1600, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+    ]));
+    anim.start();
+    return () => anim.stop();
+  }, [pulse, still]);
+  return (
+    <Animated.Image
+      source={NEON[tint]}
+      accessibilityRole="image"
+      accessibilityLabel="Riftn"
+      style={[styles.neon, { opacity: pulse }]}
+      resizeMode="contain"
+    />
+  );
+}
+
+/**
  * The top half of the sign-in screen: two phone lanes, or three on wider screens, drifting past
  * in opposite directions, then the headline. Shares the selected clip
  * catalogue and shuffled lane order with the web drawer.
@@ -193,6 +233,7 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 
         </MaskedView>
       </KeepDarkScope>
       <View style={styles.headline}>
+        <NeonLogo tint={theme === "hazy" ? "hazy" : theme === "osaka" ? "osaka" : isLight ? "light" : "white"} still={still} />
         <Text style={styles.headlineText} accessibilityRole="header">
           {t("loginStack.headlineTop", "You will own everything")}
         </Text>
@@ -228,5 +269,7 @@ const styles = StyleSheet.create({
   },
   aiText: { color: "#FFFFFF", fontSize: 10, fontWeight: "800", letterSpacing: 0.2 },
   headline: { marginTop: -64 },
+  // Sits over the faded bottom of the lanes; the letters end NEON_GAP above the headline.
+  neon: { position: "absolute", alignSelf: "center", bottom: "100%", marginBottom: NEON_GAP - NEON_PAD, width: NEON_W, height: NEON_H },
   headlineText: { color: "#FFFFFF", textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
 });
