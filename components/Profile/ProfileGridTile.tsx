@@ -16,6 +16,8 @@ import { POST_BG_INK, PostBgLayer, useProfilePostBg } from "./PostBackground";
 import { usePostBgHoldProps } from "./PostBgPicker";
 import { ArticleTileFace, openArticleTilePicker, useProfileArticleTile } from "./ArticleTile";
 import { articleReadMinutes } from "../../libs/articleTile";
+import { mediaCardOf, textCardOf, wordsWithoutLinks } from "../../libs/gridCard";
+import { GridCardFace, GridKindPill, GridPollProbe, type GridPalette } from "./GridCardFace";
 
 /**
  * One cell of the profile All grid: every post type side by side, each with
@@ -118,9 +120,13 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   const lightPoster = isLight && !isOsaka;
   const posterBg = isOsaka ? "rgba(17,14,28,0.82)" : lightPoster ? "#F2F2F4" : "#141416";
   const posterLine = isOsaka ? "rgba(255,111,181,0.22)" : lightPoster ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)";
+  // A text post whose feed card is a stage, poll, event, link... is drawn as
+  // a small copy of that card (GridCardFace). Locked words stay hidden.
+  const locked = !!(item as any).isLocked && !(item as any).isUnlocked;
+  const card = kind === "text" && !locked ? textCardOf(item as any) : null;
   // The owner's text-post backdrop (customs.postBg) on their own words only.
   const profileBg = useProfilePostBg();
-  const postBg = kind === "text" && !(item as any).isRepost ? profileBg : null;
+  const postBg = kind === "text" && !card && !(item as any).isRepost ? profileBg : null;
   const ink = postBg ? POST_BG_INK[postBg.tone].ink : lightPoster ? "#17161B" : "#FFFFFF";
   const sub = postBg ? POST_BG_INK[postBg.tone].sub : lightPoster ? "rgba(23,22,27,0.62)" : "rgba(255,255,255,0.6)";
   const postBgHold = usePostBgHoldProps(!!ownerHold && kind === "text" && !(item as any).isRepost);
@@ -153,9 +159,30 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
 
   const label = plainText(item.name || item.title || item.description) || t("profile.post", "Post");
 
+  const tokenNum = Number(item.tokenId) || 0;
+  const palette: GridPalette = {
+    ink,
+    sub,
+    glass: isOsaka ? "rgba(255,111,181,0.14)" : lightPoster ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.1)",
+    line: posterLine,
+  };
+  const mediaKind = kind === "photo" || kind === "video" ? mediaCardOf(item, resolveContentType(item) === "short") : null;
+
   let body: React.ReactNode;
   if (kind === "text" || kind === "article") {
-    const words = plainText(kind === "article" ? item.title || item.name : item.description || item.name);
+    const rawWords = kind === "article" ? item.title || item.name : item.description || item.name;
+    const words = plainText(card ? wordsWithoutLinks(rawWords || "") : rawWords);
+    const posterInner = (pill?: React.ReactNode) => (
+      <View style={styles.textInner}>
+        {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : pill ? <View style={styles.inlineChip}>{pill}</View> : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
+        <Text numberOfLines={5} style={[styles.words, { color: ink }]}>{words}</Text>
+        <View style={styles.stats}>
+          <View style={styles.stat}><Icon name="MessageSquare" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.commentCount ?? 0)}</Text></View>
+          <View style={styles.stat}><Icon name="ThumbsUp" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(likeCount)}</Text></View>
+        </View>
+        <Badge icon="MessageSquare" poster light={lightPoster && !postBg} />
+      </View>
+    );
     body = (
       <View className="dark-surface" style={[styles.fill, postBg ? null : { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
         {postBg && <PostBgLayer bg={postBg} />}
@@ -164,16 +191,12 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
             <ArticleTileFace look={articleLook} {...articleSample} />
             {articleLook === "cover" && <Badge icon="Blog" />}
           </>
+        ) : card ? (
+          <GridCardFace card={card} tokenId={tokenNum} item={item} words={words} chip={pinChip ?? undefined} palette={palette} fallback={posterInner(<GridKindPill kind={card.kind} inline palette={palette} />)} />
+        ) : locked || tokenNum <= 0 ? (
+          posterInner()
         ) : (
-          <View style={styles.textInner}>
-            {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
-            <Text numberOfLines={5} style={[styles.words, { color: ink }]}>{words}</Text>
-            <View style={styles.stats}>
-              <View style={styles.stat}><Icon name="MessageSquare" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.commentCount ?? 0)}</Text></View>
-              <View style={styles.stat}><Icon name="ThumbsUp" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(likeCount)}</Text></View>
-            </View>
-            <Badge icon="MessageSquare" poster light={lightPoster && !postBg} />
-          </View>
+          <GridPollProbe tokenId={tokenNum} words={words} chip={pinChip ?? undefined} palette={palette} poster={posterInner()} fallback={posterInner(<GridKindPill kind="poll" inline palette={palette} />)} />
         )}
         {kind === "article" && pinChip}
       </View>
@@ -206,16 +229,16 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
     body = (
       <View className="dark-surface" style={[styles.fill, { backgroundColor: isOsaka ? posterBg : "#111111" }]}>
         {!!cover && <Image source={{ uri: cover }} style={StyleSheet.absoluteFill} contentFit="cover" recyclingKey={id} transition={0} />}
-        {(kind !== "photo" || multi || pinned) && <View style={[StyleSheet.absoluteFill, styles.shade]} pointerEvents="none" />}
+        {(kind !== "photo" || multi || pinned || mediaKind) && <View style={[StyleSheet.absoluteFill, styles.shade]} pointerEvents="none" />}
         {isLive ? (
           <View style={[styles.chip, { backgroundColor: LIVE_RED }]}>
             <View style={styles.liveDot} />
             <Text style={[styles.chipText, { color: "#FFFFFF", letterSpacing: 0.5 }]}>{t("live.liveBadge", "LIVE")}</Text>
           </View>
         ) : (
-          pinChip
+          pinChip ?? (mediaKind ? <GridKindPill kind={mediaKind} /> : null)
         )}
-        {kind === "video" && <Badge icon={resolveContentType(item) === "live" ? "Radio" : "Film"} />}
+        {kind === "video" && <Badge icon={resolveContentType(item) === "live" ? "Radio" : resolveContentType(item) === "short" ? ("Shorts" as IconName) : "Film"} />}
         {multi && <Badge icon="Images" />}
         {kind === "video" && !!duration && <View style={styles.dur}><Text style={styles.durText}>{duration}</Text></View>}
         {(kind === "video" || isLive) && views > 0 && <Text style={styles.views}>{t("music.viewsCount", { count: views, views: formatCompactNumber(views) })}</Text>}

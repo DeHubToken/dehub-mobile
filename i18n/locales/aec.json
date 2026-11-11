@@ -4913,7 +4913,31 @@
     "tabPinned": "المرفق",
     "lockedPost": "بوست مقفل",
     "viewGrid": "عرض الشبكة",
-    "viewList": "قائمة العرض"
+    "viewList": "قائمة العرض",
+    "gridCard": {
+      "stage": "المسرح",
+      "liveStage": "المسرح الحي",
+      "event": "المؤتمر",
+      "poll": "بِول",
+      "quote": "المقال",
+      "community": "المجتمع",
+      "shop": "المتجر",
+      "profile": "الملف الشخصي",
+      "film": "فيلم",
+      "bounty": "الجائزة",
+      "app": "تطبيق",
+      "proposal": "مخطط",
+      "comic": "الكوميديا",
+      "earn": "تأجير",
+      "listening_one": "{{value}} سمع",
+      "listening_other": "{{value}} سمع",
+      "listens_one": "{{value}} سمع",
+      "listens_other": "{{value}} يسمع",
+      "votes_one": "{{value}} تصويت",
+      "votes_other": "{{value}} تصويت",
+      "members_one": "عضو {{value}}",
+      "members_other": "{{value}} أعضاء"
+    }
   },
   "tv": {
     "title": "التلفزيون",

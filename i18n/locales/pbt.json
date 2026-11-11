@@ -4902,7 +4902,29 @@
     "tabPinned": "پښول",
     "lockedPost": "تړل شوی پوسته",
     "viewGrid": "منظره سرخ منظره",
-    "viewList": "منظره منظره"
+    "viewList": "منظره منظره",
+    "gridCard": {
+      "stage": "سټېج",
+      "liveStage": "ژوندی سټېج",
+      "event": "پېښه",
+      "poll": "پوښتنه (رایه اچونه)",
+      "quote": "اقتباس",
+      "shared": "شیر شو",
+      "link": "لینک",
+      "community": "ټولنه",
+      "shop": "دوکان",
+      "profile": "پروفایل",
+      "film": "فلم",
+      "bounty": "انعام",
+      "app": "اپلیکېشن",
+      "proposal": "وړاندیز",
+      "short": "په لنډه توګه",
+      "comic": "کمیک",
+      "earn": "ګټه ترلاسه کول",
+      "listens_one": "{{value}} واوره",
+      "listens_other": "{{value}} اوري",
+      "members_one": "{{value}} غړی"
+    }
   },
   "tv": {
     "title": "TV",

@@ -4927,7 +4927,31 @@
     "tabPinned": "Kitűzve",
     "lockedPost": "Zárolt bejegyzés",
     "viewGrid": "Rácsnézet",
-    "viewList": "Lista nézet"
+    "viewList": "Lista nézet",
+    "gridCard": {
+      "stage": "Színpad",
+      "liveStage": "Élő színpad",
+      "event": "Esemény",
+      "poll": "Szavazás",
+      "quote": "Árajánlat",
+      "shared": "Megosztott",
+      "link": "Link",
+      "community": "Közösség",
+      "shop": "Áruház",
+      "profile": "Profil",
+      "film": "Film",
+      "bounty": "Fejpénz",
+      "app": "Alkalmazás",
+      "proposal": "Javaslat",
+      "short": "Rövid",
+      "comic": "Képregény",
+      "earn": "Keress",
+      "listening_one": "{{value}} odafigyelés",
+      "listening_other": "{{value}} odafigyelés",
+      "listens_other": "{{value}} figyel",
+      "votes_one": "{{value}} szavazat",
+      "votes_other": "{{value}} szavazat"
+    }
   },
   "tv": {
     "title": "TV",

@@ -4897,7 +4897,30 @@
     "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am.",
     "lockedPost": "Locked post",
     "viewGrid": "Grid view",
-    "viewList": "List view"
+    "viewList": "List view",
+    "gridCard": {
+      "stage": "Stadi",
+      "liveStage": "Stage wey dey live",
+      "event": "E vent",
+      "poll": "Poll",
+      "quote": "Quote",
+      "shared": "Don share am",
+      "link": "Link",
+      "community": "Gburugburu",
+      "profile": "Profile",
+      "film": "Fim",
+      "bounty": "Bounty",
+      "app": "App",
+      "proposal": "Proposo",
+      "short": "Short",
+      "comic": "Kọmik",
+      "earn": "Make money",
+      "listening_one": "{{value}} dey listen",
+      "listening_other": "{{value}} dey listen",
+      "listens_one": "{{value}} hear word",
+      "votes_other": "{{value}} votes",
+      "members_other": "{{value}} members"
+    }
   },
   "tv": {
     "title": "TV",

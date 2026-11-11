@@ -4900,7 +4900,31 @@
     "tabPinned": "Akpọgidere",
     "lockedPost": "Ekpochi post",
     "viewGrid": "Ngosi grid",
-    "viewList": "Ngosi ndesịta"
+    "viewList": "Ngosi ndesịta",
+    "gridCard": {
+      "stage": "Ọkwa",
+      "liveStage": "Ebe a na-eme ihe nkiri ndụ",
+      "event": "Emume",
+      "poll": "Pọtụfoliyo",
+      "shared": "Shared",
+      "link": "Banye",
+      "community": "Ụmụmụba",
+      "profile": "Nkọwa",
+      "film": "Igwe onye na ihe nkiri",
+      "bounty": "Onye na onyinye",
+      "app": "Ọganiwụ",
+      "proposal": "Atụmatụ",
+      "short": "Nkenke",
+      "earn": "Nweta",
+      "listening_one": "{{value}} na-ege ntị",
+      "listening_other": "{{value}} na-ege ntị",
+      "listens_one": "{{value}} gee ntị",
+      "listens_other": "{{value}} na-ege ntị",
+      "votes_one": "{{value}} votu",
+      "votes_other": "{{value}} votu",
+      "members_one": "{{value}} onye otu",
+      "members_other": "{{value}} ndị otu"
+    }
   },
   "tv": {
     "title": "Igwe onyonyo",

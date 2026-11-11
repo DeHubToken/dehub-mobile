@@ -4918,7 +4918,30 @@
     "tabPinned": "பின் செய்யப்பட்டது",
     "lockedPost": "பூட்டப்பட்ட இடுகை",
     "viewGrid": "கட்டக் காட்சி",
-    "viewList": "பட்டியல் காட்சி"
+    "viewList": "பட்டியல் காட்சி",
+    "gridCard": {
+      "stage": "நிலை",
+      "liveStage": "நேரடி மேடை",
+      "event": "நிகழ்வு",
+      "poll": "வாக்கெடுப்பு",
+      "quote": "மேற்கோள்",
+      "shared": "பகிரப்பட்டது",
+      "link": "இணைப்பு",
+      "community": "சமூகம்",
+      "shop": "கடை",
+      "profile": "சுயவிவரம்",
+      "film": "திரைப்படம்",
+      "bounty": "பவுண்டி",
+      "app": "ஆப்",
+      "proposal": "முன்மொழிவு",
+      "short": "சிறுகதை",
+      "comic": "காமிக்",
+      "earn": "ஈட்டுதல்",
+      "votes_one": "{{value}} வாக்கு",
+      "votes_other": "{{value}} வாக்குகள்",
+      "members_one": "{{value}} உறுப்பினர்",
+      "members_other": "{{value}} உறுப்பினர்கள்"
+    }
   },
   "tv": {
     "title": "தொலைக்காட்சி",
