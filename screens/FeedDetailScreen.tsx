@@ -1671,6 +1671,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       <Reanimated.View ref={holdLift.ref} collapsable={false} style={[{ flex: 1 }, holdLift.style]}>
       <FlatList
         ref={listRef}
+        // Still while a comment is held: the list slides up under the finger (see useHoldLift).
+        scrollEnabled={!contextComment}
         showsVerticalScrollIndicator={false}
         data={leanPost ? EMPTY_COMMENTS : listComments}
         keyExtractor={(c) => String(c.id)}

@@ -1791,6 +1791,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           nestedScrollEnabled
           disallowInterruption
           ref={listRef}
+          // Still while a comment is held: the list slides up under the finger (see useHoldLift).
+          scrollEnabled={!contextComment}
           data={visibleComments}
           renderItem={renderComment}
           onScrollToIndexFailed={({ index, averageItemLength }: { index: number; averageItemLength: number }) => {

@@ -910,6 +910,10 @@ const LiveChatScreen: React.FC = () => {
         <FlatList
           ref={flatListRef}
           data={listItems}
+          // Held line: the list slides up under a finger that is still down,
+          // and Android scrolled it back by the whole slide, burying the
+          // newest lines under the hold sheet. No scrolling until it closes.
+          scrollEnabled={!contextMenuVisible}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           style={{ opacity: initialScrollDone || listItems.length === 0 ? 1 : 0 }}
