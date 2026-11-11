@@ -33,6 +33,13 @@ export function markLaunchPhase(phase: 'appModuleReady' | 'authStarted' | 'authS
   if (!launchReported && launchPhases[phase] == null) launchPhases[phase] = ms(clock() - jsStartedAt);
 }
 
+const launchNotes: Record<string, string> = {};
+
+/** A short fact about this launch (how the first feed arrived), printed with the phases. */
+export function noteLaunch(key: string, value: string): void {
+  if (!launchReported && launchNotes[key] == null) launchNotes[key] = value.slice(0, 300);
+}
+
 /** Subtract native timestamps only from the same native clock. */
 export function nativeStartupDuration(start: unknown, end: unknown): number | null {
   const from = finiteOrNull(start);
@@ -62,13 +69,14 @@ export function reportLaunchRevealed(context: { signedIn: boolean; theme?: strin
   // One line per cold start for `adb logcat -s ReactNativeJS`, so a phone on
   // the desk can be read without the logs pipe.
   // eslint-disable-next-line no-console
-  console.warn(`[launch] reveal ${jsToRevealMs}ms | ${Object.entries(launchPhases).map(([k, v]) => `${k} ${v}`).join(" | ")}`);
+  console.warn(`[launch] reveal ${jsToRevealMs}ms | ${Object.entries(launchPhases).map(([k, v]) => `${k} ${v}`).join(" | ")}${Object.entries(launchNotes).map(([k, v]) => ` | ${k}: ${v}`).join("")}`);
   report("LaunchTiming", "cold start", {
     jsToRevealMs,
     // Native startup timestamps and performance.now() have differed by days
     // on real devices. Do not subtract them or call RN initialization app launch.
     nativeInitToBundleMs,
     phases: { ...launchPhases },
+    notes: { ...launchNotes },
     signedIn: context.signedIn,
     theme: context.theme,
   });
