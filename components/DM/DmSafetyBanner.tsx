@@ -3,9 +3,8 @@
  *
  * Wallet-drainer scams arrive by DM: an account wearing Mal's name says your
  * profile is missing or there is a "node issue", and sends a link to fix it.
- *  - red, when the other person's name reads as a team name they don't own;
- *  - amber, when they have sent a link.
- * Same rules and copy as dehubweb's DmSafetyBanner.
+ * Shown only when the other person's name reads as a team name they don't
+ * own. Same rules and copy as the web DmSafetyBanner.
  */
 import React, { memo } from "react";
 import { View, Text } from "react-native";
@@ -14,30 +13,18 @@ import { useTranslation } from "react-i18next";
 import { staffImpersonated } from "../../libs/impersonation";
 import { useAppTheme } from "../../context/ThemeContext";
 
-const LINK = /(https?:\/\/|www\.)|\b[a-z0-9-]+\.(com|io|net|org|xyz|app|site|online|link|live|top|info|cc|me|co|dev|pro|gg|vip|club|fun)\b/i;
-
-export function hasLink(text?: string | null): boolean {
-  return !!text && LINK.test(text);
-}
-
 interface Props {
   peer: { address?: string | null; displayName?: string | null; username?: string | null } | null | undefined;
-  peerSentLink: boolean;
 }
 
-const DmSafetyBannerComponent: React.FC<Props> = ({ peer, peerSentLink }) => {
+const DmSafetyBannerComponent: React.FC<Props> = ({ peer }) => {
   const { t } = useTranslation();
   const { isLight } = useAppTheme();
   const impersonated = staffImpersonated(peer);
-  if (!impersonated && !peerSentLink) return null;
-  const danger = !!impersonated;
+  if (!impersonated) return null;
   const tone = isLight
-    ? danger
-      ? { bg: "#FEE2E2", border: "#FCA5A5", text: "#991B1B", icon: "#DC2626" }
-      : { bg: "#FEF3C7", border: "#FCD34D", text: "#92400E", icon: "#D97706" }
-    : danger
-      ? { bg: "rgba(239,68,68,0.16)", border: "rgba(239,68,68,0.45)", text: "#FCA5A5", icon: "#F87171" }
-      : { bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.45)", text: "#FCD34D", icon: "#FBBF24" };
+    ? { bg: "#FEE2E2", border: "#FCA5A5", text: "#991B1B", icon: "#DC2626" }
+    : { bg: "rgba(239,68,68,0.16)", border: "rgba(239,68,68,0.45)", text: "#FCA5A5", icon: "#F87171" };
   const base = isLight ? "#FFFFFF" : "rgba(9,9,11,0.82)";
 
   return (
@@ -60,22 +47,13 @@ const DmSafetyBannerComponent: React.FC<Props> = ({ peer, peerSentLink }) => {
       <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, borderRadius: 12, backgroundColor: tone.bg }} />
       <Ionicons name="shield-half-outline" size={16} color={tone.icon} style={{ marginTop: 1 }} />
       <Text style={{ flex: 1, marginLeft: 8, fontSize: 12, lineHeight: 16, color: tone.text }}>
-        {danger ? (
-          <>
-            <Text style={{ fontWeight: "700" }}>
-              {t("dmSafety.notReal", { defaultValue: "This is not the real {{name}}.", name: impersonated })}
-            </Text>{" "}
-            {t("dmSafety.neverLink", {
-              defaultValue:
-                "The Riftn team will never DM you a link to fix your profile or wallet. Do not open links, connect your wallet or sign anything. Block and report this account.",
-            })}
-          </>
-        ) : (
-          t("dmSafety.linkCaution", {
-            defaultValue:
-              "Careful with links. Riftn will never ask you to connect your wallet, sign, or share your seed phrase to fix your account.",
-          })
-        )}
+        <Text style={{ fontWeight: "700" }}>
+          {t("dmSafety.notReal", { defaultValue: "This is not the real {{name}}.", name: impersonated })}
+        </Text>{" "}
+        {t("dmSafety.neverLink", {
+          defaultValue:
+            "The Riftn team will never DM you a link to fix your profile or wallet. Do not open links, connect your wallet or sign anything. Block and report this account.",
+        })}
       </Text>
     </View>
   );

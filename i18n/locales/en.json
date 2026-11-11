@@ -16413,8 +16413,7 @@
 ,
   "dmSafety": {
     "notReal": "This is not the real {{name}}.",
-    "neverLink": "The Riftn team will never DM you a link to fix your profile or wallet. Do not open links, connect your wallet or sign anything. Block and report this account.",
-    "linkCaution": "Careful with links. Riftn will never ask you to connect your wallet, sign, or share your seed phrase to fix your account."
+    "neverLink": "The Riftn team will never DM you a link to fix your profile or wallet. Do not open links, connect your wallet or sign anything. Block and report this account."
   },
   "aiConsent": {"title":"Use AI features?","body":"To work, AI features send what you give them (your text, photos or audio, and the post or chat it's about) to third-party AI providers such as Google, OpenAI, Groq, OpenRouter, fal and ElevenLabs. You can change this any time in Settings → Privacy.","allow":"Allow","declined":"AI features are off. You can turn them on in Settings → Privacy.","settingLabel":"AI features","settingDesc":"Let the assistant, translation, suggested replies and writing help send what you give them to third-party AI providers."}
 }

@@ -16495,8 +16495,7 @@
   },
   "dmSafety": {
     "notReal": "Ce n'est pas le vrai {{name}}.",
-    "neverLink": "L'équipe Riftn ne vous enverra jamais de lien en message privé pour réparer votre profil ou votre portefeuille. N'ouvrez aucun lien, ne connectez pas votre portefeuille et ne signez rien. Bloquez et signalez ce compte.",
-    "linkCaution": "Attention aux liens. Riftn ne vous demandera jamais de connecter votre portefeuille, de signer ou de partager votre phrase de récupération pour réparer votre compte."
+    "neverLink": "L'équipe Riftn ne vous enverra jamais de lien en message privé pour réparer votre profil ou votre portefeuille. N'ouvrez aucun lien, ne connectez pas votre portefeuille et ne signez rien. Bloquez et signalez ce compte."
   },
   "chatTextSize": {
     "title": "Taille du texte",

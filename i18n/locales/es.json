@@ -16491,8 +16491,7 @@
   },
   "dmSafety": {
     "notReal": "Este no es el verdadero {{name}}.",
-    "neverLink": "El equipo de Riftn nunca te enviará por mensaje un enlace para arreglar tu perfil o tu billetera. No abras enlaces, no conectes tu billetera ni firmes nada. Bloquea y denuncia esta cuenta.",
-    "linkCaution": "Cuidado con los enlaces. Riftn nunca te pedirá conectar tu billetera, firmar ni compartir tu frase semilla para arreglar tu cuenta."
+    "neverLink": "El equipo de Riftn nunca te enviará por mensaje un enlace para arreglar tu perfil o tu billetera. No abras enlaces, no conectes tu billetera ni firmes nada. Bloquea y denuncia esta cuenta."
   },
   "chatTextSize": {
     "title": "Tamaño del texto",
