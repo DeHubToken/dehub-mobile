@@ -4909,7 +4909,31 @@
     "tabPinned": "固定",
     "lockedPost": "已锁定的帖子",
     "viewGrid": "网格视图",
-    "viewList": "列表视图"
+    "viewList": "列表视图",
+    "gridCard": {
+      "stage": "舞台",
+      "liveStage": "现场舞台",
+      "event": "活动",
+      "poll": "民调",
+      "community": "社區",
+      "shop": "商店",
+      "profile": "简历",
+      "film": "电影",
+      "bounty": "獎金",
+      "app": "应用",
+      "proposal": "提案",
+      "short": "短",
+      "comic": "漫畫",
+      "earn": "赚钱",
+      "listening_one": "{{value}} 聽聽",
+      "listening_other": "{{value}} 聽聽",
+      "listens_one": "{{value}} 听着",
+      "listens_other": "{{value}} 听着",
+      "votes_one": "{{value}} 投票",
+      "votes_other": "{{value}} 张票数",
+      "members_one": "{{value}} 成员",
+      "members_other": "{{value}} 成员"
+    }
   },
   "tv": {
     "title": "电视",

@@ -4996,7 +4996,32 @@
     "tabPinned": "Pripnútené",
     "lockedPost": "Zamknutý príspevok",
     "viewGrid": "Zobrazenie mriežky",
-    "viewList": "Zobrazenie zoznamu"
+    "viewList": "Zobrazenie zoznamu",
+    "gridCard": {
+      "stage": "Javisko",
+      "liveStage": "Živé pódium",
+      "event": "Udalosť",
+      "poll": "Anketa",
+      "quote": "Citácia",
+      "shared": "Zdieľané",
+      "link": "Odkaz",
+      "community": "Komunita",
+      "shop": "Obchod",
+      "profile": "Profil",
+      "film": "Film",
+      "bounty": "Odmena",
+      "app": "Aplikácia",
+      "proposal": "Návrh",
+      "short": "Krátky",
+      "comic": "Komiks",
+      "earn": "Zarábaj",
+      "listening_one": "{{value}} počúvam",
+      "listening_other": "{{value}} počúvam",
+      "listens_one": "{{value}} pozriť",
+      "listens_other": "{{value}} počúva",
+      "votes_one": "{{value}} hlas",
+      "votes_other": "{{value}} hlasov"
+    }
   },
   "tv": {
     "title": "TV",

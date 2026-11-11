@@ -4907,7 +4907,28 @@
     "tabPinned": "釘選",
     "lockedPost": "锁住个帖子",
     "viewGrid": "格子视图",
-    "viewList": "列表视图"
+    "viewList": "列表视图",
+    "gridCard": {
+      "stage": "劇場",
+      "liveStage": "現場演出",
+      "event": "活動",
+      "quote": "引用",
+      "shared": "共享",
+      "shop": "商店",
+      "profile": "個人簡介",
+      "film": "影片",
+      "bounty": "獎金",
+      "app": "應用程式",
+      "proposal": "《提案》",
+      "earn": "挣钱",
+      "listening_one": "{{value}} 聽",
+      "listening_other": "{{value}} 聽",
+      "listens_one": "{{value}} 听聽",
+      "listens_other": "{{value}} 听见",
+      "votes_other": "{{value}} 票",
+      "members_one": "{{value}} 成员",
+      "members_other": "{{value}} 會員"
+    }
   },
   "tv": {
     "title": "电视",

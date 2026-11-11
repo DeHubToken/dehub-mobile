@@ -4932,7 +4932,31 @@
     "tabPinned": "Voapetraka",
     "lockedPost": "Voageja lahatsoratra",
     "viewGrid": "Seho an-kavia",
-    "viewList": "Fijerin'ny lisitra"
+    "viewList": "Fijerin'ny lisitra",
+    "gridCard": {
+      "stage": "Sehatra",
+      "liveStage": "Sehatra mivantana",
+      "event": "Hetsika",
+      "quote": "Teny nalaina",
+      "shared": "Nozaraina",
+      "link": "Rohy",
+      "community": "Fiaraha-monina",
+      "shop": "Mpana-panjanakana",
+      "profile": "Profil",
+      "film": "Fimbo",
+      "bounty": "Mpitondrenana",
+      "app": "App",
+      "proposal": "Fampidirana",
+      "short": "Mioa",
+      "comic": "Komika",
+      "earn": "Mpanampy",
+      "listens_one": "{{value}} mihainoa",
+      "listens_other": "{{value}} mihaino",
+      "votes_one": "{{value}} vote",
+      "votes_other": "{{value}} Vato",
+      "members_one": "{{value}} mpikambana",
+      "members_other": "{{value}} mpikambana"
+    }
   },
   "tv": {
     "title": "Fahitalavitra",

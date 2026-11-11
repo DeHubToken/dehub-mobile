@@ -5290,7 +5290,32 @@
     "lockedPost": "Заблокований допис",
     "viewGrid": "Перегляд сітки",
     "viewList": "Перегляд списку",
-    "unavailable": "Профіль недоступний"
+    "unavailable": "Профіль недоступний",
+    "gridCard": {
+      "stage": "Сцена",
+      "liveStage": "Живий сценарій",
+      "event": "Подія",
+      "poll": "Опитування",
+      "quote": "Цитата",
+      "shared": "Поділено",
+      "link": "Посилання",
+      "community": "Спільнота",
+      "shop": "Магазин",
+      "profile": "Профіль",
+      "film": "Фільм",
+      "bounty": "Баунті",
+      "app": "Додаток",
+      "proposal": "Пропозиція",
+      "short": "Короткий",
+      "comic": "Комікс",
+      "earn": "Заробляйте",
+      "listens_one": "{{value}} слухайте",
+      "listens_other": "{{value}} слухає",
+      "votes_one": "Голос: {{value}}",
+      "votes_other": "{{value}} голосів",
+      "members_one": "Член {{value}}",
+      "members_other": "{{value}} учасники"
+    }
   },
   "tv": {
     "title": "ТВ",

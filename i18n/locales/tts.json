@@ -4900,7 +4900,29 @@
     "tabPinned": "โพสต์ที่ติดปากกา",
     "lockedPost": "โพสต์ล็อก",
     "viewGrid": "มุมมองกริด",
-    "viewList": "รายการมุมมอง"
+    "viewList": "รายการมุมมอง",
+    "gridCard": {
+      "stage": "สเตจ",
+      "liveStage": "เวทีสด",
+      "event": "งาน",
+      "quote": "คำคม",
+      "community": "ชุมชน",
+      "shop": "ร้านขายของ",
+      "profile": "โปรไฟล์",
+      "film": "หนัง",
+      "bounty": "ค่าหัว",
+      "proposal": "ข้อเสนอ",
+      "comic": "การ์ตูน",
+      "earn": "หาเงิน",
+      "listening_one": "{{value}} กำลังฟังอยู่",
+      "listening_other": "{{value}} กำลังฟังอยู่",
+      "listens_one": "{{value}} ฟังเด้อ",
+      "listens_other": "{{value}} ฟังอยู่",
+      "votes_one": "{{value}} โหวต",
+      "votes_other": "{{value}} ใบเสียง",
+      "members_one": "{{value}} สมาชิก",
+      "members_other": "{{value}}"
+    }
   },
   "tv": {
     "title": "โทรทัศน์",

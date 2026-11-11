@@ -4915,7 +4915,28 @@
     "tabPinned": "المنشور المرفق",
     "lockedPost": "بوست مقفل",
     "viewGrid": "عرض الشبكة",
-    "viewList": "عرض القائمة"
+    "viewList": "عرض القائمة",
+    "gridCard": {
+      "stage": "ستيج",
+      "liveStage": "مسرح الحية",
+      "event": "حوادث",
+      "quote": "المقال",
+      "community": "مجتمع",
+      "shop": "دكان",
+      "profile": "البروفايل",
+      "film": "فيلم",
+      "bounty": "بونتي",
+      "app": "تطبيق",
+      "proposal": "مُقترح",
+      "comic": "كوميك",
+      "earn": "اكتسب",
+      "listens_one": "{{value}} اسمع",
+      "listens_other": "{{value}} يسمع",
+      "votes_one": "{{value}} صوت",
+      "votes_other": "{{value}} تصويت",
+      "members_one": "عضو {{value}}",
+      "members_other": "{{value}} الأعضاء"
+    }
   },
   "tv": {
     "title": "تلفزيون",

@@ -4906,7 +4906,22 @@
     "tabPinned": "固定",
     "lockedPost": "已锁定的帖子",
     "viewGrid": "网格视图",
-    "viewList": "列表视图"
+    "viewList": "列表视图",
+    "gridCard": {
+      "liveStage": "现场舞台",
+      "poll": "投票",
+      "community": "社區",
+      "profile": "个人资料",
+      "film": "电影",
+      "comic": "连环画",
+      "earn": "賺錢",
+      "listens_one": "{{value}} 听",
+      "listens_other": "{{value}} 听",
+      "votes_one": "{{value}} 投票",
+      "votes_other": "{{value}} 票",
+      "members_one": "{{value}} 成員",
+      "members_other": "{{value}} 會員"
+    }
   },
   "tv": {
     "title": "电视",
