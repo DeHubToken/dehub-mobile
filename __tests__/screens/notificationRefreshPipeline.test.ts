@@ -21,6 +21,7 @@ it('starts all sources together, paints the API page first, folds in custom rows
     apiTypesForFilter: () => ['like'], getNotifications: api, fetchCustomNotifications: custom,
     log: { error: jest.fn() }, listedUnreadRef: { current: new Map() },
     takeInflightFirstPage: () => null, mergeFirstPage, customRowsRef: { current: [] }, lastRefreshAtRef: { current: 0 },
+    tabFetchedAtRef: { current: new Map() }, rowsFilterRef: { current: 'all' },
   };
   for (const key of ['setLoadError', 'setNotifications', 'setPage', 'setHasMore', 'setCountsSource', 'setRefreshing', 'setLoading', 'setLoadingMore']) scope[key] = jest.fn();
   const refresh = runInNewContext(compiled, scope);
@@ -31,6 +32,9 @@ it('starts all sources together, paints the API page first, folds in custom rows
   expect(scope.setNotifications).toHaveBeenNthCalledWith(1, [{ id: 'list', createdAt: '2026-01-01' }]);
   expect(scope.setNotifications).toHaveBeenNthCalledWith(2, [{ id: 'custom', createdAt: '2026-01-02' }, { id: 'list', createdAt: '2026-01-01' }]);
   expect(scope.lastRefreshAtRef.current).toBeGreaterThan(0);
+  // The rows now on screen are filed under their tab, fresh as of now.
+  expect(scope.rowsFilterRef.current).toBe('likes');
+  expect(scope.tabFetchedAtRef.current.get('likes')).toBeGreaterThan(0);
   expect(scope.setLoading).toHaveBeenCalledWith(false);
   expect(scope.setCountsSource).not.toHaveBeenCalled();
   finishCounts({ result: [{ id: 'all' }] });
@@ -49,6 +53,7 @@ it('an unfiltered refresh reuses the warm-up fetch instead of asking again', asy
     log: { error: jest.fn() }, listedUnreadRef: { current: new Map() },
     takeInflightFirstPage: () => Promise.resolve({ api: [{ _id: 'a', createdAt: '2026-01-01' }], custom: [] }),
     mergeFirstPage, customRowsRef: { current: [] }, lastRefreshAtRef: { current: 0 },
+    tabFetchedAtRef: { current: new Map() }, rowsFilterRef: { current: 'all' },
   };
   for (const key of ['setLoadError', 'setNotifications', 'setPage', 'setHasMore', 'setCountsSource', 'setRefreshing', 'setLoading', 'setLoadingMore']) scope[key] = jest.fn();
   const refresh = runInNewContext(compiled, scope);
