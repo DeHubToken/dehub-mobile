@@ -1,29 +1,29 @@
 import { Platform } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
-import env from "../config/env";
 import { shareWithRef } from "./shareRef";
 import { translateCopy as _translateCopy } from "../i18n/copy";
 
-/** Keep the production text-card route in step with the web share drawer. */
+/**
+ * The site's post share card (text, photo and video posts alike), the same
+ * picture link previews and the web share drawer use.
+ */
 export function getTextPostShareImageUrl(tokenId: number | string): string {
   if (!/^[1-9]\d{0,14}$/.test(String(tokenId))) throw new Error("Invalid post id");
-  return `https://riftn.com/_og/post/v5/${tokenId}.png`;
+  return `https://riftn.com/_og/post/v6/${tokenId}.png`;
 }
 
 /**
- * Downloads the backend OG image for a post and shares it as a PNG file.
- * Falls back to URL-only share if download fails.
+ * Downloads the post's share card and shares it as a PNG file.
+ * Falls back to URL-only share if download fails, or when the post may only
+ * show the generic brand card (mature, restricted, missing).
  */
 export async function sharePostAsImage(
   tokenId: number | string,
   postUrl: string,
   caption?: string,
-  postType?: string,
+  _postType?: string,
 ): Promise<void> {
-  const isText = postType === "feed-simple" || postType === "text";
-  const ogImageUrl = isText
-    ? getTextPostShareImageUrl(tokenId)
-    : `${env.API_URL?.replace(/\/api\/?$/, "")}/og-image/${tokenId}`;
+  const ogImageUrl = getTextPostShareImageUrl(tokenId);
   const localPath = `${FileSystem.cacheDirectory}dehub-post-${tokenId}.png`;
 
   try {
@@ -34,9 +34,10 @@ export async function sharePostAsImage(
       return;
     }
     const { status, headers } = await FileSystem.downloadAsync(ogImageUrl, localPath);
-    const imageType = Object.entries(headers || {}).find(([name]) => name.toLowerCase() === "content-type")?.[1];
+    const header = (key: string) => Object.entries(headers || {}).find(([name]) => name.toLowerCase() === key)?.[1];
+    const isCard = header("content-type")?.toLowerCase().startsWith("image/png") && header("x-dehub-share-card") !== "brand";
 
-    if (status === 200 && (!isText || imageType?.toLowerCase().startsWith("image/png"))) {
+    if (status === 200 && isCard) {
       await shareWithRef({
         url: localPath,
         message: caption ? `${caption}\n${postUrl}` : postUrl,

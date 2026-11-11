@@ -14,7 +14,7 @@ afterAll(() => { Object.defineProperty(Platform, 'OS', { configurable: true, val
 it('shares the production text card and retains the off-chain link on iOS', async () => {
   download.mockResolvedValue({ status: 200, headers: { 'Content-Type': 'image/png' } });
   await sharePostAsImage(6501, 'https://riftn.com/newpost/1051', 'A post', 'feed-simple');
-  expect(download).toHaveBeenCalledWith('https://riftn.com/_og/post/v5/6501.png', 'file:///cache/dehub-post-6501.png');
+  expect(download).toHaveBeenCalledWith('https://riftn.com/_og/post/v6/6501.png', 'file:///cache/dehub-post-6501.png');
   expect(share).toHaveBeenCalledWith({ url: 'file:///cache/dehub-post-6501.png', message: 'A post\nhttps://riftn.com/newpost/1051' });
 });
 
@@ -30,10 +30,17 @@ it('does not attach an HTML error page as a PNG', async () => {
   expect(share.mock.calls[0][0].url).toBe('https://riftn.com/newpost/1051');
 });
 
-it('keeps the existing media renderer for image/video posts', async () => {
-  download.mockResolvedValue({ status: 200, headers: { 'content-type': 'image/png' } });
+it('shares the same site card for image/video posts', async () => {
+  download.mockResolvedValue({ status: 200, headers: { 'content-type': 'image/png', 'x-dehub-share-card': 'v6' } });
   await sharePostAsImage(12, 'https://riftn.com/app/post/12', undefined, 'video');
-  expect(download.mock.calls[0][0]).toBe('https://api.dehub.io/og-image/12');
+  expect(download.mock.calls[0][0]).toBe('https://riftn.com/_og/post/v6/12.png');
+  expect(share.mock.calls[0][0].url).toBe('file:///cache/dehub-post-12.png');
+});
+
+it('shares the link instead of the generic brand card', async () => {
+  download.mockResolvedValue({ status: 200, headers: { 'Content-Type': 'image/png', 'X-DeHub-Share-Card': 'brand' } });
+  await sharePostAsImage(12, 'https://riftn.com/app/post/12', undefined, 'video');
+  expect(share.mock.calls[0][0].url).toBe('https://riftn.com/app/post/12');
 });
 
 it('shares the canonical link on Android without downloading an unused card', async () => {
