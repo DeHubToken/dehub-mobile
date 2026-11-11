@@ -32,6 +32,7 @@ const NEON_PAD = 20;
 const NEON_GAP = 18;
 
 function NeonLogo({ tint, still }: { tint: keyof typeof NEON; still: boolean }) {
+  const { t } = useTranslation();
   const pulse = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     if (still) return;
@@ -46,7 +47,7 @@ function NeonLogo({ tint, still }: { tint: keyof typeof NEON; still: boolean }) 
     <Animated.Image
       source={NEON[tint]}
       accessibilityRole="image"
-      accessibilityLabel="Riftn"
+      accessibilityLabel={t("maintenance.brand")}
       style={[styles.neon, { opacity: pulse }]}
       resizeMode="contain"
     />
