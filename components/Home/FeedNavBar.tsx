@@ -1,6 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState, useRef, useMemo, useEffect } from "react";
-import { View, Pressable, StyleSheet, Platform, Image, type LayoutChangeEvent } from "react-native";
+import { View, Pressable, StyleSheet, Platform, Image, type LayoutChangeEvent, type ViewStyle } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
   useSharedValue,
@@ -121,6 +121,17 @@ const FEED_NAV_ICON_SCALE: Partial<Record<IconName, number>> = {
   Radio: 1,
   Settings2: 1.18,
 };
+// Quote marks sit short and wide, so an even scale big enough to reach the
+// row's height would make them the widest glyph. Stretch them taller instead.
+// Keep in sync with web's FEED_TAB_ICON_STRETCH.
+const FEED_NAV_ICON_STRETCH: Partial<Record<IconName, readonly [number, number]>> = {
+  Quote: [1.22, 1.49],
+};
+const STRETCH_STYLES = new Map<IconName, ViewStyle>(
+  (Object.entries(FEED_NAV_ICON_STRETCH) as [IconName, readonly [number, number]][]).map(
+    ([name, [x, y]]) => [name, { transform: [{ scaleX: x }, { scaleY: y }] }],
+  ),
+);
 
 const NavButton = memo<{
   icon: IconName;
@@ -164,12 +175,14 @@ const NavButton = memo<{
   >
     {({ pressed }) => (
       <View style={{ width: 18, height: 18, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 }}>
-        <Icon
-          name={icon}
-          size={16 * (FEED_NAV_ICON_SCALE[icon] ?? 1)}
-          color={tint ? (active ? tint.on : tint.off) : active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
-          strokeWidth={active ? 2 : 1.8}
-        />
+        <View style={STRETCH_STYLES.get(icon)}>
+          <Icon
+            name={icon}
+            size={16 * (FEED_NAV_ICON_SCALE[icon] ?? 1)}
+            color={tint ? (active ? tint.on : tint.off) : active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
+            strokeWidth={active ? 2 : 1.8}
+          />
+        </View>
       </View>
     )}
   </Pressable>
