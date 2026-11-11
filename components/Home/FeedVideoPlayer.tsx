@@ -9,6 +9,7 @@ import { MediaControlIcon as BareIcon, MediaControlLabel, MediaControlText } fro
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
 import { useQueryClient } from "@tanstack/react-query";
+import { rememberFeedVideoPlace, takeFeedVideoPlace } from "../../libs/feedVideoResume";
 import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import PostTapSurface from "./PostTapSurface";
@@ -700,6 +701,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   });
   // Where to pick up once a renewed URL has loaded.
   const resumeAtRef = useRef(0);
+  // A feed card that lost its player a moment ago (a profile opened over the
+  // feed, or a short scroll away) carries on from where it was.
+  useState(() => { if (!postPage) resumeAtRef.current = takeFeedVideoPlace(videoUrl); });
+  useEffect(() => {
+    if (postPage) return;
+    return () => rememberFeedVideoPlace(videoUrl, currentTimeRef.current);
+  }, [postPage, videoUrl]);
   // A chapter tapped on the post info page opens the post at that moment.
   const [chapterStart] = useState(() => (postPage ? takePostStartTime(tokenId) : 0));
   useEffect(() => {
