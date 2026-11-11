@@ -24,8 +24,8 @@ const TOP_INSET = 8;
 const ROW_HEIGHT = 38;
 const LEAD_SLOT_WIDTH = 40;
 
-/** How far the drawer's material runs up under the pill. The slot clips at
- *  the pill's bottom edge, so only its sides and rounded bottom show. */
+/** How far the drawer runs up behind the pill. The slot starts this far up,
+ *  so the drawer's top edge and corners hide behind the pill's rounded bottom. */
 const DRAWER_TUCK = 24;
 /** Home's new-posts drawer pull (web: spring 420 / 32 / 0.8). */
 const DRAWER_SPRING = { stiffness: 420, damping: 36, mass: 0.8 } as const;
@@ -157,10 +157,10 @@ export default function PillHeader({
     drawerProgress.value = drawerOpen ? withSpring(1, DRAWER_SPRING) : withTiming(0, { duration: 200 });
   }, [drawerOpen, reducedMotion, drawerProgress]);
   const slotStyle = useAnimatedStyle(() => ({
-    height: Math.max(0, drawerProgress.value) * drawerHeight.value,
+    height: DRAWER_TUCK + Math.max(0, drawerProgress.value) * drawerHeight.value,
   }));
   const drawerStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: (Math.min(1, drawerProgress.value) - 1) * drawerHeight.value }],
+    transform: [{ translateY: (Math.min(1, drawerProgress.value) - 1) * (drawerHeight.value + DRAWER_TUCK) }],
   }));
   const { ref, pillStyle, contentStyle } = usePillGlide();
   // Titles stay white like web's pill; only the icons take the theme's tint.
@@ -243,8 +243,8 @@ export default function PillHeader({
       </View>
       {hasDrawer ? (
         // The search pulls out from under the pill as one full-width drawer in
-        // the pill's material, like Home's new-posts drawer. The slot clips at
-        // the pill's bottom edge; the drawer's top runs up under it.
+        // the pill's material, like Home's new-posts drawer. The slot starts
+        // DRAWER_TUCK up behind the pill, so its clip line is hidden under it.
         <Reanimated.View
           testID="pill-search-drawer"
           style={[styles.drawerSlot, slotStyle]}
@@ -279,7 +279,7 @@ export default function PillHeader({
 
 const styles = StyleSheet.create({
   wrap: { paddingHorizontal: SIDE_INSET, paddingTop: TOP_INSET, paddingBottom: 6, zIndex: 20 },
-  pill: { borderRadius: FEED_PILL_RADIUS, overflow: "hidden" },
+  pill: { borderRadius: FEED_PILL_RADIUS, overflow: "hidden", zIndex: 1 },
   row: { flexDirection: "row", alignItems: "center", minHeight: ROW_HEIGHT },
   lead: { width: LEAD_SLOT_WIDTH, height: ROW_HEIGHT, alignItems: "center", justifyContent: "center" },
   leadGap: { width: 12 },
@@ -291,8 +291,8 @@ const styles = StyleSheet.create({
   title: { flexShrink: 1, fontSize: 15, fontWeight: "600", letterSpacing: 0.1 },
   line: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center" },
   actions: { flexDirection: "row", alignItems: "center", gap: 2, paddingRight: 2, marginLeft: 4 },
-  drawerSlot: { overflow: "hidden" },
-  drawer: { position: "absolute", left: 0, right: 0, top: 0 },
+  drawerSlot: { overflow: "hidden", marginTop: -DRAWER_TUCK },
+  drawer: { position: "absolute", left: 0, right: 0, top: DRAWER_TUCK },
   drawerMaterial: { position: "absolute", left: 0, right: 0, bottom: 0, top: -DRAWER_TUCK, overflow: "hidden" },
   drawerShade: { position: "absolute", left: 0, right: 0, top: DRAWER_TUCK, height: 14 },
   drawerBody: { paddingHorizontal: 8, paddingTop: 8, paddingBottom: 8, gap: 8 },
