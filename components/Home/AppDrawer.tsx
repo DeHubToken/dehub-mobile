@@ -36,6 +36,7 @@ import Animated, {
 import Avatar from "../common/Avatar";
 import { DhbCoin } from "../common/DhbCoin";
 import Icon, { type IconName } from "../ui/Icon";
+import { filterNavRows } from "../../libs/navSearch";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { canManageAgents } from '../../libs/agent-access';
 import { useTotalUnreadMessagesCount } from "../../store/dm.store";
@@ -173,6 +174,14 @@ const NAV_ITEMS: DrawerItem[] = [
   // Search-only on web too. Hidden on iOS: both pages exist to sell a plan.
   { icon: "Crown", labelKey: "nav.premium", screen: ScreenNames.Premium, storefrontHidden: true, searchOnly: true },
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },
+  // More search-only pages, the same ones the web menu search reveals.
+  { icon: "Trophy", labelKey: "top100.title", screen: ScreenNames.Top100, searchOnly: true },
+  { icon: "Hammer", labelKey: "work.myBounties", screen: ScreenNames.WorkHistory, requiresAuth: true, storefrontHidden: true, searchOnly: true },
+  { icon: "Wallet", labelKey: "buyCoins.title", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true, storefrontHidden: true, searchOnly: true },
+  { icon: "MessageSquare", labelKey: "publicChat.title", screen: ScreenNames.LiveChat, searchOnly: true },
+  { icon: "CalendarDays", labelKey: "planned.title", screen: ScreenNames.Planned, requiresAuth: true, searchOnly: true },
+  { icon: "Tv", labelKey: "liveStudio.title", screen: ScreenNames.LiveStudio, requiresAuth: true, searchOnly: true },
+  { icon: "ChartColumn", labelKey: "launchpad.title", screen: ScreenNames.Launchpad, storefrontHidden: true, searchOnly: true },
 ];
 
 /** Default menu order as saved ids (libs/navOrder): what a first drag merges into. */
@@ -199,6 +208,8 @@ const ICON_KEYS: Record<string, string> = {
   "nav.creators": "subscriptions", "nav.agents": "assistant", "nav.converter": "videos",
   "nav.migrate": "bridge", "nav.guide": "pinned", "nav.connectAi": "command", "nav.docs": "posts",
   "nav.blog": "email", "nav.premium": "boost", "nav.pricing": "buy",
+  "top100.title": "trophy", "work.myBounties": "bounties", "buyCoins.title": "buy", "publicChat.title": "messages",
+  "planned.title": "events", "liveStudio.title": "live", "launchpad.title": "buy",
 };
 
 /** What the themes layer hands us; null for system/minimal (dark glass). */
@@ -473,22 +484,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     [navigation, onClose],
   );
 
-  // Menu search. Matching is a case-insensitive substring of the TRANSLATED
-  // label, so it works in the language the tile is actually rendered in; prefix
-  // matches sort ahead of mid-word ones and ties keep the menu's own order,
-  // which Array#sort preserves.
+  // Menu search (libs/navSearch, same matching as the web menu): the row's
+  // name in the reader's language and in English, its search words ("build"
+  // finds Requests) in English and translated, plurals and small typos. Rows
+  // marked searchOnly only appear once something is typed.
   const visibleItems = useMemo(() => {
     const allowed = NAV_ITEMS.filter(
       (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden)
         && (item.screen !== ScreenNames.Agents || canManageAgents(user?.walletAddress || user?.address)),
     );
-    const query = menuQuery.trim().toLowerCase();
-    if (!query) return allowed.filter((item) => !item.searchOnly);
-    return allowed
-      .map((item) => ({ item, at: t(item.labelKey).toLowerCase().indexOf(query) }))
-      .filter((entry) => entry.at !== -1)
-      .sort((a, b) => (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1))
-      .map((entry) => entry.item);
+    return filterNavRows(allowed, menuQuery, (key, defaultValue) => t(key, defaultValue));
   }, [isSignedIn, menuQuery, t, user?.walletAddress, user?.address]);
 
   const searching = menuQuery.trim().length > 0;
