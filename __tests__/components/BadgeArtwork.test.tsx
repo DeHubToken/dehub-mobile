@@ -3,6 +3,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import BadgeArtwork from '../../components/common/BadgeArtwork';
 import { openBadgeShowcase, tierForBadgeImage } from '../../libs/badgeShowcase';
 import { useReducedMotion } from 'react-native-reanimated';
+import { badgeSmallArt } from '../../libs/badgeSmallArt';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({
@@ -16,6 +17,9 @@ jest.mock('../../libs/badgeShowcase', () => ({
 jest.mock('../../libs/badgeHoverArt', () => ({
   badgeHoverArt: () => ({ poster: 101, animation: 102, posterBounds: { left: 12, top: 21, right: 119, bottom: 117 }, bounds: { left: 9, top: 10, right: 119, bottom: 119 } }),
 }));
+jest.mock('../../libs/badgeSmallArt', () => ({
+  BADGE_SMALL_MAX: 32, badgeSmallArt: jest.fn(() => undefined),
+}));
 jest.mock('expo-image', () => ({ Image: require('react-native').Image }));
 jest.mock('react-native-reanimated', () => ({ useReducedMotion: jest.fn(() => false) }));
 
@@ -23,9 +27,19 @@ beforeEach(() => {
   jest.clearAllMocks();
   (useReducedMotion as jest.Mock).mockReturnValue(false);
   (tierForBadgeImage as jest.Mock).mockReturnValue('Octopus');
+  (badgeSmallArt as jest.Mock).mockReturnValue(undefined);
 });
 
 describe('holder badge interaction', () => {
+  it('draws the small still next to a name and the full artwork at larger sizes', () => {
+    (badgeSmallArt as jest.Mock).mockReturnValue(201);
+    const small = render(<BadgeArtwork source={1} style={{ width: 18, height: 18 }} />);
+    expect(small.getByTestId('holder-badge-poster').props.source).toBe(201);
+    small.unmount();
+    const large = render(<BadgeArtwork source={1} style={{ width: 96, height: 96 }} />);
+    expect(large.getByTestId('holder-badge-poster').props.source).toBe(101);
+  });
+
   it('does not rerender existing idle badges when another feed page is appended', () => {
     const style = { width: 16, height: 16 };
     const feed = (count: number) => <>{Array.from({ length: count }, (_, index) => (
