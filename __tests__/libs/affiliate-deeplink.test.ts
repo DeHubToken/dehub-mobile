@@ -18,4 +18,9 @@ describe("sanitizeDeepLinkPath", () => {
     expect(buildReferralDeepLink("https://dehub.io/r/ABC", "/docs")).toMatch(/\/r\/ABC\/docs$/);
     expect(buildReferralDeepLink("https://dehub.io/r/ABC", "https://evil.com")).toMatch(/\/r\/ABC$/);
   });
+  it("keeps the invite link's name tag after the page path", () => {
+    expect(buildReferralDeepLink("https://riftn.com/r/ABC?n=z95t", "/docs")).toBe("https://riftn.com/r/ABC/docs?n=z95t");
+    expect(buildReferralDeepLink("https://riftn.com/r/ABC?n=z95t", "/app/stores?x=1")).toBe("https://riftn.com/r/ABC/app/stores?x=1&n=z95t");
+    expect(buildReferralDeepLink("https://riftn.com/r/ABC?n=z95t", "")).toBe("https://riftn.com/r/ABC?n=z95t");
+  });
 });

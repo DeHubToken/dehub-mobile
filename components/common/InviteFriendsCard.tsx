@@ -57,7 +57,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
     };
   }, [addr, shareName]);
 
-  const link = code ? buildInviteLink(code) : "";
+  const link = code ? buildInviteLink(code, shareName) : "";
 
   const onShare = useCallback(async () => {
     if (!addr) return;
@@ -69,7 +69,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
         return;
       }
       if (!code) setCode(c);
-      const l = buildInviteLink(c);
+      const l = buildInviteLink(c, shareName);
       await shareProfile(l, buildInviteMessage(c, l), "invite");
     } catch (e) {
       toastError(e, t("affiliate.shareFailed"));
@@ -113,7 +113,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           ) : (
             <>
               <Text style={styles.codeText} numberOfLines={1}>
-                {code ? `dehub.io/r/${code}` : t("affiliate.tapShareForLink")}
+                {code ? `riftn.com/r/${code}` : t("affiliate.tapShareForLink")}
               </Text>
               {!!code && <Icon name="Copy" size={13} color="#8B8D90" />}
             </>

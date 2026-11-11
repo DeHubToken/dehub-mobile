@@ -237,7 +237,10 @@ export default function AffiliateScreen() {
     setVisible(AFFILIATES_PAGE_SIZE);
   }, [tab]);
 
-  const inviteLink = useMemo(() => (stats?.code ? buildInviteLink(stats.code) : ""), [stats?.code]);
+  const inviteLink = useMemo(
+    () => (stats?.code ? buildInviteLink(stats.code, displayName || stats.shareName) : ""),
+    [stats?.code, stats?.shareName, displayName],
+  );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
