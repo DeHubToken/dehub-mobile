@@ -106,12 +106,12 @@ describe('Getting started checklist', () => {
   });
 });
 
-it('trending topics on Explore filter the Home that is already open', () => {
+it('trending topics on Explore open that category in place, never a second Home', () => {
   const screen = source('screens/SearchScreen.tsx');
-  const handler = screen.slice(screen.indexOf('const handleTopicPress'), screen.indexOf('const handleSearch'));
-  expect(handler).toContain('storage.set("dehub:defaultCategory", category)');
-  expect(handler.indexOf('promptFeedEvents.chooseCategory(category)')).toBeGreaterThan(-1);
-  expect(handler.indexOf('promptFeedEvents.chooseCategory(category)')).toBeLessThan(handler.indexOf('navigation.navigate('));
+  const handler = screen.slice(screen.indexOf('const handleExploreTopic'), screen.indexOf('const cleanListY'));
+  expect(handler).toContain('setBrowseCategory(match)');
+  expect(handler).not.toContain('navigation.navigate(');
+  expect(handler).not.toContain('navigation.push(');
 });
 
 it('Go to profile after a top-up opens Profile, not a Root with a Profile tab that does not exist', () => {
