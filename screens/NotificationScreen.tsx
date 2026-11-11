@@ -954,6 +954,29 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
 
 const log = createLogger("NotificationScreen");
 
+type TabCacheEntry = { rows: NotificationItem[]; page: number; hasMore: boolean };
+/** A tab fetched this recently is shown as it is; older, it is shown and refreshed behind. */
+const TAB_FRESH_MS = 2 * 60 * 1000;
+/** How many of the leading tabs are fetched ahead once the list has loaded. */
+const PREFETCH_TABS = 6;
+
+type TabStore = {
+  tabs: Map<NotificationTypeFilter, TabCacheEntry>;
+  fetchedAt: Map<NotificationTypeFilter, number>;
+};
+// Per account and kept across opens, so a tab visited last time paints at
+// once this time too. Lives only as long as the app process.
+const TAB_STORES = new Map<string, TabStore>();
+function tabStoreFor(wallet: string | null): TabStore {
+  const key = (wallet ?? '').toLowerCase();
+  let store = TAB_STORES.get(key);
+  if (!store) {
+    store = { tabs: new Map(), fetchedAt: new Map() };
+    TAB_STORES.set(key, store);
+  }
+  return store;
+}
+
 // The last list painted for this account (libs/notifications-cache): kept in
 // memory and on disk, so every open, the first one after an app start too,
 // paints rows at once and refreshes them in the background. Only the
@@ -1014,8 +1037,42 @@ const NotificationScreen = () => {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
 
+  // Every tab visited (or fetched ahead) this open keeps its rows, page and
+  // whether more remain, so switching back paints at once. A tab is fetched
+  // again only once its rows are older than TAB_FRESH_MS, and then quietly.
+  const tabStore = tabStoreFor(walletAddress);
+  const tabCacheRef = useRef(tabStore.tabs);
+  tabCacheRef.current = tabStore.tabs;
+  // When each tab's first page last landed. A tab drops out of it when a live
+  // ping or the All list shows it has rows it lacks: still painted at once,
+  // but due a quiet refresh.
+  const tabFetchedAtRef = useRef(tabStore.fetchedAt);
+  tabFetchedAtRef.current = tabStore.fetchedAt;
+  // The tab the rows in `notifications` belong to. It trails selectedFilter by
+  // one commit on a switch, which is what lets the old tab be saved first.
+  const rowsFilterRef = useRef<NotificationTypeFilter>('all');
+  // Set when a switch restores a tab's page number, so the page effect does
+  // not go and fetch that page again.
+  const restoringPageRef = useRef(false);
+  const countsSourceRef = useRef(countsSource);
+  countsSourceRef.current = countsSource;
+
+  /** Mark rows read in every tab kept aside, not just the one on screen. */
+  const markCachedRead = useCallback((ids: string[] | null) => {
+    const only = ids ? new Set(ids) : null;
+    for (const [key, entry] of tabCacheRef.current) {
+      if (key === rowsFilterRef.current) continue;
+      tabCacheRef.current.set(key, {
+        ...entry,
+        rows: entry.rows.map((n) => (!n.read && (!only || only.has(n._id)) ? { ...n, read: true } : n)),
+      });
+    }
+  }, []);
+
   useEffect(() => {
-    if (loading || selectedFilter !== "all") return;
+    // The rows' own tab, not selectedFilter: on the commit that switches to
+    // All the list still holds the tab being left.
+    if (loading || rowsFilterRef.current !== "all") return;
     writeNotificationSnapshot(walletAddress, notifications, countsSource);
   }, [loading, selectedFilter, notifications, countsSource, walletAddress]);
 
@@ -1167,6 +1224,7 @@ const NotificationScreen = () => {
         setCountsSource((prev) =>
           prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
         );
+        markCachedRead([_id]);
       });
       markAsReadAsync(_id);
     }
@@ -1405,6 +1463,7 @@ const NotificationScreen = () => {
     navigateToLivestream,
     navigateToDM,
     markAsReadAsync,
+    markCachedRead,
     openBountyByNumber,
     navigation,
     user?.address,
@@ -1421,6 +1480,29 @@ const NotificationScreen = () => {
   useEffect(() => {
     selectedFilterRef.current = selectedFilter;
   }, [selectedFilter]);
+
+  // Keep the cache in step with what is on screen: new pages, rows marked
+  // read, a refresh. Keyed by the rows' own tab, not selectedFilter, so the
+  // commit that switches tabs files the old rows under the old tab.
+  useEffect(() => {
+    if (loading) return;
+    tabCacheRef.current.set(rowsFilterRef.current, { rows: notifications, page, hasMore });
+  }, [loading, notifications, page, hasMore]);
+
+  // The unfiltered page is refreshed on every open. A row in it that a kept
+  // tab lacks means that tab has news: mark it due, so it refreshes when
+  // switched to or fetched ahead, while still painting its kept rows first.
+  useEffect(() => {
+    for (const [key, entry] of tabCacheRef.current) {
+      if (key === 'all' || !tabFetchedAtRef.current.has(key)) continue;
+      const allowed = FILTER_TYPE_MAP[key];
+      const have = new Set(entry.rows.map((n) => n._id));
+      if (countsSource.some((n) => allowed.includes(n.type as NotificationType) && !have.has(n._id))) {
+        tabFetchedAtRef.current.delete(key);
+      }
+    }
+  }, [countsSource]);
+
 
   // The list arrives already narrowed by the API. This pass still runs: it
   // covers the client-only types, and it keeps the tab correct against an API
@@ -1567,6 +1649,8 @@ const NotificationScreen = () => {
         }
         setLoadError(null);
         if (isRefresh) {
+          tabFetchedAtRef.current.set(selectedFilterRef.current, Date.now());
+          rowsFilterRef.current = selectedFilterRef.current;
           setNotifications(payload);
           setPage(1);
         } else {
@@ -1652,7 +1736,11 @@ const NotificationScreen = () => {
     let refreshTimer: ReturnType<typeof setTimeout> | null = null;
     const refreshLiveList = () => {
       if (refreshTimer) clearTimeout(refreshTimer);
-      refreshTimer = setTimeout(() => fetchNotificationsRef.current(true), 150);
+      refreshTimer = setTimeout(() => {
+        // Something new arrived: every other tab is now due a quiet refresh.
+        tabFetchedAtRef.current.clear();
+        fetchNotificationsRef.current(true);
+      }, 150);
     };
 
     const unsubscribeSocket = onSocketEvent('notification', refreshLiveList);
@@ -1695,22 +1783,83 @@ const NotificationScreen = () => {
       isFirstFilterRender.current = false;
       return;
     }
-    // The filter is applied server-side now, so a tab change needs a refetch.
-    // No loading gate here: the old rows clear immediately and the new tab's
-    // rows land when the response does — the stale-response guard in
-    // fetchNotifications makes rapid flicking land on the last tab tapped.
+    // Answers still on their way belong to the tab just left; a page landing
+    // after the switch would otherwise be appended to this tab's rows.
+    fetchGenRef.current++;
+    setLoadingMore(false);
+    rowsFilterRef.current = selectedFilter;
+    const kept = tabCacheRef.current.get(selectedFilter);
+    if (kept) {
+      // Seen before: paint it as it was left, scroll depth and all, and only
+      // ask again if it has gone stale. Nothing on screen changes until then.
+      if (kept.page !== pageRef.current) restoringPageRef.current = true;
+      pageRef.current = kept.page;
+      setPage(kept.page);
+      setHasMore(kept.hasMore);
+      setLoading(false);
+      setNotifications(kept.rows);
+      const at = tabFetchedAtRef.current.get(selectedFilter) ?? 0;
+      if (Date.now() - at > TAB_FRESH_MS) fetchNotificationsRef.current(true, { skipCounts: true });
+      return;
+    }
+    // First visit: the unfiltered rows already loaded that belong to this tab
+    // stand in while its own page loads, so it opens filled rather than on a
+    // skeleton. With none, the skeleton shows; emptying the list without it
+    // flashed "No ... notifications yet" under a badge that said otherwise.
     // selectedFilterRef is updated by the effect above, which runs first — it
     // is declared earlier in the file, and React fires effects in declaration
     // order.
+    const allowed = FILTER_TYPE_MAP[selectedFilter];
+    const standIn = selectedFilter === 'all'
+      ? countsSourceRef.current
+      : countsSourceRef.current.filter((n) => allowed.includes(n.type as NotificationType));
+    if (pageRef.current !== 1) restoringPageRef.current = true;
+    pageRef.current = 1;
     setPage(1);
-    // Show the skeleton while the new tab loads; emptying the list without it
-    // flashed "No ... notifications yet" under a badge that said otherwise.
-    setLoading(true);
-    setNotifications([]);
+    // No "load more" off the stand-in rows; the real page sets this.
+    setHasMore(false);
+    setLoading(standIn.length === 0);
+    setNotifications(standIn);
     fetchNotificationsRef.current(true, { skipCounts: true });
   }, [selectedFilter]);
 
+  // Once the list is up, fetch the leading tabs' first pages behind it, so the
+  // first tap on each paints filled. Only tabs never fetched, or marked due by
+  // a live ping or the All list: a reopen with nothing new costs nothing.
+  const tabActivityCountsRef = useRef(tabActivityCounts);
+  tabActivityCountsRef.current = tabActivityCounts;
   useEffect(() => {
+    if (loading || !walletAddress) return;
+    const timer = setTimeout(() => {
+      const order = orderNotificationTabKeys(TYPE_TABS.map(({ key }) => key), tabActivityCountsRef.current, 'all');
+      for (const key of order.slice(0, PREFETCH_TABS)) {
+        if (key === 'all' || key === selectedFilterRef.current) continue;
+        if (tabCacheRef.current.has(key) && tabFetchedAtRef.current.has(key)) continue;
+        const types = apiTypesForFilter(key);
+        if (!types) continue;
+        tabFetchedAtRef.current.set(key, Date.now());
+        getNotifications({ unreadOnly: false, types, page: 1, limit: 30 })
+          .then((res: any) => {
+            // Opened meanwhile: its own fetch owns the rows now.
+            if (rowsFilterRef.current === key) return;
+            const api: NotificationItem[] = res?.data?.result || res?.result || [];
+            const rows = mergeFirstPage(api, customRowsRef.current);
+            for (const n of rows) {
+              if (!listedUnreadRef.current.has(n._id)) listedUnreadRef.current.set(n._id, !n.read);
+            }
+            tabCacheRef.current.set(key, { rows, page: 1, hasMore: api.length >= 30 });
+          })
+          .catch(() => tabFetchedAtRef.current.delete(key));
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [loading, walletAddress, countsSource]);
+
+  useEffect(() => {
+    if (restoringPageRef.current) {
+      restoringPageRef.current = false;
+      return;
+    }
     if (page > 1) {
       setLoadingMore(true);
       fetchNotificationsRef.current(false);
@@ -1738,6 +1887,7 @@ const NotificationScreen = () => {
     // refresh even though the rows all show as read. The app badge follows from
     // this via the effect above.
     setCountsSource((prev) => prev.map((n) => ({ ...n, read: true })));
+    markCachedRead(null);
 
     markAllNotificationsAsRead().catch((e) => {
       log.error("markAllRead error", e);
@@ -1747,7 +1897,7 @@ const NotificationScreen = () => {
     markAllCustomNotificationsRead(walletAddressRef.current).catch((e) => {
       log.error("markAllCustomRead error", e);
     });
-  }, []);
+  }, [markCachedRead]);
 
   const handleAcceptFollowRequest = useCallback(async (notification: NotificationItem) => {
     const followId = notification.metadata?.followId;
@@ -1803,8 +1953,9 @@ const NotificationScreen = () => {
     setCountsSource((prev) =>
       prev.map((n) => (n._id === notification._id ? { ...n, read: true } : n))
     );
+    markCachedRead([notification._id]);
     markAsReadAsync(notification._id);
-  }, [markAsReadAsync]);
+  }, [markAsReadAsync, markCachedRead]);
 
   /**
    * Clear one row. `/notification` exposes PATCH (read) and mark-all-read and
@@ -2105,7 +2256,9 @@ const NotificationScreen = () => {
           // and the list loads fresh each time the drawer opens.
           renderScrollComponent={PageDrawerScrollView}
           onEndReached={onLoadMore}
-          onEndReachedThreshold={0.3}
+          // A screen and a half ahead, so the next page is in before the
+          // reader reaches the end instead of after.
+          onEndReachedThreshold={1.5}
           // A FlatList here mounted a fresh batch of rows on most frames of a
           // fling and kept nine screens of them alive, so about 1 in 3 frames
           // missed on a Galaxy S24+. FlashList reuses the rows it already has.
