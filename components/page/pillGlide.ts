@@ -48,9 +48,14 @@ export function usePillGlide(fadeContents = true) {
         ref.current?.measureInWindow((_x, y) => {
           if (!Number.isFinite(y) || y <= 0) return;
           const dy = (from as number) - y;
-          if (!Number.isFinite(dy) || Math.abs(dy) <= 1 || Math.abs(dy) >= 160) return;
-          shift.value = dy;
-          shift.value = withTiming(0, GLIDE);
+          if (!Number.isFinite(dy) || Math.abs(dy) >= 160) return;
+          // Pills already in the same spot (page to page) don't move; their
+          // contents still fade up, so every switch reads as the one pill
+          // changing what it shows, same as web.
+          if (Math.abs(dy) > 1) {
+            shift.value = dy;
+            shift.value = withTiming(0, GLIDE);
+          }
           if (fadeContents) {
             fade.value = 0;
             lift.value = 4;
