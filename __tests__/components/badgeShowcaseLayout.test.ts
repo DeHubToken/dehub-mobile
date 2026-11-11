@@ -18,9 +18,10 @@ describe("badge showcase layout", () => {
   });
 
   it("puts both showcases' buttons in the footer, not the details column", () => {
-    // The App Store build drops the holder footer (buy and docs) outside the
-    // US storefront, where a web link-out is allowed.
-    expect(holder).toMatch(/footer=\{IS_APP_STORE_BUILD && !purchaseOfferVisible\(\) \? undefined : \(api\) => <HolderActions api=\{api\} \/>\}/);
+    // Every build keeps the holder footer; Buy inside it hides where
+    // purchases are not offered.
+    expect(holder).toMatch(/footer=\{\(api\) => <HolderActions api=\{api\} \/>\}/);
+    expect(holder).toMatch(/purchaseOfferVisible\(\) && <GlassButton active label=\{t\("badgeShowcase\.buyTokens"\)\}/);
     expect(streamer).toMatch(/footer=\{\(api\) => <StreamerActions /);
     expect(holder).not.toMatch(/ui\.actions/);
     expect(streamer).not.toMatch(/ui\.actions/);
