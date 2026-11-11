@@ -2,6 +2,7 @@ import { usePerfProbe } from "../../libs/perfTrace";
 import React, { memo, useCallback, useDeferredValue, useEffect, useRef, useState, type ComponentType } from 'react';
 import ProfileSurface, { PROFILE_OPEN_MS } from './ProfileSurface';
 import { Platform, StyleSheet, View } from 'react-native';
+import { FeedPlaybackActiveContext } from '../../libs/visualActivity';
 import RouteLoadingShell from '../../navigation/RouteLoadingShell';
 import StandaloneTabBar from '../../navigation/StandaloneTabBar';
 
@@ -12,6 +13,8 @@ export interface UserProfileBottomSheetProps {
   /** Android: the closing page is fully gone, so its content can be dropped. */
   onCloseComplete?: () => void;
   usernameOrAddress?: string | null;
+  /** Closed but kept built for a quick return: drawn nowhere, plays nothing. */
+  parked?: boolean;
   initialHeightPct?: number;
   embedded?: boolean;
 }
@@ -25,7 +28,7 @@ function content() {
 /** Paint and move the light page before evaluating the profile's feed and hooks. */
 export default function UserProfileBottomSheet(props: UserProfileBottomSheetProps) {
   usePerfProbe("ProfileSheet");
-  const { visible, usernameOrAddress, embedded, onClose, onOpenComplete, onCloseComplete } = props;
+  const { visible, usernameOrAddress, embedded, onClose, onOpenComplete, onCloseComplete, parked = false } = props;
   const [readyIdentifier, setReadyIdentifier] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const visibleRef = useRef(visible);
@@ -74,8 +77,11 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
     </View>
   ) : null;
   return <>
-    <ProfileSurface visible={visible} onClose={onClose} onOpenComplete={complete} onCloseComplete={onCloseComplete}>
-      {Content ? <Content {...props} visible={contentVisible} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
+    <ProfileSurface visible={visible} keepMounted={!!usernameOrAddress} onClose={onClose} onOpenComplete={complete} onCloseComplete={onCloseComplete}>
+      {/* A parked profile holds no players and runs no ambient motion. */}
+      <FeedPlaybackActiveContext.Provider value={!parked}>
+        {Content ? <Content {...props} visible={contentVisible} /> : visible || usernameOrAddress ? <RouteLoadingShell profile onBack={onClose} /> : null}
+      </FeedPlaybackActiveContext.Provider>
       {Platform.OS === 'android' ? null : bar}
     </ProfileSurface>
     {Platform.OS === 'android' ? bar : null}

@@ -3,6 +3,7 @@ import { Image, Pressable, StyleSheet, View, type ImageStyle, type StyleProp, ty
 import { Image as MotionImage, type ImageContentFit } from "expo-image";
 import { useReducedMotion } from "react-native-reanimated";
 import { badgeHoverArt } from "../../libs/badgeHoverArt";
+import { BADGE_SMALL_MAX, badgeSmallArt } from "../../libs/badgeSmallArt";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 
 interface Props {
@@ -38,10 +39,13 @@ function BadgeArtwork({ source, style }: Props) {
   const [failedAnimation, setFailedAnimation] = useState<number | null>(null);
   const active = hovered || pressed || focused;
   const playing = active && !reducedMotion && !!art && failedAnimation !== art.animation;
-  const poster = tier === "Killer Whale" ? source : art?.poster ?? source;
   const flat = StyleSheet.flatten(style) ?? {};
   const gutter = typeof flat.padding === "number" ? flat.padding : 0;
   const canvas = typeof flat.height === "number" ? flat.height - gutter * 2 : undefined;
+  // Next to a name the badge is tiny: draw the still made for that size. Larger
+  // spots keep the full-size artwork.
+  const small = canvas !== undefined && canvas <= BADGE_SMALL_MAX ? badgeSmallArt(tier, source) : undefined;
+  const poster = small ?? (tier === "Killer Whale" ? source : art?.poster ?? source);
   // Percentage-sized native images and absoluteFill disagree about padding.
   // Give both layers the same explicit canvas, including at compact sizes.
   const imageStyle: ImageStyle = canvas === undefined ? styles.image : {
@@ -50,9 +54,12 @@ function BadgeArtwork({ source, style }: Props) {
   const stillBounds = tier === "Killer Whale"
     ? { left: 19, top: 17, right: 109, bottom: 121 }
     : art?.posterBounds;
+  // The animation opens on the hover poster, so the poster's artwork is what
+  // has to fill the still's box. Sizing by the whole motion envelope made that
+  // first frame smaller than the still: the badge shrank, then moved.
   let motionStyle = imageStyle;
-  if (canvas !== undefined && stillBounds && art?.bounds) {
-    const motion = art.bounds;
+  if (canvas !== undefined && stillBounds && art) {
+    const motion = art.posterBounds;
     const motionCanvas = canvas * (stillBounds.bottom - stillBounds.top) / (motion.bottom - motion.top);
     motionStyle = {
       position: "absolute", width: motionCanvas, height: motionCanvas,

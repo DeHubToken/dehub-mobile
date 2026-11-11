@@ -695,7 +695,8 @@ export const useUserProfileData = (
       authUser,
       conversations,
       navigation,
-    , _copy]
+      _copy,
+    ]
   );
 
   const isOwnProfile = useMemo(() => {

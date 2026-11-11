@@ -405,7 +405,8 @@ export function useUploadLive() {
       goToStage,
       streamCollectionContract,
       nav,
-    , _copy],
+      _copy,
+    ],
   );
 
   return {

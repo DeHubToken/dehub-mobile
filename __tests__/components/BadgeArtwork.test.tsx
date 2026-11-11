@@ -3,6 +3,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import BadgeArtwork from '../../components/common/BadgeArtwork';
 import { openBadgeShowcase, tierForBadgeImage } from '../../libs/badgeShowcase';
 import { useReducedMotion } from 'react-native-reanimated';
+import { badgeSmallArt } from '../../libs/badgeSmallArt';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({
@@ -14,7 +15,10 @@ jest.mock('../../libs/badgeShowcase', () => ({
   tierForBadgeImage: jest.fn(() => 'Octopus'), openBadgeShowcase: jest.fn(),
 }));
 jest.mock('../../libs/badgeHoverArt', () => ({
-  badgeHoverArt: () => ({ poster: 101, animation: 102, posterBounds: { left: 12, top: 21, right: 119, bottom: 117 }, bounds: { left: 9, top: 10, right: 119, bottom: 119 } }),
+  badgeHoverArt: () => ({ poster: 101, animation: 102, posterBounds: { left: 12, top: 21, right: 119, bottom: 117 } }),
+}));
+jest.mock('../../libs/badgeSmallArt', () => ({
+  BADGE_SMALL_MAX: 32, badgeSmallArt: jest.fn(() => undefined),
 }));
 jest.mock('expo-image', () => ({ Image: require('react-native').Image }));
 jest.mock('react-native-reanimated', () => ({ useReducedMotion: jest.fn(() => false) }));
@@ -23,9 +27,19 @@ beforeEach(() => {
   jest.clearAllMocks();
   (useReducedMotion as jest.Mock).mockReturnValue(false);
   (tierForBadgeImage as jest.Mock).mockReturnValue('Octopus');
+  (badgeSmallArt as jest.Mock).mockReturnValue(undefined);
 });
 
 describe('holder badge interaction', () => {
+  it('draws the small still next to a name and the full artwork at larger sizes', () => {
+    (badgeSmallArt as jest.Mock).mockReturnValue(201);
+    const small = render(<BadgeArtwork source={1} style={{ width: 18, height: 18 }} />);
+    expect(small.getByTestId('holder-badge-poster').props.source).toBe(201);
+    small.unmount();
+    const large = render(<BadgeArtwork source={1} style={{ width: 96, height: 96 }} />);
+    expect(large.getByTestId('holder-badge-poster').props.source).toBe(101);
+  });
+
   it('does not rerender existing idle badges when another feed page is appended', () => {
     const style = { width: 16, height: 16 };
     const feed = (count: number) => <>{Array.from({ length: count }, (_, index) => (
@@ -42,15 +56,14 @@ describe('holder badge interaction', () => {
     expect(openBadgeShowcase).not.toHaveBeenCalled();
   });
 
-  it('preserves visible cap height and baseline when motion replaces a padded still', () => {
+  it('draws motion in the same box as a padded still so hover never resizes the badge', () => {
     const { getByTestId } = render(<BadgeArtwork source={1} style={[{ width: 18, height: 18, padding: 1 }]} />);
     const still = getByTestId('holder-badge-poster').props.style;
     expect(still.width).toBe(16);
     expect(still.top).toBe(1);
     fireEvent(getByTestId('holder-badge'), 'hoverIn');
     const motion = getByTestId('holder-badge-motion').props.style[0];
-    expect(motion.height * 109 / 128).toBeCloseTo(still.height * 96 / 128);
-    expect(motion.top + motion.height * 119 / 128).toBeCloseTo(still.top + still.height * 117 / 128);
+    for (const key of ['width', 'height', 'left', 'top'] as const) expect(motion[key]).toBeCloseTo(still[key]);
   });
   it('keeps the poster visible until the animation renders its first frame', () => {
     const { getByTestId } = render(<BadgeArtwork source={1} />);
