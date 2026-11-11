@@ -15,8 +15,8 @@ import {
   useWindowDimensions,
   type ViewStyle,
 } from "react-native";
-import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../components/ui/NavPillSurface";
-import { LIGHT_PILL_SHADOW } from "../components/ui/FrostedPill";
+import NavPillSurface, { NAV_PILL_RADIUS } from "../components/ui/NavPillSurface";
+import { LIGHT_BOTTOM_PILL_SHADOW } from "../components/ui/FrostedPill";
 import { KeepDarkScope } from "../libs/jsx/tone";
 import Reanimated, {
   useSharedValue,
@@ -885,7 +885,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
         style={[
           styles.navContainer,
           { width: pillWidth },
-          skin ? { borderRadius: skin.barBorder.borderRadius } : isLight && !isMinimal ? LIGHT_PILL_SHADOW : null,
+          skin ? { borderRadius: skin.barBorder.borderRadius } : isLight && !isMinimal ? LIGHT_BOTTOM_PILL_SHADOW : null,
+          isLight && !skin && !isMinimal ? styles.noLegacyShadow : null,
         ]}
       >
         <NavPillSurface />
@@ -953,6 +954,14 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
   );
 };
 
+// iOS layer shadow under every theme's bar. Cast upward, like the light
+// shadow above: the bar sits on the edge of the screen area and anything
+// drawn below that edge is cut off in a straight line.
+const DOCK_SHADOW = Platform.select({
+  ios: { shadowColor: "#000", shadowOffset: { width: 0, height: -10 }, shadowOpacity: 0.1, shadowRadius: 6 },
+  default: {},
+});
+
 const styles = StyleSheet.create({
   dock: {
     flexDirection: "row",
@@ -993,8 +1002,10 @@ const styles = StyleSheet.create({
     maxWidth: 340,
     borderRadius: NAV_PILL_RADIUS,
     overflow: "hidden",
-    ...NAV_PILL_SHADOW,
+    ...DOCK_SHADOW,
   },
+  // Light themes draw the softer LIGHT_BOTTOM_PILL_SHADOW instead.
+  noLegacyShadow: Platform.select({ ios: { shadowOpacity: 0 }, default: {} }),
   navRow: {
     flexDirection: "row",
     alignItems: "center",
