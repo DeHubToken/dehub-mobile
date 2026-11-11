@@ -10,6 +10,7 @@
  * state is fetched when the rail appears so existing follows and private
  * account requests never look actionable again.
  */
+import { haptic } from "../../libs/haptics";
 import { usePerfProbe } from "../../libs/perfTrace";
 import React, { FC, useCallback, useRef } from "react";
 import { useQueryClient } from '@tanstack/react-query';
@@ -71,6 +72,7 @@ const NewMembersRail: FC = () => {
     const address = member.address.toLowerCase();
     if (!viewer || !member.address) return;
 
+    haptic.tap();
     setLoadingAddress(address);
 
     try {

@@ -1,3 +1,4 @@
+import { haptic } from "../libs/haptics";
 import { usePerfProbe, perfMark } from "../libs/perfTrace";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
@@ -278,7 +279,10 @@ const NavButton = memo<{
       ? isActive ? skin.barIconActive : skin.barIcon
       : isActive ? colors.foreground : 'rgba(255, 255, 255, 0.72)';
 
-  const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
+  const handlePress = useCallback(() => {
+    haptic.select();
+    onPress(routeName);
+  }, [onPress, routeName]);
 
   const handlePressIn = useCallback(() => {
     NativeAnimated.spring(scale, { toValue: 0.88, damping: 15, stiffness: 300, useNativeDriver: true, isInteraction: false }).start();
@@ -412,7 +416,10 @@ const ScrollNavButton = memo<{
 
     // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
     // callback is too — which is what lets the memo above actually hold.
-    const handlePress = useCallback(() => onPress(item), [onPress, item]);
+    const handlePress = useCallback(() => {
+      haptic.select();
+      onPress(item);
+    }, [onPress, item]);
 
     const handlePressIn = useCallback(() => {
       NativeAnimated.spring(scale, {
