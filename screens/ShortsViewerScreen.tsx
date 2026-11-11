@@ -94,6 +94,7 @@ import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../li
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useScrubGesture } from "../hooks/useScrubGesture";
 import { useDataSaver } from "../hooks/useDataSaver";
+import { isLowEndDevice } from "../libs/deviceTier";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
 import { getVolume, setVolume as persistVolume, getIsLooping, useMediaLooping, getPlaybackRateFor } from "../libs/video-preferences";
 import { getCachedMuted, setMutedState, useMediaMuted } from "../libs/videoMutedState";
@@ -799,9 +800,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   useEffect(() => {
     if (!ownsVideo) setFirstFrameRendered(false);
   }, [ownsVideo]);
-  useEffect(() => {
-    if (!isActive) setFirstFrameRendered(false);
-  }, [isActive]);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   /** A hold on the right: the rate it plays at until let go (or unlocked). */
@@ -904,6 +902,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // Keep those players empty, and let neighbours buffer only after settling.
   const { liteMode } = useDataSaver();
   const playerSource = miniEntry?.player === player || isActive || (isNearby && !liteMode) ? videoUrl || null : null;
+  // The shorts either side keep their picture mounted too, so the decoder is
+  // set up and their first frame is already on screen before the swipe lands.
+  // Mounting the view only once a short became active cost a surface, a codec
+  // and a first decode after every swipe: the pause on each new short. Lite
+  // mode and low-end phones keep the old one-view behaviour for memory.
+  const warmView = isNearby && !liteMode && !isLowEndDevice();
+  const viewMounted = !!player && ownsVideo && !noVideo && (isActive || warmView);
+  useEffect(() => {
+    if (!viewMounted) setFirstFrameRendered(false);
+  }, [viewMounted]);
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
     component: 'ShortsViewer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
@@ -2068,16 +2076,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
-        {noVideo ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
+        {noVideo ? null : thumbnail && !firstFrameRendered ? (
           directSurface ? null : <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : pictureKnown && backdropSource ? null : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
         {/* Leaving the app from Shorts never starts PiP; the PiP button still does. */}
-        {player && isActive && ownsVideo && !noVideo ? (
+        {viewMounted ? (
           <Reanimated.View style={videoBoxStyle} pointerEvents="none">
             <PersistentVideoView
-              ref={activeVideoRef}
+              ref={isActive ? activeVideoRef : undefined}
               allowsPictureInPicture
               startsPictureInPictureAutomatically={false}
               player={player}
@@ -2087,13 +2095,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
               key={directSurface ? "surface" : "texture"}
               surfaceType={directSurface ? "surfaceView" : "textureView"}
               pointerEvents="none"
-              onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
+              onFirstFrameRender={() => { setFirstFrameRendered(true); if (isActiveRef.current) recovery.progress(); finishInAppMiniRestore(player); }}
             />
           </Reanimated.View>
         ) : null}
         {/* A SurfaceView shows through everything drawn under it, so its
             poster has to sit on top until the first frame is up. */}
-        {directSurface && !noVideo && thumbnail && (!firstFrameRendered || !isActive) ? (
+        {directSurface && !noVideo && thumbnail && !firstFrameRendered ? (
           <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : null}
         </Reanimated.View>

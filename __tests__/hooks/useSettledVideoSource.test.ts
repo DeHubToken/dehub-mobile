@@ -40,7 +40,7 @@ describe('settled video preloading', () => {
     const { rerender } = renderHook<void, { source: string | null; active: boolean }>(({ source, active }) =>
       useSettledVideoSource(player, source, active, ready),
       { initialProps: { source: 'first' as string | null, active: false } });
-    act(() => jest.advanceTimersByTime(200));
+    act(() => jest.advanceTimersByTime(100));
     rerender({ source: 'second', active: false });
     act(() => jest.advanceTimersByTime(400));
     expect(player.replaceAsync.mock.calls).toEqual([['second']]);
