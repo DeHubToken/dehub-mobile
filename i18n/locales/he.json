@@ -9491,7 +9491,9 @@
     "clearHistory": "ניקוי היסטוריה",
     "clearHistoryTitle": "לנקות את היסטוריית החיפושים?",
     "clearHistoryBody": "פעולה זו מסירה את כל החיפושים האחרונים שלך.",
-    "removeFromHistory": "הסרת \"{{query}}\" מההיסטוריה"
+    "removeFromHistory": "הסרת \"{{query}}\" מההיסטוריה",
+    "open": "חיפוש",
+    "close": "סגור מחפש"
   },
   "notifPrompt": {
     "stayInLoop": "הישארו מעודכנים",

@@ -9499,7 +9499,9 @@
     "clearHistory": "Verlauf lösche",
     "clearHistoryTitle": "Suechverlauf lösche?",
     "clearHistoryBody": "Das entfernt alli dini letschte Suechene.",
-    "removeFromHistory": "„{{query}}“ us em Verlauf entferne"
+    "removeFromHistory": "„{{query}}“ us em Verlauf entferne",
+    "open": "Sueche",
+    "close": "Suechi schliesse"
   },
   "notifPrompt": {
     "stayInLoop": "Bliib uf em Laufende",

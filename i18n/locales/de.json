@@ -9515,7 +9515,9 @@
     "clearHistory": "Verlauf löschen",
     "clearHistoryTitle": "Suchverlauf löschen?",
     "clearHistoryBody": "Dadurch werden alle deine letzten Suchen entfernt.",
-    "removeFromHistory": "„{{query}}“ aus dem Verlauf entfernen"
+    "removeFromHistory": "„{{query}}“ aus dem Verlauf entfernen",
+    "open": "Suchen",
+    "close": "Suche schließen"
   },
   "notifPrompt": {
     "stayInLoop": "Bleib auf dem Laufenden",

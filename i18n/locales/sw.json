@@ -9490,7 +9490,9 @@
     "clearHistory": "Futa historia",
     "clearHistoryTitle": "Futa historia ya utafutaji?",
     "clearHistoryBody": "Hii itaondoa tafuti zako zote za hivi karibuni.",
-    "removeFromHistory": "Ondoa \"{{query}}\" kwenye historia"
+    "removeFromHistory": "Ondoa \"{{query}}\" kwenye historia",
+    "open": "Tafuta",
+    "close": "Fungua upya utafiti"
   },
   "notifPrompt": {
     "stayInLoop": "Endelea kufahamu",

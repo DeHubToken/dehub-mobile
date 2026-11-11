@@ -9459,7 +9459,9 @@
     "clearHistory": "Тарыхты тазалоо",
     "clearHistoryTitle": "Издөө тарыхын тазалайсызбы?",
     "clearHistoryBody": "Бул бардык акыркы издөөлөрүңүздү өчүрөт.",
-    "removeFromHistory": "«{{query}}» тарыхтан өчүрүү"
+    "removeFromHistory": "«{{query}}» тарыхтан өчүрүү",
+    "open": "Сүзгө чыгаруу",
+    "close": "Тоскоолу шилтеме"
   },
   "notifPrompt": {
     "stayInLoop": "Кабардар болуңуз",

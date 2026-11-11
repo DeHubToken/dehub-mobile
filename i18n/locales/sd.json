@@ -9457,7 +9457,9 @@
     "clearHistory": "تاريخ صاف ڪريو",
     "clearHistoryTitle": "ڳولا جي تاريخ صاف ڪجي؟",
     "clearHistoryBody": "اهو توهان جون سڀ تازيون ڳولھيون هٽائي ڇڏيندو.",
-    "removeFromHistory": "\"{{query}}\" کي تاريخ مان هٽايو"
+    "removeFromHistory": "\"{{query}}\" کي تاريخ مان هٽايو",
+    "open": "ڪڪڙو ڪريو",
+    "close": "ڪڙڪو ڪريو"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رهو",

@@ -9484,7 +9484,8 @@
     "clearHistory": "Մաքրել պատմությունը",
     "clearHistoryTitle": "Մաքրե՞լ որոնման պատմությունը",
     "clearHistoryBody": "Սա կհեռացնի ձեր բոլոր վերջին որոնումները։",
-    "removeFromHistory": "Հեռացնել «{{query}}»-ը պատմությունից"
+    "removeFromHistory": "Հեռացնել «{{query}}»-ը պատմությունից",
+    "close": "Փակել որոնումը"
   },
   "notifPrompt": {
     "stayInLoop": "Մնացեք տեղեկացված",

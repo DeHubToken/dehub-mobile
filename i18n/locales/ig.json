@@ -9459,7 +9459,9 @@
     "clearHistory": "Hichapụ akụkọ",
     "clearHistoryTitle": "Hichapụ akụkọ nchọgharị?",
     "clearHistoryBody": "Nke a ga-ewepụ nchọgharị gị niile na-adịbeghị anya.",
-    "removeFromHistory": "Wepụ \"{{query}}\" na akụkọ"
+    "removeFromHistory": "Wepụ \"{{query}}\" na akụkọ",
+    "open": "Ịgụ na",
+    "close": "Mechie nchọcha"
   },
   "notifPrompt": {
     "stayInLoop": "Nọrọ na-amata",

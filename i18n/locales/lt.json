@@ -9484,7 +9484,9 @@
     "clearHistory": "Išvalyti istoriją",
     "clearHistoryTitle": "Išvalyti paieškos istoriją?",
     "clearHistoryBody": "Bus pašalintos visos jūsų naujausios paieškos.",
-    "removeFromHistory": "Pašalinti „{{query}}“ iš istorijos"
+    "removeFromHistory": "Pašalinti „{{query}}“ iš istorijos",
+    "open": "Ieškoti",
+    "close": "Uždaryti paiešką"
   },
   "notifPrompt": {
     "stayInLoop": "Būkite informuoti",

@@ -9441,7 +9441,9 @@
     "clearHistory": "ล้างประวัติ",
     "clearHistoryTitle": "ล้างประวัติการค้นหา?",
     "clearHistoryBody": "การดำเนินการนี้จะลบการค้นหาล่าสุดทั้งหมดของคุณ",
-    "removeFromHistory": "ลบ \"{{query}}\" ออกจากประวัติ"
+    "removeFromHistory": "ลบ \"{{query}}\" ออกจากประวัติ",
+    "open": "ค้นหา",
+    "close": "ปิดการค้นหา"
   },
   "notifPrompt": {
     "stayInLoop": "บ่พลาดตุกความเคลื่อนไหว",

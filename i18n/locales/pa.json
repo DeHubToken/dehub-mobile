@@ -9482,7 +9482,9 @@
     "clearHistory": "ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ",
     "clearHistoryTitle": "ਖੋਜ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰਨਾ ਹੈ?",
     "clearHistoryBody": "ਇਹ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਹਾਲੀਆ ਖੋਜਾਂ ਹਟਾ ਦੇਵੇਗਾ।",
-    "removeFromHistory": "\"{{query}}\" ਨੂੰ ਇਤਿਹਾਸ ਤੋਂ ਹਟਾਓ"
+    "removeFromHistory": "\"{{query}}\" ਨੂੰ ਇਤਿਹਾਸ ਤੋਂ ਹਟਾਓ",
+    "open": "ਖੋਜ",
+    "close": "ਬੰਦ ਕਰੋ ਖੋਜ"
   },
   "notifPrompt": {
     "stayInLoop": "ਜਾਣੂ ਰਹੋ",

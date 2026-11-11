@@ -7609,7 +7609,8 @@
     "clearHistory": "Geçmişi temizle",
     "clearHistoryTitle": "Arama geçmişi temizlensin mi?",
     "clearHistoryBody": "Bu, tüm son aramalarını kaldırır.",
-    "removeFromHistory": "\"{{query}}\" aramasını geçmişten kaldır"
+    "removeFromHistory": "\"{{query}}\" aramasını geçmişten kaldır",
+    "close": "Aramayı kapat"
   },
   "notifPrompt": {
     "stayInLoop": "Haberdar ol",

@@ -9482,7 +9482,9 @@
     "clearHistory": "इतिहास साफ करा",
     "clearHistoryTitle": "शोध इतिहास साफ करायचा?",
     "clearHistoryBody": "यामुळे तुमचे सर्व अलीकडील शोध काढले जातील.",
-    "removeFromHistory": "\"{{query}}\" इतिहासातून काढा"
+    "removeFromHistory": "\"{{query}}\" इतिहासातून काढा",
+    "open": "शोधा",
+    "close": "शोध बंद करा"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट राहा",

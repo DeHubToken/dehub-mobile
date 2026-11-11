@@ -9482,7 +9482,9 @@
     "clearHistory": "வரலாற்றை அழி",
     "clearHistoryTitle": "தேடல் வரலாற்றை அழிக்கவா?",
     "clearHistoryBody": "இது உங்கள் சமீபத்திய தேடல்கள் அனைத்தையும் நீக்கும்.",
-    "removeFromHistory": "\"{{query}}\" ஐ வரலாற்றிலிருந்து நீக்கு"
+    "removeFromHistory": "\"{{query}}\" ஐ வரலாற்றிலிருந்து நீக்கு",
+    "open": "தேடல்",
+    "close": "தேடலை மூடு"
   },
   "notifPrompt": {
     "stayInLoop": "தகவல் அறிந்திருங்கள்",

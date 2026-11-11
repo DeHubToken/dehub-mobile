@@ -9460,7 +9460,9 @@
     "clearHistory": "清除記錄",
     "clearHistoryTitle": "清除搜尋記錄？",
     "clearHistoryBody": "這會刪除你所有的最近搜尋。",
-    "removeFromHistory": "從記錄中刪除「{{query}}」"
+    "removeFromHistory": "從記錄中刪除「{{query}}」",
+    "open": "搜尋",
+    "close": "關閉搜尋"
   },
   "notifPrompt": {
     "stayInLoop": "唔好錯過任何消息",

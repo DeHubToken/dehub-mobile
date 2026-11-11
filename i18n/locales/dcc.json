@@ -9442,7 +9442,9 @@
     "clearHistory": "ہسٹری صاف کریں",
     "clearHistoryTitle": "تلاش کی ہسٹری صاف کریں؟",
     "clearHistoryBody": "اس سے آپ کی تمام حالیہ تلاشیں ہٹ جائیں گی۔",
-    "removeFromHistory": "\"{{query}}\" کو ہسٹری سے ہٹائیں"
+    "removeFromHistory": "\"{{query}}\" کو ہسٹری سے ہٹائیں",
+    "open": "ڈھونڈنا",
+    "close": "بند کر دیں"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہیں",

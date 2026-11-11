@@ -9482,7 +9482,8 @@
     "clearHistory": "Seenaa haqi",
     "clearHistoryTitle": "Seenaa barbaachaa haquu?",
     "clearHistoryBody": "Kun barbaachawwan kee dhiheenyaa hunda ni haqa.",
-    "removeFromHistory": "\"{{query}}\" seenaa irraa haqi"
+    "removeFromHistory": "\"{{query}}\" seenaa irraa haqi",
+    "close": "Barbaadi cufi"
   },
   "notifPrompt": {
     "stayInLoop": "Odeeffannoo argadhu",

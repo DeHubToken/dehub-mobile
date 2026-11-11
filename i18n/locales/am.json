@@ -9509,7 +9509,9 @@
     "clearHistory": "ታሪክ አጽዳ",
     "clearHistoryTitle": "የፍለጋ ታሪክ ይጽዳ?",
     "clearHistoryBody": "ይህ ሁሉንም የቅርብ ጊዜ ፍለጋዎችዎን ያስወግዳል።",
-    "removeFromHistory": "\"{{query}}\"ን ከታሪክ አስወግድ"
+    "removeFromHistory": "\"{{query}}\"ን ከታሪክ አስወግድ",
+    "open": "ቅጥር",
+    "close": "በይበል"
   },
   "notifPrompt": {
     "stayInLoop": "መረጃ ይከታተሉ",

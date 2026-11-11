@@ -9492,7 +9492,9 @@
     "clearHistory": "Előzmények törlése",
     "clearHistoryTitle": "Törlöd a keresési előzményeket?",
     "clearHistoryBody": "Ez eltávolítja az összes legutóbbi keresésedet.",
-    "removeFromHistory": "„{{query}}” eltávolítása az előzményekből"
+    "removeFromHistory": "„{{query}}” eltávolítása az előzményekből",
+    "open": "Keresés",
+    "close": "Zárt a keresés"
   },
   "notifPrompt": {
     "stayInLoop": "Maradj naprakész",

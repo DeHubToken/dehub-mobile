@@ -9480,7 +9480,9 @@
     "clearHistory": "Tyhjennä historia",
     "clearHistoryTitle": "Tyhjennetäänkö hakuhistoria?",
     "clearHistoryBody": "Tämä poistaa kaikki viimeaikaiset hakusi.",
-    "removeFromHistory": "Poista ”{{query}}” historiasta"
+    "removeFromHistory": "Poista ”{{query}}” historiasta",
+    "open": "Hae",
+    "close": "Sulje hakua"
   },
   "notifPrompt": {
     "stayInLoop": "Pysy ajan tasalla",

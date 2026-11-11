@@ -9624,7 +9624,9 @@
     "clearHistory": "ইতিহাস মুছুন",
     "clearHistoryTitle": "অনুসন্ধানের ইতিহাস মুছবেন?",
     "clearHistoryBody": "এটি আপনার সব সাম্প্রতিক অনুসন্ধান সরিয়ে দেবে।",
-    "removeFromHistory": "ইতিহাস থেকে \"{{query}}\" সরান"
+    "removeFromHistory": "ইতিহাস থেকে \"{{query}}\" সরান",
+    "open": "খোঁজ",
+    "close": "বন্ধ করা হলো"
   },
   "notifPrompt": {
     "stayInLoop": "খবরো থাকউ",

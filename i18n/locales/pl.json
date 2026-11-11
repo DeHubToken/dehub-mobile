@@ -9548,7 +9548,9 @@
     "clearHistory": "Wyczyść historię",
     "clearHistoryTitle": "Wyczyścić historię wyszukiwania?",
     "clearHistoryBody": "Spowoduje to usunięcie wszystkich ostatnich wyszukiwań.",
-    "removeFromHistory": "Usuń „{{query}}” z historii"
+    "removeFromHistory": "Usuń „{{query}}” z historii",
+    "open": "Szukaj",
+    "close": "Zamknij wyszukiwanie"
   },
   "notifPrompt": {
     "stayInLoop": "Bądź na bieżąco",

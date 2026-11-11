@@ -9484,7 +9484,9 @@
     "clearHistory": "Изчисти историята",
     "clearHistoryTitle": "Да се изчисти ли историята на търсенията?",
     "clearHistoryBody": "Това премахва всички ваши скорошни търсения.",
-    "removeFromHistory": "Премахни „{{query}}“ от историята"
+    "removeFromHistory": "Премахни „{{query}}“ от историята",
+    "open": "Търсене",
+    "close": "Затваряне на търсенето"
   },
   "notifPrompt": {
     "stayInLoop": "Бъди в течение",

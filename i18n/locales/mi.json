@@ -9468,7 +9468,9 @@
     "clearHistory": "Ūkuia te hītori",
     "clearHistoryTitle": "Ūkuia te hītori rapunga?",
     "clearHistoryBody": "Ka tangohia ō rapunga hou katoa.",
-    "removeFromHistory": "Tangohia a \"{{query}}\" i te hītori"
+    "removeFromHistory": "Tangohia a \"{{query}}\" i te hītori",
+    "open": "Rapu",
+    "close": "Katia te rapu"
   },
   "notifPrompt": {
     "stayInLoop": "Kia mōhio tonu",

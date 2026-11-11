@@ -9514,7 +9514,9 @@
     "clearHistory": "Vee geskiedenis uit",
     "clearHistoryTitle": "Vee soekgeskiedenis uit?",
     "clearHistoryBody": "Dit verwyder al jou onlangse soektogte.",
-    "removeFromHistory": "Verwyder \"{{query}}\" uit geskiedenis"
+    "removeFromHistory": "Verwyder \"{{query}}\" uit geskiedenis",
+    "open": "Soek",
+    "close": "Maak soektog toe"
   },
   "notifPrompt": {
     "stayInLoop": "Bly op hoogte",

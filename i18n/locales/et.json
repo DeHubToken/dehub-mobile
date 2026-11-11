@@ -9481,7 +9481,9 @@
     "clearHistory": "Tühjenda ajalugu",
     "clearHistoryTitle": "Kas tühjendada otsinguajalugu?",
     "clearHistoryBody": "See eemaldab kõik sinu hiljutised otsingud.",
-    "removeFromHistory": "Eemalda „{{query}}“ ajaloost"
+    "removeFromHistory": "Eemalda „{{query}}“ ajaloost",
+    "open": "Otsi",
+    "close": "Sulge otsing"
   },
   "notifPrompt": {
     "stayInLoop": "Ole kursis",

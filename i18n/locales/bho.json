@@ -9452,7 +9452,8 @@
     "clearHistory": "इतिहास साफ़ करें",
     "clearHistoryTitle": "खोज इतिहास साफ़ करें?",
     "clearHistoryBody": "इससे आपकी सभी हाल की खोजें हट जाएँगी।",
-    "removeFromHistory": "\"{{query}}\" को इतिहास से हटाएँ"
+    "removeFromHistory": "\"{{query}}\" को इतिहास से हटाएँ",
+    "open": "खोजल जाव"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहीं",

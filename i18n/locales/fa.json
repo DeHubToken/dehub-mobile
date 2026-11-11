@@ -9511,7 +9511,9 @@
     "clearHistory": "پاک کردن تاریخچه",
     "clearHistoryTitle": "تاریخچه جستجو پاک شود؟",
     "clearHistoryBody": "این کار همه جستجوهای اخیر شما را حذف می‌کند.",
-    "removeFromHistory": "حذف «{{query}}» از تاریخچه"
+    "removeFromHistory": "حذف «{{query}}» از تاریخچه",
+    "open": "جستجو",
+    "close": "بستن جستجو"
   },
   "notifPrompt": {
     "stayInLoop": "در جریان باشید",

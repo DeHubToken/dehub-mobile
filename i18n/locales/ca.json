@@ -9481,7 +9481,9 @@
     "clearHistory": "Esborra l'historial",
     "clearHistoryTitle": "Vols esborrar l'historial de cerca?",
     "clearHistoryBody": "Això elimina totes les teves cerques recents.",
-    "removeFromHistory": "Elimina «{{query}}» de l'historial"
+    "removeFromHistory": "Elimina «{{query}}» de l'historial",
+    "open": "Cerca",
+    "close": "Tanca la cerca"
   },
   "notifPrompt": {
     "stayInLoop": "Mantén-te al dia",

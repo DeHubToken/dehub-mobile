@@ -9737,7 +9737,9 @@
     "clearHistory": "Kosongkan sejarah",
     "clearHistoryTitle": "Kosongkan sejarah carian?",
     "clearHistoryBody": "Ini akan membuang semua carian terkini anda.",
-    "removeFromHistory": "Buang \"{{query}}\" daripada sejarah"
+    "removeFromHistory": "Buang \"{{query}}\" daripada sejarah",
+    "open": "Cari",
+    "close": "Tutup carian"
   },
   "notifPrompt": {
     "stayInLoop": "Kekal dimaklumkan",

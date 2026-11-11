@@ -9586,7 +9586,9 @@
     "clearHistory": "Vymazať históriu",
     "clearHistoryTitle": "Vymazať históriu vyhľadávania?",
     "clearHistoryBody": "Týmto odstránite všetky nedávne vyhľadávania.",
-    "removeFromHistory": "Odstrániť „{{query}}“ z histórie"
+    "removeFromHistory": "Odstrániť „{{query}}“ z histórie",
+    "open": "Hľadať",
+    "close": "Zatvoriť vyhľadávanie"
   },
   "notifPrompt": {
     "stayInLoop": "Buďte v obraze",

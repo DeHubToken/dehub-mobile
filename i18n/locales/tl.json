@@ -9527,7 +9527,9 @@
     "clearHistory": "I-clear ang history",
     "clearHistoryTitle": "I-clear ang search history?",
     "clearHistoryBody": "Aalisin nito ang lahat ng kamakailan mong paghahanap.",
-    "removeFromHistory": "Alisin ang \"{{query}}\" sa history"
+    "removeFromHistory": "Alisin ang \"{{query}}\" sa history",
+    "open": "Maghanap",
+    "close": "Isara ang paghahanap"
   },
   "notifPrompt": {
     "stayInLoop": "Manatiling updated",

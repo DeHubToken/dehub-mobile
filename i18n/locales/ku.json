@@ -9466,7 +9466,9 @@
     "clearHistory": "Dîrokê paqij bike",
     "clearHistoryTitle": "Dîroka lêgerînê paqij bike?",
     "clearHistoryBody": "Ev hemû lêgerînên te yên dawî jê dibe.",
-    "removeFromHistory": "\"{{query}}\" ji dîrokê rake"
+    "removeFromHistory": "\"{{query}}\" ji dîrokê rake",
+    "open": "Çalak kirin",
+    "close": "Lêgerînê bigire"
   },
   "notifPrompt": {
     "stayInLoop": "Agahdar bimîne",

@@ -9601,7 +9601,9 @@
     "clearHistory": "Limpar histórico",
     "clearHistoryTitle": "Limpar o histórico de pesquisa?",
     "clearHistoryBody": "Isso remove todas as suas pesquisas recentes.",
-    "removeFromHistory": "Remover \"{{query}}\" do histórico"
+    "removeFromHistory": "Remover \"{{query}}\" do histórico",
+    "open": "Pesquisar",
+    "close": "Fechar pesquisa"
   },
   "notifPrompt": {
     "stayInLoop": "Fique a par",

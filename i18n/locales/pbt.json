@@ -9459,7 +9459,8 @@
     "clearHistory": "تاریخچه پاکه کړه",
     "clearHistoryTitle": "د لټون تاریخچه پاکه شي؟",
     "clearHistoryBody": "دا ستاسو ټول وروستي لټونونه لرې کوي.",
-    "removeFromHistory": "\"{{query}}\" له تاریخچې لرې کړه"
+    "removeFromHistory": "\"{{query}}\" له تاریخچې لرې کړه",
+    "close": "نږدې پلټنه وکړئ"
   },
   "notifPrompt": {
     "stayInLoop": "باخبره اوسئ",

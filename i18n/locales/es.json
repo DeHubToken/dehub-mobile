@@ -7610,7 +7610,9 @@
     "clearHistory": "Borrar historial",
     "clearHistoryTitle": "¿Borrar el historial de búsqueda?",
     "clearHistoryBody": "Esto elimina todas tus búsquedas recientes.",
-    "removeFromHistory": "Quitar «{{query}}» del historial"
+    "removeFromHistory": "Quitar «{{query}}» del historial",
+    "open": "Buscar",
+    "close": "Cerrar búsqueda"
   },
   "notifPrompt": {
     "stayInLoop": "Mantente al día",

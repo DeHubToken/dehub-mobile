@@ -9462,7 +9462,9 @@
     "clearHistory": "ታሪኽ ኣጽሪ",
     "clearHistoryTitle": "ታሪኽ ምድላይ ይጽረ?",
     "clearHistoryBody": "እዚ ኩሎም ናይ ቀረባ እዋን ምድላያትካ የወግዶም።",
-    "removeFromHistory": "\"{{query}}\" ካብ ታሪኽ ኣወግድ"
+    "removeFromHistory": "\"{{query}}\" ካብ ታሪኽ ኣወግድ",
+    "open": "ቅይጥ",
+    "close": "ፍለጥ ዝጋ"
   },
   "notifPrompt": {
     "stayInLoop": "ሓበሬታ ሓዝ",

@@ -9467,7 +9467,9 @@
     "clearHistory": "Busak riwayat",
     "clearHistoryTitle": "Busak riwayat panggolekan?",
     "clearHistoryBody": "Iki bakal mbusak kabeh panggolekan paling anyar sampeyan.",
-    "removeFromHistory": "Busak \"{{query}}\" saka riwayat"
+    "removeFromHistory": "Busak \"{{query}}\" saka riwayat",
+    "open": "Goleki",
+    "close": "Tutup panggolekan"
   },
   "notifPrompt": {
     "stayInLoop": "Tetep ngerti kabar",

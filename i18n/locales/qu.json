@@ -9498,7 +9498,9 @@
     "removeFromHistory": "\"{{query}}\" ñawpa willakuymanta qichuy",
     "trendingThisWeek": "Kay Simanapi Tendencia",
     "tryDifferentKeywords": "Huk niraq simikunata pruebay otaq ortografiaykita qhaway",
-    "noTrendingThisWeek": "Mana kay semanapi contenido tendenciayuqchu"
+    "noTrendingThisWeek": "Mana kay semanapi contenido tendenciayuqchu",
+    "open": "Maskay",
+    "close": "Maskayta wichqay"
   },
   "notifPrompt": {
     "stayInLoop": "Yachaq kay",

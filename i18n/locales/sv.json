@@ -9484,7 +9484,9 @@
     "clearHistory": "Rensa historik",
     "clearHistoryTitle": "Rensa sökhistoriken?",
     "clearHistoryBody": "Detta tar bort alla dina senaste sökningar.",
-    "removeFromHistory": "Ta bort ”{{query}}” från historiken"
+    "removeFromHistory": "Ta bort ”{{query}}” från historiken",
+    "open": "Sök",
+    "close": "Stäng sökning"
   },
   "notifPrompt": {
     "stayInLoop": "Håll dig uppdaterad",

@@ -9509,7 +9509,9 @@
     "clearHistory": "Διαγραφή ιστορικού",
     "clearHistoryTitle": "Διαγραφή ιστορικού αναζητήσεων;",
     "clearHistoryBody": "Αυτό αφαιρεί όλες τις πρόσφατες αναζητήσεις σας.",
-    "removeFromHistory": "Αφαίρεση του «{{query}}» από το ιστορικό"
+    "removeFromHistory": "Αφαίρεση του «{{query}}» από το ιστορικό",
+    "open": "Αναζήτηση",
+    "close": "Κλείσιμο αναζήτησης"
   },
   "notifPrompt": {
     "stayInLoop": "Μείνετε ενημερωμένοι",

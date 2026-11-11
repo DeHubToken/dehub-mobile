@@ -9491,7 +9491,9 @@
     "clearHistory": "Fafao ny tantara",
     "clearHistoryTitle": "Hofafana ve ny tantaran'ny fikarohana?",
     "clearHistoryBody": "Hamafa ny fikarohanao vao haingana rehetra izany.",
-    "removeFromHistory": "Esory amin'ny tantara ny \"{{query}}\""
+    "removeFromHistory": "Esory amin'ny tantara ny \"{{query}}\"",
+    "open": "Mitady",
+    "close": "Akaro ny fikarohana"
   },
   "notifPrompt": {
     "stayInLoop": "Mahafantatra hatrany",

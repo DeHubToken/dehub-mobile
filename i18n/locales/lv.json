@@ -9481,7 +9481,9 @@
     "clearHistory": "Notīrīt vēsturi",
     "clearHistoryTitle": "Notīrīt meklēšanas vēsturi?",
     "clearHistoryBody": "Tiks noņemti visi jūsu nesenie meklējumi.",
-    "removeFromHistory": "Noņemt “{{query}}” no vēstures"
+    "removeFromHistory": "Noņemt “{{query}}” no vēstures",
+    "open": "Meklēt",
+    "close": "Aizvērt meklēšanu"
   },
   "notifPrompt": {
     "stayInLoop": "Esiet lietas kursā",

@@ -9480,7 +9480,9 @@
     "clearHistory": "សម្អាតប្រវត្តិ",
     "clearHistoryTitle": "សម្អាតប្រវត្តិស្វែងរក?",
     "clearHistoryBody": "វានឹងលុបការស្វែងរកថ្មីៗទាំងអស់របស់អ្នក។",
-    "removeFromHistory": "លុប \"{{query}}\" ចេញពីប្រវត្តិ"
+    "removeFromHistory": "លុប \"{{query}}\" ចេញពីប្រវត្តិ",
+    "open": "ស្វែងរក",
+    "close": "បានបិទនៅក្រោយសរសេរ"
   },
   "notifPrompt": {
     "stayInLoop": "ទទួលព័ត៌មានទាន់ហេតុការណ៍",

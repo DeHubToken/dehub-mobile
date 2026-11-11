@@ -9481,7 +9481,9 @@
     "clearHistory": "Șterge istoricul",
     "clearHistoryTitle": "Ștergi istoricul căutărilor?",
     "clearHistoryBody": "Aceasta elimină toate căutările tale recente.",
-    "removeFromHistory": "Elimină „{{query}}” din istoric"
+    "removeFromHistory": "Elimină „{{query}}” din istoric",
+    "open": "Caută",
+    "close": "Închide căutarea"
   },
   "notifPrompt": {
     "stayInLoop": "Rămâi la curent",

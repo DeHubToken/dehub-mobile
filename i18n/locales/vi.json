@@ -9559,7 +9559,9 @@
     "clearHistory": "Xóa lịch sử",
     "clearHistoryTitle": "Xóa lịch sử tìm kiếm?",
     "clearHistoryBody": "Thao tác này sẽ xóa tất cả tìm kiếm gần đây của bạn.",
-    "removeFromHistory": "Xóa \"{{query}}\" khỏi lịch sử"
+    "removeFromHistory": "Xóa \"{{query}}\" khỏi lịch sử",
+    "open": "Tìm kiếm",
+    "close": "Đóng tìm kiếm"
   },
   "notifPrompt": {
     "stayInLoop": "Không bỏ lỡ tin tức",

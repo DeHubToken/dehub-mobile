@@ -9451,7 +9451,9 @@
     "clearHistory": "Taryhy arassala",
     "clearHistoryTitle": "Gözleg taryhy arassalansynmy?",
     "clearHistoryBody": "Bu siziň ähli soňky gözleglerinizi aýyrar.",
-    "removeFromHistory": "\"{{query}}\" taryhdan aýyr"
+    "removeFromHistory": "\"{{query}}\" taryhdan aýyr",
+    "open": "Aýryş",
+    "close": "Gözlegi ýap"
   },
   "notifPrompt": {
     "stayInLoop": "Habarly boluň",

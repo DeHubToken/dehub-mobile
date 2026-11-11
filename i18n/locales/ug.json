@@ -9443,7 +9443,9 @@
     "clearHistory": "تارىخنى تازىلاش",
     "clearHistoryTitle": "ئىزدەش تارىخىنى تازىلامسىز؟",
     "clearHistoryBody": "بۇ سىزنىڭ بارلىق يېقىنقى ئىزدەشلىرىڭىزنى ئۆچۈرىدۇ.",
-    "removeFromHistory": "\"{{query}}\" نى تارىختىن چىقىرىش"
+    "removeFromHistory": "\"{{query}}\" نى تارىختىن چىقىرىش",
+    "open": "ئىزدەش",
+    "close": "ئىزدەشنى تاقاش"
   },
   "notifPrompt": {
     "stayInLoop": "خەۋەردار بولۇڭ",

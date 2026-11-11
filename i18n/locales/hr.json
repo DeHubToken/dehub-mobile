@@ -9484,7 +9484,9 @@
     "clearHistory": "Očisti povijest",
     "clearHistoryTitle": "Očistiti povijest pretraživanja?",
     "clearHistoryBody": "Ovo uklanja sva vaša nedavna pretraživanja.",
-    "removeFromHistory": "Ukloni „{{query}}” iz povijesti"
+    "removeFromHistory": "Ukloni „{{query}}” iz povijesti",
+    "open": "Pretraživanje",
+    "close": "Zatvori pretraživanje"
   },
   "notifPrompt": {
     "stayInLoop": "Ostanite u toku",

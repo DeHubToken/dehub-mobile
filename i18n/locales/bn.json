@@ -9480,7 +9480,9 @@
     "clearHistory": "ইতিহাস মুছুন",
     "clearHistoryTitle": "অনুসন্ধানের ইতিহাস মুছবেন?",
     "clearHistoryBody": "এটি আপনার সব সাম্প্রতিক অনুসন্ধান সরিয়ে দেবে।",
-    "removeFromHistory": "ইতিহাস থেকে \"{{query}}\" সরান"
+    "removeFromHistory": "ইতিহাস থেকে \"{{query}}\" সরান",
+    "open": "অনুসন্ধান",
+    "close": "বন্ধুদের সন্ধান বন্ধ করুন"
   },
   "notifPrompt": {
     "stayInLoop": "খবরে থাকুন",

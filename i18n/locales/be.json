@@ -9493,7 +9493,9 @@
     "clearHistory": "Ачысціць гісторыю",
     "clearHistoryTitle": "Ачысціць гісторыю пошуку?",
     "clearHistoryBody": "Гэта выдаліць усе вашы нядаўнія пошукі.",
-    "removeFromHistory": "Выдаліць «{{query}}» з гісторыі"
+    "removeFromHistory": "Выдаліць «{{query}}» з гісторыі",
+    "open": "Пошук",
+    "close": "Зачыніць пошук"
   },
   "notifPrompt": {
     "stayInLoop": "Будзьце ў курсе",

@@ -9478,7 +9478,9 @@
     "clearHistory": "Tarixni tozalash",
     "clearHistoryTitle": "Qidiruv tarixi tozalansinmi?",
     "clearHistoryBody": "Bu barcha soʻnggi qidiruvlaringizni oʻchiradi.",
-    "removeFromHistory": "“{{query}}”ni tarixdan olib tashlash"
+    "removeFromHistory": "“{{query}}”ni tarixdan olib tashlash",
+    "open": "Qidirish",
+    "close": "Yopish"
   },
   "notifPrompt": {
     "stayInLoop": "Xabardor bo'ling",

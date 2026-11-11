@@ -9481,7 +9481,9 @@
     "clearHistory": "Tøm historikk",
     "clearHistoryTitle": "Tømme søkehistorikken?",
     "clearHistoryBody": "Dette fjerner alle de nylige søkene dine.",
-    "removeFromHistory": "Fjern «{{query}}» fra historikken"
+    "removeFromHistory": "Fjern «{{query}}» fra historikken",
+    "open": "Søk",
+    "close": "Lukk søket"
   },
   "notifPrompt": {
     "stayInLoop": "Hold deg oppdatert",

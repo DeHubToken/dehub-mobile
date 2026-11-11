@@ -9490,7 +9490,9 @@
     "clearHistory": "Sula umlando",
     "clearHistoryTitle": "Sula umlando wokusesha?",
     "clearHistoryBody": "Lokhu kususa konke ukusesha kwakho kwakamuva.",
-    "removeFromHistory": "Susa \"{{query}}\" emlandweni"
+    "removeFromHistory": "Susa \"{{query}}\" emlandweni",
+    "open": "Sesha",
+    "close": "Vala ukusesha"
   },
   "notifPrompt": {
     "stayInLoop": "Hlala wazi",

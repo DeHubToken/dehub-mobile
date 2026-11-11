@@ -9479,7 +9479,9 @@
     "clearHistory": "Share tarihi",
     "clearHistoryTitle": "Share tarihin bincike?",
     "clearHistoryBody": "Wannan zai cire duk bincikenka na kwanan nan.",
-    "removeFromHistory": "Cire \"{{query}}\" daga tarihi"
+    "removeFromHistory": "Cire \"{{query}}\" daga tarihi",
+    "open": "Nema",
+    "close": "Kada ake katsawa"
   },
   "notifPrompt": {
     "stayInLoop": "Ka kasance da labari",

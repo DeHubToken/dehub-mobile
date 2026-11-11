@@ -9459,7 +9459,9 @@
     "removeFromHistory": "\"{{query}}\" bɔ tariku la",
     "trendingThisWeek": "Lɔgɔkun hakilila-nyuma",
     "tryDifferentKeywords": "I be se ka sɛbɛri kɛ ni kumaden dɔw ye wala i be se ka sɛbɛri kɛ ni kumaden dɔw ye.",
-    "noTrendingThisWeek": "O lɔgɔkun na, kunnafoniw tun tɛ yen."
+    "noTrendingThisWeek": "O lɔgɔkun na, kunnafoniw tun tɛ yen.",
+    "open": "Kɔɔ",
+    "close": "O kama, an ka ɲi ka miiri koɲuman"
   },
   "notifPrompt": {
     "stayInLoop": "To kunnafoni la",

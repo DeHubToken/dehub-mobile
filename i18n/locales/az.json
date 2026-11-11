@@ -9480,7 +9480,9 @@
     "clearHistory": "Tarixçəni təmizlə",
     "clearHistoryTitle": "Axtarış tarixçəsi təmizlənsin?",
     "clearHistoryBody": "Bu, bütün son axtarışlarınızı siləcək.",
-    "removeFromHistory": "\"{{query}}\" tarixçədən silinsin"
+    "removeFromHistory": "\"{{query}}\" tarixçədən silinsin",
+    "open": "Axtar",
+    "close": "Axtarışı bağla"
   },
   "notifPrompt": {
     "stayInLoop": "Xəbərdar olun",

@@ -9466,7 +9466,9 @@
     "clearHistory": "ລຶບປະຫວັດ",
     "clearHistoryTitle": "ລຶບປະຫວັດການຄົ້ນຫາບໍ?",
     "clearHistoryBody": "ນີ້ຈະລຶບການຄົ້ນຫາຫຼ້າສຸດທັງໝົດຂອງທ່ານ.",
-    "removeFromHistory": "ລຶບ \"{{query}}\" ອອກຈາກປະຫວັດ"
+    "removeFromHistory": "ລຶບ \"{{query}}\" ອອກຈາກປະຫວັດ",
+    "open": "ຄວດຄວາມ",
+    "close": "ສະຫຼາດການຄົ້ນຄົ້ນ"
   },
   "notifPrompt": {
     "stayInLoop": "ຕິດຕາມຂ່າວສານ",

@@ -9456,7 +9456,9 @@
     "clearHistory": "ہسٹری صاف کرو",
     "clearHistoryTitle": "تلاش دی ہسٹری صاف کروں؟",
     "clearHistoryBody": "ایں نال تہاݙیاں ساریاں حالیہ تلاشاں ہٹ ویسن۔",
-    "removeFromHistory": "\"{{query}}\" کوں ہسٹری توں ہٹاؤ"
+    "removeFromHistory": "\"{{query}}\" کوں ہسٹری توں ہٹاؤ",
+    "open": "تلاش کرو",
+    "close": "تلاش بند کرو"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہو",

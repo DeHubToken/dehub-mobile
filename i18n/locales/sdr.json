@@ -9477,7 +9477,9 @@
     "removeFromHistory": "\"{{query}}\" کو ہسٹری سے ہٹائیں",
     "trendingThisWeek": "باوترین ئەم هەفتەیە",
     "tryDifferentKeywords": "هەوڵ بدە وشەی جیاواز بەکاربهێنیت یان ڕێنووسی خۆت بپشکنە",
-    "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە"
+    "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە",
+    "open": "ڵێڵێ",
+    "close": "खोज बंद करें"
   },
   "notifPrompt": {
     "stayInLoop": "ئاگادار بە",

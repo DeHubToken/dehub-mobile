@@ -7748,7 +7748,9 @@
     "clearHistory": "Geschiedenis wissen",
     "clearHistoryTitle": "Zoekgeschiedenis wissen?",
     "clearHistoryBody": "Hiermee worden al je recente zoekopdrachten verwijderd.",
-    "removeFromHistory": "\"{{query}}\" uit geschiedenis verwijderen"
+    "removeFromHistory": "\"{{query}}\" uit geschiedenis verwijderen",
+    "open": "Zoeken",
+    "close": "Sluit de zoekfunctie af"
   },
   "notifPrompt": {
     "stayInLoop": "Blijf op de hoogte",

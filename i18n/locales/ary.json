@@ -9510,7 +9510,9 @@
     "clearHistory": "مسح السجل",
     "clearHistoryTitle": "مسح سجل البحث؟",
     "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
-    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل",
+    "open": "تجريح",
+    "close": "إغلاق البحث"
   },
   "notifPrompt": {
     "stayInLoop": "بقا على علم",

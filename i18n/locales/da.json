@@ -9485,7 +9485,9 @@
     "clearHistory": "Ryd historik",
     "clearHistoryTitle": "Ryd søgehistorik?",
     "clearHistoryBody": "Dette fjerner alle dine seneste søgninger.",
-    "removeFromHistory": "Fjern \"{{query}}\" fra historikken"
+    "removeFromHistory": "Fjern \"{{query}}\" fra historikken",
+    "open": "Søg",
+    "close": "Luk søgning"
   },
   "notifPrompt": {
     "stayInLoop": "Hold dig opdateret",

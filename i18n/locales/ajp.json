@@ -9465,7 +9465,9 @@
     "clearHistory": "مسح السجل",
     "clearHistoryTitle": "مسح سجل البحث؟",
     "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
-    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل",
+    "open": "تجريح",
+    "close": "غلق البحث"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",

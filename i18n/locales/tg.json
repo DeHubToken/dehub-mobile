@@ -9463,7 +9463,8 @@
     "clearHistory": "Тозакунии таърих",
     "clearHistoryTitle": "Таърихи ҷустуҷӯ тоза шавад?",
     "clearHistoryBody": "Ин ҳамаи ҷустуҷӯҳои охирини шуморо нест мекунад.",
-    "removeFromHistory": "«{{query}}»-ро аз таърих нест кардан"
+    "removeFromHistory": "«{{query}}»-ро аз таърих нест кардан",
+    "open": "Ҳуҷҷат"
   },
   "notifPrompt": {
     "stayInLoop": "Огоҳ бошед",

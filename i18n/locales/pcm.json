@@ -9424,7 +9424,9 @@
     "removeFromHistory": "Comot \"{{query}}\" from history",
     "trendingThisWeek": "Wetin Dey Trend Dis Week",
     "tryDifferentKeywords": "Try another keywords or check your spelling",
-    "noTrendingThisWeek": "Nothing dey trend dis week"
+    "noTrendingThisWeek": "Nothing dey trend dis week",
+    "open": "Find",
+    "close": "Close search"
   },
   "notifPrompt": {
     "stayInLoop": "Make you dey hear wetin dey happen",

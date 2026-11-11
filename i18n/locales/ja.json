@@ -9469,7 +9469,9 @@
     "clearHistory": "履歴を消去",
     "clearHistoryTitle": "検索履歴を消去しますか？",
     "clearHistoryBody": "最近の検索がすべて削除されます。",
-    "removeFromHistory": "「{{query}}」を履歴から削除"
+    "removeFromHistory": "「{{query}}」を履歴から削除",
+    "open": "サーチ",
+    "close": "検索を閉じる"
   },
   "notifPrompt": {
     "stayInLoop": "最新情報を受け取る",

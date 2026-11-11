@@ -9597,7 +9597,9 @@
     "clearHistory": "Hapus riwayat",
     "clearHistoryTitle": "Hapus riwayat pencarian?",
     "clearHistoryBody": "Ini menghapus semua pencarian terbaru Anda.",
-    "removeFromHistory": "Hapus \"{{query}}\" dari riwayat"
+    "removeFromHistory": "Hapus \"{{query}}\" dari riwayat",
+    "open": "Cari",
+    "close": "Tutup pencarian"
   },
   "notifPrompt": {
     "stayInLoop": "Tetap update",

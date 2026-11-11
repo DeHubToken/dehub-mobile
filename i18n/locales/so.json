@@ -9460,7 +9460,9 @@
     "clearHistory": "Nadiifi taariikhda",
     "clearHistoryTitle": "Ma nadiifinaysaa taariikhda raadinta?",
     "clearHistoryBody": "Tani waxay tirtiraysaa dhammaan raadinnadaadii dhawaa.",
-    "removeFromHistory": "Ka saar \"{{query}}\" taariikhda"
+    "removeFromHistory": "Ka saar \"{{query}}\" taariikhda",
+    "open": "Raadi",
+    "close": "Xir raadinta"
   },
   "notifPrompt": {
     "stayInLoop": "Ku sii jir warka",

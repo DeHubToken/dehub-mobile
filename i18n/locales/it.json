@@ -9597,7 +9597,9 @@
     "clearHistory": "Cancella cronologia",
     "clearHistoryTitle": "Cancellare la cronologia delle ricerche?",
     "clearHistoryBody": "Verranno rimosse tutte le tue ricerche recenti.",
-    "removeFromHistory": "Rimuovi \"{{query}}\" dalla cronologia"
+    "removeFromHistory": "Rimuovi \"{{query}}\" dalla cronologia",
+    "open": "Cerca",
+    "close": "Chiudi ricerca"
   },
   "notifPrompt": {
     "stayInLoop": "Resta aggiornato",

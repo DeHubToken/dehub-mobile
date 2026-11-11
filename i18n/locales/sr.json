@@ -9453,7 +9453,9 @@
     "clearHistory": "Обриши историју",
     "clearHistoryTitle": "Обрисати историју претраге?",
     "clearHistoryBody": "Ово уклања све ваше недавне претраге.",
-    "removeFromHistory": "Уклони „{{query}}” из историје"
+    "removeFromHistory": "Уклони „{{query}}” из историје",
+    "open": "Претражи",
+    "close": "Затвори претрагу"
   },
   "notifPrompt": {
     "stayInLoop": "Будите у току",

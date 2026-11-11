@@ -9500,7 +9500,9 @@
     "clearHistory": "ისტორიის გასუფთავება",
     "clearHistoryTitle": "გასუფთავდეს ძიების ისტორია?",
     "clearHistoryBody": "ეს წაშლის თქვენს ყველა ბოლო ძიებას.",
-    "removeFromHistory": "„{{query}}“-ის ისტორიიდან წაშლა"
+    "removeFromHistory": "„{{query}}“-ის ისტორიიდან წაშლა",
+    "open": "ძიება",
+    "close": "ძიების დახურვა"
   },
   "notifPrompt": {
     "stayInLoop": "იყავით კურსში",

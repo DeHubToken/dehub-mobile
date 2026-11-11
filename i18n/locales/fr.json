@@ -7614,7 +7614,9 @@
     "clearHistory": "Effacer l'historique",
     "clearHistoryTitle": "Effacer l'historique de recherche ?",
     "clearHistoryBody": "Cela supprime toutes vos recherches récentes.",
-    "removeFromHistory": "Retirer « {{query}} » de l'historique"
+    "removeFromHistory": "Retirer « {{query}} » de l'historique",
+    "open": "Rechercher",
+    "close": "Fermer la recherche"
   },
   "notifPrompt": {
     "stayInLoop": "Restez informé",

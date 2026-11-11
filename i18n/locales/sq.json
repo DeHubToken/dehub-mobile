@@ -9484,7 +9484,9 @@
     "clearHistory": "Pastro historikun",
     "clearHistoryTitle": "Të pastrohet historiku i kërkimeve?",
     "clearHistoryBody": "Kjo heq të gjitha kërkimet e tua të fundit.",
-    "removeFromHistory": "Hiq \"{{query}}\" nga historiku"
+    "removeFromHistory": "Hiq \"{{query}}\" nga historiku",
+    "open": "Kërko",
+    "close": "Mbyll kërkimin"
   },
   "notifPrompt": {
     "stayInLoop": "Qëndro i informuar",

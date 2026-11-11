@@ -9600,7 +9600,9 @@
     "clearHistory": "Очистить историю",
     "clearHistoryTitle": "Очистить историю поиска?",
     "clearHistoryBody": "Это удалит все ваши недавние поиски.",
-    "removeFromHistory": "Удалить «{{query}}» из истории"
+    "removeFromHistory": "Удалить «{{query}}» из истории",
+    "open": "Поиск",
+    "close": "Закрыть поиск"
   },
   "notifPrompt": {
     "stayInLoop": "Будьте в курсе",
