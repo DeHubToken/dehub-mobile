@@ -1,7 +1,15 @@
-import React from "react";
-import { I18nManager, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { createContext, useEffect, useRef, useState } from "react";
+import { I18nManager, StyleSheet, Text, TouchableOpacity, View, type TextInput } from "react-native";
 import { Image } from "expo-image";
-import Reanimated from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+import Reanimated, {
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import { useAppTheme } from "../../context/ThemeContext";
 import { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
@@ -15,6 +23,31 @@ const TOP_INSET = 8;
 /** The home pill's row: a 16pt icon in 10pt of padding top and bottom. */
 const ROW_HEIGHT = 38;
 const LEAD_SLOT_WIDTH = 40;
+
+/** How far the drawer's material runs up under the pill. The slot clips at
+ *  the pill's bottom edge, so only its sides and rounded bottom show. */
+const DRAWER_TUCK = 24;
+/** Home's new-posts drawer pull (web: spring 420 / 32 / 0.8). */
+const DRAWER_SPRING = { stiffness: 420, damping: 36, mass: 0.8 } as const;
+
+/** True while a page's search drawer is out, so a field inside can take focus. */
+export const PillDrawerContext = createContext(false);
+
+/** Focuses the field when the pill's search drawer comes out. */
+export function useFocusOnPillDrawer(ref: React.RefObject<TextInput | null>) {
+  const open = React.useContext(PillDrawerContext);
+  useEffect(() => {
+    if (!open) return;
+    const id = setTimeout(() => ref.current?.focus(), 120);
+    return () => clearTimeout(id);
+  }, [open, ref]);
+}
+
+/** Drop inside a drawer's children to focus its search field on opening. */
+export function PillDrawerAutoFocus({ inputRef }: { inputRef: React.RefObject<TextInput | null> }) {
+  useFocusOnPillDrawer(inputRef);
+  return null;
+}
 
 /** Actions sit in the pill as plain icons, like the home pill's buttons. */
 const PILL_ACTION = {
@@ -67,6 +100,12 @@ export interface PillHeaderProps {
   titleBadge?: React.ReactNode;
   rightContent?: React.ReactNode;
   tabs?: React.ReactNode;
+  /** The pill's one line, in place of the tabs or title (Explore's search). */
+  pillLine?: React.ReactNode;
+  /** The page opens and shuts the drawer itself; no search button is added. */
+  drawerOpen?: boolean;
+  /** Search and filters. They wait behind a search button in the pill and
+   *  slide out as a full-width drawer attached under it. */
   children?: React.ReactNode;
 }
 
@@ -88,13 +127,46 @@ export default function PillHeader({
   titleBadge,
   rightContent,
   tabs,
+  pillLine,
+  drawerOpen: drawerOpenProp,
   children,
 }: PillHeaderProps) {
+  const { t } = useTranslation();
   const { skin, isLight } = useAppTheme();
+  const reducedMotion = useReducedMotion();
+  const controlled = drawerOpenProp !== undefined;
+  const [drawerOpenState, setDrawerOpen] = useState(false);
+  const drawerOpen = controlled ? !!drawerOpenProp : drawerOpenState;
+  // The drawer's contents are built on its first opening, then kept, so a
+  // typed search survives closing it.
+  const [built, setBuilt] = useState(drawerOpen);
+  if (drawerOpen && !built) setBuilt(true);
+  const hasDrawer = !!children;
+  const showSearchButton = hasDrawer && !controlled;
+
+  const drawerHeight = useSharedValue(0);
+  const drawerProgress = useSharedValue(drawerOpen ? 1 : 0);
+  const firstRun = useRef(true);
+  useEffect(() => {
+    const to = drawerOpen ? 1 : 0;
+    if (firstRun.current || reducedMotion) {
+      firstRun.current = false;
+      drawerProgress.value = to;
+      return;
+    }
+    drawerProgress.value = drawerOpen ? withSpring(1, DRAWER_SPRING) : withTiming(0, { duration: 200 });
+  }, [drawerOpen, reducedMotion, drawerProgress]);
+  const slotStyle = useAnimatedStyle(() => ({
+    height: Math.max(0, drawerProgress.value) * drawerHeight.value,
+  }));
+  const drawerStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (Math.min(1, drawerProgress.value) - 1) * drawerHeight.value }],
+  }));
   const { ref, pillStyle, contentStyle } = usePillGlide();
   // Titles stay white like web's pill; only the icons take the theme's tint.
   const ink = "#FFFFFF";
   const softInk = skin ? skin.tabIcon : "#A1A1AA";
+  const corner = skin ? Number(skin.strip.borderRadius ?? FEED_PILL_RADIUS) : FEED_PILL_RADIUS;
 
   return (
     <Reanimated.View ref={ref as any} style={[styles.wrap, pillStyle]}>
@@ -128,34 +200,78 @@ export default function PillHeader({
               <View style={styles.leadGap} />
             )}
             {leftContent ? <View style={styles.leftContent}>{leftContent}</View> : null}
-            {tabs ? (
+            {pillLine ? (
+              <View style={styles.line} accessibilityLabel={title}>
+                {pillLine}
+              </View>
+            ) : tabs ? (
               <View style={styles.tabs} accessibilityLabel={title}>
                 {tabs}
               </View>
             ) : (
               <View style={styles.titleBox}>
-                <View style={styles.titleLine}>
+                {/* One line only: a page's subtitle is read out, not drawn. */}
+                <View style={styles.titleLine} accessibilityHint={subtitle || undefined}>
                   <Text numberOfLines={1} accessibilityRole="header" style={[styles.title, { color: ink }]}>
                     {title}
                   </Text>
                   {titleBadge ?? null}
                   {titleAccessory ? <View style={{ marginLeft: 8 }}>{titleAccessory}</View> : null}
                 </View>
-                {subtitle ? (
-                  <Text numberOfLines={1} style={[styles.subtitle, { color: softInk }]}>
-                    {subtitle}
-                  </Text>
-                ) : null}
               </View>
             )}
-            {rightContent ? <View style={styles.actions}>{asPillActions(rightContent)}</View> : null}
+            {rightContent || showSearchButton ? (
+              <View style={styles.actions}>
+                {rightContent ? asPillActions(rightContent) : null}
+                {showSearchButton ? (
+                  <TouchableOpacity
+                    testID="pill-search-button"
+                    onPress={() => setDrawerOpen((open) => !open)}
+                    style={PILL_ACTION}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={drawerOpen ? t("search.close", "Close search") : t("search.open", "Search")}
+                    accessibilityState={{ expanded: drawerOpen }}
+                  >
+                    <Icon name={drawerOpen ? "X" : "Search"} size={16} color={drawerOpen ? ink : softInk} strokeWidth={1.8} />
+                  </TouchableOpacity>
+                ) : null}
+              </View>
+            ) : null}
           </Reanimated.View>
         </PageHeaderContext.Provider>
       </View>
-      {children ? (
-        <PageHeaderContext.Provider value>
-          <View style={styles.extra}>{children}</View>
-        </PageHeaderContext.Provider>
+      {hasDrawer ? (
+        // The search pulls out from under the pill as one full-width drawer in
+        // the pill's material, like Home's new-posts drawer. The slot clips at
+        // the pill's bottom edge; the drawer's top runs up under it.
+        <Reanimated.View
+          testID="pill-search-drawer"
+          style={[styles.drawerSlot, slotStyle]}
+          pointerEvents={drawerOpen ? "box-none" : "none"}
+          accessibilityElementsHidden={!drawerOpen}
+          importantForAccessibility={drawerOpen ? "auto" : "no-hide-descendants"}
+        >
+          <Reanimated.View
+            style={[styles.drawer, drawerStyle]}
+            onLayout={(e) => { drawerHeight.value = e.nativeEvent.layout.height; }}
+          >
+            <View pointerEvents="none" style={[styles.drawerMaterial, { borderBottomLeftRadius: corner, borderBottomRightRadius: corner }]}>
+              <FeedPillSurface />
+              <LinearGradient
+                colors={isLight && !skin ? ["rgba(0,0,0,0.10)", "rgba(0,0,0,0)"] : ["rgba(0,0,0,0.45)", "rgba(0,0,0,0)"]}
+                style={styles.drawerShade}
+              />
+            </View>
+            {built ? (
+              <PageHeaderContext.Provider value>
+                <PillDrawerContext.Provider value={drawerOpen}>
+                  <View style={styles.drawerBody}>{children}</View>
+                </PillDrawerContext.Provider>
+              </PageHeaderContext.Provider>
+            ) : null}
+          </Reanimated.View>
+        </Reanimated.View>
       ) : null}
     </Reanimated.View>
   );
@@ -173,7 +289,11 @@ const styles = StyleSheet.create({
   titleBox: { flex: 1, minWidth: 0, paddingRight: 8 },
   titleLine: { flexDirection: "row", alignItems: "center" },
   title: { flexShrink: 1, fontSize: 15, fontWeight: "600", letterSpacing: 0.1 },
-  subtitle: { fontSize: 11, marginTop: 1 },
+  line: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center" },
   actions: { flexDirection: "row", alignItems: "center", gap: 2, paddingRight: 2, marginLeft: 4 },
-  extra: { marginTop: 8 },
+  drawerSlot: { overflow: "hidden" },
+  drawer: { position: "absolute", left: 0, right: 0, top: 0 },
+  drawerMaterial: { position: "absolute", left: 0, right: 0, bottom: 0, top: -DRAWER_TUCK, overflow: "hidden" },
+  drawerShade: { position: "absolute", left: 0, right: 0, top: DRAWER_TUCK, height: 14 },
+  drawerBody: { paddingHorizontal: 8, paddingTop: 8, paddingBottom: 8, gap: 8 },
 });

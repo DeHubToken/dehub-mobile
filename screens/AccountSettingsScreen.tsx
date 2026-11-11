@@ -22,7 +22,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   ActivityIndicator,
   FlatList,
   Alert,
@@ -40,8 +39,8 @@ import { requestAccountDeactivation, requestAccountErasure } from "../services/a
 import { Image } from "expo-image";
 import { useAppTheme } from "../context/ThemeContext";
 import ScreenHeader from '../components/ScreenHeader';
+import { PageTabs } from '../components/page/PageKit';
 import { themePageIcon } from "../theme/pageIcons";
-import LiquidGlass from "../components/ui/LiquidGlass";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
 import ReviewModal from "../components/ReviewModal";
@@ -121,7 +120,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const [freeAccessLoading, setFreeAccessLoading] = useState(false);
   const [revokingAddress, setRevokingAddress] = useState<string | null>(null);
   const { t } = useTranslation();
-  const { theme, skin } = useAppTheme();
+  const { theme } = useAppTheme();
   // Opened from the menu, a render-time canGoBack() is still false; this
   // follows the stack once the push is saved.
   const canPop = useCanGoBack();
@@ -253,45 +252,20 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const headerBento = (
     <ScreenHeader title={t("settings.title")} subtitle={t("settings.manageAccount")}
       icon="" canGoBack={canPop}
-      leftContent={<Image source={themePageIcon(theme, 'settings')} style={{ width: 32, height: 32, marginRight: 2 }} contentFit="contain" />}>
+      leftContent={<Image source={themePageIcon(theme, 'settings')} style={{ width: 24, height: 24, marginRight: 2 }} contentFit="contain" />}
+      tabs={
+        <PageTabs
+          iconOnly
+          value={activeTab}
+          onChange={setActiveTab}
+          tabs={TABS.map((tab) => ({
+            id: tab.key,
+            label: tab.label,
+            icon: (ink: string) => <Icon name={tab.icon} size={16} color={ink} />,
+          }))}
+        />
+      }>
         <SettingsSearchBar onSelect={handleSearchSelect} />
-        {/* Bleeds through the bento's padding so the icons that overflow
-            scroll out under the bento edge rather than being cut 16px in. */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{ marginHorizontal: -12 }}
-          contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}
-        >
-          {TABS.map((tab) => {
-            const active = activeTab === tab.key;
-            const inner = (
-              <View style={{ padding: 11 }}>
-                <Icon
-                  name={tab.icon}
-                  size={18}
-                  color={active ? skin?.tabIconActive ?? "#fff" : skin?.tabIcon ?? "#8B8D90"}
-                />
-              </View>
-            );
-            return (
-              <TouchableOpacity
-                key={tab.key}
-                onPress={() => setActiveTab(tab.key)}
-                activeOpacity={0.8}
-                accessibilityLabel={tab.label}
-              >
-                {active ? (
-                  <LiquidGlass className="rounded-xl" intensity={40}>
-                    {inner}
-                  </LiquidGlass>
-                ) : (
-                  <View className="rounded-xl">{inner}</View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
     </ScreenHeader>
   );
 

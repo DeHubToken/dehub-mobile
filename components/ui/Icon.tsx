@@ -84,6 +84,9 @@ function glyphFor(name: IconName, strokeWidth: number, color: string, fill?: str
   return char ? { char, family: ICON_FONT_FAMILY } : undefined;
 }
 
+/** Side room around a glyph's box, as a share of its size. */
+const GLYPH_SLACK = 0.25;
+
 /** One style per font, size and colour, so a glyph's props stay referentially stable. */
 const glyphStyles = new Map<string, TextStyle>();
 
@@ -108,7 +111,13 @@ function glyphStyle(family: string, size: number, color: string): TextStyle {
       includeFontPadding: false,
       textAlign: "center",
       textAlignVertical: "center",
-      width: size,
+      // A TextView clips its ink to its own box, and Android can set a glyph
+      // a few pixels off the box's centre. Glyphs that run to the em's edges
+      // (Radio's outer arcs) then lost a sliver of one side. A wider box, its
+      // extra width taken back by the margins, keeps the icon's place and
+      // size and gives the ink room.
+      width: size + GLYPH_SLACK * 2 * size,
+      marginHorizontal: -GLYPH_SLACK * size,
       height: size,
       color,
     };
