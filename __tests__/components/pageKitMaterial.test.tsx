@@ -46,8 +46,8 @@ it.each(APP_THEMES)('%s header tabs sit in the pill row like the home tabs and k
   const tabs = [{ id: 'browse', label: 'Browse' }, { id: 'sell', label: 'Sell' }];
   act(() => { tree = create(<PageHeaderContext.Provider value><PageTabs<string> value="browse" onChange={change} tabs={tabs} /></PageHeaderContext.Provider>); });
   const strip = tree.root.findByType('ScrollView' as any);
-  // The home pill's 38pt row, no chip fills: the glass tile marks the lit tab.
-  expect(flatten(strip.props.style)).toMatchObject({ height: 38 });
+  // The home pill's 36pt row (same as phone web), no chip fills: the glass tile marks the lit tab.
+  expect(flatten(strip.props.style)).toMatchObject({ height: 36 });
   const texts = tree.root.findAllByType('Text' as any).map((node) => node.props.children);
   expect(texts).toEqual(['Browse', 'Sell']);
   const chips = tree.root.findAllByType('Pressable' as any);
