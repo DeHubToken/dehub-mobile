@@ -49,9 +49,9 @@ import {
   SettingsToggleRow,
   Divider,
 } from '../components/Settings/SettingsPrimitives';
-import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
 import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
+import TwoFactorSettingsRow from '../components/Settings/TwoFactorSettingsRow';
 import RemixPermissionsSection from '../components/Settings/RemixPermissionsSection';
 import AiConsentSection from '../components/Settings/AiConsentSection';
 import { DEFAULT_PROFILE_TAB, PROFILE_DEFAULT_TAB_OPTIONS, parseDefaultProfileTab, type ProfileDefaultTab } from '../libs/profile-default-tab';
@@ -764,18 +764,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           icon="ShieldCheck"
           anchor="account-security"
         >
-          {!IS_APP_STORE_BUILD && (
-            <>
-              <SettingsLinkRow
-                icon="Shield"
-                label={t('settings.twoFactorAuth')}
-                description={t('settings.twoFactorAuthDesc')}
-                value={t('settings.comingSoon')}
-                onPress={() => toastInfo(t('settings.comingSoon'))}
-              />
-              <Divider />
-            </>
-          )}
+          <TwoFactorSettingsRow />
+          <Divider />
           <AndroidBiometricUnlockRow />
           <Divider />
           <SettingsLinkRow

@@ -53,6 +53,7 @@ import { FeedSuperpowersProvider } from "./context/FeedSuperpowersContext";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
+import TwoFactorPromptHost from "./components/auth/TwoFactorPromptHost";
 import BadgeShowcaseHost from "./components/Badge/BadgeShowcaseHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
@@ -262,6 +263,9 @@ export default function App() {
                   — post, tip, mint, stake, export. Mounted beside the tree
                   rather than inside a screen so it outlives navigation. */}
               <WalletUnlockHost />
+              {/* The sign-in code step for accounts with two-step sign-in:
+                  any login can pause for it, wherever it started. */}
+              <TwoFactorPromptHost />
               {/* Saves the first-run Kids / Mature choice to the account once
                   one is signed in; the setup runs before there is one. */}
               <OnboardingChoicesApplier />

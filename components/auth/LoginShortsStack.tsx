@@ -182,7 +182,13 @@ function Lane({ clips, down, tileW, height, still, line, armed }: {
   );
 }
 
-export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 }: { viewportHeight?: number; reservedHeight?: number }) {
+/** Swaps the "You will own everything / and be happy." lines, e.g. for the sign-in code step. */
+export interface LoginStackHeadline {
+  top: string;
+  accent: string;
+}
+
+export default function LoginShortsStack({ viewportHeight, reservedHeight = 360, headline }: { viewportHeight?: number; reservedHeight?: number; headline?: LoginStackHeadline }) {
   const { t } = useTranslation();
   const { theme, isLight } = useAppTheme();
   const still = !!useReducedMotion();
@@ -248,9 +254,9 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 
             own box, so two Texts cut the glow flat under each line. The
             padding gives the glow room, the negative margin takes it back. */}
         <Text style={[styles.headlineText, sign, styles.glowRoom]} accessibilityRole="header">
-          {t("loginStack.headlineTop", "You will own everything")}
+          {headline?.top ?? t("loginStack.headlineTop", "You will own everything")}
           {"\n"}
-          {t("loginStack.headlineAccent", "and be happy.")}
+          {headline?.accent ?? t("loginStack.headlineAccent", "and be happy.")}
         </Text>
       </View>
     </View>

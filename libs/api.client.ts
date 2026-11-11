@@ -7,6 +7,13 @@ import { getDeviceHeaders } from './device';
 import { isKidsModeLocked } from './kids-mode-lock';
 import { createLogger } from './logger';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import {
+  TWO_FACTOR_LOGIN_ENDPOINTS,
+  TWO_FACTOR_REQUIRED_CODE,
+  awaitTwoFactorCode,
+  readTrustTokens,
+  twoFactorChallengeOf,
+} from './two-factor-login';
 
 const sessionLog = createLogger('SessionRequest');
 
@@ -82,6 +89,8 @@ interface ApiOptions {
   quiet?: boolean;
   /** Reuse the signed login proof once through the relay if transport fails. */
   retrySession?: boolean;
+  /** Internal: this login already went through the two-step check below. */
+  twoFactorHandled?: boolean;
 }
 
 /**
@@ -104,7 +113,31 @@ export const apiClient = {
       timeoutMs,
       quiet = false,
       retrySession = false,
+      twoFactorHandled = false,
     } = options;
+
+    // Two-step sign-in. A login on an account that has it on comes back
+    // TWO_FACTOR_REQUIRED; hold it on the code step and hand the caller the
+    // session the code unlocked (libs/two-factor-login). The device's
+    // "don't ask again" tokens ride along so a trusted phone skips the step.
+    if (method === 'POST' && !twoFactorHandled && (TWO_FACTOR_LOGIN_ENDPOINTS as readonly string[]).includes(endpoint)) {
+      const trust = await readTrustTokens();
+      const loginBody = trust.length && body && typeof body === 'object' ? { ...body, twoFactorTrust: trust } : body;
+      try {
+        return await this.fetch<T>(endpoint, { ...options, body: loginBody, twoFactorHandled: true });
+      } catch (error) {
+        const challenge = twoFactorChallengeOf(error);
+        if (!challenge) throw error;
+        return awaitTwoFactorCode<T>(challenge, (verifyBody) => this.fetch<T>('/auth/2fa/verify', {
+          method: 'POST',
+          body: verifyBody,
+          isAuthRequired: false,
+          retrySession: true,
+          quiet: true,
+          twoFactorHandled: true,
+        }));
+      }
+    }
 
     // Robust RN FormData detection: works across polyfills/realms
     const isFormData = (
@@ -300,6 +333,7 @@ export const apiClient = {
         const err: any = new Error(message + htmlHint);
         err.status = status;
         if (data?.code) err.code = data.code;
+        if (data?.code === TWO_FACTOR_REQUIRED_CODE) err.body = data;
         throw err;
       }
 
@@ -318,6 +352,8 @@ export const apiClient = {
       // which is gated on DEBUG.
       return data as T;
     } catch (error) {
+      // Not a failure: the login is about to ask for the two-step code.
+      if ((error as { code?: string })?.code === TWO_FACTOR_REQUIRED_CODE) throw error;
       if (retrySession && (!quiet || !(error as { status?: number })?.status)) {
         sessionLog.error('login transport or response failed', { endpoint, method, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' }, error);
       }
