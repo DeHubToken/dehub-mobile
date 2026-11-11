@@ -48,6 +48,7 @@ import Icon from "../ui/Icon";
 import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { AudioLyrics } from "./AudioLyrics";
+import { STYLE_PREVIEW_IMAGES } from "./stylePreviewImages";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -305,6 +306,7 @@ const pickerStyles = StyleSheet.create({
   studioChip: { height: 36, paddingHorizontal: 6, borderRadius: 10, alignItems: "center", justifyContent: "center" },
   studioLabel: { color: "#fff", fontSize: 12, fontWeight: "500" },
   previewTile: { width: "33.33%", padding: 6, paddingBottom: 10, borderRadius: 12 },
+  previewPicture: { width: "100%", height: "100%" },
   previewWindow: { height: 44, borderRadius: 8, overflow: "hidden", backgroundColor: "#030405", boxShadow: "inset 0px 0px 0px 1px rgba(255,255,255,.08)" },
   studioPill: { height: 30, flexDirection: "row", alignItems: "center", gap: 5, paddingLeft: 12, paddingRight: 9, borderRadius: 10, boxShadow: "inset 0px 1px 0px rgba(255,255,255,.12), inset 0px 0px 0px 1px rgba(255,255,255,.2)", backgroundColor: "rgba(255,255,255,.07)" },
   beam: {
@@ -440,34 +442,35 @@ const StudioButton = ({ size, play, material, style, children, ...rest }: React.
 
 /* ─── Studio card style picker ──────────────────────────────── */
 // System/Glass card: one pill naming the playing style; tap opens every style in a drawer (same as web).
-/** Styles the drawer adds per step as it scrolls; each brings a live preview. */
-const STYLE_PAGE = 9;
+/**
+ * One style in the drawer: a still picture of it and its name. The drawer used
+ * to play every style live in its tile, which made it slow to open and could
+ * take the app down on Android; a picture costs nothing to show.
+ */
+const StylePreviewTile = memo(({ style, label, active, onPick }: { style: VisualizerStyle; label: string; active: boolean; onPick: (style: VisualizerStyle) => void }) => {
+  const picture = STYLE_PREVIEW_IMAGES[style];
+  return (
+    <Pressable onPress={() => onPick(style)} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: active }}
+      style={[pickerStyles.previewTile, active && { backgroundColor: "rgba(255,255,255,.06)" }, { opacity: active ? 1 : .6 }]}>
+      <View className="dark-surface" pointerEvents="none" style={pickerStyles.previewWindow}>
+        {picture != null && <Image source={picture} fadeDuration={0} resizeMode="cover" style={pickerStyles.previewPicture} />}
+      </View>
+      <Text numberOfLines={1} style={[pickerStyles.studioLabel, { textAlign: "center", marginTop: 4 }]}>{label}</Text>
+      {active && <View pointerEvents="none" style={[pickerStyles.beam, { bottom: 3 }]} />}
+    </Pressable>
+  );
+});
 
-/** A small live example of one style: it moves only while its tile is on screen. */
-const StylePreviewTile = memo(({ style, label, active, live, hue, position, onPress }: { style: VisualizerStyle; label: string; active: boolean; live: boolean; hue: number; position: SharedValue<number>; onPress: () => void }) => (
-  <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: active }}
-    style={[pickerStyles.previewTile, active && { backgroundColor: "rgba(255,255,255,.06)" }, { opacity: active ? 1 : .6 }]}>
-    <View className="dark-surface" pointerEvents="none" style={pickerStyles.previewWindow}>
-      <AudioVisualizer style={style} seed={`style-preview-${style}`} isPlaying={live} hue={hue} position={position} height={44} />
-    </View>
-    <Text numberOfLines={1} style={[pickerStyles.studioLabel, { textAlign: "center", marginTop: 4 }]}>{label}</Text>
-    {active && <View pointerEvents="none" style={[pickerStyles.beam, { bottom: 3 }]} />}
-  </Pressable>
-));
+const STYLE_COLUMNS = 3;
 
-const StudioStylePicker: React.FC<StylePickerProps & { hue: number; ink: string; light: boolean }> = memo(({ style: activeStyle, onStyleChange, hue, ink, light }) => {
+const StudioStylePicker: React.FC<StylePickerProps & { ink: string; light: boolean }> = memo(({ style: activeStyle, onStyleChange, ink, light }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [shown, setShown] = useState(STYLE_PAGE);
-  const [visible, setVisible] = useState<ReadonlySet<string>>(() => new Set());
   const rootStyle = useThemeRootStyle();
-  const previewPosition = useSharedValue(.4);
   const { height: screenHeight } = useWindowDimensions();
   const label = (v: VisualizerStyle) => VISUALIZER_STYLES.find((s) => s.value === v)?.label ?? v;
-  const onViewable = useRef(({ viewableItems }: { viewableItems: { key: string }[] }) => {
-    setVisible(new Set(viewableItems.map((item) => item.key)));
-  }).current;
-  const pick = (v: VisualizerStyle) => { onStyleChange(v); setOpen(false); };
+  // Close first, then switch: the new style mounts once the drawer is on its way out.
+  const pick = useCallback((v: VisualizerStyle) => { setOpen(false); requestAnimationFrame(() => onStyleChange(v)); }, [onStyleChange]);
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Pressable className="dark-surface" onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel={t("poster.style")} hitSlop={{ top: 6, bottom: 6 }} style={[pickerStyles.studioPill, light && { backgroundColor: 'rgba(20,30,40,.035)', boxShadow: 'inset 0px 1px 0px #ffffff, inset 0px 0px 0px 1px rgba(20,30,40,.14)' }]}>
@@ -478,23 +481,18 @@ const StudioStylePicker: React.FC<StylePickerProps & { hue: number; ink: string;
         <KeepDark.Provider value={false}>
         <View style={[{ paddingHorizontal: 12, paddingTop: 12 }, rootStyle]}>
           <Text style={[pickerStyles.studioLabel, { fontSize: 14, fontWeight: "600", paddingHorizontal: 8, paddingBottom: 8 }]}>{t("poster.style")}</Text>
-          {/* A page at a time: the next nine load as the list nears its end. */}
           <FlatList
-            data={VISUALIZER_STYLES.slice(0, shown)}
+            data={VISUALIZER_STYLES}
             keyExtractor={(item) => item.value}
-            numColumns={3}
+            numColumns={STYLE_COLUMNS}
             style={{ maxHeight: screenHeight * .55 }}
             contentContainerStyle={{ paddingBottom: 16 }}
-            initialNumToRender={STYLE_PAGE}
-            maxToRenderPerBatch={STYLE_PAGE}
-            windowSize={3}
-            removeClippedSubviews
-            onEndReachedThreshold={.5}
-            onEndReached={() => setShown((n) => Math.min(VISUALIZER_STYLES.length, n + STYLE_PAGE))}
-            onViewableItemsChanged={onViewable}
-            viewabilityConfig={{ itemVisiblePercentThreshold: 30 }}
+            initialNumToRender={18}
+            maxToRenderPerBatch={18}
+            windowSize={5}
+            extraData={activeStyle}
             renderItem={({ item }) => (
-              <StylePreviewTile style={item.value} label={item.label} active={item.value === activeStyle} live={open && visible.has(item.value)} hue={hue} position={previewPosition} onPress={() => pick(item.value)} />
+              <StylePreviewTile style={item.value} label={item.label} active={item.value === activeStyle} onPick={pick} />
             )}
           />
         </View>
@@ -1473,7 +1471,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             strip, so the row overlaps the gap above and the card's padding
             below to land where web's does (measured side by side). */}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 0, paddingTop: 14, paddingHorizontal: 4, marginBottom: -11 }}>
-          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} hue={hue} ink={ink} light={material === 'light'} />
+          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} ink={ink} light={material === 'light'} />
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.lyrics')} accessibilityState={{ selected: showLyrics }} onPress={() => setShowLyrics(v => !v)} style={[styles.studioOption, { marginLeft: 'auto', opacity: showLyrics ? 1 : .7 }, showLyrics && { backgroundColor: 'rgba(255,255,255,.14)' }]}>{optionGlyph('MicVocal')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.studioOption}>{optionGlyph('PictureInPicture2')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.studioOption}>{optionGlyph(isEffectivelyMuted ? 'VolumeX' : 'Volume2')}</TouchableOpacity>
