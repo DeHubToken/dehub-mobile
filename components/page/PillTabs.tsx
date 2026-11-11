@@ -10,7 +10,7 @@ import type { PageTab } from "./PageKit";
 /** Home's indicator: 35pt tall, 95% of its tab. */
 const INDICATOR_HEIGHT = 35;
 const INDICATOR_SIDE_GAP = 0.025;
-const ROW_HEIGHT = 38;
+const ROW_HEIGHT = 36;
 /** Home's tab slide (web: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)). */
 const SLIDE = { duration: 400, easing: Easing.bezier(0.16, 1, 0.3, 1) } as const;
 
@@ -119,7 +119,7 @@ export default function PillTabs<T extends string>({
                 tab.icon ?? null
               )}
               {iconOnly ? null : (
-                <Text numberOfLines={1} style={[styles.label, { color: ink, fontWeight: active ? "600" : "500" }]}>
+                <Text numberOfLines={1} style={[styles.label, { color: ink, fontWeight: "600" }]}>
                   {tab.label}
                 </Text>
               )}
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
   iconTab: { flexGrow: 1, minWidth: 40, paddingHorizontal: 8 },
   textTab: { flexGrow: 1, paddingHorizontal: 12 },
   art: { width: 18, height: 18 },
-  label: { fontSize: 13, letterSpacing: 0.1 },
+  label: { fontSize: 14, letterSpacing: 0.1 },
   count: { fontSize: 12, fontWeight: "700", fontVariant: ["tabular-nums"] },
 });
