@@ -3,9 +3,6 @@ import { getIngestStatus } from "../services/livepeer.service";
 import { liveProviderOf } from "../libs/live-ingest";
 import { toastError } from "../libs/toast";
 import { LivestreamEvents } from "../services/enums/livestream.enum";
-// RTMP publisher removed in WebRTC mode; keep commented imports for future fallback if needed.
-// import { getRtmpPublisher } from '../services/rtmp.publisher';
-// import { LIVEPEER_RTMP_SERVER } from '../config/constants';
 
 export type LiveStage =
   | "idle"
