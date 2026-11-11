@@ -7727,6 +7727,8 @@
     "rotate": "Scherm roteren"
   },
   "search": {
+    "open": "Zoeken",
+    "close": "Zoeken sluiten",
     "endOfResults": "Einde van de resultaten",
     "searchDehub": "Zoeken op Riftn",
     "tabVoice": "Stem",

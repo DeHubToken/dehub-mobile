@@ -7597,6 +7597,8 @@
     "rotate": "تدوير الشاشة"
   },
   "search": {
+    "open": "بحث",
+    "close": "إغلاق البحث",
     "endOfResults": "نهاية النتائج",
     "searchDehub": "ابحث في Riftn",
     "tabVoice": "صوت",

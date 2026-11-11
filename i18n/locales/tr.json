@@ -7588,6 +7588,8 @@
     "rotate": "Ekranı döndür"
   },
   "search": {
+    "open": "Ara",
+    "close": "Aramayı kapat",
     "endOfResults": "Sonuçların sonu",
     "searchDehub": "Riftn'da ara",
     "tabVoice": "Ses",

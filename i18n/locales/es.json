@@ -7589,6 +7589,8 @@
     "rotate": "Girar pantalla"
   },
   "search": {
+    "open": "Buscar",
+    "close": "Cerrar búsqueda",
     "endOfResults": "Fin de los resultados",
     "searchDehub": "Buscar en Riftn",
     "tabVoice": "Voz",

@@ -7593,6 +7593,8 @@
     "rotate": "Faire pivoter l'écran"
   },
   "search": {
+    "open": "Rechercher",
+    "close": "Fermer la recherche",
     "endOfResults": "Fin des résultats",
     "searchDehub": "Rechercher sur Riftn",
     "tabVoice": "Voix",

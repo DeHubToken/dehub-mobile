@@ -7556,6 +7556,8 @@
     "rotate": "Rotate screen"
   },
   "search": {
+    "open": "Search",
+    "close": "Close search",
     "endOfResults": "End of results",
     "searchDehub": "Search Riftn",
     "tabVoice": "Voice",
