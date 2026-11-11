@@ -16490,8 +16490,7 @@
   },
   "dmSafety": {
     "notReal": "Bu gerçek {{name}} değil.",
-    "neverLink": "Riftn ekibi profilini veya cüzdanını düzeltmek için sana asla DM ile bağlantı göndermez. Bağlantıları açma, cüzdanını bağlama ve hiçbir şey imzalama. Bu hesabı engelle ve şikayet et.",
-    "linkCaution": "Bağlantılara dikkat et. Riftn, hesabını düzeltmek için asla cüzdanını bağlamanı, imza atmanı veya kurtarma ifadeni paylaşmanı istemez."
+    "neverLink": "Riftn ekibi profilini veya cüzdanını düzeltmek için sana asla DM ile bağlantı göndermez. Bağlantıları açma, cüzdanını bağlama ve hiçbir şey imzalama. Bu hesabı engelle ve şikayet et."
   },
   "chatTextSize": {
     "title": "Metin boyutu",

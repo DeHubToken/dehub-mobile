@@ -41,7 +41,7 @@ import MessageContextMenu, {
 import ForwardPickerModal from "../components/DM/ForwardPickerModal";
 import DmFeeBanner from "../components/DM/DmFeeBanner";
 import DmEncryptionBanner from "../components/DM/DmEncryptionBanner";
-import DmSafetyBanner, { hasLink } from "../components/DM/DmSafetyBanner";
+import DmSafetyBanner from "../components/DM/DmSafetyBanner";
 import DmLockedState, { DmUndecryptableRun } from "../components/DM/DmLockedState";
 import NewChatIntro from "../components/DM/NewChatIntro";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
@@ -494,12 +494,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       return false;
     },
     [userId, address],
-  );
-
-  // Any link from the other person brings up the scam warning above the thread.
-  const peerSentLink = useMemo(
-    () => messageList.some((m) => !isMine(m) && hasLink(m.content)),
-    [messageList, isMine],
   );
 
   /**
@@ -1848,7 +1842,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           />
         )}
 
-        <DmSafetyBanner peer={peer} peerSentLink={peerSentLink} />
+        <DmSafetyBanner peer={peer} />
 
         {/* Pinned message banner */}
         {pinnedMessage && (
