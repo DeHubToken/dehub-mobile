@@ -6422,7 +6422,7 @@
     "slugTaken": "Diese Community-URL ist schon vergeben",
     "createFailed": "Community konnte nicht erstellt werden",
     "sort": {
-      "top": "Oben",
+      "top": "Top",
       "new": "Neu",
       "hot": "Angesagt"
     },

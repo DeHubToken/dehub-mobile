@@ -4442,7 +4442,7 @@
     "slugTaken": "Cette URL de communauté est déjà prise",
     "createFailed": "Impossible de créer la communauté",
     "sort": {
-      "top": "Haut",
+      "top": "Top",
       "new": "Nouveau",
       "hot": "Populaire"
     },

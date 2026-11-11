@@ -65,9 +65,9 @@ describe("long names shrink instead of spilling", () => {
         src.indexOf("<View style={styles.titleRow}>"),
         src.indexOf("<Text style={styles.desc}"),
       );
-      expect(titleRow).toContain("<View style={styles.timeBadge}>");
+      expect(titleRow).toContain("<View style={[styles.timeBadge, isLight && styles.timeBadgeLight]}>");
       expect(titleRow).toMatch(/<Text style=\{styles\.timeText\} numberOfLines=\{1\}>/);
-      expect(src.match(/style=\{styles\.timeBadge\}/g)).toHaveLength(1);
+      expect(src.match(/style=\{\[styles\.timeBadge,/g)).toHaveLength(1);
     });
 
     it("keeps the badge in the row's flow and gives the reserved right padding back", () => {

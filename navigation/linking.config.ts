@@ -251,9 +251,6 @@ export const DeepLinkPaths = {
   COMMUNITY_INVITE: 'app/communities/join/:code',
   COMMUNITY: 'app/communities/:slug',
 
-  // Commerce — dehub.io/app/stores/:storeId (+ ?listing=<id> for one item)
-  STORE: 'app/stores/:storeId',
-
   // The converter — dehub.io/converter. /yt-dlp is the old name and web still
   // redirects it, so a link from before the rename lands here too.
   CONVERTER: 'converter',
@@ -477,14 +474,6 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             parse: { slug: (slug: string) => slug },
           },
 
-          // `?listing=` rides through as a route param; StoreDetailScreen
-          // pushes the item screen when it is present, so a shared item link
-          // lands on the item and not on the shop around it.
-          [ScreenNames.StoreDetail]: {
-            path: DeepLinkPaths.STORE,
-            parse: { storeId: (storeId: string) => storeId },
-          },
-
           [ScreenNames.Converter]: DeepLinkPaths.CONVERTER,
           [ScreenNames.Migrate]: DeepLinkPaths.MIGRATE,
 
@@ -673,14 +662,14 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     }
 
     // Web answers every /app section at the bare path as well, canonicalises
-    // onto it and shares it — a store link is handed out as dehub.io/stores/<id>
-    // now, not dehub.io/app/stores/<id>. The routes below are declared with the
+    // onto it and shares it — a community link is handed out as
+    // dehub.io/communities/<slug> now, not dehub.io/app/communities/<slug>. The routes below are declared with the
     // prefix, so put it back before matching rather than declaring each path
     // twice; a bare form that reached the default matcher resolved to nothing
     // and the link opened the website instead of the app.
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
-      'stores', 'events', 'fractions', 'agents', 'bridge', 'launchpad',
+      'events', 'fractions', 'agents', 'bridge', 'launchpad',
       'governance',
     ]);
     // riftn.com/chat is web's full-screen Messages. The app's Messages is
@@ -929,17 +918,6 @@ export const ShareLinks = {
   community: (slug: string) => `${SHARE_BASE}/app/communities/${encodeURIComponent(slug)}`,
   /** Community invite — dehub.io/app/communities/join/:code */
   communityInvite: (code: string) => `${SHARE_BASE}/app/communities/join/${encodeURIComponent(code)}`,
-  /** Store — dehub.io/app/stores/:storeId */
-  store: (storeId: string) => `${SHARE_BASE}/app/stores/${encodeURIComponent(storeId)}`,
-  /**
-   * Shop item — dehub.io/app/stores/:storeId?listing=:listingId
-   *
-   * The item id rides in the query rather than the path because that is the
-   * URL the web app builds and the one its store page reads. A link shared
-   * from mobile has to open on web, so the shape is not ours to choose.
-   */
-  listing: (storeId: string, listingId: string) =>
-    `${SHARE_BASE}/app/stores/${encodeURIComponent(storeId)}?listing=${encodeURIComponent(listingId)}`,
   /**
    * Handle for sale — dehub.io/usernames?handle=:handle
    *
@@ -1047,13 +1025,6 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/communities/:slug
     if (appParts[0] === 'communities' && appParts[1]) {
       return { type: 'community', params: { slug: appParts[1], ...qp } };
-    }
-
-    // /app/stores/:storeId — with ?listing= it is one item, without it the shop
-    if (appParts[0] === 'stores' && appParts[1]) {
-      return qp.listing
-        ? { type: 'listing', params: { storeId: appParts[1], ...qp } }
-        : { type: 'store', params: { storeId: appParts[1], ...qp } };
     }
 
     // /app/fractions

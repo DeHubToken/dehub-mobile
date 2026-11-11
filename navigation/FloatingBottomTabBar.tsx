@@ -136,7 +136,6 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // because it draws a label beside every icon. This bar is icons only, so
   // the second of each pair takes a distinct glyph.
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
-  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions },
   { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts },
@@ -178,9 +177,6 @@ const STOREFRONT_HIDDEN_SCREENS = new Set([
   ScreenNames.Ads,
   ScreenNames.Dpay,
   ScreenNames.CommandCentre,
-  ScreenNames.Stores,
-  ScreenNames.StoreDetail,
-  ScreenNames.ListingDetail,
   ScreenNames.Usernames,
   ScreenNames.Fractions,
   ScreenNames.Accounts,

@@ -6452,7 +6452,7 @@
     "slugTaken": "See kogukonna URL on juba võetud",
     "createFailed": "Kogukonna loomine ebaõnnestus",
     "sort": {
-      "top": "Peal",
+      "top": "Top",
       "new": "Uus",
       "hot": "Kuum"
     },

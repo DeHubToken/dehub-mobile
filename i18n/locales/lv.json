@@ -6452,7 +6452,7 @@
     "slugTaken": "Šis kopienas URL jau ir aizņemts",
     "createFailed": "Neizdevās izveidot kopienu",
     "sort": {
-      "top": "Augšējās notis",
+      "top": "Populārākās",
       "new": "Jauni",
       "hot": "Populāri"
     },

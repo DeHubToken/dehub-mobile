@@ -13,12 +13,13 @@ import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { CleanWords } from "../components/page/CleanWords";
 import { CollapsibleHeader } from "../components/common/CollapsibleHeader";
 import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import CommunityCard from "../components/Communities/CommunityCard";
 import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
 import Icon from "../components/ui/Icon";
-import { KitButton, PageEmpty, PageTabs } from "../components/page/PageKit";
+import { KitButton, PageEmpty } from "../components/page/PageKit";
 import { theme } from "../theme";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import {
@@ -171,13 +172,6 @@ const CommunitiesScreen: React.FC = () => {
         />
       </View>
 
-      <PageTabs
-        size="sm"
-        value={sortMode}
-        onChange={setSortMode}
-        tabs={(["top", "new", "hot"] as SortMode[]).map((mode) => ({ id: mode, label: t(`communities.sort.${mode}`) }))}
-        style={{ paddingHorizontal: 0, paddingTop: 0, paddingBottom: 10 }}
-      />
     </View>
   );
 
@@ -263,6 +257,14 @@ const CommunitiesScreen: React.FC = () => {
         <ScreenHeader icon="communities" title={t("communities.title")} rightContent={createButton}>
           {headerControls}
         </ScreenHeader>
+        {/* Sort words sit under the pill, always in view, as on web. */}
+        <View className="bg-theme-neutrals-900" style={{ paddingTop: 2 }}>
+          <CleanWords<SortMode>
+            value={sortMode}
+            onChange={setSortMode}
+            items={(["top", "new", "hot"] as SortMode[]).map((mode) => ({ id: mode, label: mode === "hot" ? t("explorePage.trending") : t(`communities.sort.${mode}`) }))}
+          />
+        </View>
       </CollapsibleHeader>
       <CreateCommunitySheet
         visible={createOpen}

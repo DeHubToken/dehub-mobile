@@ -281,14 +281,6 @@ export type AppStackParamList = {
   [ScreenNames.Pack]: { slug: string };
   [ScreenNames.Builder]: undefined;
   [ScreenNames.BuilderPreview]: { id: string };
-  [ScreenNames.Stores]: undefined;
-  /** `listing` is the shared-item deep link (`/app/stores/<id>?listing=<id>`). */
-  [ScreenNames.StoreDetail]: { storeId: string; listing?: string };
-  /** `listing` seeds the detail screen from the browse grid so it paints instantly. */
-  [ScreenNames.ListingDetail]: {
-    listingId: string;
-    listing?: import('../hooks/useStores').StoreListing;
-  };
   [ScreenNames.CommandCentre]: undefined;
   [ScreenNames.Top100]: undefined;
   [ScreenNames.Agents]: undefined;
