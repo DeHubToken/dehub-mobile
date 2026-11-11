@@ -235,13 +235,11 @@ function Sheet({ onClose, grab, children }: PageDrawerProps) {
     }), [listGesture, startedAtTop, scrollY, lastScrollAt, base, expanded, moving, closing, translateY, backdrop, mid, height, onClose]);
 
   const sheetStyle = useAnimatedStyle(() => {
-    // How far toward full (0 part open, 1 full): the corners square off and
-    // the header clears the status bar as it gets there.
+    // How far toward full (0 part open, 1 full): the header clears the status
+    // bar as it gets there. The rounded top stays, so it still reads as a drawer.
     const p = mid > 0 ? Math.max(0, Math.min(1, 1 - translateY.value / mid)) : 1;
     return {
       transform: [{ translateY: translateY.value }],
-      borderTopLeftRadius: 20 * (1 - p),
-      borderTopRightRadius: 20 * (1 - p),
       paddingTop: insets.top * p,
     };
   });
@@ -288,6 +286,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: SHEET_GLASS_BORDER,
   },
-  // Where the handle was: a little room so the header clears the corners.
-  top: { paddingTop: 8 },
+  // No room of its own above the header: the header's own 8pt top inset then
+  // matches its 8pt sides.
+  top: { paddingTop: 0 },
 });
