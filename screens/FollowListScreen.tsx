@@ -49,7 +49,7 @@ import { MINIMAL_HAIRLINE, MINIMAL_WASH } from "../theme/minimal";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import Icon from "../components/ui/Icon";
 import { FollowBackAllButton, FollowBackAllSheet, type FollowBackAllStage } from "../components/Follow/FollowBackAllSheet";
-import { playFollowBackChime } from "../libs/follow-back-chime";
+import { playFollowBackChime, preloadFollowBackChime } from "../libs/follow-back-chime";
 import { haptic } from "../libs/haptics";
 import { toastError, toastInfo } from "../libs/toast";
 
@@ -371,6 +371,10 @@ const FollowListScreen: React.FC = () => {
   // The shake + chime play once each time the button first shows, not per render.
   const [followBackNudgeKey, setFollowBackNudgeKey] = useState(0);
   const followBackAnnouncedRef = useRef(false);
+  /** Whether the confirm drawer is still up; closing it mid-run only hides it. */
+  const followBackSheetOpenRef = useRef(false);
+  const dataRef = useRef<FollowListItem[]>([]);
+  const hasMoreRef = useRef(true);
 
   // Viewer's own relationship to each listed account, keyed by lowercased address.
   const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
@@ -380,6 +384,8 @@ const FollowListScreen: React.FC = () => {
   // memoised row in the list instead of the one that changed.
   const relationshipsRef = useRef(relationships);
   relationshipsRef.current = relationships;
+  dataRef.current = data;
+  hasMoreRef.current = hasMore;
   // Follow taps never wait on the server. The row shows what was tapped at
   // once; `desiredFollowRef` holds the state the person last asked for and
   // `inFlightFollowRef` the rows with a call out, so a second tap while one is
@@ -404,6 +410,10 @@ const FollowListScreen: React.FC = () => {
 
   const isOwnFollowingList = isOwner && activeTab === "following";
   const isOwnFollowersList = isOwner && activeTab === "followers";
+  // Decode the chime before it is needed, so it plays on the tap that earns it.
+  useEffect(() => {
+    if (isOwnFollowersList) preloadFollowBackChime();
+  }, [isOwnFollowersList]);
 
   // Build tabs dynamically — only show "Requests" for own private profile
   const isPrivateAccount = authUser?.isPrivate === true;
@@ -672,11 +682,26 @@ const FollowListScreen: React.FC = () => {
     }
   }, []);
 
-  const recordFollowBack = useCallback(() => {
+  /**
+   * Counted on the tap, not when the server answers, so the button, its
+   * shake, the chime and the buzz all land on the same frame as the finger.
+   * Only announced when someone is still left to follow back.
+   */
+  const recordFollowBack = useCallback((tappedKey: string) => {
     followBackStreakRef.current += 1;
-    if (followBackStreakRef.current >= FOLLOW_BACK_ALL_REVEAL_THRESHOLD) {
-      setShowFollowBackAll(true);
-    }
+    if (followBackStreakRef.current < FOLLOW_BACK_ALL_REVEAL_THRESHOLD) return;
+    setShowFollowBackAll(true);
+    if (followBackAnnouncedRef.current) return;
+    const othersLeft = hasMoreRef.current || dataRef.current.some((item) => {
+      const key = lower(item.user.address);
+      const relationship = relationshipsRef.current[key];
+      return key !== tappedKey && !!relationship?.followsYou && !relationship.isFollowing && !relationship.isPending;
+    });
+    if (!othersLeft) return;
+    followBackAnnouncedRef.current = true;
+    playFollowBackChime();
+    haptic.press();
+    setFollowBackNudgeKey((key) => key + 1);
   }, []);
 
   /**
@@ -694,6 +719,7 @@ const FollowListScreen: React.FC = () => {
       const wantFollow = !(shown?.isFollowing || shown?.isPending);
       const isFollowBack = isOwnFollowersList && !!shown?.followsYou && wantFollow;
       if (!isFollowBack) followBackStreakRef.current = 0;
+      else recordFollowBack(key);
 
       // The row flips on this frame. Nothing else in the list changes.
       desiredFollowRef.current[key] = wantFollow;
@@ -722,7 +748,6 @@ const FollowListScreen: React.FC = () => {
               const res = await followUser(viewerAddress, target);
               serverPending = res.status === "pending";
               if (!serverPending) followingSetRef.current?.add(key);
-              if (isFollowBack) recordFollowBack();
             } else {
               await unfollowUser(viewerAddress, target);
               serverPending = false;
@@ -944,26 +969,34 @@ const FollowListScreen: React.FC = () => {
       toastInfo(t("follow.everyoneFollowedBack", "You already follow back everyone"));
       return;
     }
+    followBackSheetOpenRef.current = true;
     setFollowBackSheet({ stage: "confirm", candidates, followed: 0, failed: 0 });
   }, [findFollowBackCandidates, isFindingFollowBacks, isFollowingBackAll, isOwnFollowersList, t, viewerAddress]);
 
   const confirmFollowBackAll = useCallback(async () => {
     const candidates = followBackSheet?.candidates;
-    if (!candidates) return;
+    if (!candidates || isFollowingBackAll) return;
+    haptic.tap();
+    followBackSheetOpenRef.current = true;
     setFollowBackSheet({ stage: "working", candidates, followed: 0, failed: 0 });
     const result = await runFollowBackAll(candidates);
-    if (!result || result.followed === 0) {
-      setFollowBackSheet(null);
-      haptic.error();
-      toastError(null, t("follow.followBackAllFailed", "Could not follow anyone back"));
+    const ok = !!result && result.followed > 0;
+    if (ok) haptic.success();
+    else haptic.error();
+    // Closed while it worked: the sheet stays away and a toast says how it went.
+    if (!followBackSheetOpenRef.current) {
+      if (!ok) toastError(null, t("follow.followBackAllFailed", "Could not follow anyone back"));
+      else toastInfo(t("follow.followedBackCount", { count: result.followed, defaultValue: "Followed back {{count}} people" }));
       return;
     }
-    haptic.success();
-    setFollowBackSheet({ stage: "done", candidates, ...result });
-  }, [followBackSheet, runFollowBackAll, t]);
+    setFollowBackSheet(ok
+      ? { stage: "done", candidates, ...result }
+      : { stage: "failed", candidates, followed: 0, failed: candidates.length });
+  }, [followBackSheet, isFollowingBackAll, runFollowBackAll, t]);
 
   const closeFollowBackSheet = useCallback(() => {
-    setFollowBackSheet((current) => (current?.stage === "working" ? current : null));
+    followBackSheetOpenRef.current = false;
+    setFollowBackSheet(null);
   }, []);
 
   const handleRemoveFollower = useCallback((followerAddress: string) => {
@@ -1171,13 +1204,6 @@ const FollowListScreen: React.FC = () => {
   const followBackButtonVisible = isOwnFollowersList && showFollowBackAll
     && (hasVisibleFollowBacks || hasMore || isFollowingBackAll || isFindingFollowBacks);
 
-  // First time the button shows: a small shake and a soft chime, once.
-  useEffect(() => {
-    if (!followBackButtonVisible || followBackAnnouncedRef.current) return;
-    followBackAnnouncedRef.current = true;
-    setFollowBackNudgeKey((key) => key + 1);
-    playFollowBackChime();
-  }, [followBackButtonVisible]);
 
   return (
     <View

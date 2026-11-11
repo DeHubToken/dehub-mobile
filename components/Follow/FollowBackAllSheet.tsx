@@ -16,7 +16,7 @@ import PrimaryButton from "../ui/PrimaryButton";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useAppTheme } from "../../context/ThemeContext";
 
-export type FollowBackAllStage = "confirm" | "working" | "done";
+export type FollowBackAllStage = "confirm" | "working" | "done" | "failed";
 
 export interface FollowBackAllSheetProps {
   stage: FollowBackAllStage | null;
@@ -29,28 +29,28 @@ export interface FollowBackAllSheetProps {
   onClose: () => void;
 }
 
-/** How long the "done" sheet stays before it tucks itself away. */
-const DONE_LINGER_MS = 2600;
-
 /**
  * The small drawer "Follow back all" raises: how many people, a tap to
  * confirm, progress, then a tick. Same copy and steps as web
  * (components/app/profile/FollowBackAllSheet.tsx).
+ *
+ * It never leaves on its own: every stage has a button, the result stays up
+ * until it is tapped away, and a failure says so here with Try again rather
+ * than the sheet vanishing. Closing it while it works only hides it; the
+ * follows carry on and the bar above the list shows the count.
  */
 export function FollowBackAllSheet({ stage, count, completed, followed, failed, onConfirm, onClose }: FollowBackAllSheetProps) {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (stage !== "done") return;
-    const timer = setTimeout(onClose, DONE_LINGER_MS);
-    return () => clearTimeout(timer);
-  }, [stage, onClose]);
-
   const title = stage === "done"
     ? t("follow.followedBackCount", { count: followed, defaultValue: "Followed back {{count}} people" })
-    : t("follow.followBackConfirmTitle", { count, defaultValue: "Follow back {{count}} people?" });
+    : stage === "failed"
+      ? t("follow.followBackAllFailed", "Could not follow anyone back")
+      : t("follow.followBackConfirmTitle", { count, defaultValue: "Follow back {{count}} people?" });
 
-  const body = stage === "done"
+  const body = stage === "failed"
+    ? t("follow.followBackConfirmBody", "They already follow you. Private accounts get a follow request.")
+    : stage === "done"
     ? (failed > 0
       ? t("follow.followedBackSome", { defaultValue: "Followed back {{followed}} people; {{failed}} failed", followed, failed })
       : t("follow.followBackDoneBody", "You can find them all in Following."))
@@ -61,10 +61,12 @@ export function FollowBackAllSheet({ stage, count, completed, followed, failed, 
   const progress = count > 0 ? Math.min(1, completed / count) : 0;
 
   return (
-    <GlassModal visible={!!stage} onClose={stage === "working" ? () => {} : onClose} presentation="bottom">
+    <GlassModal visible={!!stage} onClose={onClose} presentation="bottom">
       <View style={s.body} testID={`follow-back-all-${stage ?? "closed"}`}>
         <View style={s.tile}>
-          <Icon name={stage === "done" ? "Check" : "UserPlus"} size={32} color="#FFFFFF" />
+          {stage === "working"
+            ? <ActivityIndicator size="small" color="#FFFFFF" />
+            : <Icon name={stage === "done" ? "Check" : "UserPlus"} size={32} color="#FFFFFF" />}
         </View>
         <Text style={s.title}>{title}</Text>
         <Text style={s.copy} accessibilityLiveRegion="polite">{body}</Text>
@@ -79,6 +81,19 @@ export function FollowBackAllSheet({ stage, count, completed, followed, failed, 
               <PrimaryButton large title={t("follow.followBackConfirm", "Follow back")} onPress={onConfirm} />
               <TouchableOpacity onPress={onClose} accessibilityRole="button" style={s.ghost}>
                 <Text style={s.ghostText}>{t("follow.followBackNotNow", "Not now")}</Text>
+              </TouchableOpacity>
+            </>
+          )}
+          {stage === "working" && (
+            <TouchableOpacity onPress={onClose} accessibilityRole="button" style={s.ghost} testID="follow-back-all-hide">
+              <Text style={s.ghostText}>{t("common.close", "Close")}</Text>
+            </TouchableOpacity>
+          )}
+          {stage === "failed" && (
+            <>
+              <PrimaryButton large title={t("common.tryAgain", "Try again")} onPress={onConfirm} />
+              <TouchableOpacity onPress={onClose} accessibilityRole="button" style={s.ghost}>
+                <Text style={s.ghostText}>{t("common.close", "Close")}</Text>
               </TouchableOpacity>
             </>
           )}

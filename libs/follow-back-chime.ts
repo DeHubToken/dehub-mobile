@@ -19,15 +19,33 @@ let player: AudioPlayer | null = null;
 /** Quiet on purpose: this is a nudge, not a notification. */
 const VOLUME = 0.35;
 
+function ensurePlayer(): AudioPlayer {
+  if (!player) {
+    player = createAudioPlayer(require("../assets/sounds/follow-back.wav"));
+    player.volume = VOLUME;
+  }
+  return player;
+}
+
+/**
+ * Load the clip ahead of time. The first play otherwise waits on the asset
+ * being read and decoded, which is what made the chime trail the buzz.
+ */
+export function preloadFollowBackChime(): void {
+  try {
+    ensurePlayer();
+  } catch {
+    // A UI sound is never worth an exception reaching the caller.
+  }
+}
+
 /** Play the chime once. Safe to call from anywhere. */
 export function playFollowBackChime(): void {
   try {
-    if (!player) {
-      player = createAudioPlayer(require("../assets/sounds/follow-back.wav"));
-      player.volume = VOLUME;
-    }
-    player.seekTo(0);
-    player.play();
+    const p = ensurePlayer();
+    // Already at the start on a fresh player; seeking first would wait a beat.
+    if (p.currentTime > 0) p.seekTo(0);
+    p.play();
   } catch {
     // A UI sound is never worth an exception reaching the caller.
   }
