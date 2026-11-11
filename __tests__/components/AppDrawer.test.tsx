@@ -87,7 +87,7 @@ const destinations = [
   ['nav.events', 'Events'], ['nav.stages', 'Stages'], ['nav.featureRequests', 'FeatureRequests'],
   ['nav.staking', 'Dpay', false, { initialTab: 'stake' }], ['nav.superpowers', 'SuperPowers'],
   ['nav.governance', 'Governance'], ['nav.dao', 'Dao'], ['screens.work', 'Work'],
-  ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.stores', 'Stores'], ['screens.usernames', 'Usernames'], ['nav.fractions', 'Fractions'], ['screens.accounts', 'Accounts'],
+  ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.usernames', 'Usernames'], ['nav.fractions', 'Fractions'], ['screens.accounts', 'Accounts'],
   ['nav.agents', 'Agents'], ['nav.ads', 'Ads'], ['nav.tv', 'TV'], ['nav.arcade', 'Arcade'],
   ['nav.converter', 'Converter'], ['nav.migrate', 'Migrate'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
   ['nav.connectAi', 'Connect'],

@@ -6381,7 +6381,7 @@
     "slugTaken": "该社区网址已被占用",
     "createFailed": "创建社区失败",
     "sort": {
-      "top": "排行",
+      "top": "热门",
       "new": "最新",
       "hot": "热门"
     },

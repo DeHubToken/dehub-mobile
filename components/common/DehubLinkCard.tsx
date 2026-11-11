@@ -32,7 +32,6 @@ import { supabase } from '../../services/supabase';
 import { fetchAppBySlug } from '../../services/miniapps.service';
 import { getCommunityBySlug, previewCommunityInvite } from '../../services/communities.service';
 import { getAccount } from '../../services/user.service';
-import { useStoreById, useStoreListing } from '../../hooks/useStores';
 import { getAvatarUrl } from '../../libs/misc';
 import { formatCompactNumber } from '../../libs/numbers.util';
 import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
@@ -277,58 +276,6 @@ const InviteCardEmbed: React.FC<{ code: string; onOpen: () => void; fallback: Re
       bannerUri={data.banner_url}
       fallbackIcon="Ticket"
       cta={t('communities.join')}
-      onPress={onOpen}
-    />
-  );
-};
-
-const StoreCardEmbed: React.FC<{ storeId: string; onOpen: () => void; fallback: React.ReactElement }> = ({
-  storeId,
-  onOpen,
-  fallback,
-}) => {
-  const { t } = useTranslation();
-  const { data, isLoading, isError } = useStoreById(storeId);
-
-  if (isLoading) return <SkeletonCard />;
-  if (isError || !data) return fallback;
-
-  return (
-    <RowCard
-      eyebrow={t('stores.store')}
-      title={data.name || t('stores.store')}
-      subtitle={data.description || undefined}
-      imageUri={data.avatar_url}
-      bannerUri={data.banner_url}
-      fallbackIcon="Store"
-      onPress={onOpen}
-    />
-  );
-};
-
-const ListingCardEmbed: React.FC<{ listingId: string; onOpen: () => void; fallback: React.ReactElement }> = ({
-  listingId,
-  onOpen,
-  fallback,
-}) => {
-  const { t } = useTranslation();
-  const { data, isLoading, isError } = useStoreListing(listingId);
-
-  if (isLoading) return <SkeletonCard />;
-  if (isError || !data) return fallback;
-
-  const images = Array.isArray(data.images) ? (data.images as string[]) : [];
-  const price = Number(data.price) || 0;
-  const soldOut = data.stock_quantity === 0;
-
-  return (
-    <RowCard
-      eyebrow={data.stores?.name || t('linkCard.item')}
-      title={data.title}
-      subtitle={`$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${soldOut ? ` · ${t('linkCard.soldOut')}` : ''}`}
-      imageUri={images[0]}
-      fallbackIcon="Image"
-      dimmed={soldOut}
       onPress={onOpen}
     />
   );
@@ -700,12 +647,6 @@ export function useOpenDehubLink() {
         case 'communityInvite':
           navigation.navigate(ScreenNames.CommunityInvite, { code: link.code });
           return;
-        case 'store':
-          navigation.navigate(ScreenNames.StoreDetail, { storeId: link.storeId });
-          return;
-        case 'listing':
-          navigation.navigate(ScreenNames.ListingDetail, { listingId: link.listingId });
-          return;
         case 'event':
           // There is no per-event screen on mobile yet; the list is where an
           // event link can actually land, and it beats a dead tap.
@@ -830,12 +771,6 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       break;
     case 'communityInvite':
       card = <InviteCardEmbed code={link.code!} onOpen={open} fallback={fallback} />;
-      break;
-    case 'store':
-      card = <StoreCardEmbed storeId={link.storeId!} onOpen={open} fallback={fallback} />;
-      break;
-    case 'listing':
-      card = <ListingCardEmbed listingId={link.listingId!} onOpen={open} fallback={fallback} />;
       break;
     case 'event':
       card = <EventCardEmbed eventNumber={link.eventNumber!} onOpen={open} fallback={fallback} />;

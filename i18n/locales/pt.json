@@ -6508,7 +6508,7 @@
     "slugTaken": "Esse URL de comunidade já está ocupado",
     "createFailed": "Não foi possível criar a comunidade",
     "sort": {
-      "top": "Superior",
+      "top": "Top",
       "new": "Novo",
       "hot": "Em alta"
     },

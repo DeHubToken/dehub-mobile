@@ -145,7 +145,6 @@ const NAV_ITEMS: DrawerItem[] = [
   // Search-only on the web sidebar; here it sits beside Careers, which links
   // to it for the ambassador role.
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
-  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "ChartPie", labelKey: "nav.fractions", screen: ScreenNames.Fractions, storefrontHidden: true },
   // The NFT market is the Fractions screen's NFTs tab. Android reaches it
   // from the Fractions row (this one only shows for a menu search like
@@ -201,7 +200,7 @@ const ICON_KEYS: Record<string, string> = {
   "nav.stats": "stats", "nav.bookmarks": "bookmarks", "nav.command": "command", "nav.events": "events",
   "stats.feedback.title": "messages", "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
-  "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
+  "screens.work": "bounties", "nav.careers": "careers",
   "nav.fractions": "fractions", "nav.nfts": "nfts", "screens.usernames": "usernames", "screens.accounts": "accounts",
   "nav.ads": "ads", "nav.tv": "tv", "nav.arcade": "arcade", "miniApps.store.title": "stores", "nav.glossary": "glossary", "nav.bridge": "bridge",
   "nav.wallet": "buy", "creatorPacks.title": "images", "nav.affiliate": "subscriptions",

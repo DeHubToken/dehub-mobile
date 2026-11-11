@@ -45,9 +45,9 @@ describe('platform comparison catalogue', () => {
     const documented = FEATURES.filter(feature => !rivalIds.has(feature.id));
     expect([...REVIEWED_FEATURE_IDS].sort()).toEqual(documented.map(feature => feature.id).sort());
     for (const feature of documented) for (const platform of PLATFORMS) expect(feature.peers[platform.id]?.source).toBeTruthy();
-    expect(comparisonCoverage('all').reviewed).toBe(534 * 11);
-    expect(FEATURES).toHaveLength(850);
-    expect(comparisonCoverage('all').total).toBe(850 * 11);
+    expect(comparisonCoverage('all').reviewed).toBe(531 * 11);
+    expect(FEATURES).toHaveLength(847);
+    expect(comparisonCoverage('all').total).toBe(847 * 11);
     expect(researchedEntry('future-capability', 'Future', 'Video editing', 'youtube')).toBeUndefined();
     expect(entryFor(FEATURES.find(feature => feature.id === 'encrypted-attachments')!, 'x').status).toBe('limited');
     expect(entryFor(FEATURES.find(feature => feature.id === 'stage-dub')!, 'youtube').status).toBe('announced');
@@ -68,12 +68,12 @@ describe('platform comparison catalogue', () => {
   it('matches the public social and missing-feature views without claiming unknown means no', () => {
     const social = FEATURES.filter(feature => inComparisonView(feature, 'social'));
     const lacking = FEATURES.filter(feature => inComparisonView(feature, 'lacks'));
-    expect(social).toHaveLength(686);
+    expect(social).toHaveLength(683);
     expect(lacking).toHaveLength(257);
-    expect(featureTotals().dehub.yes).toBe(593);
-    expect(featureTotals().youtube.yes).toBe(293);
-    expect(featureTotals(social).dehub.yes).toBe(429);
-    expect(featureTotals(social).youtube.yes).toBe(281);
+    expect(featureTotals().dehub.yes).toBe(590);
+    expect(featureTotals().youtube.yes).toBe(291);
+    expect(featureTotals(social).dehub.yes).toBe(426);
+    expect(featureTotals(social).youtube.yes).toBe(279);
     expect(lacking.every(feature => markFor(feature.dehub) !== 'yes')).toBe(true);
     expect(markFor({ status: 'not_documented', note: 'Not established.' })).toBe('unknown');
     expect(markFor({ status: 'announced', note: 'Future pilot.' })).toBe('partial');

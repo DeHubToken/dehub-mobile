@@ -221,7 +221,6 @@ const CATALOGUE: ComparisonFeature[] = [
     ['launchpad', 'Token launchpad', 'Create and discover supported token launches.', {}, true],
     ['usernames', 'Username marketplace', 'Trade supported usernames through the marketplace.', {}, true],
     ['accounts', 'Account marketplace', 'A marketplace for supported account transfers.', {}, true],
-    ['stores', 'Creator stores', 'Publish store listings and sell to your audience.', { facebook: e('fbMarketplace', 'Marketplace listings and seller tools.'), farcaster: e('fcApps', 'Commerce can be delivered inside mini apps.', 'ecosystem') }, true],
     ['work', 'Work and bounty listings', 'Publish tasks and accept submissions.', { facebook: e('fbJobs', 'Local job listings in supported markets; not escrow bounties.', 'limited') }, true],
     ['escrow', 'Bounty escrow and disputes', 'Fund eligible work with escrow and a dispute flow.', {}, true],
     ['governance', 'Community governance', 'Submit proposals and participate in platform governance.'],

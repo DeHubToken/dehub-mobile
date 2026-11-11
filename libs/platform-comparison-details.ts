@@ -365,9 +365,7 @@ export const DETAIL_GROUPS: DetailGroup[] = [
     ['wallet-backup', 'Wallet backup tools', 'Use the supported recovery or key-backup tools for the account’s wallet type.'],
     ['wallet-import', 'Import an existing wallet', 'Use supported import routes for a wallet you control.'],
   ] },
-  { category: 'Ownership and commerce', web: 'src/pages/app/StoreDetailPage.tsx', mobile: 'screens/StoreDetailScreen.tsx', paid: true, rows: [
-    ['store-branding', 'Branded creator storefronts', 'Configure supported store identity and listings.'],
-    ['store-reviews', 'Store reviews', 'Read or submit supported store feedback.'],
+  { category: 'Ownership and commerce', web: 'src/components/app/live/ShopBoard.tsx', mobile: 'components/common/ShopBoard.tsx', paid: true, rows: [
     ['store-product-links', 'Product links on posts', 'Attach supported listings or affiliate links to content.'],
     ['stream-shopping', 'Live stream shopping', 'Surface supported products alongside a live broadcast.'],
     ['merch', 'Print-on-demand merchandise', 'Use supported merchandise listing or fulfilment integrations.'],

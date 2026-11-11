@@ -17,7 +17,7 @@ const REVIEW: Record<PlatformId, string> = {
     subs gated-posts tips ad-revenue cashout ad-creative? ad-targeting? ad-budget? ad-reporting?
     communities community-admin packs smart-replies?
     generate-image? generate-video generate-music timeline? captions transitions? background remix presets audio-cleanup? record learning
-    stores store-branding store-product-links stream-shopping merch?
+    store-product-links stream-shopping merch?
     embeds rss podcast-import assistant
     reply-control post-visibility content-warning mute-block muted-words report notifications kids themes multi-account passkeys social-login delete
     tv? music? cinema? film-search? arcade earnings-dashboard ads? feedback guide
@@ -65,7 +65,7 @@ const REVIEW: Record<PlatformId, string> = {
     subs gated-posts ppv tips ad-revenue cashout ad-creative ad-targeting ad-budget ad-reporting
     communities community-events community-admin community-private community-chat community-invites dm groups encrypted-text chat-media voice-notes chat-polls calls chat-reactions message-edit
     generate-image? record
-    stores store-reviews work?
+    work?
     embeds cross-post assistant
     reply-control post-visibility alt-text mute-block muted-words report notifications kids? themes multi-account passkeys social-login delete
     arcade earnings-dashboard ads feedback guide event-pages event-community
@@ -81,7 +81,7 @@ const REVIEW: Record<PlatformId, string> = {
     subs gated-posts tips? ad-revenue? cashout ad-creative ad-targeting ad-budget ad-reporting
     communities? dm groups chat-media voice-notes chat-polls calls chat-reactions message-edit message-access chat-search
     captions transitions presets background remix record
-    stores store-product-links
+    store-product-links
     embeds cross-post assistant
     reply-control post-visibility alt-text mute-block muted-words report notifications kids? themes multi-account passkeys social-login delete
     earnings-dashboard ads feedback
@@ -97,7 +97,7 @@ const REVIEW: Record<PlatformId, string> = {
     subs gated-posts ppv tips ad-revenue affiliate? cashout watch-rewards? ad-creative ad-targeting ad-budget ad-reporting
     dm groups chat-media voice-notes chat-reactions packs
     generate-image? generate-video? timeline? captions transitions background remix presets audio-cleanup record learning
-    stores store-reviews store-product-links stream-shopping
+    store-product-links stream-shopping
     embeds assistant?
     reply-control post-visibility alt-text mute-block muted-words report notifications kids themes multi-account passkeys social-login delete
     arcade earnings-dashboard ads feedback

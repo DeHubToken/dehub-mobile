@@ -375,11 +375,6 @@ function AppNavigatorContent() {
           name={ScreenNames.FeatureRequests}
           getComponent={() => deferredScreen('../screens/FeatureRequestsScreen#default', () => require("../screens/FeatureRequestsScreen").default)}
         />
-        {/* Marketplace is browsable signed-out; buying prompts sign-in. */}
-        <Stack.Screen
-          name={ScreenNames.Stores}
-          getComponent={() => storefrontRoute(deferredScreen('../screens/StoresScreen#default', () => require("../screens/StoresScreen").default), "/stores")}
-        />
         {/* Handle marketplace — same posture: browse signed-out, buy signs in. */}
         <Stack.Screen
           name={ScreenNames.Usernames}
@@ -420,14 +415,6 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.BuilderPreview}
           getComponent={() => storefrontRoute(deferredScreen('../screens/BuilderPreviewScreen#default', () => require("../screens/BuilderPreviewScreen").default), "/app/builder")}
-        />
-        <Stack.Screen
-          name={ScreenNames.StoreDetail}
-          getComponent={() => storefrontRoute(deferredScreen('../screens/StoreDetailScreen#default', () => require("../screens/StoreDetailScreen").default), (p) => `/stores/${encodeURIComponent(String(p?.storeId ?? ""))}${p?.listing ? `?listing=${encodeURIComponent(String(p.listing))}` : ""}`)}
-        />
-        <Stack.Screen
-          name={ScreenNames.ListingDetail}
-          getComponent={() => storefrontRoute(deferredScreen('../screens/ListingDetailScreen#default', () => require("../screens/ListingDetailScreen").default), "/stores")}
         />
         {/* Bounties: browsing is open, posting/applying prompts sign-in
             (same as web, which lets you fill the form then gates on submit). */}

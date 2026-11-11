@@ -27,7 +27,7 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
-import { PageEmpty, PageSection, useFlatPage } from "../components/page/PageKit";
+import { PageEmpty } from "../components/page/PageKit";
 import CashtagSheet from "../components/Home/CashtagSheet";
 import { theme } from "../theme";
 import { useTranslation } from "react-i18next";
@@ -72,16 +72,14 @@ const AssetBadge: React.FC<{ asset: UnifiedAsset }> = ({ asset }) => {
   );
 };
 
-const ChangeBadge: React.FC<{ value: number | null; small?: boolean }> = ({ value, small }) => {
+/** The day's move as plain coloured text, the way web's phone list shows it. */
+const ChangeText: React.FC<{ value: number | null }> = ({ value }) => {
   if (value == null) return <Text style={styles.dim}>—</Text>;
   const up = value >= 0;
   return (
-    <View style={[styles.changePill, { backgroundColor: up ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.12)" }]}>
-      <Icon name={up ? "TrendingUp" : "TrendingDown"} size={small ? 10 : 11} color={up ? "#F4F4F5" : "#8B8D90"} />
-      <Text style={[styles.changeText, { color: up ? "#F4F4F5" : "#8B8D90", fontSize: small ? 10.5 : 11.5 }]}>
-        {Math.abs(value).toFixed(2)}%
-      </Text>
-    </View>
+    <Text className={up ? "text-theme-green-400" : "text-theme-red-400"} style={styles.changeText}>
+      {up ? "+" : ""}{value.toFixed(2)}%
+    </Text>
   );
 };
 
@@ -90,12 +88,9 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
   rank,
   onPress,
 }) => {
-  // Canvas themes stack the rows as small cards; System and minimal run them
-  // edge to edge between hairlines.
-  const flat = useFlatPage();
+  // One clean line per asset on every theme: no cards, one gutter.
   return (
   <Pressable onPress={onPress}>
-    <PageSection flush style={flat ? undefined : styles.rowFrame}>
     <View style={styles.row}>
     <Text style={styles.rank}>{rank}</Text>
     <AssetBadge asset={asset} />
@@ -107,12 +102,11 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
         {asset.symbol.toUpperCase()} · {formatLargeNumber(asset.marketCap)}
       </Text>
     </View>
-    <View style={{ alignItems: "flex-end", gap: 4 }}>
+    <View style={{ alignItems: "flex-end", gap: 2 }}>
       <Text style={styles.price}>{formatPrice(asset.price)}</Text>
-      <ChangeBadge value={asset.change24h} small />
+      <ChangeText value={asset.change24h} />
     </View>
     </View>
-    </PageSection>
   </Pressable>
   );
 };
@@ -255,37 +249,27 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
-  rowFrame: { marginBottom: 6 },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
-    paddingVertical: 11,
-    paddingHorizontal: 14,
+    gap: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
-  rank: { color: "#A1A1AA", fontSize: 11.5, fontWeight: "700", width: 24 },
+  rank: { color: "#A1A1AA", fontSize: 13, fontWeight: "600", width: 24, textAlign: "center", fontVariant: ["tabular-nums"] },
   badge: {
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     borderRadius: 999,
     alignItems: "center",
     justifyContent: "center",
   },
   badgeText: { color: "#FFFFFF", fontSize: 10.5, fontWeight: "800" },
 
-  name: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
-  symbol: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
-  price: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700" },
-
-  changePill: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 3,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
-  },
-  changeText: { fontWeight: "700" },
+  name: { color: "#FFFFFF", fontSize: 15, fontWeight: "600" },
+  symbol: { color: "#A1A1AA", fontSize: 12.5, marginTop: 1 },
+  price: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", fontVariant: ["tabular-nums"] },
+  changeText: { fontSize: 12.5, fontWeight: "600", fontVariant: ["tabular-nums"] },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60, gap: 10 },
   dim: { color: "#808089", fontSize: 12.5, textAlign: "center" },

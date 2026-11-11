@@ -9,7 +9,6 @@ import { supabase } from "../../services/supabase";
 import { getNFT } from "../../services/nft.service";
 import { getCommunityBySlug, previewCommunityInvite } from "../../services/communities.service";
 import { getAccount } from "../../services/user.service";
-import { useStoreById, useStoreListing } from "../../hooks/useStores";
 import { usePoll } from "../../hooks/usePolls";
 import { fetchLinkPreview, getLinkPreviewImage, peekLinkPreview } from "../../libs/link-preview";
 import { storageImageSource } from "../../libs/cdnImage";
@@ -324,32 +323,6 @@ const InviteFace = ({ code, chip, fallback, palette }: FaceProps & { code: strin
   );
 };
 
-const ListingFace = ({ listingId, chip, fallback, palette }: FaceProps & { listingId: string }) => {
-  const { data } = useStoreListing(listingId);
-  const d: any = data;
-  if (!d) return fallback;
-  const images = Array.isArray(d.images) ? (d.images as string[]) : [];
-  const price = Number(d.price) || 0;
-  return (
-    <CoverFace
-      kind="shop"
-      chip={chip}
-      palette={palette}
-      title={d.title}
-      sub={price > 0 ? `$${price.toLocaleString(undefined, { maximumFractionDigits: 2 })}` : d.stores?.name}
-      cover={coverImage(images[0])}
-    />
-  );
-};
-
-const StoreFace = ({ storeId, chip, fallback, palette }: FaceProps & { storeId: string }) => {
-  const { t } = useTranslation();
-  const { data } = useStoreById(storeId);
-  const d: any = data;
-  if (!d) return fallback;
-  return <CoverFace kind="shop" chip={chip} palette={palette} title={d.name || t("stores.store", "Store")} cover={coverImage(d.banner_url || d.avatar_url)} />;
-};
-
 const ProfileFace = ({ username, chip, fallback, palette }: FaceProps & { username: string }) => {
   const { data } = useQuery({ queryKey: ["dehub-link", "profile", username.toLowerCase()], queryFn: () => getAccount(username), staleTime: 5 * 60_000 });
   const user: any = (data as any)?.result ?? data;
@@ -393,8 +366,7 @@ function GridCardFaceComponent({ card, tokenId, item, ...face }: GridCardFacePro
       if (link?.code) return <InviteFace {...face} code={link.code} />;
       return link?.slug ? <CommunityFace {...face} slug={link.slug} /> : face.fallback;
     case "shop":
-      if (link?.listingId) return <ListingFace {...face} listingId={link.listingId} />;
-      return link?.storeId ? <StoreFace {...face} storeId={link.storeId} /> : face.fallback;
+      return face.fallback;
     case "profile":
       return link?.username ? <ProfileFace {...face} username={link.username} /> : face.fallback;
     case "link":

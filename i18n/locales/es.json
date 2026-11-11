@@ -4441,7 +4441,7 @@
     "slugTaken": "Esa URL de comunidad ya está ocupada",
     "createFailed": "No se pudo crear la comunidad",
     "sort": {
-      "top": "Superior",
+      "top": "Top",
       "new": "Nuevo",
       "hot": "Popular"
     },

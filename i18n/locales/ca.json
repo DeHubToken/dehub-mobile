@@ -6452,7 +6452,7 @@
     "slugTaken": "Aquesta URL de comunitat ja està ocupada",
     "createFailed": "No s'ha pogut crear la comunitat",
     "sort": {
-      "top": "A dalt",
+      "top": "Top",
       "new": "Nou",
       "hot": "Popular"
     },

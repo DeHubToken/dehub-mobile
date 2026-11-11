@@ -45,6 +45,7 @@ import {
   type SuperPowerInfo,
 } from "../services/superpower.service";
 import SuperPowerIcon from "../components/common/SuperPowerIcon";
+import { ExploreSection, exploreRowStyles as row } from "../components/Search/ExploreSection";
 import BuyDhbSheet from "../components/Dpay/BuyDhbSheet";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 
@@ -152,10 +153,12 @@ export default function SuperPowersScreen() {
         </PageSection>
 
         {/* ── The twelve powers ────────────────────────────────────────── */}
-        <PageSection title={t("superpowers.twelvePowers")}>
-        <View style={styles.powerGrid}>
-          {powers.map((power, index) => {
-            // Held AND built. A locked card stays inert rather than opening a
+        {/* One clean line per power, like Explore: icon, name over its
+            summary, and what you have on the right. Tap to use, hold for
+            past usage. */}
+        <ExploreSection icon="superpowers" title={t("superpowers.twelvePowers")}>
+          {powers.map((power) => {
+            // Held AND built. A locked row stays inert rather than opening a
             // picker for something the server would refuse.
             const isTeamUp = power.key === "team_up";
             const unlockBadge = badgeImage(power.tier);
@@ -167,70 +170,42 @@ export default function SuperPowersScreen() {
                 ? (status?.signalsLeft ?? status?.boostsLeft)
                 : status?.boostsLeft;
             return (
-              <View
+              <Pressable
                 key={power.key}
-                style={[styles.powerCard, unlocked && styles.powerCardOn]}
+                disabled={!unlocked && !(status?.tier && !isTeamUp)}
+                onPress={unlocked ? () => (isTeamUp ? setTeamUpOpen(true) : setSpending(power)) : undefined}
+                onLongPress={!isTeamUp && status?.tier ? () => { setHistoryPower(power); void refetchStatus(); } : undefined}
+                accessibilityRole="button"
+                accessibilityHint={!isTeamUp && status?.tier ? t("superpowers.showPastUsage", { power: power.label }) : undefined}
+                style={({ pressed }) => [row.row, pressed && unlocked && styles.powerRowPressed]}
               >
-                <Pressable
-                  disabled={!unlocked}
-                  onPress={() => isTeamUp ? setTeamUpOpen(true) : setSpending(power)}
-                  style={({ pressed }) => [styles.powerBody, pressed && unlocked && styles.powerBodyPressed]}
-                >
-                  <View style={styles.powerTop}>
-                    <SuperPowerIcon power={power.key} style={styles.powerIcon} />
-                    {/* Numbered because this is a fixed, ordered power list. */}
-                    <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
-                    <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
-                      {power.label}
-                    </Text>
-                    <Icon
-                      name={isTeamUp && unlocked ? "Users" : unlocked ? "Check" : "Lock"}
-                      size={13}
-                      color={unlocked ? "#F4F4F5" : "#52525B"}
-                    />
-                  </View>
-                  <Text style={styles.powerSummary}>{power.summary}</Text>
-                  {!isTeamUp && !!unlockBadge ? (
-                    <View style={styles.unlockTier}>
-                      <Text style={styles.unlockTierLabel}>{t("superpowers.unlocksAt")}</Text>
-                      <Image source={unlockBadge} style={styles.unlockBadge} resizeMode="contain" />
-                      <Text style={styles.unlockTierName}>{power.tier}</Text>
-                    </View>
-                  ) : null}
-                </Pressable>
-                <View style={styles.powerFooter}>
-                  <Text style={[styles.powerCount, !unlocked && styles.powerCountOff]}>
-                    {isTeamUp && unlocked
-                      ? t("superpowers.openToEveryone")
-                      : unlocked && allowance !== undefined
-                      ? t("superpowers.usesLeft", { count: allowance })
-                      : !power.available
-                        ? t("screens.comingSoon")
-                        : t("superpowers.locked")}
+                <SuperPowerIcon power={power.key} style={[styles.powerIcon, !unlocked && styles.powerIconOff]} />
+                <View style={row.flex}>
+                  <Text className={unlocked ? "text-white" : "text-theme-neutrals-400"} style={row.name} numberOfLines={1}>
+                    {power.label}
                   </Text>
-                  {!isTeamUp ? <Pressable
-                    onPress={() => {
-                      setHistoryPower(power);
-                      void refetchStatus();
-                    }}
-                    disabled={!status?.tier}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("superpowers.showPastUsage", { power: power.label })}
-                    style={({ pressed }) => [
-                      styles.historyLink,
-                      !status?.tier && styles.historyLinkDisabled,
-                      pressed && styles.historyLinkPressed,
-                    ]}
-                  >
-                    <Text style={styles.historyLinkText}>{t("superpowers.pastUsage")}</Text>
-                    <Icon name="ChevronRight" size={14} color="#A1A1AA" />
-                  </Pressable> : null}
+                  <Text className="text-theme-neutrals-500" style={row.sub} numberOfLines={1}>
+                    {power.summary}
+                  </Text>
                 </View>
-              </View>
+                {isTeamUp && unlocked ? (
+                  <Text style={styles.powerTrail}>{t("superpowers.openToEveryone")}</Text>
+                ) : unlocked && allowance !== undefined ? (
+                  <Text style={styles.powerCount}>{allowance}</Text>
+                ) : !power.available ? (
+                  <Text style={styles.powerTrailOff}>{t("screens.comingSoon")}</Text>
+                ) : unlockBadge ? (
+                  <View style={styles.unlockTier}>
+                    <Icon name="Lock" size={12} color="#71717A" />
+                    <Image source={unlockBadge} style={styles.unlockBadge} resizeMode="contain" />
+                  </View>
+                ) : (
+                  <Icon name="Lock" size={14} color="#52525B" />
+                )}
+              </Pressable>
             );
           })}
-        </View>
-        </PageSection>
+        </ExploreSection>
 
         {/* ── The ladder ───────────────────────────────────────────────── */}
         <PageSection title={t("superpowers.whatEachTierGrants")}>
@@ -431,47 +406,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  powerGrid: { gap: 8 },
-  powerCard: {
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
-    backgroundColor: "rgba(255,255,255,0.02)",
-    borderRadius: 14,
-    overflow: "hidden",
-  },
-  powerCardOn: {
-    borderColor: "rgba(255,255,255,0.2)",
-    backgroundColor: "rgba(255,255,255,0.05)",
-  },
-  powerBody: { padding: 14, paddingBottom: 12, gap: 5 },
-  powerBodyPressed: { backgroundColor: "rgba(255,255,255,0.06)" },
-  powerTop: { flexDirection: "row", alignItems: "center", gap: 8 },
-  powerIcon: { width: 32, height: 32 },
-  rung: { color: "#52525B", fontSize: 11 },
-  powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
-  powerNameOff: { color: "#A1A1AA" },
-  unlockTier: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", gap: 5 },
-  unlockTierLabel: { color: "#A1A1AA", fontSize: 10 },
-  unlockBadge: { width: 24, height: 24 },
-  unlockTierName: { color: "#D4D4D8", fontSize: 10 },
-  powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
-  powerFooter: {
-    minHeight: 44,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderTopColor: "rgba(255,255,255,0.1)",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 12,
-  },
-  powerCount: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
-  powerCountOff: { color: "#71717A" },
-  historyLink: { flexDirection: "row", alignItems: "center", gap: 2 },
-  historyLinkDisabled: { opacity: 0.35 },
-  historyLinkPressed: { opacity: 0.65 },
-  historyLinkText: { color: "#A1A1AA", fontSize: 12 },
+  powerRowPressed: { opacity: 0.7 },
+  powerIcon: { width: 36, height: 36 },
+  powerIconOff: { opacity: 0.6 },
+  unlockTier: { flexDirection: "row", alignItems: "center", gap: 4 },
+  unlockBadge: { width: 28, height: 28 },
+  powerTrail: { color: "#D4D4D8", fontSize: 12, fontWeight: "600" },
+  powerTrailOff: { color: "#71717A", fontSize: 12 },
+  powerCount: { color: "#F4F4F5", fontSize: 13, fontWeight: "600", fontVariant: ["tabular-nums"] },
 
   historySheet: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 32 },
   historyHeader: {

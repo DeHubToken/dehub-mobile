@@ -4629,7 +4629,7 @@
     "slugTaken": "Die community-URL is al bezet",
     "createFailed": "Community aanmaken mislukt",
     "sort": {
-      "top": "Boven",
+      "top": "Top",
       "new": "Nieuw",
       "hot": "Populair"
     },

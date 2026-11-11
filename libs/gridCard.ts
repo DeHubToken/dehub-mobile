@@ -23,8 +23,6 @@ const LINK_KIND: Partial<Record<DehubLinkKind, GridCardKind>> = {
   event: "event",
   community: "community",
   communityInvite: "community",
-  store: "shop",
-  listing: "shop",
   post: "sharedPost",
   profile: "profile",
   film: "film",

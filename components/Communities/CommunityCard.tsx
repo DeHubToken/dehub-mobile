@@ -29,7 +29,7 @@ function formatRelativeTime(dateString: string, t: TFunction): string {
 
 const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, isLight } = useAppTheme();
   const isOwner = role === "owner";
   // The banner fills the full-width row behind the text.
   const { width: rowWidth } = useWindowDimensions();
@@ -43,7 +43,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
             style={styles.bannerBg}
             contentFit="cover"
           />
-          <View style={styles.bannerScrim} />
+          <View style={[styles.bannerScrim, isLight && styles.bannerScrimLight]} />
         </>
       )}
       <View style={styles.avatarWrap}>
@@ -64,7 +64,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
               <Text style={styles.ownerText}>{t("communities.owner")}</Text>
             </View>
           )}
-          <View style={styles.timeBadge}>
+          <View style={[styles.timeBadge, isLight && styles.timeBadgeLight]}>
             <Icon name="Clock" size={11} color="#a1a1aa" />
             <Text style={styles.timeText} numberOfLines={1}>
               {formatRelativeTime(community.created_at, t)}
@@ -115,6 +115,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.45)",
   },
+  // Light themes wash the banner with white, not black. Written as hsla so
+  // the light colour pass (libs/jsx/tone) leaves it as it is.
+  bannerScrimLight: { backgroundColor: "hsla(0,0%,100%,0.55)" },
   // Last item in the title row, pushed to the right edge. It never shrinks,
   // so a long name ellipsizes before it instead of running underneath.
   timeBadge: {
@@ -130,6 +133,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
+  timeBadgeLight: { backgroundColor: "hsla(0,0%,100%,0.85)", borderColor: "hsla(0,0%,0%,0.08)" },
   timeText: { color: "#d4d4d8", fontSize: 12, fontWeight: "600" },
   avatarWrap: {
     width: 48,
