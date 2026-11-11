@@ -20,8 +20,12 @@ import { usePillGlide } from "./pillGlide";
 /** Same insets as the home feed's pill (FeedNavBar). */
 const SIDE_INSET = 8;
 const TOP_INSET = 8;
-/** The home pill's row: a 16pt icon in 10pt of padding top and bottom. */
-const ROW_HEIGHT = 38;
+/** The home pill's row, same as phone web: 36pt tall, page icons at 18pt (the
+ *  size Home's tab glyphs draw at) and one 14pt semibold line of text. */
+export const PILL_ROW_HEIGHT = 36;
+export const PILL_LEAD_ICON = 18;
+export const PILL_TEXT_SIZE = 14;
+const ROW_HEIGHT = PILL_ROW_HEIGHT;
 const LEAD_SLOT_WIDTH = 40;
 
 /** How far the drawer's material runs up under the pill. The slot clips at
@@ -288,12 +292,12 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", minHeight: ROW_HEIGHT },
   lead: { width: LEAD_SLOT_WIDTH, height: ROW_HEIGHT, alignItems: "center", justifyContent: "center" },
   leadGap: { width: 12 },
-  icon: { width: 24, height: 24 },
+  icon: { width: PILL_LEAD_ICON, height: PILL_LEAD_ICON },
   leftContent: { marginRight: 8 },
   tabs: { flex: 1, minWidth: 0 },
   titleBox: { flex: 1, minWidth: 0, paddingRight: 8 },
   titleLine: { flexDirection: "row", alignItems: "center" },
-  title: { flexShrink: 1, fontSize: 15, fontWeight: "600", letterSpacing: 0.1 },
+  title: { flexShrink: 1, fontSize: PILL_TEXT_SIZE, fontWeight: "600", letterSpacing: 0.1 },
   line: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center" },
   actions: { flexDirection: "row", alignItems: "center", gap: 2, paddingRight: 2, marginLeft: 4 },
   drawerSlot: { overflow: "hidden", zIndex: 1 },
