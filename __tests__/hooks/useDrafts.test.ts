@@ -173,4 +173,22 @@ describe('hooks/useDrafts', () => {
     expect(result.current.drafts).toHaveLength(0);
     expect(mockEqSpy).toHaveBeenCalledWith('id', 'row-1');
   });
+
+  it('keeps the edited copy when the reopened draft is deleted right after saving it', async () => {
+    mockStore[KEY] = JSON.stringify([{ ...newDraft('original'), id: 'draft_old', createdAt: 1, remoteId: 'row-old' }]);
+    const { result } = renderHook(() => useDrafts(ADDRESS));
+    await waitFor(() => expect(result.current.drafts).toHaveLength(1));
+
+    // The composer's save and delete, both taken from the same render.
+    const { saveDraft, deleteDraft } = result.current;
+    await act(async () => {
+      await saveDraft({ ...newDraft('edited'), videoUri: 'file:///clip.mp4' });
+      await deleteDraft('draft_old');
+    });
+
+    const stored = JSON.parse(mockStore[KEY]);
+    expect(stored.map((d: any) => d.bodyText)).toEqual(['edited']);
+    expect(stored[0].videoUri).toBe('file:///clip.mp4');
+    expect(result.current.drafts.map((d) => d.bodyText)).toEqual(['edited']);
+  });
 });

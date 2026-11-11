@@ -1,6 +1,6 @@
 /**
  * Fediverse — the address Mastodon (and every other ActivityPub app) can
- * follow this account at: @username@dehub.io. Settings → Profile. Mirrors
+ * follow this account at: @username@riftn.com. Settings → Profile. Mirrors
  * web's `FediverseHandleSetting`
  * (dehubweb src/components/app/settings/FediverseHandleSetting.tsx).
  *
@@ -20,7 +20,7 @@ export default function FediverseHandleSection() {
   const { t } = useTranslation();
   const user = useUser();
   const username = String(user?.username || '').replace(/^@/, '');
-  const handle = username ? `@${username}@dehub.io` : '';
+  const handle = username ? `@${username}@riftn.com` : '';
 
   const copy = () => {
     copyToClipboard(handle);

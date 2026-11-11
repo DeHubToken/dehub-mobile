@@ -10,6 +10,14 @@ const NEUTRALS = new Set([
 ]);
 const NEUTRAL_FILL = /(?:^|\s)bg-(?:white|black|zinc-\d+|theme-neutrals-\d+)(?:\/[^\s]+)?(?=\s|$)/;
 const DARK_TEXT = /(?:^|\s)text-(?:black|zinc-[789]00|theme-(?:background|neutrals-[789]00))(?=\s|$)/g;
+// Arbitrary label colours (`text-[#09090B]`), the ink label of a white key.
+const HEX_TEXT = /(^|\s)text-\[(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6})\](?=\s|$)/g;
+
+function darkNeutral(hex) {
+  if (!neutral(hex)) return false;
+  const h = hex.length === 4 ? hex.slice(1).split('').map((c) => c + c).join('') : hex.slice(1);
+  return parseInt(h.slice(0, 2), 16) < 96;
+}
 let styleCache = new WeakMap();
 
 function setControlMaterial(next) {
@@ -60,7 +68,8 @@ function paintLabel(child) {
   const style = flatten(props.style);
   if (neutral(style.color)) next.style = [props.style, { color: material.foreground }];
   if (typeof props.className === 'string') {
-    const name = props.className.replace(DARK_TEXT, ' text-white');
+    const name = props.className.replace(DARK_TEXT, ' text-white')
+      .replace(HEX_TEXT, (match, lead, hex) => (darkNeutral(hex) ? `${lead}text-white` : match));
     if (name !== props.className) {
       next.className = name;
       next.style = [props.style, { color: material.foreground }];
