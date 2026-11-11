@@ -1791,7 +1791,11 @@
     "aiOverview": "AI overview",
     "refreshLinkPreview": "Refresh link preview",
     "linkPreviewRefreshed": "Link preview refreshed",
-    "linkPreviewRefreshFailed": "Couldn't reach that site. Try again later."
+    "linkPreviewRefreshFailed": "Couldn't reach that site. Try again later.",
+    "castToTv": "Cast to TV",
+    "castIosDesc": "AirPlay to an Apple TV or smart TV",
+    "castAndroidDesc": "Mirror your screen with Cast or Smart View",
+    "castAndroidHelp": "Open your quick settings and tap Smart View or Cast, then pick your TV."
   },
   "filters": {
     "sort": "Sort",

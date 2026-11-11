@@ -1933,7 +1933,11 @@
     "aiOverview": "AI-overzicht",
     "refreshLinkPreview": "Linkvoorbeeld vernieuwen",
     "linkPreviewRefreshed": "Linkvoorbeeld vernieuwd",
-    "linkPreviewRefreshFailed": "Kan die site niet bereiken. Probeer het later opnieuw."
+    "linkPreviewRefreshFailed": "Kan die site niet bereiken. Probeer het later opnieuw.",
+    "castToTv": "Casten naar tv",
+    "castIosDesc": "AirPlay naar een Apple TV of smart-tv",
+    "castAndroidDesc": "Spiegel je scherm met Cast of Smart View",
+    "castAndroidHelp": "Open je snelle instellingen, tik op Smart View of Casten en kies je tv."
   },
   "filters": {
     "sort": "Sorteren",

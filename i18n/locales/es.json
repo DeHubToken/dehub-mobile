@@ -1745,7 +1745,11 @@
     "aiOverview": "Descripción general de la IA",
     "refreshLinkPreview": "Actualizar vista previa del enlace",
     "linkPreviewRefreshed": "Vista previa del enlace actualizada",
-    "linkPreviewRefreshFailed": "No se pudo acceder a ese sitio. Inténtalo más tarde."
+    "linkPreviewRefreshFailed": "No se pudo acceder a ese sitio. Inténtalo más tarde.",
+    "castToTv": "Enviar a la TV",
+    "castIosDesc": "AirPlay a un Apple TV o smart TV",
+    "castAndroidDesc": "Duplica tu pantalla con Cast o Smart View",
+    "castAndroidHelp": "Abre los ajustes rápidos y toca Smart View o Enviar, luego elige tu TV."
   },
   "filters": {
     "sort": "Ordenar",

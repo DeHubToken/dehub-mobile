@@ -49,6 +49,7 @@ export const iconGlyphs: Partial<Record<string, string>> = {
   Captions: "\ue3a8",
   Car: "\ue1d5",
   CaseUpper: "\ue3de",
+  Cast: "\ue06a",
   ChartBarBig: "\ue4ac",
   ChartColumn: "\ue2a3",
   ChartNoAxesColumn: "\ue06c",

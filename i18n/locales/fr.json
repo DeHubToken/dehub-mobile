@@ -1745,7 +1745,11 @@
     "aiOverview": "Vue d'ensemble de l'IA",
     "refreshLinkPreview": "Actualiser l'aperçu du lien",
     "linkPreviewRefreshed": "Aperçu du lien actualisé",
-    "linkPreviewRefreshFailed": "Impossible d'accéder à ce site. Réessayez plus tard."
+    "linkPreviewRefreshFailed": "Impossible d'accéder à ce site. Réessayez plus tard.",
+    "castToTv": "Caster sur la TV",
+    "castIosDesc": "AirPlay vers une Apple TV ou une TV connectée",
+    "castAndroidDesc": "Dupliquez votre écran avec Cast ou Smart View",
+    "castAndroidHelp": "Ouvrez les réglages rapides, touchez Smart View ou Caster, puis choisissez votre TV."
   },
   "filters": {
     "sort": "Trier",

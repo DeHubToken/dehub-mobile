@@ -1745,7 +1745,11 @@
     "aiOverview": "نظرة عامة على الذكاء الاصطناعي",
     "refreshLinkPreview": "تحديث معاينة الرابط",
     "linkPreviewRefreshed": "تم تحديث معاينة الرابط",
-    "linkPreviewRefreshFailed": "تعذّر الوصول إلى ذلك الموقع. حاول مرة أخرى لاحقًا."
+    "linkPreviewRefreshFailed": "تعذّر الوصول إلى ذلك الموقع. حاول مرة أخرى لاحقًا.",
+    "castToTv": "البث إلى التلفاز",
+    "castIosDesc": "AirPlay إلى Apple TV أو تلفاز ذكي",
+    "castAndroidDesc": "اعرض شاشتك عبر Cast أو Smart View",
+    "castAndroidHelp": "افتح الإعدادات السريعة واضغط Smart View أو Cast، ثم اختر التلفاز."
   },
   "filters": {
     "sort": "ترتيب",
