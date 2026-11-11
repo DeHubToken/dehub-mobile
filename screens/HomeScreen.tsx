@@ -284,6 +284,9 @@ type ImageFeedRequest = {
 
 /** How far the chip travels to sit fully behind the pill. */
 const CHIP_TUCK = CHIP_GAP + CHIP_HEIGHT + 2;
+// Room under the New posts / filters drawer inside its clipped host, so the
+// light drawer's drop shadow (about 40pt deep) fades out before the clip.
+const BEAD_SHADOW_ROOM = 48;
 /** The drawer pulls out from under the pill, and slides back in. */
 const beadEnter = () => {
   "worklet";
@@ -317,7 +320,7 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth, height: pageHeight } = useWindowDimensions();
   const isFocused = useIsFocusedLazy();
-  const { skin, theme, colors, accent } = useAppTheme();
+  const { skin, theme, colors, accent, isLight } = useAppTheme();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
@@ -1501,7 +1504,7 @@ export default function HomeScreen() {
       ) : null}
 
       <Animated.View
-        style={[styles.headerClip, glassNav ? styles.headerClear : null, island ? { overflow: "visible" } : null, headerAnimatedStyle]}
+        style={[styles.headerClip, glassNav ? styles.headerClear : null, island || (isLight && !skin) ? styles.headerUnclipped : null, headerAnimatedStyle]}
         // The island's header is mostly empty space around the capsule; taps
         // there belong to the feed underneath.
         pointerEvents={island ? "box-none" : "auto"}
@@ -1583,7 +1586,7 @@ export default function HomeScreen() {
       {island || pillBottom > 0 ? (
         <Animated.View
           pointerEvents="box-none"
-          style={[styles.beadHost, { top: beadTop, height: CHIP_GAP + CHIP_HEIGHT + 28, paddingTop: CHIP_GAP }, headerAnimatedStyle]}
+          style={[styles.beadHost, { top: beadTop, height: CHIP_GAP + CHIP_HEIGHT + BEAD_SHADOW_ROOM, paddingTop: CHIP_GAP }, headerAnimatedStyle]}
         >
           {showBead && (newPostsBead || drawerFilters) ? (
             <Animated.View entering={beadEnter} exiting={beadExit}>
@@ -1722,6 +1725,11 @@ const styles = StyleSheet.create({
   // straight over the backdrop, as on web.
   headerClear: {
     backgroundColor: "transparent",
+  },
+  // Light themes hang a soft drop shadow under the pill (LIGHT_PILL_SHADOW).
+  // A clipped header cut it off in a hard line just under the pill.
+  headerUnclipped: {
+    overflow: "visible",
   },
   menuScrim: {
     ...StyleSheet.absoluteFillObject,

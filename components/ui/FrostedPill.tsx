@@ -40,6 +40,16 @@ export const LIGHT_PILL_SHADOW = {
   boxShadow: "0px 1px 1px rgba(11,11,13,0.03), 0px 6px 16px -4px rgba(11,11,13,0.08), 0px 18px 36px -12px rgba(11,11,13,0.10)",
 } as const;
 
+/**
+ * The bottom bar's version, cast upward. The bar sits on the bottom edge of
+ * the screen area (on iPhones, right on the home-indicator strip), and
+ * everything below that edge is clipped, so a drop shadow there ends in a
+ * hard line. Lifted above the bar it fades out before the bar's bottom edge.
+ */
+export const LIGHT_BOTTOM_PILL_SHADOW = {
+  boxShadow: "0px -1px 2px rgba(11,11,13,0.03), 0px -6px 16px -6px rgba(11,11,13,0.08), 0px -14px 32px -14px rgba(11,11,13,0.10)",
+} as const;
+
 /** Shared pill material. Geometry and controls belong to the existing caller.
  *  `live` samples the feed through a real blur. Only drawers ask for it: a
  *  live blur on always-visible chrome (top tab pill, bottom bar) makes every
