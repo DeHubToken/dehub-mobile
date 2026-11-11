@@ -78,4 +78,17 @@ describe('shorts landing after interrupted momentum', () => {
     act(() => { result.current.endDrag(800); jest.advanceTimersByTime(160); });
     expect(commit).toHaveBeenCalledWith(1);
   });
+
+  it('starts the next short as the snap comes to rest, before momentum-end', () => {
+    const commit = jest.fn();
+    const { result } = renderHook(() => useSettledPagerIndex(commit, 800, 5));
+    act(() => { result.current.begin(); result.current.endDrag(300); result.current.momentum(); });
+    // Racing past a page boundary is never a landing.
+    act(() => { result.current.observe(760); jest.advanceTimersByTime(32); result.current.observe(840); });
+    expect(commit).not.toHaveBeenCalled();
+    // Easing into the page: close and slow.
+    act(() => { jest.advanceTimersByTime(32); result.current.observe(1590); jest.advanceTimersByTime(32); result.current.observe(1595); });
+    expect(commit).toHaveBeenCalledWith(2);
+    expect(jest.getTimerCount()).toBe(0);
+  });
 });

@@ -2,6 +2,13 @@ import { useEffect, useRef } from 'react';
 import type { VideoPlayer } from 'expo-video';
 import { replaceVideoSource } from '../libs/video-source';
 
+/**
+ * How long a neighbour waits after the pager lands before it loads. The pager
+ * only lands once per swipe, so this just skips a short flicked straight past;
+ * at 400ms a fast flicker reached the next short before it had started loading.
+ */
+export const NEIGHBOUR_LOAD_DELAY_MS = 120;
+
 /** Keep one player per cell and cancel preloading of quickly passed pages. */
 export function useSettledVideoSource(
   player: Pick<VideoPlayer, 'replaceAsync'>,
@@ -35,7 +42,7 @@ export function useSettledVideoSource(
       });
     };
     if (!source || active) { load(); return; }
-    const timer = setTimeout(load, 400);
+    const timer = setTimeout(load, NEIGHBOUR_LOAD_DELAY_MS);
     return () => clearTimeout(timer);
   }, [player, source, active]);
 }
