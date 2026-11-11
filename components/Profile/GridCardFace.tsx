@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,13 @@ import { getAvatarUrl } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { nftToReplyPost, resolveReplyPostThumbnail } from "../../libs/replyPostDisplay";
 import { linkHost, type GridCardKind, type TextCard } from "../../libs/gridCard";
+import { parseSpotifyLink, type SpotifyLink } from "../../libs/spotify";
+import { useSpotifyOnScreen } from "../../libs/spotify-player";
+import type { LinkPreviewData } from "../../libs/link-preview";
+import { outsideImage } from "../../libs/outside-image";
+import { KeepDarkScope } from "../../libs/jsx/tone";
+import BlurSafeImage from "../common/BlurSafeImage";
+import { PlayGlyph, SpotifyEq, SpotifyLogo, SpotifyProgress, useSpotifyControls, useSpotifyItem } from "../common/SpotifyCard";
 
 /**
  * Grid card faces
@@ -52,6 +59,7 @@ const KIND: Record<GridCardKind, { key: string; label: string; icon: IconName }>
   short: { key: "short", label: "Short", icon: "Shorts" as IconName },
   comic: { key: "comic", label: "Comic", icon: "Smile" },
   earn: { key: "earn", label: "Earn", icon: "Coins" },
+  spotify: { key: "spotify", label: "Spotify", icon: "Music" },
 };
 
 /** Ink for the tile the face sits on (the poster's own palette). */
@@ -80,7 +88,7 @@ export function GridKindPill({ kind, live, inline, palette }: { kind: GridCardKi
             : null,
       ]}
     >
-      {live ? <View style={styles.liveDot} /> : <Icon name={icon} size={10} color={color} />}
+      {live ? <View style={styles.liveDot} /> : kind === "spotify" ? <SpotifyLogo size={10} /> : <Icon name={icon} size={10} color={color} />}
       <Text numberOfLines={1} style={[styles.pillText, { color }]}>
         {live ? t("profile.gridCard.liveStage", "Live stage") : t(`profile.gridCard.${key}`, label)}
       </Text>
@@ -290,6 +298,62 @@ const LinkFace = ({ url, chip, fallback, palette }: FaceProps & { url: string })
   );
 };
 
+/**
+ * A Spotify post in the grid: the cover over its own blur, like an audio
+ * tile, with a green Play that plays it right here. The rest of the tile
+ * still opens the post. Media tile, so dark in every theme.
+ */
+const SpotifyFace = ({ url, link, chip, fallback }: FaceProps & { url: string; link: SpotifyLink }) => {
+  const { data } = useQuery({
+    queryKey: ["grid-link-preview", url],
+    queryFn: () => fetchLinkPreview(url),
+    initialData: () => peekLinkPreview(url) ?? undefined,
+    staleTime: 30 * 60_000,
+    retry: false,
+  });
+  if (!data?.title) return fallback;
+  return <SpotifyFaceBody preview={data} link={link} chip={chip} />;
+};
+
+function SpotifyFaceBody({ preview, link, chip }: { preview: LinkPreviewData; link: SpotifyLink; chip?: React.ReactNode }) {
+  const { t } = useTranslation();
+  const item = useSpotifyItem(preview, link);
+  const { isCurrent, isPlaying, isLoading, play } = useSpotifyControls(item);
+  useSpotifyOnScreen(link.uri);
+  const image = preview.image ? outsideImage(preview.image) : "";
+  return (
+    <KeepDarkScope>
+      <View className="dark-surface" style={[StyleSheet.absoluteFill, styles.spotifyBg]}>
+        {!!image && <BlurSafeImage source={{ uri: image }} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={18} transition={0} />}
+        <View style={[StyleSheet.absoluteFill, styles.spotifyDim]} />
+        <View style={styles.spotifyCoverWrap}>
+          <View style={styles.spotifyCover}>
+            {image ? <Image source={{ uri: image }} style={StyleSheet.absoluteFill} contentFit="cover" transition={0} /> : <View style={[StyleSheet.absoluteFill, styles.center]}><SpotifyLogo size={24} /></View>}
+            <TouchableOpacity
+              onPress={play}
+              hitSlop={10}
+              style={[styles.spotifyPlay, isPlaying && styles.spotifyPlayOn]}
+              accessibilityRole="button"
+              accessibilityLabel={`${isPlaying ? t("spotify.pause", { defaultValue: "Pause" }) : t("spotify.play", { defaultValue: "Play" })}: ${item.title}`}
+            >
+              {isLoading ? <ActivityIndicator size="small" color="#000000" /> : <PlayGlyph paused={!isPlaying} size={13} />}
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.spotifyText} pointerEvents="none">
+          <View style={styles.spotifyTitleRow}>
+            {isCurrent && <SpotifyEq playing={isPlaying} height={9} />}
+            <Text numberOfLines={1} style={styles.spotifyTitle}>{item.title}</Text>
+          </View>
+          <Text numberOfLines={1} style={styles.spotifySub}>{item.subtitle}</Text>
+        </View>
+        {isCurrent && <SpotifyProgress active times={false} style={styles.spotifyBar} />}
+        {chip ?? <GridKindPill kind="spotify" />}
+      </View>
+    </KeepDarkScope>
+  );
+}
+
 const CommunityFace = ({ slug, chip, fallback, palette }: FaceProps & { slug: string }) => {
   const { t } = useTranslation();
   const { data } = useQuery({ queryKey: ["dehub-link", "community", slug], queryFn: () => getCommunityBySlug(slug), staleTime: 5 * 60_000 });
@@ -371,6 +435,10 @@ function GridCardFaceComponent({ card, tokenId, item, ...face }: GridCardFacePro
       return link?.username ? <ProfileFace {...face} username={link.username} /> : face.fallback;
     case "link":
       return card.url ? <LinkFace {...face} url={card.url} /> : face.fallback;
+    case "spotify": {
+      const song = parseSpotifyLink(card.url);
+      return card.url && song ? <SpotifyFace {...face} url={card.url} link={song} /> : face.fallback;
+    }
     case "poll":
       return <PollFace {...face} tokenId={tokenId} />;
     default:
@@ -429,4 +497,28 @@ const styles = StyleSheet.create({
   quotedImg: { flex: 1, minHeight: 0, borderRadius: 4 },
   quotedName: { fontSize: 9.5, fontWeight: "800" },
   avatar: { width: "62%", aspectRatio: 1, borderRadius: 999 },
+  spotifyBg: { backgroundColor: "#0D0D10" },
+  spotifyDim: { backgroundColor: "rgba(0,0,0,0.42)" },
+  spotifyCoverWrap: { position: "absolute", top: "15%", left: 0, right: 0, alignItems: "center" },
+  spotifyCover: { width: "58%", aspectRatio: 1, borderRadius: 7, backgroundColor: "rgba(255,255,255,0.08)", overflow: "visible" },
+  spotifyPlay: {
+    position: "absolute",
+    right: -8,
+    bottom: -8,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: "#1ED760",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingLeft: 1,
+    borderWidth: 2.5,
+    borderColor: "rgba(0,0,0,0.35)",
+  },
+  spotifyPlayOn: { shadowColor: "#1ED760", shadowOpacity: 0.7, shadowRadius: 10, shadowOffset: { width: 0, height: 0 }, elevation: 4 },
+  spotifyText: { position: "absolute", left: 7, right: 7, bottom: 9, gap: 1 },
+  spotifyTitleRow: { flexDirection: "row", alignItems: "center", gap: 4 },
+  spotifyTitle: { flexShrink: 1, color: "#FFFFFF", fontSize: 10, fontWeight: "800" },
+  spotifySub: { color: "rgba(255,255,255,0.62)", fontSize: 9, fontWeight: "600" },
+  spotifyBar: { position: "absolute", left: 7, right: 7, bottom: -7 },
 });

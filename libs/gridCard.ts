@@ -12,11 +12,12 @@
 
 import { findDehubLinks, parseDehubLink, type DehubLinkKind, type DehubLinkMatch } from "./dehub-links";
 import { extractUrlsFromText } from "./link-preview";
+import { parseSpotifyLink } from "./spotify";
 
 export type GridCardKind =
   | "stage" | "event" | "poll" | "quote" | "sharedPost" | "link" | "community"
   | "shop" | "profile" | "film" | "bounty" | "app" | "proposal"
-  | "short" | "comic" | "earn";
+  | "short" | "comic" | "earn" | "spotify";
 
 const LINK_KIND: Partial<Record<DehubLinkKind, GridCardKind>> = {
   stage: "stage",
@@ -45,8 +46,11 @@ export function textCardOf(item: { description?: string; name?: string; isQuoteP
     const kind = LINK_KIND[link.kind];
     if (kind) return { kind, link };
   }
-  const url = extractUrlsFromText(text).find((u) => !parseDehubLink(u));
-  return url ? { kind: "link", url } : null;
+  const urls = extractUrlsFromText(text).filter((u) => !parseDehubLink(u));
+  // A song plays right in the tile, so it wins over any other outside link.
+  const song = urls.find((u) => parseSpotifyLink(u));
+  if (song) return { kind: "spotify", url: song };
+  return urls[0] ? { kind: "link", url: urls[0] } : null;
 }
 
 /** A picture or video tile that is more than a plain picture or video. */
