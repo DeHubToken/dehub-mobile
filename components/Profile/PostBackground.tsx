@@ -25,7 +25,8 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 import { isLowEndDevice } from "../../libs/deviceTier";
-import { parsePostBg, postBgById, type PostBg } from "../../libs/postBackgrounds";
+import { parsePostBg, postBgById, postBgVariant, type PostBg } from "../../libs/postBackgrounds";
+import BlurSafeImage from "../common/BlurSafeImage";
 
 /**
  * Profile post backgrounds (libs/postBackgrounds.ts), drawn natively: the same
@@ -66,6 +67,9 @@ export function useResolvedPostBg(address: string | undefined, customs: Record<s
 export const ProfilePostBgContext = createContext<PostBg | null>(null);
 export const useProfilePostBg = () => useContext(ProfilePostBgContext);
 
+/** The profile picture of the profile on screen, for the backdrop that blurs it (Profile Echo). */
+export const ProfilePostBgArtContext = createContext<string | null>(null);
+
 // ---- drawing ---------------------------------------------------------------------
 
 const still = isLowEndDevice();
@@ -98,13 +102,64 @@ function useLoop(duration: number, mode: "loop" | "alternate", active: boolean) 
 }
 
 const fill = StyleSheet.absoluteFillObject;
+// An svg with a viewBox keeps its own shape unless it is told both sizes.
+const svgFill = { ...fill, width: "100%", height: "100%" } as const;
 
-function Still({ id }: { id: string }) {
+const CARD_COLORS = [["#ff5f6d", "#ffb157"], ["#4b5bff", "#b56bff"], ["#00b894", "#0a6cff"], ["#f7367b", "#7a3cff"], ["#0e9f6e", "#b6d94c"], ["#ff7a18", "#d6336c"], ["#1f6feb", "#22c1c3"], ["#6d3bd2", "#e0508f"]] as const;
+const ECHO_TURN = ["0deg", "120deg", "240deg", "0deg"] as const;
+
+function Still({ id, n = 0, art }: { id: string; n?: number; art?: string | null }) {
   const u = useId().replace(/[^a-zA-Z0-9]/g, "");
   switch (id) {
+    case "echo":
+      return (
+        <View style={[fill, { backgroundColor: "#1c2028" }]}>
+          {art ? (
+            <BlurSafeImage source={{ uri: art }} contentFit="cover" blurRadius={24} cachePolicy="memory-disk"
+              style={[fill, { width: "100%", height: "100%", transform: [{ rotate: ECHO_TURN[n % 4] }, { scaleX: n % 4 === 3 ? -1.7 : 1.7 }, { scaleY: 1.7 }] }]} />
+          ) : (
+            <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
+              <Defs>
+                <RadialGradient id={u + "a"} cx="30%" cy="30%" rx="45%" ry="45%"><Stop offset="0" stopColor="#e9b36b" /><Stop offset="1" stopColor="#e9b36b" stopOpacity="0" /></RadialGradient>
+                <RadialGradient id={u + "b"} cx="75%" cy="35%" rx="50%" ry="50%"><Stop offset="0" stopColor="#3fb6a8" /><Stop offset="1" stopColor="#3fb6a8" stopOpacity="0" /></RadialGradient>
+                <RadialGradient id={u + "c"} cx="55%" cy="80%" rx="55%" ry="55%"><Stop offset="0" stopColor="#b0486e" /><Stop offset="1" stopColor="#b0486e" stopOpacity="0" /></RadialGradient>
+              </Defs>
+              <G rotation={n * 120} origin="50, 50"><Rect x="-30" y="-30" width="160" height="160" fill="#2a2f3a" /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}a)`} /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}b)`} /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}c)`} /></G>
+            </Svg>
+          )}
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
+            <Defs><LinearGradient id={u + "s"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#06070a" stopOpacity="0.38" /><Stop offset="1" stopColor="#06070a" stopOpacity="0.72" /></LinearGradient></Defs>
+            <Rect width="100" height="100" fill={`url(#${u}s)`} />
+          </Svg>
+        </View>
+      );
+    case "cards": {
+      const [from, to] = CARD_COLORS[n % CARD_COLORS.length];
+      return (
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Defs><LinearGradient id={u + "g"} x1="0" y1="0" x2="0.6" y2="1"><Stop offset="0" stopColor={from} /><Stop offset="1" stopColor={to} /></LinearGradient></Defs>
+          <Rect width="100" height="100" fill={`url(#${u}g)`} />
+        </Svg>
+      );
+    }
+    case "deck": {
+      const look = n % 3;
+      return (
+        <Svg style={svgFill}>
+          <Defs>
+            <Pattern id={u + "p"} width="9" height="9" patternUnits="userSpaceOnUse">
+              {look === 0 ? <Circle cx="4.5" cy="4.5" r="1" fill="#fff" /> : look === 1 ? <Path d="M-1 10 L10 -1" stroke="#fff" strokeWidth="1" /> : <Path d="M0 4.5 H9" stroke="#fff" strokeWidth="1" />}
+            </Pattern>
+            <LinearGradient id={u + "f"} x1={look === 1 ? "0" : "1"} y1="0" x2={look === 1 ? "1" : "0"} y2="1"><Stop offset="0" stopColor="#0c0d10" stopOpacity={look === 1 ? "1" : "0"} /><Stop offset="0.75" stopColor="#0c0d10" stopOpacity={look === 1 ? "0" : "1"} /></LinearGradient>
+          </Defs>
+          <Rect width="100%" height="100%" fill="#0c0d10" /><Rect width="100%" height="100%" fill={`url(#${u}p)`} opacity="0.18" /><Rect width="100%" height="100%" fill={`url(#${u}f)`} />
+          <Rect width="100%" height="2" fill="#aebfce" opacity="0.7" />
+        </Svg>
+      );
+    }
     case "ink":
       return (
-        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
           <Defs>
             <RadialGradient id={u + "a"} cx="8%" cy="0%" rx="80%" ry="70%"><Stop offset="0" stopColor="#2f4380" /><Stop offset="1" stopColor="#2f4380" stopOpacity="0" /></RadialGradient>
             <RadialGradient id={u + "b"} cx="100%" cy="100%" rx="70%" ry="70%"><Stop offset="0" stopColor="#155566" /><Stop offset="1" stopColor="#155566" stopOpacity="0" /></RadialGradient>
@@ -114,7 +169,7 @@ function Still({ id }: { id: string }) {
       );
     case "news":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Defs>
             <Pattern id={u + "g"} width="9" height="9" patternUnits="userSpaceOnUse">
               <Rect x="1" y="2" width="1" height="1" fill="#000" opacity="0.08" /><Rect x="6" y="5" width="1" height="1" fill="#000" opacity="0.1" /><Rect x="3" y="7" width="1" height="1" fill="#000" opacity="0.06" />
@@ -125,13 +180,13 @@ function Still({ id }: { id: string }) {
       );
     case "split":
       return (
-        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
           <Rect width="100" height="100" fill="#4a1a8f" /><Path d="M0 0 H62 L38 100 H0 Z" fill="#b5370b" />
         </Svg>
       );
     case "blue":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Defs>
             <Pattern id={u + "s"} width="12" height="12" patternUnits="userSpaceOnUse"><Path d="M12 0V12H0" stroke="#fff" strokeOpacity="0.05" fill="none" /></Pattern>
             <Pattern id={u + "l"} width="48" height="48" patternUnits="userSpaceOnUse"><Path d="M48 0V48H0" stroke="#fff" strokeOpacity="0.14" fill="none" /></Pattern>
@@ -141,7 +196,7 @@ function Still({ id }: { id: string }) {
       );
     case "terra":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Defs>
             <Pattern id={u + "t"} width="60" height="56" patternUnits="userSpaceOnUse">
               <Circle cx="10" cy="12" r="3" fill="#e0795c" /><Circle cx="42" cy="34" r="2.5" fill="#3f7f74" /><Circle cx="28" cy="50" r="4" fill="#d8b04a" /><Circle cx="52" cy="8" r="2" fill="#2c2c34" /><Circle cx="6" cy="40" r="5" fill="#9db6c9" />
@@ -155,7 +210,7 @@ function Still({ id }: { id: string }) {
       );
     case "half":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Defs>
             <Pattern id={u + "d"} width="10" height="10" patternUnits="userSpaceOnUse"><Circle cx="5" cy="5" r="1.8" fill="#ff3f84" /></Pattern>
             <LinearGradient id={u + "f"} x1="1" y1="0" x2="0.3" y2="0.9"><Stop offset="0" stopColor="#fff" /><Stop offset="1" stopColor="#fff" stopOpacity="0" /></LinearGradient>
@@ -166,7 +221,7 @@ function Still({ id }: { id: string }) {
       );
     case "topo":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Rect width="100%" height="100%" fill="#1f2e24" />
           <G stroke="#dcffe1" strokeOpacity="0.1" fill="none">
             {Array.from({ length: 22 }, (_, i) => <Circle key={i} cx="18%" cy="120%" r={(i + 1) * 17} />)}
@@ -178,7 +233,7 @@ function Still({ id }: { id: string }) {
       );
     case "velvet":
       return (
-        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
           <Defs>
             <RadialGradient id={u + "v"} cx="50%" cy="0%" rx="100%" ry="100%"><Stop offset="0" stopColor="#7c1733" /><Stop offset="0.72" stopColor="#2b0610" /></RadialGradient>
             <LinearGradient id={u + "sh"} x1="0" y1="0" x2="1" y2="0.5"><Stop offset="0.3" stopColor="#fff" stopOpacity="0" /><Stop offset="0.45" stopColor="#fff" stopOpacity="0.07" /><Stop offset="0.6" stopColor="#fff" stopOpacity="0" /></LinearGradient>
@@ -188,14 +243,14 @@ function Still({ id }: { id: string }) {
       );
     case "sorbet":
       return (
-        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
           <Defs><LinearGradient id={u + "s"} x1="0" y1="0" x2="0.8" y2="1"><Stop offset="0" stopColor="#ffd8c2" /><Stop offset="0.52" stopColor="#ffc4d9" /><Stop offset="1" stopColor="#d9cbff" /></LinearGradient></Defs>
           <Rect width="100" height="100" fill={`url(#${u}s)`} />
         </Svg>
       );
     case "carbon":
       return (
-        <Svg style={fill}>
+        <Svg style={svgFill}>
           <Defs>
             <Pattern id={u + "c"} width="10" height="10" patternUnits="userSpaceOnUse">
               <Rect width="5" height="5" fill="#1d1d1d" /><Rect x="5" y="5" width="5" height="5" fill="#1d1d1d" /><Rect x="5" width="5" height="5" fill="#101010" /><Rect y="5" width="5" height="5" fill="#101010" />
@@ -213,7 +268,7 @@ function Still({ id }: { id: string }) {
 function Glow({ color, opacity = 0.55 }: { color: string; opacity?: number }) {
   const u = useId().replace(/[^a-zA-Z0-9]/g, "");
   return (
-    <Svg style={fill} viewBox="0 0 100 100">
+    <Svg style={svgFill} viewBox="0 0 100 100">
       <Defs><RadialGradient id={u + "g"} cx="50%" cy="50%" r="50%"><Stop offset="0" stopColor={color} stopOpacity={opacity} /><Stop offset="1" stopColor={color} stopOpacity="0" /></RadialGradient></Defs>
       <Circle cx="50" cy="50" r="50" fill={`url(#${u}g)`} />
     </Svg>
@@ -223,7 +278,7 @@ function Glow({ color, opacity = 0.55 }: { color: string; opacity?: number }) {
 function Dots({ color, size, dots }: { color: string; size: number; dots: [number, number, number][] }) {
   const u = useId().replace(/[^a-zA-Z0-9]/g, "");
   return (
-    <Svg style={fill}>
+    <Svg style={svgFill}>
       <Defs>
         <Pattern id={u + "p"} width={size} height={size} patternUnits="userSpaceOnUse">
           {dots.map(([x, y, r], i) => <Circle key={i} cx={x} cy={y} r={r} fill={color} />)}
@@ -294,7 +349,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
     case "stars":
       return (
         <>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><RadialGradient id={u + "n"} cx="50%" cy="120%" rx="120%" ry="90%"><Stop offset="0" stopColor="#1a2350" /><Stop offset="0.7" stopColor="#03050d" /></RadialGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}n)`} />
           </Svg>
@@ -309,7 +364,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
     case "rain":
       return (
         <>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs>
               <LinearGradient id={u + "r"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#1f2d3d" /><Stop offset="1" stopColor="#0e1620" /></LinearGradient>
               <RadialGradient id={u + "w"} cx="75%" cy="20%" rx="60%" ry="50%"><Stop offset="0" stopColor="#ffc878" stopOpacity="0.22" /><Stop offset="1" stopColor="#ffc878" stopOpacity="0" /></RadialGradient>
@@ -317,7 +372,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
             <Rect width="100" height="100" fill={`url(#${u}r)`} /><Rect width="100" height="100" fill={`url(#${u}w)`} />
           </Svg>
           <Animated.View style={[{ position: "absolute", left: 0, top: -h, width: w, height: 2 * h }, a]}>
-            <Svg style={fill}>
+            <Svg style={svgFill}>
               <Defs><Pattern id={u + "s"} width="47" height="60" patternUnits="userSpaceOnUse"><Line x1="22" y1="0" x2="12" y2="60" stroke="#bedcff" strokeOpacity="0.18" strokeWidth="1" /></Pattern></Defs>
               <Rect width="100%" height="100%" fill={`url(#${u}s)`} />
             </Svg>
@@ -327,14 +382,14 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
     case "drive":
       return (
         <>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><LinearGradient id={u + "d"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#120a2b" /><Stop offset="0.58" stopColor="#3a0e4f" /><Stop offset="0.59" stopColor="#ff4d8d" /><Stop offset="0.61" stopColor="#2a0b3c" /><Stop offset="1" stopColor="#2a0b3c" /></LinearGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}d)`} />
           </Svg>
           <View style={{ position: "absolute", width: 110, height: 110, left: w / 2 - 55, top: 0.18 * h, borderRadius: 55, backgroundColor: "#ff8f7a", opacity: 0.3 }} />
           <View style={{ position: "absolute", left: 0, right: 0, top: 0.6 * h, bottom: 0, overflow: "hidden" }}>
             <Animated.View style={[{ position: "absolute", left: -w, width: 3 * w, top: -40, height: 1.2 * h }, a]}>
-              <Svg style={fill}>
+              <Svg style={svgFill}>
                 <Defs><Pattern id={u + "g"} width="40" height="40" patternUnits="userSpaceOnUse"><Path d="M0 0H40M0 0V40" stroke="#ff5ac8" strokeOpacity="0.6" strokeWidth="2" /></Pattern></Defs>
                 <Rect width="100%" height="100%" fill={`url(#${u}g)`} />
               </Svg>
@@ -356,7 +411,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
         <>
           <View style={[fill, { backgroundColor: "#0d0d12" }]} />
           <Animated.View style={[{ position: "absolute", width: d, height: d, left: w / 2 - r, top: h / 2 - r }, a]}>
-            <Svg style={fill} viewBox="-1 -1 2 2">
+            <Svg style={svgFill} viewBox="-1 -1 2 2">
               {SPIN_COLORS.map((c, i) => {
                 const a0 = (i / SPIN_COLORS.length) * Math.PI * 2;
                 const a1 = ((i + 1) / SPIN_COLORS.length) * Math.PI * 2 + 0.02;
@@ -370,13 +425,13 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
     }
     case "tide": {
       const wave = (o: number) => (
-        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 800 60">
+        <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 800 60">
           <Path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30 T700 30 T800 30 V60 H0Z" fill="#50d1ff" fillOpacity={o} />
         </Svg>
       );
       return (
         <>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><LinearGradient id={u + "t"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#0a3a50" /><Stop offset="1" stopColor="#05202e" /></LinearGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}t)`} />
           </Svg>
@@ -388,14 +443,14 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
     case "ember":
       return (
         <>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><RadialGradient id={u + "e"} cx="50%" cy="120%" rx="120%" ry="80%"><Stop offset="0" stopColor="#5a1a06" /><Stop offset="0.7" stopColor="#140804" /></RadialGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}e)`} />
           </Svg>
           <Animated.View style={[{ position: "absolute", left: 0, top: 0, width: w, height: 2 * h }, a]}>
             <Dots color="#ffb35c" size={180} dots={[[20, 30, 2], [90, 110, 1.5], [150, 60, 2.5], [60, 170, 1.5]]} />
           </Animated.View>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><LinearGradient id={u + "f"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#140804" stopOpacity="0.95" /><Stop offset="0.6" stopColor="#140804" stopOpacity="0" /></LinearGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}f)`} />
           </Svg>
@@ -406,7 +461,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
         <>
           <View style={[fill, { backgroundColor: "#ece8ff" }]} />
           <Animated.View style={[{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3 * w }, a]}>
-            <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+            <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
               <Defs>
                 <LinearGradient id={u + "h"} x1="0" y1="0" x2="1" y2="0.2">
                   {["#ffd6e8", "#d6f0ff", "#e6ffd6", "#fff2c7", "#e9d6ff", "#ffd6e8", "#d6f0ff", "#e6ffd6", "#fff2c7", "#e9d6ff", "#ffd6e8"].map((c, i) => <Stop key={i} offset={i / 10} stopColor={c} />)}
@@ -415,7 +470,7 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
               <Rect width="100" height="100" fill={`url(#${u}h)`} />
             </Svg>
           </Animated.View>
-          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
             <Defs><LinearGradient id={u + "s"} x1="0" y1="0" x2="1" y2="1"><Stop offset="0" stopColor="#fff" stopOpacity="0.55" /><Stop offset="0.4" stopColor="#fff" stopOpacity="0" /><Stop offset="0.7" stopColor="#fff" stopOpacity="0.35" /><Stop offset="1" stopColor="#fff" stopOpacity="0" /></LinearGradient></Defs>
             <Rect width="100" height="100" fill={`url(#${u}s)`} />
           </Svg>
@@ -426,11 +481,50 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
   }
 }
 
+/** Glow colours per theme for Soft Light (web: --pmg-soft-a / -b / -base in profile-mixed-grid.css). */
+const SOFT_COLORS: Record<string, readonly [string, string]> = {
+  osaka: ["#ff6fb5", "#7c5cff"], hazy: ["#ff7ad9", "#7aa8ff"], island: ["#ff7a8a", "#3fc1c9"], hacker: ["#39ff88", "#0f8f4a"],
+  horror: ["#ff2b2b", "#6b0f0f"], jungle: ["#e2b060", "#3f7f4a"], war: ["#4fe3e0", "#2b6f7a"],
+};
+const SOFT_SPOTS = [
+  [{ cx: "0%", cy: "0%", rx: "120%", ry: "80%", o: 0.38 }, { cx: "100%", cy: "100%", rx: "90%", ry: "70%", o: 0.3 }],
+  [{ cx: "100%", cy: "0%", rx: "110%", ry: "80%", o: 0.3 }, { cx: "0%", cy: "100%", rx: "90%", ry: "70%", o: 0.38 }],
+  [{ cx: "50%", cy: "110%", rx: "130%", ry: "70%", o: 0.38 }, null],
+] as const;
+
+/**
+ * Soft Light: what a plain text post in the profile grid sits on when its
+ * owner picked no backdrop. A gentle glow in the theme's colours, in one of
+ * three corners so a row of text posts is not three identical boxes.
+ */
+export const SoftLightLayer = memo(function SoftLightLayer({ theme, light, seed }: { theme: string; light: boolean; seed: string | number }) {
+  const u = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const [a, b] = SOFT_COLORS[theme] ?? (light ? ["#7f93a8", "#b9c4cf"] : ["#aebfce", "#6d7f92"]);
+  const base = theme === "osaka" ? "#15101f" : theme === "hazy" ? "rgba(20,12,40,0.55)" : light ? "#f1f3f6" : "#0c0d10";
+  const n = postBgVariant(seed, 3);
+  const [first, second] = SOFT_SPOTS[n];
+  const colors = n === 1 ? [b, a] : [a, b];
+  return (
+    <View pointerEvents="none" style={[fill, { backgroundColor: base }]}>
+      <Svg style={svgFill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Defs>
+          <RadialGradient id={u + "a"} cx={first.cx} cy={first.cy} rx={first.rx} ry={first.ry}><Stop offset="0" stopColor={colors[0]} stopOpacity={first.o} /><Stop offset="0.62" stopColor={colors[0]} stopOpacity="0" /></RadialGradient>
+          {second && <RadialGradient id={u + "b"} cx={second.cx} cy={second.cy} rx={second.rx} ry={second.ry}><Stop offset="0" stopColor={colors[1]} stopOpacity={second.o} /><Stop offset="0.66" stopColor={colors[1]} stopOpacity="0" /></RadialGradient>}
+        </Defs>
+        <Rect width="100" height="100" fill={`url(#${u}a)`} />
+        {second && <Rect width="100" height="100" fill={`url(#${u}b)`} />}
+      </Svg>
+    </View>
+  );
+});
+
 /**
  * The backdrop itself: fills its parent, sits behind the content, never takes
  * touches. `active={false}` holds a moving one still (e.g. a hidden tab).
  */
-export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg: PostBg | null; active?: boolean }) {
+export const PostBgLayer = memo(function PostBgLayer({ bg, active = true, seed }: { bg: PostBg | null; active?: boolean; seed?: string | number }) {
+  const art = useContext(ProfilePostBgArtContext);
+  const own = useId();
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   // A moving backdrop is an endless loop per tile: it holds while the list
   // scrolls, behind other screens and in the background (useAmbientMotion),
@@ -443,7 +537,7 @@ export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg
   if (!bg) return null;
   return (
     <View pointerEvents="none" style={[fill, { overflow: "hidden" }]} onLayout={bg.kind === "moving" ? onLayout : undefined}>
-      {bg.kind === "still" ? <Still id={bg.id} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active && ambient} /> : null}
+      {bg.kind === "still" ? <Still id={bg.id} n={postBgVariant(seed ?? own, 8)} art={art} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active && ambient} /> : null}
     </View>
   );
 });

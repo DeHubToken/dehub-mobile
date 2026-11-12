@@ -32,6 +32,10 @@ export const POST_BACKGROUNDS: readonly PostBg[] = [
   { id: 'velvet', name: 'Velvet', kind: 'still', tone: 'dark' },
   { id: 'sorbet', name: 'Sorbet', kind: 'still', tone: 'light' },
   { id: 'carbon', name: 'Carbon', kind: 'still', tone: 'dark' },
+  // These three differ per post: Echo blurs the profile picture, Cards and Deck pick a variant from the post.
+  { id: 'echo', name: 'Profile Echo', kind: 'still', tone: 'dark' },
+  { id: 'cards', name: 'Colour Cards', kind: 'still', tone: 'dark' },
+  { id: 'deck', name: 'Pattern Deck', kind: 'still', tone: 'dark' },
   { id: 'aurora', name: 'Aurora', kind: 'moving', tone: 'dark' },
   { id: 'lava', name: 'Lava Lamp', kind: 'moving', tone: 'dark' },
   { id: 'stars', name: 'Starfield', kind: 'moving', tone: 'dark' },
@@ -50,6 +54,14 @@ const BY_ID = new Map(POST_BACKGROUNDS.map((b) => [b.id, b]));
 export function parsePostBg(customs: Record<string, unknown> | null | undefined): PostBg | null {
   const raw = customs?.[POST_BG_CUSTOMS_KEY];
   return typeof raw === 'string' ? BY_ID.get(raw) ?? null : null;
+}
+
+/** Which of `count` looks a post gets on a backdrop that varies per post. Stable for the same post. */
+export function postBgVariant(seed: string | number | null | undefined, count: number): number {
+  const text = String(seed ?? '');
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+  return hash % count;
 }
 
 export function postBgById(id: string | null | undefined): PostBg | null {

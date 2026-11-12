@@ -22,7 +22,7 @@ import { getAvatarUrl } from "../../libs/misc";
 import { createLogger } from "../../libs/logger";
 import { POST_BACKGROUNDS, mergePostBg, postBgById, type PostBg } from "../../libs/postBackgrounds";
 import Avatar from "../common/Avatar";
-import { POST_BG_INK, PostBgLayer, setPostBgOverride, useResolvedPostBg } from "./PostBackground";
+import { POST_BG_INK, PostBgLayer, ProfilePostBgArtContext, setPostBgOverride, useResolvedPostBg } from "./PostBackground";
 
 const logger = createLogger("PostBgPicker");
 
@@ -138,6 +138,7 @@ function PostBgPicker({ sampleText }: { sampleText?: string }) {
 
   return (
     <Modal visible transparent animationType="slide" onRequestClose={closePostBgPicker} statusBarTranslucent>
+      <ProfilePostBgArtContext.Provider value={avatar && /^https?:/.test(avatar) ? avatar : null}>
       <View className="dark-surface" style={[styles.panel, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 16 }]}>
         <View style={styles.top}>
           <Pressable onPress={closePostBgPicker} hitSlop={10} style={styles.topBtn} accessibilityRole="button">
@@ -202,6 +203,7 @@ function PostBgPicker({ sampleText }: { sampleText?: string }) {
         />
         <Text style={styles.hint}>{t("postBg.hint", "Swipe the strip. Your post changes as you go. Only you can change this.")}</Text>
       </View>
+      </ProfilePostBgArtContext.Provider>
     </Modal>
   );
 }

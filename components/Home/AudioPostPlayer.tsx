@@ -49,6 +49,7 @@ import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph"
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { AudioLyrics } from "./AudioLyrics";
 import { STYLE_PREVIEW_IMAGES } from "./stylePreviewImages";
+import { HAS_SKIA } from "../../libs/skia";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -636,14 +637,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
   const [hue, setHue] = useState(() => studio ? 0 : getCachedHue());
-  // Every card starts on Bars; a pick sticks for this card.
+  // Every card starts on Glass Bars (plain Bars on builds without Skia); a pick sticks for this card.
   const styleKey = `audio-style-${tokenId ?? audioUrl}`;
   const readStyle = (): VisualizerStyle => {
     try {
       const saved = storage.getString(styleKey);
       if (VISUALIZER_STYLES.some(item => item.value === saved)) return saved as VisualizerStyle;
     } catch { /* Session-only preferences. */ }
-    return 'bars';
+    return HAS_SKIA ? 'glassbars' : 'bars';
   };
   const [vizStyle, setVizStyle] = useState<VisualizerStyle>(readStyle);
   useEffect(() => { setVizStyle(readStyle()); }, [styleKey, studio]);

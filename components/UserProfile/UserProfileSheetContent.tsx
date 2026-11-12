@@ -11,7 +11,7 @@ import type { ProfileIdentitySeed } from "../../hooks/useUserProfileData";
 import UserProfileHeader from "./UserProfileHeader";
 import PinnedCommunities from "../Communities/PinnedCommunities";
 import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
-import { ProfilePostBgContext, useResolvedPostBg } from "../Profile/PostBackground";
+import { ProfilePostBgArtContext, ProfilePostBgContext, useResolvedPostBg } from "../Profile/PostBackground";
 import { ProfileArticleTileContext, useResolvedArticleTile } from "../Profile/ArticleTile";
 import GlassModal from "../ui/GlassModal";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -443,6 +443,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
    */
   return (
     <ProfilePostBgContext.Provider value={postBg}>
+    <ProfilePostBgArtContext.Provider value={/^https?:/.test(avatarUrl || "") ? avatarUrl : null}>
     <ProfileArticleTileContext.Provider value={articleTile}>
     <View className="flex-1">
       {!isFullScreen && ProfileHeader}
@@ -761,6 +762,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       />
     </View>
     </ProfileArticleTileContext.Provider>
+    </ProfilePostBgArtContext.Provider>
     </ProfilePostBgContext.Provider>
   );
 };

@@ -12,7 +12,7 @@ import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { isStreamLive } from "../../libs/live-status";
 import { useEngagement } from "../../libs/engagementCache";
-import { POST_BG_INK, PostBgLayer, useProfilePostBg } from "./PostBackground";
+import { POST_BG_INK, PostBgLayer, SoftLightLayer, useProfilePostBg } from "./PostBackground";
 import { usePostBgHoldProps } from "./PostBgPicker";
 import { ArticleTileFace, openArticleTilePicker, useProfileArticleTile } from "./ArticleTile";
 import { articleReadMinutes } from "../../libs/articleTile";
@@ -168,13 +168,16 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
   };
   const mediaKind = kind === "photo" || kind === "video" ? mediaCardOf(item, resolveContentType(item) === "short") : null;
 
+  // A plain text post with no chosen backdrop sits on Soft Light.
+  const softLight = kind === "text" && !card && !postBg;
   let body: React.ReactNode;
   if (kind === "text" || kind === "article") {
     const rawWords = kind === "article" ? item.title || item.name : item.description || item.name;
     const words = plainText(card ? wordsWithoutLinks(rawWords || "") : rawWords);
     const posterInner = (pill?: React.ReactNode) => (
       <View style={styles.textInner}>
-        {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : pill ? <View style={styles.inlineChip}>{pill}</View> : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
+        {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : pill ? <View style={styles.inlineChip}>{pill}</View> : softLight ? <View style={styles.softGap} /> : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
+        {softLight && <Text pointerEvents="none" style={[styles.softQuote, { color: ink }]}>{"“"}</Text>}
         <Text numberOfLines={5} style={[styles.words, { color: ink }]}>{words}</Text>
         <View style={styles.stats}>
           <View style={styles.stat}><Icon name="MessageSquare" size={10} color={sub} /><Text style={[styles.meta, { color: sub }]}>{formatCompactNumber(item.commentCount ?? 0)}</Text></View>
@@ -185,7 +188,8 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
     );
     body = (
       <View className="dark-surface" style={[styles.fill, postBg ? null : { backgroundColor: posterBg, borderColor: posterLine, borderWidth: StyleSheet.hairlineWidth }]}>
-        {postBg && <PostBgLayer bg={postBg} />}
+        {postBg && <PostBgLayer bg={postBg} seed={id} />}
+        {softLight && <SoftLightLayer theme={theme} light={lightPoster} seed={id} />}
         {kind === "article" ? (
           <>
             <ArticleTileFace look={articleLook} {...articleSample} />
@@ -312,6 +316,8 @@ const styles = StyleSheet.create({
   views: { position: "absolute", right: 7, bottom: 6, color: "#FFFFFF", fontSize: 10, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.5)", textShadowRadius: 2 },
   textInner: { flex: 1, paddingHorizontal: 8, paddingTop: 9, paddingBottom: 8, gap: 4 },
   quote: { fontSize: 26, lineHeight: 22, height: 14, fontWeight: "800", opacity: 0.3 },
+  softGap: { height: 14 },
+  softQuote: { position: "absolute", right: 4, bottom: -22, fontSize: 84, lineHeight: 90, fontWeight: "800", opacity: 0.09 },
   words: { fontSize: 12.5, lineHeight: 15.5, fontWeight: "700", paddingRight: 8 },
   stats: { marginTop: "auto", flexDirection: "row", gap: 8 },
   stat: { flexDirection: "row", alignItems: "center", gap: 3 },
