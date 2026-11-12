@@ -3903,7 +3903,8 @@
       "moveUp": "تحريك الجزء {{n}} لأعلى",
       "moveDown": "تحريك الجزء {{n}} لأسفل",
       "addPart": "أضف إلى السلسلة",
-      "addPlaceholder": "أضف إلى سلسلتك..."
+      "addPlaceholder": "أضف إلى سلسلتك...",
+      "label": "سلسلة · {{count}} أجزاء"
     }
   },
   "postInfo": {
