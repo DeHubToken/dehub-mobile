@@ -4073,7 +4073,18 @@
     "attachMedia": "Foto, video of audio toevoegen",
     "attachPhotoOrVideo": "Foto of video",
     "attachTooLarge": "Dat bestand is groter dan de limiet van {{size}} MB.",
-    "playVideo": "Video afspelen"
+    "playVideo": "Video afspelen",
+    "threadParts": {
+      "reorder": "Volgorde wijzigen",
+      "reorderHint": "Houd een deel vast en sleep het, of gebruik de pijlen, en sla daarna op.",
+      "save": "Volgorde opslaan",
+      "saved": "Volgorde van de thread opgeslagen",
+      "saveFailed": "De volgorde kon niet worden opgeslagen. Probeer het opnieuw.",
+      "moveUp": "Deel {{n}} omhoog",
+      "moveDown": "Deel {{n}} omlaag",
+      "addPart": "Toevoegen aan thread",
+      "addPlaceholder": "Voeg toe aan je thread..."
+    }
   },
   "postInfo": {
     "ownersUnavailable": "De huidige eigenaren kunnen nu niet worden gelezen.",

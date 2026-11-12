@@ -11,10 +11,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import PostFeedNav from "../components/Home/PostFeedNav";
 import { FEED_SIDE, FEED_TOP } from "../components/Home/feedLayout";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, postMediaComment, recordCommentViews } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, postMediaComment, recordCommentViews, setThreadOrder } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
-import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "../libs/author-thread";
+import { authorThreadFirst, byThreadOrder, isAuthorThreadRoot, selectAuthorThreadIds } from "../libs/author-thread";
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import { takePendingFeedComments } from "../libs/feedPostHost";
@@ -967,9 +967,37 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     () =>
       comments
         .filter((c) => authorThreadIds.has(String(c.id)))
-        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()),
+        .sort(byThreadOrder),
     [comments, authorThreadIds],
   );
+  // The post's author gets "Add to thread" and "Reorder" under their thread.
+  const isPostAuthor = !!viewerWallet && !!threadCreator && threadCreator.toLowerCase() === viewerWallet;
+  const authorThreadTools = useMemo(() => (isPostAuthor ? {
+    onAddPart: () => {
+      setEditingComment(null);
+      setReplyTo(null);
+      setComposerAsked(true);
+      requestAnimationFrame(() => inputRef.current?.focus());
+    },
+    onSaveOrder: async (ids: string[]) => {
+      const author = threadCreator!.toLowerCase();
+      const before = comments;
+      // The thread reads in its new order the moment Save is pressed.
+      setComments(before.map((c) => {
+        if (!isAuthorThreadRoot(c, author)) return c;
+        const pos = ids.indexOf(String(c.id));
+        return { ...c, threadPos: pos >= 0 ? pos : undefined };
+      }));
+      try {
+        await setThreadOrder(tokenId!, ids);
+        toastSuccess(t("comments.threadParts.saved"));
+      } catch (error) {
+        setComments(before);
+        toastError(t("comments.threadParts.saveFailed"));
+        throw error;
+      }
+    },
+  } : undefined), [isPostAuthor, threadCreator, tokenId, comments, setReplyTo, t]);
   const orderedComments = useMemo(
     () =>
       orderThreads(
@@ -1615,7 +1643,14 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           )}
         </View>
       ) : null}
-      {!!item && !leanPost && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
+      {!!item && !leanPost && (
+        <AuthorThreadBlock
+          entries={authorThreadEntries}
+          renderRow={(c) => renderCommentItem({ item: c })}
+          summarize={(c) => (c.content || "").trim() || (c.imageUrl || c.gifUrl ? "🖼" : c.videoUrl ? "🎬" : c.audioUrl ? "🎙" : "")}
+          author={authorThreadTools}
+        />
+      )}
       {/* The comment tab row. Measured so the pinned copy can take over once
           it scrolls under the top of the screen. */}
       {!postUnavailable && !noComments && !leanPost && (
@@ -1634,7 +1669,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         </View>
       )}
     </View>
-  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, noComments, leanPost]);
+  ), [item, authorThreadEntries, authorThreadTools, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, noComments, leanPost]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1904,7 +1939,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                       ? t("comments.editPlaceholder")
                       : replyTo
                         ? t("comments.replyPlaceholder")
-                        : t("comments.inputPlaceholder")
+                        // The author's own straight comment is the next part of their thread.
+                        : isPostAuthor
+                          ? t("comments.threadParts.addPlaceholder")
+                          : t("comments.inputPlaceholder")
                   }
                   placeholderTextColor={theme.colors.mutedForeground}
                   className="flex-1 text-sm text-theme-neutrals-100"

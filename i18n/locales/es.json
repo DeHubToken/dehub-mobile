@@ -3885,7 +3885,18 @@
     "attachMedia": "Adjuntar foto, video o audio",
     "attachPhotoOrVideo": "Foto o video",
     "attachTooLarge": "Ese archivo supera el límite de {{size}} MB.",
-    "playVideo": "Reproducir video"
+    "playVideo": "Reproducir video",
+    "threadParts": {
+      "reorder": "Reordenar",
+      "reorderHint": "Mantén pulsada y arrastra una parte, o usa las flechas, y luego guarda.",
+      "save": "Guardar orden",
+      "saved": "Orden del hilo guardado",
+      "saveFailed": "No se pudo guardar el orden. Inténtalo de nuevo.",
+      "moveUp": "Subir la parte {{n}}",
+      "moveDown": "Bajar la parte {{n}}",
+      "addPart": "Añadir al hilo",
+      "addPlaceholder": "Añade a tu hilo..."
+    }
   },
   "postInfo": {
     "ownersUnavailable": "Los propietarios actuales no se pueden leer en este momento.",

@@ -3885,7 +3885,18 @@
     "attachMedia": "Fotoğraf, video veya ses ekle",
     "attachPhotoOrVideo": "Fotoğraf veya video",
     "attachTooLarge": "Bu dosya {{size}} MB sınırını aşıyor.",
-    "playVideo": "Videoyu oynat"
+    "playVideo": "Videoyu oynat",
+    "threadParts": {
+      "reorder": "Yeniden sırala",
+      "reorderHint": "Bir bölümü basılı tutup sürükleyin ya da okları kullanın, sonra kaydedin.",
+      "save": "Sırayı kaydet",
+      "saved": "Akış sırası kaydedildi",
+      "saveFailed": "Sıra kaydedilemedi. Tekrar deneyin.",
+      "moveUp": "{{n}}. bölümü yukarı taşı",
+      "moveDown": "{{n}}. bölümü aşağı taşı",
+      "addPart": "Akışa ekle",
+      "addPlaceholder": "Akışına ekle..."
+    }
   },
   "postInfo": {
     "ownersUnavailable": "Mevcut sahipler şu anda okunamıyor.",
