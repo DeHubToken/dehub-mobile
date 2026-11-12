@@ -53,6 +53,7 @@ import { markContentWarningSeen } from '../../libs/contentWarningSeen';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import { useFeedSplitComments } from "./feedSplitComments";
 import PostStatsSheet from "../Post/stats/PostStatsSheet";
+import { formatVsUsual, usePostVsUsual } from "../Post/stats/vsUsual";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
@@ -347,10 +348,30 @@ const META_PILL = {
  * Clock + time, then the post kind's icon + count, then who may see it when
  * that is narrower than everyone. A fragment, so the row adds no wrapper views.
  */
-function PostMetaItems({ timeAgo, icon, count, visibility, boosted, onStatsPress }: {
+/** How far your post is above or below your usual one, inside the stats pill. */
+function ViewVsUsual({ tokenId, color }: { tokenId: string | number; color: string }) {
+  const { t } = useCopy();
+  const { isLight } = useAppTheme();
+  const pct = usePostVsUsual(tokenId).data?.pct;
+  if (pct == null) return null;
+  const tone = pct >= 10 ? (isLight ? "#059669" : "#34d399") : pct <= -10 ? (isLight ? "#dc2626" : "#f87171") : color;
+  return (
+    <Text
+      testID="post-vs-usual"
+      accessibilityLabel={t("postStats.vsUsualPct", { pct: formatVsUsual(pct) })}
+      style={[META_TEXT, { color: tone, fontWeight: "700" }]}
+    >
+      {formatVsUsual(pct)}
+    </Text>
+  );
+}
+
+function PostMetaItems({ timeAgo, icon, count, visibility, boosted, onStatsPress, statsTokenId }: {
   timeAgo?: string;
   /** Your own post: the count becomes a pill that opens its stats. */
   onStatsPress?: () => void;
+  /** Your own post's id: the pill adds its % against your usual post. */
+  statsTokenId?: string | number;
   /** Paid boost slot: says so in words, right after the time. */
   boosted?: boolean;
   icon: IconName;
@@ -388,6 +409,7 @@ function PostMetaItems({ timeAgo, icon, count, visibility, boosted, onStatsPress
         >
           <Icon name={icon} size={13} color={iconColor} />
           <Text style={[META_TEXT, { color: iconColor }]}>{count}</Text>
+          {statsTokenId != null ? <ViewVsUsual tokenId={statsTokenId} color={iconColor} /> : null}
           <Icon name="ChartColumn" size={12} color={iconColor} />
         </Pressable>
       ) : (
@@ -2542,7 +2564,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
               <View style={{ marginTop: 'auto', paddingTop: 16 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
                   {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
                 </View>
                 {actionBar}
@@ -2669,7 +2691,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
+          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -3021,7 +3043,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
             {translateButton}
           </View>
         )}
@@ -3276,7 +3298,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             labelled; printed here it read as the view count and undercounted
             by an order of magnitude. */}
         <PostMetaItems
-          timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats}
+          timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined}
           visibility={item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}

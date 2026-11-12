@@ -16187,6 +16187,7 @@
     "signedOutViewers": "Oturumsuz",
     "stillWatching": "Hâlâ izleyen",
     "timesUsual": "her zamankinin {{ratio}}×",
+    "vsUsualPct": "Her zamanki gönderine göre {{pct}}",
     "topSupporters": "En çok destekleyenler",
     "unavailableBody": "Bu gönderinin istatistiklerini yalnızca içerik üreticisi görebilir.",
     "unavailableTitle": "İstatistikler kullanılamıyor",

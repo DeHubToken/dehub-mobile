@@ -16192,6 +16192,7 @@
     "signedOutViewers": "Non connectés",
     "stillWatching": "Regardent encore",
     "timesUsual": "{{ratio}}× l'habitude",
+    "vsUsualPct": "{{pct}} par rapport à ta publication habituelle",
     "topSupporters": "Meilleurs soutiens",
     "unavailableBody": "Seul le créateur peut voir les stats de cette publication.",
     "unavailableTitle": "Stats indisponibles",

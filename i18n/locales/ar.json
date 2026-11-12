@@ -16196,6 +16196,7 @@
     "signedOutViewers": "بدون تسجيل دخول",
     "stillWatching": "ما زالوا يشاهدون",
     "timesUsual": "{{ratio}}× المعتاد",
+    "vsUsualPct": "{{pct}} مقارنة بمنشورك المعتاد",
     "topSupporters": "أكبر الداعمين",
     "unavailableBody": "صاحب المنشور فقط يمكنه رؤية إحصاءاته.",
     "unavailableTitle": "الإحصاءات غير متاحة",

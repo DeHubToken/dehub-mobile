@@ -107,3 +107,18 @@ export function reportPostEvent(tokenId: string | number | null | undefined, typ
   if (!Number.isInteger(id) || id <= 0) return;
   send("event", { tokenId: id, type });
 }
+
+/** One post against the creator's usual post, for the % on its view button. */
+export interface PostVsUsual {
+  /** Difference in percent; null when there's nothing fair to say yet. */
+  pct: number | null;
+  people: number;
+  usual: number | null;
+}
+
+/** Several of the caller's own posts in one call. Others' posts are left out. */
+export async function getVsUsual(tokenIds: Array<string | number>): Promise<Record<string, PostVsUsual>> {
+  const ids = tokenIds.map((id) => encodeURIComponent(String(id))).join(",");
+  const res = await apiClient.get<{ result: Record<string, PostVsUsual> }>(`/post-stats/vs-usual?ids=${ids}`, { quiet: true });
+  return res.result ?? {};
+}
