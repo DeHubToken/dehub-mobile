@@ -294,6 +294,18 @@
     "privateNote": "Les comptes privés ne sont pas visibles dans le fédivers.",
     "noUsername": "Choisissez un nom d'utilisateur pour obtenir une adresse fédivers."
   },
+  "signedFollows": {
+    "title": "Tes abonnements, sur la blockchain",
+    "description": "Ton wallet signe les comptes que tu suis, et chaque jour la liste est horodatée sur Base. N'importe quelle app peut retrouver tes abonnements depuis ton wallet, même sans Riftn.",
+    "on": "Activé sur cet appareil",
+    "off": "Désactivé sur cet appareil",
+    "setUp": "Activer",
+    "turnOff": "Désactiver",
+    "turnedOn": "Ton wallet signe désormais tes abonnements",
+    "turnedOff": "Désactivé sur cet appareil",
+    "failed": "Ton wallet n'a pas signé. Réessaie.",
+    "hiddenNote": "Les listes d'abonnements masquées et les comptes privés ne figurent pas dans la liste publique."
+  },
   "profileFields": {
     "title": "Champs du profil",
     "description": "Jusqu'à quatre lignes en plus sur votre profil, comme un site web ou vos pronoms.",

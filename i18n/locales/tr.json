@@ -294,6 +294,18 @@
     "privateNote": "Gizli hesaplar fediverse'te gösterilmez.",
     "noUsername": "Fediverse adresi almak için bir kullanıcı adı seç."
   },
+  "signedFollows": {
+    "title": "Takip ettiklerin, zincirde",
+    "description": "Cüzdanın kimi takip ettiğini imzalar ve liste her gün Base üzerinde mühürlenir. Herhangi bir uygulama, Riftn olmadan bile, takip ettiklerini cüzdanından bulabilir.",
+    "on": "Bu cihazda açık",
+    "off": "Bu cihazda kapalı",
+    "setUp": "Aç",
+    "turnOff": "Kapat",
+    "turnedOn": "Takip ettiklerin artık cüzdanınla imzalanıyor",
+    "turnedOff": "Bu cihazda kapatıldı",
+    "failed": "Cüzdanın imzalamadı. Tekrar dene.",
+    "hiddenNote": "Gizli takip listeleri ve gizli hesaplar herkese açık listede yer almaz."
+  },
   "profileFields": {
     "title": "Profil alanları",
     "description": "Profiline dört satıra kadar ek bilgi ekle; örneğin bir web sitesi ya da zamirlerin.",
