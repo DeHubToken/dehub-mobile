@@ -3895,7 +3895,8 @@
       "moveUp": "{{n}}. bölümü yukarı taşı",
       "moveDown": "{{n}}. bölümü aşağı taşı",
       "addPart": "Akışa ekle",
-      "addPlaceholder": "Akışına ekle..."
+      "addPlaceholder": "Akışına ekle...",
+      "label": "Akış · {{count}} bölüm"
     }
   },
   "postInfo": {

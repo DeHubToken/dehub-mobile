@@ -1,7 +1,9 @@
 /**
  * The author thread under a post: the creator's opening comments (see
- * libs/author-thread), joined to each other by one line through the avatar
- * column. Rows are drawn by the caller so they keep every comment action.
+ * libs/author-thread). A "Thread · N parts" marker sits right under the
+ * post's buttons and one line runs from it down through every part's avatar,
+ * so the parts read as the post carrying on, not as comments. Rows are drawn
+ * by the caller so they keep every comment action.
  *
  * The post's author also gets their tools under it, as on web (AuthorThread):
  * "Add to thread" brings up the comment box, and with two or more parts
@@ -32,15 +34,23 @@ interface Props<T extends { id: number | string }> {
   author?: AuthorTools;
 }
 
+/** The post's avatar is centred 32 in from the screen edge; the line runs there. */
+const LINE_X = 32;
+/** A comment row's 32pt avatar starts 10 below the row's top. */
+const AVATAR_TOP = 10;
+const TOOL_HEIGHT = 34;
+const PLUS_SIZE = 24;
 /** Every reorder row is the same height, which is what the drag's slots need. */
 const ROW_HEIGHT = 64;
 const ROW_GAP = 6;
 
 export default function AuthorThreadBlock<T extends { id: number | string }>({ entries, renderRow, summarize, author }: Props<T>) {
   const [reordering, setReordering] = useState(false);
+  // Where the line stops: the last part's avatar, or the author's "+".
+  const [lineEnd, setLineEnd] = useState(0);
   const { t } = useTranslation();
   const light = isLightTone();
-  const line = light ? "rgba(0,0,0,0.16)" : "rgba(255,255,255,0.2)";
+  const line = light ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.24)";
 
   // Fewer than two parts leaves nothing to put in order.
   useEffect(() => { if (entries.length < 2) setReordering(false); }, [entries.length]);
@@ -58,28 +68,51 @@ export default function AuthorThreadBlock<T extends { id: number | string }>({ e
     );
   }
 
+  const hasParts = entries.length > 0;
   return (
-    <View style={styles.wrap}>
-      {/* Rows are px-8 with a 32pt avatar padded 10 from the top, so the line
-          runs at x = 48 and meets each avatar's centre at y = 26. Segments per
-          row, so it starts at the first avatar and stops at the last. */}
+    <View>
+      {hasParts && lineEnd > 0 && (
+        <View pointerEvents="none" style={[styles.line, { height: lineEnd, backgroundColor: line }]} />
+      )}
+      {hasParts && (
+        <View style={styles.bridge}>
+          {/* A ring drawn as two fills: light themes drop borders on small round views. */}
+          <View style={[styles.ring, { backgroundColor: line }]}>
+            <View style={[styles.ringInner, { backgroundColor: colors.background }]}>
+              <Icon name="MessageSquareText" size={12} color={colors.mutedForeground} />
+            </View>
+          </View>
+          <Text style={[styles.bridgeLabel, { color: colors.mutedForeground }]}>
+            {t("comments.threadParts.label", { count: entries.length + 1 })}
+          </Text>
+        </View>
+      )}
+      {/* The caller pads rows 32 for normal comments; parts step out 16 so
+          their avatars sit under the post's own avatar, on the line. */}
       {entries.map((entry, i) => (
-        <View key={entry.id} style={styles.row}>
-          {i > 0 && <View style={[styles.above, { backgroundColor: line }]} pointerEvents="none" />}
-          {i < entries.length - 1 && <View style={[styles.below, { backgroundColor: line }]} pointerEvents="none" />}
+        <View
+          key={entry.id}
+          style={styles.row}
+          onLayout={!author && i === entries.length - 1 ? (e) => setLineEnd(e.nativeEvent.layout.y + AVATAR_TOP) : undefined}
+        >
           {renderRow(entry)}
         </View>
       ))}
       {author && (
-        <View style={styles.tools}>
+        <View
+          style={styles.tools}
+          onLayout={hasParts ? (e) => setLineEnd(e.nativeEvent.layout.y + 2 + (TOOL_HEIGHT - PLUS_SIZE) / 2) : undefined}
+        >
           <Pressable
             onPress={author.onAddPart}
             accessibilityRole="button"
             style={({ pressed }) => [styles.tool, pressed && styles.pressed]}
             hitSlop={6}
           >
-            <View style={[styles.plus, { borderColor: line }]}>
-              <Icon name="Plus" size={14} color={colors.mutedForeground} />
+            <View style={[styles.ring, styles.plus, { backgroundColor: line }]}>
+              <View style={[styles.ringInner, { backgroundColor: colors.background }]}>
+                <Icon name="Plus" size={14} color={colors.mutedForeground} />
+              </View>
             </View>
             <Text style={[styles.toolText, { color: colors.mutedForeground }]}>{t("comments.threadParts.addPart")}</Text>
           </Pressable>
@@ -206,14 +239,16 @@ function ThreadReorder<T extends { id: number | string }>({
 }
 
 const styles = StyleSheet.create({
-  wrap: { paddingTop: 4 },
-  row: { position: "relative" },
-  above: { position: "absolute", left: 48, top: 0, height: 26, width: 1 },
-  below: { position: "absolute", left: 48, top: 26, bottom: 0, width: 1 },
-  tools: { flexDirection: "row", alignItems: "center", gap: 4, paddingLeft: 18, paddingTop: 2, paddingBottom: 6 },
-  tool: { flexDirection: "row", alignItems: "center", gap: 6, height: 34, paddingHorizontal: 8, borderRadius: 17 },
+  line: { position: "absolute", left: LINE_X - 1, top: 0, width: 2, borderRadius: 1 },
+  bridge: { height: 34, flexDirection: "row", alignItems: "center", paddingLeft: LINE_X - 12 },
+  ring: { width: 24, height: 24, borderRadius: 12, padding: 1.5 },
+  ringInner: { flex: 1, alignSelf: "stretch", borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  bridgeLabel: { fontSize: 12, fontWeight: "600", marginLeft: 8 },
+  row: { marginLeft: -16 },
+  tools: { flexDirection: "row", alignItems: "center", gap: 4, paddingLeft: LINE_X - 12 - 8, paddingTop: 2, paddingBottom: 6 },
+  tool: { flexDirection: "row", alignItems: "center", gap: 6, height: TOOL_HEIGHT, paddingHorizontal: 8, borderRadius: TOOL_HEIGHT / 2 },
   pressed: { opacity: 0.6 },
-  plus: { width: 24, height: 24, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center" },
+  plus: { width: PLUS_SIZE, height: PLUS_SIZE, borderRadius: PLUS_SIZE / 2 },
   toolText: { fontSize: 13, fontWeight: "500" },
   reorderWrap: { paddingHorizontal: 12, paddingTop: 8, paddingBottom: 6 },
   hint: { fontSize: 12, marginBottom: 8, paddingHorizontal: 4 },

@@ -4083,7 +4083,8 @@
       "moveUp": "Deel {{n}} omhoog",
       "moveDown": "Deel {{n}} omlaag",
       "addPart": "Toevoegen aan thread",
-      "addPlaceholder": "Voeg toe aan je thread..."
+      "addPlaceholder": "Voeg toe aan je thread...",
+      "label": "Thread · {{count}} delen"
     }
   },
   "postInfo": {

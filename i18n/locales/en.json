@@ -3905,7 +3905,8 @@
       "moveUp": "Move part {{n}} up",
       "moveDown": "Move part {{n}} down",
       "addPart": "Add to thread",
-      "addPlaceholder": "Add to your thread..."
+      "addPlaceholder": "Add to your thread...",
+      "label": "Thread · {{count}} parts"
     },
     "cancelReply": "Cancel reply",
     "cancelEdit": "Cancel editing",
