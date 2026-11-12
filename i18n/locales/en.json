@@ -16123,6 +16123,7 @@
     "signedOutViewers": "Signed out",
     "stillWatching": "Still watching",
     "timesUsual": "{{ratio}}× usual",
+    "vsUsualPct": "{{pct}} vs your usual post",
     "topSupporters": "Top supporters",
     "unavailableBody": "Only the creator can see stats for this post.",
     "unavailableTitle": "Stats unavailable",
