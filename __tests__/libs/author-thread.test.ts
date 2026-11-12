@@ -9,6 +9,17 @@ const row = (id: number, address: string, minute: number, extra: Record<string, 
 });
 
 describe("selectAuthorThreadIds", () => {
+  it("reads placed parts in the author's order, unplaced parts after in time order", () => {
+    const ids = selectAuthorThreadIds([
+      row(1, A, 1, { threadPos: 2 }),
+      row(2, A, 2, { threadPos: 0 }),
+      row(3, A, 3, { threadPos: 1 }),
+      row(5, A, 5),
+      row(4, A, 4),
+    ], A);
+    expect([...ids]).toEqual(["2", "3", "1", "4", "5"]);
+  });
+
   it("takes the author's opening comments in time order", () => {
     const ids = selectAuthorThreadIds([row(3, "0xbbbb", 3), row(2, A, 2), row(1, A, 1)], A);
     expect([...ids]).toEqual(["1", "2"]);

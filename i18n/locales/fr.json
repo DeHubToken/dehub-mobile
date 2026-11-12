@@ -3889,7 +3889,18 @@
     "attachMedia": "Joindre une photo, une vidéo ou un audio",
     "attachPhotoOrVideo": "Photo ou vidéo",
     "attachTooLarge": "Ce fichier dépasse la limite de {{size}} Mo.",
-    "playVideo": "Lire la vidéo"
+    "playVideo": "Lire la vidéo",
+    "threadParts": {
+      "reorder": "Réorganiser",
+      "reorderHint": "Maintenez et faites glisser une partie, ou utilisez les flèches, puis enregistrez.",
+      "save": "Enregistrer l'ordre",
+      "saved": "Ordre du fil enregistré",
+      "saveFailed": "Impossible d'enregistrer l'ordre. Réessayez.",
+      "moveUp": "Monter la partie {{n}}",
+      "moveDown": "Descendre la partie {{n}}",
+      "addPart": "Ajouter au fil",
+      "addPlaceholder": "Ajoutez à votre fil..."
+    }
   },
   "postInfo": {
     "ownersUnavailable": "Les propriétaires actuels ne peuvent pas être lus pour le moment.",

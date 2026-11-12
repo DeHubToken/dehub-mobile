@@ -3896,6 +3896,17 @@
     "editPlaceholder": "Edit your comment...",
     "replyPlaceholder": "Write a reply...",
     "inputPlaceholder": "Type here",
+    "threadParts": {
+      "reorder": "Reorder",
+      "reorderHint": "Hold and drag a part, or use the arrows, then save.",
+      "save": "Save order",
+      "saved": "Thread order saved",
+      "saveFailed": "Couldn't save the order. Try again.",
+      "moveUp": "Move part {{n}} up",
+      "moveDown": "Move part {{n}} down",
+      "addPart": "Add to thread",
+      "addPlaceholder": "Add to your thread..."
+    },
     "cancelReply": "Cancel reply",
     "cancelEdit": "Cancel editing",
     "countLabel_one": "{{count}} Comment",

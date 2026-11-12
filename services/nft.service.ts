@@ -476,6 +476,8 @@ export interface Comment {
   createdAt: string;
   parentId?: number;
   replyIds?: number[];
+  /** Where the post's creator placed this part of their own thread (Reorder). */
+  threadPos?: number;
   likeCount: number;
   isLiked?: boolean;
   dislikeCount?: number;
@@ -877,6 +879,18 @@ export async function pinComment(commentId: number | string): Promise<PinComment
     console.error('[NFTService] pinComment error', e);
     throw e;
   }
+}
+
+/**
+ * Save the order of the parts of your own thread (your top-level comments on
+ * your own post), first to last. The post's creator only.
+ */
+export async function setThreadOrder(tokenId: number | string, ids: (number | string)[]): Promise<{ result: boolean }> {
+  return apiClient.post<{ result: boolean }>(
+    '/thread_order',
+    { tokenId: Number(tokenId), ids: ids.map(String) },
+    { isAuthRequired: true }
+  );
 }
 
 // Post a comment with an image attachment (multipart/form-data)
