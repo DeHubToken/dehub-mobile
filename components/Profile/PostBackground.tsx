@@ -25,7 +25,8 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 import { isLowEndDevice } from "../../libs/deviceTier";
-import { parsePostBg, postBgById, type PostBg } from "../../libs/postBackgrounds";
+import { parsePostBg, postBgById, postBgVariant, type PostBg } from "../../libs/postBackgrounds";
+import BlurSafeImage from "../common/BlurSafeImage";
 
 /**
  * Profile post backgrounds (libs/postBackgrounds.ts), drawn natively: the same
@@ -66,6 +67,9 @@ export function useResolvedPostBg(address: string | undefined, customs: Record<s
 export const ProfilePostBgContext = createContext<PostBg | null>(null);
 export const useProfilePostBg = () => useContext(ProfilePostBgContext);
 
+/** The profile picture of the profile on screen, for the backdrop that blurs it (Profile Echo). */
+export const ProfilePostBgArtContext = createContext<string | null>(null);
+
 // ---- drawing ---------------------------------------------------------------------
 
 const still = isLowEndDevice();
@@ -99,9 +103,58 @@ function useLoop(duration: number, mode: "loop" | "alternate", active: boolean) 
 
 const fill = StyleSheet.absoluteFillObject;
 
-function Still({ id }: { id: string }) {
+const CARD_COLORS = [["#ff5f6d", "#ffb157"], ["#4b5bff", "#b56bff"], ["#00b894", "#0a6cff"], ["#f7367b", "#7a3cff"], ["#0e9f6e", "#b6d94c"], ["#ff7a18", "#d6336c"], ["#1f6feb", "#22c1c3"], ["#6d3bd2", "#e0508f"]] as const;
+const ECHO_TURN = ["0deg", "120deg", "240deg", "0deg"] as const;
+
+function Still({ id, n = 0, art }: { id: string; n?: number; art?: string | null }) {
   const u = useId().replace(/[^a-zA-Z0-9]/g, "");
   switch (id) {
+    case "echo":
+      return (
+        <View style={[fill, { backgroundColor: "#1c2028" }]}>
+          {art ? (
+            <BlurSafeImage source={{ uri: art }} contentFit="cover" blurRadius={24} cachePolicy="memory-disk"
+              style={{ position: "absolute", left: "-30%", top: "-30%", width: "160%", height: "160%", transform: [{ rotate: ECHO_TURN[n % 4] }, { scaleX: n % 4 === 3 ? -1 : 1 }] }} />
+          ) : (
+            <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+              <Defs>
+                <RadialGradient id={u + "a"} cx="30%" cy="30%" rx="45%" ry="45%"><Stop offset="0" stopColor="#e9b36b" /><Stop offset="1" stopColor="#e9b36b" stopOpacity="0" /></RadialGradient>
+                <RadialGradient id={u + "b"} cx="75%" cy="35%" rx="50%" ry="50%"><Stop offset="0" stopColor="#3fb6a8" /><Stop offset="1" stopColor="#3fb6a8" stopOpacity="0" /></RadialGradient>
+                <RadialGradient id={u + "c"} cx="55%" cy="80%" rx="55%" ry="55%"><Stop offset="0" stopColor="#b0486e" /><Stop offset="1" stopColor="#b0486e" stopOpacity="0" /></RadialGradient>
+              </Defs>
+              <G rotation={n * 120} origin="50, 50"><Rect x="-30" y="-30" width="160" height="160" fill="#2a2f3a" /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}a)`} /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}b)`} /><Rect x="-30" y="-30" width="160" height="160" fill={`url(#${u}c)`} /></G>
+            </Svg>
+          )}
+          <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+            <Defs><LinearGradient id={u + "s"} x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#06070a" stopOpacity="0.38" /><Stop offset="1" stopColor="#06070a" stopOpacity="0.72" /></LinearGradient></Defs>
+            <Rect width="100" height="100" fill={`url(#${u}s)`} />
+          </Svg>
+        </View>
+      );
+    case "cards": {
+      const [from, to] = CARD_COLORS[n % CARD_COLORS.length];
+      return (
+        <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+          <Defs><LinearGradient id={u + "g"} x1="0" y1="0" x2="0.6" y2="1"><Stop offset="0" stopColor={from} /><Stop offset="1" stopColor={to} /></LinearGradient></Defs>
+          <Rect width="100" height="100" fill={`url(#${u}g)`} />
+        </Svg>
+      );
+    }
+    case "deck": {
+      const look = n % 3;
+      return (
+        <Svg style={fill}>
+          <Defs>
+            <Pattern id={u + "p"} width="9" height="9" patternUnits="userSpaceOnUse">
+              {look === 0 ? <Circle cx="4.5" cy="4.5" r="1" fill="#fff" /> : look === 1 ? <Path d="M-1 10 L10 -1" stroke="#fff" strokeWidth="1" /> : <Path d="M0 4.5 H9" stroke="#fff" strokeWidth="1" />}
+            </Pattern>
+            <LinearGradient id={u + "f"} x1={look === 1 ? "0" : "1"} y1="0" x2={look === 1 ? "1" : "0"} y2="1"><Stop offset="0" stopColor="#0c0d10" stopOpacity={look === 1 ? "1" : "0"} /><Stop offset="0.75" stopColor="#0c0d10" stopOpacity={look === 1 ? "0" : "1"} /></LinearGradient>
+          </Defs>
+          <Rect width="100%" height="100%" fill="#0c0d10" /><Rect width="100%" height="100%" fill={`url(#${u}p)`} opacity="0.18" /><Rect width="100%" height="100%" fill={`url(#${u}f)`} />
+          <Rect width="100%" height="2" fill="#aebfce" opacity="0.7" />
+        </Svg>
+      );
+    }
     case "ink":
       return (
         <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -426,11 +479,50 @@ function Moving({ id, w, h, active }: { id: string; w: number; h: number; active
   }
 }
 
+/** Glow colours per theme for Soft Light (web: --pmg-soft-a / -b / -base in profile-mixed-grid.css). */
+const SOFT_COLORS: Record<string, readonly [string, string]> = {
+  osaka: ["#ff6fb5", "#7c5cff"], hazy: ["#ff7ad9", "#7aa8ff"], island: ["#ff7a8a", "#3fc1c9"], hacker: ["#39ff88", "#0f8f4a"],
+  horror: ["#ff2b2b", "#6b0f0f"], jungle: ["#e2b060", "#3f7f4a"], war: ["#4fe3e0", "#2b6f7a"],
+};
+const SOFT_SPOTS = [
+  [{ cx: "0%", cy: "0%", rx: "120%", ry: "80%", o: 0.38 }, { cx: "100%", cy: "100%", rx: "90%", ry: "70%", o: 0.3 }],
+  [{ cx: "100%", cy: "0%", rx: "110%", ry: "80%", o: 0.3 }, { cx: "0%", cy: "100%", rx: "90%", ry: "70%", o: 0.38 }],
+  [{ cx: "50%", cy: "110%", rx: "130%", ry: "70%", o: 0.38 }, null],
+] as const;
+
+/**
+ * Soft Light: what a plain text post in the profile grid sits on when its
+ * owner picked no backdrop. A gentle glow in the theme's colours, in one of
+ * three corners so a row of text posts is not three identical boxes.
+ */
+export const SoftLightLayer = memo(function SoftLightLayer({ theme, light, seed }: { theme: string; light: boolean; seed: string | number }) {
+  const u = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const [a, b] = SOFT_COLORS[theme] ?? (light ? ["#7f93a8", "#b9c4cf"] : ["#aebfce", "#6d7f92"]);
+  const base = theme === "osaka" ? "#15101f" : theme === "hazy" ? "rgba(20,12,40,0.55)" : light ? "#f1f3f6" : "#0c0d10";
+  const n = postBgVariant(seed, 3);
+  const [first, second] = SOFT_SPOTS[n];
+  const colors = n === 1 ? [b, a] : [a, b];
+  return (
+    <View pointerEvents="none" style={[fill, { backgroundColor: base }]}>
+      <Svg style={fill} preserveAspectRatio="none" viewBox="0 0 100 100">
+        <Defs>
+          <RadialGradient id={u + "a"} cx={first.cx} cy={first.cy} rx={first.rx} ry={first.ry}><Stop offset="0" stopColor={colors[0]} stopOpacity={first.o} /><Stop offset="0.62" stopColor={colors[0]} stopOpacity="0" /></RadialGradient>
+          {second && <RadialGradient id={u + "b"} cx={second.cx} cy={second.cy} rx={second.rx} ry={second.ry}><Stop offset="0" stopColor={colors[1]} stopOpacity={second.o} /><Stop offset="0.66" stopColor={colors[1]} stopOpacity="0" /></RadialGradient>}
+        </Defs>
+        <Rect width="100" height="100" fill={`url(#${u}a)`} />
+        {second && <Rect width="100" height="100" fill={`url(#${u}b)`} />}
+      </Svg>
+    </View>
+  );
+});
+
 /**
  * The backdrop itself: fills its parent, sits behind the content, never takes
  * touches. `active={false}` holds a moving one still (e.g. a hidden tab).
  */
-export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg: PostBg | null; active?: boolean }) {
+export const PostBgLayer = memo(function PostBgLayer({ bg, active = true, seed }: { bg: PostBg | null; active?: boolean; seed?: string | number }) {
+  const art = useContext(ProfilePostBgArtContext);
+  const own = useId();
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   // A moving backdrop is an endless loop per tile: it holds while the list
   // scrolls, behind other screens and in the background (useAmbientMotion),
@@ -443,7 +535,7 @@ export const PostBgLayer = memo(function PostBgLayer({ bg, active = true }: { bg
   if (!bg) return null;
   return (
     <View pointerEvents="none" style={[fill, { overflow: "hidden" }]} onLayout={bg.kind === "moving" ? onLayout : undefined}>
-      {bg.kind === "still" ? <Still id={bg.id} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active && ambient} /> : null}
+      {bg.kind === "still" ? <Still id={bg.id} n={postBgVariant(seed ?? own, 8)} art={art} /> : size ? <Moving id={bg.id} w={size.w} h={size.h} active={active && ambient} /> : null}
     </View>
   );
 });

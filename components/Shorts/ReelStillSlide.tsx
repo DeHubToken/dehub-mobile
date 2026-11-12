@@ -117,7 +117,7 @@ function TextPoster({ still, height, isActive, bgId }: Props) {
   return (
     <View style={StyleSheet.absoluteFill} className={bg ? "dark-surface" : undefined}>
       {bg ? (
-        <PostBgLayer bg={bg} active={isActive} />
+        <PostBgLayer bg={bg} active={isActive} seed={still.text} />
       ) : (
         <LinearGradient colors={["#2a2152", "#0d0d14", "#0f2a38"]} locations={[0, 0.55, 1]} start={{ x: 0.1, y: 0 }} end={{ x: 0.9, y: 1 }} style={StyleSheet.absoluteFill} />
       )}

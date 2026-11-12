@@ -59,6 +59,11 @@ export interface Ctx2D {
 /* ─── Style list ───────────────────────────────────────────────────────── */
 
 export const EXTRA_STYLES = [
+  // Bold, simple waves.
+  { value: 'glassbars', get label() { return _translateCopy("copy.ebebdc70335b", { defaultValue: "Glass Bars" }); } },
+  { value: 'silk', get label() { return _translateCopy("copy.5ff272ba7871", { defaultValue: "Silk Lines" }); } },
+  { value: 'halo', get label() { return _translateCopy("copy.a941e90ca93d", { defaultValue: "Cover Halo" }); } },
+  { value: 'truewave', get label() { return _translateCopy("copy.04dbbe4dff7a", { defaultValue: "True Wave" }); } },
   // Theme styles, one per theme.
   { value: 'paper', get label() { return _translateCopy("copy.35045eff549e", { defaultValue: "Paper" }); } },
   { value: 'warp', get label() { return _translateCopy("copy.3db7c958dfdf", { defaultValue: "Warp" }); } },
@@ -456,6 +461,88 @@ function metaballs(c: Ctx2D, gw: number, gh: number, cw: number, ch: number, fie
 /* ─── Painters ─────────────────────────────────────────────────────────── */
 
 const P: Record<ExtraStyle, Painter> = {
+  /* Bold, simple waves */
+  glassbars(c, w, h, F, C, S) {
+    const caps: number[] = (S.caps ||= []);
+    const n = 26, slot = w / n, bw = slot * 0.56, r = bw / 2, mid = h * 0.58;
+    const g = c.createLinearGradient(0, mid - h * 0.5, 0, mid);
+    g.addColorStop(0, C.ink(1, 1));
+    g.addColorStop(1, C.accent(0.85));
+    for (let i = 0; i < n; i++) {
+      const u = (i + 0.5) / n, env = 0.35 + 0.65 * Math.sin(Math.PI * u);
+      // Quiet or paused, the bars rest on the track's own shape instead of shrinking to dots.
+      const v = Math.max(bw, (bandAt(F, u * 0.75) * 0.7 + peakAt(F, u) * (0.2 + F.level * 0.55)) * env * h * 0.62);
+      const x = i * slot + (slot - bw) / 2;
+      c.fillStyle = g;
+      c.beginPath(); circle(c, x + r, mid - v + r, r); c.fill();
+      c.fillRect(x, mid - v + r, bw, v - r);
+      c.fillStyle = C.accent(0.16);
+      c.fillRect(x, mid + 3, bw, v * 0.42);
+      caps[i] = Math.max(v + 5, (caps[i] || 0) - h * 0.35 * dtOf(F));
+      c.fillStyle = C.ink(1, 0.9);
+      c.fillRect(x, mid - caps[i] - 2, bw, 2);
+    }
+  },
+  silk(c, w, h, F, C) {
+    const beat = 0.7 + 0.3 * F.kick, drive = 0.45 + F.level * 1.4;
+    for (let k = 0; k < 3; k++) {
+      const speed = 0.9 + k * 0.35, phase = k * 1.6, amp = h * (0.3 - k * 0.06) * beat * Math.min(1.2, drive);
+      const env = (u: number) => Math.pow(Math.sin(Math.PI * u), 1.4);
+      c.beginPath();
+      for (let i = 0; i <= 64; i++) {
+        const u = i / 64, y = h / 2 + (Math.sin(u * 7 + F.t * speed + phase) * 0.7 + Math.sin(u * 15 - F.t * speed * 1.3 + phase) * 0.3) * amp * env(u);
+        if (i === 0) c.moveTo(0, y); else c.lineTo(u * w, y);
+      }
+      for (let i = 64; i >= 0; i--) {
+        const u = i / 64;
+        c.lineTo(u * w, h / 2 - Math.sin(u * 6.2 - F.t * speed + phase) * amp * env(u) * 0.5);
+      }
+      c.closePath();
+      const alpha = k === 2 ? 0.85 : 0.35 + k * 0.15;
+      c.fillStyle = C.tint(0.5 + k * 0.25, alpha * 0.5, (k - 1) * 40);
+      c.fill();
+      c.strokeStyle = C.tint(0.6 + k * 0.2, alpha, (k - 1) * 40);
+      c.lineWidth = 1.2;
+      c.stroke();
+    }
+  },
+  halo(c, w, h, F, C) {
+    const cx = w / 2, cy = h / 2, box = Math.min(w, h), R = box * (0.24 + 0.012 * F.kick), n = 64, r0 = R + box * 0.05;
+    const glow = c.createRadialGradient(cx, cy, R, cx, cy, Math.max(w, h) * 0.5);
+    glow.addColorStop(0, C.accent(0.26));
+    glow.addColorStop(1, C.accent(0));
+    c.fillStyle = glow;
+    c.fillRect(0, 0, w, h);
+    c.lineCap = 'round';
+    c.lineWidth = Math.max(1.5, box * 0.018);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * TAU - Math.PI / 2, u = (i < n / 2 ? i : n - i) / (n / 2);
+      const v = bandAt(F, u * 0.8) * box * 0.22 + 2;
+      c.strokeStyle = i % 2 ? C.ink(1, 0.9) : C.accent(0.9);
+      c.beginPath();
+      c.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0);
+      c.lineTo(cx + Math.cos(a) * (r0 + v), cy + Math.sin(a) * (r0 + v));
+      c.stroke();
+    }
+    const disc = c.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    disc.addColorStop(0, C.accent(1));
+    disc.addColorStop(1, C.tint(0.45, 1, 60));
+    c.fillStyle = disc;
+    c.beginPath(); circle(c, cx, cy, R); c.fill();
+    c.fillStyle = C.ink(1, 0.9);
+    c.beginPath(); circle(c, cx, cy, R * 0.12); c.fill();
+  },
+  truewave(c, w, h, F, C) {
+    const n = 84, slot = w / n, bw = slot * 0.5, mid = h / 2, p = F.progress;
+    for (let i = 0; i < n; i++) {
+      const u = (i + 0.5) / n, near = Math.max(0, 1 - Math.abs(u - p) * 14);
+      const v = Math.max(2, peakAt(F, u) * h * 0.3 * (1 + near * F.level * 1.6 * Math.sin(F.t * 14 + i)));
+      c.fillStyle = u <= p ? (near > 0 ? C.accent(0.95) : C.ink(1, 0.95)) : C.ink(0.6, 0.3);
+      c.fillRect(i * slot + (slot - bw) / 2, mid - v, bw, v * 2);
+    }
+    c.fillStyle = C.ink(1, 1);
+    c.fillRect(p * w - 0.75, h * 0.08, 1.5, h * 0.84);
+  },
   /* 1 Default, upgraded */
   liquid(c, w, h, F, C) {
     for (let ribbon = 0; ribbon < 5; ribbon++) {

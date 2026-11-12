@@ -155,6 +155,9 @@ export const styleBandHeight = (requested: VisualizerStyle): number => {
     case "bounce":
     case "braid":
     case "ribbon":
+    case "glassbars":
+    case "silk":
+    case "truewave":
       return 110;
     default:
       return isExtraStyle(style) ? 150 : WAVEFORM_HEIGHT;
