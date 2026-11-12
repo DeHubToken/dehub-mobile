@@ -176,7 +176,7 @@ const ProfileGridTile: React.FC<ProfileGridTileProps> = ({ item, pinned, onPress
     const words = plainText(card ? wordsWithoutLinks(rawWords || "") : rawWords);
     const posterInner = (pill?: React.ReactNode) => (
       <View style={styles.textInner}>
-        {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : pill ? <View style={styles.inlineChip}>{pill}</View> : softLight ? null : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
+        {pinChip ? <View style={styles.inlineChip}>{pinChip}</View> : pill ? <View style={styles.inlineChip}>{pill}</View> : softLight ? <View style={styles.softGap} /> : <Text style={[styles.quote, { color: ink }]}>{"“"}</Text>}
         {softLight && <Text pointerEvents="none" style={[styles.softQuote, { color: ink }]}>{"“"}</Text>}
         <Text numberOfLines={5} style={[styles.words, { color: ink }]}>{words}</Text>
         <View style={styles.stats}>
@@ -316,6 +316,7 @@ const styles = StyleSheet.create({
   views: { position: "absolute", right: 7, bottom: 6, color: "#FFFFFF", fontSize: 10, fontWeight: "700", textShadowColor: "rgba(0,0,0,0.5)", textShadowRadius: 2 },
   textInner: { flex: 1, paddingHorizontal: 8, paddingTop: 9, paddingBottom: 8, gap: 4 },
   quote: { fontSize: 26, lineHeight: 22, height: 14, fontWeight: "800", opacity: 0.3 },
+  softGap: { height: 14 },
   softQuote: { position: "absolute", right: 4, bottom: -22, fontSize: 84, lineHeight: 90, fontWeight: "800", opacity: 0.09 },
   words: { fontSize: 12.5, lineHeight: 15.5, fontWeight: "700", paddingRight: 8 },
   stats: { marginTop: "auto", flexDirection: "row", gap: 8 },
