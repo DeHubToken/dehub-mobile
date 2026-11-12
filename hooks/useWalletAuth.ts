@@ -19,7 +19,7 @@ import { useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react
 import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
-import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
+import { setSigningProvider, clearSigningProvider, markExternalSigner } from "../libs/provider.registry";
 import { ensureAppKit, useAppKitReady, getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
 import { beginAuthTrace } from '../libs/auth-trace';
@@ -104,6 +104,7 @@ export const useWalletAuth = () => {
       // Register the connected wallet as the signer BEFORE calling
       // signInWithWallet — see the file header for why this is required.
       setSigningProvider(walletProvider as any);
+      markExternalSigner(true);
       try {
         const preferred = await getStoredPreferredChainId();
         const effectiveChainId = preferred ?? chainId ?? getDefaultChainId();

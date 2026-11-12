@@ -376,6 +376,18 @@
     "privateNote": "Private accounts are not shown on the fediverse.",
     "noUsername": "Choose a username to get a fediverse address."
   },
+  "signedFollows": {
+    "title": "Your follows, on chain",
+    "description": "Your wallet signs who you follow, and every day the list is stamped on Base. Any app can find your follows from your wallet, even without Riftn.",
+    "on": "On for this device",
+    "off": "Off for this device",
+    "setUp": "Turn on",
+    "turnOff": "Turn off",
+    "turnedOn": "Your follows are now signed by your wallet",
+    "turnedOff": "Turned off for this device",
+    "failed": "Your wallet did not sign. Try again.",
+    "hiddenNote": "Hidden follow lists and private accounts are left out of the public list."
+  },
   "profileFields": {
     "title": "Profile fields",
     "description": "Up to four extra lines on your profile, such as a website or your pronouns.",

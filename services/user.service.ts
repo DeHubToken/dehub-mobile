@@ -1,4 +1,5 @@
 import { apiClient } from '../libs/api.client';
+import { signFollow } from '../libs/follow-graph';
 import { noteUnfollow } from '../libs/non-follower-streak';
 import { User } from '../context/AuthContext';
 import { getNFTs, GetNFTsResponse, SearchParams } from './nft.service';
@@ -622,8 +623,11 @@ export async function followUser(followerAddress: string, followingAddress: stri
   const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}`;
   const res = await apiClient.get<any>(url, { isAuthRequired: true });
   const payload = res?.data?.result || res?.result || res;
+  const status = payload?.status || 'following';
+  // Signed by the wallet's follow key in the background (libs/follow-graph).
+  if (status !== 'pending') signFollow('follow', followerAddress, followingAddress);
   return {
-    status: payload?.status || 'following',
+    status,
     isPrivateAccount: !!payload?.isPrivateAccount,
     wasPending: !!payload?.wasPending,
   };
@@ -647,6 +651,7 @@ export async function followUsersBatch(addresses: string[]): Promise<FollowBatch
     { isAuthRequired: true },
   );
   const payload: any = (res as any)?.data ?? res;
+  // Signed later by the daily catch-up in libs/follow-graph.
   return Array.isArray(payload?.results) ? payload.results : [];
 }
 
@@ -662,6 +667,7 @@ export async function unfollowUser(followerAddress: string, followingAddress: st
   const wasPending = !!(payload?.wasPending ?? body?.wasPending);
   // Cancelling a pending request is not unfollowing someone.
   if (!wasPending) noteUnfollow(typeof body?.followsYou === 'boolean' ? body.followsYou : undefined);
+  if (!wasPending) signFollow('unfollow', followerAddress, followingAddress);
   return {
     status: payload?.status || 'unfollowed',
     isPrivateAccount: !!payload?.isPrivateAccount,
