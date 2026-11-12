@@ -67,6 +67,7 @@ import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import FediverseHandleSection from "../components/Settings/FediverseHandleSection";
+import SignedFollowsSection from "../components/Settings/SignedFollowsSection";
 import ConnectedAppsSection from "../components/Settings/ConnectedAppsSection";
 import OwnAiKeysSection from "../components/Settings/OwnAiKeysSection";
 import EmailSignInSection from "../components/Settings/EmailSignInSection";
@@ -339,6 +340,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
       {/* The @username@dehub.io address Mastodon can follow — another way to
           reach the same profile, so it sits beside the ENS alias. */}
       {isSignedIn ? <FediverseHandleSection /> : null}
+      {isSignedIn ? <SignedFollowsSection /> : null}
       {/* The Mastodon apps signed in to this account, each removable. */}
       {isSignedIn ? <ConnectedAppsSection /> : null}
 

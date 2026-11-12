@@ -19,7 +19,7 @@ jest.mock('../../libs/walletSignupGate', () => ({
 }));
 jest.mock('../../libs/auth.utils', () => ({ getPreferredChainId: async () => 8453 }));
 jest.mock('../../config/reown.config', () => ({ getAppKitInstance: () => mockKit, ensureAppKit: async () => mockKit, useAppKitReady: () => true }));
-jest.mock('../../libs/provider.registry', () => ({ setSigningProvider: jest.fn(), clearSigningProvider: jest.fn() }));
+jest.mock('../../libs/provider.registry', () => ({ setSigningProvider: jest.fn(), clearSigningProvider: jest.fn(), markExternalSigner: jest.fn() }));
 jest.mock('@reown/appkit-ethers5-react-native', () => ({
   useAppKitAccount: () => ({ address: '0x1111111111111111111111111111111111111111', chainId: 8453 }),
   useAppKitProvider: () => ({ walletProvider: { request: jest.fn() } }),

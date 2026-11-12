@@ -5,6 +5,7 @@ let currentSigningProvider: any | null = null;
 
 export function setSigningProvider(provider: any | null) {
   currentSigningProvider = provider || null;
+  externalSigner = false;
 }
 
 export function getSigningProvider(): any | null {
@@ -13,6 +14,19 @@ export function getSigningProvider(): any | null {
 
 export function clearSigningProvider() {
   currentSigningProvider = null;
+  externalSigner = false;
+}
+
+// True while the signing provider above is an external wallet app (Connect
+// Wallet / WalletConnect), whose every signature is a prompt in that app.
+let externalSigner = false;
+
+export function markExternalSigner(on: boolean) {
+  externalSigner = on;
+}
+
+export function isExternalSigner(): boolean {
+  return externalSigner && !!currentSigningProvider;
 }
 
 // The plain EOA signer, kept apart from the override above.
@@ -30,8 +44,17 @@ export function clearSigningProvider() {
 // Cleared on sign-out.
 let currentEoaSigningProvider: any | null = null;
 
+const eoaListeners = new Set<() => void>();
+
 export function setEoaSigningProvider(provider: any | null) {
   currentEoaSigningProvider = provider || null;
+  if (provider) eoaListeners.forEach((cb) => { try { cb(); } catch { /* listener's own problem */ } });
+}
+
+/** Called each time the built-in wallet opens (its EOA signer is registered). */
+export function onEoaSigningProvider(cb: () => void): () => void {
+  eoaListeners.add(cb);
+  return () => { eoaListeners.delete(cb); };
 }
 
 export function getEoaSigningProvider(): any | null {

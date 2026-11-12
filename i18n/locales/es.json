@@ -294,6 +294,18 @@
     "privateNote": "Las cuentas privadas no se muestran en el fediverso.",
     "noUsername": "Elige un nombre de usuario para tener una dirección en el fediverso."
   },
+  "signedFollows": {
+    "title": "Tus seguidos, en la cadena",
+    "description": "Tu wallet firma a quién sigues y cada día la lista se sella en Base. Cualquier app puede encontrar a quién sigues desde tu wallet, incluso sin Riftn.",
+    "on": "Activado en este dispositivo",
+    "off": "Desactivado en este dispositivo",
+    "setUp": "Activar",
+    "turnOff": "Desactivar",
+    "turnedOn": "Tu wallet ya firma a quién sigues",
+    "turnedOff": "Desactivado en este dispositivo",
+    "failed": "Tu wallet no firmó. Inténtalo de nuevo.",
+    "hiddenNote": "Las listas de seguidos ocultas y las cuentas privadas no aparecen en la lista pública."
+  },
   "profileFields": {
     "title": "Campos del perfil",
     "description": "Hasta cuatro líneas extra en tu perfil, como un sitio web o tus pronombres.",
