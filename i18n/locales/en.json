@@ -386,7 +386,18 @@
     "turnedOn": "Your follows are now signed by your wallet",
     "turnedOff": "Turned off for this device",
     "failed": "Your wallet did not sign. Try again.",
-    "hiddenNote": "Hidden follow lists and private accounts are left out of the public list."
+    "hiddenNote": "Hidden follow lists and private accounts are left out of the public list.",
+    "efpOn": "Copied to EFP · {{count}} follows",
+    "efpOff": "Also put them on EFP",
+    "efpTurnOn": "Add to EFP",
+    "efpTurnOff": "Stop",
+    "efpDone": "Your follows are going onto EFP",
+    "efpStopped": "EFP copy stopped. The list stays yours.",
+    "efpHasList": "You already have an EFP list. Riftn can't fill that one yet.",
+    "efpNoGas": "Your wallet needs a little ETH on Base for this.",
+    "efpFailed": "That didn't go through. Try again.",
+    "efpNote": "EFP is a follow list other apps read (efp.app). Free with your Riftn wallet; other wallets pay a few cents on Base. The list is yours.",
+    "efpUseWeb": "With your own wallet, do this in Settings on riftn.com."
   },
   "profileFields": {
     "title": "Profile fields",

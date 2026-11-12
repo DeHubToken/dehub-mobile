@@ -304,7 +304,18 @@
     "turnedOn": "Tu wallet ya firma a quién sigues",
     "turnedOff": "Desactivado en este dispositivo",
     "failed": "Tu wallet no firmó. Inténtalo de nuevo.",
-    "hiddenNote": "Las listas de seguidos ocultas y las cuentas privadas no aparecen en la lista pública."
+    "hiddenNote": "Las listas de seguidos ocultas y las cuentas privadas no aparecen en la lista pública.",
+    "efpOn": "Copiado a EFP · {{count}} seguidos",
+    "efpOff": "Ponlos también en EFP",
+    "efpTurnOn": "Añadir a EFP",
+    "efpTurnOff": "Detener",
+    "efpDone": "Tus seguidos van camino a EFP",
+    "efpStopped": "Copia en EFP detenida. La lista sigue siendo tuya.",
+    "efpHasList": "Ya tienes una lista de EFP. Riftn aún no puede llenarla.",
+    "efpNoGas": "Tu billetera necesita un poco de ETH en Base para esto.",
+    "efpFailed": "No se completó. Inténtalo de nuevo.",
+    "efpNote": "EFP es una lista de seguidos que leen otras apps (efp.app). Gratis con tu billetera de Riftn; otras billeteras pagan unos céntimos en Base. La lista es tuya.",
+    "efpUseWeb": "Con tu propia billetera, hazlo en Ajustes en riftn.com."
   },
   "profileFields": {
     "title": "Campos del perfil",

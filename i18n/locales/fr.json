@@ -304,7 +304,18 @@
     "turnedOn": "Ton wallet signe désormais tes abonnements",
     "turnedOff": "Désactivé sur cet appareil",
     "failed": "Ton wallet n'a pas signé. Réessaie.",
-    "hiddenNote": "Les listes d'abonnements masquées et les comptes privés ne figurent pas dans la liste publique."
+    "hiddenNote": "Les listes d'abonnements masquées et les comptes privés ne figurent pas dans la liste publique.",
+    "efpOn": "Copié sur EFP · {{count}} abonnements",
+    "efpOff": "Les mettre aussi sur EFP",
+    "efpTurnOn": "Ajouter à EFP",
+    "efpTurnOff": "Arrêter",
+    "efpDone": "Vos abonnements partent sur EFP",
+    "efpStopped": "Copie EFP arrêtée. La liste reste à vous.",
+    "efpHasList": "Vous avez déjà une liste EFP. Riftn ne peut pas encore la remplir.",
+    "efpNoGas": "Votre portefeuille a besoin d'un peu d'ETH sur Base.",
+    "efpFailed": "Ça n'a pas abouti. Réessayez.",
+    "efpNote": "EFP est une liste d'abonnements lue par d'autres apps (efp.app). Gratuit avec votre portefeuille Riftn ; les autres portefeuilles paient quelques centimes sur Base. La liste est à vous.",
+    "efpUseWeb": "Avec votre propre portefeuille, faites-le dans les Réglages sur riftn.com."
   },
   "profileFields": {
     "title": "Champs du profil",

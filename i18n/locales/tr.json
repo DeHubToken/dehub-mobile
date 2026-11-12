@@ -304,7 +304,18 @@
     "turnedOn": "Takip ettiklerin artık cüzdanınla imzalanıyor",
     "turnedOff": "Bu cihazda kapatıldı",
     "failed": "Cüzdanın imzalamadı. Tekrar dene.",
-    "hiddenNote": "Gizli takip listeleri ve gizli hesaplar herkese açık listede yer almaz."
+    "hiddenNote": "Gizli takip listeleri ve gizli hesaplar herkese açık listede yer almaz.",
+    "efpOn": "EFP'ye kopyalandı · {{count}} takip",
+    "efpOff": "Bunları EFP'ye de koy",
+    "efpTurnOn": "EFP'ye ekle",
+    "efpTurnOff": "Durdur",
+    "efpDone": "Takiplerin EFP'ye gidiyor",
+    "efpStopped": "EFP kopyası durdu. Liste senin kalır.",
+    "efpHasList": "Zaten bir EFP listen var. Riftn onu henüz dolduramıyor.",
+    "efpNoGas": "Cüzdanının bunun için Base'de biraz ETH'ye ihtiyacı var.",
+    "efpFailed": "Olmadı. Tekrar dene.",
+    "efpNote": "EFP, diğer uygulamaların okuduğu bir takip listesidir (efp.app). Riftn cüzdanınla ücretsiz; diğer cüzdanlar Base'de birkaç sent öder. Liste senindir.",
+    "efpUseWeb": "Kendi cüzdanınla bunu riftn.com'da Ayarlar'dan yap."
   },
   "profileFields": {
     "title": "Profil alanları",
