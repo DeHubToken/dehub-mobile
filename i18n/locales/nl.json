@@ -304,7 +304,18 @@
     "turnedOn": "Je wallet ondertekent nu wie je volgt",
     "turnedOff": "Uitgezet op dit apparaat",
     "failed": "Je wallet heeft niet ondertekend. Probeer het opnieuw.",
-    "hiddenNote": "Verborgen volglijsten en privéaccounts staan niet in de openbare lijst."
+    "hiddenNote": "Verborgen volglijsten en privéaccounts staan niet in de openbare lijst.",
+    "efpOn": "Gekopieerd naar EFP · {{count}} gevolgd",
+    "efpOff": "Zet ze ook op EFP",
+    "efpTurnOn": "Toevoegen aan EFP",
+    "efpTurnOff": "Stoppen",
+    "efpDone": "Je gevolgde accounts gaan naar EFP",
+    "efpStopped": "EFP-kopie gestopt. De lijst blijft van jou.",
+    "efpHasList": "Je hebt al een EFP-lijst. Riftn kan die nog niet vullen.",
+    "efpNoGas": "Je wallet heeft hiervoor wat ETH op Base nodig.",
+    "efpFailed": "Dat lukte niet. Probeer het opnieuw.",
+    "efpNote": "EFP is een volglijst die andere apps lezen (efp.app). Gratis met je Riftn-wallet; andere wallets betalen een paar cent op Base. De lijst is van jou.",
+    "efpUseWeb": "Met je eigen wallet doe je dit in Instellingen op riftn.com."
   },
   "profileFields": {
     "title": "Profielvelden",
