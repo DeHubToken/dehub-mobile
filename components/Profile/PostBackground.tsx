@@ -103,7 +103,7 @@ function useLoop(duration: number, mode: "loop" | "alternate", active: boolean) 
 
 const fill = StyleSheet.absoluteFillObject;
 // An svg with a viewBox keeps its own shape unless it is told both sizes.
-const svgFill = [fill, { width: "100%", height: "100%" }] as const;
+const svgFill = { ...fill, width: "100%", height: "100%" } as const;
 
 const CARD_COLORS = [["#ff5f6d", "#ffb157"], ["#4b5bff", "#b56bff"], ["#00b894", "#0a6cff"], ["#f7367b", "#7a3cff"], ["#0e9f6e", "#b6d94c"], ["#ff7a18", "#d6336c"], ["#1f6feb", "#22c1c3"], ["#6d3bd2", "#e0508f"]] as const;
 const ECHO_TURN = ["0deg", "120deg", "240deg", "0deg"] as const;
