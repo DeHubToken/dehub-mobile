@@ -619,6 +619,13 @@ export function getBadgeName(
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
+export const RIFTN_GOLD_BADGE: number = require('../assets/badges/Megalodon-riftn.png');
+
+function holderImage(tier: string, username?: string | null) {
+  return tier === 'Megalodon' && username?.trim().replace(/^@/, '').toLowerCase() === 'riftn'
+    ? RIFTN_GOLD_BADGE : BADGE_IMAGES[tier];
+}
+
 const BADGE_IMAGES: Record<string, number> = {
   "Giant Tortoise": require("../assets/badges/Giant Tortoise.png"),
   Crab: require("../assets/badges/Crab.png"),
@@ -680,14 +687,15 @@ export function getBadgeOpticalStyle(
   artworkSit?: number,
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
-  const optics = artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
+  const gold = source === RIFTN_GOLD_BADGE;
+  const optics = gold ? { left: 1, top: 1, right: 127, bottom: 123 } : artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
   // The row that rests on the baseline: the tier's body, not a dangling tip.
   const sit = artworkSit ?? (!artworkBounds && tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
   // Manrope uses a 0.72em cap height; inline artwork is 1.27x it (+10%, +10%
   // on 2026-11-04, +5% on 2026-11-05). The baseline maths below uses the same
   // bounds, so every tier lands its resting line on the name's baseline.
-  const renderedSize = size * 0.72 * BADGE_CAP_SCALE * 128 / (bounds.bottom - bounds.top);
+  const renderedSize = size * (gold || tier === 'Megalodon' ? 1.069 : 1) * 0.72 * BADGE_CAP_SCALE * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
@@ -725,7 +733,7 @@ export function getInlineBadgeOpticalStyle(source: number, size: number, drawsPo
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source || LIGHT_BADGE_IMAGES[name] === source);
   // BadgeArtwork draws the hover poster; a plain image draws the original still.
   const art = !drawsPoster || tier === "Killer Whale" ? undefined : badgeHoverArt(tier);
-  const bounds = art?.posterBounds ?? (tier ? BADGE_OPTICS[tier] : undefined) ?? { left: 0, top: 0, right: 128, bottom: 128 };
+  const bounds = source === RIFTN_GOLD_BADGE ? { left: 1, top: 1, right: 127, bottom: 123 } : art?.posterBounds ?? (tier ? BADGE_OPTICS[tier] : undefined) ?? { left: 0, top: 0, right: 128, bottom: 128 };
   const sit = art?.posterSit ?? (tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
   const style = getBadgeOpticalStyle(source, size, 0, size, art?.posterBounds, art?.posterSit);
   const rendered = style.height - 2 * style.padding;
@@ -782,7 +790,7 @@ export function getBadgeUrl(
   context?: BadgeContext,
 ): number | undefined {
   const badge = getBadgeName(stakingAmount, context);
-  return badge ? BADGE_IMAGES[badge] : undefined;
+  return badge ? holderImage(badge, context?.username) : undefined;
 }
 
 /** The badge art for a tier name, for surfaces that already know the tier. */
@@ -902,7 +910,7 @@ export function getBadgeStanding(
 
   return {
     tier,
-    image: tier ? BADGE_IMAGES[tier] : undefined,
+    image: tier ? holderImage(tier, context?.username) : undefined,
     index,
     balance,
     currentThreshold,

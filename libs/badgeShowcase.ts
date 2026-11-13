@@ -4,7 +4,7 @@
  * or row the badge was sitting in.
  */
 import { useSyncExternalStore } from "react";
-import { BADGE_ORDER, badgeImage } from "./misc";
+import { BADGE_ORDER, RIFTN_GOLD_BADGE, badgeImage } from "./misc";
 import type { StreamerBadgeId } from "./streamer-badge-art";
 
 /** Anything that can report where it sits on screen: a host view instance. */
@@ -90,6 +90,7 @@ export function useBadgeShowcaseRequest(): BadgeShowcaseRequest | null {
 
 /** The tier a badge image stands for, for surfaces that only hold the art. */
 export function tierForBadgeImage(source: unknown): string | null {
+  if (source === RIFTN_GOLD_BADGE) return 'Megalodon';
   if (source === undefined || source === null) return null;
   return (
     BADGE_ORDER.find((name) => badgeImage(name) === source || badgeImage(name, "light") === source) ?? null
