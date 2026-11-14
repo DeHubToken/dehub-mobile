@@ -4,6 +4,10 @@ name: iOS simulator check
 # runs it on an iPhone simulator, opens every main page in light and dark,
 # and keeps the screenshots, the app log and any crash reports. Run it from
 # Actions before an App Store submission.
+#
+# task "nav" times page switches instead (tabs, profiles, posts, Settings,
+# Back): once with main's app code and once with this branch's, in the same
+# native build, so the two columns differ only by the change being checked.
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +15,14 @@ on:
         description: 'Walks to run, space separated: dark, light, syslight (System Light)'
         required: false
         default: 'dark light syslight'
+      task:
+        description: 'walk = open every page and screenshot it. nav = time page switches, main against this branch'
+        required: false
+        default: 'walk'
+      app_run_id:
+        description: 'nav only: reuse the simulator app an earlier run of this workflow built (its run id), when native code has not changed'
+        required: false
+        default: ''
   pull_request:
     paths:
       - .github/workflows/ios-simulator-check.yml
@@ -18,6 +30,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: ios-simulator-check-${{ github.ref }}
@@ -41,15 +54,18 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npx patch-package --error-on-fail
       - name: Prepare recording extension targets
+        if: inputs.app_run_id == ''
         run: |
           gem install xcodeproj --version 1.27.0 --no-document
           ruby scripts/configure-screen-capture-targets.rb
       # Plain install, as the store build does: the committed Podfile.lock
       # trails autolinking, so --deployment refuses it.
       - name: Install pods
+        if: inputs.app_run_id == ''
         working-directory: ios
         run: pod install
       - name: Run the code in this commit, not the latest published update
+        if: inputs.app_run_id == ''
         run: plutil -replace EXUpdatesEnabled -bool NO ios/DeHub/Supporting/Expo.plist
       - name: Boot an iPhone simulator
         id: sim
@@ -80,6 +96,7 @@ jobs:
       # at build time from the EAS production environment, as the store build
       # does. Without it the app throws "supabaseKey is required" on launch.
       - name: Build Release for the simulator
+        if: inputs.app_run_id == ''
         run: |
           cat > "$RUNNER_TEMP/build-sim.sh" <<'SH'
           set -o pipefail
@@ -92,6 +109,31 @@ jobs:
           SH
           eas env:list production | sed -E 's/=.*/= <set>/'
           eas env:exec production "bash $RUNNER_TEMP/build-sim.sh"
+      # Kept so a later nav run can skip the hour-long native build.
+      - name: Pack the simulator app
+        if: inputs.app_run_id == ''
+        run: |
+          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
+          tar -czf "$RUNNER_TEMP/ios-simulator-app.tgz" -C "$(dirname "$APP")" "$(basename "$APP")"
+      - uses: actions/upload-artifact@v4
+        if: inputs.app_run_id == ''
+        with:
+          name: ios-simulator-app
+          path: ${{ runner.temp }}/ios-simulator-app.tgz
+          retention-days: 14
+          compression-level: 0
+      - uses: actions/download-artifact@v4
+        if: inputs.app_run_id != ''
+        with:
+          name: ios-simulator-app
+          path: ${{ runner.temp }}/app-download
+          run-id: ${{ inputs.app_run_id }}
+          github-token: ${{ github.token }}
+      - name: Unpack the reused simulator app
+        if: inputs.app_run_id != ''
+        run: |
+          mkdir -p "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator"
+          tar -xzf "$RUNNER_TEMP/app-download/ios-simulator-app.tgz" -C "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator"
       # iOS 26 asks "Open in …?" before a simulator opens a deep link; idb taps Open.
       - uses: actions/setup-python@v5
         with:
@@ -99,6 +141,7 @@ jobs:
       # Without it no deep link opens and the whole walk is wasted, so this
       # retries the download (GitHub release downloads flake) and then fails.
       - name: Install idb for taps
+        if: inputs.task != 'nav'
         run: |
           brew tap facebook/fb
           for attempt in 1 2 3 4; do
@@ -119,11 +162,18 @@ jobs:
           grep -cE "warning:" xcodebuild.log > sim-check/warning-count.txt || true
           gzip -c xcodebuild.log > sim-check/xcodebuild.log.gz
       - name: Walk every page in dark, light and System Light
+        if: inputs.task != 'nav'
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           scripts/ios-simulator-walk.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
         env:
           THEMES: ${{ inputs.themes || 'dark light syslight' }}
+      - name: Time page switches, main against this branch
+        if: inputs.task == 'nav'
+        run: |
+          APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
+          git fetch --depth=1 origin "$GITHUB_REF_NAME" && git checkout -q --detach FETCH_HEAD
+          scripts/ios-nav-timing.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
