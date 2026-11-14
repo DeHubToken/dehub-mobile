@@ -1,4 +1,175 @@
 #!/usr/bin/env bash
-# Times page switches on a booted iPhone simulator. Used by ios-simulator-check.yml (task "nav").
+# Times page switches (tabs, profiles, posts, Settings, Back) on a booted
+# iPhone simulator, with main's app code and with this checkout's, inside the
+# same native build. Used by ios-simulator-check.yml (task "nav").
+#
+#   scripts/ios-nav-timing.sh <simulator udid> <path to .app> <output dir>
+#
+# The app's JavaScript is bundled twice, once from BEFORE_REF's sources and
+# once from this checkout's, each time with scripts/ios-nav/tour.ts added to
+# the entry file. Each bundle is swapped into the built app in turn and the
+# tour walks the same pages, noting how long the screen could not update after
+# every switch. Runs alternate (before, after, before, after) so a slow moment
+# on the runner does not land on one side only.
+#
+# It compares app code only. Both bundles run on this checkout's node_modules;
+# a patch this checkout adds under patches/ is taken off for the "before"
+# bundle and put back afterwards.
 set -uo pipefail
-echo "placeholder"
+
+UDID="$1"
+APP="$2"
+OUT="$3"
+BEFORE_REF="${BEFORE_REF:-main}"
+ROUNDS="${ROUNDS:-2}"
+THEME="${NAV_THEME:-system}"
+WORK="${RUNNER_TEMP:-/tmp}/ios-nav"
+BUNDLE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
+EXE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$APP/Info.plist")"
+HERMESC="$PWD/node_modules/hermes-compiler/hermesc/osx-bin/hermesc"
+[ -x "$HERMESC" ] || HERMESC="$PWD/node_modules/react-native/sdks/hermesc/osx-bin/hermesc"
+
+mkdir -p "$OUT/nav" "$OUT/logs" "$WORK"
+
+# --- bundles -----------------------------------------------------------------
+
+bundle() {
+  local label="$1" dir="$WORK/$1"
+  rm -rf "$dir" && mkdir -p "$dir/app"
+  cp index.ts "$WORK/index.ts.orig"
+  printf '\nimport "./scripts/ios-nav/tour";\n' >> index.ts
+  local entry
+  entry="$(node -e "require('expo/scripts/resolveAppEntry')" "$PWD" ios absolute | tail -n 1)"
+  cat > "$WORK/bundle.sh" <<SH
+set -euo pipefail
+npx expo export:embed --platform ios --dev false --entry-file "$entry" \
+  --bundle-output "$dir/main.js" --assets-dest "$dir/app"
+SH
+  # The app's config is inlined from the EAS production environment, as in the build.
+  eas env:exec production "bash $WORK/bundle.sh" > "$OUT/logs/bundle-$label.log" 2>&1
+  local status=$?
+  cp "$WORK/index.ts.orig" index.ts
+  if [ "$status" != 0 ] || [ ! -s "$dir/main.js" ]; then
+    echo "Bundling $label failed"; tail -40 "$OUT/logs/bundle-$label.log"; return 1
+  fi
+  "$HERMESC" -emit-binary -O -out "$dir/app/main.jsbundle" "$dir/main.js" 2>> "$OUT/logs/bundle-$label.log" || {
+    echo "hermesc failed for $label"; tail -20 "$OUT/logs/bundle-$label.log"; return 1; }
+  echo "Bundled $label: $(du -h "$dir/app/main.jsbundle" | cut -f1)"
+}
+
+# node_modules as this checkout wants it, whatever was installed earlier.
+npx patch-package --error-on-fail > "$OUT/logs/patch-package.log" 2>&1 || { cat "$OUT/logs/patch-package.log"; exit 1; }
+git fetch --quiet --depth=1 origin "$BEFORE_REF:refs/remotes/origin/nav-before" || { echo "Cannot fetch $BEFORE_REF"; exit 1; }
+HEAD_SHA="$(git rev-parse HEAD)"
+BEFORE_SHA="$(git rev-parse refs/remotes/origin/nav-before)"
+NEW_PATCHES="$(git diff --name-only --diff-filter=A "$BEFORE_SHA" "$HEAD_SHA" -- patches | grep '\.patch$' || true)"
+echo "before = $BEFORE_REF ($BEFORE_SHA), after = $HEAD_SHA"
+echo "Patches only in this checkout: ${NEW_PATCHES:-none}"
+
+for p in $NEW_PATCHES; do patch -R -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot take $p off"; exit 1; }; done
+git checkout --quiet "$BEFORE_SHA" -- . ':(exclude).github' ':(exclude)scripts' || exit 1
+bundle before; BEFORE_OK=$?
+git reset --quiet --hard "$HEAD_SHA"
+for p in $NEW_PATCHES; do patch -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot put $p back"; exit 1; }; done
+[ "$BEFORE_OK" = 0 ] || exit 1
+bundle after || exit 1
+
+# --- runs --------------------------------------------------------------------
+
+xcrun simctl spawn "$UDID" log stream --style compact --level info \
+  --predicate "process == \"$EXE\"" > "$OUT/logs/app.log" 2>&1 &
+LOG_PID=$!
+trap 'kill "$LOG_PID" 2>/dev/null' EXIT
+
+storage_dir() {
+  local data
+  data="$(xcrun simctl get_app_container "$UDID" "$BUNDLE" data)"
+  echo "$data/Library/Application Support/$BUNDLE/RCTAsyncLocalStorage_V1"
+}
+
+# storage set <key> <value> ... | storage get <key> | storage drop <key>
+storage() {
+  python3 - "$(storage_dir)" "$@" <<'PY'
+import hashlib, json, os, sys
+directory, op, args = sys.argv[1], sys.argv[2], sys.argv[3:]
+os.makedirs(directory, exist_ok=True)
+path = os.path.join(directory, "manifest.json")
+manifest = {}
+if os.path.exists(path):
+    try:
+        manifest = json.load(open(path))
+    except Exception:
+        manifest = {}
+# Values too long for the manifest live in a file named after the key's md5.
+blob = lambda key: os.path.join(directory, hashlib.md5(key.encode()).hexdigest())
+if op == "set":
+    for key, value in zip(args[0::2], args[1::2]):
+        manifest[key] = value
+    json.dump(manifest, open(path, "w"))
+elif op == "drop":
+    for key in args:
+        manifest.pop(key, None)
+        if os.path.exists(blob(key)):
+            os.remove(blob(key))
+    json.dump(manifest, open(path, "w"))
+elif op == "get":
+    key = args[0]
+    value = manifest.get(key)
+    if value is None and os.path.exists(blob(key)):
+        value = open(blob(key)).read()
+    sys.stdout.write(value or "")
+PY
+}
+
+use_bundle() {
+  cp -R "$WORK/$1/app/." "$APP/"
+  codesign --force --sign - --preserve-metadata=entitlements "$APP" >/dev/null 2>&1 || true
+  xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
+  xcrun simctl install "$UDID" "$APP"
+}
+
+# run <before|after> <name> [record]
+run() {
+  local variant="$1" name="$2" record="${3:-}" recorder="" started=0
+  use_bundle "$variant"
+  storage drop dehub.perfTour.result
+  storage set dehub.theme "$THEME" dehub.perfTour 1
+  if [ -n "$record" ]; then
+    xcrun simctl io "$UDID" recordVideo --codec hevc --force "$OUT/nav/$name.mov" 2> "$WORK/record.log" &
+    recorder=$!
+    for _ in $(seq 1 50); do grep -q "Recording started" "$WORK/record.log" && break; sleep 0.1; done
+    python3 -c 'import time; print(int(time.time()*1000))' > "$OUT/nav/$name.video-start"
+  fi
+  xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
+  local result=""
+  for _ in $(seq 1 150); do
+    sleep 2
+    result="$(storage get dehub.perfTour.result)"
+    case "$result" in '{"done":true'*) started=1; break ;; esac
+  done
+  xcrun simctl io "$UDID" screenshot "$OUT/nav/$name-end.png" >/dev/null 2>&1 || true
+  if [ -n "$recorder" ]; then kill -INT "$recorder" 2>/dev/null; wait "$recorder" 2>/dev/null; fi
+  printf '%s' "$result" > "$OUT/nav/$name.json"
+  [ "$started" = 1 ] && echo "$name: finished" || echo "$name: did not finish"
+}
+
+xcrun simctl ui "$UDID" appearance dark
+for service in photos camera microphone location; do
+  xcrun simctl privacy "$UDID" grant "$service" "$BUNDLE" >/dev/null 2>&1 || true
+done
+
+# One unmeasured run first: it fills the caches both sides then share.
+run before warmup
+for round in $(seq 1 "$ROUNDS"); do
+  # Only the first round is filmed: the films are large.
+  run before "before-$round" "$([ "$round" = 1 ] && echo record)"
+  run after "after-$round" "$([ "$round" = 1 ] && echo record)"
+done
+
+kill "$LOG_PID" 2>/dev/null
+cp ~/Library/Logs/DiagnosticReports/"$EXE"*.ips "$OUT/logs/" 2>/dev/null || true
+grep -E '\[perf-tour\]|\[FatalJS\]|\[UncaughtJS\]' "$OUT/logs/app.log" | cut -c1-400 > "$OUT/logs/tour.txt" || true
+
+python3 scripts/ios-nav/summary.py "$OUT/nav" | tee "$OUT/nav/summary.md"
+[ -n "${GITHUB_STEP_SUMMARY:-}" ] && cat "$OUT/nav/summary.md" >> "$GITHUB_STEP_SUMMARY"
+exit 0

@@ -1,0 +1,63 @@
+diff --git a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js
+index 98a91dc..8b6c3d7 100644
+--- a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js
++++ b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js
+@@ -15950,6 +15950,16 @@
+       return DefaultEventPriority;
+     }
+     function cloneHiddenInstance(instance) {
++      // A page react-native-screens has frozen. iOS leaves a display:none
++      // subtree out of the mounted tree, so hiding the page here destroyed
++      // every native view on it and rebuilt them all on the way back.
++      // The screen container already takes an inactive page off screen.
++      var hiddenViewName = instance.canonical.viewConfig.uiViewClassName;
++      if (
++        ("RNSScreen" === hiddenViewName || "RNSModalScreen" === hiddenViewName) &&
++        "ios" === ReactNativePrivateInterface.Platform.OS
++      )
++        return instance;
+       var node = instance.node,
+         updatePayload = ReactNativePrivateInterface.createAttributePayload(
+           { style: { display: "none" } },
+diff --git a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-prod.js b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-prod.js
+index a5abb00..00e204a 100644
+--- a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-prod.js
++++ b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-prod.js
+@@ -10400,6 +10400,16 @@
+ var scheduleTimeout = setTimeout,
+   cancelTimeout = clearTimeout;
+ function cloneHiddenInstance(instance) {
++  // A page react-native-screens has frozen. iOS leaves a display:none
++  // subtree out of the mounted tree, so hiding the page here destroyed
++  // every native view on it and rebuilt them all on the way back.
++  // The screen container already takes an inactive page off screen.
++  var hiddenViewName = instance.canonical.viewConfig.uiViewClassName;
++  if (
++    ("RNSScreen" === hiddenViewName || "RNSModalScreen" === hiddenViewName) &&
++    "ios" === ReactNativePrivateInterface.Platform.OS
++  )
++    return instance;
+   var node = instance.node,
+     updatePayload = ReactNativePrivateInterface.createAttributePayload(
+       { style: { display: "none" } },
+diff --git a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-profiling.js b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-profiling.js
+index 9d49450..9355c0b 100644
+--- a/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-profiling.js
++++ b/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-profiling.js
+@@ -12203,6 +12203,16 @@
+ var scheduleTimeout = setTimeout,
+   cancelTimeout = clearTimeout;
+ function cloneHiddenInstance(instance) {
++  // A page react-native-screens has frozen. iOS leaves a display:none
++  // subtree out of the mounted tree, so hiding the page here destroyed
++  // every native view on it and rebuilt them all on the way back.
++  // The screen container already takes an inactive page off screen.
++  var hiddenViewName = instance.canonical.viewConfig.uiViewClassName;
++  if (
++    ("RNSScreen" === hiddenViewName || "RNSModalScreen" === hiddenViewName) &&
++    "ios" === ReactNativePrivateInterface.Platform.OS
++  )
++    return instance;
+   var node = instance.node,
+     updatePayload = ReactNativePrivateInterface.createAttributePayload(
+       { style: { display: "none" } },
