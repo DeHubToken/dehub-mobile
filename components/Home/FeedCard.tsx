@@ -24,6 +24,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { GRAIN } from "../../theme/skins";
+import { CardFrost, useCardFrost } from "../theme/CardFrost";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrubBoundary";
@@ -606,6 +607,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isPublicPost = !item.visibility || item.visibility === "public";
 
   const { isMinimal, skin, theme, isLight } = useAppTheme();
+  // The shared frosted wallpaper (components/theme/CardFrost) is up: the card
+  // paints its tint over that instead of over the sharp scene.
+  const frosted = useCardFrost() && !!skin;
   const articleUi = useMemo(() => articleLook(theme), [theme]);
   // How far this card has to step out to span the screen. Worked out from the
   // width the list actually gives it, so a list with other padding still
@@ -2531,12 +2535,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={isMinimal || cinematicFeed ? {
             padding: 12, marginVertical: 6,
             borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: MINIMAL_HAIRLINE,
-          } : skin ? [skin.card, { padding: 12, marginVertical: 6 }] : {
+          } : skin ? [skin.card, { padding: 12, marginVertical: 6 }, frosted && { backgroundColor: 'transparent' }] : {
             borderWidth: theme === 'system' && isLight ? 0 : 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
             backgroundColor: theme === 'system' ? 'transparent' : 'rgba(255,255,255,0.03)',
             padding: 12, marginVertical: 6,
           }}
         >
+          {frosted && !isMinimal && !cinematicFeed ? <CardFrost radius={Number(skin!.card.borderRadius ?? 0)} tint={skin!.card.backgroundColor} /> : null}
           {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
           {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
           <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch' }}>
@@ -3098,6 +3103,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // frame, Osaka's slate with a pink edge, Jungle's plank.
         skin.card,
         { paddingTop: 12, paddingHorizontal: 12, paddingBottom: 12, marginVertical: 6 },
+        frosted && { backgroundColor: 'transparent' },
       ] : {
         // System keeps only the thin outline; System Light drops it too (it
         // read as a grey box on white).
@@ -3115,6 +3121,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         marginVertical: 6,
       }}
     >
+      {frosted && !desk && !immersive && !flat && !isMinimal ? (
+        <CardFrost radius={Number(skin!.card.borderRadius ?? 0)} tint={skin!.card.backgroundColor} />
+      ) : null}
       {skin?.grain && !flat && !desk ? (
         <Image
           source={GRAIN}
