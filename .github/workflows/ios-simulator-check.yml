@@ -175,9 +175,21 @@ jobs:
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           scripts/ios-nav-timing.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
+      # The films go up on their own: one 100 MB upload stalled and took the
+      # numbers and screenshots down with it.
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ios-simulator-check
-          path: sim-check/
+          path: |
+            sim-check/
+            !sim-check/**/*.mov
           if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          name: ios-simulator-films
+          path: sim-check/**/*.mov
+          if-no-files-found: ignore
+          compression-level: 0
