@@ -69,8 +69,8 @@ export const authColors = {
    * washed field came out as the same box, so the unlock sheet read as two
    * inputs with the reveal eye looking like a button inside one of them.
    */
-  field: "rgba(0,0,0,0.35)",
-  fieldBorder: "rgba(255,255,255,0.14)",
+  field: "transparent",
+  fieldBorder: "rgba(255,255,255,0.32)",
   label: "#FFFFFF",
   muted: "#A6A9AC",
   subtle: "#8B8D90",
