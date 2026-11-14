@@ -226,8 +226,10 @@ export default function App() {
 
   return (
     <AppThemeProvider>
+<MountProbe name="A-theme" />
       <I18nextProvider i18n={i18n}>
       <ErrorBoundary showDetails={__DEV__}>
+<MountProbe name="B-boundary" />
         <PersistQueryClientProvider
           client={queryClient}
           persistOptions={{
@@ -242,18 +244,28 @@ export default function App() {
           // open. See markRestoredCacheStale.
           onSuccess={markRestoredCacheStale}
         >
+<MountProbe name="C-query" />
         <ThemedRootView>
+<MountProbe name="D-rootview" />
           <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
+<MountProbe name="E-safearea" />
             <ThemeVarsLayer>
+<MountProbe name="F-varslayer" />
             <MaintenanceGate>
+<MountProbe name="G-maintenance" />
             <AuthProvider>
+<MountProbe name="H-auth" />
               <FeedSuperpowersProvider>
+<MountProbe name="I-superpowers" />
               <WebSocketProvider>
+<MountProbe name="J-ws" />
                 <DMProvider>
+<MountProbe name="K-dm" />
                   {/* Inside AuthProvider because the checklist is per wallet,
                       and above the navigator so the home card and the settings
                       row read one copy of the progress row. */}
                   <OnboardingChecklistProvider>
+<MountProbe name="L-checklist" />
                     <BootGate staged={staged} />
                   </OnboardingChecklistProvider>
                 </DMProvider>
@@ -337,6 +349,14 @@ export default function App() {
 }
 
 /** The root view, carrying the active theme's CSS variables to everything below it. */
+const MountProbe: React.FC<{ name: string }> = ({ name }) => {
+  React.useEffect(() => {
+    console.error(`[live-check] mount ${name}`);
+    return () => console.error(`[live-check] unmount ${name}`);
+  }, [name]);
+  return null;
+};
+
 const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const style = useThemeRootStyle();
   return (
@@ -554,6 +574,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     <>
       {settled ? (
         <SafeAreaView className="flex-1" edges={edgeToEdgeMedia ? ["left", "right", "bottom"] : ["top", "left", "right", "bottom"]}>
+<MountProbe name="N-safeareaview" />
           <StatusBar
             barStyle={isLight ? "dark-content" : "light-content"}
             backgroundColor={colors.background}
@@ -564,6 +585,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               logger.error("Navigation error boundary caught", error);
             }}
           >
+<MountProbe name="O-navboundary" />
             <NavigationContainer
               ref={navigationRef}
               linking={linkingConfig}
@@ -592,12 +614,19 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               }}
             >
               <PushNotificationsProvider>
+<MountProbe name="Q-push" />
                 <StageProvider>
+<MountProbe name="R-stage" />
                   <UserProfileSheetProvider>
+<MountProbe name="S-profilesheet" />
                     <MessagingProvider>
+<MountProbe name="T-messaging" />
                       <CallProvider>
+<MountProbe name="U-call" />
                         <VideoDownloadProvider>
+<MountProbe name="V-download" />
                         <QuickActionsHost getScreen={() => bugScreenLabel(navigationRef.getCurrentRoute())}>
+<MountProbe name="W-quick" />
                         <KeyboardPanView>
                           <RootNavigator />
                         </KeyboardPanView>

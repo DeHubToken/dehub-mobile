@@ -63,7 +63,7 @@ json.dump(manifest, open(path, "w"))
 PY
 }
 
-for theme in system-light system; do
+for theme in system-light; do
   xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
   [ "$theme" = system-light ] && xcrun simctl ui "$UDID" appearance light || xcrun simctl ui "$UDID" appearance dark
   storage dehub.theme "$theme" dehub.liveCheck 1 dehub.liveCheck.runs - crash-recovery-restarts-durable-v1 -
