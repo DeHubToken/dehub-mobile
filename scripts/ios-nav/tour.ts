@@ -159,6 +159,27 @@ const TAB_ROUTES: string[] = [ScreenNames.Home, ScreenNames.Explore, ScreenNames
 /** The script samples the app's threads for a while once this is set. */
 const SAMPLE_KEY = "dehub.perfTour.sample";
 
+/**
+ * Signed out, the Messages and Assistant tabs and the account pages do not
+ * open: the app shows its sign-in sheet instead, which then covers every
+ * later step. Those steps only run with a session.
+ */
+async function hasSession(): Promise<boolean> {
+  try {
+    const { getAuthToken } = require("../../libs/auth.utils") as { getAuthToken(): Promise<string | null> };
+    return !!(await getAuthToken());
+  } catch {
+    return false;
+  }
+}
+
+/** Pages the app only has for a signed-in account. */
+const ACCOUNT_PAGES = new Set([
+  "AccountSettings", "NotificationSettings", "PrivacySettings", "ActiveSessions", "EditProfile", "Notifications",
+  "LiveChat", "YourVideos", "LikedVideos", "SavedPosts", "MyLibrary", "Drafts", "UploadQueue", "Earnings",
+  "Affiliate", "Dex", "Dpay", "Ads", "CommandCentre",
+]);
+
 const shot = (name: string) => AsyncStorage.setItem(SHOT_KEY, name).catch(() => undefined);
 
 /** Back out of whatever is open until a bottom-bar tab is showing again. */
@@ -181,11 +202,13 @@ async function runPages(): Promise<void> {
   }
   await sleep(14000);
   const names = ScreenNames as unknown as Record<string, string>;
+  const signedIn = await hasSession();
+  extra.signedIn = signedIn;
   let index = 0;
   for (const page of PAGES) {
     const name = names[page];
-    if (!name) continue;
     index += 1;
+    if (!name || (!signedIn && ACCOUNT_PAGES.has(page))) continue;
     const label = `${String(index).padStart(2, "0")}-${page}`;
     await measure(`${page} open (first)`, push(name), { watchMs: 2400, restMs: 300 });
     const reached = nav.getCurrentRoute()?.name === name;
@@ -255,16 +278,21 @@ async function runProbe(): Promise<void> {
     await sleep(500);
   };
 
+  const signedIn = await hasSession();
+  extra.signedIn = signedIn;
+  const light = signedIn ? [ScreenNames.DM, ScreenNames.AIChat] : [ScreenNames.Explore, ScreenNames.Home];
   // Visit everything once first, so the counts are of switches, not first builds.
-  for (const name of [ScreenNames.Explore, ScreenNames.DM, ScreenNames.AIChat, ScreenNames.Home]) {
+  for (const name of [ScreenNames.Explore, ...(signedIn ? light : []), ScreenNames.Home]) {
     tab(name)();
     await sleep(2500);
   }
 
   await probe("idle", () => undefined);
-  await probe("tab Messages", tab(ScreenNames.DM));
-  await probe("tab Assistant", tab(ScreenNames.AIChat));
-  await probe("tab Messages again", tab(ScreenNames.DM));
+  if (signedIn) {
+    await probe("tab Messages", tab(ScreenNames.DM));
+    await probe("tab Assistant", tab(ScreenNames.AIChat));
+    await probe("tab Messages again", tab(ScreenNames.DM));
+  }
   await probe("tab Home", tab(ScreenNames.Home));
   await probe("tab Explore", tab(ScreenNames.Explore));
   await probe("tab Home again", tab(ScreenNames.Home));
@@ -283,7 +311,7 @@ async function runProbe(): Promise<void> {
   await sleep(3000);
   extra.sampleLightAt = Date.now();
   for (let i = 0; i < 8; i++) {
-    tab(i % 2 ? ScreenNames.AIChat : ScreenNames.DM)();
+    tab(light[i % 2])();
     await sleep(1100);
   }
   await sleep(2500);
@@ -316,19 +344,26 @@ async function run(): Promise<void> {
   // Let the first feed load and its warm-up work finish.
   await sleep(14000);
   extra.firstRoute = nav.getCurrentRoute()?.name;
+  const signedIn = await hasSession();
+  extra.signedIn = signedIn;
 
   // Bottom bar tabs: first visit builds the page, later visits should only show it.
   await measure("tab Explore (first)", tab(ScreenNames.Explore));
   await measure("tab Home (back)", tab(ScreenNames.Home));
   await measure("tab Explore", tab(ScreenNames.Explore));
   await measure("tab Home", tab(ScreenNames.Home));
-  await measure("tab Messages (first)", tab(ScreenNames.DM));
-  await measure("tab Home from Messages", tab(ScreenNames.Home));
-  await measure("tab Messages", tab(ScreenNames.DM));
-  await measure("tab Assistant (first)", tab(ScreenNames.AIChat));
-  await measure("tab Messages from Assistant", tab(ScreenNames.DM));
-  await measure("tab Assistant", tab(ScreenNames.AIChat));
-  await measure("tab Home from Assistant", tab(ScreenNames.Home));
+  if (signedIn) {
+    await measure("tab Messages (first)", tab(ScreenNames.DM));
+    await measure("tab Home from Messages", tab(ScreenNames.Home));
+    await measure("tab Messages", tab(ScreenNames.DM));
+    await measure("tab Assistant (first)", tab(ScreenNames.AIChat));
+    await measure("tab Messages from Assistant", tab(ScreenNames.DM));
+    await measure("tab Assistant", tab(ScreenNames.AIChat));
+    await measure("tab Home from Assistant", tab(ScreenNames.Home));
+  } else {
+    await measure("tab Explore 3", tab(ScreenNames.Explore));
+    await measure("tab Home 3", tab(ScreenNames.Home));
+  }
 
   // Home's own feed tabs.
   await measure("feed Shorts", feedTab("short"));
@@ -349,21 +384,28 @@ async function run(): Promise<void> {
   await measure("post open (first)", push(ScreenNames.FeedDetail, { tokenId: post }), { watchMs: 2200 });
   await measure("post back", back());
   await measure("post open", push(ScreenNames.FeedDetail, { tokenId: post }), { watchMs: 2200 });
-  await measure("settings over post (two deep)", push(ScreenNames.AccountSettings));
+  const second = signedIn ? ScreenNames.AccountSettings : ScreenNames.Leaderboard;
+  await measure(`${signedIn ? "settings" : "leaderboard"} over post (two deep)`, push(second));
   await measure("back to post", back());
   await measure("back to Home", back());
-  await measure("settings open", push(ScreenNames.AccountSettings));
-  await measure("settings back", back());
+  if (signedIn) {
+    await measure("settings open", push(ScreenNames.AccountSettings));
+    await measure("settings back", back());
+  }
   await measure("search open (first)", push(ScreenNames.Search));
   await measure("search back", back());
-  await measure("public chat open (first)", push(ScreenNames.LiveChat), { watchMs: 2200 });
-  await measure("public chat back", back());
+  if (signedIn) {
+    await measure("public chat open (first)", push(ScreenNames.LiveChat), { watchMs: 2200 });
+    await measure("public chat back", back());
+  }
   await measure("leaderboard open (first)", push(ScreenNames.Leaderboard), { watchMs: 2200 });
   await measure("leaderboard back", back());
   await measure("shorts viewer open", push(ScreenNames.ShortsViewer, {}), { watchMs: 2600 });
   if (nav.getCurrentRoute()?.name === ScreenNames.ShortsViewer) await measure("shorts viewer back", back());
-  await measure("notifications open", push(ScreenNames.Notifications), { watchMs: 2200 });
-  if (nav.getCurrentRoute()?.name === ScreenNames.Notifications) await measure("notifications back", back());
+  if (signedIn) {
+    await measure("notifications open", push(ScreenNames.Notifications), { watchMs: 2200 });
+    if (nav.getCurrentRoute()?.name === ScreenNames.Notifications) await measure("notifications back", back());
+  }
 
   // The swipe back from the left edge has to be a real touch, so the script
   // performs it: the Leaderboard stays open until it has gone, or the wait
