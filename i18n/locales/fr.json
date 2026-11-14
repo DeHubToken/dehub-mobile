@@ -2698,7 +2698,12 @@
     "importSecretPlaceholder": "12 ou 24 mots, ou une clé privée",
     "invalidImportSecret": "Ce n'est ni une phrase valide de 12/24 mots ni une clé privée",
     "walletSignupBlocked": "Ce portefeuille est tout neuf. Les nouveaux portefeuilles doivent avoir un solde ou une transaction passée pour ouvrir un compte. Inscrivez-vous avec l'une des options ci-dessous, puis connectez ce portefeuille depuis les Paramètres.",
-    "signInPageWouldNotOpen": "La page de connexion s'est fermée avant de s'ouvrir. Réessayez ou continuez par e-mail."
+    "signInPageWouldNotOpen": "La page de connexion s'est fermée avant de s'ouvrir. Réessayez ou continuez par e-mail.",
+    "accountDeleted": "Ce compte a été supprimé. Vous pouvez vous réinscrire avec un nouveau compte.",
+    "accountDeletedHours_one": "Ce compte a été supprimé. Vous pourrez vous réinscrire avec le même e-mail ou téléphone dans environ {{count}} heure.",
+    "accountDeletedHours_other": "Ce compte a été supprimé. Vous pourrez vous réinscrire avec le même e-mail ou téléphone dans environ {{count}} heures.",
+    "accountDeletedDays_one": "Ce compte a été supprimé. Vous pourrez vous réinscrire avec le même e-mail ou téléphone dans environ {{count}} jour.",
+    "accountDeletedDays_other": "Ce compte a été supprimé. Vous pourrez vous réinscrire avec le même e-mail ou téléphone dans environ {{count}} jours."
   },
   "messages": {
     "smartRepliesOff": "Réponses suggérées désactivées",
@@ -2928,6 +2933,22 @@
       "votes_other": "{{value}} votes",
       "members_one": "{{value}} membre",
       "members_other": "{{value}} membres"
+    },
+    "sortCustom": "Ordre personnalisé",
+    "arrangeButton": "Organiser les publications",
+    "arrange": {
+      "title": "Organisez vos publications",
+      "hint": "Maintenez une publication et faites-la glisser à sa nouvelle place. Les visiteurs voient cet ordre en premier.",
+      "drag": "Faire glisser pour déplacer",
+      "toTop": "Placer tout en haut",
+      "save": "Enregistrer l'ordre",
+      "saving": "Enregistrement...",
+      "saved": "Votre ordre est enregistré",
+      "reset": "Revenir aux plus récentes d'abord",
+      "resetDone": "Les plus récentes d'abord, à nouveau",
+      "saveFailed": "Impossible d'enregistrer votre ordre. Veuillez réessayer.",
+      "loadFailed": "Impossible de charger vos publications. Fermez ceci et réessayez.",
+      "empty": "Rien à organiser pour l'instant. Publiez d'abord quelque chose."
     }
   },
   "tv": {

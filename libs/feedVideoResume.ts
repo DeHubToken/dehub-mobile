@@ -13,11 +13,10 @@ const MAX_ENTRIES = 12;
 const places = new Map<string, { at: number; saved: number }>();
 
 export function rememberFeedVideoPlace(url: string | null | undefined, seconds: number, now = Date.now()): void {
-  if (!url) return;
-  if (!(seconds >= MIN_SECONDS)) {
-    places.delete(url);
-    return;
-  }
+  // A player that never got going says nothing about where the video was: a
+  // card can mount and unmount one in passing before the real one starts, and
+  // that must not wipe the place the real one is about to pick up.
+  if (!url || !(seconds >= MIN_SECONDS)) return;
   places.delete(url);
   places.set(url, { at: seconds, saved: now });
   while (places.size > MAX_ENTRIES) {
@@ -27,13 +26,21 @@ export function rememberFeedVideoPlace(url: string | null | undefined, seconds: 
   }
 }
 
-/** The saved place in seconds, or 0. Reading it uses it up. */
-export function takeFeedVideoPlace(url: string | null | undefined, now = Date.now()): number {
+/** The saved place in seconds, or 0. It stays until a player has used it. */
+export function peekFeedVideoPlace(url: string | null | undefined, now = Date.now()): number {
   if (!url) return 0;
   const place = places.get(url);
   if (!place) return 0;
-  places.delete(url);
-  return now - place.saved <= KEEP_MS ? place.at : 0;
+  if (now - place.saved > KEEP_MS) {
+    places.delete(url);
+    return 0;
+  }
+  return place.at;
+}
+
+/** A player has moved to the saved place: it is used up. */
+export function usedFeedVideoPlace(url: string | null | undefined): void {
+  if (url) places.delete(url);
 }
 
 export function clearFeedVideoPlaces(): void {

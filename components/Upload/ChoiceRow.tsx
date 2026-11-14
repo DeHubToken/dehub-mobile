@@ -22,6 +22,11 @@ interface Props<T extends string> {
 
 export default function ChoiceRow<T extends string>({ icon, label, value, offValue, offLabel, options, onChange, hint }: Props<T>) {
   const on = value !== offValue;
+  // Once the switch is on, the open default is listed beside the narrower
+  // choices. Without it a creator who flipped "Who can see this" on, reading
+  // the switch as "visible", got Followers only with no Everyone to go back
+  // to on screen, and posted it believing it was public.
+  const chips = [{ value: offValue, label: offLabel }, ...options];
   return (
     <View className="py-3">
       <TouchableOpacity
@@ -40,7 +45,7 @@ export default function ChoiceRow<T extends string>({ icon, label, value, offVal
       </TouchableOpacity>
       {on ? (
         <View className="flex-row flex-wrap mt-2 ml-7" accessibilityRole="radiogroup">
-          {options.map((o) => (
+          {chips.map((o) => (
             <TouchableOpacity
               key={o.value}
               onPress={() => onChange(o.value)}

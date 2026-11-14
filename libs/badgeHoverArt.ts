@@ -19,7 +19,7 @@ const artwork: Record<string, BadgeHoverArt> = {
   "Great White Shark": { poster: require('../assets/badges/hover/great-white-shark.png'), animation: require('../assets/badges/hover/great-white-shark-animation.webp'), posterBounds: { left: 5, top: 15, right: 120, bottom: 121 }, posterSit: 114 },
   "Killer Whale": { poster: require('../assets/badges/hover/killer-whale.png'), animation: require('../assets/badges/hover/killer-whale-animation.webp'), posterBounds: { left: 19, top: 11, right: 93, bottom: 98 }, posterSit: 94 },
   "Blue Whale": { poster: require('../assets/badges/hover/blue-whale.png'), animation: require('../assets/badges/hover/blue-whale-animation.webp'), posterBounds: { left: 16, top: 24, right: 122, bottom: 126 }, posterSit: 120 },
-  "Megalodon": { poster: require('../assets/badges/hover/megalodon.png'), animation: require('../assets/badges/hover/megalodon-animation.webp'), posterBounds: { left: 5, top: 19, right: 124, bottom: 126 }, posterSit: 121 },
+  "Megalodon": { poster: require('../assets/badges/hover/megalodon.png'), animation: require('../assets/badges/hover/megalodon-animation.webp'), posterBounds: { left: 9, top: 19, right: 120, bottom: 126 }, posterSit: 121 },
 };
 
 export function badgeHoverArt(tier: string | null | undefined): BadgeHoverArt | null {

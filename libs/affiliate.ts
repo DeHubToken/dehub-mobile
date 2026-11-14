@@ -62,6 +62,28 @@ export const DEFAULT_AFFILIATE_LANDING: AffiliateLandingCustomization = {
   ctas: [],
 };
 
+// Stock lines people published without changing them, including the ones from
+// before the rename. They read as "not set", so the invite page follows the
+// current default in the visitor's language.
+const STOCK_LANDING_TITLES = ["join me on dehub", "join me on riftn"];
+const STOCK_LANDING_MESSAGES = ["create, share and earn on a platform built for creators and their communities"];
+const landingKey = (v: string) => v.trim().replace(/[.!\s]+$/, "").toLowerCase();
+
+function ownLandingText(raw: string | null | undefined, stock: string[], current: string): string | null {
+  const value = String(raw ?? "").trim();
+  if (!value) return null;
+  const key = landingKey(value);
+  return key === landingKey(current) || stock.includes(key) ? null : value;
+}
+
+/** The inviter's own headline, or null when it is blank or just the stock line. */
+export const ownLandingHeadline = (raw: string | null | undefined) =>
+  ownLandingText(raw, STOCK_LANDING_TITLES, DEFAULT_AFFILIATE_LANDING.headline);
+export const ownLandingMessage = (raw: string | null | undefined) =>
+  ownLandingText(raw, STOCK_LANDING_MESSAGES, DEFAULT_AFFILIATE_LANDING.message);
+export const ownLandingCtaLabel = (raw: string | null | undefined) =>
+  ownLandingText(raw, STOCK_LANDING_TITLES, DEFAULT_AFFILIATE_LANDING.ctaLabel);
+
 export type AffiliateCtaClickStat = { destination: string; clicks: number; uniqueVisitors: number };
 
 const randomCode = (len = 8) => {
@@ -342,9 +364,9 @@ export async function loadAffiliateStats(
       uniqueVisitors: Number(r.unique_visitors ?? 0),
     })),
     landing: {
-      headline: landingRow?.landing_headline || DEFAULT_AFFILIATE_LANDING.headline,
-      message: landingRow?.landing_message || DEFAULT_AFFILIATE_LANDING.message,
-      ctaLabel: landingRow?.landing_cta_label || DEFAULT_AFFILIATE_LANDING.ctaLabel,
+      headline: ownLandingHeadline(landingRow?.landing_headline) || DEFAULT_AFFILIATE_LANDING.headline,
+      message: ownLandingMessage(landingRow?.landing_message) || DEFAULT_AFFILIATE_LANDING.message,
+      ctaLabel: ownLandingCtaLabel(landingRow?.landing_cta_label) || DEFAULT_AFFILIATE_LANDING.ctaLabel,
       destination: landingRow?.landing_destination || DEFAULT_AFFILIATE_LANDING.destination,
       ctas: parseLandingCtas(landingRow?.landing_ctas),
     },
@@ -368,9 +390,9 @@ export async function saveAffiliateLanding(
   const { error } = await withWalletHeader(
     // @ts-ignore - customization columns are introduced by the shared migration
     supabase.from("affiliate_codes" as never).update({
-      landing_headline: value.headline.trim().slice(0, 80) || null,
-      landing_message: value.message.trim().slice(0, 280) || null,
-      landing_cta_label: value.ctaLabel.trim().slice(0, 32) || null,
+      landing_headline: ownLandingHeadline(value.headline)?.slice(0, 80) || null,
+      landing_message: ownLandingMessage(value.message)?.slice(0, 280) || null,
+      landing_cta_label: ownLandingCtaLabel(value.ctaLabel)?.slice(0, 32) || null,
       landing_destination: destination.slice(0, 200),
       landing_ctas: parseLandingCtas(ctas),
     } as never).eq("code", code).ilike("owner_address", addr),

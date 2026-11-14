@@ -1333,6 +1333,8 @@ export interface EditPostInput {
   quotePolicy?: 'public' | 'followers' | 'nobody';
   /** Who may reply from now on. Replies already made stay. */
   replyPolicy?: 'public' | 'followers' | 'following' | 'mentioned';
+  // Opens a followers-only or mentioned-only post up to everyone. Only 'public' is accepted.
+  visibility?: 'public';
   articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones

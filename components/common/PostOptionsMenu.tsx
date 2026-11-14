@@ -116,6 +116,8 @@ export interface PostOptionsMenuProps {
   currentQuotePolicy?: "public" | "followers" | "nobody";
   /** Who may reply to the post, for the edit sheet. */
   currentReplyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Who may see the post; the edit sheet can open a narrower one up to everyone. */
+  currentVisibility?: "public" | "followers" | "direct" | null;
   /** Photo posts: 'comic' when it shows as collector cards. Drives the comic/carousel switch. */
   currentLayout?: "comic" | null;
   /** How many photos the post has; the switch shows for 2+ or for a comic. */
@@ -270,6 +272,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentSpoilerText,
   currentQuotePolicy,
   currentReplyPolicy,
+  currentVisibility,
   currentLayout,
   photoCount = 0,
   onLayoutChange,
@@ -508,7 +511,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   }, [openSubModal]);
 
   const handleEditDone = useCallback(
-    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
+    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number; visibility?: "public" }) => {
       setShowEdit(false);
       onEditSuccess?.(data);
     },
@@ -984,6 +987,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialSpoilerText={currentSpoilerText}
         initialQuotePolicy={currentQuotePolicy}
         initialReplyPolicy={currentReplyPolicy}
+        initialVisibility={currentVisibility}
         canReplaceVideo={canReplaceVideo}
         alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}

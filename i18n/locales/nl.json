@@ -2886,7 +2886,12 @@
     "importSecretPlaceholder": "12 of 24 woorden, of een privésleutel",
     "invalidImportSecret": "Dat is geen geldige zin van 12/24 woorden of privésleutel",
     "walletSignupBlocked": "Deze wallet is gloednieuw. Nieuwe wallets hebben een saldo of een eerdere transactie nodig om een account te openen. Meld je aan met een van de opties hieronder en koppel deze wallet daarna via Instellingen.",
-    "signInPageWouldNotOpen": "De aanmeldpagina sloot voordat hij openging. Probeer het opnieuw of ga verder met e-mail."
+    "signInPageWouldNotOpen": "De aanmeldpagina sloot voordat hij openging. Probeer het opnieuw of ga verder met e-mail.",
+    "accountDeleted": "Dit account is verwijderd. Je kunt je opnieuw aanmelden met een nieuw account.",
+    "accountDeletedHours_one": "Dit account is verwijderd. Over ongeveer {{count}} uur kun je je opnieuw aanmelden met hetzelfde e-mailadres of telefoonnummer.",
+    "accountDeletedHours_other": "Dit account is verwijderd. Over ongeveer {{count}} uur kun je je opnieuw aanmelden met hetzelfde e-mailadres of telefoonnummer.",
+    "accountDeletedDays_one": "Dit account is verwijderd. Over ongeveer {{count}} dag kun je je opnieuw aanmelden met hetzelfde e-mailadres of telefoonnummer.",
+    "accountDeletedDays_other": "Dit account is verwijderd. Over ongeveer {{count}} dagen kun je je opnieuw aanmelden met hetzelfde e-mailadres of telefoonnummer."
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",
@@ -3116,6 +3121,22 @@
       "votes_other": "{{value}} stemmen",
       "members_one": "{{value}} lid",
       "members_other": "{{value}} leden"
+    },
+    "sortCustom": "Eigen volgorde",
+    "arrangeButton": "Berichten ordenen",
+    "arrange": {
+      "title": "Orden je berichten",
+      "hint": "Houd een bericht vast en sleep het naar zijn nieuwe plek. Bezoekers zien deze volgorde eerst.",
+      "drag": "Sleep om te verplaatsen",
+      "toTop": "Naar boven verplaatsen",
+      "save": "Volgorde opslaan",
+      "saving": "Opslaan...",
+      "saved": "Je volgorde is opgeslagen",
+      "reset": "Terug naar nieuwste eerst",
+      "resetDone": "Weer nieuwste eerst",
+      "saveFailed": "Je volgorde kon niet worden opgeslagen. Probeer het opnieuw.",
+      "loadFailed": "Je berichten konden niet worden geladen. Sluit dit en probeer het opnieuw.",
+      "empty": "Er valt nog niets te ordenen. Plaats eerst iets."
     }
   },
   "tv": {

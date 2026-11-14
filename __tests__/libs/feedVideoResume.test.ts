@@ -1,28 +1,30 @@
-import { clearFeedVideoPlaces, rememberFeedVideoPlace, takeFeedVideoPlace } from "../../libs/feedVideoResume";
+import { clearFeedVideoPlaces, peekFeedVideoPlace, rememberFeedVideoPlace, usedFeedVideoPlace } from "../../libs/feedVideoResume";
 
 describe("feed video place", () => {
   beforeEach(clearFeedVideoPlaces);
 
-  it("gives the place back once, within a minute", () => {
+  it("keeps the place until a player has used it", () => {
     rememberFeedVideoPlace("a", 12.5, 1000);
-    expect(takeFeedVideoPlace("a", 30_000)).toBe(12.5);
-    expect(takeFeedVideoPlace("a", 30_001)).toBe(0);
+    expect(peekFeedVideoPlace("a", 30_000)).toBe(12.5);
+    expect(peekFeedVideoPlace("a", 30_001)).toBe(12.5);
+    usedFeedVideoPlace("a");
+    expect(peekFeedVideoPlace("a", 30_002)).toBe(0);
   });
 
   it("forgets after a minute", () => {
     rememberFeedVideoPlace("a", 12.5, 1000);
-    expect(takeFeedVideoPlace("a", 62_000)).toBe(0);
+    expect(peekFeedVideoPlace("a", 62_000)).toBe(0);
   });
 
-  it("does not keep a video that had barely started", () => {
+  it("a player that never started does not wipe the place", () => {
     rememberFeedVideoPlace("a", 8, 1000);
-    rememberFeedVideoPlace("a", 0.4, 2000);
-    expect(takeFeedVideoPlace("a", 3000)).toBe(0);
+    rememberFeedVideoPlace("a", 0, 2000);
+    expect(peekFeedVideoPlace("a", 3000)).toBe(8);
   });
 
   it("keeps only the latest few", () => {
     for (let i = 0; i < 20; i++) rememberFeedVideoPlace(`v${i}`, 5, 1000);
-    expect(takeFeedVideoPlace("v0", 2000)).toBe(0);
-    expect(takeFeedVideoPlace("v19", 2000)).toBe(5);
+    expect(peekFeedVideoPlace("v0", 2000)).toBe(0);
+    expect(peekFeedVideoPlace("v19", 2000)).toBe(5);
   });
 });

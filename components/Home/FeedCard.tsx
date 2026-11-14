@@ -24,6 +24,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { GRAIN } from "../../theme/skins";
+import { CardFrost, useCardFrost } from "../theme/CardFrost";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrubBoundary";
@@ -236,6 +237,8 @@ type PostEdits = {
   hideAssetCards?: boolean;
   quotePolicy?: "public" | "followers" | "nobody";
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Opened up to everyone from the edit sheet. */
+  visibility?: "public";
   /** Comic or carousel, switched from the menu. null = carousel. */
   layout?: "comic" | null;
 };
@@ -606,6 +609,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isPublicPost = !item.visibility || item.visibility === "public";
 
   const { isMinimal, skin, theme, isLight } = useAppTheme();
+  // The shared frosted wallpaper (components/theme/CardFrost) is up: the card
+  // paints its tint over that instead of over the sharp scene.
+  const frosted = useCardFrost() && !!skin;
   const articleUi = useMemo(() => articleLook(theme), [theme]);
   // How far this card has to step out to span the screen. Worked out from the
   // width the list actually gives it, so a list with other padding still
@@ -2409,6 +2415,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
           currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
+          currentVisibility={edits.visibility ?? (item.visibility as any)}
           currentLayout={postLayout === "comic" ? "comic" : null}
           photoCount={galleryImages.length}
           onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
@@ -2531,12 +2538,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={isMinimal || cinematicFeed ? {
             padding: 12, marginVertical: 6,
             borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: MINIMAL_HAIRLINE,
-          } : skin ? [skin.card, { padding: 12, marginVertical: 6 }] : {
+          } : skin ? [skin.card, { padding: 12, marginVertical: 6 }, frosted && { backgroundColor: 'transparent' }] : {
             borderWidth: theme === 'system' && isLight ? 0 : 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
             backgroundColor: theme === 'system' ? 'transparent' : 'rgba(255,255,255,0.03)',
             padding: 12, marginVertical: 6,
           }}
         >
+          {frosted && !isMinimal && !cinematicFeed ? <CardFrost radius={Number(skin!.card.borderRadius ?? 0)} tint={skin!.card.backgroundColor} /> : null}
           {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
           {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
           <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch' }}>
@@ -2564,7 +2572,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
               <View style={{ marginTop: 'auto', paddingTop: 16 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={edits.visibility ?? item.visibility} />
                   {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
                 </View>
                 {actionBar}
@@ -2691,7 +2699,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
+          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={edits.visibility ?? item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -3043,7 +3051,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={edits.visibility ?? item.visibility} />
             {translateButton}
           </View>
         )}
@@ -3098,6 +3106,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // frame, Osaka's slate with a pink edge, Jungle's plank.
         skin.card,
         { paddingTop: 12, paddingHorizontal: 12, paddingBottom: 12, marginVertical: 6 },
+        frosted && { backgroundColor: 'transparent' },
       ] : {
         // System keeps only the thin outline; System Light drops it too (it
         // read as a grey box on white).
@@ -3115,6 +3124,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         marginVertical: 6,
       }}
     >
+      {frosted && !desk && !immersive && !flat && !isMinimal ? (
+        <CardFrost radius={Number(skin!.card.borderRadius ?? 0)} tint={skin!.card.backgroundColor} />
+      ) : null}
       {skin?.grain && !flat && !desk ? (
         <Image
           source={GRAIN}
@@ -3299,7 +3311,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             by an order of magnitude. */}
         <PostMetaItems
           timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined}
-          visibility={item.visibility}
+          visibility={edits.visibility ?? item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
         />
