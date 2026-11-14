@@ -9,7 +9,7 @@ import { MediaControlIcon as BareIcon, MediaControlLabel, MediaControlText } fro
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
 import { useQueryClient } from "@tanstack/react-query";
-import { rememberFeedVideoPlace, takeFeedVideoPlace } from "../../libs/feedVideoResume";
+import { peekFeedVideoPlace, rememberFeedVideoPlace, usedFeedVideoPlace } from "../../libs/feedVideoResume";
 import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import PostTapSurface from "./PostTapSurface";
@@ -703,7 +703,29 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const resumeAtRef = useRef(0);
   // A feed card that lost its player a moment ago (a profile opened over the
   // feed, or a short scroll away) carries on from where it was.
-  useState(() => { if (!postPage) resumeAtRef.current = takeFeedVideoPlace(videoUrl); });
+  const feedPlaceRef = useRef(0);
+  useState(() => {
+    if (postPage) return;
+    feedPlaceRef.current = peekFeedVideoPlace(videoUrl);
+    resumeAtRef.current = feedPlaceRef.current;
+  });
+  // Move to the pending place. Called when the player reports ready, and once
+  // more after the listeners attach in case it was ready before they did.
+  const applyResume = useCallback((target: VideoPlayer) => {
+    const resumeAt = resumeAtRef.current;
+    if (!(resumeAt > 0)) return;
+    resumeAtRef.current = 0;
+    const length = target.duration;
+    if (length > 0 && resumeAt >= length) return;
+    target.currentTime = resumeAt;
+    currentTimeRef.current = resumeAt;
+    if (feedPlaceRef.current > 0) {
+      feedPlaceRef.current = 0;
+      usedFeedVideoPlace(videoUrl);
+      // eslint-disable-next-line no-console
+      console.log(`[video] carried on at ${resumeAt.toFixed(1)}s`);
+    }
+  }, [videoUrl]);
   useEffect(() => {
     if (postPage) return;
     return () => rememberFeedVideoPlace(videoUrl, currentTimeRef.current);
@@ -850,9 +872,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
-            const resumeAt = resumeAtRef.current;
-            resumeAtRef.current = 0;
-            if (resumeAt > 0 && resumeAt < player.duration) player.currentTime = resumeAt;
+            applyResume(player);
             // The deferred source has arrived; honour the intent that
             // attached it.
             flushPendingPlay(true);
@@ -882,8 +902,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         })
       );
     } catch {}
+    try { if (ownsPlayerRef.current() && player.status === "readyToPlay") applyResume(player); } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, flushPendingPlay, maybeSkipSegment, stopPlayback, tokenId]);
+  }, [player, flushPendingPlay, maybeSkipSegment, stopPlayback, tokenId, applyResume]);
 
   // The other side of the same race: readiness landing before the intent, or a
   // source that was already attached when the intent was queued.
