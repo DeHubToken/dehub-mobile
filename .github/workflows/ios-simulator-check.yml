@@ -16,7 +16,7 @@ on:
         required: false
         default: 'dark light syslight'
       task:
-        description: 'walk = open every page and screenshot it. nav = time page switches, main against this branch'
+        description: 'walk = open every page and screenshot it. nav = time page switches, main against this branch. probe = look for where a switch spends its time'
         required: false
         default: 'walk'
       app_run_id:
@@ -33,7 +33,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: ios-simulator-check-${{ github.ref }}
+  group: ios-simulator-check-${{ github.ref }}-${{ inputs.task || 'walk' }}
   cancel-in-progress: true
 
 jobs:
@@ -161,14 +161,16 @@ jobs:
           grep -cE "warning:" xcodebuild.log > sim-check/warning-count.txt || true
           gzip -c xcodebuild.log > sim-check/xcodebuild.log.gz
       - name: Walk every page in dark, light and System Light
-        if: inputs.task != 'nav'
+        if: inputs.task != 'nav' && inputs.task != 'probe'
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           scripts/ios-simulator-walk.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
         env:
           THEMES: ${{ inputs.themes || 'dark light syslight' }}
       - name: Time page switches, main against this branch
-        if: inputs.task == 'nav'
+        if: inputs.task == 'nav' || inputs.task == 'probe'
+        env:
+          NAV_MODE: ${{ inputs.task }}
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           git fetch --depth=1 origin "$GITHUB_REF_NAME" && git checkout -q --detach FETCH_HEAD

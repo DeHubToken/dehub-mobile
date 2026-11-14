@@ -24,6 +24,8 @@ OUT="$3"
 BEFORE_REF="${BEFORE_REF:-main}"
 ROUNDS="${ROUNDS:-2}"
 THEME="${NAV_THEME:-system}"
+# "probe" looks for where a switch spends its time instead of timing it.
+MODE="${NAV_MODE:-nav}"
 WORK="${RUNNER_TEMP:-/tmp}/ios-nav"
 BUNDLE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
 EXE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$APP/Info.plist")"
@@ -43,7 +45,7 @@ bundle() {
   entry="$(node -e "require('expo/scripts/resolveAppEntry')" "$PWD" ios absolute | tail -n 1)"
   cat > "$WORK/bundle.sh" <<SH
 set -euo pipefail
-npx expo export:embed --platform ios --dev false --entry-file "$entry" \
+npx expo export:embed --platform ios --dev false --minify ${MINIFY:-true} --entry-file "$entry" \
   --bundle-output "$dir/main.js" --assets-dest "$dir/app"
 SH
   # The app's config is inlined from the EAS production environment, as in the build.
@@ -67,13 +69,18 @@ NEW_PATCHES="$(git diff --name-only --diff-filter=A "$BEFORE_SHA" "$HEAD_SHA" --
 echo "before = $BEFORE_REF ($BEFORE_SHA), after = $HEAD_SHA"
 echo "Patches only in this checkout: ${NEW_PATCHES:-none}"
 
-for p in $NEW_PATCHES; do patch -R -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot take $p off"; exit 1; }; done
-git checkout --quiet "$BEFORE_SHA" -- . ':(exclude).github' ':(exclude)scripts' || exit 1
-bundle before; BEFORE_OK=$?
-git reset --quiet --hard "$HEAD_SHA"
-for p in $NEW_PATCHES; do patch -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot put $p back"; exit 1; }; done
-[ "$BEFORE_OK" = 0 ] || exit 1
-bundle after || exit 1
+if [ "$MODE" = probe ]; then
+  # One bundle, of this checkout, with its function names kept.
+  MINIFY=false bundle after || exit 1
+else
+  for p in $NEW_PATCHES; do patch -R -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot take $p off"; exit 1; }; done
+  git checkout --quiet "$BEFORE_SHA" -- . ':(exclude).github' ':(exclude)scripts' || exit 1
+  bundle before; BEFORE_OK=$?
+  git reset --quiet --hard "$HEAD_SHA"
+  for p in $NEW_PATCHES; do patch -p1 -s --no-backup-if-mismatch < "$p" || { echo "Cannot put $p back"; exit 1; }; done
+  [ "$BEFORE_OK" = 0 ] || exit 1
+  bundle after || exit 1
+fi
 
 # --- runs --------------------------------------------------------------------
 
@@ -129,24 +136,34 @@ use_bundle() {
   xcrun simctl install "$UDID" "$APP"
 }
 
-# Screenshots the simulator whenever the tour names a new picture, until the
-# stop file appears.   shots <prefix> <stop file>
+# Watches what the tour asks for until the stop file appears: a screenshot
+# whenever it names a new picture, and a sample of every thread of the app
+# (where each one is spending its time) whenever it names a new sampling.
+#   shots <prefix> <stop file>
 shots() {
-  python3 - "$(storage_dir)/manifest.json" "$UDID" "$OUT/pages" "$1" "$2" <<'PY'
+  python3 - "$(storage_dir)/manifest.json" "$UDID" "$OUT" "$1" "$2" "$EXE" <<'PY'
 import json, os, re, subprocess, sys, time
-manifest, udid, out, prefix, stop = sys.argv[1:6]
-os.makedirs(out, exist_ok=True)
-last = None
+manifest, udid, out, prefix, stop, exe = sys.argv[1:7]
+os.makedirs(f"{out}/pages", exist_ok=True)
+last = sampled = None
+safe = lambda name: re.sub(r"[^A-Za-z0-9_-]", "_", name)
 while not os.path.exists(stop):
     try:
-        name = json.load(open(manifest)).get("dehub.perfTour.shot")
+        keys = json.load(open(manifest))
     except Exception:
-        name = None
+        keys = {}
+    name = keys.get("dehub.perfTour.shot")
     if name and name != last:
         last = name
-        safe = re.sub(r"[^A-Za-z0-9_-]", "_", name)
-        subprocess.run(["xcrun", "simctl", "io", udid, "screenshot", "--type=jpeg", f"{out}/{prefix}-{safe}.jpg"],
+        subprocess.run(["xcrun", "simctl", "io", udid, "screenshot", "--type=jpeg", f"{out}/pages/{prefix}-{safe(name)}.jpg"],
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    name = keys.get("dehub.perfTour.sample")
+    if name and name != sampled:
+        sampled = name
+        pid = subprocess.run(["pgrep", "-n", "-x", exe], capture_output=True, text=True).stdout.strip()
+        if pid:
+            subprocess.Popen(["sample", pid, "12", "1", "-file", f"{out}/nav/{prefix}-sample-{safe(name)}.txt"],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(0.12)
 PY
 }
@@ -156,9 +173,9 @@ run() {
   local variant="$1" name="$2" record="${3:-}" tour="${4:-1}" theme="${5:-$THEME}"
   local recorder="" started=0 swiped=0 tries=180
   use_bundle "$variant"
-  storage drop dehub.perfTour.result dehub.perfTour.swipe dehub.perfTour.shot
+  storage drop dehub.perfTour.result dehub.perfTour.swipe dehub.perfTour.shot dehub.perfTour.sample
   storage set dehub.theme "$theme" dehub.perfTour "$tour"
-  if [ "$tour" = pages ]; then
+  if [ "$tour" != 1 ]; then
     tries=480
     rm -f "$WORK/shots.stop"
     shots "$name" "$WORK/shots.stop" &
@@ -196,6 +213,13 @@ xcrun simctl ui "$UDID" appearance dark
 for service in photos camera microphone location; do
   xcrun simctl privacy "$UDID" grant "$service" "$BUNDLE" >/dev/null 2>&1 || true
 done
+
+if [ "$MODE" = probe ]; then
+  run after probe "" probe
+  kill "$LOG_PID" 2>/dev/null
+  grep -E '\[perf-tour\]|\[FatalJS\]|\[UncaughtJS\]' "$OUT/logs/app.log" | cut -c1-400 > "$OUT/logs/tour.txt" || true
+  exit 0
+fi
 
 # One unmeasured run first: it fills the caches both sides then share.
 run before warmup

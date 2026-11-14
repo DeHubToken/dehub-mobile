@@ -129,8 +129,11 @@ const tab = (name: string) => () =>
 const feedTab = (feed: string) => () =>
   nav.navigate(ScreenNames.App, { screen: ScreenNames.Root, params: { screen: ScreenNames.Home, params: { feedTab: feed } } });
 const push = (name: string, params?: object) => () => nav.navigate(name, params);
+// Never from a bottom-bar tab: under those is the welcome flow a fresh install
+// started in, and a page that did not open (signed out) must not lead there.
 const back = () => () => {
-  if (nav.canGoBack()) nav.goBack();
+  const route = nav.getCurrentRoute()?.name;
+  if (nav.canGoBack() && route && !TAB_ROUTES.includes(route)) nav.goBack();
 };
 const openProfile = (name: string) => () => emitProfileDeepLink(name);
 const closeProfile = () => () => closeProfileSheetForLink();
@@ -152,6 +155,9 @@ const PAGES = [
 ] as const;
 
 const TAB_ROUTES: string[] = [ScreenNames.Home, ScreenNames.Explore, ScreenNames.DM, ScreenNames.AIChat];
+
+/** The script samples the app's threads for a while once this is set. */
+const SAMPLE_KEY = "dehub.perfTour.sample";
 
 const shot = (name: string) => AsyncStorage.setItem(SHOT_KEY, name).catch(() => undefined);
 
@@ -197,6 +203,100 @@ async function runPages(): Promise<void> {
     await measure(`${page} back again`, back(), { watchMs: 900, restMs: 300 });
     await backToTabs();
   }
+  extra.finishedAt = Date.now();
+  await save(true);
+  console.error("[perf-tour] done");
+}
+
+type ElementType = string | { displayName?: string; name?: string; render?: ElementType; type?: ElementType } | null;
+
+function typeName(type: ElementType): string {
+  if (typeof type === "string") return type;
+  if (!type) return "null";
+  return type.displayName || type.name || (type.render ? typeName(type.render) : "") || (type.type ? typeName(type.type) : "") || "anonymous";
+}
+
+/**
+ * What the app does during a switch, for finding where the time goes: which
+ * components were drawn again (counted where the app's JSX runtime creates
+ * their elements), and, for the script's thread sampler, a run of plain tab
+ * switches. Needs a bundle that kept its function names (--minify false).
+ */
+async function runProbe(): Promise<void> {
+  extra = { startedAt: Date.now(), mode: "probe" };
+  const root = nav.getRootState();
+  if (root?.routes[root.index]?.name !== ScreenNames.App) {
+    nav.navigate(ScreenNames.App);
+    await sleep(1500);
+  }
+  await sleep(14000);
+
+  let counts: Map<string, number> | null = null;
+  const runtime = require("../../libs/jsx/jsx-runtime") as Record<string, (type: ElementType, ...rest: unknown[]) => unknown>;
+  for (const key of ["jsx", "jsxs"]) {
+    const original = runtime[key];
+    runtime[key] = function counted(type: ElementType, ...rest: unknown[]) {
+      if (counts) {
+        const name = typeName(type);
+        counts.set(name, (counts.get(name) ?? 0) + 1);
+      }
+      return original(type, ...rest);
+    };
+  }
+  const drawn: Record<string, { total: number; top: [string, number][] }> = {};
+  const probe = async (step: string, action: () => void, opts: { watchMs?: number; delayMs?: number } = {}) => {
+    counts = new Map();
+    await measure(step, action, { watchMs: 1800, restMs: 100, ...opts });
+    const all = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    counts = null;
+    drawn[step] = { total: all.reduce((sum, entry) => sum + entry[1], 0), top: all.slice(0, 40) };
+    extra.drawn = drawn;
+    await save(false);
+    await sleep(500);
+  };
+
+  // Visit everything once first, so the counts are of switches, not first builds.
+  for (const name of [ScreenNames.Explore, ScreenNames.DM, ScreenNames.AIChat, ScreenNames.Home]) {
+    tab(name)();
+    await sleep(2500);
+  }
+
+  await probe("idle", () => undefined);
+  await probe("tab Messages", tab(ScreenNames.DM));
+  await probe("tab Assistant", tab(ScreenNames.AIChat));
+  await probe("tab Messages again", tab(ScreenNames.DM));
+  await probe("tab Home", tab(ScreenNames.Home));
+  await probe("tab Explore", tab(ScreenNames.Explore));
+  await probe("tab Home again", tab(ScreenNames.Home));
+  await probe("idle on Home", () => undefined);
+  await probe("feed Shorts", feedTab("short"));
+  await probe("feed All", feedTab("all"));
+  await probe("profile open", openProfile("riftn"), { delayMs: PROFILE_LINK_DELAY_MS, watchMs: 2200 });
+  await probe("profile close", closeProfile());
+  await probe("post open", push(ScreenNames.FeedDetail, { tokenId: "742" }), { watchMs: 2200 });
+  await probe("post back", back());
+  await probe("search open", push(ScreenNames.Search));
+  await probe("search back", back());
+
+  // For the sampler: the two lightest tabs, back and forth, then Home and Explore.
+  await AsyncStorage.setItem(SAMPLE_KEY, "light");
+  await sleep(3000);
+  extra.sampleLightAt = Date.now();
+  for (let i = 0; i < 8; i++) {
+    tab(i % 2 ? ScreenNames.AIChat : ScreenNames.DM)();
+    await sleep(1100);
+  }
+  await sleep(2500);
+  tab(ScreenNames.Home)();
+  await sleep(2500);
+  await AsyncStorage.setItem(SAMPLE_KEY, "home");
+  await sleep(3000);
+  for (let i = 0; i < 6; i++) {
+    tab(i % 2 ? ScreenNames.Home : ScreenNames.Explore)();
+    await sleep(1600);
+  }
+  await sleep(2500);
+
   extra.finishedAt = Date.now();
   await save(true);
   console.error("[perf-tour] done");
@@ -266,20 +366,24 @@ async function run(): Promise<void> {
   if (nav.getCurrentRoute()?.name === ScreenNames.Notifications) await measure("notifications back", back());
 
   // The swipe back from the left edge has to be a real touch, so the script
-  // performs it: Settings stays open until it has gone, or the wait runs out.
-  nav.navigate(ScreenNames.AccountSettings);
+  // performs it: the Leaderboard stays open until it has gone, or the wait
+  // runs out.
+  nav.navigate(ScreenNames.Leaderboard);
   await sleep(1500);
-  await AsyncStorage.setItem(SWIPE_KEY, "ready");
-  const waitingSince = Date.now();
+  const opened = nav.getCurrentRoute()?.name === ScreenNames.Leaderboard;
   let leftAt = 0;
-  while (!leftAt && Date.now() - waitingSince < 20000) {
-    await sleep(50);
-    if (nav.getCurrentRoute()?.name !== ScreenNames.AccountSettings) leftAt = Date.now();
+  if (opened) {
+    await AsyncStorage.setItem(SWIPE_KEY, "ready");
+    const waitingSince = Date.now();
+    while (!leftAt && Date.now() - waitingSince < 20000) {
+      await sleep(50);
+      if (nav.getCurrentRoute()?.name !== ScreenNames.Leaderboard) leftAt = Date.now();
+    }
+    await AsyncStorage.removeItem(SWIPE_KEY);
   }
-  await AsyncStorage.removeItem(SWIPE_KEY);
-  extra.swipeBack = { went: leftAt > 0, leftAt };
-  console.error(`[perf-tour] swipe back ${leftAt ? "left Settings" : "did nothing"}`);
-  if (!leftAt && nav.canGoBack()) nav.goBack();
+  extra.swipeBack = { opened, went: leftAt > 0, leftAt };
+  console.error(`[perf-tour] swipe back ${!opened ? "page did not open" : leftAt ? "went back" : "did nothing"}`);
+  if (!leftAt) back()();
 
   extra.finishedAt = Date.now();
   await save(true);
@@ -289,11 +393,12 @@ async function run(): Promise<void> {
 void (async () => {
   try {
     const mode = await AsyncStorage.getItem(FLAG_KEY);
-    if (mode !== "1" && mode !== "pages") return;
+    if (mode !== "1" && mode !== "pages" && mode !== "probe") return;
     // One walk per launch the script asked for.
     await AsyncStorage.removeItem(FLAG_KEY);
     for (let i = 0; i < 300 && !nav.isReady(); i++) await sleep(200);
     if (mode === "pages") await runPages();
+    else if (mode === "probe") await runProbe();
     else await run();
   } catch (error) {
     console.error(`[perf-tour] failed ${String(error)}`);

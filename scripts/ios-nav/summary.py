@@ -68,6 +68,6 @@ for label, runs in (("before", before), ("after", after)):
         if run.get("error"):
             print(f"\n{label}: tour error: {run['error']}")
 for label, runs in (("before", before), ("after", after)):
-    swipes = [run["swipeBack"]["went"] for run in runs if "swipeBack" in run]
+    swipes = [run["swipeBack"]["went"] for run in runs if run.get("swipeBack", {}).get("opened")]
     if swipes:
         print(f"\nSwipe back from the left edge, {label}: went back in {sum(swipes)} of {len(swipes)} runs")
