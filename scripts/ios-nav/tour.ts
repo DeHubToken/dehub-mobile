@@ -19,6 +19,8 @@ import { closeProfileSheetForLink, emitProfileDeepLink } from "../../libs/deepli
 
 const FLAG_KEY = "dehub.perfTour";
 const RESULT_KEY = "dehub.perfTour.result";
+/** Set while Settings is open and waiting for the script's edge swipe. */
+const SWIPE_KEY = "dehub.perfTour.swipe";
 /** emitProfileDeepLink waits this long before it opens the profile. */
 const PROFILE_LINK_DELAY_MS = 350;
 const FRAME_MS = 1000 / 60;
@@ -193,6 +195,22 @@ async function run(): Promise<void> {
   if (nav.getCurrentRoute()?.name === ScreenNames.ShortsViewer) await measure("shorts viewer back", back());
   await measure("notifications open", push(ScreenNames.Notifications), { watchMs: 2200 });
   if (nav.getCurrentRoute()?.name === ScreenNames.Notifications) await measure("notifications back", back());
+
+  // The swipe back from the left edge has to be a real touch, so the script
+  // performs it: Settings stays open until it has gone, or the wait runs out.
+  nav.navigate(ScreenNames.AccountSettings);
+  await sleep(1500);
+  await AsyncStorage.setItem(SWIPE_KEY, "ready");
+  const waitingSince = Date.now();
+  let leftAt = 0;
+  while (!leftAt && Date.now() - waitingSince < 20000) {
+    await sleep(50);
+    if (nav.getCurrentRoute()?.name !== ScreenNames.AccountSettings) leftAt = Date.now();
+  }
+  await AsyncStorage.removeItem(SWIPE_KEY);
+  extra.swipeBack = { went: leftAt > 0, leftAt };
+  console.error(`[perf-tour] swipe back ${leftAt ? "left Settings" : "did nothing"}`);
+  if (!leftAt && nav.canGoBack()) nav.goBack();
 
   extra.finishedAt = Date.now();
   await save(true);

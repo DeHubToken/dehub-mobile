@@ -141,7 +141,6 @@ jobs:
       # Without it no deep link opens and the whole walk is wasted, so this
       # retries the download (GitHub release downloads flake) and then fails.
       - name: Install idb for taps
-        if: inputs.task != 'nav'
         run: |
           brew tap facebook/fb
           for attempt in 1 2 3 4; do

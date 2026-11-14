@@ -10,7 +10,8 @@
 # the entry file. Each bundle is swapped into the built app in turn and the
 # tour walks the same pages, noting how long the screen could not update after
 # every switch. Runs alternate (before, after, before, after) so a slow moment
-# on the runner does not land on one side only.
+# on the runner does not land on one side only. Each tour ends with a swipe
+# back from the left edge, made here with idb when it is installed.
 #
 # It compares app code only. Both bundles run on this checkout's node_modules;
 # a patch this checkout adds under patches/ is taken off for the "before"
@@ -130,9 +131,9 @@ use_bundle() {
 
 # run <before|after> <name> [record]
 run() {
-  local variant="$1" name="$2" record="${3:-}" recorder="" started=0
+  local variant="$1" name="$2" record="${3:-}" recorder="" started=0 swiped=0
   use_bundle "$variant"
-  storage drop dehub.perfTour.result
+  storage drop dehub.perfTour.result dehub.perfTour.swipe
   storage set dehub.theme "$THEME" dehub.perfTour 1
   if [ -n "$record" ]; then
     xcrun simctl io "$UDID" recordVideo --codec hevc --force "$OUT/nav/$name.mov" 2> "$WORK/record.log" &
@@ -142,8 +143,17 @@ run() {
   fi
   xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
   local result=""
-  for _ in $(seq 1 150); do
+  for _ in $(seq 1 180); do
     sleep 2
+    # The tour ends on Settings and waits for a slow swipe in from the left
+    # edge: a real touch, which only idb can make.
+    if [ "$swiped" = 0 ] && [ "$(storage get dehub.perfTour.swipe)" = "ready" ]; then
+      swiped=1
+      if command -v idb >/dev/null 2>&1; then
+        python3 -c 'import time; print(int(time.time()*1000))' > "$OUT/nav/$name.swipe-start"
+        idb ui swipe --udid "$UDID" --duration 1.2 1 430 330 430 >/dev/null 2>&1 || echo "$name: idb swipe failed"
+      fi
+    fi
     result="$(storage get dehub.perfTour.result)"
     case "$result" in '{"done":true'*) started=1; break ;; esac
   done

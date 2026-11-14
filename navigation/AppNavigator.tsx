@@ -38,8 +38,8 @@ import ChatRouteShell from "../components/DM/ChatRouteShell";
  */
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-/** How long a page takes to open on iPhone; Android's is in res/anim (220). */
-const PAGE_OPEN_MS = 220;
+/** How long a page takes to slide in on iPhone; Android's fade is in res/anim (220). */
+const IOS_PAGE_OPEN_MS = 250;
 
 /**
  * getComponent returns a cached, lightweight route shell. The destination's
@@ -181,12 +181,18 @@ function AppNavigatorContent() {
           headerShown: false,
           // App resources give this native transition the same centre
           // expansion as profiles, independent of the theme or JS workload.
-          // iPhone gets the same short rise: its own push is a half-second
-          // slide, and a page that loads after its entrance (deferredScreen)
-          // sat behind the grey sketch for all of it. Swiping back from the
-          // edge still drags the page sideways, as iPhone does.
-          animation: reducedMotion ? 'none' : 'fade_from_bottom',
-          animationDuration: PAGE_OPEN_MS,
+          // iPhone keeps its sideways push, but short: its own is a
+          // half-second slide, and a page that loads after its entrance
+          // (deferredScreen) sat behind the grey sketch for all of it. That
+          // push cannot be shortened, so this is the library's plain slide.
+          // The edge swipe then has to drive the same slide
+          // (animationMatchesGesture), or it would pop the page at once
+          // instead of following the finger.
+          animation: Platform.OS === 'android'
+            ? reducedMotion ? 'none' : 'fade_from_bottom'
+            : reducedMotion ? 'default' : 'simple_push',
+          animationDuration: IOS_PAGE_OPEN_MS,
+          animationMatchesGesture: Platform.OS === 'ios' && !reducedMotion,
           // An options object, but react-native-screens is compiled from
           // source with the app's JSX runtime and hands this to a View, so
           // System Light's colour pass DOES see it: a plain white turned into
