@@ -5951,7 +5951,17 @@
     "searchMenu": "메뉴 검색",
     "clearSearch": "검색 지우기",
     "noMenuMatches": "메뉴에 일치하는 항목이 없습니다",
-    "searchDehubFor": "Riftn에서 \"{{query}}\" 검색"
+    "searchDehubFor": "Riftn에서 \"{{query}}\" 검색",
+    "requestPrompt": "아직 없나요? 요청으로 보내세요",
+    "requestPromptShort": "아직 없나요?",
+    "requestDraftMenu": "Riftn에 {{query}} 추가",
+    "requestDraftSettings": "{{query}} 설정",
+    "requestSend": "요청 보내기",
+    "requestPostsTo": "요청에 게시됩니다",
+    "requestHint": "내 이름으로 요청에 게시됩니다. 출시되면 알려드릴게요.",
+    "requestSent": "요청으로 보냈어요",
+    "requestSentHint": "출시되면 알려드릴게요.",
+    "requestSeeIt": "요청에서 보기"
   },
   "comments": {
     "reportComment": "댓글 신고",

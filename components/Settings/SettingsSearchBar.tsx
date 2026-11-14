@@ -20,6 +20,7 @@ import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
 import { searchSettings, type SettingsSearchHit } from '../../libs/settings-search';
 import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
+import SearchRequestPrompt from '../Search/SearchRequestPrompt';
 
 const TAB_KEYS: Record<string, string> = {
   profile: 'settings.profile',
@@ -32,8 +33,13 @@ const TAB_KEYS: Record<string, string> = {
   support: 'settings.support',
 };
 
-const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }> = ({
+const SettingsSearchBar: React.FC<{
+  onSelect: (hit: SettingsSearchHit) => void;
+  /** Opens the Requests board after a request is sent from an empty search. */
+  onOpenRequests?: () => void;
+}> = ({
   onSelect,
+  onOpenRequests,
 }) => {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
@@ -95,6 +101,10 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
                 </Text>
               </TouchableOpacity>
             ))
+          ) : query.trim().length >= 2 ? (
+            <View className="p-2.5">
+              <SearchRequestPrompt query={query} source="settings" onOpenRequests={onOpenRequests} />
+            </View>
           ) : (
             <Text className="text-theme-neutrals-500 text-sm px-4 py-3">
               {t('settings.noSearchResults', 'No matching settings')}

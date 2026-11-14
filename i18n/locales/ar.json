@@ -3822,7 +3822,17 @@
     "searchMenu": "بحث في القائمة",
     "clearSearch": "مسح البحث",
     "noMenuMatches": "لا شيء في القائمة يطابق",
-    "searchDehubFor": "ابحث في Riftn عن «{{query}}»"
+    "searchDehubFor": "ابحث في Riftn عن «{{query}}»",
+    "requestPrompt": "غير موجود بعد؟ أرسله كطلب",
+    "requestPromptShort": "غير موجود بعد؟",
+    "requestDraftMenu": "أضف {{query}} إلى Riftn",
+    "requestDraftSettings": "إعداد لـ {{query}}",
+    "requestSend": "إرسال الطلب",
+    "requestPostsTo": "يُنشر في الطلبات",
+    "requestHint": "يُنشر في الطلبات باسمك. سنخبرك عندما يصبح متاحًا.",
+    "requestSent": "أُرسل إلى الطلبات",
+    "requestSentHint": "سنخبرك عندما يصبح متاحًا.",
+    "requestSeeIt": "شاهده في الطلبات"
   },
   "comments": {
     "reportComment": "الإبلاغ عن التعليق",

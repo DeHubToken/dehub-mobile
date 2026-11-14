@@ -5948,7 +5948,17 @@
     "searchMenu": "Cari di menu",
     "clearSearch": "Bersihkan pencarian",
     "noMenuMatches": "Tidak ada yang cocok di menu",
-    "searchDehubFor": "Cari \"{{query}}\" di Riftn"
+    "searchDehubFor": "Cari \"{{query}}\" di Riftn",
+    "requestPrompt": "Belum ada? Kirim sebagai permintaan",
+    "requestPromptShort": "Belum ada?",
+    "requestDraftMenu": "Tambahkan {{query}} ke Riftn",
+    "requestDraftSettings": "Pengaturan untuk {{query}}",
+    "requestSend": "Kirim permintaan",
+    "requestPostsTo": "Masuk ke Permintaan",
+    "requestHint": "Masuk ke Permintaan atas namamu. Kami kabari saat sudah rilis.",
+    "requestSent": "Terkirim ke Permintaan",
+    "requestSentHint": "Kami kabari saat sudah rilis.",
+    "requestSeeIt": "Lihat di Permintaan"
   },
   "comments": {
     "reportComment": "Laporkan komentar",

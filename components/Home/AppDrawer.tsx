@@ -53,6 +53,7 @@ import { themeIconUrl } from "../../theme/icons";
 import { ReorderItem, justDropped, useReorder, type ReorderCtx } from "../common/Reorder";
 import { usePerfProbe } from "../../libs/perfTrace";
 import { applyNavOrder, navOrderId, resetNavOrder, saveNavOrder, useNavOrder } from "../../libs/navOrder";
+import SearchRequestPrompt from "../Search/SearchRequestPrompt";
 
 // The menu is a bottom sheet: grab handle, who is signed in, the search field,
 // then a four-column grid of the same glossy 3D icons the web menu uses. It
@@ -801,7 +802,13 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           {searching && (
             <>
               {visibleItems.length === 0 && (
-                <Text style={styles.noMatches}>{t("sidebar.noMenuMatches")}</Text>
+                menuQuery.trim().length >= 2 ? (
+                  <View style={{ marginTop: 4, marginBottom: 8 }}>
+                    <SearchRequestPrompt query={menuQuery} source="menu" onOpenRequests={() => navigate(ScreenNames.FeatureRequests)} />
+                  </View>
+                ) : (
+                  <Text style={styles.noMatches}>{t("sidebar.noMenuMatches")}</Text>
+                )
               )}
               <TouchableOpacity
                 accessibilityRole="button"

@@ -266,7 +266,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           }))}
         />
       }>
-        <SettingsSearchBar onSelect={handleSearchSelect} />
+        <SettingsSearchBar onSelect={handleSearchSelect} onOpenRequests={() => navigation.navigate(ScreenNames.FeatureRequests)} />
     </ScreenHeader>
   );
 
