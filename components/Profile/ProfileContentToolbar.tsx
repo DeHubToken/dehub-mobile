@@ -29,17 +29,19 @@ import { setProfileViewMode, useProfileViewMode } from "../../libs/profileViewMo
  * rather than pinning a bar over a small screen.
  */
 
-export type ProfileSortMode = "newest" | "oldest" | "views" | "likes";
+export type ProfileSortMode = "newest" | "oldest" | "views" | "likes" | "custom";
 
 /** What the feed API wants for each mode. `asc` flips the whole sort rule. */
 export const PROFILE_SORT_PARAMS: Record<
   ProfileSortMode,
-  { sortBy: "createdAt" | "views" | "likes"; sortOrder: "asc" | "desc" }
+  { sortBy: "createdAt" | "views" | "likes" | "custom"; sortOrder: "asc" | "desc" }
 > = {
   newest: { sortBy: "createdAt", sortOrder: "desc" },
   oldest: { sortBy: "createdAt", sortOrder: "asc" },
   views: { sortBy: "views", sortOrder: "desc" },
   likes: { sortBy: "likes", sortOrder: "desc" },
+  // The creator's own arrangement (PUT /profile-order).
+  custom: { sortBy: "custom", sortOrder: "desc" },
 };
 
 /** The Quiet Row's menu says each sort in full; there is room for it. */
@@ -49,6 +51,9 @@ const SORT_MENU_LABELS: { key: ProfileSortMode; labelKey: string; fallback: stri
   { key: "views", labelKey: "profile.sortMostViewed", fallback: "Most viewed" },
   { key: "likes", labelKey: "profile.sortMostLiked", fallback: "Most liked" },
 ];
+
+/** Offered only on a profile whose creator saved their own order. */
+const CUSTOM_SORT_LABEL = { key: "custom" as const, labelKey: "profile.sortCustom", fallback: "Custom order" };
 
 
 interface ProfileContentToolbarProps {
@@ -62,6 +67,10 @@ interface ProfileContentToolbarProps {
   activeFilterCount: number;
   /** The All tab: show the grid / list toggle on the left of the row. */
   showViewToggle?: boolean;
+  /** The creator saved their own order: adds it to the sort choices. */
+  hasCustomOrder?: boolean;
+  /** Own profile: opens the sheet where the creator arranges their posts. */
+  onArrange?: () => void;
 }
 
 const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
@@ -73,6 +82,8 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   onFiltersToggle,
   activeFilterCount,
   showViewToggle,
+  hasCustomOrder = false,
+  onArrange,
 }) => {
   const { t: _copy } = _useCopy();
   // Translated through `t(key, fallback)` rather than new locale entries: the
@@ -87,7 +98,8 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   const sub = "rgba(255,255,255,0.5)";
   const solid = theme === "osaka" ? "#FF6FB5" : ink;
   const solidInk = theme === "osaka" ? "#1A0C16" : "#000000";
-  const current = SORT_MENU_LABELS.find((item) => item.key === sort) ?? SORT_MENU_LABELS[0];
+  const sortChoices = hasCustomOrder ? [CUSTOM_SORT_LABEL, ...SORT_MENU_LABELS] : SORT_MENU_LABELS;
+  const current = sortChoices.find((item) => item.key === sort) ?? SORT_MENU_LABELS[0];
   const searchInputRef = React.useRef<TextInput>(null);
   const viewMode = useProfileViewMode();
 
@@ -207,7 +219,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
             {t("profile.sortBy", "Sort by")}
           </Text>
-          {SORT_MENU_LABELS.map(({ key, labelKey, fallback }) => {
+          {sortChoices.map(({ key, labelKey, fallback }) => {
             const isActive = sort === key;
             return (
               <Pressable
@@ -222,6 +234,16 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               </Pressable>
             );
           })}
+          {onArrange && (
+            <Pressable
+              onPress={() => { setIsSortOpen(false); onArrange(); }}
+              accessibilityRole="button"
+              className="flex-row items-center justify-between rounded-2xl px-4 h-12 mt-1 border-t border-white/10"
+            >
+              <Text className="text-white/80 text-base">{t("profile.arrangeButton", "Arrange posts")}</Text>
+              <Icon name="ArrowUpDown" size={18} color={ink} />
+            </Pressable>
+          )}
         </View>
       </GlassModal>
     </View>

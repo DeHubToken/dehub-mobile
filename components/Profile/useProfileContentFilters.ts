@@ -61,8 +61,11 @@ export interface ProfileContentQuery {
   isLocked?: true;
 }
 
-export function useProfileContentFilters(activeTab: string, resetKey?: string) {
-  const [sort, setSort] = useState<ProfileSortMode>("newest");
+export function useProfileContentFilters(activeTab: string, resetKey?: string, hasCustomOrder = false) {
+  // A creator who arranged their own order has the profile open in it; a sort
+  // the visitor picks themselves wins until they move to another profile.
+  const [pickedSort, setSort] = useState<ProfileSortMode | null>(null);
+  const sort: ProfileSortMode = pickedSort ?? (hasCustomOrder ? "custom" : "newest");
   const [search, setSearch] = useDraftState(`profile:${resetKey ?? "own"}:search`, "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -80,7 +83,7 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
   // a category the next creator never posts in. The sheet reuses one instance
   // across profiles, so without this the previous person's filters carry over.
   useEffect(() => {
-    setSort("newest");
+    setSort(null);
     setDebouncedSearch("");
     setFilters(EMPTY_PROFILE_FILTERS);
     setSelectedCategory("All");
@@ -154,7 +157,8 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     onFiltersToggle: handleFiltersToggle,
     onFiltersClose: handleFiltersClose,
     activeFilterCount,
-  }), [sort, search, setSearch, filtersOpen, handleFiltersToggle, handleFiltersClose, activeFilterCount]);
+    hasCustomOrder,
+  }), [sort, search, setSearch, filtersOpen, handleFiltersToggle, handleFiltersClose, activeFilterCount, hasCustomOrder]);
 
   const panel = useMemo(() => ({
     visible: filtersOpen,

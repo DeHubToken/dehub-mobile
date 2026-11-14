@@ -30,6 +30,7 @@ import DislikesRoute from "./DislikesRoute";
 import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
 import ProfileContentToolbar from "./ProfileContentToolbar";
+import ProfileArrangeSheet from "./ProfileArrangeSheet";
 import ProfileFilterDrawer from "./ProfileFilterDrawer";
 import {
   CONTENT_BACKED_TABS,
@@ -131,8 +132,19 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   const onScroll = useCallback((event: import('react-native').NativeSyntheticEvent<import('react-native').NativeScrollEvent>) => driveProfile(event.nativeEvent.contentOffset.y), [driveProfile]);
   // Sort, search and filter over this creator's own posts — all server-side,
   // and shared with the other-user profile sheet so the two never drift.
+  // The creator's own order of posts. Saving in the arrange sheet flips this
+  // at once; the account record catches up on its next refresh.
+  const [arrangeOpen, setArrangeOpen] = useState(false);
+  const [savedOrder, setSavedOrder] = useState<boolean | null>(null);
+  const hasCustomOrder = savedOrder ?? !!user?.profileOrderAt;
   const { toolbar, panel, contentQuery, homePostType } =
-    useProfileContentFilters(activeKey, address);
+    useProfileContentFilters(activeKey, address, hasCustomOrder);
+  const openArrange = useCallback(() => setArrangeOpen(true), []);
+  const closeArrange = useCallback(() => setArrangeOpen(false), []);
+  const handleOrderSaved = useCallback((custom: boolean) => {
+    setSavedOrder(custom);
+    toolbar.onSortChange(custom ? "custom" : "newest");
+  }, [toolbar]);
 
   // Keep the same information architecture as web: All stays first and the
   // remaining tabs are ordered by their content count.
@@ -238,12 +250,15 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
           endpoints, where sorting by "most viewed" would do nothing. */}
       {CONTENT_BACKED_TABS.includes(activeKey) && (
         <>
-          <ProfileContentToolbar {...toolbar} showViewToggle={activeKey === "home"} />
+          <ProfileContentToolbar {...toolbar} showViewToggle={activeKey === "home"} onArrange={address ? openArrange : undefined} />
           <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
+          {arrangeOpen && !!address && (
+            <ProfileArrangeSheet visible onClose={closeArrange} address={address} hasCustomOrder={hasCustomOrder} onSaved={handleOrderSaved} />
+          )}
         </>
       )}
     </View>
-  ), [expandedHeaderStyle, headerHeight, address, collapse.onIdentityBottom, collapse.onActionsBottom, tabItems, activeKey, handleTabChange, toolbar, panel]);
+  ), [expandedHeaderStyle, headerHeight, address, collapse.onIdentityBottom, collapse.onActionsBottom, tabItems, activeKey, handleTabChange, toolbar, panel, arrangeOpen, openArrange, closeArrange, hasCustomOrder, handleOrderSaved]);
 
   const renderScene = (key: string) => {
     switch (key) {

@@ -487,6 +487,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         pendingTab={pendingTab}
         defaultTab={getDefaultProfileTab(data)}
         showDislikesTab={dislikesArePublic((data as any)?.customs)}
+        hasCustomOrder={!!(data as any)?.profileOrderAt}
         onPendingTabConsumed={handlePendingTabConsumed}
         backToTopBottom={backToTopBottom}
       />

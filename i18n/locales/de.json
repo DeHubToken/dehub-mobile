@@ -4740,7 +4740,12 @@
     "importWalletPurpose": "Dieses Tool dient zum Importieren bestehender Konten aus Riftn.io.",
     "importSecretPlaceholder": "12 oder 24 Wörter oder ein privater Schlüssel",
     "invalidImportSecret": "Das ist weder eine gültige 12/24-Wort-Phrase noch ein privater Schlüssel",
-    "walletSignupBlocked": "Diese Wallet ist brandneu. Neue Wallets brauchen ein Guthaben oder eine frühere Transaktion, um ein Konto zu eröffnen. Registriere dich mit einer der Optionen unten und verbinde diese Wallet danach in den Einstellungen."
+    "walletSignupBlocked": "Diese Wallet ist brandneu. Neue Wallets brauchen ein Guthaben oder eine frühere Transaktion, um ein Konto zu eröffnen. Registriere dich mit einer der Optionen unten und verbinde diese Wallet danach in den Einstellungen.",
+    "accountDeleted": "Dieses Konto wurde gelöscht. Du kannst dich mit einem neuen Konto wieder registrieren.",
+    "accountDeletedHours_one": "Dieses Konto wurde gelöscht. In etwa {{count}} Stunde kannst du dich mit derselben E-Mail oder Telefonnummer wieder registrieren.",
+    "accountDeletedHours_other": "Dieses Konto wurde gelöscht. In etwa {{count}} Stunden kannst du dich mit derselben E-Mail oder Telefonnummer wieder registrieren.",
+    "accountDeletedDays_one": "Dieses Konto wurde gelöscht. In etwa {{count}} Tag kannst du dich mit derselben E-Mail oder Telefonnummer wieder registrieren.",
+    "accountDeletedDays_other": "Dieses Konto wurde gelöscht. In etwa {{count}} Tagen kannst du dich mit derselben E-Mail oder Telefonnummer wieder registrieren."
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläge ausgeschaltet",
@@ -4946,6 +4951,22 @@
       "votes_other": "{{value}} Stimmen",
       "members_one": "{{value}} Mitglied",
       "members_other": "{{value}} Mitglieder"
+    },
+    "sortCustom": "Eigene Reihenfolge",
+    "arrangeButton": "Beiträge anordnen",
+    "arrange": {
+      "title": "Ordne deine Beiträge",
+      "hint": "Ziehe deine Beiträge in die gewünschte Reihenfolge. Besucher sehen diese Reihenfolge zuerst.",
+      "drag": "Zum Verschieben ziehen",
+      "toTop": "Ganz nach oben",
+      "save": "Reihenfolge speichern",
+      "saving": "Wird gespeichert...",
+      "saved": "Deine Reihenfolge ist gespeichert",
+      "reset": "Zurück zu Neueste zuerst",
+      "resetDone": "Wieder Neueste zuerst",
+      "saveFailed": "Deine Reihenfolge konnte nicht gespeichert werden. Bitte versuche es erneut.",
+      "loadFailed": "Deine Beiträge konnten nicht geladen werden. Schließe dies und versuche es erneut.",
+      "empty": "Noch nichts zum Anordnen. Poste zuerst etwas."
     }
   },
   "tv": {

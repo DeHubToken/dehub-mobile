@@ -2,7 +2,8 @@ import { isShortsPhoto, interleaveShorts } from "../libs/shortsPhotos";
 import { apiClient } from "../libs";
 
 export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short" | "all" | "article";
-export type FeedSortBy = "score" | "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
+/** `custom` with `minter` is the creator's own order of their posts (newest first when they have none). */
+export type FeedSortBy = "score" | "likes" | "views" | "createdAt" | "tips" | "comments" | "random" | "custom";
 export type FeedSortOrder = "asc" | "desc";
 export type FeedRange = "day" | "week" | "month" | "year";
 export type FeedStatus = "minted" | "signed" | "all";

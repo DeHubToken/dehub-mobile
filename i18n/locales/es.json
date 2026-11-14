@@ -2698,7 +2698,12 @@
     "importSecretPlaceholder": "12 o 24 palabras, o una clave privada",
     "invalidImportSecret": "No es una frase válida de 12/24 palabras ni una clave privada",
     "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes.",
-    "signInPageWouldNotOpen": "La página de inicio de sesión se cerró antes de abrirse. Inténtalo de nuevo o continúa con tu correo."
+    "signInPageWouldNotOpen": "La página de inicio de sesión se cerró antes de abrirse. Inténtalo de nuevo o continúa con tu correo.",
+    "accountDeleted": "Esta cuenta fue eliminada. Puedes registrarte de nuevo con una cuenta nueva.",
+    "accountDeletedHours_one": "Esta cuenta fue eliminada. Podrás registrarte de nuevo con el mismo correo o teléfono en aproximadamente {{count}} hora.",
+    "accountDeletedHours_other": "Esta cuenta fue eliminada. Podrás registrarte de nuevo con el mismo correo o teléfono en aproximadamente {{count}} horas.",
+    "accountDeletedDays_one": "Esta cuenta fue eliminada. Podrás registrarte de nuevo con el mismo correo o teléfono en aproximadamente {{count}} día.",
+    "accountDeletedDays_other": "Esta cuenta fue eliminada. Podrás registrarte de nuevo con el mismo correo o teléfono en aproximadamente {{count}} días."
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",
@@ -2928,6 +2933,22 @@
       "votes_other": "{{value}} votos",
       "members_one": "{{value}} miembro",
       "members_other": "{{value}} miembros"
+    },
+    "sortCustom": "Orden personalizado",
+    "arrangeButton": "Ordenar publicaciones",
+    "arrange": {
+      "title": "Ordena tus publicaciones",
+      "hint": "Arrastra tus publicaciones al orden que quieras. Los visitantes verán este orden primero.",
+      "drag": "Arrastra para mover",
+      "toTop": "Mover arriba del todo",
+      "save": "Guardar orden",
+      "saving": "Guardando...",
+      "saved": "Tu orden se ha guardado",
+      "reset": "Volver a lo más reciente primero",
+      "resetDone": "De nuevo lo más reciente primero",
+      "saveFailed": "No se pudo guardar tu orden. Inténtalo de nuevo.",
+      "loadFailed": "No se pudieron cargar tus publicaciones. Cierra esto e inténtalo de nuevo.",
+      "empty": "Aún no hay nada que ordenar. Publica algo primero."
     }
   },
   "tv": {
