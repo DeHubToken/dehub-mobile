@@ -171,6 +171,7 @@ jobs:
         if: inputs.task == 'nav' || inputs.task == 'probe'
         env:
           NAV_MODE: ${{ inputs.task }}
+          SIM_TEST_KEY: ${{ secrets.SIM_TEST_KEY }}
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
           git fetch --depth=1 origin "$GITHUB_REF_NAME" && git checkout -q --detach FETCH_HEAD

@@ -367,6 +367,40 @@ async function runProbe(): Promise<void> {
   console.error("[perf-tour] done");
 }
 
+/**
+ * Signs the simulator in as the test account whose recovery words or key the
+ * script was given, the way Import wallet does, so the next launches open
+ * signed in. The secret is read once and removed from storage.
+ */
+async function runLogin(): Promise<void> {
+  extra = { startedAt: Date.now(), mode: "login" };
+  const secret = await AsyncStorage.getItem(`${FLAG_KEY}.key`);
+  await AsyncStorage.removeItem(`${FLAG_KEY}.key`);
+  if (!secret) throw new Error("no test account key");
+  const { privateKeyFromImportSecret } = require("../../libs/wallet-core/derive");
+  const { deriveAddressFromPrivateKey } = require("../../libs/wallet.utils");
+  const { upsertLocalAccount } = require("../../libs/wallets.local");
+  const { createLocalEip1193ProviderForChain } = require("../../services/localwallet.provider");
+  const { setSigningProvider, setEoaSigningProvider } = require("../../libs/provider.registry");
+  const { setAuthMethod, setAuthUser, setHasSeenAuth } = require("../../libs/auth.utils");
+  const { AuthService } = require("../../services/auth.service");
+  const { ChainId } = require("../../config/constants");
+  const privateKey: string = privateKeyFromImportSecret(secret);
+  const address = String(deriveAddressFromPrivateKey(privateKey)).toLowerCase();
+  const provider = createLocalEip1193ProviderForChain(privateKey, ChainId.BASE_MAINNET);
+  setSigningProvider(provider);
+  setEoaSigningProvider(provider);
+  await upsertLocalAccount({ address, privateKey });
+  await setAuthMethod("local", address);
+  const result = await AuthService.signInWithWallet(address, ChainId.BASE_MAINNET);
+  await setAuthUser(result.user);
+  await setHasSeenAuth();
+  extra.login = { username: result.user?.username, isNew: !!result.needsUsername };
+  extra.finishedAt = Date.now();
+  await save(true);
+  console.error("[perf-tour] signed in");
+}
+
 async function run(): Promise<void> {
   const profiles = (await AsyncStorage.getItem(`${FLAG_KEY}.profiles`))?.split(",").filter(Boolean) ?? ["riftn", "araf"];
   const post = (await AsyncStorage.getItem(`${FLAG_KEY}.post`)) || "742";
@@ -472,11 +506,12 @@ async function run(): Promise<void> {
 void (async () => {
   try {
     const mode = await AsyncStorage.getItem(FLAG_KEY);
-    if (mode !== "1" && mode !== "pages" && mode !== "probe") return;
+    if (mode !== "1" && mode !== "pages" && mode !== "probe" && mode !== "login") return;
     // One walk per launch the script asked for.
     await AsyncStorage.removeItem(FLAG_KEY);
     for (let i = 0; i < 300 && !nav.isReady(); i++) await sleep(200);
-    if (mode === "pages") await runPages();
+    if (mode === "login") await runLogin();
+    else if (mode === "pages") await runPages();
     else if (mode === "probe") await runProbe();
     else await run();
   } catch (error) {

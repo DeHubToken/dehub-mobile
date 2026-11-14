@@ -177,8 +177,10 @@ run() {
   use_bundle "$variant"
   storage drop dehub.perfTour.result dehub.perfTour.swipe dehub.perfTour.shot dehub.perfTour.sample
   storage set dehub.theme "$theme" dehub.perfTour "$tour"
+  [ "$tour" = login ] && storage set dehub.perfTour.key "$SIM_TEST_KEY"
   if [ "$tour" != 1 ]; then
     tries=480
+    [ "$tour" = login ] && tries=45
     rm -f "$WORK/shots.stop"
     shots "$name" "$WORK/shots.stop" &
   fi
@@ -215,6 +217,14 @@ xcrun simctl ui "$UDID" appearance dark
 for service in photos camera microphone location; do
   xcrun simctl privacy "$UDID" grant "$service" "$BUNDLE" >/dev/null 2>&1 || true
 done
+
+# With a test account's recovery words or key (repository secret SIM_TEST_KEY),
+# sign the simulator in first: the session stays for every run after it, and
+# the tours then cover the pages only an account has.
+if [ -n "${SIM_TEST_KEY:-}" ]; then
+  run after login "" login
+  python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("Signed in:", d.get("login") or d.get("error") or "no")' "$OUT/nav/login.json" 2>/dev/null || echo "Sign-in did not finish"
+fi
 
 if [ "$MODE" = probe ]; then
   run after probe record probe
