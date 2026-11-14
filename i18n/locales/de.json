@@ -4956,7 +4956,7 @@
     "arrangeButton": "Beiträge anordnen",
     "arrange": {
       "title": "Ordne deine Beiträge",
-      "hint": "Ziehe deine Beiträge in die gewünschte Reihenfolge. Besucher sehen diese Reihenfolge zuerst.",
+      "hint": "Halte einen Beitrag gedrückt und ziehe ihn an seinen neuen Platz. Besucher sehen diese Reihenfolge zuerst.",
       "drag": "Zum Verschieben ziehen",
       "toTop": "Ganz nach oben",
       "save": "Reihenfolge speichern",

@@ -3126,7 +3126,7 @@
     "arrangeButton": "Berichten ordenen",
     "arrange": {
       "title": "Orden je berichten",
-      "hint": "Sleep je berichten in de volgorde die je wilt. Bezoekers zien deze volgorde als eerste.",
+      "hint": "Houd een bericht vast en sleep het naar zijn nieuwe plek. Bezoekers zien deze volgorde eerst.",
       "drag": "Sleep om te verplaatsen",
       "toTop": "Naar boven verplaatsen",
       "save": "Volgorde opslaan",

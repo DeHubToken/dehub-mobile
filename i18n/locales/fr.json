@@ -2938,7 +2938,7 @@
     "arrangeButton": "Organiser les publications",
     "arrange": {
       "title": "Organisez vos publications",
-      "hint": "Faites glisser vos publications dans l'ordre souhaité. Les visiteurs verront cet ordre en premier.",
+      "hint": "Maintenez une publication et faites-la glisser à sa nouvelle place. Les visiteurs voient cet ordre en premier.",
       "drag": "Faire glisser pour déplacer",
       "toTop": "Placer tout en haut",
       "save": "Enregistrer l'ordre",

@@ -1,26 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Animated, PanResponder, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
-import Icon from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { saveProfileOrder, PROFILE_ORDER_MAX } from "../../services/profile-order.service";
 import { buildFeedImageUrls, getImageUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { dragTargetIndex, moveItem } from "../../libs/arrange-order";
+import { ReorderItem, useReorder } from "../common/Reorder";
 
 /**
  * Where a creator drags their own posts into the order visitors see first.
- * The app's side of web's `ProfileArrangeSheet`: one row per post with a grip
- * to drag by, the post's picture and words, and a "to top" shortcut.
+ * The app's side of web's `ProfileArrangeSheet`: a grid of the creator's
+ * posts, like the profile grid. Hold a post and drag it to its new place, the
+ * same hold, lift, haptic and slide as rearranging the menu
+ * (components/common/Reorder); the sheet scrolls when the finger nears its edge.
  *
  * Saving sends the whole list. The profile then opens in this order for
  * everyone, with Newest, Oldest, Most viewed and Most liked still in the sort
  * menu.
- *
- * Rows are one fixed height so a drag needs no measuring (libs/arrange-order).
  */
 
 interface ArrangeRow {
@@ -29,13 +29,13 @@ interface ArrangeRow {
   image: string;
 }
 
-const ROW_HEIGHT = 60;
-const ROW_GAP = 6;
-const ROW_STEP = ROW_HEIGHT + ROW_GAP;
+const COLUMNS = 3;
+const GAP = 6;
+const SIDE = 12;
 /** Enough for almost every channel; older posts keep their place after these. */
 const LOAD_LIMIT = 300;
 const PAGE_SIZE = 50;
-const THUMB_WIDTH = 160;
+const THUMB_WIDTH = 320;
 
 const plain = (text: unknown): string => String(text ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
@@ -72,82 +72,6 @@ async function loadRows(address: string): Promise<ArrangeRow[]> {
   return rows.slice(0, Math.min(LOAD_LIMIT, PROFILE_ORDER_MAX));
 }
 
-interface RowProps {
-  row: ArrangeRow;
-  index: number;
-  count: number;
-  onMove: (from: number, to: number) => void;
-  onTop: (index: number) => void;
-  onDragChange: (dragging: boolean) => void;
-  dragLabel: string;
-  topLabel: string;
-  untitled: string;
-}
-
-const ArrangeItem: React.FC<RowProps> = ({ row, index, count, onMove, onTop, onDragChange, dragLabel, topLabel, untitled }) => {
-  const offset = useRef(new Animated.Value(0)).current;
-  const [lifted, setLifted] = useState(false);
-  // The gesture outlives renders: where the drag began and where the row is
-  // now are read through refs so one responder serves the whole drag.
-  const live = useRef({ index, count, start: 0, onMove, onDragChange });
-  live.current.index = index;
-  live.current.count = count;
-  live.current.onMove = onMove;
-  live.current.onDragChange = onDragChange;
-
-  const responder = useRef(PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderTerminationRequest: () => false,
-    onPanResponderGrant: () => {
-      live.current.start = live.current.index;
-      setLifted(true);
-      live.current.onDragChange(true);
-    },
-    onPanResponderMove: (_event, gesture) => {
-      const { start, index: now, count: total } = live.current;
-      const target = dragTargetIndex(start, gesture.dy, ROW_STEP, total);
-      if (target !== now) {
-        live.current.index = target;
-        live.current.onMove(now, target);
-      }
-      // The list has already moved the row to `target`; the rest of the
-      // finger's travel is drawn on top so the row stays under the finger.
-      offset.setValue(gesture.dy - (target - start) * ROW_STEP);
-    },
-    onPanResponderRelease: () => finish(),
-    onPanResponderTerminate: () => finish(),
-  })).current;
-
-  function finish() {
-    setLifted(false);
-    live.current.onDragChange(false);
-    Animated.spring(offset, { toValue: 0, useNativeDriver: true, bounciness: 4, speed: 20 }).start();
-  }
-
-  return (
-    // The moving wrapper carries only the transform; the tinted row inside it
-    // keeps its theme classes (they do not reach an Animated.View).
-    <Animated.View style={[styles.slot, lifted && styles.rowLifted, { transform: [{ translateY: offset }, { scale: lifted ? 1.02 : 1 }] }]}>
-    <View style={styles.row} className={lifted ? "bg-white/20 border border-white/25" : "bg-white/10 border border-white/10"}>
-      <View {...responder.panHandlers} style={styles.grip} accessibilityRole="adjustable" accessibilityLabel={dragLabel}>
-        <Icon name="Grip" size={20} color="rgba(255,255,255,0.6)" />
-      </View>
-      <Text style={styles.number} className="text-white/50">{index + 1}</Text>
-      {row.image
-        ? <Image source={{ uri: row.image }} style={styles.thumb} contentFit="cover" />
-        : <View style={[styles.thumb, styles.thumbText]} className="bg-white/10"><Text className="text-white/70 font-bold text-[15px]">Aa</Text></View>}
-      <Text numberOfLines={2} style={styles.title} className="text-white text-sm">{row.title || untitled}</Text>
-      {index > 0 && (
-        <Pressable onPress={() => onTop(index)} hitSlop={6} accessibilityRole="button" accessibilityLabel={topLabel} style={styles.top}>
-          <Icon name="ArrowUpToLine" size={17} color="rgba(255,255,255,0.6)" />
-        </Pressable>
-      )}
-    </View>
-    </Animated.View>
-  );
-};
-
 interface ProfileArrangeSheetProps {
   visible: boolean;
   onClose: () => void;
@@ -167,8 +91,8 @@ const ProfileArrangeSheet: React.FC<ProfileArrangeSheetProps> = ({ visible, onCl
   const [rows, setRows] = useState<ArrangeRow[]>([]);
   const [state, setState] = useState<"loading" | "ready" | "failed">("loading");
   const [saving, setSaving] = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const scrollRef = useRef<ScrollView>(null);
+  const { width } = useWindowDimensions();
+  const tile = Math.floor((Math.min(width, 520) - SIDE * 2 - GAP * (COLUMNS - 1)) / COLUMNS);
 
   useEffect(() => {
     if (!visible) return;
@@ -182,11 +106,15 @@ const ProfileArrangeSheet: React.FC<ProfileArrangeSheetProps> = ({ visible, onCl
     return () => { live = false; };
   }, [visible, address, preview]);
 
-  const move = useCallback((from: number, to: number) => setRows((current) => moveItem(current, from, to)), []);
-  const toTop = useCallback((index: number) => {
-    setRows((current) => moveItem(current, index, 0));
-    scrollRef.current?.scrollTo({ y: 0, animated: true });
+  const ids = useMemo(() => rows.map((row) => String(row.tokenId)), [rows]);
+  const byId = useMemo(() => new Map(rows.map((row) => [String(row.tokenId), row])), [rows]);
+  const commit = useCallback((next: string[]) => {
+    setRows((current) => {
+      const map = new Map(current.map((row) => [String(row.tokenId), row]));
+      return next.map((id) => map.get(id)).filter((row): row is ArrangeRow => !!row);
+    });
   }, []);
+  const reorder = useReorder({ ids, onCommit: commit, disabled: saving, liftScale: 1.05 });
 
   const finish = async (order: number[]) => {
     if (preview) { onClose(); return; }
@@ -212,27 +140,49 @@ const ProfileArrangeSheet: React.FC<ProfileArrangeSheetProps> = ({ visible, onCl
       <View className="px-3 pb-5 pt-2" style={styles.sheet}>
         <Text className="text-white text-lg font-semibold px-1">{t("profile.arrange.title", "Arrange your posts")}</Text>
         <Text className="text-white/70 text-[13px] px-1 mt-1 mb-3">
-          {t("profile.arrange.hint", "Drag your posts into the order you want. Visitors see this order first.")}
+          {t("profile.arrange.hint", "Hold a post and drag it to its new place. Visitors see this order first.")}
         </Text>
-        <ScrollView ref={scrollRef} style={styles.scroll} scrollEnabled={!dragging} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+        <Animated.ScrollView
+          ref={reorder.scrollRef}
+          onLayout={reorder.onViewportLayout}
+          scrollEnabled={!reorder.draggingId}
+          style={styles.scroll}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          keyboardShouldPersistTaps="handled"
+        >
           {state === "loading" && <View style={styles.note}><ActivityIndicator color="#FFFFFF" /></View>}
           {state === "failed" && <Text className="text-white/70 text-sm text-center" style={styles.note}>{t("profile.arrange.loadFailed", "Could not load your posts. Close this and try again.")}</Text>}
           {state === "ready" && rows.length === 0 && <Text className="text-white/70 text-sm text-center" style={styles.note}>{t("profile.arrange.empty", "Nothing to arrange yet. Post something first.")}</Text>}
-          {state === "ready" && rows.map((row, index) => (
-            <ArrangeItem
-              key={row.tokenId}
-              row={row}
-              index={index}
-              count={rows.length}
-              onMove={move}
-              onTop={toTop}
-              onDragChange={setDragging}
-              dragLabel={t("profile.arrange.drag", "Drag to move")}
-              topLabel={t("profile.arrange.toTop", "Move to top")}
-              untitled={untitled}
-            />
-          ))}
-        </ScrollView>
+          {state === "ready" && rows.length > 0 && (
+            <View style={styles.grid}>
+              {reorder.order.map((id, index) => {
+                const row = byId.get(id);
+                if (!row) return null;
+                const label = row.title || untitled;
+                const lifted = reorder.draggingId === id;
+                return (
+                  <ReorderItem key={id} id={id} ctx={reorder.ctx} style={{ width: tile, height: tile }}>
+                    <View
+                      accessible
+                      accessibilityLabel={`${index + 1}. ${label}`}
+                      style={[styles.tile, lifted && styles.tileLifted]}
+                      className={lifted ? "bg-white/20 border border-white/40" : "bg-white/10 border border-white/10"}
+                    >
+                      {row.image
+                        ? <Image source={{ uri: row.image }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                        : <Text numberOfLines={4} style={styles.tileText} className="text-white text-xs">{label}</Text>}
+                      {!!row.image && !!label && (
+                        <View style={styles.caption}><Text numberOfLines={1} style={styles.captionText}>{label}</Text></View>
+                      )}
+                      <View style={styles.number}><Text style={styles.numberText}>{index + 1}</Text></View>
+                    </View>
+                  </ReorderItem>
+                );
+              })}
+            </View>
+          )}
+        </Animated.ScrollView>
         <View style={styles.actions}>
           {hasCustomOrder && (
             <Pressable
@@ -265,15 +215,14 @@ const ProfileArrangeSheet: React.FC<ProfileArrangeSheetProps> = ({ visible, onCl
 const styles = StyleSheet.create({
   sheet: { maxHeight: "100%" },
   scroll: { flexGrow: 0 },
-  slot: { height: ROW_HEIGHT, marginBottom: ROW_GAP },
-  row: { flexDirection: "row", alignItems: "center", height: ROW_HEIGHT, borderRadius: 16, paddingRight: 8, gap: 10 },
-  rowLifted: { zIndex: 2, elevation: 6 },
-  grip: { width: 40, height: ROW_HEIGHT, alignItems: "center", justifyContent: "center" },
-  number: { width: 22, textAlign: "right", fontSize: 12, fontWeight: "600", fontVariant: ["tabular-nums"] },
-  thumb: { width: 72, height: 44, borderRadius: 10 },
-  thumbText: { alignItems: "center", justifyContent: "center" },
-  title: { flex: 1, minWidth: 0 },
-  top: { width: 36, height: 36, alignItems: "center", justifyContent: "center" },
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: GAP, paddingTop: 8, paddingBottom: 12 },
+  tile: { flex: 1, borderRadius: 14, overflow: "hidden" },
+  tileLifted: { shadowColor: "#000", shadowOpacity: 0.45, shadowRadius: 14, shadowOffset: { width: 0, height: 10 }, elevation: 10 },
+  tileText: { position: "absolute", top: 30, left: 8, right: 8, lineHeight: 16 },
+  number: { position: "absolute", top: 5, left: 5, minWidth: 20, height: 20, paddingHorizontal: 5, borderRadius: 10, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.6)" },
+  numberText: { color: "#FFFFFF", fontSize: 11, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  caption: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 6, paddingTop: 10, paddingBottom: 5, backgroundColor: "rgba(0,0,0,0.45)" },
+  captionText: { color: "#FFFFFF", fontSize: 11 },
   note: { paddingVertical: 28 },
   actions: { flexDirection: "row", gap: 8, paddingTop: 10 },
   button: { height: 44 },

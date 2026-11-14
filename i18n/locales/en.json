@@ -2881,7 +2881,7 @@
     "arrangeButton": "Arrange posts",
     "arrange": {
       "title": "Arrange your posts",
-      "hint": "Drag your posts into the order you want. Visitors see this order first.",
+      "hint": "Hold a post and drag it to its new place. Visitors see this order first.",
       "drag": "Drag to move",
       "toTop": "Move to top",
       "save": "Save order",
