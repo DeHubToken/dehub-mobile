@@ -5954,7 +5954,17 @@
     "searchMenu": "मेन्यू खोजें",
     "clearSearch": "खोज साफ़ करें",
     "noMenuMatches": "मेन्यू में कुछ भी मेल नहीं खाता",
-    "searchDehubFor": "Riftn पर \"{{query}}\" खोजें"
+    "searchDehubFor": "Riftn पर \"{{query}}\" खोजें",
+    "requestPrompt": "अभी यहाँ नहीं है? इसे अनुरोध के रूप में भेजें",
+    "requestPromptShort": "अभी यहाँ नहीं है?",
+    "requestDraftMenu": "Riftn में {{query}} जोड़ें",
+    "requestDraftSettings": "{{query}} के लिए एक सेटिंग",
+    "requestSend": "अनुरोध भेजें",
+    "requestPostsTo": "अनुरोधों में जाता है",
+    "requestHint": "आपके नाम से अनुरोधों में जाता है। लाइव होने पर हम बताएँगे।",
+    "requestSent": "अनुरोधों में भेजा गया",
+    "requestSentHint": "लाइव होने पर हम बताएँगे।",
+    "requestSeeIt": "अनुरोधों में देखें"
   },
   "comments": {
     "reportComment": "रिपोर्ट करें टिप्पणी",

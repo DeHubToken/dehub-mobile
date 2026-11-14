@@ -5949,7 +5949,17 @@
     "searchMenu": "Pesquisar no menu",
     "clearSearch": "Limpar pesquisa",
     "noMenuMatches": "Nada no menu corresponde",
-    "searchDehubFor": "Pesquisar «{{query}}» na Riftn"
+    "searchDehubFor": "Pesquisar «{{query}}» na Riftn",
+    "requestPrompt": "Ainda não tem? Envie como pedido",
+    "requestPromptShort": "Ainda não tem?",
+    "requestDraftMenu": "Adicionar {{query}} ao Riftn",
+    "requestDraftSettings": "Uma configuração para {{query}}",
+    "requestSend": "Enviar pedido",
+    "requestPostsTo": "Vai para Pedidos",
+    "requestHint": "Vai para Pedidos em seu nome. Avisamos quando for lançado.",
+    "requestSent": "Enviado para Pedidos",
+    "requestSentHint": "Avisamos quando for lançado.",
+    "requestSeeIt": "Ver em Pedidos"
   },
   "comments": {
     "reportComment": "Denunciar comentário",

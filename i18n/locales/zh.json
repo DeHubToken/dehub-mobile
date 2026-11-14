@@ -5822,7 +5822,17 @@
     "searchMenu": "搜索菜单",
     "clearSearch": "清除搜索",
     "noMenuMatches": "菜单中没有匹配项",
-    "searchDehubFor": "在 Riftn 中搜索\"{{query}}\""
+    "searchDehubFor": "在 Riftn 中搜索\"{{query}}\"",
+    "requestPrompt": "还没有？把它作为需求发出去",
+    "requestPromptShort": "还没有？",
+    "requestDraftMenu": "给 Riftn 加上 {{query}}",
+    "requestDraftSettings": "{{query}} 的设置",
+    "requestSend": "发送需求",
+    "requestPostsTo": "发布到需求区",
+    "requestHint": "以你的名义发布到需求区。上线后我们会通知你。",
+    "requestSent": "已发送到需求区",
+    "requestSentHint": "上线后我们会通知你。",
+    "requestSeeIt": "在需求区查看"
   },
   "comments": {
     "rowA11yLabel": "{{name}}, {{time}}: {{text}}",

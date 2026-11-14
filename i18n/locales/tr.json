@@ -3814,7 +3814,17 @@
     "searchMenu": "Menüde ara",
     "clearSearch": "Aramayı temizle",
     "noMenuMatches": "Menüde eşleşen bir şey yok",
-    "searchDehubFor": "Riftn'ta \"{{query}}\" ara"
+    "searchDehubFor": "Riftn'ta \"{{query}}\" ara",
+    "requestPrompt": "Henüz yok mu? İstek olarak gönder",
+    "requestPromptShort": "Henüz yok mu?",
+    "requestDraftMenu": "Riftn'e {{query}} ekle",
+    "requestDraftSettings": "{{query}} için bir ayar",
+    "requestSend": "İsteği gönder",
+    "requestPostsTo": "İsteklere gönderilir",
+    "requestHint": "Senin adınla İsteklere gönderilir. Yayına girince haber veririz.",
+    "requestSent": "İsteklere gönderildi",
+    "requestSentHint": "Yayına girince haber veririz.",
+    "requestSeeIt": "İsteklerde gör"
   },
   "comments": {
     "reportComment": "Yorumu bildir",

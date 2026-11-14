@@ -5820,7 +5820,17 @@
     "searchMenu": "メニューを検索",
     "clearSearch": "検索をクリア",
     "noMenuMatches": "メニューに一致するものがありません",
-    "searchDehubFor": "Riftn で「{{query}}」を検索"
+    "searchDehubFor": "Riftn で「{{query}}」を検索",
+    "requestPrompt": "まだない？リクエストとして送ろう",
+    "requestPromptShort": "まだない？",
+    "requestDraftMenu": "Riftn に {{query}} を追加",
+    "requestDraftSettings": "{{query}} の設定",
+    "requestSend": "リクエストを送信",
+    "requestPostsTo": "リクエストに投稿されます",
+    "requestHint": "あなたの名前でリクエストに投稿されます。公開されたらお知らせします。",
+    "requestSent": "リクエストに送信しました",
+    "requestSentHint": "公開されたらお知らせします。",
+    "requestSeeIt": "リクエストで見る"
   },
   "comments": {
     "rowA11yLabel": "{{name}}, {{time}}: {{text}}",

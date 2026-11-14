@@ -3814,7 +3814,17 @@
     "searchMenu": "Buscar en el menú",
     "clearSearch": "Borrar búsqueda",
     "noMenuMatches": "Nada en el menú coincide",
-    "searchDehubFor": "Buscar «{{query}}» en Riftn"
+    "searchDehubFor": "Buscar «{{query}}» en Riftn",
+    "requestPrompt": "¿Aún no está? Envíalo como petición",
+    "requestPromptShort": "¿Aún no está?",
+    "requestDraftMenu": "Añadir {{query}} a Riftn",
+    "requestDraftSettings": "Un ajuste para {{query}}",
+    "requestSend": "Enviar petición",
+    "requestPostsTo": "Se publica en Peticiones",
+    "requestHint": "Se publica en Peticiones con tu cuenta. Te avisaremos cuando salga.",
+    "requestSent": "Enviado a Peticiones",
+    "requestSentHint": "Te avisaremos cuando salga.",
+    "requestSeeIt": "Verlo en Peticiones"
   },
   "comments": {
     "reportComment": "Denunciar comentario",

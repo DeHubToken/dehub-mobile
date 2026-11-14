@@ -3842,7 +3842,17 @@
     "searchMenu": "Search menu",
     "clearSearch": "Clear search",
     "noMenuMatches": "Nothing in the menu matches",
-    "searchDehubFor": "Search Riftn for \"{{query}}\""
+    "searchDehubFor": "Search Riftn for \"{{query}}\"",
+    "requestPrompt": "Not here yet? Send it as a request",
+    "requestPromptShort": "Not here yet?",
+    "requestDraftMenu": "Add {{query}} to Riftn",
+    "requestDraftSettings": "A setting for {{query}}",
+    "requestSend": "Send request",
+    "requestPostsTo": "Posts to Requests",
+    "requestHint": "Posts to Requests as you. We will tell you when it ships.",
+    "requestSent": "Sent to Requests",
+    "requestSentHint": "We will tell you when it ships.",
+    "requestSeeIt": "See it on Requests"
   },
   "comments": {
     "attachAudioFile": "Audio file",

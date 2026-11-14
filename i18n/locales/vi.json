@@ -5959,7 +5959,17 @@
     "searchMenu": "Tìm trong menu",
     "clearSearch": "Xóa tìm kiếm",
     "noMenuMatches": "Không có mục nào trong menu khớp",
-    "searchDehubFor": "Tìm \"{{query}}\" trên Riftn"
+    "searchDehubFor": "Tìm \"{{query}}\" trên Riftn",
+    "requestPrompt": "Chưa có? Gửi thành yêu cầu",
+    "requestPromptShort": "Chưa có?",
+    "requestDraftMenu": "Thêm {{query}} vào Riftn",
+    "requestDraftSettings": "Một cài đặt cho {{query}}",
+    "requestSend": "Gửi yêu cầu",
+    "requestPostsTo": "Đăng lên mục Yêu cầu",
+    "requestHint": "Đăng lên mục Yêu cầu dưới tên bạn. Chúng tôi sẽ báo khi ra mắt.",
+    "requestSent": "Đã gửi tới Yêu cầu",
+    "requestSentHint": "Chúng tôi sẽ báo khi ra mắt.",
+    "requestSeeIt": "Xem ở mục Yêu cầu"
   },
   "comments": {
     "reportComment": "Báo cáo bình luận",

@@ -4002,7 +4002,17 @@
     "searchMenu": "Menu doorzoeken",
     "clearSearch": "Zoekopdracht wissen",
     "noMenuMatches": "Niets in het menu komt overeen",
-    "searchDehubFor": "Zoek op Riftn naar \"{{query}}\""
+    "searchDehubFor": "Zoek op Riftn naar \"{{query}}\"",
+    "requestPrompt": "Nog niet hier? Stuur het als verzoek",
+    "requestPromptShort": "Nog niet hier?",
+    "requestDraftMenu": "Voeg {{query}} toe aan Riftn",
+    "requestDraftSettings": "Een instelling voor {{query}}",
+    "requestSend": "Verzoek sturen",
+    "requestPostsTo": "Komt op Verzoeken",
+    "requestHint": "Komt op Verzoeken onder jouw naam. We laten het weten zodra het live is.",
+    "requestSent": "Verstuurd naar Verzoeken",
+    "requestSentHint": "We laten het weten zodra het live is.",
+    "requestSeeIt": "Bekijk het op Verzoeken"
   },
   "comments": {
     "reportComment": "Opmerking melden",
