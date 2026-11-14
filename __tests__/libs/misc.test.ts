@@ -503,27 +503,27 @@ describe('libs/misc', () => {
     });
 
     // Bounds measured from the shipped PNGs at alpha > 16.
-    // Last column: the row the body rests on (a quarter of the widest span).
+    // Last columns: the resting row and the optical scale for each tier.
     it.each([
-      ["Crab", 9, 16, 120, 118, 114],
-      ["Ghost Lobster", 16, 14, 112, 111, 108],
-      ["Piranha", 7, 11, 120, 119, 112],
-      ["Giant Tortoise", 8, 16, 119, 114, 112],
-      ["King Cobra", 15, 8, 111, 119, 117],
-      ["Octopus", 10, 14, 118, 120, 118],
-      ["Crocodile", 8, 12, 121, 117, 115],
-      ["Dolphin", 15, 12, 111, 120, 117],
-      ["Tiger Shark", 8, 15, 120, 120, 113],
-      ["Killer Whale", 19, 17, 109, 121, 118],
-      ["Great White Shark", 8, 13, 121, 120, 114],
-      ["Blue Whale", 7, 13, 119, 121, 115],
-      ["Megalodon", 11, 15, 117, 117, 114],
-    ])('fits %s to its tier height and rests it on the name baseline', (tier, left, top, right, bottom, sit) => {
+      ["Crab", 9, 16, 120, 118, 114, 1],
+      ["Ghost Lobster", 16, 14, 112, 111, 108, 1],
+      ["Piranha", 7, 11, 120, 119, 112, 1],
+      ["Giant Tortoise", 8, 16, 119, 114, 112, 1],
+      ["King Cobra", 15, 8, 111, 119, 117, 1],
+      ["Octopus", 10, 14, 118, 120, 118, 1],
+      ["Crocodile", 8, 12, 121, 117, 115, 1],
+      ["Dolphin", 15, 12, 111, 120, 117, 1],
+      ["Tiger Shark", 8, 15, 120, 120, 113, 1.08],
+      ["Killer Whale", 19, 17, 109, 121, 118, 1.14],
+      ["Great White Shark", 8, 13, 121, 120, 114, 1.04],
+      ["Blue Whale", 7, 13, 119, 121, 115, 1.035],
+      ["Megalodon", 11, 15, 117, 117, 114, 1.069],
+    ])('fits %s to its tier height and rests it on the name baseline', (tier, left, top, right, bottom, sit, scale) => {
       const source = badgeImageFor(String(tier));
       expect(source).toBeDefined();
       const style = getBadgeOpticalStyle(source!, 16, 0, 20);
       const pixels = style.height - 2 * style.padding;
-      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72 * BADGE_CAP_SCALE * (tier === 'Megalodon' ? 1.069 : 1));
+      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.72 * BADGE_CAP_SCALE * Number(scale));
       const restingLine = -style.height / 2 + style.padding + pixels * Number(sit) / 128 + style.transform[0].translateY;
       expect(restingLine).toBeCloseTo(16 * 0.383);
       expect(style.marginLeft + style.padding + pixels * Number(left) / 128).toBeCloseTo(3);
