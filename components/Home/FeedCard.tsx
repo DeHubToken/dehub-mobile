@@ -237,6 +237,8 @@ type PostEdits = {
   hideAssetCards?: boolean;
   quotePolicy?: "public" | "followers" | "nobody";
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Opened up to everyone from the edit sheet. */
+  visibility?: "public";
   /** Comic or carousel, switched from the menu. null = carousel. */
   layout?: "comic" | null;
 };
@@ -2413,6 +2415,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
           currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
+          currentVisibility={edits.visibility ?? (item.visibility as any)}
           currentLayout={postLayout === "comic" ? "comic" : null}
           photoCount={galleryImages.length}
           onLayoutChange={isOwnerPost ? handleLayoutChange : undefined}
@@ -2569,7 +2572,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
               <View style={{ marginTop: 'auto', paddingTop: 16 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={edits.visibility ?? item.visibility} />
                   {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
                 </View>
                 {actionBar}
@@ -2696,7 +2699,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
+          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={edits.visibility ?? item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -3048,7 +3051,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={edits.visibility ?? item.visibility} />
             {translateButton}
           </View>
         )}
@@ -3308,7 +3311,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             by an order of magnitude. */}
         <PostMetaItems
           timeAgo={timeAgo} boosted={isBoosted} onStatsPress={openStats} statsTokenId={openStats ? tokenId : undefined}
-          visibility={item.visibility}
+          visibility={edits.visibility ?? item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
         />
