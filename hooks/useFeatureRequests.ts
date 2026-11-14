@@ -747,6 +747,9 @@ function attachDeviceInfo(
   })();
 }
 
+/** When to look again for the title the server writes for an untitled request. */
+const TITLE_REFRESH_DELAYS_MS = [4_000, 12_000];
+
 export function useSubmitFeatureRequest() {
   const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
@@ -824,6 +827,11 @@ export function useSubmitFeatureRequest() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
       queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
+      // A request posted without a title is named on the server a moment
+      // later; look again so the new heading replaces the repeated first line.
+      for (const ms of TITLE_REFRESH_DELAYS_MS) {
+        setTimeout(() => queryClient.invalidateQueries({ queryKey: ["feature-requests"] }), ms);
+      }
       toastSuccess(_copy("copy.27873a08f25d", { defaultValue: "Feature request submitted!" }));
     },
     onError: (error) => {
