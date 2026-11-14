@@ -1,4 +1,5 @@
 import { noteImageSizes } from './image-size-hints';
+import { noteSignInWall } from './sign-in-wall';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import env from '../config/env';
@@ -354,6 +355,7 @@ export const apiClient = {
       // production. Anything that needs this belongs behind `createLogger`,
       // which is gated on DEBUG.
       noteImageSizes(data);
+      if (method === 'GET') noteSignInWall(data);
       return data as T;
     } catch (error) {
       // Not a failure: the login is about to ask for the two-step code.
