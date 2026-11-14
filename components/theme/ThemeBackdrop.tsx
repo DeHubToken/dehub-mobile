@@ -10,6 +10,10 @@ import { createLogger } from "../../libs/logger";
 import { visualActivity } from "../../libs/visualActivity";
 import { deviceTier } from "../../libs/deviceTier";
 import GlassBackdrop from './GlassBackdrop';
+import { useFrameCallback } from "react-native-reanimated";
+import type { WebViewMessageEvent } from "react-native-webview";
+import { FROST_ENABLED, frostClock, setBackdropFrost, setBackdropFrostSize } from "../../libs/backdropFrost";
+import { FROST_SNAPSHOT_SCRIPT } from "../../libs/backdropFrostScript";
 
 const log = createLogger("ThemeBackdrop");
 
@@ -77,6 +81,9 @@ const ThemeBackdrop: React.FC = () => {
 
   useEffect(() => {
     setFailed(false);
+    // A new theme draws a new wallpaper: cards drop the old frost until the
+    // new scene posts its own.
+    setBackdropFrost(null);
     if (!usesWebScene) {
       setHtml(null);
       return;
@@ -100,7 +107,9 @@ const ThemeBackdrop: React.FC = () => {
           const nativeContrast = Platform.OS === "android" && theme === "lavalamp"
             ? `<style>html[data-theme="lavalamp"] canvas{filter:brightness(.45);}</style>`
             : "";
-          setHtml(page.replace("<head>", `<head>${named}${nativeMask}${nativeContrast}`));
+          // The frosted wallpaper copy feed cards paint behind themselves.
+          const frost = FROST_ENABLED ? `<script>${FROST_SNAPSHOT_SCRIPT}</script>` : "";
+          setHtml(page.replace("<head>", `<head>${named}${nativeMask}${nativeContrast}${frost}`));
         })
         .catch((e) => log.warn("Theme backdrop unavailable", e));
     }, 400);
@@ -162,14 +171,45 @@ const ThemeBackdrop: React.FC = () => {
   // page colour underneath still reads as the theme.
   const onGone = useCallback(() => {
     log.warn("Theme backdrop renderer went away");
+    setBackdropFrost(null);
     setFailed(true);
   }, []);
+
+  const onMessage = useCallback((e: WebViewMessageEvent) => {
+    try {
+      const msg = JSON.parse(e.nativeEvent.data);
+      if (typeof msg?.frost === "string" && msg.frost.startsWith("data:image/")) setBackdropFrost(msg.frost);
+    } catch {
+      // Not ours.
+    }
+  }, []);
+
+  // While a feed moves, tick the frost clock every frame so each card keeps
+  // the right part of the wallpaper behind it; idle otherwise.
+  const ticker = useFrameCallback(() => {
+    frostClock.value = frostClock.value + 1;
+  }, false);
+  useEffect(() => {
+    if (!FROST_ENABLED) return;
+    let stop: ReturnType<typeof setTimeout> | undefined;
+    const start = () => { clearTimeout(stop); ticker.setActive(true); };
+    const settle = () => {
+      clearTimeout(stop);
+      // Momentum and the list's own settle animation outlast the event a little.
+      stop = setTimeout(() => ticker.setActive(false), 450);
+    };
+    const offStart = subscribeFeedScrollStart(start);
+    const offSettle = subscribeFeedSettled(() => { if (!isFeedScrolling()) settle(); });
+    if (isFeedScrolling()) start();
+    return () => { clearTimeout(stop); offStart(); offSettle(); ticker.setActive(false); };
+  }, [ticker]);
 
   if (!skin) return null;
   if (theme === 'glass') return <GlassBackdrop />;
 
   return (
     <View
+      onLayout={(e) => setBackdropFrostSize(e.nativeEvent.layout.width, e.nativeEvent.layout.height)}
       style={[StyleSheet.absoluteFill, { backgroundColor: skin.page }]}
       pointerEvents="none"
       importantForAccessibility="no-hide-descendants"
@@ -195,6 +235,7 @@ const ThemeBackdrop: React.FC = () => {
           // was re-rendered each frame and only added a full-screen copy (traced
           // on a Galaxy S24+ under Cosmic: about 1ms more GPU per fling frame).
           onLoadEnd={onLoadEnd}
+          onMessage={onMessage}
           onRenderProcessGone={onGone}
           onContentProcessDidTerminate={onGone}
           style={[styles.web, { backgroundColor: skin.page }]}
