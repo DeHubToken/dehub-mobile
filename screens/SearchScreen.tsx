@@ -205,6 +205,26 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   category: item.category,
 });
 
+/**
+ * Plays the lists' media only while Explore is the page being looked at.
+ * A part of its own that draws nothing: read in the screen itself, the focus
+ * drew the whole page again on every switch to or from Explore (every row of
+ * every list), for the sake of this one effect.
+ */
+function LiveWhileFocused({ content, trending, hasSearched, inputFocused }: {
+  content: FeedVisibilityStore;
+  trending: FeedVisibilityStore;
+  hasSearched: boolean;
+  inputFocused: boolean;
+}) {
+  const focused = useIsFocusedLazy();
+  useEffect(() => {
+    content.setLive(focused && hasSearched);
+    trending.setLive(focused && !hasSearched && !inputFocused);
+  }, [focused, hasSearched, inputFocused, content, trending]);
+  return null;
+}
+
 const SearchScreen: React.FC = () => {
   usePerfProbe("SearchScreen");
   const { t } = useTranslation();
@@ -701,15 +721,8 @@ const SearchScreen: React.FC = () => {
     [],
   );
 
-  // Lazy: the plain hook re-rendered this whole screen inside every tab
-  // switch to or from Explore (~80ms on a Galaxy S24+) for an effect.
-  const focused = useIsFocusedLazy();
   const contentVisibility = useMemo(() => createFeedVisibilityStore(false), []);
   const trendingVisibility = useMemo(() => createFeedVisibilityStore(false), []);
-  useEffect(() => {
-    contentVisibility.setLive(focused && hasSearched);
-    trendingVisibility.setLive(focused && !hasSearched && !inputFocused);
-  }, [focused, hasSearched, inputFocused, contentVisibility, trendingVisibility]);
   const trendingKeyExtractor = useCallback(
     (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
     [],
@@ -1112,6 +1125,12 @@ const SearchScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <LiveWhileFocused
+        content={contentVisibility}
+        trending={trendingVisibility}
+        hasSearched={hasSearched}
+        inputFocused={inputFocused}
+      />
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}

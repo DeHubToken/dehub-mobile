@@ -5,8 +5,9 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 
 let mockTheme = 'system';
 let mockLight = false;
+const mockVars = { '--color-theme-background': '1 3 5' };
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
-jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, isLight: mockLight }), useThemeRootStyle: () => ({}) }));
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, isLight: mockLight }), useThemeRootStyle: () => mockVars }));
 jest.mock('../../components/ErrorBoundary', () => ({ __esModule: true, default: ({ children }: any) => children }));
 jest.mock('../../libs/crashRecovery', () => ({ restartApp: jest.fn() }));
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
@@ -47,5 +48,17 @@ it('remounts screen content when System switches to System Light', () => {
   mockLight = true;
   act(() => { tree!.update(<ScreenErrorBoundary name="Home"><Content /></ScreenErrorBoundary>); });
   expect(mounted).toHaveBeenCalledTimes(2);
+  act(() => { tree!.unmount(); });
+});
+
+it('hands the screen the same style object on every render', () => {
+  mockTheme = 'system';
+  mockLight = false;
+  let tree: ReturnType<typeof create>;
+  act(() => { tree = create(<ScreenErrorBoundary name="Home"><></></ScreenErrorBoundary>); });
+  const first = tree!.root.findByType('View' as never).props.style;
+  act(() => { tree!.update(<ScreenErrorBoundary name="Home"><></></ScreenErrorBoundary>); });
+  // A new object here makes the styling library redraw every styled view on the screen.
+  expect(tree!.root.findByType('View' as never).props.style).toBe(first);
   act(() => { tree!.unmount(); });
 });

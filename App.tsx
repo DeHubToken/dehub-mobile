@@ -32,7 +32,7 @@ import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import { PictureInPictureHost } from './components/common/PersistentVideoView';
 import InAppVideoMiniPlayerHost from './components/common/InAppVideoMiniPlayer';
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   StatusBar,
   Platform,
@@ -336,11 +336,17 @@ export default function App() {
   );
 }
 
+const FILL = { flex: 1 } as const;
+const LIGHT_FILL = { backgroundColor: LIGHT_PAGE_FILL } as const;
+
 /** The root view, carrying the active theme's CSS variables to everything below it. */
 const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const style = useThemeRootStyle();
+  const vars = useThemeRootStyle();
+  // Kept between renders: a new array reads as new variables to the styling
+  // library, and every styled view in the app draws again.
+  const style = useMemo(() => [FILL, vars], [vars]);
   return (
-    <GestureHandlerRootView className="bg-theme-background" style={[{ flex: 1 }, style]}>
+    <GestureHandlerRootView className="bg-theme-background" style={style}>
       {/* First, so everything else draws over it: a canvas theme's live
           background, which the home feed shows through. Null otherwise. */}
       <FrostedBackdropProvider backdrop={<ThemeBackdrop />}>
@@ -359,14 +365,19 @@ const ThemedRootView: React.FC<{ children: React.ReactNode }> = ({ children }) =
  * white here: the root's own `bg-theme-background` came out black on iPhone.
  */
 const ThemeVarsLayer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const style = useThemeRootStyle();
+  const vars = useThemeRootStyle();
   const { isLight } = useAppTheme();
+  // Kept between renders, as in ThemedRootView.
+  const style = useMemo(
+    () => [FILL, isLight ? LIGHT_FILL : null, Platform.OS === "ios" ? vars : null],
+    [vars, isLight],
+  );
   // iPhone only: on Android a second set of root variables left Settings and
   // the post page header on the dark colours in System Light (black page,
   // white title). Android's screens carry their own (ScreenErrorBoundary).
   // On iPhone these are the dark values under System Light too (see
   // useThemeRootStyle), so every screen starts from the same colours.
-  return <View style={[{ flex: 1 }, isLight ? { backgroundColor: LIGHT_PAGE_FILL } : null, Platform.OS === "ios" ? style : null]}>{children}</View>;
+  return <View style={style}>{children}</View>;
 };
 
 const ThemedToaster: React.FC = () => {

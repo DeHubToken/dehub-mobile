@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useState } from "react";
+import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
 import { View, Text, Pressable, Platform } from "react-native";
 import { useNavigation, type ScreenLayoutArgs } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -89,6 +89,8 @@ export const ScreenErrorFallback: FC<FallbackProps> = ({ retry }) => {
   );
 };
 
+const FILL = { flex: 1 } as const;
+
 interface ScreenErrorBoundaryProps {
   name: string;
   children: ReactNode;
@@ -102,6 +104,13 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
   // showed a black page with white text under light icons. Same keys in every
   // theme, so a switch only changes values and never remounts the screen.
   const themeVars = useThemeRootStyle();
+  // One style per set of variables, never one per render. The styling library
+  // compares this prop by identity: a new array each time read as new
+  // variables, and every styled view on the screen drew again. This renders
+  // on every navigation, for every screen still mounted, so on iPhone each
+  // tab switch or Back redrew whole pages (some two thousand views for Home
+  // alone) before anything could move.
+  const style = useMemo(() => (Platform.OS === "ios" ? [FILL, themeVars] : FILL), [themeVars]);
   return (
     <ErrorBoundary
       // Repaint screen content without replacing native navigation route keys.
@@ -115,7 +124,7 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
       {/* iPhone only, and the dark values there under System Light too
           (useThemeRootStyle): the colour pass turns them light on both
           platforms, so light values were turned around a second time. */}
-      <View style={[{ flex: 1 }, Platform.OS === "ios" ? themeVars : null]}>{children}</View>
+      <View style={style}>{children}</View>
     </ErrorBoundary>
   );
 };
