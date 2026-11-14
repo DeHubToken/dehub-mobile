@@ -1,3 +1,17 @@
+/**
+ * Upper-tier scales account for the opaque area inside each silhouette.
+ * Fins and tails make Tiger Shark and Killer Whale read smaller at equal
+ * height. These values increase visible area through the upper five tiers.
+ * Keep aligned with the web badge sizing table.
+ */
+export const badgeTierScale: Record<string, number> = {
+  'Tiger Shark': 1.08,
+  'Killer Whale': 1.11,
+  'Great White Shark': 1.065,
+  'Blue Whale': 1.035,
+  'Megalodon': 1.069,
+};
+
 interface BadgeHoverArt {
   poster: number;
   animation: number;

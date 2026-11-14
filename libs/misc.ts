@@ -1,7 +1,7 @@
 import { RIFTN_GOLD_BADGE } from './riftnGoldBadge';
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
-import { badgeHoverArt } from "./badgeHoverArt";
+import { badgeHoverArt, badgeTierScale } from "./badgeHoverArt";
 import { Image, Platform } from "react-native";
 import { ASSISTANT_ADDRESS, isAssistantAddress } from "./assistant";
 import { shareWithRef } from "./shareRef";
@@ -696,7 +696,8 @@ export function getBadgeOpticalStyle(
   // Manrope uses a 0.72em cap height; inline artwork is 1.27x it (+10%, +10%
   // on 2026-11-04, +5% on 2026-11-05). The baseline maths below uses the same
   // bounds, so every tier lands its resting line on the name's baseline.
-  const renderedSize = size * (gold || tier === 'Megalodon' ? 1.069 : 1) * 0.72 * BADGE_CAP_SCALE * 128 / (bounds.bottom - bounds.top);
+  const tierScale = badgeTierScale[gold ? 'Megalodon' : tier ?? ''] ?? 1;
+  const renderedSize = size * tierScale * 0.72 * BADGE_CAP_SCALE * 128 / (bounds.bottom - bounds.top);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
