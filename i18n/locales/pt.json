@@ -4749,7 +4749,12 @@
     "importSecretPlaceholder": "12 ou 24 palavras, ou uma chave privada",
     "invalidImportSecret": "Isso não é uma frase válida de 12/24 palavras nem uma chave privada",
     "walletSignupBlocked": "Esta carteira é novinha em folha. Carteiras novas precisam de saldo ou de uma transação anterior para abrir uma conta. Cadastre-se com uma das opções abaixo e depois conecte esta carteira nas Configurações.",
-    "signInPageWouldNotOpen": "A página de login foi fechada antes de abrir. Tente novamente ou continue com email."
+    "signInPageWouldNotOpen": "A página de login foi fechada antes de abrir. Tente novamente ou continue com email.",
+    "accountDeleted": "Esta conta foi excluída. Você pode se cadastrar de novo com uma conta nova.",
+    "accountDeletedHours_one": "Esta conta foi excluída. Você poderá se cadastrar de novo com o mesmo e-mail ou telefone em cerca de {{count}} hora.",
+    "accountDeletedHours_other": "Esta conta foi excluída. Você poderá se cadastrar de novo com o mesmo e-mail ou telefone em cerca de {{count}} horas.",
+    "accountDeletedDays_one": "Esta conta foi excluída. Você poderá se cadastrar de novo com o mesmo e-mail ou telefone em cerca de {{count}} dia.",
+    "accountDeletedDays_other": "Esta conta foi excluída. Você poderá se cadastrar de novo com o mesmo e-mail ou telefone em cerca de {{count}} dias."
   },
   "messages": {
     "encryptionSetupFailed": "A configuração da encriptação falhou. Tente novamente.",
@@ -4961,6 +4966,22 @@
       "votes_other": "{{value}} votos",
       "members_one": "{{value}} membro",
       "members_other": "{{value}} membros"
+    },
+    "sortCustom": "Ordem personalizada",
+    "arrangeButton": "Organizar publicações",
+    "arrange": {
+      "title": "Organize suas publicações",
+      "hint": "Arraste suas publicações para a ordem que quiser. Os visitantes veem essa ordem primeiro.",
+      "drag": "Arraste para mover",
+      "toTop": "Mover para o topo",
+      "save": "Salvar ordem",
+      "saving": "Salvando...",
+      "saved": "Sua ordem foi salva",
+      "reset": "Voltar para mais recentes primeiro",
+      "resetDone": "Mais recentes primeiro de novo",
+      "saveFailed": "Não foi possível salvar sua ordem. Tente novamente.",
+      "loadFailed": "Não foi possível carregar suas publicações. Feche isto e tente novamente.",
+      "empty": "Ainda não há nada para organizar. Publique algo primeiro."
     }
   },
   "tv": {

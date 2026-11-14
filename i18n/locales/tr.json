@@ -2698,7 +2698,12 @@
     "importSecretPlaceholder": "12 veya 24 kelime ya da özel anahtar",
     "invalidImportSecret": "Bu geçerli bir 12/24 kelimelik ifade veya özel anahtar değil",
     "walletSignupBlocked": "Bu cüzdan yepyeni. Yeni cüzdanların hesap açabilmesi için bakiyesi veya geçmiş bir işlemi olmalı. Aşağıdaki seçeneklerden biriyle kaydol, ardından bu cüzdanı Ayarlar'dan bağla.",
-    "signInPageWouldNotOpen": "Oturum açma sayfası açılmadan kapandı. Tekrar deneyin veya e-postayla devam edin."
+    "signInPageWouldNotOpen": "Oturum açma sayfası açılmadan kapandı. Tekrar deneyin veya e-postayla devam edin.",
+    "accountDeleted": "Bu hesap silindi. Yeni bir hesapla tekrar kaydolabilirsiniz.",
+    "accountDeletedHours_one": "Bu hesap silindi. Aynı e-posta veya telefonla yaklaşık {{count}} saat sonra tekrar kaydolabilirsiniz.",
+    "accountDeletedHours_other": "Bu hesap silindi. Aynı e-posta veya telefonla yaklaşık {{count}} saat sonra tekrar kaydolabilirsiniz.",
+    "accountDeletedDays_one": "Bu hesap silindi. Aynı e-posta veya telefonla yaklaşık {{count}} gün sonra tekrar kaydolabilirsiniz.",
+    "accountDeletedDays_other": "Bu hesap silindi. Aynı e-posta veya telefonla yaklaşık {{count}} gün sonra tekrar kaydolabilirsiniz."
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -2928,6 +2933,22 @@
       "votes_other": "{{value}} oy",
       "members_one": "{{value}} üyesi",
       "members_other": "{{value}} üye"
+    },
+    "sortCustom": "Özel sıralama",
+    "arrangeButton": "Gönderileri sırala",
+    "arrange": {
+      "title": "Gönderilerinizi sıralayın",
+      "hint": "Gönderilerinizi istediğiniz sıraya sürükleyin. Ziyaretçiler önce bu sırayı görür.",
+      "drag": "Taşımak için sürükleyin",
+      "toTop": "En üste taşı",
+      "save": "Sırayı kaydet",
+      "saving": "Kaydediliyor...",
+      "saved": "Sıralamanız kaydedildi",
+      "reset": "Önce en yeniye dön",
+      "resetDone": "Yeniden önce en yeni",
+      "saveFailed": "Sıralamanız kaydedilemedi. Lütfen tekrar deneyin.",
+      "loadFailed": "Gönderileriniz yüklenemedi. Bunu kapatıp tekrar deneyin.",
+      "empty": "Henüz sıralanacak bir şey yok. Önce bir şey paylaşın."
     }
   },
   "tv": {
