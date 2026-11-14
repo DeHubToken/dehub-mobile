@@ -269,6 +269,16 @@ export async function getCategoriesCached(options?: { ttlMs?: number; forceRefre
 }
 
 /**
+ * The category list already in memory, however old, or [] when none has
+ * loaded yet. For a page's first frame: it draws its category row at once and
+ * getCategoriesCached then corrects it, instead of the row arriving late and
+ * pushing the page down.
+ */
+export function peekCategories(): string[] {
+  return __categoriesCache ? orderByInterests(__categoriesCache.data) : [];
+}
+
+/**
  * Record a view for a tokenId.
  * Requires the user to be signed in; apiClient will attach auth headers.
  */

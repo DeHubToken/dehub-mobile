@@ -14,8 +14,8 @@
  * The category words sit above this in SearchScreen, and the week's trending
  * posts follow below it.
  */
-import React, { useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../ui/Icon";
@@ -51,8 +51,37 @@ function useTopTickers() {
   });
 }
 
-/** Category words under the pill. Null is "For you" (no category). */
-export function ExploreCategoryWords({
+type CategoryWordItem = { id: string | null; name: string };
+
+const CategoryWord = memo(function CategoryWord({ id, name, active, onChange }: {
+  id: string | null;
+  name: string;
+  active: boolean;
+  onChange: (category: string | null) => void;
+}) {
+  return (
+    <Pressable onPress={() => onChange(id)} style={styles.word} accessibilityRole="tab" accessibilityState={{ selected: active }}>
+      <Text
+        className={active ? "text-white" : "text-theme-neutrals-500"}
+        style={active ? styles.wordTextOn : styles.wordText}
+      >
+        {name.charAt(0).toUpperCase() + name.slice(1)}
+      </Text>
+      {active ? <View className="bg-white" style={styles.underline} /> : null}
+    </Pressable>
+  );
+});
+
+const categoryWordKey = (item: CategoryWordItem) => item.id ?? "for-you";
+
+/**
+ * Category words under the pill. Null is "For you" (no category).
+ *
+ * There are hundreds of categories and a phone shows about five, so the row
+ * draws only the ones near the screen. Drawn all at once, every open of
+ * Explore and every redraw of the page built each of them again.
+ */
+export const ExploreCategoryWords = memo(function ExploreCategoryWords({
   categories,
   value,
   onChange,
@@ -62,32 +91,34 @@ export function ExploreCategoryWords({
   onChange: (category: string | null) => void;
 }) {
   const { t } = useTranslation();
-  const items: { id: string | null; name: string }[] = [
-    { id: null, name: t("filters.forYou", { defaultValue: "For You" }) },
-    ...categories.map((c) => ({ id: c, name: c })),
-  ];
+  const forYou = t("filters.forYou", { defaultValue: "For You" });
+  const items = useMemo<CategoryWordItem[]>(
+    () => [{ id: null, name: forYou }, ...categories.map((c) => ({ id: c, name: c }))],
+    [categories, forYou],
+  );
+  const renderItem = useCallback(
+    ({ item }: { item: CategoryWordItem }) => (
+      <CategoryWord id={item.id} name={item.name} active={value === item.id} onChange={onChange} />
+    ),
+    [value, onChange],
+  );
   return (
     <View style={styles.wordsWrap}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.words}>
-        {items.map((c) => {
-          const active = value === c.id;
-          return (
-            <Pressable key={c.id ?? "for-you"} onPress={() => onChange(c.id)} style={styles.word} accessibilityRole="tab" accessibilityState={{ selected: active }}>
-              <Text
-                className={active ? "text-white" : "text-theme-neutrals-500"}
-                style={[styles.wordText, active && styles.wordTextActive]}
-              >
-                {c.name.charAt(0).toUpperCase() + c.name.slice(1)}
-              </Text>
-              {active ? <View className="bg-white" style={styles.underline} /> : null}
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      <FlatList
+        horizontal
+        data={items}
+        keyExtractor={categoryWordKey}
+        renderItem={renderItem}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.words}
+        initialNumToRender={10}
+        maxToRenderPerBatch={12}
+        windowSize={5}
+      />
       <View className="bg-theme-neutrals-800" style={styles.wordsHairline} />
     </View>
   );
-}
+});
 
 export default function ExploreCleanList({
   recentSearches,
@@ -259,7 +290,7 @@ const styles = StyleSheet.create({
   words: { gap: 20, paddingRight: 8 },
   word: { paddingTop: 6, paddingBottom: 10 },
   wordText: { fontSize: 15, fontWeight: "500" },
-  wordTextActive: { fontWeight: "600" },
+  wordTextOn: { fontSize: 15, fontWeight: "600" },
   underline: { position: "absolute", left: 0, right: 0, bottom: 0, height: 3, borderRadius: 2, zIndex: 1 },
   wordsHairline: { height: StyleSheet.hairlineWidth },
   recentRow: { flexDirection: "row", alignItems: "center", gap: 12 },

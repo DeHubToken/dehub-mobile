@@ -26,7 +26,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
-import { getCategoriesCached } from "../services/nft.service";
+import { getCategoriesCached, peekCategories } from "../services/nft.service";
 import {
   search,
   fetchSuggestions,
@@ -77,6 +77,9 @@ import {
   MINIMAL_HAIRLINE,
   minimalRow,
 } from "../theme/minimal";
+
+/** The filter panel draws its own translated "All" pill, so the list never carries one. */
+const withoutAll = (list: string[]) => list.filter((c) => c && c.toLowerCase() !== "all");
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
@@ -279,7 +282,7 @@ const SearchScreen: React.FC = () => {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_SEARCH_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>(() => withoutAll(peekCategories()));
 
   // Result buckets
   const [accounts, setAccounts] = useState<SearchAccountResult[]>([]);
@@ -354,7 +357,10 @@ const SearchScreen: React.FC = () => {
       const list = await getCategoriesCached();
       if (mounted && list?.length) {
         // The filter panel draws its own translated "All" pill; an "All" entry here showed a second, English one.
-        setCategories(list.filter((c) => c && c.toLowerCase() !== "all"));
+        setCategories((shown) => {
+          const next = withoutAll(list);
+          return next.length === shown.length && next.every((c, i) => c === shown[i]) ? shown : next;
+        });
       }
     })();
     return () => { mounted = false; };
@@ -584,6 +590,10 @@ const SearchScreen: React.FC = () => {
   // re-run this effect and tear the timer down before it ever fired.
   const newMembersLayout = useRef<{ y: number; height: number } | null>(null);
   const idleListRef = useRef<FlatList<UnifiedFeedItem>>(null);
+  const pickBrowseCategory = useCallback((category: string | null) => {
+    setBrowseCategory(category);
+    idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  }, []);
   const settleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => () => { if (settleTimer.current) clearInterval(settleTimer.current); }, []);
   useEffect(() => {
@@ -1081,10 +1091,7 @@ const SearchScreen: React.FC = () => {
           <ExploreCategoryWords
             categories={categories}
             value={browseCategory}
-            onChange={(category) => {
-              setBrowseCategory(category);
-              idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
-            }}
+            onChange={pickBrowseCategory}
           />
         )}
         {!browseCategory && (

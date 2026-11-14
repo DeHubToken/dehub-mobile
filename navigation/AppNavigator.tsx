@@ -76,6 +76,10 @@ const ACCOUNT_SETTINGS: DeferredEntry = ['../screens/AccountSettingsScreen#defau
 const SEARCH: DeferredEntry = ['../screens/SearchScreen#default', () => require("../screens/SearchScreen").default];
 const LIVE_CHAT: DeferredEntry = ['../screens/LiveChatScreen#default', () => require("../screens/LiveChatScreen").default];
 const WARM_SCREENS = [UPLOAD, FEED_DETAIL, IMAGE_VIEWER, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST, SEARCH, ACCOUNT_SETTINGS, LIVE_CHAT];
+// Signed out, the pages a guest can open: a post, its pictures, a community,
+// a follow list and Explore. Without these a guest's first post opened behind
+// a grey sketch for the length of the slide.
+const GUEST_WARM_SCREENS = [FEED_DETAIL, IMAGE_VIEWER, POST_RESOLVER, COMMUNITY_DETAIL, FOLLOW_LIST, SEARCH];
 // The bottom bar's other pages and the bell's drawer are not deferred screens:
 // their modules are read on the first tap. Reading them ahead of it leaves
 // that tap with only the page to draw. Search above is also the Explore tab.
@@ -110,24 +114,29 @@ const UPLOAD_OPTIONS = Platform.OS === 'android'
       gestureEnabled: true,
     };
 
-/** Load WARM_SCREENS one per idle moment, a few seconds after sign-in settles. */
-function useWarmScreens(enabled: boolean) {
+/**
+ * Load the pages a tap opens, one per idle moment, a few seconds after the
+ * app settles: WARM_SCREENS and WARM_MODULES signed in, GUEST_WARM_SCREENS
+ * signed out.
+ */
+function useWarmScreens(isAuthed: boolean) {
   useEffect(() => {
-    if (!enabled) return;
+    const screens = isAuthed ? WARM_SCREENS : GUEST_WARM_SCREENS;
+    const modules = isAuthed ? WARM_MODULES : [];
     let cancelled = false;
     let task: { cancel: () => void } | null = null;
     const next = (i: number) => {
-      if (cancelled || i >= WARM_SCREENS.length + WARM_MODULES.length) return;
+      if (cancelled || i >= screens.length + modules.length) return;
       task = InteractionManager.runAfterInteractions(() => {
         if (cancelled) return;
-        if (i < WARM_SCREENS.length) preloadDeferredScreen(...WARM_SCREENS[i]);
-        else WARM_MODULES[i - WARM_SCREENS.length]();
+        if (i < screens.length) preloadDeferredScreen(...screens[i]);
+        else modules[i - screens.length]();
         setTimeout(() => next(i + 1), 250);
       });
     };
     const timer = setTimeout(() => next(0), 4000);
     return () => { cancelled = true; clearTimeout(timer); task?.cancel(); };
-  }, [enabled]);
+  }, [isAuthed]);
 }
 
 /**

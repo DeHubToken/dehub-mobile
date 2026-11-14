@@ -345,9 +345,21 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const fullWidth = cardWidth * 2 + GRID_GAP;
   const heroHeight = fullWidth * (9 / 16);
 
+  // One frame object per tile shape. A tile's memo compares its frame by
+  // identity, so a new object for each row drew every tile on screen again
+  // whenever the list re-rendered (each time the page lost or took focus).
+  const frames = useMemo(() => new Map<string, Frame>(), []);
+  const frameOf = useCallback((frame: Frame): Frame => {
+    const key = `${frame.width}x${frame.height}${frame.wide ? "w" : ""}${frame.hero ? "h" : ""}${frame.still ? "s" : ""}`;
+    const known = frames.get(key);
+    if (known) return known;
+    frames.set(key, frame);
+    return frame;
+  }, [frames]);
+
   const renderItem = useCallback(
     ({ item: row }: { item: BrickRow<UnifiedFeedItem> }) => {
-      const cell = (it: UnifiedFeedItem, frame: Frame) => (
+      const cell = (it: UnifiedFeedItem, shape: Frame) => (
         <GridCell
           key={itemKey(it)}
           store={playStore}
@@ -355,7 +367,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           index={indexById.get(itemKey(it)) ?? 0}
           onPress={handleItemPress}
           onUnavailable={markUnavailable}
-          frame={frame}
+          frame={frameOf(shape)}
         />
       );
       if (row.kind === "hero") {
@@ -395,7 +407,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         </View>
       );
     },
-    [handleItemPress, markUnavailable, playStore, indexById, cardWidth, tallHeight, fullWidth, heroHeight],
+    [handleItemPress, markUnavailable, playStore, indexById, cardWidth, tallHeight, fullWidth, heroHeight, frameOf],
   );
 
   const keyExtractor = useCallback((row: BrickRow<UnifiedFeedItem>) => row.key, []);
