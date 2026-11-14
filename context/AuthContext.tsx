@@ -57,6 +57,7 @@ import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence
 import { markOnboardingOfferPending } from "../hooks/useOnboardingChecklist";
 import { identifyWallet, resetAnalytics, track } from "../libs/analytics";
 import { setShareRefCode } from "../libs/shareRef";
+import { onSignInWall } from "../libs/sign-in-wall";
 import {
   currentProfileId,
   beginAddProfileAttempt,
@@ -384,6 +385,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
   const needsUsernameRef = useRef(needsUsername);
   useEffect(() => { needsUsernameRef.current = needsUsername; }, [needsUsername]);
+  // Signed-out reading reached the end of what the API shows without an
+  // account (libs/sign-in-wall): ask them to sign in to keep scrolling.
+  useEffect(() => onSignInWall(() => {
+    if (!isSignedInRef.current) setShowSignInModal(true);
+  }), []);
   const chainIdRef = useRef<number | undefined>(undefined);
   const providerStatusRef = useRef<ProviderStatus>('idle' as ProviderStatus);
   // Logging handled via createLogger; set DEBUG env var to enable debug-level logs.
