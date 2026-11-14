@@ -162,8 +162,10 @@ while not os.path.exists(stop):
         sampled = name
         pid = subprocess.run(["pgrep", "-n", "-x", exe], capture_output=True, text=True).stdout.strip()
         if pid:
-            subprocess.Popen(["sample", pid, "12", "1", "-file", f"{out}/nav/{prefix}-sample-{safe(name)}.txt"],
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.Popen(["sudo", "-n", "sample", pid, "12", "1", "-file", f"{out}/nav/{prefix}-sample-{safe(name)}.txt"],
+                             stdout=open(f"{out}/logs/sample-{safe(name)}.log", "w"), stderr=subprocess.STDOUT)
+        else:
+            open(f"{out}/logs/sample-{safe(name)}.log", "w").write(f"no process named {exe}\n")
     time.sleep(0.12)
 PY
 }
@@ -215,7 +217,7 @@ for service in photos camera microphone location; do
 done
 
 if [ "$MODE" = probe ]; then
-  run after probe "" probe
+  run after probe record probe
   kill "$LOG_PID" 2>/dev/null
   grep -E '\[perf-tour\]|\[FatalJS\]|\[UncaughtJS\]' "$OUT/logs/app.log" | cut -c1-400 > "$OUT/logs/tour.txt" || true
   exit 0

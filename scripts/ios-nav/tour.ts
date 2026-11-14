@@ -255,6 +255,11 @@ async function runProbe(): Promise<void> {
   await sleep(14000);
 
   let counts: Map<string, number> | null = null;
+  // The same count again in tenths of a second from the action, with the
+  // time each tenth's drawing took: what is drawn in the navigation itself,
+  // and what follows it.
+  let slices: Map<number, { n: number; first: number; last: number; names: Map<string, number> }> | null = null;
+  let sliceOrigin = 0;
   const runtime = require("../../libs/jsx/jsx-runtime") as Record<string, (type: ElementType, ...rest: unknown[]) => unknown>;
   for (const key of ["jsx", "jsxs"]) {
     const original = runtime[key];
@@ -262,17 +267,49 @@ async function runProbe(): Promise<void> {
       if (counts) {
         const name = typeName(type);
         counts.set(name, (counts.get(name) ?? 0) + 1);
+        if (slices) {
+          const t = now() - sliceOrigin;
+          const key = Math.floor(t / 100);
+          let slice = slices.get(key);
+          if (!slice) slices.set(key, (slice = { n: 0, first: t, last: t, names: new Map() }));
+          slice.n += 1;
+          slice.last = t;
+          slice.names.set(name, (slice.names.get(name) ?? 0) + 1);
+        }
       }
       return original(type, ...rest);
     };
   }
-  const drawn: Record<string, { total: number; top: [string, number][] }> = {};
+  const drawn: Record<string, { total: number; top: [string, number][]; slices: unknown[]; stateAt: number[] }> = {};
+  // When the navigators report the switch as done.
+  let stateAt: number[] = [];
+  (navigationRef as unknown as { addListener(event: string, listener: () => void): void }).addListener("state", () => {
+    if (slices) stateAt.push(Math.round(now() - sliceOrigin));
+  });
   const probe = async (step: string, action: () => void, opts: { watchMs?: number; delayMs?: number } = {}) => {
     counts = new Map();
-    await measure(step, action, { watchMs: 1800, restMs: 100, ...opts });
+    const timed = new Map<number, { n: number; first: number; last: number; names: Map<string, number> }>();
+    stateAt = [];
+    await measure(step, () => {
+      sliceOrigin = now() + (opts.delayMs ?? 0);
+      slices = timed;
+      action();
+    }, { watchMs: 1800, restMs: 100, ...opts });
     const all = [...counts.entries()].sort((a, b) => b[1] - a[1]);
     counts = null;
-    drawn[step] = { total: all.reduce((sum, entry) => sum + entry[1], 0), top: all.slice(0, 40) };
+    slices = null;
+    drawn[step] = {
+      total: all.reduce((sum, entry) => sum + entry[1], 0),
+      top: all.slice(0, 40),
+      stateAt,
+      slices: [...timed.entries()].sort((a, b) => a[0] - b[0]).map(([key, slice]) => ({
+        at: key * 100,
+        n: slice.n,
+        first: Math.round(slice.first),
+        last: Math.round(slice.last),
+        top: [...slice.names.entries()].sort((a, b) => b[1] - a[1]).slice(0, 14),
+      })),
+    };
     extra.drawn = drawn;
     await save(false);
     await sleep(500);
