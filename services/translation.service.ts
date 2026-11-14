@@ -4,6 +4,7 @@ import i18n from '../i18n';
 import { storage } from '../libs/storage';
 import { TranslationCooldown } from '../libs/translation-cooldown';
 import { supabase } from './supabase';
+import { cdnImageSource } from '../libs/cdnImage';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { aiConsentDeclinedMessage, hasAiConsent } from '../libs/ai-consent';
 
@@ -328,8 +329,11 @@ export async function translateImage(
   targetLang: string,
 ): Promise<ImageTranslateResponse> {
   if (!hasAiConsent()) throw new TranslationServiceError(aiConsentDeclinedMessage(), 403);
+  // The uploaded picture, not the resized copy the feed shows: the reader
+  // behind the translation cannot open resized links and answered with an
+  // error for every feed photo.
   const { data, error } = await supabase.functions.invoke('translate-image', {
-    body: { imageUrl, targetLang },
+    body: { imageUrl: cdnImageSource(imageUrl), targetLang },
   });
 
   if (error) {
