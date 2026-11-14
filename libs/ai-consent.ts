@@ -23,6 +23,7 @@ import { IS_APP_STORE_BUILD } from "../config/storefront";
 import { PRIVACY_POLICY_LINK } from "../config/links";
 import { translateCopy } from "../i18n/copy";
 import { storage } from "./storage";
+import { mirrorDurable, restoreDurable } from "./durable-setting";
 
 const KEY = "ai-third-party-consent";
 const listeners = new Set<() => void>();
@@ -51,8 +52,18 @@ export function setAiConsent(allowed: boolean): void {
   } catch {
     // Storage unavailable: the answer lasts for this session only.
   }
+  mirrorDurable(KEY, allowed ? "on" : "off");
   listeners.forEach((listener) => listener());
 }
+
+// An answer MMKV lost comes back from its copy before anything asks again.
+// Exported for tests; runs once on import.
+let restoreSettled = !IS_APP_STORE_BUILD;
+export const aiConsentRestored = IS_APP_STORE_BUILD
+  ? restoreDurable(KEY, "string", () => listeners.forEach((listener) => listener())).finally(() => {
+      restoreSettled = true;
+    })
+  : Promise.resolve();
 
 /**
  * Asks once, if the user hasn't said yes yet. Concurrent callers share the
@@ -61,6 +72,15 @@ export function setAiConsent(allowed: boolean): void {
 export function ensureAiConsent(): Promise<boolean> {
   if (hasAiConsent()) return Promise.resolve(true);
   if (pending) return pending;
+  // Only on the first moments after launch: wait for a lost answer to come
+  // back from its copy rather than ask for it again.
+  if (!restoreSettled) {
+    pending = aiConsentRestored.then(() => {
+      pending = null;
+      return ensureAiConsent();
+    });
+    return pending;
+  }
   pending = new Promise<boolean>((resolve) => {
     let settled = false;
     const done = (allowed: boolean) => {

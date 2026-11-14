@@ -8,6 +8,7 @@
  */
 import { useSyncExternalStore } from 'react';
 import { storage } from './storage';
+import { mirrorDurable, restoreDurable } from './durable-setting';
 
 const KEY = 'riftn.notifications.showCount';
 const listeners = new Set<() => void>();
@@ -26,8 +27,14 @@ export function setShowNotificationCount(on: boolean): void {
   } catch {
     // Storage unavailable; the switch just won't stick.
   }
+  mirrorDurable(KEY, on);
   listeners.forEach((listener) => listener());
 }
+
+// A switch MMKV lost comes back from its copy on launch (see durable-setting).
+export const notificationCountRestored = restoreDurable(KEY, 'boolean', () =>
+  listeners.forEach((listener) => listener()),
+);
 
 function subscribe(listener: () => void): () => void {
   listeners.add(listener);
