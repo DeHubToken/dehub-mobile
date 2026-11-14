@@ -174,7 +174,6 @@ jobs:
           SIM_TEST_KEY: ${{ secrets.SIM_TEST_KEY }}
         run: |
           APP="$(find "$RUNNER_TEMP/sim/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
-          git fetch --depth=1 origin "$GITHUB_REF_NAME" && git checkout -q --detach FETCH_HEAD
           scripts/ios-nav-timing.sh "${{ steps.sim.outputs.udid }}" "$APP" sim-check
       - uses: actions/upload-artifact@v4
         if: always()
