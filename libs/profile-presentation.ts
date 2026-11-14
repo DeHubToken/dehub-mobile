@@ -1,13 +1,17 @@
 export type ProfilePresentation = 'feed' | 'modal';
 
 /**
- * Android profiles own their back bar in every theme. iOS retains its
- * existing theme presentation; deep links always stand alone.
+ * Profiles open over the page, with their own back bar, in every theme and on
+ * both platforms.
+ *
+ * iPhone used to draw a themed profile inside Home's feed ('feed'), which
+ * re-rendered every feed page and card before the profile's first frame. Its
+ * profile is now a see-through window over the app (ProfileSurface), so a
+ * canvas theme's backdrop shows through it as it does on Android.
  */
 export const resolveProfilePresentation = (
-  feedHostActive: boolean,
-  source?: string,
-  theme?: string,
-  platform?: string,
-): ProfilePresentation =>
-  platform !== 'android' && theme !== 'system' && theme !== 'immersive' && feedHostActive && source !== 'deeplink' ? 'feed' : 'modal';
+  _feedHostActive: boolean,
+  _source?: string,
+  _theme?: string,
+  _platform?: string,
+): ProfilePresentation => 'modal';

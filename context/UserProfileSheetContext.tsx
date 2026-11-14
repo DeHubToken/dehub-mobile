@@ -29,7 +29,7 @@ interface PresentationCtxValue {
   setFeedProfileHostActive: (active: boolean) => void;
 }
 
-/** A profile drawn inside Home's feed (iPhone themes). Never changes on Android. */
+/** A profile drawn inside Home's feed. No longer used: profiles open over the page everywhere. */
 interface FeedProfileCtxValue {
   feedProfileVisible: boolean;
   feedProfileIdentifier: string | null;
@@ -88,13 +88,12 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   // The covered page comes back the moment the profile has slid away: the old
   // 300ms matched a slower JS-driven slide and left Back waiting on nothing.
   //
-  // On Android the page itself says when its fade has ended (see
-  // handleCloseComplete). A timer started at the press ran out ~0.1s into the
-  // fade, because the fade only starts once the closing render has landed:
-  // the profile was dropped mid-fade in the same render that woke the feed
-  // back up, and the screen blinked empty for a frame or two. The timer stays
-  // as the backstop there, and as the clock for the iPhone sheet.
-  const CLOSE_CLEAR_DELAY_MS = Platform.OS === 'android' ? PROFILE_CLOSE_MS + 400 : PROFILE_CLOSE_MS;
+  // The page itself says when its fade has ended (see handleCloseComplete).
+  // A timer started at the press ran out ~0.1s into the fade, because the
+  // fade only starts once the closing render has landed: the profile was
+  // dropped mid-fade in the same render that woke the feed back up, and the
+  // screen blinked empty for a frame or two. The timer stays as the backstop.
+  const CLOSE_CLEAR_DELAY_MS = PROFILE_CLOSE_MS + 400;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
     perfMark('profile:open');
@@ -219,7 +218,10 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   // the profile's content mounts when the entrance ends, and tearing down the
   // page's native views and pausing every feed card in that same render held
   // the content back by ~0.4s on a Galaxy S24+. Uncovering never waits.
-  const coverNow = Platform.OS === 'android' && visible && openComplete && presentation === 'modal';
+  //
+  // iPhone too: its profile is a see-through window over this page, and a
+  // canvas theme's backdrop has to show through it, not the page underneath.
+  const coverNow = visible && openComplete && presentation === 'modal';
   const coverLater = useDeferredValue(coverNow);
   const covered = coverNow && coverLater;
   const pageActiveNow = identifier === null || presentation !== 'modal' || (visible && !openComplete);

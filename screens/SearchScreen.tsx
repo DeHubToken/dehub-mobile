@@ -26,7 +26,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
-import { getCategoriesCached } from "../services/nft.service";
+import { getCategoriesCached, peekCategories } from "../services/nft.service";
 import {
   search,
   fetchSuggestions,
@@ -77,6 +77,9 @@ import {
   MINIMAL_HAIRLINE,
   minimalRow,
 } from "../theme/minimal";
+
+/** The filter panel draws its own translated "All" pill, so the list never carries one. */
+const withoutAll = (list: string[]) => list.filter((c) => c && c.toLowerCase() !== "all");
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
@@ -205,6 +208,26 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   category: item.category,
 });
 
+/**
+ * Plays the lists' media only while Explore is the page being looked at.
+ * A part of its own that draws nothing: read in the screen itself, the focus
+ * drew the whole page again on every switch to or from Explore (every row of
+ * every list), for the sake of this one effect.
+ */
+function LiveWhileFocused({ content, trending, hasSearched, inputFocused }: {
+  content: FeedVisibilityStore;
+  trending: FeedVisibilityStore;
+  hasSearched: boolean;
+  inputFocused: boolean;
+}) {
+  const focused = useIsFocusedLazy();
+  useEffect(() => {
+    content.setLive(focused && hasSearched);
+    trending.setLive(focused && !hasSearched && !inputFocused);
+  }, [focused, hasSearched, inputFocused, content, trending]);
+  return null;
+}
+
 const SearchScreen: React.FC = () => {
   usePerfProbe("SearchScreen");
   const { t } = useTranslation();
@@ -259,7 +282,7 @@ const SearchScreen: React.FC = () => {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_SEARCH_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>(() => withoutAll(peekCategories()));
 
   // Result buckets
   const [accounts, setAccounts] = useState<SearchAccountResult[]>([]);
@@ -334,7 +357,10 @@ const SearchScreen: React.FC = () => {
       const list = await getCategoriesCached();
       if (mounted && list?.length) {
         // The filter panel draws its own translated "All" pill; an "All" entry here showed a second, English one.
-        setCategories(list.filter((c) => c && c.toLowerCase() !== "all"));
+        setCategories((shown) => {
+          const next = withoutAll(list);
+          return next.length === shown.length && next.every((c, i) => c === shown[i]) ? shown : next;
+        });
       }
     })();
     return () => { mounted = false; };
@@ -564,6 +590,10 @@ const SearchScreen: React.FC = () => {
   // re-run this effect and tear the timer down before it ever fired.
   const newMembersLayout = useRef<{ y: number; height: number } | null>(null);
   const idleListRef = useRef<FlatList<UnifiedFeedItem>>(null);
+  const pickBrowseCategory = useCallback((category: string | null) => {
+    setBrowseCategory(category);
+    idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  }, []);
   const settleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => () => { if (settleTimer.current) clearInterval(settleTimer.current); }, []);
   useEffect(() => {
@@ -701,15 +731,8 @@ const SearchScreen: React.FC = () => {
     [],
   );
 
-  // Lazy: the plain hook re-rendered this whole screen inside every tab
-  // switch to or from Explore (~80ms on a Galaxy S24+) for an effect.
-  const focused = useIsFocusedLazy();
   const contentVisibility = useMemo(() => createFeedVisibilityStore(false), []);
   const trendingVisibility = useMemo(() => createFeedVisibilityStore(false), []);
-  useEffect(() => {
-    contentVisibility.setLive(focused && hasSearched);
-    trendingVisibility.setLive(focused && !hasSearched && !inputFocused);
-  }, [focused, hasSearched, inputFocused, contentVisibility, trendingVisibility]);
   const trendingKeyExtractor = useCallback(
     (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
     [],
@@ -1068,10 +1091,7 @@ const SearchScreen: React.FC = () => {
           <ExploreCategoryWords
             categories={categories}
             value={browseCategory}
-            onChange={(category) => {
-              setBrowseCategory(category);
-              idleListRef.current?.scrollToOffset({ offset: 0, animated: false });
-            }}
+            onChange={pickBrowseCategory}
           />
         )}
         {!browseCategory && (
@@ -1112,6 +1132,12 @@ const SearchScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <LiveWhileFocused
+        content={contentVisibility}
+        trending={trendingVisibility}
+        hasSearched={hasSearched}
+        inputFocused={inputFocused}
+      />
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}

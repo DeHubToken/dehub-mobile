@@ -10,7 +10,7 @@ export interface UserProfileBottomSheetProps {
   visible: boolean;
   onClose: () => void;
   onOpenComplete?: () => void;
-  /** Android: the closing page is fully gone, so its content can be dropped. */
+  /** The closing page is fully gone, so its content can be dropped. */
   onCloseComplete?: () => void;
   usernameOrAddress?: string | null;
   /** Closed but kept built for a quick return: drawn nowhere, plays nothing. */
@@ -64,7 +64,7 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   // then the opening page covered the bar underneath, so the bar blinked out
   // for ~0.4s on every profile open. Hold one in place until the page's own
   // takes over. On Android it sits over the fading page so it never moves;
-  // the iPhone sheet slides it in with the page.
+  // on iPhone it is part of the page's window and fades in with it.
   const holdBar = visible && !Content;
   // On Android the held bar joins one render after the page's first frame:
   // building it (~50ms on a Galaxy S24+) in the same render held the fade

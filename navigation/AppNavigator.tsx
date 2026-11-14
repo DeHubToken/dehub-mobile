@@ -38,6 +38,9 @@ import ChatRouteShell from "../components/DM/ChatRouteShell";
  */
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
+/** How long a page takes to slide in on iPhone; Android's fade is in res/anim (220). */
+const IOS_PAGE_OPEN_MS = 250;
+
 /**
  * getComponent returns a cached, lightweight route shell. The destination's
  * module and content mount after its native entrance, so the first tap does
@@ -69,7 +72,22 @@ const COMMUNITY_DETAIL: DeferredEntry = ['../screens/CommunityDetailScreen#defau
 const FOLLOW_LIST: DeferredEntry = ['../screens/FollowListScreen#default', () => require("../screens/FollowListScreen").default];
 const UPLOAD: DeferredEntry = ['../screens/UploadScreen#default', () => require("../screens/UploadScreen").default];
 const IMAGE_VIEWER: DeferredEntry = ['../screens/ImageViewerScreen#default', () => require("../screens/ImageViewerScreen").default];
-const WARM_SCREENS = [UPLOAD, FEED_DETAIL, IMAGE_VIEWER, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
+const ACCOUNT_SETTINGS: DeferredEntry = ['../screens/AccountSettingsScreen#default', () => require("../screens/AccountSettingsScreen").default];
+const SEARCH: DeferredEntry = ['../screens/SearchScreen#default', () => require("../screens/SearchScreen").default];
+const LIVE_CHAT: DeferredEntry = ['../screens/LiveChatScreen#default', () => require("../screens/LiveChatScreen").default];
+const WARM_SCREENS = [UPLOAD, FEED_DETAIL, IMAGE_VIEWER, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST, SEARCH, ACCOUNT_SETTINGS, LIVE_CHAT];
+// Signed out, the pages a guest can open: a post, its pictures, a community,
+// a follow list and Explore. Without these a guest's first post opened behind
+// a grey sketch for the length of the slide.
+const GUEST_WARM_SCREENS = [FEED_DETAIL, IMAGE_VIEWER, POST_RESOLVER, COMMUNITY_DETAIL, FOLLOW_LIST, SEARCH];
+// The bottom bar's other pages and the bell's drawer are not deferred screens:
+// their modules are read on the first tap. Reading them ahead of it leaves
+// that tap with only the page to draw. Search above is also the Explore tab.
+const WARM_MODULES: (() => unknown)[] = [
+  () => require("../screens/DirectMessagesScreen"),
+  () => require("../screens/AIChatScreen"),
+  () => require("../screens/NotificationScreen"),
+];
 
 /**
  * The composer. On Android it is a sheet over the page it opened from, like
@@ -96,23 +114,29 @@ const UPLOAD_OPTIONS = Platform.OS === 'android'
       gestureEnabled: true,
     };
 
-/** Load WARM_SCREENS one per idle moment, a few seconds after sign-in settles. */
-function useWarmScreens(enabled: boolean) {
+/**
+ * Load the pages a tap opens, one per idle moment, a few seconds after the
+ * app settles: WARM_SCREENS and WARM_MODULES signed in, GUEST_WARM_SCREENS
+ * signed out.
+ */
+function useWarmScreens(isAuthed: boolean) {
   useEffect(() => {
-    if (!enabled) return;
+    const screens = isAuthed ? WARM_SCREENS : GUEST_WARM_SCREENS;
+    const modules = isAuthed ? WARM_MODULES : [];
     let cancelled = false;
     let task: { cancel: () => void } | null = null;
     const next = (i: number) => {
-      if (cancelled || i >= WARM_SCREENS.length) return;
+      if (cancelled || i >= screens.length + modules.length) return;
       task = InteractionManager.runAfterInteractions(() => {
         if (cancelled) return;
-        preloadDeferredScreen(...WARM_SCREENS[i]);
+        if (i < screens.length) preloadDeferredScreen(...screens[i]);
+        else modules[i - screens.length]();
         setTimeout(() => next(i + 1), 250);
       });
     };
     const timer = setTimeout(() => next(0), 4000);
     return () => { cancelled = true; clearTimeout(timer); task?.cancel(); };
-  }, [enabled]);
+  }, [isAuthed]);
 }
 
 /**
@@ -166,7 +190,18 @@ function AppNavigatorContent() {
           headerShown: false,
           // App resources give this native transition the same centre
           // expansion as profiles, independent of the theme or JS workload.
-          animation: Platform.OS === 'android' ? reducedMotion ? 'none' : 'fade_from_bottom' : 'default',
+          // iPhone keeps its sideways push, but short: its own is a
+          // half-second slide, and a page that loads after its entrance
+          // (deferredScreen) sat behind the grey sketch for all of it. That
+          // push cannot be shortened, so this is the library's plain slide.
+          // The edge swipe then has to drive the same slide
+          // (animationMatchesGesture), or it would pop the page at once
+          // instead of following the finger.
+          animation: Platform.OS === 'android'
+            ? reducedMotion ? 'none' : 'fade_from_bottom'
+            : reducedMotion ? 'default' : 'simple_push',
+          animationDuration: IOS_PAGE_OPEN_MS,
+          animationMatchesGesture: Platform.OS === 'ios' && !reducedMotion,
           // An options object, but react-native-screens is compiled from
           // source with the app's JSX runtime and hands this to a View, so
           // System Light's colour pass DOES see it: a plain white turned into
@@ -508,7 +543,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.Search}
-          getComponent={() => deferredScreen('../screens/SearchScreen#default', () => require("../screens/SearchScreen").default)}
+          getComponent={() => deferredScreen(...SEARCH)}
         />
         <Stack.Screen
           name={ScreenNames.ImageViewer}
@@ -652,7 +687,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.LiveChat}
-              getComponent={() => deferredScreen('../screens/LiveChatScreen#default', () => require("../screens/LiveChatScreen").default)}
+              getComponent={() => deferredScreen(...LIVE_CHAT)}
             />
             <Stack.Screen
               name={ScreenNames.LiveChatInfo}
@@ -660,7 +695,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.AccountSettings}
-              getComponent={() => deferredScreen('../screens/AccountSettingsScreen#default', () => require("../screens/AccountSettingsScreen").default)}
+              getComponent={() => deferredScreen(...ACCOUNT_SETTINGS)}
             />
             <Stack.Screen
               name={ScreenNames.LiveStudio}

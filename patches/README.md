@@ -19,3 +19,15 @@ scrolling frame no longer uploads each new picture on the render thread. It
 defaults to off; `libs/hardwareImageDecode.ts` turns it on for a share of
 installs (`HARDWARE_IMAGE_ROLLOUT_PERCENT`), and an update setting that back to
 0 switches it off. Recreate it when expo-image is upgraded.
+
+`react-native+0.83.10.patch` keeps a frozen page's native views on iPhone.
+react-navigation freezes a page you have left (`freezeOnBlur`) with a Suspense
+boundary, and React hides a suspended subtree with `display: none`. On iOS,
+Fabric leaves a `display: none` subtree out of the mounted tree altogether, so
+every tab you left, and every page two or more below the open one, had all of
+its native views destroyed and then rebuilt on the way back; Android only
+stops drawing them. The patch skips that hide for react-native-screens' own
+page views (`RNSScreen`, `RNSModalScreen`) on iOS: the page still stops
+rendering while frozen, and the screen container already takes it off screen.
+It touches the three Fabric renderer builds (dev, prod, profiling) and nothing
+native, so it ships in an update. Recreate it when react-native is upgraded.

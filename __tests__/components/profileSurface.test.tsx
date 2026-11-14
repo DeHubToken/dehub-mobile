@@ -62,17 +62,36 @@ it('slides Android profiles inside the activity window and handles the back butt
   act(() => tree.unmount());
 });
 
-it('preserves the native fullscreen presentation on iOS', () => {
+it('opens iPhone profiles with the same short motion, in a see-through window of their own', () => {
   const previousOS = Platform.OS;
   Object.defineProperty(Platform, 'OS', { configurable: true, value: 'ios' });
   const close = jest.fn();
+  const opened = jest.fn();
+  const closed = jest.fn();
   let tree!: ReturnType<typeof create>;
-  act(() => { tree = create(<ProfileSurface visible onClose={close}>profile</ProfileSurface>); });
-  expect(tree.root.findAllByType('AnimatedView' as any)).toHaveLength(0);
-  const surface = tree.root.findByType('NativeModal' as any);
-  expect(surface.props.presentationStyle).toBe('fullScreen');
-  act(() => surface.props.onRequestClose());
+  act(() => { tree = create(<ProfileSurface visible={false} onClose={close}>profile</ProfileSurface>); });
+  expect(tree.root.findAllByType('NativeModal' as any)).toHaveLength(0);
+  act(() => { tree.update(<ProfileSurface visible onClose={close} onOpenComplete={opened} onCloseComplete={closed}>profile</ProfileSurface>); });
+  const modal = tree.root.findByType('NativeModal' as any);
+  // The system sheet's half-second slide is off; the page moves by itself.
+  expect(modal.props.animationType).toBe('none');
+  expect(modal.props.transparent).toBe(true);
+  expect(modal.props.presentationStyle).toBe('overFullScreen');
+  expect(tree.root.findByType('AnimatedView' as any).props.pointerEvents).toBe('auto');
+  expect(opened).not.toHaveBeenCalled();
+  act(() => { finishSlide[finishSlide.length - 1](true); });
+  expect(opened).toHaveBeenCalledTimes(1);
+  act(() => modal.props.onRequestClose());
   expect(close).toHaveBeenCalledTimes(1);
+
+  // Closing keeps the window until the page has faded out.
+  act(() => { tree.update(<ProfileSurface visible={false} onClose={close} onOpenComplete={opened} onCloseComplete={closed}>profile</ProfileSurface>); });
+  expect(tree.root.findAllByType('NativeModal' as any)).toHaveLength(1);
+  expect(tree.root.findByType('AnimatedView' as any).props.pointerEvents).toBe('none');
+  expect(closed).not.toHaveBeenCalled();
+  act(() => { finishSlide[finishSlide.length - 1](true); });
+  expect(tree.root.findAllByType('NativeModal' as any)).toHaveLength(0);
+  expect(closed).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
   Object.defineProperty(Platform, 'OS', { configurable: true, value: previousOS });
 });
