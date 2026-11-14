@@ -33,7 +33,6 @@ import ChatInputBar, {
   type ChatMediaAttachment,
 } from "../components/DM/ChatInputBar";
 import type { SmartReplyTurn } from "../services/ai.service";
-import ChatWallpaper from "../components/DM/ChatWallpaper";
 import ChatDayPill, { chatDayKey } from "../components/DM/ChatDayPill";
 import MessageContextMenu, {
   type MessageLayout,
@@ -1854,7 +1853,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         )}
 
         <View className="flex-1">
-          <ChatWallpaper />
           {/* New chat intro — shown before first message */}
           {/* A brand-new chat has no message list yet, so nothing on the
               screen took a tap away from the composer: the keyboard stayed
