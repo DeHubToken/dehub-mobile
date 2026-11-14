@@ -210,7 +210,7 @@ done
 if [ "${PAGES_TOUR:-1}" = 1 ]; then
   run before pages-before "" pages
   run after pages-after "" pages
-  for theme in ${PAGE_THEMES:-hazy}; do
+  for theme in ${PAGE_THEMES:-system-light hazy}; do
     run after "pages-after-$theme" "" pages "$theme"
   done
 fi
