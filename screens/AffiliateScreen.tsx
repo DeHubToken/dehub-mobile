@@ -741,7 +741,7 @@ export function DeepLinkBuilder({ inviteLink }: { inviteLink: string }) {
         style={[styles.input, { marginTop: 10 }]}
       />
       <Text style={[styles.deepLinkOut, invalid && { color: "#F87171" }]} selectable>
-        {invalid ? t("copy.c184b8c9592f", { defaultValue: "That has to be a page on dehub.io." }) : link}
+        {invalid ? t("copy.c184b8c9592f", { defaultValue: "That has to be a page on riftn.com." }) : link}
       </Text>
       <Pressable
         style={[styles.secondaryBtn, { marginTop: 10, flex: 0, opacity: invalid ? 0.5 : 1 }]}
