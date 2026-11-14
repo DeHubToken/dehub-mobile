@@ -2938,7 +2938,7 @@
     "arrangeButton": "Ordenar publicaciones",
     "arrange": {
       "title": "Ordena tus publicaciones",
-      "hint": "Arrastra tus publicaciones al orden que quieras. Los visitantes verán este orden primero.",
+      "hint": "Mantén pulsada una publicación y arrástrala a su nuevo lugar. Los visitantes ven este orden primero.",
       "drag": "Arrastra para mover",
       "toTop": "Mover arriba del todo",
       "save": "Guardar orden",

@@ -2938,7 +2938,7 @@
     "arrangeButton": "Gönderileri sırala",
     "arrange": {
       "title": "Gönderilerinizi sıralayın",
-      "hint": "Gönderilerinizi istediğiniz sıraya sürükleyin. Ziyaretçiler önce bu sırayı görür.",
+      "hint": "Bir gönderiyi basılı tutun ve yeni yerine sürükleyin. Ziyaretçiler önce bu sırayı görür.",
       "drag": "Taşımak için sürükleyin",
       "toTop": "En üste taşı",
       "save": "Sırayı kaydet",
