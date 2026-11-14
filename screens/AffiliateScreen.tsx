@@ -194,7 +194,7 @@ export default function AffiliateScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [tab, setTab] = useState<"direct" | "secondary">("direct");
   const [visible, setVisible] = useState(AFFILIATES_PAGE_SIZE);
-  const [imgVersion, setImgVersion] = useState("1");
+  const [imgVersion, setImgVersion] = useState("2");
   const [imgLoaded, setImgLoaded] = useState(false);
   const [landing, setLanding] = useSurfaceDraft<AffiliateLandingCustomization>("screens/AffiliateScreen.tsx:landing", DEFAULT_AFFILIATE_LANDING);
   const [savingLanding, setSavingLanding] = useState(false);
