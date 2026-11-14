@@ -126,10 +126,10 @@ const ArrangeItem: React.FC<RowProps> = ({ row, index, count, onMove, onTop, onD
   }
 
   return (
-    <Animated.View
-      style={[styles.row, lifted && styles.rowLifted, { transform: [{ translateY: offset }, { scale: lifted ? 1.02 : 1 }] }]}
-      className={lifted ? "bg-white/20 border border-white/25" : "bg-white/[0.07] border border-white/10"}
-    >
+    // The moving wrapper carries only the transform; the tinted row inside it
+    // keeps its theme classes (they do not reach an Animated.View).
+    <Animated.View style={[styles.slot, lifted && styles.rowLifted, { transform: [{ translateY: offset }, { scale: lifted ? 1.02 : 1 }] }]}>
+    <View style={styles.row} className={lifted ? "bg-white/20 border border-white/25" : "bg-white/10 border border-white/10"}>
       <View {...responder.panHandlers} style={styles.grip} accessibilityRole="adjustable" accessibilityLabel={dragLabel}>
         <Icon name="Grip" size={20} color="rgba(255,255,255,0.6)" />
       </View>
@@ -143,6 +143,7 @@ const ArrangeItem: React.FC<RowProps> = ({ row, index, count, onMove, onTop, onD
           <Icon name="ArrowUpToLine" size={17} color="rgba(255,255,255,0.6)" />
         </Pressable>
       )}
+    </View>
     </Animated.View>
   );
 };
@@ -264,7 +265,8 @@ const ProfileArrangeSheet: React.FC<ProfileArrangeSheetProps> = ({ visible, onCl
 const styles = StyleSheet.create({
   sheet: { maxHeight: "100%" },
   scroll: { flexGrow: 0 },
-  row: { flexDirection: "row", alignItems: "center", height: ROW_HEIGHT, marginBottom: ROW_GAP, borderRadius: 16, paddingRight: 8, gap: 10 },
+  slot: { height: ROW_HEIGHT, marginBottom: ROW_GAP },
+  row: { flexDirection: "row", alignItems: "center", height: ROW_HEIGHT, borderRadius: 16, paddingRight: 8, gap: 10 },
   rowLifted: { zIndex: 2, elevation: 6 },
   grip: { width: 40, height: ROW_HEIGHT, alignItems: "center", justifyContent: "center" },
   number: { width: 22, textAlign: "right", fontSize: 12, fontWeight: "600", fontVariant: ["tabular-nums"] },
