@@ -59,7 +59,7 @@ import type { BadgeMotion } from "../../libs/badgeMotion";
 import { haptic } from "../../libs/haptics";
 import { useAppTheme } from "../../context/ThemeContext";
 import { badgeAnimationStyle } from "../../libs/badgeAnimationStyle";
-import { badgeWorld } from "../../libs/badgeWorld";
+import { badgeLook, badgeWorld } from "../../libs/badgeWorld";
 import { KeepDarkScope } from "../../libs/jsx/tone";
 
 export interface ShowcaseEntry {
@@ -211,8 +211,11 @@ export default function ShowcaseShell({
 }: Props) {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
-  const [metallic] = useState(() => badgeAnimationStyle(theme) === "metallic");
-  const [world] = useState(() => badgeWorld(theme));
+  // An opened badge is the 3D badge dressed for the theme. A promotion keeps
+  // its own ceremony: the themed scene, or the sticker's glitter.
+  const [look] = useState(() => (intro ? null : badgeLook(theme)));
+  const [metallic] = useState(() => badgeAnimationStyle(theme) === "metallic" || !!look);
+  const [world] = useState(() => (look ? null : badgeWorld(theme)));
   const cinematic = metallic || !!world;
   const insets = useSafeAreaInsets();
   const bottomGap = insets.bottom + SECTION_GAP;
@@ -693,7 +696,7 @@ export default function ShowcaseShell({
           {cinematic && items && hero && !glFailed ? (
             <View style={StyleSheet.absoluteFill}>
               <StickerStage
-                ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} hero={hero} reducedMotion={reduceMotion}
+                ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} look={look} hero={hero} reducedMotion={reduceMotion}
                 onReady={(ok) => { if (closing.current) { if (!ok) finish(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
                 onStarted={() => { if (!closing.current) { setShown(true); setStandIn(null); } }}
                 onLanded={() => { if (!closing.current) setLanded(true); }}
