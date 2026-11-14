@@ -722,8 +722,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (feedPlaceRef.current > 0) {
       feedPlaceRef.current = 0;
       usedFeedVideoPlace(videoUrl);
-      // eslint-disable-next-line no-console
-      console.log(`[video] carried on at ${resumeAt.toFixed(1)}s`);
     }
   }, [videoUrl]);
   useEffect(() => {
