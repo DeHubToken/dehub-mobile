@@ -132,7 +132,7 @@ const openProfile = (name: string) => () => emitProfileDeepLink(name);
 const closeProfile = () => () => closeProfileSheetForLink();
 
 async function run(): Promise<void> {
-  const profiles = (await AsyncStorage.getItem(`${FLAG_KEY}.profiles`))?.split(",").filter(Boolean) ?? ["maldoteth", "riftn"];
+  const profiles = (await AsyncStorage.getItem(`${FLAG_KEY}.profiles`))?.split(",").filter(Boolean) ?? ["riftn", "araf"];
   const post = (await AsyncStorage.getItem(`${FLAG_KEY}.post`)) || "742";
   extra = { startedAt: Date.now() };
 
