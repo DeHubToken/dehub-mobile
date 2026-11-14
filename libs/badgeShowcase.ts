@@ -1,3 +1,4 @@
+import { RIFTN_GOLD_BADGE } from './riftnGoldBadge';
 /**
  * Opens a badge showcase from anywhere a badge is drawn. One host mounted
  * in App renders it, so a tap inside the showcase never reaches the feed card
@@ -90,6 +91,7 @@ export function useBadgeShowcaseRequest(): BadgeShowcaseRequest | null {
 
 /** The tier a badge image stands for, for surfaces that only hold the art. */
 export function tierForBadgeImage(source: unknown): string | null {
+  if (source === RIFTN_GOLD_BADGE) return 'Megalodon';
   if (source === undefined || source === null) return null;
   return (
     BADGE_ORDER.find((name) => badgeImage(name) === source || badgeImage(name, "light") === source) ?? null

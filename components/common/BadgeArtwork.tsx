@@ -2,6 +2,7 @@ import React, { memo, useRef, useState } from "react";
 import { Image, Pressable, StyleSheet, View, type ImageStyle, type StyleProp, type ViewStyle } from "react-native";
 import { Image as MotionImage, type ImageContentFit } from "expo-image";
 import { useReducedMotion } from "react-native-reanimated";
+import { RIFTN_GOLD_BADGE } from '../../libs/riftnGoldBadge';
 import { badgeHoverArt } from "../../libs/badgeHoverArt";
 import { BADGE_SMALL_MAX, badgeSmallArt } from "../../libs/badgeSmallArt";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
@@ -31,7 +32,8 @@ function PlayingBadge({ poster, animation, imageStyle, motionStyle, onError }: {
 function BadgeArtwork({ source, style }: Props) {
   const anchor = useRef<View>(null);
   const tier = tierForBadgeImage(source);
-  const art = badgeHoverArt(tier);
+  const gold = source === RIFTN_GOLD_BADGE;
+  const art = gold ? undefined : badgeHoverArt(tier);
   const reducedMotion = useReducedMotion();
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -44,7 +46,7 @@ function BadgeArtwork({ source, style }: Props) {
   const canvas = typeof flat.height === "number" ? flat.height - gutter * 2 : undefined;
   // Next to a name the badge is tiny: draw the still made for that size. Larger
   // spots keep the full-size artwork.
-  const small = canvas !== undefined && canvas <= BADGE_SMALL_MAX ? badgeSmallArt(tier, source) : undefined;
+  const small = !gold && canvas !== undefined && canvas <= BADGE_SMALL_MAX ? badgeSmallArt(tier, source) : undefined;
   const poster = small ?? (tier === "Killer Whale" ? source : art?.poster ?? source);
   // Percentage-sized native images and absoluteFill disagree about padding.
   // Give both layers the same explicit canvas, including at compact sizes.
