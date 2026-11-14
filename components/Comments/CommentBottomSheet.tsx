@@ -21,7 +21,7 @@ import useKeyboard from "../../hooks/useKeyboard";
 import { ScreenSpaceWindowContext } from "../../hooks/useComposerKeyboard";
 import type { PostCreator } from "../../libs/impersonation";
 import { useAppTheme } from "../../context/ThemeContext";
-import { useUserProfilePresentation } from "../../context/UserProfileSheetContext";
+import { ProfileOpenOverride, useUserProfilePresentation, useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_TAB_TEXT,
@@ -90,6 +90,9 @@ interface CommentBottomSheetProps {
  * Mounted only while the sheet is open, so closed sheets on every feed card
  * don't re-render with the profile state.
  */
+/** The sheet's slide out (220ms) plus the native Modal's own dismissal. */
+const IOS_PROFILE_AFTER_CLOSE_MS = 420;
+
 function ProfileOpenWatcher({ onProfileOpen }: { onProfileOpen: () => void }) {
   const { profileVisible, profileIdentifier } = useUserProfilePresentation();
   const shown = profileVisible ? profileIdentifier : null;
@@ -234,6 +237,22 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     setConfirming(false);
     if (!inline) closeSheet();
   }, [inline, closeSheet]);
+
+  // iPhone: a profile opened from in here was drawn under this sheet's native
+  // Modal (or presented while it was still on screen), so the tap seemed to do
+  // nothing and the screen stopped answering. The sheet slides away first and
+  // the profile opens once the Modal is gone. The timer is not tied to this
+  // sheet, so it still fires if the card holding the sheet goes away.
+  const { showUserProfile } = useUserProfileSheet();
+  const openProfileAfterClose = useCallback(
+    (id: string, opts?: { initialHeightPct?: number; source?: string }) => {
+      Keyboard.dismiss();
+      setConfirming(false);
+      closeSheet();
+      setTimeout(() => showUserProfile(id, opts), IOS_PROFILE_AFTER_CLOSE_MS);
+    },
+    [closeSheet, showUserProfile],
+  );
 
   // Only a clear downward drag takes over, so taps on the tab row it now
   // covers still switch tabs.
@@ -409,7 +428,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   // higher with a white strip under it, then dropped back before sliding up.
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={requestClose}>
-      <ScreenSpaceWindowContext.Provider value>{content}</ScreenSpaceWindowContext.Provider>
+      <ScreenSpaceWindowContext.Provider value>
+        {Platform.OS === "ios"
+          ? <ProfileOpenOverride showUserProfile={openProfileAfterClose}>{content}</ProfileOpenOverride>
+          : content}
+      </ScreenSpaceWindowContext.Provider>
     </Modal>
   );
 };

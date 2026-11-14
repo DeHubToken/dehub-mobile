@@ -96,6 +96,8 @@ interface ScrollNavItem {
 // and follows the drawer's order instead, so every destination in the drawer is
 // also reachable from here.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
+  // The public chat room itself, first past the main five: one swipe and a tap.
+  { icon: "MessagesSquare", labelKey: "publicChat.title", screen: ScreenNames.LiveChat },
   { icon: "SettingsCog", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
   { icon: "Creator", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
@@ -580,7 +582,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
-  const messagesUnread = dmUnread + usePublicChatUnreadCount();
+  const publicChatUnread = usePublicChatUnreadCount();
+  const messagesUnread = dmUnread + publicChatUnread;
   // Resting state by default: a mount that happens underneath the boot
   // preloader (every cold start) must appear settled, or the user catches the
   // tail of this choreography as movement right on top of the reveal. The
@@ -951,7 +954,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps & { noEntrance?: boolean 
                     ? entry.tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0
                     : entry.item?.screen === ScreenNames.Notifications && isAuthed
                       ? user?.notificationCount ?? 0
-                      : 0
+                      : entry.item?.screen === ScreenNames.LiveChat && isAuthed
+                        ? publicChatUnread
+                        : 0
                 }
                 onTabPress={handlePress}
                 onItemPress={handleScrollItemPress}

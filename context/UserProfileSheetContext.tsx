@@ -265,6 +265,23 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   );
 };
 
+/**
+ * Swaps how a profile opens for everything inside it, leaving the rest of the
+ * sheet controls alone. A native sheet (a Modal) wraps its body in this so a
+ * name tapped inside it can first get the sheet out of the way.
+ */
+export function ProfileOpenOverride({
+  showUserProfile,
+  children,
+}: {
+  showUserProfile: CtxValue['showUserProfile'];
+  children: React.ReactNode;
+}) {
+  const ctx = useUserProfileSheet();
+  const value = useMemo(() => ({ ...ctx, showUserProfile }), [ctx, showUserProfile]);
+  return <UserProfileSheetContext.Provider value={value}>{children}</UserProfileSheetContext.Provider>;
+}
+
 export function useUserProfileSheet() {
   const ctx = useContext(UserProfileSheetContext);
   if (!ctx) throw new Error('useUserProfileSheet must be used within UserProfileSheetProvider');
