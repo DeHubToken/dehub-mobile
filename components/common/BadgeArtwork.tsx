@@ -2,7 +2,7 @@ import React, { memo, useRef, useState } from "react";
 import { Image, Pressable, StyleSheet, View, type ImageStyle, type StyleProp, type ViewStyle } from "react-native";
 import { Image as MotionImage, type ImageContentFit } from "expo-image";
 import { useReducedMotion } from "react-native-reanimated";
-import { RIFTN_GOLD_BADGE } from '../../libs/misc';
+import { RIFTN_GOLD_BADGE } from '../../libs/riftnGoldBadge';
 import { badgeHoverArt } from "../../libs/badgeHoverArt";
 import { BADGE_SMALL_MAX, badgeSmallArt } from "../../libs/badgeSmallArt";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";

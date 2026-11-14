@@ -1,3 +1,4 @@
+import { RIFTN_GOLD_BADGE } from './riftnGoldBadge';
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
 import { badgeHoverArt } from "./badgeHoverArt";
@@ -619,7 +620,7 @@ export function getBadgeName(
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
-export const RIFTN_GOLD_BADGE: number = require('../assets/badges/Megalodon-riftn.png');
+
 
 function holderImage(tier: string, username?: string | null) {
   return tier === 'Megalodon' && username?.trim().replace(/^@/, '').toLowerCase() === 'riftn'

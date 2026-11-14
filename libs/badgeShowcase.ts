@@ -1,10 +1,11 @@
+import { RIFTN_GOLD_BADGE } from './riftnGoldBadge';
 /**
  * Opens a badge showcase from anywhere a badge is drawn. One host mounted
  * in App renders it, so a tap inside the showcase never reaches the feed card
  * or row the badge was sitting in.
  */
 import { useSyncExternalStore } from "react";
-import { BADGE_ORDER, RIFTN_GOLD_BADGE, badgeImage } from "./misc";
+import { BADGE_ORDER, badgeImage } from "./misc";
 import type { StreamerBadgeId } from "./streamer-badge-art";
 
 /** Anything that can report where it sits on screen: a host view instance. */
