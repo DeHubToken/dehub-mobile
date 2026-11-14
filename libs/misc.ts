@@ -669,6 +669,10 @@ const BADGE_SIT: Record<string, number> = {
   "Blue Whale": 115, "Megalodon": 114,
 };
 
+// The gold seal ends in a thin point, so it rests on the same quarter-width
+// line as the tiers: the lowest row a quarter as wide as the seal.
+const GOLD_SIT = 117;
+
 // At compact sizes the source artwork's narrowest transparent edge is less
 // than one rendered point. Keep a full point of protected internal space so
 // anti-aliased details cannot be sampled against the image boundary. Padding
@@ -692,7 +696,7 @@ export function getBadgeOpticalStyle(
   const optics = gold ? { left: 1, top: 1, right: 127, bottom: 123 } : artworkBounds ?? (tier ? BADGE_OPTICS[tier] : undefined);
   const bounds = optics ?? { left: 0, top: 0, right: 128, bottom: 128 };
   // The row that rests on the baseline: the tier's body, not a dangling tip.
-  const sit = artworkSit ?? (!artworkBounds && tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
+  const sit = gold ? GOLD_SIT : artworkSit ?? (!artworkBounds && tier ? BADGE_SIT[tier] : undefined) ?? bounds.bottom;
   // Manrope uses a 0.72em cap height; inline artwork is 1.27x it (+10%, +10%
   // on 2026-11-04, +5% on 2026-11-05). The baseline maths below uses the same
   // bounds, so every tier lands its resting line on the name's baseline.
