@@ -1,4 +1,5 @@
 import { noteImageSizes } from './image-size-hints';
+import { ACCOUNT_DELETED_CODE, deletedAccountMessage } from './deleted-account';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import env from '../config/env';
@@ -333,7 +334,9 @@ export const apiClient = {
         const htmlHint = rawBody && rawBody.trim().startsWith('<') ? ` ${_translateCopy('copy.843aa2e9103e', { defaultValue: '(Received HTML instead of JSON - check endpoint URL / server / proxy / CORS)' })}` : '';
         // Attach status/code so callers that need to branch on the specific
         // failure (e.g. 409 WALLET_NOT_LINKED) don't have to re-parse the message.
-        const err: any = new Error(message + htmlHint);
+        const err: any = new Error(
+          data?.code === ACCOUNT_DELETED_CODE ? deletedAccountMessage(data?.signupAfter) : message + htmlHint,
+        );
         err.status = status;
         if (data?.code) err.code = data.code;
         if (data?.code === TWO_FACTOR_REQUIRED_CODE) err.body = data;

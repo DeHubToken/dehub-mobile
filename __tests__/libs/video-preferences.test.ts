@@ -45,11 +45,32 @@ it('keeps an off tap made before stored preferences finish loading', async () =>
   const prefs = restart();
   const loading = prefs.warmVideoPreferences();
   prefs.setIsLooping(false);
-  finish(JSON.stringify({ isLooping: true, playbackRate: 1.5 }));
+  finish(JSON.stringify({ isLooping: true, playbackRate: 1.5, rateScope: 2 }));
   await loading;
   expect(prefs.getIsLooping()).toBe(false);
   expect(prefs.getPlaybackRateFor()).toBe(1.5);
   const reopened = restart();
   await reopened.warmVideoPreferences();
   expect(reopened.getIsLooping()).toBe(false);
+});
+
+it('keeps a speed picked on one creator away from everyone else', async () => {
+  const prefs = restart();
+  await prefs.warmVideoPreferences();
+  prefs.setPlaybackRate(2, '0xAbC');
+  expect(prefs.getPlaybackRateFor('0xabc')).toBe(2);
+  expect(prefs.getPlaybackRateFor('0xdef')).toBe(1);
+  expect(prefs.getPlaybackRateFor()).toBe(1);
+  const reopened = restart();
+  await reopened.warmVideoPreferences();
+  expect(reopened.getPlaybackRateFor('0xabc')).toBe(2);
+  expect(reopened.getPlaybackRateFor('0xdef')).toBe(1);
+});
+
+it('puts a phone left at 2x everywhere back to normal speed, once', async () => {
+  mockValues.set('video-preferences', JSON.stringify({ playbackRate: 2, ratesByCreator: { '0xabc': 2 } }));
+  const prefs = restart();
+  await prefs.warmVideoPreferences();
+  expect(prefs.getPlaybackRateFor('0xdef')).toBe(1);
+  expect(prefs.getPlaybackRateFor('0xabc')).toBe(2);
 });

@@ -54,6 +54,7 @@ import ProfileScrollViewport from "../Profile/ProfileScrollViewport";
 import ProfilePinnedBar, { type ProfilePinnedIdentity } from "../Profile/ProfilePinnedBar";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
 import ProfileContentToolbar from "../Profile/ProfileContentToolbar";
+import ProfileArrangeSheet from "../Profile/ProfileArrangeSheet";
 import ProfileFilterDrawer from "../Profile/ProfileFilterDrawer";
 import {
   CONTENT_BACKED_TABS,
@@ -98,6 +99,8 @@ interface UserProfileBottomContentTabsProps {
   defaultTab?: ProfileDefaultTab;
   /** Someone else's profile whose owner made their Dislikes tab public. */
   showDislikesTab?: boolean;
+  /** The creator arranged their posts in their own order; the profile opens in it. */
+  hasCustomOrder?: boolean;
   /** Back-to-top button's distance from the bottom; the host knows what sits there. */
   backToTopBottom?: number;
 }
@@ -172,6 +175,7 @@ const UserProfileBottomContentTabs: React.FC<
   defaultTab = DEFAULT_PROFILE_TAB,
   backToTopBottom,
   showDislikesTab = false,
+  hasCustomOrder = false,
 }) => {
   // The App Store build lists nobody else's paid plans (3.1.1), so another
   // creator's Subs tab, and a profile that opens on it, are left out.
@@ -235,8 +239,18 @@ const UserProfileBottomContentTabs: React.FC<
   // signed-in user's own profile uses, so the two surfaces stay identical.
   // Keyed on address: one sheet instance is reused for every profile opened,
   // so without that the last person's filters would carry over to the next.
+  const [arrangeOpen, setArrangeOpen] = useState(false);
+  const [savedOrder, setSavedOrder] = useState<boolean | null>(null);
+  useEffect(() => { setSavedOrder(null); }, [address]);
+  const customOrder = savedOrder ?? hasCustomOrder;
   const { toolbar, panel, contentQuery, homePostType } =
-    useProfileContentFilters(activeTab, address);
+    useProfileContentFilters(activeTab, address, customOrder);
+  const openArrange = useCallback(() => setArrangeOpen(true), []);
+  const closeArrange = useCallback(() => setArrangeOpen(false), []);
+  const handleOrderSaved = useCallback((custom: boolean) => {
+    setSavedOrder(custom);
+    toolbar.onSortChange(custom ? "custom" : "newest");
+  }, [toolbar]);
 
   const tabItems = useMemo<ProfileTabItem<ContentTab>[]>(() => {
     const withCounts = BASE_TAB_ITEMS.map((item) => ({
@@ -595,11 +609,14 @@ const UserProfileBottomContentTabs: React.FC<
     if (!isFullScreen || !CONTENT_BACKED_TABS.includes(activeTab)) return null;
     return (
       <>
-        <ProfileContentToolbar {...toolbar} showViewToggle={activeTab === "home"} />
+        <ProfileContentToolbar {...toolbar} showViewToggle={activeTab === "home"} onArrange={isOwnProfile && address ? openArrange : undefined} />
         <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
+        {arrangeOpen && !!address && (
+          <ProfileArrangeSheet visible onClose={closeArrange} address={address} hasCustomOrder={customOrder} onSaved={handleOrderSaved} />
+        )}
       </>
     );
-  }, [isFullScreen, activeTab, toolbar, panel]);
+  }, [isFullScreen, activeTab, toolbar, panel, isOwnProfile, address, arrangeOpen, openArrange, closeArrange, customOrder, handleOrderSaved]);
 
   // Simple white activity indicator for loading state (preserves header visibility)
   // Fullscreen list header: profile header + optional Edit Profile + tab bar inside FlatList
