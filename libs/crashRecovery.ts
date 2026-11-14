@@ -42,6 +42,8 @@ export interface CrashMarker {
  */
 export function dropPersistedQueryCache(): void {
   try {
+    // eslint-disable-next-line no-console
+    console.warn("[cache] dropped after a fault");
     storage.delete(QUERY_CACHE_KEY);
   } catch {
     /* MMKV unavailable — nothing to drop */

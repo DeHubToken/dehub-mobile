@@ -126,13 +126,57 @@ export function serializePersistedClient(client: PersistedClient): string {
   }
 }
 
+let saves = 0;
+let writeFailureReported = false;
+
+function noteCache(key: string, value: string): void {
+  try {
+    require("../libs/launchTiming").noteLaunch(key, value);
+  } catch {
+    /* a launch note only */
+  }
+}
+
+function reportSaveFailure(message: string): void {
+  if (writeFailureReported) return;
+  writeFailureReported = true;
+  // eslint-disable-next-line no-console
+  console.warn(`[cache] ${message}`);
+  try {
+    require("../libs/errorReporter").reportError("QueryCache", ["Saved cache was not written"], {
+      level: "warn",
+      metadata: { message },
+    });
+  } catch {
+    /* reporting is best effort */
+  }
+}
+
 // MMKV is synchronous, so the restore completes before the first frame.
 const baseCachePersister = createSyncStoragePersister({
   serialize: serializePersistedClient,
   storage: {
-    getItem: (key) => storage.getString(key) ?? null,
-    setItem: (key, value) => storage.set(key, value),
-    removeItem: (key) => storage.delete(key),
+    getItem: (key) => {
+      const saved = storage.getString(key) ?? null;
+      noteCache("disk", saved ? `${Math.round(saved.length / 1024)}kB` : "empty");
+      return saved;
+    },
+    setItem: (key, value) => {
+      try {
+        storage.set(key, value);
+        saves += 1;
+        // The first two writes of a session are enough to see that saving works.
+        // eslint-disable-next-line no-console
+        if (saves <= 2) console.log(`[cache] saved ${Math.round(value.length / 1024)}kB`);
+      } catch (error) {
+        reportSaveFailure(`write failed (${Math.round(value.length / 1024)}kB): ${String((error as Error)?.message).slice(0, 160)}`);
+        throw error;
+      }
+    },
+    removeItem: (key) => {
+      noteCache("diskDropped", "expired or changed");
+      storage.delete(key);
+    },
   },
   key: "dehub-query-cache",
   // Was 2_000: at that cadence an actively-scrolled infinite feed re-serialised
@@ -149,8 +193,13 @@ const baseCachePersister = createSyncStoragePersister({
 // infinite feeds trimmed to their first page just before each write.
 export const queryCachePersister: typeof baseCachePersister = {
   ...baseCachePersister,
-  persistClient: (client) =>
-    baseCachePersister.persistClient(trimPersistedClient(client)),
+  persistClient: (client) => {
+    try {
+      return baseCachePersister.persistClient(trimPersistedClient(client));
+    } catch (error) {
+      reportSaveFailure(`save threw: ${String((error as Error)?.message).slice(0, 160)}`);
+    }
+  },
 };
 
 export const PERSIST_MAX_AGE = 24 * 60 * 60 * 1000;
