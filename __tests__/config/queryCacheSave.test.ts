@@ -22,3 +22,17 @@ it("writes a clean cache untouched", () => {
   const client: any = { timestamp: 1, buster: "v1", clientState: { mutations: [], queries: [query("home-feed", { pages: [] })] } };
   expect(serializePersistedClient(client)).toBe(JSON.stringify(client));
 });
+
+it("saves straight to disk when asked", () => {
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+  const { queryClient, saveQueryCacheNow } = require("../../config/queryClient");
+  const { storage } = require("../../libs/storage");
+  queryClient.setQueryData(["home-feed", 1], { pages: [[1], [2]], pageParams: [0, 1] });
+  saveQueryCacheNow("test");
+  const [key, text] = storage.set.mock.calls[storage.set.mock.calls.length - 1];
+  expect(key).toBe("dehub-query-cache");
+  const saved = JSON.parse(text);
+  expect(saved.buster).toBe("v1");
+  expect(saved.clientState.queries[0].state.data.pages).toEqual([[1]]);
+  queryClient.clear();
+});

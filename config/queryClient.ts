@@ -1,5 +1,5 @@
 import { AppState } from "react-native";
-import { QueryClient, focusManager } from "@tanstack/react-query";
+import { QueryClient, dehydrate, focusManager } from "@tanstack/react-query";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import type { PersistedClient } from "@tanstack/react-query-persist-client";
 import { storage } from "../libs/storage";
@@ -126,7 +126,21 @@ export function serializePersistedClient(client: PersistedClient): string {
   }
 }
 
-let saves = 0;
+let savedNoted = false;
+
+/** Said once a session, as a warning: release builds strip console.log. */
+function noteSaved(length: number, reason: string): void {
+  if (savedNoted) return;
+  savedNoted = true;
+  let onDisk = false;
+  try {
+    onDisk = storage.contains("dehub-query-cache");
+  } catch {
+    /* reported as not on disk */
+  }
+  // eslint-disable-next-line no-console
+  console.warn(`[cache] saved ${Math.round(length / 1024)}kB (${reason}), on disk: ${onDisk}`);
+}
 let writeFailureReported = false;
 
 function noteCache(key: string, value: string): void {
@@ -164,10 +178,7 @@ const baseCachePersister = createSyncStoragePersister({
     setItem: (key, value) => {
       try {
         storage.set(key, value);
-        saves += 1;
-        // The first two writes of a session are enough to see that saving works.
-        // eslint-disable-next-line no-console
-        if (saves <= 2) console.log(`[cache] saved ${Math.round(value.length / 1024)}kB`);
+        noteSaved(value.length, "timer");
       } catch (error) {
         reportSaveFailure(`write failed (${Math.round(value.length / 1024)}kB): ${String((error as Error)?.message).slice(0, 160)}`);
         throw error;
@@ -207,6 +218,33 @@ export const PERSIST_MAX_AGE = 24 * 60 * 60 * 1000;
 // Bump to invalidate every persisted cache after a breaking shape change
 // (e.g. feed item structure changes between app versions).
 export const PERSIST_BUSTER = "v1";
+
+/**
+ * Write the cache to disk now, without waiting for the persister's 30 second
+ * timer. That timer is the only thing that ever saved, and a phone that closes
+ * the app inside it, or on which it never fires, starts every launch with
+ * nothing saved and waits on the network for its first feed.
+ */
+export function saveQueryCacheNow(reason: string): void {
+  try {
+    const text = serializePersistedClient(
+      trimPersistedClient({ buster: PERSIST_BUSTER, timestamp: Date.now(), clientState: dehydrate(queryClient) }),
+    );
+    storage.set("dehub-query-cache", text);
+    noteSaved(text.length, reason);
+  } catch (error) {
+    reportSaveFailure(`save failed (${reason}): ${String((error as Error)?.message).slice(0, 160)}`);
+  }
+}
+
+// Leaving the app is the last sure moment to save, and the first feed is worth
+// saving as soon as it has settled.
+AppState.addEventListener("change", (status) => {
+  if (status === "background") saveQueryCacheNow("background");
+});
+const launchSave = setTimeout(() => saveQueryCacheNow("launch"), 10_000);
+// Never the reason a test run stays open.
+(launchSave as { unref?: () => void }).unref?.();
 
 /** When this JS context started. Anything fetched since is this session's own. */
 const SESSION_START = Date.now();
