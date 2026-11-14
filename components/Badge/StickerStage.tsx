@@ -42,6 +42,8 @@ export interface BadgeBox { x: number; y: number; size: number }
 interface Props {
   metallic?: boolean;
   world?: string | null;
+  /** A themed look around the 3D badge. */
+  look?: string | null;
   reducedMotion?: boolean;
   hero?: BadgeBox;
   onStarted?: () => void;
@@ -116,7 +118,7 @@ export function assetDataUrl(module: number): Promise<string> {
 }
 
 const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage(
-  { items, origin, metallic, world, reducedMotion, hero, onStarted, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
+  { items, origin, metallic, world, look, reducedMotion, hero, onStarted, onLanded, onClosed, onReady, onTap, onMiss, onInteract },
   ref,
 ) {
   const webRef = useRef<WebView>(null);
@@ -136,7 +138,7 @@ const StickerStage = forwardRef<StickerStageHandle, Props>(function StickerStage
   // Built once: the page keeps its entries for its whole life, as web's does.
   useEffect(() => {
     let live = true;
-    const boot = JSON.stringify({ items, origin, metallic, world, reducedMotion, hero }).replace(/<\//g, "<\\/");
+    const boot = JSON.stringify({ items, origin, metallic, world, look, reducedMotion, hero }).replace(/<\//g, "<\\/");
     loadBadgePage()
       .then((page) => {
         if (live) setHtml(page.replace("<head>", `<head><script>window.__STICKER=${boot};</script>`));
