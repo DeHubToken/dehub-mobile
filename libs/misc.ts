@@ -656,7 +656,7 @@ const BADGE_OPTICS: Record<string, { left: number; top: number; right: number; b
   "Killer Whale": { left: 19, top: 17, right: 109, bottom: 121 },
   "Great White Shark": { left: 8, top: 13, right: 121, bottom: 120 },
   "Blue Whale": { left: 7, top: 13, right: 119, bottom: 121 },
-  "Megalodon": { left: 8, top: 15, right: 120, bottom: 117 },
+  "Megalodon": { left: 11, top: 15, right: 117, bottom: 117 },
 };
 
 // Optical resting line of each still: the lowest row still carrying a quarter
