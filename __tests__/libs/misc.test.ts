@@ -514,8 +514,8 @@ describe('libs/misc', () => {
       ["Crocodile", 8, 12, 121, 117, 115, 1],
       ["Dolphin", 15, 12, 111, 120, 117, 1],
       ["Tiger Shark", 8, 15, 120, 120, 113, 1.08],
-      ["Killer Whale", 19, 17, 109, 121, 118, 1.11],
-      ["Great White Shark", 8, 13, 121, 120, 114, 1.065],
+      ["Killer Whale", 19, 17, 109, 121, 118, 1.14],
+      ["Great White Shark", 8, 13, 121, 120, 114, 1.04],
       ["Blue Whale", 7, 13, 119, 121, 115, 1.035],
       ["Megalodon", 11, 15, 117, 117, 114, 1.069],
     ])('fits %s to its tier height and rests it on the name baseline', (tier, left, top, right, bottom, sit, scale) => {

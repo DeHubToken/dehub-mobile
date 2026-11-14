@@ -6,8 +6,8 @@
  */
 export const badgeTierScale: Record<string, number> = {
   'Tiger Shark': 1.08,
-  'Killer Whale': 1.11,
-  'Great White Shark': 1.065,
+  'Killer Whale': 1.14,
+  'Great White Shark': 1.04,
   'Blue Whale': 1.035,
   'Megalodon': 1.069,
 };
