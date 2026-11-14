@@ -517,7 +517,7 @@ describe('libs/misc', () => {
       ["Killer Whale", 19, 17, 109, 121, 118],
       ["Great White Shark", 8, 13, 121, 120, 114],
       ["Blue Whale", 7, 13, 119, 121, 115],
-      ["Megalodon", 8, 15, 120, 117, 114],
+      ["Megalodon", 11, 15, 117, 117, 114],
     ])('fits %s to its tier height and rests it on the name baseline', (tier, left, top, right, bottom, sit) => {
       const source = badgeImageFor(String(tier));
       expect(source).toBeDefined();

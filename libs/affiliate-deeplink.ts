@@ -14,7 +14,7 @@ export function sanitizeDeepLinkPath(raw: string | null | undefined): string | n
     const m = /^https?:\/\/([^/?#]+)(.*)$/i.exec(value);
     if (!m) return null;
     const host = m[1].replace(/:\d+$/, "").toLowerCase();
-    if (!/(^|\.)dehub\.io$/.test(host)) return null;
+    if (!/(^|\.)(riftn\.com|dehub\.io)$/.test(host)) return null;
     value = m[2] || "/";
   }
   value = value.replace(/\\/g, "/");

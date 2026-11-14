@@ -5,6 +5,9 @@ describe("sanitizeDeepLinkPath", () => {
     expect(sanitizeDeepLinkPath("docs/getting-started")).toBe("/docs/getting-started");
     expect(sanitizeDeepLinkPath("https://dehub.io/app/stores?x=1")).toBe("/app/stores?x=1");
     expect(sanitizeDeepLinkPath("https://staging.dehub.io/bounties")).toBe("/bounties");
+    expect(sanitizeDeepLinkPath("https://riftn.com/app/requests?tab=shipped")).toBe("/app/requests?tab=shipped");
+    expect(sanitizeDeepLinkPath("https://www.riftn.com/bounties")).toBe("/bounties");
+    expect(sanitizeDeepLinkPath("https://notriftn.com/bounties")).toBeNull();
   });
   it("refuses anything that leaves Riftn or loops", () => {
     expect(sanitizeDeepLinkPath("https://evil.com/x")).toBeNull();
