@@ -189,6 +189,8 @@ async function run(): Promise<void> {
   await measure("public chat back", back());
   await measure("leaderboard open (first)", push(ScreenNames.Leaderboard), { watchMs: 2200 });
   await measure("leaderboard back", back());
+  await measure("shorts viewer open", push(ScreenNames.ShortsViewer, {}), { watchMs: 2600 });
+  if (nav.getCurrentRoute()?.name === ScreenNames.ShortsViewer) await measure("shorts viewer back", back());
   await measure("notifications open", push(ScreenNames.Notifications), { watchMs: 2200 });
   if (nav.getCurrentRoute()?.name === ScreenNames.Notifications) await measure("notifications back", back());
 
