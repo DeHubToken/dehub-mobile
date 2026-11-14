@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Turns the tour's result files into one before/after table.
 
-    summary.py <dir with before-N.json and after-N.json>
+    summary.py <dir with before-N.json and after-N.json> [pages]
+
+With "pages" it reads the every-page tour instead (pages-before.json and
+pages-after.json).
 
 Each cell is the median over the rounds. "frozen" is the time lost to late
 frames after the switch, "longest" the single longest stretch without a frame,
@@ -14,11 +17,12 @@ import statistics
 import sys
 
 directory = sys.argv[1]
+names = "pages-{}.json" if len(sys.argv) > 2 and sys.argv[2] == "pages" else "{}-*.json"
 
 
 def load(variant):
     runs = []
-    for path in sorted(glob.glob(os.path.join(directory, f"{variant}-*.json"))):
+    for path in sorted(glob.glob(os.path.join(directory, names.format(variant)))):
         try:
             data = json.load(open(path))
         except Exception:

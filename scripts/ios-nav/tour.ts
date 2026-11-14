@@ -21,6 +21,8 @@ const FLAG_KEY = "dehub.perfTour";
 const RESULT_KEY = "dehub.perfTour.result";
 /** Set while Settings is open and waiting for the script's edge swipe. */
 const SWIPE_KEY = "dehub.perfTour.swipe";
+/** The script screenshots the simulator each time this changes. */
+const SHOT_KEY = "dehub.perfTour.shot";
 /** emitProfileDeepLink waits this long before it opens the profile. */
 const PROFILE_LINK_DELAY_MS = 350;
 const FRAME_MS = 1000 / 60;
@@ -65,7 +67,7 @@ async function save(done: boolean): Promise<void> {
   }
 }
 
-async function measure(step: string, action: () => void, opts: { watchMs?: number; delayMs?: number } = {}): Promise<void> {
+async function measure(step: string, action: () => void, opts: { watchMs?: number; delayMs?: number; restMs?: number } = {}): Promise<void> {
   const watchMs = opts.watchMs ?? 1600;
   const stamps: number[] = [];
   let alive = true;
@@ -119,7 +121,7 @@ async function measure(step: string, action: () => void, opts: { watchMs?: numbe
   results.push(result);
   console.error(`[perf-tour] ${JSON.stringify(result)}`);
   await save(false);
-  await sleep(900);
+  await sleep(opts.restMs ?? 900);
 }
 
 const tab = (name: string) => () =>
@@ -132,6 +134,73 @@ const back = () => () => {
 };
 const openProfile = (name: string) => () => emitProfileDeepLink(name);
 const closeProfile = () => () => closeProfileSheetForLink();
+
+/**
+ * Every page that opens without being handed something (a post, a chat, a
+ * file). Signed-in pages are included: signed out they show their sign-in
+ * state, which has to open as fast as the page would.
+ */
+const PAGES = [
+  "AccountSettings", "NotificationSettings", "PrivacySettings", "ActiveSessions", "EditProfile",
+  "Search", "Notifications", "LiveChat", "FeatureRequests", "Planned", "Feedback",
+  "Leaderboard", "Top100", "Stats", "Communities", "Creators", "Events", "Stages", "Cinema", "TV",
+  "YourVideos", "LikedVideos", "SavedPosts", "MyLibrary", "Drafts", "UploadQueue", "Earnings", "Affiliate",
+  "Premium", "Pricing", "SuperPowers", "Usernames", "Accounts", "Packs", "Fractions", "NftMarket",
+  "Governance", "Dao", "Launchpad", "Raffle", "Bridge", "Dex", "Dpay", "DePin", "Converter",
+  "Agents", "Builder", "Apps", "Arcade", "Work", "Creator", "CreatorStudio", "CreatorLearning",
+  "Connect", "Compare", "Guide", "Glossary", "Careers", "Ads", "CommandCentre", "Migrate",
+] as const;
+
+const TAB_ROUTES: string[] = [ScreenNames.Home, ScreenNames.Explore, ScreenNames.DM, ScreenNames.AIChat];
+
+const shot = (name: string) => AsyncStorage.setItem(SHOT_KEY, name).catch(() => undefined);
+
+/** Back out of whatever is open until a bottom-bar tab is showing again. */
+async function backToTabs(): Promise<void> {
+  for (let i = 0; i < 6; i++) {
+    const route = nav.getCurrentRoute()?.name;
+    if (!route || TAB_ROUTES.includes(route) || !nav.canGoBack()) return;
+    nav.goBack();
+    await sleep(500);
+  }
+}
+
+/** Opens every page twice: the first visit builds it, the second shows what was kept. */
+async function runPages(): Promise<void> {
+  extra = { startedAt: Date.now(), mode: "pages" };
+  const root = nav.getRootState();
+  if (root?.routes[root.index]?.name !== ScreenNames.App) {
+    nav.navigate(ScreenNames.App);
+    await sleep(1500);
+  }
+  await sleep(14000);
+  const names = ScreenNames as unknown as Record<string, string>;
+  let index = 0;
+  for (const page of PAGES) {
+    const name = names[page];
+    if (!name) continue;
+    index += 1;
+    const label = `${String(index).padStart(2, "0")}-${page}`;
+    await measure(`${page} open (first)`, push(name), { watchMs: 2400, restMs: 300 });
+    const reached = nav.getCurrentRoute()?.name === name;
+    // Pictures: the page once it has settled, and (below) the page half a
+    // second into its second visit, when anything it kept should be showing.
+    await shot(label);
+    await sleep(900);
+    await measure(`${page} back`, back(), { watchMs: 900, restMs: 300 });
+    await backToTabs();
+    if (!reached) continue;
+    await measure(`${page} open again`, () => {
+      nav.navigate(name);
+      setTimeout(() => void shot(`${label}-again`), 450);
+    }, { watchMs: 1500, restMs: 300 });
+    await measure(`${page} back again`, back(), { watchMs: 900, restMs: 300 });
+    await backToTabs();
+  }
+  extra.finishedAt = Date.now();
+  await save(true);
+  console.error("[perf-tour] done");
+}
 
 async function run(): Promise<void> {
   const profiles = (await AsyncStorage.getItem(`${FLAG_KEY}.profiles`))?.split(",").filter(Boolean) ?? ["riftn", "araf"];
@@ -219,11 +288,13 @@ async function run(): Promise<void> {
 
 void (async () => {
   try {
-    if ((await AsyncStorage.getItem(FLAG_KEY)) !== "1") return;
+    const mode = await AsyncStorage.getItem(FLAG_KEY);
+    if (mode !== "1" && mode !== "pages") return;
     // One walk per launch the script asked for.
     await AsyncStorage.removeItem(FLAG_KEY);
     for (let i = 0; i < 300 && !nav.isReady(); i++) await sleep(200);
-    await run();
+    if (mode === "pages") await runPages();
+    else await run();
   } catch (error) {
     console.error(`[perf-tour] failed ${String(error)}`);
     extra.error = String(error);

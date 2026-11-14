@@ -30,7 +30,7 @@ EXE="$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$APP/Info.plist")"
 HERMESC="$PWD/node_modules/hermes-compiler/hermesc/osx-bin/hermesc"
 [ -x "$HERMESC" ] || HERMESC="$PWD/node_modules/react-native/sdks/hermesc/osx-bin/hermesc"
 
-mkdir -p "$OUT/nav" "$OUT/logs" "$WORK"
+mkdir -p "$OUT/nav" "$OUT/pages" "$OUT/logs" "$WORK"
 
 # --- bundles -----------------------------------------------------------------
 
@@ -129,12 +129,40 @@ use_bundle() {
   xcrun simctl install "$UDID" "$APP"
 }
 
-# run <before|after> <name> [record]
+# Screenshots the simulator whenever the tour names a new picture, until the
+# stop file appears.   shots <prefix> <stop file>
+shots() {
+  python3 - "$(storage_dir)/manifest.json" "$UDID" "$OUT/pages" "$1" "$2" <<'PY'
+import json, os, re, subprocess, sys, time
+manifest, udid, out, prefix, stop = sys.argv[1:6]
+os.makedirs(out, exist_ok=True)
+last = None
+while not os.path.exists(stop):
+    try:
+        name = json.load(open(manifest)).get("dehub.perfTour.shot")
+    except Exception:
+        name = None
+    if name and name != last:
+        last = name
+        safe = re.sub(r"[^A-Za-z0-9_-]", "_", name)
+        subprocess.run(["xcrun", "simctl", "io", udid, "screenshot", "--type=jpeg", f"{out}/{prefix}-{safe}.jpg"],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    time.sleep(0.12)
+PY
+}
+
+# run <before|after> <name> [record] [tour: 1 = main switches, pages = every page] [theme]
 run() {
-  local variant="$1" name="$2" record="${3:-}" recorder="" started=0 swiped=0
+  local variant="$1" name="$2" record="${3:-}" tour="${4:-1}" theme="${5:-$THEME}"
+  local recorder="" started=0 swiped=0 tries=180
   use_bundle "$variant"
-  storage drop dehub.perfTour.result dehub.perfTour.swipe
-  storage set dehub.theme "$THEME" dehub.perfTour 1
+  storage drop dehub.perfTour.result dehub.perfTour.swipe dehub.perfTour.shot
+  storage set dehub.theme "$theme" dehub.perfTour "$tour"
+  if [ "$tour" = pages ]; then
+    tries=480
+    rm -f "$WORK/shots.stop"
+    shots "$name" "$WORK/shots.stop" &
+  fi
   if [ -n "$record" ]; then
     xcrun simctl io "$UDID" recordVideo --codec hevc --force "$OUT/nav/$name.mov" 2> "$WORK/record.log" &
     recorder=$!
@@ -143,7 +171,7 @@ run() {
   fi
   xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
   local result=""
-  for _ in $(seq 1 180); do
+  for _ in $(seq 1 "$tries"); do
     sleep 2
     # The tour ends on Settings and waits for a slow swipe in from the left
     # edge: a real touch, which only idb can make.
@@ -157,6 +185,7 @@ run() {
     result="$(storage get dehub.perfTour.result)"
     case "$result" in '{"done":true'*) started=1; break ;; esac
   done
+  touch "$WORK/shots.stop"
   xcrun simctl io "$UDID" screenshot "$OUT/nav/$name-end.png" >/dev/null 2>&1 || true
   if [ -n "$recorder" ]; then kill -INT "$recorder" 2>/dev/null; wait "$recorder" 2>/dev/null; fi
   printf '%s' "$result" > "$OUT/nav/$name.json"
@@ -176,10 +205,21 @@ for round in $(seq 1 "$ROUNDS"); do
   run after "after-$round" "$([ "$round" = 1 ] && echo record)"
 done
 
+# Every page, opened twice, with a picture of each: main's code, this
+# checkout's, then this checkout's again in other themes.
+if [ "${PAGES_TOUR:-1}" = 1 ]; then
+  run before pages-before "" pages
+  run after pages-after "" pages
+  for theme in ${PAGE_THEMES:-hazy}; do
+    run after "pages-after-$theme" "" pages "$theme"
+  done
+fi
+
 kill "$LOG_PID" 2>/dev/null
 cp ~/Library/Logs/DiagnosticReports/"$EXE"*.ips "$OUT/logs/" 2>/dev/null || true
 grep -E '\[perf-tour\]|\[FatalJS\]|\[UncaughtJS\]' "$OUT/logs/app.log" | cut -c1-400 > "$OUT/logs/tour.txt" || true
 
 python3 scripts/ios-nav/summary.py "$OUT/nav" | tee "$OUT/nav/summary.md"
+python3 scripts/ios-nav/summary.py "$OUT/nav" pages > "$OUT/nav/summary-pages.md"
 [ -n "${GITHUB_STEP_SUMMARY:-}" ] && cat "$OUT/nav/summary.md" >> "$GITHUB_STEP_SUMMARY"
 exit 0
